@@ -41,7 +41,11 @@ export const Route = createRootRoute({
 })
 
 function RootDocument({ children }: { children: React.ReactNode }) {
-  const products = Route.useLoaderData()
+  // Falls back to [] when the products loader hasn't resolved (or failed) —
+  // this shell also wraps the error boundary itself, so it must render
+  // something even when the loader rejected, instead of crashing on
+  // `products` being undefined and hiding the real error underneath.
+  const products = Route.useLoaderData() ?? []
   const isAdmin = useRouterState({ select: (s) => s.location.pathname.startsWith('/admin') })
 
   return (
