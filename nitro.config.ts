@@ -13,6 +13,9 @@ export default defineNitroConfig({
     // already live in the Cloudflare dashboard.
     wrangler: {
       name: 'ebicollectibles-ebicollectibles-site',
+      // Pinned too, so a local `wrangler secret put` can't silently land on
+      // a different Cloudflare account than the one CI deploys to.
+      account_id: 'bcc6861315d8ff44884e66be1f31eee3',
     },
   },
 })
