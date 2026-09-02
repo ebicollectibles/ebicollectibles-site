@@ -22,8 +22,27 @@ without charging a card. See "Square" below to go live.
 
 ## Database
 
-Any Postgres works — self-hosted, [Neon](https://neon.tech), Supabase, RDS, etc.
-Nothing here is Neon-specific.
+Production runs on [Neon](https://neon.tech) (serverless Postgres). Two
+different drivers are in play, deliberately:
+
+- **`src/lib/db/client.ts`** (product reads, admin CRUD) uses
+  `@neondatabase/serverless`'s HTTP driver — each query is a stateless HTTPS
+  request. This is required on Cloudflare Workers: a cached raw TCP
+  connection (the original `postgres.js` setup) caused intermittent "works
+  on retry" failures, because Workers must not reuse a socket across
+  separate requests. The HTTP driver has no persistent socket to go stale.
+- **`src/lib/db/transactional-client.ts`** (`withTransaction`, used only by
+  order placement) opens a scoped Neon `Pool` (WebSocket-based) for that one
+  request, runs a real multi-statement transaction (atomic stock decrement +
+  order + order_items insert), and closes it — the HTTP driver can't do
+  transactions at all.
+- **Local tooling** (`drizzle.config.ts`, `scripts/seed.ts` — migrate/seed,
+  run from your machine, not inside a Worker) uses the plain `postgres`
+  package over a normal connection, which works with any Postgres.
+
+If you ever move off Neon, `client.ts` and `transactional-client.ts` need to
+change (e.g. to `postgres.js` + a [Hyperdrive](https://developers.cloudflare.com/hyperdrive/)
+binding for connection pooling on Workers) — the local tooling doesn't.
 
 - Schema lives in `src/lib/db/schema.ts` (products, orders, order_items,
   order_counters).
@@ -47,18 +66,6 @@ undefined anyway. Don't remove this flag.
 explicitly — without them, Nitro auto-generates the Worker name per build
 (from git remote context), which can differ between your machine and CI and
 silently split traffic/secrets across two different Workers.
-
-**On Cloudflare, we recommend fronting your Postgres with a
-[Hyperdrive](https://developers.cloudflare.com/hyperdrive/) binding** rather than
-connecting directly — Workers are highly concurrent and ephemeral, so without
-pooling you can exhaust your database's connection limit under real traffic.
-Direct `DATABASE_URL` connections work for low traffic / testing (Workers do
-support outbound TCP with the `nodejs_compat` flag, which is already enabled
-in `nitro.config.ts`), but treat that as a bridge, not the long-term setup.
-Once you provision a Hyperdrive resource pointing at your Postgres instance,
-wire it in and update `src/lib/db/client.ts` to read from it — this wasn't
-wired up automatically since it requires your Cloudflare account/database to
-exist first.
 
 ## Cloudflare Workers deploy
 
