@@ -1,7 +1,7 @@
 import { createServerFn } from '@tanstack/react-start'
 import { z } from 'zod'
 import { eq, sql } from 'drizzle-orm'
-import { getDb } from '~/lib/db/client'
+import { withTransaction } from '~/lib/db/transactional-client'
 import { orderCounters, orderItems, orders, products as productsTable } from '~/lib/db/schema'
 import { SHIPPING_OPTIONS, FREE_SHIPPING_THRESHOLD, TAX_RATE } from '~/lib/products'
 import { chargeSquarePayment } from './square'
@@ -24,9 +24,7 @@ const placeOrderSchema = z.object({
 export const placeOrder = createServerFn({ method: 'POST' })
   .validator(placeOrderSchema)
   .handler(async ({ data }) => {
-    const db = getDb()
-
-    return db.transaction(async (tx) => {
+    return withTransaction(async (tx) => {
       // Lock and validate stock, decrementing atomically per line.
       const lineDetails: Array<{
         productId: string

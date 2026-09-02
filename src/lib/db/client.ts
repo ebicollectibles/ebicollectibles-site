@@ -1,10 +1,16 @@
-import { drizzle } from 'drizzle-orm/postgres-js'
-import postgres from 'postgres'
+import { neon } from '@neondatabase/serverless'
+import { drizzle } from 'drizzle-orm/neon-http'
 import * as schema from './schema'
 
-// Lazily created — Cloudflare Workers only expose env vars during the request
-// lifecycle, so this must never run at module load time (see nitro.config.ts /
-// deployment notes for how DATABASE_URL is provided in each environment).
+// Cloudflare Workers must not reuse a raw TCP socket across separate
+// requests (each request can land on a different isolate, or find the
+// previous one's socket already torn down) — that's what was causing
+// intermittent "works on retry" query failures with a cached postgres.js
+// connection. Neon's HTTP driver is stateless per query (plain fetch under
+// the hood), which sidesteps that whole class of bug and is what Neon
+// recommends for serverless/edge runtimes. Local tooling (migrate/seed)
+// still uses a normal Postgres connection since those run on a real
+// machine, not inside a Worker — see drizzle.config.ts / scripts/seed.ts.
 let _db: ReturnType<typeof drizzle<typeof schema>> | null = null
 
 export function getDb() {
@@ -17,7 +23,7 @@ export function getDb() {
     )
   }
 
-  const client = postgres(connectionString, { prepare: false })
-  _db = drizzle(client, { schema })
+  const sql = neon(connectionString)
+  _db = drizzle(sql, { schema })
   return _db
 }
