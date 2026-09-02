@@ -24,6 +24,12 @@ body {
   color: var(--ink);
   font-family: Archivo, Helvetica, sans-serif;
   -webkit-font-smoothing: antialiased;
+  -webkit-text-size-adjust: 100%;
+  overflow-x: hidden;
+}
+
+img {
+  max-width: 100%;
 }
 
 a {
@@ -95,4 +101,217 @@ button {
 
 .ebi-cart-panel {
   animation: ebiSlide 220ms cubic-bezier(0.22, 0.8, 0.3, 1);
+}
+
+/* ---------- Responsive layout ---------- */
+/* Grid/flex containers below use classes (not inline style) specifically so
+   these breakpoints can override them — inline React styles can't respond
+   to media queries. */
+
+.ebi-header-desktop-nav,
+.ebi-header-search {
+  display: flex;
+}
+
+.ebi-header-burger {
+  display: none;
+}
+
+.ebi-mobile-menu {
+  display: none;
+}
+
+.ebi-hero-grid {
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 64px;
+}
+
+.ebi-steps-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.ebi-step-card {
+  border-right: 1px solid var(--border);
+}
+
+.ebi-step-card:last-child {
+  border-right: none;
+}
+
+.ebi-arrivals-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+}
+
+.ebi-tiles-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 18px;
+}
+
+.ebi-shop-layout {
+  display: grid;
+  grid-template-columns: 224px 1fr;
+  gap: 44px;
+}
+
+.ebi-sticky-aside {
+  position: sticky;
+  top: 96px;
+}
+
+.ebi-shop-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+}
+
+.ebi-faq-layout {
+  display: grid;
+  grid-template-columns: 1.35fr 0.65fr;
+  gap: 56px;
+}
+
+.ebi-checkout-layout {
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  gap: 52px;
+}
+
+.ebi-checkout-2col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.ebi-field-full {
+  grid-column: span 2;
+}
+
+.ebi-footer-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr 1fr;
+  gap: 40px;
+}
+
+.ebi-hero-h1 {
+  font-size: 58px;
+}
+
+@media (max-width: 860px) {
+  .ebi-header-desktop-nav,
+  .ebi-header-search {
+    display: none;
+  }
+
+  .ebi-header-burger {
+    display: flex;
+  }
+
+  .ebi-mobile-menu.is-open {
+    display: flex;
+  }
+
+  .ebi-hero-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .ebi-hero-h1 {
+    font-size: 38px;
+  }
+
+  .ebi-steps-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .ebi-step-card {
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .ebi-step-card:nth-child(2n) {
+    border-right: none;
+  }
+
+  .ebi-step-card:nth-last-child(-n + 2) {
+    border-bottom: none;
+  }
+
+  .ebi-arrivals-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .ebi-tiles-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .ebi-shop-layout {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .ebi-sticky-aside {
+    position: static;
+  }
+
+  .ebi-shop-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .ebi-faq-layout {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .ebi-checkout-layout {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .ebi-footer-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 28px;
+  }
+}
+
+@media (max-width: 520px) {
+  .ebi-steps-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .ebi-step-card:nth-last-child(-n + 2) {
+    border-bottom: 1px solid var(--border);
+  }
+
+  .ebi-step-card:last-child {
+    border-bottom: none;
+  }
+
+  .ebi-arrivals-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .ebi-shop-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .ebi-checkout-2col {
+    grid-template-columns: 1fr;
+  }
+
+  .ebi-field-full {
+    grid-column: span 1;
+  }
+
+  .ebi-footer-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .ebi-hero-h1 {
+    font-size: 30px;
+  }
 }

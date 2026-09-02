@@ -37,7 +37,6 @@ function ShopPage() {
 
   const [types, setTypes] = React.useState<ProductType[]>(search.type ? [search.type] : [])
   const [inStockOnly, setInStockOnly] = React.useState(false)
-  const [hidePreorder, setHidePreorder] = React.useState(false)
   const [maxPrice, setMaxPrice] = React.useState(150)
   const [sort, setSort] = React.useState<SortMode>('featured')
 
@@ -53,7 +52,6 @@ function ShopPage() {
   const resetFilters = () => {
     setTypes([])
     setInStockOnly(false)
-    setHidePreorder(false)
     setMaxPrice(150)
     setSort('featured')
   }
@@ -65,7 +63,6 @@ function ShopPage() {
   let visible = products.filter((p) => {
     if (types.length && !types.includes(p.type)) return false
     if (inStockOnly && p.stock === 0) return false
-    if (hidePreorder && p.preorder) return false
     if (p.price > maxPrice) return false
     return true
   })
@@ -76,7 +73,7 @@ function ShopPage() {
   const shopTitle = types.length === 1 ? SHOP_TITLES[types[0]] : 'All products'
 
   return (
-    <section style={{ maxWidth: 1240, margin: '0 auto', padding: '40px 28px 80px' }}>
+    <section style={{ maxWidth: 1240, margin: '0 auto', padding: '40px 20px 80px' }}>
       <div style={monoLabel}>Shop / Simplified Chinese</div>
       <h1 style={{ fontSize: 38, letterSpacing: '-0.025em', fontWeight: 700, margin: '10px 0 0' }}>{shopTitle}</h1>
       <p style={{ fontSize: 14.5, color: '#5a6875', margin: '10px 0 0', maxWidth: '62ch' }}>
@@ -84,8 +81,8 @@ function ShopPage() {
         unless you ask us to split them.
       </p>
 
-      <div style={{ display: 'grid', gridTemplateColumns: '224px 1fr', gap: 44, marginTop: 40, alignItems: 'start' }}>
-        <aside style={{ borderTop: '1px solid #131b28', paddingTop: 18, position: 'sticky', top: 96 }}>
+      <div className="ebi-shop-layout" style={{ marginTop: 40, alignItems: 'start' }}>
+        <aside className="ebi-sticky-aside" style={{ borderTop: '1px solid #131b28', paddingTop: 18 }}>
           <div style={monoLabel}>Filter</div>
           <div style={{ marginTop: 20 }}>
             <div style={{ fontSize: 12.5, fontWeight: 700, letterSpacing: '0.02em', marginBottom: 10 }}>Product type</div>
@@ -118,15 +115,6 @@ function ShopPage() {
                 style={{ width: 14, height: 14, accentColor: '#131b28', cursor: 'pointer' }}
               />
               <span>In stock only</span>
-            </label>
-            <label style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '6px 0', fontSize: 13, color: '#3d4753', cursor: 'pointer' }}>
-              <input
-                type="checkbox"
-                checked={hidePreorder}
-                onChange={() => setHidePreorder((v) => !v)}
-                style={{ width: 14, height: 14, accentColor: '#131b28', cursor: 'pointer' }}
-              />
-              <span>Hide pre-orders</span>
             </label>
           </div>
           <div style={{ marginTop: 24, paddingTop: 20, borderTop: '1px solid #e3e6ea' }}>
@@ -165,7 +153,7 @@ function ShopPage() {
         </aside>
 
         <div>
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', borderTop: '1px solid #131b28', paddingTop: 16 }}>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 12, alignItems: 'center', justifyContent: 'space-between', borderTop: '1px solid #131b28', paddingTop: 16 }}>
             <div style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 11.5, color: '#5a6875' }}>
               {visible.length} products
             </div>
@@ -186,7 +174,7 @@ function ShopPage() {
             </div>
           </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 1, background: '#e3e6ea', border: '1px solid #e3e6ea', marginTop: 16 }}>
+          <div className="ebi-shop-grid" style={{ background: '#e3e6ea', border: '1px solid #e3e6ea', marginTop: 16 }}>
             {visible.map((p) => (
               <ProductCard key={p.id} product={p} variant="full" />
             ))}

@@ -71,7 +71,7 @@ export function CartProvider({ children, products }: { children: React.ReactNode
     setState((s) => {
       const next = { ...s.cart }
       next[product.id] = Math.min((next[product.id] || 0) + 1, product.stock)
-      return { ...s, cart: next, cartOpen: true }
+      return { ...s, cart: next }
     })
   }, [])
 

@@ -72,13 +72,13 @@ function CheckoutPage() {
   }
 
   return (
-    <section style={{ maxWidth: 1120, margin: '0 auto', padding: '40px 28px 90px' }}>
+    <section style={{ maxWidth: 1120, margin: '0 auto', padding: '40px 20px 90px' }}>
       <Link to="/shop" style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 11.5, color: '#5a6875' }}>
         ← Continue shopping
       </Link>
       <h1 style={{ fontSize: 34, letterSpacing: '-0.025em', fontWeight: 700, margin: '14px 0 0' }}>Checkout</h1>
 
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 380px', gap: 52, marginTop: 34, alignItems: 'start' }}>
+      <div className="ebi-checkout-layout" style={{ marginTop: 34, alignItems: 'start' }}>
         <form
           onSubmit={(e) => {
             e.preventDefault()
@@ -98,19 +98,19 @@ function CheckoutPage() {
 
           <div style={{ borderTop: '1px solid #e3e6ea', marginTop: 30, paddingTop: 22 }}>
             <div style={monoLabel}>02 / Shipping address</div>
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12, marginTop: 14 }}>
+            <div className="ebi-checkout-2col" style={{ marginTop: 14 }}>
               <input placeholder="First name" className="ebi-field" style={fieldStyle} {...field('firstName')} />
               <input placeholder="Last name" className="ebi-field" style={fieldStyle} {...field('lastName')} />
               <input
                 placeholder="Street address"
-                className="ebi-field"
-                style={{ ...fieldStyle, gridColumn: 'span 2' }}
+                className="ebi-field ebi-field-full"
+                style={fieldStyle}
                 {...field('street')}
               />
               <input
                 placeholder="Apartment, suite (optional)"
-                className="ebi-field"
-                style={{ ...fieldStyle, gridColumn: 'span 2' }}
+                className="ebi-field ebi-field-full"
+                style={fieldStyle}
                 {...field('apartment')}
               />
               <input placeholder="City" className="ebi-field" style={fieldStyle} {...field('city')} />
@@ -158,12 +158,12 @@ function CheckoutPage() {
                 <SquareCardField ref={cardRef} />
               ) : (
                 <>
-                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
+                  <div className="ebi-checkout-2col">
                     <input
                       placeholder="Card number"
                       disabled
-                      className="ebi-field"
-                      style={{ ...fieldStyle, gridColumn: 'span 2', fontFamily: "'IBM Plex Mono', monospace", background: '#f6f7f8' }}
+                      className="ebi-field ebi-field-full"
+                      style={{ ...fieldStyle, fontFamily: "'IBM Plex Mono', monospace", background: '#f6f7f8' }}
                     />
                     <input
                       placeholder="MM / YY"
@@ -194,7 +194,7 @@ function CheckoutPage() {
           {/* Order summary + place-order action lives in the aside for desktop layout parity with the design */}
         </form>
 
-        <aside style={{ border: '1px solid #e3e6ea', padding: 24, position: 'sticky', top: 96 }}>
+        <aside className="ebi-sticky-aside" style={{ border: '1px solid #e3e6ea', padding: 24 }}>
           <div style={monoLabel}>Order summary</div>
           <div style={{ marginTop: 18, display: 'flex', flexDirection: 'column', gap: 16 }}>
             {cart.lines.map((line) => (

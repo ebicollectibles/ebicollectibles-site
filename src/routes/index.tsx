@@ -46,13 +46,11 @@ function HomePage() {
     <>
       <section style={{ borderBottom: '1px solid #e3e6ea', background: '#f6f7f8' }}>
         <div
+          className="ebi-hero-grid"
           style={{
             maxWidth: 1240,
             margin: '0 auto',
-            padding: '76px 28px 84px',
-            display: 'grid',
-            gridTemplateColumns: '1.05fr 0.95fr',
-            gap: 64,
+            padding: '76px 20px 84px',
             alignItems: 'center',
           }}
         >
@@ -76,8 +74,8 @@ function HomePage() {
               Simplified Chinese · 宝可梦
             </div>
             <h1
+              className="ebi-hero-h1"
               style={{
-                fontSize: 58,
                 lineHeight: 1.02,
                 letterSpacing: '-0.025em',
                 fontWeight: 700,
@@ -174,16 +172,10 @@ function HomePage() {
       </section>
 
       <section style={{ borderBottom: '1px solid #e3e6ea' }}>
-        <div style={{ maxWidth: 1240, margin: '0 auto', padding: '0 28px' }}>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)' }}>
-            {STEPS.map((step, i) => (
-              <div
-                key={step.num}
-                style={{
-                  padding: i === 0 ? '30px 28px 30px 0' : i === STEPS.length - 1 ? '30px 0 30px 28px' : '30px 28px',
-                  borderRight: i === STEPS.length - 1 ? undefined : '1px solid #e3e6ea',
-                }}
-              >
+        <div style={{ maxWidth: 1240, margin: '0 auto', padding: '0 20px' }}>
+          <div className="ebi-steps-grid">
+            {STEPS.map((step) => (
+              <div key={step.num} className="ebi-step-card" style={{ padding: '30px 28px' }}>
                 <div style={monoLabel}>{step.num}</div>
                 <div style={{ fontSize: 14.5, fontWeight: 600, marginTop: 10 }}>{step.title}</div>
                 <p style={{ fontSize: 13, lineHeight: 1.55, color: '#5a6875', margin: '7px 0 0' }}>{step.body}</p>
@@ -193,10 +185,11 @@ function HomePage() {
         </div>
       </section>
 
-      <section style={{ maxWidth: 1240, margin: '0 auto', padding: '68px 28px 0' }}>
+      <section style={{ maxWidth: 1240, margin: '0 auto', padding: '68px 20px 0' }}>
         <div
           style={{
             display: 'flex',
+            flexWrap: 'wrap',
             alignItems: 'flex-end',
             justifyContent: 'space-between',
             gap: 24,
@@ -213,10 +206,8 @@ function HomePage() {
           </Link>
         </div>
         <div
+          className="ebi-arrivals-grid"
           style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(4, 1fr)',
-            gap: 1,
             background: '#e3e6ea',
             border: '1px solid #e3e6ea',
             borderTop: 0,
@@ -228,8 +219,8 @@ function HomePage() {
         </div>
       </section>
 
-      <section style={{ maxWidth: 1240, margin: '0 auto', padding: '68px 28px' }}>
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 18 }}>
+      <section style={{ maxWidth: 1240, margin: '0 auto', padding: '68px 20px' }}>
+        <div className="ebi-tiles-grid">
           <Link
             to="/shop"
             search={{ type: 'Booster box' }}

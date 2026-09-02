@@ -57,42 +57,44 @@ function AdminDashboard() {
         </Link>
       </div>
 
-      <table style={{ width: '100%', borderCollapse: 'collapse', marginTop: 20 }}>
-        <thead>
-          <tr>
-            <th style={th}>Name</th>
-            <th style={th}>Code</th>
-            <th style={th}>Type</th>
-            <th style={th}>Price</th>
-            <th style={th}>Stock</th>
-            <th style={th}></th>
-          </tr>
-        </thead>
-        <tbody>
-          {products.map((p) => (
-            <tr key={p.id}>
-              <td style={td}>{p.name}</td>
-              <td style={{ ...td, fontFamily: "'IBM Plex Mono', monospace" }}>{p.code}</td>
-              <td style={td}>{p.type}</td>
-              <td style={{ ...td, fontFamily: "'IBM Plex Mono', monospace" }}>{formatMoney(p.price)}</td>
-              <td style={{ ...td, fontFamily: "'IBM Plex Mono', monospace", color: p.stock === 0 ? '#b4622f' : undefined }}>
-                {p.stock}
-              </td>
-              <td style={{ ...td, textAlign: 'right', whiteSpace: 'nowrap' }}>
-                <Link to="/admin/products/$id" params={{ id: p.id }} style={{ fontSize: 12.5, color: '#3f7a63', marginRight: 14 }}>
-                  Edit
-                </Link>
-                <button
-                  onClick={() => remove(p.id)}
-                  style={{ background: 'none', border: 0, color: '#98a1ab', fontSize: 12.5, cursor: 'pointer', textDecoration: 'underline' }}
-                >
-                  Delete
-                </button>
-              </td>
+      <div style={{ overflowX: 'auto' }}>
+        <table style={{ width: '100%', borderCollapse: 'collapse', marginTop: 20, minWidth: 640 }}>
+          <thead>
+            <tr>
+              <th style={th}>Name</th>
+              <th style={th}>Code</th>
+              <th style={th}>Type</th>
+              <th style={th}>Price</th>
+              <th style={th}>Stock</th>
+              <th style={th}></th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {products.map((p) => (
+              <tr key={p.id}>
+                <td style={td}>{p.name}</td>
+                <td style={{ ...td, fontFamily: "'IBM Plex Mono', monospace" }}>{p.code}</td>
+                <td style={td}>{p.type}</td>
+                <td style={{ ...td, fontFamily: "'IBM Plex Mono', monospace" }}>{formatMoney(p.price)}</td>
+                <td style={{ ...td, fontFamily: "'IBM Plex Mono', monospace", color: p.stock === 0 ? '#b4622f' : undefined }}>
+                  {p.stock}
+                </td>
+                <td style={{ ...td, textAlign: 'right', whiteSpace: 'nowrap' }}>
+                  <Link to="/admin/products/$id" params={{ id: p.id }} style={{ fontSize: 12.5, color: '#3f7a63', marginRight: 14 }}>
+                    Edit
+                  </Link>
+                  <button
+                    onClick={() => remove(p.id)}
+                    style={{ background: 'none', border: 0, color: '#98a1ab', fontSize: 12.5, cursor: 'pointer', textDecoration: 'underline' }}
+                  >
+                    Delete
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   )
 }

@@ -4,13 +4,11 @@ export function Footer() {
   return (
     <footer style={{ borderTop: '1px solid #e3e6ea', background: '#f6f7f8' }}>
       <div
+        className="ebi-footer-grid"
         style={{
           maxWidth: 1240,
           margin: '0 auto',
-          padding: '46px 28px',
-          display: 'grid',
-          gridTemplateColumns: '1.4fr 1fr 1fr 1fr',
-          gap: 40,
+          padding: '46px 20px',
         }}
       >
         <div>
@@ -91,8 +89,9 @@ export function Footer() {
           style={{
             maxWidth: 1240,
             margin: '0 auto',
-            padding: '18px 28px',
+            padding: '18px 20px',
             display: 'flex',
+            flexWrap: 'wrap',
             justifyContent: 'space-between',
             gap: 20,
             fontFamily: "'IBM Plex Mono', monospace",

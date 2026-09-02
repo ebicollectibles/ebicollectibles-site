@@ -16,7 +16,7 @@ function FaqPage() {
   const [openIndex, setOpenIndex] = React.useState<number>(0)
 
   return (
-    <section style={{ maxWidth: 1240, margin: '0 auto', padding: '40px 28px 80px' }}>
+    <section style={{ maxWidth: 1240, margin: '0 auto', padding: '40px 20px 80px' }}>
       <div
         style={{
           fontFamily: "'IBM Plex Mono', monospace",
@@ -30,7 +30,7 @@ function FaqPage() {
       </div>
       <h1 style={{ fontSize: 38, letterSpacing: '-0.025em', fontWeight: 700, margin: '10px 0 0' }}>FAQ &amp; shipping</h1>
 
-      <div style={{ display: 'grid', gridTemplateColumns: '1.35fr 0.65fr', gap: 56, marginTop: 40, alignItems: 'start' }}>
+      <div className="ebi-faq-layout" style={{ marginTop: 40, alignItems: 'start' }}>
         <div style={{ borderTop: '1px solid #131b28' }}>
           {FAQS.map((f, i) => {
             const open = openIndex === i
@@ -57,7 +57,7 @@ function FaqPage() {
                   </span>
                 </button>
                 {open && (
-                  <p style={{ fontSize: 14.5, lineHeight: 1.65, color: '#5a6875', margin: 0, padding: '0 60px 24px 4px', maxWidth: '72ch' }}>
+                  <p style={{ fontSize: 14.5, lineHeight: 1.65, color: '#5a6875', margin: 0, padding: '0 24px 24px 4px', maxWidth: '72ch' }}>
                     {f.answer}
                   </p>
                 )}

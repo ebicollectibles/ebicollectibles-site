@@ -1,11 +1,17 @@
+import * as React from 'react'
 import { Link, useRouterState } from '@tanstack/react-router'
 import { useCart } from '~/lib/cart-context'
 
 export function Header() {
   const pathname = useRouterState({ select: (s) => s.location.pathname })
   const { cartCount, openCart } = useCart()
+  const [menuOpen, setMenuOpen] = React.useState(false)
 
   const navColor = (active: boolean) => (active ? '#131b28' : '#5a6875')
+
+  React.useEffect(() => {
+    setMenuOpen(false)
+  }, [pathname])
 
   return (
     <header
@@ -22,7 +28,7 @@ export function Header() {
         style={{
           maxWidth: 1240,
           margin: '0 auto',
-          padding: '14px 28px',
+          padding: '14px 20px',
           display: 'flex',
           alignItems: 'center',
           gap: 32,
@@ -50,14 +56,14 @@ export function Header() {
           </span>
         </Link>
 
-        <nav style={{ display: 'flex', alignItems: 'center', gap: 26, fontSize: 13.5, fontWeight: 500 }}>
+        <nav
+          className="ebi-header-desktop-nav"
+          style={{ alignItems: 'center', gap: 26, fontSize: 13.5, fontWeight: 500 }}
+        >
           <Link to="/" style={{ color: navColor(pathname === '/'), padding: '4px 0' }}>
             Home
           </Link>
-          <Link
-            to="/shop"
-            style={{ color: navColor(pathname === '/shop'), padding: '4px 0' }}
-          >
+          <Link to="/shop" style={{ color: navColor(pathname === '/shop'), padding: '4px 0' }}>
             Shop all
           </Link>
           <Link
@@ -84,8 +90,8 @@ export function Header() {
         <div style={{ flex: 1 }} />
 
         <div
+          className="ebi-header-search"
           style={{
-            display: 'flex',
             alignItems: 'center',
             gap: 10,
             border: '1px solid #e3e6ea',
@@ -117,6 +123,7 @@ export function Header() {
             fontSize: 13,
             fontWeight: 600,
             cursor: 'pointer',
+            flexShrink: 0,
           }}
         >
           <span>Cart</span>
@@ -132,6 +139,74 @@ export function Header() {
             {cartCount}
           </span>
         </button>
+
+        <button
+          onClick={() => setMenuOpen((v) => !v)}
+          className="ebi-header-burger"
+          aria-label="Toggle menu"
+          aria-expanded={menuOpen}
+          style={{
+            alignItems: 'center',
+            justifyContent: 'center',
+            width: 36,
+            height: 36,
+            flexShrink: 0,
+            background: 'transparent',
+            border: '1px solid #e3e6ea',
+            borderRadius: 2,
+            cursor: 'pointer',
+            fontSize: 18,
+            color: '#131b28',
+          }}
+        >
+          {menuOpen ? '×' : '☰'}
+        </button>
+      </div>
+
+      <div className={`ebi-mobile-menu${menuOpen ? ' is-open' : ''}`} style={{ flexDirection: 'column', borderTop: '1px solid #e3e6ea', padding: '14px 20px 20px', background: '#ffffff' }}>
+        <div
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: 10,
+            border: '1px solid #e3e6ea',
+            borderRadius: 2,
+            padding: '10px 12px',
+            background: '#f6f7f8',
+            marginBottom: 16,
+          }}
+        >
+          <span style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 12, color: '#98a1ab' }}>⌕</span>
+          <input
+            placeholder="Search sets, CBB codes…"
+            style={{ border: 0, background: 'transparent', outline: 'none', fontSize: 13, width: '100%', color: '#131b28' }}
+          />
+        </div>
+        <nav style={{ display: 'flex', flexDirection: 'column', gap: 4, fontSize: 15, fontWeight: 500 }}>
+          <Link to="/" style={{ color: navColor(pathname === '/'), padding: '10px 0', borderBottom: '1px solid #f0f2f4' }}>
+            Home
+          </Link>
+          <Link to="/shop" style={{ color: navColor(pathname === '/shop'), padding: '10px 0', borderBottom: '1px solid #f0f2f4' }}>
+            Shop all
+          </Link>
+          <Link
+            to="/shop"
+            search={{ type: 'Booster box' }}
+            style={{ color: '#5a6875', padding: '10px 0', borderBottom: '1px solid #f0f2f4' }}
+          >
+            Booster boxes
+          </Link>
+          <Link
+            to="/shop"
+            search={{ type: 'Figures' }}
+            style={{ color: '#5a6875', padding: '10px 0', borderBottom: '1px solid #f0f2f4' }}
+          >
+            Figures
+          </Link>
+          <Link to="/faq" style={{ color: navColor(pathname === '/faq'), padding: '10px 0' }}>
+            FAQ &amp; shipping
+          </Link>
+        </nav>
       </div>
     </header>
   )
