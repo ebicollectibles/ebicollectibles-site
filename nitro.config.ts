@@ -16,6 +16,10 @@ export default defineNitroConfig({
       // Pinned too, so a local `wrangler secret put` can't silently land on
       // a different Cloudflare account than the one CI deploys to.
       account_id: 'bcc6861315d8ff44884e66be1f31eee3',
+      // `nodejs_compat` alone does NOT populate process.env from vars/secrets
+      // — that needs this separate, explicit flag. Without it, DATABASE_URL
+      // etc. are set correctly in Cloudflare but invisible to process.env.
+      compatibility_flags: ['nodejs_compat', 'nodejs_compat_populate_process_env'],
     },
   },
 })
