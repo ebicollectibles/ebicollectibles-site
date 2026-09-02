@@ -6,5 +6,13 @@ export default defineNitroConfig({
   cloudflare: {
     deployConfig: true,
     nodeCompat: true,
+    // Pinned explicitly — without this, Nitro auto-generates the Worker name
+    // per-build (from git remote / directory context), which can differ
+    // between a local build and a CI build and silently split traffic and
+    // secrets across two different Workers. This must match the name
+    // already live in the Cloudflare dashboard.
+    wrangler: {
+      name: 'ebicollectibles-ebicollectibles-site',
+    },
   },
 })
