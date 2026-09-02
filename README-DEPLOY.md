@@ -36,6 +36,18 @@ Nothing here is Neon-specific.
 - `npm run db:studio` opens Drizzle Studio (a local DB browser) against
   `DATABASE_URL`.
 
+**Important**: `nitro.config.ts` pins `cloudflare.wrangler.compatibility_flags` to
+include `nodejs_compat_populate_process_env` — plain `nodejs_compat` does *not*
+populate `process.env` from Cloudflare vars/secrets on its own. Without this
+flag, `wrangler secret put DATABASE_URL` genuinely sets the secret (verifiable
+with `wrangler secret list`) but the app sees `process.env.DATABASE_URL` as
+undefined anyway. Don't remove this flag.
+
+`nitro.config.ts` also pins `cloudflare.wrangler.name` and `.account_id`
+explicitly — without them, Nitro auto-generates the Worker name per build
+(from git remote context), which can differ between your machine and CI and
+silently split traffic/secrets across two different Workers.
+
 **On Cloudflare, we recommend fronting your Postgres with a
 [Hyperdrive](https://developers.cloudflare.com/hyperdrive/) binding** rather than
 connecting directly — Workers are highly concurrent and ephemeral, so without
@@ -74,6 +86,11 @@ exist first.
    regular env vars at build time (`.env` locally, repo/CI env in production
    builds).
 
+   Verify what's actually set (names only, not values) with:
+   ```bash
+   npx wrangler secret list
+   ```
+
 3. **Continuous deploy via GitHub Actions** (`.github/workflows/deploy.yml`,
    already included) — pushes to `main` build and deploy automatically. Add
    two repository secrets under Settings → Secrets and variables → Actions:
@@ -83,8 +100,8 @@ exist first.
    - `CLOUDFLARE_ACCOUNT_ID` — found on the right sidebar of any page in the
      Cloudflare dashboard
 
-   This session has no GitHub account connected, so nothing has been pushed
-   yet — connect GitHub and push this repo to enable it.
+   Live at github.com/ebicollectibles/ebicollectibles-site — pushes to `main`
+   already auto-deploy.
 
 ## Square
 
