@@ -29,4 +29,9 @@ jobs:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           workingDirectory: .output/server
-          command: deploy
+          # Nitro's cloudflare_module preset also writes a deploy config to
+          # <repo-root>/.wrangler/deploy/config.json, which sits outside this
+          # workingDirectory. Wrangler then finds two config files with
+          # different base paths and refuses to pick one — pointing it at
+          # wrangler.json explicitly resolves the ambiguity.
+          command: deploy --config wrangler.json
