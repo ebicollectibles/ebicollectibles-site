@@ -1,7 +1,12 @@
 import 'dotenv/config'
 import { drizzle } from 'drizzle-orm/postgres-js'
+import { eq } from 'drizzle-orm'
 import postgres from 'postgres'
 import { products, orderCounters } from '../src/lib/db/schema'
+
+// Retired category — no longer sold, so drop any leftover rows every time
+// this script runs (not just skip seeding new ones).
+const RETIRED_TYPES = ['Single pack']
 
 const SEED_PRODUCTS = [
   {
@@ -113,15 +118,6 @@ const SEED_PRODUCTS = [
     stock: 0,
     placeholder: 'product shot / figure',
   },
-  {
-    id: 'jumbo',
-    name: 'Chasing Glory Together — Jumbo Booster Pack',
-    code: 'CSV10C',
-    type: 'Single pack',
-    price: 14.95,
-    stock: 34,
-    placeholder: 'product shot / jumbo pack',
-  },
 ]
 
 async function main() {
@@ -146,7 +142,13 @@ async function main() {
     .values({ id: 'main', nextOrderNo: 40218 })
     .onConflictDoNothing({ target: orderCounters.id })
 
-  console.log(`Seeded ${SEED_PRODUCTS.length} products.`)
+  let retired = 0
+  for (const type of RETIRED_TYPES) {
+    const deleted = await db.delete(products).where(eq(products.type, type)).returning({ id: products.id })
+    retired += deleted.length
+  }
+
+  console.log(`Seeded ${SEED_PRODUCTS.length} products. Removed ${retired} retired-category product(s).`)
   await client.end()
 }
 
