@@ -338,7 +338,10 @@ export function ProductForm({
             <BrowseButton onClick={() => setPickerTarget({ kind: 'images', index: i })} />
             <button
               type="button"
-              onClick={() => set('images', values.images.filter((_, j) => j !== i))}
+              onClick={() => {
+                if (!confirm('Remove this image from the list?')) return
+                set('images', values.images.filter((_, j) => j !== i))
+              }}
               aria-label="Remove image"
               style={{
                 flexShrink: 0,

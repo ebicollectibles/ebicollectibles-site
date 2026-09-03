@@ -18,7 +18,7 @@ export function AnnouncementBar() {
       }}
     >
       <span style={{ width: 6, height: 6, borderRadius: '50%', background: '#5fbf97', display: 'inline-block', flexShrink: 0 }} />
-      <span>A Family-Owned Business · Shipped From WA</span>
+      <span>Family Owned · Orders Ship From WA</span>
     </div>
   )
 }
