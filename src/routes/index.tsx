@@ -98,35 +98,6 @@ function HomePage() {
                 How we verify
               </Link>
             </div>
-            <div
-              style={{
-                display: 'flex',
-                gap: 34,
-                marginTop: 44,
-                paddingTop: 26,
-                borderTop: '1px solid #e3e6ea',
-                fontFamily: "'IBM Plex Mono', monospace",
-              }}
-            >
-              <div>
-                <div style={{ fontSize: 22, fontWeight: 500 }}>4.98</div>
-                <div style={{ fontSize: 10.5, letterSpacing: '0.12em', textTransform: 'uppercase', color: '#98a1ab', marginTop: 4 }}>
-                  412 reviews
-                </div>
-              </div>
-              <div>
-                <div style={{ fontSize: 22, fontWeight: 500 }}>0</div>
-                <div style={{ fontSize: 10.5, letterSpacing: '0.12em', textTransform: 'uppercase', color: '#98a1ab', marginTop: 4 }}>
-                  Counterfeit claims
-                </div>
-              </div>
-              <div>
-                <div style={{ fontSize: 22, fontWeight: 500 }}>48h</div>
-                <div style={{ fontSize: 10.5, letterSpacing: '0.12em', textTransform: 'uppercase', color: '#98a1ab', marginTop: 4 }}>
-                  Dispatch window
-                </div>
-              </div>
-            </div>
           </div>
           <div
             className="ebi-hero-image"
@@ -164,8 +135,7 @@ function HomePage() {
           }}
         >
           <div>
-            <div style={monoLabel}>Restocked this week</div>
-            <h2 style={{ fontSize: 30, letterSpacing: '-0.02em', fontWeight: 700, margin: '9px 0 0' }}>New arrivals</h2>
+            <h2 style={{ fontSize: 30, letterSpacing: '-0.02em', fontWeight: 700, margin: 0 }}>New arrivals</h2>
           </div>
           <Link to="/shop" style={{ fontSize: 13, fontWeight: 600, color: '#3f7a63', paddingBottom: 4 }}>
             View all {totalProductCount} products →
