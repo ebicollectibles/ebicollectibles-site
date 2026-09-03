@@ -6,7 +6,7 @@ import { useCart } from '~/lib/cart-context'
 import { PRODUCT_TYPES, type ProductType } from '~/lib/products'
 
 const shopSearchSchema = z.object({
-  type: z.enum(['Booster box', 'Special box', 'Figures']).optional(),
+  type: z.enum(['Booster box', 'Special box', 'Figures', 'Acrylic']).optional(),
 })
 
 export const Route = createFileRoute('/shop')({
@@ -20,6 +20,7 @@ const SHOP_TITLES: Record<ProductType, string> = {
   'Booster box': 'Booster boxes',
   'Special box': 'Special boxes',
   Figures: 'Figures & blind boxes',
+  Acrylic: 'Acrylics',
 }
 
 const monoLabel: React.CSSProperties = {

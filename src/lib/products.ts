@@ -1,4 +1,4 @@
-export type ProductType = 'Booster box' | 'Special box' | 'Figures'
+export type ProductType = 'Booster box' | 'Special box' | 'Figures' | 'Acrylic'
 
 export interface Product {
   id: string
@@ -17,7 +17,7 @@ export interface Product {
 // Product catalog now lives in Postgres (see src/lib/db/schema.ts and
 // scripts/seed.ts for the initial data) — fetched via src/server/products.ts.
 
-export const PRODUCT_TYPES: ProductType[] = ['Booster box', 'Special box', 'Figures']
+export const PRODUCT_TYPES: ProductType[] = ['Booster box', 'Special box', 'Figures', 'Acrylic']
 
 export const FLAT_SHIPPING_RATE = 10
 

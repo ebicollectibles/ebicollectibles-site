@@ -9,7 +9,7 @@ const productSchema = z.object({
   id: z.string().min(1),
   name: z.string().min(1),
   code: z.string().min(1),
-  type: z.enum(['Booster box', 'Special box', 'Figures']),
+  type: z.enum(['Booster box', 'Special box', 'Figures', 'Acrylic']),
   price: z.number().nonnegative(),
   compareAtPrice: z.number().nonnegative().nullable().optional(),
   stock: z.number().int().nonnegative(),
