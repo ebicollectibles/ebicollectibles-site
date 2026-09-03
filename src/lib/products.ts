@@ -9,6 +9,7 @@ export interface Product {
   compareAtPrice?: number
   stock: number
   img?: string
+  images?: string[]
   preorder?: boolean
   placeholder?: string
 }

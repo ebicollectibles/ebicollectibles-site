@@ -56,6 +56,7 @@ function EditProductPage() {
           compareAtPrice: product.compareAtPrice ?? 0,
           stock: product.stock,
           img: product.img ?? '',
+          images: product.images ?? [],
           preorder: product.preorder,
           placeholder: product.placeholder ?? '',
         }}
@@ -66,6 +67,7 @@ function EditProductPage() {
               originalId: id,
               compareAtPrice: values.compareAtPrice || null,
               img: values.img || undefined,
+              images: values.images.map((u) => u.trim()).filter(Boolean),
               placeholder: values.placeholder || undefined,
             },
           })

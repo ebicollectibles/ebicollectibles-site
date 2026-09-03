@@ -29,6 +29,7 @@ function NewProductPage() {
               ...values,
               compareAtPrice: values.compareAtPrice || null,
               img: values.img || undefined,
+              images: values.images.map((u) => u.trim()).filter(Boolean),
               placeholder: values.placeholder || undefined,
             },
           })

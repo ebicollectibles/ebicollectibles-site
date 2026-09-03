@@ -28,6 +28,17 @@ function ProductDetailPage() {
 
   React.useEffect(() => () => clearTimeout(revertTimer.current), [])
 
+  const gallery = React.useMemo(() => {
+    if (!product) return []
+    return [product.img, ...(product.images ?? [])].filter((u): u is string => !!u)
+  }, [product])
+
+  const [selectedImage, setSelectedImage] = React.useState(product?.img)
+
+  React.useEffect(() => {
+    setSelectedImage(product?.img)
+  }, [product?.id, product?.img])
+
   const related = React.useMemo(() => {
     if (!product) return []
     const sameType = products.filter((p) => p.id !== product.id && p.type === product.type)
@@ -77,53 +88,81 @@ function ProductDetailPage() {
       </div>
 
       <div className="ebi-product-detail-grid" style={{ marginTop: 24 }}>
-        <div style={{ position: 'relative', aspectRatio: '1 / 1', background: '#f6f7f8', overflow: 'hidden' }}>
-          <div
-            style={{
-              width: '100%',
-              height: '100%',
-              backgroundSize: 'contain',
-              backgroundRepeat: 'no-repeat',
-              backgroundPosition: 'center',
-              backgroundImage: product.img ? `url(${product.img})` : STRIPES,
-            }}
-          />
-          {!product.img && (
+        <div>
+          <div style={{ position: 'relative', aspectRatio: '1 / 1', background: '#f6f7f8', overflow: 'hidden' }}>
             <div
               style={{
-                position: 'absolute',
-                inset: 0,
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                fontFamily: "'IBM Plex Mono', monospace",
-                fontSize: 11,
-                letterSpacing: '0.1em',
-                textTransform: 'uppercase',
-                color: '#98a1ab',
-                textAlign: 'center',
-                padding: 24,
+                width: '100%',
+                height: '100%',
+                backgroundSize: 'contain',
+                backgroundRepeat: 'no-repeat',
+                backgroundPosition: 'center',
+                backgroundImage: selectedImage ? `url(${selectedImage})` : STRIPES,
               }}
-            >
-              {product.placeholder || 'product shot'}
-            </div>
-          )}
-          {badge && (
-            <div
-              style={{
-                position: 'absolute',
-                top: 0,
-                left: 0,
-                fontFamily: "'IBM Plex Mono', monospace",
-                fontSize: 10,
-                letterSpacing: '0.12em',
-                textTransform: 'uppercase',
-                padding: '6px 10px',
-                background: badgeBg,
-                color: '#ffffff',
-              }}
-            >
-              {badge}
+            />
+            {!selectedImage && (
+              <div
+                style={{
+                  position: 'absolute',
+                  inset: 0,
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  fontFamily: "'IBM Plex Mono', monospace",
+                  fontSize: 11,
+                  letterSpacing: '0.1em',
+                  textTransform: 'uppercase',
+                  color: '#98a1ab',
+                  textAlign: 'center',
+                  padding: 24,
+                }}
+              >
+                {product.placeholder || 'product shot'}
+              </div>
+            )}
+            {badge && (
+              <div
+                style={{
+                  position: 'absolute',
+                  top: 0,
+                  left: 0,
+                  fontFamily: "'IBM Plex Mono', monospace",
+                  fontSize: 10,
+                  letterSpacing: '0.12em',
+                  textTransform: 'uppercase',
+                  padding: '6px 10px',
+                  background: badgeBg,
+                  color: '#ffffff',
+                }}
+              >
+                {badge}
+              </div>
+            )}
+          </div>
+
+          {gallery.length > 1 && (
+            <div style={{ display: 'flex', gap: 10, marginTop: 10, flexWrap: 'wrap' }}>
+              {gallery.map((url) => (
+                <button
+                  key={url}
+                  onClick={() => setSelectedImage(url)}
+                  aria-label="Show this image"
+                  style={{
+                    width: 64,
+                    height: 64,
+                    flexShrink: 0,
+                    padding: 0,
+                    background: '#f6f7f8',
+                    backgroundImage: `url(${url})`,
+                    backgroundSize: 'contain',
+                    backgroundRepeat: 'no-repeat',
+                    backgroundPosition: 'center',
+                    border: `1px solid ${url === selectedImage ? '#131b28' : '#e3e6ea'}`,
+                    borderRadius: 2,
+                    cursor: 'pointer',
+                  }}
+                />
+              ))}
             </div>
           )}
         </div>

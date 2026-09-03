@@ -10,6 +10,7 @@ export interface ProductFormValues {
   compareAtPrice: number
   stock: number
   img: string
+  images: string[]
   preorder: boolean
   placeholder: string
 }
@@ -23,6 +24,7 @@ const emptyValues: ProductFormValues = {
   compareAtPrice: 0,
   stock: 0,
   img: '',
+  images: [],
   preorder: false,
   placeholder: '',
 }
@@ -138,8 +140,59 @@ export function ProductForm({
         />
       </div>
       <div style={{ marginBottom: 16 }}>
-        <label style={label}>Image URL (leave blank for a placeholder square)</label>
+        <label style={label}>Feature image URL (leave blank for a placeholder square)</label>
         <input style={field} value={values.img} onChange={(e) => set('img', e.target.value)} placeholder="/assets/example.png" />
+      </div>
+      <div style={{ marginBottom: 16 }}>
+        <label style={label}>Additional images (shown as a gallery on the product page)</label>
+        {values.images.map((url, i) => (
+          <div key={i} style={{ display: 'flex', gap: 8, marginBottom: 8 }}>
+            <input
+              style={field}
+              value={url}
+              onChange={(e) =>
+                set(
+                  'images',
+                  values.images.map((u, j) => (j === i ? e.target.value : u)),
+                )
+              }
+              placeholder="/assets/example-2.png"
+            />
+            <button
+              type="button"
+              onClick={() => set('images', values.images.filter((_, j) => j !== i))}
+              aria-label="Remove image"
+              style={{
+                flexShrink: 0,
+                width: 40,
+                background: '#ffffff',
+                border: '1px solid #cfd4da',
+                borderRadius: 2,
+                cursor: 'pointer',
+                color: '#b4622f',
+                fontSize: 16,
+              }}
+            >
+              ×
+            </button>
+          </div>
+        ))}
+        <button
+          type="button"
+          onClick={() => set('images', [...values.images, ''])}
+          style={{
+            background: 'none',
+            border: '1px dashed #cfd4da',
+            borderRadius: 2,
+            padding: '9px 13px',
+            fontSize: 12.5,
+            color: '#5a6875',
+            cursor: 'pointer',
+            width: '100%',
+          }}
+        >
+          + Add image
+        </button>
       </div>
       <div style={{ marginBottom: 16 }}>
         <label style={label}>Placeholder caption (shown when no image)</label>
