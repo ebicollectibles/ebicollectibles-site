@@ -6,29 +6,6 @@ export const Route = createFileRoute('/')({
   component: HomePage,
 })
 
-const STEPS = [
-  {
-    num: '01 / Sourcing',
-    title: 'Authorised distribution only',
-    body: 'Invoices on file for every case we open for singles or split boxes.',
-  },
-  {
-    num: '02 / Inspection',
-    title: 'Weighed & seam-checked',
-    body: 'Gram-accurate weights logged per box, compared against factory spec.',
-  },
-  {
-    num: '03 / Packing',
-    title: 'Rigid, double-boxed',
-    body: 'Corner protection and void fill on every order over one box.',
-  },
-  {
-    num: '04 / Guarantee',
-    title: 'Full refund on any fake',
-    body: 'If a product fails authentication anywhere, we refund it in full.',
-  },
-]
-
 const monoLabel: React.CSSProperties = {
   fontFamily: "'IBM Plex Mono', monospace",
   fontSize: 10.5,
@@ -151,7 +128,10 @@ function HomePage() {
               </div>
             </div>
           </div>
-          <div style={{ position: 'relative', display: 'flex', justifyContent: 'center', alignItems: 'flex-end', gap: 18, padding: '28px 0' }}>
+          <div
+            className="ebi-hero-image"
+            style={{ position: 'relative', display: 'flex', justifyContent: 'center', alignItems: 'flex-end', gap: 18, padding: '28px 0' }}
+          >
             <img
               src="/assets/gem-vol5.png"
               alt="Gem Pack Vol. 5 booster pack"
@@ -167,20 +147,6 @@ function HomePage() {
               alt="Gem Pack Vol. 4 booster pack"
               style={{ width: '30%', boxShadow: '0 18px 40px rgba(19,27,40,0.16)', transform: 'rotate(6deg)', borderRadius: 4 }}
             />
-          </div>
-        </div>
-      </section>
-
-      <section style={{ borderBottom: '1px solid #e3e6ea' }}>
-        <div style={{ maxWidth: 1240, margin: '0 auto', padding: '0 20px' }}>
-          <div className="ebi-steps-grid">
-            {STEPS.map((step) => (
-              <div key={step.num} className="ebi-step-card" style={{ padding: '30px 28px' }}>
-                <div style={monoLabel}>{step.num}</div>
-                <div style={{ fontSize: 14.5, fontWeight: 600, marginTop: 10 }}>{step.title}</div>
-                <p style={{ fontSize: 13, lineHeight: 1.55, color: '#5a6875', margin: '7px 0 0' }}>{step.body}</p>
-              </div>
-            ))}
           </div>
         </div>
       </section>

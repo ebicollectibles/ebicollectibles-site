@@ -180,19 +180,6 @@ button {
   gap: 64px;
 }
 
-.ebi-steps-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-}
-
-.ebi-step-card {
-  border-right: 1px solid var(--border);
-}
-
-.ebi-step-card:last-child {
-  border-right: none;
-}
-
 .ebi-arrivals-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -284,25 +271,12 @@ button {
     gap: 40px;
   }
 
+  .ebi-hero-image {
+    display: none !important;
+  }
+
   .ebi-hero-h1 {
     font-size: 38px;
-  }
-
-  .ebi-steps-grid {
-    grid-template-columns: 1fr 1fr;
-  }
-
-  .ebi-step-card {
-    border-right: none;
-    border-bottom: 1px solid var(--border);
-  }
-
-  .ebi-step-card:nth-child(2n) {
-    border-right: none;
-  }
-
-  .ebi-step-card:nth-last-child(-n + 2) {
-    border-bottom: none;
   }
 
   .ebi-arrivals-grid {
@@ -348,18 +322,6 @@ button {
 }
 
 @media (max-width: 520px) {
-  .ebi-steps-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .ebi-step-card:nth-last-child(-n + 2) {
-    border-bottom: 1px solid var(--border);
-  }
-
-  .ebi-step-card:last-child {
-    border-bottom: none;
-  }
-
   .ebi-arrivals-grid {
     grid-template-columns: 1fr;
   }
