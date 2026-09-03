@@ -22,6 +22,19 @@ jobs:
 
       - name: Build (Cloudflare Workers target)
         run: npm run build
+        env:
+          # Square's application/location id and environment aren't secret —
+          # they get baked straight into the client bundle at build time, the
+          # same way a Stripe publishable key would be. Set them as GitHub
+          # Actions repository *variables* (not secrets) under Settings →
+          # Secrets and variables → Actions → Variables when ready to go
+          # live — until then these are unset and checkout stays in test
+          # mode, same as always. The real secret, SQUARE_ACCESS_TOKEN, is a
+          # Cloudflare Worker secret (see README-DEPLOY.md), never a GitHub
+          # Actions value, since it's read at request time, not build time.
+          VITE_SQUARE_APPLICATION_ID: ${{ vars.VITE_SQUARE_APPLICATION_ID }}
+          VITE_SQUARE_LOCATION_ID: ${{ vars.VITE_SQUARE_LOCATION_ID }}
+          VITE_SQUARE_ENVIRONMENT: ${{ vars.VITE_SQUARE_ENVIRONMENT }}
 
       - name: Deploy
         uses: cloudflare/wrangler-action@v3

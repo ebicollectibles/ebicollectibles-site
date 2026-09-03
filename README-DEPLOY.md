@@ -87,11 +87,12 @@ silently split traffic/secrets across two different Workers.
    npx wrangler secret put SESSION_SECRET
    npx wrangler secret put SQUARE_ACCESS_TOKEN
    npx wrangler secret put SQUARE_LOCATION_ID
+   npx wrangler secret put SQUARE_ENVIRONMENT   # "sandbox" or "production" — defaults to sandbox if unset
    ```
    `VITE_SQUARE_*` vars are compiled into the client bundle at build time
-   instead (see Square section) — they're not secrets, so they're just
-   regular env vars at build time (`.env` locally, repo/CI env in production
-   builds).
+   instead (see Square section below) — they're not secrets, so they're just
+   regular env vars at build time, supplied by the GitHub Actions workflow
+   from repository *variables* (not secrets — see step 3).
 
    Verify what's actually set (names only, not values) with:
    ```bash
@@ -100,7 +101,8 @@ silently split traffic/secrets across two different Workers.
 
 3. **Continuous deploy via GitHub Actions** (`.github/workflows/deploy.yml`,
    already included) — pushes to `main` build and deploy automatically. Add
-   two repository secrets under Settings → Secrets and variables → Actions:
+   two repository *secrets* under Settings → Secrets and variables → Actions
+   → Secrets:
    - `CLOUDFLARE_API_TOKEN` — create at
      https://dash.cloudflare.com/profile/api-tokens ("Edit Cloudflare
      Workers" template is sufficient)
@@ -112,20 +114,34 @@ silently split traffic/secrets across two different Workers.
 
 ## Square
 
+The integration is already fully built (`src/server/square.ts`,
+`src/components/SquareCardField.tsx`) and gracefully runs in **test mode**
+— orders are recorded, no card is charged — whenever the credentials below
+aren't set. Going live is a config-only change, no code changes needed:
+
 1. Create a [Square Developer](https://developer.squareup.com/apps) app, grab
-   the **sandbox** Application ID, Access Token, and a Location ID first.
-2. Server-side (private): set `SQUARE_ACCESS_TOKEN`, `SQUARE_LOCATION_ID`,
-   `SQUARE_ENVIRONMENT=sandbox` — via `.env` locally, `wrangler secret put` in
-   production.
-3. Client-side (public, safe to expose): set `VITE_SQUARE_APPLICATION_ID`,
-   `VITE_SQUARE_LOCATION_ID`, `VITE_SQUARE_ENVIRONMENT=sandbox` — these get
-   baked into the JS bundle at build time, so set them wherever you run
-   `npm run build` (`.env` locally; as build-time env vars in CI/production).
+   the **sandbox** Application ID, Access Token, and a Location ID first —
+   test the whole flow end to end in sandbox before touching production.
+2. Server-side (private, Cloudflare Worker secrets — never in the repo or in
+   GitHub Actions): `SQUARE_ACCESS_TOKEN`, `SQUARE_LOCATION_ID`,
+   `SQUARE_ENVIRONMENT` (`sandbox` or `production`). Set with
+   `npx wrangler secret put <NAME>` from `.output/server` (see step 2 above)
+   — takes effect immediately, no redeploy needed.
+3. Client-side (public, safe to expose — same idea as a Stripe publishable
+   key): `VITE_SQUARE_APPLICATION_ID`, `VITE_SQUARE_LOCATION_ID`,
+   `VITE_SQUARE_ENVIRONMENT`. These get baked into the JS bundle at *build*
+   time, so they belong in GitHub Actions repository **variables** (Settings
+   → Secrets and variables → Actions → **Variables** tab, not Secrets) —
+   `.github/workflows/deploy.yml` already passes them through to
+   `npm run build` automatically. Setting these requires a new deploy (the
+   next push, or re-run the workflow) to actually take effect, unlike the
+   server secrets in step 2. Locally, use `.env` instead.
 4. Test with Square's [sandbox test card
    numbers](https://developer.squareup.com/docs/testing/sandbox#test-values).
 5. When ready for real charges: create a production Square app, swap in
-   production credentials, set `SQUARE_ENVIRONMENT=production` /
-   `VITE_SQUARE_ENVIRONMENT=production` everywhere.
+   production credentials, set `SQUARE_ENVIRONMENT=production` (Worker
+   secret) and `VITE_SQUARE_ENVIRONMENT=production` (GitHub Actions
+   variable) — then redeploy.
 
 Until step 2–3 are done, checkout still fully works — orders are recorded in
 the database with `payment_status: 'test'` and no card is charged (see the
