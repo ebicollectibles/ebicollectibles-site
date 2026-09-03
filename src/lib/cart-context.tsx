@@ -43,15 +43,52 @@ interface CartContextValue {
 }
 
 const CartContext = React.createContext<CartContextValue | null>(null)
+const CART_STORAGE_KEY = 'ebi-cart'
 
 export function CartProvider({ children, products }: { children: React.ReactNode; products: Product[] }) {
   const [state, setState] = React.useState<CartState>({ cart: {} })
+  const hydrated = React.useRef(false)
 
   const productById = React.useMemo(() => {
     const map = new Map<string, Product>()
     for (const p of products) map.set(p.id, p)
     return map
   }, [products])
+
+  // Restore the cart saved before the last full page load — a plain
+  // useState only lives in memory, so without this a refresh silently
+  // empties the cart. Runs once client-side after mount (server-rendered
+  // state stays the empty default, so there's no hydration mismatch), and
+  // clamps against current stock in case it changed since the last visit.
+  React.useEffect(() => {
+    try {
+      const raw = localStorage.getItem(CART_STORAGE_KEY)
+      if (raw) {
+        const parsed = JSON.parse(raw) as Record<string, number>
+        const clamped: Record<string, number> = {}
+        for (const [id, qty] of Object.entries(parsed)) {
+          const product = productById.get(id)
+          if (!product) continue
+          const n = Math.min(Math.max(0, Math.floor(qty)), product.stock)
+          if (n > 0) clamped[id] = n
+        }
+        setState((s) => ({ ...s, cart: clamped }))
+      }
+    } catch {
+      // Ignore malformed/inaccessible storage — just start with an empty cart.
+    }
+    hydrated.current = true
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
+  React.useEffect(() => {
+    if (!hydrated.current) return
+    try {
+      localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(state.cart))
+    } catch {
+      // Storage can be unavailable (private mode, quota) — cart still works in-memory.
+    }
+  }, [state.cart])
 
   const addToCart = React.useCallback((product: Product) => {
     if (product.stock === 0) return
