@@ -11,6 +11,7 @@ const productSchema = z.object({
   code: z.string().min(1),
   type: z.enum(['Booster box', 'Special box', 'Figures']),
   price: z.number().nonnegative(),
+  compareAtPrice: z.number().nonnegative().nullable().optional(),
   stock: z.number().int().nonnegative(),
   img: z.string().optional(),
   preorder: z.boolean().optional().default(false),

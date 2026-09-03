@@ -7,6 +7,7 @@ export interface ProductFormValues {
   code: string
   type: ProductType
   price: number
+  compareAtPrice: number
   stock: number
   img: string
   preorder: boolean
@@ -19,6 +20,7 @@ const emptyValues: ProductFormValues = {
   code: '',
   type: 'Booster box',
   price: 0,
+  compareAtPrice: 0,
   stock: 0,
   img: '',
   preorder: false,
@@ -123,6 +125,17 @@ export function ProductForm({
             required
           />
         </div>
+      </div>
+      <div style={{ marginBottom: 16 }}>
+        <label style={label}>Compare-at price (USD) — leave 0 for no sale badge</label>
+        <input
+          type="number"
+          step="0.01"
+          min="0"
+          style={field}
+          value={values.compareAtPrice}
+          onChange={(e) => set('compareAtPrice', Number(e.target.value))}
+        />
       </div>
       <div style={{ marginBottom: 16 }}>
         <label style={label}>Image URL (leave blank for a placeholder square)</label>

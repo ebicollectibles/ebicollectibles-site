@@ -1,0 +1,1 @@
+ALTER TABLE "products" ADD COLUMN "compare_at_price" numeric(10, 2);

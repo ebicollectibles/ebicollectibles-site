@@ -6,6 +6,7 @@ export interface Product {
   code: string
   type: ProductType
   price: number
+  compareAtPrice?: number
   stock: number
   img?: string
   preorder?: boolean

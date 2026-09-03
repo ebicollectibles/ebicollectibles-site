@@ -21,10 +21,9 @@ export function ProductCard({ product, variant = 'full' }: { product: Product; v
 
   const soldOut = product.stock === 0
   const low = !soldOut && product.stock <= 5
-  const badge = product.preorder ? 'Pre-order' : soldOut ? 'Sold out' : low ? 'Low stock' : null
+  const onSale = product.compareAtPrice != null && product.compareAtPrice > product.price
+  const badge = product.preorder ? 'Pre-order' : soldOut ? 'Sold out' : low ? 'Low stock' : onSale ? 'Sale' : null
   const badgeBg = product.preorder ? '#3f7a63' : soldOut ? '#98a1ab' : '#b4622f'
-  const stockLabel = soldOut ? 'Out of stock' : product.preorder ? 'Ships on release' : `${product.stock} in stock`
-  const stockColor = soldOut ? '#98a1ab' : low ? '#b4622f' : '#3f7a63'
   const btnLabel = soldOut ? 'Sold out' : product.preorder ? 'Pre-order' : 'Add to cart'
 
   const compact = variant === 'compact'
@@ -93,33 +92,27 @@ export function ProductCard({ product, variant = 'full' }: { product: Product; v
         )}
       </div>
 
-      <div
-        style={{
-          fontFamily: "'IBM Plex Mono', monospace",
-          fontSize: 10,
-          letterSpacing: '0.12em',
-          color: '#98a1ab',
-          marginTop: compact ? 14 : 16,
-        }}
-      >
-        {compact ? product.code : `${product.code} · ${product.type}`}
-      </div>
       <h3
         style={{
           fontSize: nameFontSize,
           fontWeight: 600,
           lineHeight: 1.35,
-          margin: '6px 0 0',
+          margin: 0,
+          marginTop: compact ? 14 : 16,
           minHeight: nameMinHeight,
           textWrap: 'pretty',
         }}
       >
         {product.name}
       </h3>
-      <div style={{ display: 'flex', alignItems: 'baseline', gap: compact ? 8 : 9, marginTop: 10 }}>
-        <span style={{ fontSize: priceFontSize, fontWeight: 600 }}>{formatMoney(product.price)}</span>
-        <span style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 10.5, color: stockColor }}>
-          {stockLabel}
+      <div style={{ display: 'flex', alignItems: 'baseline', gap: 8, marginTop: 10 }}>
+        {onSale && (
+          <span style={{ fontSize: priceFontSize - 3, color: '#98a1ab', textDecoration: 'line-through' }}>
+            {formatMoney(product.compareAtPrice!)}
+          </span>
+        )}
+        <span style={{ fontSize: priceFontSize, fontWeight: 600, color: onSale ? '#b4622f' : '#131b28' }}>
+          {formatMoney(product.price)}
         </span>
       </div>
       </Link>

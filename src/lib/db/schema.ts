@@ -6,6 +6,7 @@ export const products = pgTable('products', {
   code: text('code').notNull(),
   type: text('type').notNull(),
   price: numeric('price', { precision: 10, scale: 2, mode: 'number' }).notNull(),
+  compareAtPrice: numeric('compare_at_price', { precision: 10, scale: 2, mode: 'number' }),
   stock: integer('stock').notNull().default(0),
   img: text('img'),
   preorder: boolean('preorder').notNull().default(false),

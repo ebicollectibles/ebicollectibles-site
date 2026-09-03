@@ -53,6 +53,7 @@ function EditProductPage() {
           code: product.code,
           type: product.type as any,
           price: product.price,
+          compareAtPrice: product.compareAtPrice ?? 0,
           stock: product.stock,
           img: product.img ?? '',
           preorder: product.preorder,
@@ -63,6 +64,7 @@ function EditProductPage() {
             data: {
               ...values,
               originalId: id,
+              compareAtPrice: values.compareAtPrice || null,
               img: values.img || undefined,
               placeholder: values.placeholder || undefined,
             },

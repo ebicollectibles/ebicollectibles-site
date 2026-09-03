@@ -27,6 +27,7 @@ function NewProductPage() {
           await adminCreateProduct({
             data: {
               ...values,
+              compareAtPrice: values.compareAtPrice || null,
               img: values.img || undefined,
               placeholder: values.placeholder || undefined,
             },

@@ -26,6 +26,7 @@ function toProduct(row: typeof productsTable.$inferSelect): Product {
     code: row.code,
     type: row.type as Product['type'],
     price: row.price,
+    compareAtPrice: row.compareAtPrice ?? undefined,
     stock: row.stock,
     img: row.img ?? undefined,
     preorder: row.preorder,

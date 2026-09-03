@@ -53,7 +53,8 @@ function ProductDetailPage() {
 
   const soldOut = product.stock === 0
   const low = !soldOut && product.stock <= 5
-  const badge = product.preorder ? 'Pre-order' : soldOut ? 'Sold out' : low ? 'Low stock' : null
+  const onSale = product.compareAtPrice != null && product.compareAtPrice > product.price
+  const badge = product.preorder ? 'Pre-order' : soldOut ? 'Sold out' : low ? 'Low stock' : onSale ? 'Sale' : null
   const badgeBg = product.preorder ? '#3f7a63' : soldOut ? '#98a1ab' : '#b4622f'
   const stockLabel = soldOut ? 'Out of stock' : product.preorder ? 'Ships on release' : `${product.stock} in stock`
   const stockColor = soldOut ? '#98a1ab' : low ? '#b4622f' : '#3f7a63'
@@ -134,8 +135,13 @@ function ProductDetailPage() {
           <h1 style={{ fontSize: 32, letterSpacing: '-0.02em', fontWeight: 700, lineHeight: 1.15, margin: '10px 0 0', textWrap: 'pretty' }}>
             {product.name}
           </h1>
-          <div style={{ display: 'flex', alignItems: 'baseline', gap: 12, marginTop: 18 }}>
-            <span style={{ fontSize: 26, fontWeight: 700 }}>{formatMoney(product.price)}</span>
+          <div style={{ display: 'flex', alignItems: 'baseline', gap: 12, marginTop: 18, flexWrap: 'wrap' }}>
+            {onSale && (
+              <span style={{ fontSize: 18, color: '#98a1ab', textDecoration: 'line-through' }}>
+                {formatMoney(product.compareAtPrice!)}
+              </span>
+            )}
+            <span style={{ fontSize: 26, fontWeight: 700, color: onSale ? '#b4622f' : '#131b28' }}>{formatMoney(product.price)}</span>
             <span style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 12, color: stockColor }}>{stockLabel}</span>
           </div>
 
