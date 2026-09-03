@@ -6,12 +6,24 @@ export function Header() {
   const pathname = useRouterState({ select: (s) => s.location.pathname })
   const { cartCount, openCart } = useCart()
   const [menuOpen, setMenuOpen] = React.useState(false)
+  const [pokemonMenuOpen, setPokemonMenuOpen] = React.useState(false)
+  const pokemonMenuRef = React.useRef<HTMLDivElement>(null)
 
   const navColor = (active: boolean) => (active ? '#131b28' : '#5a6875')
 
   React.useEffect(() => {
     setMenuOpen(false)
+    setPokemonMenuOpen(false)
   }, [pathname])
+
+  React.useEffect(() => {
+    if (!pokemonMenuOpen) return
+    const onClickOutside = (e: MouseEvent) => {
+      if (!pokemonMenuRef.current?.contains(e.target as Node)) setPokemonMenuOpen(false)
+    }
+    document.addEventListener('mousedown', onClickOutside)
+    return () => document.removeEventListener('mousedown', onClickOutside)
+  }, [pokemonMenuOpen])
 
   return (
     <header
@@ -63,25 +75,33 @@ export function Header() {
           <Link to="/" style={{ color: navColor(pathname === '/'), padding: '4px 0' }}>
             Home
           </Link>
-          <div className="ebi-nav-dropdown" style={{ position: 'relative' }}>
-            <Link
-              to="/shop"
+          <div ref={pokemonMenuRef} style={{ position: 'relative' }}>
+            <button
+              type="button"
+              onClick={() => setPokemonMenuOpen((v) => !v)}
+              aria-expanded={pokemonMenuOpen}
               style={{
-                color: navColor(pathname === '/shop'),
+                background: 'transparent',
+                border: 0,
                 padding: '4px 0',
+                font: 'inherit',
+                color: navColor(pathname === '/shop' || pokemonMenuOpen),
                 display: 'inline-flex',
                 alignItems: 'center',
                 gap: 5,
+                cursor: 'pointer',
               }}
             >
               Pokemon
-              <span style={{ fontSize: 9, color: '#98a1ab' }}>▾</span>
-            </Link>
-            <div className="ebi-nav-dropdown-panel">
-              <Link to="/shop" style={{ display: 'block', padding: '9px 14px', fontSize: 13, color: '#3d4753', whiteSpace: 'nowrap' }}>
-                Pokemon (Chinese)
-              </Link>
-            </div>
+              <span style={{ fontSize: 9, color: '#98a1ab' }}>{pokemonMenuOpen ? '▴' : '▾'}</span>
+            </button>
+            {pokemonMenuOpen && (
+              <div className="ebi-nav-dropdown-panel">
+                <Link to="/shop" style={{ display: 'block', padding: '9px 14px', fontSize: 13, color: '#3d4753', whiteSpace: 'nowrap' }}>
+                  Pokemon (Chinese)
+                </Link>
+              </div>
+            )}
           </div>
           <Link
             to="/shop"

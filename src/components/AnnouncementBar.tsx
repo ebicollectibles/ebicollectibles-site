@@ -18,7 +18,7 @@ export function AnnouncementBar() {
       }}
     >
       <span style={{ width: 6, height: 6, borderRadius: '50%', background: '#5fbf97', display: 'inline-block', flexShrink: 0 }} />
-      <span>Every sealed box weight-checked &amp; case-matched before it ships</span>
+      <span>A Family-Owned Business · Shipped From WA</span>
     </div>
   )
 }

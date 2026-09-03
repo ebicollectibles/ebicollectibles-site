@@ -91,7 +91,6 @@ button {
 }
 
 .ebi-nav-dropdown-panel {
-  display: none;
   position: absolute;
   top: 100%;
   left: 0;
@@ -107,11 +106,6 @@ button {
 
 .ebi-nav-dropdown-panel a:hover {
   background: var(--surface);
-}
-
-.ebi-nav-dropdown:hover .ebi-nav-dropdown-panel,
-.ebi-nav-dropdown:focus-within .ebi-nav-dropdown-panel {
-  display: block;
 }
 
 .ebi-field:focus {
