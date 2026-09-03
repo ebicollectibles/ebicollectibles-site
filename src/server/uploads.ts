@@ -2,13 +2,14 @@ import { createServerFn } from '@tanstack/react-start'
 import { assertAdmin } from './admin-auth'
 
 // Minimal shape of the R2 binding we actually use — avoids pulling in
-// @cloudflare/workers-types just for one method.
+// @cloudflare/workers-types just for two methods.
 interface R2Bucket {
   put(
     key: string,
     value: ArrayBuffer,
     options?: { httpMetadata?: { contentType?: string } },
   ): Promise<unknown>
+  list(options?: { limit?: number }): Promise<{ objects: Array<{ key: string; uploaded: Date }> }>
 }
 
 interface CloudflareEnv {
@@ -56,3 +57,21 @@ export const uploadProductImage = createServerFn({ method: 'POST' })
 
     return { url: `${env.PRODUCT_IMAGES_PUBLIC_URL.replace(/\/$/, '')}/${key}` }
   })
+
+export const listProductImages = createServerFn({ method: 'GET' }).handler(async () => {
+  await assertAdmin()
+
+  const env = getCloudflareEnv()
+  if (!env.PRODUCT_IMAGES) {
+    throw new Error('Image storage is not set up yet — create the R2 bucket and add its binding (see README-DEPLOY.md).')
+  }
+  if (!env.PRODUCT_IMAGES_PUBLIC_URL) {
+    throw new Error('PRODUCT_IMAGES_PUBLIC_URL is not set — see README-DEPLOY.md.')
+  }
+
+  const base = env.PRODUCT_IMAGES_PUBLIC_URL.replace(/\/$/, '')
+  const { objects } = await env.PRODUCT_IMAGES.list({ limit: 200 })
+  return objects
+    .sort((a, b) => new Date(b.uploaded).getTime() - new Date(a.uploaded).getTime())
+    .map((obj) => ({ key: obj.key, url: `${base}/${obj.key}` }))
+})

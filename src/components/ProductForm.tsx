@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { PRODUCT_TYPES, type ProductType } from '~/lib/products'
-import { uploadProductImage } from '~/server/uploads'
+import { listProductImages, uploadProductImage } from '~/server/uploads'
 
 export interface ProductFormValues {
   id: string
@@ -96,6 +96,106 @@ function UploadButton({
   )
 }
 
+function BrowseButton({ onClick }: { onClick: () => void }) {
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      style={{
+        flexShrink: 0,
+        padding: '0 14px',
+        background: '#ffffff',
+        border: '1px solid #cfd4da',
+        borderRadius: 2,
+        fontSize: 12.5,
+        color: '#5a6875',
+        cursor: 'pointer',
+        whiteSpace: 'nowrap',
+      }}
+    >
+      Browse
+    </button>
+  )
+}
+
+function ImagePicker({ onSelect, onClose }: { onSelect: (url: string) => void; onClose: () => void }) {
+  const [images, setImages] = React.useState<Array<{ key: string; url: string }> | null>(null)
+  const [error, setError] = React.useState<string | null>(null)
+
+  React.useEffect(() => {
+    listProductImages()
+      .then(setImages)
+      .catch((err) => setError(err instanceof Error ? err.message : 'Failed to load images.'))
+  }, [])
+
+  return (
+    <div
+      onClick={onClose}
+      style={{
+        position: 'fixed',
+        inset: 0,
+        background: 'rgba(19,27,40,0.5)',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        zIndex: 100,
+        padding: 20,
+      }}
+    >
+      <div
+        onClick={(e) => e.stopPropagation()}
+        style={{
+          background: '#ffffff',
+          borderRadius: 4,
+          padding: 24,
+          width: '100%',
+          maxWidth: 640,
+          maxHeight: '80vh',
+          overflowY: 'auto',
+        }}
+      >
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 16 }}>
+          <div style={{ fontSize: 15, fontWeight: 700 }}>Choose an uploaded image</div>
+          <button
+            type="button"
+            onClick={onClose}
+            aria-label="Close"
+            style={{ background: 'none', border: 0, fontSize: 20, lineHeight: 1, cursor: 'pointer', color: '#5a6875' }}
+          >
+            ×
+          </button>
+        </div>
+        {error && <p style={{ fontSize: 12.5, color: '#b4622f' }}>{error}</p>}
+        {!images && !error && <p style={{ fontSize: 13, color: '#98a1ab' }}>Loading…</p>}
+        {images && images.length === 0 && <p style={{ fontSize: 13, color: '#98a1ab' }}>No uploaded images yet — use Upload instead.</p>}
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(96px, 1fr))', gap: 10 }}>
+          {images?.map((img) => (
+            <button
+              key={img.key}
+              type="button"
+              onClick={() => onSelect(img.url)}
+              aria-label="Use this image"
+              style={{
+                padding: 0,
+                aspectRatio: '1 / 1',
+                background: '#f6f7f8',
+                backgroundImage: `url(${img.url})`,
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+                border: '1px solid #e3e6ea',
+                borderRadius: 2,
+                cursor: 'pointer',
+              }}
+            />
+          ))}
+        </div>
+      </div>
+    </div>
+  )
+}
+
+type PickerTarget = { kind: 'img' } | { kind: 'images'; index: number } | { kind: 'images-new' }
+
 export function ProductForm({
   initial,
   lockId,
@@ -110,9 +210,20 @@ export function ProductForm({
   const [values, setValues] = React.useState<ProductFormValues>({ ...emptyValues, ...initial })
   const [submitting, setSubmitting] = React.useState(false)
   const [error, setError] = React.useState<string | null>(null)
+  const [pickerTarget, setPickerTarget] = React.useState<PickerTarget | null>(null)
 
   const set = <K extends keyof ProductFormValues>(key: K, value: ProductFormValues[K]) =>
     setValues((v) => ({ ...v, [key]: value }))
+
+  const handlePicked = (url: string) => {
+    if (!pickerTarget) return
+    if (pickerTarget.kind === 'img') set('img', url)
+    else if (pickerTarget.kind === 'images') {
+      const index = pickerTarget.index
+      set('images', values.images.map((u, j) => (j === index ? url : u)))
+    } else set('images', [...values.images, url])
+    setPickerTarget(null)
+  }
 
   const submit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -128,6 +239,7 @@ export function ProductForm({
   }
 
   return (
+    <>
     <form onSubmit={submit} style={{ maxWidth: 520, marginTop: 24 }}>
       <div style={{ marginBottom: 16 }}>
         <label style={label}>Product ID (slug, e.g. "gem6")</label>
@@ -201,6 +313,7 @@ export function ProductForm({
         <div style={{ display: 'flex', gap: 8 }}>
           <input style={field} value={values.img} onChange={(e) => set('img', e.target.value)} placeholder="/assets/example.png or paste a URL" />
           <UploadButton onUploaded={(url) => set('img', url)} onError={setError} />
+          <BrowseButton onClick={() => setPickerTarget({ kind: 'img' })} />
         </div>
       </div>
       <div style={{ marginBottom: 16 }}>
@@ -222,6 +335,7 @@ export function ProductForm({
               onUploaded={(url2) => set('images', values.images.map((u, j) => (j === i ? url2 : u)))}
               onError={setError}
             />
+            <BrowseButton onClick={() => setPickerTarget({ kind: 'images', index: i })} />
             <button
               type="button"
               onClick={() => set('images', values.images.filter((_, j) => j !== i))}
@@ -263,6 +377,7 @@ export function ProductForm({
             onUploaded={(url) => set('images', [...values.images, url])}
             onError={setError}
           />
+          <BrowseButton onClick={() => setPickerTarget({ kind: 'images-new' })} />
         </div>
       </div>
       <div style={{ marginBottom: 16 }}>
@@ -299,5 +414,7 @@ export function ProductForm({
         {submitting ? 'Saving…' : submitLabel}
       </button>
     </form>
+    {pickerTarget && <ImagePicker onSelect={handlePicked} onClose={() => setPickerTarget(null)} />}
+    </>
   )
 }
