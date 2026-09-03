@@ -131,6 +131,31 @@ Until step 2–3 are done, checkout still fully works — orders are recorded in
 the database with `payment_status: 'test'` and no card is charged (see the
 note that renders on the checkout page and confirmation screen in that mode).
 
+## Product image uploads (R2)
+
+The admin panel's "Upload" buttons store images in a Cloudflare R2 bucket.
+One-time setup:
+
+```bash
+npx wrangler r2 bucket create ebicollectibles-product-images
+npx wrangler r2 bucket dev-url enable ebicollectibles-product-images
+```
+
+The second command prints a public URL like `https://pub-xxxxxxxx.r2.dev` —
+set it as a secret (same pattern as the others above, from `.output/server`):
+
+```bash
+npx wrangler secret put PRODUCT_IMAGES_PUBLIC_URL
+```
+
+`nitro.config.ts` already wires the `PRODUCT_IMAGES` binding to that bucket
+(`cloudflare.wrangler.r2_buckets`) — nothing else to configure. If the bucket
+doesn't exist yet, deploys still succeed for everything except the Worker
+step, which fails until the bucket is created; the site keeps running on the
+previous deploy in the meantime. Until both steps above are done, the
+"Upload" buttons show a clear error instead of a silent failure — pasting an
+image URL directly still works either way.
+
 ## Admin panel
 
 `/admin` — single shared password (`ADMIN_PASSWORD`), no user accounts. Manage

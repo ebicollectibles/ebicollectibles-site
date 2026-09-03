@@ -1,5 +1,6 @@
 import * as React from 'react'
 import { PRODUCT_TYPES, type ProductType } from '~/lib/products'
+import { uploadProductImage } from '~/server/uploads'
 
 export interface ProductFormValues {
   id: string
@@ -38,6 +39,62 @@ const field: React.CSSProperties = {
   width: '100%',
 }
 const label: React.CSSProperties = { fontSize: 12.5, fontWeight: 600, marginBottom: 6, display: 'block' }
+
+function UploadButton({
+  label: buttonLabel = 'Upload',
+  onUploaded,
+  onError,
+}: {
+  label?: string
+  onUploaded: (url: string) => void
+  onError: (message: string) => void
+}) {
+  const [busy, setBusy] = React.useState(false)
+
+  return (
+    <label
+      style={{
+        flexShrink: 0,
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        padding: '0 14px',
+        background: '#ffffff',
+        border: '1px solid #cfd4da',
+        borderRadius: 2,
+        fontSize: 12.5,
+        color: '#5a6875',
+        cursor: busy ? 'not-allowed' : 'pointer',
+        opacity: busy ? 0.6 : 1,
+        whiteSpace: 'nowrap',
+      }}
+    >
+      {busy ? 'Uploading…' : buttonLabel}
+      <input
+        type="file"
+        accept="image/*"
+        disabled={busy}
+        style={{ display: 'none' }}
+        onChange={async (e) => {
+          const file = e.target.files?.[0]
+          e.target.value = ''
+          if (!file) return
+          setBusy(true)
+          try {
+            const formData = new FormData()
+            formData.append('file', file)
+            const result = await uploadProductImage({ data: formData })
+            onUploaded(result.url)
+          } catch (err) {
+            onError(err instanceof Error ? err.message : 'Upload failed.')
+          } finally {
+            setBusy(false)
+          }
+        }}
+      />
+    </label>
+  )
+}
 
 export function ProductForm({
   initial,
@@ -140,8 +197,11 @@ export function ProductForm({
         />
       </div>
       <div style={{ marginBottom: 16 }}>
-        <label style={label}>Feature image URL (leave blank for a placeholder square)</label>
-        <input style={field} value={values.img} onChange={(e) => set('img', e.target.value)} placeholder="/assets/example.png" />
+        <label style={label}>Feature image (leave blank for a placeholder square)</label>
+        <div style={{ display: 'flex', gap: 8 }}>
+          <input style={field} value={values.img} onChange={(e) => set('img', e.target.value)} placeholder="/assets/example.png or paste a URL" />
+          <UploadButton onUploaded={(url) => set('img', url)} onError={setError} />
+        </div>
       </div>
       <div style={{ marginBottom: 16 }}>
         <label style={label}>Additional images (shown as a gallery on the product page)</label>
@@ -156,7 +216,11 @@ export function ProductForm({
                   values.images.map((u, j) => (j === i ? e.target.value : u)),
                 )
               }
-              placeholder="/assets/example-2.png"
+              placeholder="/assets/example-2.png or paste a URL"
+            />
+            <UploadButton
+              onUploaded={(url2) => set('images', values.images.map((u, j) => (j === i ? url2 : u)))}
+              onError={setError}
             />
             <button
               type="button"
@@ -177,22 +241,29 @@ export function ProductForm({
             </button>
           </div>
         ))}
-        <button
-          type="button"
-          onClick={() => set('images', [...values.images, ''])}
-          style={{
-            background: 'none',
-            border: '1px dashed #cfd4da',
-            borderRadius: 2,
-            padding: '9px 13px',
-            fontSize: 12.5,
-            color: '#5a6875',
-            cursor: 'pointer',
-            width: '100%',
-          }}
-        >
-          + Add image
-        </button>
+        <div style={{ display: 'flex', gap: 8 }}>
+          <button
+            type="button"
+            onClick={() => set('images', [...values.images, ''])}
+            style={{
+              flex: 1,
+              background: 'none',
+              border: '1px dashed #cfd4da',
+              borderRadius: 2,
+              padding: '9px 13px',
+              fontSize: 12.5,
+              color: '#5a6875',
+              cursor: 'pointer',
+            }}
+          >
+            + Add image URL
+          </button>
+          <UploadButton
+            label="+ Upload image"
+            onUploaded={(url) => set('images', [...values.images, url])}
+            onError={setError}
+          />
+        </div>
       </div>
       <div style={{ marginBottom: 16 }}>
         <label style={label}>Placeholder caption (shown when no image)</label>

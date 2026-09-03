@@ -20,6 +20,10 @@ export default defineNitroConfig({
       // — that needs this separate, explicit flag. Without it, DATABASE_URL
       // etc. are set correctly in Cloudflare but invisible to process.env.
       compatibility_flags: ['nodejs_compat', 'nodejs_compat_populate_process_env'],
+      // R2 bucket for product images uploaded from the admin panel. The
+      // bucket itself has to be created once (see README-DEPLOY.md) —
+      // this just wires the binding so the Worker can reach it.
+      r2_buckets: [{ binding: 'PRODUCT_IMAGES', bucket_name: 'ebicollectibles-product-images' }],
     },
   },
 })
