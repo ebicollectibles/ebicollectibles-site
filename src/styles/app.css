@@ -323,11 +323,11 @@ button {
 
 @media (max-width: 520px) {
   .ebi-arrivals-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr);
   }
 
   .ebi-shop-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr);
   }
 
   .ebi-checkout-2col {

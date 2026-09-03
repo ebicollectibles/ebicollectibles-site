@@ -54,18 +54,25 @@ export function Header() {
           style={{
             alignItems: 'center',
             justifyContent: 'center',
-            width: 36,
-            height: 36,
+            width: 42,
+            height: 42,
             flexShrink: 0,
             background: 'transparent',
             border: '1px solid #e3e6ea',
             borderRadius: 2,
             cursor: 'pointer',
-            fontSize: 18,
             color: '#131b28',
           }}
         >
-          {menuOpen ? '×' : '☰'}
+          {menuOpen ? (
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+              <path d="M6 6l12 12M18 6L6 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+            </svg>
+          ) : (
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+              <path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+            </svg>
+          )}
         </button>
 
         <Link to="/" style={{ display: 'flex', alignItems: 'center', gap: 11, flexShrink: 0 }}>
