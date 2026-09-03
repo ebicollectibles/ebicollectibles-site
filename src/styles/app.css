@@ -90,6 +90,30 @@ button {
   color: var(--ink) !important;
 }
 
+.ebi-nav-dropdown-panel {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  margin-top: 10px;
+  background: #ffffff;
+  border: 1px solid var(--border);
+  border-radius: 2px;
+  padding: 6px;
+  min-width: 170px;
+  box-shadow: 0 12px 28px rgba(19, 27, 40, 0.1);
+  z-index: 50;
+}
+
+.ebi-nav-dropdown-panel a:hover {
+  background: var(--surface);
+}
+
+.ebi-nav-dropdown:hover .ebi-nav-dropdown-panel,
+.ebi-nav-dropdown:focus-within .ebi-nav-dropdown-panel {
+  display: block;
+}
+
 .ebi-field:focus {
   border-color: var(--ink) !important;
   outline: none;

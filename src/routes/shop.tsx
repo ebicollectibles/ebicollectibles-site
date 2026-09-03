@@ -70,7 +70,7 @@ function ShopPage() {
   if (sort === 'high') visible = [...visible].sort((a, b) => b.price - a.price)
   if (sort === 'name') visible = [...visible].sort((a, b) => a.name.localeCompare(b.name))
 
-  const shopTitle = types.length === 1 ? SHOP_TITLES[types[0]] : 'All products'
+  const shopTitle = types.length === 1 ? SHOP_TITLES[types[0]] : 'Chinese Pokémon Products'
 
   return (
     <section style={{ maxWidth: 1240, margin: '0 auto', padding: '40px 20px 80px' }}>

@@ -63,9 +63,26 @@ export function Header() {
           <Link to="/" style={{ color: navColor(pathname === '/'), padding: '4px 0' }}>
             Home
           </Link>
-          <Link to="/shop" style={{ color: navColor(pathname === '/shop'), padding: '4px 0' }}>
-            Shop all
-          </Link>
+          <div className="ebi-nav-dropdown" style={{ position: 'relative' }}>
+            <Link
+              to="/shop"
+              style={{
+                color: navColor(pathname === '/shop'),
+                padding: '4px 0',
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: 5,
+              }}
+            >
+              Pokemon
+              <span style={{ fontSize: 9, color: '#98a1ab' }}>▾</span>
+            </Link>
+            <div className="ebi-nav-dropdown-panel">
+              <Link to="/shop" style={{ display: 'block', padding: '9px 14px', fontSize: 13, color: '#3d4753', whiteSpace: 'nowrap' }}>
+                Pokemon (Chinese)
+              </Link>
+            </div>
+          </div>
           <Link
             to="/shop"
             search={{ type: 'Booster box' }}
@@ -187,7 +204,7 @@ export function Header() {
             Home
           </Link>
           <Link to="/shop" style={{ color: navColor(pathname === '/shop'), padding: '10px 0', borderBottom: '1px solid #f0f2f4' }}>
-            Shop all
+            Pokemon (Chinese)
           </Link>
           <Link
             to="/shop"

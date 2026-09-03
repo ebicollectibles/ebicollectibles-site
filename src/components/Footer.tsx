@@ -38,7 +38,7 @@ export function Footer() {
             Shop
           </div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 9, marginTop: 14, fontSize: 13 }}>
-            <Link to="/shop">All products</Link>
+            <Link to="/shop">Chinese Pokémon Products</Link>
             <Link to="/shop" search={{ type: 'Booster box' }}>
               Booster boxes
             </Link>
