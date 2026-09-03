@@ -1,4 +1,5 @@
 import * as React from 'react'
+import { Link } from '@tanstack/react-router'
 import { useCart } from '~/lib/cart-context'
 import { formatMoney, type Product } from '~/lib/products'
 
@@ -36,6 +37,11 @@ export function ProductCard({ product, variant = 'full' }: { product: Product; v
 
   return (
     <article style={{ background: '#ffffff', padding, display: 'flex', flexDirection: 'column' }}>
+      <Link
+        to="/products/$id"
+        params={{ id: product.id }}
+        style={{ display: 'contents', color: 'inherit', textDecoration: 'none' }}
+      >
       <div style={{ position: 'relative', aspectRatio: '1 / 1', background: '#f6f7f8', overflow: 'hidden' }}>
         <div
           style={{
@@ -116,6 +122,7 @@ export function ProductCard({ product, variant = 'full' }: { product: Product; v
           {stockLabel}
         </span>
       </div>
+      </Link>
       <button
         onClick={handleAdd}
         disabled={soldOut}

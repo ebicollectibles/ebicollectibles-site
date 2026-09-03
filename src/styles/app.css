@@ -228,6 +228,12 @@ button {
   gap: 56px;
 }
 
+.ebi-product-detail-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 56px;
+}
+
 .ebi-checkout-layout {
   display: grid;
   grid-template-columns: 1fr 380px;
@@ -316,6 +322,11 @@ button {
   }
 
   .ebi-faq-layout {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .ebi-product-detail-grid {
     grid-template-columns: 1fr;
     gap: 32px;
   }
