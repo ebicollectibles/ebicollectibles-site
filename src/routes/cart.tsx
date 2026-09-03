@@ -53,14 +53,10 @@ function CartPage() {
         <>
           <div style={{ borderTop: '1px solid #131b28', marginTop: 24 }}>
             {lines.map((line) => (
-              <div
-                key={line.id}
-                style={{ display: 'flex', gap: 18, padding: '22px 4px', borderBottom: '1px solid #e3e6ea', alignItems: 'center' }}
-              >
+              <div key={line.id} style={{ display: 'flex', gap: 20, padding: '24px 4px', borderBottom: '1px solid #e3e6ea' }}>
                 <div
+                  className="ebi-cart-line-image"
                   style={{
-                    width: 84,
-                    height: 84,
                     flexShrink: 0,
                     background: '#f6f7f8',
                     backgroundSize: 'contain',
@@ -69,48 +65,69 @@ function CartPage() {
                     backgroundImage: line.product.img ? `url(${line.product.img})` : STRIPES,
                   }}
                 />
-                <div style={{ flex: 1, minWidth: 0 }}>
-                  <div style={{ fontSize: 14.5, fontWeight: 600, lineHeight: 1.35 }}>{line.product.name}</div>
-                  <div style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 11, color: '#98a1ab', marginTop: 4 }}>
-                    {line.product.code} · {formatMoney(line.product.price)} each
+                <div style={{ flex: 1, minWidth: 0, display: 'flex', flexDirection: 'column' }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: 12 }}>
+                    <div style={{ fontSize: 16, fontWeight: 600, lineHeight: 1.35 }}>{line.product.name}</div>
+                    <div style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 16, fontWeight: 600, flexShrink: 0 }}>
+                      {formatMoney(line.lineTotal)}
+                    </div>
                   </div>
-                  <button
-                    onClick={() => removeFromCart(line.id)}
-                    style={{ background: 'transparent', border: 0, padding: '10px 0 0', fontSize: 11.5, color: '#98a1ab', cursor: 'pointer', textDecoration: 'underline' }}
-                  >
-                    Remove
-                  </button>
-                </div>
-                <div style={{ display: 'flex', alignItems: 'center', border: '1px solid #e3e6ea', borderRadius: 2, flexShrink: 0 }}>
-                  <button
-                    onClick={() => bump(line.id, -1)}
-                    aria-label="Decrease quantity"
-                    style={{ width: 34, height: 34, background: 'transparent', border: 0, cursor: 'pointer', color: '#5a6875', fontSize: 15 }}
-                  >
-                    −
-                  </button>
-                  <span style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 13.5, width: 30, textAlign: 'center' }}>
-                    {line.qty}
-                  </span>
-                  <button
-                    onClick={() => bump(line.id, 1)}
-                    aria-label="Increase quantity"
-                    disabled={line.qty >= line.product.stock}
-                    style={{
-                      width: 34,
-                      height: 34,
-                      background: 'transparent',
-                      border: 0,
-                      cursor: line.qty >= line.product.stock ? 'not-allowed' : 'pointer',
-                      color: line.qty >= line.product.stock ? '#cfd4da' : '#5a6875',
-                      fontSize: 15,
-                    }}
-                  >
-                    +
-                  </button>
-                </div>
-                <div style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 14.5, width: 76, textAlign: 'right', flexShrink: 0 }}>
-                  {formatMoney(line.lineTotal)}
+                  <div style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 13, color: '#98a1ab', marginTop: 6 }}>
+                    {formatMoney(line.product.price)}
+                  </div>
+                  <div style={{ flex: 1, minHeight: 14 }} />
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
+                    <div style={{ display: 'flex', alignItems: 'center', border: '1px solid #cfd4da', borderRadius: 4 }}>
+                      <button
+                        onClick={() => bump(line.id, -1)}
+                        aria-label="Decrease quantity"
+                        style={{ width: 44, height: 44, background: 'transparent', border: 0, cursor: 'pointer', color: '#5a6875', fontSize: 17 }}
+                      >
+                        −
+                      </button>
+                      <span style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 15, width: 34, textAlign: 'center' }}>
+                        {line.qty}
+                      </span>
+                      <button
+                        onClick={() => bump(line.id, 1)}
+                        aria-label="Increase quantity"
+                        disabled={line.qty >= line.product.stock}
+                        style={{
+                          width: 44,
+                          height: 44,
+                          background: 'transparent',
+                          border: 0,
+                          cursor: line.qty >= line.product.stock ? 'not-allowed' : 'pointer',
+                          color: line.qty >= line.product.stock ? '#cfd4da' : '#5a6875',
+                          fontSize: 17,
+                        }}
+                      >
+                        +
+                      </button>
+                    </div>
+                    <button
+                      onClick={() => removeFromCart(line.id)}
+                      aria-label="Remove from cart"
+                      style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        width: 40,
+                        height: 40,
+                        background: 'transparent',
+                        border: 0,
+                        cursor: 'pointer',
+                        color: '#131b28',
+                        flexShrink: 0,
+                      }}
+                    >
+                      <svg width="19" height="19" viewBox="0 0 24 24" fill="none">
+                        <path d="M4 7h16" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
+                        <path d="M6 7l1 12a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2l1-12" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+                        <path d="M9 7V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v3" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+                      </svg>
+                    </button>
+                  </div>
                 </div>
               </div>
             ))}

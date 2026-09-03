@@ -234,6 +234,11 @@ button {
   gap: 56px;
 }
 
+.ebi-cart-line-image {
+  width: 130px;
+  height: 130px;
+}
+
 .ebi-checkout-layout {
   display: grid;
   grid-template-columns: 1fr 380px;
@@ -369,6 +374,11 @@ button {
 
   .ebi-field-full {
     grid-column: span 1;
+  }
+
+  .ebi-cart-line-image {
+    width: 96px;
+    height: 96px;
   }
 
   .ebi-footer-grid {
