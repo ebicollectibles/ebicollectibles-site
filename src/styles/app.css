@@ -90,6 +90,41 @@ button {
   color: var(--ink) !important;
 }
 
+.ebi-atc-btn:not(:disabled):hover .ebi-atc-label {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.ebi-atc-check {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
+.ebi-atc-check circle {
+  stroke-dasharray: 63;
+  stroke-dashoffset: 63;
+  animation: ebi-atc-circle 0.3s ease forwards;
+}
+
+.ebi-atc-check path {
+  stroke-dasharray: 16;
+  stroke-dashoffset: 16;
+  animation: ebi-atc-tick 0.2s ease forwards 0.25s;
+}
+
+@keyframes ebi-atc-circle {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes ebi-atc-tick {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
 .ebi-nav-dropdown-panel {
   position: absolute;
   top: 100%;

@@ -1,3 +1,4 @@
+import * as React from 'react'
 import { useCart } from '~/lib/cart-context'
 import { formatMoney, type Product } from '~/lib/products'
 
@@ -5,6 +6,17 @@ const STRIPES = 'repeating-linear-gradient(45deg, #eef0f2 0px, #eef0f2 7px, #f6f
 
 export function ProductCard({ product, variant = 'full' }: { product: Product; variant?: 'compact' | 'full' }) {
   const { addToCart } = useCart()
+  const [justAdded, setJustAdded] = React.useState(false)
+  const revertTimer = React.useRef<ReturnType<typeof setTimeout> | undefined>(undefined)
+
+  React.useEffect(() => () => clearTimeout(revertTimer.current), [])
+
+  const handleAdd = () => {
+    addToCart(product)
+    setJustAdded(true)
+    clearTimeout(revertTimer.current)
+    revertTimer.current = setTimeout(() => setJustAdded(false), 1400)
+  }
 
   const soldOut = product.stock === 0
   const low = !soldOut && product.stock <= 5
@@ -105,11 +117,16 @@ export function ProductCard({ product, variant = 'full' }: { product: Product; v
         </span>
       </div>
       <button
-        onClick={() => addToCart(product)}
+        onClick={handleAdd}
         disabled={soldOut}
+        className="ebi-atc-btn"
         style={{
           marginTop: buttonMarginTop,
           width: '100%',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          gap: 6,
           border: '1px solid #131b28',
           background: soldOut ? '#ffffff' : '#131b28',
           color: soldOut ? '#98a1ab' : '#ffffff',
@@ -121,7 +138,14 @@ export function ProductCard({ product, variant = 'full' }: { product: Product; v
           opacity: soldOut ? 0.45 : 1,
         }}
       >
-        {btnLabel}
+        {justAdded ? (
+          <svg className="ebi-atc-check" viewBox="0 0 24 24" fill="none">
+            <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="2" />
+            <path d="M7 12.5l3 3 7-7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
+        ) : (
+          <span className="ebi-atc-label">{btnLabel}</span>
+        )}
       </button>
     </article>
   )
