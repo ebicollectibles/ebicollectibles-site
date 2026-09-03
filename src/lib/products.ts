@@ -8,6 +8,7 @@ export interface Product {
   price: number
   compareAtPrice?: number
   stock: number
+  squareVariationId?: string
   img?: string
   imgAlt?: string
   images?: string[]

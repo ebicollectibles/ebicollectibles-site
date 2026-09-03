@@ -3,12 +3,13 @@ import { z } from 'zod'
 import { asc, eq } from 'drizzle-orm'
 import { getDb } from '~/lib/db/client'
 import { products as productsTable } from '~/lib/db/schema'
+import { overlaySquareStock } from './square'
 import type { Product } from '~/lib/products'
 
 export const getProducts = createServerFn({ method: 'GET' }).handler(async (): Promise<Product[]> => {
   const db = getDb()
   const rows = await db.select().from(productsTable).orderBy(asc(productsTable.createdAt))
-  return rows.map(toProduct)
+  return overlaySquareStock(rows.map(toProduct))
 })
 
 export const getProduct = createServerFn({ method: 'GET' })
@@ -16,7 +17,9 @@ export const getProduct = createServerFn({ method: 'GET' })
   .handler(async ({ data }): Promise<Product | null> => {
     const db = getDb()
     const [row] = await db.select().from(productsTable).where(eq(productsTable.id, data.id)).limit(1)
-    return row ? toProduct(row) : null
+    if (!row) return null
+    const [withLiveStock] = await overlaySquareStock([toProduct(row)])
+    return withLiveStock
   })
 
 function toProduct(row: typeof productsTable.$inferSelect): Product {
@@ -28,6 +31,7 @@ function toProduct(row: typeof productsTable.$inferSelect): Product {
     price: row.price,
     compareAtPrice: row.compareAtPrice ?? undefined,
     stock: row.stock,
+    squareVariationId: row.squareVariationId ?? undefined,
     img: row.img ?? undefined,
     imgAlt: row.imgAlt ?? undefined,
     images: row.images,

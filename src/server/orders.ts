@@ -1,10 +1,11 @@
 import { createServerFn } from '@tanstack/react-start'
 import { z } from 'zod'
-import { eq, sql } from 'drizzle-orm'
+import { eq, inArray, sql } from 'drizzle-orm'
+import { getDb } from '~/lib/db/client'
 import { withTransaction } from '~/lib/db/transactional-client'
 import { orderCounters, orderItems, orders, products as productsTable } from '~/lib/db/schema'
 import { FLAT_SHIPPING_RATE, TAX_RATE } from '~/lib/products'
-import { chargeSquarePayment } from './square'
+import { chargeSquarePayment, getSquareInventoryCounts, recordSquareInventorySale } from './square'
 
 const placeOrderSchema = z.object({
   lines: z.array(z.object({ productId: z.string(), qty: z.number().int().positive() })).min(1),
@@ -23,8 +24,33 @@ const placeOrderSchema = z.object({
 export const placeOrder = createServerFn({ method: 'POST' })
   .validator(placeOrderSchema)
   .handler(async ({ data }) => {
-    return withTransaction(async (tx) => {
-      // Lock and validate stock, decrementing atomically per line.
+    const db = getDb()
+    const productRows = await db
+      .select()
+      .from(productsTable)
+      .where(inArray(productsTable.id, data.lines.map((l) => l.productId)))
+    const productById = new Map(productRows.map((p) => [p.id, p]))
+
+    // Products linked to Square (squareVariationId set) are stock-tracked in
+    // Square, not locally — check live there before charging, since another
+    // app selling against the same Square account may have moved stock
+    // since our last read.
+    const squareLines = data.lines.filter((l) => productById.get(l.productId)?.squareVariationId)
+    if (squareLines.length > 0) {
+      const variationIds = squareLines.map((l) => productById.get(l.productId)!.squareVariationId!)
+      const counts = await getSquareInventoryCounts(variationIds)
+      for (const line of squareLines) {
+        const product = productById.get(line.productId)!
+        const available = counts[product.squareVariationId!] ?? 0
+        if (available < line.qty) {
+          throw new Error(`Not enough stock for "${product.name}" — refresh your cart and try again.`)
+        }
+      }
+    }
+
+    const result = await withTransaction(async (tx) => {
+      // Lock and validate stock, decrementing atomically per line — only
+      // for products not tracked in Square (already validated above).
       const lineDetails: Array<{
         productId: string
         name: string
@@ -34,6 +60,14 @@ export const placeOrder = createServerFn({ method: 'POST' })
       }> = []
 
       for (const line of data.lines) {
+        const product = productById.get(line.productId)
+        if (!product) throw new Error('One of the items in your cart no longer exists — refresh your cart and try again.')
+
+        if (product.squareVariationId) {
+          lineDetails.push({ productId: product.id, name: product.name, code: product.code, unitPrice: product.price, qty: line.qty })
+          continue
+        }
+
         const [updated] = await tx
           .update(productsTable)
           .set({ stock: sql`${productsTable.stock} - ${line.qty}`, updatedAt: new Date() })
@@ -41,9 +75,7 @@ export const placeOrder = createServerFn({ method: 'POST' })
           .returning()
 
         if (!updated) {
-          const [existing] = await tx.select().from(productsTable).where(eq(productsTable.id, line.productId)).limit(1)
-          const label = existing?.name ?? line.productId
-          throw new Error(`Not enough stock for "${label}" — refresh your cart and try again.`)
+          throw new Error(`Not enough stock for "${product.name}" — refresh your cart and try again.`)
         }
 
         lineDetails.push({
@@ -106,4 +138,19 @@ export const placeOrder = createServerFn({ method: 'POST' })
 
       return { orderNo, total, paymentStatus: charge.status }
     })
+
+    // Best-effort: record the sale in Square so it shows up as reduced
+    // stock for any other app selling against the same Square account. Runs
+    // after the order is already placed and paid for — a failure here
+    // shouldn't undo a successful, already-charged order.
+    for (const line of squareLines) {
+      const product = productById.get(line.productId)!
+      try {
+        await recordSquareInventorySale(product.squareVariationId!, line.qty, result.orderNo)
+      } catch (err) {
+        console.error(`Failed to record Square inventory sale for order ${result.orderNo}:`, err)
+      }
+    }
+
+    return result
   })

@@ -28,6 +28,7 @@ function NewProductPage() {
             data: {
               ...values,
               compareAtPrice: values.compareAtPrice || null,
+              squareVariationId: values.squareVariationId || null,
               img: values.img || undefined,
               imgAlt: values.imgAlt.trim() || undefined,
               images: values.images.map((u) => u.trim()).filter(Boolean),

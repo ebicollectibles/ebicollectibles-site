@@ -4,6 +4,7 @@ import { asc, desc, eq } from 'drizzle-orm'
 import { getDb } from '~/lib/db/client'
 import { orderItems, orders, products as productsTable } from '~/lib/db/schema'
 import { assertAdmin } from './admin-auth'
+import { overlaySquareStock, searchSquareCatalogItems } from './square'
 
 const productSchema = z.object({
   id: z.string().min(1),
@@ -13,6 +14,7 @@ const productSchema = z.object({
   price: z.number().nonnegative(),
   compareAtPrice: z.number().nonnegative().nullable().optional(),
   stock: z.number().int().nonnegative(),
+  squareVariationId: z.string().nullable().optional(),
   img: z.string().optional(),
   imgAlt: z.string().optional(),
   images: z.array(z.string()).optional().default([]),
@@ -23,7 +25,8 @@ const productSchema = z.object({
 export const adminListProducts = createServerFn({ method: 'GET' }).handler(async () => {
   await assertAdmin()
   const db = getDb()
-  return db.select().from(productsTable).orderBy(asc(productsTable.createdAt))
+  const rows = await db.select().from(productsTable).orderBy(asc(productsTable.createdAt))
+  return overlaySquareStock(rows)
 })
 
 export const adminGetProduct = createServerFn({ method: 'GET' })
@@ -32,7 +35,16 @@ export const adminGetProduct = createServerFn({ method: 'GET' })
     await assertAdmin()
     const db = getDb()
     const [row] = await db.select().from(productsTable).where(eq(productsTable.id, data.id)).limit(1)
-    return row ?? null
+    if (!row) return null
+    const [withLiveStock] = await overlaySquareStock([row])
+    return withLiveStock
+  })
+
+export const adminSearchSquareCatalog = createServerFn({ method: 'GET' })
+  .validator(z.object({ query: z.string().optional() }))
+  .handler(async ({ data }) => {
+    await assertAdmin()
+    return searchSquareCatalogItems(data.query)
   })
 
 export const adminCreateProduct = createServerFn({ method: 'POST' })

@@ -29,6 +29,13 @@
       "when": 1788426831346,
       "tag": "0003_redundant_nighthawk",
       "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1788473089954,
+      "tag": "0004_free_shockwave",
+      "breakpoints": true
     }
   ]
 }

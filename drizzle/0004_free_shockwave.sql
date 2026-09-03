@@ -1,0 +1,1 @@
+ALTER TABLE "products" ADD COLUMN "square_variation_id" text;

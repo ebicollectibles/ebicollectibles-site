@@ -1,6 +1,8 @@
 import * as React from 'react'
 import { PRODUCT_TYPES, type ProductType } from '~/lib/products'
 import { listProductImages, uploadProductImage } from '~/server/uploads'
+import { adminSearchSquareCatalog } from '~/server/admin'
+import type { SquareCatalogOption } from '~/server/square'
 
 export interface ProductFormValues {
   id: string
@@ -10,6 +12,7 @@ export interface ProductFormValues {
   price: number
   compareAtPrice: number
   stock: number
+  squareVariationId: string
   img: string
   imgAlt: string
   images: string[]
@@ -25,6 +28,7 @@ const emptyValues: ProductFormValues = {
   price: 0,
   compareAtPrice: 0,
   stock: 0,
+  squareVariationId: '',
   img: '',
   imgAlt: '',
   images: [],
@@ -196,6 +200,109 @@ function ImagePicker({ onSelect, onClose }: { onSelect: (url: string) => void; o
   )
 }
 
+function SquarePicker({ onSelect, onClose }: { onSelect: (option: SquareCatalogOption) => void; onClose: () => void }) {
+  const [query, setQuery] = React.useState('')
+  const [options, setOptions] = React.useState<SquareCatalogOption[] | null>(null)
+  const [error, setError] = React.useState<string | null>(null)
+
+  React.useEffect(() => {
+    let cancelled = false
+    setOptions(null)
+    setError(null)
+    const timer = setTimeout(() => {
+      adminSearchSquareCatalog({ data: { query: query.trim() || undefined } })
+        .then((result) => {
+          if (!cancelled) setOptions(result)
+        })
+        .catch((err) => {
+          if (!cancelled) setError(err instanceof Error ? err.message : 'Failed to load Square catalog.')
+        })
+    }, 250)
+    return () => {
+      cancelled = true
+      clearTimeout(timer)
+    }
+  }, [query])
+
+  return (
+    <div
+      onClick={onClose}
+      style={{
+        position: 'fixed',
+        inset: 0,
+        background: 'rgba(19,27,40,0.5)',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        zIndex: 100,
+        padding: 20,
+      }}
+    >
+      <div
+        onClick={(e) => e.stopPropagation()}
+        style={{
+          background: '#ffffff',
+          borderRadius: 4,
+          padding: 24,
+          width: '100%',
+          maxWidth: 560,
+          maxHeight: '80vh',
+          display: 'flex',
+          flexDirection: 'column',
+        }}
+      >
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 16 }}>
+          <div style={{ fontSize: 15, fontWeight: 700 }}>Link a Square catalog item</div>
+          <button
+            type="button"
+            onClick={onClose}
+            aria-label="Close"
+            style={{ background: 'none', border: 0, fontSize: 20, lineHeight: 1, cursor: 'pointer', color: '#5a6875' }}
+          >
+            ×
+          </button>
+        </div>
+        <input
+          style={{ ...field, marginBottom: 12 }}
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+          placeholder="Search Square catalog by name…"
+          autoFocus
+        />
+        <div style={{ overflowY: 'auto' }}>
+          {error && <p style={{ fontSize: 12.5, color: '#b4622f' }}>{error}</p>}
+          {!options && !error && <p style={{ fontSize: 13, color: '#98a1ab' }}>Loading…</p>}
+          {options && options.length === 0 && (
+            <p style={{ fontSize: 13, color: '#98a1ab' }}>No matching items found in Square.</p>
+          )}
+          {options?.map((opt) => (
+            <button
+              key={opt.variationId}
+              type="button"
+              onClick={() => onSelect(opt)}
+              style={{
+                display: 'block',
+                width: '100%',
+                textAlign: 'left',
+                padding: '10px 12px',
+                background: '#ffffff',
+                border: '1px solid #e3e6ea',
+                borderRadius: 2,
+                marginBottom: 6,
+                cursor: 'pointer',
+                fontSize: 13,
+              }}
+            >
+              <div style={{ fontWeight: 600 }}>{opt.label}</div>
+              {opt.sku && <div style={{ fontSize: 11.5, color: '#98a1ab', marginTop: 2 }}>SKU: {opt.sku}</div>}
+            </button>
+          ))}
+        </div>
+      </div>
+    </div>
+  )
+}
+
 type PickerTarget = { kind: 'img' } | { kind: 'images'; index: number } | { kind: 'images-new' }
 
 export function ProductForm({
@@ -213,6 +320,30 @@ export function ProductForm({
   const [submitting, setSubmitting] = React.useState(false)
   const [error, setError] = React.useState<string | null>(null)
   const [pickerTarget, setPickerTarget] = React.useState<PickerTarget | null>(null)
+  const [squarePickerOpen, setSquarePickerOpen] = React.useState(false)
+  const [squareLabel, setSquareLabel] = React.useState<string | null>(null)
+
+  React.useEffect(() => {
+    if (!values.squareVariationId) {
+      setSquareLabel(null)
+      return
+    }
+    let cancelled = false
+    adminSearchSquareCatalog({ data: {} })
+      .then((options) => {
+        if (cancelled) return
+        const match = options.find((o) => o.variationId === values.squareVariationId)
+        setSquareLabel(match ? match.label : null)
+      })
+      .catch(() => {
+        if (!cancelled) setSquareLabel(null)
+      })
+    return () => {
+      cancelled = true
+    }
+    // Only re-resolve when the linked id itself changes, not on every keystroke elsewhere in the form.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [values.squareVariationId])
 
   const set = <K extends keyof ProductFormValues>(key: K, value: ProductFormValues[K]) =>
     setValues((v) => ({ ...v, [key]: value }))
@@ -298,6 +429,64 @@ export function ProductForm({
             required
           />
         </div>
+      </div>
+      <div style={{ marginBottom: 16 }}>
+        <label style={label}>Square inventory link (optional)</label>
+        {values.squareVariationId ? (
+          <div
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              gap: 8,
+              border: '1px solid #cfd4da',
+              borderRadius: 2,
+              padding: '10px 13px',
+              fontSize: 13,
+            }}
+          >
+            <span>{squareLabel ?? `Linked (${values.squareVariationId})`}</span>
+            <div style={{ display: 'flex', gap: 8, flexShrink: 0 }}>
+              <button type="button" onClick={() => setSquarePickerOpen(true)} style={{ background: 'none', border: '1px solid #cfd4da', borderRadius: 2, padding: '6px 10px', fontSize: 12, cursor: 'pointer', color: '#5a6875' }}>
+                Change
+              </button>
+              <button
+                type="button"
+                onClick={() => {
+                  if (!confirm('Unlink this product from Square? Stock will go back to being managed locally.')) return
+                  set('squareVariationId', '')
+                }}
+                style={{ background: 'none', border: '1px solid #cfd4da', borderRadius: 2, padding: '6px 10px', fontSize: 12, cursor: 'pointer', color: '#b4622f' }}
+              >
+                Unlink
+              </button>
+            </div>
+          </div>
+        ) : (
+          <>
+            <button
+              type="button"
+              onClick={() => setSquarePickerOpen(true)}
+              style={{
+                background: '#ffffff',
+                border: '1px dashed #cfd4da',
+                borderRadius: 2,
+                padding: '9px 13px',
+                fontSize: 12.5,
+                color: '#5a6875',
+                cursor: 'pointer',
+                width: '100%',
+                textAlign: 'left',
+              }}
+            >
+              + Link to a Square catalog item
+            </button>
+            <p style={{ fontSize: 11.5, color: '#98a1ab', marginTop: 6 }}>
+              Links this product to an item in your Square catalog (e.g. one already managed by another app). When linked, stock above is
+              ignored — availability is read live from Square instead, and a sale here deducts from the same Square inventory.
+            </p>
+          </>
+        )}
       </div>
       <div style={{ marginBottom: 16 }}>
         <label style={label}>Compare-at price (USD) — leave 0 for no sale badge</label>
@@ -426,6 +615,16 @@ export function ProductForm({
       </button>
     </form>
     {pickerTarget && <ImagePicker onSelect={handlePicked} onClose={() => setPickerTarget(null)} />}
+    {squarePickerOpen && (
+      <SquarePicker
+        onSelect={(opt) => {
+          set('squareVariationId', opt.variationId)
+          setSquareLabel(opt.label)
+          setSquarePickerOpen(false)
+        }}
+        onClose={() => setSquarePickerOpen(false)}
+      />
+    )}
     </>
   )
 }
