@@ -132,6 +132,14 @@ export function Header() {
               </div>
             )}
           </div>
+          <Link
+            to="/shop"
+            search={{ type: 'Acrylic' }}
+            className="ebi-nav-link"
+            style={{ color: '#5a6875', padding: '4px 0' }}
+          >
+            Acrylics
+          </Link>
           <Link to="/faq" style={{ color: navColor(pathname === '/faq'), padding: '4px 0' }}>
             FAQ &amp; shipping
           </Link>
@@ -215,6 +223,13 @@ export function Header() {
           </Link>
           <Link to="/shop" style={{ color: navColor(pathname === '/shop'), padding: '10px 0', borderBottom: '1px solid #f0f2f4' }}>
             Pokemon (Chinese)
+          </Link>
+          <Link
+            to="/shop"
+            search={{ type: 'Acrylic' }}
+            style={{ color: '#5a6875', padding: '10px 0', borderBottom: '1px solid #f0f2f4' }}
+          >
+            Acrylics
           </Link>
           <Link to="/faq" style={{ color: navColor(pathname === '/faq'), padding: '10px 0' }}>
             FAQ &amp; shipping
