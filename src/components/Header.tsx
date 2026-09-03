@@ -4,7 +4,7 @@ import { useCart } from '~/lib/cart-context'
 
 export function Header() {
   const pathname = useRouterState({ select: (s) => s.location.pathname })
-  const { cartCount, openCart } = useCart()
+  const { cartCount } = useCart()
   const [menuOpen, setMenuOpen] = React.useState(false)
   const [pokemonMenuOpen, setPokemonMenuOpen] = React.useState(false)
   const pokemonMenuRef = React.useRef<HTMLDivElement>(null)
@@ -145,8 +145,8 @@ export function Header() {
           />
         </div>
 
-        <button
-          onClick={openCart}
+        <Link
+          to="/cart"
           className="ebi-btn-dark"
           style={{
             display: 'flex',
@@ -159,7 +159,6 @@ export function Header() {
             padding: '10px 16px',
             fontSize: 13,
             fontWeight: 600,
-            cursor: 'pointer',
             flexShrink: 0,
           }}
         >
@@ -175,7 +174,7 @@ export function Header() {
           >
             {cartCount}
           </span>
-        </button>
+        </Link>
 
         <button
           onClick={() => setMenuOpen((v) => !v)}

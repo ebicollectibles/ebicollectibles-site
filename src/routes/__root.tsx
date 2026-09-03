@@ -6,7 +6,6 @@ import { NotFound } from '~/components/NotFound'
 import { AnnouncementBar } from '~/components/AnnouncementBar'
 import { Header } from '~/components/Header'
 import { Footer } from '~/components/Footer'
-import { CartDrawer } from '~/components/CartDrawer'
 import { CartProvider } from '~/lib/cart-context'
 import { getProducts } from '~/server/products'
 import appCss from '~/styles/app.css?url'
@@ -65,7 +64,6 @@ function RootDocument({ children }: { children: React.ReactNode }) {
               <Footer />
             </div>
           )}
-          <CartDrawer />
         </CartProvider>
         <Scripts />
       </body>

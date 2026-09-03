@@ -3,12 +3,11 @@ import { z } from 'zod'
 import { eq, sql } from 'drizzle-orm'
 import { withTransaction } from '~/lib/db/transactional-client'
 import { orderCounters, orderItems, orders, products as productsTable } from '~/lib/db/schema'
-import { SHIPPING_OPTIONS, FREE_SHIPPING_THRESHOLD, TAX_RATE } from '~/lib/products'
+import { FLAT_SHIPPING_RATE, TAX_RATE } from '~/lib/products'
 import { chargeSquarePayment } from './square'
 
 const placeOrderSchema = z.object({
   lines: z.array(z.object({ productId: z.string(), qty: z.number().int().positive() })).min(1),
-  shipMethod: z.enum(['std', 'exp', 'intl']),
   contact: z.object({
     email: z.string().optional().default(''),
     firstName: z.string().optional().default(''),
@@ -57,8 +56,7 @@ export const placeOrder = createServerFn({ method: 'POST' })
       }
 
       const subtotal = lineDetails.reduce((t, l) => t + l.unitPrice * l.qty, 0)
-      const shipOption = SHIPPING_OPTIONS.find((o) => o.id === data.shipMethod)!
-      const shippingCost = subtotal >= FREE_SHIPPING_THRESHOLD && data.shipMethod === 'std' ? 0 : shipOption.price
+      const shippingCost = subtotal === 0 ? 0 : FLAT_SHIPPING_RATE
       const tax = Math.round(subtotal * TAX_RATE * 100) / 100
       const total = subtotal + shippingCost + tax
 
@@ -85,7 +83,7 @@ export const placeOrder = createServerFn({ method: 'POST' })
           apartment: data.contact.apartment,
           city: data.contact.city,
           zip: data.contact.zip,
-          shipMethod: data.shipMethod,
+          shipMethod: 'flat',
           subtotal,
           shippingCost,
           tax,

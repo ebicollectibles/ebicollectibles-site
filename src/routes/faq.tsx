@@ -6,11 +6,7 @@ export const Route = createFileRoute('/faq')({
   component: FaqPage,
 })
 
-const RATES = [
-  { label: 'US standard', eta: '3–6 business days', price: '$6.95' },
-  { label: 'US express', eta: '1–2 business days', price: '$18.95' },
-  { label: 'Canada & UK', eta: '7–14 business days', price: '$24.95' },
-]
+const RATES = [{ label: 'Flat rate shipping', eta: '3–6 business days, all orders', price: '$10.00' }]
 
 function FaqPage() {
   const [openIndex, setOpenIndex] = React.useState<number>(0)
@@ -99,13 +95,6 @@ function FaqPage() {
                   <div style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 13 }}>{r.price}</div>
                 </div>
               ))}
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', gap: 12 }}>
-                <div>
-                  <div style={{ fontSize: 13.5, fontWeight: 600, color: '#3f7a63' }}>Free US standard</div>
-                  <div style={{ fontSize: 12, color: '#98a1ab' }}>orders over $150</div>
-                </div>
-                <div style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 13, color: '#3f7a63' }}>$0.00</div>
-              </div>
             </div>
           </div>
           <div style={{ background: '#f6f7f8', border: '1px solid #e3e6ea', borderTop: 0, padding: 24 }}>

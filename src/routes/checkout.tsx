@@ -119,40 +119,7 @@ function CheckoutPage() {
           </div>
 
           <div style={{ borderTop: '1px solid #e3e6ea', marginTop: 30, paddingTop: 22 }}>
-            <div style={monoLabel}>03 / Delivery</div>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 10, marginTop: 14 }}>
-              {cart.shipOptions.map((s) => (
-                <label
-                  key={s.id}
-                  style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: 12,
-                    border: `1px solid ${s.on ? '#131b28' : '#e3e6ea'}`,
-                    borderRadius: 2,
-                    padding: 14,
-                    cursor: 'pointer',
-                  }}
-                >
-                  <input
-                    type="radio"
-                    name="ship"
-                    checked={s.on}
-                    onChange={() => cart.setShip(s.id)}
-                    style={{ accentColor: '#131b28', cursor: 'pointer' }}
-                  />
-                  <span style={{ flex: 1 }}>
-                    <span style={{ display: 'block', fontSize: 14, fontWeight: 600 }}>{s.label}</span>
-                    <span style={{ display: 'block', fontSize: 12.5, color: '#98a1ab', marginTop: 2 }}>{s.eta}</span>
-                  </span>
-                  <span style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 13 }}>{s.priceLabel}</span>
-                </label>
-              ))}
-            </div>
-          </div>
-
-          <div style={{ borderTop: '1px solid #e3e6ea', marginTop: 30, paddingTop: 22 }}>
-            <div style={monoLabel}>04 / Payment</div>
+            <div style={monoLabel}>03 / Payment</div>
             <div style={{ marginTop: 14 }}>
               {squareConfigured ? (
                 <SquareCardField ref={cardRef} />

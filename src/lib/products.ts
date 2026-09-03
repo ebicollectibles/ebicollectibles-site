@@ -17,18 +17,7 @@ export interface Product {
 
 export const PRODUCT_TYPES: ProductType[] = ['Booster box', 'Special box', 'Figures']
 
-export interface ShippingOption {
-  id: 'std' | 'exp' | 'intl'
-  label: string
-  eta: string
-  price: number
-}
-
-export const SHIPPING_OPTIONS: ShippingOption[] = [
-  { id: 'std', label: 'US standard', eta: '3–6 business days', price: 6.95 },
-  { id: 'exp', label: 'US express', eta: '1–2 business days', price: 18.95 },
-  { id: 'intl', label: 'International', eta: '7–14 business days', price: 24.95 },
-]
+export const FLAT_SHIPPING_RATE = 10
 
 export interface FaqEntry {
   question: string
@@ -68,7 +57,6 @@ export const FAQS: FaqEntry[] = [
   },
 ]
 
-export const FREE_SHIPPING_THRESHOLD = 150
 export const TAX_RATE = 0.0825
 
 export function formatMoney(n: number): string {
