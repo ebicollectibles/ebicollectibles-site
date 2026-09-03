@@ -11,6 +11,7 @@ export interface ProductFormValues {
   compareAtPrice: number
   stock: number
   img: string
+  imgAlt: string
   images: string[]
   preorder: boolean
   placeholder: string
@@ -25,6 +26,7 @@ const emptyValues: ProductFormValues = {
   compareAtPrice: 0,
   stock: 0,
   img: '',
+  imgAlt: '',
   images: [],
   preorder: false,
   placeholder: '',
@@ -315,6 +317,12 @@ export function ProductForm({
           <UploadButton onUploaded={(url) => set('img', url)} onError={setError} />
           <BrowseButton onClick={() => setPickerTarget({ kind: 'img' })} />
         </div>
+        <input
+          style={{ ...field, marginTop: 8 }}
+          value={values.imgAlt}
+          onChange={(e) => set('imgAlt', e.target.value)}
+          placeholder={`Alt text (defaults to "${values.name || 'the product name'}" if left blank)`}
+        />
       </div>
       <div style={{ marginBottom: 16 }}>
         <label style={label}>Additional images (shown as a gallery on the product page)</label>

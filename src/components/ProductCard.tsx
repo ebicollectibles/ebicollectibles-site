@@ -42,16 +42,16 @@ export function ProductCard({ product, variant = 'full' }: { product: Product; v
         style={{ display: 'contents', color: 'inherit', textDecoration: 'none' }}
       >
       <div style={{ position: 'relative', aspectRatio: '1 / 1', background: '#f6f7f8', overflow: 'hidden' }}>
-        <div
-          style={{
-            width: '100%',
-            height: '100%',
-            backgroundSize: 'contain',
-            backgroundRepeat: 'no-repeat',
-            backgroundPosition: 'center',
-            backgroundImage: product.img ? `url(${product.img})` : STRIPES,
-          }}
-        />
+        {product.img ? (
+          <img
+            src={product.img}
+            alt={product.imgAlt || product.name}
+            loading="lazy"
+            style={{ width: '100%', height: '100%', objectFit: 'contain' }}
+          />
+        ) : (
+          <div style={{ width: '100%', height: '100%', backgroundImage: STRIPES }} />
+        )}
         {!product.img && (
           <div
             style={{

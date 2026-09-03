@@ -14,6 +14,7 @@ const productSchema = z.object({
   compareAtPrice: z.number().nonnegative().nullable().optional(),
   stock: z.number().int().nonnegative(),
   img: z.string().optional(),
+  imgAlt: z.string().optional(),
   images: z.array(z.string()).optional().default([]),
   preorder: z.boolean().optional().default(false),
   placeholder: z.string().optional(),

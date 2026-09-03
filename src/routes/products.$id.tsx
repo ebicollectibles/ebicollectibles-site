@@ -90,16 +90,15 @@ function ProductDetailPage() {
       <div className="ebi-product-detail-grid" style={{ marginTop: 24 }}>
         <div>
           <div style={{ position: 'relative', aspectRatio: '1 / 1', background: '#f6f7f8', overflow: 'hidden' }}>
-            <div
-              style={{
-                width: '100%',
-                height: '100%',
-                backgroundSize: 'contain',
-                backgroundRepeat: 'no-repeat',
-                backgroundPosition: 'center',
-                backgroundImage: selectedImage ? `url(${selectedImage})` : STRIPES,
-              }}
-            />
+            {selectedImage ? (
+              <img
+                src={selectedImage}
+                alt={product.imgAlt || product.name}
+                style={{ width: '100%', height: '100%', objectFit: 'contain' }}
+              />
+            ) : (
+              <div style={{ width: '100%', height: '100%', backgroundImage: STRIPES }} />
+            )}
             {!selectedImage && (
               <div
                 style={{
@@ -146,22 +145,25 @@ function ProductDetailPage() {
                 <button
                   key={url}
                   onClick={() => setSelectedImage(url)}
-                  aria-label="Show this image"
                   style={{
                     width: 64,
                     height: 64,
                     flexShrink: 0,
                     padding: 0,
                     background: '#f6f7f8',
-                    backgroundImage: `url(${url})`,
-                    backgroundSize: 'contain',
-                    backgroundRepeat: 'no-repeat',
-                    backgroundPosition: 'center',
                     border: `1px solid ${url === selectedImage ? '#131b28' : '#e3e6ea'}`,
                     borderRadius: 2,
                     cursor: 'pointer',
+                    overflow: 'hidden',
                   }}
-                />
+                >
+                  <img
+                    src={url}
+                    alt={product.imgAlt || product.name}
+                    loading="lazy"
+                    style={{ width: '100%', height: '100%', objectFit: 'contain' }}
+                  />
+                </button>
               ))}
             </div>
           )}

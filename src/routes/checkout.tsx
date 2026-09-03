@@ -166,18 +166,17 @@ function CheckoutPage() {
           <div style={{ marginTop: 18, display: 'flex', flexDirection: 'column', gap: 16 }}>
             {cart.lines.map((line) => (
               <div key={line.id} style={{ display: 'flex', gap: 14, alignItems: 'flex-start' }}>
-                <div
-                  style={{
-                    width: 54,
-                    height: 54,
-                    flexShrink: 0,
-                    background: '#f6f7f8',
-                    backgroundSize: 'contain',
-                    backgroundRepeat: 'no-repeat',
-                    backgroundPosition: 'center',
-                    backgroundImage: line.product.img ? `url(${line.product.img})` : STRIPES,
-                  }}
-                />
+                <div style={{ width: 54, height: 54, flexShrink: 0, background: '#f6f7f8', overflow: 'hidden' }}>
+                  {line.product.img ? (
+                    <img
+                      src={line.product.img}
+                      alt={line.product.imgAlt || line.product.name}
+                      style={{ width: '100%', height: '100%', objectFit: 'contain' }}
+                    />
+                  ) : (
+                    <div style={{ width: '100%', height: '100%', backgroundImage: STRIPES }} />
+                  )}
+                </div>
                 <div style={{ flex: 1 }}>
                   <div style={{ fontSize: 13, fontWeight: 600, lineHeight: 1.35 }}>{line.product.name}</div>
                   <div style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 11, color: '#98a1ab', marginTop: 3 }}>

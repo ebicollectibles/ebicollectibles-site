@@ -54,17 +54,18 @@ function CartPage() {
           <div style={{ borderTop: '1px solid #131b28', marginTop: 24 }}>
             {lines.map((line) => (
               <div key={line.id} style={{ display: 'flex', gap: 20, padding: '24px 4px', borderBottom: '1px solid #e3e6ea' }}>
-                <div
-                  className="ebi-cart-line-image"
-                  style={{
-                    flexShrink: 0,
-                    background: '#f6f7f8',
-                    backgroundSize: 'contain',
-                    backgroundRepeat: 'no-repeat',
-                    backgroundPosition: 'center',
-                    backgroundImage: line.product.img ? `url(${line.product.img})` : STRIPES,
-                  }}
-                />
+                <div className="ebi-cart-line-image" style={{ flexShrink: 0, background: '#f6f7f8', overflow: 'hidden' }}>
+                  {line.product.img ? (
+                    <img
+                      src={line.product.img}
+                      alt={line.product.imgAlt || line.product.name}
+                      loading="lazy"
+                      style={{ width: '100%', height: '100%', objectFit: 'contain' }}
+                    />
+                  ) : (
+                    <div style={{ width: '100%', height: '100%', backgroundImage: STRIPES }} />
+                  )}
+                </div>
                 <div style={{ flex: 1, minWidth: 0, display: 'flex', flexDirection: 'column' }}>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: 12 }}>
                     <div style={{ fontSize: 16, fontWeight: 600, lineHeight: 1.35 }}>{line.product.name}</div>
