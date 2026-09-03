@@ -46,6 +46,28 @@ export function Header() {
           gap: 32,
         }}
       >
+        <button
+          onClick={() => setMenuOpen((v) => !v)}
+          className="ebi-header-burger"
+          aria-label="Toggle menu"
+          aria-expanded={menuOpen}
+          style={{
+            alignItems: 'center',
+            justifyContent: 'center',
+            width: 36,
+            height: 36,
+            flexShrink: 0,
+            background: 'transparent',
+            border: '1px solid #e3e6ea',
+            borderRadius: 2,
+            cursor: 'pointer',
+            fontSize: 18,
+            color: '#131b28',
+          }}
+        >
+          {menuOpen ? '×' : '☰'}
+        </button>
+
         <Link to="/" style={{ display: 'flex', alignItems: 'center', gap: 11, flexShrink: 0 }}>
           <img
             src="/assets/ebi-logo.jpg"
@@ -175,28 +197,6 @@ export function Header() {
             {cartCount}
           </span>
         </Link>
-
-        <button
-          onClick={() => setMenuOpen((v) => !v)}
-          className="ebi-header-burger"
-          aria-label="Toggle menu"
-          aria-expanded={menuOpen}
-          style={{
-            alignItems: 'center',
-            justifyContent: 'center',
-            width: 36,
-            height: 36,
-            flexShrink: 0,
-            background: 'transparent',
-            border: '1px solid #e3e6ea',
-            borderRadius: 2,
-            cursor: 'pointer',
-            fontSize: 18,
-            color: '#131b28',
-          }}
-        >
-          {menuOpen ? '×' : '☰'}
-        </button>
       </div>
 
       <div className={`ebi-mobile-menu${menuOpen ? ' is-open' : ''}`} style={{ flexDirection: 'column', borderTop: '1px solid #e3e6ea', padding: '14px 20px 20px', background: '#ffffff' }}>
@@ -215,7 +215,7 @@ export function Header() {
           <span style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 12, color: '#98a1ab' }}>⌕</span>
           <input
             placeholder="Search sets, CBB codes…"
-            style={{ border: 0, background: 'transparent', outline: 'none', fontSize: 13, width: '100%', color: '#131b28' }}
+            style={{ border: 0, background: 'transparent', outline: 'none', fontSize: 16, width: '100%', color: '#131b28' }}
           />
         </div>
         <nav style={{ display: 'flex', flexDirection: 'column', gap: 4, fontSize: 15, fontWeight: 500 }}>
