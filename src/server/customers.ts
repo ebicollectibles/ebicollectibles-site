@@ -1,7 +1,7 @@
 import { createServerFn } from '@tanstack/react-start'
 import { z } from 'zod'
 import { hashPassword, verifyPassword } from '~/lib/auth/password'
-import { getCurrentUserId, setCustomerSession } from './customer-auth'
+import { getCurrentUserId, setCustomerSession, recordAuthEvent, touchLastLogin } from './customer-auth'
 import type { getDb } from '~/lib/db/client'
 
 // Db/schema imports are dynamic (not top-level) throughout this file —
@@ -53,6 +53,8 @@ export const customerSignup = createServerFn({ method: 'POST' })
 
     await linkGuestOrders(db, user.id, email)
     await setCustomerSession(user.id)
+    await recordAuthEvent({ userId: user.id, email, type: 'signup' })
+    await touchLastLogin(user.id)
     return { ok: true }
   })
 
@@ -67,17 +69,22 @@ export const customerLogin = createServerFn({ method: 'POST' })
 
     const [user] = await db.select().from(users).where(eq(users.email, email)).limit(1)
     if (!user) {
+      await recordAuthEvent({ email, type: 'login_failed' })
       throw new Error('Incorrect email or password.')
     }
     if (!user.passwordHash) {
+      await recordAuthEvent({ userId: user.id, email, type: 'login_failed' })
       throw new Error('This account uses Google sign-in — continue with Google instead.')
     }
     const valid = await verifyPassword(data.password, user.passwordHash)
     if (!valid) {
+      await recordAuthEvent({ userId: user.id, email, type: 'login_failed' })
       throw new Error('Incorrect email or password.')
     }
 
     await setCustomerSession(user.id)
+    await recordAuthEvent({ userId: user.id, email, type: 'login' })
+    await touchLastLogin(user.id)
     return { ok: true }
   })
 

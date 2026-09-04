@@ -24,14 +24,33 @@ export const users = pgTable('users', {
   passwordHash: text('password_hash'),
   googleId: text('google_id').unique(),
   name: text('name'),
+  lastLoginAt: timestamp('last_login_at', { withTimezone: true }),
   createdAt: timestamp('created_at', { withTimezone: true }).notNull().defaultNow(),
   updatedAt: timestamp('updated_at', { withTimezone: true }).notNull().defaultNow(),
+})
+
+// Lightweight security/support log — separate from Google Analytics, which
+// tracks anonymous browsing behavior. This tracks account-security-relevant
+// actions on known accounts: signups, logins (successful and failed),
+// Google-account linking. `email` is stored alongside `userId` so a failed
+// login against an email with no matching account still leaves a record.
+export const authEvents = pgTable('auth_events', {
+  id: uuid('id').primaryKey().defaultRandom(),
+  userId: uuid('user_id').references(() => users.id, { onDelete: 'set null' }),
+  email: text('email'),
+  type: text('type').notNull(), // signup | login | login_failed | google_link | password_reset
+  createdAt: timestamp('created_at', { withTimezone: true }).notNull().defaultNow(),
 })
 
 export const orders = pgTable('orders', {
   id: uuid('id').primaryKey().defaultRandom(),
   orderNo: integer('order_no').notNull().unique(),
   userId: uuid('user_id').references(() => users.id, { onDelete: 'set null' }),
+  // Whether the shopper had an active session at checkout — independent of
+  // whether userId ends up set (a guest checkout under an email that
+  // already has an account still gets linked, but checkoutMode still
+  // records that it happened while logged out).
+  checkoutMode: text('checkout_mode').notNull().default('guest'), // guest | account
   email: text('email'),
   firstName: text('first_name'),
   lastName: text('last_name'),

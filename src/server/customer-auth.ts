@@ -62,3 +62,22 @@ export const customerLogout = createServerFn({ method: 'POST' }).handler(async (
 })
 
 export const setCustomerSession = writeCustomerSession
+
+// --- Lightweight auth/security event log — see schema.ts's authEvents comment. ---
+
+export type AuthEventType = 'signup' | 'login' | 'login_failed' | 'google_link' | 'password_reset'
+
+export async function recordAuthEvent(opts: { userId?: string | null; email?: string | null; type: AuthEventType }) {
+  const { getDb } = await import('~/lib/db/client')
+  const { authEvents } = await import('~/lib/db/schema')
+  const db = getDb()
+  await db.insert(authEvents).values({ userId: opts.userId ?? null, email: opts.email ?? null, type: opts.type })
+}
+
+export async function touchLastLogin(userId: string) {
+  const { getDb } = await import('~/lib/db/client')
+  const { users } = await import('~/lib/db/schema')
+  const { eq } = await import('drizzle-orm')
+  const db = getDb()
+  await db.update(users).set({ lastLoginAt: new Date() }).where(eq(users.id, userId))
+}

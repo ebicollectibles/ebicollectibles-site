@@ -3,7 +3,7 @@ import { z } from 'zod'
 import { eq, inArray, sql } from 'drizzle-orm'
 import { getDb } from '~/lib/db/client'
 import { withTransaction } from '~/lib/db/transactional-client'
-import { orderCounters, orderItems, orders, products as productsTable } from '~/lib/db/schema'
+import { orderCounters, orderItems, orders, products as productsTable, users } from '~/lib/db/schema'
 import { FLAT_SHIPPING_RATE, TAX_RATE } from '~/lib/products'
 import { chargeSquarePayment, getSquareInventoryCounts, recordSquareInventorySale } from './square'
 import { sendOrderConfirmationEmail } from './email'
@@ -26,8 +26,24 @@ const placeOrderSchema = z.object({
 export const placeOrder = createServerFn({ method: 'POST' })
   .validator(placeOrderSchema)
   .handler(async ({ data }) => {
-    const userId = await getCurrentUserId()
+    const sessionUserId = await getCurrentUserId()
+    const checkoutMode: 'guest' | 'account' = sessionUserId ? 'account' : 'guest'
     const db = getDb()
+
+    // Guest checkout under an email that already has an account still gets
+    // linked to it — same trust reasoning as linking past guest orders at
+    // signup (they typed their own email). checkoutMode above still records
+    // that this specific purchase happened while logged out.
+    let userId = sessionUserId
+    if (!userId && data.contact.email) {
+      const [existing] = await db
+        .select({ id: users.id })
+        .from(users)
+        .where(sql`lower(${users.email}) = ${data.contact.email.trim().toLowerCase()}`)
+        .limit(1)
+      userId = existing?.id ?? null
+    }
+
     const productRows = await db
       .select()
       .from(productsTable)
@@ -112,6 +128,7 @@ export const placeOrder = createServerFn({ method: 'POST' })
         .values({
           orderNo,
           userId,
+          checkoutMode,
           email: data.contact.email,
           firstName: data.contact.firstName,
           lastName: data.contact.lastName,

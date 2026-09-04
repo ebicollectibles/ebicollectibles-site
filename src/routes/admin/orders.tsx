@@ -49,6 +49,19 @@ function AdminOrdersPage() {
                 <span
                   style={{
                     fontFamily: "'IBM Plex Mono', monospace",
+                    fontSize: 10,
+                    textTransform: 'uppercase',
+                    color: '#5a6875',
+                    border: '1px solid #cfd4da',
+                    borderRadius: 2,
+                    padding: '2px 6px',
+                  }}
+                >
+                  {order.checkoutMode === 'account' ? 'Account' : 'Guest'}
+                </span>
+                <span
+                  style={{
+                    fontFamily: "'IBM Plex Mono', monospace",
                     fontSize: 10.5,
                     textTransform: 'uppercase',
                     color: paymentColor[order.paymentStatus] ?? '#98a1ab',

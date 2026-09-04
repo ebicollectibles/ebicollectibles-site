@@ -2,7 +2,7 @@ import { createServerFn } from '@tanstack/react-start'
 import { z } from 'zod'
 import { asc, desc, eq, inArray, sql } from 'drizzle-orm'
 import { getDb } from '~/lib/db/client'
-import { orderItems, orders, products as productsTable, users } from '~/lib/db/schema'
+import { authEvents, orderItems, orders, products as productsTable, users } from '~/lib/db/schema'
 import { assertAdmin } from './admin-auth'
 import { overlaySquareStock, searchSquareCatalogItems } from './square'
 
@@ -102,6 +102,7 @@ export const adminListCustomers = createServerFn({ method: 'GET' }).handler(asyn
       name: users.name,
       hasPassword: sql<boolean>`${users.passwordHash} is not null`,
       hasGoogle: sql<boolean>`${users.googleId} is not null`,
+      lastLoginAt: users.lastLoginAt,
       createdAt: users.createdAt,
     })
     .from(users)
@@ -129,12 +130,20 @@ export const adminGetCustomer = createServerFn({ method: 'GET' })
         name: users.name,
         hasPassword: sql<boolean>`${users.passwordHash} is not null`,
         hasGoogle: sql<boolean>`${users.googleId} is not null`,
+        lastLoginAt: users.lastLoginAt,
         createdAt: users.createdAt,
       })
       .from(users)
       .where(eq(users.id, data.id))
       .limit(1)
     if (!customer) return null
+
+    const events = await db
+      .select({ type: authEvents.type, createdAt: authEvents.createdAt })
+      .from(authEvents)
+      .where(eq(authEvents.userId, data.id))
+      .orderBy(desc(authEvents.createdAt))
+      .limit(50)
 
     const orderRows = await db.select().from(orders).where(eq(orders.userId, data.id)).orderBy(desc(orders.createdAt))
     const itemRows =
@@ -159,5 +168,6 @@ export const adminGetCustomer = createServerFn({ method: 'GET' })
     return {
       customer,
       orders: orderRows.map((order) => ({ ...order, items: itemsByOrder.get(order.id) ?? [] })),
+      events,
     }
   })

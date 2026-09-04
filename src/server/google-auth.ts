@@ -7,7 +7,7 @@
 import { createServerFn, createServerOnlyFn } from '@tanstack/react-start'
 import { z } from 'zod'
 import { linkGuestOrders } from './customers'
-import { setCustomerSession } from './customer-auth'
+import { setCustomerSession, recordAuthEvent, touchLastLogin } from './customer-auth'
 
 // Db/schema imports below are dynamic (not top-level) — same reasoning as
 // customer-auth.ts: a top-level import here was pulling the Postgres driver
@@ -88,6 +88,8 @@ export async function handleGoogleCallback(code: string): Promise<void> {
   const [byGoogleId] = await db.select().from(users).where(eq(users.googleId, payload.sub)).limit(1)
   if (byGoogleId) {
     await setCustomerSession(byGoogleId.id)
+    await recordAuthEvent({ userId: byGoogleId.id, email, type: 'login' })
+    await touchLastLogin(byGoogleId.id)
     return
   }
 
@@ -96,6 +98,8 @@ export async function handleGoogleCallback(code: string): Promise<void> {
     // Existing password-based account with the same (Google-verified) email — link the two.
     await db.update(users).set({ googleId: payload.sub, updatedAt: new Date() }).where(eq(users.id, byEmail.id))
     await setCustomerSession(byEmail.id)
+    await recordAuthEvent({ userId: byEmail.id, email, type: 'google_link' })
+    await touchLastLogin(byEmail.id)
     return
   }
 
@@ -105,6 +109,8 @@ export async function handleGoogleCallback(code: string): Promise<void> {
     .returning({ id: users.id })
   await linkGuestOrders(db, created.id, email)
   await setCustomerSession(created.id)
+  await recordAuthEvent({ userId: created.id, email, type: 'signup' })
+  await touchLastLogin(created.id)
 }
 
 // --- CSRF state, short-lived cookie between /auth/google/start and the callback ---

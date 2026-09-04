@@ -29,7 +29,7 @@ function AdminCustomerDetailPage() {
     )
   }
 
-  const { customer, orders } = data
+  const { customer, orders, events } = data
 
   return (
     <div style={{ maxWidth: 1000, margin: '0 auto', padding: '32px 28px 80px', fontFamily: 'Archivo, Helvetica, sans-serif' }}>
@@ -54,6 +54,8 @@ function AdminCustomerDetailPage() {
         <span>Joined {new Date(customer.createdAt).toLocaleDateString()}</span>
         <span>·</span>
         <span>{orders.length} order{orders.length === 1 ? '' : 's'}</span>
+        <span>·</span>
+        <span>Last login {customer.lastLoginAt ? new Date(customer.lastLoginAt).toLocaleString() : 'never'}</span>
       </div>
 
       <h2 style={{ fontSize: 15, fontWeight: 700, marginTop: 36, marginBottom: 16 }}>Order history</h2>
@@ -68,6 +70,19 @@ function AdminCustomerDetailPage() {
                 #EBI-{order.orderNo}
               </span>
               <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+                <span
+                  style={{
+                    fontFamily: "'IBM Plex Mono', monospace",
+                    fontSize: 10,
+                    textTransform: 'uppercase',
+                    color: '#5a6875',
+                    border: '1px solid #cfd4da',
+                    borderRadius: 2,
+                    padding: '2px 6px',
+                  }}
+                >
+                  {order.checkoutMode === 'account' ? 'Account' : 'Guest'}
+                </span>
                 <span
                   style={{
                     fontFamily: "'IBM Plex Mono', monospace",
@@ -94,6 +109,47 @@ function AdminCustomerDetailPage() {
           </div>
         ))}
       </div>
+
+      <h2 style={{ fontSize: 15, fontWeight: 700, marginTop: 36, marginBottom: 16 }}>Recent activity</h2>
+
+      {events.length === 0 ? (
+        <p style={{ fontSize: 13.5, color: '#98a1ab' }}>No recorded activity yet.</p>
+      ) : (
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+          {events.map((event, i) => (
+            <div
+              key={i}
+              style={{
+                display: 'flex',
+                justifyContent: 'space-between',
+                padding: '8px 0',
+                borderBottom: '1px solid #f0f2f4',
+                fontSize: 12.5,
+              }}
+            >
+              <span style={{ color: eventColor[event.type] ?? '#131b28', fontWeight: 600 }}>
+                {eventLabel[event.type] ?? event.type}
+              </span>
+              <span style={{ color: '#98a1ab', fontFamily: "'IBM Plex Mono', monospace", fontSize: 11.5 }}>
+                {new Date(event.createdAt).toLocaleString()}
+              </span>
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   )
+}
+
+const eventLabel: Record<string, string> = {
+  signup: 'Account created',
+  login: 'Logged in',
+  login_failed: 'Failed login attempt',
+  google_link: 'Linked Google sign-in',
+  password_reset: 'Password reset',
+}
+
+const eventColor: Record<string, string> = {
+  login_failed: '#b4622f',
+  signup: '#3f7a63',
 }

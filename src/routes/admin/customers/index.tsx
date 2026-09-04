@@ -50,6 +50,7 @@ function AdminCustomersPage() {
               <th style={th}>Email</th>
               <th style={th}>Sign-in</th>
               <th style={th}>Orders</th>
+              <th style={th}>Last login</th>
               <th style={th}>Joined</th>
               <th style={th}></th>
             </tr>
@@ -63,6 +64,9 @@ function AdminCustomersPage() {
                   {c.hasPassword && c.hasGoogle ? 'Password + Google' : c.hasGoogle ? 'Google' : 'Password'}
                 </td>
                 <td style={{ ...td, fontFamily: "'IBM Plex Mono', monospace" }}>{c.orderCount}</td>
+                <td style={{ ...td, fontSize: 12, color: '#5a6875' }}>
+                  {c.lastLoginAt ? new Date(c.lastLoginAt).toLocaleString() : 'Never'}
+                </td>
                 <td style={{ ...td, fontSize: 12, color: '#5a6875' }}>{new Date(c.createdAt).toLocaleDateString()}</td>
                 <td style={{ ...td, textAlign: 'right', whiteSpace: 'nowrap' }}>
                   <Link to="/admin/customers/$id" params={{ id: c.id }} style={{ fontSize: 12.5, color: '#3f7a63' }}>
