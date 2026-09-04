@@ -17,6 +17,12 @@ const paymentColor: Record<string, string> = {
   unpaid: '#98a1ab',
 }
 
+const fulfillmentColor: Record<string, string> = {
+  pending: '#98a1ab',
+  shipped: '#3f7a63',
+  cancelled: '#b4622f',
+}
+
 function AdminCustomerDetailPage() {
   const navigate = useNavigate()
   const data = Route.useLoaderData()
@@ -106,6 +112,27 @@ function AdminCustomerDetailPage() {
               {order.apartment ? `, ${order.apartment}` : ''}, {order.city} {order.zip} · {order.shipMethod} ·{' '}
               {new Date(order.createdAt).toLocaleString()}
             </div>
+            <div style={{ marginTop: 8, fontSize: 11, display: 'flex', alignItems: 'center', gap: 8 }}>
+              <span
+                style={{
+                  fontFamily: "'IBM Plex Mono', monospace",
+                  textTransform: 'uppercase',
+                  color: fulfillmentColor[order.fulfillmentStatus] ?? '#98a1ab',
+                }}
+              >
+                {order.fulfillmentStatus}
+              </span>
+              {order.statusHistory.length > 1 && (
+                <span style={{ color: '#98a1ab' }}>
+                  {order.statusHistory.map((s, i) => (
+                    <span key={i}>
+                      {i > 0 && ' → '}
+                      {s.status} {new Date(s.createdAt).toLocaleString()}
+                    </span>
+                  ))}
+                </span>
+              )}
+            </div>
           </div>
         ))}
       </div>
@@ -125,12 +152,16 @@ function AdminCustomerDetailPage() {
                 padding: '8px 0',
                 borderBottom: '1px solid #f0f2f4',
                 fontSize: 12.5,
+                gap: 12,
               }}
             >
-              <span style={{ color: eventColor[event.type] ?? '#131b28', fontWeight: 600 }}>
-                {eventLabel[event.type] ?? event.type}
+              <span>
+                <span style={{ color: eventColor[event.type] ?? '#131b28', fontWeight: 600 }}>
+                  {eventLabel[event.type] ?? event.type}
+                </span>
+                {event.detail && <span style={{ color: '#98a1ab' }}> — {event.detail}</span>}
               </span>
-              <span style={{ color: '#98a1ab', fontFamily: "'IBM Plex Mono', monospace", fontSize: 11.5 }}>
+              <span style={{ color: '#98a1ab', fontFamily: "'IBM Plex Mono', monospace", fontSize: 11.5, whiteSpace: 'nowrap' }}>
                 {new Date(event.createdAt).toLocaleString()}
               </span>
             </div>
@@ -147,9 +178,11 @@ const eventLabel: Record<string, string> = {
   login_failed: 'Failed login attempt',
   google_link: 'Linked Google sign-in',
   password_reset: 'Password reset',
+  payment_failed: 'Payment failed',
 }
 
 const eventColor: Record<string, string> = {
   login_failed: '#b4622f',
   signup: '#3f7a63',
+  payment_failed: '#b4622f',
 }

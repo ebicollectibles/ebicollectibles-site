@@ -1,8 +1,18 @@
 import { createServerFn } from '@tanstack/react-start'
 import { z } from 'zod'
-import { asc, desc, eq, inArray, sql } from 'drizzle-orm'
+import { asc, desc, eq, inArray, or, sql } from 'drizzle-orm'
 import { getDb } from '~/lib/db/client'
-import { authEvents, orderItems, orders, products as productsTable, users } from '~/lib/db/schema'
+import {
+  authEvents,
+  orderItems,
+  orderStatusEvents,
+  orders,
+  paymentAttempts,
+  productEditEvents,
+  products as productsTable,
+  refundEvents,
+  users,
+} from '~/lib/db/schema'
 import { assertAdmin } from './admin-auth'
 import { overlaySquareStock, searchSquareCatalogItems } from './square'
 
@@ -37,7 +47,15 @@ export const adminGetProduct = createServerFn({ method: 'GET' })
     const [row] = await db.select().from(productsTable).where(eq(productsTable.id, data.id)).limit(1)
     if (!row) return null
     const [withLiveStock] = await overlaySquareStock([row])
-    return withLiveStock
+
+    const editHistory = await db
+      .select({ field: productEditEvents.field, oldValue: productEditEvents.oldValue, newValue: productEditEvents.newValue, createdAt: productEditEvents.createdAt })
+      .from(productEditEvents)
+      .where(eq(productEditEvents.productId, data.id))
+      .orderBy(desc(productEditEvents.createdAt))
+      .limit(50)
+
+    return { ...withLiveStock, editHistory }
   })
 
 export const adminSearchSquareCatalog = createServerFn({ method: 'GET' })
@@ -56,16 +74,33 @@ export const adminCreateProduct = createServerFn({ method: 'POST' })
     return { ok: true }
   })
 
+const TRACKED_EDIT_FIELDS = ['price', 'compareAtPrice', 'stock'] as const
+
 export const adminUpdateProduct = createServerFn({ method: 'POST' })
   .validator(productSchema.extend({ originalId: z.string() }))
   .handler(async ({ data }) => {
     await assertAdmin()
     const db = getDb()
     const { originalId, ...rest } = data
+
+    const [before] = await db.select().from(productsTable).where(eq(productsTable.id, originalId)).limit(1)
+
     await db
       .update(productsTable)
       .set({ ...rest, updatedAt: new Date() })
       .where(eq(productsTable.id, originalId))
+
+    if (before) {
+      const edits = TRACKED_EDIT_FIELDS.filter((field) => before[field] !== rest[field]).map((field) => ({
+        productId: originalId,
+        productName: rest.name,
+        field,
+        oldValue: before[field] == null ? null : String(before[field]),
+        newValue: rest[field] == null ? null : String(rest[field]),
+      }))
+      if (edits.length > 0) await db.insert(productEditEvents).values(edits)
+    }
+
     return { ok: true }
   })
 
@@ -78,18 +113,61 @@ export const adminDeleteProduct = createServerFn({ method: 'POST' })
     return { ok: true }
   })
 
+function groupBy<T, K>(rows: T[], key: (row: T) => K): Map<K, T[]> {
+  const map = new Map<K, T[]>()
+  for (const row of rows) {
+    const k = key(row)
+    const list = map.get(k) ?? []
+    list.push(row)
+    map.set(k, list)
+  }
+  return map
+}
+
 export const adminListOrders = createServerFn({ method: 'GET' }).handler(async () => {
   await assertAdmin()
   const db = getDb()
   const orderRows = await db.select().from(orders).orderBy(desc(orders.createdAt))
   const itemRows = await db.select().from(orderItems)
-  const itemsByOrder = new Map<string, typeof itemRows>()
-  for (const item of itemRows) {
-    const list = itemsByOrder.get(item.orderId) ?? []
-    list.push(item)
-    itemsByOrder.set(item.orderId, list)
-  }
-  return orderRows.map((order) => ({ ...order, items: itemsByOrder.get(order.id) ?? [] }))
+  const statusRows = await db
+    .select({ orderId: orderStatusEvents.orderId, status: orderStatusEvents.status, createdAt: orderStatusEvents.createdAt })
+    .from(orderStatusEvents)
+    .orderBy(asc(orderStatusEvents.createdAt))
+  const refundRows = await db
+    .select({ orderId: refundEvents.orderId, amount: refundEvents.amount, status: refundEvents.status, createdAt: refundEvents.createdAt })
+    .from(refundEvents)
+    .orderBy(desc(refundEvents.createdAt))
+
+  const itemsByOrder = groupBy(itemRows, (i) => i.orderId)
+  const statusByOrder = groupBy(statusRows, (s) => s.orderId)
+  const refundsByOrder = groupBy(refundRows.filter((r) => r.orderId), (r) => r.orderId as string)
+
+  return orderRows.map((order) => ({
+    ...order,
+    items: itemsByOrder.get(order.id) ?? [],
+    statusHistory: statusByOrder.get(order.id) ?? [],
+    refunds: refundsByOrder.get(order.id) ?? [],
+  }))
+})
+
+export const adminUpdateOrderStatus = createServerFn({ method: 'POST' })
+  .validator(z.object({ orderId: z.string(), status: z.enum(['pending', 'shipped', 'cancelled']) }))
+  .handler(async ({ data }) => {
+    await assertAdmin()
+    const db = getDb()
+    await db.update(orders).set({ fulfillmentStatus: data.status }).where(eq(orders.id, data.orderId))
+    await db.insert(orderStatusEvents).values({ orderId: data.orderId, status: data.status })
+    return { ok: true }
+  })
+
+export const adminListPaymentFailures = createServerFn({ method: 'GET' }).handler(async () => {
+  await assertAdmin()
+  const db = getDb()
+  return db
+    .select({ id: paymentAttempts.id, email: paymentAttempts.email, amount: paymentAttempts.amount, errorMessage: paymentAttempts.errorMessage, createdAt: paymentAttempts.createdAt })
+    .from(paymentAttempts)
+    .orderBy(desc(paymentAttempts.createdAt))
+    .limit(30)
 })
 
 export const adminListCustomers = createServerFn({ method: 'GET' }).handler(async () => {
@@ -138,36 +216,47 @@ export const adminGetCustomer = createServerFn({ method: 'GET' })
       .limit(1)
     if (!customer) return null
 
-    const events = await db
+    const authEventRows = await db
       .select({ type: authEvents.type, createdAt: authEvents.createdAt })
       .from(authEvents)
       .where(eq(authEvents.userId, data.id))
       .orderBy(desc(authEvents.createdAt))
       .limit(50)
 
+    const failedPayments = await db
+      .select({ amount: paymentAttempts.amount, errorMessage: paymentAttempts.errorMessage, createdAt: paymentAttempts.createdAt })
+      .from(paymentAttempts)
+      .where(or(eq(paymentAttempts.userId, data.id), eq(paymentAttempts.email, customer.email)))
+      .orderBy(desc(paymentAttempts.createdAt))
+      .limit(50)
+
+    const events = [
+      ...authEventRows.map((e) => ({ type: e.type, createdAt: e.createdAt, detail: null as string | null })),
+      ...failedPayments.map((p) => ({ type: 'payment_failed', createdAt: p.createdAt, detail: p.errorMessage })),
+    ].sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime())
+
     const orderRows = await db.select().from(orders).where(eq(orders.userId, data.id)).orderBy(desc(orders.createdAt))
-    const itemRows =
-      orderRows.length === 0
+    const orderIds = orderRows.map((o) => o.id)
+    const itemRows = orderIds.length === 0 ? [] : await db.select().from(orderItems).where(inArray(orderItems.orderId, orderIds))
+    const statusRows =
+      orderIds.length === 0
         ? []
         : await db
-            .select()
-            .from(orderItems)
-            .where(
-              inArray(
-                orderItems.orderId,
-                orderRows.map((o) => o.id),
-              ),
-            )
-    const itemsByOrder = new Map<string, typeof itemRows>()
-    for (const item of itemRows) {
-      const list = itemsByOrder.get(item.orderId) ?? []
-      list.push(item)
-      itemsByOrder.set(item.orderId, list)
-    }
+            .select({ orderId: orderStatusEvents.orderId, status: orderStatusEvents.status, createdAt: orderStatusEvents.createdAt })
+            .from(orderStatusEvents)
+            .where(inArray(orderStatusEvents.orderId, orderIds))
+            .orderBy(asc(orderStatusEvents.createdAt))
+
+    const itemsByOrder = groupBy(itemRows, (i) => i.orderId)
+    const statusByOrder = groupBy(statusRows, (s) => s.orderId)
 
     return {
       customer,
-      orders: orderRows.map((order) => ({ ...order, items: itemsByOrder.get(order.id) ?? [] })),
+      orders: orderRows.map((order) => ({
+        ...order,
+        items: itemsByOrder.get(order.id) ?? [],
+        statusHistory: statusByOrder.get(order.id) ?? [],
+      })),
       events,
     }
   })

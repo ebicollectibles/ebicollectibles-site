@@ -78,6 +78,36 @@ function EditProductPage() {
           navigate({ to: '/admin' })
         }}
       />
+
+      <h2 style={{ fontSize: 15, fontWeight: 700, marginTop: 36, marginBottom: 16 }}>Edit history</h2>
+      {product.editHistory.length === 0 ? (
+        <p style={{ fontSize: 13.5, color: '#98a1ab' }}>No recorded edits yet.</p>
+      ) : (
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+          {product.editHistory.map((edit, i) => (
+            <div
+              key={i}
+              style={{ display: 'flex', justifyContent: 'space-between', padding: '8px 0', borderBottom: '1px solid #f0f2f4', fontSize: 12.5 }}
+            >
+              <span>
+                <span style={{ fontWeight: 600 }}>{fieldLabel[edit.field] ?? edit.field}</span>{' '}
+                <span style={{ color: '#98a1ab' }}>
+                  {edit.oldValue ?? '—'} → {edit.newValue ?? '—'}
+                </span>
+              </span>
+              <span style={{ color: '#98a1ab', fontFamily: "'IBM Plex Mono', monospace", fontSize: 11.5 }}>
+                {new Date(edit.createdAt).toLocaleString()}
+              </span>
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   )
+}
+
+const fieldLabel: Record<string, string> = {
+  price: 'Price',
+  compareAtPrice: 'Compare-at price',
+  stock: 'Stock',
 }

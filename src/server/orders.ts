@@ -3,7 +3,7 @@ import { z } from 'zod'
 import { eq, inArray, sql } from 'drizzle-orm'
 import { getDb } from '~/lib/db/client'
 import { withTransaction } from '~/lib/db/transactional-client'
-import { orderCounters, orderItems, orders, products as productsTable, users } from '~/lib/db/schema'
+import { orderCounters, orderItems, orderStatusEvents, orders, paymentAttempts, products as productsTable, users } from '~/lib/db/schema'
 import { FLAT_SHIPPING_RATE, TAX_RATE } from '~/lib/products'
 import { chargeSquarePayment, getSquareInventoryCounts, recordSquareInventorySale } from './square'
 import { sendOrderConfirmationEmail } from './email'
@@ -120,6 +120,19 @@ export const placeOrder = createServerFn({ method: 'POST' })
 
       const charge = await chargeSquarePayment({ sourceId: data.sourceId ?? null, amount: total, orderNo })
       if (charge.status === 'failed') {
+        // Logged on the outer (non-transactional) connection so it survives
+        // this transaction's rollback — no order row exists for a failed
+        // charge, so this is the only record it leaves behind.
+        try {
+          await db.insert(paymentAttempts).values({
+            userId,
+            email: data.contact.email || null,
+            amount: total,
+            errorMessage: charge.error || 'Payment failed',
+          })
+        } catch (err) {
+          console.error('Failed to record payment attempt:', err)
+        }
         throw new Error(charge.error || 'Payment failed — please check your card details and try again.')
       }
 
@@ -156,6 +169,8 @@ export const placeOrder = createServerFn({ method: 'POST' })
           qty: l.qty,
         })),
       )
+
+      await tx.insert(orderStatusEvents).values({ orderId: order.id, status: order.fulfillmentStatus })
 
       return { orderNo, total, paymentStatus: charge.status, subtotal, shippingCost, tax, lineDetails }
     })

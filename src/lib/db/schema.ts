@@ -69,6 +69,57 @@ export const orders = pgTable('orders', {
   createdAt: timestamp('created_at', { withTimezone: true }).notNull().defaultNow(),
 })
 
+// Timestamped fulfillment-status timeline per order (pending -> shipped ->
+// cancelled etc.) — the order row only holds the *current* status, this is
+// the history of how it got there.
+export const orderStatusEvents = pgTable('order_status_events', {
+  id: uuid('id').primaryKey().defaultRandom(),
+  orderId: uuid('order_id')
+    .notNull()
+    .references(() => orders.id, { onDelete: 'cascade' }),
+  status: text('status').notNull(),
+  createdAt: timestamp('created_at', { withTimezone: true }).notNull().defaultNow(),
+})
+
+// Declined/failed Square charges. No order row exists for these (the order
+// insert only happens after a successful charge), so this is the only
+// record a failed attempt leaves behind.
+export const paymentAttempts = pgTable('payment_attempts', {
+  id: uuid('id').primaryKey().defaultRandom(),
+  userId: uuid('user_id').references(() => users.id, { onDelete: 'set null' }),
+  email: text('email'),
+  amount: numeric('amount', { precision: 10, scale: 2, mode: 'number' }),
+  errorMessage: text('error_message'),
+  createdAt: timestamp('created_at', { withTimezone: true }).notNull().defaultNow(),
+})
+
+// Admin-made edits to a product's price/compare-at-price/stock — separate
+// from the per-order stock decrements that happen automatically on sale.
+export const productEditEvents = pgTable('product_edit_events', {
+  id: uuid('id').primaryKey().defaultRandom(),
+  productId: text('product_id').references(() => products.id, { onDelete: 'set null' }),
+  productName: text('product_name').notNull(),
+  field: text('field').notNull(), // price | compareAtPrice | stock
+  oldValue: text('old_value'),
+  newValue: text('new_value'),
+  createdAt: timestamp('created_at', { withTimezone: true }).notNull().defaultNow(),
+})
+
+// Refunds reported by Square via webhook. Kept separate from
+// orders.paymentStatus (paid/test/failed/unpaid) rather than overloading
+// it, since a refund can be partial and the original charge outcome is
+// still worth keeping distinct from the refund outcome.
+export const refundEvents = pgTable('refund_events', {
+  id: uuid('id').primaryKey().defaultRandom(),
+  orderId: uuid('order_id').references(() => orders.id, { onDelete: 'set null' }),
+  squarePaymentId: text('square_payment_id'),
+  squareRefundId: text('square_refund_id').unique(),
+  amount: numeric('amount', { precision: 10, scale: 2, mode: 'number' }),
+  status: text('status'), // Square refund status: PENDING | COMPLETED | REJECTED | FAILED
+  reason: text('reason'),
+  createdAt: timestamp('created_at', { withTimezone: true }).notNull().defaultNow(),
+})
+
 export const orderItems = pgTable('order_items', {
   id: uuid('id').primaryKey().defaultRandom(),
   orderId: uuid('order_id')
