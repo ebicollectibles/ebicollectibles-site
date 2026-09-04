@@ -139,7 +139,8 @@ button {
   z-index: 50;
 }
 
-.ebi-nav-dropdown-panel a:hover {
+.ebi-nav-dropdown-panel a:hover,
+.ebi-nav-dropdown-panel button:hover {
   background: var(--surface);
 }
 

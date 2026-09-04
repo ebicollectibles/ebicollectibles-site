@@ -8,10 +8,14 @@ import { Header } from '~/components/Header'
 import { Footer } from '~/components/Footer'
 import { CartProvider } from '~/lib/cart-context'
 import { getProducts } from '~/server/products'
+import { getCurrentCustomer } from '~/server/customer-auth'
 import appCss from '~/styles/app.css?url'
 
 export const Route = createRootRoute({
-  loader: () => getProducts(),
+  loader: async () => {
+    const [products, customer] = await Promise.all([getProducts(), getCurrentCustomer()])
+    return { products, customer }
+  },
   head: () => ({
     meta: [
       { charSet: 'utf-8' },
@@ -40,11 +44,13 @@ export const Route = createRootRoute({
 })
 
 function RootDocument({ children }: { children: React.ReactNode }) {
-  // Falls back to [] when the products loader hasn't resolved (or failed) —
+  // Falls back to safe defaults when the loader hasn't resolved (or failed) —
   // this shell also wraps the error boundary itself, so it must render
   // something even when the loader rejected, instead of crashing on
-  // `products` being undefined and hiding the real error underneath.
-  const products = Route.useLoaderData() ?? []
+  // `data` being undefined and hiding the real error underneath.
+  const data = Route.useLoaderData()
+  const products = data?.products ?? []
+  const customer = data?.customer ?? null
   const isAdmin = useRouterState({ select: (s) => s.location.pathname.startsWith('/admin') })
 
   return (
@@ -59,7 +65,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
           ) : (
             <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', background: '#ffffff' }}>
               <AnnouncementBar />
-              <Header />
+              <Header customer={customer} />
               <main style={{ flex: 1 }}>{children}</main>
               <Footer />
             </div>

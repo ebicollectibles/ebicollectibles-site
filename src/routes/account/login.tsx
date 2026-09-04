@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { createFileRoute, Link, useNavigate } from '@tanstack/react-router'
+import { createFileRoute, Link, useNavigate, useRouter } from '@tanstack/react-router'
 import { z } from 'zod'
 import { customerLogin } from '~/server/customers'
 import { startGoogleAuth } from '~/server/google-auth'
@@ -45,6 +45,7 @@ const googleBtn: React.CSSProperties = {
 
 function LoginPage() {
   const navigate = useNavigate()
+  const router = useRouter()
   const search = Route.useSearch()
   const [email, setEmail] = React.useState('')
   const [password, setPassword] = React.useState('')
@@ -58,6 +59,7 @@ function LoginPage() {
     setSubmitting(true)
     try {
       await customerLogin({ data: { email, password } })
+      await router.invalidate()
       navigate({ to: '/account/orders' })
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Login failed.')

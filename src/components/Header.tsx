@@ -1,19 +1,46 @@
 import * as React from 'react'
-import { Link, useRouterState } from '@tanstack/react-router'
+import { Link, useNavigate, useRouter, useRouterState } from '@tanstack/react-router'
 import { useCart } from '~/lib/cart-context'
+import { customerLogout } from '~/server/customer-auth'
 
-export function Header() {
+interface HeaderCustomer {
+  id: string
+  email: string
+  name: string | null
+}
+
+function PersonIcon() {
+  return (
+    <svg width="19" height="19" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="8" r="4" stroke="currentColor" strokeWidth="2" />
+      <path d="M4 20c0-4.4 3.6-8 8-8s8 3.6 8 8" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+    </svg>
+  )
+}
+
+export function Header({ customer }: { customer: HeaderCustomer | null }) {
   const pathname = useRouterState({ select: (s) => s.location.pathname })
+  const router = useRouter()
+  const navigate = useNavigate()
   const { cartCount } = useCart()
   const [menuOpen, setMenuOpen] = React.useState(false)
   const [pokemonMenuOpen, setPokemonMenuOpen] = React.useState(false)
+  const [accountMenuOpen, setAccountMenuOpen] = React.useState(false)
   const pokemonMenuRef = React.useRef<HTMLDivElement>(null)
+  const accountMenuRef = React.useRef<HTMLDivElement>(null)
 
   const navColor = (active: boolean) => (active ? '#131b28' : '#5a6875')
+
+  const logout = async () => {
+    await customerLogout()
+    await router.invalidate()
+    navigate({ to: '/' })
+  }
 
   React.useEffect(() => {
     setMenuOpen(false)
     setPokemonMenuOpen(false)
+    setAccountMenuOpen(false)
   }, [pathname])
 
   React.useEffect(() => {
@@ -24,6 +51,15 @@ export function Header() {
     document.addEventListener('mousedown', onClickOutside)
     return () => document.removeEventListener('mousedown', onClickOutside)
   }, [pokemonMenuOpen])
+
+  React.useEffect(() => {
+    if (!accountMenuOpen) return
+    const onClickOutside = (e: MouseEvent) => {
+      if (!accountMenuRef.current?.contains(e.target as Node)) setAccountMenuOpen(false)
+    }
+    document.addEventListener('mousedown', onClickOutside)
+    return () => document.removeEventListener('mousedown', onClickOutside)
+  }, [accountMenuOpen])
 
   return (
     <header
@@ -166,13 +202,66 @@ export function Header() {
           />
         </div>
 
-        <Link
-          to="/account/orders"
-          className="ebi-header-account"
-          style={{ color: navColor(pathname.startsWith('/account')), padding: '4px 0', fontSize: 13.5, fontWeight: 500, flexShrink: 0 }}
-        >
-          Account
-        </Link>
+        {customer ? (
+          <div ref={accountMenuRef} className="ebi-header-account" style={{ position: 'relative', flexShrink: 0 }}>
+            <button
+              type="button"
+              onClick={() => setAccountMenuOpen((v) => !v)}
+              aria-expanded={accountMenuOpen}
+              style={{
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                gap: 2,
+                background: 'transparent',
+                border: 0,
+                padding: '4px 0',
+                font: 'inherit',
+                color: navColor(pathname.startsWith('/account') || accountMenuOpen),
+                cursor: 'pointer',
+              }}
+            >
+              <PersonIcon />
+              <span style={{ fontSize: 10.5, fontWeight: 600 }}>My Account</span>
+            </button>
+            {accountMenuOpen && (
+              <div className="ebi-nav-dropdown-panel" style={{ right: 0, left: 'auto' }}>
+                <Link to="/account/orders" style={{ display: 'block', padding: '9px 14px', fontSize: 13, color: '#3d4753', whiteSpace: 'nowrap' }}>
+                  Orders
+                </Link>
+                <Link to="/account/profile" style={{ display: 'block', padding: '9px 14px', fontSize: 13, color: '#3d4753', whiteSpace: 'nowrap' }}>
+                  Profile
+                </Link>
+                <button
+                  type="button"
+                  onClick={logout}
+                  style={{
+                    display: 'block',
+                    width: '100%',
+                    textAlign: 'left',
+                    padding: '9px 14px',
+                    fontSize: 13,
+                    color: '#3d4753',
+                    whiteSpace: 'nowrap',
+                    background: 'none',
+                    border: 0,
+                    cursor: 'pointer',
+                  }}
+                >
+                  Log out
+                </button>
+              </div>
+            )}
+          </div>
+        ) : (
+          <Link
+            to="/account/login"
+            className="ebi-header-account"
+            style={{ color: navColor(pathname.startsWith('/account')), padding: '4px 0', fontSize: 13.5, fontWeight: 500, flexShrink: 0 }}
+          >
+            Log in
+          </Link>
+        )}
 
         <Link
           to="/cart"
@@ -242,9 +331,27 @@ export function Header() {
           <Link to="/faq" style={{ color: navColor(pathname === '/faq'), padding: '10px 0', borderBottom: '1px solid #f0f2f4' }}>
             FAQ &amp; shipping
           </Link>
-          <Link to="/account/orders" style={{ color: navColor(pathname.startsWith('/account')), padding: '10px 0' }}>
-            Account
-          </Link>
+          {customer ? (
+            <>
+              <Link to="/account/orders" style={{ color: navColor(pathname.startsWith('/account/orders')), padding: '10px 0', borderBottom: '1px solid #f0f2f4' }}>
+                Orders
+              </Link>
+              <Link to="/account/profile" style={{ color: navColor(pathname.startsWith('/account/profile')), padding: '10px 0', borderBottom: '1px solid #f0f2f4' }}>
+                Profile
+              </Link>
+              <button
+                type="button"
+                onClick={logout}
+                style={{ textAlign: 'left', color: '#5a6875', padding: '10px 0', background: 'none', border: 0, font: 'inherit', cursor: 'pointer' }}
+              >
+                Log out
+              </button>
+            </>
+          ) : (
+            <Link to="/account/login" style={{ color: navColor(pathname.startsWith('/account')), padding: '10px 0' }}>
+              Log in
+            </Link>
+          )}
         </nav>
       </div>
     </header>

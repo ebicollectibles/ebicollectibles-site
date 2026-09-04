@@ -1,16 +1,12 @@
 import type * as React from 'react'
-import { createFileRoute, useNavigate, Link } from '@tanstack/react-router'
-import { requireCustomer, getCurrentCustomer, customerLogout } from '~/server/customer-auth'
+import { createFileRoute, Link } from '@tanstack/react-router'
+import { requireCustomer } from '~/server/customer-auth'
 import { getMyOrders } from '~/server/customers'
 import { formatMoney } from '~/lib/products'
-import { AccountNav } from '~/components/AccountNav'
 
 export const Route = createFileRoute('/account/orders')({
   beforeLoad: () => requireCustomer(),
-  loader: async () => {
-    const [customer, orders] = await Promise.all([getCurrentCustomer(), getMyOrders()])
-    return { customer, orders }
-  },
+  loader: () => getMyOrders(),
   component: OrdersPage,
 })
 
@@ -23,19 +19,11 @@ const monoLabel: React.CSSProperties = {
 }
 
 function OrdersPage() {
-  const navigate = useNavigate()
-  const { customer, orders } = Route.useLoaderData()
+  const orders = Route.useLoaderData()
 
   return (
     <section style={{ maxWidth: 760, margin: '0 auto', padding: '48px 24px 100px', fontFamily: 'Archivo, Helvetica, sans-serif' }}>
-      <AccountNav
-        email={customer?.email}
-        name={customer?.name}
-        onLogout={async () => {
-          await customerLogout()
-          navigate({ to: '/' })
-        }}
-      />
+      <h1 style={{ fontSize: 26, fontWeight: 700, margin: 0 }}>Order history</h1>
 
       {orders.length === 0 ? (
         <div style={{ textAlign: 'center', padding: '70px 20px' }}>

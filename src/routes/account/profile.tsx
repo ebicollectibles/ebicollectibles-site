@@ -1,27 +1,15 @@
-import { createFileRoute, useNavigate } from '@tanstack/react-router'
-import { requireCustomer, getCurrentCustomer, customerLogout } from '~/server/customer-auth'
-import { AccountNav } from '~/components/AccountNav'
+import { createFileRoute } from '@tanstack/react-router'
+import { requireCustomer } from '~/server/customer-auth'
 
 export const Route = createFileRoute('/account/profile')({
   beforeLoad: () => requireCustomer(),
-  loader: () => getCurrentCustomer(),
   component: ProfilePage,
 })
 
 function ProfilePage() {
-  const navigate = useNavigate()
-  const customer = Route.useLoaderData()
-
   return (
     <section style={{ maxWidth: 760, margin: '0 auto', padding: '48px 24px 100px', fontFamily: 'Archivo, Helvetica, sans-serif' }}>
-      <AccountNav
-        email={customer?.email}
-        name={customer?.name}
-        onLogout={async () => {
-          await customerLogout()
-          navigate({ to: '/' })
-        }}
-      />
+      <h1 style={{ fontSize: 26, fontWeight: 700, margin: 0 }}>Profile</h1>
     </section>
   )
 }
