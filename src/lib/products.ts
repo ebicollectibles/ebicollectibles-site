@@ -10,6 +10,8 @@ export interface Product {
   stock: number
   squareVariationId?: string
   img?: string
+  imgTablet?: string
+  imgMobile?: string
   imgAlt?: string
   images?: string[]
   preorder?: boolean

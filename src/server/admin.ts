@@ -26,6 +26,8 @@ const productSchema = z.object({
   stock: z.number().int().nonnegative(),
   squareVariationId: z.string().nullable().optional(),
   img: z.string().optional(),
+  imgTablet: z.string().optional(),
+  imgMobile: z.string().optional(),
   imgAlt: z.string().optional(),
   images: z.array(z.string()).optional().default([]),
   preorder: z.boolean().optional().default(false),

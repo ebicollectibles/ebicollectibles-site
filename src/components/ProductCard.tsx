@@ -2,6 +2,7 @@ import * as React from 'react'
 import { Link } from '@tanstack/react-router'
 import { useCart } from '~/lib/cart-context'
 import { formatMoney, type Product } from '~/lib/products'
+import { ResponsiveImage } from '~/components/ResponsiveImage'
 
 const STRIPES = 'repeating-linear-gradient(45deg, #eef0f2 0px, #eef0f2 7px, #f6f7f8 7px, #f6f7f8 14px)'
 
@@ -43,8 +44,10 @@ export function ProductCard({ product, variant = 'full' }: { product: Product; v
       >
       <div style={{ position: 'relative', aspectRatio: '1 / 1', background: '#f6f7f8', overflow: 'hidden' }}>
         {product.img ? (
-          <img
-            src={product.img}
+          <ResponsiveImage
+            desktop={product.img}
+            tablet={product.imgTablet}
+            mobile={product.imgMobile}
             alt={product.imgAlt || product.name}
             loading="lazy"
             style={{ width: '100%', height: '100%', objectFit: 'contain' }}

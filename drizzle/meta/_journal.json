@@ -57,6 +57,13 @@
       "when": 1788556894894,
       "tag": "0007_green_shooting_star",
       "breakpoints": true
+    },
+    {
+      "idx": 8,
+      "version": "7",
+      "when": 1788558461585,
+      "tag": "0008_motionless_stingray",
+      "breakpoints": true
     }
   ]
 }

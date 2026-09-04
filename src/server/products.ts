@@ -33,6 +33,8 @@ function toProduct(row: typeof productsTable.$inferSelect): Product {
     stock: row.stock,
     squareVariationId: row.squareVariationId ?? undefined,
     img: row.img ?? undefined,
+    imgTablet: row.imgTablet ?? undefined,
+    imgMobile: row.imgMobile ?? undefined,
     imgAlt: row.imgAlt ?? undefined,
     images: row.images,
     preorder: row.preorder,

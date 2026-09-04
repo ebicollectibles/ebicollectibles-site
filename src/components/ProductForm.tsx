@@ -14,6 +14,8 @@ export interface ProductFormValues {
   stock: number
   squareVariationId: string
   img: string
+  imgTablet: string
+  imgMobile: string
   imgAlt: string
   images: string[]
   preorder: boolean
@@ -30,6 +32,8 @@ const emptyValues: ProductFormValues = {
   stock: 0,
   squareVariationId: '',
   img: '',
+  imgTablet: '',
+  imgMobile: '',
   imgAlt: '',
   images: [],
   preorder: false,
@@ -303,7 +307,7 @@ function SquarePicker({ onSelect, onClose }: { onSelect: (option: SquareCatalogO
   )
 }
 
-type PickerTarget = { kind: 'img' } | { kind: 'images'; index: number } | { kind: 'images-new' }
+type PickerTarget = { kind: 'img' } | { kind: 'imgTablet' } | { kind: 'imgMobile' } | { kind: 'images'; index: number } | { kind: 'images-new' }
 
 export function ProductForm({
   initial,
@@ -351,6 +355,8 @@ export function ProductForm({
   const handlePicked = (url: string) => {
     if (!pickerTarget) return
     if (pickerTarget.kind === 'img') set('img', url)
+    else if (pickerTarget.kind === 'imgTablet') set('imgTablet', url)
+    else if (pickerTarget.kind === 'imgMobile') set('imgMobile', url)
     else if (pickerTarget.kind === 'images') {
       const index = pickerTarget.index
       set('images', values.images.map((u, j) => (j === index ? url : u)))
@@ -500,7 +506,7 @@ export function ProductForm({
         />
       </div>
       <div style={{ marginBottom: 16 }}>
-        <label style={label}>Feature image (leave blank for a placeholder square)</label>
+        <label style={label}>Feature image — desktop (leave blank for a placeholder square)</label>
         <div style={{ display: 'flex', gap: 8 }}>
           <input style={field} value={values.img} onChange={(e) => set('img', e.target.value)} placeholder="/assets/example.png or paste a URL" />
           <UploadButton onUploaded={(url) => set('img', url)} onError={setError} />
@@ -512,6 +518,22 @@ export function ProductForm({
           onChange={(e) => set('imgAlt', e.target.value)}
           placeholder={`Alt text (defaults to "${values.name || 'the product name'}" if left blank)`}
         />
+      </div>
+      <div style={{ marginBottom: 16 }}>
+        <label style={label}>Feature image — tablet (optional, falls back to desktop)</label>
+        <div style={{ display: 'flex', gap: 8 }}>
+          <input style={field} value={values.imgTablet} onChange={(e) => set('imgTablet', e.target.value)} placeholder="/assets/example-tablet.png or paste a URL" />
+          <UploadButton onUploaded={(url) => set('imgTablet', url)} onError={setError} />
+          <BrowseButton onClick={() => setPickerTarget({ kind: 'imgTablet' })} />
+        </div>
+      </div>
+      <div style={{ marginBottom: 16 }}>
+        <label style={label}>Feature image — mobile (optional, falls back to desktop)</label>
+        <div style={{ display: 'flex', gap: 8 }}>
+          <input style={field} value={values.imgMobile} onChange={(e) => set('imgMobile', e.target.value)} placeholder="/assets/example-mobile.png or paste a URL" />
+          <UploadButton onUploaded={(url) => set('imgMobile', url)} onError={setError} />
+          <BrowseButton onClick={() => setPickerTarget({ kind: 'imgMobile' })} />
+        </div>
       </div>
       <div style={{ marginBottom: 16 }}>
         <label style={label}>Additional images (shown as a gallery on the product page)</label>

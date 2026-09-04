@@ -1,6 +1,7 @@
 import * as React from 'react'
 import { createFileRoute, Link } from '@tanstack/react-router'
 import { ProductCard } from '~/components/ProductCard'
+import { ResponsiveImage } from '~/components/ResponsiveImage'
 import { useCart } from '~/lib/cart-context'
 import { formatMoney } from '~/lib/products'
 
@@ -91,11 +92,21 @@ function ProductDetailPage() {
         <div>
           <div style={{ position: 'relative', aspectRatio: '1 / 1', background: '#f6f7f8', overflow: 'hidden' }}>
             {selectedImage ? (
-              <img
-                src={selectedImage}
-                alt={product.imgAlt || product.name}
-                style={{ width: '100%', height: '100%', objectFit: 'contain' }}
-              />
+              selectedImage === product.img ? (
+                <ResponsiveImage
+                  desktop={product.img}
+                  tablet={product.imgTablet}
+                  mobile={product.imgMobile}
+                  alt={product.imgAlt || product.name}
+                  style={{ width: '100%', height: '100%', objectFit: 'contain' }}
+                />
+              ) : (
+                <img
+                  src={selectedImage}
+                  alt={product.imgAlt || product.name}
+                  style={{ width: '100%', height: '100%', objectFit: 'contain' }}
+                />
+              )
             ) : (
               <div style={{ width: '100%', height: '100%', backgroundImage: STRIPES }} />
             )}

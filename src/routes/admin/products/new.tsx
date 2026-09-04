@@ -30,6 +30,8 @@ function NewProductPage() {
               compareAtPrice: values.compareAtPrice || null,
               squareVariationId: values.squareVariationId || null,
               img: values.img || undefined,
+              imgTablet: values.imgTablet || undefined,
+              imgMobile: values.imgMobile || undefined,
               imgAlt: values.imgAlt.trim() || undefined,
               images: values.images.map((u) => u.trim()).filter(Boolean),
               placeholder: values.placeholder || undefined,
