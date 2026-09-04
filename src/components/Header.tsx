@@ -167,6 +167,14 @@ export function Header() {
         </div>
 
         <Link
+          to="/account"
+          className="ebi-header-account"
+          style={{ color: navColor(pathname.startsWith('/account')), padding: '4px 0', fontSize: 13.5, fontWeight: 500, flexShrink: 0 }}
+        >
+          Account
+        </Link>
+
+        <Link
           to="/cart"
           className="ebi-btn-dark"
           style={{
@@ -231,8 +239,11 @@ export function Header() {
           >
             Acrylics
           </Link>
-          <Link to="/faq" style={{ color: navColor(pathname === '/faq'), padding: '10px 0' }}>
+          <Link to="/faq" style={{ color: navColor(pathname === '/faq'), padding: '10px 0', borderBottom: '1px solid #f0f2f4' }}>
             FAQ &amp; shipping
+          </Link>
+          <Link to="/account" style={{ color: navColor(pathname.startsWith('/account')), padding: '10px 0' }}>
+            Account
           </Link>
         </nav>
       </div>

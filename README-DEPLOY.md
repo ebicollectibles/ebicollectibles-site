@@ -166,6 +166,38 @@ place and pay just fine, they simply skip sending a confirmation email.
 Until both are set, checkout is unaffected — the email send is skipped
 silently (logged, not thrown) and the order still completes normally.
 
+## Customer accounts
+
+Email/password and "Continue with Google" sign-in for customers
+(`src/server/customers.ts`, `src/server/google-auth.ts`) — an account page at
+`/account` shows order history, including past guest orders placed under the
+same email (linked automatically the moment an account is created).
+
+**Note**: this build does not send a "verify your email" link — an account is
+usable immediately on signup, including claiming past guest orders by email
+match alone. Fine for a small store; add email verification (reusing the
+Resend integration above) later if that matters more as the store grows.
+
+Password accounts need nothing beyond what's already set (`SESSION_SECRET`).
+Google sign-in is optional — the "Continue with Google" button simply
+doesn't work (clear error message) until these are set:
+
+1. In [Google Cloud Console](https://console.cloud.google.com/apis/credentials),
+   create an OAuth Client ID (type: **Web application**).
+2. Add **Authorized redirect URIs** for every environment you'll use:
+   `http://localhost:3000/auth/google/callback` for local dev, and your
+   production URL, e.g. `https://ebicollectibles.com/auth/google/callback`.
+3. Set as Worker secrets: `GOOGLE_CLIENT_ID`, `GOOGLE_CLIENT_SECRET`,
+   `GOOGLE_REDIRECT_URI` (must exactly match one of the URIs from step 2 —
+   use the production one for the deployed Worker). `npx wrangler secret put
+   <NAME>` — takes effect immediately, no redeploy needed.
+
+Accounts are matched/linked by email: if someone signs up with a
+password using the same email as an existing Google-only account (or vice
+versa), Google sign-in only auto-links because Google verifies the email
+itself — this is what makes it safe to trust without our own verification
+step.
+
 ## Product image uploads (R2)
 
 The admin panel's "Upload" buttons store images in a Cloudflare R2 bucket.

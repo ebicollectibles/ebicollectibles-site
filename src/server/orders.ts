@@ -7,6 +7,7 @@ import { orderCounters, orderItems, orders, products as productsTable } from '~/
 import { FLAT_SHIPPING_RATE, TAX_RATE } from '~/lib/products'
 import { chargeSquarePayment, getSquareInventoryCounts, recordSquareInventorySale } from './square'
 import { sendOrderConfirmationEmail } from './email'
+import { getCurrentUserId } from './customer-auth'
 
 const placeOrderSchema = z.object({
   lines: z.array(z.object({ productId: z.string(), qty: z.number().int().positive() })).min(1),
@@ -25,6 +26,7 @@ const placeOrderSchema = z.object({
 export const placeOrder = createServerFn({ method: 'POST' })
   .validator(placeOrderSchema)
   .handler(async ({ data }) => {
+    const userId = await getCurrentUserId()
     const db = getDb()
     const productRows = await db
       .select()
@@ -109,6 +111,7 @@ export const placeOrder = createServerFn({ method: 'POST' })
         .insert(orders)
         .values({
           orderNo,
+          userId,
           email: data.contact.email,
           firstName: data.contact.firstName,
           lastName: data.contact.lastName,
