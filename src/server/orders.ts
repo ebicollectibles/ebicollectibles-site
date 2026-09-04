@@ -6,6 +6,7 @@ import { withTransaction } from '~/lib/db/transactional-client'
 import { orderCounters, orderItems, orders, products as productsTable } from '~/lib/db/schema'
 import { FLAT_SHIPPING_RATE, TAX_RATE } from '~/lib/products'
 import { chargeSquarePayment, getSquareInventoryCounts, recordSquareInventorySale } from './square'
+import { sendOrderConfirmationEmail } from './email'
 
 const placeOrderSchema = z.object({
   lines: z.array(z.object({ productId: z.string(), qty: z.number().int().positive() })).min(1),
@@ -136,7 +137,7 @@ export const placeOrder = createServerFn({ method: 'POST' })
         })),
       )
 
-      return { orderNo, total, paymentStatus: charge.status }
+      return { orderNo, total, paymentStatus: charge.status, subtotal, shippingCost, tax, lineDetails }
     })
 
     // Best-effort: record the sale in Square so it shows up as reduced
@@ -152,5 +153,28 @@ export const placeOrder = createServerFn({ method: 'POST' })
       }
     }
 
-    return result
+    // Best-effort: email the customer a confirmation with what they bought.
+    // Also runs after the order is already placed and paid for — a failed
+    // send should never undo or block a successful, already-charged order.
+    try {
+      await sendOrderConfirmationEmail({
+        orderNo: result.orderNo,
+        email: data.contact.email || null,
+        firstName: data.contact.firstName || null,
+        lastName: data.contact.lastName || null,
+        street: data.contact.street || null,
+        apartment: data.contact.apartment || null,
+        city: data.contact.city || null,
+        zip: data.contact.zip || null,
+        subtotal: result.subtotal,
+        shippingCost: result.shippingCost,
+        tax: result.tax,
+        total: result.total,
+        items: result.lineDetails.map((l) => ({ productName: l.name, qty: l.qty, unitPrice: l.unitPrice })),
+      })
+    } catch (err) {
+      console.error(`Failed to send confirmation email for order ${result.orderNo}:`, err)
+    }
+
+    return { orderNo: result.orderNo, total: result.total, paymentStatus: result.paymentStatus }
   })

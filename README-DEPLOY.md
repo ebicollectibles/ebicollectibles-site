@@ -147,6 +147,25 @@ Until step 2–3 are done, checkout still fully works — orders are recorded in
 the database with `payment_status: 'test'` and no card is charged (see the
 note that renders on the checkout page and confirmation screen in that mode).
 
+## Order confirmation emails (Resend)
+
+Already fully built (`src/server/email.ts`) and best-effort — if unset, orders
+place and pay just fine, they simply skip sending a confirmation email.
+
+1. Sign up at [resend.com](https://resend.com) (free tier: 3,000 emails/month).
+2. Add your sending domain in the Resend dashboard. It will give you a
+   handful of DNS records (SPF + DKIM, both TXT records) — add those with
+   whoever hosts your domain's DNS, then wait for Resend to show the domain
+   as verified (usually a few minutes to a few hours).
+3. Create an API key in Resend, then set as Worker secrets (never in the
+   repo): `RESEND_API_KEY` and `ORDER_FROM_EMAIL` (e.g.
+   `EBI Collectibles <orders@yourdomain.com>` — must be on the verified
+   domain from step 2). Set with `npx wrangler secret put <NAME>` — takes
+   effect immediately, no redeploy needed.
+
+Until both are set, checkout is unaffected — the email send is skipped
+silently (logged, not thrown) and the order still completes normally.
+
 ## Product image uploads (R2)
 
 The admin panel's "Upload" buttons store images in a Cloudflare R2 bucket.
