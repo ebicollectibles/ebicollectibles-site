@@ -23,6 +23,8 @@ import { Route as AdminIndexRouteImport } from './routes/admin/index'
 import { Route as AdminLoginRouteImport } from './routes/admin/login'
 import { Route as AdminOrdersRouteImport } from './routes/admin/orders'
 import { Route as ProductsIdRouteImport } from './routes/products.$id'
+import { Route as AdminCustomersIndexRouteImport } from './routes/admin/customers/index'
+import { Route as AdminCustomersIdRouteImport } from './routes/admin/customers/$id'
 import { Route as AdminProductsIdRouteImport } from './routes/admin/products/$id'
 import { Route as AdminProductsNewRouteImport } from './routes/admin/products/new'
 import { Route as AuthGoogleCallbackRouteImport } from './routes/auth.google.callback'
@@ -98,6 +100,16 @@ const ProductsIdRoute = ProductsIdRouteImport.update({
   path: '/products/$id',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminCustomersIndexRoute = AdminCustomersIndexRouteImport.update({
+  id: '/admin/customers/',
+  path: '/admin/customers/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminCustomersIdRoute = AdminCustomersIdRouteImport.update({
+  id: '/admin/customers/$id',
+  path: '/admin/customers/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AdminProductsIdRoute = AdminProductsIdRouteImport.update({
   id: '/admin/products/$id',
   path: '/admin/products/$id',
@@ -134,10 +146,12 @@ export interface FileRoutesByFullPath {
   '/products/$id': typeof ProductsIdRoute
   '/account/': typeof AccountIndexRoute
   '/admin/': typeof AdminIndexRoute
+  '/admin/customers/$id': typeof AdminCustomersIdRoute
   '/admin/products/$id': typeof AdminProductsIdRoute
   '/admin/products/new': typeof AdminProductsNewRoute
   '/auth/google/callback': typeof AuthGoogleCallbackRoute
   '/auth/google/start': typeof AuthGoogleStartRoute
+  '/admin/customers/': typeof AdminCustomersIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -154,10 +168,12 @@ export interface FileRoutesByTo {
   '/products/$id': typeof ProductsIdRoute
   '/account': typeof AccountIndexRoute
   '/admin': typeof AdminIndexRoute
+  '/admin/customers/$id': typeof AdminCustomersIdRoute
   '/admin/products/$id': typeof AdminProductsIdRoute
   '/admin/products/new': typeof AdminProductsNewRoute
   '/auth/google/callback': typeof AuthGoogleCallbackRoute
   '/auth/google/start': typeof AuthGoogleStartRoute
+  '/admin/customers': typeof AdminCustomersIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -175,10 +191,12 @@ export interface FileRoutesById {
   '/products/$id': typeof ProductsIdRoute
   '/account/': typeof AccountIndexRoute
   '/admin/': typeof AdminIndexRoute
+  '/admin/customers/$id': typeof AdminCustomersIdRoute
   '/admin/products/$id': typeof AdminProductsIdRoute
   '/admin/products/new': typeof AdminProductsNewRoute
   '/auth/google/callback': typeof AuthGoogleCallbackRoute
   '/auth/google/start': typeof AuthGoogleStartRoute
+  '/admin/customers/': typeof AdminCustomersIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -197,10 +215,12 @@ export interface FileRouteTypes {
     | '/products/$id'
     | '/account/'
     | '/admin/'
+    | '/admin/customers/$id'
     | '/admin/products/$id'
     | '/admin/products/new'
     | '/auth/google/callback'
     | '/auth/google/start'
+    | '/admin/customers/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -217,10 +237,12 @@ export interface FileRouteTypes {
     | '/products/$id'
     | '/account'
     | '/admin'
+    | '/admin/customers/$id'
     | '/admin/products/$id'
     | '/admin/products/new'
     | '/auth/google/callback'
     | '/auth/google/start'
+    | '/admin/customers'
   id:
     | '__root__'
     | '/'
@@ -237,10 +259,12 @@ export interface FileRouteTypes {
     | '/products/$id'
     | '/account/'
     | '/admin/'
+    | '/admin/customers/$id'
     | '/admin/products/$id'
     | '/admin/products/new'
     | '/auth/google/callback'
     | '/auth/google/start'
+    | '/admin/customers/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -258,10 +282,12 @@ export interface RootRouteChildren {
   ProductsIdRoute: typeof ProductsIdRoute
   AccountIndexRoute: typeof AccountIndexRoute
   AdminIndexRoute: typeof AdminIndexRoute
+  AdminCustomersIdRoute: typeof AdminCustomersIdRoute
   AdminProductsIdRoute: typeof AdminProductsIdRoute
   AdminProductsNewRoute: typeof AdminProductsNewRoute
   AuthGoogleCallbackRoute: typeof AuthGoogleCallbackRoute
   AuthGoogleStartRoute: typeof AuthGoogleStartRoute
+  AdminCustomersIndexRoute: typeof AdminCustomersIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -364,6 +390,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProductsIdRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin/customers/': {
+      id: '/admin/customers/'
+      path: '/admin/customers'
+      fullPath: '/admin/customers/'
+      preLoaderRoute: typeof AdminCustomersIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/customers/$id': {
+      id: '/admin/customers/$id'
+      path: '/admin/customers/$id'
+      fullPath: '/admin/customers/$id'
+      preLoaderRoute: typeof AdminCustomersIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/admin/products/$id': {
       id: '/admin/products/$id'
       path: '/admin/products/$id'
@@ -410,10 +450,12 @@ const rootRouteChildren: RootRouteChildren = {
   ProductsIdRoute: ProductsIdRoute,
   AccountIndexRoute: AccountIndexRoute,
   AdminIndexRoute: AdminIndexRoute,
+  AdminCustomersIdRoute: AdminCustomersIdRoute,
   AdminProductsIdRoute: AdminProductsIdRoute,
   AdminProductsNewRoute: AdminProductsNewRoute,
   AuthGoogleCallbackRoute: AuthGoogleCallbackRoute,
   AuthGoogleStartRoute: AuthGoogleStartRoute,
+  AdminCustomersIndexRoute: AdminCustomersIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

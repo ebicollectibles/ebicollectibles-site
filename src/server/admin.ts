@@ -1,8 +1,8 @@
 import { createServerFn } from '@tanstack/react-start'
 import { z } from 'zod'
-import { asc, desc, eq } from 'drizzle-orm'
+import { asc, desc, eq, inArray, sql } from 'drizzle-orm'
 import { getDb } from '~/lib/db/client'
-import { orderItems, orders, products as productsTable } from '~/lib/db/schema'
+import { orderItems, orders, products as productsTable, users } from '~/lib/db/schema'
 import { assertAdmin } from './admin-auth'
 import { overlaySquareStock, searchSquareCatalogItems } from './square'
 
@@ -91,3 +91,73 @@ export const adminListOrders = createServerFn({ method: 'GET' }).handler(async (
   }
   return orderRows.map((order) => ({ ...order, items: itemsByOrder.get(order.id) ?? [] }))
 })
+
+export const adminListCustomers = createServerFn({ method: 'GET' }).handler(async () => {
+  await assertAdmin()
+  const db = getDb()
+  const customerRows = await db
+    .select({
+      id: users.id,
+      email: users.email,
+      name: users.name,
+      hasPassword: sql<boolean>`${users.passwordHash} is not null`,
+      hasGoogle: sql<boolean>`${users.googleId} is not null`,
+      createdAt: users.createdAt,
+    })
+    .from(users)
+    .orderBy(desc(users.createdAt))
+
+  const counts = await db
+    .select({ userId: orders.userId, count: sql<number>`count(*)::int` })
+    .from(orders)
+    .where(sql`${orders.userId} is not null`)
+    .groupBy(orders.userId)
+  const countByUser = new Map(counts.map((c) => [c.userId, c.count]))
+
+  return customerRows.map((c) => ({ ...c, orderCount: countByUser.get(c.id) ?? 0 }))
+})
+
+export const adminGetCustomer = createServerFn({ method: 'GET' })
+  .validator(z.object({ id: z.string() }))
+  .handler(async ({ data }) => {
+    await assertAdmin()
+    const db = getDb()
+    const [customer] = await db
+      .select({
+        id: users.id,
+        email: users.email,
+        name: users.name,
+        hasPassword: sql<boolean>`${users.passwordHash} is not null`,
+        hasGoogle: sql<boolean>`${users.googleId} is not null`,
+        createdAt: users.createdAt,
+      })
+      .from(users)
+      .where(eq(users.id, data.id))
+      .limit(1)
+    if (!customer) return null
+
+    const orderRows = await db.select().from(orders).where(eq(orders.userId, data.id)).orderBy(desc(orders.createdAt))
+    const itemRows =
+      orderRows.length === 0
+        ? []
+        : await db
+            .select()
+            .from(orderItems)
+            .where(
+              inArray(
+                orderItems.orderId,
+                orderRows.map((o) => o.id),
+              ),
+            )
+    const itemsByOrder = new Map<string, typeof itemRows>()
+    for (const item of itemRows) {
+      const list = itemsByOrder.get(item.orderId) ?? []
+      list.push(item)
+      itemsByOrder.set(item.orderId, list)
+    }
+
+    return {
+      customer,
+      orders: orderRows.map((order) => ({ ...order, items: itemsByOrder.get(order.id) ?? [] })),
+    }
+  })
