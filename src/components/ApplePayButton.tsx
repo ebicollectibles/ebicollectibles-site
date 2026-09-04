@@ -85,7 +85,42 @@ export function ApplePayButton({
     }
   }
 
-  if (!available) return null
+  const applePayLogo = (
+    <svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <path d="M16.7 1.3c-1 1.2-2.6 2.1-4.2 2-.2-1.6.6-3.3 1.5-4.3C15 -.2 16.8-1 18.2-1c.1 1.6-.5 3.2-1.5 4.3zM19.6 8.2c-2.3-.1-4.3 1.3-5.4 1.3-1.1 0-2.8-1.3-4.6-1.2-2.4 0-4.6 1.4-5.8 3.5-2.5 4.3-.7 10.7 1.8 14.2 1.2 1.7 2.6 3.7 4.5 3.6 1.8-.1 2.5-1.2 4.6-1.2 2.2 0 2.8 1.2 4.6 1.1 1.9 0 3.2-1.7 4.4-3.4 1.4-2 2-3.9 2-4-.1 0-3.8-1.5-3.9-5.7-.1-3.5 2.8-5.2 3-5.3-1.6-2.4-4.1-2.7-5-2.9z" />
+    </svg>
+  )
+
+  if (!available) {
+    // Not yet live here (domain not verified with Square for Apple Pay yet,
+    // or the SDK just can't reach us) — show a matching placeholder instead
+    // of nothing, so checkout doesn't look unfinished. Deliberately inert:
+    // never wire this up to look clickable, since it isn't.
+    return (
+      <div
+        aria-hidden="true"
+        title="Apple Pay — coming soon"
+        style={{
+          width: '100%',
+          height: 44,
+          marginBottom: 14,
+          background: '#e3e6ea',
+          borderRadius: 4,
+          cursor: 'default',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          gap: 6,
+          color: '#98a1ab',
+          fontSize: 16,
+          fontWeight: 500,
+        }}
+      >
+        {applePayLogo}
+        Pay
+      </div>
+    )
+  }
 
   return (
     <button
@@ -111,9 +146,7 @@ export function ApplePayButton({
         fontWeight: 500,
       }}
     >
-      <svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-        <path d="M16.7 1.3c-1 1.2-2.6 2.1-4.2 2-.2-1.6.6-3.3 1.5-4.3C15 -.2 16.8-1 18.2-1c.1 1.6-.5 3.2-1.5 4.3zM19.6 8.2c-2.3-.1-4.3 1.3-5.4 1.3-1.1 0-2.8-1.3-4.6-1.2-2.4 0-4.6 1.4-5.8 3.5-2.5 4.3-.7 10.7 1.8 14.2 1.2 1.7 2.6 3.7 4.5 3.6 1.8-.1 2.5-1.2 4.6-1.2 2.2 0 2.8 1.2 4.6 1.1 1.9 0 3.2-1.7 4.4-3.4 1.4-2 2-3.9 2-4-.1 0-3.8-1.5-3.9-5.7-.1-3.5 2.8-5.2 3-5.3-1.6-2.4-4.1-2.7-5-2.9z" />
-      </svg>
+      {applePayLogo}
       Pay
     </button>
   )
