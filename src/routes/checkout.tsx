@@ -1,6 +1,7 @@
 import * as React from 'react'
 import { createFileRoute, Link } from '@tanstack/react-router'
 import { SquareCardField, squareConfigured, type SquareCardFieldHandle } from '~/components/SquareCardField'
+import { ApplePayButton } from '~/components/ApplePayButton'
 import { useCart, type CheckoutContact } from '~/lib/cart-context'
 import { formatMoney } from '~/lib/products'
 
@@ -54,14 +55,10 @@ function CheckoutPage() {
     onChange: (e: React.ChangeEvent<HTMLInputElement>) => setContact((c) => ({ ...c, [key]: e.target.value })),
   })
 
-  const submit = async () => {
+  const finishOrder = async (sourceId: string | null) => {
     setError(null)
     setSubmitting(true)
     try {
-      let sourceId: string | null = null
-      if (squareConfigured) {
-        sourceId = (await cardRef.current?.tokenize()) ?? null
-      }
       const result = await cart.placeOrder({ contact, sourceId })
       setConfirmed({ orderNo: result.orderNo, paymentStatus: result.paymentStatus })
     } catch (err) {
@@ -69,6 +66,19 @@ function CheckoutPage() {
     } finally {
       setSubmitting(false)
     }
+  }
+
+  const submit = async () => {
+    let sourceId: string | null = null
+    if (squareConfigured) {
+      try {
+        sourceId = (await cardRef.current?.tokenize()) ?? null
+      } catch (err) {
+        setError(err instanceof Error ? err.message : 'Card details could not be verified.')
+        return
+      }
+    }
+    await finishOrder(sourceId)
   }
 
   return (
@@ -122,7 +132,15 @@ function CheckoutPage() {
             <div style={monoLabel}>03 / Payment</div>
             <div style={{ marginTop: 14 }}>
               {squareConfigured ? (
-                <SquareCardField ref={cardRef} />
+                <>
+                  <ApplePayButton
+                    amount={cart.total}
+                    disabled={submitting}
+                    onTokenize={(sourceId) => finishOrder(sourceId)}
+                    onError={setError}
+                  />
+                  <SquareCardField ref={cardRef} />
+                </>
               ) : (
                 <>
                   <div className="ebi-checkout-2col">
