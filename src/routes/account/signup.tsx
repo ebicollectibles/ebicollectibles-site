@@ -54,7 +54,7 @@ function SignupPage() {
     setSubmitting(true)
     try {
       await customerSignup({ data: { email, password, name } })
-      navigate({ to: '/account' })
+      navigate({ to: '/account/orders' })
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Signup failed.')
     } finally {

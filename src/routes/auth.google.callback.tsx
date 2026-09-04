@@ -23,7 +23,7 @@ export const Route = createFileRoute('/auth/google/callback')({
         search: { error: err instanceof Error ? err.message : 'Google sign-in failed.' },
       })
     }
-    throw redirect({ to: '/account' })
+    throw redirect({ to: '/account/orders' })
   },
   component: () => null,
 })

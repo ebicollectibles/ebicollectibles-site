@@ -58,7 +58,7 @@ function LoginPage() {
     setSubmitting(true)
     try {
       await customerLogin({ data: { email, password } })
-      navigate({ to: '/account' })
+      navigate({ to: '/account/orders' })
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Login failed.')
     } finally {

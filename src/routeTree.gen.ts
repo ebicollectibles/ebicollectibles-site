@@ -16,6 +16,8 @@ import { Route as FaqRouteImport } from './routes/faq'
 import { Route as ShopRouteImport } from './routes/shop'
 import { Route as AccountIndexRouteImport } from './routes/account/index'
 import { Route as AccountLoginRouteImport } from './routes/account/login'
+import { Route as AccountOrdersRouteImport } from './routes/account/orders'
+import { Route as AccountProfileRouteImport } from './routes/account/profile'
 import { Route as AccountSignupRouteImport } from './routes/account/signup'
 import { Route as AdminIndexRouteImport } from './routes/admin/index'
 import { Route as AdminLoginRouteImport } from './routes/admin/login'
@@ -59,6 +61,16 @@ const AccountIndexRoute = AccountIndexRouteImport.update({
 const AccountLoginRoute = AccountLoginRouteImport.update({
   id: '/account/login',
   path: '/account/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AccountOrdersRoute = AccountOrdersRouteImport.update({
+  id: '/account/orders',
+  path: '/account/orders',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AccountProfileRoute = AccountProfileRouteImport.update({
+  id: '/account/profile',
+  path: '/account/profile',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AccountSignupRoute = AccountSignupRouteImport.update({
@@ -114,6 +126,8 @@ export interface FileRoutesByFullPath {
   '/faq': typeof FaqRoute
   '/shop': typeof ShopRoute
   '/account/login': typeof AccountLoginRoute
+  '/account/orders': typeof AccountOrdersRoute
+  '/account/profile': typeof AccountProfileRoute
   '/account/signup': typeof AccountSignupRoute
   '/admin/login': typeof AdminLoginRoute
   '/admin/orders': typeof AdminOrdersRoute
@@ -132,6 +146,8 @@ export interface FileRoutesByTo {
   '/faq': typeof FaqRoute
   '/shop': typeof ShopRoute
   '/account/login': typeof AccountLoginRoute
+  '/account/orders': typeof AccountOrdersRoute
+  '/account/profile': typeof AccountProfileRoute
   '/account/signup': typeof AccountSignupRoute
   '/admin/login': typeof AdminLoginRoute
   '/admin/orders': typeof AdminOrdersRoute
@@ -151,6 +167,8 @@ export interface FileRoutesById {
   '/faq': typeof FaqRoute
   '/shop': typeof ShopRoute
   '/account/login': typeof AccountLoginRoute
+  '/account/orders': typeof AccountOrdersRoute
+  '/account/profile': typeof AccountProfileRoute
   '/account/signup': typeof AccountSignupRoute
   '/admin/login': typeof AdminLoginRoute
   '/admin/orders': typeof AdminOrdersRoute
@@ -171,6 +189,8 @@ export interface FileRouteTypes {
     | '/faq'
     | '/shop'
     | '/account/login'
+    | '/account/orders'
+    | '/account/profile'
     | '/account/signup'
     | '/admin/login'
     | '/admin/orders'
@@ -189,6 +209,8 @@ export interface FileRouteTypes {
     | '/faq'
     | '/shop'
     | '/account/login'
+    | '/account/orders'
+    | '/account/profile'
     | '/account/signup'
     | '/admin/login'
     | '/admin/orders'
@@ -207,6 +229,8 @@ export interface FileRouteTypes {
     | '/faq'
     | '/shop'
     | '/account/login'
+    | '/account/orders'
+    | '/account/profile'
     | '/account/signup'
     | '/admin/login'
     | '/admin/orders'
@@ -226,6 +250,8 @@ export interface RootRouteChildren {
   FaqRoute: typeof FaqRoute
   ShopRoute: typeof ShopRoute
   AccountLoginRoute: typeof AccountLoginRoute
+  AccountOrdersRoute: typeof AccountOrdersRoute
+  AccountProfileRoute: typeof AccountProfileRoute
   AccountSignupRoute: typeof AccountSignupRoute
   AdminLoginRoute: typeof AdminLoginRoute
   AdminOrdersRoute: typeof AdminOrdersRoute
@@ -287,6 +313,20 @@ declare module '@tanstack/react-router' {
       path: '/account/login'
       fullPath: '/account/login'
       preLoaderRoute: typeof AccountLoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/account/orders': {
+      id: '/account/orders'
+      path: '/account/orders'
+      fullPath: '/account/orders'
+      preLoaderRoute: typeof AccountOrdersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/account/profile': {
+      id: '/account/profile'
+      path: '/account/profile'
+      fullPath: '/account/profile'
+      preLoaderRoute: typeof AccountProfileRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/account/signup': {
@@ -362,6 +402,8 @@ const rootRouteChildren: RootRouteChildren = {
   FaqRoute: FaqRoute,
   ShopRoute: ShopRoute,
   AccountLoginRoute: AccountLoginRoute,
+  AccountOrdersRoute: AccountOrdersRoute,
+  AccountProfileRoute: AccountProfileRoute,
   AccountSignupRoute: AccountSignupRoute,
   AdminLoginRoute: AdminLoginRoute,
   AdminOrdersRoute: AdminOrdersRoute,
