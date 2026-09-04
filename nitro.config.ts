@@ -28,10 +28,11 @@ export default defineNitroConfig({
       // directly, not just the workers.dev URL. Requires the zone to already
       // show "Active" in the Cloudflare dashboard (nameservers pointed at
       // Cloudflare) — otherwise the deploy step that provisions this route
-      // fails.
+      // fails. Custom Domain routes must be a bare hostname — no wildcard
+      // (*) or path suffix, unlike a normal Worker route pattern.
       routes: [
-        { pattern: 'ebicollectibles.com/*', custom_domain: true },
-        { pattern: 'www.ebicollectibles.com/*', custom_domain: true },
+        { pattern: 'ebicollectibles.com', custom_domain: true },
+        { pattern: 'www.ebicollectibles.com', custom_domain: true },
       ],
     },
   },
