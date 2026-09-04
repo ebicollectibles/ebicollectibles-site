@@ -16,7 +16,7 @@ const th: React.CSSProperties = {
   fontSize: 10.5,
   letterSpacing: '0.1em',
   textTransform: 'uppercase',
-  color: '#98a1ab',
+  color: '#131b28',
   padding: '10px 12px',
   borderBottom: '1px solid #131b28',
 }
@@ -40,7 +40,7 @@ function AdminCustomersPage() {
       />
       <h1 style={{ fontSize: 24, fontWeight: 700, marginTop: 24 }}>Customers</h1>
 
-      {customers.length === 0 && <p style={{ fontSize: 13.5, color: '#98a1ab', marginTop: 16 }}>No customer accounts yet.</p>}
+      {customers.length === 0 && <p style={{ fontSize: 13.5, color: '#131b28', marginTop: 16 }}>No customer accounts yet.</p>}
 
       <div style={{ overflowX: 'auto' }}>
         <table style={{ width: '100%', borderCollapse: 'collapse', marginTop: 20, minWidth: 640 }}>

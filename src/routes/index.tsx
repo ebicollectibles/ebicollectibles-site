@@ -11,7 +11,7 @@ const monoLabel: React.CSSProperties = {
   fontSize: 10.5,
   letterSpacing: '0.14em',
   textTransform: 'uppercase',
-  color: '#98a1ab',
+  color: '#131b28',
 }
 
 function HomePage() {
@@ -62,7 +62,7 @@ function HomePage() {
             >
               Sealed Chinese Pokémon, verified before it leaves the shelf.
             </h1>
-            <p style={{ fontSize: 16.5, lineHeight: 1.6, color: '#5a6875', maxWidth: '47ch', margin: '20px 0 0' }}>
+            <p style={{ fontSize: 16.5, lineHeight: 1.6, color: '#131b28', maxWidth: '47ch', margin: '20px 0 0' }}>
               We buy direct from authorised mainland distribution — never grey-market repacks. Every box is
               weight-checked, seam-inspected and photographed against its case code before we list it.
             </p>
@@ -174,7 +174,7 @@ function HomePage() {
             <div style={monoLabel}>Collection</div>
             <div>
               <div style={{ fontSize: 22, fontWeight: 700, letterSpacing: '-0.015em' }}>Booster boxes</div>
-              <div style={{ fontSize: 13, color: '#5a6875', marginTop: 6 }}>CBB &amp; CSV sets, sealed cases on request</div>
+              <div style={{ fontSize: 13, color: '#131b28', marginTop: 6 }}>CBB &amp; CSV sets, sealed cases on request</div>
             </div>
           </Link>
           <Link
@@ -194,7 +194,7 @@ function HomePage() {
             <div style={monoLabel}>Collection</div>
             <div>
               <div style={{ fontSize: 22, fontWeight: 700, letterSpacing: '-0.015em' }}>Figures &amp; blind boxes</div>
-              <div style={{ fontSize: 13, color: '#5a6875', marginTop: 6 }}>Poképeace, Hollybox, festival gift sets</div>
+              <div style={{ fontSize: 13, color: '#131b28', marginTop: 6 }}>Poképeace, Hollybox, festival gift sets</div>
             </div>
           </Link>
           <div

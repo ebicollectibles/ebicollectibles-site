@@ -19,7 +19,7 @@ function FaqPage() {
           fontSize: 10.5,
           letterSpacing: '0.14em',
           textTransform: 'uppercase',
-          color: '#98a1ab',
+          color: '#131b28',
         }}
       >
         Support
@@ -53,7 +53,7 @@ function FaqPage() {
                   </span>
                 </button>
                 {open && (
-                  <p style={{ fontSize: 14.5, lineHeight: 1.65, color: '#5a6875', margin: 0, padding: '0 24px 24px 4px', maxWidth: '72ch' }}>
+                  <p style={{ fontSize: 14.5, lineHeight: 1.65, color: '#131b28', margin: 0, padding: '0 24px 24px 4px', maxWidth: '72ch' }}>
                     {f.answer}
                   </p>
                 )}
@@ -70,7 +70,7 @@ function FaqPage() {
                 fontSize: 10.5,
                 letterSpacing: '0.14em',
                 textTransform: 'uppercase',
-                color: '#98a1ab',
+                color: '#131b28',
               }}
             >
               Shipping rates
@@ -90,7 +90,7 @@ function FaqPage() {
                 >
                   <div>
                     <div style={{ fontSize: 13.5, fontWeight: 600 }}>{r.label}</div>
-                    <div style={{ fontSize: 12, color: '#98a1ab' }}>{r.eta}</div>
+                    <div style={{ fontSize: 12, color: '#131b28' }}>{r.eta}</div>
                   </div>
                   <div style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 13 }}>{r.price}</div>
                 </div>
@@ -99,7 +99,7 @@ function FaqPage() {
           </div>
           <div style={{ background: '#f6f7f8', border: '1px solid #e3e6ea', borderTop: 0, padding: 24 }}>
             <div style={{ fontSize: 13.5, fontWeight: 600 }}>Still stuck?</div>
-            <p style={{ fontSize: 13, lineHeight: 1.6, color: '#5a6875', margin: '8px 0 14px' }}>
+            <p style={{ fontSize: 13, lineHeight: 1.6, color: '#131b28', margin: '8px 0 14px' }}>
               We answer every message within one business day, usually much faster.
             </p>
             <a href="mailto:hello@ebicollectibles.com" style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 12.5, color: '#3f7a63' }}>

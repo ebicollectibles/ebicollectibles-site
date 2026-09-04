@@ -79,7 +79,7 @@ function SignupPage() {
   return (
     <section style={{ maxWidth: 400, margin: '0 auto', padding: '70px 24px 100px', fontFamily: 'Archivo, Helvetica, sans-serif' }}>
       <h1 style={{ fontSize: 26, fontWeight: 700, marginBottom: 6 }}>Create an account</h1>
-      <p style={{ fontSize: 13.5, color: '#5a6875', marginBottom: 28 }}>
+      <p style={{ fontSize: 13.5, color: '#131b28', marginBottom: 28 }}>
         Already have one?{' '}
         <Link to="/account/login" style={{ color: '#131b28', fontWeight: 600 }}>
           Log in

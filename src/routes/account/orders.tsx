@@ -27,7 +27,7 @@ function OrdersPage() {
 
       {orders.length === 0 ? (
         <div style={{ textAlign: 'center', padding: '70px 20px' }}>
-          <p style={{ fontSize: 15, color: '#5a6875', marginBottom: 20 }}>No orders yet — ready to shop?</p>
+          <p style={{ fontSize: 15, color: '#131b28', marginBottom: 20 }}>No orders yet — ready to shop?</p>
           <Link
             to="/"
             className="ebi-btn-dark"
@@ -62,7 +62,7 @@ function OrdersPage() {
                     <span>
                       {item.qty}× {item.productName}
                     </span>
-                    <span style={{ fontFamily: "'IBM Plex Mono', monospace", color: '#5a6875' }}>
+                    <span style={{ fontFamily: "'IBM Plex Mono', monospace", color: '#131b28' }}>
                       {formatMoney(item.unitPrice * item.qty)}
                     </span>
                   </div>
@@ -70,15 +70,15 @@ function OrdersPage() {
               </div>
 
               <div style={{ marginTop: 14, paddingTop: 12, borderTop: '1px solid #e3e6ea', display: 'flex', flexDirection: 'column', gap: 4 }}>
-                <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 12, color: '#98a1ab' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 12, color: '#131b28' }}>
                   <span>Subtotal</span>
                   <span>{formatMoney(order.subtotal)}</span>
                 </div>
-                <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 12, color: '#98a1ab' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 12, color: '#131b28' }}>
                   <span>Shipping</span>
                   <span>{formatMoney(order.shippingCost)}</span>
                 </div>
-                <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 12, color: '#98a1ab' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 12, color: '#131b28' }}>
                   <span>Tax</span>
                   <span>{formatMoney(order.tax)}</span>
                 </div>

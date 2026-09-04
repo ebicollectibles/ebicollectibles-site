@@ -20,7 +20,7 @@ export function Footer() {
             />
             <span style={{ fontSize: 14, fontWeight: 700, letterSpacing: '0.16em' }}>EBI COLLECTIBLES</span>
           </div>
-          <p style={{ fontSize: 13, lineHeight: 1.6, color: '#5a6875', margin: '14px 0 0', maxWidth: '34ch' }}>
+          <p style={{ fontSize: 13, lineHeight: 1.6, color: '#131b28', margin: '14px 0 0', maxWidth: '34ch' }}>
             Simplified Chinese Pokémon boxes, figures and blind boxes — sourced through authorised distribution and
             verified in-house.
           </p>
@@ -32,7 +32,7 @@ export function Footer() {
               fontSize: 10.5,
               letterSpacing: '0.14em',
               textTransform: 'uppercase',
-              color: '#98a1ab',
+              color: '#131b28',
             }}
           >
             Shop
@@ -54,7 +54,7 @@ export function Footer() {
               fontSize: 10.5,
               letterSpacing: '0.14em',
               textTransform: 'uppercase',
-              color: '#98a1ab',
+              color: '#131b28',
             }}
           >
             Help
@@ -72,7 +72,7 @@ export function Footer() {
               fontSize: 10.5,
               letterSpacing: '0.14em',
               textTransform: 'uppercase',
-              color: '#98a1ab',
+              color: '#131b28',
             }}
           >
             Elsewhere

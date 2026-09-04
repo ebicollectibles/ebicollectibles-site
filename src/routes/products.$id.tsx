@@ -15,7 +15,7 @@ const monoLabel: React.CSSProperties = {
   fontSize: 10.5,
   letterSpacing: '0.14em',
   textTransform: 'uppercase',
-  color: '#98a1ab',
+  color: '#131b28',
 }
 
 function ProductDetailPage() {
@@ -170,7 +170,7 @@ function ProductDetailPage() {
         </div>
 
         <div>
-          <div style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 11, letterSpacing: '0.12em', color: '#98a1ab' }}>
+          <div style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 11, letterSpacing: '0.12em', color: '#131b28' }}>
             {product.code} · {product.type}
           </div>
           <h1 style={{ fontSize: 32, letterSpacing: '-0.02em', fontWeight: 700, lineHeight: 1.15, margin: '10px 0 0', textWrap: 'pretty' }}>
@@ -182,11 +182,11 @@ function ProductDetailPage() {
                 {formatMoney(product.compareAtPrice!)}
               </span>
             )}
-            <span style={{ fontSize: 26, fontWeight: 700, color: onSale ? '#b4622f' : '#131b28' }}>{formatMoney(product.price)}</span>
+            <span style={{ fontSize: 26, fontWeight: 700, color: '#131b28' }}>{formatMoney(product.price)}</span>
             <span style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 12, color: stockColor }}>{stockLabel}</span>
           </div>
 
-          <p style={{ fontSize: 14.5, lineHeight: 1.65, color: '#5a6875', maxWidth: '52ch', margin: '20px 0 0' }}>
+          <p style={{ fontSize: 14.5, lineHeight: 1.65, color: '#131b28', maxWidth: '52ch', margin: '20px 0 0' }}>
             Sourced through authorised mainland distribution — never a grey-market repack. This unit is
             weight-checked against factory spec, seam-inspected and photographed against its case code before it
             ships, with those photos included in your tracking email.

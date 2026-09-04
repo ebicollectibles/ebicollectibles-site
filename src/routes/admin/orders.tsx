@@ -31,7 +31,7 @@ function AdminOrdersPage() {
       />
       <h1 style={{ fontSize: 24, fontWeight: 700, marginTop: 24 }}>Orders</h1>
 
-      {orders.length === 0 && <p style={{ fontSize: 13.5, color: '#98a1ab', marginTop: 16 }}>No orders yet.</p>}
+      {orders.length === 0 && <p style={{ fontSize: 13.5, color: '#131b28', marginTop: 16 }}>No orders yet.</p>}
 
       <div style={{ marginTop: 20, display: 'flex', flexDirection: 'column', gap: 12 }}>
         {orders.map((order) => (
@@ -41,7 +41,7 @@ function AdminOrdersPage() {
                 <span style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 13, fontWeight: 600 }}>
                   #EBI-{order.orderNo}
                 </span>
-                <span style={{ fontSize: 12.5, color: '#98a1ab', marginLeft: 10 }}>
+                <span style={{ fontSize: 12.5, color: '#131b28', marginLeft: 10 }}>
                   {order.firstName} {order.lastName} · {order.email}
                 </span>
               </div>
@@ -61,7 +61,7 @@ function AdminOrdersPage() {
                 </span>
               </div>
             </div>
-            <div style={{ marginTop: 10, fontSize: 12.5, color: '#5a6875' }}>
+            <div style={{ marginTop: 10, fontSize: 12.5, color: '#131b28' }}>
               {order.items.map((item) => `${item.qty}× ${item.productName}`).join(', ')}
             </div>
             <div style={{ marginTop: 8, fontSize: 11.5, color: '#98a1ab' }}>

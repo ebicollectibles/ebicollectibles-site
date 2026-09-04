@@ -28,7 +28,7 @@ const monoLabel: React.CSSProperties = {
   fontSize: 10.5,
   letterSpacing: '0.14em',
   textTransform: 'uppercase',
-  color: '#98a1ab',
+  color: '#131b28',
 }
 
 function ShopPage() {
@@ -120,7 +120,7 @@ function ShopPage() {
           onChange={(e) => setMaxPrice(Number(e.target.value))}
           style={{ width: '100%', accentColor: '#131b28' }}
         />
-        <div style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 11.5, color: '#5a6875', marginTop: 8 }}>
+        <div style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 11.5, color: '#131b28', marginTop: 8 }}>
           up to ${maxPrice}.00
         </div>
       </div>
@@ -210,7 +210,7 @@ function ShopPage() {
           </div>
         </div>
         <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-          <span style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 10.5, letterSpacing: '0.12em', textTransform: 'uppercase', color: '#98a1ab' }}>
+          <span style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 10.5, letterSpacing: '0.12em', textTransform: 'uppercase', color: '#131b28' }}>
             Sort
           </span>
           <select

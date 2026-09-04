@@ -48,7 +48,7 @@ function AdminLoginPage() {
             fontSize: 10.5,
             letterSpacing: '0.14em',
             textTransform: 'uppercase',
-            color: '#98a1ab',
+            color: '#131b28',
             marginTop: 4,
           }}
         >

@@ -17,7 +17,7 @@ const th: React.CSSProperties = {
   fontSize: 10.5,
   letterSpacing: '0.1em',
   textTransform: 'uppercase',
-  color: '#98a1ab',
+  color: '#131b28',
   padding: '10px 12px',
   borderBottom: '1px solid #131b28',
 }

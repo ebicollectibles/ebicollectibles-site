@@ -46,7 +46,7 @@ function AdminCustomerDetailPage() {
 
       <div style={{ marginTop: 14, display: 'flex', alignItems: 'baseline', gap: 12 }}>
         <h1 style={{ fontSize: 24, fontWeight: 700, margin: 0 }}>{customer.name || customer.email}</h1>
-        {customer.name && <span style={{ fontSize: 13.5, color: '#5a6875' }}>{customer.email}</span>}
+        {customer.name && <span style={{ fontSize: 13.5, color: '#131b28' }}>{customer.email}</span>}
       </div>
       <div style={{ marginTop: 8, display: 'flex', gap: 16, fontSize: 12.5, color: '#5a6875' }}>
         <span>{customer.hasPassword && customer.hasGoogle ? 'Password + Google sign-in' : customer.hasGoogle ? 'Google sign-in' : 'Password sign-in'}</span>
@@ -58,7 +58,7 @@ function AdminCustomerDetailPage() {
 
       <h2 style={{ fontSize: 15, fontWeight: 700, marginTop: 36, marginBottom: 16 }}>Order history</h2>
 
-      {orders.length === 0 && <p style={{ fontSize: 13.5, color: '#98a1ab' }}>No orders yet.</p>}
+      {orders.length === 0 && <p style={{ fontSize: 13.5, color: '#131b28' }}>No orders yet.</p>}
 
       <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
         {orders.map((order) => (
@@ -83,7 +83,7 @@ function AdminCustomerDetailPage() {
                 </span>
               </div>
             </div>
-            <div style={{ marginTop: 10, fontSize: 12.5, color: '#5a6875' }}>
+            <div style={{ marginTop: 10, fontSize: 12.5, color: '#131b28' }}>
               {order.items.map((item) => `${item.qty}× ${item.productName}`).join(', ')}
             </div>
             <div style={{ marginTop: 8, fontSize: 11.5, color: '#98a1ab' }}>

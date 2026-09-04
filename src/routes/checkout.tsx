@@ -16,7 +16,7 @@ const monoLabel: React.CSSProperties = {
   fontSize: 10.5,
   letterSpacing: '0.14em',
   textTransform: 'uppercase',
-  color: '#98a1ab',
+  color: '#131b28',
 }
 
 const fieldStyle: React.CSSProperties = {
@@ -206,19 +206,19 @@ function CheckoutPage() {
             ))}
           </div>
           {cart.cartEmpty && (
-            <p style={{ fontSize: 13.5, color: '#98a1ab', margin: '4px 0 0' }}>Your cart is empty — add a box to check out.</p>
+            <p style={{ fontSize: 13.5, color: '#131b28', margin: '4px 0 0' }}>Your cart is empty — add a box to check out.</p>
           )}
           <div style={{ marginTop: 22, paddingTop: 18, borderTop: '1px solid #e3e6ea', display: 'flex', flexDirection: 'column', gap: 9, fontSize: 13.5 }}>
             <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-              <span style={{ color: '#5a6875' }}>Subtotal</span>
+              <span style={{ color: '#131b28' }}>Subtotal</span>
               <span style={{ fontFamily: "'IBM Plex Mono', monospace" }}>{formatMoney(cart.subtotal)}</span>
             </div>
             <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-              <span style={{ color: '#5a6875' }}>Shipping</span>
+              <span style={{ color: '#131b28' }}>Shipping</span>
               <span style={{ fontFamily: "'IBM Plex Mono', monospace" }}>{cart.shippingLabel}</span>
             </div>
             <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-              <span style={{ color: '#5a6875' }}>Estimated tax</span>
+              <span style={{ color: '#131b28' }}>Estimated tax</span>
               <span style={{ fontFamily: "'IBM Plex Mono', monospace" }}>{formatMoney(cart.tax)}</span>
             </div>
           </div>
@@ -278,7 +278,7 @@ function Confirmation({ orderNo, paymentStatus }: { orderNo: number; paymentStat
         ✓
       </div>
       <h1 style={{ fontSize: 32, letterSpacing: '-0.02em', fontWeight: 700, margin: '24px 0 0' }}>Order confirmed</h1>
-      <p style={{ fontSize: 15, lineHeight: 1.65, color: '#5a6875', margin: '12px 0 0' }}>
+      <p style={{ fontSize: 15, lineHeight: 1.65, color: '#131b28', margin: '12px 0 0' }}>
         Order <span style={{ fontFamily: "'IBM Plex Mono', monospace" }}>#EBI-{orderNo}</span> is in the queue.
         You'll get the authentication photo set and tracking number by email within 48 hours.
       </p>

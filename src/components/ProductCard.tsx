@@ -111,7 +111,7 @@ export function ProductCard({ product, variant = 'full' }: { product: Product; v
             {formatMoney(product.compareAtPrice!)}
           </span>
         )}
-        <span style={{ fontSize: priceFontSize, fontWeight: 600, color: onSale ? '#b4622f' : '#131b28' }}>
+        <span style={{ fontSize: priceFontSize, fontWeight: 600, color: '#131b28' }}>
           {formatMoney(product.price)}
         </span>
       </div>

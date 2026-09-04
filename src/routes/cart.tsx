@@ -14,7 +14,7 @@ const monoLabel: React.CSSProperties = {
   fontSize: 10.5,
   letterSpacing: '0.14em',
   textTransform: 'uppercase',
-  color: '#98a1ab',
+  color: '#131b28',
 }
 
 function CartPage() {
@@ -29,7 +29,7 @@ function CartPage() {
       {cartEmpty ? (
         <div style={{ border: '1px solid #e3e6ea', marginTop: 32, padding: '70px 24px', textAlign: 'center' }}>
           <div style={{ fontSize: 16, fontWeight: 600 }}>Your cart is empty.</div>
-          <p style={{ fontSize: 13.5, color: '#98a1ab', margin: '8px 0 20px' }}>
+          <p style={{ fontSize: 13.5, color: '#131b28', margin: '8px 0 20px' }}>
             Sealed Chinese boxes move fast — grab one while it's live.
           </p>
           <Link
@@ -73,7 +73,7 @@ function CartPage() {
                       {formatMoney(line.lineTotal)}
                     </div>
                   </div>
-                  <div style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 13, color: '#98a1ab', marginTop: 6 }}>
+                  <div style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 13, color: '#131b28', marginTop: 6 }}>
                     {formatMoney(line.product.price)}
                   </div>
                   <div style={{ flex: 1, minHeight: 14 }} />
@@ -137,7 +137,7 @@ function CartPage() {
           <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: 28 }}>
             <div style={{ width: '100%', maxWidth: 320 }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline' }}>
-                <span style={{ fontSize: 14, color: '#5a6875' }}>Subtotal ({cartCount} item{cartCount === 1 ? '' : 's'})</span>
+                <span style={{ fontSize: 14, color: '#131b28' }}>Subtotal ({cartCount} item{cartCount === 1 ? '' : 's'})</span>
                 <span style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 20, fontWeight: 500 }}>{formatMoney(subtotal)}</span>
               </div>
               <div style={{ fontSize: 11.5, color: '#98a1ab', marginTop: 8 }}>Shipping and tax are calculated at checkout.</div>
