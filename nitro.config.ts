@@ -24,6 +24,15 @@ export default defineNitroConfig({
       // bucket itself has to be created once (see README-DEPLOY.md) —
       // this just wires the binding so the Worker can reach it.
       r2_buckets: [{ binding: 'PRODUCT_IMAGES', bucket_name: 'ebicollectibles-product-images' }],
+      // Binds the real domain to this Worker so it serves ebicollectibles.com
+      // directly, not just the workers.dev URL. Requires the zone to already
+      // show "Active" in the Cloudflare dashboard (nameservers pointed at
+      // Cloudflare) — otherwise the deploy step that provisions this route
+      // fails.
+      routes: [
+        { pattern: 'ebicollectibles.com/*', custom_domain: true },
+        { pattern: 'www.ebicollectibles.com/*', custom_domain: true },
+      ],
     },
   },
 })
