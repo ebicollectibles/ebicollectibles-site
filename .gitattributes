@@ -1,0 +1,10 @@
+# Force LF line endings for all text files, regardless of each contributor's
+# local core.autocrlf setting. Without this, a Windows checkout can silently
+# convert LF -> CRLF on disk, which changes the exact byte content of a file
+# — and drizzle-kit hashes migration files by raw content to decide whether
+# they've already been applied. A CRLF-converted migration file hashes
+# differently than the LF version committed to the repo, so `drizzle-kit
+# migrate` never recognizes it as already-run and silently fails instead of
+# reporting a clear error (a real upstream bug — see git history/session
+# notes around the migration 0006-0009 debugging).
+* text=auto eol=lf
