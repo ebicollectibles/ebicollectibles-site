@@ -32,6 +32,11 @@ export function AddToCartControl({
 }) {
   const { addToCart, bump, lines } = useCart()
   const [justAdded, setJustAdded] = React.useState(false)
+  // Bumped on every add click (even while justAdded is already true from a
+  // rapid double-tap) and used as the checkmark's key, so the icon always
+  // remounts and replays its draw-in animation instead of silently no-op'ing
+  // when React sees the same true -> true state.
+  const [addTick, setAddTick] = React.useState(0)
   const revertTimer = React.useRef<ReturnType<typeof setTimeout> | undefined>(undefined)
 
   const qtyInCart = lines.find((l) => l.product.id === product.id)?.qty ?? 0
@@ -55,6 +60,7 @@ export function AddToCartControl({
   const handleAdd = () => {
     addToCart(product)
     setJustAdded(true)
+    setAddTick((t) => t + 1)
     clearTimeout(revertTimer.current)
     revertTimer.current = setTimeout(() => setJustAdded(false), 1400)
   }
@@ -95,6 +101,7 @@ export function AddToCartControl({
         <span
           style={{
             flex: 1,
+            minWidth: 0,
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
@@ -104,6 +111,7 @@ export function AddToCartControl({
             fontWeight: 600,
             lineHeight: 1,
             padding,
+            whiteSpace: 'nowrap',
           }}
         >
           <span
@@ -112,7 +120,9 @@ export function AddToCartControl({
           >
             {qtyInCart}
           </span>
-          <span style={{ fontWeight: 500, opacity: 0.7 }}>in cart</span>
+          <span className="ebi-qty-suffix" style={{ fontWeight: 500, opacity: 0.7 }}>
+            in cart
+          </span>
         </span>
         <button
           type="button"
@@ -159,7 +169,7 @@ export function AddToCartControl({
       }}
     >
       {justAdded ? (
-        <svg className="ebi-atc-check" viewBox="0 0 24 24" fill="none">
+        <svg key={addTick} className="ebi-atc-check" viewBox="0 0 24 24" fill="none">
           <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="2" />
           <path d="M7 12.5l3 3 7-7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
         </svg>

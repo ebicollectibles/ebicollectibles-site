@@ -127,6 +127,18 @@ button {
 
 .ebi-qty-stepper {
   animation: ebi-qty-in 0.2s ease;
+  container-type: inline-size;
+}
+
+/* Hide the "in cart" wording once the pill itself is too narrow to fit it
+   next to the qty digit without wrapping — keyed to the stepper's own
+   width via a container query rather than a page breakpoint, since the
+   same component renders at very different widths (compact grid card vs.
+   full-width product page) regardless of viewport size. */
+@container (max-width: 170px) {
+  .ebi-qty-suffix {
+    display: none;
+  }
 }
 
 @keyframes ebi-qty-in {
