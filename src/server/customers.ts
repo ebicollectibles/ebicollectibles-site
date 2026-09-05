@@ -1,7 +1,15 @@
 import { createServerFn } from '@tanstack/react-start'
 import { z } from 'zod'
 import { hashPassword, verifyPassword } from '~/lib/auth/password'
-import { getCurrentUserId, setCustomerSession, recordAuthEvent, touchLastLogin, resendConfigured, sendVerificationCode } from './customer-auth'
+import {
+  getCurrentUserId,
+  setCustomerSession,
+  recordAuthEvent,
+  touchLastLogin,
+  resendConfigured,
+  sendVerificationCode,
+  sendPasswordResetCode,
+} from './customer-auth'
 import type { getDb } from '~/lib/db/client'
 
 // Db/schema imports are dynamic (not top-level) throughout this file —
@@ -155,6 +163,80 @@ export const resendVerificationCode = createServerFn({ method: 'POST' })
     if (user.emailVerifiedAt) return { ok: true }
 
     await sendVerificationCode(user.id, email)
+    return { ok: true }
+  })
+
+export const requestPasswordReset = createServerFn({ method: 'POST' })
+  .validator(z.object({ email: z.string().email() }))
+  .handler(async ({ data }) => {
+    const { getDb } = await import('~/lib/db/client')
+    const { users } = await import('~/lib/db/schema')
+    const { eq } = await import('drizzle-orm')
+    const db = getDb()
+    const email = normalizeEmail(data.email)
+
+    const [user] = await db.select().from(users).where(eq(users.email, email)).limit(1)
+    if (!user) throw new Error('No account found with that email.')
+    if (!user.passwordHash) throw new Error('This account uses Google sign-in — there is no password to reset.')
+
+    await sendPasswordResetCode(user.id, email)
+    return { ok: true }
+  })
+
+export const resetPasswordWithCode = createServerFn({ method: 'POST' })
+  .validator(
+    z.object({
+      email: z.string().email(),
+      code: z.string().min(1),
+      newPassword: z.string().min(8, 'Password must be at least 8 characters.'),
+    }),
+  )
+  .handler(async ({ data }) => {
+    const { getDb } = await import('~/lib/db/client')
+    const { users, passwordResetCodes } = await import('~/lib/db/schema')
+    const { eq } = await import('drizzle-orm')
+    const db = getDb()
+    const email = normalizeEmail(data.email)
+
+    const [user] = await db.select().from(users).where(eq(users.email, email)).limit(1)
+    if (!user) throw new Error('Account not found.')
+
+    const [pending] = await db.select().from(passwordResetCodes).where(eq(passwordResetCodes.userId, user.id)).limit(1)
+    if (!pending) throw new Error('No reset code pending — request a new one.')
+    if (pending.expiresAt.getTime() < Date.now()) throw new Error('That code expired — request a new one.')
+    if (pending.attempts >= 5) throw new Error('Too many incorrect attempts — request a new code.')
+
+    if (pending.code !== data.code.trim()) {
+      await db
+        .update(passwordResetCodes)
+        .set({ attempts: pending.attempts + 1 })
+        .where(eq(passwordResetCodes.userId, user.id))
+      throw new Error('Incorrect code.')
+    }
+
+    const passwordHash = await hashPassword(data.newPassword)
+    await db.update(users).set({ passwordHash, updatedAt: new Date() }).where(eq(users.id, user.id))
+    await db.delete(passwordResetCodes).where(eq(passwordResetCodes.userId, user.id))
+    await setCustomerSession(user.id)
+    await recordAuthEvent({ userId: user.id, email, type: 'password_reset' })
+    await touchLastLogin(user.id)
+    return { ok: true }
+  })
+
+export const resendPasswordResetCode = createServerFn({ method: 'POST' })
+  .validator(z.object({ email: z.string().email() }))
+  .handler(async ({ data }) => {
+    const { getDb } = await import('~/lib/db/client')
+    const { users } = await import('~/lib/db/schema')
+    const { eq } = await import('drizzle-orm')
+    const db = getDb()
+    const email = normalizeEmail(data.email)
+
+    const [user] = await db.select().from(users).where(eq(users.email, email)).limit(1)
+    if (!user) throw new Error('Account not found.')
+    if (!user.passwordHash) throw new Error('This account uses Google sign-in — there is no password to reset.')
+
+    await sendPasswordResetCode(user.id, email)
     return { ok: true }
   })
 

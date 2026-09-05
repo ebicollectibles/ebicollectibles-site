@@ -107,13 +107,18 @@ function LoginPage() {
       <form onSubmit={submit}>
         <label style={label}>Email</label>
         <input type="email" required value={email} onChange={(e) => setEmail(e.target.value)} style={field} />
-        <label style={{ ...label, marginTop: 14 }}>Password</label>
+        <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', marginTop: 14 }}>
+          <label style={{ ...label, marginTop: 0, marginBottom: 0 }}>Password</label>
+          <Link to="/account/forgot-password" style={{ fontSize: 12, color: '#5a6875' }}>
+            Forgot password?
+          </Link>
+        </div>
         <input
           type="password"
           required
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          style={field}
+          style={{ ...field, marginTop: 6 }}
         />
         {error && <p style={{ fontSize: 12.5, color: '#b4622f', marginTop: 14 }}>{error}</p>}
         <button type="submit" disabled={submitting} style={{ ...submitBtn, marginTop: 20, opacity: submitting ? 0.6 : 1 }}>

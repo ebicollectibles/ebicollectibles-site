@@ -110,3 +110,21 @@ export async function sendVerificationCode(userId: string, email: string) {
   const { sendVerificationCodeEmail } = await import('./email')
   await sendVerificationCodeEmail({ email, code })
 }
+
+// --- Password reset codes ---
+
+/** Same shape as sendVerificationCode, against the separate passwordResetCodes table. */
+export async function sendPasswordResetCode(userId: string, email: string) {
+  const { getDb } = await import('~/lib/db/client')
+  const { passwordResetCodes } = await import('~/lib/db/schema')
+  const db = getDb()
+  const code = generateVerificationCode()
+  const expiresAt = new Date(Date.now() + 15 * 60 * 1000)
+  await db
+    .insert(passwordResetCodes)
+    .values({ userId, code, expiresAt, attempts: 0 })
+    .onConflictDoUpdate({ target: passwordResetCodes.userId, set: { code, expiresAt, attempts: 0 } })
+
+  const { sendPasswordResetCodeEmail } = await import('./email')
+  await sendPasswordResetCodeEmail({ email, code })
+}

@@ -71,6 +71,13 @@
       "when": 1788567601027,
       "tag": "0009_foamy_azazel",
       "breakpoints": true
+    },
+    {
+      "idx": 10,
+      "version": "7",
+      "when": 1788571899242,
+      "tag": "0010_calm_christian_walker",
+      "breakpoints": true
     }
   ]
 }

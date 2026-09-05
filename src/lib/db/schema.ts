@@ -53,6 +53,19 @@ export const emailVerificationCodes = pgTable('email_verification_codes', {
   createdAt: timestamp('created_at', { withTimezone: true }).notNull().defaultNow(),
 })
 
+// Same shape/lifecycle as emailVerificationCodes, kept as a separate table
+// since the two mean different things — a valid email-verification code
+// should never double as a password-reset code or vice versa.
+export const passwordResetCodes = pgTable('password_reset_codes', {
+  userId: uuid('user_id')
+    .primaryKey()
+    .references(() => users.id, { onDelete: 'cascade' }),
+  code: text('code').notNull(),
+  expiresAt: timestamp('expires_at', { withTimezone: true }).notNull(),
+  attempts: integer('attempts').notNull().default(0),
+  createdAt: timestamp('created_at', { withTimezone: true }).notNull().defaultNow(),
+})
+
 // Lightweight security/support log — separate from Google Analytics, which
 // tracks anonymous browsing behavior. This tracks account-security-relevant
 // actions on known accounts: signups, logins (successful and failed),

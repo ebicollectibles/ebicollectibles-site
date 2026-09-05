@@ -15,9 +15,11 @@ import { Route as CheckoutRouteImport } from './routes/checkout'
 import { Route as FaqRouteImport } from './routes/faq'
 import { Route as ShopRouteImport } from './routes/shop'
 import { Route as AccountIndexRouteImport } from './routes/account/index'
+import { Route as AccountForgotPasswordRouteImport } from './routes/account/forgot-password'
 import { Route as AccountLoginRouteImport } from './routes/account/login'
 import { Route as AccountOrdersRouteImport } from './routes/account/orders'
 import { Route as AccountProfileRouteImport } from './routes/account/profile'
+import { Route as AccountResetPasswordRouteImport } from './routes/account/reset-password'
 import { Route as AccountSignupRouteImport } from './routes/account/signup'
 import { Route as AccountVerifyRouteImport } from './routes/account/verify'
 import { Route as AdminIndexRouteImport } from './routes/admin/index'
@@ -61,6 +63,11 @@ const AccountIndexRoute = AccountIndexRouteImport.update({
   path: '/account/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AccountForgotPasswordRoute = AccountForgotPasswordRouteImport.update({
+  id: '/account/forgot-password',
+  path: '/account/forgot-password',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AccountLoginRoute = AccountLoginRouteImport.update({
   id: '/account/login',
   path: '/account/login',
@@ -74,6 +81,11 @@ const AccountOrdersRoute = AccountOrdersRouteImport.update({
 const AccountProfileRoute = AccountProfileRouteImport.update({
   id: '/account/profile',
   path: '/account/profile',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AccountResetPasswordRoute = AccountResetPasswordRouteImport.update({
+  id: '/account/reset-password',
+  path: '/account/reset-password',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AccountSignupRoute = AccountSignupRouteImport.update({
@@ -143,9 +155,11 @@ export interface FileRoutesByFullPath {
   '/checkout': typeof CheckoutRoute
   '/faq': typeof FaqRoute
   '/shop': typeof ShopRoute
+  '/account/forgot-password': typeof AccountForgotPasswordRoute
   '/account/login': typeof AccountLoginRoute
   '/account/orders': typeof AccountOrdersRoute
   '/account/profile': typeof AccountProfileRoute
+  '/account/reset-password': typeof AccountResetPasswordRoute
   '/account/signup': typeof AccountSignupRoute
   '/account/verify': typeof AccountVerifyRoute
   '/admin/login': typeof AdminLoginRoute
@@ -166,9 +180,11 @@ export interface FileRoutesByTo {
   '/checkout': typeof CheckoutRoute
   '/faq': typeof FaqRoute
   '/shop': typeof ShopRoute
+  '/account/forgot-password': typeof AccountForgotPasswordRoute
   '/account/login': typeof AccountLoginRoute
   '/account/orders': typeof AccountOrdersRoute
   '/account/profile': typeof AccountProfileRoute
+  '/account/reset-password': typeof AccountResetPasswordRoute
   '/account/signup': typeof AccountSignupRoute
   '/account/verify': typeof AccountVerifyRoute
   '/admin/login': typeof AdminLoginRoute
@@ -190,9 +206,11 @@ export interface FileRoutesById {
   '/checkout': typeof CheckoutRoute
   '/faq': typeof FaqRoute
   '/shop': typeof ShopRoute
+  '/account/forgot-password': typeof AccountForgotPasswordRoute
   '/account/login': typeof AccountLoginRoute
   '/account/orders': typeof AccountOrdersRoute
   '/account/profile': typeof AccountProfileRoute
+  '/account/reset-password': typeof AccountResetPasswordRoute
   '/account/signup': typeof AccountSignupRoute
   '/account/verify': typeof AccountVerifyRoute
   '/admin/login': typeof AdminLoginRoute
@@ -215,9 +233,11 @@ export interface FileRouteTypes {
     | '/checkout'
     | '/faq'
     | '/shop'
+    | '/account/forgot-password'
     | '/account/login'
     | '/account/orders'
     | '/account/profile'
+    | '/account/reset-password'
     | '/account/signup'
     | '/account/verify'
     | '/admin/login'
@@ -238,9 +258,11 @@ export interface FileRouteTypes {
     | '/checkout'
     | '/faq'
     | '/shop'
+    | '/account/forgot-password'
     | '/account/login'
     | '/account/orders'
     | '/account/profile'
+    | '/account/reset-password'
     | '/account/signup'
     | '/account/verify'
     | '/admin/login'
@@ -261,9 +283,11 @@ export interface FileRouteTypes {
     | '/checkout'
     | '/faq'
     | '/shop'
+    | '/account/forgot-password'
     | '/account/login'
     | '/account/orders'
     | '/account/profile'
+    | '/account/reset-password'
     | '/account/signup'
     | '/account/verify'
     | '/admin/login'
@@ -285,9 +309,11 @@ export interface RootRouteChildren {
   CheckoutRoute: typeof CheckoutRoute
   FaqRoute: typeof FaqRoute
   ShopRoute: typeof ShopRoute
+  AccountForgotPasswordRoute: typeof AccountForgotPasswordRoute
   AccountLoginRoute: typeof AccountLoginRoute
   AccountOrdersRoute: typeof AccountOrdersRoute
   AccountProfileRoute: typeof AccountProfileRoute
+  AccountResetPasswordRoute: typeof AccountResetPasswordRoute
   AccountSignupRoute: typeof AccountSignupRoute
   AccountVerifyRoute: typeof AccountVerifyRoute
   AdminLoginRoute: typeof AdminLoginRoute
@@ -347,6 +373,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AccountIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/account/forgot-password': {
+      id: '/account/forgot-password'
+      path: '/account/forgot-password'
+      fullPath: '/account/forgot-password'
+      preLoaderRoute: typeof AccountForgotPasswordRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/account/login': {
       id: '/account/login'
       path: '/account/login'
@@ -366,6 +399,13 @@ declare module '@tanstack/react-router' {
       path: '/account/profile'
       fullPath: '/account/profile'
       preLoaderRoute: typeof AccountProfileRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/account/reset-password': {
+      id: '/account/reset-password'
+      path: '/account/reset-password'
+      fullPath: '/account/reset-password'
+      preLoaderRoute: typeof AccountResetPasswordRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/account/signup': {
@@ -461,9 +501,11 @@ const rootRouteChildren: RootRouteChildren = {
   CheckoutRoute: CheckoutRoute,
   FaqRoute: FaqRoute,
   ShopRoute: ShopRoute,
+  AccountForgotPasswordRoute: AccountForgotPasswordRoute,
   AccountLoginRoute: AccountLoginRoute,
   AccountOrdersRoute: AccountOrdersRoute,
   AccountProfileRoute: AccountProfileRoute,
+  AccountResetPasswordRoute: AccountResetPasswordRoute,
   AccountSignupRoute: AccountSignupRoute,
   AccountVerifyRoute: AccountVerifyRoute,
   AdminLoginRoute: AdminLoginRoute,
