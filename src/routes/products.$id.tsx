@@ -1,5 +1,6 @@
 import * as React from 'react'
 import { createFileRoute, Link } from '@tanstack/react-router'
+import { AddToCartControl } from '~/components/AddToCartControl'
 import { ProductCard } from '~/components/ProductCard'
 import { ResponsiveImage } from '~/components/ResponsiveImage'
 import { useCart } from '~/lib/cart-context'
@@ -21,13 +22,8 @@ const monoLabel: React.CSSProperties = {
 
 function ProductDetailPage() {
   const { id } = Route.useParams()
-  const { products, addToCart } = useCart()
+  const { products } = useCart()
   const product = products.find((p) => p.id === id)
-
-  const [justAdded, setJustAdded] = React.useState(false)
-  const revertTimer = React.useRef<ReturnType<typeof setTimeout> | undefined>(undefined)
-
-  React.useEffect(() => () => clearTimeout(revertTimer.current), [])
 
   const gallery = React.useMemo(() => {
     if (!product) return []
@@ -70,14 +66,6 @@ function ProductDetailPage() {
   const badgeBg = product.preorder ? '#3f7a63' : soldOut ? '#98a1ab' : '#b4622f'
   const stockLabel = soldOut ? 'Out of stock' : product.preorder ? 'Ships on release' : `${product.stock} in stock`
   const stockColor = soldOut ? '#98a1ab' : low ? '#b4622f' : '#3f7a63'
-  const btnLabel = soldOut ? 'Sold out' : product.preorder ? 'Pre-order' : 'Add to cart'
-
-  const handleAdd = () => {
-    addToCart(product)
-    setJustAdded(true)
-    clearTimeout(revertTimer.current)
-    revertTimer.current = setTimeout(() => setJustAdded(false), 1400)
-  }
 
   return (
     <section style={{ maxWidth: 1240, margin: '0 auto', padding: '40px 20px 90px' }}>
@@ -203,38 +191,7 @@ function ProductDetailPage() {
             ships, with those photos included in your tracking email.
           </p>
 
-          <button
-            onClick={handleAdd}
-            disabled={soldOut}
-            className="ebi-atc-btn"
-            style={{
-              marginTop: 26,
-              width: '100%',
-              maxWidth: 320,
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              gap: 6,
-              border: '1px solid #131b28',
-              background: soldOut ? '#ffffff' : '#131b28',
-              color: soldOut ? '#98a1ab' : '#ffffff',
-              borderRadius: 2,
-              padding: 14,
-              fontSize: 13.5,
-              fontWeight: 600,
-              cursor: soldOut ? 'not-allowed' : 'pointer',
-              opacity: soldOut ? 0.45 : 1,
-            }}
-          >
-            {justAdded ? (
-              <svg className="ebi-atc-check" viewBox="0 0 24 24" fill="none">
-                <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="2" />
-                <path d="M7 12.5l3 3 7-7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
-            ) : (
-              <span className="ebi-atc-label">{btnLabel}</span>
-            )}
-          </button>
+          <AddToCartControl product={product} padding={14} fontSize={13.5} qtyBtnWidth={48} maxWidth={320} marginTop={26} />
 
           <div style={{ marginTop: 28, paddingTop: 22, borderTop: '1px solid #e3e6ea', fontSize: 12.5, color: '#5a6875', lineHeight: 1.7 }}>
             <div>Ships double-boxed with tracking. {product.preorder ? 'Pre-order lines dispatch within 48 hours of the mainland street date.' : 'In-stock orders dispatch within 48 hours.'}</div>
