@@ -54,9 +54,13 @@ function SignupPage() {
     setError(null)
     setSubmitting(true)
     try {
-      await customerSignup({ data: { email, password, name } })
+      const result = await customerSignup({ data: { email, password, name } })
       await router.invalidate()
-      navigate({ to: '/account/orders' })
+      if (result.verificationRequired) {
+        navigate({ to: '/account/verify', search: { email: result.email } })
+      } else {
+        navigate({ to: '/account/orders' })
+      }
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Signup failed.')
     } finally {

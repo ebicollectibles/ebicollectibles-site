@@ -179,10 +179,12 @@ const eventLabel: Record<string, string> = {
   google_link: 'Linked Google sign-in',
   password_reset: 'Password reset',
   payment_failed: 'Payment failed',
+  email_verified: 'Email verified',
 }
 
 const eventColor: Record<string, string> = {
   login_failed: '#b4622f',
   signup: '#3f7a63',
   payment_failed: '#b4622f',
+  email_verified: '#3f7a63',
 }

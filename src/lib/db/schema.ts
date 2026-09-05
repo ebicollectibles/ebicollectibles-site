@@ -30,8 +30,27 @@ export const users = pgTable('users', {
   googleId: text('google_id').unique(),
   name: text('name'),
   lastLoginAt: timestamp('last_login_at', { withTimezone: true }),
+  // Null until verified. New password signups must verify via emailed code
+  // before they can log in; Google signups are stamped verified immediately
+  // (Google's own email_verified claim already proves ownership) — see
+  // google-auth.ts / customers.ts. No default here deliberately — existing
+  // rows are backfilled once in the migration, new rows start unverified.
+  emailVerifiedAt: timestamp('email_verified_at', { withTimezone: true }),
   createdAt: timestamp('created_at', { withTimezone: true }).notNull().defaultNow(),
   updatedAt: timestamp('updated_at', { withTimezone: true }).notNull().defaultNow(),
+})
+
+// One pending code per user — userId as the primary key means a resend just
+// overwrites this row instead of accumulating history (unlike authEvents,
+// there's no value in keeping old/used codes around).
+export const emailVerificationCodes = pgTable('email_verification_codes', {
+  userId: uuid('user_id')
+    .primaryKey()
+    .references(() => users.id, { onDelete: 'cascade' }),
+  code: text('code').notNull(),
+  expiresAt: timestamp('expires_at', { withTimezone: true }).notNull(),
+  attempts: integer('attempts').notNull().default(0),
+  createdAt: timestamp('created_at', { withTimezone: true }).notNull().defaultNow(),
 })
 
 // Lightweight security/support log — separate from Google Analytics, which

@@ -65,7 +65,7 @@ export const setCustomerSession = writeCustomerSession
 
 // --- Lightweight auth/security event log — see schema.ts's authEvents comment. ---
 
-export type AuthEventType = 'signup' | 'login' | 'login_failed' | 'google_link' | 'password_reset'
+export type AuthEventType = 'signup' | 'login' | 'login_failed' | 'google_link' | 'password_reset' | 'email_verified'
 
 export async function recordAuthEvent(opts: { userId?: string | null; email?: string | null; type: AuthEventType }) {
   const { getDb } = await import('~/lib/db/client')
@@ -80,4 +80,33 @@ export async function touchLastLogin(userId: string) {
   const { eq } = await import('drizzle-orm')
   const db = getDb()
   await db.update(users).set({ lastLoginAt: new Date() }).where(eq(users.id, userId))
+}
+
+// --- Email verification codes ---
+
+/** False in local dev when Resend isn't configured — signup/login skip verification entirely rather than leave someone stuck with no way to receive a code. */
+export function resendConfigured(): boolean {
+  return !!(process.env.RESEND_API_KEY && process.env.ORDER_FROM_EMAIL)
+}
+
+function generateVerificationCode(): string {
+  const bytes = new Uint32Array(1)
+  crypto.getRandomValues(bytes)
+  return String(bytes[0] % 1_000_000).padStart(6, '0')
+}
+
+/** Generates a fresh 6-digit code (replacing any pending one), emails it, and lets a send failure propagate — unlike order-confirmation email, there's no fallback way to deliver this. */
+export async function sendVerificationCode(userId: string, email: string) {
+  const { getDb } = await import('~/lib/db/client')
+  const { emailVerificationCodes } = await import('~/lib/db/schema')
+  const db = getDb()
+  const code = generateVerificationCode()
+  const expiresAt = new Date(Date.now() + 15 * 60 * 1000)
+  await db
+    .insert(emailVerificationCodes)
+    .values({ userId, code, expiresAt, attempts: 0 })
+    .onConflictDoUpdate({ target: emailVerificationCodes.userId, set: { code, expiresAt, attempts: 0 } })
+
+  const { sendVerificationCodeEmail } = await import('./email')
+  await sendVerificationCodeEmail({ email, code })
 }

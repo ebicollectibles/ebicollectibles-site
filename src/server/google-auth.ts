@@ -95,17 +95,25 @@ export async function handleGoogleCallback(code: string): Promise<void> {
 
   const [byEmail] = await db.select().from(users).where(eq(users.email, email)).limit(1)
   if (byEmail) {
-    // Existing password-based account with the same (Google-verified) email — link the two.
-    await db.update(users).set({ googleId: payload.sub, updatedAt: new Date() }).where(eq(users.id, byEmail.id))
+    // Existing password-based account with the same (Google-verified) email
+    // — link the two. Also stamps it verified if it wasn't already: signing
+    // in with Google proves ownership of the email just as well as an
+    // emailed code would.
+    await db
+      .update(users)
+      .set({ googleId: payload.sub, updatedAt: new Date(), ...(byEmail.emailVerifiedAt ? {} : { emailVerifiedAt: new Date() }) })
+      .where(eq(users.id, byEmail.id))
     await setCustomerSession(byEmail.id)
     await recordAuthEvent({ userId: byEmail.id, email, type: 'google_link' })
     await touchLastLogin(byEmail.id)
     return
   }
 
+  // Google's own email_verified claim (checked above) already proves
+  // ownership — no separate code-based verification needed for this account.
   const [created] = await db
     .insert(users)
-    .values({ email, googleId: payload.sub, name: payload.name || null })
+    .values({ email, googleId: payload.sub, name: payload.name || null, emailVerifiedAt: new Date() })
     .returning({ id: users.id })
   await linkGuestOrders(db, created.id, email)
   await setCustomerSession(created.id)

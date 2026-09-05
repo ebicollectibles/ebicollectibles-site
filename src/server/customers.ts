@@ -1,7 +1,7 @@
 import { createServerFn } from '@tanstack/react-start'
 import { z } from 'zod'
 import { hashPassword, verifyPassword } from '~/lib/auth/password'
-import { getCurrentUserId, setCustomerSession, recordAuthEvent, touchLastLogin } from './customer-auth'
+import { getCurrentUserId, setCustomerSession, recordAuthEvent, touchLastLogin, resendConfigured, sendVerificationCode } from './customer-auth'
 import type { getDb } from '~/lib/db/client'
 
 // Db/schema imports are dynamic (not top-level) throughout this file —
@@ -52,10 +52,19 @@ export const customerSignup = createServerFn({ method: 'POST' })
       .returning({ id: users.id })
 
     await linkGuestOrders(db, user.id, email)
-    await setCustomerSession(user.id)
     await recordAuthEvent({ userId: user.id, email, type: 'signup' })
+
+    if (resendConfigured()) {
+      await sendVerificationCode(user.id, email)
+      return { verificationRequired: true, email }
+    }
+
+    // Resend isn't configured (local dev) — no way to deliver a code, so
+    // skip verification rather than leave the account permanently stuck.
+    await db.update(users).set({ emailVerifiedAt: new Date() }).where(eq(users.id, user.id))
+    await setCustomerSession(user.id)
     await touchLastLogin(user.id)
-    return { ok: true }
+    return { verificationRequired: false, email }
   })
 
 export const customerLogin = createServerFn({ method: 'POST' })
@@ -82,9 +91,70 @@ export const customerLogin = createServerFn({ method: 'POST' })
       throw new Error('Incorrect email or password.')
     }
 
+    if (!user.emailVerifiedAt && resendConfigured()) {
+      await sendVerificationCode(user.id, email)
+      return { verificationRequired: true, email }
+    }
+
     await setCustomerSession(user.id)
     await recordAuthEvent({ userId: user.id, email, type: 'login' })
     await touchLastLogin(user.id)
+    return { verificationRequired: false, email }
+  })
+
+export const verifyEmailCode = createServerFn({ method: 'POST' })
+  .validator(z.object({ email: z.string().email(), code: z.string().min(1) }))
+  .handler(async ({ data }) => {
+    const { getDb } = await import('~/lib/db/client')
+    const { users, emailVerificationCodes } = await import('~/lib/db/schema')
+    const { eq } = await import('drizzle-orm')
+    const db = getDb()
+    const email = normalizeEmail(data.email)
+
+    const [user] = await db.select().from(users).where(eq(users.email, email)).limit(1)
+    if (!user) throw new Error('Account not found.')
+
+    if (user.emailVerifiedAt) {
+      await setCustomerSession(user.id)
+      await touchLastLogin(user.id)
+      return { ok: true }
+    }
+
+    const [pending] = await db.select().from(emailVerificationCodes).where(eq(emailVerificationCodes.userId, user.id)).limit(1)
+    if (!pending) throw new Error('No verification code pending — request a new one.')
+    if (pending.expiresAt.getTime() < Date.now()) throw new Error('That code expired — request a new one.')
+    if (pending.attempts >= 5) throw new Error('Too many incorrect attempts — request a new code.')
+
+    if (pending.code !== data.code.trim()) {
+      await db
+        .update(emailVerificationCodes)
+        .set({ attempts: pending.attempts + 1 })
+        .where(eq(emailVerificationCodes.userId, user.id))
+      throw new Error('Incorrect code.')
+    }
+
+    await db.update(users).set({ emailVerifiedAt: new Date() }).where(eq(users.id, user.id))
+    await db.delete(emailVerificationCodes).where(eq(emailVerificationCodes.userId, user.id))
+    await setCustomerSession(user.id)
+    await recordAuthEvent({ userId: user.id, email, type: 'email_verified' })
+    await touchLastLogin(user.id)
+    return { ok: true }
+  })
+
+export const resendVerificationCode = createServerFn({ method: 'POST' })
+  .validator(z.object({ email: z.string().email() }))
+  .handler(async ({ data }) => {
+    const { getDb } = await import('~/lib/db/client')
+    const { users } = await import('~/lib/db/schema')
+    const { eq } = await import('drizzle-orm')
+    const db = getDb()
+    const email = normalizeEmail(data.email)
+
+    const [user] = await db.select().from(users).where(eq(users.email, email)).limit(1)
+    if (!user) throw new Error('Account not found.')
+    if (user.emailVerifiedAt) return { ok: true }
+
+    await sendVerificationCode(user.id, email)
     return { ok: true }
   })
 

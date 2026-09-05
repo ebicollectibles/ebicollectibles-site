@@ -58,9 +58,13 @@ function LoginPage() {
     setError(null)
     setSubmitting(true)
     try {
-      await customerLogin({ data: { email, password } })
+      const result = await customerLogin({ data: { email, password } })
       await router.invalidate()
-      navigate({ to: '/account/orders' })
+      if (result.verificationRequired) {
+        navigate({ to: '/account/verify', search: { email: result.email } })
+      } else {
+        navigate({ to: '/account/orders' })
+      }
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Login failed.')
     } finally {

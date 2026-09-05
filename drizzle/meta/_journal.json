@@ -64,6 +64,13 @@
       "when": 1788558461585,
       "tag": "0008_motionless_stingray",
       "breakpoints": true
+    },
+    {
+      "idx": 9,
+      "version": "7",
+      "when": 1788567601027,
+      "tag": "0009_foamy_azazel",
+      "breakpoints": true
     }
   ]
 }
