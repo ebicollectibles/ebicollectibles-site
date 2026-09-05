@@ -113,7 +113,9 @@ export async function sendOrderConfirmationEmail(order: OrderEmailData): Promise
 // should surface the error instead of silently leaving them stuck.
 export async function sendVerificationCodeEmail(opts: { email: string; code: string }): Promise<void> {
   const apiKey = process.env.RESEND_API_KEY
-  const from = process.env.ORDER_FROM_EMAIL
+  // Falls back to ORDER_FROM_EMAIL if the dedicated account address isn't
+  // set, so this keeps working unchanged until that secret is added.
+  const from = process.env.ACCOUNT_FROM_EMAIL || process.env.ORDER_FROM_EMAIL
   if (!apiKey || !from) {
     throw new Error('Email sending is not configured.')
   }
@@ -153,7 +155,7 @@ export async function sendVerificationCodeEmail(opts: { email: string; code: str
 // Same throw-on-failure reasoning as sendVerificationCodeEmail.
 export async function sendPasswordResetCodeEmail(opts: { email: string; code: string }): Promise<void> {
   const apiKey = process.env.RESEND_API_KEY
-  const from = process.env.ORDER_FROM_EMAIL
+  const from = process.env.ACCOUNT_FROM_EMAIL || process.env.ORDER_FROM_EMAIL
   if (!apiKey || !from) {
     throw new Error('Email sending is not configured.')
   }
