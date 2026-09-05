@@ -166,22 +166,56 @@ export async function recordSquareInventorySale(variationId: string, quantity: n
   }
 }
 
-// Replaces `stock` with the live Square count for any item linked via
-// squareVariationId, leaving unmapped items untouched. Falls back to
-// whatever `stock` already was if Square can't be reached — a Square outage
+// Current catalog price for the given Square item-variation ids, keyed by
+// variation id, in dollars. A variation using Square's "variable pricing"
+// (no fixed price_money set) is simply absent from the response — the
+// caller should fall back to the stored price, not treat it as free.
+export async function getSquareCatalogPrices(variationIds: string[]): Promise<Record<string, number>> {
+  const { accessToken, baseUrl } = squareConfig()
+  if (!accessToken) throw new Error('Square is not configured (SQUARE_ACCESS_TOKEN missing).')
+  if (variationIds.length === 0) return {}
+
+  const res = await fetch(`${baseUrl}/v2/catalog/batch-retrieve`, {
+    method: 'POST',
+    headers: squareHeaders(accessToken),
+    body: JSON.stringify({ object_ids: variationIds }),
+  })
+  const json = await res.json().catch(() => null)
+  if (!res.ok) throw new Error(json?.errors?.[0]?.detail || `Square API error (${res.status})`)
+
+  const prices: Record<string, number> = {}
+  for (const obj of json?.objects ?? []) {
+    const amount = obj?.item_variation_data?.price_money?.amount
+    if (amount != null) prices[obj.id] = amount / 100
+  }
+  return prices
+}
+
+// Replaces `stock` and `price` with live Square values for any item linked
+// via squareVariationId, leaving unmapped items untouched. Falls back to
+// whatever was already stored if Square can't be reached — a Square outage
 // shouldn't take the storefront down, it should just show slightly stale
-// numbers for the (opt-in) mapped products.
-export async function overlaySquareStock<T extends { squareVariationId?: string | null; stock: number }>(
+// numbers for the (opt-in) mapped products. Stock defaults to 0 when Square
+// has no count for a variation (no inventory record = none in stock), but
+// price never silently defaults to 0 — an untracked/variable price just
+// falls back to whatever was already stored, since a wrong price is a much
+// costlier mistake than a wrong stock count.
+export async function overlaySquareData<T extends { squareVariationId?: string | null; stock: number; price: number }>(
   items: T[],
 ): Promise<T[]> {
   const mapped = items.filter((i): i is T & { squareVariationId: string } => !!i.squareVariationId)
   if (mapped.length === 0) return items
 
   try {
-    const counts = await getSquareInventoryCounts(mapped.map((i) => i.squareVariationId))
-    return items.map((i) => (i.squareVariationId ? { ...i, stock: counts[i.squareVariationId] ?? 0 } : i))
+    const variationIds = mapped.map((i) => i.squareVariationId)
+    const [counts, prices] = await Promise.all([getSquareInventoryCounts(variationIds), getSquareCatalogPrices(variationIds)])
+    return items.map((i) =>
+      i.squareVariationId
+        ? { ...i, stock: counts[i.squareVariationId] ?? 0, price: prices[i.squareVariationId] ?? i.price }
+        : i,
+    )
   } catch (err) {
-    console.error('Failed to fetch live Square inventory counts, falling back to stored stock:', err)
+    console.error('Failed to fetch live Square data, falling back to stored stock/price:', err)
     return items
   }
 }

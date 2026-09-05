@@ -3,13 +3,13 @@ import { z } from 'zod'
 import { asc, eq } from 'drizzle-orm'
 import { getDb } from '~/lib/db/client'
 import { products as productsTable } from '~/lib/db/schema'
-import { overlaySquareStock } from './square'
+import { overlaySquareData } from './square'
 import type { Product } from '~/lib/products'
 
 export const getProducts = createServerFn({ method: 'GET' }).handler(async (): Promise<Product[]> => {
   const db = getDb()
   const rows = await db.select().from(productsTable).orderBy(asc(productsTable.createdAt))
-  return overlaySquareStock(rows.map(toProduct))
+  return overlaySquareData(rows.map(toProduct))
 })
 
 export const getProduct = createServerFn({ method: 'GET' })
@@ -18,7 +18,7 @@ export const getProduct = createServerFn({ method: 'GET' })
     const db = getDb()
     const [row] = await db.select().from(productsTable).where(eq(productsTable.id, data.id)).limit(1)
     if (!row) return null
-    const [withLiveStock] = await overlaySquareStock([toProduct(row)])
+    const [withLiveStock] = await overlaySquareData([toProduct(row)])
     return withLiveStock
   })
 

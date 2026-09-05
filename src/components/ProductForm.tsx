@@ -48,6 +48,12 @@ const field: React.CSSProperties = {
   outline: 'none',
   width: '100%',
 }
+const disabledField: React.CSSProperties = {
+  ...field,
+  background: '#f6f7f8',
+  color: '#98a1ab',
+  cursor: 'not-allowed',
+}
 const label: React.CSSProperties = { fontSize: 12.5, fontWeight: 600, marginBottom: 6, display: 'block' }
 
 function UploadButton({
@@ -417,11 +423,15 @@ export function ProductForm({
             type="number"
             step="0.01"
             min="0"
-            style={field}
+            style={values.squareVariationId ? disabledField : field}
             value={values.price}
             onChange={(e) => set('price', Number(e.target.value))}
+            disabled={!!values.squareVariationId}
             required
           />
+          {values.squareVariationId && (
+            <p style={{ fontSize: 11, color: '#98a1ab', marginTop: 6 }}>Synced live from Square — edit the price there.</p>
+          )}
         </div>
         <div>
           <label style={label}>Stock</label>
@@ -429,11 +439,15 @@ export function ProductForm({
             type="number"
             step="1"
             min="0"
-            style={field}
+            style={values.squareVariationId ? disabledField : field}
             value={values.stock}
             onChange={(e) => set('stock', Number(e.target.value))}
+            disabled={!!values.squareVariationId}
             required
           />
+          {values.squareVariationId && (
+            <p style={{ fontSize: 11, color: '#98a1ab', marginTop: 6 }}>Synced live from Square — edit the stock there.</p>
+          )}
         </div>
       </div>
       <div style={{ marginBottom: 16 }}>
@@ -459,8 +473,9 @@ export function ProductForm({
               <button
                 type="button"
                 onClick={() => {
-                  if (!confirm('Unlink this product from Square? Stock will go back to being managed locally.')) return
+                  if (!confirm('Unlink this product from Square? Stock goes back to being managed locally, starting at 0 until you set a real count — price stays at its last synced value.')) return
                   set('squareVariationId', '')
+                  set('stock', 0)
                 }}
                 style={{ background: 'none', border: '1px solid #cfd4da', borderRadius: 2, padding: '6px 10px', fontSize: 12, cursor: 'pointer', color: '#b4622f' }}
               >
@@ -488,8 +503,9 @@ export function ProductForm({
               + Link to a Square catalog item
             </button>
             <p style={{ fontSize: 11.5, color: '#98a1ab', marginTop: 6 }}>
-              Links this product to an item in your Square catalog (e.g. one already managed by another app). When linked, stock above is
-              ignored — availability is read live from Square instead, and a sale here deducts from the same Square inventory.
+              Links this product to an item in your Square catalog (e.g. one already managed by another app). When linked, price and
+              stock above are both read live from Square instead — edit them there, not here — and a sale here deducts from the same
+              Square inventory.
             </p>
           </>
         )}
@@ -641,6 +657,11 @@ export function ProductForm({
       <SquarePicker
         onSelect={(opt) => {
           set('squareVariationId', opt.variationId)
+          // Old local stock is meaningless once Square starts driving it —
+          // zero it out rather than leave a stale number sitting unused.
+          // Price is left alone: it'll show the live Square value once
+          // saved and reloaded, no need to zero it in the meantime.
+          set('stock', 0)
           setSquareLabel(opt.label)
           setSquarePickerOpen(false)
         }}

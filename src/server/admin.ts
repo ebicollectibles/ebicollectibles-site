@@ -14,7 +14,7 @@ import {
   users,
 } from '~/lib/db/schema'
 import { assertAdmin } from './admin-auth'
-import { overlaySquareStock, searchSquareCatalogItems } from './square'
+import { overlaySquareData, searchSquareCatalogItems } from './square'
 
 const productSchema = z.object({
   id: z.string().min(1),
@@ -38,7 +38,7 @@ export const adminListProducts = createServerFn({ method: 'GET' }).handler(async
   await assertAdmin()
   const db = getDb()
   const rows = await db.select().from(productsTable).orderBy(asc(productsTable.createdAt))
-  return overlaySquareStock(rows)
+  return overlaySquareData(rows)
 })
 
 export const adminGetProduct = createServerFn({ method: 'GET' })
@@ -48,7 +48,7 @@ export const adminGetProduct = createServerFn({ method: 'GET' })
     const db = getDb()
     const [row] = await db.select().from(productsTable).where(eq(productsTable.id, data.id)).limit(1)
     if (!row) return null
-    const [withLiveStock] = await overlaySquareStock([row])
+    const [withLiveStock] = await overlaySquareData([row])
 
     const editHistory = await db
       .select({ field: productEditEvents.field, oldValue: productEditEvents.oldValue, newValue: productEditEvents.newValue, createdAt: productEditEvents.createdAt })
