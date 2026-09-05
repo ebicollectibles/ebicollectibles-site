@@ -2,6 +2,7 @@ import * as React from 'react'
 import { createFileRoute, Link, useNavigate, useRouter } from '@tanstack/react-router'
 import { customerSignup } from '~/server/customers'
 import { startGoogleAuth } from '~/server/google-auth'
+import { PasswordInput } from '~/components/PasswordInput'
 
 export const Route = createFileRoute('/account/signup')({
   component: SignupPage,
@@ -106,14 +107,7 @@ function SignupPage() {
         <label style={{ ...label, marginTop: 14 }}>Email</label>
         <input type="email" required value={email} onChange={(e) => setEmail(e.target.value)} style={field} />
         <label style={{ ...label, marginTop: 14 }}>Password</label>
-        <input
-          type="password"
-          required
-          minLength={8}
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          style={field}
-        />
+        <PasswordInput required minLength={8} value={password} onChange={(e) => setPassword(e.target.value)} style={field} />
         <p style={{ fontSize: 11, color: '#98a1ab', marginTop: 6 }}>At least 8 characters.</p>
         {error && <p style={{ fontSize: 12.5, color: '#b4622f', marginTop: 8 }}>{error}</p>}
         <button type="submit" disabled={submitting} style={{ ...submitBtn, marginTop: 16, opacity: submitting ? 0.6 : 1 }}>

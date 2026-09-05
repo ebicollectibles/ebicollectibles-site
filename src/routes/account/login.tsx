@@ -3,6 +3,7 @@ import { createFileRoute, Link, useNavigate, useRouter } from '@tanstack/react-r
 import { z } from 'zod'
 import { customerLogin } from '~/server/customers'
 import { startGoogleAuth } from '~/server/google-auth'
+import { PasswordInput } from '~/components/PasswordInput'
 
 const searchSchema = z.object({ error: z.string().optional() })
 
@@ -113,13 +114,7 @@ function LoginPage() {
             Forgot password?
           </Link>
         </div>
-        <input
-          type="password"
-          required
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          style={{ ...field, marginTop: 6 }}
-        />
+        <PasswordInput required value={password} onChange={(e) => setPassword(e.target.value)} style={{ ...field, marginTop: 6 }} />
         {error && <p style={{ fontSize: 12.5, color: '#b4622f', marginTop: 14 }}>{error}</p>}
         <button type="submit" disabled={submitting} style={{ ...submitBtn, marginTop: 20, opacity: submitting ? 0.6 : 1 }}>
           {submitting ? 'Logging in…' : 'Log in'}

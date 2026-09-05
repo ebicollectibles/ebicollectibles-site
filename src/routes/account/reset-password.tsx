@@ -2,6 +2,7 @@ import * as React from 'react'
 import { createFileRoute, useNavigate, useRouter } from '@tanstack/react-router'
 import { z } from 'zod'
 import { resetPasswordWithCode, resendPasswordResetCode } from '~/server/customers'
+import { PasswordInput } from '~/components/PasswordInput'
 
 const searchSchema = z.object({ email: z.string().email() })
 
@@ -104,14 +105,7 @@ function ResetPasswordPage() {
           autoFocus
         />
         <label style={{ ...label, marginTop: 16 }}>New password</label>
-        <input
-          type="password"
-          required
-          minLength={8}
-          value={newPassword}
-          onChange={(e) => setNewPassword(e.target.value)}
-          style={field}
-        />
+        <PasswordInput required minLength={8} value={newPassword} onChange={(e) => setNewPassword(e.target.value)} style={field} />
         <p style={{ fontSize: 11, color: '#98a1ab', marginTop: 6 }}>At least 8 characters.</p>
         {error && <p style={{ fontSize: 12.5, color: '#b4622f', marginTop: 8 }}>{error}</p>}
         <button
