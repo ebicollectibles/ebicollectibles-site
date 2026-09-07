@@ -96,6 +96,7 @@ export const orders = pgTable('orders', {
   // records that it happened while logged out).
   checkoutMode: text('checkout_mode').notNull().default('guest'), // guest | account
   email: text('email'),
+  phone: text('phone'),
   firstName: text('first_name'),
   lastName: text('last_name'),
   street: text('street'),
@@ -108,6 +109,8 @@ export const orders = pgTable('orders', {
   // Always populated (mirrors the shipping columns above when the shopper
   // checked "use shipping address as billing address" — the common case —
   // rather than left null, so admin display never has to special-case it).
+  billingFirstName: text('billing_first_name'),
+  billingLastName: text('billing_last_name'),
   billingStreet: text('billing_street'),
   billingApartment: text('billing_apartment'),
   billingCity: text('billing_city'),

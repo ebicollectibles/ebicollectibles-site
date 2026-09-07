@@ -162,6 +162,7 @@ function AdminOrderDetailPage() {
       </div>
       <div style={{ marginTop: 6, fontSize: 13.5, color: '#131b28' }}>
         {order.firstName} {order.lastName} · {order.email}
+        {order.phone ? ` · ${order.phone}` : ''}
       </div>
 
       <div style={{ marginTop: 18, border: '1px solid #e3e6ea', borderRadius: 4, padding: 18 }}>
@@ -198,13 +199,15 @@ function AdminOrderDetailPage() {
           {order.apartment ? `, ${order.apartment}` : ''}, {order.city} {order.state} {order.zip} · {order.shipMethod} ·{' '}
           {new Date(order.createdAt).toLocaleString()}
         </div>
-        {(order.billingStreet !== order.street ||
+        {(order.billingFirstName !== order.firstName ||
+          order.billingLastName !== order.lastName ||
+          order.billingStreet !== order.street ||
           order.billingApartment !== order.apartment ||
           order.billingCity !== order.city ||
           order.billingState !== order.state ||
           order.billingZip !== order.zip) && (
           <div style={{ marginTop: 4, fontSize: 11.5, color: '#98a1ab' }}>
-            Billing: {order.billingStreet}
+            Billing: {order.billingFirstName} {order.billingLastName}, {order.billingStreet}
             {order.billingApartment ? `, ${order.billingApartment}` : ''}, {order.billingCity} {order.billingState} {order.billingZip}
           </div>
         )}

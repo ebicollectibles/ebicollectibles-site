@@ -11,6 +11,7 @@ export interface CartLine {
 
 export interface CheckoutContact {
   email: string
+  phone: string
   firstName: string
   lastName: string
   street: string
@@ -21,6 +22,8 @@ export interface CheckoutContact {
 }
 
 export interface BillingAddress {
+  firstName: string
+  lastName: string
   street: string
   apartment: string
   city: string

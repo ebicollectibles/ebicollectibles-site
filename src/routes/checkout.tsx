@@ -65,6 +65,7 @@ const outlineBtn: React.CSSProperties = {
 
 const emptyContact: CheckoutContact = {
   email: '',
+  phone: '',
   firstName: '',
   lastName: '',
   street: '',
@@ -75,6 +76,8 @@ const emptyContact: CheckoutContact = {
 }
 
 const emptyBilling: BillingAddress = {
+  firstName: '',
+  lastName: '',
   street: '',
   apartment: '',
   city: '',
@@ -92,6 +95,65 @@ function splitName(name: string | null): { firstName: string; lastName: string }
   const spaceIndex = trimmed.indexOf(' ')
   if (spaceIndex === -1) return { firstName: trimmed, lastName: '' }
   return { firstName: trimmed.slice(0, spaceIndex), lastName: trimmed.slice(spaceIndex + 1).trim() }
+}
+
+// Small "?" that shows a tooltip on hover (desktop) or tap (mobile — a tap
+// both focuses and clicks the button, and a tap elsewhere blurs it closed).
+function InfoTooltip({ text }: { text: string }) {
+  const [open, setOpen] = React.useState(false)
+  return (
+    <span style={{ position: 'relative', display: 'inline-flex' }}>
+      <button
+        type="button"
+        onClick={() => setOpen(true)}
+        onMouseEnter={() => setOpen(true)}
+        onMouseLeave={() => setOpen(false)}
+        onBlur={() => setOpen(false)}
+        aria-label="More info"
+        style={{
+          width: 16,
+          height: 16,
+          borderRadius: '50%',
+          border: '1px solid #98a1ab',
+          background: 'none',
+          color: '#98a1ab',
+          fontSize: 10.5,
+          fontWeight: 700,
+          lineHeight: '14px',
+          padding: 0,
+          cursor: 'pointer',
+          display: 'inline-flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          flexShrink: 0,
+        }}
+      >
+        ?
+      </button>
+      {open && (
+        <span
+          role="tooltip"
+          style={{
+            position: 'absolute',
+            bottom: '130%',
+            left: '50%',
+            transform: 'translateX(-50%)',
+            background: '#131b28',
+            color: '#ffffff',
+            fontSize: 11.5,
+            lineHeight: 1.4,
+            padding: '7px 10px',
+            borderRadius: 3,
+            whiteSpace: 'nowrap',
+            zIndex: 10,
+            pointerEvents: 'none',
+          }}
+        >
+          {text}
+        </span>
+      )}
+    </span>
+  )
 }
 
 function CheckoutPage() {
@@ -120,7 +182,12 @@ function CheckoutPage() {
   const [billing, setBilling] = React.useState<BillingAddress>(emptyBilling)
   const billingComplete =
     sameAsShipping ||
-    (billing.street.trim() !== '' && billing.city.trim() !== '' && billing.state.trim() !== '' && billing.zip.trim() !== '')
+    (billing.firstName.trim() !== '' &&
+      billing.lastName.trim() !== '' &&
+      billing.street.trim() !== '' &&
+      billing.city.trim() !== '' &&
+      billing.state.trim() !== '' &&
+      billing.zip.trim() !== '')
   const [confirmed, setConfirmed] = React.useState<{ orderNo: number; paymentStatus: string } | null>(null)
   const [submitting, setSubmitting] = React.useState(false)
   const [error, setError] = React.useState<string | null>(null)
@@ -208,7 +275,15 @@ function CheckoutPage() {
     setSubmitting(true)
     try {
       const effectiveBilling: BillingAddress = sameAsShipping
-        ? { street: contact.street, apartment: contact.apartment, city: contact.city, state: contact.state, zip: contact.zip }
+        ? {
+            firstName: contact.firstName,
+            lastName: contact.lastName,
+            street: contact.street,
+            apartment: contact.apartment,
+            city: contact.city,
+            state: contact.state,
+            zip: contact.zip,
+          }
         : billing
       const result = await cart.placeOrder({ contact, billing: effectiveBilling, sourceId })
       setConfirmed({ orderNo: result.orderNo, paymentStatus: result.paymentStatus })
@@ -350,6 +425,17 @@ function CheckoutPage() {
                     typeMismatch: 'That email address doesn’t look right — double-check it.',
                   })}
                 />
+                <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginTop: 14, marginBottom: 6 }}>
+                  <label style={{ ...label, marginBottom: 0 }}>Phone (optional)</label>
+                  <InfoTooltip text="In case we need to contact you about your order" />
+                </div>
+                <input
+                  placeholder="(555) 555-5555"
+                  type="tel"
+                  className="ebi-field"
+                  style={{ ...fieldStyle, width: '100%' }}
+                  {...field('phone')}
+                />
               </div>
 
               <div style={{ borderTop: '1px solid #e3e6ea', marginTop: 30, paddingTop: 22 }}>
@@ -425,6 +511,20 @@ function CheckoutPage() {
                 </label>
                 {!sameAsShipping && (
                   <div className="ebi-checkout-2col" style={{ marginTop: 14 }}>
+                    <input
+                      placeholder="First name"
+                      required
+                      className="ebi-field"
+                      style={fieldStyle}
+                      {...billingField('firstName', { valueMissing: 'Enter the billing first name.' })}
+                    />
+                    <input
+                      placeholder="Last name"
+                      required
+                      className="ebi-field"
+                      style={fieldStyle}
+                      {...billingField('lastName', { valueMissing: 'Enter the billing last name.' })}
+                    />
                     <input
                       placeholder="Street address"
                       required

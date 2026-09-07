@@ -15,6 +15,7 @@ const placeOrderSchema = z.object({
   lines: z.array(z.object({ productId: z.string(), qty: z.number().int().positive() })).min(1),
   contact: z.object({
     email: z.string().trim().email(),
+    phone: z.string().optional().default(''),
     firstName: z.string().trim().min(1),
     lastName: z.string().trim().min(1),
     street: z.string().trim().min(1),
@@ -24,6 +25,8 @@ const placeOrderSchema = z.object({
     zip: z.string().trim().min(1),
   }),
   billing: z.object({
+    firstName: z.string().trim().min(1),
+    lastName: z.string().trim().min(1),
     street: z.string().trim().min(1),
     apartment: z.string().optional().default(''),
     city: z.string().trim().min(1),
@@ -171,6 +174,7 @@ export const placeOrder = createServerFn({ method: 'POST' })
           userId,
           checkoutMode,
           email: data.contact.email,
+          phone: data.contact.phone || null,
           firstName: data.contact.firstName,
           lastName: data.contact.lastName,
           street: data.contact.street,
@@ -178,6 +182,8 @@ export const placeOrder = createServerFn({ method: 'POST' })
           city: data.contact.city,
           state: data.contact.state,
           zip: data.contact.zip,
+          billingFirstName: data.billing.firstName,
+          billingLastName: data.billing.lastName,
           billingStreet: data.billing.street,
           billingApartment: data.billing.apartment,
           billingCity: data.billing.city,
