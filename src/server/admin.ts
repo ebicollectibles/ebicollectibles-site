@@ -152,42 +152,61 @@ function buildShipmentsByOrder(
   return groupBy(shipmentsWithItems, (s) => s.orderId)
 }
 
+// Surface-level only (no items/status history/shipments/emails) — the list
+// view is meant to be scannable, with everything else a click away on
+// adminGetOrder. Still pulls a refund total since "this order was refunded"
+// is worth flagging at a glance.
 export const adminListOrders = createServerFn({ method: 'GET' }).handler(async () => {
   await assertAdmin()
   const db = getDb()
   const orderRows = await db.select().from(orders).orderBy(desc(orders.createdAt))
-  const itemRows = await db.select().from(orderItems)
-  const statusRows = await db
-    .select({ orderId: orderStatusEvents.orderId, status: orderStatusEvents.status, createdAt: orderStatusEvents.createdAt })
-    .from(orderStatusEvents)
-    .orderBy(asc(orderStatusEvents.createdAt))
   const refundRows = await db
-    .select({ orderId: refundEvents.orderId, amount: refundEvents.amount, status: refundEvents.status, createdAt: refundEvents.createdAt })
+    .select({ orderId: refundEvents.orderId, amount: refundEvents.amount, status: refundEvents.status })
     .from(refundEvents)
-    .orderBy(desc(refundEvents.createdAt))
-  const emailRows = await db
-    .select({ orderId: emailEvents.orderId, type: emailEvents.type, status: emailEvents.status, errorMessage: emailEvents.errorMessage, createdAt: emailEvents.createdAt })
-    .from(emailEvents)
-    .orderBy(asc(emailEvents.createdAt))
-  const shipmentRows = await db.select().from(shipments).orderBy(asc(shipments.createdAt))
-  const shipmentItemRows = await db.select().from(shipmentItems)
+    .where(eq(refundEvents.status, 'COMPLETED'))
 
-  const itemsByOrder = groupBy(itemRows, (i) => i.orderId)
-  const statusByOrder = groupBy(statusRows, (s) => s.orderId)
-  const refundsByOrder = groupBy(refundRows.filter((r) => r.orderId), (r) => r.orderId as string)
-  const emailsByOrder = groupBy(emailRows.filter((e) => e.orderId), (e) => e.orderId as string)
-  const itemById = new Map(itemRows.map((i) => [i.id, i]))
-  const shipmentsByOrder = buildShipmentsByOrder(shipmentRows, shipmentItemRows, itemById)
+  const refundedByOrder = new Map<string, number>()
+  for (const r of refundRows) {
+    if (!r.orderId) continue
+    refundedByOrder.set(r.orderId, (refundedByOrder.get(r.orderId) ?? 0) + (r.amount ?? 0))
+  }
 
-  return orderRows.map((order) => ({
-    ...order,
-    items: itemsByOrder.get(order.id) ?? [],
-    statusHistory: statusByOrder.get(order.id) ?? [],
-    refunds: refundsByOrder.get(order.id) ?? [],
-    emails: emailsByOrder.get(order.id) ?? [],
-    shipments: shipmentsByOrder.get(order.id) ?? [],
-  }))
+  return orderRows.map((order) => ({ ...order, totalRefunded: refundedByOrder.get(order.id) ?? 0 }))
 })
+
+export const adminGetOrder = createServerFn({ method: 'GET' })
+  .validator(z.object({ id: z.string() }))
+  .handler(async ({ data }) => {
+    await assertAdmin()
+    const db = getDb()
+    const [order] = await db.select().from(orders).where(eq(orders.id, data.id)).limit(1)
+    if (!order) return null
+
+    const items = await db.select().from(orderItems).where(eq(orderItems.orderId, data.id))
+    const statusHistory = await db
+      .select({ status: orderStatusEvents.status, createdAt: orderStatusEvents.createdAt })
+      .from(orderStatusEvents)
+      .where(eq(orderStatusEvents.orderId, data.id))
+      .orderBy(asc(orderStatusEvents.createdAt))
+    const refunds = await db
+      .select({ amount: refundEvents.amount, status: refundEvents.status, createdAt: refundEvents.createdAt })
+      .from(refundEvents)
+      .where(eq(refundEvents.orderId, data.id))
+      .orderBy(desc(refundEvents.createdAt))
+    const emails = await db
+      .select({ type: emailEvents.type, status: emailEvents.status, errorMessage: emailEvents.errorMessage, createdAt: emailEvents.createdAt })
+      .from(emailEvents)
+      .where(eq(emailEvents.orderId, data.id))
+      .orderBy(asc(emailEvents.createdAt))
+    const shipmentRows = await db.select().from(shipments).where(eq(shipments.orderId, data.id)).orderBy(asc(shipments.createdAt))
+    const shipmentIds = shipmentRows.map((s) => s.id)
+    const shipmentItemRows = shipmentIds.length === 0 ? [] : await db.select().from(shipmentItems).where(inArray(shipmentItems.shipmentId, shipmentIds))
+
+    const itemById = new Map(items.map((i) => [i.id, i]))
+    const orderShipments = buildShipmentsByOrder(shipmentRows, shipmentItemRows, itemById).get(data.id) ?? []
+
+    return { ...order, items, statusHistory, refunds, emails, shipments: orderShipments }
+  })
 
 // "shipped" and "partially_shipped" are never set directly — they're always
 // derived from recorded shipments (see adminCreateShipment). Admin can only
