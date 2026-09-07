@@ -38,13 +38,14 @@ function OrderDetailPage() {
   }
 
   const sameBilling =
-    order.billingFirstName === order.firstName &&
-    order.billingLastName === order.lastName &&
-    order.billingStreet === order.street &&
-    order.billingApartment === order.apartment &&
-    order.billingCity === order.city &&
-    order.billingState === order.state &&
-    order.billingZip === order.zip
+    !order.billingStreet ||
+    (order.billingFirstName === order.firstName &&
+      order.billingLastName === order.lastName &&
+      order.billingStreet === order.street &&
+      order.billingApartment === order.apartment &&
+      order.billingCity === order.city &&
+      order.billingState === order.state &&
+      order.billingZip === order.zip)
 
   return (
     <section style={{ maxWidth: 760, margin: '0 auto', padding: '48px 24px 100px', fontFamily: 'Archivo, Helvetica, sans-serif' }}>
