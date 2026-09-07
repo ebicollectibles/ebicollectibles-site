@@ -8,7 +8,11 @@ import type { Product } from '~/lib/products'
 
 export const getProducts = createServerFn({ method: 'GET' }).handler(async (): Promise<Product[]> => {
   const db = getDb()
-  const rows = await db.select().from(productsTable).orderBy(asc(productsTable.createdAt))
+  const rows = await db
+    .select()
+    .from(productsTable)
+    .where(eq(productsTable.published, true))
+    .orderBy(asc(productsTable.createdAt))
   return overlaySquareData(rows.map(toProduct))
 })
 
@@ -17,7 +21,7 @@ export const getProduct = createServerFn({ method: 'GET' })
   .handler(async ({ data }): Promise<Product | null> => {
     const db = getDb()
     const [row] = await db.select().from(productsTable).where(eq(productsTable.id, data.id)).limit(1)
-    if (!row) return null
+    if (!row || !row.published) return null
     const [withLiveStock] = await overlaySquareData([toProduct(row)])
     return withLiveStock
   })

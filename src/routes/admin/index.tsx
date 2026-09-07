@@ -71,8 +71,15 @@ function AdminDashboard() {
           </thead>
           <tbody>
             {products.map((p) => (
-              <tr key={p.id}>
-                <td style={td}>{p.name}</td>
+              <tr key={p.id} style={p.published ? undefined : { opacity: 0.55 }}>
+                <td style={td}>
+                  {p.name}
+                  {!p.published && (
+                    <span style={{ marginLeft: 6, fontFamily: 'Archivo, Helvetica, sans-serif', fontSize: 10, fontWeight: 700, color: '#98a1ab', border: '1px solid #98a1ab', borderRadius: 2, padding: '1px 4px' }}>
+                      HIDDEN
+                    </span>
+                  )}
+                </td>
                 <td style={{ ...td, fontFamily: "'IBM Plex Mono', monospace" }}>{p.code}</td>
                 <td style={td}>{p.subcategory}</td>
                 <td style={{ ...td, fontFamily: "'IBM Plex Mono', monospace" }}>{formatMoney(p.price)}</td>

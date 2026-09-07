@@ -64,6 +64,7 @@ function EditProductPage() {
           images: product.images ?? [],
           preorder: product.preorder,
           placeholder: product.placeholder ?? '',
+          published: product.published,
         }}
         onSubmit={async (values) => {
           await adminUpdateProduct({

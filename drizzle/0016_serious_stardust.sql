@@ -1,0 +1,1 @@
+ALTER TABLE "products" ADD COLUMN "published" boolean DEFAULT true NOT NULL;

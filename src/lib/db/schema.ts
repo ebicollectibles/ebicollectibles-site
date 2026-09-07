@@ -22,6 +22,9 @@ export const products = pgTable('products', {
   imgAlt: text('img_alt'),
   images: text('images').array().notNull().default([]),
   preorder: boolean('preorder').notNull().default(false),
+  // Lets a product be linked to Square and fully set up while still hidden
+  // from the public shop, e.g. staging a listing before its street date.
+  published: boolean('published').notNull().default(true),
   placeholder: text('placeholder'),
   createdAt: timestamp('created_at', { withTimezone: true }).notNull().defaultNow(),
   updatedAt: timestamp('updated_at', { withTimezone: true }).notNull().defaultNow(),

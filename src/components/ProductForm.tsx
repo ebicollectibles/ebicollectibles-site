@@ -21,6 +21,7 @@ export interface ProductFormValues {
   images: string[]
   preorder: boolean
   placeholder: string
+  published: boolean
 }
 
 const emptyValues: ProductFormValues = {
@@ -40,6 +41,7 @@ const emptyValues: ProductFormValues = {
   images: [],
   preorder: false,
   placeholder: '',
+  published: true,
 }
 
 const field: React.CSSProperties = {
@@ -435,6 +437,24 @@ export function ProductForm({
             </option>
           ))}
         </select>
+      </div>
+      <div
+        style={{
+          marginBottom: 20,
+          padding: '12px 14px',
+          background: values.published ? '#f6f7f8' : '#fdf3ec',
+          border: '1px solid ' + (values.published ? '#e3e6ea' : '#e6c4a8'),
+          borderRadius: 2,
+        }}
+      >
+        <label style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: 13, fontWeight: 600 }}>
+          <input type="checkbox" checked={values.published} onChange={(e) => set('published', e.target.checked)} />
+          Published (visible in the shop)
+        </label>
+        <p style={{ fontSize: 11.5, color: '#5a6875', margin: '6px 0 0' }}>
+          Uncheck this to set up and link the product to Square while keeping it off the live site — it stays fully editable
+          here and just won&apos;t appear in the shop, on the homepage, or at its product page until you check it again.
+        </p>
       </div>
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12, marginBottom: 16 }}>
         <div>
