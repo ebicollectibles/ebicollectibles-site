@@ -49,7 +49,14 @@ binding for connection pooling on Workers) — the local tooling doesn't.
 - `npm run db:generate` writes a new SQL migration into `drizzle/` whenever you
   change the schema.
 - `npm run db:migrate` applies pending migrations to whatever `DATABASE_URL`
-  points at.
+  points at. **Before running this, always `git pull origin main` first** —
+  `git status` only compares against your locally cached copy of
+  `origin/main` from your last fetch, not the live GitHub state, so it can
+  say "up to date" even when it isn't. Migrating from a stale checkout means
+  `drizzle-kit` doesn't know about migrations that were added after your last
+  pull and silently skips them while still printing "applied successfully"
+  (there was just nothing *it* knew to apply). Confirm you're current with
+  `git fetch origin main && git log -1 --oneline` before migrating.
 - `npm run db:seed` (`scripts/seed.ts`) is idempotent — it upserts the initial
   13-product catalog by id. Safe to re-run.
 - `npm run db:studio` opens Drizzle Studio (a local DB browser) against
