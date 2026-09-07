@@ -8,9 +8,8 @@ const STRIPES = 'repeating-linear-gradient(45deg, #eef0f2 0px, #eef0f2 7px, #f6f
 
 export function ProductCard({ product, variant = 'full' }: { product: Product; variant?: 'compact' | 'full' }) {
   const soldOut = product.stock === 0
-  const low = !soldOut && product.stock <= 5
   const onSale = product.compareAtPrice != null && product.compareAtPrice > product.price
-  const badge = product.preorder ? 'Pre-order' : soldOut ? 'Sold out' : low ? 'Low stock' : onSale ? 'Sale' : null
+  const badge = product.preorder ? 'Pre-order' : soldOut ? 'Sold out' : onSale ? 'Sale' : null
   const badgeBg = product.preorder ? '#3f7a63' : soldOut ? '#98a1ab' : '#b4622f'
 
   const compact = variant === 'compact'

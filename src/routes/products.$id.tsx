@@ -70,12 +70,11 @@ function ProductDetailPage() {
   }
 
   const soldOut = product.stock === 0
-  const low = !soldOut && product.stock <= 5
   const onSale = product.compareAtPrice != null && product.compareAtPrice > product.price
-  const badge = product.preorder ? 'Pre-order' : soldOut ? 'Sold out' : low ? 'Low stock' : onSale ? 'Sale' : null
+  const badge = product.preorder ? 'Pre-order' : soldOut ? 'Sold out' : onSale ? 'Sale' : null
   const badgeBg = product.preorder ? '#3f7a63' : soldOut ? '#98a1ab' : '#b4622f'
   const stockLabel = soldOut ? 'Out of stock' : product.preorder ? 'Ships on release' : `${product.stock} in stock`
-  const stockColor = soldOut ? '#98a1ab' : low ? '#b4622f' : '#3f7a63'
+  const stockColor = soldOut ? '#98a1ab' : '#3f7a63'
 
   return (
     <section style={{ maxWidth: 1240, margin: '0 auto', padding: '40px 20px 90px' }}>
