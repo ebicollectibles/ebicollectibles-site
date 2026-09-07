@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { placeOrder as placeOrderFn } from '~/server/orders'
-import { FLAT_SHIPPING_RATE, TAX_RATE, formatMoney, type Product } from './products'
+import { FLAT_SHIPPING_RATE, formatMoney, type Product } from './products'
 
 export interface CartLine {
   id: string
@@ -16,6 +16,7 @@ export interface CheckoutContact {
   street: string
   apartment: string
   city: string
+  state: string
   zip: string
 }
 
@@ -31,8 +32,6 @@ interface CartContextValue {
   subtotal: number
   shippingCost: number
   shippingLabel: string
-  tax: number
-  total: number
   addToCart: (product: Product) => void
   bump: (id: string, delta: number) => void
   removeFromCart: (id: string) => void
@@ -149,8 +148,6 @@ export function CartProvider({ children, products }: { children: React.ReactNode
     const cartCount = lines.reduce((t, l) => t + l.qty, 0)
     const subtotal = lines.reduce((t, l) => t + l.lineTotal, 0)
     const shippingCost = subtotal === 0 ? 0 : FLAT_SHIPPING_RATE
-    const tax = subtotal * TAX_RATE
-    const total = subtotal + shippingCost + tax
 
     return {
       products,
@@ -160,8 +157,6 @@ export function CartProvider({ children, products }: { children: React.ReactNode
       subtotal,
       shippingCost,
       shippingLabel: subtotal === 0 ? '—' : formatMoney(shippingCost),
-      tax,
-      total,
       addToCart,
       bump,
       removeFromCart,

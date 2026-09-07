@@ -5,9 +5,11 @@ import { ApplePayButton } from '~/components/ApplePayButton'
 import { PasswordInput } from '~/components/PasswordInput'
 import { useCart, type CheckoutContact } from '~/lib/cart-context'
 import { formatMoney } from '~/lib/products'
+import { US_STATES } from '~/lib/us-states'
 import { customerLogout, getCurrentCustomer } from '~/server/customer-auth'
 import { customerLogin } from '~/server/customers'
 import { startGoogleAuth } from '~/server/google-auth'
+import { getSalesTaxRate } from '~/server/tax'
 
 export const Route = createFileRoute('/checkout')({
   loader: () => getCurrentCustomer(),
@@ -68,6 +70,7 @@ const emptyContact: CheckoutContact = {
   street: '',
   apartment: '',
   city: '',
+  state: '',
   zip: '',
 }
 
@@ -103,10 +106,40 @@ function CheckoutPage() {
     contact.lastName.trim() !== '' &&
     contact.street.trim() !== '' &&
     contact.city.trim() !== '' &&
+    contact.state.trim() !== '' &&
     contact.zip.trim() !== ''
   const [confirmed, setConfirmed] = React.useState<{ orderNo: number; paymentStatus: string } | null>(null)
   const [submitting, setSubmitting] = React.useState(false)
   const [error, setError] = React.useState<string | null>(null)
+
+  // Only WA is taxed right now, and the rate is destination-based (varies by
+  // address, not just state) — so there's nothing meaningful to show until
+  // they've picked WA and typed a ZIP. Re-resolved live (debounced) as the
+  // shipping address changes; the actual charge is always recomputed
+  // authoritatively server-side in placeOrder regardless of this estimate.
+  const [taxRate, setTaxRate] = React.useState(0)
+  React.useEffect(() => {
+    if (contact.state !== 'WA' || contact.zip.trim() === '') {
+      setTaxRate(0)
+      return
+    }
+    let cancelled = false
+    const timer = setTimeout(() => {
+      getSalesTaxRate({ data: { state: contact.state, street: contact.street, city: contact.city, zip: contact.zip } })
+        .then((result) => {
+          if (!cancelled) setTaxRate(result.rate)
+        })
+        .catch(() => {
+          if (!cancelled) setTaxRate(0)
+        })
+    }, 500)
+    return () => {
+      cancelled = true
+      clearTimeout(timer)
+    }
+  }, [contact.state, contact.street, contact.city, contact.zip])
+  const tax = Math.round(cart.subtotal * taxRate * 100) / 100
+  const total = cart.subtotal + cart.shippingCost + tax
 
   const [signinEmail, setSigninEmail] = React.useState('')
   const [signinPassword, setSigninPassword] = React.useState('')
@@ -319,10 +352,28 @@ function CheckoutPage() {
                   <input
                     placeholder="City"
                     required
-                    className="ebi-field"
+                    className="ebi-field ebi-field-full"
                     style={fieldStyle}
                     {...field('city', { valueMissing: 'Enter the city to ship to.' })}
                   />
+                  <select
+                    required
+                    className="ebi-field"
+                    style={{ ...fieldStyle, color: contact.state ? fieldStyle.color : '#98a1ab' }}
+                    value={contact.state}
+                    onChange={(e) => {
+                      e.target.setCustomValidity('')
+                      setContact((c) => ({ ...c, state: e.target.value }))
+                    }}
+                    onInvalid={(e) => e.currentTarget.setCustomValidity('Select the state to ship to.')}
+                  >
+                    <option value="">State</option>
+                    {US_STATES.map((s) => (
+                      <option key={s.code} value={s.code}>
+                        {s.name}
+                      </option>
+                    ))}
+                  </select>
                   <input
                     placeholder="ZIP code"
                     required
@@ -339,7 +390,7 @@ function CheckoutPage() {
                   {squareConfigured ? (
                     <>
                       <ApplePayButton
-                        amount={cart.total}
+                        amount={total}
                         disabled={submitting || !contactComplete}
                         onTokenize={(sourceId) => finishOrder(sourceId)}
                         onError={setError}
@@ -420,14 +471,16 @@ function CheckoutPage() {
               <span style={{ color: '#131b28' }}>Shipping</span>
               <span style={{ fontFamily: "'IBM Plex Mono', monospace" }}>{cart.shippingLabel}</span>
             </div>
-            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-              <span style={{ color: '#131b28' }}>Estimated tax</span>
-              <span style={{ fontFamily: "'IBM Plex Mono', monospace" }}>{formatMoney(cart.tax)}</span>
-            </div>
+            {contact.state === 'WA' && (
+              <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                <span style={{ color: '#131b28' }}>Estimated tax</span>
+                <span style={{ fontFamily: "'IBM Plex Mono', monospace" }}>{formatMoney(tax)}</span>
+              </div>
+            )}
           </div>
           <div style={{ marginTop: 16, paddingTop: 16, borderTop: '1px solid #131b28', display: 'flex', justifyContent: 'space-between', alignItems: 'baseline' }}>
             <span style={{ fontSize: 15, fontWeight: 700 }}>Total</span>
-            <span style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 21, fontWeight: 500 }}>{formatMoney(cart.total)}</span>
+            <span style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 21, fontWeight: 500 }}>{formatMoney(total)}</span>
           </div>
           {checkoutAs !== null && (
             <>

@@ -78,10 +78,12 @@ function OrdersPage() {
                   <span>Shipping</span>
                   <span>{formatMoney(order.shippingCost)}</span>
                 </div>
-                <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 12, color: '#131b28' }}>
-                  <span>Tax</span>
-                  <span>{formatMoney(order.tax)}</span>
-                </div>
+                {order.tax > 0 && (
+                  <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 12, color: '#131b28' }}>
+                    <span>Tax</span>
+                    <span>{formatMoney(order.tax)}</span>
+                  </div>
+                )}
                 <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 13.5, fontWeight: 700, marginTop: 4 }}>
                   <span>Total</span>
                   <span style={{ fontFamily: "'IBM Plex Mono', monospace" }}>{formatMoney(order.total)}</span>

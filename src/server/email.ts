@@ -37,10 +37,15 @@ function emailShell(opts: { badgeLabel: string; badgeColor: string; heading: str
   </div>`
 }
 
-function formatAddress(order: { street: string | null; apartment: string | null; city: string | null; zip: string | null }): string | null {
-  const address = [order.street, order.apartment, order.city ? `${order.city} ${order.zip ?? ''}`.trim() : order.zip]
-    .filter(Boolean)
-    .join('<br>')
+function formatAddress(order: {
+  street: string | null
+  apartment: string | null
+  city: string | null
+  state: string | null
+  zip: string | null
+}): string | null {
+  const cityStateZip = [order.city, [order.state, order.zip].filter(Boolean).join(' ')].filter(Boolean).join(', ')
+  const address = [order.street, order.apartment, cityStateZip].filter(Boolean).join('<br>')
   return address || null
 }
 
@@ -101,6 +106,7 @@ interface OrderEmailData {
   street: string | null
   apartment: string | null
   city: string | null
+  state: string | null
   zip: string | null
   subtotal: number
   shippingCost: number
@@ -134,7 +140,7 @@ export async function sendOrderConfirmationEmail(order: OrderEmailData): Promise
     <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:24px;">
       ${summaryRow('Subtotal', formatMoney(order.subtotal))}
       ${summaryRow('Shipping', formatMoney(order.shippingCost))}
-      ${summaryRow('Tax', formatMoney(order.tax))}
+      ${order.tax > 0 ? summaryRow('Tax', formatMoney(order.tax)) : ''}
       ${summaryRow('Total', formatMoney(order.total), true)}
     </table>
     ${address ? labelValueBlock('Ship to', address) : ''}
@@ -157,7 +163,7 @@ export async function sendOrderConfirmationEmail(order: OrderEmailData): Promise
     '',
     `Subtotal: ${formatMoney(order.subtotal)}`,
     `Shipping: ${formatMoney(order.shippingCost)}`,
-    `Tax: ${formatMoney(order.tax)}`,
+    order.tax > 0 ? `Tax: ${formatMoney(order.tax)}` : null,
     `Total: ${formatMoney(order.total)}`,
     '',
     address ? `Ship to:\n${address.replace(/<br>/g, '\n')}` : null,
@@ -198,6 +204,7 @@ interface ShipmentEmailData {
   street: string | null
   apartment: string | null
   city: string | null
+  state: string | null
   zip: string | null
   carrier: string | null
   trackingNumber: string | null

@@ -74,8 +74,6 @@ export const FAQS: FaqEntry[] = [
   },
 ]
 
-export const TAX_RATE = 0.0825
-
 export function formatMoney(n: number): string {
   return '$' + n.toFixed(2)
 }

@@ -101,6 +101,9 @@ export const orders = pgTable('orders', {
   street: text('street'),
   apartment: text('apartment'),
   city: text('city'),
+  // Two-letter USPS state code — drives sales tax (currently WA only, see
+  // src/server/tax.ts) as well as being part of the shipping address itself.
+  state: text('state'),
   zip: text('zip'),
   shipMethod: text('ship_method').notNull(),
   subtotal: numeric('subtotal', { precision: 10, scale: 2, mode: 'number' }).notNull(),

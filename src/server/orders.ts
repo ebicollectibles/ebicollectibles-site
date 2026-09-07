@@ -4,10 +4,12 @@ import { eq, inArray, sql } from 'drizzle-orm'
 import { getDb } from '~/lib/db/client'
 import { withTransaction } from '~/lib/db/transactional-client'
 import { emailEvents, orderCounters, orderItems, orderStatusEvents, orders, paymentAttempts, products as productsTable, users } from '~/lib/db/schema'
-import { FLAT_SHIPPING_RATE, TAX_RATE } from '~/lib/products'
+import { FLAT_SHIPPING_RATE } from '~/lib/products'
+import { US_STATE_CODES } from '~/lib/us-states'
 import { chargeSquarePayment, getSquareInventoryCounts, recordSquareInventorySale } from './square'
 import { sendOrderConfirmationEmail } from './email'
 import { getCurrentUserId } from './customer-auth'
+import { resolveSalesTaxRate } from './tax'
 
 const placeOrderSchema = z.object({
   lines: z.array(z.object({ productId: z.string(), qty: z.number().int().positive() })).min(1),
@@ -18,6 +20,7 @@ const placeOrderSchema = z.object({
     street: z.string().trim().min(1),
     apartment: z.string().optional().default(''),
     city: z.string().trim().min(1),
+    state: z.enum(US_STATE_CODES),
     zip: z.string().trim().min(1),
   }),
   sourceId: z.string().nullable().optional(),
@@ -43,6 +46,11 @@ export const placeOrder = createServerFn({ method: 'POST' })
         .limit(1)
       userId = existing?.id ?? null
     }
+
+    // Resolved outside the transaction below — it's an external HTTP call
+    // (WA Dept. of Revenue), and a DB transaction holding row locks is the
+    // wrong place to be waiting on that.
+    const taxRate = await resolveSalesTaxRate(data.contact)
 
     const productRows = await db
       .select()
@@ -110,7 +118,7 @@ export const placeOrder = createServerFn({ method: 'POST' })
 
       const subtotal = lineDetails.reduce((t, l) => t + l.unitPrice * l.qty, 0)
       const shippingCost = subtotal === 0 ? 0 : FLAT_SHIPPING_RATE
-      const tax = Math.round(subtotal * TAX_RATE * 100) / 100
+      const tax = Math.round(subtotal * taxRate * 100) / 100
       const total = subtotal + shippingCost + tax
 
       const [counter] = await tx
@@ -150,6 +158,7 @@ export const placeOrder = createServerFn({ method: 'POST' })
           street: data.contact.street,
           apartment: data.contact.apartment,
           city: data.contact.city,
+          state: data.contact.state,
           zip: data.contact.zip,
           shipMethod: 'flat',
           subtotal,
@@ -216,6 +225,7 @@ export const placeOrder = createServerFn({ method: 'POST' })
         street: data.contact.street || null,
         apartment: data.contact.apartment || null,
         city: data.contact.city || null,
+        state: data.contact.state || null,
         zip: data.contact.zip || null,
         subtotal: result.subtotal,
         shippingCost: result.shippingCost,

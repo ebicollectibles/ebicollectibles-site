@@ -195,7 +195,8 @@ function AdminOrderDetailPage() {
         </div>
         <div style={{ marginTop: 14, paddingTop: 12, borderTop: '1px solid #f0f2f4', fontSize: 11.5, color: '#98a1ab' }}>
           {order.street}
-          {order.apartment ? `, ${order.apartment}` : ''}, {order.city} {order.zip} · {order.shipMethod} · {new Date(order.createdAt).toLocaleString()}
+          {order.apartment ? `, ${order.apartment}` : ''}, {order.city} {order.state} {order.zip} · {order.shipMethod} ·{' '}
+          {new Date(order.createdAt).toLocaleString()}
         </div>
         {order.paymentMethodSummary && <div style={{ marginTop: 4, fontSize: 11.5, color: '#98a1ab' }}>{order.paymentMethodSummary}</div>}
 

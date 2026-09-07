@@ -295,6 +295,7 @@ export const adminCreateShipment = createServerFn({ method: 'POST' })
         street: order.street,
         apartment: order.apartment,
         city: order.city,
+        state: order.state,
         zip: order.zip,
         carrier,
         trackingNumber,
