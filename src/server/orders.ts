@@ -6,7 +6,7 @@ import { withTransaction } from '~/lib/db/transactional-client'
 import { emailEvents, orderCounters, orderItems, orderStatusEvents, orders, paymentAttempts, products as productsTable, users } from '~/lib/db/schema'
 import { FLAT_SHIPPING_RATE } from '~/lib/products'
 import { US_STATE_CODES } from '~/lib/us-states'
-import { chargeSquarePayment, getSquareInventoryCounts, recordSquareInventorySale } from './square'
+import { chargeSquarePayment, createSquareOrder, getSquareInventoryCounts, recordSquareInventorySale } from './square'
 import { sendOrderConfirmationEmail } from './email'
 import { getCurrentUserId } from './customer-auth'
 import { resolveSalesTaxRate } from './tax'
@@ -138,10 +138,24 @@ export const placeOrder = createServerFn({ method: 'POST' })
         .returning()
       const orderNo = counter.nextOrderNo - 1
 
+      // Best-effort: itemizes the sale in the Square Dashboard by creating a
+      // Square Order alongside the payment. Only linked to the payment below
+      // if Square's own computed total matches ours exactly — a mismatch
+      // (rare rounding edge case) just means this order won't show line
+      // items in Square, never a failed or overcharged payment.
+      const squareOrder = await createSquareOrder({
+        orderNo,
+        lineItems: lineDetails.map((l) => ({ name: l.name, quantity: l.qty, unitPrice: l.unitPrice })),
+        shippingCost,
+        tax,
+      })
+      const squareOrderId = squareOrder && squareOrder.totalCents === Math.round(total * 100) ? squareOrder.orderId : null
+
       const charge = await chargeSquarePayment({
         sourceId: data.sourceId ?? null,
         amount: total,
         orderNo,
+        squareOrderId,
         billingAddress: {
           addressLine1: data.billing.street,
           addressLine2: data.billing.apartment || undefined,

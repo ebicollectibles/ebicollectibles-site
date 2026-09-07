@@ -61,10 +61,67 @@ function squareHeaders(accessToken: string) {
   }
 }
 
+// Creates a Square Order carrying line items (plus shipping/tax as their own
+// ad-hoc lines) so the sale shows up itemized in the Square Dashboard —
+// otherwise CreatePayment alone only ever tells Square a single dollar
+// amount, with no idea what was actually sold. Ad-hoc line items (name +
+// price) are used instead of catalog_object_id so this works whether or not
+// the product is linked to Square's catalog. Best-effort: returns null on
+// any failure (including Square not configured), and the caller should
+// still charge the payment without an order_id rather than block checkout
+// over dashboard cosmetics. Also returns Square's own computed total so the
+// caller can refuse to link a mismatched order rather than risk CreatePayment
+// rejecting (or silently overcharging) over a rounding difference.
+export async function createSquareOrder(opts: {
+  orderNo: number
+  lineItems: Array<{ name: string; quantity: number; unitPrice: number }>
+  shippingCost: number
+  tax: number
+}): Promise<{ orderId: string; totalCents: number } | null> {
+  const { accessToken, locationId, baseUrl } = squareConfig()
+  if (!accessToken || !locationId) return null
+
+  const lineItems = opts.lineItems.map((l) => ({
+    name: l.name,
+    quantity: String(l.quantity),
+    base_price_money: { amount: Math.round(l.unitPrice * 100), currency: 'USD' },
+  }))
+  if (opts.shippingCost > 0) {
+    lineItems.push({ name: 'Shipping', quantity: '1', base_price_money: { amount: Math.round(opts.shippingCost * 100), currency: 'USD' } })
+  }
+  if (opts.tax > 0) {
+    lineItems.push({ name: 'Tax', quantity: '1', base_price_money: { amount: Math.round(opts.tax * 100), currency: 'USD' } })
+  }
+
+  try {
+    const res = await fetch(`${baseUrl}/v2/orders`, {
+      method: 'POST',
+      headers: squareHeaders(accessToken),
+      body: JSON.stringify({
+        idempotency_key: `ebi-order-${opts.orderNo}-create`,
+        order: { location_id: locationId, line_items: lineItems },
+      }),
+    })
+    const json = await res.json().catch(() => null)
+    if (!res.ok) {
+      console.error(`Failed to create Square order for order ${opts.orderNo}:`, json?.errors)
+      return null
+    }
+    const orderId = json?.order?.id
+    const totalCents = json?.order?.total_money?.amount
+    if (!orderId || typeof totalCents !== 'number') return null
+    return { orderId, totalCents }
+  } catch (err) {
+    console.error(`Failed to create Square order for order ${opts.orderNo}:`, err)
+    return null
+  }
+}
+
 export async function chargeSquarePayment(opts: {
   sourceId: string | null
   amount: number
   orderNo: number
+  squareOrderId?: string | null
   billingAddress?: { addressLine1: string; addressLine2?: string; locality: string; administrativeDistrictLevel1: string; postalCode: string }
 }): Promise<ChargeResult> {
   const { accessToken, locationId, baseUrl } = squareConfig()
@@ -91,6 +148,7 @@ export async function chargeSquarePayment(opts: {
         currency: 'USD',
       },
       location_id: locationId,
+      ...(opts.squareOrderId && { order_id: opts.squareOrderId }),
       // Full billing address strengthens Square's AVS fraud check beyond
       // the postal-code-only check baked into the card widget itself.
       ...(opts.billingAddress && {
