@@ -12,13 +12,13 @@ import { getCurrentUserId } from './customer-auth'
 const placeOrderSchema = z.object({
   lines: z.array(z.object({ productId: z.string(), qty: z.number().int().positive() })).min(1),
   contact: z.object({
-    email: z.string().optional().default(''),
-    firstName: z.string().optional().default(''),
-    lastName: z.string().optional().default(''),
-    street: z.string().optional().default(''),
+    email: z.string().trim().email(),
+    firstName: z.string().trim().min(1),
+    lastName: z.string().trim().min(1),
+    street: z.string().trim().min(1),
     apartment: z.string().optional().default(''),
-    city: z.string().optional().default(''),
-    zip: z.string().optional().default(''),
+    city: z.string().trim().min(1),
+    zip: z.string().trim().min(1),
   }),
   sourceId: z.string().nullable().optional(),
 })

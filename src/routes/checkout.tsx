@@ -38,10 +38,19 @@ const emptyContact: CheckoutContact = {
   zip: '',
 }
 
+const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+
 function CheckoutPage() {
   const cart = useCart()
   const cardRef = React.useRef<SquareCardFieldHandle>(null)
   const [contact, setContact] = React.useState<CheckoutContact>(emptyContact)
+  const contactComplete =
+    EMAIL_RE.test(contact.email.trim()) &&
+    contact.firstName.trim() !== '' &&
+    contact.lastName.trim() !== '' &&
+    contact.street.trim() !== '' &&
+    contact.city.trim() !== '' &&
+    contact.zip.trim() !== ''
   const [confirmed, setConfirmed] = React.useState<{ orderNo: number; paymentStatus: string } | null>(null)
   const [submitting, setSubmitting] = React.useState(false)
   const [error, setError] = React.useState<string | null>(null)
@@ -90,6 +99,7 @@ function CheckoutPage() {
 
       <div className="ebi-checkout-layout" style={{ marginTop: 34, alignItems: 'start' }}>
         <form
+          id="checkout-form"
           onSubmit={(e) => {
             e.preventDefault()
             submit()
@@ -100,6 +110,7 @@ function CheckoutPage() {
             <input
               placeholder="Email address"
               type="email"
+              required
               className="ebi-field"
               style={{ ...fieldStyle, marginTop: 14, width: '100%' }}
               {...field('email')}
@@ -109,10 +120,11 @@ function CheckoutPage() {
           <div style={{ borderTop: '1px solid #e3e6ea', marginTop: 30, paddingTop: 22 }}>
             <div style={monoLabel}>02 / Shipping address</div>
             <div className="ebi-checkout-2col" style={{ marginTop: 14 }}>
-              <input placeholder="First name" className="ebi-field" style={fieldStyle} {...field('firstName')} />
-              <input placeholder="Last name" className="ebi-field" style={fieldStyle} {...field('lastName')} />
+              <input placeholder="First name" required className="ebi-field" style={fieldStyle} {...field('firstName')} />
+              <input placeholder="Last name" required className="ebi-field" style={fieldStyle} {...field('lastName')} />
               <input
                 placeholder="Street address"
+                required
                 className="ebi-field ebi-field-full"
                 style={fieldStyle}
                 {...field('street')}
@@ -123,8 +135,8 @@ function CheckoutPage() {
                 style={fieldStyle}
                 {...field('apartment')}
               />
-              <input placeholder="City" className="ebi-field" style={fieldStyle} {...field('city')} />
-              <input placeholder="ZIP code" className="ebi-field" style={fieldStyle} {...field('zip')} />
+              <input placeholder="City" required className="ebi-field" style={fieldStyle} {...field('city')} />
+              <input placeholder="ZIP code" required className="ebi-field" style={fieldStyle} {...field('zip')} />
             </div>
           </div>
 
@@ -135,7 +147,7 @@ function CheckoutPage() {
                 <>
                   <ApplePayButton
                     amount={cart.total}
-                    disabled={submitting}
+                    disabled={submitting || !contactComplete}
                     onTokenize={(sourceId) => finishOrder(sourceId)}
                     onError={setError}
                   />
@@ -228,8 +240,8 @@ function CheckoutPage() {
           </div>
           {error && <p style={{ fontSize: 12.5, color: '#b4622f', marginTop: 14 }}>{error}</p>}
           <button
-            type="button"
-            onClick={submit}
+            type="submit"
+            form="checkout-form"
             disabled={cart.cartEmpty || submitting}
             className="ebi-btn-dark"
             style={{
