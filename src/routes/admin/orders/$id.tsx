@@ -79,6 +79,11 @@ function AdminOrderDetailPage() {
   const totalToShip = Object.values(shipQtyByItem).reduce((t, qty) => t + qty, 0)
 
   const changeStatus = async (status: 'pending' | 'cancelled') => {
+    const message =
+      status === 'cancelled'
+        ? `Cancel order #EBI-${order.orderNo}? This won't automatically refund the payment or notify the customer — you'd need to do that separately.`
+        : `Revert order #EBI-${order.orderNo} back to pending?`
+    if (!confirm(message)) return
     setUpdating(true)
     try {
       await adminUpdateOrderStatus({ data: { orderId: order.id, status } })
