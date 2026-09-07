@@ -1,5 +1,12 @@
 import { defineNitroConfig } from 'nitro/config'
 
+// Set only by .github/workflows/deploy-dev.yml, to build/deploy a second,
+// separate Worker for sandbox testing (fake Square cards, its own database)
+// without ever touching the production Worker's name or domain routes. Any
+// build that doesn't set this — including every local build — is
+// byte-identical to before this existed.
+const isDev = process.env.DEPLOY_TARGET === 'dev'
+
 export default defineNitroConfig({
   compatibilityDate: '2024-09-19',
   preset: 'cloudflare_module',
@@ -12,7 +19,7 @@ export default defineNitroConfig({
     // secrets across two different Workers. This must match the name
     // already live in the Cloudflare dashboard.
     wrangler: {
-      name: 'ebicollectibles-ebicollectibles-site',
+      name: isDev ? 'ebicollectibles-ebicollectibles-site-dev' : 'ebicollectibles-ebicollectibles-site',
       // Pinned too, so a local `wrangler secret put` can't silently land on
       // a different Cloudflare account than the one CI deploys to.
       account_id: 'bcc6861315d8ff44884e66be1f31eee3',
@@ -22,18 +29,18 @@ export default defineNitroConfig({
       compatibility_flags: ['nodejs_compat', 'nodejs_compat_populate_process_env'],
       // R2 bucket for product images uploaded from the admin panel. The
       // bucket itself has to be created once (see README-DEPLOY.md) —
-      // this just wires the binding so the Worker can reach it.
+      // this just wires the binding so the Worker can reach it. Shared with
+      // the dev Worker too — it only holds product photos, not order/
+      // customer data, so isolating it isn't worth a second bucket.
       r2_buckets: [{ binding: 'PRODUCT_IMAGES', bucket_name: 'ebicollectibles-product-images' }],
-      // Binds the real domain to this Worker so it serves ebicollectibles.com
-      // directly, not just the workers.dev URL. Requires the zone to already
-      // show "Active" in the Cloudflare dashboard (nameservers pointed at
-      // Cloudflare) — otherwise the deploy step that provisions this route
-      // fails. Custom Domain routes must be a bare hostname — no wildcard
-      // (*) or path suffix, unlike a normal Worker route pattern.
-      routes: [
-        { pattern: 'ebicollectibles.com', custom_domain: true },
-        { pattern: 'www.ebicollectibles.com', custom_domain: true },
-      ],
+      // The dev Worker gets no custom domain — it's reachable only at its
+      // own workers.dev URL, so it can never intercept production traffic.
+      routes: isDev
+        ? []
+        : [
+            { pattern: 'ebicollectibles.com', custom_domain: true },
+            { pattern: 'www.ebicollectibles.com', custom_domain: true },
+          ],
     },
   },
 })

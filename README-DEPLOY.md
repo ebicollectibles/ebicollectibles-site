@@ -154,6 +154,69 @@ Until step 2–3 are done, checkout still fully works — orders are recorded in
 the database with `payment_status: 'test'` and no card is charged (see the
 note that renders on the checkout page and confirmation screen in that mode).
 
+## Dev site (sandbox Square, isolated database)
+
+A second, separate Cloudflare Worker for testing the full checkout flow
+(including real stock decrement) with zero cost and zero risk to production
+— fake Square cards, and its own database so test orders never touch real
+customer data. `nitro.config.ts` already supports this (an `isDev` branch
+gated on `DEPLOY_TARGET=dev`, which every normal build leaves unset), and
+`.github/workflows/deploy-dev.yml` already exists as a manual-only workflow.
+One-time setup:
+
+1. **Create a separate database.** Easiest option: in the
+   [Neon console](https://console.neon.tech), open the project backing
+   production and create a **branch** (a full copy-on-write copy, isolated
+   from production writes). Copy its connection string.
+2. **Create a Square Sandbox app** (or reuse the Sandbox tab of the existing
+   app) at the [Square Developer Dashboard](https://developer.squareup.com/apps)
+   — grab the Sandbox Application ID, Access Token, and Location ID. These
+   are separate from the production credentials and free to use.
+3. **Add two GitHub Actions repository *variables*** (Settings → Secrets and
+   variables → Actions → Variables): `VITE_SQUARE_APPLICATION_ID_DEV` and
+   `VITE_SQUARE_LOCATION_ID_DEV`, set to the Sandbox values from step 2.
+   (`VITE_SQUARE_ENVIRONMENT` is hardcoded to `sandbox` in the workflow —
+   there's no variable for it, so this can't accidentally point at
+   production.)
+4. **Set the dev Worker's secrets** — same idea as the production Worker,
+   but targeting the dev Worker by name and using the sandbox/dev values
+   from steps 1–2:
+   ```bash
+   npm run build   # the --name flag below overrides whichever Worker name gets built
+   cd .output/server
+   npx wrangler secret put DATABASE_URL --name ebicollectibles-ebicollectibles-site-dev   # the Neon branch from step 1
+   npx wrangler secret put ADMIN_PASSWORD --name ebicollectibles-ebicollectibles-site-dev
+   npx wrangler secret put SESSION_SECRET --name ebicollectibles-ebicollectibles-site-dev
+   npx wrangler secret put SQUARE_ACCESS_TOKEN --name ebicollectibles-ebicollectibles-site-dev   # Sandbox token from step 2
+   npx wrangler secret put SQUARE_LOCATION_ID --name ebicollectibles-ebicollectibles-site-dev     # Sandbox location from step 2
+   npx wrangler secret put SQUARE_ENVIRONMENT --name ebicollectibles-ebicollectibles-site-dev      # sandbox
+   ```
+   Resend/Google OAuth secrets can be left unset on the dev Worker — email
+   sending and Google sign-in just no-op/stay disabled, nothing else breaks.
+5. **Run migrations against the new database** so its schema matches:
+   ```bash
+   DATABASE_URL="<the Neon branch connection string>" npm run db:migrate
+   ```
+   Optionally `npm run db:seed` too, if you want sample products to test
+   with instead of copying real ones over.
+6. **Deploy it**: GitHub repo → Actions tab → "Deploy dev site (sandbox
+   Square)" → Run workflow. It never fires automatically (manual-only), so
+   it can't be triggered by an ordinary push to `main`.
+7. **Find the URL**: Cloudflare dashboard → Workers & Pages →
+   `ebicollectibles-ebicollectibles-site-dev` → its `*.workers.dev` URL. No
+   custom domain is attached, so it's only reachable there.
+
+From then on, test with [Square's Sandbox test card
+numbers](https://developer.squareup.com/docs/testing/sandbox#test-values) —
+nothing is ever charged, and stock decrements only in the dev database /
+Sandbox Square inventory, never in production. Re-run the same "Deploy dev
+site" workflow after future code changes to pick them up; secrets only need
+setting once and persist across deploys.
+
+Note: the dev Worker shares production's R2 image bucket (product photos
+aren't sensitive and aren't worth a second bucket), so an image uploaded via
+the dev admin panel does land in the same bucket production uses.
+
 ## Order confirmation emails (Resend)
 
 Already fully built (`src/server/email.ts`) and best-effort — if unset, orders

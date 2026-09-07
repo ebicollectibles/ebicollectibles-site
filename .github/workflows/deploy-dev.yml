@@ -1,0 +1,48 @@
+name: Deploy dev site (sandbox Square)
+
+# Manual only — this never fires on a push, so it can't be confused with the
+# real production deploy. Builds and deploys a second, separate Cloudflare
+# Worker (see nitro.config.ts's isDev branch) reachable only at its own
+# workers.dev URL, running against its own database and Square's Sandbox
+# (fake test cards, nothing charged, nothing decremented in production).
+on:
+  workflow_dispatch: {}
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build (Cloudflare Workers target, dev)
+        run: npm run build
+        env:
+          DEPLOY_TARGET: dev
+          # Dev always runs Square Sandbox — never point this workflow at
+          # production Square credentials. Application/Location ID are set
+          # as separate "_DEV" GitHub Actions repository *variables* (not
+          # secrets) so they can't be confused with the production values in
+          # deploy.yml. The matching Access Token is a Worker secret on the
+          # dev Worker only — see README-DEPLOY.md.
+          VITE_SQUARE_APPLICATION_ID: ${{ vars.VITE_SQUARE_APPLICATION_ID_DEV }}
+          VITE_SQUARE_LOCATION_ID: ${{ vars.VITE_SQUARE_LOCATION_ID_DEV }}
+          VITE_SQUARE_ENVIRONMENT: sandbox
+          # Deliberately no VITE_GA_MEASUREMENT_ID — dev traffic should never
+          # land in production analytics.
+
+      - name: Deploy
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          workingDirectory: .output/server
+          command: deploy --config wrangler.json
