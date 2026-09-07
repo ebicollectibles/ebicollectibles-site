@@ -4,6 +4,71 @@
 import { carrierTrackingUrl } from '~/lib/carriers'
 import { formatMoney } from '~/lib/products'
 
+// Shared visual language for every transactional email — same palette as
+// the site itself (see src/styles/app.css :root), same header/footer shell,
+// same items-table shape — so order confirmation and shipment emails read
+// as one consistent system rather than two different designs. Table-based
+// layout throughout (no flex/grid) since Outlook's rendering engine doesn't
+// support either.
+const INK = '#131b28'
+const MUTED = '#5a6875'
+const BORDER = '#e3e6ea'
+const SURFACE = '#f6f7f8'
+const GREEN = '#3f7a63'
+
+function emailShell(opts: { badgeLabel: string; badgeColor: string; heading: string; intro: string; bodyHtml: string }): string {
+  return `
+  <div style="background:${SURFACE};padding:32px 16px;font-family:Helvetica,Arial,sans-serif;">
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:560px;margin:0 auto;background:#ffffff;border:1px solid ${BORDER};border-radius:6px;overflow:hidden;">
+      <tr>
+        <td style="background:${INK};padding:22px 32px;">
+          <span style="font-size:13px;font-weight:700;letter-spacing:0.1em;color:#ffffff;text-transform:uppercase;">EBI Collectibles</span>
+        </td>
+      </tr>
+      <tr>
+        <td style="padding:32px 32px 8px;">
+          <span style="display:inline-block;font-size:10px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:${opts.badgeColor};border:1px solid ${opts.badgeColor};border-radius:2px;padding:4px 9px;">${opts.badgeLabel}</span>
+          <h1 style="font-size:21px;margin:14px 0 4px;color:${INK};">${opts.heading}</h1>
+          <p style="font-size:13.5px;color:${MUTED};margin:0 0 24px;">${opts.intro}</p>
+          ${opts.bodyHtml}
+        </td>
+      </tr>
+      <tr>
+        <td style="padding:18px 32px;border-top:1px solid ${BORDER};">
+          <p style="margin:0;font-size:11px;color:#98a1ab;">EBI Collectibles — Simplified Chinese Pokémon collectibles, sourced through authorised distribution.</p>
+        </td>
+      </tr>
+    </table>
+  </div>`
+}
+
+function itemsTableHtml(items: OrderEmailItem[]): string {
+  const rows = items
+    .map(
+      (item) => `
+        <tr>
+          <td style="padding:10px 0;border-bottom:1px solid ${BORDER};font-size:13.5px;color:${INK};">${escapeHtml(item.productName)}</td>
+          <td style="padding:10px 0;border-bottom:1px solid ${BORDER};font-size:13.5px;color:${MUTED};text-align:center;white-space:nowrap;">${item.qty}</td>
+          <td style="padding:10px 0;border-bottom:1px solid ${BORDER};font-size:13.5px;color:${INK};text-align:right;white-space:nowrap;">${formatMoney(item.unitPrice * item.qty)}</td>
+        </tr>`,
+    )
+    .join('')
+
+  return `
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:20px;">
+      <tr>
+        <td style="padding:0 0 8px;border-bottom:1px solid ${INK};font-size:10px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:${MUTED};">Item</td>
+        <td style="padding:0 0 8px;border-bottom:1px solid ${INK};font-size:10px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:${MUTED};text-align:center;">Qty</td>
+        <td style="padding:0 0 8px;border-bottom:1px solid ${INK};font-size:10px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:${MUTED};text-align:right;">Price</td>
+      </tr>
+      ${rows}
+    </table>`
+}
+
+function labelValueBlock(label: string, valueHtml: string): string {
+  return `<p style="font-size:10px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:${MUTED};margin:0 0 4px;">${label}</p><p style="font-size:13.5px;color:${INK};margin:0 0 20px;">${valueHtml}</p>`
+}
+
 interface OrderEmailItem {
   productName: string
   qty: number
@@ -37,46 +102,34 @@ export async function sendOrderConfirmationEmail(order: OrderEmailData): Promise
 
   if (!apiKey || !from || !order.email) return { status: 'skipped' }
 
-  const itemRows = order.items
-    .map(
-      (item) => `
-        <tr>
-          <td style="padding:8px 0;border-bottom:1px solid #e3e6ea;font-size:13.5px;color:#131b28;">${item.qty}× ${escapeHtml(item.productName)}</td>
-          <td style="padding:8px 0;border-bottom:1px solid #e3e6ea;font-size:13.5px;color:#131b28;text-align:right;white-space:nowrap;">${formatMoney(item.unitPrice * item.qty)}</td>
-        </tr>`,
-    )
-    .join('')
-
-  const summaryRow = (label: string, value: string) => `
+  const summaryRow = (label: string, value: string, strong = false) => `
     <tr>
-      <td style="padding:4px 0;font-size:12.5px;color:#5a6875;">${label}</td>
-      <td style="padding:4px 0;font-size:12.5px;color:#5a6875;text-align:right;">${value}</td>
+      <td style="padding:4px 0;font-size:${strong ? '14px' : '12.5px'};font-weight:${strong ? '700' : '400'};color:${strong ? INK : MUTED};${strong ? `border-top:1px solid ${INK};padding-top:10px;` : ''}">${label}</td>
+      <td style="padding:4px 0;font-size:${strong ? '14px' : '12.5px'};font-weight:${strong ? '700' : '400'};color:${strong ? INK : MUTED};text-align:right;${strong ? `border-top:1px solid ${INK};padding-top:10px;` : ''}">${value}</td>
     </tr>`
 
   const address = [order.street, order.apartment, order.city ? `${order.city} ${order.zip ?? ''}`.trim() : order.zip]
     .filter(Boolean)
     .join('<br>')
 
-  const html = `
-  <div style="font-family:Helvetica,Arial,sans-serif;max-width:520px;margin:0 auto;padding:24px 20px;">
-    <div style="font-size:12px;letter-spacing:0.08em;text-transform:uppercase;color:#98a1ab;font-weight:700;">EBI Collectibles</div>
-    <h1 style="font-size:20px;margin:12px 0 4px;color:#131b28;">Thanks for your order${order.firstName ? `, ${escapeHtml(order.firstName)}` : ''}!</h1>
-    <p style="font-size:13.5px;color:#5a6875;margin:0 0 20px;">Order #EBI-${order.orderNo} is confirmed.</p>
-    <table style="width:100%;border-collapse:collapse;margin-bottom:16px;">
-      ${itemRows}
-    </table>
-    <table style="width:100%;border-collapse:collapse;margin-bottom:20px;">
+  const bodyHtml = `
+    ${itemsTableHtml(order.items)}
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:24px;">
       ${summaryRow('Subtotal', formatMoney(order.subtotal))}
       ${summaryRow('Shipping', formatMoney(order.shippingCost))}
       ${summaryRow('Tax', formatMoney(order.tax))}
-      <tr>
-        <td style="padding:8px 0 0;font-size:14.5px;font-weight:700;color:#131b28;border-top:1px solid #131b28;">Total</td>
-        <td style="padding:8px 0 0;font-size:14.5px;font-weight:700;color:#131b28;text-align:right;border-top:1px solid #131b28;">${formatMoney(order.total)}</td>
-      </tr>
+      ${summaryRow('Total', formatMoney(order.total), true)}
     </table>
-    ${address ? `<p style="font-size:12.5px;color:#5a6875;margin:0 0 4px;font-weight:600;">Shipping to</p><p style="font-size:12.5px;color:#5a6875;margin:0 0 20px;">${address}</p>` : ''}
-    <p style="font-size:12px;color:#98a1ab;margin:20px 0 0;">You'll get tracking info by email once your order ships.</p>
-  </div>`
+    ${address ? labelValueBlock('Ship to', address) : ''}
+  `
+
+  const html = emailShell({
+    badgeLabel: 'Order confirmed',
+    badgeColor: GREEN,
+    heading: `Thanks for your order${order.firstName ? `, ${escapeHtml(order.firstName)}` : ''}!`,
+    intro: `Order #EBI-${order.orderNo} is confirmed — here's what's in it.`,
+    bodyHtml,
+  })
 
   const text = [
     `Thanks for your order${order.firstName ? `, ${order.firstName}` : ''}!`,
@@ -133,27 +186,26 @@ export async function sendShipmentEmail(order: ShipmentEmailData): Promise<Email
   if (!apiKey || !from || !order.email) return { status: 'skipped' }
 
   const trackingUrl = carrierTrackingUrl(order.carrier, order.trackingNumber)
+  const trackingValue = order.trackingNumber
+    ? trackingUrl
+      ? `<a href="${trackingUrl}" style="color:${GREEN};font-weight:600;">${escapeHtml(order.trackingNumber)}</a>`
+      : escapeHtml(order.trackingNumber)
+    : null
+
+  const bodyHtml = `
+    ${itemsTableHtml(order.items)}
+    ${trackingValue ? labelValueBlock(order.carrier ? `${order.carrier} tracking number` : 'Tracking number', trackingValue) : ''}
+  `
+
+  const html = emailShell({
+    badgeLabel: 'Shipped',
+    badgeColor: GREEN,
+    heading: `Your order is on its way${order.firstName ? `, ${escapeHtml(order.firstName)}` : ''}!`,
+    intro: `Order #EBI-${order.orderNo} has shipped.`,
+    bodyHtml,
+  })
 
   const itemsLine = order.items.map((item) => `${item.qty}× ${item.productName}`).join(', ')
-
-  const html = `
-  <div style="font-family:Helvetica,Arial,sans-serif;max-width:520px;margin:0 auto;padding:24px 20px;">
-    <div style="font-size:12px;letter-spacing:0.08em;text-transform:uppercase;color:#98a1ab;font-weight:700;">EBI Collectibles</div>
-    <h1 style="font-size:20px;margin:12px 0 4px;color:#131b28;">Your order is on its way${order.firstName ? `, ${escapeHtml(order.firstName)}` : ''}!</h1>
-    <p style="font-size:13.5px;color:#5a6875;margin:0 0 20px;">Order #EBI-${order.orderNo} has shipped: ${escapeHtml(itemsLine)}.</p>
-    ${
-      order.trackingNumber
-        ? `<p style="font-size:12.5px;color:#5a6875;margin:0 0 6px;font-weight:600;">${order.carrier ? escapeHtml(order.carrier) + ' tracking number' : 'Tracking number'}</p>
-           <p style="font-size:14px;color:#131b28;margin:0 0 20px;">${
-             trackingUrl
-               ? `<a href="${trackingUrl}" style="color:#3f7a63;font-weight:600;">${escapeHtml(order.trackingNumber)}</a>`
-               : escapeHtml(order.trackingNumber)
-           }</p>`
-        : ''
-    }
-    <p style="font-size:12px;color:#98a1ab;margin:20px 0 0;">Questions about your shipment? Just reply to this email.</p>
-  </div>`
-
   const text = [
     `Your order is on its way${order.firstName ? `, ${order.firstName}` : ''}!`,
     `Order #EBI-${order.orderNo} has shipped: ${itemsLine}.`,
