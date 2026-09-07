@@ -7,9 +7,11 @@ interface R2Bucket {
   put(
     key: string,
     value: ArrayBuffer,
-    options?: { httpMetadata?: { contentType?: string } },
+    options?: { httpMetadata?: { contentType?: string }; customMetadata?: Record<string, string> },
   ): Promise<unknown>
-  list(options?: { limit?: number }): Promise<{ objects: Array<{ key: string; uploaded: Date }> }>
+  list(options?: { limit?: number; include?: Array<'customMetadata'> }): Promise<{
+    objects: Array<{ key: string; uploaded: Date; size: number; customMetadata?: Record<string, string> }>
+  }>
 }
 
 interface CloudflareEnv {
@@ -53,6 +55,11 @@ export const uploadProductImage = createServerFn({ method: 'POST' })
 
     await env.PRODUCT_IMAGES.put(key, await file.arrayBuffer(), {
       httpMetadata: { contentType: file.type },
+      // R2 custom metadata rides along as HTTP headers under the hood, which
+      // don't reliably carry non-ASCII bytes — encode so filenames with
+      // Chinese characters etc. survive the round trip (decoded back out in
+      // listProductImages below).
+      customMetadata: { originalName: encodeURIComponent(file.name) },
     })
 
     return { url: `${env.PRODUCT_IMAGES_PUBLIC_URL.replace(/\/$/, '')}/${key}` }
@@ -70,8 +77,19 @@ export const listProductImages = createServerFn({ method: 'GET' }).handler(async
   }
 
   const base = env.PRODUCT_IMAGES_PUBLIC_URL.replace(/\/$/, '')
-  const { objects } = await env.PRODUCT_IMAGES.list({ limit: 200 })
+  const { objects } = await env.PRODUCT_IMAGES.list({ limit: 200, include: ['customMetadata'] })
   return objects
     .sort((a, b) => new Date(b.uploaded).getTime() - new Date(a.uploaded).getTime())
-    .map((obj) => ({ key: obj.key, url: `${base}/${obj.key}` }))
+    .map((obj) => {
+      const encodedName = obj.customMetadata?.originalName
+      let name = obj.key
+      if (encodedName) {
+        try {
+          name = decodeURIComponent(encodedName)
+        } catch {
+          name = encodedName
+        }
+      }
+      return { key: obj.key, url: `${base}/${obj.key}`, name, size: obj.size }
+    })
 })

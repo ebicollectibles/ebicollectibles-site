@@ -138,15 +138,24 @@ function BrowseButton({ onClick }: { onClick: () => void }) {
   )
 }
 
+function formatFileSize(bytes: number): string {
+  if (bytes < 1024) return `${bytes} B`
+  if (bytes < 1024 * 1024) return `${(bytes / 1024).toFixed(1)} KB`
+  return `${(bytes / (1024 * 1024)).toFixed(1)} MB`
+}
+
 function ImagePicker({ onSelect, onClose }: { onSelect: (url: string) => void; onClose: () => void }) {
-  const [images, setImages] = React.useState<Array<{ key: string; url: string }> | null>(null)
+  const [images, setImages] = React.useState<Array<{ key: string; url: string; name: string; size: number }> | null>(null)
   const [error, setError] = React.useState<string | null>(null)
+  const [query, setQuery] = React.useState('')
 
   React.useEffect(() => {
     listProductImages()
       .then(setImages)
       .catch((err) => setError(err instanceof Error ? err.message : 'Failed to load images.'))
   }, [])
+
+  const filtered = images?.filter((img) => img.name.toLowerCase().includes(query.trim().toLowerCase()))
 
   return (
     <div
@@ -188,25 +197,61 @@ function ImagePicker({ onSelect, onClose }: { onSelect: (url: string) => void; o
         {error && <p style={{ fontSize: 12.5, color: '#b4622f' }}>{error}</p>}
         {!images && !error && <p style={{ fontSize: 13, color: '#98a1ab' }}>Loading…</p>}
         {images && images.length === 0 && <p style={{ fontSize: 13, color: '#98a1ab' }}>No uploaded images yet — use Upload instead.</p>}
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(96px, 1fr))', gap: 10 }}>
-          {images?.map((img) => (
+        {images && images.length > 0 && (
+          <input
+            style={{ ...field, marginBottom: 14 }}
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            placeholder="Search by file name…"
+            autoFocus
+          />
+        )}
+        {filtered && filtered.length === 0 && images && images.length > 0 && (
+          <p style={{ fontSize: 13, color: '#98a1ab' }}>No file names match "{query}".</p>
+        )}
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(120px, 1fr))', gap: 12 }}>
+          {filtered?.map((img) => (
             <button
               key={img.key}
               type="button"
               onClick={() => onSelect(img.url)}
-              aria-label="Use this image"
+              aria-label={`Use ${img.name}`}
+              title={img.name}
               style={{
                 padding: 0,
-                aspectRatio: '1 / 1',
-                background: '#f6f7f8',
-                backgroundImage: `url(${img.url})`,
-                backgroundSize: 'cover',
-                backgroundPosition: 'center',
-                border: '1px solid #e3e6ea',
-                borderRadius: 2,
+                background: 'none',
+                border: 0,
                 cursor: 'pointer',
+                textAlign: 'left',
               }}
-            />
+            >
+              <div
+                style={{
+                  aspectRatio: '1 / 1',
+                  background: '#f6f7f8',
+                  backgroundImage: `url(${img.url})`,
+                  backgroundSize: 'cover',
+                  backgroundPosition: 'center',
+                  border: '1px solid #e3e6ea',
+                  borderRadius: 2,
+                }}
+              />
+              <div
+                style={{
+                  marginTop: 5,
+                  fontSize: 11,
+                  color: '#3d4753',
+                  overflow: 'hidden',
+                  textOverflow: 'ellipsis',
+                  whiteSpace: 'nowrap',
+                }}
+              >
+                {img.name}
+              </div>
+              <div style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 10, color: '#98a1ab' }}>
+                {formatFileSize(img.size)}
+              </div>
+            </button>
           ))}
         </div>
       </div>
