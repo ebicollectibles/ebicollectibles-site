@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { PRODUCT_TYPES, type ProductType } from '~/lib/products'
+import { PRODUCT_CATEGORIES, SUBCATEGORIES_BY_CATEGORY, type ProductCategory, type ProductSubcategory } from '~/lib/products'
 import { listProductImages, uploadProductImage } from '~/server/uploads'
 import { adminSearchSquareCatalog } from '~/server/admin'
 import type { SquareCatalogOption } from '~/server/square'
@@ -8,7 +8,8 @@ export interface ProductFormValues {
   id: string
   name: string
   code: string
-  type: ProductType
+  category: ProductCategory
+  subcategory: ProductSubcategory
   price: number
   compareAtPrice: number
   stock: number
@@ -26,7 +27,8 @@ const emptyValues: ProductFormValues = {
   id: '',
   name: '',
   code: '',
-  type: 'Booster box',
+  category: 'Chinese Pokémon Products',
+  subcategory: 'Gem Series',
   price: 0,
   compareAtPrice: 0,
   stock: 0,
@@ -406,15 +408,33 @@ export function ProductForm({
           <input style={field} value={values.code} onChange={(e) => set('code', e.target.value)} required />
         </div>
         <div>
-          <label style={label}>Type</label>
-          <select style={field} value={values.type} onChange={(e) => set('type', e.target.value as ProductType)}>
-            {PRODUCT_TYPES.map((t) => (
-              <option key={t} value={t}>
-                {t}
+          <label style={label}>Category</label>
+          <select
+            style={field}
+            value={values.category}
+            onChange={(e) => {
+              const category = e.target.value as ProductCategory
+              set('category', category)
+              set('subcategory', SUBCATEGORIES_BY_CATEGORY[category][0])
+            }}
+          >
+            {PRODUCT_CATEGORIES.map((c) => (
+              <option key={c} value={c}>
+                {c}
               </option>
             ))}
           </select>
         </div>
+      </div>
+      <div style={{ marginBottom: 16 }}>
+        <label style={label}>Subcategory</label>
+        <select style={field} value={values.subcategory} onChange={(e) => set('subcategory', e.target.value as ProductSubcategory)}>
+          {SUBCATEGORIES_BY_CATEGORY[values.category].map((s) => (
+            <option key={s} value={s}>
+              {s}
+            </option>
+          ))}
+        </select>
       </div>
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12, marginBottom: 16 }}>
         <div>

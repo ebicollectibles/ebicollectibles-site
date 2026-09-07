@@ -63,7 +63,7 @@ function AdminDashboard() {
             <tr>
               <th style={th}>Name</th>
               <th style={th}>Code</th>
-              <th style={th}>Type</th>
+              <th style={th}>Category</th>
               <th style={th}>Price</th>
               <th style={th}>Stock</th>
               <th style={th}></th>
@@ -74,7 +74,7 @@ function AdminDashboard() {
               <tr key={p.id}>
                 <td style={td}>{p.name}</td>
                 <td style={{ ...td, fontFamily: "'IBM Plex Mono', monospace" }}>{p.code}</td>
-                <td style={td}>{p.type}</td>
+                <td style={td}>{p.subcategory}</td>
                 <td style={{ ...td, fontFamily: "'IBM Plex Mono', monospace" }}>{formatMoney(p.price)}</td>
                 <td style={{ ...td, fontFamily: "'IBM Plex Mono', monospace", color: p.stock === 0 ? '#b4622f' : undefined }}>
                   {p.stock}

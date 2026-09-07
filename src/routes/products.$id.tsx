@@ -38,8 +38,8 @@ function ProductDetailPage() {
 
   const related = React.useMemo(() => {
     if (!product) return []
-    const sameType = products.filter((p) => p.id !== product.id && p.type === product.type)
-    const rest = products.filter((p) => p.id !== product.id && p.type !== product.type)
+    const sameType = products.filter((p) => p.id !== product.id && p.subcategory === product.subcategory)
+    const rest = products.filter((p) => p.id !== product.id && p.subcategory !== product.subcategory)
     return [...sameType, ...rest].slice(0, 4)
   }, [products, product])
 
@@ -73,7 +73,7 @@ function ProductDetailPage() {
         <Link to="/shop" style={{ color: 'inherit' }}>
           Shop
         </Link>{' '}
-        / {product.type}
+        / {product.subcategory}
       </div>
 
       <div className="ebi-product-detail-grid" style={{ marginTop: 24 }}>
@@ -170,7 +170,7 @@ function ProductDetailPage() {
 
         <div>
           <div style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 11, letterSpacing: '0.12em', color: '#131b28' }}>
-            {product.code} · {product.type}
+            {product.code} · {product.subcategory}
           </div>
           <h1 style={{ fontSize: 32, letterSpacing: '-0.02em', fontWeight: 700, lineHeight: 1.15, margin: '10px 0 0', textWrap: 'pretty' }}>
             {product.name}

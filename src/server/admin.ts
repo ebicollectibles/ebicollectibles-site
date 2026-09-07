@@ -17,16 +17,22 @@ import {
   users,
 } from '~/lib/db/schema'
 import { CARRIERS } from '~/lib/carriers'
+import { PRODUCT_CATEGORIES, SUBCATEGORIES_BY_CATEGORY, ALL_SUBCATEGORIES } from '~/lib/products'
 import { computeFulfillmentStatus, remainingQtyByItem } from '~/lib/shipments'
 import { assertAdmin } from './admin-auth'
 import { sendShipmentEmail } from './email'
 import { overlaySquareData, searchSquareCatalogItems } from './square'
 
-const productSchema = z.object({
+// Base object (not yet refined) so adminUpdateProduct can still .extend() it
+// with originalId — z.object().refine() returns a ZodEffects, which has no
+// .extend(), so the subcategory-belongs-to-category check is applied
+// separately to each final shape via withSubcategoryCheck below.
+const productBaseSchema = z.object({
   id: z.string().min(1),
   name: z.string().min(1),
   code: z.string().min(1),
-  type: z.enum(['Booster box', 'Special box', 'Figures', 'Acrylic']),
+  category: z.enum(PRODUCT_CATEGORIES),
+  subcategory: z.enum(ALL_SUBCATEGORIES as [string, ...string[]]),
   price: z.number().nonnegative(),
   compareAtPrice: z.number().nonnegative().nullable().optional(),
   stock: z.number().int().nonnegative(),
@@ -39,6 +45,15 @@ const productSchema = z.object({
   preorder: z.boolean().optional().default(false),
   placeholder: z.string().optional(),
 })
+
+function withSubcategoryCheck<T extends z.ZodObject<z.ZodRawShape>>(schema: T) {
+  return schema.refine((data) => (SUBCATEGORIES_BY_CATEGORY[data.category as keyof typeof SUBCATEGORIES_BY_CATEGORY] as string[]).includes(data.subcategory as string), {
+    message: 'Subcategory does not belong to the selected category.',
+    path: ['subcategory'],
+  })
+}
+
+const productSchema = withSubcategoryCheck(productBaseSchema)
 
 export const adminListProducts = createServerFn({ method: 'GET' }).handler(async () => {
   await assertAdmin()
@@ -85,7 +100,7 @@ export const adminCreateProduct = createServerFn({ method: 'POST' })
 const TRACKED_EDIT_FIELDS = ['price', 'compareAtPrice', 'stock'] as const
 
 export const adminUpdateProduct = createServerFn({ method: 'POST' })
-  .validator(productSchema.extend({ originalId: z.string() }))
+  .validator(withSubcategoryCheck(productBaseSchema.extend({ originalId: z.string() })))
   .handler(async ({ data }) => {
     await assertAdmin()
     const db = getDb()

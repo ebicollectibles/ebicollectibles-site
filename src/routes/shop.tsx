@@ -3,10 +3,11 @@ import { createFileRoute } from '@tanstack/react-router'
 import { z } from 'zod'
 import { ProductCard } from '~/components/ProductCard'
 import { useCart } from '~/lib/cart-context'
-import { PRODUCT_TYPES, type ProductType } from '~/lib/products'
+import { PRODUCT_CATEGORIES, SUBCATEGORIES_BY_CATEGORY, ALL_SUBCATEGORIES, type ProductSubcategory } from '~/lib/products'
 
 const shopSearchSchema = z.object({
-  type: z.enum(['Booster box', 'Special box', 'Figures', 'Acrylic']).optional(),
+  category: z.enum(PRODUCT_CATEGORIES).optional(),
+  subcategory: z.enum(ALL_SUBCATEGORIES as [string, ...string[]]).optional(),
 })
 
 export const Route = createFileRoute('/shop')({
@@ -15,13 +16,6 @@ export const Route = createFileRoute('/shop')({
 })
 
 type SortMode = 'featured' | 'low' | 'high' | 'name'
-
-const SHOP_TITLES: Record<ProductType, string> = {
-  'Booster box': 'Booster boxes',
-  'Special box': 'Special boxes',
-  Figures: 'Figures & blind boxes',
-  Acrylic: 'Acrylics',
-}
 
 const monoLabel: React.CSSProperties = {
   fontFamily: "'IBM Plex Mono', monospace",
@@ -35,34 +29,42 @@ function ShopPage() {
   const search = Route.useSearch()
   const { products } = useCart()
 
-  const [types, setTypes] = React.useState<ProductType[]>(search.type ? [search.type] : [])
+  const seedSubcategories = (): ProductSubcategory[] => {
+    if (search.subcategory) return [search.subcategory as ProductSubcategory]
+    if (search.category) return SUBCATEGORIES_BY_CATEGORY[search.category]
+    return []
+  }
+
+  const [subcategories, setSubcategories] = React.useState<ProductSubcategory[]>(seedSubcategories())
   const [inStockOnly, setInStockOnly] = React.useState(false)
   const [maxPrice, setMaxPrice] = React.useState(150)
   const [sort, setSort] = React.useState<SortMode>('featured')
   const [filtersOpen, setFiltersOpen] = React.useState(false)
 
-  // Re-seed the type filter when arriving via a nav link that targets a specific category.
-  const seededType = React.useRef(search.type)
+  // Re-seed the filter when arriving via a nav link that targets a specific category/subcategory.
+  const seededKey = React.useRef(`${search.category ?? ''}|${search.subcategory ?? ''}`)
   React.useEffect(() => {
-    if (search.type && search.type !== seededType.current) {
-      seededType.current = search.type
-      setTypes([search.type])
+    const key = `${search.category ?? ''}|${search.subcategory ?? ''}`
+    if (key !== seededKey.current) {
+      seededKey.current = key
+      setSubcategories(seedSubcategories())
     }
-  }, [search.type])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [search.category, search.subcategory])
 
   const resetFilters = () => {
-    setTypes([])
+    setSubcategories([])
     setInStockOnly(false)
     setMaxPrice(150)
     setSort('featured')
   }
 
-  const toggleType = (t: ProductType) => {
-    setTypes((prev) => (prev.includes(t) ? prev.filter((x) => x !== t) : [...prev, t]))
+  const toggleSubcategory = (s: ProductSubcategory) => {
+    setSubcategories((prev) => (prev.includes(s) ? prev.filter((x) => x !== s) : [...prev, s]))
   }
 
   let visible = products.filter((p) => {
-    if (types.length && !types.includes(p.type)) return false
+    if (subcategories.length && !subcategories.includes(p.subcategory)) return false
     if (inStockOnly && p.stock === 0) return false
     if (p.price > maxPrice) return false
     return true
@@ -71,31 +73,38 @@ function ShopPage() {
   if (sort === 'high') visible = [...visible].sort((a, b) => b.price - a.price)
   if (sort === 'name') visible = [...visible].sort((a, b) => a.name.localeCompare(b.name))
 
-  const shopTitle = types.length === 1 ? SHOP_TITLES[types[0]] : 'Chinese Pokémon Products'
+  const shopTitle = subcategories.length === 1 ? subcategories[0] : 'Chinese Pokémon Products'
 
   const filterPanel = (
     <aside className="ebi-sticky-aside">
       <div style={monoLabel}>Filter</div>
       <div style={{ marginTop: 20 }}>
         <div style={{ fontSize: 12.5, fontWeight: 700, letterSpacing: '0.02em', marginBottom: 10 }}>Product type</div>
-        {PRODUCT_TYPES.map((t) => {
-          const count = products.filter((p) => p.type === t).length
-          return (
-            <label
-              key={t}
-              style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '6px 0', fontSize: 13, color: '#3d4753', cursor: 'pointer' }}
-            >
-              <input
-                type="checkbox"
-                checked={types.includes(t)}
-                onChange={() => toggleType(t)}
-                style={{ width: 14, height: 14, accentColor: '#131b28', cursor: 'pointer' }}
-              />
-              <span style={{ flex: 1 }}>{t}</span>
-              <span style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 10.5, color: '#98a1ab' }}>{count}</span>
-            </label>
-          )
-        })}
+        {PRODUCT_CATEGORIES.map((cat) => (
+          <div key={cat} style={{ marginBottom: 14 }}>
+            <div style={{ fontSize: 11, fontWeight: 700, color: '#98a1ab', textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: 4 }}>
+              {cat}
+            </div>
+            {SUBCATEGORIES_BY_CATEGORY[cat].map((s) => {
+              const count = products.filter((p) => p.subcategory === s).length
+              return (
+                <label
+                  key={s}
+                  style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '6px 0', fontSize: 13, color: '#3d4753', cursor: 'pointer' }}
+                >
+                  <input
+                    type="checkbox"
+                    checked={subcategories.includes(s)}
+                    onChange={() => toggleSubcategory(s)}
+                    style={{ width: 14, height: 14, accentColor: '#131b28', cursor: 'pointer' }}
+                  />
+                  <span style={{ flex: 1 }}>{s}</span>
+                  <span style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 10.5, color: '#98a1ab' }}>{count}</span>
+                </label>
+              )
+            })}
+          </div>
+        ))}
       </div>
       <div style={{ marginTop: 24, paddingTop: 20, borderTop: '1px solid #e3e6ea' }}>
         <div style={{ fontSize: 12.5, fontWeight: 700, letterSpacing: '0.02em', marginBottom: 10 }}>Availability</div>

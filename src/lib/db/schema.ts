@@ -4,7 +4,11 @@ export const products = pgTable('products', {
   id: text('id').primaryKey(),
   name: text('name').notNull(),
   code: text('code').notNull(),
-  type: text('type').notNull(),
+  // 'Chinese Pokémon Products' | 'Acrylic Cases'
+  category: text('category').notNull(),
+  // Gem Series | CSV Series | Blind Box (under Chinese Pokémon Products)
+  // ETB Case | Booster Box Case | SPC Box Case (under Acrylic Cases)
+  subcategory: text('subcategory').notNull(),
   price: numeric('price', { precision: 10, scale: 2, mode: 'number' }).notNull(),
   compareAtPrice: numeric('compare_at_price', { precision: 10, scale: 2, mode: 'number' }),
   stock: integer('stock').notNull().default(0),

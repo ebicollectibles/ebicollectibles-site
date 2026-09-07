@@ -170,7 +170,7 @@ export function Header({ customer }: { customer: HeaderCustomer | null }) {
           </div>
           <Link
             to="/shop"
-            search={{ type: 'Acrylic' }}
+            search={{ category: 'Acrylic Cases' }}
             className="ebi-nav-link"
             style={{ color: '#5a6875', padding: '4px 0' }}
           >
@@ -323,7 +323,7 @@ export function Header({ customer }: { customer: HeaderCustomer | null }) {
           </Link>
           <Link
             to="/shop"
-            search={{ type: 'Acrylic' }}
+            search={{ category: 'Acrylic Cases' }}
             style={{ color: '#5a6875', padding: '10px 0', borderBottom: '1px solid #f0f2f4' }}
           >
             Acrylics

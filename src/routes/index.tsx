@@ -159,7 +159,7 @@ function HomePage() {
         <div className="ebi-tiles-grid">
           <Link
             to="/shop"
-            search={{ type: 'Booster box' }}
+            search={{ subcategory: 'Gem Series' }}
             className="ebi-tile"
             style={{
               border: '1px solid #e3e6ea',
@@ -179,7 +179,7 @@ function HomePage() {
           </Link>
           <Link
             to="/shop"
-            search={{ type: 'Figures' }}
+            search={{ subcategory: 'Blind Box' }}
             className="ebi-tile"
             style={{
               border: '1px solid #e3e6ea',
