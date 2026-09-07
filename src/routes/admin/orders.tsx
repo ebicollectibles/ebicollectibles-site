@@ -4,6 +4,7 @@ import { AdminNav } from '~/components/AdminNav'
 import { requireAdmin, adminLogout } from '~/server/admin-auth'
 import { adminListOrders, adminListPaymentFailures, adminUpdateOrderStatus } from '~/server/admin'
 import { formatMoney } from '~/lib/products'
+import { CARRIERS, carrierTrackingUrl } from '~/lib/carriers'
 
 export const Route = createFileRoute('/admin/orders')({
   beforeLoad: () => requireAdmin(),
@@ -24,6 +25,17 @@ const fulfillmentColor: Record<string, string> = {
   cancelled: '#b4622f',
 }
 
+const emailTypeLabel: Record<string, string> = {
+  order_confirmation: 'Confirmation',
+  shipment_notice: 'Shipped email',
+}
+
+const emailStatusColor: Record<string, string> = {
+  sent: '#3f7a63',
+  failed: '#b4622f',
+  skipped: '#98a1ab',
+}
+
 const tagStyle: React.CSSProperties = {
   fontFamily: "'IBM Plex Mono', monospace",
   fontSize: 10,
@@ -39,11 +51,39 @@ function AdminOrdersPage() {
   const router = useRouter()
   const { orders, paymentFailures } = Route.useLoaderData()
   const [updatingId, setUpdatingId] = React.useState<string | null>(null)
+  // Only one order's "mark shipped" tracking form is open at a time.
+  const [shipFormOrderId, setShipFormOrderId] = React.useState<string | null>(null)
+  const [carrierInput, setCarrierInput] = React.useState('')
+  const [trackingInput, setTrackingInput] = React.useState('')
 
   const changeStatus = async (orderId: string, status: 'pending' | 'shipped' | 'cancelled') => {
+    if (status === 'shipped') {
+      setShipFormOrderId(orderId)
+      setCarrierInput('')
+      setTrackingInput('')
+      return
+    }
     setUpdatingId(orderId)
     try {
       await adminUpdateOrderStatus({ data: { orderId, status } })
+      await router.invalidate()
+    } finally {
+      setUpdatingId(null)
+    }
+  }
+
+  const confirmShipped = async (orderId: string) => {
+    setUpdatingId(orderId)
+    try {
+      await adminUpdateOrderStatus({
+        data: {
+          orderId,
+          status: 'shipped',
+          carrier: (carrierInput || null) as (typeof CARRIERS)[number] | null,
+          trackingNumber: trackingInput.trim() || null,
+        },
+      })
+      setShipFormOrderId(null)
       await router.invalidate()
     } finally {
       setUpdatingId(null)
@@ -84,7 +124,7 @@ function AdminOrdersPage() {
         {orders.map((order) => {
           const totalRefunded = order.refunds.reduce((t, r) => t + (r.status === 'COMPLETED' ? r.amount ?? 0 : 0), 0)
           return (
-            <div key={order.id} style={{ border: '1px solid #e3e6ea', borderRadius: 4, padding: 18 }}>
+            <div key={order.id} data-order-no={order.orderNo} style={{ border: '1px solid #e3e6ea', borderRadius: 4, padding: 18 }}>
               <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: 8 }}>
                 <div>
                   <span style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 13, fontWeight: 600 }}>
@@ -170,6 +210,87 @@ function AdminOrdersPage() {
                   </span>
                 )}
               </div>
+
+              {shipFormOrderId === order.id && (
+                <div style={{ marginTop: 10, padding: 12, background: '#f6f7f8', borderRadius: 2, display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap' }}>
+                  <select
+                    value={carrierInput}
+                    onChange={(e) => setCarrierInput(e.target.value)}
+                    style={{ border: '1px solid #cfd4da', borderRadius: 2, padding: '5px 6px', fontSize: 12 }}
+                  >
+                    <option value="">Carrier (optional)</option>
+                    {CARRIERS.map((c) => (
+                      <option key={c} value={c}>
+                        {c}
+                      </option>
+                    ))}
+                  </select>
+                  <input
+                    value={trackingInput}
+                    onChange={(e) => setTrackingInput(e.target.value)}
+                    placeholder="Tracking number (optional)"
+                    style={{ flex: 1, minWidth: 160, border: '1px solid #cfd4da', borderRadius: 2, padding: '5px 8px', fontSize: 12 }}
+                  />
+                  <button
+                    disabled={updatingId === order.id}
+                    onClick={() => confirmShipped(order.id)}
+                    style={{
+                      background: '#131b28',
+                      color: '#ffffff',
+                      border: 0,
+                      borderRadius: 2,
+                      padding: '6px 12px',
+                      fontSize: 11,
+                      fontWeight: 600,
+                      cursor: updatingId === order.id ? 'default' : 'pointer',
+                      opacity: updatingId === order.id ? 0.5 : 1,
+                    }}
+                  >
+                    Confirm shipped
+                  </button>
+                  <button
+                    disabled={updatingId === order.id}
+                    onClick={() => setShipFormOrderId(null)}
+                    style={{ background: 'none', border: 0, fontSize: 11, color: '#98a1ab', cursor: 'pointer' }}
+                  >
+                    Cancel
+                  </button>
+                </div>
+              )}
+
+              {order.trackingNumber && (
+                <div style={{ marginTop: 8, fontSize: 11.5, color: '#5a6875' }}>
+                  {order.carrier ? `${order.carrier} · ` : ''}
+                  {carrierTrackingUrl(order.carrier, order.trackingNumber) ? (
+                    <a
+                      href={carrierTrackingUrl(order.carrier, order.trackingNumber)!}
+                      target="_blank"
+                      rel="noreferrer"
+                      style={{ color: '#3f7a63', fontWeight: 600 }}
+                    >
+                      {order.trackingNumber}
+                    </a>
+                  ) : (
+                    order.trackingNumber
+                  )}
+                </div>
+              )}
+
+              {order.emails.length > 0 && (
+                <div style={{ marginTop: 8, fontSize: 11, color: '#98a1ab' }}>
+                  {order.emails.map((e, i) => (
+                    <span key={i}>
+                      {i > 0 && ' · '}
+                      <span style={{ color: emailStatusColor[e.status] ?? '#98a1ab' }}>
+                        {emailTypeLabel[e.type] ?? e.type} {e.status}
+                      </span>
+                      {e.status === 'failed' && e.errorMessage ? ` (${e.errorMessage})` : ''}
+                      {' — '}
+                      {new Date(e.createdAt).toLocaleString()}
+                    </span>
+                  ))}
+                </div>
+              )}
             </div>
           )
         })}

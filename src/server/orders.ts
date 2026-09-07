@@ -3,7 +3,7 @@ import { z } from 'zod'
 import { eq, inArray, sql } from 'drizzle-orm'
 import { getDb } from '~/lib/db/client'
 import { withTransaction } from '~/lib/db/transactional-client'
-import { orderCounters, orderItems, orderStatusEvents, orders, paymentAttempts, products as productsTable, users } from '~/lib/db/schema'
+import { emailEvents, orderCounters, orderItems, orderStatusEvents, orders, paymentAttempts, products as productsTable, users } from '~/lib/db/schema'
 import { FLAT_SHIPPING_RATE, TAX_RATE } from '~/lib/products'
 import { chargeSquarePayment, getSquareInventoryCounts, recordSquareInventorySale } from './square'
 import { sendOrderConfirmationEmail } from './email'
@@ -172,7 +172,7 @@ export const placeOrder = createServerFn({ method: 'POST' })
 
       await tx.insert(orderStatusEvents).values({ orderId: order.id, status: order.fulfillmentStatus })
 
-      return { orderNo, total, paymentStatus: charge.status, subtotal, shippingCost, tax, lineDetails }
+      return { orderId: order.id, orderNo, total, paymentStatus: charge.status, subtotal, shippingCost, tax, lineDetails }
     })
 
     // Best-effort: record the sale in Square so it shows up as reduced
@@ -191,8 +191,10 @@ export const placeOrder = createServerFn({ method: 'POST' })
     // Best-effort: email the customer a confirmation with what they bought.
     // Also runs after the order is already placed and paid for — a failed
     // send should never undo or block a successful, already-charged order.
+    // The outcome is logged to email_events either way so it's visible in
+    // admin instead of only living in Cloudflare's worker logs.
     try {
-      await sendOrderConfirmationEmail({
+      const sendResult = await sendOrderConfirmationEmail({
         orderNo: result.orderNo,
         email: data.contact.email || null,
         firstName: data.contact.firstName || null,
@@ -206,6 +208,13 @@ export const placeOrder = createServerFn({ method: 'POST' })
         tax: result.tax,
         total: result.total,
         items: result.lineDetails.map((l) => ({ productName: l.name, qty: l.qty, unitPrice: l.unitPrice })),
+      })
+      await db.insert(emailEvents).values({
+        orderId: result.orderId,
+        email: data.contact.email || null,
+        type: 'order_confirmation',
+        status: sendResult.status,
+        errorMessage: sendResult.error ?? null,
       })
     } catch (err) {
       console.error(`Failed to send confirmation email for order ${result.orderNo}:`, err)

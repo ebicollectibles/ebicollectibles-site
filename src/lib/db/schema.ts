@@ -103,6 +103,8 @@ export const orders = pgTable('orders', {
   paymentStatus: text('payment_status').notNull().default('unpaid'), // unpaid | paid | test | failed
   squarePaymentId: text('square_payment_id'),
   fulfillmentStatus: text('fulfillment_status').notNull().default('pending'), // pending | shipped | cancelled
+  carrier: text('carrier'),
+  trackingNumber: text('tracking_number'),
   createdAt: timestamp('created_at', { withTimezone: true }).notNull().defaultNow(),
 })
 
@@ -154,6 +156,19 @@ export const refundEvents = pgTable('refund_events', {
   amount: numeric('amount', { precision: 10, scale: 2, mode: 'number' }),
   status: text('status'), // Square refund status: PENDING | COMPLETED | REJECTED | FAILED
   reason: text('reason'),
+  createdAt: timestamp('created_at', { withTimezone: true }).notNull().defaultNow(),
+})
+
+// Every customer-facing email attempt tied to an order — order confirmation
+// and shipment notices so far. Lets admin see whether a given send actually
+// went out instead of that only living in Cloudflare's worker logs.
+export const emailEvents = pgTable('email_events', {
+  id: uuid('id').primaryKey().defaultRandom(),
+  orderId: uuid('order_id').references(() => orders.id, { onDelete: 'set null' }),
+  email: text('email'),
+  type: text('type').notNull(), // order_confirmation | shipment_notice
+  status: text('status').notNull(), // sent | failed | skipped (no email on file / sending not configured)
+  errorMessage: text('error_message'),
   createdAt: timestamp('created_at', { withTimezone: true }).notNull().defaultNow(),
 })
 

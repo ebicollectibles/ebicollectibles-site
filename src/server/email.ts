@@ -1,6 +1,7 @@
 // Plain fetch against Resend's REST API — same pattern as square.ts, no SDK
 // so this keeps working unmodified on Cloudflare Workers.
 
+import { carrierTrackingUrl } from '~/lib/carriers'
 import { formatMoney } from '~/lib/products'
 
 interface OrderEmailItem {
@@ -25,14 +26,16 @@ interface OrderEmailData {
   items: OrderEmailItem[]
 }
 
+export type EmailSendResult = { status: 'sent' | 'failed' | 'skipped'; error?: string }
+
 // Best-effort: called right after an order is placed and paid for. A failed
-// or skipped send should never affect the order itself — the caller wraps
-// this in try/catch and only logs on failure.
-export async function sendOrderConfirmationEmail(order: OrderEmailData): Promise<void> {
+// or skipped send should never affect the order itself — the caller logs
+// the returned status/error to email_events instead of this throwing.
+export async function sendOrderConfirmationEmail(order: OrderEmailData): Promise<EmailSendResult> {
   const apiKey = process.env.RESEND_API_KEY
   const from = process.env.ORDER_FROM_EMAIL
 
-  if (!apiKey || !from || !order.email) return
+  if (!apiKey || !from || !order.email) return { status: 'skipped' }
 
   const itemRows = order.items
     .map(
@@ -104,8 +107,85 @@ export async function sendOrderConfirmationEmail(order: OrderEmailData): Promise
 
   if (!res.ok) {
     const json = await res.json().catch(() => null)
-    console.error(`Failed to send confirmation email for order ${order.orderNo}:`, json?.message || res.status)
+    const error = json?.message || `HTTP ${res.status}`
+    console.error(`Failed to send confirmation email for order ${order.orderNo}:`, error)
+    return { status: 'failed', error }
   }
+
+  return { status: 'sent' }
+}
+
+interface ShipmentEmailData {
+  orderNo: number
+  email: string | null
+  firstName: string | null
+  carrier: string | null
+  trackingNumber: string | null
+  items: OrderEmailItem[]
+}
+
+// Same best-effort, return-a-result contract as sendOrderConfirmationEmail —
+// called right after admin marks an order shipped.
+export async function sendShipmentEmail(order: ShipmentEmailData): Promise<EmailSendResult> {
+  const apiKey = process.env.RESEND_API_KEY
+  const from = process.env.ORDER_FROM_EMAIL
+
+  if (!apiKey || !from || !order.email) return { status: 'skipped' }
+
+  const trackingUrl = carrierTrackingUrl(order.carrier, order.trackingNumber)
+
+  const itemsLine = order.items.map((item) => `${item.qty}× ${item.productName}`).join(', ')
+
+  const html = `
+  <div style="font-family:Helvetica,Arial,sans-serif;max-width:520px;margin:0 auto;padding:24px 20px;">
+    <div style="font-size:12px;letter-spacing:0.08em;text-transform:uppercase;color:#98a1ab;font-weight:700;">EBI Collectibles</div>
+    <h1 style="font-size:20px;margin:12px 0 4px;color:#131b28;">Your order is on its way${order.firstName ? `, ${escapeHtml(order.firstName)}` : ''}!</h1>
+    <p style="font-size:13.5px;color:#5a6875;margin:0 0 20px;">Order #EBI-${order.orderNo} has shipped: ${escapeHtml(itemsLine)}.</p>
+    ${
+      order.trackingNumber
+        ? `<p style="font-size:12.5px;color:#5a6875;margin:0 0 6px;font-weight:600;">${order.carrier ? escapeHtml(order.carrier) + ' tracking number' : 'Tracking number'}</p>
+           <p style="font-size:14px;color:#131b28;margin:0 0 20px;">${
+             trackingUrl
+               ? `<a href="${trackingUrl}" style="color:#3f7a63;font-weight:600;">${escapeHtml(order.trackingNumber)}</a>`
+               : escapeHtml(order.trackingNumber)
+           }</p>`
+        : ''
+    }
+    <p style="font-size:12px;color:#98a1ab;margin:20px 0 0;">Questions about your shipment? Just reply to this email.</p>
+  </div>`
+
+  const text = [
+    `Your order is on its way${order.firstName ? `, ${order.firstName}` : ''}!`,
+    `Order #EBI-${order.orderNo} has shipped: ${itemsLine}.`,
+    order.trackingNumber ? `${order.carrier ? `${order.carrier} tracking number` : 'Tracking number'}: ${order.trackingNumber}` : null,
+    trackingUrl ?? null,
+  ]
+    .filter(Boolean)
+    .join('\n')
+
+  const res = await fetch('https://api.resend.com/emails', {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${apiKey}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      from,
+      to: order.email,
+      subject: `Your order has shipped — #EBI-${order.orderNo}`,
+      html,
+      text,
+    }),
+  })
+
+  if (!res.ok) {
+    const json = await res.json().catch(() => null)
+    const error = json?.message || `HTTP ${res.status}`
+    console.error(`Failed to send shipment email for order ${order.orderNo}:`, error)
+    return { status: 'failed', error }
+  }
+
+  return { status: 'sent' }
 }
 
 // Unlike sendOrderConfirmationEmail, this throws on failure — there's no

@@ -4,6 +4,7 @@ import { asc, desc, eq, inArray, or, sql } from 'drizzle-orm'
 import { getDb } from '~/lib/db/client'
 import {
   authEvents,
+  emailEvents,
   orderItems,
   orderStatusEvents,
   orders,
@@ -13,7 +14,9 @@ import {
   refundEvents,
   users,
 } from '~/lib/db/schema'
+import { CARRIERS } from '~/lib/carriers'
 import { assertAdmin } from './admin-auth'
+import { sendShipmentEmail } from './email'
 import { overlaySquareData, searchSquareCatalogItems } from './square'
 
 const productSchema = z.object({
@@ -139,26 +142,76 @@ export const adminListOrders = createServerFn({ method: 'GET' }).handler(async (
     .select({ orderId: refundEvents.orderId, amount: refundEvents.amount, status: refundEvents.status, createdAt: refundEvents.createdAt })
     .from(refundEvents)
     .orderBy(desc(refundEvents.createdAt))
+  const emailRows = await db
+    .select({ orderId: emailEvents.orderId, type: emailEvents.type, status: emailEvents.status, errorMessage: emailEvents.errorMessage, createdAt: emailEvents.createdAt })
+    .from(emailEvents)
+    .orderBy(asc(emailEvents.createdAt))
 
   const itemsByOrder = groupBy(itemRows, (i) => i.orderId)
   const statusByOrder = groupBy(statusRows, (s) => s.orderId)
   const refundsByOrder = groupBy(refundRows.filter((r) => r.orderId), (r) => r.orderId as string)
+  const emailsByOrder = groupBy(emailRows.filter((e) => e.orderId), (e) => e.orderId as string)
 
   return orderRows.map((order) => ({
     ...order,
     items: itemsByOrder.get(order.id) ?? [],
     statusHistory: statusByOrder.get(order.id) ?? [],
     refunds: refundsByOrder.get(order.id) ?? [],
+    emails: emailsByOrder.get(order.id) ?? [],
   }))
 })
 
 export const adminUpdateOrderStatus = createServerFn({ method: 'POST' })
-  .validator(z.object({ orderId: z.string(), status: z.enum(['pending', 'shipped', 'cancelled']) }))
+  .validator(
+    z.object({
+      orderId: z.string(),
+      status: z.enum(['pending', 'shipped', 'cancelled']),
+      carrier: z.enum(CARRIERS).nullable().optional(),
+      trackingNumber: z.string().trim().nullable().optional(),
+    }),
+  )
   .handler(async ({ data }) => {
     await assertAdmin()
     const db = getDb()
-    await db.update(orders).set({ fulfillmentStatus: data.status }).where(eq(orders.id, data.orderId))
+
+    const carrier = data.carrier || null
+    const trackingNumber = data.trackingNumber || null
+
+    await db
+      .update(orders)
+      .set({ fulfillmentStatus: data.status, ...(data.status === 'shipped' ? { carrier, trackingNumber } : {}) })
+      .where(eq(orders.id, data.orderId))
     await db.insert(orderStatusEvents).values({ orderId: data.orderId, status: data.status })
+
+    // Best-effort: let the customer know it shipped. A failed/skipped send
+    // shouldn't block the status update itself — logged to email_events
+    // either way so it's visible here instead of only in worker logs.
+    if (data.status === 'shipped') {
+      const [order] = await db.select().from(orders).where(eq(orders.id, data.orderId)).limit(1)
+      const items = order ? await db.select().from(orderItems).where(eq(orderItems.orderId, data.orderId)) : []
+      if (order) {
+        try {
+          const sendResult = await sendShipmentEmail({
+            orderNo: order.orderNo,
+            email: order.email,
+            firstName: order.firstName,
+            carrier,
+            trackingNumber,
+            items: items.map((i) => ({ productName: i.productName, qty: i.qty, unitPrice: i.unitPrice })),
+          })
+          await db.insert(emailEvents).values({
+            orderId: order.id,
+            email: order.email,
+            type: 'shipment_notice',
+            status: sendResult.status,
+            errorMessage: sendResult.error ?? null,
+          })
+        } catch (err) {
+          console.error(`Failed to send shipment email for order ${order.orderNo}:`, err)
+        }
+      }
+    }
+
     return { ok: true }
   })
 
@@ -248,9 +301,18 @@ export const adminGetCustomer = createServerFn({ method: 'GET' })
             .from(orderStatusEvents)
             .where(inArray(orderStatusEvents.orderId, orderIds))
             .orderBy(asc(orderStatusEvents.createdAt))
+    const emailRows =
+      orderIds.length === 0
+        ? []
+        : await db
+            .select({ orderId: emailEvents.orderId, type: emailEvents.type, status: emailEvents.status, errorMessage: emailEvents.errorMessage, createdAt: emailEvents.createdAt })
+            .from(emailEvents)
+            .where(inArray(emailEvents.orderId, orderIds))
+            .orderBy(asc(emailEvents.createdAt))
 
     const itemsByOrder = groupBy(itemRows, (i) => i.orderId)
     const statusByOrder = groupBy(statusRows, (s) => s.orderId)
+    const emailsByOrder = groupBy(emailRows.filter((e) => e.orderId), (e) => e.orderId as string)
 
     return {
       customer,
@@ -258,6 +320,7 @@ export const adminGetCustomer = createServerFn({ method: 'GET' })
         ...order,
         items: itemsByOrder.get(order.id) ?? [],
         statusHistory: statusByOrder.get(order.id) ?? [],
+        emails: emailsByOrder.get(order.id) ?? [],
       })),
       events,
     }
