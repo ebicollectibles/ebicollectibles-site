@@ -198,6 +198,16 @@ function AdminOrderDetailPage() {
           {order.apartment ? `, ${order.apartment}` : ''}, {order.city} {order.state} {order.zip} · {order.shipMethod} ·{' '}
           {new Date(order.createdAt).toLocaleString()}
         </div>
+        {(order.billingStreet !== order.street ||
+          order.billingApartment !== order.apartment ||
+          order.billingCity !== order.city ||
+          order.billingState !== order.state ||
+          order.billingZip !== order.zip) && (
+          <div style={{ marginTop: 4, fontSize: 11.5, color: '#98a1ab' }}>
+            Billing: {order.billingStreet}
+            {order.billingApartment ? `, ${order.billingApartment}` : ''}, {order.billingCity} {order.billingState} {order.billingZip}
+          </div>
+        )}
         {order.paymentMethodSummary && <div style={{ marginTop: 4, fontSize: 11.5, color: '#98a1ab' }}>{order.paymentMethodSummary}</div>}
 
         <div style={{ marginTop: 14, paddingTop: 12, borderTop: '1px solid #f0f2f4', display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap' }}>

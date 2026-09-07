@@ -23,6 +23,13 @@ const placeOrderSchema = z.object({
     state: z.enum(US_STATE_CODES),
     zip: z.string().trim().min(1),
   }),
+  billing: z.object({
+    street: z.string().trim().min(1),
+    apartment: z.string().optional().default(''),
+    city: z.string().trim().min(1),
+    state: z.enum(US_STATE_CODES),
+    zip: z.string().trim().min(1),
+  }),
   sourceId: z.string().nullable().optional(),
 })
 
@@ -128,7 +135,18 @@ export const placeOrder = createServerFn({ method: 'POST' })
         .returning()
       const orderNo = counter.nextOrderNo - 1
 
-      const charge = await chargeSquarePayment({ sourceId: data.sourceId ?? null, amount: total, orderNo })
+      const charge = await chargeSquarePayment({
+        sourceId: data.sourceId ?? null,
+        amount: total,
+        orderNo,
+        billingAddress: {
+          addressLine1: data.billing.street,
+          addressLine2: data.billing.apartment || undefined,
+          locality: data.billing.city,
+          administrativeDistrictLevel1: data.billing.state,
+          postalCode: data.billing.zip,
+        },
+      })
       if (charge.status === 'failed') {
         // Logged on the outer (non-transactional) connection so it survives
         // this transaction's rollback — no order row exists for a failed
@@ -160,6 +178,11 @@ export const placeOrder = createServerFn({ method: 'POST' })
           city: data.contact.city,
           state: data.contact.state,
           zip: data.contact.zip,
+          billingStreet: data.billing.street,
+          billingApartment: data.billing.apartment,
+          billingCity: data.billing.city,
+          billingState: data.billing.state,
+          billingZip: data.billing.zip,
           shipMethod: 'flat',
           subtotal,
           shippingCost,

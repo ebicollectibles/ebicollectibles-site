@@ -105,6 +105,14 @@ export const orders = pgTable('orders', {
   // src/server/tax.ts) as well as being part of the shipping address itself.
   state: text('state'),
   zip: text('zip'),
+  // Always populated (mirrors the shipping columns above when the shopper
+  // checked "use shipping address as billing address" — the common case —
+  // rather than left null, so admin display never has to special-case it).
+  billingStreet: text('billing_street'),
+  billingApartment: text('billing_apartment'),
+  billingCity: text('billing_city'),
+  billingState: text('billing_state'),
+  billingZip: text('billing_zip'),
   shipMethod: text('ship_method').notNull(),
   subtotal: numeric('subtotal', { precision: 10, scale: 2, mode: 'number' }).notNull(),
   shippingCost: numeric('shipping_cost', { precision: 10, scale: 2, mode: 'number' }).notNull(),

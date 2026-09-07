@@ -3,7 +3,7 @@ import { createFileRoute, Link, useNavigate, useRouter } from '@tanstack/react-r
 import { SquareCardField, squareConfigured, type SquareCardFieldHandle } from '~/components/SquareCardField'
 import { ApplePayButton } from '~/components/ApplePayButton'
 import { PasswordInput } from '~/components/PasswordInput'
-import { useCart, type CheckoutContact } from '~/lib/cart-context'
+import { useCart, type BillingAddress, type CheckoutContact } from '~/lib/cart-context'
 import { formatMoney } from '~/lib/products'
 import { US_STATES } from '~/lib/us-states'
 import { customerLogout, getCurrentCustomer } from '~/server/customer-auth'
@@ -74,6 +74,14 @@ const emptyContact: CheckoutContact = {
   zip: '',
 }
 
+const emptyBilling: BillingAddress = {
+  street: '',
+  apartment: '',
+  city: '',
+  state: '',
+  zip: '',
+}
+
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
 // A stored account name is one free-text field; the checkout form wants it
@@ -108,6 +116,11 @@ function CheckoutPage() {
     contact.city.trim() !== '' &&
     contact.state.trim() !== '' &&
     contact.zip.trim() !== ''
+  const [sameAsShipping, setSameAsShipping] = React.useState(true)
+  const [billing, setBilling] = React.useState<BillingAddress>(emptyBilling)
+  const billingComplete =
+    sameAsShipping ||
+    (billing.street.trim() !== '' && billing.city.trim() !== '' && billing.state.trim() !== '' && billing.zip.trim() !== '')
   const [confirmed, setConfirmed] = React.useState<{ orderNo: number; paymentStatus: string } | null>(null)
   const [submitting, setSubmitting] = React.useState(false)
   const [error, setError] = React.useState<string | null>(null)
@@ -173,11 +186,31 @@ function CheckoutPage() {
       : undefined,
   })
 
+  const billingField = (
+    key: keyof BillingAddress,
+    invalidMessages?: Partial<Record<'valueMissing' | 'typeMismatch', string>>,
+  ) => ({
+    value: billing[key],
+    onChange: (e: React.ChangeEvent<HTMLInputElement>) => {
+      e.target.setCustomValidity('')
+      setBilling((b) => ({ ...b, [key]: e.target.value }))
+    },
+    onInvalid: invalidMessages
+      ? (e: React.InvalidEvent<HTMLInputElement>) => {
+          const target = e.target as HTMLInputElement
+          target.setCustomValidity(target.validity.valueMissing ? (invalidMessages.valueMissing ?? '') : '')
+        }
+      : undefined,
+  })
+
   const finishOrder = async (sourceId: string | null) => {
     setError(null)
     setSubmitting(true)
     try {
-      const result = await cart.placeOrder({ contact, sourceId })
+      const effectiveBilling: BillingAddress = sameAsShipping
+        ? { street: contact.street, apartment: contact.apartment, city: contact.city, state: contact.state, zip: contact.zip }
+        : billing
+      const result = await cart.placeOrder({ contact, billing: effectiveBilling, sourceId })
       setConfirmed({ orderNo: result.orderNo, paymentStatus: result.paymentStatus })
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Something went wrong placing your order.')
@@ -385,13 +418,70 @@ function CheckoutPage() {
               </div>
 
               <div style={{ borderTop: '1px solid #e3e6ea', marginTop: 30, paddingTop: 22 }}>
-                <div style={monoLabel}>03 / Payment</div>
+                <div style={monoLabel}>03 / Billing address</div>
+                <label style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: 13, marginTop: 14, cursor: 'pointer' }}>
+                  <input type="checkbox" checked={sameAsShipping} onChange={(e) => setSameAsShipping(e.target.checked)} />
+                  Use shipping address as billing address
+                </label>
+                {!sameAsShipping && (
+                  <div className="ebi-checkout-2col" style={{ marginTop: 14 }}>
+                    <input
+                      placeholder="Street address"
+                      required
+                      className="ebi-field ebi-field-full"
+                      style={fieldStyle}
+                      {...billingField('street', { valueMissing: 'Enter the billing street address.' })}
+                    />
+                    <input
+                      placeholder="Apartment, suite (optional)"
+                      className="ebi-field ebi-field-full"
+                      style={fieldStyle}
+                      {...billingField('apartment')}
+                    />
+                    <input
+                      placeholder="City"
+                      required
+                      className="ebi-field ebi-field-full"
+                      style={fieldStyle}
+                      {...billingField('city', { valueMissing: 'Enter the billing city.' })}
+                    />
+                    <select
+                      required
+                      className="ebi-field"
+                      style={{ ...fieldStyle, color: billing.state ? fieldStyle.color : '#98a1ab' }}
+                      value={billing.state}
+                      onChange={(e) => {
+                        e.target.setCustomValidity('')
+                        setBilling((b) => ({ ...b, state: e.target.value }))
+                      }}
+                      onInvalid={(e) => e.currentTarget.setCustomValidity('Select the billing state.')}
+                    >
+                      <option value="">State</option>
+                      {US_STATES.map((s) => (
+                        <option key={s.code} value={s.code}>
+                          {s.name}
+                        </option>
+                      ))}
+                    </select>
+                    <input
+                      placeholder="ZIP code"
+                      required
+                      className="ebi-field"
+                      style={fieldStyle}
+                      {...billingField('zip', { valueMissing: 'Enter the billing ZIP code.' })}
+                    />
+                  </div>
+                )}
+              </div>
+
+              <div style={{ borderTop: '1px solid #e3e6ea', marginTop: 30, paddingTop: 22 }}>
+                <div style={monoLabel}>04 / Payment</div>
                 <div style={{ marginTop: 14 }}>
                   {squareConfigured ? (
                     <>
                       <ApplePayButton
                         amount={total}
-                        disabled={submitting || !contactComplete}
+                        disabled={submitting || !contactComplete || !billingComplete}
                         onTokenize={(sourceId) => finishOrder(sourceId)}
                         onError={setError}
                       />

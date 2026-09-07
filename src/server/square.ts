@@ -65,6 +65,7 @@ export async function chargeSquarePayment(opts: {
   sourceId: string | null
   amount: number
   orderNo: number
+  billingAddress?: { addressLine1: string; addressLine2?: string; locality: string; administrativeDistrictLevel1: string; postalCode: string }
 }): Promise<ChargeResult> {
   const { accessToken, locationId, baseUrl } = squareConfig()
 
@@ -90,6 +91,18 @@ export async function chargeSquarePayment(opts: {
         currency: 'USD',
       },
       location_id: locationId,
+      // Full billing address strengthens Square's AVS fraud check beyond
+      // the postal-code-only check baked into the card widget itself.
+      ...(opts.billingAddress && {
+        billing_address: {
+          address_line_1: opts.billingAddress.addressLine1,
+          address_line_2: opts.billingAddress.addressLine2 || undefined,
+          locality: opts.billingAddress.locality,
+          administrative_district_level_1: opts.billingAddress.administrativeDistrictLevel1,
+          postal_code: opts.billingAddress.postalCode,
+          country: 'US',
+        },
+      }),
     }),
   })
 

@@ -20,6 +20,14 @@ export interface CheckoutContact {
   zip: string
 }
 
+export interface BillingAddress {
+  street: string
+  apartment: string
+  city: string
+  state: string
+  zip: string
+}
+
 interface CartState {
   cart: Record<string, number>
 }
@@ -37,6 +45,7 @@ interface CartContextValue {
   removeFromCart: (id: string) => void
   placeOrder: (opts: {
     contact: CheckoutContact
+    billing: BillingAddress
     sourceId: string | null
   }) => Promise<{ orderNo: number; total: number; paymentStatus: string }>
 }
@@ -122,12 +131,13 @@ export function CartProvider({ children, products }: { children: React.ReactNode
   }, [])
 
   const placeOrder = React.useCallback(
-    async (opts: { contact: CheckoutContact; sourceId: string | null }) => {
+    async (opts: { contact: CheckoutContact; billing: BillingAddress; sourceId: string | null }) => {
       const lines = Object.entries(state.cart).map(([productId, qty]) => ({ productId, qty }))
       const result = await placeOrderFn({
         data: {
           lines,
           contact: opts.contact,
+          billing: opts.billing,
           sourceId: opts.sourceId,
         },
       })
