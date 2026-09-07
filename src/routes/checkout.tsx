@@ -3,6 +3,7 @@ import { createFileRoute, Link, useNavigate, useRouter } from '@tanstack/react-r
 import { SquareCardField, squareConfigured, type SquareCardFieldHandle } from '~/components/SquareCardField'
 import { ApplePayButton } from '~/components/ApplePayButton'
 import { PasswordInput } from '~/components/PasswordInput'
+import { trackEvent } from '~/lib/analytics'
 import { useCart, type BillingAddress, type CheckoutContact } from '~/lib/cart-context'
 import { formatMoney } from '~/lib/products'
 import { US_STATES } from '~/lib/us-states'
@@ -163,6 +164,20 @@ function CheckoutPage() {
   const navigate = useNavigate()
   const cardRef = React.useRef<SquareCardFieldHandle>(null)
 
+  // Fires once the cart has actually hydrated from localStorage (it starts
+  // empty for a beat on mount) — not on every later cart edit, just the
+  // moment someone lands on checkout with items in it.
+  const firedBeginCheckout = React.useRef(false)
+  React.useEffect(() => {
+    if (cart.cartEmpty || firedBeginCheckout.current) return
+    firedBeginCheckout.current = true
+    trackEvent('begin_checkout', {
+      currency: 'USD',
+      value: cart.subtotal,
+      items: cart.lines.map((l) => ({ item_id: l.product.id, item_name: l.product.name, price: l.product.price, quantity: l.qty })),
+    })
+  }, [cart.cartEmpty, cart.lines, cart.subtotal])
+
   // Logged-in visitors skip straight to the real form; logged-out visitors
   // see the guest-or-sign-in choice first — but only here, not on /cart.
   const [checkoutAs, setCheckoutAs] = React.useState<'guest' | 'account' | null>(initialAccount ? 'account' : null)
@@ -286,6 +301,14 @@ function CheckoutPage() {
           }
         : billing
       const result = await cart.placeOrder({ contact, billing: effectiveBilling, sourceId })
+      trackEvent('purchase', {
+        transaction_id: String(result.orderNo),
+        currency: 'USD',
+        value: total,
+        tax,
+        shipping: cart.shippingCost,
+        items: cart.lines.map((l) => ({ item_id: l.product.id, item_name: l.product.name, price: l.product.price, quantity: l.qty })),
+      })
       setConfirmed({ orderNo: result.orderNo, paymentStatus: result.paymentStatus })
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Something went wrong placing your order.')

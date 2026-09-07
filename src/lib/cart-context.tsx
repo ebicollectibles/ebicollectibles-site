@@ -1,4 +1,5 @@
 import * as React from 'react'
+import { trackEvent } from './analytics'
 import { placeOrder as placeOrderFn } from '~/server/orders'
 import { FLAT_SHIPPING_RATE, formatMoney, type Product } from './products'
 
@@ -107,6 +108,11 @@ export function CartProvider({ children, products }: { children: React.ReactNode
       const next = { ...s.cart }
       next[product.id] = Math.min((next[product.id] || 0) + 1, product.stock)
       return { ...s, cart: next }
+    })
+    trackEvent('add_to_cart', {
+      currency: 'USD',
+      value: product.price,
+      items: [{ item_id: product.id, item_name: product.name, price: product.price, quantity: 1 }],
     })
   }, [])
 

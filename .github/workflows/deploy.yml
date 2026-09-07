@@ -35,6 +35,10 @@ jobs:
           VITE_SQUARE_APPLICATION_ID: ${{ vars.VITE_SQUARE_APPLICATION_ID }}
           VITE_SQUARE_LOCATION_ID: ${{ vars.VITE_SQUARE_LOCATION_ID }}
           VITE_SQUARE_ENVIRONMENT: ${{ vars.VITE_SQUARE_ENVIRONMENT }}
+          # Same story as the Square vars above — not secret, baked into the
+          # client bundle at build time, so a repository variable rather
+          # than a Worker secret.
+          VITE_GA_MEASUREMENT_ID: ${{ vars.VITE_GA_MEASUREMENT_ID }}
 
       - name: Deploy
         uses: cloudflare/wrangler-action@v3

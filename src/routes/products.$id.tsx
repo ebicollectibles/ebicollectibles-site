@@ -3,6 +3,7 @@ import { createFileRoute, Link } from '@tanstack/react-router'
 import { AddToCartControl } from '~/components/AddToCartControl'
 import { ProductCard } from '~/components/ProductCard'
 import { ResponsiveImage } from '~/components/ResponsiveImage'
+import { trackEvent } from '~/lib/analytics'
 import { useCart } from '~/lib/cart-context'
 import { formatMoney } from '~/lib/products'
 
@@ -35,6 +36,15 @@ function ProductDetailPage() {
   React.useEffect(() => {
     setSelectedImage(product?.img)
   }, [product?.id, product?.img])
+
+  React.useEffect(() => {
+    if (!product) return
+    trackEvent('view_item', {
+      currency: 'USD',
+      value: product.price,
+      items: [{ item_id: product.id, item_name: product.name, price: product.price }],
+    })
+  }, [product?.id])
 
   const related = React.useMemo(() => {
     if (!product) return []

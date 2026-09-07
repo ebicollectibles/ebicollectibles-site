@@ -230,6 +230,27 @@ previous deploy in the meantime. Until both steps above are done, the
 "Upload" buttons show a clear error instead of a silent failure — pasting an
 image URL directly still works either way.
 
+## Google Analytics
+
+Already fully wired (`__root.tsx` loads gtag.js; `src/lib/analytics.ts` fires
+events) — just needs the measurement ID:
+
+1. Create a GA4 property at [analytics.google.com](https://analytics.google.com)
+   (Admin → Create Account → Create Property → Web data stream) and grab its
+   **Measurement ID** (`G-XXXXXXXXXX`).
+2. Same story as the Square `VITE_*` vars above — not secret, baked into the
+   client bundle at build time, so set it as a GitHub Actions repository
+   **variable** (Settings → Secrets and variables → Actions → **Variables**
+   tab): `VITE_GA_MEASUREMENT_ID`. Takes effect on the next deploy. Leave it
+   unset locally (`.env`) so dev traffic doesn't pollute real analytics —
+   `/admin` is also excluded regardless of environment, since that's the
+   operator's own traffic, not a visitor's.
+3. Beyond page views, ecommerce events already fire automatically:
+   `view_item` (product page), `add_to_cart`, `begin_checkout` (landing on
+   `/checkout` with items in the cart), and `purchase` (a completed order,
+   with the real order total/tax/items) — shows up under GA4's Monetization
+   reports once there's traffic.
+
 ## Admin panel
 
 `/admin` — single shared password (`ADMIN_PASSWORD`), no user accounts. Manage

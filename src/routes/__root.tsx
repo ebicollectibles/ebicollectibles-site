@@ -11,6 +11,12 @@ import { getProducts } from '~/server/products'
 import { getCurrentCustomer } from '~/server/customer-auth'
 import appCss from '~/styles/app.css?url'
 
+// Not secret — a GA4 measurement ID is meant to be visible in the page
+// source, same as a Stripe publishable key. Unset locally by default so
+// dev traffic never pollutes real analytics; set as a GitHub Actions
+// repository *variable* for production (see README-DEPLOY.md).
+const GA_MEASUREMENT_ID = import.meta.env.VITE_GA_MEASUREMENT_ID as string | undefined
+
 export const Route = createRootRoute({
   loader: async () => {
     const [products, customer] = await Promise.all([getProducts(), getCurrentCustomer()])
@@ -57,6 +63,17 @@ function RootDocument({ children }: { children: React.ReactNode }) {
     <html lang="en">
       <head>
         <HeadContent />
+        {/* Skipped on /admin — that's the operator's own traffic, not a visitor to track. */}
+        {GA_MEASUREMENT_ID && !isAdmin && (
+          <>
+            <script async src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`} />
+            <script
+              dangerouslySetInnerHTML={{
+                __html: `window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','${GA_MEASUREMENT_ID}');`,
+              }}
+            />
+          </>
+        )}
       </head>
       <body>
         <CartProvider products={products}>
