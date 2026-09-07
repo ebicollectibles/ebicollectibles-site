@@ -175,13 +175,13 @@ function AdminOrderDetailPage() {
       </div>
 
       <div style={{ marginTop: 18, border: '1px solid #e3e6ea', borderRadius: 4, padding: 18 }}>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
           {order.items.map((item) => (
-            <div key={item.id} style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+            <div key={item.id} style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
               <div
                 style={{
-                  width: 44,
-                  height: 44,
+                  width: 56,
+                  height: 56,
                   flexShrink: 0,
                   background: '#f6f7f8',
                   border: '1px solid #e3e6ea',
@@ -194,34 +194,93 @@ function AdminOrderDetailPage() {
                 )}
               </div>
               <div style={{ flex: 1, minWidth: 0 }}>
-                <div style={{ fontSize: 13, color: '#131b28' }}>{item.productName}</div>
-                <div style={{ fontSize: 11.5, color: '#98a1ab' }}>
+                <div style={{ fontSize: 13.5, color: '#131b28' }}>{item.productName}</div>
+                <div style={{ fontSize: 12, color: '#98a1ab' }}>
                   {item.qty} × {formatMoney(item.unitPrice)}
                 </div>
               </div>
-              <div style={{ fontSize: 13, fontWeight: 600, color: '#131b28' }}>{formatMoney(item.qty * item.unitPrice)}</div>
+              <div style={{ fontSize: 13.5, fontWeight: 600, color: '#131b28' }}>{formatMoney(item.qty * item.unitPrice)}</div>
             </div>
           ))}
         </div>
-        <div style={{ marginTop: 14, paddingTop: 12, borderTop: '1px solid #f0f2f4', fontSize: 11.5, color: '#98a1ab' }}>
-          {order.street}
-          {order.apartment ? `, ${order.apartment}` : ''}, {order.city} {order.state} {order.zip} · {order.shipMethod} ·{' '}
-          {new Date(order.createdAt).toLocaleString()}
-        </div>
-        <div style={{ marginTop: 4, fontSize: 11.5, color: '#98a1ab' }}>
-          Billing:{' '}
-          {sameBilling ? (
-            'Same as shipping'
-          ) : (
-            <>
-              {order.billingFirstName} {order.billingLastName}, {order.billingStreet}
-              {order.billingApartment ? `, ${order.billingApartment}` : ''}, {order.billingCity} {order.billingState} {order.billingZip}
-            </>
-          )}
-        </div>
-        {order.paymentMethodSummary && <div style={{ marginTop: 4, fontSize: 11.5, color: '#98a1ab' }}>{order.paymentMethodSummary}</div>}
 
-        <div style={{ marginTop: 14, paddingTop: 12, borderTop: '1px solid #f0f2f4', display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap' }}>
+        <div style={{ marginTop: 16, paddingTop: 14, borderTop: '1px solid #f0f2f4', display: 'flex', flexDirection: 'column', gap: 4 }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 12.5, color: '#131b28' }}>
+            <span>Subtotal</span>
+            <span>{formatMoney(order.subtotal)}</span>
+          </div>
+          <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 12.5, color: '#131b28' }}>
+            <span>Shipping</span>
+            <span>{formatMoney(order.shippingCost)}</span>
+          </div>
+          {order.tax > 0 && (
+            <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 12.5, color: '#131b28' }}>
+              <span>Tax</span>
+              <span>{formatMoney(order.tax)}</span>
+            </div>
+          )}
+          <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 14, fontWeight: 700, marginTop: 4 }}>
+            <span>Total</span>
+            <span style={{ fontFamily: "'IBM Plex Mono', monospace" }}>{formatMoney(order.total)}</span>
+          </div>
+        </div>
+
+        {order.paymentMethodSummary && (
+          <div style={{ marginTop: 16, paddingTop: 16, borderTop: '1px solid #f0f2f4' }}>
+            <div style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 10.5, letterSpacing: '0.1em', textTransform: 'uppercase', color: '#98a1ab' }}>
+              Payment
+            </div>
+            <div style={{ marginTop: 6, fontSize: 13, color: '#131b28' }}>{order.paymentMethodSummary}</div>
+          </div>
+        )}
+
+        <div style={{ marginTop: 16, paddingTop: 16, borderTop: '1px solid #f0f2f4', display: 'flex', flexWrap: 'wrap', gap: 32 }}>
+          <div>
+            <div style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 10.5, letterSpacing: '0.1em', textTransform: 'uppercase', color: '#98a1ab' }}>
+              Shipping address
+            </div>
+            <div style={{ marginTop: 6, fontSize: 13, color: '#131b28', lineHeight: 1.5 }}>
+              {order.firstName} {order.lastName}
+              <br />
+              {order.street}
+              {order.apartment ? `, ${order.apartment}` : ''}
+              <br />
+              {order.city}, {order.state} {order.zip}
+              {order.phone && (
+                <>
+                  <br />
+                  {order.phone}
+                </>
+              )}
+            </div>
+          </div>
+
+          <div>
+            <div style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 10.5, letterSpacing: '0.1em', textTransform: 'uppercase', color: '#98a1ab' }}>
+              Billing address
+            </div>
+            <div style={{ marginTop: 6, fontSize: 13, color: '#131b28', lineHeight: 1.5 }}>
+              {sameBilling ? (
+                'Same as shipping'
+              ) : (
+                <>
+                  {order.billingFirstName} {order.billingLastName}
+                  <br />
+                  {order.billingStreet}
+                  {order.billingApartment ? `, ${order.billingApartment}` : ''}
+                  <br />
+                  {order.billingCity}, {order.billingState} {order.billingZip}
+                </>
+              )}
+            </div>
+          </div>
+        </div>
+
+        <div style={{ marginTop: 12, fontSize: 11.5, color: '#98a1ab' }}>
+          {order.shipMethod} · placed {new Date(order.createdAt).toLocaleString()}
+        </div>
+
+        <div style={{ marginTop: 16, paddingTop: 16, borderTop: '1px solid #f0f2f4', display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap' }}>
           <span
             style={{
               fontFamily: "'IBM Plex Mono', monospace",
