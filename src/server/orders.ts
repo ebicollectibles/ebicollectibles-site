@@ -156,6 +156,7 @@ export const placeOrder = createServerFn({ method: 'POST' })
           total,
           paymentStatus: charge.status,
           squarePaymentId: charge.squarePaymentId,
+          paymentMethodSummary: charge.paymentMethodSummary ?? null,
         })
         .returning()
 
@@ -172,7 +173,17 @@ export const placeOrder = createServerFn({ method: 'POST' })
 
       await tx.insert(orderStatusEvents).values({ orderId: order.id, status: order.fulfillmentStatus })
 
-      return { orderId: order.id, orderNo, total, paymentStatus: charge.status, subtotal, shippingCost, tax, lineDetails }
+      return {
+        orderId: order.id,
+        orderNo,
+        total,
+        paymentStatus: charge.status,
+        paymentMethodSummary: charge.paymentMethodSummary ?? null,
+        subtotal,
+        shippingCost,
+        tax,
+        lineDetails,
+      }
     })
 
     // Best-effort: record the sale in Square so it shows up as reduced
@@ -207,6 +218,7 @@ export const placeOrder = createServerFn({ method: 'POST' })
         shippingCost: result.shippingCost,
         tax: result.tax,
         total: result.total,
+        paymentMethodSummary: result.paymentMethodSummary,
         items: result.lineDetails.map((l) => ({ productName: l.name, qty: l.qty, unitPrice: l.unitPrice })),
       })
       await db.insert(emailEvents).values({

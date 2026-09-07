@@ -6,7 +6,43 @@ const SQUARE_VERSION = '2025-01-23'
 interface ChargeResult {
   status: 'paid' | 'test' | 'failed'
   squarePaymentId?: string
+  paymentMethodSummary?: string
   error?: string
+}
+
+const CARD_BRAND_LABEL: Record<string, string> = {
+  VISA: 'Visa',
+  MASTERCARD: 'Mastercard',
+  AMERICAN_EXPRESS: 'Amex',
+  DISCOVER: 'Discover',
+  DISCOVER_DINERS: 'Diners Club',
+  JCB: 'JCB',
+  UNIONPAY: 'UnionPay',
+  INTERAC: 'Interac',
+}
+
+const WALLET_BRAND_LABEL: Record<string, string> = {
+  APPLE_PAY: 'Apple Pay',
+  GOOGLE_PAY: 'Google Pay',
+  CASH_APP: 'Cash App Pay',
+  SQUARE_CASH: 'Cash App Pay',
+}
+
+// Square's Payments API already redacts card numbers to brand + last 4 in
+// its response (never the full PAN or CVV) — this just picks the most
+// readable label out of what it gives us, same "Visa ending in 4242" /
+// "Apple Pay" style every card processor's own receipts use.
+function describeSquarePaymentMethod(payment: any): string | undefined {
+  const walletBrand = payment?.wallet_details?.brand
+  if (walletBrand) return WALLET_BRAND_LABEL[walletBrand] ?? walletBrand
+
+  const card = payment?.card_details?.card
+  if (card?.last_4) {
+    const brand = CARD_BRAND_LABEL[card.card_brand] ?? card.card_brand ?? 'Card'
+    return `${brand} •••• ${card.last_4}`
+  }
+
+  return undefined
 }
 
 function squareConfig() {
@@ -64,7 +100,7 @@ export async function chargeSquarePayment(opts: {
     return { status: 'failed', error: message }
   }
 
-  return { status: 'paid', squarePaymentId: json?.payment?.id }
+  return { status: 'paid', squarePaymentId: json?.payment?.id, paymentMethodSummary: describeSquarePaymentMethod(json?.payment) }
 }
 
 export interface SquareCatalogOption {

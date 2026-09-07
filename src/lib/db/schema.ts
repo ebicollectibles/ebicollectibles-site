@@ -102,6 +102,10 @@ export const orders = pgTable('orders', {
   total: numeric('total', { precision: 10, scale: 2, mode: 'number' }).notNull(),
   paymentStatus: text('payment_status').notNull().default('unpaid'), // unpaid | paid | test | failed
   squarePaymentId: text('square_payment_id'),
+  // Human-readable summary of how the order was paid, e.g. "Visa •••• 4242"
+  // or "Apple Pay" — derived from Square's already-redacted payment
+  // response (never a full card number), shown on receipts as reference.
+  paymentMethodSummary: text('payment_method_summary'),
   fulfillmentStatus: text('fulfillment_status').notNull().default('pending'), // pending | shipped | cancelled
   carrier: text('carrier'),
   trackingNumber: text('tracking_number'),

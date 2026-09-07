@@ -26,20 +26,22 @@ function emailShell(opts: { badgeLabel: string; badgeColor: string; heading: str
         </td>
       </tr>
       <tr>
-        <td style="padding:32px 32px 8px;">
+        <td style="padding:32px;">
           <span style="display:inline-block;font-size:10px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:${opts.badgeColor};border:1px solid ${opts.badgeColor};border-radius:2px;padding:4px 9px;">${opts.badgeLabel}</span>
           <h1 style="font-size:21px;margin:14px 0 4px;color:${INK};">${opts.heading}</h1>
           <p style="font-size:13.5px;color:${MUTED};margin:0 0 24px;">${opts.intro}</p>
           ${opts.bodyHtml}
         </td>
       </tr>
-      <tr>
-        <td style="padding:18px 32px;border-top:1px solid ${BORDER};">
-          <p style="margin:0;font-size:11px;color:#98a1ab;">EBI Collectibles — Simplified Chinese Pokémon collectibles, sourced through authorised distribution.</p>
-        </td>
-      </tr>
     </table>
   </div>`
+}
+
+function formatAddress(order: { street: string | null; apartment: string | null; city: string | null; zip: string | null }): string | null {
+  const address = [order.street, order.apartment, order.city ? `${order.city} ${order.zip ?? ''}`.trim() : order.zip]
+    .filter(Boolean)
+    .join('<br>')
+  return address || null
 }
 
 function itemsTableHtml(items: OrderEmailItem[]): string {
@@ -88,6 +90,7 @@ interface OrderEmailData {
   shippingCost: number
   tax: number
   total: number
+  paymentMethodSummary: string | null
   items: OrderEmailItem[]
 }
 
@@ -108,9 +111,7 @@ export async function sendOrderConfirmationEmail(order: OrderEmailData): Promise
       <td style="padding:4px 0;font-size:${strong ? '14px' : '12.5px'};font-weight:${strong ? '700' : '400'};color:${strong ? INK : MUTED};text-align:right;${strong ? `border-top:1px solid ${INK};padding-top:10px;` : ''}">${value}</td>
     </tr>`
 
-  const address = [order.street, order.apartment, order.city ? `${order.city} ${order.zip ?? ''}`.trim() : order.zip]
-    .filter(Boolean)
-    .join('<br>')
+  const address = formatAddress(order)
 
   const bodyHtml = `
     ${itemsTableHtml(order.items)}
@@ -121,6 +122,7 @@ export async function sendOrderConfirmationEmail(order: OrderEmailData): Promise
       ${summaryRow('Total', formatMoney(order.total), true)}
     </table>
     ${address ? labelValueBlock('Ship to', address) : ''}
+    ${order.paymentMethodSummary ? labelValueBlock('Payment method', escapeHtml(order.paymentMethodSummary)) : ''}
   `
 
   const html = emailShell({
@@ -141,7 +143,12 @@ export async function sendOrderConfirmationEmail(order: OrderEmailData): Promise
     `Shipping: ${formatMoney(order.shippingCost)}`,
     `Tax: ${formatMoney(order.tax)}`,
     `Total: ${formatMoney(order.total)}`,
-  ].join('\n')
+    '',
+    address ? `Ship to:\n${address.replace(/<br>/g, '\n')}` : null,
+    order.paymentMethodSummary ? `Payment method: ${order.paymentMethodSummary}` : null,
+  ]
+    .filter((line) => line !== null)
+    .join('\n')
 
   const res = await fetch('https://api.resend.com/emails', {
     method: 'POST',
@@ -172,13 +179,21 @@ interface ShipmentEmailData {
   orderNo: number
   email: string | null
   firstName: string | null
+  street: string | null
+  apartment: string | null
+  city: string | null
+  zip: string | null
+  paymentMethodSummary: string | null
   carrier: string | null
   trackingNumber: string | null
   items: OrderEmailItem[]
 }
 
 // Same best-effort, return-a-result contract as sendOrderConfirmationEmail —
-// called right after admin marks an order shipped.
+// called right after admin marks an order shipped. Reiterates the same
+// order-recap details (items, ship-to, payment method) as the confirmation
+// email plus the new tracking number, since this may be the only email a
+// customer actually opens.
 export async function sendShipmentEmail(order: ShipmentEmailData): Promise<EmailSendResult> {
   const apiKey = process.env.RESEND_API_KEY
   const from = process.env.ORDER_FROM_EMAIL
@@ -192,9 +207,13 @@ export async function sendShipmentEmail(order: ShipmentEmailData): Promise<Email
       : escapeHtml(order.trackingNumber)
     : null
 
+  const address = formatAddress(order)
+
   const bodyHtml = `
     ${itemsTableHtml(order.items)}
-    ${trackingValue ? labelValueBlock(order.carrier ? `${order.carrier} tracking number` : 'Tracking number', trackingValue) : ''}
+    ${trackingValue ? labelValueBlock('Tracking number', trackingValue) : ''}
+    ${address ? labelValueBlock('Ship to', address) : ''}
+    ${order.paymentMethodSummary ? labelValueBlock('Payment method', escapeHtml(order.paymentMethodSummary)) : ''}
   `
 
   const html = emailShell({
@@ -209,10 +228,13 @@ export async function sendShipmentEmail(order: ShipmentEmailData): Promise<Email
   const text = [
     `Your order is on its way${order.firstName ? `, ${order.firstName}` : ''}!`,
     `Order #EBI-${order.orderNo} has shipped: ${itemsLine}.`,
-    order.trackingNumber ? `${order.carrier ? `${order.carrier} tracking number` : 'Tracking number'}: ${order.trackingNumber}` : null,
+    order.trackingNumber ? `Tracking number: ${order.trackingNumber}` : null,
     trackingUrl ?? null,
+    '',
+    address ? `Ship to:\n${address.replace(/<br>/g, '\n')}` : null,
+    order.paymentMethodSummary ? `Payment method: ${order.paymentMethodSummary}` : null,
   ]
-    .filter(Boolean)
+    .filter((line) => line !== null)
     .join('\n')
 
   const res = await fetch('https://api.resend.com/emails', {
