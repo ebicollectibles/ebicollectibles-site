@@ -720,8 +720,8 @@ function CheckoutPage() {
                 {submitting ? 'Placing order…' : 'Place order'}
               </button>
               <p style={{ fontSize: 11.5, lineHeight: 1.5, color: '#98a1ab', margin: '12px 0 0' }}>
-                Pre-order lines are charged now and reserved against our allocation. Everything ships double-boxed with
-                tracking.
+                Pre-order lines are charged now and reserved against our allocation. Carrier is chosen by us for the
+                safest delivery.
               </p>
             </>
           )}
