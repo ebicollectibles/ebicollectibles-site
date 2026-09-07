@@ -199,17 +199,29 @@ function AdminOrdersPage() {
                       </button>
                     ))}
                 </div>
-                {order.statusHistory.length > 1 && (
-                  <span style={{ fontSize: 11, color: '#98a1ab' }}>
-                    {order.statusHistory.map((s, i) => (
-                      <span key={i}>
-                        {i > 0 && ' → '}
-                        {s.status} {new Date(s.createdAt).toLocaleString()}
-                      </span>
-                    ))}
-                  </span>
-                )}
               </div>
+
+              {order.statusHistory.length > 1 && (
+                <div style={{ marginTop: 8, display: 'flex', flexDirection: 'column', gap: 3 }}>
+                  {order.statusHistory.map((s, i) => (
+                    <div key={i} style={{ display: 'flex', alignItems: 'baseline', gap: 8, fontSize: 11 }}>
+                      <span
+                        style={{
+                          fontFamily: "'IBM Plex Mono', monospace",
+                          textTransform: 'uppercase',
+                          fontWeight: 600,
+                          color: fulfillmentColor[s.status] ?? '#98a1ab',
+                          width: 62,
+                          flexShrink: 0,
+                        }}
+                      >
+                        {s.status}
+                      </span>
+                      <span style={{ color: '#98a1ab' }}>{new Date(s.createdAt).toLocaleString()}</span>
+                    </div>
+                  ))}
+                </div>
+              )}
 
               {shipFormOrderId === order.id && (
                 <div style={{ marginTop: 10, padding: 12, background: '#f6f7f8', borderRadius: 2, display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap' }}>
