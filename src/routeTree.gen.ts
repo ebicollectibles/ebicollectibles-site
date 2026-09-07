@@ -17,7 +17,6 @@ import { Route as ShopRouteImport } from './routes/shop'
 import { Route as AccountIndexRouteImport } from './routes/account/index'
 import { Route as AccountForgotPasswordRouteImport } from './routes/account/forgot-password'
 import { Route as AccountLoginRouteImport } from './routes/account/login'
-import { Route as AccountOrdersRouteImport } from './routes/account/orders'
 import { Route as AccountProfileRouteImport } from './routes/account/profile'
 import { Route as AccountResetPasswordRouteImport } from './routes/account/reset-password'
 import { Route as AccountSignupRouteImport } from './routes/account/signup'
@@ -25,6 +24,8 @@ import { Route as AccountVerifyRouteImport } from './routes/account/verify'
 import { Route as AdminIndexRouteImport } from './routes/admin/index'
 import { Route as AdminLoginRouteImport } from './routes/admin/login'
 import { Route as ProductsIdRouteImport } from './routes/products.$id'
+import { Route as AccountOrdersIndexRouteImport } from './routes/account/orders/index'
+import { Route as AccountOrdersIdRouteImport } from './routes/account/orders/$id'
 import { Route as AdminCustomersIndexRouteImport } from './routes/admin/customers/index'
 import { Route as AdminCustomersIdRouteImport } from './routes/admin/customers/$id'
 import { Route as AdminOrdersIndexRouteImport } from './routes/admin/orders/index'
@@ -74,11 +75,6 @@ const AccountLoginRoute = AccountLoginRouteImport.update({
   path: '/account/login',
   getParentRoute: () => rootRouteImport,
 } as any)
-const AccountOrdersRoute = AccountOrdersRouteImport.update({
-  id: '/account/orders',
-  path: '/account/orders',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const AccountProfileRoute = AccountProfileRouteImport.update({
   id: '/account/profile',
   path: '/account/profile',
@@ -112,6 +108,16 @@ const AdminLoginRoute = AdminLoginRouteImport.update({
 const ProductsIdRoute = ProductsIdRouteImport.update({
   id: '/products/$id',
   path: '/products/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AccountOrdersIndexRoute = AccountOrdersIndexRouteImport.update({
+  id: '/account/orders/',
+  path: '/account/orders/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AccountOrdersIdRoute = AccountOrdersIdRouteImport.update({
+  id: '/account/orders/$id',
+  path: '/account/orders/$id',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AdminCustomersIndexRoute = AdminCustomersIndexRouteImport.update({
@@ -163,7 +169,6 @@ export interface FileRoutesByFullPath {
   '/shop': typeof ShopRoute
   '/account/forgot-password': typeof AccountForgotPasswordRoute
   '/account/login': typeof AccountLoginRoute
-  '/account/orders': typeof AccountOrdersRoute
   '/account/profile': typeof AccountProfileRoute
   '/account/reset-password': typeof AccountResetPasswordRoute
   '/account/signup': typeof AccountSignupRoute
@@ -172,12 +177,14 @@ export interface FileRoutesByFullPath {
   '/products/$id': typeof ProductsIdRoute
   '/account/': typeof AccountIndexRoute
   '/admin/': typeof AdminIndexRoute
+  '/account/orders/$id': typeof AccountOrdersIdRoute
   '/admin/customers/$id': typeof AdminCustomersIdRoute
   '/admin/orders/$id': typeof AdminOrdersIdRoute
   '/admin/products/$id': typeof AdminProductsIdRoute
   '/admin/products/new': typeof AdminProductsNewRoute
   '/auth/google/callback': typeof AuthGoogleCallbackRoute
   '/auth/google/start': typeof AuthGoogleStartRoute
+  '/account/orders/': typeof AccountOrdersIndexRoute
   '/admin/customers/': typeof AdminCustomersIndexRoute
   '/admin/orders/': typeof AdminOrdersIndexRoute
 }
@@ -189,7 +196,6 @@ export interface FileRoutesByTo {
   '/shop': typeof ShopRoute
   '/account/forgot-password': typeof AccountForgotPasswordRoute
   '/account/login': typeof AccountLoginRoute
-  '/account/orders': typeof AccountOrdersRoute
   '/account/profile': typeof AccountProfileRoute
   '/account/reset-password': typeof AccountResetPasswordRoute
   '/account/signup': typeof AccountSignupRoute
@@ -198,12 +204,14 @@ export interface FileRoutesByTo {
   '/products/$id': typeof ProductsIdRoute
   '/account': typeof AccountIndexRoute
   '/admin': typeof AdminIndexRoute
+  '/account/orders/$id': typeof AccountOrdersIdRoute
   '/admin/customers/$id': typeof AdminCustomersIdRoute
   '/admin/orders/$id': typeof AdminOrdersIdRoute
   '/admin/products/$id': typeof AdminProductsIdRoute
   '/admin/products/new': typeof AdminProductsNewRoute
   '/auth/google/callback': typeof AuthGoogleCallbackRoute
   '/auth/google/start': typeof AuthGoogleStartRoute
+  '/account/orders': typeof AccountOrdersIndexRoute
   '/admin/customers': typeof AdminCustomersIndexRoute
   '/admin/orders': typeof AdminOrdersIndexRoute
 }
@@ -216,7 +224,6 @@ export interface FileRoutesById {
   '/shop': typeof ShopRoute
   '/account/forgot-password': typeof AccountForgotPasswordRoute
   '/account/login': typeof AccountLoginRoute
-  '/account/orders': typeof AccountOrdersRoute
   '/account/profile': typeof AccountProfileRoute
   '/account/reset-password': typeof AccountResetPasswordRoute
   '/account/signup': typeof AccountSignupRoute
@@ -225,12 +232,14 @@ export interface FileRoutesById {
   '/products/$id': typeof ProductsIdRoute
   '/account/': typeof AccountIndexRoute
   '/admin/': typeof AdminIndexRoute
+  '/account/orders/$id': typeof AccountOrdersIdRoute
   '/admin/customers/$id': typeof AdminCustomersIdRoute
   '/admin/orders/$id': typeof AdminOrdersIdRoute
   '/admin/products/$id': typeof AdminProductsIdRoute
   '/admin/products/new': typeof AdminProductsNewRoute
   '/auth/google/callback': typeof AuthGoogleCallbackRoute
   '/auth/google/start': typeof AuthGoogleStartRoute
+  '/account/orders/': typeof AccountOrdersIndexRoute
   '/admin/customers/': typeof AdminCustomersIndexRoute
   '/admin/orders/': typeof AdminOrdersIndexRoute
 }
@@ -244,7 +253,6 @@ export interface FileRouteTypes {
     | '/shop'
     | '/account/forgot-password'
     | '/account/login'
-    | '/account/orders'
     | '/account/profile'
     | '/account/reset-password'
     | '/account/signup'
@@ -253,12 +261,14 @@ export interface FileRouteTypes {
     | '/products/$id'
     | '/account/'
     | '/admin/'
+    | '/account/orders/$id'
     | '/admin/customers/$id'
     | '/admin/orders/$id'
     | '/admin/products/$id'
     | '/admin/products/new'
     | '/auth/google/callback'
     | '/auth/google/start'
+    | '/account/orders/'
     | '/admin/customers/'
     | '/admin/orders/'
   fileRoutesByTo: FileRoutesByTo
@@ -270,7 +280,6 @@ export interface FileRouteTypes {
     | '/shop'
     | '/account/forgot-password'
     | '/account/login'
-    | '/account/orders'
     | '/account/profile'
     | '/account/reset-password'
     | '/account/signup'
@@ -279,12 +288,14 @@ export interface FileRouteTypes {
     | '/products/$id'
     | '/account'
     | '/admin'
+    | '/account/orders/$id'
     | '/admin/customers/$id'
     | '/admin/orders/$id'
     | '/admin/products/$id'
     | '/admin/products/new'
     | '/auth/google/callback'
     | '/auth/google/start'
+    | '/account/orders'
     | '/admin/customers'
     | '/admin/orders'
   id:
@@ -296,7 +307,6 @@ export interface FileRouteTypes {
     | '/shop'
     | '/account/forgot-password'
     | '/account/login'
-    | '/account/orders'
     | '/account/profile'
     | '/account/reset-password'
     | '/account/signup'
@@ -305,12 +315,14 @@ export interface FileRouteTypes {
     | '/products/$id'
     | '/account/'
     | '/admin/'
+    | '/account/orders/$id'
     | '/admin/customers/$id'
     | '/admin/orders/$id'
     | '/admin/products/$id'
     | '/admin/products/new'
     | '/auth/google/callback'
     | '/auth/google/start'
+    | '/account/orders/'
     | '/admin/customers/'
     | '/admin/orders/'
   fileRoutesById: FileRoutesById
@@ -323,7 +335,6 @@ export interface RootRouteChildren {
   ShopRoute: typeof ShopRoute
   AccountForgotPasswordRoute: typeof AccountForgotPasswordRoute
   AccountLoginRoute: typeof AccountLoginRoute
-  AccountOrdersRoute: typeof AccountOrdersRoute
   AccountProfileRoute: typeof AccountProfileRoute
   AccountResetPasswordRoute: typeof AccountResetPasswordRoute
   AccountSignupRoute: typeof AccountSignupRoute
@@ -332,12 +343,14 @@ export interface RootRouteChildren {
   ProductsIdRoute: typeof ProductsIdRoute
   AccountIndexRoute: typeof AccountIndexRoute
   AdminIndexRoute: typeof AdminIndexRoute
+  AccountOrdersIdRoute: typeof AccountOrdersIdRoute
   AdminCustomersIdRoute: typeof AdminCustomersIdRoute
   AdminOrdersIdRoute: typeof AdminOrdersIdRoute
   AdminProductsIdRoute: typeof AdminProductsIdRoute
   AdminProductsNewRoute: typeof AdminProductsNewRoute
   AuthGoogleCallbackRoute: typeof AuthGoogleCallbackRoute
   AuthGoogleStartRoute: typeof AuthGoogleStartRoute
+  AccountOrdersIndexRoute: typeof AccountOrdersIndexRoute
   AdminCustomersIndexRoute: typeof AdminCustomersIndexRoute
   AdminOrdersIndexRoute: typeof AdminOrdersIndexRoute
 }
@@ -400,13 +413,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AccountLoginRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/account/orders': {
-      id: '/account/orders'
-      path: '/account/orders'
-      fullPath: '/account/orders'
-      preLoaderRoute: typeof AccountOrdersRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/account/profile': {
       id: '/account/profile'
       path: '/account/profile'
@@ -454,6 +460,20 @@ declare module '@tanstack/react-router' {
       path: '/products/$id'
       fullPath: '/products/$id'
       preLoaderRoute: typeof ProductsIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/account/orders/': {
+      id: '/account/orders/'
+      path: '/account/orders'
+      fullPath: '/account/orders/'
+      preLoaderRoute: typeof AccountOrdersIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/account/orders/$id': {
+      id: '/account/orders/$id'
+      path: '/account/orders/$id'
+      fullPath: '/account/orders/$id'
+      preLoaderRoute: typeof AccountOrdersIdRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/admin/customers/': {
@@ -523,7 +543,6 @@ const rootRouteChildren: RootRouteChildren = {
   ShopRoute: ShopRoute,
   AccountForgotPasswordRoute: AccountForgotPasswordRoute,
   AccountLoginRoute: AccountLoginRoute,
-  AccountOrdersRoute: AccountOrdersRoute,
   AccountProfileRoute: AccountProfileRoute,
   AccountResetPasswordRoute: AccountResetPasswordRoute,
   AccountSignupRoute: AccountSignupRoute,
@@ -532,12 +551,14 @@ const rootRouteChildren: RootRouteChildren = {
   ProductsIdRoute: ProductsIdRoute,
   AccountIndexRoute: AccountIndexRoute,
   AdminIndexRoute: AdminIndexRoute,
+  AccountOrdersIdRoute: AccountOrdersIdRoute,
   AdminCustomersIdRoute: AdminCustomersIdRoute,
   AdminOrdersIdRoute: AdminOrdersIdRoute,
   AdminProductsIdRoute: AdminProductsIdRoute,
   AdminProductsNewRoute: AdminProductsNewRoute,
   AuthGoogleCallbackRoute: AuthGoogleCallbackRoute,
   AuthGoogleStartRoute: AuthGoogleStartRoute,
+  AccountOrdersIndexRoute: AccountOrdersIndexRoute,
   AdminCustomersIndexRoute: AdminCustomersIndexRoute,
   AdminOrdersIndexRoute: AdminOrdersIndexRoute,
 }

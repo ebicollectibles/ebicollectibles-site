@@ -270,3 +270,21 @@ export const getMyOrders = createServerFn({ method: 'GET' }).handler(async () =>
   }
   return orderRows.map((order) => ({ ...order, items: itemsByOrder.get(order.id) ?? [] }))
 })
+
+export const getMyOrder = createServerFn({ method: 'GET' })
+  .validator(z.object({ id: z.string() }))
+  .handler(async ({ data }) => {
+    const userId = await getCurrentUserId()
+    if (!userId) throw new Error('Not logged in.')
+
+    const { getDb } = await import('~/lib/db/client')
+    const { orderItems, orders } = await import('~/lib/db/schema')
+    const { eq } = await import('drizzle-orm')
+    const db = getDb()
+
+    const [order] = await db.select().from(orders).where(eq(orders.id, data.id)).limit(1)
+    if (!order || order.userId !== userId) return null
+
+    const items = await db.select().from(orderItems).where(eq(orderItems.orderId, data.id))
+    return { ...order, items }
+  })
