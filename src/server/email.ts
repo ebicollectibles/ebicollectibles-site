@@ -44,14 +44,16 @@ function formatAddress(order: { street: string | null; apartment: string | null;
   return address || null
 }
 
-function itemsTableHtml(items: OrderEmailItem[]): string {
+function itemsTableHtml(items: OrderEmailItem[], opts: { showPrice?: boolean } = {}): string {
+  const showPrice = opts.showPrice ?? true
+
   const rows = items
     .map(
       (item) => `
         <tr>
           <td style="padding:10px 0;border-bottom:1px solid ${BORDER};font-size:13.5px;color:${INK};">${escapeHtml(item.productName)}</td>
           <td style="padding:10px 0;border-bottom:1px solid ${BORDER};font-size:13.5px;color:${MUTED};text-align:center;white-space:nowrap;">${item.qty}</td>
-          <td style="padding:10px 0;border-bottom:1px solid ${BORDER};font-size:13.5px;color:${INK};text-align:right;white-space:nowrap;">${formatMoney(item.unitPrice * item.qty)}</td>
+          ${showPrice ? `<td style="padding:10px 0;border-bottom:1px solid ${BORDER};font-size:13.5px;color:${INK};text-align:right;white-space:nowrap;">${formatMoney(item.unitPrice * item.qty)}</td>` : ''}
         </tr>`,
     )
     .join('')
@@ -61,7 +63,7 @@ function itemsTableHtml(items: OrderEmailItem[]): string {
       <tr>
         <td style="padding:0 0 8px;border-bottom:1px solid ${INK};font-size:10px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:${MUTED};">Item</td>
         <td style="padding:0 0 8px;border-bottom:1px solid ${INK};font-size:10px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:${MUTED};text-align:center;">Qty</td>
-        <td style="padding:0 0 8px;border-bottom:1px solid ${INK};font-size:10px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:${MUTED};text-align:right;">Price</td>
+        ${showPrice ? `<td style="padding:0 0 8px;border-bottom:1px solid ${INK};font-size:10px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:${MUTED};text-align:right;">Price</td>` : ''}
       </tr>
       ${rows}
     </table>`
@@ -183,17 +185,16 @@ interface ShipmentEmailData {
   apartment: string | null
   city: string | null
   zip: string | null
-  paymentMethodSummary: string | null
   carrier: string | null
   trackingNumber: string | null
   items: OrderEmailItem[]
 }
 
 // Same best-effort, return-a-result contract as sendOrderConfirmationEmail —
-// called right after admin marks an order shipped. Reiterates the same
-// order-recap details (items, ship-to, payment method) as the confirmation
-// email plus the new tracking number, since this may be the only email a
-// customer actually opens.
+// called right after admin marks an order shipped. Reiterates the ship-to
+// address alongside the items and tracking link (no prices or payment
+// method — that's the confirmation email's job), since this may be the
+// only email a customer actually opens.
 export async function sendShipmentEmail(order: ShipmentEmailData): Promise<EmailSendResult> {
   const apiKey = process.env.RESEND_API_KEY
   const from = process.env.ORDER_FROM_EMAIL
@@ -210,10 +211,9 @@ export async function sendShipmentEmail(order: ShipmentEmailData): Promise<Email
   const address = formatAddress(order)
 
   const bodyHtml = `
-    ${itemsTableHtml(order.items)}
+    ${itemsTableHtml(order.items, { showPrice: false })}
     ${trackingValue ? labelValueBlock('Tracking number', trackingValue) : ''}
     ${address ? labelValueBlock('Ship to', address) : ''}
-    ${order.paymentMethodSummary ? labelValueBlock('Payment method', escapeHtml(order.paymentMethodSummary)) : ''}
   `
 
   const html = emailShell({
@@ -232,7 +232,6 @@ export async function sendShipmentEmail(order: ShipmentEmailData): Promise<Email
     trackingUrl ?? null,
     '',
     address ? `Ship to:\n${address.replace(/<br>/g, '\n')}` : null,
-    order.paymentMethodSummary ? `Payment method: ${order.paymentMethodSummary}` : null,
   ]
     .filter((line) => line !== null)
     .join('\n')

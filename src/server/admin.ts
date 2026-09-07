@@ -199,7 +199,6 @@ export const adminUpdateOrderStatus = createServerFn({ method: 'POST' })
             apartment: order.apartment,
             city: order.city,
             zip: order.zip,
-            paymentMethodSummary: order.paymentMethodSummary,
             carrier,
             trackingNumber,
             items: items.map((i) => ({ productName: i.productName, qty: i.qty, unitPrice: i.unitPrice })),
