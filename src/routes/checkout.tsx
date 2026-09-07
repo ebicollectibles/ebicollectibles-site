@@ -116,7 +116,7 @@ function CheckoutPage() {
     contact.city.trim() !== '' &&
     contact.state.trim() !== '' &&
     contact.zip.trim() !== ''
-  const [sameAsShipping, setSameAsShipping] = React.useState(true)
+  const [sameAsShipping, setSameAsShipping] = React.useState(false)
   const [billing, setBilling] = React.useState<BillingAddress>(emptyBilling)
   const billingComplete =
     sameAsShipping ||
