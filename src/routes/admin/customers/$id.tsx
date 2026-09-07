@@ -83,84 +83,48 @@ function AdminCustomerDetailPage() {
 
       {orders.length === 0 && <p style={{ fontSize: 13.5, color: '#131b28' }}>No orders yet.</p>}
 
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
-        {pageOrders.map((order) => (
-          <div key={order.id} style={{ border: '1px solid #e3e6ea', borderRadius: 4, padding: 18 }}>
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-              <span style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 13, fontWeight: 600 }}>
-                #EBI-{order.orderNo}
-              </span>
-              <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-                <span
-                  style={{
-                    fontFamily: "'IBM Plex Mono', monospace",
-                    fontSize: 10,
-                    textTransform: 'uppercase',
-                    color: '#5a6875',
-                    border: '1px solid #cfd4da',
-                    borderRadius: 2,
-                    padding: '2px 6px',
-                  }}
-                >
-                  {order.checkoutMode === 'account' ? 'Account' : 'Guest'}
-                </span>
-                <span
-                  style={{
-                    fontFamily: "'IBM Plex Mono', monospace",
-                    fontSize: 10.5,
-                    textTransform: 'uppercase',
-                    color: paymentColor[order.paymentStatus] ?? '#98a1ab',
-                  }}
-                >
-                  {order.paymentStatus}
-                </span>
-                <span style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 14, fontWeight: 500 }}>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+        {pageOrders.map((order) => {
+          const itemCount = order.items.reduce((n, item) => n + item.qty, 0)
+          return (
+            <Link
+              key={order.id}
+              to="/admin/orders/$id"
+              params={{ id: order.id }}
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+                gap: 12,
+                border: '1px solid #e3e6ea',
+                borderRadius: 4,
+                padding: '16px 20px',
+                color: 'inherit',
+                textDecoration: 'none',
+              }}
+            >
+              <div>
+                <div style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 13, fontWeight: 600 }}>
+                  #EBI-{order.orderNo}
+                </div>
+                <div style={{ marginTop: 4, fontSize: 12, color: '#98a1ab' }}>
+                  {new Date(order.createdAt).toLocaleDateString()} · {itemCount} item{itemCount === 1 ? '' : 's'} ·{' '}
+                  <span style={{ color: fulfillmentColor[order.fulfillmentStatus] ?? '#98a1ab' }}>
+                    {fulfillmentLabel[order.fulfillmentStatus] ?? order.fulfillmentStatus}
+                  </span>
+                  {' · '}
+                  <span style={{ color: paymentColor[order.paymentStatus] ?? '#98a1ab' }}>{order.paymentStatus}</span>
+                </div>
+              </div>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
+                <span style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 14, fontWeight: 600 }}>
                   {formatMoney(order.total)}
                 </span>
+                <span style={{ fontSize: 13, color: '#98a1ab' }}>›</span>
               </div>
-            </div>
-            <div style={{ marginTop: 10, fontSize: 12.5, color: '#131b28' }}>
-              {order.items.map((item) => `${item.qty}× ${item.productName}`).join(', ')}
-            </div>
-            <div style={{ marginTop: 8, fontSize: 11.5, color: '#98a1ab' }}>
-              {order.street}
-              {order.apartment ? `, ${order.apartment}` : ''}, {order.city} {order.zip} · {order.shipMethod} ·{' '}
-              {new Date(order.createdAt).toLocaleString()}
-            </div>
-            <div style={{ marginTop: 8, fontSize: 11 }}>
-              <span
-                style={{
-                  fontFamily: "'IBM Plex Mono', monospace",
-                  textTransform: 'uppercase',
-                  color: fulfillmentColor[order.fulfillmentStatus] ?? '#98a1ab',
-                }}
-              >
-                {fulfillmentLabel[order.fulfillmentStatus] ?? order.fulfillmentStatus}
-              </span>
-            </div>
-            {order.statusHistory.length > 1 && (
-              <div style={{ marginTop: 4, display: 'flex', flexDirection: 'column', gap: 3 }}>
-                {order.statusHistory.map((s, i) => (
-                  <div key={i} style={{ display: 'flex', alignItems: 'baseline', gap: 8, fontSize: 11 }}>
-                    <span
-                      style={{
-                        fontFamily: "'IBM Plex Mono', monospace",
-                        textTransform: 'uppercase',
-                        fontWeight: 600,
-                        color: fulfillmentColor[s.status] ?? '#98a1ab',
-                        width: 100,
-                        flexShrink: 0,
-                      }}
-                    >
-                      {fulfillmentLabel[s.status] ?? s.status}
-                    </span>
-                    <span style={{ color: '#98a1ab' }}>{new Date(s.createdAt).toLocaleString()}</span>
-                  </div>
-                ))}
-              </div>
-            )}
-          </div>
-        ))}
+            </Link>
+          )
+        })}
       </div>
 
       {totalPages > 1 && (
