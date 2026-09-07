@@ -270,7 +270,7 @@ export const adminCreateShipment = createServerFn({ method: 'POST' })
     try {
       const shippedLines = data.items.map((line) => {
         const item = itemById.get(line.orderItemId)!
-        return { productName: item.productName, qty: line.qty, unitPrice: item.unitPrice }
+        return { productName: item.productName, qty: line.qty, unitPrice: item.unitPrice, img: item.img }
       })
       const sendResult = await sendShipmentEmail({
         orderNo: order.orderNo,

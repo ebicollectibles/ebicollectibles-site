@@ -99,6 +99,13 @@
       "when": 1788753882172,
       "tag": "0013_nostalgic_bug",
       "breakpoints": true
+    },
+    {
+      "idx": 14,
+      "version": "7",
+      "when": 1788757685103,
+      "tag": "0014_legal_mercury",
+      "breakpoints": true
     }
   ]
 }

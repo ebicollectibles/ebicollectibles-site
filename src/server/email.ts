@@ -44,6 +44,19 @@ function formatAddress(order: { street: string | null; apartment: string | null;
   return address || null
 }
 
+function itemThumbnailHtml(item: OrderEmailItem): string {
+  const img = item.img
+    ? `<img src="${escapeHtml(item.img)}" width="36" height="36" alt="" style="display:block;width:36px;height:36px;object-fit:contain;border:1px solid ${BORDER};border-radius:3px;background:${SURFACE};">`
+    : `<div style="width:36px;height:36px;border:1px solid ${BORDER};border-radius:3px;background:${SURFACE};"></div>`
+  return `
+    <table role="presentation" cellpadding="0" cellspacing="0">
+      <tr>
+        <td style="width:36px;">${img}</td>
+        <td style="padding-left:10px;font-size:13.5px;color:${INK};">${escapeHtml(item.productName)}</td>
+      </tr>
+    </table>`
+}
+
 function itemsTableHtml(items: OrderEmailItem[], opts: { showPrice?: boolean } = {}): string {
   const showPrice = opts.showPrice ?? true
 
@@ -51,7 +64,7 @@ function itemsTableHtml(items: OrderEmailItem[], opts: { showPrice?: boolean } =
     .map(
       (item) => `
         <tr>
-          <td style="padding:10px 0;border-bottom:1px solid ${BORDER};font-size:13.5px;color:${INK};">${escapeHtml(item.productName)}</td>
+          <td style="padding:10px 0;border-bottom:1px solid ${BORDER};">${itemThumbnailHtml(item)}</td>
           <td style="padding:10px 0;border-bottom:1px solid ${BORDER};font-size:13.5px;color:${MUTED};text-align:center;white-space:nowrap;">${item.qty}</td>
           ${showPrice ? `<td style="padding:10px 0;border-bottom:1px solid ${BORDER};font-size:13.5px;color:${INK};text-align:right;white-space:nowrap;">${formatMoney(item.unitPrice * item.qty)}</td>` : ''}
         </tr>`,
@@ -77,6 +90,7 @@ interface OrderEmailItem {
   productName: string
   qty: number
   unitPrice: number
+  img?: string | null
 }
 
 interface OrderEmailData {

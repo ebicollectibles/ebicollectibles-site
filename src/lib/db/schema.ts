@@ -186,6 +186,10 @@ export const orderItems = pgTable('order_items', {
   productId: text('product_id').notNull(),
   productName: text('product_name').notNull(),
   productCode: text('product_code').notNull(),
+  // Snapshot of the product's primary photo at order time — like
+  // productName/productCode/unitPrice, kept stable even if the product's
+  // image later changes or the product itself is deleted.
+  img: text('img'),
   unitPrice: numeric('unit_price', { precision: 10, scale: 2, mode: 'number' }).notNull(),
   qty: integer('qty').notNull(),
 })

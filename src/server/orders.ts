@@ -74,6 +74,7 @@ export const placeOrder = createServerFn({ method: 'POST' })
         productId: string
         name: string
         code: string
+        img: string | null
         unitPrice: number
         qty: number
       }> = []
@@ -83,7 +84,7 @@ export const placeOrder = createServerFn({ method: 'POST' })
         if (!product) throw new Error('One of the items in your cart no longer exists — refresh your cart and try again.')
 
         if (product.squareVariationId) {
-          lineDetails.push({ productId: product.id, name: product.name, code: product.code, unitPrice: product.price, qty: line.qty })
+          lineDetails.push({ productId: product.id, name: product.name, code: product.code, img: product.img, unitPrice: product.price, qty: line.qty })
           continue
         }
 
@@ -101,6 +102,7 @@ export const placeOrder = createServerFn({ method: 'POST' })
           productId: updated.id,
           name: updated.name,
           code: updated.code,
+          img: updated.img,
           unitPrice: updated.price,
           qty: line.qty,
         })
@@ -166,6 +168,7 @@ export const placeOrder = createServerFn({ method: 'POST' })
           productId: l.productId,
           productName: l.name,
           productCode: l.code,
+          img: l.img,
           unitPrice: l.unitPrice,
           qty: l.qty,
         })),
@@ -219,7 +222,7 @@ export const placeOrder = createServerFn({ method: 'POST' })
         tax: result.tax,
         total: result.total,
         paymentMethodSummary: result.paymentMethodSummary,
-        items: result.lineDetails.map((l) => ({ productName: l.name, qty: l.qty, unitPrice: l.unitPrice })),
+        items: result.lineDetails.map((l) => ({ productName: l.name, qty: l.qty, unitPrice: l.unitPrice, img: l.img })),
       })
       await db.insert(emailEvents).values({
         orderId: result.orderId,

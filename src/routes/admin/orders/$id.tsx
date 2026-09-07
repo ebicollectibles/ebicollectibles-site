@@ -160,8 +160,35 @@ function AdminOrderDetailPage() {
       </div>
 
       <div style={{ marginTop: 18, border: '1px solid #e3e6ea', borderRadius: 4, padding: 18 }}>
-        <div style={{ fontSize: 12.5, color: '#131b28' }}>{order.items.map((item) => `${item.qty}× ${item.productName}`).join(', ')}</div>
-        <div style={{ marginTop: 8, fontSize: 11.5, color: '#98a1ab' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+          {order.items.map((item) => (
+            <div key={item.id} style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+              <div
+                style={{
+                  width: 44,
+                  height: 44,
+                  flexShrink: 0,
+                  background: '#f6f7f8',
+                  border: '1px solid #e3e6ea',
+                  borderRadius: 3,
+                  overflow: 'hidden',
+                }}
+              >
+                {item.img && (
+                  <img src={item.img} alt={item.productName} style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
+                )}
+              </div>
+              <div style={{ flex: 1, minWidth: 0 }}>
+                <div style={{ fontSize: 13, color: '#131b28' }}>{item.productName}</div>
+                <div style={{ fontSize: 11.5, color: '#98a1ab' }}>
+                  {item.qty} × {formatMoney(item.unitPrice)}
+                </div>
+              </div>
+              <div style={{ fontSize: 13, fontWeight: 600, color: '#131b28' }}>{formatMoney(item.qty * item.unitPrice)}</div>
+            </div>
+          ))}
+        </div>
+        <div style={{ marginTop: 14, paddingTop: 12, borderTop: '1px solid #f0f2f4', fontSize: 11.5, color: '#98a1ab' }}>
           {order.street}
           {order.apartment ? `, ${order.apartment}` : ''}, {order.city} {order.zip} · {order.shipMethod} · {new Date(order.createdAt).toLocaleString()}
         </div>
