@@ -59,9 +59,26 @@ function CheckoutPage() {
     return <Confirmation orderNo={confirmed.orderNo} paymentStatus={confirmed.paymentStatus} />
   }
 
-  const field = (key: keyof CheckoutContact) => ({
+  const field = (
+    key: keyof CheckoutContact,
+    invalidMessages?: Partial<Record<'valueMissing' | 'typeMismatch', string>>,
+  ) => ({
     value: contact[key],
-    onChange: (e: React.ChangeEvent<HTMLInputElement>) => setContact((c) => ({ ...c, [key]: e.target.value })),
+    onChange: (e: React.ChangeEvent<HTMLInputElement>) => {
+      e.target.setCustomValidity('')
+      setContact((c) => ({ ...c, [key]: e.target.value }))
+    },
+    onInvalid: invalidMessages
+      ? (e: React.InvalidEvent<HTMLInputElement>) => {
+          const target = e.target as HTMLInputElement
+          const message = target.validity.valueMissing
+            ? invalidMessages.valueMissing
+            : target.validity.typeMismatch
+              ? invalidMessages.typeMismatch
+              : undefined
+          target.setCustomValidity(message ?? '')
+        }
+      : undefined,
   })
 
   const finishOrder = async (sourceId: string | null) => {
@@ -113,21 +130,36 @@ function CheckoutPage() {
               required
               className="ebi-field"
               style={{ ...fieldStyle, marginTop: 14, width: '100%' }}
-              {...field('email')}
+              {...field('email', {
+                valueMissing: 'Enter your email address so we can send your order confirmation.',
+                typeMismatch: 'That email address doesn’t look right — double-check it.',
+              })}
             />
           </div>
 
           <div style={{ borderTop: '1px solid #e3e6ea', marginTop: 30, paddingTop: 22 }}>
             <div style={monoLabel}>02 / Shipping address</div>
             <div className="ebi-checkout-2col" style={{ marginTop: 14 }}>
-              <input placeholder="First name" required className="ebi-field" style={fieldStyle} {...field('firstName')} />
-              <input placeholder="Last name" required className="ebi-field" style={fieldStyle} {...field('lastName')} />
+              <input
+                placeholder="First name"
+                required
+                className="ebi-field"
+                style={fieldStyle}
+                {...field('firstName', { valueMissing: 'Enter your first name.' })}
+              />
+              <input
+                placeholder="Last name"
+                required
+                className="ebi-field"
+                style={fieldStyle}
+                {...field('lastName', { valueMissing: 'Enter your last name.' })}
+              />
               <input
                 placeholder="Street address"
                 required
                 className="ebi-field ebi-field-full"
                 style={fieldStyle}
-                {...field('street')}
+                {...field('street', { valueMissing: 'Enter the street address to ship to.' })}
               />
               <input
                 placeholder="Apartment, suite (optional)"
@@ -135,8 +167,20 @@ function CheckoutPage() {
                 style={fieldStyle}
                 {...field('apartment')}
               />
-              <input placeholder="City" required className="ebi-field" style={fieldStyle} {...field('city')} />
-              <input placeholder="ZIP code" required className="ebi-field" style={fieldStyle} {...field('zip')} />
+              <input
+                placeholder="City"
+                required
+                className="ebi-field"
+                style={fieldStyle}
+                {...field('city', { valueMissing: 'Enter the city to ship to.' })}
+              />
+              <input
+                placeholder="ZIP code"
+                required
+                className="ebi-field"
+                style={fieldStyle}
+                {...field('zip', { valueMissing: 'Enter the ZIP code to ship to.' })}
+              />
             </div>
           </div>
 
@@ -181,10 +225,6 @@ function CheckoutPage() {
                   </p>
                 </>
               )}
-            </div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginTop: 14, fontFamily: "'IBM Plex Mono', monospace", fontSize: 11, color: '#98a1ab' }}>
-              <span style={{ width: 6, height: 6, borderRadius: '50%', background: '#3f7a63' }} />
-              <span>Encrypted · Visa · Mastercard · Amex · Apple Pay · Alipay</span>
             </div>
           </div>
 
