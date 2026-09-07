@@ -74,6 +74,15 @@ function AdminOrderDetailPage() {
   }
 
   const totalRefunded = order.refunds.reduce((t, r) => t + (r.status === 'COMPLETED' ? r.amount ?? 0 : 0), 0)
+  const sameBilling =
+    !order.billingStreet ||
+    (order.billingFirstName === order.firstName &&
+      order.billingLastName === order.lastName &&
+      order.billingStreet === order.street &&
+      order.billingApartment === order.apartment &&
+      order.billingCity === order.city &&
+      order.billingState === order.state &&
+      order.billingZip === order.zip)
   const remaining = remainingQtyByItem(order.items, order.shipments.flatMap((s) => s.items))
   const hasRemaining = [...remaining.values()].some((qty) => qty > 0)
   const totalToShip = Object.values(shipQtyByItem).reduce((t, qty) => t + qty, 0)
@@ -199,19 +208,17 @@ function AdminOrderDetailPage() {
           {order.apartment ? `, ${order.apartment}` : ''}, {order.city} {order.state} {order.zip} · {order.shipMethod} ·{' '}
           {new Date(order.createdAt).toLocaleString()}
         </div>
-        {order.billingStreet &&
-          (order.billingFirstName !== order.firstName ||
-            order.billingLastName !== order.lastName ||
-            order.billingStreet !== order.street ||
-            order.billingApartment !== order.apartment ||
-            order.billingCity !== order.city ||
-            order.billingState !== order.state ||
-            order.billingZip !== order.zip) && (
-          <div style={{ marginTop: 4, fontSize: 11.5, color: '#98a1ab' }}>
-            Billing: {order.billingFirstName} {order.billingLastName}, {order.billingStreet}
-            {order.billingApartment ? `, ${order.billingApartment}` : ''}, {order.billingCity} {order.billingState} {order.billingZip}
-          </div>
-        )}
+        <div style={{ marginTop: 4, fontSize: 11.5, color: '#98a1ab' }}>
+          Billing:{' '}
+          {sameBilling ? (
+            'Same as shipping'
+          ) : (
+            <>
+              {order.billingFirstName} {order.billingLastName}, {order.billingStreet}
+              {order.billingApartment ? `, ${order.billingApartment}` : ''}, {order.billingCity} {order.billingState} {order.billingZip}
+            </>
+          )}
+        </div>
         {order.paymentMethodSummary && <div style={{ marginTop: 4, fontSize: 11.5, color: '#98a1ab' }}>{order.paymentMethodSummary}</div>}
 
         <div style={{ marginTop: 14, paddingTop: 12, borderTop: '1px solid #f0f2f4', display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap' }}>
