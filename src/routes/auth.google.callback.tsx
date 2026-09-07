@@ -15,15 +15,16 @@ export const Route = createFileRoute('/auth/google/callback')({
     if (deps.error || !deps.code || !deps.state) {
       throw redirect({ to: '/account/login', search: { error: 'Google sign-in was cancelled or failed.' } })
     }
+    let result: { ok: true; next?: string }
     try {
-      await completeGoogleAuth({ data: { code: deps.code, state: deps.state } })
+      result = await completeGoogleAuth({ data: { code: deps.code, state: deps.state } })
     } catch (err) {
       throw redirect({
         to: '/account/login',
         search: { error: err instanceof Error ? err.message : 'Google sign-in failed.' },
       })
     }
-    throw redirect({ to: '/account/orders' })
+    throw redirect({ to: result.next === '/checkout' ? '/checkout' : '/account/orders' })
   },
   component: () => null,
 })

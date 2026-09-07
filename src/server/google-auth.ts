@@ -122,9 +122,13 @@ export async function handleGoogleCallback(code: string): Promise<void> {
 }
 
 // --- CSRF state, short-lived cookie between /auth/google/start and the callback ---
+// `next` rides along in the same cookie so the callback can send the shopper
+// back to wherever they started Google sign-in from (e.g. checkout) instead
+// of always landing on /account/orders.
 
 interface OAuthStateData {
   state?: string
+  next?: string
 }
 
 function oauthStateSessionConfig() {
@@ -135,39 +139,41 @@ function oauthStateSessionConfig() {
   return { password, name: 'ebi_oauth_state', maxAge: 60 * 10 }
 }
 
-const readOAuthState = createServerOnlyFn(async (): Promise<string | null> => {
+const readOAuthState = createServerOnlyFn(async (): Promise<OAuthStateData> => {
   const { getSession } = await import('@tanstack/react-start/server')
   const session = await getSession<OAuthStateData>(oauthStateSessionConfig())
-  return session.data.state ?? null
+  return session.data
 })
 
-const writeOAuthState = createServerOnlyFn(async (state: string | null): Promise<void> => {
-  if (state) {
+const writeOAuthState = createServerOnlyFn(async (data: OAuthStateData | null): Promise<void> => {
+  if (data) {
     const { updateSession } = await import('@tanstack/react-start/server')
-    await updateSession<OAuthStateData>(oauthStateSessionConfig(), { state })
+    await updateSession<OAuthStateData>(oauthStateSessionConfig(), data)
   } else {
     const { clearSession } = await import('@tanstack/react-start/server')
     await clearSession(oauthStateSessionConfig())
   }
 })
 
-export const startGoogleAuth = createServerFn({ method: 'GET' }).handler(async () => {
-  if (!googleSignInConfigured()) {
-    throw new Error('Google sign-in is not configured.')
-  }
-  const state = crypto.randomUUID()
-  await writeOAuthState(state)
-  return { url: buildGoogleAuthUrl(state) }
-})
+export const startGoogleAuth = createServerFn({ method: 'GET' })
+  .validator(z.object({ next: z.string().optional() }).optional())
+  .handler(async ({ data }) => {
+    if (!googleSignInConfigured()) {
+      throw new Error('Google sign-in is not configured.')
+    }
+    const state = crypto.randomUUID()
+    await writeOAuthState({ state, next: data?.next })
+    return { url: buildGoogleAuthUrl(state) }
+  })
 
 export const completeGoogleAuth = createServerFn({ method: 'GET' })
   .validator(z.object({ code: z.string(), state: z.string() }))
   .handler(async ({ data }) => {
     const expected = await readOAuthState()
     await writeOAuthState(null)
-    if (!expected || expected !== data.state) {
+    if (!expected.state || expected.state !== data.state) {
       throw new Error('Sign-in session expired — please try again.')
     }
     await handleGoogleCallback(data.code)
-    return { ok: true }
+    return { ok: true, next: expected.next }
   })

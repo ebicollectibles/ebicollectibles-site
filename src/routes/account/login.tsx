@@ -77,7 +77,7 @@ function LoginPage() {
     setError(null)
     setGoogleBusy(true)
     try {
-      const { url } = await startGoogleAuth()
+      const { url } = await startGoogleAuth({ data: {} })
       window.location.href = url
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Google sign-in is not available right now.')

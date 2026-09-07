@@ -1,13 +1,20 @@
 import * as React from 'react'
-import { createFileRoute, Link } from '@tanstack/react-router'
+import { createFileRoute, Link, useNavigate, useRouter } from '@tanstack/react-router'
 import { SquareCardField, squareConfigured, type SquareCardFieldHandle } from '~/components/SquareCardField'
 import { ApplePayButton } from '~/components/ApplePayButton'
+import { PasswordInput } from '~/components/PasswordInput'
 import { useCart, type CheckoutContact } from '~/lib/cart-context'
 import { formatMoney } from '~/lib/products'
+import { customerLogout, getCurrentCustomer } from '~/server/customer-auth'
+import { customerLogin } from '~/server/customers'
+import { startGoogleAuth } from '~/server/google-auth'
 
 export const Route = createFileRoute('/checkout')({
+  loader: () => getCurrentCustomer(),
   component: CheckoutPage,
 })
+
+type Account = { id: string; email: string; name: string | null }
 
 const STRIPES = 'repeating-linear-gradient(45deg, #eef0f2 0px, #eef0f2 7px, #f6f7f8 7px, #f6f7f8 14px)'
 
@@ -28,6 +35,32 @@ const fieldStyle: React.CSSProperties = {
   color: '#131b28',
 }
 
+const label: React.CSSProperties = { fontSize: 12.5, fontWeight: 600, marginBottom: 6, display: 'block' }
+
+const darkBtn: React.CSSProperties = {
+  width: '100%',
+  background: '#131b28',
+  color: '#ffffff',
+  border: 0,
+  borderRadius: 2,
+  padding: '12px 22px',
+  fontSize: 13.5,
+  fontWeight: 600,
+  cursor: 'pointer',
+}
+
+const outlineBtn: React.CSSProperties = {
+  width: '100%',
+  background: '#ffffff',
+  color: '#131b28',
+  border: '1px solid #cfd4da',
+  borderRadius: 2,
+  padding: '12px 22px',
+  fontSize: 13.5,
+  fontWeight: 600,
+  cursor: 'pointer',
+}
+
 const emptyContact: CheckoutContact = {
   email: '',
   firstName: '',
@@ -40,10 +73,30 @@ const emptyContact: CheckoutContact = {
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
+// A stored account name is one free-text field; the checkout form wants it
+// split into first/last — best-effort on the first space, never blocking.
+function splitName(name: string | null): { firstName: string; lastName: string } {
+  if (!name) return { firstName: '', lastName: '' }
+  const trimmed = name.trim()
+  const spaceIndex = trimmed.indexOf(' ')
+  if (spaceIndex === -1) return { firstName: trimmed, lastName: '' }
+  return { firstName: trimmed.slice(0, spaceIndex), lastName: trimmed.slice(spaceIndex + 1).trim() }
+}
+
 function CheckoutPage() {
   const cart = useCart()
+  const initialAccount = Route.useLoaderData()
+  const router = useRouter()
+  const navigate = useNavigate()
   const cardRef = React.useRef<SquareCardFieldHandle>(null)
-  const [contact, setContact] = React.useState<CheckoutContact>(emptyContact)
+
+  // Logged-in visitors skip straight to the real form; logged-out visitors
+  // see the guest-or-sign-in choice first — but only here, not on /cart.
+  const [checkoutAs, setCheckoutAs] = React.useState<'guest' | 'account' | null>(initialAccount ? 'account' : null)
+  const [account, setAccount] = React.useState<Account | null>(initialAccount)
+  const [contact, setContact] = React.useState<CheckoutContact>(() =>
+    initialAccount ? { ...emptyContact, email: initialAccount.email, ...splitName(initialAccount.name) } : emptyContact,
+  )
   const contactComplete =
     EMAIL_RE.test(contact.email.trim()) &&
     contact.firstName.trim() !== '' &&
@@ -54,6 +107,12 @@ function CheckoutPage() {
   const [confirmed, setConfirmed] = React.useState<{ orderNo: number; paymentStatus: string } | null>(null)
   const [submitting, setSubmitting] = React.useState(false)
   const [error, setError] = React.useState<string | null>(null)
+
+  const [signinEmail, setSigninEmail] = React.useState('')
+  const [signinPassword, setSigninPassword] = React.useState('')
+  const [signinError, setSigninError] = React.useState<string | null>(null)
+  const [signinSubmitting, setSigninSubmitting] = React.useState(false)
+  const [googleBusy, setGoogleBusy] = React.useState(false)
 
   if (confirmed) {
     return <Confirmation orderNo={confirmed.orderNo} paymentStatus={confirmed.paymentStatus} />
@@ -107,6 +166,56 @@ function CheckoutPage() {
     await finishOrder(sourceId)
   }
 
+  const continueAsGuest = () => setCheckoutAs('guest')
+
+  const switchToSignin = () => setCheckoutAs(null)
+
+  const switchAccount = async () => {
+    await customerLogout()
+    await router.invalidate()
+    setAccount(null)
+    setCheckoutAs(null)
+    setContact(emptyContact)
+  }
+
+  const submitSignin = async (e: React.FormEvent) => {
+    e.preventDefault()
+    setSigninError(null)
+    setSigninSubmitting(true)
+    try {
+      const result = await customerLogin({ data: { email: signinEmail, password: signinPassword } })
+      if (result.verificationRequired) {
+        navigate({ to: '/account/verify', search: { email: result.email } })
+        return
+      }
+      await router.invalidate()
+      const acct = await getCurrentCustomer()
+      setAccount(acct)
+      setContact((c) => ({
+        ...c,
+        email: acct?.email ?? signinEmail,
+        ...(acct ? splitName(acct.name) : {}),
+      }))
+      setCheckoutAs('account')
+    } catch (err) {
+      setSigninError(err instanceof Error ? err.message : 'Sign in failed.')
+    } finally {
+      setSigninSubmitting(false)
+    }
+  }
+
+  const continueWithGoogle = async () => {
+    setSigninError(null)
+    setGoogleBusy(true)
+    try {
+      const { url } = await startGoogleAuth({ data: { next: '/checkout' } })
+      window.location.href = url
+    } catch (err) {
+      setSigninError(err instanceof Error ? err.message : 'Google sign-in is not available right now.')
+      setGoogleBusy(false)
+    }
+  }
+
   return (
     <section style={{ maxWidth: 1120, margin: '0 auto', padding: '40px 20px 90px' }}>
       <Link to="/shop" style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 11.5, color: '#5a6875' }}>
@@ -115,121 +224,163 @@ function CheckoutPage() {
       <h1 style={{ fontSize: 34, letterSpacing: '-0.025em', fontWeight: 700, margin: '14px 0 0' }}>Checkout</h1>
 
       <div className="ebi-checkout-layout" style={{ marginTop: 34, alignItems: 'start' }}>
-        <form
-          id="checkout-form"
-          onSubmit={(e) => {
-            e.preventDefault()
-            submit()
-          }}
-        >
-          <div style={{ borderTop: '1px solid #131b28', paddingTop: 22 }}>
-            <div style={monoLabel}>01 / Contact</div>
-            <input
-              placeholder="Email address"
-              type="email"
-              required
-              className="ebi-field"
-              style={{ ...fieldStyle, marginTop: 14, width: '100%' }}
-              {...field('email', {
-                valueMissing: 'Enter your email address so we can send your order confirmation.',
-                typeMismatch: 'That email address doesn’t look right — double-check it.',
-              })}
+        <div>
+          {checkoutAs === null ? (
+            <ChoicePanel
+              signinEmail={signinEmail}
+              setSigninEmail={setSigninEmail}
+              signinPassword={signinPassword}
+              setSigninPassword={setSigninPassword}
+              signinError={signinError}
+              signinSubmitting={signinSubmitting}
+              googleBusy={googleBusy}
+              onSubmitSignin={submitSignin}
+              onContinueWithGoogle={continueWithGoogle}
+              onContinueAsGuest={continueAsGuest}
             />
-          </div>
+          ) : (
+            <form
+              id="checkout-form"
+              onSubmit={(e) => {
+                e.preventDefault()
+                submit()
+              }}
+            >
+              <div
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: 8,
+                  fontSize: 12,
+                  fontWeight: 600,
+                  color: '#3f7a63',
+                  background: '#eaf2ee',
+                  borderRadius: 2,
+                  padding: '7px 12px',
+                  marginBottom: 20,
+                }}
+              >
+                <span style={{ width: 6, height: 6, borderRadius: '50%', background: '#3f7a63', flexShrink: 0 }} />
+                {checkoutAs === 'account' ? `Signed in as ${account?.email}` : 'Checking out as guest'}
+                <button
+                  type="button"
+                  onClick={checkoutAs === 'account' ? switchAccount : switchToSignin}
+                  style={{ marginLeft: 4, background: 'none', border: 0, padding: 0, color: '#5a6875', fontWeight: 500, textDecoration: 'underline', cursor: 'pointer', fontSize: 12 }}
+                >
+                  {checkoutAs === 'account' ? 'not you?' : 'sign in instead'}
+                </button>
+              </div>
 
-          <div style={{ borderTop: '1px solid #e3e6ea', marginTop: 30, paddingTop: 22 }}>
-            <div style={monoLabel}>02 / Shipping address</div>
-            <div className="ebi-checkout-2col" style={{ marginTop: 14 }}>
-              <input
-                placeholder="First name"
-                required
-                className="ebi-field"
-                style={fieldStyle}
-                {...field('firstName', { valueMissing: 'Enter your first name.' })}
-              />
-              <input
-                placeholder="Last name"
-                required
-                className="ebi-field"
-                style={fieldStyle}
-                {...field('lastName', { valueMissing: 'Enter your last name.' })}
-              />
-              <input
-                placeholder="Street address"
-                required
-                className="ebi-field ebi-field-full"
-                style={fieldStyle}
-                {...field('street', { valueMissing: 'Enter the street address to ship to.' })}
-              />
-              <input
-                placeholder="Apartment, suite (optional)"
-                className="ebi-field ebi-field-full"
-                style={fieldStyle}
-                {...field('apartment')}
-              />
-              <input
-                placeholder="City"
-                required
-                className="ebi-field"
-                style={fieldStyle}
-                {...field('city', { valueMissing: 'Enter the city to ship to.' })}
-              />
-              <input
-                placeholder="ZIP code"
-                required
-                className="ebi-field"
-                style={fieldStyle}
-                {...field('zip', { valueMissing: 'Enter the ZIP code to ship to.' })}
-              />
-            </div>
-          </div>
+              <div style={{ borderTop: '1px solid #131b28', paddingTop: 22 }}>
+                <div style={monoLabel}>01 / Contact</div>
+                <input
+                  placeholder="Email address"
+                  type="email"
+                  required
+                  className="ebi-field"
+                  style={{ ...fieldStyle, marginTop: 14, width: '100%' }}
+                  {...field('email', {
+                    valueMissing: 'Enter your email address so we can send your order confirmation.',
+                    typeMismatch: 'That email address doesn’t look right — double-check it.',
+                  })}
+                />
+              </div>
 
-          <div style={{ borderTop: '1px solid #e3e6ea', marginTop: 30, paddingTop: 22 }}>
-            <div style={monoLabel}>03 / Payment</div>
-            <div style={{ marginTop: 14 }}>
-              {squareConfigured ? (
-                <>
-                  <ApplePayButton
-                    amount={cart.total}
-                    disabled={submitting || !contactComplete}
-                    onTokenize={(sourceId) => finishOrder(sourceId)}
-                    onError={setError}
+              <div style={{ borderTop: '1px solid #e3e6ea', marginTop: 30, paddingTop: 22 }}>
+                <div style={monoLabel}>02 / Shipping address</div>
+                <div className="ebi-checkout-2col" style={{ marginTop: 14 }}>
+                  <input
+                    placeholder="First name"
+                    required
+                    className="ebi-field"
+                    style={fieldStyle}
+                    {...field('firstName', { valueMissing: 'Enter your first name.' })}
                   />
-                  <SquareCardField ref={cardRef} />
-                </>
-              ) : (
-                <>
-                  <div className="ebi-checkout-2col">
-                    <input
-                      placeholder="Card number"
-                      disabled
-                      className="ebi-field ebi-field-full"
-                      style={{ ...fieldStyle, fontFamily: "'IBM Plex Mono', monospace", background: '#f6f7f8' }}
-                    />
-                    <input
-                      placeholder="MM / YY"
-                      disabled
-                      className="ebi-field"
-                      style={{ ...fieldStyle, fontFamily: "'IBM Plex Mono', monospace", background: '#f6f7f8' }}
-                    />
-                    <input
-                      placeholder="CVC"
-                      disabled
-                      className="ebi-field"
-                      style={{ ...fieldStyle, fontFamily: "'IBM Plex Mono', monospace", background: '#f6f7f8' }}
-                    />
-                  </div>
-                  <p style={{ fontSize: 11.5, color: '#98a1ab', marginTop: 8 }}>
-                    Payments aren't configured yet — orders will be recorded without charging a card. Set
-                    SQUARE_ACCESS_TOKEN / VITE_SQUARE_APPLICATION_ID to go live.
-                  </p>
-                </>
-              )}
-            </div>
-          </div>
+                  <input
+                    placeholder="Last name"
+                    required
+                    className="ebi-field"
+                    style={fieldStyle}
+                    {...field('lastName', { valueMissing: 'Enter your last name.' })}
+                  />
+                  <input
+                    placeholder="Street address"
+                    required
+                    className="ebi-field ebi-field-full"
+                    style={fieldStyle}
+                    {...field('street', { valueMissing: 'Enter the street address to ship to.' })}
+                  />
+                  <input
+                    placeholder="Apartment, suite (optional)"
+                    className="ebi-field ebi-field-full"
+                    style={fieldStyle}
+                    {...field('apartment')}
+                  />
+                  <input
+                    placeholder="City"
+                    required
+                    className="ebi-field"
+                    style={fieldStyle}
+                    {...field('city', { valueMissing: 'Enter the city to ship to.' })}
+                  />
+                  <input
+                    placeholder="ZIP code"
+                    required
+                    className="ebi-field"
+                    style={fieldStyle}
+                    {...field('zip', { valueMissing: 'Enter the ZIP code to ship to.' })}
+                  />
+                </div>
+              </div>
 
-          {/* Order summary + place-order action lives in the aside for desktop layout parity with the design */}
-        </form>
+              <div style={{ borderTop: '1px solid #e3e6ea', marginTop: 30, paddingTop: 22 }}>
+                <div style={monoLabel}>03 / Payment</div>
+                <div style={{ marginTop: 14 }}>
+                  {squareConfigured ? (
+                    <>
+                      <ApplePayButton
+                        amount={cart.total}
+                        disabled={submitting || !contactComplete}
+                        onTokenize={(sourceId) => finishOrder(sourceId)}
+                        onError={setError}
+                      />
+                      <SquareCardField ref={cardRef} />
+                    </>
+                  ) : (
+                    <>
+                      <div className="ebi-checkout-2col">
+                        <input
+                          placeholder="Card number"
+                          disabled
+                          className="ebi-field ebi-field-full"
+                          style={{ ...fieldStyle, fontFamily: "'IBM Plex Mono', monospace", background: '#f6f7f8' }}
+                        />
+                        <input
+                          placeholder="MM / YY"
+                          disabled
+                          className="ebi-field"
+                          style={{ ...fieldStyle, fontFamily: "'IBM Plex Mono', monospace", background: '#f6f7f8' }}
+                        />
+                        <input
+                          placeholder="CVC"
+                          disabled
+                          className="ebi-field"
+                          style={{ ...fieldStyle, fontFamily: "'IBM Plex Mono', monospace", background: '#f6f7f8' }}
+                        />
+                      </div>
+                      <p style={{ fontSize: 11.5, color: '#98a1ab', marginTop: 8 }}>
+                        Payments aren't configured yet — orders will be recorded without charging a card. Set
+                        SQUARE_ACCESS_TOKEN / VITE_SQUARE_APPLICATION_ID to go live.
+                      </p>
+                    </>
+                  )}
+                </div>
+              </div>
+
+              {/* Order summary + place-order action lives in the aside for desktop layout parity with the design */}
+            </form>
+          )}
+        </div>
 
         <aside className="ebi-sticky-aside" style={{ border: '1px solid #e3e6ea', padding: 24 }}>
           <div style={monoLabel}>Order summary</div>
@@ -278,35 +429,133 @@ function CheckoutPage() {
             <span style={{ fontSize: 15, fontWeight: 700 }}>Total</span>
             <span style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 21, fontWeight: 500 }}>{formatMoney(cart.total)}</span>
           </div>
-          {error && <p style={{ fontSize: 12.5, color: '#b4622f', marginTop: 14 }}>{error}</p>}
-          <button
-            type="submit"
-            form="checkout-form"
-            disabled={cart.cartEmpty || submitting}
-            className="ebi-btn-dark"
-            style={{
-              marginTop: 20,
-              width: '100%',
-              background: '#131b28',
-              color: '#ffffff',
-              border: 0,
-              borderRadius: 2,
-              padding: 15,
-              fontSize: 14,
-              fontWeight: 600,
-              cursor: cart.cartEmpty || submitting ? 'not-allowed' : 'pointer',
-              opacity: cart.cartEmpty || submitting ? 0.45 : 1,
-            }}
-          >
-            {submitting ? 'Placing order…' : 'Place order'}
-          </button>
-          <p style={{ fontSize: 11.5, lineHeight: 1.5, color: '#98a1ab', margin: '12px 0 0' }}>
-            Pre-order lines are charged now and reserved against our allocation. Everything ships double-boxed with
-            tracking.
-          </p>
+          {checkoutAs !== null && (
+            <>
+              {error && <p style={{ fontSize: 12.5, color: '#b4622f', marginTop: 14 }}>{error}</p>}
+              <button
+                type="submit"
+                form="checkout-form"
+                disabled={cart.cartEmpty || submitting}
+                className="ebi-btn-dark"
+                style={{
+                  marginTop: 20,
+                  width: '100%',
+                  background: '#131b28',
+                  color: '#ffffff',
+                  border: 0,
+                  borderRadius: 2,
+                  padding: 15,
+                  fontSize: 14,
+                  fontWeight: 600,
+                  cursor: cart.cartEmpty || submitting ? 'not-allowed' : 'pointer',
+                  opacity: cart.cartEmpty || submitting ? 0.45 : 1,
+                }}
+              >
+                {submitting ? 'Placing order…' : 'Place order'}
+              </button>
+              <p style={{ fontSize: 11.5, lineHeight: 1.5, color: '#98a1ab', margin: '12px 0 0' }}>
+                Pre-order lines are charged now and reserved against our allocation. Everything ships double-boxed with
+                tracking.
+              </p>
+            </>
+          )}
         </aside>
       </div>
     </section>
+  )
+}
+
+function ChoicePanel({
+  signinEmail,
+  setSigninEmail,
+  signinPassword,
+  setSigninPassword,
+  signinError,
+  signinSubmitting,
+  googleBusy,
+  onSubmitSignin,
+  onContinueWithGoogle,
+  onContinueAsGuest,
+}: {
+  signinEmail: string
+  setSigninEmail: (v: string) => void
+  signinPassword: string
+  setSigninPassword: (v: string) => void
+  signinError: string | null
+  signinSubmitting: boolean
+  googleBusy: boolean
+  onSubmitSignin: (e: React.FormEvent) => void
+  onContinueWithGoogle: () => void
+  onContinueAsGuest: () => void
+}) {
+  const cardStyle: React.CSSProperties = { border: '1px solid #e3e6ea', borderRadius: 2, padding: '20px 22px', marginBottom: 14 }
+
+  return (
+    <div style={{ borderTop: '1px solid #131b28', paddingTop: 22 }}>
+      <p style={{ fontSize: 13.5, color: '#3d4753', margin: '0 0 20px' }}>How would you like to check out?</p>
+
+      <div style={{ ...cardStyle, borderColor: '#131b28' }}>
+        <h2 style={{ fontSize: 15.5, fontWeight: 700, margin: 0 }}>Sign in</h2>
+        <p style={{ fontSize: 12.5, color: '#98a1ab', margin: '6px 0 16px', lineHeight: 1.5, maxWidth: '46ch' }}>
+          Skip retyping your address, and track this order from your account. New here?{' '}
+          <Link to="/account/signup" style={{ color: '#131b28', fontWeight: 600 }}>
+            Create an account
+          </Link>{' '}
+          instead.
+        </p>
+
+        <button type="button" onClick={onContinueWithGoogle} disabled={googleBusy} style={{ ...outlineBtn, cursor: googleBusy ? 'not-allowed' : 'pointer', opacity: googleBusy ? 0.6 : 1 }}>
+          {googleBusy ? 'Redirecting…' : 'Continue with Google'}
+        </button>
+
+        <div style={{ display: 'flex', alignItems: 'center', gap: 10, margin: '16px 0', fontSize: 11.5, color: '#98a1ab' }}>
+          <div style={{ flex: 1, height: 1, background: '#e3e6ea' }} />
+          or
+          <div style={{ flex: 1, height: 1, background: '#e3e6ea' }} />
+        </div>
+
+        <form onSubmit={onSubmitSignin}>
+          <label style={label}>Email</label>
+          <input
+            type="email"
+            required
+            value={signinEmail}
+            onChange={(e) => setSigninEmail(e.target.value)}
+            style={{ ...fieldStyle, width: '100%' }}
+          />
+          <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', marginTop: 14 }}>
+            <label style={{ ...label, marginTop: 0, marginBottom: 0 }}>Password</label>
+            <Link to="/account/forgot-password" style={{ fontSize: 12, color: '#5a6875' }}>
+              Forgot password?
+            </Link>
+          </div>
+          <PasswordInput
+            required
+            value={signinPassword}
+            onChange={(e) => setSigninPassword(e.target.value)}
+            style={{ ...fieldStyle, width: '100%', marginTop: 6 }}
+          />
+          {signinError && <p style={{ fontSize: 12.5, color: '#b4622f', marginTop: 14 }}>{signinError}</p>}
+          <button
+            type="submit"
+            disabled={signinSubmitting}
+            style={{ ...darkBtn, marginTop: 16, cursor: signinSubmitting ? 'not-allowed' : 'pointer', opacity: signinSubmitting ? 0.6 : 1 }}
+          >
+            {signinSubmitting ? 'Signing in…' : 'Sign in →'}
+          </button>
+        </form>
+      </div>
+
+      <div style={cardStyle}>
+        <h2 style={{ fontSize: 15.5, fontWeight: 700, margin: 0 }}>Continue as guest</h2>
+        <p style={{ fontSize: 12.5, color: '#98a1ab', margin: '6px 0 16px', lineHeight: 1.5, maxWidth: '46ch' }}>
+          Enter your shipping details and pay — we'll email your receipt. No account required.
+        </p>
+        <button type="button" onClick={onContinueAsGuest} style={outlineBtn}>
+          Continue as guest →
+        </button>
+      </div>
+    </div>
   )
 }
 
