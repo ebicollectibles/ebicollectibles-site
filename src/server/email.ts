@@ -187,14 +187,19 @@ interface ShipmentEmailData {
   zip: string | null
   carrier: string | null
   trackingNumber: string | null
+  // Whether this shipment covers everything left on the order — false means
+  // more items are still to ship separately, which changes the wording so
+  // the customer isn't confused into thinking the whole order arrived.
+  isFinalShipment: boolean
   items: OrderEmailItem[]
 }
 
 // Same best-effort, return-a-result contract as sendOrderConfirmationEmail —
-// called right after admin marks an order shipped. Reiterates the ship-to
-// address alongside the items and tracking link (no prices or payment
-// method — that's the confirmation email's job), since this may be the
-// only email a customer actually opens.
+// called right after admin records a shipment (an order can ship in more
+// than one package). Reiterates the ship-to address alongside the items in
+// *this* shipment and its tracking link (no prices or payment method —
+// that's the confirmation email's job), since this may be the only email a
+// customer actually opens.
 export async function sendShipmentEmail(order: ShipmentEmailData): Promise<EmailSendResult> {
   const apiKey = process.env.RESEND_API_KEY
   const from = process.env.ORDER_FROM_EMAIL
@@ -216,18 +221,20 @@ export async function sendShipmentEmail(order: ShipmentEmailData): Promise<Email
     ${address ? labelValueBlock('Ship to', address) : ''}
   `
 
-  const html = emailShell({
-    badgeLabel: 'Shipped',
-    badgeColor: GREEN,
-    heading: `Your order is on its way${order.firstName ? `, ${escapeHtml(order.firstName)}` : ''}!`,
-    intro: `Order #EBI-${order.orderNo} has shipped.`,
-    bodyHtml,
-  })
+  const badgeLabel = order.isFinalShipment ? 'Shipped' : 'Partially shipped'
+  const heading = order.isFinalShipment
+    ? `Your order is on its way${order.firstName ? `, ${escapeHtml(order.firstName)}` : ''}!`
+    : `Part of your order is on its way${order.firstName ? `, ${escapeHtml(order.firstName)}` : ''}!`
+  const intro = order.isFinalShipment
+    ? `Order #EBI-${order.orderNo} has shipped.`
+    : `This is one shipment from order #EBI-${order.orderNo} — the rest is still on its way separately.`
+
+  const html = emailShell({ badgeLabel, badgeColor: GREEN, heading, intro, bodyHtml })
 
   const itemsLine = order.items.map((item) => `${item.qty}× ${item.productName}`).join(', ')
   const text = [
-    `Your order is on its way${order.firstName ? `, ${order.firstName}` : ''}!`,
-    `Order #EBI-${order.orderNo} has shipped: ${itemsLine}.`,
+    heading,
+    `${intro} Includes: ${itemsLine}.`,
     order.trackingNumber ? `Tracking number: ${order.trackingNumber}` : null,
     trackingUrl ?? null,
     '',
@@ -245,7 +252,7 @@ export async function sendShipmentEmail(order: ShipmentEmailData): Promise<Email
     body: JSON.stringify({
       from,
       to: order.email,
-      subject: `Your order has shipped — #EBI-${order.orderNo}`,
+      subject: order.isFinalShipment ? `Your order has shipped — #EBI-${order.orderNo}` : `Part of your order has shipped — #EBI-${order.orderNo}`,
       html,
       text,
     }),

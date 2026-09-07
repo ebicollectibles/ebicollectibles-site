@@ -12,9 +12,12 @@ import {
   productEditEvents,
   products as productsTable,
   refundEvents,
+  shipmentItems,
+  shipments,
   users,
 } from '~/lib/db/schema'
 import { CARRIERS } from '~/lib/carriers'
+import { computeFulfillmentStatus, remainingQtyByItem } from '~/lib/shipments'
 import { assertAdmin } from './admin-auth'
 import { sendShipmentEmail } from './email'
 import { overlaySquareData, searchSquareCatalogItems } from './square'
@@ -129,6 +132,26 @@ function groupBy<T, K>(rows: T[], key: (row: T) => K): Map<K, T[]> {
   return map
 }
 
+// Attaches each shipment's line items (with product names, for display) and
+// groups the resulting shipments by order id — shared by adminListOrders and
+// adminGetCustomer so the two don't drift.
+function buildShipmentsByOrder(
+  shipmentRows: Array<{ id: string; orderId: string; carrier: string | null; trackingNumber: string | null; createdAt: Date }>,
+  shipmentItemRows: Array<{ shipmentId: string; orderItemId: string; qty: number }>,
+  itemById: Map<string, { productName: string }>,
+) {
+  const itemsByShipment = groupBy(shipmentItemRows, (si) => si.shipmentId)
+  const shipmentsWithItems = shipmentRows.map((s) => ({
+    ...s,
+    items: (itemsByShipment.get(s.id) ?? []).map((si) => ({
+      orderItemId: si.orderItemId,
+      qty: si.qty,
+      productName: itemById.get(si.orderItemId)?.productName ?? 'Unknown item',
+    })),
+  }))
+  return groupBy(shipmentsWithItems, (s) => s.orderId)
+}
+
 export const adminListOrders = createServerFn({ method: 'GET' }).handler(async () => {
   await assertAdmin()
   const db = getDb()
@@ -146,11 +169,15 @@ export const adminListOrders = createServerFn({ method: 'GET' }).handler(async (
     .select({ orderId: emailEvents.orderId, type: emailEvents.type, status: emailEvents.status, errorMessage: emailEvents.errorMessage, createdAt: emailEvents.createdAt })
     .from(emailEvents)
     .orderBy(asc(emailEvents.createdAt))
+  const shipmentRows = await db.select().from(shipments).orderBy(asc(shipments.createdAt))
+  const shipmentItemRows = await db.select().from(shipmentItems)
 
   const itemsByOrder = groupBy(itemRows, (i) => i.orderId)
   const statusByOrder = groupBy(statusRows, (s) => s.orderId)
   const refundsByOrder = groupBy(refundRows.filter((r) => r.orderId), (r) => r.orderId as string)
   const emailsByOrder = groupBy(emailRows.filter((e) => e.orderId), (e) => e.orderId as string)
+  const itemById = new Map(itemRows.map((i) => [i.id, i]))
+  const shipmentsByOrder = buildShipmentsByOrder(shipmentRows, shipmentItemRows, itemById)
 
   return orderRows.map((order) => ({
     ...order,
@@ -158,65 +185,99 @@ export const adminListOrders = createServerFn({ method: 'GET' }).handler(async (
     statusHistory: statusByOrder.get(order.id) ?? [],
     refunds: refundsByOrder.get(order.id) ?? [],
     emails: emailsByOrder.get(order.id) ?? [],
+    shipments: shipmentsByOrder.get(order.id) ?? [],
   }))
 })
 
+// "shipped" and "partially_shipped" are never set directly — they're always
+// derived from recorded shipments (see adminCreateShipment). Admin can only
+// force a cancel or revert to pending here.
 export const adminUpdateOrderStatus = createServerFn({ method: 'POST' })
+  .validator(z.object({ orderId: z.string(), status: z.enum(['pending', 'cancelled']) }))
+  .handler(async ({ data }) => {
+    await assertAdmin()
+    const db = getDb()
+    await db.update(orders).set({ fulfillmentStatus: data.status }).where(eq(orders.id, data.orderId))
+    await db.insert(orderStatusEvents).values({ orderId: data.orderId, status: data.status })
+    return { ok: true }
+  })
+
+export const adminCreateShipment = createServerFn({ method: 'POST' })
   .validator(
     z.object({
       orderId: z.string(),
-      status: z.enum(['pending', 'shipped', 'cancelled']),
       carrier: z.enum(CARRIERS).nullable().optional(),
       trackingNumber: z.string().trim().nullable().optional(),
+      items: z.array(z.object({ orderItemId: z.string(), qty: z.number().int().positive() })).min(1),
     }),
   )
   .handler(async ({ data }) => {
     await assertAdmin()
     const db = getDb()
 
+    const [order] = await db.select().from(orders).where(eq(orders.id, data.orderId)).limit(1)
+    if (!order) throw new Error('Order not found.')
+
+    const allItems = await db.select().from(orderItems).where(eq(orderItems.orderId, data.orderId))
+    const itemById = new Map(allItems.map((i) => [i.id, i]))
+
+    const priorShipments = await db.select({ id: shipments.id }).from(shipments).where(eq(shipments.orderId, data.orderId))
+    const priorShipmentIds = priorShipments.map((s) => s.id)
+    const priorShipmentItemRows =
+      priorShipmentIds.length === 0 ? [] : await db.select().from(shipmentItems).where(inArray(shipmentItems.shipmentId, priorShipmentIds))
+    const priorShippedItems = priorShipmentItemRows.map((si) => ({ orderItemId: si.orderItemId, qty: si.qty }))
+
+    const remaining = remainingQtyByItem(allItems, priorShippedItems)
+    for (const line of data.items) {
+      const item = itemById.get(line.orderItemId)
+      if (!item) throw new Error('One of the selected items does not belong to this order.')
+      const available = remaining.get(line.orderItemId) ?? 0
+      if (line.qty > available) throw new Error(`Only ${available} of "${item.productName}" remain to be shipped.`)
+    }
+
     const carrier = data.carrier || null
     const trackingNumber = data.trackingNumber || null
 
-    await db
-      .update(orders)
-      .set({ fulfillmentStatus: data.status, ...(data.status === 'shipped' ? { carrier, trackingNumber } : {}) })
-      .where(eq(orders.id, data.orderId))
-    await db.insert(orderStatusEvents).values({ orderId: data.orderId, status: data.status })
+    const [shipment] = await db.insert(shipments).values({ orderId: data.orderId, carrier, trackingNumber }).returning()
+    await db.insert(shipmentItems).values(data.items.map((line) => ({ shipmentId: shipment.id, orderItemId: line.orderItemId, qty: line.qty })))
 
-    // Best-effort: let the customer know it shipped. A failed/skipped send
-    // shouldn't block the status update itself — logged to email_events
-    // either way so it's visible here instead of only in worker logs.
-    if (data.status === 'shipped') {
-      const [order] = await db.select().from(orders).where(eq(orders.id, data.orderId)).limit(1)
-      const items = order ? await db.select().from(orderItems).where(eq(orderItems.orderId, data.orderId)) : []
-      if (order) {
-        try {
-          const sendResult = await sendShipmentEmail({
-            orderNo: order.orderNo,
-            email: order.email,
-            firstName: order.firstName,
-            street: order.street,
-            apartment: order.apartment,
-            city: order.city,
-            zip: order.zip,
-            carrier,
-            trackingNumber,
-            items: items.map((i) => ({ productName: i.productName, qty: i.qty, unitPrice: i.unitPrice })),
-          })
-          await db.insert(emailEvents).values({
-            orderId: order.id,
-            email: order.email,
-            type: 'shipment_notice',
-            status: sendResult.status,
-            errorMessage: sendResult.error ?? null,
-          })
-        } catch (err) {
-          console.error(`Failed to send shipment email for order ${order.orderNo}:`, err)
-        }
-      }
+    const newStatus = computeFulfillmentStatus(allItems, [...priorShippedItems, ...data.items])
+    await db.update(orders).set({ fulfillmentStatus: newStatus }).where(eq(orders.id, data.orderId))
+    await db.insert(orderStatusEvents).values({ orderId: data.orderId, status: newStatus })
+
+    // Best-effort: email the customer about this specific shipment — only
+    // the items/quantities actually in it, not the whole order — since a
+    // failed/skipped send shouldn't block the shipment record itself.
+    try {
+      const shippedLines = data.items.map((line) => {
+        const item = itemById.get(line.orderItemId)!
+        return { productName: item.productName, qty: line.qty, unitPrice: item.unitPrice }
+      })
+      const sendResult = await sendShipmentEmail({
+        orderNo: order.orderNo,
+        email: order.email,
+        firstName: order.firstName,
+        street: order.street,
+        apartment: order.apartment,
+        city: order.city,
+        zip: order.zip,
+        carrier,
+        trackingNumber,
+        isFinalShipment: newStatus === 'shipped',
+        items: shippedLines,
+      })
+      await db.insert(emailEvents).values({
+        orderId: order.id,
+        email: order.email,
+        type: 'shipment_notice',
+        status: sendResult.status,
+        errorMessage: sendResult.error ?? null,
+      })
+    } catch (err) {
+      console.error(`Failed to send shipment email for order ${order.orderNo}:`, err)
     }
 
-    return { ok: true }
+    return { ok: true, status: newStatus }
   })
 
 export const adminListPaymentFailures = createServerFn({ method: 'GET' }).handler(async () => {
@@ -313,10 +374,15 @@ export const adminGetCustomer = createServerFn({ method: 'GET' })
             .from(emailEvents)
             .where(inArray(emailEvents.orderId, orderIds))
             .orderBy(asc(emailEvents.createdAt))
+    const shipmentRows = orderIds.length === 0 ? [] : await db.select().from(shipments).where(inArray(shipments.orderId, orderIds)).orderBy(asc(shipments.createdAt))
+    const shipmentIds = shipmentRows.map((s) => s.id)
+    const shipmentItemRows = shipmentIds.length === 0 ? [] : await db.select().from(shipmentItems).where(inArray(shipmentItems.shipmentId, shipmentIds))
 
     const itemsByOrder = groupBy(itemRows, (i) => i.orderId)
     const statusByOrder = groupBy(statusRows, (s) => s.orderId)
     const emailsByOrder = groupBy(emailRows.filter((e) => e.orderId), (e) => e.orderId as string)
+    const itemById = new Map(itemRows.map((i) => [i.id, i]))
+    const shipmentsByOrder = buildShipmentsByOrder(shipmentRows, shipmentItemRows, itemById)
 
     return {
       customer,
@@ -325,6 +391,7 @@ export const adminGetCustomer = createServerFn({ method: 'GET' })
         items: itemsByOrder.get(order.id) ?? [],
         statusHistory: statusByOrder.get(order.id) ?? [],
         emails: emailsByOrder.get(order.id) ?? [],
+        shipments: shipmentsByOrder.get(order.id) ?? [],
       })),
       events,
     }

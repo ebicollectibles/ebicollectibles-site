@@ -106,9 +106,11 @@ export const orders = pgTable('orders', {
   // or "Apple Pay" — derived from Square's already-redacted payment
   // response (never a full card number), shown on receipts as reference.
   paymentMethodSummary: text('payment_method_summary'),
-  fulfillmentStatus: text('fulfillment_status').notNull().default('pending'), // pending | shipped | cancelled
-  carrier: text('carrier'),
-  trackingNumber: text('tracking_number'),
+  // pending | partially_shipped | shipped | cancelled. The first three are
+  // derived from shipments (see computeFulfillmentStatus in lib/shipments.ts)
+  // whenever a shipment is recorded — only "cancelled" and reverting to
+  // "pending" are ever set directly by an admin action.
+  fulfillmentStatus: text('fulfillment_status').notNull().default('pending'),
   createdAt: timestamp('created_at', { withTimezone: true }).notNull().defaultNow(),
 })
 
@@ -185,6 +187,35 @@ export const orderItems = pgTable('order_items', {
   productName: text('product_name').notNull(),
   productCode: text('product_code').notNull(),
   unitPrice: numeric('unit_price', { precision: 10, scale: 2, mode: 'number' }).notNull(),
+  qty: integer('qty').notNull(),
+})
+
+// An order can ship in more than one package (e.g. part USPS, part UPS
+// because of a backorder or box-size split) — each package is its own
+// shipment row here, rather than the order holding a single carrier/
+// tracking number. Most orders still ship in exactly one shipment covering
+// every item, which is the default the admin UI pre-fills.
+export const shipments = pgTable('shipments', {
+  id: uuid('id').primaryKey().defaultRandom(),
+  orderId: uuid('order_id')
+    .notNull()
+    .references(() => orders.id, { onDelete: 'cascade' }),
+  carrier: text('carrier'),
+  trackingNumber: text('tracking_number'),
+  createdAt: timestamp('created_at', { withTimezone: true }).notNull().defaultNow(),
+})
+
+// How much of a given order_item went into a given shipment — a single
+// line (e.g. "3x Booster Box") can itself be split across shipments, so
+// this is a quantity, not a boolean "included" flag.
+export const shipmentItems = pgTable('shipment_items', {
+  id: uuid('id').primaryKey().defaultRandom(),
+  shipmentId: uuid('shipment_id')
+    .notNull()
+    .references(() => shipments.id, { onDelete: 'cascade' }),
+  orderItemId: uuid('order_item_id')
+    .notNull()
+    .references(() => orderItems.id, { onDelete: 'cascade' }),
   qty: integer('qty').notNull(),
 })
 

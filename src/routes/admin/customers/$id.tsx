@@ -19,8 +19,16 @@ const paymentColor: Record<string, string> = {
 
 const fulfillmentColor: Record<string, string> = {
   pending: '#98a1ab',
+  partially_shipped: '#3a6ea5',
   shipped: '#3f7a63',
   cancelled: '#b4622f',
+}
+
+const fulfillmentLabel: Record<string, string> = {
+  pending: 'pending',
+  partially_shipped: 'partially shipped',
+  shipped: 'shipped',
+  cancelled: 'cancelled',
 }
 
 function AdminCustomerDetailPage() {
@@ -112,7 +120,7 @@ function AdminCustomerDetailPage() {
               {order.apartment ? `, ${order.apartment}` : ''}, {order.city} {order.zip} · {order.shipMethod} ·{' '}
               {new Date(order.createdAt).toLocaleString()}
             </div>
-            <div style={{ marginTop: 8, fontSize: 11, display: 'flex', alignItems: 'center', gap: 8 }}>
+            <div style={{ marginTop: 8, fontSize: 11 }}>
               <span
                 style={{
                   fontFamily: "'IBM Plex Mono', monospace",
@@ -120,19 +128,30 @@ function AdminCustomerDetailPage() {
                   color: fulfillmentColor[order.fulfillmentStatus] ?? '#98a1ab',
                 }}
               >
-                {order.fulfillmentStatus}
+                {fulfillmentLabel[order.fulfillmentStatus] ?? order.fulfillmentStatus}
               </span>
-              {order.statusHistory.length > 1 && (
-                <span style={{ color: '#98a1ab' }}>
-                  {order.statusHistory.map((s, i) => (
-                    <span key={i}>
-                      {i > 0 && ' → '}
-                      {s.status} {new Date(s.createdAt).toLocaleString()}
-                    </span>
-                  ))}
-                </span>
-              )}
             </div>
+            {order.statusHistory.length > 1 && (
+              <div style={{ marginTop: 4, display: 'flex', flexDirection: 'column', gap: 3 }}>
+                {order.statusHistory.map((s, i) => (
+                  <div key={i} style={{ display: 'flex', alignItems: 'baseline', gap: 8, fontSize: 11 }}>
+                    <span
+                      style={{
+                        fontFamily: "'IBM Plex Mono', monospace",
+                        textTransform: 'uppercase',
+                        fontWeight: 600,
+                        color: fulfillmentColor[s.status] ?? '#98a1ab',
+                        width: 100,
+                        flexShrink: 0,
+                      }}
+                    >
+                      {fulfillmentLabel[s.status] ?? s.status}
+                    </span>
+                    <span style={{ color: '#98a1ab' }}>{new Date(s.createdAt).toLocaleString()}</span>
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
         ))}
       </div>

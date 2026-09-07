@@ -2,9 +2,10 @@ import * as React from 'react'
 import { createFileRoute, useNavigate, useRouter } from '@tanstack/react-router'
 import { AdminNav } from '~/components/AdminNav'
 import { requireAdmin, adminLogout } from '~/server/admin-auth'
-import { adminListOrders, adminListPaymentFailures, adminUpdateOrderStatus } from '~/server/admin'
+import { adminCreateShipment, adminListOrders, adminListPaymentFailures, adminUpdateOrderStatus } from '~/server/admin'
 import { formatMoney } from '~/lib/products'
 import { CARRIERS, carrierTrackingUrl } from '~/lib/carriers'
+import { remainingQtyByItem } from '~/lib/shipments'
 
 export const Route = createFileRoute('/admin/orders')({
   beforeLoad: () => requireAdmin(),
@@ -21,8 +22,16 @@ const paymentColor: Record<string, string> = {
 
 const fulfillmentColor: Record<string, string> = {
   pending: '#98a1ab',
+  partially_shipped: '#3a6ea5',
   shipped: '#3f7a63',
   cancelled: '#b4622f',
+}
+
+const fulfillmentLabel: Record<string, string> = {
+  pending: 'pending',
+  partially_shipped: 'partially shipped',
+  shipped: 'shipped',
+  cancelled: 'cancelled',
 }
 
 const emailTypeLabel: Record<string, string> = {
@@ -51,18 +60,13 @@ function AdminOrdersPage() {
   const router = useRouter()
   const { orders, paymentFailures } = Route.useLoaderData()
   const [updatingId, setUpdatingId] = React.useState<string | null>(null)
-  // Only one order's "mark shipped" tracking form is open at a time.
+  // Only one order's "ship items" picker is open at a time.
   const [shipFormOrderId, setShipFormOrderId] = React.useState<string | null>(null)
   const [carrierInput, setCarrierInput] = React.useState('')
   const [trackingInput, setTrackingInput] = React.useState('')
+  const [shipQtyByItem, setShipQtyByItem] = React.useState<Record<string, number>>({})
 
-  const changeStatus = async (orderId: string, status: 'pending' | 'shipped' | 'cancelled') => {
-    if (status === 'shipped') {
-      setShipFormOrderId(orderId)
-      setCarrierInput('')
-      setTrackingInput('')
-      return
-    }
+  const changeStatus = async (orderId: string, status: 'pending' | 'cancelled') => {
     setUpdatingId(orderId)
     try {
       await adminUpdateOrderStatus({ data: { orderId, status } })
@@ -72,15 +76,32 @@ function AdminOrdersPage() {
     }
   }
 
-  const confirmShipped = async (orderId: string) => {
+  const openShipForm = (order: (typeof orders)[number]) => {
+    setShipFormOrderId(order.id)
+    setCarrierInput('')
+    setTrackingInput('')
+    const remaining = remainingQtyByItem(order.items, order.shipments.flatMap((s) => s.items))
+    const initial: Record<string, number> = {}
+    for (const item of order.items) {
+      const left = remaining.get(item.id) ?? 0
+      if (left > 0) initial[item.id] = left
+    }
+    setShipQtyByItem(initial)
+  }
+
+  const confirmShipment = async (orderId: string) => {
+    const items = Object.entries(shipQtyByItem)
+      .filter(([, qty]) => qty > 0)
+      .map(([orderItemId, qty]) => ({ orderItemId, qty }))
+    if (items.length === 0) return
     setUpdatingId(orderId)
     try {
-      await adminUpdateOrderStatus({
+      await adminCreateShipment({
         data: {
           orderId,
-          status: 'shipped',
           carrier: (carrierInput || null) as (typeof CARRIERS)[number] | null,
           trackingNumber: trackingInput.trim() || null,
+          items,
         },
       })
       setShipFormOrderId(null)
@@ -123,6 +144,9 @@ function AdminOrdersPage() {
       <div style={{ marginTop: 20, display: 'flex', flexDirection: 'column', gap: 12 }}>
         {orders.map((order) => {
           const totalRefunded = order.refunds.reduce((t, r) => t + (r.status === 'COMPLETED' ? r.amount ?? 0 : 0), 0)
+          const remaining = remainingQtyByItem(order.items, order.shipments.flatMap((s) => s.items))
+          const hasRemaining = [...remaining.values()].some((qty) => qty > 0)
+          const totalToShip = Object.values(shipQtyByItem).reduce((t, qty) => t + qty, 0)
           return (
             <div key={order.id} data-order-no={order.orderNo} style={{ border: '1px solid #e3e6ea', borderRadius: 4, padding: 18 }}>
               <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: 8 }}>
@@ -175,9 +199,9 @@ function AdminOrdersPage() {
                       color: fulfillmentColor[order.fulfillmentStatus] ?? '#98a1ab',
                     }}
                   >
-                    {order.fulfillmentStatus}
+                    {fulfillmentLabel[order.fulfillmentStatus] ?? order.fulfillmentStatus}
                   </span>
-                  {(['pending', 'shipped', 'cancelled'] as const)
+                  {(['pending', 'cancelled'] as const)
                     .filter((s) => s !== order.fulfillmentStatus)
                     .map((s) => (
                       <button
@@ -198,6 +222,24 @@ function AdminOrdersPage() {
                         Mark {s}
                       </button>
                     ))}
+                  {hasRemaining && (
+                    <button
+                      disabled={updatingId === order.id}
+                      onClick={() => openShipForm(order)}
+                      style={{
+                        background: 'none',
+                        border: '1px solid #cfd4da',
+                        borderRadius: 2,
+                        padding: '4px 8px',
+                        fontSize: 11,
+                        color: '#131b28',
+                        cursor: updatingId === order.id ? 'default' : 'pointer',
+                        opacity: updatingId === order.id ? 0.5 : 1,
+                      }}
+                    >
+                      {order.fulfillmentStatus === 'partially_shipped' ? 'Ship remaining' : 'Ship items'}
+                    </button>
+                  )}
                 </div>
               </div>
 
@@ -211,11 +253,11 @@ function AdminOrdersPage() {
                           textTransform: 'uppercase',
                           fontWeight: 600,
                           color: fulfillmentColor[s.status] ?? '#98a1ab',
-                          width: 62,
+                          width: 100,
                           flexShrink: 0,
                         }}
                       >
-                        {s.status}
+                        {fulfillmentLabel[s.status] ?? s.status}
                       </span>
                       <span style={{ color: '#98a1ab' }}>{new Date(s.createdAt).toLocaleString()}</span>
                     </div>
@@ -224,67 +266,103 @@ function AdminOrdersPage() {
               )}
 
               {shipFormOrderId === order.id && (
-                <div style={{ marginTop: 10, padding: 12, background: '#f6f7f8', borderRadius: 2, display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap' }}>
-                  <select
-                    value={carrierInput}
-                    onChange={(e) => setCarrierInput(e.target.value)}
-                    style={{ border: '1px solid #cfd4da', borderRadius: 2, padding: '5px 6px', fontSize: 12 }}
-                  >
-                    <option value="">Carrier (optional)</option>
-                    {CARRIERS.map((c) => (
-                      <option key={c} value={c}>
-                        {c}
-                      </option>
-                    ))}
-                  </select>
-                  <input
-                    value={trackingInput}
-                    onChange={(e) => setTrackingInput(e.target.value)}
-                    placeholder="Tracking number (optional)"
-                    style={{ flex: 1, minWidth: 160, border: '1px solid #cfd4da', borderRadius: 2, padding: '5px 8px', fontSize: 12 }}
-                  />
-                  <button
-                    disabled={updatingId === order.id}
-                    onClick={() => confirmShipped(order.id)}
-                    style={{
-                      background: '#131b28',
-                      color: '#ffffff',
-                      border: 0,
-                      borderRadius: 2,
-                      padding: '6px 12px',
-                      fontSize: 11,
-                      fontWeight: 600,
-                      cursor: updatingId === order.id ? 'default' : 'pointer',
-                      opacity: updatingId === order.id ? 0.5 : 1,
-                    }}
-                  >
-                    Confirm shipped
-                  </button>
-                  <button
-                    disabled={updatingId === order.id}
-                    onClick={() => setShipFormOrderId(null)}
-                    style={{ background: 'none', border: 0, fontSize: 11, color: '#98a1ab', cursor: 'pointer' }}
-                  >
-                    Cancel
-                  </button>
+                <div style={{ marginTop: 10, padding: 12, background: '#f6f7f8', borderRadius: 2 }}>
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: 6, marginBottom: 10 }}>
+                    {order.items.map((item) => {
+                      const left = remaining.get(item.id) ?? 0
+                      if (left <= 0) return null
+                      return (
+                        <div key={item.id} style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: 12 }}>
+                          <span style={{ flex: 1, color: '#131b28' }}>{item.productName}</span>
+                          <input
+                            type="number"
+                            min={0}
+                            max={left}
+                            value={shipQtyByItem[item.id] ?? 0}
+                            onChange={(e) => {
+                              const n = Math.max(0, Math.min(left, Math.floor(Number(e.target.value)) || 0))
+                              setShipQtyByItem((q) => ({ ...q, [item.id]: n }))
+                            }}
+                            style={{ width: 56, border: '1px solid #cfd4da', borderRadius: 2, padding: '4px 6px', fontSize: 12 }}
+                          />
+                          <span style={{ color: '#98a1ab', fontSize: 11, minWidth: 62 }}>of {left} left</span>
+                        </div>
+                      )
+                    })}
+                  </div>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap' }}>
+                    <select
+                      value={carrierInput}
+                      onChange={(e) => setCarrierInput(e.target.value)}
+                      style={{ border: '1px solid #cfd4da', borderRadius: 2, padding: '5px 6px', fontSize: 12 }}
+                    >
+                      <option value="">Carrier (optional)</option>
+                      {CARRIERS.map((c) => (
+                        <option key={c} value={c}>
+                          {c}
+                        </option>
+                      ))}
+                    </select>
+                    <input
+                      value={trackingInput}
+                      onChange={(e) => setTrackingInput(e.target.value)}
+                      placeholder="Tracking number (optional)"
+                      style={{ flex: 1, minWidth: 160, border: '1px solid #cfd4da', borderRadius: 2, padding: '5px 8px', fontSize: 12 }}
+                    />
+                    <button
+                      disabled={updatingId === order.id || totalToShip === 0}
+                      onClick={() => confirmShipment(order.id)}
+                      style={{
+                        background: '#131b28',
+                        color: '#ffffff',
+                        border: 0,
+                        borderRadius: 2,
+                        padding: '6px 12px',
+                        fontSize: 11,
+                        fontWeight: 600,
+                        cursor: updatingId === order.id || totalToShip === 0 ? 'default' : 'pointer',
+                        opacity: updatingId === order.id || totalToShip === 0 ? 0.5 : 1,
+                      }}
+                    >
+                      Confirm shipment
+                    </button>
+                    <button
+                      disabled={updatingId === order.id}
+                      onClick={() => setShipFormOrderId(null)}
+                      style={{ background: 'none', border: 0, fontSize: 11, color: '#98a1ab', cursor: 'pointer' }}
+                    >
+                      Cancel
+                    </button>
+                  </div>
                 </div>
               )}
 
-              {order.trackingNumber && (
-                <div style={{ marginTop: 8, fontSize: 11.5, color: '#5a6875' }}>
-                  {order.carrier ? `${order.carrier} · ` : ''}
-                  {carrierTrackingUrl(order.carrier, order.trackingNumber) ? (
-                    <a
-                      href={carrierTrackingUrl(order.carrier, order.trackingNumber)!}
-                      target="_blank"
-                      rel="noreferrer"
-                      style={{ color: '#3f7a63', fontWeight: 600 }}
-                    >
-                      {order.trackingNumber}
-                    </a>
-                  ) : (
-                    order.trackingNumber
-                  )}
+              {order.shipments.length > 0 && (
+                <div style={{ marginTop: 8, display: 'flex', flexDirection: 'column', gap: 4 }}>
+                  {order.shipments.map((s) => {
+                    const url = carrierTrackingUrl(s.carrier, s.trackingNumber)
+                    return (
+                      <div key={s.id} style={{ fontSize: 11.5, color: '#5a6875' }}>
+                        <span style={{ fontWeight: 600, color: '#131b28' }}>{s.carrier || 'Shipment'}</span>
+                        {s.trackingNumber && (
+                          <>
+                            {' · '}
+                            {url ? (
+                              <a href={url} target="_blank" rel="noreferrer" style={{ color: '#3f7a63', fontWeight: 600 }}>
+                                {s.trackingNumber}
+                              </a>
+                            ) : (
+                              s.trackingNumber
+                            )}
+                          </>
+                        )}
+                        {' — '}
+                        {s.items.map((i) => `${i.qty}× ${i.productName}`).join(', ')}
+                        {' · '}
+                        <span style={{ color: '#98a1ab' }}>{new Date(s.createdAt).toLocaleString()}</span>
+                      </div>
+                    )
+                  })}
                 </div>
               )}
 
