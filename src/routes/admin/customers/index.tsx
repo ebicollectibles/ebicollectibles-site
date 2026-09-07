@@ -1,8 +1,10 @@
-import type * as React from 'react'
+import * as React from 'react'
 import { createFileRoute, Link, useNavigate } from '@tanstack/react-router'
 import { AdminNav } from '~/components/AdminNav'
 import { requireAdmin, adminLogout } from '~/server/admin-auth'
 import { adminListCustomers } from '~/server/admin'
+
+const CUSTOMERS_PER_PAGE = 20
 
 export const Route = createFileRoute('/admin/customers/')({
   beforeLoad: () => requireAdmin(),
@@ -29,6 +31,11 @@ const td: React.CSSProperties = {
 function AdminCustomersPage() {
   const navigate = useNavigate()
   const customers = Route.useLoaderData()
+  const [page, setPage] = React.useState(1)
+
+  const totalPages = Math.max(1, Math.ceil(customers.length / CUSTOMERS_PER_PAGE))
+  const currentPage = Math.min(page, totalPages)
+  const pageCustomers = customers.slice((currentPage - 1) * CUSTOMERS_PER_PAGE, currentPage * CUSTOMERS_PER_PAGE)
 
   return (
     <div style={{ maxWidth: 1000, margin: '0 auto', padding: '32px 28px 80px', fontFamily: 'Archivo, Helvetica, sans-serif' }}>
@@ -56,7 +63,7 @@ function AdminCustomersPage() {
             </tr>
           </thead>
           <tbody>
-            {customers.map((c) => (
+            {pageCustomers.map((c) => (
               <tr key={c.id}>
                 <td style={td}>{c.name || <span style={{ color: '#98a1ab' }}>—</span>}</td>
                 <td style={td}>{c.email}</td>
@@ -78,6 +85,46 @@ function AdminCustomersPage() {
           </tbody>
         </table>
       </div>
+
+      {totalPages > 1 && (
+        <div style={{ marginTop: 16, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 14 }}>
+          <button
+            disabled={currentPage === 1}
+            onClick={() => setPage((p) => p - 1)}
+            style={{
+              background: 'none',
+              border: '1px solid #cfd4da',
+              borderRadius: 2,
+              padding: '5px 10px',
+              fontSize: 12,
+              color: '#131b28',
+              cursor: currentPage === 1 ? 'default' : 'pointer',
+              opacity: currentPage === 1 ? 0.4 : 1,
+            }}
+          >
+            ← Prev
+          </button>
+          <span style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 11.5, color: '#5a6875' }}>
+            Page {currentPage} of {totalPages}
+          </span>
+          <button
+            disabled={currentPage === totalPages}
+            onClick={() => setPage((p) => p + 1)}
+            style={{
+              background: 'none',
+              border: '1px solid #cfd4da',
+              borderRadius: 2,
+              padding: '5px 10px',
+              fontSize: 12,
+              color: '#131b28',
+              cursor: currentPage === totalPages ? 'default' : 'pointer',
+              opacity: currentPage === totalPages ? 0.4 : 1,
+            }}
+          >
+            Next →
+          </button>
+        </div>
+      )}
     </div>
   )
 }
