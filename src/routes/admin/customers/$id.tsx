@@ -1,8 +1,11 @@
+import * as React from 'react'
 import { createFileRoute, Link, useNavigate } from '@tanstack/react-router'
 import { AdminNav } from '~/components/AdminNav'
 import { requireAdmin, adminLogout } from '~/server/admin-auth'
 import { adminGetCustomer } from '~/server/admin'
 import { formatMoney } from '~/lib/products'
+
+const ORDERS_PER_PAGE = 10
 
 export const Route = createFileRoute('/admin/customers/$id')({
   beforeLoad: () => requireAdmin(),
@@ -34,6 +37,7 @@ const fulfillmentLabel: Record<string, string> = {
 function AdminCustomerDetailPage() {
   const navigate = useNavigate()
   const data = Route.useLoaderData()
+  const [page, setPage] = React.useState(1)
 
   if (!data) {
     return (
@@ -44,6 +48,9 @@ function AdminCustomerDetailPage() {
   }
 
   const { customer, orders, events } = data
+  const totalPages = Math.max(1, Math.ceil(orders.length / ORDERS_PER_PAGE))
+  const currentPage = Math.min(page, totalPages)
+  const pageOrders = orders.slice((currentPage - 1) * ORDERS_PER_PAGE, currentPage * ORDERS_PER_PAGE)
 
   return (
     <div style={{ maxWidth: 1000, margin: '0 auto', padding: '32px 28px 80px', fontFamily: 'Archivo, Helvetica, sans-serif' }}>
@@ -77,7 +84,7 @@ function AdminCustomerDetailPage() {
       {orders.length === 0 && <p style={{ fontSize: 13.5, color: '#131b28' }}>No orders yet.</p>}
 
       <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
-        {orders.map((order) => (
+        {pageOrders.map((order) => (
           <div key={order.id} style={{ border: '1px solid #e3e6ea', borderRadius: 4, padding: 18 }}>
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
               <span style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 13, fontWeight: 600 }}>
@@ -155,6 +162,46 @@ function AdminCustomerDetailPage() {
           </div>
         ))}
       </div>
+
+      {totalPages > 1 && (
+        <div style={{ marginTop: 16, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 14 }}>
+          <button
+            disabled={currentPage === 1}
+            onClick={() => setPage((p) => p - 1)}
+            style={{
+              background: 'none',
+              border: '1px solid #cfd4da',
+              borderRadius: 2,
+              padding: '5px 10px',
+              fontSize: 12,
+              color: '#131b28',
+              cursor: currentPage === 1 ? 'default' : 'pointer',
+              opacity: currentPage === 1 ? 0.4 : 1,
+            }}
+          >
+            ← Prev
+          </button>
+          <span style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 11.5, color: '#5a6875' }}>
+            Page {currentPage} of {totalPages}
+          </span>
+          <button
+            disabled={currentPage === totalPages}
+            onClick={() => setPage((p) => p + 1)}
+            style={{
+              background: 'none',
+              border: '1px solid #cfd4da',
+              borderRadius: 2,
+              padding: '5px 10px',
+              fontSize: 12,
+              color: '#131b28',
+              cursor: currentPage === totalPages ? 'default' : 'pointer',
+              opacity: currentPage === totalPages ? 0.4 : 1,
+            }}
+          >
+            Next →
+          </button>
+        </div>
+      )}
 
       <h2 style={{ fontSize: 15, fontWeight: 700, marginTop: 36, marginBottom: 16 }}>Recent activity</h2>
 
