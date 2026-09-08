@@ -67,6 +67,11 @@ function AdminSubscribersPage() {
   const pageEvents = events.slice((currentEventPage - 1) * EVENTS_PER_PAGE, currentEventPage * EVENTS_PER_PAGE)
 
   const toggleSubscribed = async (email: string, currentlyActive: boolean) => {
+    const confirmed = currentlyActive
+      ? confirm(`Unsubscribe ${email}? They'll stop receiving restock and drop emails.`)
+      : confirm(`Resubscribe ${email}? They'll start receiving restock and drop emails again.`)
+    if (!confirmed) return
+
     setUpdatingEmail(email)
     try {
       if (currentlyActive) {
