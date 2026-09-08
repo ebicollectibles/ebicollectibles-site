@@ -3,13 +3,14 @@ import { z } from 'zod'
 import { eq, inArray, sql } from 'drizzle-orm'
 import { getDb } from '~/lib/db/client'
 import { withTransaction } from '~/lib/db/transactional-client'
-import { emailEvents, orderCounters, orderItems, orderStatusEvents, orders, paymentAttempts, products as productsTable, subscribers, users } from '~/lib/db/schema'
+import { emailEvents, orderCounters, orderItems, orderStatusEvents, orders, paymentAttempts, products as productsTable, users } from '~/lib/db/schema'
 import { FLAT_SHIPPING_RATE } from '~/lib/products'
 import { US_STATE_CODES } from '~/lib/us-states'
 import { chargeSquarePayment, createSquareOrder, getSquareInventoryCounts, recordSquareInventorySale } from './square'
 import { sendOrderConfirmationEmail } from './email'
 import { getCurrentUserId } from './customer-auth'
 import { resolveSalesTaxRate } from './tax'
+import { upsertSubscriber } from './subscribers'
 
 const placeOrderSchema = z.object({
   lines: z.array(z.object({ productId: z.string(), qty: z.number().int().positive() })).min(1),
@@ -230,10 +231,7 @@ export const placeOrder = createServerFn({ method: 'POST' })
       await tx.insert(orderStatusEvents).values({ orderId: order.id, status: order.fulfillmentStatus })
 
       if (data.emailOptIn && data.contact.email) {
-        await tx
-          .insert(subscribers)
-          .values({ email: data.contact.email.trim().toLowerCase(), source: 'checkout' })
-          .onConflictDoNothing()
+        await upsertSubscriber(tx, data.contact.email.trim().toLowerCase(), 'checkout')
       }
 
       return {

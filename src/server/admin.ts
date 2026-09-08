@@ -1,6 +1,6 @@
 import { createServerFn } from '@tanstack/react-start'
 import { z } from 'zod'
-import { asc, desc, eq, inArray, or, sql } from 'drizzle-orm'
+import { and, asc, desc, eq, inArray, isNull, or, sql } from 'drizzle-orm'
 import { getDb } from '~/lib/db/client'
 import {
   authEvents,
@@ -14,6 +14,7 @@ import {
   refundEvents,
   shipmentItems,
   shipments,
+  subscriberEvents,
   subscribers,
   users,
 } from '~/lib/db/schema'
@@ -23,6 +24,7 @@ import { computeFulfillmentStatus, remainingQtyByItem } from '~/lib/shipments'
 import { assertAdmin } from './admin-auth'
 import { sendShipmentEmail } from './email'
 import { overlaySquareData, searchSquareCatalogItems } from './square'
+import { upsertSubscriber } from './subscribers'
 
 // Base object (not yet refined) so adminUpdateProduct can still .extend() it
 // with originalId — z.object().refine() returns a ZodEffects, which has no
@@ -357,10 +359,54 @@ export const adminListSubscribers = createServerFn({ method: 'GET' }).handler(as
   await assertAdmin()
   const db = getDb()
   return db
-    .select({ id: subscribers.id, email: subscribers.email, source: subscribers.source, createdAt: subscribers.createdAt })
+    .select({
+      id: subscribers.id,
+      email: subscribers.email,
+      source: subscribers.source,
+      subscribedAt: subscribers.subscribedAt,
+      unsubscribedAt: subscribers.unsubscribedAt,
+      createdAt: subscribers.createdAt,
+    })
     .from(subscribers)
-    .orderBy(desc(subscribers.createdAt))
+    .orderBy(desc(subscribers.subscribedAt))
 })
+
+// Full subscribe/unsubscribe/resubscribe history across every email — this
+// is what answers "did they leave and come back, and when," not just the
+// current state adminListSubscribers returns.
+export const adminListSubscriberEvents = createServerFn({ method: 'GET' }).handler(async () => {
+  await assertAdmin()
+  const db = getDb()
+  return db
+    .select({ id: subscriberEvents.id, email: subscriberEvents.email, type: subscriberEvents.type, source: subscriberEvents.source, createdAt: subscriberEvents.createdAt })
+    .from(subscriberEvents)
+    .orderBy(desc(subscriberEvents.createdAt))
+})
+
+export const adminUnsubscribe = createServerFn({ method: 'POST' })
+  .validator(z.object({ email: z.string() }))
+  .handler(async ({ data }) => {
+    await assertAdmin()
+    const db = getDb()
+    const [row] = await db
+      .update(subscribers)
+      .set({ unsubscribedAt: sql`now()` })
+      .where(and(eq(subscribers.email, data.email), isNull(subscribers.unsubscribedAt)))
+      .returning({ id: subscribers.id })
+    if (row) {
+      await db.insert(subscriberEvents).values({ email: data.email, type: 'unsubscribed', source: null })
+    }
+    return { ok: true }
+  })
+
+export const adminResubscribe = createServerFn({ method: 'POST' })
+  .validator(z.object({ email: z.string() }))
+  .handler(async ({ data }) => {
+    await assertAdmin()
+    const db = getDb()
+    await upsertSubscriber(db, data.email, 'admin')
+    return { ok: true }
+  })
 
 export const adminGetCustomer = createServerFn({ method: 'GET' })
   .validator(z.object({ id: z.string() }))

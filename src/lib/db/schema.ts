@@ -251,12 +251,28 @@ export const orderCounters = pgTable('order_counters', {
 
 // General marketing list (new drops, restocks) — separate from customer
 // accounts (users) since a subscriber never needs to log in. Fed by the
-// homepage signup form and the checkout opt-in checkbox; email unique so
-// either entry point re-subscribing an already-known address is a no-op,
-// not a duplicate row.
+// homepage signup form, the checkout opt-in checkbox, and admin actions.
+// Holds only *current* state (email unique) — unsubscribedAt null means
+// currently subscribed, set means they left. subscribedAt is the most
+// recent (re)subscribe time; createdAt is when this email first ever
+// subscribed. Full subscribe/unsubscribe/resubscribe history lives in
+// subscriberEvents below, same split as orders/orderStatusEvents.
 export const subscribers = pgTable('subscribers', {
   id: uuid('id').primaryKey().defaultRandom(),
   email: text('email').notNull().unique(),
-  source: text('source').notNull(), // 'homepage' | 'checkout'
+  source: text('source').notNull(), // source of the most recent (re)subscribe: 'homepage' | 'checkout' | 'admin'
+  subscribedAt: timestamp('subscribed_at', { withTimezone: true }).notNull().defaultNow(),
+  unsubscribedAt: timestamp('unsubscribed_at', { withTimezone: true }),
+  createdAt: timestamp('created_at', { withTimezone: true }).notNull().defaultNow(),
+})
+
+// Append-only log of every subscribe/unsubscribe transition — this is what
+// answers "did this email leave and come back, and when," not just the
+// current state in subscribers above.
+export const subscriberEvents = pgTable('subscriber_events', {
+  id: uuid('id').primaryKey().defaultRandom(),
+  email: text('email').notNull(),
+  type: text('type').notNull(), // 'subscribed' | 'unsubscribed'
+  source: text('source'), // set for 'subscribed' events only ('homepage' | 'checkout' | 'admin')
   createdAt: timestamp('created_at', { withTimezone: true }).notNull().defaultNow(),
 })
