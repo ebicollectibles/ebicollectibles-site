@@ -440,6 +440,7 @@ function CheckoutPage() {
                 <div style={monoLabel}>01 / Contact</div>
                 <input
                   placeholder="Email address"
+                  aria-label="Email address"
                   type="email"
                   required
                   className="ebi-field"
@@ -450,10 +451,13 @@ function CheckoutPage() {
                   })}
                 />
                 <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginTop: 14, marginBottom: 6 }}>
-                  <label style={{ ...label, marginBottom: 0 }}>Phone (optional)</label>
+                  <label htmlFor="checkout-phone" style={{ ...label, marginBottom: 0 }}>
+                    Phone (optional)
+                  </label>
                   <InfoTooltip text="In case we need to contact you about your order" />
                 </div>
                 <input
+                  id="checkout-phone"
                   placeholder="(555) 555-5555"
                   type="tel"
                   className="ebi-field"
@@ -467,6 +471,7 @@ function CheckoutPage() {
                 <div className="ebi-checkout-2col" style={{ marginTop: 14 }}>
                   <input
                     placeholder="First name"
+                    aria-label="Shipping first name"
                     required
                     className="ebi-field"
                     style={fieldStyle}
@@ -474,6 +479,7 @@ function CheckoutPage() {
                   />
                   <input
                     placeholder="Last name"
+                    aria-label="Shipping last name"
                     required
                     className="ebi-field"
                     style={fieldStyle}
@@ -481,6 +487,7 @@ function CheckoutPage() {
                   />
                   <input
                     placeholder="Street address"
+                    aria-label="Shipping street address"
                     required
                     className="ebi-field ebi-field-full"
                     style={fieldStyle}
@@ -488,12 +495,14 @@ function CheckoutPage() {
                   />
                   <input
                     placeholder="Apartment, suite (optional)"
+                    aria-label="Shipping apartment or suite (optional)"
                     className="ebi-field ebi-field-full"
                     style={fieldStyle}
                     {...field('apartment')}
                   />
                   <input
                     placeholder="City"
+                    aria-label="Shipping city"
                     required
                     className="ebi-field ebi-field-full"
                     style={fieldStyle}
@@ -501,6 +510,7 @@ function CheckoutPage() {
                   />
                   <select
                     required
+                    aria-label="Shipping state"
                     className="ebi-field"
                     style={{ ...fieldStyle, color: contact.state ? fieldStyle.color : '#98a1ab' }}
                     value={contact.state}
@@ -519,6 +529,7 @@ function CheckoutPage() {
                   </select>
                   <input
                     placeholder="ZIP code"
+                    aria-label="Shipping ZIP code"
                     required
                     className="ebi-field"
                     style={fieldStyle}
@@ -537,6 +548,7 @@ function CheckoutPage() {
                   <div className="ebi-checkout-2col" style={{ marginTop: 14 }}>
                     <input
                       placeholder="First name"
+                      aria-label="Billing first name"
                       required
                       className="ebi-field"
                       style={fieldStyle}
@@ -544,6 +556,7 @@ function CheckoutPage() {
                     />
                     <input
                       placeholder="Last name"
+                      aria-label="Billing last name"
                       required
                       className="ebi-field"
                       style={fieldStyle}
@@ -551,6 +564,7 @@ function CheckoutPage() {
                     />
                     <input
                       placeholder="Street address"
+                      aria-label="Billing street address"
                       required
                       className="ebi-field ebi-field-full"
                       style={fieldStyle}
@@ -558,12 +572,14 @@ function CheckoutPage() {
                     />
                     <input
                       placeholder="Apartment, suite (optional)"
+                      aria-label="Billing apartment or suite (optional)"
                       className="ebi-field ebi-field-full"
                       style={fieldStyle}
                       {...billingField('apartment')}
                     />
                     <input
                       placeholder="City"
+                      aria-label="Billing city"
                       required
                       className="ebi-field ebi-field-full"
                       style={fieldStyle}
@@ -571,6 +587,7 @@ function CheckoutPage() {
                     />
                     <select
                       required
+                      aria-label="Billing state"
                       className="ebi-field"
                       style={{ ...fieldStyle, color: billing.state ? fieldStyle.color : '#98a1ab' }}
                       value={billing.state}
@@ -589,6 +606,7 @@ function CheckoutPage() {
                     </select>
                     <input
                       placeholder="ZIP code"
+                      aria-label="Billing ZIP code"
                       required
                       className="ebi-field"
                       style={fieldStyle}
@@ -785,24 +803,32 @@ function ChoicePanel({
         </div>
 
         <form onSubmit={onSubmitSignin}>
-          <label style={label}>Email</label>
+          <label htmlFor="checkout-signin-email" style={label}>
+            Email
+          </label>
           <input
+            id="checkout-signin-email"
             type="email"
             required
             value={signinEmail}
             onChange={(e) => setSigninEmail(e.target.value)}
+            className="ebi-field"
             style={{ ...fieldStyle, width: '100%' }}
           />
           <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', marginTop: 14 }}>
-            <label style={{ ...label, marginTop: 0, marginBottom: 0 }}>Password</label>
+            <label htmlFor="checkout-signin-password" style={{ ...label, marginTop: 0, marginBottom: 0 }}>
+              Password
+            </label>
             <Link to="/account/forgot-password" style={{ fontSize: 12, color: '#5a6875' }}>
               Forgot password?
             </Link>
           </div>
           <PasswordInput
+            id="checkout-signin-password"
             required
             value={signinPassword}
             onChange={(e) => setSigninPassword(e.target.value)}
+            className="ebi-field"
             style={{ ...fieldStyle, width: '100%', marginTop: 6 }}
           />
           {signinError && <p style={{ fontSize: 12.5, color: '#b4622f', marginTop: 14 }}>{signinError}</p>}

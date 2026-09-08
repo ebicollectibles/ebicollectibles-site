@@ -102,12 +102,34 @@ function SignupPage() {
       </div>
 
       <form onSubmit={submit}>
-        <label style={label}>Name (optional)</label>
-        <input value={name} onChange={(e) => setName(e.target.value)} style={field} />
-        <label style={{ ...label, marginTop: 14 }}>Email</label>
-        <input type="email" required value={email} onChange={(e) => setEmail(e.target.value)} style={field} />
-        <label style={{ ...label, marginTop: 14 }}>Password</label>
-        <PasswordInput required minLength={8} value={password} onChange={(e) => setPassword(e.target.value)} style={field} />
+        <label htmlFor="signup-name" style={label}>
+          Name (optional)
+        </label>
+        <input id="signup-name" value={name} onChange={(e) => setName(e.target.value)} className="ebi-field" style={field} />
+        <label htmlFor="signup-email" style={{ ...label, marginTop: 14 }}>
+          Email
+        </label>
+        <input
+          id="signup-email"
+          type="email"
+          required
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          className="ebi-field"
+          style={field}
+        />
+        <label htmlFor="signup-password" style={{ ...label, marginTop: 14 }}>
+          Password
+        </label>
+        <PasswordInput
+          id="signup-password"
+          required
+          minLength={8}
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          className="ebi-field"
+          style={field}
+        />
         <p style={{ fontSize: 11, color: '#98a1ab', marginTop: 6 }}>At least 8 characters.</p>
         {error && <p style={{ fontSize: 12.5, color: '#b4622f', marginTop: 8 }}>{error}</p>}
         <button type="submit" disabled={submitting} style={{ ...submitBtn, marginTop: 16, opacity: submitting ? 0.6 : 1 }}>

@@ -86,8 +86,11 @@ function VerifyPage() {
       </p>
 
       <form onSubmit={submit}>
-        <label style={label}>Verification code</label>
+        <label htmlFor="verify-code" style={label}>
+          Verification code
+        </label>
         <input
+          id="verify-code"
           type="text"
           inputMode="numeric"
           autoComplete="one-time-code"
@@ -95,6 +98,7 @@ function VerifyPage() {
           required
           value={code}
           onChange={(e) => setCode(e.target.value.replace(/\D/g, ''))}
+          className="ebi-field"
           style={field}
           autoFocus
         />

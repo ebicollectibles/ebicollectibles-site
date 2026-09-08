@@ -57,9 +57,11 @@ function AdminLoginPage() {
         <input
           type="password"
           placeholder="Password"
+          aria-label="Password"
           autoFocus
           value={password}
           onChange={(e) => setPassword(e.target.value)}
+          className="ebi-field"
           style={{
             marginTop: 20,
             width: '100%',

@@ -195,10 +195,14 @@ export function Header({ customer }: { customer: HeaderCustomer | null }) {
             background: '#f6f7f8',
           }}
         >
-          <span style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 12, color: '#98a1ab' }}>⌕</span>
+          <span aria-hidden="true" style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 12, color: '#98a1ab' }}>
+            ⌕
+          </span>
           <input
+            type="search"
             placeholder="Search sets, CBB codes…"
-            style={{ border: 0, background: 'transparent', outline: 'none', fontSize: 12.5, width: '100%', color: '#131b28' }}
+            aria-label="Search sets, CBB codes"
+            style={{ border: 0, background: 'transparent', fontSize: 12.5, width: '100%', color: '#131b28' }}
           />
         </div>
 
@@ -308,10 +312,14 @@ export function Header({ customer }: { customer: HeaderCustomer | null }) {
             marginBottom: 16,
           }}
         >
-          <span style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 12, color: '#98a1ab' }}>⌕</span>
+          <span aria-hidden="true" style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 12, color: '#98a1ab' }}>
+            ⌕
+          </span>
           <input
+            type="search"
             placeholder="Search sets, CBB codes…"
-            style={{ border: 0, background: 'transparent', outline: 'none', fontSize: 16, width: '100%', color: '#131b28' }}
+            aria-label="Search sets, CBB codes"
+            style={{ border: 0, background: 'transparent', fontSize: 16, width: '100%', color: '#131b28' }}
           />
         </div>
         <nav style={{ display: 'flex', flexDirection: 'column', gap: 4, fontSize: 15, fontWeight: 500 }}>

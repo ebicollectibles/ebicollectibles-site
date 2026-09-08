@@ -92,8 +92,11 @@ function ResetPasswordPage() {
       </p>
 
       <form onSubmit={submit}>
-        <label style={label}>Reset code</label>
+        <label htmlFor="reset-code" style={label}>
+          Reset code
+        </label>
         <input
+          id="reset-code"
           type="text"
           inputMode="numeric"
           autoComplete="one-time-code"
@@ -101,11 +104,22 @@ function ResetPasswordPage() {
           required
           value={code}
           onChange={(e) => setCode(e.target.value.replace(/\D/g, ''))}
+          className="ebi-field"
           style={codeField}
           autoFocus
         />
-        <label style={{ ...label, marginTop: 16 }}>New password</label>
-        <PasswordInput required minLength={8} value={newPassword} onChange={(e) => setNewPassword(e.target.value)} style={field} />
+        <label htmlFor="reset-new-password" style={{ ...label, marginTop: 16 }}>
+          New password
+        </label>
+        <PasswordInput
+          id="reset-new-password"
+          required
+          minLength={8}
+          value={newPassword}
+          onChange={(e) => setNewPassword(e.target.value)}
+          className="ebi-field"
+          style={field}
+        />
         <p style={{ fontSize: 11, color: '#98a1ab', marginTop: 6 }}>At least 8 characters.</p>
         {error && <p style={{ fontSize: 12.5, color: '#b4622f', marginTop: 8 }}>{error}</p>}
         <button

@@ -74,6 +74,7 @@ function UploadButton({
   return (
     <label
       style={{
+        position: 'relative',
         flexShrink: 0,
         display: 'flex',
         alignItems: 'center',
@@ -94,7 +95,17 @@ function UploadButton({
         type="file"
         accept="image/*"
         disabled={busy}
-        style={{ display: 'none' }}
+        style={{
+          position: 'absolute',
+          width: 1,
+          height: 1,
+          padding: 0,
+          margin: -1,
+          overflow: 'hidden',
+          clip: 'rect(0,0,0,0)',
+          whiteSpace: 'nowrap',
+          border: 0,
+        }}
         onChange={async (e) => {
           const file = e.target.files?.[0]
           e.target.value = ''
@@ -199,6 +210,8 @@ function ImagePicker({ onSelect, onClose }: { onSelect: (url: string) => void; o
         {images && images.length === 0 && <p style={{ fontSize: 13, color: '#98a1ab' }}>No uploaded images yet — use Upload instead.</p>}
         {images && images.length > 0 && (
           <input
+            aria-label="Search uploaded images by file name"
+            className="ebi-field"
             style={{ ...field, marginBottom: 14 }}
             value={query}
             onChange={(e) => setQuery(e.target.value)}
@@ -322,6 +335,8 @@ function SquarePicker({ onSelect, onClose }: { onSelect: (option: SquareCatalogO
           </button>
         </div>
         <input
+          aria-label="Search Square catalog by name"
+          className="ebi-field"
           style={{ ...field, marginBottom: 12 }}
           value={query}
           onChange={(e) => setQuery(e.target.value)}
@@ -436,8 +451,12 @@ export function ProductForm({
     <>
     <form onSubmit={submit} style={{ maxWidth: 520, marginTop: 24 }}>
       <div style={{ marginBottom: 16 }}>
-        <label style={label}>Product ID (slug, e.g. "gem6")</label>
+        <label htmlFor="pf-id" style={label}>
+          Product ID (slug, e.g. "gem6")
+        </label>
         <input
+          id="pf-id"
+          className="ebi-field"
           style={field}
           value={values.id}
           disabled={lockId}
@@ -446,17 +465,25 @@ export function ProductForm({
         />
       </div>
       <div style={{ marginBottom: 16 }}>
-        <label style={label}>Name</label>
-        <input style={field} value={values.name} onChange={(e) => set('name', e.target.value)} required />
+        <label htmlFor="pf-name" style={label}>
+          Name
+        </label>
+        <input id="pf-name" className="ebi-field" style={field} value={values.name} onChange={(e) => set('name', e.target.value)} required />
       </div>
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12, marginBottom: 16 }}>
         <div>
-          <label style={label}>Code</label>
-          <input style={field} value={values.code} onChange={(e) => set('code', e.target.value)} required />
+          <label htmlFor="pf-code" style={label}>
+            Code
+          </label>
+          <input id="pf-code" className="ebi-field" style={field} value={values.code} onChange={(e) => set('code', e.target.value)} required />
         </div>
         <div>
-          <label style={label}>Category</label>
+          <label htmlFor="pf-category" style={label}>
+            Category
+          </label>
           <select
+            id="pf-category"
+            className="ebi-field"
             style={field}
             value={values.category}
             onChange={(e) => {
@@ -474,8 +501,16 @@ export function ProductForm({
         </div>
       </div>
       <div style={{ marginBottom: 16 }}>
-        <label style={label}>Subcategory</label>
-        <select style={field} value={values.subcategory} onChange={(e) => set('subcategory', e.target.value as ProductSubcategory)}>
+        <label htmlFor="pf-subcategory" style={label}>
+          Subcategory
+        </label>
+        <select
+          id="pf-subcategory"
+          className="ebi-field"
+          style={field}
+          value={values.subcategory}
+          onChange={(e) => set('subcategory', e.target.value as ProductSubcategory)}
+        >
           {SUBCATEGORIES_BY_CATEGORY[values.category].map((s) => (
             <option key={s} value={s}>
               {s}
@@ -503,11 +538,15 @@ export function ProductForm({
       </div>
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12, marginBottom: 16 }}>
         <div>
-          <label style={label}>Price (USD)</label>
+          <label htmlFor="pf-price" style={label}>
+            Price (USD)
+          </label>
           <input
+            id="pf-price"
             type="number"
             step="0.01"
             min="0"
+            className="ebi-field"
             style={values.squareVariationId ? disabledField : field}
             value={values.price}
             onChange={(e) => set('price', Number(e.target.value))}
@@ -519,11 +558,15 @@ export function ProductForm({
           )}
         </div>
         <div>
-          <label style={label}>Stock</label>
+          <label htmlFor="pf-stock" style={label}>
+            Stock
+          </label>
           <input
+            id="pf-stock"
             type="number"
             step="1"
             min="0"
+            className="ebi-field"
             style={values.squareVariationId ? disabledField : field}
             value={values.stock}
             onChange={(e) => set('stock', Number(e.target.value))}
@@ -596,24 +639,39 @@ export function ProductForm({
         )}
       </div>
       <div style={{ marginBottom: 16 }}>
-        <label style={label}>Compare-at price (USD) — leave 0 for no sale badge</label>
+        <label htmlFor="pf-compare-price" style={label}>
+          Compare-at price (USD) — leave 0 for no sale badge
+        </label>
         <input
+          id="pf-compare-price"
           type="number"
           step="0.01"
           min="0"
+          className="ebi-field"
           style={field}
           value={values.compareAtPrice}
           onChange={(e) => set('compareAtPrice', Number(e.target.value))}
         />
       </div>
       <div style={{ marginBottom: 16 }}>
-        <label style={label}>Feature image — desktop (leave blank for a placeholder square)</label>
+        <label htmlFor="pf-img" style={label}>
+          Feature image — desktop (leave blank for a placeholder square)
+        </label>
         <div style={{ display: 'flex', gap: 8 }}>
-          <input style={field} value={values.img} onChange={(e) => set('img', e.target.value)} placeholder="/assets/example.png or paste a URL" />
+          <input
+            id="pf-img"
+            className="ebi-field"
+            style={field}
+            value={values.img}
+            onChange={(e) => set('img', e.target.value)}
+            placeholder="/assets/example.png or paste a URL"
+          />
           <UploadButton onUploaded={(url) => set('img', url)} onError={setError} />
           <BrowseButton onClick={() => setPickerTarget({ kind: 'img' })} />
         </div>
         <input
+          aria-label="Desktop image alt text"
+          className="ebi-field"
           style={{ ...field, marginTop: 8 }}
           value={values.imgAlt}
           onChange={(e) => set('imgAlt', e.target.value)}
@@ -621,17 +679,35 @@ export function ProductForm({
         />
       </div>
       <div style={{ marginBottom: 16 }}>
-        <label style={label}>Feature image — tablet (optional, falls back to desktop)</label>
+        <label htmlFor="pf-img-tablet" style={label}>
+          Feature image — tablet (optional, falls back to desktop)
+        </label>
         <div style={{ display: 'flex', gap: 8 }}>
-          <input style={field} value={values.imgTablet} onChange={(e) => set('imgTablet', e.target.value)} placeholder="/assets/example-tablet.png or paste a URL" />
+          <input
+            id="pf-img-tablet"
+            className="ebi-field"
+            style={field}
+            value={values.imgTablet}
+            onChange={(e) => set('imgTablet', e.target.value)}
+            placeholder="/assets/example-tablet.png or paste a URL"
+          />
           <UploadButton onUploaded={(url) => set('imgTablet', url)} onError={setError} />
           <BrowseButton onClick={() => setPickerTarget({ kind: 'imgTablet' })} />
         </div>
       </div>
       <div style={{ marginBottom: 16 }}>
-        <label style={label}>Feature image — mobile (optional, falls back to desktop)</label>
+        <label htmlFor="pf-img-mobile" style={label}>
+          Feature image — mobile (optional, falls back to desktop)
+        </label>
         <div style={{ display: 'flex', gap: 8 }}>
-          <input style={field} value={values.imgMobile} onChange={(e) => set('imgMobile', e.target.value)} placeholder="/assets/example-mobile.png or paste a URL" />
+          <input
+            id="pf-img-mobile"
+            className="ebi-field"
+            style={field}
+            value={values.imgMobile}
+            onChange={(e) => set('imgMobile', e.target.value)}
+            placeholder="/assets/example-mobile.png or paste a URL"
+          />
           <UploadButton onUploaded={(url) => set('imgMobile', url)} onError={setError} />
           <BrowseButton onClick={() => setPickerTarget({ kind: 'imgMobile' })} />
         </div>
@@ -641,6 +717,8 @@ export function ProductForm({
         {values.images.map((url, i) => (
           <div key={i} style={{ display: 'flex', gap: 8, marginBottom: 8 }}>
             <input
+              aria-label={`Additional image ${i + 1} URL`}
+              className="ebi-field"
               style={field}
               value={url}
               onChange={(e) =>
@@ -704,8 +782,12 @@ export function ProductForm({
         </div>
       </div>
       <div style={{ marginBottom: 16 }}>
-        <label style={label}>Placeholder caption (shown when no image)</label>
+        <label htmlFor="pf-placeholder" style={label}>
+          Placeholder caption (shown when no image)
+        </label>
         <input
+          id="pf-placeholder"
+          className="ebi-field"
           style={field}
           value={values.placeholder}
           onChange={(e) => set('placeholder', e.target.value)}

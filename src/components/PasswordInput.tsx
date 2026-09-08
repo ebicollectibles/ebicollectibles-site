@@ -7,24 +7,29 @@ export function PasswordInput({
   value,
   onChange,
   style,
+  className,
   required,
   minLength,
   autoFocus,
   autoComplete,
+  id,
 }: {
   value: string
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
   style?: React.CSSProperties
+  className?: string
   required?: boolean
   minLength?: number
   autoFocus?: boolean
   autoComplete?: string
+  id?: string
 }) {
   const [visible, setVisible] = React.useState(false)
 
   return (
     <div style={{ position: 'relative' }}>
       <input
+        id={id}
         type={visible ? 'text' : 'password'}
         value={value}
         onChange={onChange}
@@ -32,6 +37,7 @@ export function PasswordInput({
         minLength={minLength}
         autoFocus={autoFocus}
         autoComplete={autoComplete}
+        className={className}
         style={{ ...style, paddingRight: 40 }}
       />
       <button

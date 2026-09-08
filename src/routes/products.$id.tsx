@@ -149,10 +149,12 @@ function ProductDetailPage() {
 
           {gallery.length > 1 && (
             <div style={{ display: 'flex', gap: 10, marginTop: 10, flexWrap: 'wrap' }}>
-              {gallery.map((url) => (
+              {gallery.map((url, i) => (
                 <button
                   key={url}
                   onClick={() => setSelectedImage(url)}
+                  aria-label={`View photo ${i + 1} of ${gallery.length}`}
+                  aria-pressed={url === selectedImage}
                   style={{
                     width: 64,
                     height: 64,
@@ -165,12 +167,7 @@ function ProductDetailPage() {
                     overflow: 'hidden',
                   }}
                 >
-                  <img
-                    src={url}
-                    alt={product.imgAlt || product.name}
-                    loading="lazy"
-                    style={{ width: '100%', height: '100%', objectFit: 'contain' }}
-                  />
+                  <img src={url} alt="" loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
                 </button>
               ))}
             </div>

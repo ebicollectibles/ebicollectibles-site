@@ -196,6 +196,7 @@ function ShopPage() {
         <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
           <button
             onClick={() => setFiltersOpen((v) => !v)}
+            aria-expanded={filtersOpen}
             className="ebi-reset-btn"
             style={{
               display: 'flex',
@@ -219,13 +220,18 @@ function ShopPage() {
           </div>
         </div>
         <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-          <span style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 10.5, letterSpacing: '0.12em', textTransform: 'uppercase', color: '#131b28' }}>
+          <label
+            htmlFor="shop-sort"
+            style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 10.5, letterSpacing: '0.12em', textTransform: 'uppercase', color: '#131b28' }}
+          >
             Sort
-          </span>
+          </label>
           <select
+            id="shop-sort"
             value={sort}
             onChange={(e) => setSort(e.target.value as SortMode)}
-            style={{ border: '1px solid #e3e6ea', borderRadius: 2, padding: '8px 10px', fontSize: 12.5, background: '#ffffff', color: '#131b28', cursor: 'pointer', outline: 'none' }}
+            className="ebi-field"
+            style={{ border: '1px solid #e3e6ea', borderRadius: 2, padding: '8px 10px', fontSize: 12.5, background: '#ffffff', color: '#131b28', cursor: 'pointer' }}
           >
             <option value="featured">Featured</option>
             <option value="low">Price: low to high</option>

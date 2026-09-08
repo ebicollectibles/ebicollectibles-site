@@ -55,8 +55,19 @@ function ForgotPasswordPage() {
       </p>
 
       <form onSubmit={submit}>
-        <label style={label}>Email</label>
-        <input type="email" required value={email} onChange={(e) => setEmail(e.target.value)} style={field} autoFocus />
+        <label htmlFor="forgot-email" style={label}>
+          Email
+        </label>
+        <input
+          id="forgot-email"
+          type="email"
+          required
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          className="ebi-field"
+          style={field}
+          autoFocus
+        />
         {error && <p style={{ fontSize: 12.5, color: '#b4622f', marginTop: 12 }}>{error}</p>}
         <button type="submit" disabled={submitting} style={{ ...submitBtn, marginTop: 16, opacity: submitting ? 0.6 : 1 }}>
           {submitting ? 'Sending…' : 'Send reset code'}

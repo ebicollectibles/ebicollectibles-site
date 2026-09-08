@@ -106,15 +106,34 @@ function LoginPage() {
       </div>
 
       <form onSubmit={submit}>
-        <label style={label}>Email</label>
-        <input type="email" required value={email} onChange={(e) => setEmail(e.target.value)} style={field} />
+        <label htmlFor="login-email" style={label}>
+          Email
+        </label>
+        <input
+          id="login-email"
+          type="email"
+          required
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          className="ebi-field"
+          style={field}
+        />
         <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', marginTop: 14 }}>
-          <label style={{ ...label, marginTop: 0, marginBottom: 0 }}>Password</label>
+          <label htmlFor="login-password" style={{ ...label, marginTop: 0, marginBottom: 0 }}>
+            Password
+          </label>
           <Link to="/account/forgot-password" style={{ fontSize: 12, color: '#5a6875' }}>
             Forgot password?
           </Link>
         </div>
-        <PasswordInput required value={password} onChange={(e) => setPassword(e.target.value)} style={{ ...field, marginTop: 6 }} />
+        <PasswordInput
+          id="login-password"
+          required
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          className="ebi-field"
+          style={{ ...field, marginTop: 6 }}
+        />
         {error && <p style={{ fontSize: 12.5, color: '#b4622f', marginTop: 14 }}>{error}</p>}
         <button type="submit" disabled={submitting} style={{ ...submitBtn, marginTop: 20, opacity: submitting ? 0.6 : 1 }}>
           {submitting ? 'Logging in…' : 'Log in'}
