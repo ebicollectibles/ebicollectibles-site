@@ -201,17 +201,6 @@ function ProductDetailPage() {
           </p>
 
           <AddToCartControl product={product} padding={14} fontSize={13.5} qtyBtnWidth={48} maxWidth={320} marginTop={26} />
-
-          <div style={{ marginTop: 28, paddingTop: 22, borderTop: '1px solid #e3e6ea', fontSize: 12.5, color: '#5a6875', lineHeight: 1.7 }}>
-            <div>Ships double-boxed with tracking. {product.preorder ? 'Pre-order lines dispatch within 48 hours of the mainland street date.' : 'In-stock orders dispatch within 48 hours.'}</div>
-            <div style={{ marginTop: 6 }}>
-              Fails authentication? We refund it in full, shipping included. See{' '}
-              <Link to="/shipping-returns" style={{ color: '#3f7a63', fontWeight: 600 }}>
-                shipping &amp; returns
-              </Link>
-              .
-            </div>
-          </div>
         </div>
       </div>
 
