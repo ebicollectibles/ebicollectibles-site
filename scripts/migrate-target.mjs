@@ -24,7 +24,14 @@ if (!existsSync(envFile)) {
   process.exit(1)
 }
 
-config({ path: envFile })
+// override: true is critical — without it, dotenv silently keeps whatever
+// DATABASE_URL is already set in the shell (e.g. left over from an earlier
+// command in the same terminal session) instead of what's actually in this
+// file. That's exactly the bug that once sent a "prod" migration to the dev
+// database: dotenv reported "injected env (0)" because DATABASE_URL was
+// already set, and nobody noticed until the app broke against a table that
+// was never actually created in prod.
+config({ path: envFile, override: true })
 
 if (!process.env.DATABASE_URL) {
   console.error(`${envFile} exists but has no DATABASE_URL line in it.`)
