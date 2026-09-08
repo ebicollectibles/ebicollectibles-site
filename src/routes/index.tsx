@@ -229,9 +229,9 @@ function HomePage() {
               minHeight: 168,
             }}
           >
-            <div style={{ ...monoLabel, color: '#7f8b9a' }}>Restock alerts</div>
+            <div style={{ ...monoLabel, color: '#7f8b9a' }}>Email updates</div>
             <div>
-              <div style={{ fontSize: 18, fontWeight: 600, letterSpacing: '-0.01em' }}>Chinese sets sell out in hours.</div>
+              <div style={{ fontSize: 18, fontWeight: 600, letterSpacing: '-0.01em' }}>Email me about restocks and new drops.</div>
               {subscribeState === 'done' ? (
                 <div style={{ marginTop: 14, fontSize: 13, color: '#ffffff' }}>You're on the list.</div>
               ) : (
