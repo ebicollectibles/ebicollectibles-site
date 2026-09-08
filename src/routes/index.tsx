@@ -2,9 +2,10 @@ import * as React from 'react'
 import { createFileRoute, Link } from '@tanstack/react-router'
 import { ProductCard } from '~/components/ProductCard'
 import { useCart } from '~/lib/cart-context'
-import { subscribeToNewsletter } from '~/server/subscribers'
+import { subscribeToNewsletter, getMySubscriptionStatus } from '~/server/subscribers'
 
 export const Route = createFileRoute('/')({
+  loader: () => getMySubscriptionStatus(),
   component: HomePage,
 })
 
@@ -16,28 +17,20 @@ const monoLabel: React.CSSProperties = {
   color: '#131b28',
 }
 
-const SUBSCRIBED_STORAGE_KEY = 'ebi-subscribed'
-
 function HomePage() {
   const { products } = useCart()
   const featured = products.slice(0, 4)
   const totalProductCount = products.length
+  const subStatus = Route.useLoaderData()
 
-  const [subscribeEmail, setSubscribeEmail] = React.useState('')
-  const [subscribeState, setSubscribeState] = React.useState<'idle' | 'submitting' | 'done' | 'error'>('idle')
-
-  // Remembers a successful signup in this browser so revisiting the
-  // homepage shows "you're on the list" instead of a blank form again —
-  // without this, someone could reasonably wonder if resubmitting keeps
-  // adding them. The database itself already dedupes by email regardless
-  // (unique constraint), this is purely so it doesn't *look* uncertain.
-  React.useEffect(() => {
-    try {
-      if (localStorage.getItem(SUBSCRIBED_STORAGE_KEY)) setSubscribeState('done')
-    } catch {
-      // Ignore unavailable storage — form just behaves as if never subscribed.
-    }
-  }, [])
+  const [subscribeEmail, setSubscribeEmail] = React.useState(subStatus.email ?? '')
+  // Logged-in visitors start already knowing the real answer (their account
+  // email is checked against subscribers server-side); logged-out visitors
+  // always start from a blank form — there's no reliable, honest way to
+  // "remember" a guest between visits, so this doesn't try to fake it.
+  const [subscribeState, setSubscribeState] = React.useState<'idle' | 'submitting' | 'done' | 'error'>(
+    subStatus.loggedIn && subStatus.subscribed ? 'done' : 'idle',
+  )
 
   const submitSubscribe = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -45,10 +38,15 @@ function HomePage() {
     try {
       await subscribeToNewsletter({ data: { email: subscribeEmail } })
       setSubscribeState('done')
-      try {
-        localStorage.setItem(SUBSCRIBED_STORAGE_KEY, '1')
-      } catch {
-        // Storage can be unavailable (private mode, quota) — subscription still succeeded server-side.
+      // A logged-in visitor's "done" reflects their real account, so it
+      // stays. A guest gets a brief, seamless confirmation and then the
+      // form quietly resets — we can't honestly know it's the same person
+      // next visit, so we don't pretend to.
+      if (!subStatus.loggedIn) {
+        setTimeout(() => {
+          setSubscribeEmail('')
+          setSubscribeState('idle')
+        }, 2500)
       }
     } catch {
       setSubscribeState('error')

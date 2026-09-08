@@ -45,3 +45,30 @@ export const subscribeToNewsletter = createServerFn({ method: 'POST' })
     await upsertSubscriber(db, data.email.trim().toLowerCase(), 'homepage')
     return { ok: true }
   })
+
+// Derives subscription status from the logged-in session's own account
+// email — never from a client-supplied email — so a logged-in visitor can
+// be shown "you're already on the list" as a real fact, not a guess. A
+// logged-out visitor always gets loggedIn: false; the homepage form is the
+// only thing they can go by, and it doesn't try to "remember" them.
+export const getMySubscriptionStatus = createServerFn({ method: 'GET' }).handler(async () => {
+  const { getCurrentUserId } = await import('./customer-auth')
+  const userId = await getCurrentUserId()
+  if (!userId) return { loggedIn: false, subscribed: false, email: null as string | null }
+
+  const { getDb } = await import('~/lib/db/client')
+  const { users, subscribers } = await import('~/lib/db/schema')
+  const { and, eq, isNull } = await import('drizzle-orm')
+  const db = getDb()
+
+  const [user] = await db.select({ email: users.email }).from(users).where(eq(users.id, userId)).limit(1)
+  if (!user) return { loggedIn: false, subscribed: false, email: null as string | null }
+
+  const [sub] = await db
+    .select({ id: subscribers.id })
+    .from(subscribers)
+    .where(and(eq(subscribers.email, user.email), isNull(subscribers.unsubscribedAt)))
+    .limit(1)
+
+  return { loggedIn: true, subscribed: !!sub, email: user.email }
+})
