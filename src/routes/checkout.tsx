@@ -460,10 +460,6 @@ function CheckoutPage() {
                   style={{ ...fieldStyle, width: '100%' }}
                   {...field('phone')}
                 />
-                <label style={{ display: 'flex', alignItems: 'center', gap: 8, marginTop: 14, fontSize: 12.5, color: '#131b28', cursor: 'pointer' }}>
-                  <input type="checkbox" checked={emailOptIn} onChange={(e) => setEmailOptIn(e.target.checked)} />
-                  Email me about restocks and new drops
-                </label>
               </div>
 
               <div style={{ borderTop: '1px solid #e3e6ea', marginTop: 30, paddingTop: 22 }}>
@@ -703,13 +699,17 @@ function CheckoutPage() {
           {checkoutAs !== null && (
             <>
               {error && <p style={{ fontSize: 12.5, color: '#b4622f', marginTop: 14 }}>{error}</p>}
+              <label style={{ display: 'flex', alignItems: 'center', gap: 8, marginTop: 16, fontSize: 12.5, color: '#131b28', cursor: 'pointer' }}>
+                <input type="checkbox" checked={emailOptIn} onChange={(e) => setEmailOptIn(e.target.checked)} />
+                Email me about restocks and new drops
+              </label>
               <button
                 type="submit"
                 form="checkout-form"
                 disabled={cart.cartEmpty || submitting}
                 className="ebi-btn-dark"
                 style={{
-                  marginTop: 20,
+                  marginTop: 14,
                   width: '100%',
                   background: '#131b28',
                   color: '#ffffff',
@@ -725,8 +725,7 @@ function CheckoutPage() {
                 {submitting ? 'Placing order…' : 'Place order'}
               </button>
               <p style={{ fontSize: 11.5, lineHeight: 1.5, color: '#98a1ab', margin: '12px 0 0' }}>
-                Pre-order lines are charged now and reserved against our allocation. Carrier is chosen by us for the
-                safest delivery.
+                Carrier is chosen by us for the safest delivery.
               </p>
             </>
           )}
