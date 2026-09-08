@@ -8,6 +8,8 @@
     "start": "node .output/server/index.mjs",
     "db:generate": "drizzle-kit generate",
     "db:migrate": "drizzle-kit migrate",
+    "db:migrate:dev": "node scripts/migrate-target.mjs dev",
+    "db:migrate:prod": "node scripts/migrate-target.mjs prod",
     "db:seed": "tsx scripts/seed.ts",
     "db:studio": "drizzle-kit studio"
   },

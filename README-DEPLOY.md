@@ -48,14 +48,27 @@ binding for connection pooling on Workers) — the local tooling doesn't.
   order_counters).
 - `npm run db:generate` writes a new SQL migration into `drizzle/` whenever you
   change the schema.
-- `npm run db:migrate` applies pending migrations to whatever `DATABASE_URL`
-  points at. **Before running this, always `git pull origin main` first** —
-  `git status` only compares against your locally cached copy of
-  `origin/main` from your last fetch, not the live GitHub state, so it can
-  say "up to date" even when it isn't. Migrating from a stale checkout means
-  `drizzle-kit` doesn't know about migrations that were added after your last
-  pull and silently skips them while still printing "applied successfully"
-  (there was just nothing *it* knew to apply). Confirm you're current with
+- **`npm run db:migrate:dev`** and **`npm run db:migrate:prod`** are the
+  commands to actually run — each reads its own local, git-ignored file
+  (`.env.dev` or `.env.prod`, project root, next to `package.json`) so which
+  database gets migrated is never ambiguous or dependent on some `DATABASE_URL`
+  left over in your terminal from earlier. Create each file once, containing
+  just one line:
+  ```
+  DATABASE_URL=postgres://...
+  ```
+  `db:migrate:prod` also prints the target host and requires typing `yes` to
+  continue, since a wrong-target migration against production is much harder
+  to walk back than against dev. (The bare `npm run db:migrate` still exists,
+  reading whatever `DATABASE_URL` is currently set — used by CI/scripts, not
+  something to run by hand.)
+- **Before migrating, always `git pull origin main` first** — `git status`
+  only compares against your locally cached copy of `origin/main` from your
+  last fetch, not the live GitHub state, so it can say "up to date" even when
+  it isn't. Migrating from a stale checkout means `drizzle-kit` doesn't know
+  about migrations that were added after your last pull and silently skips
+  them while still printing "applied successfully" (there was just nothing
+  *it* knew to apply). Confirm you're current with
   `git fetch origin main && git log -1 --oneline` before migrating.
 - `npm run db:seed` (`scripts/seed.ts`) is idempotent — it upserts the initial
   13-product catalog by id. Safe to re-run.
@@ -193,9 +206,11 @@ One-time setup:
    ```
    Resend/Google OAuth secrets can be left unset on the dev Worker — email
    sending and Google sign-in just no-op/stay disabled, nothing else breaks.
-5. **Run migrations against the new database** so its schema matches:
+5. **Run migrations against the new database** so its schema matches. Create
+   `.env.dev` once (project root, git-ignored) containing just
+   `DATABASE_URL=<the Neon branch connection string from step 1>`, then:
    ```bash
-   DATABASE_URL="<the Neon branch connection string>" npm run db:migrate
+   npm run db:migrate:dev
    ```
    Optionally `npm run db:seed` too, if you want sample products to test
    with instead of copying real ones over.
