@@ -206,8 +206,8 @@ function ProductDetailPage() {
             <div>Ships double-boxed with tracking. {product.preorder ? 'Pre-order lines dispatch within 48 hours of the mainland street date.' : 'In-stock orders dispatch within 48 hours.'}</div>
             <div style={{ marginTop: 6 }}>
               Fails authentication? We refund it in full, shipping included. See{' '}
-              <Link to="/faq" style={{ color: '#3f7a63', fontWeight: 600 }}>
-                shipping &amp; authenticity
+              <Link to="/shipping-returns" style={{ color: '#3f7a63', fontWeight: 600 }}>
+                shipping &amp; returns
               </Link>
               .
             </div>

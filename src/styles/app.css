@@ -259,12 +259,6 @@ button {
   gap: 1px;
 }
 
-.ebi-faq-layout {
-  display: grid;
-  grid-template-columns: 1.35fr 0.65fr;
-  gap: 56px;
-}
-
 .ebi-product-detail-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -348,11 +342,6 @@ button {
 
   .ebi-shop-grid {
     grid-template-columns: 1fr 1fr;
-  }
-
-  .ebi-faq-layout {
-    grid-template-columns: 1fr;
-    gap: 32px;
   }
 
   .ebi-product-detail-grid {

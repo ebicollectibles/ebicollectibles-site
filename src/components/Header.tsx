@@ -176,8 +176,8 @@ export function Header({ customer }: { customer: HeaderCustomer | null }) {
           >
             Acrylics
           </Link>
-          <Link to="/faq" style={{ color: navColor(pathname === '/faq'), padding: '4px 0' }}>
-            FAQ &amp; shipping
+          <Link to="/shipping-returns" style={{ color: navColor(pathname === '/shipping-returns'), padding: '4px 0' }}>
+            Shipping &amp; returns
           </Link>
         </nav>
 
@@ -328,8 +328,11 @@ export function Header({ customer }: { customer: HeaderCustomer | null }) {
           >
             Acrylics
           </Link>
-          <Link to="/faq" style={{ color: navColor(pathname === '/faq'), padding: '10px 0', borderBottom: '1px solid #f0f2f4' }}>
-            FAQ &amp; shipping
+          <Link
+            to="/shipping-returns"
+            style={{ color: navColor(pathname === '/shipping-returns'), padding: '10px 0', borderBottom: '1px solid #f0f2f4' }}
+          >
+            Shipping &amp; returns
           </Link>
           {customer ? (
             <>

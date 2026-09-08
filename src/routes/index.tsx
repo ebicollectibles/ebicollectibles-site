@@ -82,21 +82,6 @@ function HomePage() {
               >
                 Shop the catalogue
               </Link>
-              <Link
-                to="/faq"
-                className="ebi-btn-outline"
-                style={{
-                  background: '#ffffff',
-                  color: '#131b28',
-                  border: '1px solid #cfd4da',
-                  borderRadius: 2,
-                  padding: '15px 28px',
-                  fontSize: 14,
-                  fontWeight: 600,
-                }}
-              >
-                How we verify
-              </Link>
             </div>
           </div>
           <div
