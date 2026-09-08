@@ -3,7 +3,7 @@ import { z } from 'zod'
 import { eq, inArray, sql } from 'drizzle-orm'
 import { getDb } from '~/lib/db/client'
 import { withTransaction } from '~/lib/db/transactional-client'
-import { emailEvents, orderCounters, orderItems, orderStatusEvents, orders, paymentAttempts, products as productsTable, users } from '~/lib/db/schema'
+import { emailEvents, orderCounters, orderItems, orderStatusEvents, orders, paymentAttempts, products as productsTable, subscribers, users } from '~/lib/db/schema'
 import { FLAT_SHIPPING_RATE } from '~/lib/products'
 import { US_STATE_CODES } from '~/lib/us-states'
 import { chargeSquarePayment, createSquareOrder, getSquareInventoryCounts, recordSquareInventorySale } from './square'
@@ -34,6 +34,7 @@ const placeOrderSchema = z.object({
     zip: z.string().trim().min(1),
   }),
   sourceId: z.string().nullable().optional(),
+  emailOptIn: z.boolean().optional().default(false),
 })
 
 export const placeOrder = createServerFn({ method: 'POST' })
@@ -227,6 +228,13 @@ export const placeOrder = createServerFn({ method: 'POST' })
       )
 
       await tx.insert(orderStatusEvents).values({ orderId: order.id, status: order.fulfillmentStatus })
+
+      if (data.emailOptIn && data.contact.email) {
+        await tx
+          .insert(subscribers)
+          .values({ email: data.contact.email.trim().toLowerCase(), source: 'checkout' })
+          .onConflictDoNothing()
+      }
 
       return {
         orderId: order.id,

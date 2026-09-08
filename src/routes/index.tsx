@@ -1,6 +1,8 @@
+import * as React from 'react'
 import { createFileRoute, Link } from '@tanstack/react-router'
 import { ProductCard } from '~/components/ProductCard'
 import { useCart } from '~/lib/cart-context'
+import { subscribeToNewsletter } from '~/server/subscribers'
 
 export const Route = createFileRoute('/')({
   component: HomePage,
@@ -18,6 +20,20 @@ function HomePage() {
   const { products } = useCart()
   const featured = products.slice(0, 4)
   const totalProductCount = products.length
+
+  const [subscribeEmail, setSubscribeEmail] = React.useState('')
+  const [subscribeState, setSubscribeState] = React.useState<'idle' | 'submitting' | 'done' | 'error'>('idle')
+
+  const submitSubscribe = async (e: React.FormEvent) => {
+    e.preventDefault()
+    setSubscribeState('submitting')
+    try {
+      await subscribeToNewsletter({ data: { email: subscribeEmail } })
+      setSubscribeState('done')
+    } catch {
+      setSubscribeState('error')
+    }
+  }
 
   return (
     <>
@@ -196,40 +212,49 @@ function HomePage() {
             <div style={{ ...monoLabel, color: '#7f8b9a' }}>Restock alerts</div>
             <div>
               <div style={{ fontSize: 18, fontWeight: 600, letterSpacing: '-0.01em' }}>Chinese sets sell out in hours.</div>
-              <form
-                onSubmit={(e) => e.preventDefault()}
-                style={{ display: 'flex', gap: 8, marginTop: 14 }}
-              >
-                <input
-                  type="email"
-                  placeholder="you@email.com"
-                  style={{
-                    flex: 1,
-                    background: 'rgba(255,255,255,0.08)',
-                    border: '1px solid rgba(255,255,255,0.18)',
-                    borderRadius: 2,
-                    padding: '10px 12px',
-                    color: '#ffffff',
-                    fontSize: 12.5,
-                    outline: 'none',
-                  }}
-                />
-                <button
-                  type="submit"
-                  style={{
-                    background: '#ffffff',
-                    color: '#131b28',
-                    border: 0,
-                    borderRadius: 2,
-                    padding: '10px 16px',
-                    fontSize: 12.5,
-                    fontWeight: 600,
-                    cursor: 'pointer',
-                  }}
-                >
-                  Notify me
-                </button>
-              </form>
+              {subscribeState === 'done' ? (
+                <div style={{ marginTop: 14, fontSize: 13, color: '#ffffff' }}>You're on the list.</div>
+              ) : (
+                <form onSubmit={submitSubscribe} style={{ display: 'flex', gap: 8, marginTop: 14 }}>
+                  <input
+                    type="email"
+                    required
+                    placeholder="you@email.com"
+                    value={subscribeEmail}
+                    onChange={(e) => setSubscribeEmail(e.target.value)}
+                    style={{
+                      flex: 1,
+                      background: 'rgba(255,255,255,0.08)',
+                      border: '1px solid rgba(255,255,255,0.18)',
+                      borderRadius: 2,
+                      padding: '10px 12px',
+                      color: '#ffffff',
+                      fontSize: 12.5,
+                      outline: 'none',
+                    }}
+                  />
+                  <button
+                    type="submit"
+                    disabled={subscribeState === 'submitting'}
+                    style={{
+                      background: '#ffffff',
+                      color: '#131b28',
+                      border: 0,
+                      borderRadius: 2,
+                      padding: '10px 16px',
+                      fontSize: 12.5,
+                      fontWeight: 600,
+                      cursor: subscribeState === 'submitting' ? 'default' : 'pointer',
+                      opacity: subscribeState === 'submitting' ? 0.6 : 1,
+                    }}
+                  >
+                    {subscribeState === 'submitting' ? 'Submitting…' : 'Notify me'}
+                  </button>
+                </form>
+              )}
+              {subscribeState === 'error' && (
+                <div style={{ marginTop: 8, fontSize: 12, color: '#e39a7a' }}>Something went wrong — try again.</div>
+              )}
             </div>
           </div>
         </div>

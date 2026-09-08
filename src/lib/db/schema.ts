@@ -248,3 +248,15 @@ export const orderCounters = pgTable('order_counters', {
   id: text('id').primaryKey(),
   nextOrderNo: integer('next_order_no').notNull(),
 })
+
+// General marketing list (new drops, restocks) — separate from customer
+// accounts (users) since a subscriber never needs to log in. Fed by the
+// homepage signup form and the checkout opt-in checkbox; email unique so
+// either entry point re-subscribing an already-known address is a no-op,
+// not a duplicate row.
+export const subscribers = pgTable('subscribers', {
+  id: uuid('id').primaryKey().defaultRandom(),
+  email: text('email').notNull().unique(),
+  source: text('source').notNull(), // 'homepage' | 'checkout'
+  createdAt: timestamp('created_at', { withTimezone: true }).notNull().defaultNow(),
+})

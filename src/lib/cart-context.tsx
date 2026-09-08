@@ -51,6 +51,7 @@ interface CartContextValue {
     contact: CheckoutContact
     billing: BillingAddress
     sourceId: string | null
+    emailOptIn: boolean
   }) => Promise<{ orderNo: number; total: number; paymentStatus: string }>
 }
 
@@ -140,7 +141,7 @@ export function CartProvider({ children, products }: { children: React.ReactNode
   }, [])
 
   const placeOrder = React.useCallback(
-    async (opts: { contact: CheckoutContact; billing: BillingAddress; sourceId: string | null }) => {
+    async (opts: { contact: CheckoutContact; billing: BillingAddress; sourceId: string | null; emailOptIn: boolean }) => {
       const lines = Object.entries(state.cart).map(([productId, qty]) => ({ productId, qty }))
       const result = await placeOrderFn({
         data: {
@@ -148,6 +149,7 @@ export function CartProvider({ children, products }: { children: React.ReactNode
           contact: opts.contact,
           billing: opts.billing,
           sourceId: opts.sourceId,
+          emailOptIn: opts.emailOptIn,
         },
       })
       setState((s) => ({ ...s, cart: {} }))

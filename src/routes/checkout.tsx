@@ -193,6 +193,7 @@ function CheckoutPage() {
     contact.city.trim() !== '' &&
     contact.state.trim() !== '' &&
     contact.zip.trim() !== ''
+  const [emailOptIn, setEmailOptIn] = React.useState(false)
   const [sameAsShipping, setSameAsShipping] = React.useState(false)
   const [billing, setBilling] = React.useState<BillingAddress>(emptyBilling)
   const billingComplete =
@@ -300,7 +301,7 @@ function CheckoutPage() {
             zip: contact.zip,
           }
         : billing
-      const result = await cart.placeOrder({ contact, billing: effectiveBilling, sourceId })
+      const result = await cart.placeOrder({ contact, billing: effectiveBilling, sourceId, emailOptIn })
       trackEvent('purchase', {
         transaction_id: String(result.orderNo),
         currency: 'USD',
@@ -459,6 +460,10 @@ function CheckoutPage() {
                   style={{ ...fieldStyle, width: '100%' }}
                   {...field('phone')}
                 />
+                <label style={{ display: 'flex', alignItems: 'center', gap: 8, marginTop: 14, fontSize: 12.5, color: '#131b28', cursor: 'pointer' }}>
+                  <input type="checkbox" checked={emailOptIn} onChange={(e) => setEmailOptIn(e.target.checked)} />
+                  Email me about restocks and new drops
+                </label>
               </div>
 
               <div style={{ borderTop: '1px solid #e3e6ea', marginTop: 30, paddingTop: 22 }}>
