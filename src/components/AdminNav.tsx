@@ -13,6 +13,9 @@ export function AdminNav({ onLogout }: { onLogout: () => void }) {
       <Link to="/admin/customers" style={{ fontSize: 13, color: '#131b28' }}>
         Customers
       </Link>
+      <Link to="/admin/subscribers" style={{ fontSize: 13, color: '#131b28' }}>
+        Subscribers
+      </Link>
       <div style={{ flex: 1 }} />
       <button onClick={onLogout} style={{ background: 'none', border: 0, fontSize: 13, color: '#98a1ab', cursor: 'pointer' }}>
         Log out

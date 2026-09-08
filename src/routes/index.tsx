@@ -16,6 +16,8 @@ const monoLabel: React.CSSProperties = {
   color: '#131b28',
 }
 
+const SUBSCRIBED_STORAGE_KEY = 'ebi-subscribed'
+
 function HomePage() {
   const { products } = useCart()
   const featured = products.slice(0, 4)
@@ -24,12 +26,30 @@ function HomePage() {
   const [subscribeEmail, setSubscribeEmail] = React.useState('')
   const [subscribeState, setSubscribeState] = React.useState<'idle' | 'submitting' | 'done' | 'error'>('idle')
 
+  // Remembers a successful signup in this browser so revisiting the
+  // homepage shows "you're on the list" instead of a blank form again —
+  // without this, someone could reasonably wonder if resubmitting keeps
+  // adding them. The database itself already dedupes by email regardless
+  // (unique constraint), this is purely so it doesn't *look* uncertain.
+  React.useEffect(() => {
+    try {
+      if (localStorage.getItem(SUBSCRIBED_STORAGE_KEY)) setSubscribeState('done')
+    } catch {
+      // Ignore unavailable storage — form just behaves as if never subscribed.
+    }
+  }, [])
+
   const submitSubscribe = async (e: React.FormEvent) => {
     e.preventDefault()
     setSubscribeState('submitting')
     try {
       await subscribeToNewsletter({ data: { email: subscribeEmail } })
       setSubscribeState('done')
+      try {
+        localStorage.setItem(SUBSCRIBED_STORAGE_KEY, '1')
+      } catch {
+        // Storage can be unavailable (private mode, quota) — subscription still succeeded server-side.
+      }
     } catch {
       setSubscribeState('error')
     }

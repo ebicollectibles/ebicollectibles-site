@@ -14,6 +14,7 @@ import {
   refundEvents,
   shipmentItems,
   shipments,
+  subscribers,
   users,
 } from '~/lib/db/schema'
 import { CARRIERS } from '~/lib/carriers'
@@ -350,6 +351,15 @@ export const adminListCustomers = createServerFn({ method: 'GET' }).handler(asyn
   const countByUser = new Map(counts.map((c) => [c.userId, c.count]))
 
   return customerRows.map((c) => ({ ...c, orderCount: countByUser.get(c.id) ?? 0 }))
+})
+
+export const adminListSubscribers = createServerFn({ method: 'GET' }).handler(async () => {
+  await assertAdmin()
+  const db = getDb()
+  return db
+    .select({ id: subscribers.id, email: subscribers.email, source: subscribers.source, createdAt: subscribers.createdAt })
+    .from(subscribers)
+    .orderBy(desc(subscribers.createdAt))
 })
 
 export const adminGetCustomer = createServerFn({ method: 'GET' })
