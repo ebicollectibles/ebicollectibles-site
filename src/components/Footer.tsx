@@ -86,8 +86,6 @@ export function Footer() {
           </div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 9, marginTop: 14, fontSize: 13 }}>
             <a href="#">Instagram</a>
-            <a href="#">TikTok</a>
-            <a href="#">YouTube</a>
           </div>
         </div>
       </div>
