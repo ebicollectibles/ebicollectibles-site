@@ -90,8 +90,12 @@ function AdminOrdersPage() {
       {orders.length === 0 && <p style={{ fontSize: 13.5, color: '#131b28', marginTop: 16 }}>No orders yet.</p>}
 
       {orders.length > 0 && (
-        <div style={{ overflowX: 'auto' }}>
-          <table style={{ width: '100%', borderCollapse: 'collapse', marginTop: 20, minWidth: 760 }}>
+        <>
+          <div className="ebi-admin-scroll-hint" style={{ fontSize: 11.5, color: '#98a1ab', marginTop: 14 }}>
+            Swipe to see more →
+          </div>
+          <div style={{ overflowX: 'auto' }}>
+            <table style={{ width: '100%', borderCollapse: 'collapse', marginTop: 20, minWidth: 760 }}>
             <thead>
               <tr>
                 <th style={th}>Order</th>
@@ -133,7 +137,8 @@ function AdminOrdersPage() {
               ))}
             </tbody>
           </table>
-        </div>
+          </div>
+        </>
       )}
 
       {totalPages > 1 && (

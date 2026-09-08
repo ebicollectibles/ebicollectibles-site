@@ -73,13 +73,13 @@ export function Header({ customer }: { customer: HeaderCustomer | null }) {
       }}
     >
       <div
+        className="ebi-header-row"
         style={{
           maxWidth: 1240,
           margin: '0 auto',
           padding: '14px 20px',
           display: 'flex',
           alignItems: 'center',
-          gap: 32,
         }}
       >
         <button

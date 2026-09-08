@@ -224,6 +224,14 @@ button {
   display: none;
 }
 
+.ebi-header-row {
+  gap: 32px;
+}
+
+.ebi-admin-scroll-hint {
+  display: none;
+}
+
 .ebi-hero-grid {
   display: grid;
   grid-template-columns: 1.05fr 0.95fr;
@@ -308,6 +316,18 @@ button {
 
   .ebi-mobile-menu.is-open {
     display: flex;
+  }
+
+  .ebi-header-row {
+    gap: 14px;
+  }
+
+  .ebi-header-account {
+    display: none;
+  }
+
+  .ebi-admin-scroll-hint {
+    display: block;
   }
 
   .ebi-hero-grid {

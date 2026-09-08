@@ -57,6 +57,9 @@ function AdminDashboard() {
         </Link>
       </div>
 
+      <div className="ebi-admin-scroll-hint" style={{ fontSize: 11.5, color: '#98a1ab', marginTop: 14 }}>
+        Swipe to see more →
+      </div>
       <div style={{ overflowX: 'auto' }}>
         <table style={{ width: '100%', borderCollapse: 'collapse', marginTop: 20, minWidth: 640 }}>
           <thead>

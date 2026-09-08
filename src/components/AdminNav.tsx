@@ -2,8 +2,17 @@ import { Link } from '@tanstack/react-router'
 
 export function AdminNav({ onLogout }: { onLogout: () => void }) {
   return (
-    <div style={{ display: 'flex', alignItems: 'center', gap: 20, paddingBottom: 16, borderBottom: '1px solid #e3e6ea' }}>
-      <span style={{ fontSize: 14, fontWeight: 700, letterSpacing: '0.06em' }}>EBI ADMIN</span>
+    <div
+      style={{
+        display: 'flex',
+        flexWrap: 'wrap',
+        alignItems: 'center',
+        gap: '10px 20px',
+        paddingBottom: 16,
+        borderBottom: '1px solid #e3e6ea',
+      }}
+    >
+      <span style={{ fontSize: 14, fontWeight: 700, letterSpacing: '0.06em', whiteSpace: 'nowrap' }}>EBI ADMIN</span>
       <Link to="/admin" style={{ fontSize: 13, color: '#131b28' }}>
         Products
       </Link>
