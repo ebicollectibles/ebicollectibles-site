@@ -7,6 +7,12 @@ interface ChargeResult {
   status: 'paid' | 'test' | 'failed'
   squarePaymentId?: string
   paymentMethodSummary?: string
+  // Square's fraud risk assessment and AVS/CVV match results — see the
+  // riskLevel/avsStatus/cvvStatus columns in schema.ts for what these mean
+  // and why they're worth keeping. Only ever set on a 'paid' result.
+  riskLevel?: string
+  avsStatus?: string
+  cvvStatus?: string
   error?: string
 }
 
@@ -171,7 +177,14 @@ export async function chargeSquarePayment(opts: {
     return { status: 'failed', error: message }
   }
 
-  return { status: 'paid', squarePaymentId: json?.payment?.id, paymentMethodSummary: describeSquarePaymentMethod(json?.payment) }
+  return {
+    status: 'paid',
+    squarePaymentId: json?.payment?.id,
+    paymentMethodSummary: describeSquarePaymentMethod(json?.payment),
+    riskLevel: json?.payment?.risk_evaluation?.risk_level,
+    avsStatus: json?.payment?.card_details?.avs_status,
+    cvvStatus: json?.payment?.card_details?.cvv_status,
+  }
 }
 
 export interface SquareCatalogOption {

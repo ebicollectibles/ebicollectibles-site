@@ -34,6 +34,29 @@ const fulfillmentLabel: Record<string, string> = {
   cancelled: 'cancelled',
 }
 
+const riskColor: Record<string, string> = {
+  NORMAL: '#3f7a63',
+  MODERATE: '#b4622f',
+  HIGH: '#a13a3a',
+}
+const riskLabel: Record<string, string> = {
+  NORMAL: 'Normal',
+  MODERATE: 'Moderate',
+  HIGH: 'High',
+}
+// AVS/CVV codes Square actually returns — spelled out so the admin never
+// has to go look up what "AVS_REJECTED" means mid-review.
+const avsLabel: Record<string, string> = {
+  AVS_MATCH: 'Address matched',
+  AVS_NOT_CHECKED: 'Address not checked',
+  AVS_REJECTED: "Address didn't match",
+}
+const cvvLabel: Record<string, string> = {
+  CVV_ACCEPTED: 'CVV matched',
+  CVV_NOT_CHECKED: 'CVV not checked',
+  CVV_REJECTED: "CVV didn't match",
+}
+
 const emailTypeLabel: Record<string, string> = {
   order_confirmation: 'Confirmation',
   shipment_notice: 'Shipped email',
@@ -225,12 +248,41 @@ function AdminOrderDetailPage() {
           </div>
         </div>
 
-        {order.paymentMethodSummary && (
+        {(order.paymentMethodSummary || order.riskLevel || order.avsStatus || order.cvvStatus) && (
           <div style={{ marginTop: 16, paddingTop: 16, borderTop: '1px solid #f0f2f4' }}>
             <div style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 10.5, letterSpacing: '0.1em', textTransform: 'uppercase', color: '#98a1ab' }}>
               Payment
             </div>
-            <div style={{ marginTop: 6, fontSize: 13, color: '#131b28' }}>{order.paymentMethodSummary}</div>
+            {order.paymentMethodSummary && <div style={{ marginTop: 6, fontSize: 13, color: '#131b28' }}>{order.paymentMethodSummary}</div>}
+            {(order.riskLevel || order.avsStatus || order.cvvStatus) && (
+              <div style={{ marginTop: 10, display: 'flex', flexWrap: 'wrap', gap: 8 }}>
+                {order.riskLevel && (
+                  <span
+                    style={{
+                      fontFamily: "'IBM Plex Mono', monospace",
+                      fontSize: 10.5,
+                      textTransform: 'uppercase',
+                      color: riskColor[order.riskLevel] ?? '#98a1ab',
+                      border: `1px solid ${riskColor[order.riskLevel] ?? '#98a1ab'}`,
+                      borderRadius: 2,
+                      padding: '3px 7px',
+                    }}
+                  >
+                    {riskLabel[order.riskLevel] ?? order.riskLevel} risk
+                  </span>
+                )}
+                {order.avsStatus && (
+                  <span style={{ fontSize: 12, color: '#5a6875', border: '1px solid #e3e6ea', borderRadius: 2, padding: '3px 7px' }}>
+                    {avsLabel[order.avsStatus] ?? order.avsStatus}
+                  </span>
+                )}
+                {order.cvvStatus && (
+                  <span style={{ fontSize: 12, color: '#5a6875', border: '1px solid #e3e6ea', borderRadius: 2, padding: '3px 7px' }}>
+                    {cvvLabel[order.cvvStatus] ?? order.cvvStatus}
+                  </span>
+                )}
+              </div>
+            )}
           </div>
         )}
 

@@ -127,6 +127,18 @@ export const orders = pgTable('orders', {
   // or "Apple Pay" — derived from Square's already-redacted payment
   // response (never a full card number), shown on receipts as reference.
   paymentMethodSummary: text('payment_method_summary'),
+  // Square's own fraud assessment: NORMAL | MODERATE | HIGH. Only present
+  // for accounts Square has enrolled in risk evaluation — null elsewhere
+  // (including every test-mode order, and wallet payments like Apple Pay
+  // which don't carry AVS/CVV). Never used to auto-block a charge — this is
+  // a review signal for the admin orders list, nothing more.
+  riskLevel: text('risk_level'),
+  // AVS_MATCH | AVS_NOT_CHECKED | AVS_REJECTED | ... — whether the billing
+  // address given at checkout matched what the card issuer has on file.
+  avsStatus: text('avs_status'),
+  // CVV_ACCEPTED | CVV_NOT_CHECKED | CVV_REJECTED | ... same idea, for the
+  // card's security code.
+  cvvStatus: text('cvv_status'),
   // pending | partially_shipped | shipped | cancelled. The first three are
   // derived from shipments (see computeFulfillmentStatus in lib/shipments.ts)
   // whenever a shipment is recorded — only "cancelled" and reverting to

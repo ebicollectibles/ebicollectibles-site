@@ -27,6 +27,17 @@ const fulfillmentColor: Record<string, string> = {
   cancelled: '#b4622f',
 }
 
+const riskColor: Record<string, string> = {
+  NORMAL: '#3f7a63',
+  MODERATE: '#b4622f',
+  HIGH: '#a13a3a',
+}
+const riskLabel: Record<string, string> = {
+  NORMAL: 'Normal',
+  MODERATE: 'Moderate',
+  HIGH: 'High',
+}
+
 const fulfillmentLabel: Record<string, string> = {
   pending: 'pending',
   partially_shipped: 'partially shipped',
@@ -95,12 +106,13 @@ function AdminOrdersPage() {
             Swipe to see more →
           </div>
           <div style={{ overflowX: 'auto' }}>
-            <table style={{ width: '100%', borderCollapse: 'collapse', marginTop: 20, minWidth: 760 }}>
+            <table style={{ width: '100%', borderCollapse: 'collapse', marginTop: 20, minWidth: 840 }}>
             <thead>
               <tr>
                 <th style={th}>Order</th>
                 <th style={th}>Customer</th>
                 <th style={th}>Payment</th>
+                <th style={th}>Risk</th>
                 <th style={th}>Fulfillment</th>
                 <th style={th}>Total</th>
                 <th style={th}>Date</th>
@@ -121,6 +133,22 @@ function AdminOrdersPage() {
                     {order.paymentStatus}
                     {order.totalRefunded > 0 && (
                       <div style={{ color: '#8a4a26', fontSize: 10.5, marginTop: 2 }}>Refunded {formatMoney(order.totalRefunded)}</div>
+                    )}
+                  </td>
+                  <td style={{ ...td, fontFamily: "'IBM Plex Mono', monospace", fontSize: 11, textTransform: 'uppercase' }}>
+                    {order.riskLevel ? (
+                      <span
+                        style={{
+                          color: riskColor[order.riskLevel] ?? '#98a1ab',
+                          border: `1px solid ${riskColor[order.riskLevel] ?? '#98a1ab'}`,
+                          borderRadius: 2,
+                          padding: '2px 6px',
+                        }}
+                      >
+                        {riskLabel[order.riskLevel] ?? order.riskLevel}
+                      </span>
+                    ) : (
+                      <span style={{ color: '#cfd4da' }}>—</span>
                     )}
                   </td>
                   <td style={{ ...td, fontFamily: "'IBM Plex Mono', monospace", fontSize: 11, textTransform: 'uppercase', color: fulfillmentColor[order.fulfillmentStatus] ?? '#98a1ab' }}>

@@ -213,6 +213,9 @@ export const placeOrder = createServerFn({ method: 'POST' })
           paymentStatus: charge.status,
           squarePaymentId: charge.squarePaymentId,
           paymentMethodSummary: charge.paymentMethodSummary ?? null,
+          riskLevel: charge.riskLevel ?? null,
+          avsStatus: charge.avsStatus ?? null,
+          cvvStatus: charge.cvvStatus ?? null,
         })
         .returning()
 
