@@ -85,7 +85,9 @@ export function Footer() {
             Elsewhere
           </div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 9, marginTop: 14, fontSize: 13 }}>
-            <a href="#">Instagram</a>
+            <a href="https://www.instagram.com/ebicollectibles" target="_blank" rel="noopener noreferrer">
+              Instagram
+            </a>
           </div>
         </div>
       </div>
