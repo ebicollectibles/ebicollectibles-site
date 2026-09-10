@@ -23,6 +23,7 @@ import { Route as AccountSignupRouteImport } from './routes/account/signup'
 import { Route as AccountVerifyRouteImport } from './routes/account/verify'
 import { Route as AdminIndexRouteImport } from './routes/admin/index'
 import { Route as AdminLoginRouteImport } from './routes/admin/login'
+import { Route as AdminSecurityRouteImport } from './routes/admin/security'
 import { Route as AdminSubscribersRouteImport } from './routes/admin/subscribers'
 import { Route as ProductsIdRouteImport } from './routes/products.$id'
 import { Route as AccountOrdersIndexRouteImport } from './routes/account/orders/index'
@@ -106,6 +107,11 @@ const AdminLoginRoute = AdminLoginRouteImport.update({
   path: '/admin/login',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminSecurityRoute = AdminSecurityRouteImport.update({
+  id: '/admin/security',
+  path: '/admin/security',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AdminSubscribersRoute = AdminSubscribersRouteImport.update({
   id: '/admin/subscribers',
   path: '/admin/subscribers',
@@ -180,6 +186,7 @@ export interface FileRoutesByFullPath {
   '/account/signup': typeof AccountSignupRoute
   '/account/verify': typeof AccountVerifyRoute
   '/admin/login': typeof AdminLoginRoute
+  '/admin/security': typeof AdminSecurityRoute
   '/admin/subscribers': typeof AdminSubscribersRoute
   '/products/$id': typeof ProductsIdRoute
   '/account/': typeof AccountIndexRoute
@@ -208,6 +215,7 @@ export interface FileRoutesByTo {
   '/account/signup': typeof AccountSignupRoute
   '/account/verify': typeof AccountVerifyRoute
   '/admin/login': typeof AdminLoginRoute
+  '/admin/security': typeof AdminSecurityRoute
   '/admin/subscribers': typeof AdminSubscribersRoute
   '/products/$id': typeof ProductsIdRoute
   '/account': typeof AccountIndexRoute
@@ -237,6 +245,7 @@ export interface FileRoutesById {
   '/account/signup': typeof AccountSignupRoute
   '/account/verify': typeof AccountVerifyRoute
   '/admin/login': typeof AdminLoginRoute
+  '/admin/security': typeof AdminSecurityRoute
   '/admin/subscribers': typeof AdminSubscribersRoute
   '/products/$id': typeof ProductsIdRoute
   '/account/': typeof AccountIndexRoute
@@ -267,6 +276,7 @@ export interface FileRouteTypes {
     | '/account/signup'
     | '/account/verify'
     | '/admin/login'
+    | '/admin/security'
     | '/admin/subscribers'
     | '/products/$id'
     | '/account/'
@@ -295,6 +305,7 @@ export interface FileRouteTypes {
     | '/account/signup'
     | '/account/verify'
     | '/admin/login'
+    | '/admin/security'
     | '/admin/subscribers'
     | '/products/$id'
     | '/account'
@@ -323,6 +334,7 @@ export interface FileRouteTypes {
     | '/account/signup'
     | '/account/verify'
     | '/admin/login'
+    | '/admin/security'
     | '/admin/subscribers'
     | '/products/$id'
     | '/account/'
@@ -352,6 +364,7 @@ export interface RootRouteChildren {
   AccountSignupRoute: typeof AccountSignupRoute
   AccountVerifyRoute: typeof AccountVerifyRoute
   AdminLoginRoute: typeof AdminLoginRoute
+  AdminSecurityRoute: typeof AdminSecurityRoute
   AdminSubscribersRoute: typeof AdminSubscribersRoute
   ProductsIdRoute: typeof ProductsIdRoute
   AccountIndexRoute: typeof AccountIndexRoute
@@ -468,6 +481,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminLoginRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin/security': {
+      id: '/admin/security'
+      path: '/admin/security'
+      fullPath: '/admin/security'
+      preLoaderRoute: typeof AdminSecurityRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/admin/subscribers': {
       id: '/admin/subscribers'
       path: '/admin/subscribers'
@@ -568,6 +588,7 @@ const rootRouteChildren: RootRouteChildren = {
   AccountSignupRoute: AccountSignupRoute,
   AccountVerifyRoute: AccountVerifyRoute,
   AdminLoginRoute: AdminLoginRoute,
+  AdminSecurityRoute: AdminSecurityRoute,
   AdminSubscribersRoute: AdminSubscribersRoute,
   ProductsIdRoute: ProductsIdRoute,
   AccountIndexRoute: AccountIndexRoute,

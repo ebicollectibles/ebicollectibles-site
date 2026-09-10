@@ -329,6 +329,24 @@ export const adminListPaymentFailures = createServerFn({ method: 'GET' }).handle
     .limit(30)
 })
 
+export const adminListSecurityEvents = createServerFn({ method: 'GET' }).handler(async () => {
+  await assertAdmin()
+  const db = getDb()
+  return db
+    .select({
+      id: authEvents.id,
+      type: authEvents.type,
+      email: authEvents.email,
+      ipAddress: authEvents.ipAddress,
+      asOrganization: authEvents.asOrganization,
+      country: authEvents.country,
+      createdAt: authEvents.createdAt,
+    })
+    .from(authEvents)
+    .orderBy(desc(authEvents.createdAt))
+    .limit(100)
+})
+
 export const adminListCustomers = createServerFn({ method: 'GET' }).handler(async () => {
   await assertAdmin()
   const db = getDb()
@@ -429,7 +447,13 @@ export const adminGetCustomer = createServerFn({ method: 'GET' })
     if (!customer) return null
 
     const authEventRows = await db
-      .select({ type: authEvents.type, createdAt: authEvents.createdAt })
+      .select({
+        type: authEvents.type,
+        createdAt: authEvents.createdAt,
+        ipAddress: authEvents.ipAddress,
+        asOrganization: authEvents.asOrganization,
+        country: authEvents.country,
+      })
       .from(authEvents)
       .where(eq(authEvents.userId, data.id))
       .orderBy(desc(authEvents.createdAt))
@@ -443,7 +467,11 @@ export const adminGetCustomer = createServerFn({ method: 'GET' })
       .limit(50)
 
     const events = [
-      ...authEventRows.map((e) => ({ type: e.type, createdAt: e.createdAt, detail: null as string | null })),
+      ...authEventRows.map((e) => ({
+        type: e.type,
+        createdAt: e.createdAt,
+        detail: [e.ipAddress, e.asOrganization, e.country].filter(Boolean).join(' · ') || null,
+      })),
       ...failedPayments.map((p) => ({ type: 'payment_failed', createdAt: p.createdAt, detail: p.errorMessage })),
     ].sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime())
 

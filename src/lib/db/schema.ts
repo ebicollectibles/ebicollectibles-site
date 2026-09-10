@@ -76,13 +76,27 @@ export const passwordResetCodes = pgTable('password_reset_codes', {
 // Lightweight security/support log — separate from Google Analytics, which
 // tracks anonymous browsing behavior. This tracks account-security-relevant
 // actions on known accounts: signups, logins (successful and failed),
-// Google-account linking. `email` is stored alongside `userId` so a failed
-// login against an email with no matching account still leaves a record.
+// Google-account linking, and admin panel logins. `email` is stored
+// alongside `userId` so a failed login against an email with no matching
+// account still leaves a record (admin logins have neither — there's no
+// per-admin account, just one shared password).
+//
+// ipAddress/asn/asOrganization/country come straight from Cloudflare's edge
+// (CF-Connecting-IP header and the `cf` object on the incoming Request) —
+// free on every plan, no third-party lookup, no ongoing cost. Deliberately
+// stores the raw network-owner name rather than a precomputed "is this a
+// proxy" verdict: that judgment call belongs at read time (see admin's
+// datacenter-keyword check), so it can change as fraud patterns are learned
+// without ever needing to re-collect or migrate old rows.
 export const authEvents = pgTable('auth_events', {
   id: uuid('id').primaryKey().defaultRandom(),
   userId: uuid('user_id').references(() => users.id, { onDelete: 'set null' }),
   email: text('email'),
-  type: text('type').notNull(), // signup | login | login_failed | google_link | password_reset
+  type: text('type').notNull(), // signup | login | login_failed | google_link | password_reset | email_verified | admin_login | admin_login_failed
+  ipAddress: text('ip_address'),
+  asn: integer('asn'),
+  asOrganization: text('as_organization'),
+  country: text('country'),
   createdAt: timestamp('created_at', { withTimezone: true }).notNull().defaultNow(),
 })
 

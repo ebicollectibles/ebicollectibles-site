@@ -65,13 +65,31 @@ export const setCustomerSession = writeCustomerSession
 
 // --- Lightweight auth/security event log — see schema.ts's authEvents comment. ---
 
-export type AuthEventType = 'signup' | 'login' | 'login_failed' | 'google_link' | 'password_reset' | 'email_verified'
+export type AuthEventType =
+  | 'signup'
+  | 'login'
+  | 'login_failed'
+  | 'google_link'
+  | 'password_reset'
+  | 'email_verified'
+  | 'admin_login'
+  | 'admin_login_failed'
 
 export async function recordAuthEvent(opts: { userId?: string | null; email?: string | null; type: AuthEventType }) {
   const { getDb } = await import('~/lib/db/client')
   const { authEvents } = await import('~/lib/db/schema')
+  const { captureRequestSignals } = await import('./request-signals')
+  const signals = await captureRequestSignals()
   const db = getDb()
-  await db.insert(authEvents).values({ userId: opts.userId ?? null, email: opts.email ?? null, type: opts.type })
+  await db.insert(authEvents).values({
+    userId: opts.userId ?? null,
+    email: opts.email ?? null,
+    type: opts.type,
+    ipAddress: signals.ipAddress,
+    asn: signals.asn,
+    asOrganization: signals.asOrganization,
+    country: signals.country,
+  })
 }
 
 export async function touchLastLogin(userId: string) {

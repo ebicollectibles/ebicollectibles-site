@@ -64,12 +64,15 @@ export async function requireAdmin() {
 export const adminLogin = createServerFn({ method: 'POST' })
   .validator(z.object({ password: z.string() }))
   .handler(async ({ data }) => {
+    const { recordAuthEvent } = await import('./customer-auth')
     const expected = process.env.ADMIN_PASSWORD
     if (!expected) throw new Error('ADMIN_PASSWORD is not set on the server.')
     if (data.password !== expected) {
+      await recordAuthEvent({ type: 'admin_login_failed' })
       throw new Error('Incorrect password.')
     }
     await writeAdminSession(true)
+    await recordAuthEvent({ type: 'admin_login' })
     return { ok: true }
   })
 
