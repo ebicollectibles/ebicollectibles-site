@@ -21,8 +21,8 @@ export function Footer() {
             <span style={{ fontSize: 14, fontWeight: 700, letterSpacing: '0.16em' }}>EBI COLLECTIBLES</span>
           </div>
           <p style={{ fontSize: 13, lineHeight: 1.6, color: '#131b28', margin: '14px 0 0', maxWidth: '34ch' }}>
-            Simplified Chinese Pokémon boxes, figures and blind boxes — sourced through authorised distribution and
-            verified in-house.
+            Simplified Chinese Pokémon boxes, figures and blind boxes — sourced directly from China and checked
+            in-house before it ships.
           </p>
         </div>
         <div>
