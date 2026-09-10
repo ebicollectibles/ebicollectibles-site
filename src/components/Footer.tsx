@@ -69,6 +69,7 @@ export function Footer() {
           </div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 9, marginTop: 14, fontSize: 13 }}>
             <Link to="/shipping-returns">Shipping &amp; returns</Link>
+            <Link to="/privacy">Privacy policy</Link>
             <a href="mailto:hello@ebicollectibles.com">Contact us</a>
           </div>
         </div>
