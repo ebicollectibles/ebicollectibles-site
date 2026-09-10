@@ -1,3 +1,5 @@
+import { createServerOnlyFn } from '@tanstack/react-start'
+
 export interface RequestSignals {
   ipAddress: string | null
   asn: number | null
@@ -6,6 +8,27 @@ export interface RequestSignals {
 }
 
 const EMPTY_SIGNALS: RequestSignals = { ipAddress: null, asn: null, asOrganization: null, country: null }
+
+// Same reasoning as admin-auth.ts/customer-auth.ts's session helpers:
+// wrapped in createServerOnlyFn so the bundler strips the
+// @tanstack/react-start/server import out of the client build entirely.
+// This file is reachable from client-rendered routes (checkout.tsx ->
+// customer-auth.ts -> here), so a bare dynamic import isn't enough on its
+// own — the import-protection plugin still flags it as client-reachable,
+// and previously that surfaced as a real runtime failure (an uncaught
+// ErrorEvent that broke placeOrder's server function entirely) rather than
+// the caller's try/catch cleanly falling back to nulls.
+const readRequestSignals = createServerOnlyFn(async (): Promise<RequestSignals> => {
+  const { getRequest } = await import('@tanstack/react-start/server')
+  const request = getRequest()
+  const cf = (request as unknown as { cf?: Record<string, unknown> }).cf
+  return {
+    ipAddress: request.headers.get('cf-connecting-ip'),
+    asn: typeof cf?.asn === 'number' ? cf.asn : null,
+    asOrganization: typeof cf?.asOrganization === 'string' ? cf.asOrganization : null,
+    country: typeof cf?.country === 'string' ? cf.country : null,
+  }
+})
 
 /**
  * Cloudflare-specific request signals — CF-Connecting-IP plus the `cf`
@@ -16,15 +39,7 @@ const EMPTY_SIGNALS: RequestSignals = { ipAddress: null, asn: null, asOrganizati
  */
 export async function captureRequestSignals(): Promise<RequestSignals> {
   try {
-    const { getRequest } = await import('@tanstack/react-start/server')
-    const request = getRequest()
-    const cf = (request as unknown as { cf?: Record<string, unknown> }).cf
-    return {
-      ipAddress: request.headers.get('cf-connecting-ip'),
-      asn: typeof cf?.asn === 'number' ? cf.asn : null,
-      asOrganization: typeof cf?.asOrganization === 'string' ? cf.asOrganization : null,
-      country: typeof cf?.country === 'string' ? cf.country : null,
-    }
+    return await readRequestSignals()
   } catch {
     return EMPTY_SIGNALS
   }

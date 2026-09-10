@@ -44,8 +44,15 @@ function formatAddress(order: {
   state: string | null
   zip: string | null
 }): string | null {
+  // Every field here is free-text from the checkout form — escape before
+  // joining with <br>, since the result is injected as raw HTML below (a
+  // guest checkout can address an order to anyone's email, so this isn't
+  // just self-XSS against the person who typed it).
   const cityStateZip = [order.city, [order.state, order.zip].filter(Boolean).join(' ')].filter(Boolean).join(', ')
-  const address = [order.street, order.apartment, cityStateZip].filter(Boolean).join('<br>')
+  const address = [order.street, order.apartment, cityStateZip]
+    .filter(Boolean)
+    .map((part) => escapeHtml(part as string))
+    .join('<br>')
   return address || null
 }
 

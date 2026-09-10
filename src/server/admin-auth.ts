@@ -65,6 +65,10 @@ export const adminLogin = createServerFn({ method: 'POST' })
   .validator(z.object({ password: z.string() }))
   .handler(async ({ data }) => {
     const { recordAuthEvent } = await import('./customer-auth')
+    const { isLoginRateLimited } = await import('./rate-limit')
+    if (await isLoginRateLimited({ type: 'admin_login_failed', maxAttempts: 8, windowMinutes: 15 })) {
+      throw new Error('Too many failed attempts — try again in a few minutes.')
+    }
     const expected = process.env.ADMIN_PASSWORD
     if (!expected) throw new Error('ADMIN_PASSWORD is not set on the server.')
     if (data.password !== expected) {

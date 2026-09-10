@@ -84,6 +84,11 @@ export const customerLogin = createServerFn({ method: 'POST' })
     const db = getDb()
     const email = normalizeEmail(data.email)
 
+    const { isLoginRateLimited } = await import('./rate-limit')
+    if (await isLoginRateLimited({ type: 'login_failed', email, maxAttempts: 10, windowMinutes: 15 })) {
+      throw new Error('Too many failed attempts — try again in a few minutes.')
+    }
+
     const [user] = await db.select().from(users).where(eq(users.email, email)).limit(1)
     if (!user) {
       await recordAuthEvent({ email, type: 'login_failed' })

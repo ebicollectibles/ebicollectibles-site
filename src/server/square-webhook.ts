@@ -12,10 +12,19 @@ async function verifySquareSignature(rawBody: string, signatureHeader: string | 
   const signingKey = process.env.SQUARE_WEBHOOK_SIGNATURE_KEY
   if (!signingKey || !signatureHeader) return false
 
-  const key = await crypto.subtle.importKey('raw', new TextEncoder().encode(signingKey), { name: 'HMAC', hash: 'SHA-256' }, false, ['sign'])
-  const signatureBytes = await crypto.subtle.sign('HMAC', key, new TextEncoder().encode(requestUrl + rawBody))
-  const expected = btoa(String.fromCharCode(...new Uint8Array(signatureBytes)))
-  return expected === signatureHeader
+  // crypto.subtle.verify does the HMAC comparison itself (constant-time,
+  // not a `===` on the computed digest) — a plain string/byte compare here
+  // would let an attacker recover the correct signature one byte at a time
+  // via response-timing differences.
+  let signatureBytes: Uint8Array
+  try {
+    signatureBytes = Uint8Array.from(atob(signatureHeader), (c) => c.charCodeAt(0))
+  } catch {
+    return false // not valid base64 — definitely not a real Square signature
+  }
+
+  const key = await crypto.subtle.importKey('raw', new TextEncoder().encode(signingKey), { name: 'HMAC', hash: 'SHA-256' }, false, ['verify'])
+  return crypto.subtle.verify('HMAC', key, signatureBytes as BufferSource, new TextEncoder().encode(requestUrl + rawBody))
 }
 
 export async function handleSquareWebhook(request: Request): Promise<Response> {
