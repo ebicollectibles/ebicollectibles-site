@@ -18,7 +18,7 @@ const SEED_PRODUCTS = [
     subcategory: 'Gem Series',
     price: 34.95,
     stock: 22,
-    img: '/assets/gem-vol6.png',
+    img: '/assets/gem-vol6.jpg',
   },
   {
     id: 'gem5',
@@ -28,7 +28,7 @@ const SEED_PRODUCTS = [
     subcategory: 'Gem Series',
     price: 32.95,
     stock: 4,
-    img: '/assets/gem-vol5.png',
+    img: '/assets/gem-vol5.jpg',
   },
   {
     id: 'gem4',
@@ -38,7 +38,7 @@ const SEED_PRODUCTS = [
     subcategory: 'Gem Series',
     price: 29.95,
     stock: 0,
-    img: '/assets/gem-vol4.png',
+    img: '/assets/gem-vol4.jpg',
   },
 ]
 

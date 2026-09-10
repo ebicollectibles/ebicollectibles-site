@@ -123,17 +123,17 @@ function HomePage() {
             style={{ position: 'relative', display: 'flex', justifyContent: 'center', alignItems: 'flex-end', gap: 18, padding: '28px 0' }}
           >
             <img
-              src="/assets/gem-vol5.png"
+              src="/assets/gem-vol5.jpg"
               alt="Gem Pack Vol. 5 booster pack"
               style={{ width: '30%', boxShadow: '0 18px 40px rgba(19,27,40,0.16)', transform: 'rotate(-6deg)', borderRadius: 4 }}
             />
             <img
-              src="/assets/gem-vol6.png"
+              src="/assets/gem-vol6.jpg"
               alt="Gem Pack Vol. 6 booster pack"
               style={{ width: '38%', boxShadow: '0 26px 60px rgba(19,27,40,0.22)', borderRadius: 4, position: 'relative', zIndex: 2 }}
             />
             <img
-              src="/assets/gem-vol4.png"
+              src="/assets/gem-vol4.jpg"
               alt="Gem Pack Vol. 4 booster pack"
               style={{ width: '30%', boxShadow: '0 18px 40px rgba(19,27,40,0.16)', transform: 'rotate(6deg)', borderRadius: 4 }}
             />
