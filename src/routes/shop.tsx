@@ -12,6 +12,20 @@ const shopSearchSchema = z.object({
 
 export const Route = createFileRoute('/shop')({
   validateSearch: shopSearchSchema,
+  head: ({ match }) => {
+    const label = match.search.subcategory ?? match.search.category
+    if (!label) return {}
+    const title = `${label} — EBI Collectibles`
+    const description = `Shop ${label} — Simplified Chinese Pokémon, verified before it ships.`
+    return {
+      meta: [
+        { title },
+        { name: 'description', content: description },
+        { property: 'og:title', content: title },
+        { property: 'og:description', content: description },
+      ],
+    }
+  },
   component: ShopPage,
 })
 

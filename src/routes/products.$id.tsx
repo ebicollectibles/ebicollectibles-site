@@ -6,8 +6,58 @@ import { ResponsiveImage } from '~/components/ResponsiveImage'
 import { trackEvent } from '~/lib/analytics'
 import { useCart } from '~/lib/cart-context'
 import { formatMoney } from '~/lib/products'
+import { getProduct } from '~/server/products'
+
+const SITE_URL = 'https://ebicollectibles.com'
+
+function absoluteImageUrl(img: string | undefined): string | undefined {
+  if (!img) return undefined
+  return img.startsWith('http') ? img : `${SITE_URL}${img.startsWith('/') ? '' : '/'}${img}`
+}
 
 export const Route = createFileRoute('/products/$id')({
+  // Separate from the cart's product list (populated by the root loader) —
+  // this exists purely to give head() below something to build per-product
+  // meta tags from; the page itself still reads from useCart() as before.
+  loader: ({ params }) => getProduct({ data: { id: params.id } }),
+  head: ({ loaderData, params }) => {
+    if (!loaderData) return {}
+    const title = `${loaderData.name} — EBI Collectibles`
+    const description = `${formatMoney(loaderData.price)} — ${loaderData.name}. Simplified Chinese Pokémon, verified before it ships. ${
+      loaderData.stock > 0 ? 'In stock' : 'Currently sold out'
+    }, ships from Washington.`
+    const url = `${SITE_URL}/products/${params.id}`
+    const image = absoluteImageUrl(loaderData.img)
+
+    return {
+      meta: [
+        { title },
+        { name: 'description', content: description },
+        { property: 'og:title', content: title },
+        { property: 'og:description', content: description },
+        { property: 'og:type', content: 'product' },
+        { property: 'og:url', content: url },
+        ...(image ? [{ property: 'og:image', content: image }] : []),
+        {
+          'script:ld+json': {
+            '@context': 'https://schema.org',
+            '@type': 'Product',
+            name: loaderData.name,
+            ...(image ? { image: [image] } : {}),
+            description,
+            sku: loaderData.code,
+            offers: {
+              '@type': 'Offer',
+              url,
+              priceCurrency: 'USD',
+              price: loaderData.price,
+              availability: loaderData.stock > 0 ? 'https://schema.org/InStock' : 'https://schema.org/OutOfStock',
+            },
+          },
+        },
+      ],
+    }
+  },
   component: ProductDetailPage,
 })
 

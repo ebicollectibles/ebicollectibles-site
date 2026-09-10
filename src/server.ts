@@ -2,6 +2,7 @@ import { createStartHandler, defaultStreamHandler } from '@tanstack/react-start/
 import type { Register } from '@tanstack/react-router'
 import type { RequestHandler } from '@tanstack/react-start/server'
 import { handleSquareWebhook } from './server/square-webhook'
+import { handleSitemapRequest } from './server/sitemap'
 
 const startFetch = createStartHandler(defaultStreamHandler)
 
@@ -38,6 +39,11 @@ const entry: ServerEntry = {
     const url = new URL(request.url)
     if (request.method === 'POST' && url.pathname === '/api/webhooks/square') {
       return handleSquareWebhook(request)
+    }
+    // Enumerates live published products from the DB — a static public/
+    // file would go stale the moment a product is added or unpublished.
+    if (request.method === 'GET' && url.pathname === '/sitemap.xml') {
+      return handleSitemapRequest()
     }
     const response = await startFetch(request, opts)
     return withSecurityHeaders(response)

@@ -32,6 +32,22 @@ export const Route = createRootRoute({
         content:
           'Simplified Chinese Pokémon booster boxes, figures and blind boxes — sourced through authorised distribution and verified before it ships.',
       },
+      // Open Graph / Twitter Card defaults — a leaf route (e.g. a product
+      // page) can override any of these by declaring the same property in
+      // its own head(); TanStack Router dedupes by name/property, leaf wins.
+      // Matters a lot here specifically: most of this store's traffic comes
+      // from links shared in Discord, and without these a shared link shows
+      // no preview card at all.
+      { property: 'og:site_name', content: 'EBI Collectibles' },
+      { property: 'og:type', content: 'website' },
+      { property: 'og:title', content: 'EBI Collectibles — Sealed Chinese Pokémon, verified' },
+      {
+        property: 'og:description',
+        content: 'Simplified Chinese Pokémon booster boxes, figures and blind boxes — sourced through authorised distribution and verified before it ships.',
+      },
+      { property: 'og:image', content: 'https://ebicollectibles.com/assets/ebi-logo.jpg' },
+      { property: 'og:url', content: 'https://ebicollectibles.com' },
+      { name: 'twitter:card', content: 'summary_large_image' },
     ],
     links: [
       { rel: 'stylesheet', href: appCss },
