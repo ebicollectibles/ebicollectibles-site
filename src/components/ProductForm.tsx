@@ -60,6 +60,60 @@ const disabledField: React.CSSProperties = {
 }
 const label: React.CSSProperties = { fontSize: 12.5, fontWeight: 600, marginBottom: 6, display: 'block' }
 
+// Product photos land straight from a phone camera or a screenshot with no
+// size limit but the 8MB server-side cap — a multi-MB image at 3000px+ wide
+// serves identically to one a tenth the size at every width this site ever
+// displays it (see git history: three existing product photos were doing
+// exactly this before being fixed by hand). Resizes/recompresses in the
+// browser before upload so this can't recur; never uploads something worse
+// than what was picked, and leaves small files alone entirely.
+const MAX_UPLOAD_DIMENSION = 1600
+const SKIP_RESIZE_BELOW_BYTES = 900_000
+
+async function resizeImageForUpload(file: File): Promise<File> {
+  if (file.size < SKIP_RESIZE_BELOW_BYTES) return file
+
+  try {
+    const bitmap = await createImageBitmap(file)
+    if (Math.max(bitmap.width, bitmap.height) <= MAX_UPLOAD_DIMENSION) {
+      bitmap.close()
+      return file
+    }
+
+    const scale = MAX_UPLOAD_DIMENSION / Math.max(bitmap.width, bitmap.height)
+    const canvas = document.createElement('canvas')
+    canvas.width = Math.round(bitmap.width * scale)
+    canvas.height = Math.round(bitmap.height * scale)
+    const ctx = canvas.getContext('2d')
+    if (!ctx) {
+      bitmap.close()
+      return file
+    }
+
+    // JPEG sources (the overwhelmingly common case — phone photos) never
+    // have an alpha channel, so recompressing as JPEG is always safe. PNG
+    // (and anything else) might be a deliberately transparent graphic, so
+    // re-encode as PNG instead and only use the result if it's actually
+    // smaller — resizing alone doesn't guarantee a smaller PNG, since
+    // canvas re-encoding isn't always as efficient as whatever made the
+    // original.
+    const isJpeg = file.type === 'image/jpeg' || file.type === 'image/jpg'
+    ctx.drawImage(bitmap, 0, 0, canvas.width, canvas.height)
+    bitmap.close()
+
+    const targetType = isJpeg ? 'image/jpeg' : 'image/png'
+    const blob = await new Promise<Blob | null>((resolve) => canvas.toBlob(resolve, targetType, isJpeg ? 0.87 : undefined))
+    if (!blob || blob.size >= file.size) return file
+
+    const ext = isJpeg ? (file.name.match(/\.jpe?g$/i) ? '' : '.jpg') : ''
+    return new File([blob], ext ? file.name.replace(/\.[^.]+$/, '') + ext : file.name, { type: targetType })
+  } catch {
+    // Any failure (decode error, unsupported format, etc.) just falls back
+    // to uploading the original — resizing is an optimization, not a gate.
+    return file
+  }
+}
+
 function UploadButton({
   label: buttonLabel = 'Upload',
   onUploaded,
@@ -112,8 +166,9 @@ function UploadButton({
           if (!file) return
           setBusy(true)
           try {
+            const resized = await resizeImageForUpload(file)
             const formData = new FormData()
-            formData.append('file', file)
+            formData.append('file', resized)
             const result = await uploadProductImage({ data: formData })
             onUploaded(result.url)
           } catch (err) {
