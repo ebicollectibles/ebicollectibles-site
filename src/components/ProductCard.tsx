@@ -10,10 +10,11 @@ export function ProductCard({ product, variant = 'full' }: { product: Product; v
   const comingSoon = product.comingSoon === true
   const soldOut = product.stock === 0
   const onSale = product.compareAtPrice != null && product.compareAtPrice > product.price
-  // Coming-soon items never show a badge — just a dimmed photo and muted
-  // price text, per approved design (no "2 badges", no overlay).
-  const badge = comingSoon ? null : product.preorder ? 'Pre-order' : soldOut ? 'Sold out' : onSale ? 'Sale' : null
-  const badgeBg = product.preorder ? '#3f7a63' : soldOut ? '#98a1ab' : '#b4622f'
+  // Price is only "to be announced" when none has been set yet — a
+  // coming-soon item with a real price shows it like any other product.
+  const priceKnown = product.price > 0
+  const badge = comingSoon ? 'Coming soon' : product.preorder ? 'Pre-order' : soldOut ? 'Sold out' : onSale ? 'Sale' : null
+  const badgeBg = comingSoon || soldOut ? '#98a1ab' : product.preorder ? '#3f7a63' : '#b4622f'
 
   const compact = variant === 'compact'
   const padding = compact ? 18 : 20
@@ -103,7 +104,7 @@ export function ProductCard({ product, variant = 'full' }: { product: Product; v
         {product.name}
       </h3>
       <div style={{ display: 'flex', alignItems: 'baseline', gap: 8, marginTop: 10 }}>
-        {comingSoon ? (
+        {comingSoon && !priceKnown ? (
           <span style={{ fontSize: priceFontSize - 2, fontWeight: 500, color: '#98a1ab' }}>
             Price to be announced
           </span>
@@ -114,7 +115,7 @@ export function ProductCard({ product, variant = 'full' }: { product: Product; v
                 {formatMoney(product.compareAtPrice!)}
               </span>
             )}
-            <span style={{ fontSize: priceFontSize, fontWeight: 600, color: '#131b28' }}>
+            <span style={{ fontSize: priceFontSize, fontWeight: 600, color: comingSoon ? '#98a1ab' : '#131b28' }}>
               {formatMoney(product.price)}
             </span>
           </>

@@ -122,8 +122,11 @@ function ProductDetailPage() {
   const comingSoon = product.comingSoon === true
   const soldOut = product.stock === 0
   const onSale = product.compareAtPrice != null && product.compareAtPrice > product.price
-  const badge = comingSoon ? null : product.preorder ? 'Pre-order' : soldOut ? 'Sold out' : onSale ? 'Sale' : null
-  const badgeBg = product.preorder ? '#3f7a63' : soldOut ? '#98a1ab' : '#b4622f'
+  // Price is only "to be announced" when none has been set yet — a
+  // coming-soon item with a real price shows it like any other product.
+  const priceKnown = product.price > 0
+  const badge = comingSoon ? 'Coming soon' : product.preorder ? 'Pre-order' : soldOut ? 'Sold out' : onSale ? 'Sale' : null
+  const badgeBg = comingSoon || soldOut ? '#98a1ab' : product.preorder ? '#3f7a63' : '#b4622f'
   const stockLabel = comingSoon ? 'Coming soon' : soldOut ? 'Out of stock' : product.preorder ? 'Ships on release' : `${product.stock} in stock`
   const stockColor = comingSoon || soldOut ? '#98a1ab' : '#3f7a63'
 
@@ -245,7 +248,7 @@ function ProductDetailPage() {
             {product.name}
           </h1>
           <div style={{ display: 'flex', alignItems: 'baseline', gap: 12, marginTop: 18, flexWrap: 'wrap' }}>
-            {comingSoon ? (
+            {comingSoon && !priceKnown ? (
               <span style={{ fontSize: 18, fontWeight: 500, color: '#98a1ab' }}>Price to be announced</span>
             ) : (
               <>
@@ -254,7 +257,9 @@ function ProductDetailPage() {
                     {formatMoney(product.compareAtPrice!)}
                   </span>
                 )}
-                <span style={{ fontSize: 26, fontWeight: 700, color: '#131b28' }}>{formatMoney(product.price)}</span>
+                <span style={{ fontSize: 26, fontWeight: 700, color: comingSoon ? '#98a1ab' : '#131b28' }}>
+                  {formatMoney(product.price)}
+                </span>
               </>
             )}
             <span style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 12, color: stockColor }}>{stockLabel}</span>
