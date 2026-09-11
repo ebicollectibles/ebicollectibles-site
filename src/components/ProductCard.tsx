@@ -43,8 +43,6 @@ export function ProductCard({ product, variant = 'full' }: { product: Product; v
               width: '100%',
               height: '100%',
               objectFit: 'contain',
-              filter: comingSoon ? 'grayscale(70%) brightness(1.08)' : undefined,
-              opacity: comingSoon ? 0.55 : 1,
             }}
           />
         ) : (
