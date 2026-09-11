@@ -258,7 +258,9 @@ function ProductDetailPage() {
                 </span>
               </>
             )}
-            <span style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 12, color: stockColor }}>{stockLabel}</span>
+            {!(comingSoon && !priceKnown) && (
+              <span style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 12, color: stockColor }}>{stockLabel}</span>
+            )}
           </div>
 
           <p style={{ fontSize: 14.5, lineHeight: 1.65, color: '#131b28', maxWidth: '52ch', margin: '20px 0 0' }}>
