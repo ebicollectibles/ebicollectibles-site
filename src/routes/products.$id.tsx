@@ -119,12 +119,13 @@ function ProductDetailPage() {
     )
   }
 
+  const comingSoon = product.comingSoon === true
   const soldOut = product.stock === 0
   const onSale = product.compareAtPrice != null && product.compareAtPrice > product.price
-  const badge = product.preorder ? 'Pre-order' : soldOut ? 'Sold out' : onSale ? 'Sale' : null
+  const badge = comingSoon ? null : product.preorder ? 'Pre-order' : soldOut ? 'Sold out' : onSale ? 'Sale' : null
   const badgeBg = product.preorder ? '#3f7a63' : soldOut ? '#98a1ab' : '#b4622f'
-  const stockLabel = soldOut ? 'Out of stock' : product.preorder ? 'Ships on release' : `${product.stock} in stock`
-  const stockColor = soldOut ? '#98a1ab' : '#3f7a63'
+  const stockLabel = comingSoon ? 'Coming soon' : soldOut ? 'Out of stock' : product.preorder ? 'Ships on release' : `${product.stock} in stock`
+  const stockColor = comingSoon || soldOut ? '#98a1ab' : '#3f7a63'
 
   return (
     <section style={{ maxWidth: 1240, margin: '0 auto', padding: '40px 20px 90px' }}>
@@ -145,13 +146,25 @@ function ProductDetailPage() {
                   tablet={product.imgTablet}
                   mobile={product.imgMobile}
                   alt={product.imgAlt || product.name}
-                  style={{ width: '100%', height: '100%', objectFit: 'contain' }}
+                  style={{
+                    width: '100%',
+                    height: '100%',
+                    objectFit: 'contain',
+                    filter: comingSoon ? 'grayscale(70%) brightness(1.08)' : undefined,
+                    opacity: comingSoon ? 0.55 : 1,
+                  }}
                 />
               ) : (
                 <img
                   src={selectedImage}
                   alt={product.imgAlt || product.name}
-                  style={{ width: '100%', height: '100%', objectFit: 'contain' }}
+                  style={{
+                    width: '100%',
+                    height: '100%',
+                    objectFit: 'contain',
+                    filter: comingSoon ? 'grayscale(70%) brightness(1.08)' : undefined,
+                    opacity: comingSoon ? 0.55 : 1,
+                  }}
                 />
               )
             ) : (
@@ -232,12 +245,18 @@ function ProductDetailPage() {
             {product.name}
           </h1>
           <div style={{ display: 'flex', alignItems: 'baseline', gap: 12, marginTop: 18, flexWrap: 'wrap' }}>
-            {onSale && (
-              <span style={{ fontSize: 18, color: '#98a1ab', textDecoration: 'line-through' }}>
-                {formatMoney(product.compareAtPrice!)}
-              </span>
+            {comingSoon ? (
+              <span style={{ fontSize: 18, fontWeight: 500, color: '#98a1ab' }}>Price to be announced</span>
+            ) : (
+              <>
+                {onSale && (
+                  <span style={{ fontSize: 18, color: '#98a1ab', textDecoration: 'line-through' }}>
+                    {formatMoney(product.compareAtPrice!)}
+                  </span>
+                )}
+                <span style={{ fontSize: 26, fontWeight: 700, color: '#131b28' }}>{formatMoney(product.price)}</span>
+              </>
             )}
-            <span style={{ fontSize: 26, fontWeight: 700, color: '#131b28' }}>{formatMoney(product.price)}</span>
             <span style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 12, color: stockColor }}>{stockLabel}</span>
           </div>
 

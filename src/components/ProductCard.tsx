@@ -7,9 +7,12 @@ import { AddToCartControl } from '~/components/AddToCartControl'
 const STRIPES = 'repeating-linear-gradient(45deg, #eef0f2 0px, #eef0f2 7px, #f6f7f8 7px, #f6f7f8 14px)'
 
 export function ProductCard({ product, variant = 'full' }: { product: Product; variant?: 'compact' | 'full' }) {
+  const comingSoon = product.comingSoon === true
   const soldOut = product.stock === 0
   const onSale = product.compareAtPrice != null && product.compareAtPrice > product.price
-  const badge = product.preorder ? 'Pre-order' : soldOut ? 'Sold out' : onSale ? 'Sale' : null
+  // Coming-soon items never show a badge — just a dimmed photo and muted
+  // price text, per approved design (no "2 badges", no overlay).
+  const badge = comingSoon ? null : product.preorder ? 'Pre-order' : soldOut ? 'Sold out' : onSale ? 'Sale' : null
   const badgeBg = product.preorder ? '#3f7a63' : soldOut ? '#98a1ab' : '#b4622f'
 
   const compact = variant === 'compact'
@@ -35,7 +38,13 @@ export function ProductCard({ product, variant = 'full' }: { product: Product; v
             mobile={product.imgMobile}
             alt={product.imgAlt || product.name}
             loading="lazy"
-            style={{ width: '100%', height: '100%', objectFit: 'contain' }}
+            style={{
+              width: '100%',
+              height: '100%',
+              objectFit: 'contain',
+              filter: comingSoon ? 'grayscale(70%) brightness(1.08)' : undefined,
+              opacity: comingSoon ? 0.55 : 1,
+            }}
           />
         ) : (
           <div style={{ width: '100%', height: '100%', backgroundImage: STRIPES }} />
@@ -94,14 +103,22 @@ export function ProductCard({ product, variant = 'full' }: { product: Product; v
         {product.name}
       </h3>
       <div style={{ display: 'flex', alignItems: 'baseline', gap: 8, marginTop: 10 }}>
-        {onSale && (
-          <span style={{ fontSize: priceFontSize - 3, color: '#98a1ab', textDecoration: 'line-through' }}>
-            {formatMoney(product.compareAtPrice!)}
+        {comingSoon ? (
+          <span style={{ fontSize: priceFontSize - 2, fontWeight: 500, color: '#98a1ab' }}>
+            Price to be announced
           </span>
+        ) : (
+          <>
+            {onSale && (
+              <span style={{ fontSize: priceFontSize - 3, color: '#98a1ab', textDecoration: 'line-through' }}>
+                {formatMoney(product.compareAtPrice!)}
+              </span>
+            )}
+            <span style={{ fontSize: priceFontSize, fontWeight: 600, color: '#131b28' }}>
+              {formatMoney(product.price)}
+            </span>
+          </>
         )}
-        <span style={{ fontSize: priceFontSize, fontWeight: 600, color: '#131b28' }}>
-          {formatMoney(product.price)}
-        </span>
       </div>
       </Link>
       <AddToCartControl product={product} padding={buttonPadding} marginTop={buttonMarginTop} />

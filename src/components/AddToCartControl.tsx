@@ -66,13 +66,16 @@ export function AddToCartControl({
   }
 
   const soldOut = product.stock === 0
-  const btnLabel = soldOut ? 'Sold out' : product.preorder ? 'Pre-order' : 'Add to cart'
+  const comingSoon = product.comingSoon === true
+  const btnLabel = comingSoon ? 'Coming soon' : soldOut ? 'Sold out' : product.preorder ? 'Pre-order' : 'Add to cart'
   const atMaxStock = qtyInCart >= product.stock
 
   // Once added, the card settles into a persistent stepper instead of
   // reverting to a plain "Add to cart" button — the brief checkmark still
-  // plays first (justAdded), then this takes over.
-  const showStepper = qtyInCart > 0 && !justAdded
+  // plays first (justAdded), then this takes over. A coming-soon item can
+  // never have been added in the first place, so it always shows the plain
+  // disabled button — never the stepper — regardless of qtyInCart.
+  const showStepper = !comingSoon && qtyInCart > 0 && !justAdded
 
   if (showStepper) {
     return (
@@ -144,10 +147,12 @@ export function AddToCartControl({
     )
   }
 
+  const disabledState = comingSoon || soldOut
+
   return (
     <button
       onClick={handleAdd}
-      disabled={soldOut}
+      disabled={disabledState}
       className="ebi-atc-btn"
       style={{
         marginTop,
@@ -158,14 +163,14 @@ export function AddToCartControl({
         justifyContent: 'center',
         gap: 6,
         border: '1px solid #131b28',
-        background: soldOut ? '#ffffff' : '#131b28',
-        color: soldOut ? '#98a1ab' : '#ffffff',
+        background: disabledState ? '#ffffff' : '#131b28',
+        color: disabledState ? '#98a1ab' : '#ffffff',
         borderRadius: 2,
         padding,
         fontSize,
         fontWeight: 600,
-        cursor: soldOut ? 'not-allowed' : 'pointer',
-        opacity: soldOut ? 0.45 : 1,
+        cursor: disabledState ? 'not-allowed' : 'pointer',
+        opacity: disabledState ? 0.45 : 1,
       }}
     >
       {justAdded ? (

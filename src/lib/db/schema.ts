@@ -22,6 +22,12 @@ export const products = pgTable('products', {
   imgAlt: text('img_alt'),
   images: text('images').array().notNull().default([]),
   preorder: boolean('preorder').notNull().default(false),
+  // Listed and visible in the shop, but not yet purchasable — no price
+  // shown, cart/checkout refuses it server-side too (see placeOrder), not
+  // just a disabled button client-side. Distinct from `preorder` (which IS
+  // purchasable now, for future shipment) and from `published` (which hides
+  // it from the shop entirely).
+  comingSoon: boolean('coming_soon').notNull().default(false),
   // Lets a product be linked to Square and fully set up while still hidden
   // from the public shop, e.g. staging a listing before its street date.
   published: boolean('published').notNull().default(true),

@@ -28,6 +28,7 @@ export interface Product {
   imgAlt?: string
   images?: string[]
   preorder?: boolean
+  comingSoon?: boolean
   placeholder?: string
 }
 

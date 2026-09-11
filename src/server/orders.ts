@@ -70,6 +70,16 @@ export const placeOrder = createServerFn({ method: 'POST' })
       .where(inArray(productsTable.id, data.lines.map((l) => l.productId)))
     const productById = new Map(productRows.map((p) => [p.id, p]))
 
+    // Defense-in-depth beyond the disabled add-to-cart button — a coming-soon
+    // product is listed but never purchasable, so reject it here too even if
+    // a stale cart or a direct API call tries to check one out.
+    for (const line of data.lines) {
+      const product = productById.get(line.productId)
+      if (product?.comingSoon) {
+        throw new Error(`"${product.name}" isn't available to order yet — refresh your cart and try again.`)
+      }
+    }
+
     // Products linked to Square (squareVariationId set) are stock-tracked in
     // Square, not locally — check live there before charging, since another
     // app selling against the same Square account may have moved stock

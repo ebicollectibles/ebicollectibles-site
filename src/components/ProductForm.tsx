@@ -20,6 +20,7 @@ export interface ProductFormValues {
   imgAlt: string
   images: string[]
   preorder: boolean
+  comingSoon: boolean
   placeholder: string
   published: boolean
 }
@@ -40,6 +41,7 @@ const emptyValues: ProductFormValues = {
   imgAlt: '',
   images: [],
   preorder: false,
+  comingSoon: false,
   placeholder: '',
   published: true,
 }
@@ -849,9 +851,13 @@ export function ProductForm({
           placeholder="product shot / sealed box front"
         />
       </div>
-      <label style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: 13, marginBottom: 20 }}>
+      <label style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: 13, marginBottom: 12 }}>
         <input type="checkbox" checked={values.preorder} onChange={(e) => set('preorder', e.target.checked)} />
         Pre-order item
+      </label>
+      <label style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: 13, marginBottom: 20 }}>
+        <input type="checkbox" checked={values.comingSoon} onChange={(e) => set('comingSoon', e.target.checked)} />
+        Coming soon — listed but not orderable yet (no price shown, add-to-cart disabled)
       </label>
 
       {error && <p style={{ fontSize: 12.5, color: '#b4622f', marginBottom: 12 }}>{error}</p>}

@@ -63,6 +63,7 @@ function EditProductPage() {
           imgAlt: product.imgAlt ?? '',
           images: product.images ?? [],
           preorder: product.preorder,
+          comingSoon: product.comingSoon,
           placeholder: product.placeholder ?? '',
           published: product.published,
         }}
