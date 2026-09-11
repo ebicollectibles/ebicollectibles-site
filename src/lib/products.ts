@@ -27,6 +27,7 @@ export interface Product {
   imgMobile?: string
   imgAlt?: string
   images?: string[]
+  description?: string
   preorder?: boolean
   comingSoon?: boolean
   placeholder?: string

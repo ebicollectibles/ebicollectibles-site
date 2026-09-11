@@ -34,6 +34,7 @@ function NewProductPage() {
               imgMobile: values.imgMobile || undefined,
               imgAlt: values.imgAlt.trim() || undefined,
               images: values.images.map((u) => u.trim()).filter(Boolean),
+              description: values.description.trim() || undefined,
               placeholder: values.placeholder || undefined,
             },
           })

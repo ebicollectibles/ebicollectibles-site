@@ -19,6 +19,7 @@ export interface ProductFormValues {
   imgMobile: string
   imgAlt: string
   images: string[]
+  description: string
   preorder: boolean
   comingSoon: boolean
   placeholder: string
@@ -40,6 +41,7 @@ const emptyValues: ProductFormValues = {
   imgMobile: '',
   imgAlt: '',
   images: [],
+  description: '',
   preorder: false,
   comingSoon: false,
   placeholder: '',
@@ -849,6 +851,19 @@ export function ProductForm({
           value={values.placeholder}
           onChange={(e) => set('placeholder', e.target.value)}
           placeholder="product shot / sealed box front"
+        />
+      </div>
+      <div style={{ marginBottom: 16 }}>
+        <label htmlFor="pf-description" style={label}>
+          Description (shown on the product page — leave blank to use the default sourcing/QC paragraph)
+        </label>
+        <textarea
+          id="pf-description"
+          className="ebi-field"
+          style={{ ...field, minHeight: 100, resize: 'vertical', fontFamily: 'inherit' }}
+          value={values.description}
+          onChange={(e) => set('description', e.target.value)}
+          placeholder="What's in the box, set details, pull rates, condition notes…"
         />
       </div>
       <label style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: 13, marginBottom: 12 }}>

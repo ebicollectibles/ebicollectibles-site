@@ -21,6 +21,10 @@ export const products = pgTable('products', {
   imgMobile: text('img_mobile'),
   imgAlt: text('img_alt'),
   images: text('images').array().notNull().default([]),
+  // Per-product description shown on its detail page. Falls back to a
+  // generic trust-building paragraph on the frontend when empty — not
+  // every product needs custom copy written before it can go live.
+  description: text('description'),
   preorder: boolean('preorder').notNull().default(false),
   // Listed and visible in the shop, but not yet purchasable — no price
   // shown, cart/checkout refuses it server-side too (see placeOrder), not
