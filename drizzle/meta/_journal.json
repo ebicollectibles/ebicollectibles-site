@@ -183,6 +183,13 @@
       "when": 1789117453053,
       "tag": "0025_clammy_dexter_bennett",
       "breakpoints": true
+    },
+    {
+      "idx": 26,
+      "version": "7",
+      "when": 1789196032314,
+      "tag": "0026_freezing_silverclaw",
+      "breakpoints": true
     }
   ]
 }

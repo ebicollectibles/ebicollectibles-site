@@ -1,0 +1,1 @@
+ALTER TABLE "subscribers" ADD COLUMN "first_name" text;
