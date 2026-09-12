@@ -79,6 +79,10 @@ export const listProductImages = createServerFn({ method: 'GET' }).handler(async
   const base = env.PRODUCT_IMAGES_PUBLIC_URL.replace(/\/$/, '')
   const { objects } = await env.PRODUCT_IMAGES.list({ limit: 200, include: ['customMetadata'] })
   return objects
+    // The R2 dashboard creates a zero-byte placeholder object ending in "/"
+    // to represent a folder itself — not a real image, so it never belongs
+    // in the picker even though list() returns it alongside everything else.
+    .filter((obj) => !obj.key.endsWith('/'))
     .sort((a, b) => new Date(b.uploaded).getTime() - new Date(a.uploaded).getTime())
     .map((obj) => {
       const encodedName = obj.customMetadata?.originalName
