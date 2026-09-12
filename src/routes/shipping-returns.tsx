@@ -33,11 +33,8 @@ function ShippingReturnsPage() {
         <div>
           <h2 style={{ fontSize: 18, fontWeight: 700, margin: '0 0 10px' }}>Returns</h2>
           <p style={{ fontSize: 14.5, lineHeight: 1.65, color: '#131b28', margin: 0, maxWidth: '65ch' }}>
-            Sealed product can't be verified as untouched once it's left our hands, so we don't accept returns for
-            buyer's remorse or a change of mind.
-          </p>
-          <p style={{ fontSize: 14.5, lineHeight: 1.65, color: '#131b28', margin: '16px 0 0', maxWidth: '65ch' }}>
-            We will make it right when the issue is ours:
+            Sealed product can't be verified as untouched once it's left our hands, so we don't accept returns
+            unless:
           </p>
           <ul style={{ fontSize: 14.5, lineHeight: 1.65, color: '#131b28', margin: '10px 0 0', paddingLeft: 22, maxWidth: '65ch' }}>
             <li>The item that arrives isn't what you ordered</li>
