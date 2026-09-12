@@ -45,7 +45,6 @@ export const Route = createFileRoute('/products/$id')({
             name: loaderData.name,
             ...(image ? { image: [image] } : {}),
             description,
-            sku: loaderData.code,
             offers: {
               '@type': 'Offer',
               url,
@@ -238,7 +237,7 @@ function ProductDetailPage() {
 
         <div>
           <div style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 11, letterSpacing: '0.12em', color: '#131b28' }}>
-            {product.code} · {product.subcategory}
+            {product.subcategory}
           </div>
           <h1 style={{ fontSize: 32, letterSpacing: '-0.02em', fontWeight: 700, lineHeight: 1.15, margin: '10px 0 0', textWrap: 'pretty' }}>
             {product.name}

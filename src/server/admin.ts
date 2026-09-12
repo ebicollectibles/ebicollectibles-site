@@ -33,7 +33,6 @@ import { upsertSubscriber } from './subscribers'
 const productBaseSchema = z.object({
   id: z.string().min(1),
   name: z.string().min(1),
-  code: z.string().min(1),
   category: z.enum(PRODUCT_CATEGORIES),
   subcategory: z.enum(ALL_SUBCATEGORIES as [string, ...string[]]),
   price: z.number().nonnegative(),

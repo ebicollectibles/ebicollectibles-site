@@ -15,7 +15,6 @@ export const ALL_SUBCATEGORIES: ProductSubcategory[] = Object.values(SUBCATEGORI
 export interface Product {
   id: string
   name: string
-  code: string
   category: ProductCategory
   subcategory: ProductSubcategory
   price: number

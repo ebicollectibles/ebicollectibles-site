@@ -30,7 +30,6 @@ function toProduct(row: typeof productsTable.$inferSelect): Product {
   return {
     id: row.id,
     name: row.name,
-    code: row.code,
     category: row.category as Product['category'],
     subcategory: row.subcategory as Product['subcategory'],
     price: row.price,

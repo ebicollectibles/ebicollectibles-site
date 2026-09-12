@@ -7,7 +7,6 @@ import type { SquareCatalogOption } from '~/server/square'
 export interface ProductFormValues {
   id: string
   name: string
-  code: string
   category: ProductCategory
   subcategory: ProductSubcategory
   price: number
@@ -29,7 +28,6 @@ export interface ProductFormValues {
 const emptyValues: ProductFormValues = {
   id: '',
   name: '',
-  code: '',
   category: 'Chinese Pokémon Products',
   subcategory: 'Gem Series',
   price: 0,
@@ -529,35 +527,27 @@ export function ProductForm({
         </label>
         <input id="pf-name" className="ebi-field" style={field} value={values.name} onChange={(e) => set('name', e.target.value)} required />
       </div>
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12, marginBottom: 16 }}>
-        <div>
-          <label htmlFor="pf-code" style={label}>
-            Code
-          </label>
-          <input id="pf-code" className="ebi-field" style={field} value={values.code} onChange={(e) => set('code', e.target.value)} required />
-        </div>
-        <div>
-          <label htmlFor="pf-category" style={label}>
-            Category
-          </label>
-          <select
-            id="pf-category"
-            className="ebi-field"
-            style={field}
-            value={values.category}
-            onChange={(e) => {
-              const category = e.target.value as ProductCategory
-              set('category', category)
-              set('subcategory', SUBCATEGORIES_BY_CATEGORY[category][0])
-            }}
-          >
-            {PRODUCT_CATEGORIES.map((c) => (
-              <option key={c} value={c}>
-                {c}
-              </option>
-            ))}
-          </select>
-        </div>
+      <div style={{ marginBottom: 16 }}>
+        <label htmlFor="pf-category" style={label}>
+          Category
+        </label>
+        <select
+          id="pf-category"
+          className="ebi-field"
+          style={field}
+          value={values.category}
+          onChange={(e) => {
+            const category = e.target.value as ProductCategory
+            set('category', category)
+            set('subcategory', SUBCATEGORIES_BY_CATEGORY[category][0])
+          }}
+        >
+          {PRODUCT_CATEGORIES.map((c) => (
+            <option key={c} value={c}>
+              {c}
+            </option>
+          ))}
+        </select>
       </div>
       <div style={{ marginBottom: 16 }}>
         <label htmlFor="pf-subcategory" style={label}>

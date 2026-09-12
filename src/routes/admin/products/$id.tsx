@@ -50,7 +50,6 @@ function EditProductPage() {
         initial={{
           id: product.id,
           name: product.name,
-          code: product.code,
           category: product.category as any,
           subcategory: product.subcategory as any,
           price: product.price,

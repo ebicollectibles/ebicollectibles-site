@@ -13,7 +13,6 @@ const SEED_PRODUCTS = [
   {
     id: 'gem6',
     name: 'Gem Pack Vol. 6 — Pokémon Booster Box',
-    code: 'CBB6C',
     category: 'Chinese Pokémon Products',
     subcategory: 'Gem Series',
     price: 34.95,
@@ -23,7 +22,6 @@ const SEED_PRODUCTS = [
   {
     id: 'gem5',
     name: 'Gem Pack Vol. 5 — Pokémon Booster Box',
-    code: 'CBB5C',
     category: 'Chinese Pokémon Products',
     subcategory: 'Gem Series',
     price: 32.95,
@@ -33,7 +31,6 @@ const SEED_PRODUCTS = [
   {
     id: 'gem4',
     name: 'Gem Pack Vol. 4 — Pokémon Booster Box',
-    code: 'CBB4C',
     category: 'Chinese Pokémon Products',
     subcategory: 'Gem Series',
     price: 29.95,
