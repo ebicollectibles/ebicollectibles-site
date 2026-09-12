@@ -90,6 +90,11 @@ export const listProductImages = createServerFn({ method: 'GET' }).handler(async
           name = encodedName
         }
       }
-      return { key: obj.key, url: `${base}/${obj.key}`, name, size: obj.size }
+      // Encode each path segment separately (not the whole key at once,
+      // which would also escape the "/" that separates real R2 folders) —
+      // needed once keys include folder prefixes with spaces or non-ASCII
+      // characters, which otherwise break the resulting <img>/CSS url().
+      const encodedKey = obj.key.split('/').map(encodeURIComponent).join('/')
+      return { key: obj.key, url: `${base}/${encodedKey}`, name, size: obj.size }
     })
 })
