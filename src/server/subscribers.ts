@@ -18,16 +18,20 @@ export async function upsertSubscriber(
   db: { insert: (table: any) => any },
   email: string,
   source: string,
+  firstName?: string | null,
 ): Promise<void> {
   const { subscribers, subscriberEvents } = await import('~/lib/db/schema')
   const { sql } = await import('drizzle-orm')
 
   const [row] = await db
     .insert(subscribers)
-    .values({ email, source })
+    .values({ email, source, firstName: firstName || null })
     .onConflictDoUpdate({
       target: subscribers.email,
-      set: { source, subscribedAt: sql`now()`, unsubscribedAt: null },
+      // A resubscribe with no name (e.g. the homepage form, which never asks
+      // for one) keeps whatever name is already on file instead of blanking
+      // it out — only a resubscribe that actually supplies a name overwrites.
+      set: { source, subscribedAt: sql`now()`, unsubscribedAt: null, firstName: sql`coalesce(excluded.first_name, ${subscribers.firstName})` },
       setWhere: sql`${subscribers.unsubscribedAt} is not null`,
     })
     .returning({ id: subscribers.id })

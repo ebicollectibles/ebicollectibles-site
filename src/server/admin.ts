@@ -382,6 +382,7 @@ export const adminListSubscribers = createServerFn({ method: 'GET' }).handler(as
     .select({
       id: subscribers.id,
       email: subscribers.email,
+      firstName: subscribers.firstName,
       source: subscribers.source,
       subscribedAt: subscribers.subscribedAt,
       unsubscribedAt: subscribers.unsubscribedAt,

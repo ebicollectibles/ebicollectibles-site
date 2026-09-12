@@ -244,7 +244,7 @@ export const placeOrder = createServerFn({ method: 'POST' })
       await tx.insert(orderStatusEvents).values({ orderId: order.id, status: order.fulfillmentStatus })
 
       if (data.emailOptIn && data.contact.email) {
-        await upsertSubscriber(tx, data.contact.email.trim().toLowerCase(), 'checkout')
+        await upsertSubscriber(tx, data.contact.email.trim().toLowerCase(), 'checkout', data.contact.firstName)
       }
 
       return {

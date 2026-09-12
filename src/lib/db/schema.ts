@@ -296,6 +296,9 @@ export const orderCounters = pgTable('order_counters', {
 export const subscribers = pgTable('subscribers', {
   id: uuid('id').primaryKey().defaultRandom(),
   email: text('email').notNull().unique(),
+  // Only ever populated from checkout (the homepage form doesn't ask for
+  // one) — lets emails greet someone by name instead of a blank.
+  firstName: text('first_name'),
   source: text('source').notNull(), // source of the most recent (re)subscribe: 'homepage' | 'checkout' | 'admin'
   subscribedAt: timestamp('subscribed_at', { withTimezone: true }).notNull().defaultNow(),
   unsubscribedAt: timestamp('unsubscribed_at', { withTimezone: true }),

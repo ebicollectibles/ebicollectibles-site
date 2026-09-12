@@ -112,6 +112,7 @@ function AdminSubscribersPage() {
           <thead>
             <tr>
               <th style={th}>Email</th>
+              <th style={th}>Name</th>
               <th style={th}>Status</th>
               <th style={th}>Source</th>
               <th style={th}>Subscribed</th>
@@ -125,6 +126,7 @@ function AdminSubscribersPage() {
               return (
                 <tr key={s.id}>
                   <td style={td}>{s.email}</td>
+                  <td style={{ ...td, color: s.firstName ? '#131b28' : '#98a1ab' }}>{s.firstName || '—'}</td>
                   <td style={td}>
                     <span
                       style={{
