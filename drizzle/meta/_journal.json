@@ -197,6 +197,13 @@
       "when": 1789198091264,
       "tag": "0027_nosy_wolfsbane",
       "breakpoints": true
+    },
+    {
+      "idx": 28,
+      "version": "7",
+      "when": 1789198754540,
+      "tag": "0028_cloudy_rockslide",
+      "breakpoints": true
     }
   ]
 }

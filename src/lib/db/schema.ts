@@ -3,11 +3,6 @@ import { boolean, integer, numeric, pgTable, text, timestamp, uuid } from 'drizz
 export const products = pgTable('products', {
   id: text('id').primaryKey(),
   name: text('name').notNull(),
-  // Unused going forward (removed from the app in favor of the free-form
-  // description field) — kept nullable here only until a later cleanup
-  // migration drops it outright, so this and the app code deploy can never
-  // race each other.
-  code: text('code'),
   // 'Chinese Pokémon Products' | 'Acrylic Cases'
   category: text('category').notNull(),
   // Gem Series | CSV Series | Blind Box (under Chinese Pokémon Products)
@@ -246,8 +241,6 @@ export const orderItems = pgTable('order_items', {
     .references(() => orders.id, { onDelete: 'cascade' }),
   productId: text('product_id').notNull(),
   productName: text('product_name').notNull(),
-  // Unused going forward, same reasoning as products.code above.
-  productCode: text('product_code'),
   // Snapshot of the product's primary photo at order time — like
   // productName/unitPrice, kept stable even if the product's image later
   // changes or the product itself is deleted.
