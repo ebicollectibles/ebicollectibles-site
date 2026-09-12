@@ -1,4 +1,5 @@
 import { createServerFn } from '@tanstack/react-start'
+import { z } from 'zod'
 import { assertAdmin } from './admin-auth'
 
 // Minimal shape of the R2 binding we actually use — avoids pulling in
@@ -9,8 +10,12 @@ interface R2Bucket {
     value: ArrayBuffer,
     options?: { httpMetadata?: { contentType?: string }; customMetadata?: Record<string, string> },
   ): Promise<unknown>
-  list(options?: { limit?: number; include?: Array<'customMetadata'> }): Promise<{
+  list(options?: { prefix?: string; delimiter?: string; limit?: number; include?: Array<'customMetadata'> }): Promise<{
     objects: Array<{ key: string; uploaded: Date; size: number; customMetadata?: Record<string, string> }>
+    // Only present when `delimiter` is passed — the "folders" one level
+    // below `prefix` (each ending in the delimiter), the standard S3-style
+    // way a flat key store represents directory structure.
+    delimitedPrefixes?: string[]
   }>
 }
 
@@ -65,40 +70,61 @@ export const uploadProductImage = createServerFn({ method: 'POST' })
     return { url: `${env.PRODUCT_IMAGES_PUBLIC_URL.replace(/\/$/, '')}/${key}` }
   })
 
-export const listProductImages = createServerFn({ method: 'GET' }).handler(async () => {
-  await assertAdmin()
+export const listProductImages = createServerFn({ method: 'GET' })
+  .validator(z.object({ prefix: z.string().optional() }).optional())
+  .handler(async ({ data }) => {
+    await assertAdmin()
 
-  const env = getCloudflareEnv()
-  if (!env.PRODUCT_IMAGES) {
-    throw new Error('Image storage is not set up yet — create the R2 bucket and add its binding (see README-DEPLOY.md).')
-  }
-  if (!env.PRODUCT_IMAGES_PUBLIC_URL) {
-    throw new Error('PRODUCT_IMAGES_PUBLIC_URL is not set — see README-DEPLOY.md.')
-  }
+    const env = getCloudflareEnv()
+    if (!env.PRODUCT_IMAGES) {
+      throw new Error('Image storage is not set up yet — create the R2 bucket and add its binding (see README-DEPLOY.md).')
+    }
+    if (!env.PRODUCT_IMAGES_PUBLIC_URL) {
+      throw new Error('PRODUCT_IMAGES_PUBLIC_URL is not set — see README-DEPLOY.md.')
+    }
 
-  const base = env.PRODUCT_IMAGES_PUBLIC_URL.replace(/\/$/, '')
-  const { objects } = await env.PRODUCT_IMAGES.list({ limit: 200, include: ['customMetadata'] })
-  return objects
-    // The R2 dashboard creates a zero-byte placeholder object ending in "/"
-    // to represent a folder itself — not a real image, so it never belongs
-    // in the picker even though list() returns it alongside everything else.
-    .filter((obj) => !obj.key.endsWith('/'))
-    .sort((a, b) => new Date(b.uploaded).getTime() - new Date(a.uploaded).getTime())
-    .map((obj) => {
-      const encodedName = obj.customMetadata?.originalName
-      let name = obj.key
-      if (encodedName) {
-        try {
-          name = decodeURIComponent(encodedName)
-        } catch {
-          name = encodedName
-        }
-      }
-      // Encode each path segment separately (not the whole key at once,
-      // which would also escape the "/" that separates real R2 folders) —
-      // needed once keys include folder prefixes with spaces or non-ASCII
-      // characters, which otherwise break the resulting <img>/CSS url().
-      const encodedKey = obj.key.split('/').map(encodeURIComponent).join('/')
-      return { key: obj.key, url: `${base}/${encodedKey}`, name, size: obj.size }
+    const prefix = data?.prefix ?? ''
+    const base = env.PRODUCT_IMAGES_PUBLIC_URL.replace(/\/$/, '')
+    // `delimiter: '/'` is what turns a flat key listing into one browsable
+    // level at a time — objects come back are just this folder's direct
+    // files, and delimitedPrefixes are the subfolders directly inside it
+    // (each still ending in "/"), rather than every key under `prefix`.
+    const { objects, delimitedPrefixes } = await env.PRODUCT_IMAGES.list({
+      prefix,
+      delimiter: '/',
+      limit: 200,
+      include: ['customMetadata'],
     })
-})
+
+    const folders = (delimitedPrefixes ?? []).map((folderPrefix) => ({
+      prefix: folderPrefix,
+      name: folderPrefix.slice(prefix.length, -1),
+    }))
+
+    const files = objects
+      // The R2 dashboard creates a zero-byte placeholder object ending in
+      // "/" to represent the folder itself — not a real image, so it never
+      // belongs in the picker even though list() returns it too.
+      .filter((obj) => !obj.key.endsWith('/'))
+      .sort((a, b) => new Date(b.uploaded).getTime() - new Date(a.uploaded).getTime())
+      .map((obj) => {
+        const encodedName = obj.customMetadata?.originalName
+        let name = obj.key.slice(prefix.length)
+        if (encodedName) {
+          try {
+            name = decodeURIComponent(encodedName)
+          } catch {
+            name = encodedName
+          }
+        }
+        // Encode each path segment separately (not the whole key at once,
+        // which would also escape the "/" that separates real R2 folders)
+        // — needed once keys include folder prefixes with spaces or
+        // non-ASCII characters, which otherwise break the resulting
+        // <img>/CSS url().
+        const encodedKey = obj.key.split('/').map(encodeURIComponent).join('/')
+        return { key: obj.key, url: `${base}/${encodedKey}`, name, size: obj.size }
+      })
+
+    return { folders, files }
+  })

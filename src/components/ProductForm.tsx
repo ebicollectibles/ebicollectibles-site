@@ -213,17 +213,35 @@ function formatFileSize(bytes: number): string {
 }
 
 function ImagePicker({ onSelect, onClose }: { onSelect: (url: string) => void; onClose: () => void }) {
-  const [images, setImages] = React.useState<Array<{ key: string; url: string; name: string; size: number }> | null>(null)
+  const [prefix, setPrefix] = React.useState('')
+  const [listing, setListing] = React.useState<{
+    folders: Array<{ prefix: string; name: string }>
+    files: Array<{ key: string; url: string; name: string; size: number }>
+  } | null>(null)
   const [error, setError] = React.useState<string | null>(null)
   const [query, setQuery] = React.useState('')
 
   React.useEffect(() => {
-    listProductImages()
-      .then(setImages)
+    setListing(null)
+    setError(null)
+    listProductImages({ data: { prefix } })
+      .then(setListing)
       .catch((err) => setError(err instanceof Error ? err.message : 'Failed to load images.'))
-  }, [])
+  }, [prefix])
 
-  const filtered = images?.filter((img) => img.name.toLowerCase().includes(query.trim().toLowerCase()))
+  // Breadcrumb segments for the current folder, e.g. "gem series/vol 6/" ->
+  // [{ label: 'gem series', prefix: 'gem series/' }, { label: 'vol 6', prefix: 'gem series/vol 6/' }]
+  const crumbs: Array<{ label: string; prefix: string }> = []
+  if (prefix) {
+    let running = ''
+    for (const segment of prefix.split('/').filter(Boolean)) {
+      running += `${segment}/`
+      crumbs.push({ label: segment, prefix: running })
+    }
+  }
+
+  const filteredFiles = listing?.files.filter((img) => img.name.toLowerCase().includes(query.trim().toLowerCase()))
+  const isEmpty = listing && listing.folders.length === 0 && listing.files.length === 0
 
   return (
     <div
@@ -262,25 +280,138 @@ function ImagePicker({ onSelect, onClose }: { onSelect: (url: string) => void; o
             ×
           </button>
         </div>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 14, flexWrap: 'wrap' }}>
+          {prefix && (
+            <button
+              type="button"
+              onClick={() => {
+                const parent = crumbs.length > 1 ? crumbs[crumbs.length - 2].prefix : ''
+                setPrefix(parent)
+                setQuery('')
+              }}
+              aria-label="Back one folder"
+              style={{
+                background: 'none',
+                border: '1px solid #cfd4da',
+                borderRadius: 2,
+                padding: '3px 8px',
+                fontSize: 12,
+                color: '#131b28',
+                cursor: 'pointer',
+                marginRight: 4,
+              }}
+            >
+              ‹ Back
+            </button>
+          )}
+          <button
+            type="button"
+            onClick={() => {
+              setPrefix('')
+              setQuery('')
+            }}
+            style={{
+              background: 'none',
+              border: 0,
+              padding: 0,
+              fontSize: 12.5,
+              fontWeight: prefix ? 500 : 700,
+              color: prefix ? '#5a6875' : '#131b28',
+              cursor: 'pointer',
+            }}
+          >
+            Home
+          </button>
+          {crumbs.map((crumb, i) => (
+            <React.Fragment key={crumb.prefix}>
+              <span style={{ fontSize: 12.5, color: '#cfd4da' }}>/</span>
+              <button
+                type="button"
+                onClick={() => {
+                  setPrefix(crumb.prefix)
+                  setQuery('')
+                }}
+                style={{
+                  background: 'none',
+                  border: 0,
+                  padding: 0,
+                  fontSize: 12.5,
+                  fontWeight: i === crumbs.length - 1 ? 700 : 500,
+                  color: i === crumbs.length - 1 ? '#131b28' : '#5a6875',
+                  cursor: 'pointer',
+                }}
+              >
+                {crumb.label}
+              </button>
+            </React.Fragment>
+          ))}
+        </div>
         {error && <p style={{ fontSize: 12.5, color: '#b4622f' }}>{error}</p>}
-        {!images && !error && <p style={{ fontSize: 13, color: '#98a1ab' }}>Loading…</p>}
-        {images && images.length === 0 && <p style={{ fontSize: 13, color: '#98a1ab' }}>No uploaded images yet — use Upload instead.</p>}
-        {images && images.length > 0 && (
+        {!listing && !error && <p style={{ fontSize: 13, color: '#98a1ab' }}>Loading…</p>}
+        {isEmpty && <p style={{ fontSize: 13, color: '#98a1ab' }}>Nothing in this folder yet.</p>}
+        {listing && listing.files.length > 0 && (
           <input
-            aria-label="Search uploaded images by file name"
+            aria-label="Search this folder's images by file name"
             className="ebi-field"
             style={{ ...field, marginBottom: 14 }}
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            placeholder="Search by file name…"
+            placeholder="Search this folder by file name…"
             autoFocus
           />
         )}
-        {filtered && filtered.length === 0 && images && images.length > 0 && (
+        {filteredFiles && filteredFiles.length === 0 && listing && listing.files.length > 0 && (
           <p style={{ fontSize: 13, color: '#98a1ab' }}>No file names match "{query}".</p>
         )}
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(120px, 1fr))', gap: 12 }}>
-          {filtered?.map((img) => (
+          {listing?.folders.map((folder) => (
+            <button
+              key={folder.prefix}
+              type="button"
+              onClick={() => {
+                setPrefix(folder.prefix)
+                setQuery('')
+              }}
+              aria-label={`Open folder ${folder.name}`}
+              title={folder.name}
+              style={{
+                padding: 0,
+                background: 'none',
+                border: 0,
+                cursor: 'pointer',
+                textAlign: 'left',
+              }}
+            >
+              <div
+                style={{
+                  aspectRatio: '1 / 1',
+                  background: '#f6f7f8',
+                  border: '1px solid #e3e6ea',
+                  borderRadius: 2,
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  fontSize: 34,
+                }}
+              >
+                📁
+              </div>
+              <div
+                style={{
+                  marginTop: 5,
+                  fontSize: 11,
+                  fontWeight: 600,
+                  color: '#131b28',
+                  overflow: 'hidden',
+                  textOverflow: 'ellipsis',
+                  whiteSpace: 'nowrap',
+                }}
+              >
+                {folder.name}
+              </div>
+            </button>
+          ))}
+          {filteredFiles?.map((img) => (
             <button
               key={img.key}
               type="button"
