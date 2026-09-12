@@ -24,9 +24,9 @@ function ShippingReturnsPage() {
         <div>
           <h2 style={{ fontSize: 18, fontWeight: 700, margin: '0 0 10px' }}>Shipping</h2>
           <p style={{ fontSize: 14.5, lineHeight: 1.65, color: '#131b28', margin: 0, maxWidth: '65ch' }}>
-            All orders ship flat-rate ($10.00). Carrier is selected by us for the safest, fastest route to your
-            address — we don't offer carrier choice at checkout. Every order ships with tracking, emailed the moment
-            it goes out.
+            We currently ship within the United States only. All orders ship flat-rate ($10.00). Carrier is
+            selected by us for the safest, fastest route to your address — we don't offer carrier choice at
+            checkout. Every order ships with tracking, emailed the moment it goes out.
           </p>
         </div>
 
