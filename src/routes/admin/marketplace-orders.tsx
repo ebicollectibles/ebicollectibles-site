@@ -43,7 +43,15 @@ function MarketplaceOrdersPage() {
   const shipped = orders.filter((o) => o.shippedAt)
   const visible = showShipped ? shipped : pending
 
-  const draftFor = (id: string) => drafts[id] ?? { carrier: '', trackingNumber: '' }
+  // Falls back to whatever carrier/tracking Square already had for this
+  // order (pre-filled at import time, see adminSyncMarketplaceOrders) rather
+  // than blank — the other storefront may have already shipped it, we're
+  // just the one who still needs to send the actual notification email.
+  const draftFor = (id: string) => {
+    if (drafts[id]) return drafts[id]
+    const order = orders.find((o) => o.id === id)
+    return { carrier: order?.carrier ?? '', trackingNumber: order?.trackingNumber ?? '' }
+  }
   const setDraft = (id: string, patch: Partial<{ carrier: string; trackingNumber: string }>) =>
     setDrafts((d) => ({ ...d, [id]: { ...draftFor(id), ...patch } }))
 
@@ -212,6 +220,9 @@ function MarketplaceOrdersPage() {
                           placeholder="Tracking number"
                           style={{ border: '1px solid #cfd4da', borderRadius: 2, padding: '5px 6px', fontSize: 12 }}
                         />
+                        {order.carrier && !drafts[order.id] && (
+                          <span style={{ fontSize: 11, color: '#3f7a63' }}>Already shipped in Square — just review and send.</span>
+                        )}
                       </div>
                     )}
                   </td>

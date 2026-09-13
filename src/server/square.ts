@@ -360,6 +360,13 @@ export interface SquareMarketplaceOrder {
   city: string | null
   state: string | null
   zip: string | null
+  // Set when Square's own fulfillment record already carries a carrier/
+  // tracking number (the other storefront handled shipping itself) — null
+  // when the fulfillment is still unshipped and admin needs to fill these
+  // in by hand. Either way we still need to send our own email: Square
+  // marking a fulfillment "shipped" never actually notifies the customer.
+  carrier: string | null
+  trackingNumber: string | null
   items: SquareMarketplaceOrderItem[]
 }
 
@@ -371,13 +378,21 @@ function splitDisplayName(displayName?: string): [string | null, string | null] 
 }
 
 // Finds orders from other storefronts selling against this same Square
-// location/inventory (e.g. DropNotify) that are paid but not yet shipped —
-// i.e. actually need admin's attention, not just any recent order. Square's
-// own order.state is unreliable for this: it only reaches "COMPLETED" once
-// a fulfillment is *also* terminal, so a paid-but-unshipped order usually
-// sits in "OPEN" (same state an unpaid order can be in too). The one
-// reliable "is this actually paid" signal is net_amount_due_money being
-// zero, so that's checked here rather than filtering by order state.
+// location/inventory (e.g. DropNotify) that are paid and haven't been
+// imported here yet — regardless of whether Square's own fulfillment
+// record already shows a carrier/tracking number. That's deliberate:
+// whether or not the other storefront marks a shipment "complete" inside
+// Square, it may never actually email the customer — sending that email is
+// this feature's whole job, so a Square-side "shipped" fulfillment still
+// needs picking up here, just pre-filled with the carrier/tracking it
+// already recorded instead of asking admin to retype it. Only a CANCELED
+// or FAILED fulfillment is skipped (nothing shipped, nothing to email).
+//
+// Square's own order.state is unreliable for filtering by payment: it only
+// reaches "COMPLETED" once a fulfillment is *also* terminal, so a
+// paid-but-unshipped order usually sits in "OPEN" (same state an unpaid
+// order can be in too). The one reliable "is this actually paid" signal is
+// net_amount_due_money being zero, so that's checked here instead.
 export async function searchMarketplaceOrders(sourceNames: string[]): Promise<SquareMarketplaceOrder[]> {
   const { accessToken, locationId, baseUrl } = squareConfig()
   if (!accessToken || !locationId) throw new Error('Square is not configured (SQUARE_ACCESS_TOKEN / SQUARE_LOCATION_ID missing).')
@@ -391,7 +406,7 @@ export async function searchMarketplaceOrders(sourceNames: string[]): Promise<Sq
       query: {
         filter: {
           source_filter: { source_names: sourceNames },
-          fulfillment_filter: { fulfillment_types: ['SHIPMENT'], fulfillment_states: ['PROPOSED', 'RESERVED', 'PREPARED'] },
+          fulfillment_filter: { fulfillment_types: ['SHIPMENT'], fulfillment_states: ['PROPOSED', 'RESERVED', 'PREPARED', 'COMPLETED'] },
         },
       },
       limit: 100,
@@ -403,13 +418,13 @@ export async function searchMarketplaceOrders(sourceNames: string[]): Promise<Sq
 
   const orders: SquareMarketplaceOrder[] = []
   for (const order of json?.orders ?? []) {
-    // Belt-and-suspenders: the API already filtered for non-terminal
+    // Belt-and-suspenders: the API already filtered out canceled/failed
     // shipment fulfillments, but don't trust that blindly, and skip unpaid
     // orders (a draft, or a still-open order with a failed/pending charge)
     // rather than surface something with nothing collected yet.
     if ((order.net_amount_due_money?.amount ?? -1) !== 0) continue
     const fulfillment = (order.fulfillments ?? []).find(
-      (f: any) => f.type === 'SHIPMENT' && ['PROPOSED', 'RESERVED', 'PREPARED'].includes(f.state),
+      (f: any) => f.type === 'SHIPMENT' && !['CANCELED', 'FAILED'].includes(f.state),
     )
     if (!fulfillment) continue
 
@@ -430,6 +445,8 @@ export async function searchMarketplaceOrders(sourceNames: string[]): Promise<Sq
       city: address.locality ?? null,
       state: address.administrative_district_level_1 ?? null,
       zip: address.postal_code ?? null,
+      carrier: fulfillment.shipment_details?.carrier ?? null,
+      trackingNumber: fulfillment.shipment_details?.tracking_number ?? null,
       items: (order.line_items ?? []).map((li: any) => {
         const qty = Number(li.quantity ?? '1')
         return {

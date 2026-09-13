@@ -609,6 +609,11 @@ export const adminSyncMarketplaceOrders = createServerFn({ method: 'POST' }).han
         state: order.state,
         zip: order.zip,
         placedAt: new Date(order.placedAt),
+        // Pre-fill from Square when the other storefront already recorded a
+        // carrier/tracking number itself — admin still reviews and clicks
+        // "send" (see adminSendMarketplaceShipment), this just saves retyping.
+        carrier: order.carrier,
+        trackingNumber: order.trackingNumber,
       })
       .returning()
 
