@@ -555,12 +555,14 @@ export const adminListMarketplaceOrders = createServerFn({ method: 'GET' }).hand
   return orderRows.map((order) => ({ ...order, items: itemsByOrder.get(order.id) ?? [] }))
 })
 
-// Pulls new orders from Square (filtered to MARKETPLACE_ORDER_SOURCES, paid,
-// not yet shipped — see searchMarketplaceOrders) and inserts the ones not
-// already imported, matched by Square's own order id. Safe to re-run
-// anytime — already-imported orders are skipped, never duplicated or
-// overwritten (so a later carrier/tracking edit here is never clobbered by
-// re-syncing).
+// Pulls orders from Square (filtered to MARKETPLACE_ORDER_SOURCES, paid —
+// see searchMarketplaceOrders) and either inserts ones never seen before or
+// refreshes ones already imported but still unshipped (contact/carrier/
+// tracking/items, including re-resolving each item's photo) — an unshipped
+// order hasn't gone out to anyone yet, so overwriting its derived data with
+// fresher data from Square is always safe. A SHIPPED order is left alone
+// entirely: its email already went out, there's nothing left to refresh,
+// and touching it risks clobbering the record of what was actually sent.
 export const adminSyncMarketplaceOrders = createServerFn({ method: 'POST' }).handler(async () => {
   await assertAdmin()
   const sourceNames = (process.env.MARKETPLACE_ORDER_SOURCES ?? '')
@@ -573,19 +575,25 @@ export const adminSyncMarketplaceOrders = createServerFn({ method: 'POST' }).han
 
   const db = getDb()
   const squareOrders = await searchMarketplaceOrders(sourceNames)
-  if (squareOrders.length === 0) return { imported: 0 }
+  if (squareOrders.length === 0) return { imported: 0, refreshed: 0 }
 
-  const existing = await db.select({ squareOrderId: marketplaceOrders.squareOrderId }).from(marketplaceOrders)
-  const existingIds = new Set(existing.map((r) => r.squareOrderId))
-  const newOrders = squareOrders.filter((o) => !existingIds.has(o.squareOrderId))
+  const existing = await db.select({ squareOrderId: marketplaceOrders.squareOrderId, id: marketplaceOrders.id, shippedAt: marketplaceOrders.shippedAt }).from(marketplaceOrders)
+  const existingBySquareId = new Map(existing.map((r) => [r.squareOrderId, r]))
+
+  const newOrders = squareOrders.filter((o) => !existingBySquareId.has(o.squareOrderId))
+  const refreshOrders = squareOrders.filter((o) => {
+    const row = existingBySquareId.get(o.squareOrderId)
+    return row && !row.shippedAt
+  })
 
   // Best-effort photo for each line item, purely for display — a miss just
-  // means no image, never blocks the import. Square's own catalog photo
-  // (see getSquareCatalogImages) is tried first since it doesn't depend on
-  // the item being linked to anything on our own site; falls back to a
-  // match against our own products table for anything Square has no photo
-  // for but happens to also be one of our own linked products.
-  const catalogIds = [...new Set(newOrders.flatMap((o) => o.items.map((i) => i.squareCatalogObjectId)).filter((id): id is string => !!id))]
+  // means no image, never blocks the import/refresh. Square's own catalog
+  // photo (see getSquareCatalogImages) is tried first since it doesn't
+  // depend on the item being linked to anything on our own site; falls
+  // back to a match against our own products table for anything Square
+  // has no photo for but happens to also be one of our own linked products.
+  const allTouched = [...newOrders, ...refreshOrders]
+  const catalogIds = [...new Set(allTouched.flatMap((o) => o.items.map((i) => i.squareCatalogObjectId)).filter((id): id is string => !!id))]
   const [squareImages, matchedProducts] = await Promise.all([
     catalogIds.length === 0 ? Promise.resolve({} as Record<string, string>) : getSquareCatalogImages(catalogIds).catch(() => ({}) as Record<string, string>),
     catalogIds.length === 0
@@ -596,6 +604,7 @@ export const adminSyncMarketplaceOrders = createServerFn({ method: 'POST' }).han
           .where(inArray(productsTable.squareVariationId, catalogIds)),
   ])
   const imgByCatalogId = new Map(matchedProducts.map((p) => [p.squareVariationId, p.img]))
+  const resolveImg = (catalogObjectId: string | null) => (catalogObjectId ? squareImages[catalogObjectId] ?? imgByCatalogId.get(catalogObjectId) ?? null : null)
 
   for (const order of newOrders) {
     const [row] = await db
@@ -625,7 +634,7 @@ export const adminSyncMarketplaceOrders = createServerFn({ method: 'POST' }).han
       order.items.map((item) => ({
         marketplaceOrderId: row.id,
         productName: item.productName,
-        img: item.squareCatalogObjectId ? squareImages[item.squareCatalogObjectId] ?? imgByCatalogId.get(item.squareCatalogObjectId) ?? null : null,
+        img: resolveImg(item.squareCatalogObjectId),
         squareCatalogObjectId: item.squareCatalogObjectId,
         unitPrice: item.unitPrice,
         qty: item.qty,
@@ -633,26 +642,42 @@ export const adminSyncMarketplaceOrders = createServerFn({ method: 'POST' }).han
     )
   }
 
-  // Self-healing: also fill in images for items on already-imported, still-
-  // unshipped orders that didn't resolve a photo last time (e.g. Square's
-  // catalog didn't have one yet, or this sync is the first to know how to
-  // look it up at all). Scoped to unshipped orders only — a shipped order's
-  // email already went out, so there's nothing left to improve.
-  const stillPending = await db
-    .select({ id: marketplaceOrderItems.id, squareCatalogObjectId: marketplaceOrderItems.squareCatalogObjectId })
-    .from(marketplaceOrderItems)
-    .innerJoin(marketplaceOrders, eq(marketplaceOrderItems.marketplaceOrderId, marketplaceOrders.id))
-    .where(and(isNull(marketplaceOrders.shippedAt), isNull(marketplaceOrderItems.img)))
-  const missingCatalogIds = [...new Set(stillPending.map((r) => r.squareCatalogObjectId).filter((id): id is string => !!id))]
-  if (missingCatalogIds.length > 0) {
-    const backfillImages = await getSquareCatalogImages(missingCatalogIds).catch(() => ({}) as Record<string, string>)
-    for (const item of stillPending) {
-      const img = item.squareCatalogObjectId ? backfillImages[item.squareCatalogObjectId] : undefined
-      if (img) await db.update(marketplaceOrderItems).set({ img }).where(eq(marketplaceOrderItems.id, item.id))
-    }
+  for (const order of refreshOrders) {
+    const row = existingBySquareId.get(order.squareOrderId)!
+    await db
+      .update(marketplaceOrders)
+      .set({
+        email: order.email,
+        firstName: order.firstName,
+        lastName: order.lastName,
+        phone: order.phone,
+        street: order.street,
+        apartment: order.apartment,
+        city: order.city,
+        state: order.state,
+        zip: order.zip,
+        carrier: order.carrier,
+        trackingNumber: order.trackingNumber,
+      })
+      .where(eq(marketplaceOrders.id, row.id))
+
+    // Simplest correct way to refresh items without diffing line-by-line —
+    // safe because this order hasn't shipped, so nothing downstream is
+    // pinned to these item ids yet.
+    await db.delete(marketplaceOrderItems).where(eq(marketplaceOrderItems.marketplaceOrderId, row.id))
+    await db.insert(marketplaceOrderItems).values(
+      order.items.map((item) => ({
+        marketplaceOrderId: row.id,
+        productName: item.productName,
+        img: resolveImg(item.squareCatalogObjectId),
+        squareCatalogObjectId: item.squareCatalogObjectId,
+        unitPrice: item.unitPrice,
+        qty: item.qty,
+      })),
+    )
   }
 
-  return { imported: newOrders.length }
+  return { imported: newOrders.length, refreshed: refreshOrders.length }
 })
 
 export const adminSendMarketplaceShipment = createServerFn({ method: 'POST' })

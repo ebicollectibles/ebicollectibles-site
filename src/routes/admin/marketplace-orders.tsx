@@ -63,7 +63,10 @@ function MarketplaceOrdersPage() {
     setSyncMessage(null)
     try {
       const result = await adminSyncMarketplaceOrders()
-      setSyncMessage(result.imported === 0 ? 'No new orders to import.' : `Imported ${result.imported} new order${result.imported === 1 ? '' : 's'}.`)
+      const parts = []
+      if (result.imported > 0) parts.push(`imported ${result.imported} new order${result.imported === 1 ? '' : 's'}`)
+      if (result.refreshed > 0) parts.push(`refreshed ${result.refreshed} pending order${result.refreshed === 1 ? '' : 's'}`)
+      setSyncMessage(parts.length === 0 ? 'Nothing to sync.' : parts.join(', ') + '.')
       await router.invalidate()
     } catch (err) {
       setSyncMessage(err instanceof Error ? err.message : 'Sync failed.')
