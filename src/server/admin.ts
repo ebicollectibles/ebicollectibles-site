@@ -319,6 +319,7 @@ export const adminCreateShipment = createServerFn({ method: 'POST' })
         orderNo: order.orderNo,
         email: order.email,
         firstName: order.firstName,
+        lastName: order.lastName,
         street: order.street,
         apartment: order.apartment,
         city: order.city,
@@ -702,6 +703,7 @@ export const adminSendMarketplaceShipment = createServerFn({ method: 'POST' })
     const sendResult = await sendMarketplaceShipmentEmail({
       email: order.email,
       firstName: order.firstName,
+      lastName: order.lastName,
       street: order.street,
       apartment: order.apartment,
       city: order.city,
@@ -746,6 +748,7 @@ export const adminSendMarketplaceShipmentTest = createServerFn({ method: 'POST' 
     const sendResult = await sendMarketplaceShipmentEmail({
       email: data.testEmail,
       firstName: order.firstName,
+      lastName: order.lastName,
       street: order.street,
       apartment: order.apartment,
       city: order.city,

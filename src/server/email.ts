@@ -38,6 +38,8 @@ function emailShell(opts: { badgeLabel: string; badgeColor: string; heading: str
 }
 
 function formatAddress(order: {
+  firstName?: string | null
+  lastName?: string | null
   street: string | null
   apartment: string | null
   city: string | null
@@ -48,8 +50,9 @@ function formatAddress(order: {
   // joining with <br>, since the result is injected as raw HTML below (a
   // guest checkout can address an order to anyone's email, so this isn't
   // just self-XSS against the person who typed it).
+  const name = [order.firstName, order.lastName].filter(Boolean).join(' ')
   const cityStateZip = [order.city, [order.state, order.zip].filter(Boolean).join(' ')].filter(Boolean).join(', ')
-  const address = [order.street, order.apartment, cityStateZip]
+  const address = [name, order.street, order.apartment, cityStateZip]
     .filter(Boolean)
     .map((part) => escapeHtml(part as string))
     .join('<br>')
@@ -208,6 +211,7 @@ interface ShipmentEmailData {
   orderNo: number
   email: string | null
   firstName: string | null
+  lastName: string | null
   street: string | null
   apartment: string | null
   city: string | null
@@ -299,6 +303,7 @@ export async function sendShipmentEmail(order: ShipmentEmailData): Promise<Email
 interface MarketplaceShipmentEmailData {
   email: string | null
   firstName: string | null
+  lastName: string | null
   street: string | null
   apartment: string | null
   city: string | null
