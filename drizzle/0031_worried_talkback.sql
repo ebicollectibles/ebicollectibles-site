@@ -1,0 +1,1 @@
+ALTER TABLE "marketplace_orders" ADD COLUMN "reference_id" text;

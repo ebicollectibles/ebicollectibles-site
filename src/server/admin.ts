@@ -613,6 +613,7 @@ export const adminSyncMarketplaceOrders = createServerFn({ method: 'POST' }).han
       .values({
         squareOrderId: order.squareOrderId,
         sourceName: order.sourceName,
+        referenceId: order.referenceId,
         email: order.email,
         firstName: order.firstName,
         lastName: order.lastName,
@@ -648,6 +649,7 @@ export const adminSyncMarketplaceOrders = createServerFn({ method: 'POST' }).han
     await db
       .update(marketplaceOrders)
       .set({
+        referenceId: order.referenceId,
         email: order.email,
         firstName: order.firstName,
         lastName: order.lastName,
@@ -701,6 +703,8 @@ export const adminSendMarketplaceShipment = createServerFn({ method: 'POST' })
     const trackingNumber = data.trackingNumber || null
 
     const sendResult = await sendMarketplaceShipmentEmail({
+      sourceName: order.sourceName,
+      referenceId: order.referenceId,
       email: order.email,
       firstName: order.firstName,
       lastName: order.lastName,
@@ -746,6 +750,8 @@ export const adminSendMarketplaceShipmentTest = createServerFn({ method: 'POST' 
     const items = await db.select().from(marketplaceOrderItems).where(eq(marketplaceOrderItems.marketplaceOrderId, data.id))
 
     const sendResult = await sendMarketplaceShipmentEmail({
+      sourceName: order.sourceName,
+      referenceId: order.referenceId,
       email: data.testEmail,
       firstName: order.firstName,
       lastName: order.lastName,

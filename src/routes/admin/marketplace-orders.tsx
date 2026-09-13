@@ -215,7 +215,10 @@ function MarketplaceOrdersPage() {
             <tbody>
               {visible.map((order) => (
                 <tr key={order.id}>
-                  <td style={{ ...td, fontFamily: "'IBM Plex Mono', monospace", fontSize: 11.5 }}>{order.sourceName}</td>
+                  <td style={{ ...td, fontFamily: "'IBM Plex Mono', monospace", fontSize: 11.5 }}>
+                    {order.sourceName}
+                    {order.referenceId && <div style={{ color: '#98a1ab', fontSize: 10.5 }}>{order.referenceId}</div>}
+                  </td>
                   <td style={td}>
                     <div>
                       {order.firstName} {order.lastName}

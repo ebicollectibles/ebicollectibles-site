@@ -301,6 +301,14 @@ export async function sendShipmentEmail(order: ShipmentEmailData): Promise<Email
 }
 
 interface MarketplaceShipmentEmailData {
+  // Square's order.source.name (e.g. "DropNotify") — named in the copy so
+  // this doesn't read as a generic, unexplained "your order" email to
+  // someone who never checked out through this site directly.
+  sourceName: string
+  // Square's order.reference_id, e.g. "DN-003-BJEY7K" — the other
+  // storefront's own order number, if it set one. Null just means no
+  // number to show, not an error.
+  referenceId: string | null
   email: string | null
   firstName: string | null
   lastName: string | null
@@ -316,10 +324,9 @@ interface MarketplaceShipmentEmailData {
 
 // Same shape/contract as sendShipmentEmail, for orders placed on a
 // different storefront selling against this same Square inventory (e.g.
-// DropNotify) — see marketplace_orders in schema.ts. No order number here:
-// unlike sendShipmentEmail, there's no "#EBI-..." to reference since these
-// customers never checked out through this site. Always the final (only)
-// shipment — marketplace orders aren't split across multiple packages here.
+// DropNotify) — see marketplace_orders in schema.ts. Always the final
+// (only) shipment — marketplace orders aren't split across multiple
+// packages here.
 export async function sendMarketplaceShipmentEmail(order: MarketplaceShipmentEmailData): Promise<EmailSendResult> {
   const apiKey = process.env.RESEND_API_KEY
   const from = process.env.ORDER_FROM_EMAIL
@@ -341,8 +348,9 @@ export async function sendMarketplaceShipmentEmail(order: MarketplaceShipmentEma
     ${address ? labelValueBlock('Ship to', address) : ''}
   `
 
-  const heading = `Your order is on its way${order.firstName ? `, ${escapeHtml(order.firstName)}` : ''}!`
-  const intro = "Here's what shipped and how to track it."
+  const sourceName = escapeHtml(order.sourceName)
+  const heading = `Your ${sourceName} order is on its way${order.firstName ? `, ${escapeHtml(order.firstName)}` : ''}!`
+  const intro = order.referenceId ? `Order ${escapeHtml(order.referenceId)} has shipped.` : "Here's what shipped and how to track it."
 
   const html = emailShell({ badgeLabel: 'Shipped', badgeColor: GREEN, heading, intro, bodyHtml })
 
@@ -367,7 +375,7 @@ export async function sendMarketplaceShipmentEmail(order: MarketplaceShipmentEma
     body: JSON.stringify({
       from,
       to: order.email,
-      subject: 'Your order has shipped',
+      subject: order.referenceId ? `Your order has shipped — ${order.referenceId}` : `Your ${order.sourceName} order has shipped`,
       html,
       text,
     }),

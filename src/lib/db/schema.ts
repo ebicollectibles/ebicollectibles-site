@@ -300,6 +300,11 @@ export const marketplaceOrders = pgTable('marketplace_orders', {
   // than assumed, since which names count as "marketplace" is admin-
   // configurable (see MARKETPLACE_ORDER_SOURCES) and can change over time.
   sourceName: text('source_name').notNull(),
+  // Square's order.reference_id — a merchant-supplied order number (e.g.
+  // DropNotify sets its own "DN-003-BJEY7K"-style reference), shown in the
+  // shipped email so it reads as a real order rather than a bare "your
+  // order." Null if the other storefront never set one.
+  referenceId: text('reference_id'),
   email: text('email'),
   firstName: text('first_name'),
   lastName: text('last_name'),

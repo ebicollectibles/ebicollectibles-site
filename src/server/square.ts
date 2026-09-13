@@ -390,6 +390,7 @@ export interface SquareMarketplaceOrderItem {
 export interface SquareMarketplaceOrder {
   squareOrderId: string
   sourceName: string
+  referenceId: string | null
   placedAt: string
   email: string | null
   firstName: string | null
@@ -475,6 +476,7 @@ export async function searchMarketplaceOrders(sourceNames: string[]): Promise<Sq
     orders.push({
       squareOrderId: order.id,
       sourceName: order.source?.name ?? 'Unknown',
+      referenceId: order.reference_id ?? null,
       placedAt: order.created_at,
       email: recipient.email_address ?? null,
       firstName: address.first_name ?? nameFirst,
