@@ -670,3 +670,43 @@ export const adminSendMarketplaceShipment = createServerFn({ method: 'POST' })
 
     return { ok: true, emailStatus: sendResult.status }
   })
+
+// Sends the real email through the real pipeline (so it's an honest
+// preview of what a customer would get, image loading and all) but to an
+// address admin picks — never the order's own email — and never touches
+// the order row (no shippedAt/emailStatus write, doesn't count as "sent").
+// Purely a "does this look right" check before using the real send above.
+export const adminSendMarketplaceShipmentTest = createServerFn({ method: 'POST' })
+  .validator(
+    z.object({
+      id: z.string(),
+      testEmail: z.string().email(),
+      carrier: z.enum(CARRIERS).nullable().optional(),
+      trackingNumber: z.string().trim().nullable().optional(),
+    }),
+  )
+  .handler(async ({ data }) => {
+    await assertAdmin()
+    const db = getDb()
+
+    const [order] = await db.select().from(marketplaceOrders).where(eq(marketplaceOrders.id, data.id)).limit(1)
+    if (!order) throw new Error('Marketplace order not found.')
+
+    const items = await db.select().from(marketplaceOrderItems).where(eq(marketplaceOrderItems.marketplaceOrderId, data.id))
+
+    const sendResult = await sendMarketplaceShipmentEmail({
+      email: data.testEmail,
+      firstName: order.firstName,
+      street: order.street,
+      apartment: order.apartment,
+      city: order.city,
+      state: order.state,
+      zip: order.zip,
+      carrier: data.carrier || null,
+      trackingNumber: data.trackingNumber?.trim() || null,
+      items: items.map((i) => ({ productName: i.productName, qty: i.qty, unitPrice: i.unitPrice ?? 0, img: i.img })),
+    })
+
+    if (sendResult.status !== 'sent') throw new Error(sendResult.error || `Test send ${sendResult.status}.`)
+    return { ok: true }
+  })

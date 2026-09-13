@@ -2,7 +2,7 @@ import * as React from 'react'
 import { createFileRoute, useNavigate, useRouter } from '@tanstack/react-router'
 import { AdminNav } from '~/components/AdminNav'
 import { requireAdmin, adminLogout } from '~/server/admin-auth'
-import { adminListMarketplaceOrders, adminSendMarketplaceShipment, adminSyncMarketplaceOrders } from '~/server/admin'
+import { adminListMarketplaceOrders, adminSendMarketplaceShipment, adminSendMarketplaceShipmentTest, adminSyncMarketplaceOrders } from '~/server/admin'
 import { CARRIERS } from '~/lib/carriers'
 
 export const Route = createFileRoute('/admin/marketplace-orders')({
@@ -38,6 +38,9 @@ function MarketplaceOrdersPage() {
   const [sendingId, setSendingId] = React.useState<string | null>(null)
   const [rowError, setRowError] = React.useState<Record<string, string>>({})
   const [showShipped, setShowShipped] = React.useState(false)
+  const [testEmail, setTestEmail] = React.useState('eastblueinternational@gmail.com')
+  const [testingId, setTestingId] = React.useState<string | null>(null)
+  const [testMessage, setTestMessage] = React.useState<Record<string, string>>({})
 
   const pending = orders.filter((o) => !o.shippedAt)
   const shipped = orders.filter((o) => o.shippedAt)
@@ -89,6 +92,30 @@ function MarketplaceOrdersPage() {
     }
   }
 
+  // Sends the real email to testEmail instead of the customer — doesn't
+  // mark the order shipped or touch its row, purely a "does this look
+  // right" check before using the real send button above.
+  const sendTest = async (id: string) => {
+    setTestingId(id)
+    setTestMessage((m) => ({ ...m, [id]: '' }))
+    try {
+      const draft = draftFor(id)
+      await adminSendMarketplaceShipmentTest({
+        data: {
+          id,
+          testEmail,
+          carrier: (draft.carrier || null) as (typeof CARRIERS)[number] | null,
+          trackingNumber: draft.trackingNumber.trim() || null,
+        },
+      })
+      setTestMessage((m) => ({ ...m, [id]: `Sent to ${testEmail}.` }))
+    } catch (err) {
+      setTestMessage((m) => ({ ...m, [id]: err instanceof Error ? err.message : 'Test send failed.' }))
+    } finally {
+      setTestingId(null)
+    }
+  }
+
   return (
     <div style={{ maxWidth: 1100, margin: '0 auto', padding: '32px 28px 80px', fontFamily: 'Archivo, Helvetica, sans-serif' }}>
       <AdminNav
@@ -122,6 +149,15 @@ function MarketplaceOrdersPage() {
         the customer a "your order has shipped" email.
       </p>
       {syncMessage && <p style={{ fontSize: 12.5, color: '#3f7a63', marginTop: 8 }}>{syncMessage}</p>}
+
+      <div style={{ marginTop: 16, display: 'flex', alignItems: 'center', gap: 8 }}>
+        <label style={{ fontSize: 12, color: '#5a6875' }}>Test emails go to:</label>
+        <input
+          value={testEmail}
+          onChange={(e) => setTestEmail(e.target.value)}
+          style={{ border: '1px solid #cfd4da', borderRadius: 2, padding: '5px 8px', fontSize: 12, minWidth: 220 }}
+        />
+      </div>
 
       <div style={{ display: 'flex', gap: 16, marginTop: 20, borderBottom: '1px solid #e3e6ea' }}>
         <button
@@ -229,24 +265,47 @@ function MarketplaceOrdersPage() {
                   <td style={{ ...td, textAlign: 'right', whiteSpace: 'nowrap' }}>
                     {!showShipped && (
                       <>
-                        <button
-                          onClick={() => sendShipment(order.id)}
-                          disabled={sendingId === order.id}
-                          style={{
-                            background: '#3f7a63',
-                            color: '#fff',
-                            border: 0,
-                            borderRadius: 2,
-                            padding: '7px 12px',
-                            fontSize: 12,
-                            fontWeight: 600,
-                            cursor: sendingId === order.id ? 'not-allowed' : 'pointer',
-                            opacity: sendingId === order.id ? 0.6 : 1,
-                          }}
-                        >
-                          {sendingId === order.id ? 'Sending…' : 'Mark shipped & email'}
-                        </button>
+                        <div style={{ display: 'flex', flexDirection: 'column', gap: 6, alignItems: 'flex-end' }}>
+                          <button
+                            onClick={() => sendShipment(order.id)}
+                            disabled={sendingId === order.id}
+                            style={{
+                              background: '#3f7a63',
+                              color: '#fff',
+                              border: 0,
+                              borderRadius: 2,
+                              padding: '7px 12px',
+                              fontSize: 12,
+                              fontWeight: 600,
+                              cursor: sendingId === order.id ? 'not-allowed' : 'pointer',
+                              opacity: sendingId === order.id ? 0.6 : 1,
+                            }}
+                          >
+                            {sendingId === order.id ? 'Sending…' : 'Mark shipped & email'}
+                          </button>
+                          <button
+                            onClick={() => sendTest(order.id)}
+                            disabled={testingId === order.id}
+                            style={{
+                              background: 'none',
+                              color: '#131b28',
+                              border: '1px solid #cfd4da',
+                              borderRadius: 2,
+                              padding: '6px 12px',
+                              fontSize: 11.5,
+                              cursor: testingId === order.id ? 'not-allowed' : 'pointer',
+                              opacity: testingId === order.id ? 0.6 : 1,
+                            }}
+                          >
+                            {testingId === order.id ? 'Sending test…' : 'Send test to me'}
+                          </button>
+                        </div>
                         {rowError[order.id] && <div style={{ color: '#b4622f', fontSize: 11, marginTop: 4, maxWidth: 180 }}>{rowError[order.id]}</div>}
+                        {testMessage[order.id] && (
+                          <div style={{ color: testMessage[order.id].startsWith('Sent') ? '#3f7a63' : '#b4622f', fontSize: 11, marginTop: 4, maxWidth: 180 }}>
+                            {testMessage[order.id]}
+                          </div>
+                        )}
                       </>
                     )}
                   </td>
