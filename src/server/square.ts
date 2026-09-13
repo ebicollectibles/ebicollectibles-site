@@ -339,3 +339,107 @@ export async function overlaySquareData<T extends { squareVariationId?: string |
     return items
   }
 }
+
+export interface SquareMarketplaceOrderItem {
+  productName: string
+  qty: number
+  unitPrice: number | null
+  squareCatalogObjectId: string | null
+}
+
+export interface SquareMarketplaceOrder {
+  squareOrderId: string
+  sourceName: string
+  placedAt: string
+  email: string | null
+  firstName: string | null
+  lastName: string | null
+  phone: string | null
+  street: string | null
+  apartment: string | null
+  city: string | null
+  state: string | null
+  zip: string | null
+  items: SquareMarketplaceOrderItem[]
+}
+
+function splitDisplayName(displayName?: string): [string | null, string | null] {
+  if (!displayName) return [null, null]
+  const parts = displayName.trim().split(/\s+/)
+  if (parts.length === 1) return [parts[0], null]
+  return [parts.slice(0, -1).join(' '), parts[parts.length - 1]]
+}
+
+// Finds orders from other storefronts selling against this same Square
+// location/inventory (e.g. DropNotify) that are paid but not yet shipped —
+// i.e. actually need admin's attention, not just any recent order. Square's
+// own order.state is unreliable for this: it only reaches "COMPLETED" once
+// a fulfillment is *also* terminal, so a paid-but-unshipped order usually
+// sits in "OPEN" (same state an unpaid order can be in too). The one
+// reliable "is this actually paid" signal is net_amount_due_money being
+// zero, so that's checked here rather than filtering by order state.
+export async function searchMarketplaceOrders(sourceNames: string[]): Promise<SquareMarketplaceOrder[]> {
+  const { accessToken, locationId, baseUrl } = squareConfig()
+  if (!accessToken || !locationId) throw new Error('Square is not configured (SQUARE_ACCESS_TOKEN / SQUARE_LOCATION_ID missing).')
+  if (sourceNames.length === 0) return []
+
+  const res = await fetch(`${baseUrl}/v2/orders/search`, {
+    method: 'POST',
+    headers: squareHeaders(accessToken),
+    body: JSON.stringify({
+      location_ids: [locationId],
+      query: {
+        filter: {
+          source_filter: { source_names: sourceNames },
+          fulfillment_filter: { fulfillment_types: ['SHIPMENT'], fulfillment_states: ['PROPOSED', 'RESERVED', 'PREPARED'] },
+        },
+      },
+      limit: 100,
+      return_entries: false,
+    }),
+  })
+  const json = await res.json().catch(() => null)
+  if (!res.ok) throw new Error(json?.errors?.[0]?.detail || `Square API error (${res.status})`)
+
+  const orders: SquareMarketplaceOrder[] = []
+  for (const order of json?.orders ?? []) {
+    // Belt-and-suspenders: the API already filtered for non-terminal
+    // shipment fulfillments, but don't trust that blindly, and skip unpaid
+    // orders (a draft, or a still-open order with a failed/pending charge)
+    // rather than surface something with nothing collected yet.
+    if ((order.net_amount_due_money?.amount ?? -1) !== 0) continue
+    const fulfillment = (order.fulfillments ?? []).find(
+      (f: any) => f.type === 'SHIPMENT' && ['PROPOSED', 'RESERVED', 'PREPARED'].includes(f.state),
+    )
+    if (!fulfillment) continue
+
+    const recipient = fulfillment.shipment_details?.recipient ?? {}
+    const address = recipient.address ?? {}
+    const [nameFirst, nameLast] = splitDisplayName(recipient.display_name)
+
+    orders.push({
+      squareOrderId: order.id,
+      sourceName: order.source?.name ?? 'Unknown',
+      placedAt: order.created_at,
+      email: recipient.email_address ?? null,
+      firstName: address.first_name ?? nameFirst,
+      lastName: address.last_name ?? nameLast,
+      phone: recipient.phone_number ?? null,
+      street: address.address_line_1 ?? null,
+      apartment: address.address_line_2 ?? null,
+      city: address.locality ?? null,
+      state: address.administrative_district_level_1 ?? null,
+      zip: address.postal_code ?? null,
+      items: (order.line_items ?? []).map((li: any) => {
+        const qty = Number(li.quantity ?? '1')
+        return {
+          productName: li.name ?? 'Item',
+          qty,
+          unitPrice: li.total_money && qty > 0 ? li.total_money.amount / 100 / qty : null,
+          squareCatalogObjectId: li.catalog_object_id ?? null,
+        }
+      }),
+    })
+  }
+  return orders
+}

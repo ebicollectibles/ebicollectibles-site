@@ -24,6 +24,7 @@ import { Route as AccountSignupRouteImport } from './routes/account/signup'
 import { Route as AccountVerifyRouteImport } from './routes/account/verify'
 import { Route as AdminIndexRouteImport } from './routes/admin/index'
 import { Route as AdminLoginRouteImport } from './routes/admin/login'
+import { Route as AdminMarketplaceOrdersRouteImport } from './routes/admin/marketplace-orders'
 import { Route as AdminSecurityRouteImport } from './routes/admin/security'
 import { Route as AdminSubscribersRouteImport } from './routes/admin/subscribers'
 import { Route as ProductsIdRouteImport } from './routes/products.$id'
@@ -113,6 +114,11 @@ const AdminLoginRoute = AdminLoginRouteImport.update({
   path: '/admin/login',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminMarketplaceOrdersRoute = AdminMarketplaceOrdersRouteImport.update({
+  id: '/admin/marketplace-orders',
+  path: '/admin/marketplace-orders',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AdminSecurityRoute = AdminSecurityRouteImport.update({
   id: '/admin/security',
   path: '/admin/security',
@@ -193,6 +199,7 @@ export interface FileRoutesByFullPath {
   '/account/signup': typeof AccountSignupRoute
   '/account/verify': typeof AccountVerifyRoute
   '/admin/login': typeof AdminLoginRoute
+  '/admin/marketplace-orders': typeof AdminMarketplaceOrdersRoute
   '/admin/security': typeof AdminSecurityRoute
   '/admin/subscribers': typeof AdminSubscribersRoute
   '/products/$id': typeof ProductsIdRoute
@@ -223,6 +230,7 @@ export interface FileRoutesByTo {
   '/account/signup': typeof AccountSignupRoute
   '/account/verify': typeof AccountVerifyRoute
   '/admin/login': typeof AdminLoginRoute
+  '/admin/marketplace-orders': typeof AdminMarketplaceOrdersRoute
   '/admin/security': typeof AdminSecurityRoute
   '/admin/subscribers': typeof AdminSubscribersRoute
   '/products/$id': typeof ProductsIdRoute
@@ -254,6 +262,7 @@ export interface FileRoutesById {
   '/account/signup': typeof AccountSignupRoute
   '/account/verify': typeof AccountVerifyRoute
   '/admin/login': typeof AdminLoginRoute
+  '/admin/marketplace-orders': typeof AdminMarketplaceOrdersRoute
   '/admin/security': typeof AdminSecurityRoute
   '/admin/subscribers': typeof AdminSubscribersRoute
   '/products/$id': typeof ProductsIdRoute
@@ -286,6 +295,7 @@ export interface FileRouteTypes {
     | '/account/signup'
     | '/account/verify'
     | '/admin/login'
+    | '/admin/marketplace-orders'
     | '/admin/security'
     | '/admin/subscribers'
     | '/products/$id'
@@ -316,6 +326,7 @@ export interface FileRouteTypes {
     | '/account/signup'
     | '/account/verify'
     | '/admin/login'
+    | '/admin/marketplace-orders'
     | '/admin/security'
     | '/admin/subscribers'
     | '/products/$id'
@@ -346,6 +357,7 @@ export interface FileRouteTypes {
     | '/account/signup'
     | '/account/verify'
     | '/admin/login'
+    | '/admin/marketplace-orders'
     | '/admin/security'
     | '/admin/subscribers'
     | '/products/$id'
@@ -377,6 +389,7 @@ export interface RootRouteChildren {
   AccountSignupRoute: typeof AccountSignupRoute
   AccountVerifyRoute: typeof AccountVerifyRoute
   AdminLoginRoute: typeof AdminLoginRoute
+  AdminMarketplaceOrdersRoute: typeof AdminMarketplaceOrdersRoute
   AdminSecurityRoute: typeof AdminSecurityRoute
   AdminSubscribersRoute: typeof AdminSubscribersRoute
   ProductsIdRoute: typeof ProductsIdRoute
@@ -501,6 +514,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminLoginRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin/marketplace-orders': {
+      id: '/admin/marketplace-orders'
+      path: '/admin/marketplace-orders'
+      fullPath: '/admin/marketplace-orders'
+      preLoaderRoute: typeof AdminMarketplaceOrdersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/admin/security': {
       id: '/admin/security'
       path: '/admin/security'
@@ -609,6 +629,7 @@ const rootRouteChildren: RootRouteChildren = {
   AccountSignupRoute: AccountSignupRoute,
   AccountVerifyRoute: AccountVerifyRoute,
   AdminLoginRoute: AdminLoginRoute,
+  AdminMarketplaceOrdersRoute: AdminMarketplaceOrdersRoute,
   AdminSecurityRoute: AdminSecurityRoute,
   AdminSubscribersRoute: AdminSubscribersRoute,
   ProductsIdRoute: ProductsIdRoute,

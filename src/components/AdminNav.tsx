@@ -19,6 +19,9 @@ export function AdminNav({ onLogout }: { onLogout: () => void }) {
       <Link to="/admin/orders" style={{ fontSize: 13, color: '#131b28' }}>
         Orders
       </Link>
+      <Link to="/admin/marketplace-orders" style={{ fontSize: 13, color: '#131b28' }}>
+        Marketplace
+      </Link>
       <Link to="/admin/customers" style={{ fontSize: 13, color: '#131b28' }}>
         Customers
       </Link>

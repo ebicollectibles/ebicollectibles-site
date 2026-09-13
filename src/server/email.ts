@@ -296,6 +296,88 @@ export async function sendShipmentEmail(order: ShipmentEmailData): Promise<Email
   return { status: 'sent' }
 }
 
+interface MarketplaceShipmentEmailData {
+  email: string | null
+  firstName: string | null
+  street: string | null
+  apartment: string | null
+  city: string | null
+  state: string | null
+  zip: string | null
+  carrier: string | null
+  trackingNumber: string | null
+  items: OrderEmailItem[]
+}
+
+// Same shape/contract as sendShipmentEmail, for orders placed on a
+// different storefront selling against this same Square inventory (e.g.
+// DropNotify) — see marketplace_orders in schema.ts. No order number here:
+// unlike sendShipmentEmail, there's no "#EBI-..." to reference since these
+// customers never checked out through this site. Always the final (only)
+// shipment — marketplace orders aren't split across multiple packages here.
+export async function sendMarketplaceShipmentEmail(order: MarketplaceShipmentEmailData): Promise<EmailSendResult> {
+  const apiKey = process.env.RESEND_API_KEY
+  const from = process.env.ORDER_FROM_EMAIL
+
+  if (!apiKey || !from || !order.email) return { status: 'skipped' }
+
+  const trackingUrl = carrierTrackingUrl(order.carrier, order.trackingNumber)
+  const trackingValue = order.trackingNumber
+    ? trackingUrl
+      ? `<a href="${trackingUrl}" style="color:${GREEN};font-weight:600;">${escapeHtml(order.trackingNumber)}</a>`
+      : escapeHtml(order.trackingNumber)
+    : null
+
+  const address = formatAddress(order)
+
+  const bodyHtml = `
+    ${itemsTableHtml(order.items, { showPrice: false })}
+    ${trackingValue ? labelValueBlock('Tracking number', trackingValue) : ''}
+    ${address ? labelValueBlock('Ship to', address) : ''}
+  `
+
+  const heading = `Your order is on its way${order.firstName ? `, ${escapeHtml(order.firstName)}` : ''}!`
+  const intro = "Here's what shipped and how to track it."
+
+  const html = emailShell({ badgeLabel: 'Shipped', badgeColor: GREEN, heading, intro, bodyHtml })
+
+  const itemsLine = order.items.map((item) => `${item.qty}× ${item.productName}`).join(', ')
+  const text = [
+    heading,
+    `Includes: ${itemsLine}.`,
+    order.trackingNumber ? `Tracking number: ${order.trackingNumber}` : null,
+    trackingUrl ?? null,
+    '',
+    address ? `Ship to:\n${address.replace(/<br>/g, '\n')}` : null,
+  ]
+    .filter((line) => line !== null)
+    .join('\n')
+
+  const res = await fetch('https://api.resend.com/emails', {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${apiKey}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      from,
+      to: order.email,
+      subject: 'Your order has shipped',
+      html,
+      text,
+    }),
+  })
+
+  if (!res.ok) {
+    const json = await res.json().catch(() => null)
+    const error = json?.message || `HTTP ${res.status}`
+    console.error('Failed to send marketplace shipment email:', error)
+    return { status: 'failed', error }
+  }
+
+  return { status: 'sent' }
+}
+
 // Unlike sendOrderConfirmationEmail, this throws on failure — there's no
 // other way for the customer to get the code, so the caller (signup/login)
 // should surface the error instead of silently leaving them stuck.

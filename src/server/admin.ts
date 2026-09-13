@@ -5,6 +5,8 @@ import { getDb } from '~/lib/db/client'
 import {
   authEvents,
   emailEvents,
+  marketplaceOrderItems,
+  marketplaceOrders,
   orderItems,
   orderStatusEvents,
   orders,
@@ -22,8 +24,8 @@ import { CARRIERS } from '~/lib/carriers'
 import { PRODUCT_CATEGORIES, SUBCATEGORIES_BY_CATEGORY, ALL_SUBCATEGORIES } from '~/lib/products'
 import { computeFulfillmentStatus, remainingQtyByItem } from '~/lib/shipments'
 import { assertAdmin } from './admin-auth'
-import { sendShipmentEmail } from './email'
-import { overlaySquareData, searchSquareCatalogItems } from './square'
+import { sendMarketplaceShipmentEmail, sendShipmentEmail } from './email'
+import { overlaySquareData, searchMarketplaceOrders, searchSquareCatalogItems } from './square'
 import { upsertSubscriber } from './subscribers'
 
 // Base object (not yet refined) so adminUpdateProduct can still .extend() it
@@ -538,4 +540,128 @@ export const adminGetCustomer = createServerFn({ method: 'GET' })
       })),
       events,
     }
+  })
+
+// --- Marketplace orders (DropNotify, or whatever else sells against this
+// same Square location/inventory) — see marketplace_orders in schema.ts for
+// why these are a separate table rather than rows in orders/order_items. ---
+
+export const adminListMarketplaceOrders = createServerFn({ method: 'GET' }).handler(async () => {
+  await assertAdmin()
+  const db = getDb()
+  const orderRows = await db.select().from(marketplaceOrders).orderBy(desc(marketplaceOrders.placedAt))
+  const itemRows = orderRows.length === 0 ? [] : await db.select().from(marketplaceOrderItems).where(inArray(marketplaceOrderItems.marketplaceOrderId, orderRows.map((o) => o.id)))
+  const itemsByOrder = groupBy(itemRows, (i) => i.marketplaceOrderId)
+  return orderRows.map((order) => ({ ...order, items: itemsByOrder.get(order.id) ?? [] }))
+})
+
+// Pulls new orders from Square (filtered to MARKETPLACE_ORDER_SOURCES, paid,
+// not yet shipped — see searchMarketplaceOrders) and inserts the ones not
+// already imported, matched by Square's own order id. Safe to re-run
+// anytime — already-imported orders are skipped, never duplicated or
+// overwritten (so a later carrier/tracking edit here is never clobbered by
+// re-syncing).
+export const adminSyncMarketplaceOrders = createServerFn({ method: 'POST' }).handler(async () => {
+  await assertAdmin()
+  const sourceNames = (process.env.MARKETPLACE_ORDER_SOURCES ?? '')
+    .split(',')
+    .map((s) => s.trim())
+    .filter(Boolean)
+  if (sourceNames.length === 0) {
+    throw new Error('Set MARKETPLACE_ORDER_SOURCES (comma-separated Square order source names, e.g. "DropNotify") to sync marketplace orders.')
+  }
+
+  const db = getDb()
+  const squareOrders = await searchMarketplaceOrders(sourceNames)
+  if (squareOrders.length === 0) return { imported: 0 }
+
+  const existing = await db.select({ squareOrderId: marketplaceOrders.squareOrderId }).from(marketplaceOrders)
+  const existingIds = new Set(existing.map((r) => r.squareOrderId))
+  const newOrders = squareOrders.filter((o) => !existingIds.has(o.squareOrderId))
+  if (newOrders.length === 0) return { imported: 0 }
+
+  // Best-effort match each line item's Square catalog object to one of our
+  // own products, purely to show its photo in the admin list — a miss just
+  // means no image, never blocks the import.
+  const catalogIds = [...new Set(newOrders.flatMap((o) => o.items.map((i) => i.squareCatalogObjectId)).filter((id): id is string => !!id))]
+  const matchedProducts =
+    catalogIds.length === 0
+      ? []
+      : await db
+          .select({ img: productsTable.img, squareVariationId: productsTable.squareVariationId })
+          .from(productsTable)
+          .where(inArray(productsTable.squareVariationId, catalogIds))
+  const imgByCatalogId = new Map(matchedProducts.map((p) => [p.squareVariationId, p.img]))
+
+  for (const order of newOrders) {
+    const [row] = await db
+      .insert(marketplaceOrders)
+      .values({
+        squareOrderId: order.squareOrderId,
+        sourceName: order.sourceName,
+        email: order.email,
+        firstName: order.firstName,
+        lastName: order.lastName,
+        phone: order.phone,
+        street: order.street,
+        apartment: order.apartment,
+        city: order.city,
+        state: order.state,
+        zip: order.zip,
+        placedAt: new Date(order.placedAt),
+      })
+      .returning()
+
+    await db.insert(marketplaceOrderItems).values(
+      order.items.map((item) => ({
+        marketplaceOrderId: row.id,
+        productName: item.productName,
+        img: item.squareCatalogObjectId ? imgByCatalogId.get(item.squareCatalogObjectId) ?? null : null,
+        unitPrice: item.unitPrice,
+        qty: item.qty,
+      })),
+    )
+  }
+
+  return { imported: newOrders.length }
+})
+
+export const adminSendMarketplaceShipment = createServerFn({ method: 'POST' })
+  .validator(
+    z.object({
+      id: z.string(),
+      carrier: z.enum(CARRIERS).nullable().optional(),
+      trackingNumber: z.string().trim().nullable().optional(),
+    }),
+  )
+  .handler(async ({ data }) => {
+    await assertAdmin()
+    const db = getDb()
+
+    const [order] = await db.select().from(marketplaceOrders).where(eq(marketplaceOrders.id, data.id)).limit(1)
+    if (!order) throw new Error('Marketplace order not found.')
+
+    const items = await db.select().from(marketplaceOrderItems).where(eq(marketplaceOrderItems.marketplaceOrderId, data.id))
+    const carrier = data.carrier || null
+    const trackingNumber = data.trackingNumber || null
+
+    const sendResult = await sendMarketplaceShipmentEmail({
+      email: order.email,
+      firstName: order.firstName,
+      street: order.street,
+      apartment: order.apartment,
+      city: order.city,
+      state: order.state,
+      zip: order.zip,
+      carrier,
+      trackingNumber,
+      items: items.map((i) => ({ productName: i.productName, qty: i.qty, unitPrice: i.unitPrice ?? 0, img: i.img })),
+    })
+
+    await db
+      .update(marketplaceOrders)
+      .set({ carrier, trackingNumber, shippedAt: new Date(), emailStatus: sendResult.status, emailError: sendResult.error ?? null })
+      .where(eq(marketplaceOrders.id, data.id))
+
+    return { ok: true, emailStatus: sendResult.status }
   })

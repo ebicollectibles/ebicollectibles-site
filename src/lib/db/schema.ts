@@ -283,6 +283,59 @@ export const orderCounters = pgTable('order_counters', {
   nextOrderNo: integer('next_order_no').notNull(),
 })
 
+// Orders placed through a different storefront (currently DropNotify) that
+// sells against this same shared Square inventory/location. Deliberately
+// walled off from orders/order_items rather than imported into them —
+// these never go through checkout, payment, or fulfillment status here,
+// they exist purely so admin can see what shipped, attach a carrier/
+// tracking number, and fire the "your order has shipped" email. Square is
+// the source of truth for payment and inventory on these; this table is
+// just a to-do list plus a record of what we've already sent an email for.
+export const marketplaceOrders = pgTable('marketplace_orders', {
+  id: uuid('id').primaryKey().defaultRandom(),
+  // Square's order id — the dedup key so a re-sync never imports the same
+  // order twice.
+  squareOrderId: text('square_order_id').notNull().unique(),
+  // Square's order.source.name (e.g. "DropNotify") — kept per-row rather
+  // than assumed, since which names count as "marketplace" is admin-
+  // configurable (see MARKETPLACE_ORDER_SOURCES) and can change over time.
+  sourceName: text('source_name').notNull(),
+  email: text('email'),
+  firstName: text('first_name'),
+  lastName: text('last_name'),
+  phone: text('phone'),
+  street: text('street'),
+  apartment: text('apartment'),
+  city: text('city'),
+  state: text('state'),
+  zip: text('zip'),
+  // When Square recorded the order — preserved from Square rather than
+  // defaulted, so these sort correctly alongside when they actually
+  // happened, not when we happened to run a sync.
+  placedAt: timestamp('placed_at', { withTimezone: true }).notNull(),
+  carrier: text('carrier'),
+  trackingNumber: text('tracking_number'),
+  // Set once admin has entered tracking and the shipment email has been
+  // attempted — null means still awaiting action, regardless of what
+  // emailStatus/emailError end up being (a failed send still counts as
+  // "handled," not "still pending").
+  shippedAt: timestamp('shipped_at', { withTimezone: true }),
+  emailStatus: text('email_status'), // sent | failed | skipped
+  emailError: text('email_error'),
+  createdAt: timestamp('created_at', { withTimezone: true }).notNull().defaultNow(),
+})
+
+export const marketplaceOrderItems = pgTable('marketplace_order_items', {
+  id: uuid('id').primaryKey().defaultRandom(),
+  marketplaceOrderId: uuid('marketplace_order_id')
+    .notNull()
+    .references(() => marketplaceOrders.id, { onDelete: 'cascade' }),
+  productName: text('product_name').notNull(),
+  img: text('img'),
+  unitPrice: numeric('unit_price', { precision: 10, scale: 2, mode: 'number' }),
+  qty: integer('qty').notNull(),
+})
+
 // General marketing list (new drops, restocks) — separate from customer
 // accounts (users) since a subscriber never needs to log in. Fed by the
 // homepage signup form, the checkout opt-in checkbox, and admin actions.

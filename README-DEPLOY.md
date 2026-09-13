@@ -251,6 +251,25 @@ place and pay just fine, they simply skip sending a confirmation email.
 Until both are set, checkout is unaffected — the email send is skipped
 silently (logged, not thrown) and the order still completes normally.
 
+## Marketplace orders (other storefronts selling against this Square inventory)
+
+If another site/app sells against this same Square account and location
+(shared inventory), its orders show up in Square but never in this site's own
+`orders` table — they didn't come through this checkout. `/admin/marketplace-orders`
+lets admin pull those in (`src/server/square.ts`'s `searchMarketplaceOrders`,
+stored in the separate `marketplace_orders`/`marketplace_order_items` tables,
+never mixed into `orders`/`order_items`) to add a carrier/tracking number and
+send a "your order has shipped" email — nothing else (no payment tracking, no
+inventory adjustment — Square is already the source of truth for both there).
+
+Set `MARKETPLACE_ORDER_SOURCES` as a Worker secret: a comma-separated list of
+the exact Square order `source.name` value(s) that identify that other
+storefront's orders (e.g. `DropNotify,DropNotify Acrylic Cases` — check a real
+order in the Square Dashboard, or via the Orders API, to confirm the exact
+name). Uses the same `RESEND_API_KEY`/`ORDER_FROM_EMAIL` secrets above to send
+the shipped email. Until `MARKETPLACE_ORDER_SOURCES` is set, the sync button
+just errors with a message saying so — nothing else on the site is affected.
+
 ## Customer accounts
 
 Email/password and "Continue with Google" sign-in for customers
