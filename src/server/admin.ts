@@ -25,7 +25,7 @@ import { PRODUCT_CATEGORIES, SUBCATEGORIES_BY_CATEGORY, ALL_SUBCATEGORIES } from
 import { computeFulfillmentStatus, remainingQtyByItem } from '~/lib/shipments'
 import { assertAdmin } from './admin-auth'
 import { sendMarketplaceShipmentEmail, sendShipmentEmail } from './email'
-import { overlaySquareData, searchMarketplaceOrders, searchSquareCatalogItems } from './square'
+import { getSquareCatalogImages, overlaySquareData, searchMarketplaceOrders, searchSquareCatalogItems } from './square'
 import { upsertSubscriber } from './subscribers'
 
 // Base object (not yet refined) so adminUpdateProduct can still .extend() it
@@ -578,19 +578,23 @@ export const adminSyncMarketplaceOrders = createServerFn({ method: 'POST' }).han
   const existing = await db.select({ squareOrderId: marketplaceOrders.squareOrderId }).from(marketplaceOrders)
   const existingIds = new Set(existing.map((r) => r.squareOrderId))
   const newOrders = squareOrders.filter((o) => !existingIds.has(o.squareOrderId))
-  if (newOrders.length === 0) return { imported: 0 }
 
-  // Best-effort match each line item's Square catalog object to one of our
-  // own products, purely to show its photo in the admin list — a miss just
-  // means no image, never blocks the import.
+  // Best-effort photo for each line item, purely for display — a miss just
+  // means no image, never blocks the import. Square's own catalog photo
+  // (see getSquareCatalogImages) is tried first since it doesn't depend on
+  // the item being linked to anything on our own site; falls back to a
+  // match against our own products table for anything Square has no photo
+  // for but happens to also be one of our own linked products.
   const catalogIds = [...new Set(newOrders.flatMap((o) => o.items.map((i) => i.squareCatalogObjectId)).filter((id): id is string => !!id))]
-  const matchedProducts =
+  const [squareImages, matchedProducts] = await Promise.all([
+    catalogIds.length === 0 ? Promise.resolve({} as Record<string, string>) : getSquareCatalogImages(catalogIds).catch(() => ({}) as Record<string, string>),
     catalogIds.length === 0
-      ? []
-      : await db
+      ? Promise.resolve([])
+      : db
           .select({ img: productsTable.img, squareVariationId: productsTable.squareVariationId })
           .from(productsTable)
-          .where(inArray(productsTable.squareVariationId, catalogIds))
+          .where(inArray(productsTable.squareVariationId, catalogIds)),
+  ])
   const imgByCatalogId = new Map(matchedProducts.map((p) => [p.squareVariationId, p.img]))
 
   for (const order of newOrders) {
@@ -621,11 +625,31 @@ export const adminSyncMarketplaceOrders = createServerFn({ method: 'POST' }).han
       order.items.map((item) => ({
         marketplaceOrderId: row.id,
         productName: item.productName,
-        img: item.squareCatalogObjectId ? imgByCatalogId.get(item.squareCatalogObjectId) ?? null : null,
+        img: item.squareCatalogObjectId ? squareImages[item.squareCatalogObjectId] ?? imgByCatalogId.get(item.squareCatalogObjectId) ?? null : null,
+        squareCatalogObjectId: item.squareCatalogObjectId,
         unitPrice: item.unitPrice,
         qty: item.qty,
       })),
     )
+  }
+
+  // Self-healing: also fill in images for items on already-imported, still-
+  // unshipped orders that didn't resolve a photo last time (e.g. Square's
+  // catalog didn't have one yet, or this sync is the first to know how to
+  // look it up at all). Scoped to unshipped orders only — a shipped order's
+  // email already went out, so there's nothing left to improve.
+  const stillPending = await db
+    .select({ id: marketplaceOrderItems.id, squareCatalogObjectId: marketplaceOrderItems.squareCatalogObjectId })
+    .from(marketplaceOrderItems)
+    .innerJoin(marketplaceOrders, eq(marketplaceOrderItems.marketplaceOrderId, marketplaceOrders.id))
+    .where(and(isNull(marketplaceOrders.shippedAt), isNull(marketplaceOrderItems.img)))
+  const missingCatalogIds = [...new Set(stillPending.map((r) => r.squareCatalogObjectId).filter((id): id is string => !!id))]
+  if (missingCatalogIds.length > 0) {
+    const backfillImages = await getSquareCatalogImages(missingCatalogIds).catch(() => ({}) as Record<string, string>)
+    for (const item of stillPending) {
+      const img = item.squareCatalogObjectId ? backfillImages[item.squareCatalogObjectId] : undefined
+      if (img) await db.update(marketplaceOrderItems).set({ img }).where(eq(marketplaceOrderItems.id, item.id))
+    }
   }
 
   return { imported: newOrders.length }

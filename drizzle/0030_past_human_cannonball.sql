@@ -1,0 +1,1 @@
+ALTER TABLE "marketplace_order_items" ADD COLUMN "square_catalog_object_id" text;

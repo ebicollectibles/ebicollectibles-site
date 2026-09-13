@@ -332,6 +332,10 @@ export const marketplaceOrderItems = pgTable('marketplace_order_items', {
     .references(() => marketplaceOrders.id, { onDelete: 'cascade' }),
   productName: text('product_name').notNull(),
   img: text('img'),
+  // Kept even after img is resolved so a later sync can re-look-up the
+  // photo (Square catalog updated, or the item got linked to one of our
+  // own products afterward) without needing to re-fetch the whole order.
+  squareCatalogObjectId: text('square_catalog_object_id'),
   unitPrice: numeric('unit_price', { precision: 10, scale: 2, mode: 'number' }),
   qty: integer('qty').notNull(),
 })

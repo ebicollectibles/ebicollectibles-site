@@ -311,6 +311,46 @@ export async function getSquareCatalogPrices(variationIds: string[]): Promise<Re
   return prices
 }
 
+// Photo Square itself has on file for each item variation, keyed by
+// variation id — for marketplace-order emails (see marketplace_orders),
+// where the item may not be linked to (or may not even correspond to) one
+// of our own products, so this is checked before falling back to a match
+// against our products table. The image lives on the *parent* item, not
+// the variation, and images are a separate catalog object type — one
+// batch-retrieve call with include_related_objects pulls both relations in
+// alongside the variations actually requested rather than needing three
+// separate round trips (variation -> item -> image).
+export async function getSquareCatalogImages(variationIds: string[]): Promise<Record<string, string>> {
+  const { accessToken, baseUrl } = squareConfig()
+  if (!accessToken) throw new Error('Square is not configured (SQUARE_ACCESS_TOKEN missing).')
+  if (variationIds.length === 0) return {}
+
+  const res = await fetch(`${baseUrl}/v2/catalog/batch-retrieve`, {
+    method: 'POST',
+    headers: squareHeaders(accessToken),
+    body: JSON.stringify({ object_ids: variationIds, include_related_objects: true }),
+  })
+  const json = await res.json().catch(() => null)
+  if (!res.ok) throw new Error(json?.errors?.[0]?.detail || `Square API error (${res.status})`)
+
+  const related = json?.related_objects ?? []
+  const imageUrlById = new Map<string, string>()
+  const itemImageId = new Map<string, string>()
+  for (const obj of related) {
+    if (obj.type === 'IMAGE' && obj.image_data?.url) imageUrlById.set(obj.id, obj.image_data.url)
+    if (obj.type === 'ITEM' && obj.item_data?.image_ids?.[0]) itemImageId.set(obj.id, obj.item_data.image_ids[0])
+  }
+
+  const images: Record<string, string> = {}
+  for (const obj of json?.objects ?? []) {
+    const itemId = obj?.item_variation_data?.item_id
+    const imageId = itemId ? itemImageId.get(itemId) : undefined
+    const url = imageId ? imageUrlById.get(imageId) : undefined
+    if (url) images[obj.id] = url
+  }
+  return images
+}
+
 // Replaces `stock` and `price` with live Square values for any item linked
 // via squareVariationId, leaving unmapped items untouched. Falls back to
 // whatever was already stored if Square can't be reached — a Square outage
