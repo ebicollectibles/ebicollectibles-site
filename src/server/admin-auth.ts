@@ -71,7 +71,8 @@ export const adminLogin = createServerFn({ method: 'POST' })
     }
     const expected = process.env.ADMIN_PASSWORD
     if (!expected) throw new Error('ADMIN_PASSWORD is not set on the server.')
-    if (data.password !== expected) {
+    const { timingSafeEqual } = await import('~/lib/auth/password')
+    if (!timingSafeEqual(data.password, expected)) {
       await recordAuthEvent({ type: 'admin_login_failed' })
       throw new Error('Incorrect password.')
     }

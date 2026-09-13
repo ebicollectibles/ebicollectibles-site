@@ -74,6 +74,8 @@ export type AuthEventType =
   | 'email_verified'
   | 'admin_login'
   | 'admin_login_failed'
+  | 'verification_code_sent'
+  | 'password_reset_code_sent'
 
 export async function recordAuthEvent(opts: { userId?: string | null; email?: string | null; type: AuthEventType }) {
   const { getDb } = await import('~/lib/db/client')
@@ -113,8 +115,22 @@ function generateVerificationCode(): string {
   return String(bytes[0] % 1_000_000).padStart(6, '0')
 }
 
-/** Generates a fresh 6-digit code (replacing any pending one), emails it, and lets a send failure propagate — unlike order-confirmation email, there's no fallback way to deliver this. */
+/**
+ * Generates a fresh 6-digit code (replacing any pending one), emails it, and
+ * lets a send failure propagate — unlike order-confirmation email, there's
+ * no fallback way to deliver this. Called from signup, login, and the
+ * explicit "resend code" endpoint, so the rate limit lives here rather than
+ * in each caller — otherwise someone could bypass a per-endpoint limit just
+ * by re-triggering signup/login instead of hitting resend directly. Per
+ * (IP, email) rather than IP-only, same reasoning as isLoginRateLimited:
+ * this only throttles repeated codes to one target, not shared-IP users.
+ */
 export async function sendVerificationCode(userId: string, email: string) {
+  const { isLoginRateLimited } = await import('./rate-limit')
+  if (await isLoginRateLimited({ type: 'verification_code_sent', email, maxAttempts: 5, windowMinutes: 15 })) {
+    throw new Error('Too many codes requested for this email — try again in a few minutes.')
+  }
+
   const { getDb } = await import('~/lib/db/client')
   const { emailVerificationCodes } = await import('~/lib/db/schema')
   const db = getDb()
@@ -125,14 +141,20 @@ export async function sendVerificationCode(userId: string, email: string) {
     .values({ userId, code, expiresAt, attempts: 0 })
     .onConflictDoUpdate({ target: emailVerificationCodes.userId, set: { code, expiresAt, attempts: 0 } })
 
+  await recordAuthEvent({ userId, email, type: 'verification_code_sent' })
   const { sendVerificationCodeEmail } = await import('./email')
   await sendVerificationCodeEmail({ email, code })
 }
 
 // --- Password reset codes ---
 
-/** Same shape as sendVerificationCode, against the separate passwordResetCodes table. */
+/** Same shape (and same rate-limit reasoning) as sendVerificationCode, against the separate passwordResetCodes table. */
 export async function sendPasswordResetCode(userId: string, email: string) {
+  const { isLoginRateLimited } = await import('./rate-limit')
+  if (await isLoginRateLimited({ type: 'password_reset_code_sent', email, maxAttempts: 5, windowMinutes: 15 })) {
+    throw new Error('Too many reset codes requested for this email — try again in a few minutes.')
+  }
+
   const { getDb } = await import('~/lib/db/client')
   const { passwordResetCodes } = await import('~/lib/db/schema')
   const db = getDb()
@@ -143,6 +165,7 @@ export async function sendPasswordResetCode(userId: string, email: string) {
     .values({ userId, code, expiresAt, attempts: 0 })
     .onConflictDoUpdate({ target: passwordResetCodes.userId, set: { code, expiresAt, attempts: 0 } })
 
+  await recordAuthEvent({ userId, email, type: 'password_reset_code_sent' })
   const { sendPasswordResetCodeEmail } = await import('./email')
   await sendPasswordResetCodeEmail({ email, code })
 }

@@ -42,6 +42,14 @@ export const customerSignup = createServerFn({ method: 'POST' })
     }),
   )
   .handler(async ({ data }) => {
+    const { isLoginRateLimited } = await import('./rate-limit')
+    // IP-only (not per-email, unlike login/code rate limits) — a fresh
+    // account uses a new email every time by definition, so an email-scoped
+    // check would never catch signup spam from one IP.
+    if (await isLoginRateLimited({ type: 'signup', maxAttempts: 10, windowMinutes: 60 })) {
+      throw new Error('Too many accounts created recently — try again later.')
+    }
+
     const { getDb } = await import('~/lib/db/client')
     const { users } = await import('~/lib/db/schema')
     const { eq } = await import('drizzle-orm')
@@ -128,8 +136,12 @@ export const verifyEmailCode = createServerFn({ method: 'POST' })
     if (!user) throw new Error('Account not found.')
 
     if (user.emailVerifiedAt) {
-      await setCustomerSession(user.id)
-      await touchLastLogin(user.id)
+      // Already verified — this is a duplicate/retry of a request that
+      // already succeeded (the browser already holds that response's
+      // session cookie). Never grant a session here without checking the
+      // code: doing so let anyone log in as any verified account just by
+      // knowing its email, since data.code was never inspected on this
+      // branch.
       return { ok: true }
     }
 
@@ -138,7 +150,8 @@ export const verifyEmailCode = createServerFn({ method: 'POST' })
     if (pending.expiresAt.getTime() < Date.now()) throw new Error('That code expired — request a new one.')
     if (pending.attempts >= 5) throw new Error('Too many incorrect attempts — request a new code.')
 
-    if (pending.code !== data.code.trim()) {
+    const { timingSafeEqual } = await import('~/lib/auth/password')
+    if (!timingSafeEqual(pending.code, data.code.trim())) {
       await db
         .update(emailVerificationCodes)
         .set({ attempts: pending.attempts + 1 })
@@ -211,7 +224,8 @@ export const resetPasswordWithCode = createServerFn({ method: 'POST' })
     if (pending.expiresAt.getTime() < Date.now()) throw new Error('That code expired — request a new one.')
     if (pending.attempts >= 5) throw new Error('Too many incorrect attempts — request a new code.')
 
-    if (pending.code !== data.code.trim()) {
+    const { timingSafeEqual } = await import('~/lib/auth/password')
+    if (!timingSafeEqual(pending.code, data.code.trim())) {
       await db
         .update(passwordResetCodes)
         .set({ attempts: pending.attempts + 1 })

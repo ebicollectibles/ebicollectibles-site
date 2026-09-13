@@ -9,7 +9,7 @@
 // such request into one shared bucket.
 
 export async function isLoginRateLimited(opts: {
-  type: 'login_failed' | 'admin_login_failed'
+  type: 'login_failed' | 'admin_login_failed' | 'signup' | 'verification_code_sent' | 'password_reset_code_sent'
   email?: string | null
   windowMinutes?: number
   maxAttempts?: number
