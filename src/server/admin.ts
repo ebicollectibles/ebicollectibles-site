@@ -98,7 +98,19 @@ export const adminCreateProduct = createServerFn({ method: 'POST' })
   .handler(async ({ data }) => {
     await assertAdmin()
     const db = getDb()
-    await db.insert(productsTable).values(data)
+    try {
+      await db.insert(productsTable).values(data)
+    } catch (err: any) {
+      // '23505' = Postgres unique_violation — id is the product's slug and
+      // primary key, so this only ever means someone already used it
+      // (typically from cloning another product's form values and
+      // forgetting to change the id). Surface that plainly instead of the
+      // raw SQL error.
+      if (err?.code === '23505') {
+        throw new Error(`"${data.id}" is already in use by another product — choose a different ID.`)
+      }
+      throw err
+    }
     return { ok: true }
   })
 
@@ -113,10 +125,19 @@ export const adminUpdateProduct = createServerFn({ method: 'POST' })
 
     const [before] = await db.select().from(productsTable).where(eq(productsTable.id, originalId)).limit(1)
 
-    await db
-      .update(productsTable)
-      .set({ ...rest, updatedAt: new Date() })
-      .where(eq(productsTable.id, originalId))
+    try {
+      await db
+        .update(productsTable)
+        .set({ ...rest, updatedAt: new Date() })
+        .where(eq(productsTable.id, originalId))
+    } catch (err: any) {
+      // Same failure mode as adminCreateProduct — here it means the id/slug
+      // was changed to one another product already uses.
+      if (err?.code === '23505') {
+        throw new Error(`"${rest.id}" is already in use by another product — choose a different ID.`)
+      }
+      throw err
+    }
 
     if (before) {
       const edits = TRACKED_EDIT_FIELDS.filter((field) => before[field] !== rest[field]).map((field) => ({
