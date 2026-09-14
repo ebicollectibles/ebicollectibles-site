@@ -1,12 +1,12 @@
 export const PRODUCT_CATEGORIES = ['Chinese Pokémon Products', 'Acrylic Cases'] as const
 export type ProductCategory = (typeof PRODUCT_CATEGORIES)[number]
 
-export type ProductSubcategory = 'Gem Series' | 'CSV Series' | 'Blind Box' | 'ETB Case' | 'Booster Box Case' | 'SPC Box Case'
+export type ProductSubcategory = 'Gem Series' | 'CSV Series' | 'Blind Box' | 'Special Products' | 'ETB Case' | 'Booster Box Case' | 'SPC Box Case'
 
 // Which subcategories are valid under each category — drives the dependent
 // dropdown in the admin product form and the grouped shop filter.
 export const SUBCATEGORIES_BY_CATEGORY: Record<ProductCategory, ProductSubcategory[]> = {
-  'Chinese Pokémon Products': ['Gem Series', 'CSV Series', 'Blind Box'],
+  'Chinese Pokémon Products': ['Gem Series', 'CSV Series', 'Blind Box', 'Special Products'],
   'Acrylic Cases': ['ETB Case', 'Booster Box Case', 'SPC Box Case'],
 }
 
