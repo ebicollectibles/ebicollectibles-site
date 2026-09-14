@@ -30,7 +30,7 @@ function CartPage() {
         <div style={{ border: '1px solid #e3e6ea', marginTop: 32, padding: '70px 24px', textAlign: 'center' }}>
           <div style={{ fontSize: 16, fontWeight: 600 }}>Your cart is empty.</div>
           <p style={{ fontSize: 13.5, color: '#131b28', margin: '8px 0 20px' }}>
-            Sealed Chinese boxes move fast — grab one while it's live.
+            Nothing here yet — take a look at what's in stock.
           </p>
           <Link
             to="/shop"
