@@ -89,7 +89,7 @@ export function AnniversaryCountdown() {
             Pokémon TCG · 30th Anniversary
           </div>
           <div style={{ fontSize: 16.5, fontWeight: 700, letterSpacing: '-0.01em', marginTop: 3 }}>
-            Global simultaneous release — 09.16.2026
+            Global release — 09.16.2026
           </div>
         </div>
 
