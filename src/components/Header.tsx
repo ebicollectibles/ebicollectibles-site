@@ -2,6 +2,7 @@ import * as React from 'react'
 import { Link, useNavigate, useRouter, useRouterState } from '@tanstack/react-router'
 import { useCart } from '~/lib/cart-context'
 import { customerLogout } from '~/server/customer-auth'
+import { HeaderSearch } from '~/components/HeaderSearch'
 
 interface HeaderCustomer {
   id: string
@@ -26,19 +27,10 @@ export function Header({ customer }: { customer: HeaderCustomer | null }) {
   const [menuOpen, setMenuOpen] = React.useState(false)
   const [pokemonMenuOpen, setPokemonMenuOpen] = React.useState(false)
   const [accountMenuOpen, setAccountMenuOpen] = React.useState(false)
-  const [searchValue, setSearchValue] = React.useState('')
   const pokemonMenuRef = React.useRef<HTMLDivElement>(null)
   const accountMenuRef = React.useRef<HTMLDivElement>(null)
 
   const navColor = (active: boolean) => (active ? '#131b28' : '#5a6875')
-
-  const submitSearch = (e: React.FormEvent) => {
-    e.preventDefault()
-    const q = searchValue.trim()
-    if (!q) return
-    navigate({ to: '/shop', search: { q } })
-    setMenuOpen(false)
-  }
 
   const logout = async () => {
     await customerLogout()
@@ -192,31 +184,7 @@ export function Header({ customer }: { customer: HeaderCustomer | null }) {
 
         <div style={{ flex: 1 }} />
 
-        <form
-          onSubmit={submitSearch}
-          className="ebi-header-search"
-          style={{
-            alignItems: 'center',
-            gap: 10,
-            border: '1px solid #e3e6ea',
-            borderRadius: 2,
-            padding: '8px 12px',
-            width: 210,
-            background: '#f6f7f8',
-          }}
-        >
-          <span aria-hidden="true" style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 12, color: '#98a1ab' }}>
-            ⌕
-          </span>
-          <input
-            type="search"
-            value={searchValue}
-            onChange={(e) => setSearchValue(e.target.value)}
-            placeholder="Search products…"
-            aria-label="Search products"
-            style={{ border: 0, background: 'transparent', fontSize: 12.5, width: '100%', color: '#131b28' }}
-          />
-        </form>
+        <HeaderSearch variant="desktop" />
 
         {customer ? (
           <div ref={accountMenuRef} className="ebi-header-account" style={{ position: 'relative', flexShrink: 0 }}>
@@ -312,31 +280,9 @@ export function Header({ customer }: { customer: HeaderCustomer | null }) {
       </div>
 
       <div className={`ebi-mobile-menu${menuOpen ? ' is-open' : ''}`} style={{ flexDirection: 'column', borderTop: '1px solid #e3e6ea', padding: '14px 20px 20px', background: '#ffffff' }}>
-        <form
-          onSubmit={submitSearch}
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: 10,
-            border: '1px solid #e3e6ea',
-            borderRadius: 2,
-            padding: '10px 12px',
-            background: '#f6f7f8',
-            marginBottom: 16,
-          }}
-        >
-          <span aria-hidden="true" style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 12, color: '#98a1ab' }}>
-            ⌕
-          </span>
-          <input
-            type="search"
-            value={searchValue}
-            onChange={(e) => setSearchValue(e.target.value)}
-            placeholder="Search products…"
-            aria-label="Search products"
-            style={{ border: 0, background: 'transparent', fontSize: 16, width: '100%', color: '#131b28' }}
-          />
-        </form>
+        <div style={{ marginBottom: 16 }}>
+          <HeaderSearch variant="mobile" onNavigate={() => setMenuOpen(false)} />
+        </div>
         <nav style={{ display: 'flex', flexDirection: 'column', gap: 4, fontSize: 15, fontWeight: 500 }}>
           <Link to="/" style={{ color: navColor(pathname === '/'), padding: '10px 0', borderBottom: '1px solid #f0f2f4' }}>
             Home
