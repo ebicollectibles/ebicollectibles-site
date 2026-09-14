@@ -43,7 +43,10 @@ function MarketplaceOrdersPage() {
   const [testMessage, setTestMessage] = React.useState<Record<string, string>>({})
 
   const pending = orders.filter((o) => !o.shippedAt)
-  const shipped = orders.filter((o) => o.shippedAt)
+  // Most-recently-shipped first — the base list order (by placedAt) isn't
+  // what you want to scan here, since a recently-shipped order might have
+  // been placed a while ago.
+  const shipped = orders.filter((o) => o.shippedAt).sort((a, b) => new Date(b.shippedAt!).getTime() - new Date(a.shippedAt!).getTime())
   const visible = showShipped ? shipped : pending
 
   // Falls back to whatever carrier/tracking Square already had for this
@@ -238,6 +241,9 @@ function MarketplaceOrdersPage() {
                       <div style={{ fontSize: 12.5 }}>
                         {order.carrier || '—'}
                         {order.trackingNumber && <div style={{ color: '#98a1ab', fontSize: 11.5 }}>{order.trackingNumber}</div>}
+                        {order.shippedAt && (
+                          <div style={{ color: '#98a1ab', fontSize: 11 }}>Marked shipped {new Date(order.shippedAt).toLocaleString()}</div>
+                        )}
                         {order.emailStatus && order.emailStatus !== 'sent' && (
                           <div style={{ color: '#b4622f', fontSize: 11 }}>Email {order.emailStatus}{order.emailError ? `: ${order.emailError}` : ''}</div>
                         )}
