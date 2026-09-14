@@ -49,9 +49,17 @@ function ShopPage() {
     return []
   }
 
+  // The slider's own ceiling — must cover the priciest product or that
+  // product becomes permanently unreachable on this page (no way to move
+  // the slider past its max), not just filtered by default. Rounded up to
+  // the nearest $10 so it isn't an oddly specific number, floored at $150
+  // so the slider still has reasonable range on a catalog with nothing
+  // expensive in it yet.
+  const priceCeiling = Math.max(150, ...products.map((p) => Math.ceil(p.price / 10) * 10))
+
   const [subcategories, setSubcategories] = React.useState<ProductSubcategory[]>(seedSubcategories())
   const [inStockOnly, setInStockOnly] = React.useState(false)
-  const [maxPrice, setMaxPrice] = React.useState(150)
+  const [maxPrice, setMaxPrice] = React.useState(priceCeiling)
   const [sort, setSort] = React.useState<SortMode>('featured')
   const [filtersOpen, setFiltersOpen] = React.useState(false)
 
@@ -69,7 +77,7 @@ function ShopPage() {
   const resetFilters = () => {
     setSubcategories([])
     setInStockOnly(false)
-    setMaxPrice(150)
+    setMaxPrice(priceCeiling)
     setSort('featured')
   }
 
@@ -137,14 +145,14 @@ function ShopPage() {
         <input
           type="range"
           min={10}
-          max={150}
+          max={priceCeiling}
           step={5}
           value={maxPrice}
           onChange={(e) => setMaxPrice(Number(e.target.value))}
           style={{ width: '100%', accentColor: '#131b28' }}
         />
         <div style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 11.5, color: '#131b28', marginTop: 8 }}>
-          up to ${maxPrice}.00
+          {maxPrice >= priceCeiling ? 'No price limit' : `up to $${maxPrice}.00`}
         </div>
       </div>
       <button
