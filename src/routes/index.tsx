@@ -198,7 +198,7 @@ function HomePage() {
           </Link>
           <Link
             to="/shop"
-            search={{ subcategory: 'Blind Box' }}
+            search={{ subcategories: ['Figure', 'Blind Box'] }}
             className="ebi-tile"
             style={{
               border: '1px solid #e3e6ea',
@@ -212,8 +212,8 @@ function HomePage() {
           >
             <div style={monoLabel}>Collection</div>
             <div>
-              <div style={{ fontSize: 22, fontWeight: 700, letterSpacing: '-0.015em' }}>Figures &amp; blind boxes</div>
-              <div style={{ fontSize: 13, color: '#131b28', marginTop: 6 }}>Poképeace, Hollybox, festival gift sets</div>
+              <div style={{ fontSize: 22, fontWeight: 700, letterSpacing: '-0.015em' }}>Figures &amp; Blind Boxes</div>
+              <div style={{ fontSize: 13, color: '#131b28', marginTop: 6 }}>Nuzzle Cheeks, Eevee Figures &amp; more</div>
             </div>
           </Link>
           <div
