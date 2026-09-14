@@ -1,7 +1,6 @@
 import * as React from 'react'
 import { useNavigate } from '@tanstack/react-router'
 import { useCart } from '~/lib/cart-context'
-import { formatMoney } from '~/lib/products'
 
 const MAX_RESULTS = 6
 
@@ -187,9 +186,6 @@ export function HeaderSearch({
                   }}
                 >
                   {p.name}
-                </span>
-                <span style={{ fontSize: 11.5, fontFamily: "'IBM Plex Mono', monospace", color: '#98a1ab', flexShrink: 0 }}>
-                  {formatMoney(p.price)}
                 </span>
               </button>
             ))
