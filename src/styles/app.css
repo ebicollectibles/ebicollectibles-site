@@ -267,6 +267,18 @@ button {
   gap: 1px;
 }
 
+/* Product card name: clipped to N lines (ellipsis) at line-height 1.35, so
+   it never overflows into the price below it regardless of how the name
+   wraps at a given column width. Height is in em so it tracks whatever
+   font-size the card sets inline. */
+.ebi-card-name {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  height: 4.05em;
+}
+
 .ebi-product-detail-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -362,6 +374,11 @@ button {
 
   .ebi-shop-grid {
     grid-template-columns: 1fr 1fr;
+  }
+
+  .ebi-card-name {
+    -webkit-line-clamp: 4;
+    height: 5.4em;
   }
 
   .ebi-product-detail-grid {
