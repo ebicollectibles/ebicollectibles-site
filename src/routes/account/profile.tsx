@@ -65,8 +65,11 @@ function ProfilePage() {
             <div style={label}>Password</div>
             {customer.hasPassword || justSet ? (
               <div style={{ fontSize: 15, color: '#131b28' }}>
-                {justSet && <span style={{ color: '#3f7a63', fontWeight: 600 }}>Set. </span>}
-                You can log in with your email and this password.
+                {justSet ? (
+                  <span style={{ color: '#3f7a63' }}>Password set — you can now log in with your email and password.</span>
+                ) : (
+                  'Set — you can log in with your email and password.'
+                )}
               </div>
             ) : (
               <SetPasswordForm onSuccess={() => setJustSet(true)} />
