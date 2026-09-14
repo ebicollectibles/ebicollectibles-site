@@ -21,6 +21,7 @@ export function HeaderSearch({
   const [open, setOpen] = React.useState(false)
   const [highlighted, setHighlighted] = React.useState(0)
   const containerRef = React.useRef<HTMLDivElement>(null)
+  const inputRef = React.useRef<HTMLInputElement>(null)
   const inputId = React.useId()
 
   const query = value.trim().toLowerCase()
@@ -77,28 +78,31 @@ export function HeaderSearch({
     <div
       ref={containerRef}
       className={desktop ? 'ebi-header-search' : undefined}
-      style={{ position: 'relative', width: desktop ? 210 : '100%' }}
+      style={{ position: 'relative', width: desktop ? 260 : '100%' }}
     >
       <form
         onSubmit={(e) => {
           e.preventDefault()
           submitFullSearch()
         }}
+        onClick={() => inputRef.current?.focus()}
         style={{
           display: 'flex',
           alignItems: 'center',
           gap: 10,
           border: '1px solid #e3e6ea',
           borderRadius: 2,
-          padding: desktop ? '8px 12px' : '10px 12px',
+          padding: desktop ? '11px 14px' : '10px 12px',
           width: '100%',
           background: '#f6f7f8',
+          cursor: 'text',
         }}
       >
         <span aria-hidden="true" style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 12, color: '#98a1ab' }}>
           ⌕
         </span>
         <input
+          ref={inputRef}
           id={inputId}
           type="search"
           value={value}
@@ -114,7 +118,7 @@ export function HeaderSearch({
           aria-expanded={open && matches.length > 0}
           aria-controls={`${inputId}-results`}
           autoComplete="off"
-          style={{ border: 0, background: 'transparent', fontSize: desktop ? 12.5 : 16, width: '100%', color: '#131b28' }}
+          style={{ border: 0, background: 'transparent', fontSize: desktop ? 13.5 : 16, width: '100%', color: '#131b28' }}
         />
       </form>
 
@@ -125,8 +129,12 @@ export function HeaderSearch({
           style={{
             position: desktop ? 'absolute' : 'static',
             top: desktop ? 'calc(100% + 6px)' : undefined,
-            left: 0,
-            right: 0,
+            // Anchored to the search box's right edge but allowed to grow
+            // wider than the box itself (leftward) — the box is narrow by
+            // design, the dropdown doesn't need to be.
+            right: desktop ? 0 : 0,
+            left: desktop ? 'auto' : 0,
+            width: desktop ? 360 : '100%',
             marginTop: desktop ? 0 : 8,
             background: '#ffffff',
             border: '1px solid #e3e6ea',
@@ -150,20 +158,20 @@ export function HeaderSearch({
                 style={{
                   display: 'flex',
                   alignItems: 'center',
-                  gap: 10,
+                  gap: 12,
                   width: '100%',
                   textAlign: 'left',
                   background: i === highlighted ? '#f6f7f8' : 'transparent',
                   border: 0,
                   borderBottom: i === matches.length - 1 ? 0 : '1px solid #f0f2f4',
-                  padding: '9px 12px',
+                  padding: desktop ? '12px 14px' : '9px 12px',
                   cursor: 'pointer',
                 }}
               >
                 <div
                   style={{
-                    width: 32,
-                    height: 32,
+                    width: desktop ? 48 : 36,
+                    height: desktop ? 48 : 36,
                     flexShrink: 0,
                     borderRadius: 2,
                     border: '1px solid #e3e6ea',
@@ -178,7 +186,7 @@ export function HeaderSearch({
                 <span
                   style={{
                     flex: 1,
-                    fontSize: 12.5,
+                    fontSize: desktop ? 13.5 : 12.5,
                     color: '#131b28',
                     overflow: 'hidden',
                     textOverflow: 'ellipsis',
