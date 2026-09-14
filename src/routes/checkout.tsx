@@ -185,6 +185,24 @@ function CheckoutPage() {
   const [contact, setContact] = React.useState<CheckoutContact>(() =>
     initialAccount ? { ...emptyContact, email: initialAccount.email, ...splitName(initialAccount.name) } : emptyContact,
   )
+
+  // initialAccount comes from the route loader, which reruns (and returns
+  // the fresh signed-in-or-not state) whenever the router is invalidated —
+  // e.g. logging in or out elsewhere and coming back to /checkout without
+  // this component unmounting. But the useState initializers above only run
+  // on the very first mount, so without this effect the page would keep
+  // showing whichever auth state was true the first time it was visited.
+  // Guarded by account id so it doesn't clobber in-progress form edits on
+  // every unrelated re-render.
+  const initialAccountId = initialAccount?.id ?? null
+  const syncedAccountId = React.useRef(initialAccountId)
+  React.useEffect(() => {
+    if (initialAccountId === syncedAccountId.current) return
+    syncedAccountId.current = initialAccountId
+    setAccount(initialAccount)
+    setCheckoutAs(initialAccount ? 'account' : null)
+    setContact(initialAccount ? { ...emptyContact, email: initialAccount.email, ...splitName(initialAccount.name) } : emptyContact)
+  }, [initialAccountId, initialAccount])
   const contactComplete =
     EMAIL_RE.test(contact.email.trim()) &&
     contact.firstName.trim() !== '' &&
