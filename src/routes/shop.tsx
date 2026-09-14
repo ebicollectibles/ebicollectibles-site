@@ -3,7 +3,9 @@ import { createFileRoute } from '@tanstack/react-router'
 import { z } from 'zod'
 import { ProductCard } from '~/components/ProductCard'
 import { useCart } from '~/lib/cart-context'
-import { PRODUCT_CATEGORIES, SUBCATEGORIES_BY_CATEGORY, ALL_SUBCATEGORIES, type ProductSubcategory } from '~/lib/products'
+import { PRODUCT_CATEGORIES, SUBCATEGORIES_BY_CATEGORY, ALL_SUBCATEGORIES, type ProductCategory, type ProductSubcategory } from '~/lib/products'
+
+const categoryLabel = (cat: ProductCategory) => (cat === 'Chinese Pokémon Products' ? 'Pokemon (Simplified Chinese)' : cat)
 
 const shopSearchSchema = z.object({
   category: z.enum(PRODUCT_CATEGORIES).optional(),
@@ -18,7 +20,10 @@ const shopSearchSchema = z.object({
 export const Route = createFileRoute('/shop')({
   validateSearch: shopSearchSchema,
   head: ({ match }) => {
-    const label = match.search.subcategories?.join(' & ') || match.search.subcategory || match.search.category
+    const label =
+      match.search.subcategories?.join(' & ') ||
+      match.search.subcategory ||
+      (match.search.category ? categoryLabel(match.search.category) : undefined)
     if (!label) return {}
     const title = `${label} — EBI Collectibles`
     const description = `Shop ${label} — Simplified Chinese Pokémon, verified before it ships.`
@@ -104,13 +109,25 @@ function ShopPage() {
   if (sort === 'high') visible = [...visible].sort((a, b) => b.price - a.price)
   if (sort === 'name') visible = [...visible].sort((a, b) => a.name.localeCompare(b.name))
 
+  // If every subcategory of a category is selected, that's really "show all
+  // of this category" (e.g. landing via the "All Pokemon (Chinese)" link
+  // seeds all 5 Chinese Pokémon subcategories) — show the category label
+  // rather than joining every subcategory name together.
+  const matchedCategory = PRODUCT_CATEGORIES.find(
+    (cat) =>
+      subcategories.length === SUBCATEGORIES_BY_CATEGORY[cat].length &&
+      subcategories.every((s) => SUBCATEGORIES_BY_CATEGORY[cat].includes(s)),
+  )
+
   const shopTitle = search.q
     ? `Results for "${search.q}"`
-    : subcategories.length === 1
-      ? subcategories[0]
-      : subcategories.length > 1
-        ? subcategories.join(' & ')
-        : 'Chinese Pokémon Products'
+    : matchedCategory
+      ? categoryLabel(matchedCategory)
+      : subcategories.length === 1
+        ? subcategories[0]
+        : subcategories.length > 1
+          ? subcategories.join(' & ')
+          : 'Chinese Pokémon Products'
 
   const filterPanel = (
     <aside className="ebi-sticky-aside">
