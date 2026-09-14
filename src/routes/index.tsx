@@ -193,7 +193,7 @@ function HomePage() {
             <div style={monoLabel}>Collection</div>
             <div>
               <div style={{ fontSize: 22, fontWeight: 700, letterSpacing: '-0.015em' }}>Booster Boxes</div>
-              <div style={{ fontSize: 13, color: '#131b28', marginTop: 6 }}>CBB &amp; CSV sets, sealed cases on request</div>
+              <div style={{ fontSize: 13, color: '#131b28', marginTop: 6 }}>Gem Series &amp; CSV sets</div>
             </div>
           </Link>
           <Link
