@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { createFileRoute, Link, useNavigate, useRouter } from '@tanstack/react-router'
 import { z } from 'zod'
-import { customerLogin } from '~/server/customers'
+import { customerLogin, requestPasswordReset, GOOGLE_NO_PASSWORD_ERROR } from '~/server/customers'
 import { startGoogleAuth } from '~/server/google-auth'
 import { PasswordInput } from '~/components/PasswordInput'
 
@@ -53,10 +53,16 @@ function LoginPage() {
   const [error, setError] = React.useState<string | null>(search.error ?? null)
   const [submitting, setSubmitting] = React.useState(false)
   const [googleBusy, setGoogleBusy] = React.useState(false)
+  // Set instead of `error` specifically for the "Google account, no
+  // password yet" case — rendered as its own box with a "Set a password"
+  // action rather than plain red error text (see below).
+  const [noPasswordFor, setNoPasswordFor] = React.useState<string | null>(null)
+  const [settingUpPassword, setSettingUpPassword] = React.useState(false)
 
   const submit = async (e: React.FormEvent) => {
     e.preventDefault()
     setError(null)
+    setNoPasswordFor(null)
     setSubmitting(true)
     try {
       const result = await customerLogin({ data: { email, password } })
@@ -67,9 +73,30 @@ function LoginPage() {
         navigate({ to: '/account/orders' })
       }
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Login failed.')
+      const message = err instanceof Error ? err.message : 'Login failed.'
+      if (message === GOOGLE_NO_PASSWORD_ERROR) {
+        setNoPasswordFor(email)
+      } else {
+        setError(message)
+      }
     } finally {
       setSubmitting(false)
+    }
+  }
+
+  // Skips the separate "Forgot password?" page entirely — the email is
+  // already right here, and framing this as "reset" would be backwards for
+  // an account that never had a password to begin with.
+  const setUpPassword = async () => {
+    if (!noPasswordFor) return
+    setError(null)
+    setSettingUpPassword(true)
+    try {
+      await requestPasswordReset({ data: { email: noPasswordFor } })
+      navigate({ to: '/account/reset-password', search: { email: noPasswordFor } })
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Failed to send a code.')
+      setSettingUpPassword(false)
     }
   }
 
@@ -114,7 +141,10 @@ function LoginPage() {
           type="email"
           required
           value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          onChange={(e) => {
+            setEmail(e.target.value)
+            setNoPasswordFor(null)
+          }}
           className="ebi-field"
           style={field}
         />
@@ -135,6 +165,31 @@ function LoginPage() {
           style={{ ...field, marginTop: 6 }}
         />
         {error && <p style={{ fontSize: 12.5, color: '#b4622f', marginTop: 14 }}>{error}</p>}
+        {noPasswordFor && (
+          <div style={{ marginTop: 14, padding: '12px 14px', background: '#f6f7f8', border: '1px solid #e3e6ea', borderRadius: 3 }}>
+            <p style={{ fontSize: 12.5, color: '#131b28', margin: 0, lineHeight: 1.5 }}>
+              This account was created with Google and doesn't have a password yet.
+            </p>
+            <button
+              type="button"
+              onClick={setUpPassword}
+              disabled={settingUpPassword}
+              style={{
+                marginTop: 8,
+                background: 'none',
+                border: 0,
+                padding: 0,
+                fontSize: 12.5,
+                fontWeight: 600,
+                color: '#131b28',
+                textDecoration: 'underline',
+                cursor: settingUpPassword ? 'default' : 'pointer',
+              }}
+            >
+              {settingUpPassword ? 'Sending a code…' : 'Set a password'}
+            </button>
+          </div>
+        )}
         <button type="submit" disabled={submitting} style={{ ...submitBtn, marginTop: 20, opacity: submitting ? 0.6 : 1 }}>
           {submitting ? 'Logging in…' : 'Log in'}
         </button>

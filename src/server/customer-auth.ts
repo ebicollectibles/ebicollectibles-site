@@ -43,9 +43,16 @@ export const getCurrentCustomer = createServerFn({ method: 'GET' }).handler(asyn
   if (!userId) return null
   const { getDb } = await import('~/lib/db/client')
   const { users } = await import('~/lib/db/schema')
-  const { eq } = await import('drizzle-orm')
+  const { eq, sql } = await import('drizzle-orm')
   const db = getDb()
-  const [user] = await db.select({ id: users.id, email: users.email, name: users.name }).from(users).where(eq(users.id, userId)).limit(1)
+  // hasPassword, never the hash itself — this crosses the wire to the
+  // client (it's what the profile page uses to offer "set a password" for
+  // a Google-only account), so only a boolean is ever selected here.
+  const [user] = await db
+    .select({ id: users.id, email: users.email, name: users.name, hasPassword: sql<boolean>`(${users.passwordHash} is not null)` })
+    .from(users)
+    .where(eq(users.id, userId))
+    .limit(1)
   return user ?? null
 })
 
@@ -76,6 +83,9 @@ export type AuthEventType =
   | 'admin_login_failed'
   | 'verification_code_sent'
   | 'password_reset_code_sent'
+  // A Google-only account setting its first password — distinct from
+  // password_reset (which implies one already existed).
+  | 'password_set'
 
 export async function recordAuthEvent(opts: { userId?: string | null; email?: string | null; type: AuthEventType }) {
   const { getDb } = await import('~/lib/db/client')

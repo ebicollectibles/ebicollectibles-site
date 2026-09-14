@@ -86,14 +86,14 @@ function ResetPasswordPage() {
 
   return (
     <section style={{ maxWidth: 400, margin: '0 auto', padding: '70px 24px 100px', fontFamily: 'Archivo, Helvetica, sans-serif' }}>
-      <h1 style={{ fontSize: 26, fontWeight: 700, marginBottom: 6 }}>Enter your reset code</h1>
+      <h1 style={{ fontSize: 26, fontWeight: 700, marginBottom: 6 }}>Verify your email</h1>
       <p style={{ fontSize: 13.5, color: '#131b28', marginBottom: 28 }}>
-        We sent a 6-digit code to <strong>{email}</strong>. Enter it below along with your new password.
+        We sent a 6-digit code to <strong>{email}</strong>. Enter it below and choose a password.
       </p>
 
       <form onSubmit={submit}>
         <label htmlFor="reset-code" style={label}>
-          Reset code
+          Code
         </label>
         <input
           id="reset-code"
@@ -109,7 +109,7 @@ function ResetPasswordPage() {
           autoFocus
         />
         <label htmlFor="reset-new-password" style={{ ...label, marginTop: 16 }}>
-          New password
+          Password
         </label>
         <PasswordInput
           id="reset-new-password"
@@ -127,7 +127,7 @@ function ResetPasswordPage() {
           disabled={submitting || code.length !== 6}
           style={{ ...submitBtn, marginTop: 16, opacity: submitting || code.length !== 6 ? 0.6 : 1 }}
         >
-          {submitting ? 'Resetting…' : 'Reset password'}
+          {submitting ? 'Setting password…' : 'Set password'}
         </button>
       </form>
 

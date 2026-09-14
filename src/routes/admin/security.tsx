@@ -21,6 +21,7 @@ const eventLabel: Record<string, string> = {
   signup: 'Account created',
   google_link: 'Linked Google sign-in',
   password_reset: 'Password reset',
+  password_set: 'Password set (Google account)',
   email_verified: 'Email verified',
 }
 

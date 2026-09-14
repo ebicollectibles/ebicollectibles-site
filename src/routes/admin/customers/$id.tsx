@@ -208,6 +208,7 @@ const eventLabel: Record<string, string> = {
   login_failed: 'Failed login attempt',
   google_link: 'Linked Google sign-in',
   password_reset: 'Password reset',
+  password_set: 'Password set (Google account)',
   payment_failed: 'Payment failed',
   email_verified: 'Email verified',
 }

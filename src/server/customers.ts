@@ -23,6 +23,11 @@ function normalizeEmail(email: string): string {
   return email.trim().toLowerCase()
 }
 
+// Thrown verbatim (not just similar wording) so the login page can detect
+// this specific case and offer a "Set a password" action instead of
+// showing it as a plain error — see login.tsx.
+export const GOOGLE_NO_PASSWORD_ERROR = "This account was created with Google — you haven't set a password yet."
+
 /** Claims any guest orders placed under this email before the account existed. Also used by google-auth.ts. */
 export async function linkGuestOrders(db: ReturnType<typeof getDb>, userId: string, email: string) {
   const { orders } = await import('~/lib/db/schema')
@@ -104,7 +109,7 @@ export const customerLogin = createServerFn({ method: 'POST' })
     }
     if (!user.passwordHash) {
       await recordAuthEvent({ userId: user.id, email, type: 'login_failed' })
-      throw new Error('This account uses Google sign-in — continue with Google instead.')
+      throw new Error(GOOGLE_NO_PASSWORD_ERROR)
     }
     const valid = await verifyPassword(data.password, user.passwordHash)
     if (!valid) {
@@ -195,7 +200,10 @@ export const requestPasswordReset = createServerFn({ method: 'POST' })
 
     const [user] = await db.select().from(users).where(eq(users.email, email)).limit(1)
     if (!user) throw new Error('No account found with that email.')
-    if (!user.passwordHash) throw new Error('This account uses Google sign-in — there is no password to reset.')
+    // Deliberately allowed even with no passwordHash yet — a Google-only
+    // account uses this same emailed-code flow to set its first password
+    // (see resetPasswordWithCode below, and login.tsx's "Set a password"
+    // prompt), not just to replace an existing one.
 
     await sendPasswordResetCode(user.id, email)
     return { ok: true }
@@ -233,11 +241,12 @@ export const resetPasswordWithCode = createServerFn({ method: 'POST' })
       throw new Error('Incorrect code.')
     }
 
+    const isFirstPassword = !user.passwordHash
     const passwordHash = await hashPassword(data.newPassword)
     await db.update(users).set({ passwordHash, updatedAt: new Date() }).where(eq(users.id, user.id))
     await db.delete(passwordResetCodes).where(eq(passwordResetCodes.userId, user.id))
     await setCustomerSession(user.id)
-    await recordAuthEvent({ userId: user.id, email, type: 'password_reset' })
+    await recordAuthEvent({ userId: user.id, email, type: isFirstPassword ? 'password_set' : 'password_reset' })
     await touchLastLogin(user.id)
     return { ok: true }
   })
@@ -253,9 +262,44 @@ export const resendPasswordResetCode = createServerFn({ method: 'POST' })
 
     const [user] = await db.select().from(users).where(eq(users.email, email)).limit(1)
     if (!user) throw new Error('Account not found.')
-    if (!user.passwordHash) throw new Error('This account uses Google sign-in — there is no password to reset.')
+    // Same reasoning as requestPasswordReset above — a Google-only account
+    // can resend its "set a password" code the same as anyone resending a
+    // reset code.
 
     await sendPasswordResetCode(user.id, email)
+    return { ok: true }
+  })
+
+// For a logged-in customer setting their first password (currently only
+// reachable from a Google-only account, via the profile page) — no emailed
+// code needed here, unlike requestPasswordReset/resetPasswordWithCode:
+// the active session already proves who they are, so this would just be a
+// pointless extra round trip for someone who's already sitting in their
+// own account.
+export const setPassword = createServerFn({ method: 'POST' })
+  .validator(z.object({ newPassword: z.string().min(8, 'Password must be at least 8 characters.') }))
+  .handler(async ({ data }) => {
+    const userId = await getCurrentUserId()
+    if (!userId) throw new Error('Not logged in.')
+
+    const { getDb } = await import('~/lib/db/client')
+    const { users } = await import('~/lib/db/schema')
+    const { eq } = await import('drizzle-orm')
+    const db = getDb()
+
+    const [user] = await db.select({ passwordHash: users.passwordHash }).from(users).where(eq(users.id, userId)).limit(1)
+    if (!user) throw new Error('Not logged in.')
+    // Deliberately narrow: only for setting a *first* password. Changing an
+    // existing one this easily — no current-password confirmation, just an
+    // active session — would let anyone who hijacks a session (30-day
+    // cookie) lock the real owner out permanently. A Google-only account
+    // has no such password to protect yet, so there's nothing to lock
+    // someone out of here.
+    if (user.passwordHash) throw new Error('This account already has a password set.')
+
+    const passwordHash = await hashPassword(data.newPassword)
+    await db.update(users).set({ passwordHash, updatedAt: new Date() }).where(eq(users.id, userId))
+    await recordAuthEvent({ userId, type: 'password_set' })
     return { ok: true }
   })
 
