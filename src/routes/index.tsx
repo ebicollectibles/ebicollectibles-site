@@ -33,6 +33,24 @@ function HomePage() {
     subStatus.loggedIn && subStatus.subscribed ? 'done' : 'idle',
   )
 
+  // subStatus comes from the route loader, which reruns (with the fresh
+  // signed-in-or-not answer) whenever the router is invalidated — e.g.
+  // logging in or out elsewhere and coming back to "/" without this
+  // component unmounting. The useState initializers above only run on the
+  // very first mount, so without this effect the form would keep showing
+  // whichever visitor was signed in (or not) the first time this page
+  // loaded. Guarded by a key so it doesn't stomp on an in-progress edit or
+  // the post-submit "done" state on every unrelated re-render.
+  const subStatusKey = `${subStatus.loggedIn}|${subStatus.email ?? ''}|${subStatus.subscribed}`
+  const syncedSubStatusKey = React.useRef(subStatusKey)
+  React.useEffect(() => {
+    if (subStatusKey === syncedSubStatusKey.current) return
+    syncedSubStatusKey.current = subStatusKey
+    setSubscribeEmail(subStatus.email ?? '')
+    setSubscribeState(subStatus.loggedIn && subStatus.subscribed ? 'done' : 'idle')
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [subStatusKey])
+
   const submitSubscribe = async (e: React.FormEvent) => {
     e.preventDefault()
     setSubscribeState('submitting')
