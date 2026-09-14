@@ -91,36 +91,11 @@ export function ApplePayButton({
     </svg>
   )
 
-  if (!available) {
-    // Not yet live here (domain not verified with Square for Apple Pay yet,
-    // or the SDK just can't reach us) — show a matching placeholder instead
-    // of nothing, so checkout doesn't look unfinished. Deliberately inert:
-    // never wire this up to look clickable, since it isn't.
-    return (
-      <div
-        aria-hidden="true"
-        title="Apple Pay — coming soon"
-        style={{
-          width: '100%',
-          height: 44,
-          marginBottom: 14,
-          background: '#e3e6ea',
-          borderRadius: 4,
-          cursor: 'default',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          gap: 6,
-          color: '#98a1ab',
-          fontSize: 16,
-          fontWeight: 500,
-        }}
-      >
-        {applePayLogo}
-        Pay
-      </div>
-    )
-  }
+  // Not available here (wrong browser/device, no card in Wallet, or the
+  // domain isn't verified with Square yet) — render nothing, per the
+  // comment above. A visible placeholder would make it look like an Apple
+  // Pay option exists on browsers that will never be able to use it.
+  if (!available) return null
 
   return (
     <button
