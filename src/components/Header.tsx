@@ -26,10 +26,19 @@ export function Header({ customer }: { customer: HeaderCustomer | null }) {
   const [menuOpen, setMenuOpen] = React.useState(false)
   const [pokemonMenuOpen, setPokemonMenuOpen] = React.useState(false)
   const [accountMenuOpen, setAccountMenuOpen] = React.useState(false)
+  const [searchValue, setSearchValue] = React.useState('')
   const pokemonMenuRef = React.useRef<HTMLDivElement>(null)
   const accountMenuRef = React.useRef<HTMLDivElement>(null)
 
   const navColor = (active: boolean) => (active ? '#131b28' : '#5a6875')
+
+  const submitSearch = (e: React.FormEvent) => {
+    e.preventDefault()
+    const q = searchValue.trim()
+    if (!q) return
+    navigate({ to: '/shop', search: { q } })
+    setMenuOpen(false)
+  }
 
   const logout = async () => {
     await customerLogout()
@@ -183,7 +192,8 @@ export function Header({ customer }: { customer: HeaderCustomer | null }) {
 
         <div style={{ flex: 1 }} />
 
-        <div
+        <form
+          onSubmit={submitSearch}
           className="ebi-header-search"
           style={{
             alignItems: 'center',
@@ -200,11 +210,13 @@ export function Header({ customer }: { customer: HeaderCustomer | null }) {
           </span>
           <input
             type="search"
-            placeholder="Search sets, CBB codes…"
-            aria-label="Search sets, CBB codes"
+            value={searchValue}
+            onChange={(e) => setSearchValue(e.target.value)}
+            placeholder="Search products…"
+            aria-label="Search products"
             style={{ border: 0, background: 'transparent', fontSize: 12.5, width: '100%', color: '#131b28' }}
           />
-        </div>
+        </form>
 
         {customer ? (
           <div ref={accountMenuRef} className="ebi-header-account" style={{ position: 'relative', flexShrink: 0 }}>
@@ -300,7 +312,8 @@ export function Header({ customer }: { customer: HeaderCustomer | null }) {
       </div>
 
       <div className={`ebi-mobile-menu${menuOpen ? ' is-open' : ''}`} style={{ flexDirection: 'column', borderTop: '1px solid #e3e6ea', padding: '14px 20px 20px', background: '#ffffff' }}>
-        <div
+        <form
+          onSubmit={submitSearch}
           style={{
             display: 'flex',
             alignItems: 'center',
@@ -317,11 +330,13 @@ export function Header({ customer }: { customer: HeaderCustomer | null }) {
           </span>
           <input
             type="search"
-            placeholder="Search sets, CBB codes…"
-            aria-label="Search sets, CBB codes"
+            value={searchValue}
+            onChange={(e) => setSearchValue(e.target.value)}
+            placeholder="Search products…"
+            aria-label="Search products"
             style={{ border: 0, background: 'transparent', fontSize: 16, width: '100%', color: '#131b28' }}
           />
-        </div>
+        </form>
         <nav style={{ display: 'flex', flexDirection: 'column', gap: 4, fontSize: 15, fontWeight: 500 }}>
           <Link to="/" style={{ color: navColor(pathname === '/'), padding: '10px 0', borderBottom: '1px solid #f0f2f4' }}>
             Home

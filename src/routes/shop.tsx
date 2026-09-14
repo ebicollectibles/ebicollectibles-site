@@ -8,6 +8,7 @@ import { PRODUCT_CATEGORIES, SUBCATEGORIES_BY_CATEGORY, ALL_SUBCATEGORIES, type 
 const shopSearchSchema = z.object({
   category: z.enum(PRODUCT_CATEGORIES).optional(),
   subcategory: z.enum(ALL_SUBCATEGORIES as [string, ...string[]]).optional(),
+  q: z.string().optional(),
 })
 
 export const Route = createFileRoute('/shop')({
@@ -85,7 +86,10 @@ function ShopPage() {
     setSubcategories((prev) => (prev.includes(s) ? prev.filter((x) => x !== s) : [...prev, s]))
   }
 
+  const query = (search.q ?? '').trim().toLowerCase()
+
   let visible = products.filter((p) => {
+    if (query && !p.name.toLowerCase().includes(query)) return false
     if (subcategories.length && !subcategories.includes(p.subcategory)) return false
     if (inStockOnly && p.stock === 0) return false
     if (p.price > maxPrice) return false
@@ -95,7 +99,7 @@ function ShopPage() {
   if (sort === 'high') visible = [...visible].sort((a, b) => b.price - a.price)
   if (sort === 'name') visible = [...visible].sort((a, b) => a.name.localeCompare(b.name))
 
-  const shopTitle = subcategories.length === 1 ? subcategories[0] : 'Chinese Pokémon Products'
+  const shopTitle = search.q ? `Results for "${search.q}"` : subcategories.length === 1 ? subcategories[0] : 'Chinese Pokémon Products'
 
   const filterPanel = (
     <aside className="ebi-sticky-aside">
