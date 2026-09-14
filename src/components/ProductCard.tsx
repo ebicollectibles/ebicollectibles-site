@@ -18,12 +18,9 @@ export function ProductCard({ product, variant = 'full' }: { product: Product; v
 
   const compact = variant === 'compact'
   const padding = compact ? 18 : 20
-  // .ebi-card-name (see app.css) clips the name to a fixed number of lines
-  // (3 desktop, 4 on mobile) so every card in a row reserves identical
-  // space here regardless of title length — a short name just leaves blank
-  // space below it, rather than the price/button sitting at a different
-  // height per card.
-  const nameFontSize = compact ? 14 : 15
+  // Name font-size and line-clamp live in .ebi-card-name / .ebi-card-name-compact
+  // (see app.css) rather than inline, so a mobile media query can shrink
+  // them — an inline style would always win over a stylesheet rule.
   const priceFontSize = compact ? 16 : 17
   const buttonPadding = compact ? 11 : 12
   const buttonMarginTop = compact ? 14 : 16
@@ -93,9 +90,8 @@ export function ProductCard({ product, variant = 'full' }: { product: Product; v
       </div>
 
       <h3
-        className="ebi-card-name"
+        className={`ebi-card-name${compact ? ' ebi-card-name-compact' : ''}`}
         style={{
-          fontSize: nameFontSize,
           fontWeight: 600,
           lineHeight: 1.35,
           margin: 0,

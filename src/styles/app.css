@@ -269,14 +269,21 @@ button {
 
 /* Product card name: clipped to N lines (ellipsis) at line-height 1.35, so
    it never overflows into the price below it regardless of how the name
-   wraps at a given column width. Height is in em so it tracks whatever
-   font-size the card sets inline. */
+   wraps at a given column width. Height is in em so it tracks the class's
+   own font-size. font-size lives here (not inline on the element) so the
+   mobile media query below can shrink it — an inline style would always
+   win over a stylesheet rule. */
 .ebi-card-name {
+  font-size: 15px;
   overflow: hidden;
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 3;
   height: 4.05em;
+}
+
+.ebi-card-name.ebi-card-name-compact {
+  font-size: 14px;
 }
 
 .ebi-product-detail-grid {
@@ -377,8 +384,13 @@ button {
   }
 
   .ebi-card-name {
+    font-size: 13px;
     -webkit-line-clamp: 4;
     height: 5.4em;
+  }
+
+  .ebi-card-name.ebi-card-name-compact {
+    font-size: 12.5px;
   }
 
   .ebi-product-detail-grid {
