@@ -78,24 +78,11 @@ export function AnniversaryCountdown() {
           textAlign: 'center',
         }}
       >
-        <div
-          style={{
-            width: 46,
-            height: 46,
-            borderRadius: '50%',
-            border: '2px solid #ffd23f',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            fontFamily: "'IBM Plex Mono', monospace",
-            fontSize: 16,
-            fontWeight: 700,
-            color: '#ffd23f',
-            flexShrink: 0,
-          }}
-        >
-          30
-        </div>
+        <img
+          src="/assets/Pokemon_30th_Logo.png"
+          alt="Pokémon 30th Anniversary"
+          style={{ height: 46, width: 'auto', flexShrink: 0 }}
+        />
 
         <div style={{ textAlign: 'left' }}>
           <div style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 10, letterSpacing: '0.14em', textTransform: 'uppercase', color: '#98a1ab' }}>
