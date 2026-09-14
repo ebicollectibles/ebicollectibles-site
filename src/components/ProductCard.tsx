@@ -18,7 +18,11 @@ export function ProductCard({ product, variant = 'full' }: { product: Product; v
 
   const compact = variant === 'compact'
   const padding = compact ? 18 : 20
-  const nameMinHeight = compact ? 38 : 40
+  // Fixed at 3 lines' worth of height (not a minHeight) so every card in a
+  // row reserves identical space here regardless of title length — a
+  // 1- or 2-line name just leaves blank space below it, rather than the
+  // price/button sitting at a different height per card.
+  const nameHeight = compact ? 57 : 61
   const nameFontSize = compact ? 14 : 15
   const priceFontSize = compact ? 16 : 17
   const buttonPadding = compact ? 11 : 12
@@ -95,7 +99,7 @@ export function ProductCard({ product, variant = 'full' }: { product: Product; v
           lineHeight: 1.35,
           margin: 0,
           marginTop: compact ? 14 : 16,
-          minHeight: nameMinHeight,
+          height: nameHeight,
           textWrap: 'pretty',
         }}
       >
