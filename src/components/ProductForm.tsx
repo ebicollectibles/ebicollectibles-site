@@ -18,6 +18,7 @@ export interface ProductFormValues {
   imgMobile: string
   imgAlt: string
   images: string[]
+  tags: string[]
   description: string
   preorder: boolean
   comingSoon: boolean
@@ -29,7 +30,7 @@ const emptyValues: ProductFormValues = {
   id: '',
   name: '',
   category: 'Chinese Pokémon Products',
-  subcategory: 'Gem Series',
+  subcategory: 'Booster Box',
   price: 0,
   compareAtPrice: 0,
   stock: 0,
@@ -39,6 +40,7 @@ const emptyValues: ProductFormValues = {
   imgMobile: '',
   imgAlt: '',
   images: [],
+  tags: [],
   description: '',
   preorder: false,
   comingSoon: false,
@@ -584,6 +586,7 @@ export function ProductForm({
   const [pickerTarget, setPickerTarget] = React.useState<PickerTarget | null>(null)
   const [squarePickerOpen, setSquarePickerOpen] = React.useState(false)
   const [squareLabel, setSquareLabel] = React.useState<string | null>(null)
+  const [tagDraft, setTagDraft] = React.useState('')
 
   React.useEffect(() => {
     if (!values.squareVariationId) {
@@ -697,6 +700,53 @@ export function ProductForm({
             </option>
           ))}
         </select>
+      </div>
+      <div style={{ marginBottom: 16 }}>
+        <label htmlFor="pf-tags" style={label}>
+          Tags (for collections — e.g. "Gem Series")
+        </label>
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, marginBottom: values.tags.length ? 8 : 0 }}>
+          {values.tags.map((tag) => (
+            <span
+              key={tag}
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: 6,
+                background: '#f6f7f8',
+                border: '1px solid #e3e6ea',
+                borderRadius: 2,
+                padding: '4px 8px',
+                fontSize: 12.5,
+              }}
+            >
+              {tag}
+              <button
+                type="button"
+                onClick={() => set('tags', values.tags.filter((t) => t !== tag))}
+                aria-label={`Remove tag ${tag}`}
+                style={{ background: 'none', border: 0, padding: 0, cursor: 'pointer', color: '#98a1ab', fontSize: 13, lineHeight: 1 }}
+              >
+                ×
+              </button>
+            </span>
+          ))}
+        </div>
+        <input
+          id="pf-tags"
+          className="ebi-field"
+          style={field}
+          value={tagDraft}
+          onChange={(e) => setTagDraft(e.target.value)}
+          onKeyDown={(e) => {
+            if (e.key !== 'Enter') return
+            e.preventDefault()
+            const tag = tagDraft.trim()
+            if (tag && !values.tags.includes(tag)) set('tags', [...values.tags, tag])
+            setTagDraft('')
+          }}
+          placeholder="Type a tag and press Enter"
+        />
       </div>
       <div
         style={{

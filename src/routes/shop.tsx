@@ -8,13 +8,17 @@ import { PRODUCT_CATEGORIES, SUBCATEGORIES_BY_CATEGORY, ALL_SUBCATEGORIES, type 
 const shopSearchSchema = z.object({
   category: z.enum(PRODUCT_CATEGORIES).optional(),
   subcategory: z.enum(ALL_SUBCATEGORIES as [string, ...string[]]).optional(),
+  // Plural variant, for a nav link that spans more than one subcategory at
+  // once (e.g. "Figures & Plush") — subcategory (singular) still works
+  // for the common single-subcategory case.
+  subcategories: z.array(z.enum(ALL_SUBCATEGORIES as [string, ...string[]])).optional(),
   q: z.string().optional(),
 })
 
 export const Route = createFileRoute('/shop')({
   validateSearch: shopSearchSchema,
   head: ({ match }) => {
-    const label = match.search.subcategory ?? match.search.category
+    const label = match.search.subcategories?.join(' & ') || match.search.subcategory || match.search.category
     if (!label) return {}
     const title = `${label} — EBI Collectibles`
     const description = `Shop ${label} — Simplified Chinese Pokémon, verified before it ships.`
@@ -45,6 +49,7 @@ function ShopPage() {
   const { products } = useCart()
 
   const seedSubcategories = (): ProductSubcategory[] => {
+    if (search.subcategories?.length) return search.subcategories as ProductSubcategory[]
     if (search.subcategory) return [search.subcategory as ProductSubcategory]
     if (search.category) return SUBCATEGORIES_BY_CATEGORY[search.category]
     return []
@@ -65,15 +70,15 @@ function ShopPage() {
   const [filtersOpen, setFiltersOpen] = React.useState(false)
 
   // Re-seed the filter when arriving via a nav link that targets a specific category/subcategory.
-  const seededKey = React.useRef(`${search.category ?? ''}|${search.subcategory ?? ''}`)
+  const seededKey = React.useRef(`${search.category ?? ''}|${search.subcategory ?? ''}|${(search.subcategories ?? []).join(',')}`)
   React.useEffect(() => {
-    const key = `${search.category ?? ''}|${search.subcategory ?? ''}`
+    const key = `${search.category ?? ''}|${search.subcategory ?? ''}|${(search.subcategories ?? []).join(',')}`
     if (key !== seededKey.current) {
       seededKey.current = key
       setSubcategories(seedSubcategories())
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [search.category, search.subcategory])
+  }, [search.category, search.subcategory, search.subcategories])
 
   const resetFilters = () => {
     setSubcategories([])
@@ -99,7 +104,13 @@ function ShopPage() {
   if (sort === 'high') visible = [...visible].sort((a, b) => b.price - a.price)
   if (sort === 'name') visible = [...visible].sort((a, b) => a.name.localeCompare(b.name))
 
-  const shopTitle = search.q ? `Results for "${search.q}"` : subcategories.length === 1 ? subcategories[0] : 'Chinese Pokémon Products'
+  const shopTitle = search.q
+    ? `Results for "${search.q}"`
+    : subcategories.length === 1
+      ? subcategories[0]
+      : subcategories.length > 1
+        ? subcategories.join(' & ')
+        : 'Chinese Pokémon Products'
 
   const filterPanel = (
     <aside className="ebi-sticky-aside">

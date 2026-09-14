@@ -163,8 +163,20 @@ export function Header({ customer }: { customer: HeaderCustomer | null }) {
             </button>
             {pokemonMenuOpen && (
               <div className="ebi-nav-dropdown-panel">
-                <Link to="/shop" style={{ display: 'block', padding: '9px 14px', fontSize: 13, color: '#3d4753', whiteSpace: 'nowrap' }}>
-                  Pokemon (Chinese)
+                <Link to="/shop" search={{ category: 'Chinese Pokémon Products' }} style={{ display: 'block', padding: '9px 14px', fontSize: 13, color: '#3d4753', whiteSpace: 'nowrap' }}>
+                  All Pokemon (Chinese)
+                </Link>
+                <Link to="/shop" search={{ subcategory: 'Booster Box' }} style={{ display: 'block', padding: '9px 14px', fontSize: 13, color: '#3d4753', whiteSpace: 'nowrap' }}>
+                  Booster Boxes
+                </Link>
+                <Link to="/shop" search={{ subcategory: 'Blind Box' }} style={{ display: 'block', padding: '9px 14px', fontSize: 13, color: '#3d4753', whiteSpace: 'nowrap' }}>
+                  Blind Boxes
+                </Link>
+                <Link to="/shop" search={{ subcategories: ['Figure', 'Plush'] }} style={{ display: 'block', padding: '9px 14px', fontSize: 13, color: '#3d4753', whiteSpace: 'nowrap' }}>
+                  Figures &amp; Plush
+                </Link>
+                <Link to="/shop" search={{ subcategory: 'Special Products' }} style={{ display: 'block', padding: '9px 14px', fontSize: 13, color: '#3d4753', whiteSpace: 'nowrap' }}>
+                  Special Products
                 </Link>
               </div>
             )}
@@ -287,8 +299,20 @@ export function Header({ customer }: { customer: HeaderCustomer | null }) {
           <Link to="/" style={{ color: navColor(pathname === '/'), padding: '10px 0', borderBottom: '1px solid #f0f2f4' }}>
             Home
           </Link>
-          <Link to="/shop" style={{ color: navColor(pathname === '/shop'), padding: '10px 0', borderBottom: '1px solid #f0f2f4' }}>
-            Pokemon (Chinese)
+          <Link to="/shop" search={{ category: 'Chinese Pokémon Products' }} style={{ color: navColor(pathname === '/shop'), padding: '10px 0', borderBottom: '1px solid #f0f2f4' }}>
+            All Pokemon (Chinese)
+          </Link>
+          <Link to="/shop" search={{ subcategory: 'Booster Box' }} style={{ color: '#5a6875', padding: '10px 0', borderBottom: '1px solid #f0f2f4' }}>
+            Booster Boxes
+          </Link>
+          <Link to="/shop" search={{ subcategory: 'Blind Box' }} style={{ color: '#5a6875', padding: '10px 0', borderBottom: '1px solid #f0f2f4' }}>
+            Blind Boxes
+          </Link>
+          <Link to="/shop" search={{ subcategories: ['Figure', 'Plush'] }} style={{ color: '#5a6875', padding: '10px 0', borderBottom: '1px solid #f0f2f4' }}>
+            Figures &amp; Plush
+          </Link>
+          <Link to="/shop" search={{ subcategory: 'Special Products' }} style={{ color: '#5a6875', padding: '10px 0', borderBottom: '1px solid #f0f2f4' }}>
+            Special Products
           </Link>
           <Link
             to="/shop"

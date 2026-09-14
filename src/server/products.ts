@@ -41,6 +41,7 @@ function toProduct(row: typeof productsTable.$inferSelect): Product {
     imgMobile: row.imgMobile ?? undefined,
     imgAlt: row.imgAlt ?? undefined,
     images: row.images,
+    tags: row.tags,
     description: row.description ?? undefined,
     preorder: row.preorder,
     comingSoon: row.comingSoon,

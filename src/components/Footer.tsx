@@ -39,16 +39,16 @@ export function Footer() {
           </div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 9, marginTop: 14, fontSize: 13 }}>
             <Link to="/shop" search={{ category: 'Chinese Pokémon Products' }}>
-              Chinese Pokémon Products
+              All Pokemon (Chinese)
             </Link>
-            <Link to="/shop" search={{ subcategory: 'Gem Series' }}>
-              Gem Series
-            </Link>
-            <Link to="/shop" search={{ subcategory: 'CSV Series' }}>
-              CSV Series
+            <Link to="/shop" search={{ subcategory: 'Booster Box' }}>
+              Booster Boxes
             </Link>
             <Link to="/shop" search={{ subcategory: 'Blind Box' }}>
-              Figures &amp; plush
+              Blind Boxes
+            </Link>
+            <Link to="/shop" search={{ subcategories: ['Figure', 'Plush'] }}>
+              Figures &amp; Plush
             </Link>
             <Link to="/shop" search={{ subcategory: 'Special Products' }}>
               Special Products

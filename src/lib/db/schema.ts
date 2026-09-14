@@ -20,6 +20,10 @@ export const products = pgTable('products', {
   imgMobile: text('img_mobile'),
   imgAlt: text('img_alt'),
   images: text('images').array().notNull().default([]),
+  // Free-form collection labels (e.g. "Gem Series", "CSV Series") — see
+  // ProductSubcategory in lib/products.ts for why these are tags rather
+  // than a fixed subcategory.
+  tags: text('tags').array().notNull().default([]),
   // Per-product description shown on its detail page. Falls back to a
   // generic trust-building paragraph on the frontend when empty — not
   // every product needs custom copy written before it can go live.

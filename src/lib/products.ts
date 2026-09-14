@@ -1,12 +1,16 @@
 export const PRODUCT_CATEGORIES = ['Chinese Pokémon Products', 'Acrylic Cases'] as const
 export type ProductCategory = (typeof PRODUCT_CATEGORIES)[number]
 
-export type ProductSubcategory = 'Gem Series' | 'CSV Series' | 'Blind Box' | 'Special Products' | 'ETB Case' | 'Booster Box Case' | 'SPC Box Case'
+export type ProductSubcategory = 'Booster Box' | 'Blind Box' | 'Figure' | 'Plush' | 'Special Products' | 'ETB Case' | 'Booster Box Case' | 'SPC Box Case'
 
 // Which subcategories are valid under each category — drives the dependent
-// dropdown in the admin product form and the grouped shop filter.
+// dropdown in the admin product form and the grouped shop filter. "Gem
+// Series"/"CSV Series" used to live here as subcategories — they're free-
+// form tags now (see Product.tags below), since they're really collection/
+// series names, not a product type, and admin wants to keep adding new
+// ones without a code change each time.
 export const SUBCATEGORIES_BY_CATEGORY: Record<ProductCategory, ProductSubcategory[]> = {
-  'Chinese Pokémon Products': ['Gem Series', 'CSV Series', 'Blind Box', 'Special Products'],
+  'Chinese Pokémon Products': ['Booster Box', 'Blind Box', 'Figure', 'Plush', 'Special Products'],
   'Acrylic Cases': ['ETB Case', 'Booster Box Case', 'SPC Box Case'],
 }
 
@@ -26,6 +30,10 @@ export interface Product {
   imgMobile?: string
   imgAlt?: string
   images?: string[]
+  // Free-form collection labels (e.g. "Gem Series", "CSV Series") — unlike
+  // subcategory, not a fixed list: admin can create a new one just by
+  // typing it on a product, no code change needed to add a collection.
+  tags?: string[]
   description?: string
   preorder?: boolean
   comingSoon?: boolean
