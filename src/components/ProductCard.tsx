@@ -101,6 +101,10 @@ export function ProductCard({ product, variant = 'full' }: { product: Product; v
           marginTop: compact ? 14 : 16,
           height: nameHeight,
           textWrap: 'pretty',
+          overflow: 'hidden',
+          display: '-webkit-box',
+          WebkitLineClamp: 3,
+          WebkitBoxOrient: 'vertical',
         }}
       >
         {product.name}
