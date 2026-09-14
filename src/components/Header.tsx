@@ -21,6 +21,10 @@ function PersonIcon() {
 
 export function Header({ customer }: { customer: HeaderCustomer | null }) {
   const pathname = useRouterState({ select: (s) => s.location.pathname })
+  // Full href (not just pathname) — the Pokemon submenu links all stay on
+  // /shop with different `search` params, so pathname alone never changes
+  // and the close-on-navigate effect below would never fire.
+  const locationHref = useRouterState({ select: (s) => s.location.href })
   const router = useRouter()
   const navigate = useNavigate()
   const { cartCount } = useCart()
@@ -42,7 +46,7 @@ export function Header({ customer }: { customer: HeaderCustomer | null }) {
     setMenuOpen(false)
     setPokemonMenuOpen(false)
     setAccountMenuOpen(false)
-  }, [pathname])
+  }, [locationHref])
 
   React.useEffect(() => {
     if (!pokemonMenuOpen) return
