@@ -50,6 +50,9 @@ export function Footer() {
             <Link to="/shop" search={{ subcategory: 'Blind Box' }}>
               Figures &amp; plush
             </Link>
+            <Link to="/shop" search={{ subcategory: 'Special Products' }}>
+              Special Products
+            </Link>
             <Link to="/shop" search={{ category: 'Acrylic Cases' }}>
               Acrylic Cases
             </Link>
