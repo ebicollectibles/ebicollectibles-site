@@ -1,6 +1,7 @@
 import * as React from 'react'
 import { createFileRoute, Link } from '@tanstack/react-router'
 import { ProductCard } from '~/components/ProductCard'
+import { AnniversaryCountdown } from '~/components/AnniversaryCountdown'
 import { useCart } from '~/lib/cart-context'
 import { subscribeToNewsletter, getMySubscriptionStatus } from '~/server/subscribers'
 
@@ -55,6 +56,7 @@ function HomePage() {
 
   return (
     <>
+      <AnniversaryCountdown />
       <section style={{ borderBottom: '1px solid #e3e6ea', background: '#f6f7f8' }}>
         <div
           className="ebi-hero-grid"
