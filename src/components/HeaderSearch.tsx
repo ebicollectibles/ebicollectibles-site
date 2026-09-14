@@ -92,7 +92,7 @@ export function HeaderSearch({
           gap: 10,
           border: '1px solid #e3e6ea',
           borderRadius: 2,
-          padding: desktop ? '11px 14px' : '10px 12px',
+          padding: desktop ? '13px 14px' : '12px 12px',
           width: '100%',
           background: '#f6f7f8',
           cursor: 'text',
@@ -118,7 +118,15 @@ export function HeaderSearch({
           aria-expanded={open && matches.length > 0}
           aria-controls={`${inputId}-results`}
           autoComplete="off"
-          style={{ border: 0, background: 'transparent', fontSize: desktop ? 13.5 : 16, width: '100%', color: '#131b28' }}
+          style={{
+            border: 0,
+            background: 'transparent',
+            fontSize: desktop ? 13.5 : 16,
+            lineHeight: desktop ? '20px' : '22px',
+            height: desktop ? 20 : 22,
+            width: '100%',
+            color: '#131b28',
+          }}
         />
       </form>
 
@@ -133,7 +141,7 @@ export function HeaderSearch({
             // wider than the box itself, since the box is narrow by design
             // but the dropdown doesn't need to be.
             left: 0,
-            width: desktop ? 360 : '100%',
+            width: desktop ? 420 : '100%',
             marginTop: desktop ? 0 : 8,
             background: '#ffffff',
             border: '1px solid #e3e6ea',
