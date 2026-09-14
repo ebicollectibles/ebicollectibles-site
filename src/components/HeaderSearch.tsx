@@ -129,11 +129,10 @@ export function HeaderSearch({
           style={{
             position: desktop ? 'absolute' : 'static',
             top: desktop ? 'calc(100% + 6px)' : undefined,
-            // Anchored to the search box's right edge but allowed to grow
-            // wider than the box itself (leftward) — the box is narrow by
-            // design, the dropdown doesn't need to be.
-            right: desktop ? 0 : 0,
-            left: desktop ? 'auto' : 0,
+            // Anchored to the search box's left edge, growing rightward —
+            // wider than the box itself, since the box is narrow by design
+            // but the dropdown doesn't need to be.
+            left: 0,
             width: desktop ? 360 : '100%',
             marginTop: desktop ? 0 : 8,
             background: '#ffffff',
@@ -168,21 +167,6 @@ export function HeaderSearch({
                   cursor: 'pointer',
                 }}
               >
-                <div
-                  style={{
-                    width: desktop ? 48 : 36,
-                    height: desktop ? 48 : 36,
-                    flexShrink: 0,
-                    borderRadius: 2,
-                    border: '1px solid #e3e6ea',
-                    background: '#f6f7f8',
-                    overflow: 'hidden',
-                  }}
-                >
-                  {p.img && (
-                    <img src={p.img} alt="" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
-                  )}
-                </div>
                 <span
                   style={{
                     flex: 1,
