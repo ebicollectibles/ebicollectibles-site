@@ -31,6 +31,20 @@ function ShippingReturnsPage() {
         </div>
 
         <div>
+          <h2 style={{ fontSize: 18, fontWeight: 700, margin: '0 0 10px' }}>Cancellations</h2>
+          <p style={{ fontSize: 14.5, lineHeight: 1.65, color: '#131b28', margin: 0, maxWidth: '65ch' }}>
+            Cancellations can be requested prior to shipment but are subject to a 3% cancellation fee (unless it's
+            a pre-order or stated on the listing description). This fee will be deducted from the refunded
+            amount. It covers the non-refundable payment processing fee we're charged when the initial
+            transaction is made.
+          </p>
+          <p style={{ fontSize: 14.5, lineHeight: 1.65, color: '#131b28', margin: '16px 0 0', maxWidth: '65ch' }}>
+            Email <a href="mailto:eastblueinternational@gmail.com">eastblueinternational@gmail.com</a> with the
+            subject line: "CANCEL ORDER #..."
+          </p>
+        </div>
+
+        <div>
           <h2 style={{ fontSize: 18, fontWeight: 700, margin: '0 0 10px' }}>Returns</h2>
           <p style={{ fontSize: 14.5, lineHeight: 1.65, color: '#131b28', margin: 0, maxWidth: '65ch' }}>
             Sealed product can't be verified as untouched once it's left our hands, so we don't accept returns
