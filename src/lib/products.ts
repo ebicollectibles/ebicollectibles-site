@@ -38,6 +38,9 @@ export interface Product {
   // lib/db/schema.ts. Undefined/null means unranked.
   bestSellingRank?: number
   newAndUpcomingRank?: number
+  // Absolute opt-out of a section — see the comment in lib/db/schema.ts.
+  hideFromBestSelling?: boolean
+  hideFromNewAndUpcoming?: boolean
   description?: string
   preorder?: boolean
   comingSoon?: boolean
@@ -53,13 +56,21 @@ export function formatMoney(n: number): string {
   return '$' + n.toFixed(2)
 }
 
+const HIDE_FIELD = {
+  bestSellingRank: 'hideFromBestSelling',
+  newAndUpcomingRank: 'hideFromNewAndUpcoming',
+} as const
+
 // Shared by the homepage's Best Selling/New & Upcoming teasers and their
 // "View All" pages: ranked products first (lowest rank first), then every
-// unranked product after them. `products` is assumed to already be in
-// createdAt-ascending order (how getProducts returns it) — reversed for the
-// unranked tail so those come out newest-first.
+// unranked product after them — except anything hidden from this specific
+// section (see hideFromBestSelling/hideFromNewAndUpcoming), which never
+// shows here at all, curated or not. `products` is assumed to already be
+// in createdAt-ascending order (how getProducts returns it) — reversed for
+// the unranked tail so those come out newest-first.
 export function rankProducts(products: Product[], rankField: 'bestSellingRank' | 'newAndUpcomingRank'): Product[] {
-  const ranked = products.filter((p) => p[rankField] != null).sort((a, b) => a[rankField]! - b[rankField]!)
-  const unranked = products.filter((p) => p[rankField] == null).slice().reverse()
+  const eligible = products.filter((p) => !p[HIDE_FIELD[rankField]])
+  const ranked = eligible.filter((p) => p[rankField] != null).sort((a, b) => a[rankField]! - b[rankField]!)
+  const unranked = eligible.filter((p) => p[rankField] == null).slice().reverse()
   return [...ranked, ...unranked]
 }

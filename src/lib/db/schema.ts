@@ -32,6 +32,14 @@ export const products = pgTable('products', {
   // product's position in one has nothing to do with the other.
   bestSellingRank: integer('best_selling_rank'),
   newAndUpcomingRank: integer('new_and_upcoming_rank'),
+  // Absolute opt-out of the "unranked products fill in after the curated
+  // ones" behavior above — e.g. a preorder that isn't shippable yet
+  // shouldn't show up as Best Selling filler just because it's newest.
+  // Independent of comingSoon/preorder (admin decides per product, not an
+  // automatic rule) and wins over everything else: a hidden product never
+  // shows in that section, curated or not.
+  hideFromBestSelling: boolean('hide_from_best_selling').notNull().default(false),
+  hideFromNewAndUpcoming: boolean('hide_from_new_and_upcoming').notNull().default(false),
   // Per-product description shown on its detail page. Falls back to a
   // generic trust-building paragraph on the frontend when empty — not
   // every product needs custom copy written before it can go live.

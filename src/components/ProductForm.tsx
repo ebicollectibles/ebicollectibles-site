@@ -23,6 +23,8 @@ export interface ProductFormValues {
   // compareAtPrice below.
   bestSellingRank: number
   newAndUpcomingRank: number
+  hideFromBestSelling: boolean
+  hideFromNewAndUpcoming: boolean
   description: string
   preorder: boolean
   comingSoon: boolean
@@ -47,6 +49,8 @@ const emptyValues: ProductFormValues = {
   tags: [],
   bestSellingRank: 0,
   newAndUpcomingRank: 0,
+  hideFromBestSelling: false,
+  hideFromNewAndUpcoming: false,
   description: '',
   preorder: false,
   comingSoon: false,
@@ -759,6 +763,28 @@ export function ProductForm({
           "New & Upcoming"). values.bestSellingRank / newAndUpcomingRank
           still round-trip through this form unchanged so editing anything
           else on a product never touches its rank. */}
+      <div style={{ marginBottom: 20, padding: '12px 14px', background: '#f6f7f8', border: '1px solid #e3e6ea', borderRadius: 2 }}>
+        <label style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: 13, fontWeight: 600, marginBottom: 8 }}>
+          <input
+            type="checkbox"
+            checked={values.hideFromBestSelling}
+            onChange={(e) => set('hideFromBestSelling', e.target.checked)}
+          />
+          Hide from Best Selling
+        </label>
+        <label style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: 13, fontWeight: 600 }}>
+          <input
+            type="checkbox"
+            checked={values.hideFromNewAndUpcoming}
+            onChange={(e) => set('hideFromNewAndUpcoming', e.target.checked)}
+          />
+          Hide from New & Upcoming
+        </label>
+        <p style={{ fontSize: 11.5, color: '#5a6875', margin: '6px 0 0' }}>
+          Keeps this product out of that section entirely — even as filler after the curated list. Use this for something like
+          a pre-order that isn&apos;t available yet.
+        </p>
+      </div>
       <div
         style={{
           marginBottom: 20,

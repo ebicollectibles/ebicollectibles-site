@@ -1,0 +1,2 @@
+ALTER TABLE "products" ADD COLUMN "hide_from_best_selling" boolean DEFAULT false NOT NULL;--> statement-breakpoint
+ALTER TABLE "products" ADD COLUMN "hide_from_new_and_upcoming" boolean DEFAULT false NOT NULL;

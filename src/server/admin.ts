@@ -49,6 +49,8 @@ const productBaseSchema = z.object({
   tags: z.array(z.string()).optional().default([]),
   bestSellingRank: z.number().int().nullable().optional(),
   newAndUpcomingRank: z.number().int().nullable().optional(),
+  hideFromBestSelling: z.boolean().optional().default(false),
+  hideFromNewAndUpcoming: z.boolean().optional().default(false),
   description: z.string().optional(),
   preorder: z.boolean().optional().default(false),
   comingSoon: z.boolean().optional().default(false),

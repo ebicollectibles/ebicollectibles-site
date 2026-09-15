@@ -4,6 +4,11 @@ import { adminListProducts, adminSetProductRanks } from '~/server/admin'
 type AdminProduct = Awaited<ReturnType<typeof adminListProducts>>[number]
 type RankField = 'bestSellingRank' | 'newAndUpcomingRank'
 
+const HIDE_FIELD = {
+  bestSellingRank: 'hideFromBestSelling',
+  newAndUpcomingRank: 'hideFromNewAndUpcoming',
+} as const
+
 // Shopify-style manual collection: admin explicitly adds products to a
 // small curated, ordered list here (not the whole catalog) — everything
 // else still shows up on the public "View All" page after this set,
@@ -27,7 +32,9 @@ export function DraggableRankList({ products, field }: { products: AdminProduct[
   const addedIds = React.useMemo(() => new Set(added.map((p) => p.id)), [added])
   const trimmedQuery = query.trim().toLowerCase()
   const matches = trimmedQuery
-    ? products.filter((p) => !addedIds.has(p.id) && p.name.toLowerCase().includes(trimmedQuery)).slice(0, 8)
+    ? products
+        .filter((p) => !addedIds.has(p.id) && !p[HIDE_FIELD[field]] && p.name.toLowerCase().includes(trimmedQuery))
+        .slice(0, 8)
     : []
 
   const addProduct = (p: AdminProduct) => {

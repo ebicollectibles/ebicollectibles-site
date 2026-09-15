@@ -253,6 +253,13 @@
       "when": 1789436362766,
       "tag": "0035_modern_tyrannus",
       "breakpoints": true
+    },
+    {
+      "idx": 36,
+      "version": "7",
+      "when": 1789459160308,
+      "tag": "0036_wise_husk",
+      "breakpoints": true
     }
   ]
 }

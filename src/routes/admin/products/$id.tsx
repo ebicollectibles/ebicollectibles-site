@@ -64,6 +64,8 @@ function EditProductPage() {
           tags: product.tags ?? [],
           bestSellingRank: product.bestSellingRank ?? 0,
           newAndUpcomingRank: product.newAndUpcomingRank ?? 0,
+          hideFromBestSelling: product.hideFromBestSelling,
+          hideFromNewAndUpcoming: product.hideFromNewAndUpcoming,
           description: product.description ?? '',
           preorder: product.preorder,
           comingSoon: product.comingSoon,
