@@ -1,5 +1,7 @@
 import * as React from 'react'
 import { createFileRoute, Link, useNavigate } from '@tanstack/react-router'
+import { ExpressApplePayButton } from '~/components/ExpressApplePayButton'
+import { OrderConfirmation } from '~/components/OrderConfirmation'
 import { useCart } from '~/lib/cart-context'
 import { hasMixedPreorderCart, MIXED_PREORDER_ERROR } from '~/lib/order-math'
 import { formatMoney } from '~/lib/products'
@@ -22,6 +24,12 @@ function CartPage() {
   const { lines, cartCount, cartEmpty, subtotal, bump, removeFromCart } = useCart()
   const navigate = useNavigate()
   const mixedPreorder = hasMixedPreorderCart(lines.map((l) => ({ preorder: !!l.product.preorder })))
+  const [confirmed, setConfirmed] = React.useState<{ orderNo: number; paymentStatus: string } | null>(null)
+  const [expressError, setExpressError] = React.useState<string | null>(null)
+
+  if (confirmed) {
+    return <OrderConfirmation orderNo={confirmed.orderNo} paymentStatus={confirmed.paymentStatus} />
+  }
 
   return (
     <section style={{ maxWidth: 900, margin: '0 auto', padding: '40px 20px 90px' }}>
@@ -184,6 +192,16 @@ function CartPage() {
                   Checkout
                 </button>
               </div>
+              <div style={{ marginTop: 10 }}>
+                <ExpressApplePayButton
+                  disabled={mixedPreorder}
+                  onOrderPlaced={setConfirmed}
+                  onError={setExpressError}
+                />
+              </div>
+              {expressError && (
+                <p style={{ fontSize: 12.5, color: '#b4622f', marginTop: 10, lineHeight: 1.5 }}>{expressError}</p>
+              )}
             </div>
           </div>
         </>

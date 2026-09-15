@@ -1,15 +1,5 @@
 import * as React from 'react'
-
-declare global {
-  interface Window {
-    Square?: any
-  }
-}
-
-const APP_ID = import.meta.env.VITE_SQUARE_APPLICATION_ID as string | undefined
-const LOCATION_ID = import.meta.env.VITE_SQUARE_LOCATION_ID as string | undefined
-const ENVIRONMENT = (import.meta.env.VITE_SQUARE_ENVIRONMENT as string | undefined) === 'production' ? 'production' : 'sandbox'
-const SDK_SRC = ENVIRONMENT === 'production' ? 'https://web.squarecdn.com/v1/square.js' : 'https://sandbox.web.squarecdn.com/v1/square.js'
+import { loadSquareSdk, SQUARE_APP_ID, SQUARE_LOCATION_ID } from '~/lib/square-sdk'
 
 // Apple Pay only ever shows up in Safari on a Mac/iPhone/iPad with a card
 // already in Apple Wallet, over a domain Square has verified for Apple Pay
@@ -42,22 +32,14 @@ export function ApplePayButton({
   const lineItemsKey = lineItems?.map((l) => `${l.label}:${l.amount}`).join('|') ?? ''
 
   React.useEffect(() => {
-    if (!APP_ID || !LOCATION_ID || amount <= 0) return
+    if (!SQUARE_APP_ID || !SQUARE_LOCATION_ID || amount <= 0) return
     let cancelled = false
 
     async function init() {
-      if (!window.Square) {
-        await new Promise<void>((resolve, reject) => {
-          const script = document.createElement('script')
-          script.src = SDK_SRC
-          script.onload = () => resolve()
-          script.onerror = () => reject(new Error('Failed to load Square SDK'))
-          document.head.appendChild(script)
-        }).catch(() => null)
-      }
+      await loadSquareSdk().catch(() => null)
       if (cancelled || !window.Square) return
       try {
-        const payments = window.Square.payments(APP_ID, LOCATION_ID)
+        const payments = window.Square.payments(SQUARE_APP_ID, SQUARE_LOCATION_ID)
         const paymentRequest = payments.paymentRequest({
           countryCode: 'US',
           currencyCode: 'USD',

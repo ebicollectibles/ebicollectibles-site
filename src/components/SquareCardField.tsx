@@ -1,22 +1,11 @@
 import * as React from 'react'
-
-declare global {
-  interface Window {
-    Square?: any
-  }
-}
+import { loadSquareSdk, squareConfigured, SQUARE_APP_ID, SQUARE_LOCATION_ID } from '~/lib/square-sdk'
 
 export interface SquareCardFieldHandle {
   tokenize: () => Promise<string | null>
 }
 
-const APP_ID = import.meta.env.VITE_SQUARE_APPLICATION_ID as string | undefined
-const LOCATION_ID = import.meta.env.VITE_SQUARE_LOCATION_ID as string | undefined
-const ENVIRONMENT = (import.meta.env.VITE_SQUARE_ENVIRONMENT as string | undefined) === 'production' ? 'production' : 'sandbox'
-
-export const squareConfigured = Boolean(APP_ID && LOCATION_ID)
-
-const SDK_SRC = ENVIRONMENT === 'production' ? 'https://web.squarecdn.com/v1/square.js' : 'https://sandbox.web.squarecdn.com/v1/square.js'
+export { squareConfigured }
 
 export const SquareCardField = React.forwardRef<SquareCardFieldHandle>(function SquareCardField(_props, ref) {
   const containerRef = React.useRef<HTMLDivElement>(null)
@@ -28,21 +17,13 @@ export const SquareCardField = React.forwardRef<SquareCardFieldHandle>(function 
     let cancelled = false
 
     async function init() {
-      if (!window.Square) {
-        await new Promise<void>((resolve, reject) => {
-          const script = document.createElement('script')
-          script.src = SDK_SRC
-          script.onload = () => resolve()
-          script.onerror = () => reject(new Error('Failed to load Square SDK'))
-          document.head.appendChild(script)
-        }).catch(() => null)
-      }
+      await loadSquareSdk().catch(() => null)
       if (cancelled || !window.Square) {
         setStatus('error')
         return
       }
       try {
-        const payments = window.Square.payments(APP_ID, LOCATION_ID)
+        const payments = window.Square.payments(SQUARE_APP_ID, SQUARE_LOCATION_ID)
         const card = await payments.card()
         if (cancelled) return
         await card.attach(containerRef.current)

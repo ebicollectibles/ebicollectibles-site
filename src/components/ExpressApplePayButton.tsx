@@ -1,0 +1,161 @@
+import * as React from 'react'
+import { loadSquareSdk, SQUARE_APP_ID, SQUARE_LOCATION_ID } from '~/lib/square-sdk'
+import { useCart, type BillingAddress, type CheckoutContact } from '~/lib/cart-context'
+import { US_STATE_CODES } from '~/lib/us-states'
+import { trackEvent } from '~/lib/analytics'
+import { getSalesTaxRate } from '~/server/tax'
+
+// Lets someone pay straight from the cart page with Apple Pay, skipping the
+// regular checkout form entirely — Apple Pay collects the shipping/billing
+// contact itself instead. Distinct from ApplePayButton (used on the
+// checkout page), which relies on contact info already typed into the
+// form and never asks Apple Pay for it again — see the comment there.
+export function ExpressApplePayButton({
+  disabled,
+  onOrderPlaced,
+  onError,
+}: {
+  disabled?: boolean
+  onOrderPlaced: (result: { orderNo: number; paymentStatus: string }) => void
+  onError: (message: string) => void
+}) {
+  const cart = useCart()
+  const [available, setAvailable] = React.useState(false)
+  const applePayRef = React.useRef<any>(null)
+  const [busy, setBusy] = React.useState(false)
+
+  React.useEffect(() => {
+    if (!SQUARE_APP_ID || !SQUARE_LOCATION_ID || cart.cartEmpty) return
+    let cancelled = false
+
+    async function init() {
+      await loadSquareSdk().catch(() => null)
+      if (cancelled || !window.Square) return
+      try {
+        const payments = window.Square.payments(SQUARE_APP_ID, SQUARE_LOCATION_ID)
+        // Tax is unknown until Apple Pay tells us a shipping address (see
+        // the shippingcontactchanged handler below) — starts at $0 and
+        // updates live once the buyer picks an address in the sheet, the
+        // same way any "pick an address, see tax update" checkout works.
+        const paymentRequest = payments.paymentRequest({
+          countryCode: 'US',
+          currencyCode: 'USD',
+          requestBillingContact: true,
+          requestShippingContact: true,
+          lineItems: [{ label: 'Subtotal', amount: cart.subtotal.toFixed(2) }],
+          shippingLineItems: [{ label: 'Shipping', amount: cart.shippingCost.toFixed(2) }],
+          total: {
+            amount: (cart.subtotal + cart.shippingCost).toFixed(2),
+            label: 'EBI Collectibles',
+          },
+        })
+
+        paymentRequest.addEventListener('shippingcontactchanged', async (contact: any) => {
+          if (contact.countryCode && contact.countryCode !== 'US') {
+            return { error: 'Sorry, we only ship within the US.' }
+          }
+          if (contact.state && !US_STATE_CODES.includes(contact.state)) {
+            return { error: 'Enter a valid US state.' }
+          }
+          const { rate } = await getSalesTaxRate({
+            data: { state: contact.state ?? '', city: contact.city ?? '', zip: contact.postalCode ?? '', street: contact.addressLines?.[0] ?? '' },
+          }).catch(() => ({ rate: 0 }))
+          const tax = Math.round(cart.subtotal * rate * 100) / 100
+          const total = cart.subtotal + cart.shippingCost + tax
+          return {
+            total: { amount: total.toFixed(2), label: 'EBI Collectibles' },
+            taxLineItems: rate > 0 ? [{ label: 'Tax', amount: tax.toFixed(2) }] : [],
+          }
+        })
+
+        const applePay = await payments.applePay(paymentRequest)
+        if (cancelled) return
+        applePayRef.current = applePay
+        setAvailable(true)
+      } catch {
+        // Same as ApplePayButton — not available here, no error to show.
+        setAvailable(false)
+      }
+    }
+
+    init()
+    return () => {
+      cancelled = true
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [cart.cartEmpty, cart.subtotal, cart.shippingCost])
+
+  const handleClick = async () => {
+    if (!applePayRef.current || busy) return
+    setBusy(true)
+    try {
+      const result = await applePayRef.current.tokenize()
+      if (result.status !== 'OK') {
+        onError(result.errors?.[0]?.message || 'Apple Pay could not be completed.')
+        return
+      }
+
+      const shippingContact = result.details?.shipping?.contact
+      const billingContact = result.details?.billing
+      if (!shippingContact?.postalCode || !shippingContact?.state) {
+        onError('Apple Pay did not share a shipping address — try again or use the regular checkout.')
+        return
+      }
+      if (!shippingContact.email) {
+        onError('Apple Pay did not share an email address — try again or use the regular checkout.')
+        return
+      }
+
+      const contact: CheckoutContact = {
+        email: shippingContact.email,
+        phone: shippingContact.phone ?? '',
+        firstName: shippingContact.givenName ?? '',
+        lastName: shippingContact.familyName ?? '',
+        street: shippingContact.addressLines?.[0] ?? '',
+        apartment: shippingContact.addressLines?.[1] ?? '',
+        city: shippingContact.city ?? '',
+        state: shippingContact.state,
+        zip: shippingContact.postalCode,
+      }
+      // Falls back to the shipping contact when Apple Pay doesn't separately
+      // share a billing contact — happens when the buyer's card billing
+      // address matches their shipping address in Wallet.
+      const billing: BillingAddress = billingContact
+        ? {
+            firstName: billingContact.givenName ?? contact.firstName,
+            lastName: billingContact.familyName ?? contact.lastName,
+            street: billingContact.addressLines?.[0] ?? contact.street,
+            apartment: billingContact.addressLines?.[1] ?? contact.apartment,
+            city: billingContact.city ?? contact.city,
+            state: billingContact.state ?? contact.state,
+            zip: billingContact.postalCode ?? contact.zip,
+          }
+        : { ...contact }
+
+      const orderResult = await cart.placeOrder({ contact, billing, sourceId: result.token, emailOptIn: false })
+      trackEvent('purchase', {
+        transaction_id: String(orderResult.orderNo),
+        currency: 'USD',
+        value: orderResult.total,
+        items: cart.lines.map((l) => ({ item_id: l.product.id, item_name: l.product.name, price: l.product.price, quantity: l.qty })),
+      })
+      onOrderPlaced({ orderNo: orderResult.orderNo, paymentStatus: orderResult.paymentStatus })
+    } catch (err) {
+      onError(err instanceof Error ? err.message : 'Apple Pay could not be completed.')
+    } finally {
+      setBusy(false)
+    }
+  }
+
+  if (!available) return null
+
+  return (
+    <button
+      type="button"
+      onClick={handleClick}
+      disabled={disabled || busy}
+      aria-label="Express checkout with Apple Pay"
+      className="ebi-apple-pay-button"
+    />
+  )
+}
