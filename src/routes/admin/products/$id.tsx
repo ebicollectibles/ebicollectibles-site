@@ -61,6 +61,8 @@ function EditProductPage() {
           imgMobile: product.imgMobile ?? '',
           imgAlt: product.imgAlt ?? '',
           images: product.images ?? [],
+          tags: product.tags ?? [],
+          sortOrder: product.sortOrder,
           description: product.description ?? '',
           preorder: product.preorder,
           comingSoon: product.comingSoon,

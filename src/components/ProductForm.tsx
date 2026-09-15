@@ -19,6 +19,7 @@ export interface ProductFormValues {
   imgAlt: string
   images: string[]
   tags: string[]
+  sortOrder: number
   description: string
   preorder: boolean
   comingSoon: boolean
@@ -41,6 +42,7 @@ const emptyValues: ProductFormValues = {
   imgAlt: '',
   images: [],
   tags: [],
+  sortOrder: 0,
   description: '',
   preorder: false,
   comingSoon: false,
@@ -746,6 +748,19 @@ export function ProductForm({
             setTagDraft('')
           }}
           placeholder="Type a tag and press Enter"
+        />
+      </div>
+      <div style={{ marginBottom: 16 }}>
+        <label htmlFor="pf-sort-order" style={label}>
+          Sort order (within "New &amp; Upcoming" / "Best Selling" — lower shows first)
+        </label>
+        <input
+          id="pf-sort-order"
+          type="number"
+          className="ebi-field"
+          style={{ ...field, maxWidth: 120 }}
+          value={values.sortOrder}
+          onChange={(e) => set('sortOrder', e.target.value === '' ? 0 : Number(e.target.value))}
         />
       </div>
       <div

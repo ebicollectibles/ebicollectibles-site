@@ -47,6 +47,7 @@ const productBaseSchema = z.object({
   imgAlt: z.string().optional(),
   images: z.array(z.string()).optional().default([]),
   tags: z.array(z.string()).optional().default([]),
+  sortOrder: z.number().int().optional().default(0),
   description: z.string().optional(),
   preorder: z.boolean().optional().default(false),
   comingSoon: z.boolean().optional().default(false),

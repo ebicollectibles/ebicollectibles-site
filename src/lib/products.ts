@@ -34,6 +34,9 @@ export interface Product {
   // subcategory, not a fixed list: admin can create a new one just by
   // typing it on a product, no code change needed to add a collection.
   tags?: string[]
+  // Manual position within any tag-filtered homepage section (lower shows
+  // first) — see the sortOrder comment in lib/db/schema.ts.
+  sortOrder: number
   description?: string
   preorder?: boolean
   comingSoon?: boolean
