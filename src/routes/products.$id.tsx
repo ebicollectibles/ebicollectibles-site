@@ -127,7 +127,7 @@ function ProductDetailPage() {
   const priceKnown = product.price > 0
   const badge = comingSoon ? 'Coming soon' : product.preorder ? 'Pre-order' : soldOut ? 'Sold out' : onSale ? 'Sale' : null
   const badgeBg = comingSoon || soldOut ? '#5a6875' : product.preorder ? '#3f7a63' : '#b4622f'
-  const stockLabel = comingSoon ? 'Coming soon' : soldOut ? 'Out of stock' : product.preorder ? 'Ships on release' : `${product.stock} in stock`
+  const stockLabel = comingSoon ? 'Coming soon' : soldOut ? 'Out of stock' : product.preorder ? 'Ships after release' : `${product.stock} in stock`
   const stockColor = comingSoon || soldOut ? '#5a6875' : '#3f7a63'
 
   return (
