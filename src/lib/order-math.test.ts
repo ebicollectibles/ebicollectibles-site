@@ -1,0 +1,62 @@
+import { describe, expect, it } from 'vitest'
+import { computeOrderTotals, findUnorderableLine } from './order-math'
+
+describe('computeOrderTotals', () => {
+  it('computes subtotal, flat shipping, tax, and total', () => {
+    const result = computeOrderTotals([{ unitPrice: 10, qty: 2 }, { unitPrice: 5, qty: 1 }], 0.1)
+    expect(result.subtotal).toBe(25)
+    expect(result.shippingCost).toBe(10)
+    expect(result.tax).toBe(2.5)
+    expect(result.total).toBe(37.5)
+  })
+
+  it('charges no shipping when the cart is somehow empty', () => {
+    const result = computeOrderTotals([], 0.1)
+    expect(result.subtotal).toBe(0)
+    expect(result.shippingCost).toBe(0)
+    expect(result.total).toBe(0)
+  })
+
+  it('rounds tax to the nearest cent', () => {
+    const result = computeOrderTotals([{ unitPrice: 19.99, qty: 3 }], 0.092)
+    // subtotal 59.97 * 0.092 = 5.51724 -> rounds to 5.52
+    expect(result.subtotal).toBe(59.97)
+    expect(result.tax).toBe(5.52)
+  })
+
+  it('charges zero tax outside of taxed states', () => {
+    const result = computeOrderTotals([{ unitPrice: 40, qty: 1 }], 0)
+    expect(result.tax).toBe(0)
+    expect(result.total).toBe(50) // subtotal + flat shipping, no tax
+  })
+})
+
+describe('findUnorderableLine', () => {
+  const productById = new Map([
+    ['normal', { name: 'Normal Item', comingSoon: false, published: true }],
+    ['soon', { name: 'Coming Soon Item', comingSoon: true, published: true }],
+    ['hidden', { name: 'Hidden Item', comingSoon: false, published: false }],
+  ])
+
+  it('allows an ordinary published, available product', () => {
+    expect(findUnorderableLine([{ productId: 'normal' }], productById)).toBeNull()
+  })
+
+  it('rejects a coming-soon product', () => {
+    expect(findUnorderableLine([{ productId: 'soon' }], productById)).toMatch(/Coming Soon Item.*isn't available to order yet/)
+  })
+
+  it('rejects an unpublished product', () => {
+    expect(findUnorderableLine([{ productId: 'hidden' }], productById)).toMatch(/Hidden Item.*no longer available/)
+  })
+
+  it('ignores a line whose product was not found (checked elsewhere)', () => {
+    expect(findUnorderableLine([{ productId: 'missing' }], productById)).toBeNull()
+  })
+
+  it('reports the first unorderable line when several are unorderable', () => {
+    expect(findUnorderableLine([{ productId: 'normal' }, { productId: 'soon' }, { productId: 'hidden' }], productById)).toMatch(
+      /Coming Soon Item/,
+    )
+  })
+})

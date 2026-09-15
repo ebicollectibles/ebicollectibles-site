@@ -4,7 +4,7 @@ import { eq, inArray, sql } from 'drizzle-orm'
 import { getDb } from '~/lib/db/client'
 import { withTransaction } from '~/lib/db/transactional-client'
 import { emailEvents, orderCounters, orderItems, orderStatusEvents, orders, paymentAttempts, products as productsTable, users } from '~/lib/db/schema'
-import { FLAT_SHIPPING_RATE } from '~/lib/products'
+import { computeOrderTotals, findUnorderableLine } from '~/lib/order-math'
 import { US_STATE_CODES } from '~/lib/us-states'
 import { chargeSquarePayment, createSquareOrder, getSquareInventoryCounts, recordSquareInventorySale } from './square'
 import { sendOrderConfirmationEmail } from './email'
@@ -74,15 +74,8 @@ export const placeOrder = createServerFn({ method: 'POST' })
     // or unpublished product is listed (or was, before being hidden) but
     // never purchasable, so reject it here too even if a stale cart or a
     // direct API call tries to check one out.
-    for (const line of data.lines) {
-      const product = productById.get(line.productId)
-      if (product?.comingSoon) {
-        throw new Error(`"${product.name}" isn't available to order yet — refresh your cart and try again.`)
-      }
-      if (product && !product.published) {
-        throw new Error(`"${product.name}" is no longer available — refresh your cart and try again.`)
-      }
-    }
+    const unorderableError = findUnorderableLine(data.lines, productById)
+    if (unorderableError) throw new Error(unorderableError)
 
     // Products linked to Square (squareVariationId set) are stock-tracked in
     // Square, not locally — check live there before charging, since another
@@ -140,10 +133,7 @@ export const placeOrder = createServerFn({ method: 'POST' })
         })
       }
 
-      const subtotal = lineDetails.reduce((t, l) => t + l.unitPrice * l.qty, 0)
-      const shippingCost = subtotal === 0 ? 0 : FLAT_SHIPPING_RATE
-      const tax = Math.round(subtotal * taxRate * 100) / 100
-      const total = subtotal + shippingCost + tax
+      const { subtotal, shippingCost, tax, total } = computeOrderTotals(lineDetails, taxRate)
 
       const [counter] = await tx
         .update(orderCounters)

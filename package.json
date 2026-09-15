@@ -11,7 +11,8 @@
     "db:migrate:dev": "node scripts/migrate-target.mjs dev",
     "db:migrate:prod": "node scripts/migrate-target.mjs prod",
     "db:seed": "tsx scripts/seed.ts",
-    "db:studio": "drizzle-kit studio"
+    "db:studio": "drizzle-kit studio",
+    "test": "vitest run"
   },
   "dependencies": {
     "@neondatabase/serverless": "^1.1.0",
@@ -33,6 +34,7 @@
     "nitro": "^3.0.260311-beta",
     "typescript": "^5.7.2",
     "vite": "^8.0.14",
+    "vitest": "^5.0.1",
     "wrangler": "^4.128.0"
   }
 }
