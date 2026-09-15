@@ -1,6 +1,6 @@
 import { createServerFn } from '@tanstack/react-start'
 import { z } from 'zod'
-import { and, asc, desc, eq, inArray, isNull, or, sql } from 'drizzle-orm'
+import { and, asc, desc, eq, inArray, isNotNull, isNull, notInArray, or, sql } from 'drizzle-orm'
 import { getDb } from '~/lib/db/client'
 import {
   authEvents,
@@ -72,21 +72,37 @@ export const adminListProducts = createServerFn({ method: 'GET' }).handler(async
   return overlaySquareData(rows)
 })
 
-// Saves a full drag-and-drop reorder from the admin Best Selling / New &
-// Upcoming list: every id in orderedIds gets rewritten to its 1-based
-// position. A full rewrite (not a diff/shift) is what makes "drag one item,
-// everything between its old and new spot shifts" work for free — the
-// admin UI just sends its current on-screen order and this stamps it.
+const RANK_COLUMNS = {
+  bestSellingRank: productsTable.bestSellingRank,
+  newAndUpcomingRank: productsTable.newAndUpcomingRank,
+} as const
+
+// Saves the admin's curated Best Selling / New & Upcoming list: orderedIds
+// is the *complete* membership + order of that list (Shopify-style manual
+// collection, not the whole catalog) — every id gets rewritten to its
+// 1-based position, and any product previously ranked for this field but
+// no longer in orderedIds (removed in the admin UI) has its rank cleared
+// back to null, i.e. unfeatured. A full rewrite of the set (not a
+// diff/shift) is what makes "drag one item, everything between its old and
+// new spot shifts" work for free.
 export const adminSetProductRanks = createServerFn({ method: 'POST' })
   .validator(
     z.object({
       field: z.enum(['bestSellingRank', 'newAndUpcomingRank']),
-      orderedIds: z.array(z.string()).min(1),
+      orderedIds: z.array(z.string()),
     }),
   )
   .handler(async ({ data }) => {
     await assertAdmin()
     const db = getDb()
+    const column = RANK_COLUMNS[data.field]
+
+    const clearWhere =
+      data.orderedIds.length > 0
+        ? and(isNotNull(column), notInArray(productsTable.id, data.orderedIds))
+        : isNotNull(column)
+    await db.update(productsTable).set({ [data.field]: null }).where(clearWhere)
+
     for (let i = 0; i < data.orderedIds.length; i++) {
       await db
         .update(productsTable)
