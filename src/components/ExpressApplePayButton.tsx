@@ -42,8 +42,15 @@ export function ExpressApplePayButton({
           currencyCode: 'USD',
           requestBillingContact: true,
           requestShippingContact: true,
-          lineItems: [{ label: 'Subtotal', amount: cart.subtotal.toFixed(2) }],
-          shippingLineItems: [{ label: 'Shipping', amount: cart.shippingCost.toFixed(2) }],
+          // A flat lineItems array — not the separate shippingLineItems/
+          // taxLineItems fields the SDK's types also document — is what
+          // actually renders in the sheet's itemized breakdown (confirmed
+          // against the checkout-page Apple Pay button); rebuilt whole on
+          // every update below rather than only touching the tax entry.
+          lineItems: [
+            { label: 'Subtotal', amount: cart.subtotal.toFixed(2) },
+            { label: 'Shipping', amount: cart.shippingCost.toFixed(2) },
+          ],
           total: {
             amount: (cart.subtotal + cart.shippingCost).toFixed(2),
             label: 'EBI Collectibles',
@@ -64,7 +71,11 @@ export function ExpressApplePayButton({
           const total = cart.subtotal + cart.shippingCost + tax
           return {
             total: { amount: total.toFixed(2), label: 'EBI Collectibles' },
-            taxLineItems: rate > 0 ? [{ label: 'Tax', amount: tax.toFixed(2) }] : [],
+            lineItems: [
+              { label: 'Subtotal', amount: cart.subtotal.toFixed(2) },
+              { label: 'Shipping', amount: cart.shippingCost.toFixed(2) },
+              ...(rate > 0 ? [{ label: 'Tax', amount: tax.toFixed(2) }] : []),
+            ],
           }
         })
 
