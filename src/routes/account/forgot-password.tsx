@@ -10,7 +10,10 @@ const field: React.CSSProperties = {
   border: '1px solid #cfd4da',
   borderRadius: 2,
   padding: '11px 13px',
-  fontSize: 14,
+  // 16px avoids iOS Safari auto-zooming the page in on focus (it does
+  // that for any focused input under 16px, and doesn't always zoom back
+  // out cleanly on blur).
+  fontSize: 16,
   outline: 'none',
   width: '100%',
 }

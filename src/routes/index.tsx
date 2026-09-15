@@ -327,7 +327,8 @@ function HomePage() {
                       borderRadius: 2,
                       padding: '10px 12px',
                       color: '#ffffff',
-                      fontSize: 12.5,
+                      // 16px avoids iOS Safari auto-zooming on focus.
+                      fontSize: 16,
                       outline: 'none',
                     }}
                   />

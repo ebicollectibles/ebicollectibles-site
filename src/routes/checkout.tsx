@@ -36,7 +36,11 @@ const fieldStyle: React.CSSProperties = {
   border: '1px solid #cfd4da',
   borderRadius: 2,
   padding: '13px 14px',
-  fontSize: 14,
+  // iOS Safari auto-zooms the page in when a focused input's font-size is
+  // under 16px, to keep the text legible — and doesn't always zoom back
+  // out cleanly on blur, leaving the page stuck zoomed in. 16px is the
+  // smallest size that avoids triggering it at all.
+  fontSize: 16,
   outline: 'none',
   color: '#131b28',
 }
