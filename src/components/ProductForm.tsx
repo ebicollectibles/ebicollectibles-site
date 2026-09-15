@@ -754,40 +754,11 @@ export function ProductForm({
           placeholder="Type a tag and press Enter"
         />
       </div>
-      <div style={{ marginBottom: 16, display: 'flex', gap: 20, flexWrap: 'wrap' }}>
-        <div>
-          <label htmlFor="pf-best-selling-rank" style={label}>
-            Best Selling rank
-          </label>
-          <input
-            id="pf-best-selling-rank"
-            type="number"
-            className="ebi-field"
-            style={{ ...field, maxWidth: 120 }}
-            value={values.bestSellingRank}
-            onChange={(e) => set('bestSellingRank', e.target.value === '' ? 0 : Number(e.target.value))}
-          />
-          <p style={{ fontSize: 11.5, color: '#98a1ab', marginTop: 6, maxWidth: 200 }}>
-            1 = shows first. Leave 0 to leave it unranked (it'll still appear, just after every ranked product).
-          </p>
-        </div>
-        <div>
-          <label htmlFor="pf-new-upcoming-rank" style={label}>
-            New &amp; Upcoming rank
-          </label>
-          <input
-            id="pf-new-upcoming-rank"
-            type="number"
-            className="ebi-field"
-            style={{ ...field, maxWidth: 120 }}
-            value={values.newAndUpcomingRank}
-            onChange={(e) => set('newAndUpcomingRank', e.target.value === '' ? 0 : Number(e.target.value))}
-          />
-          <p style={{ fontSize: 11.5, color: '#98a1ab', marginTop: 6, maxWidth: 200 }}>
-            Same idea, independent of Best Selling rank.
-          </p>
-        </div>
-      </div>
+      {/* Best Selling / New & Upcoming rank aren't editable here — managed
+          via the drag-and-drop order pages (Admin nav: "Best Selling" /
+          "New & Upcoming"). values.bestSellingRank / newAndUpcomingRank
+          still round-trip through this form unchanged so editing anything
+          else on a product never touches its rank. */}
       <div
         style={{
           marginBottom: 20,

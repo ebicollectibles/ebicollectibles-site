@@ -25,8 +25,10 @@ import { Route as AccountResetPasswordRouteImport } from './routes/account/reset
 import { Route as AccountSignupRouteImport } from './routes/account/signup'
 import { Route as AccountVerifyRouteImport } from './routes/account/verify'
 import { Route as AdminIndexRouteImport } from './routes/admin/index'
+import { Route as AdminBestSellingRouteImport } from './routes/admin/best-selling'
 import { Route as AdminLoginRouteImport } from './routes/admin/login'
 import { Route as AdminMarketplaceOrdersRouteImport } from './routes/admin/marketplace-orders'
+import { Route as AdminNewAndUpcomingRouteImport } from './routes/admin/new-and-upcoming'
 import { Route as AdminSecurityRouteImport } from './routes/admin/security'
 import { Route as AdminSubscribersRouteImport } from './routes/admin/subscribers'
 import { Route as ProductsIdRouteImport } from './routes/products.$id'
@@ -121,6 +123,11 @@ const AdminIndexRoute = AdminIndexRouteImport.update({
   path: '/admin/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminBestSellingRoute = AdminBestSellingRouteImport.update({
+  id: '/admin/best-selling',
+  path: '/admin/best-selling',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AdminLoginRoute = AdminLoginRouteImport.update({
   id: '/admin/login',
   path: '/admin/login',
@@ -129,6 +136,11 @@ const AdminLoginRoute = AdminLoginRouteImport.update({
 const AdminMarketplaceOrdersRoute = AdminMarketplaceOrdersRouteImport.update({
   id: '/admin/marketplace-orders',
   path: '/admin/marketplace-orders',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminNewAndUpcomingRoute = AdminNewAndUpcomingRouteImport.update({
+  id: '/admin/new-and-upcoming',
+  path: '/admin/new-and-upcoming',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AdminSecurityRoute = AdminSecurityRouteImport.update({
@@ -212,8 +224,10 @@ export interface FileRoutesByFullPath {
   '/account/reset-password': typeof AccountResetPasswordRoute
   '/account/signup': typeof AccountSignupRoute
   '/account/verify': typeof AccountVerifyRoute
+  '/admin/best-selling': typeof AdminBestSellingRoute
   '/admin/login': typeof AdminLoginRoute
   '/admin/marketplace-orders': typeof AdminMarketplaceOrdersRoute
+  '/admin/new-and-upcoming': typeof AdminNewAndUpcomingRoute
   '/admin/security': typeof AdminSecurityRoute
   '/admin/subscribers': typeof AdminSubscribersRoute
   '/products/$id': typeof ProductsIdRoute
@@ -245,8 +259,10 @@ export interface FileRoutesByTo {
   '/account/reset-password': typeof AccountResetPasswordRoute
   '/account/signup': typeof AccountSignupRoute
   '/account/verify': typeof AccountVerifyRoute
+  '/admin/best-selling': typeof AdminBestSellingRoute
   '/admin/login': typeof AdminLoginRoute
   '/admin/marketplace-orders': typeof AdminMarketplaceOrdersRoute
+  '/admin/new-and-upcoming': typeof AdminNewAndUpcomingRoute
   '/admin/security': typeof AdminSecurityRoute
   '/admin/subscribers': typeof AdminSubscribersRoute
   '/products/$id': typeof ProductsIdRoute
@@ -279,8 +295,10 @@ export interface FileRoutesById {
   '/account/reset-password': typeof AccountResetPasswordRoute
   '/account/signup': typeof AccountSignupRoute
   '/account/verify': typeof AccountVerifyRoute
+  '/admin/best-selling': typeof AdminBestSellingRoute
   '/admin/login': typeof AdminLoginRoute
   '/admin/marketplace-orders': typeof AdminMarketplaceOrdersRoute
+  '/admin/new-and-upcoming': typeof AdminNewAndUpcomingRoute
   '/admin/security': typeof AdminSecurityRoute
   '/admin/subscribers': typeof AdminSubscribersRoute
   '/products/$id': typeof ProductsIdRoute
@@ -314,8 +332,10 @@ export interface FileRouteTypes {
     | '/account/reset-password'
     | '/account/signup'
     | '/account/verify'
+    | '/admin/best-selling'
     | '/admin/login'
     | '/admin/marketplace-orders'
+    | '/admin/new-and-upcoming'
     | '/admin/security'
     | '/admin/subscribers'
     | '/products/$id'
@@ -347,8 +367,10 @@ export interface FileRouteTypes {
     | '/account/reset-password'
     | '/account/signup'
     | '/account/verify'
+    | '/admin/best-selling'
     | '/admin/login'
     | '/admin/marketplace-orders'
+    | '/admin/new-and-upcoming'
     | '/admin/security'
     | '/admin/subscribers'
     | '/products/$id'
@@ -380,8 +402,10 @@ export interface FileRouteTypes {
     | '/account/reset-password'
     | '/account/signup'
     | '/account/verify'
+    | '/admin/best-selling'
     | '/admin/login'
     | '/admin/marketplace-orders'
+    | '/admin/new-and-upcoming'
     | '/admin/security'
     | '/admin/subscribers'
     | '/products/$id'
@@ -414,8 +438,10 @@ export interface RootRouteChildren {
   AccountResetPasswordRoute: typeof AccountResetPasswordRoute
   AccountSignupRoute: typeof AccountSignupRoute
   AccountVerifyRoute: typeof AccountVerifyRoute
+  AdminBestSellingRoute: typeof AdminBestSellingRoute
   AdminLoginRoute: typeof AdminLoginRoute
   AdminMarketplaceOrdersRoute: typeof AdminMarketplaceOrdersRoute
+  AdminNewAndUpcomingRoute: typeof AdminNewAndUpcomingRoute
   AdminSecurityRoute: typeof AdminSecurityRoute
   AdminSubscribersRoute: typeof AdminSubscribersRoute
   ProductsIdRoute: typeof ProductsIdRoute
@@ -547,6 +573,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin/best-selling': {
+      id: '/admin/best-selling'
+      path: '/admin/best-selling'
+      fullPath: '/admin/best-selling'
+      preLoaderRoute: typeof AdminBestSellingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/admin/login': {
       id: '/admin/login'
       path: '/admin/login'
@@ -559,6 +592,13 @@ declare module '@tanstack/react-router' {
       path: '/admin/marketplace-orders'
       fullPath: '/admin/marketplace-orders'
       preLoaderRoute: typeof AdminMarketplaceOrdersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/new-and-upcoming': {
+      id: '/admin/new-and-upcoming'
+      path: '/admin/new-and-upcoming'
+      fullPath: '/admin/new-and-upcoming'
+      preLoaderRoute: typeof AdminNewAndUpcomingRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/admin/security': {
@@ -670,8 +710,10 @@ const rootRouteChildren: RootRouteChildren = {
   AccountResetPasswordRoute: AccountResetPasswordRoute,
   AccountSignupRoute: AccountSignupRoute,
   AccountVerifyRoute: AccountVerifyRoute,
+  AdminBestSellingRoute: AdminBestSellingRoute,
   AdminLoginRoute: AdminLoginRoute,
   AdminMarketplaceOrdersRoute: AdminMarketplaceOrdersRoute,
+  AdminNewAndUpcomingRoute: AdminNewAndUpcomingRoute,
   AdminSecurityRoute: AdminSecurityRoute,
   AdminSubscribersRoute: AdminSubscribersRoute,
   ProductsIdRoute: ProductsIdRoute,

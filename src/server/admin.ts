@@ -72,6 +72,30 @@ export const adminListProducts = createServerFn({ method: 'GET' }).handler(async
   return overlaySquareData(rows)
 })
 
+// Saves a full drag-and-drop reorder from the admin Best Selling / New &
+// Upcoming list: every id in orderedIds gets rewritten to its 1-based
+// position. A full rewrite (not a diff/shift) is what makes "drag one item,
+// everything between its old and new spot shifts" work for free — the
+// admin UI just sends its current on-screen order and this stamps it.
+export const adminSetProductRanks = createServerFn({ method: 'POST' })
+  .validator(
+    z.object({
+      field: z.enum(['bestSellingRank', 'newAndUpcomingRank']),
+      orderedIds: z.array(z.string()).min(1),
+    }),
+  )
+  .handler(async ({ data }) => {
+    await assertAdmin()
+    const db = getDb()
+    for (let i = 0; i < data.orderedIds.length; i++) {
+      await db
+        .update(productsTable)
+        .set({ [data.field]: i + 1, updatedAt: new Date() })
+        .where(eq(productsTable.id, data.orderedIds[i]))
+    }
+    return { ok: true }
+  })
+
 export const adminGetProduct = createServerFn({ method: 'GET' })
   .validator(z.object({ id: z.string() }))
   .handler(async ({ data }) => {
