@@ -2,6 +2,7 @@ import * as React from 'react'
 import { createFileRoute, Link, useNavigate, useRouter } from '@tanstack/react-router'
 import { SquareCardField, squareConfigured, type SquareCardFieldHandle } from '~/components/SquareCardField'
 import { ApplePayButton } from '~/components/ApplePayButton'
+import { CardBrandLogos } from '~/components/CardBrandLogos'
 import { OrderConfirmation } from '~/components/OrderConfirmation'
 import { PasswordInput } from '~/components/PasswordInput'
 import { trackEvent } from '~/lib/analytics'
@@ -228,6 +229,8 @@ function CheckoutPage() {
   const [confirmed, setConfirmed] = React.useState<{ orderNo: number; paymentStatus: string } | null>(null)
   const [submitting, setSubmitting] = React.useState(false)
   const [error, setError] = React.useState<string | null>(null)
+  const [applePayAvailable, setApplePayAvailable] = React.useState(false)
+  const [paymentMethod, setPaymentMethod] = React.useState<'card' | 'applePay'>('card')
 
   // Only WA is taxed right now, and the rate is destination-based (varies by
   // address, not just state) — so there's nothing meaningful to show until
@@ -646,18 +649,76 @@ function CheckoutPage() {
                 <div style={{ marginTop: 14 }}>
                   {squareConfigured ? (
                     <>
-                      <ApplePayButton
-                        amount={total}
-                        lineItems={[
-                          { label: 'Subtotal', amount: cart.subtotal },
-                          { label: 'Shipping', amount: cart.shippingCost },
-                          ...(contact.state === 'WA' ? [{ label: 'Tax', amount: tax }] : []),
-                        ]}
-                        disabled={submitting || !contactComplete || !billingComplete || mixedPreorder}
-                        onTokenize={(sourceId) => finishOrder(sourceId)}
-                        onError={setError}
-                      />
-                      <SquareCardField ref={cardRef} />
+                      {applePayAvailable && (
+                        <div style={{ display: 'flex', flexDirection: 'column', gap: 8, marginBottom: 16 }}>
+                          <label
+                            style={{
+                              display: 'flex',
+                              alignItems: 'center',
+                              gap: 10,
+                              padding: '12px 14px',
+                              border: '1px solid ' + (paymentMethod === 'card' ? '#131b28' : '#cfd4da'),
+                              borderRadius: 2,
+                              cursor: 'pointer',
+                            }}
+                          >
+                            <input
+                              type="radio"
+                              name="payment-method"
+                              checked={paymentMethod === 'card'}
+                              onChange={() => setPaymentMethod('card')}
+                              style={{ width: 16, height: 16, accentColor: '#131b28', flexShrink: 0 }}
+                            />
+                            <span style={{ fontSize: 13.5, fontWeight: 600 }}>Credit Card</span>
+                            <span style={{ marginLeft: 'auto' }}>
+                              <CardBrandLogos />
+                            </span>
+                          </label>
+                          <label
+                            style={{
+                              display: 'flex',
+                              alignItems: 'center',
+                              gap: 10,
+                              padding: '12px 14px',
+                              border: '1px solid ' + (paymentMethod === 'applePay' ? '#131b28' : '#cfd4da'),
+                              borderRadius: 2,
+                              cursor: 'pointer',
+                            }}
+                          >
+                            <input
+                              type="radio"
+                              name="payment-method"
+                              checked={paymentMethod === 'applePay'}
+                              onChange={() => setPaymentMethod('applePay')}
+                              style={{ width: 16, height: 16, accentColor: '#131b28', flexShrink: 0 }}
+                            />
+                            <span style={{ fontSize: 13.5, fontWeight: 600 }}>Apple Pay</span>
+                            {/* U+F8FF is Apple's own logo glyph in SF Pro — renders correctly only
+                                on Apple devices, which is exactly who ever sees this option (Apple
+                                Pay is only ever available in Safari on a Mac/iPhone/iPad). */}
+                            <span style={{ marginLeft: 'auto', fontSize: 15 }} aria-hidden="true">
+                              {''} Pay
+                            </span>
+                          </label>
+                        </div>
+                      )}
+                      <div style={{ display: !applePayAvailable || paymentMethod === 'card' ? 'block' : 'none' }}>
+                        <SquareCardField ref={cardRef} />
+                      </div>
+                      <div style={{ display: applePayAvailable && paymentMethod === 'applePay' ? 'block' : 'none' }}>
+                        <ApplePayButton
+                          amount={total}
+                          lineItems={[
+                            { label: 'Subtotal', amount: cart.subtotal },
+                            { label: 'Shipping', amount: cart.shippingCost },
+                            ...(contact.state === 'WA' ? [{ label: 'Tax', amount: tax }] : []),
+                          ]}
+                          disabled={submitting || !contactComplete || !billingComplete || mixedPreorder}
+                          onTokenize={(sourceId) => finishOrder(sourceId)}
+                          onError={setError}
+                          onAvailabilityChange={setApplePayAvailable}
+                        />
+                      </div>
                     </>
                   ) : (
                     <>

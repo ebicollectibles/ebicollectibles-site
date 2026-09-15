@@ -12,6 +12,7 @@ export function ApplePayButton({
   lineItems,
   onTokenize,
   onError,
+  onAvailabilityChange,
   disabled,
 }: {
   amount: number
@@ -22,10 +23,20 @@ export function ApplePayButton({
   lineItems?: Array<{ label: string; amount: number }>
   onTokenize: (sourceId: string) => void
   onError: (message: string) => void
+  // Fires whenever the internal "is Apple Pay actually usable here" check
+  // resolves — lets a parent that wants to know before the button itself
+  // is visible (e.g. to decide whether to show a payment-method picker
+  // at all) find out without duplicating the check.
+  onAvailabilityChange?: (available: boolean) => void
   disabled?: boolean
 }) {
   const [available, setAvailable] = React.useState(false)
   const applePayRef = React.useRef<any>(null)
+
+  React.useEffect(() => {
+    onAvailabilityChange?.(available)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [available])
   // amount alone doesn't catch every case where the breakdown changed but
   // happened to sum to the same total — stringify lineItems too so the
   // sheet is rebuilt whenever the actual numbers shown in it change.
