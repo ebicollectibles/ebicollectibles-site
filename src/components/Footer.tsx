@@ -110,7 +110,7 @@ export function Footer() {
             gap: 20,
             fontFamily: "'IBM Plex Mono', monospace",
             fontSize: 11,
-            color: '#98a1ab',
+            color: '#5a6875',
           }}
         >
           <span>© 2026 EBI Collectibles</span>

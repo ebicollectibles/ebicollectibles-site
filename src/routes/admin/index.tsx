@@ -57,7 +57,7 @@ function AdminDashboard() {
         </Link>
       </div>
 
-      <div className="ebi-admin-scroll-hint" style={{ fontSize: 11.5, color: '#98a1ab', marginTop: 14 }}>
+      <div className="ebi-admin-scroll-hint" style={{ fontSize: 11.5, color: '#5a6875', marginTop: 14 }}>
         Swipe to see more →
       </div>
       <div style={{ overflowX: 'auto' }}>
@@ -77,7 +77,7 @@ function AdminDashboard() {
                 <td style={td}>
                   {p.name}
                   {!p.published && (
-                    <span style={{ marginLeft: 6, fontFamily: 'Archivo, Helvetica, sans-serif', fontSize: 10, fontWeight: 700, color: '#98a1ab', border: '1px solid #98a1ab', borderRadius: 2, padding: '1px 4px' }}>
+                    <span style={{ marginLeft: 6, fontFamily: 'Archivo, Helvetica, sans-serif', fontSize: 10, fontWeight: 700, color: '#5a6875', border: '1px solid #5a6875', borderRadius: 2, padding: '1px 4px' }}>
                       HIDDEN
                     </span>
                   )}
@@ -98,7 +98,7 @@ function AdminDashboard() {
                   </Link>
                   <button
                     onClick={() => remove(p.id)}
-                    style={{ background: 'none', border: 0, color: '#98a1ab', fontSize: 12.5, cursor: 'pointer', textDecoration: 'underline' }}
+                    style={{ background: 'none', border: 0, color: '#5a6875', fontSize: 12.5, cursor: 'pointer', textDecoration: 'underline' }}
                   >
                     Delete
                   </button>

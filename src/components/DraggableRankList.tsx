@@ -107,11 +107,11 @@ export function DraggableRankList({ products, field }: { products: AdminProduct[
           {saving ? 'Saving…' : 'Save order'}
         </button>
         {!dirty && savedAt && <span style={{ fontSize: 12.5, color: '#3f7a63' }}>Saved</span>}
-        {dirty && <span style={{ fontSize: 12.5, color: '#98a1ab' }}>Unsaved changes</span>}
+        {dirty && <span style={{ fontSize: 12.5, color: '#5a6875' }}>Unsaved changes</span>}
       </div>
 
       <div style={{ position: 'relative', marginBottom: 20, maxWidth: 420 }}>
-        <label htmlFor="rank-list-search" style={{ fontSize: 10.5, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: '#98a1ab', marginBottom: 4, display: 'block' }}>
+        <label htmlFor="rank-list-search" style={{ fontSize: 10.5, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: '#5a6875', marginBottom: 4, display: 'block' }}>
           Add a product
         </label>
         <input
@@ -154,13 +154,13 @@ export function DraggableRankList({ products, field }: { products: AdminProduct[
       </div>
 
       {added.length === 0 ? (
-        <p style={{ fontSize: 13.5, color: '#98a1ab' }}>
+        <p style={{ fontSize: 13.5, color: '#5a6875' }}>
           Nothing added yet — search above to feature a product here. Everything else still shows up on the "View
           All" page after whatever you add, newest first.
         </p>
       ) : (
         <>
-          <p style={{ fontSize: 12.5, color: '#98a1ab', margin: '0 0 16px', maxWidth: '60ch' }}>
+          <p style={{ fontSize: 12.5, color: '#5a6875', margin: '0 0 16px', maxWidth: '60ch' }}>
             Drag a row (or use the arrows) to reorder — everything between its old and new spot shifts to make room.
             Only the top 8 show on the homepage; the rest are still visible on the full "View All" page, in this
             order, followed by every product not added here.
@@ -191,7 +191,7 @@ export function DraggableRankList({ products, field }: { products: AdminProduct[
                   style={{
                     fontFamily: "'IBM Plex Mono', monospace",
                     fontSize: 12,
-                    color: '#98a1ab',
+                    color: '#5a6875',
                     width: 26,
                     flexShrink: 0,
                     textAlign: 'right',
@@ -204,7 +204,7 @@ export function DraggableRankList({ products, field }: { products: AdminProduct[
                 </div>
                 <div style={{ flex: 1, minWidth: 0 }}>
                   <div style={{ fontSize: 13.5, fontWeight: 600, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{p.name}</div>
-                  <div style={{ fontSize: 11.5, color: '#98a1ab' }}>{p.subcategory}</div>
+                  <div style={{ fontSize: 11.5, color: '#5a6875' }}>{p.subcategory}</div>
                 </div>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: 2, flexShrink: 0 }}>
                   <button
@@ -230,7 +230,7 @@ export function DraggableRankList({ products, field }: { products: AdminProduct[
                   type="button"
                   onClick={() => removeProduct(p.id)}
                   aria-label={`Remove ${p.name}`}
-                  style={{ background: 'none', border: 0, color: '#98a1ab', fontSize: 18, lineHeight: 1, cursor: 'pointer', padding: '0 4px', flexShrink: 0 }}
+                  style={{ background: 'none', border: 0, color: '#5a6875', fontSize: 18, lineHeight: 1, cursor: 'pointer', padding: '0 4px', flexShrink: 0 }}
                 >
                   ×
                 </button>

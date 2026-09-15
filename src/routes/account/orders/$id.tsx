@@ -10,7 +10,7 @@ export const Route = createFileRoute('/account/orders/$id')({
 })
 
 const fulfillmentColor: Record<string, string> = {
-  pending: '#98a1ab',
+  pending: '#5a6875',
   partially_shipped: '#3a6ea5',
   shipped: '#3f7a63',
   cancelled: '#b4622f',
@@ -60,13 +60,13 @@ function OrderDetailPage() {
             fontFamily: "'IBM Plex Mono', monospace",
             fontSize: 10.5,
             textTransform: 'uppercase',
-            color: fulfillmentColor[order.fulfillmentStatus] ?? '#98a1ab',
+            color: fulfillmentColor[order.fulfillmentStatus] ?? '#5a6875',
           }}
         >
           {fulfillmentLabel[order.fulfillmentStatus] ?? order.fulfillmentStatus}
         </span>
       </div>
-      <div style={{ marginTop: 4, fontSize: 12, color: '#98a1ab' }}>{new Date(order.createdAt).toLocaleString()}</div>
+      <div style={{ marginTop: 4, fontSize: 12, color: '#5a6875' }}>{new Date(order.createdAt).toLocaleString()}</div>
 
       <div style={{ marginTop: 24, display: 'flex', flexDirection: 'column', gap: 12 }}>
         {order.items.map((item) => (
@@ -86,7 +86,7 @@ function OrderDetailPage() {
             </div>
             <div style={{ flex: 1, minWidth: 0 }}>
               <div style={{ fontSize: 13.5, color: '#131b28' }}>{item.productName}</div>
-              <div style={{ fontSize: 12, color: '#98a1ab' }}>
+              <div style={{ fontSize: 12, color: '#5a6875' }}>
                 {item.qty} × {formatMoney(item.unitPrice)}
               </div>
             </div>
@@ -118,7 +118,7 @@ function OrderDetailPage() {
 
       {order.paymentMethodSummary && (
         <div style={{ marginTop: 16, paddingTop: 16, borderTop: '1px solid #e3e6ea' }}>
-          <div style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 10.5, letterSpacing: '0.1em', textTransform: 'uppercase', color: '#98a1ab' }}>
+          <div style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 10.5, letterSpacing: '0.1em', textTransform: 'uppercase', color: '#5a6875' }}>
             Payment
           </div>
           <div style={{ marginTop: 6, fontSize: 13, color: '#131b28' }}>{order.paymentMethodSummary}</div>
@@ -127,7 +127,7 @@ function OrderDetailPage() {
 
       <div style={{ marginTop: 16, paddingTop: 16, borderTop: '1px solid #e3e6ea', display: 'flex', flexWrap: 'wrap', gap: 32 }}>
         <div>
-          <div style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 10.5, letterSpacing: '0.1em', textTransform: 'uppercase', color: '#98a1ab' }}>
+          <div style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 10.5, letterSpacing: '0.1em', textTransform: 'uppercase', color: '#5a6875' }}>
             Shipping address
           </div>
           <div style={{ marginTop: 6, fontSize: 13, color: '#131b28', lineHeight: 1.5 }}>
@@ -147,7 +147,7 @@ function OrderDetailPage() {
         </div>
 
         <div>
-          <div style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 10.5, letterSpacing: '0.1em', textTransform: 'uppercase', color: '#98a1ab' }}>
+          <div style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 10.5, letterSpacing: '0.1em', textTransform: 'uppercase', color: '#5a6875' }}>
             Billing address
           </div>
           <div style={{ marginTop: 6, fontSize: 13, color: '#131b28', lineHeight: 1.5 }}>

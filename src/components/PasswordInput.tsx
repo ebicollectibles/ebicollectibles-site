@@ -53,7 +53,7 @@ export function PasswordInput({
           border: 0,
           padding: 8,
           cursor: 'pointer',
-          color: '#98a1ab',
+          color: '#5a6875',
           display: 'flex',
           alignItems: 'center',
         }}

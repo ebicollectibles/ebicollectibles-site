@@ -120,7 +120,7 @@ function ResetPasswordPage() {
           className="ebi-field"
           style={field}
         />
-        <p style={{ fontSize: 11, color: '#98a1ab', marginTop: 6 }}>At least 8 characters.</p>
+        <p style={{ fontSize: 11, color: '#5a6875', marginTop: 6 }}>At least 8 characters.</p>
         {error && <p style={{ fontSize: 12.5, color: '#b4622f', marginTop: 8 }}>{error}</p>}
         <button
           type="submit"

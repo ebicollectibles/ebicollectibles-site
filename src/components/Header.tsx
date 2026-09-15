@@ -164,7 +164,7 @@ export function Header({ customer }: { customer: HeaderCustomer | null }) {
               }}
             >
               Pokemon
-              <span style={{ fontSize: 9, color: '#98a1ab' }}>{pokemonMenuOpen ? '▴' : '▾'}</span>
+              <span style={{ fontSize: 9, color: '#5a6875' }}>{pokemonMenuOpen ? '▴' : '▾'}</span>
             </button>
             {pokemonMenuOpen && (
               <div className="ebi-nav-dropdown-panel">

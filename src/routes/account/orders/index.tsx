@@ -68,7 +68,7 @@ function OrdersPage() {
                   <div style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 13, fontWeight: 600 }}>
                     #EBI-{order.orderNo}
                   </div>
-                  <div style={{ marginTop: 4, fontSize: 12, color: '#98a1ab' }}>
+                  <div style={{ marginTop: 4, fontSize: 12, color: '#5a6875' }}>
                     {new Date(order.createdAt).toLocaleDateString()} · {itemCount} item{itemCount === 1 ? '' : 's'} ·{' '}
                     {fulfillmentLabel[order.fulfillmentStatus] ?? order.fulfillmentStatus}
                   </div>
@@ -77,7 +77,7 @@ function OrdersPage() {
                   <span style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 14, fontWeight: 600 }}>
                     {formatMoney(order.total)}
                   </span>
-                  <span style={{ fontSize: 13, color: '#98a1ab' }}>›</span>
+                  <span style={{ fontSize: 13, color: '#5a6875' }}>›</span>
                 </div>
               </Link>
             )

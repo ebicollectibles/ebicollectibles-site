@@ -50,7 +50,7 @@ function AdminCustomersPage() {
       {customers.length === 0 && <p style={{ fontSize: 13.5, color: '#131b28', marginTop: 16 }}>No customer accounts yet.</p>}
 
       {customers.length > 0 && (
-        <div className="ebi-admin-scroll-hint" style={{ fontSize: 11.5, color: '#98a1ab', marginTop: 14 }}>
+        <div className="ebi-admin-scroll-hint" style={{ fontSize: 11.5, color: '#5a6875', marginTop: 14 }}>
           Swipe to see more →
         </div>
       )}
@@ -70,7 +70,7 @@ function AdminCustomersPage() {
           <tbody>
             {pageCustomers.map((c) => (
               <tr key={c.id}>
-                <td style={td}>{c.name || <span style={{ color: '#98a1ab' }}>—</span>}</td>
+                <td style={td}>{c.name || <span style={{ color: '#5a6875' }}>—</span>}</td>
                 <td style={td}>{c.email}</td>
                 <td style={{ ...td, fontFamily: "'IBM Plex Mono', monospace", fontSize: 11.5 }}>
                   {c.hasPassword && c.hasGoogle ? 'Password + Google' : c.hasGoogle ? 'Google' : 'Password'}

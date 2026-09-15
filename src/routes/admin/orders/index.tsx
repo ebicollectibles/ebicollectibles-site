@@ -17,11 +17,11 @@ const paymentColor: Record<string, string> = {
   paid: '#3f7a63',
   test: '#b4622f',
   failed: '#b4622f',
-  unpaid: '#98a1ab',
+  unpaid: '#5a6875',
 }
 
 const fulfillmentColor: Record<string, string> = {
-  pending: '#98a1ab',
+  pending: '#5a6875',
   partially_shipped: '#3a6ea5',
   shipped: '#3f7a63',
   cancelled: '#b4622f',
@@ -89,7 +89,7 @@ function AdminOrdersPage() {
                 <span>
                   {f.email || 'unknown email'} — {formatMoney(f.amount ?? 0)} — {f.errorMessage}
                 </span>
-                <span style={{ color: '#98a1ab', fontFamily: "'IBM Plex Mono', monospace", fontSize: 11 }}>
+                <span style={{ color: '#5a6875', fontFamily: "'IBM Plex Mono', monospace", fontSize: 11 }}>
                   {new Date(f.createdAt).toLocaleString()}
                 </span>
               </div>
@@ -102,7 +102,7 @@ function AdminOrdersPage() {
 
       {orders.length > 0 && (
         <>
-          <div className="ebi-admin-scroll-hint" style={{ fontSize: 11.5, color: '#98a1ab', marginTop: 14 }}>
+          <div className="ebi-admin-scroll-hint" style={{ fontSize: 11.5, color: '#5a6875', marginTop: 14 }}>
             Swipe to see more →
           </div>
           <div style={{ overflowX: 'auto' }}>
@@ -127,9 +127,9 @@ function AdminOrdersPage() {
                     <div>
                       {order.firstName} {order.lastName}
                     </div>
-                    <div style={{ fontSize: 11.5, color: '#98a1ab' }}>{order.email}</div>
+                    <div style={{ fontSize: 11.5, color: '#5a6875' }}>{order.email}</div>
                   </td>
-                  <td style={{ ...td, fontFamily: "'IBM Plex Mono', monospace", fontSize: 11, textTransform: 'uppercase', color: paymentColor[order.paymentStatus] ?? '#98a1ab' }}>
+                  <td style={{ ...td, fontFamily: "'IBM Plex Mono', monospace", fontSize: 11, textTransform: 'uppercase', color: paymentColor[order.paymentStatus] ?? '#5a6875' }}>
                     {order.paymentStatus}
                     {order.totalRefunded > 0 && (
                       <div style={{ color: '#8a4a26', fontSize: 10.5, marginTop: 2 }}>Refunded {formatMoney(order.totalRefunded)}</div>
@@ -139,8 +139,8 @@ function AdminOrdersPage() {
                     {order.riskLevel ? (
                       <span
                         style={{
-                          color: riskColor[order.riskLevel] ?? '#98a1ab',
-                          border: `1px solid ${riskColor[order.riskLevel] ?? '#98a1ab'}`,
+                          color: riskColor[order.riskLevel] ?? '#5a6875',
+                          border: `1px solid ${riskColor[order.riskLevel] ?? '#5a6875'}`,
                           borderRadius: 2,
                           padding: '2px 6px',
                         }}
@@ -151,7 +151,7 @@ function AdminOrdersPage() {
                       <span style={{ color: '#cfd4da' }}>—</span>
                     )}
                   </td>
-                  <td style={{ ...td, fontFamily: "'IBM Plex Mono', monospace", fontSize: 11, textTransform: 'uppercase', color: fulfillmentColor[order.fulfillmentStatus] ?? '#98a1ab' }}>
+                  <td style={{ ...td, fontFamily: "'IBM Plex Mono', monospace", fontSize: 11, textTransform: 'uppercase', color: fulfillmentColor[order.fulfillmentStatus] ?? '#5a6875' }}>
                     {fulfillmentLabel[order.fulfillmentStatus] ?? order.fulfillmentStatus}
                   </td>
                   <td style={{ ...td, fontFamily: "'IBM Plex Mono', monospace", fontWeight: 500 }}>{formatMoney(order.total)}</td>

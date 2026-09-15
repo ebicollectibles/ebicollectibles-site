@@ -51,7 +51,7 @@ function AdminSecurityPage() {
         }}
       />
       <h1 style={{ fontSize: 24, fontWeight: 700, marginTop: 24 }}>Security</h1>
-      <p style={{ fontSize: 12.5, color: '#98a1ab', margin: '8px 0 0', maxWidth: '60ch' }}>
+      <p style={{ fontSize: 12.5, color: '#5a6875', margin: '8px 0 0', maxWidth: '60ch' }}>
         Every signup, login, admin login and related event, most recent first, with the IP, network owner and country
         Cloudflare reported for that request. A "Hosting network" flag means the request came from a datacenter/cloud
         network rather than a home connection — a signal worth a second look, not proof of anything.
@@ -80,7 +80,7 @@ function AdminSecurityPage() {
                 <span>
                   <span style={{ color: eventColor[e.type] ?? '#131b28', fontWeight: 600 }}>{eventLabel[e.type] ?? e.type}</span>
                   {e.email && <span> — {e.email}</span>}
-                  <span style={{ color: '#98a1ab' }}>
+                  <span style={{ color: '#5a6875' }}>
                     {' '}
                     {[e.ipAddress, e.asOrganization, e.country].filter(Boolean).join(' · ')}
                   </span>
@@ -101,7 +101,7 @@ function AdminSecurityPage() {
                     </span>
                   )}
                 </span>
-                <span style={{ color: '#98a1ab', fontFamily: "'IBM Plex Mono', monospace", fontSize: 11.5, whiteSpace: 'nowrap' }}>
+                <span style={{ color: '#5a6875', fontFamily: "'IBM Plex Mono', monospace", fontSize: 11.5, whiteSpace: 'nowrap' }}>
                   {new Date(e.createdAt).toLocaleString()}
                 </span>
               </div>

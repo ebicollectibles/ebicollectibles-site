@@ -140,7 +140,7 @@ function CartPage() {
                 <span style={{ fontSize: 14, color: '#131b28' }}>Subtotal ({cartCount} item{cartCount === 1 ? '' : 's'})</span>
                 <span style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 20, fontWeight: 500 }}>{formatMoney(subtotal)}</span>
               </div>
-              <div style={{ fontSize: 11.5, color: '#98a1ab', marginTop: 8 }}>Shipping and tax are calculated at checkout.</div>
+              <div style={{ fontSize: 11.5, color: '#5a6875', marginTop: 8 }}>Shipping and tax are calculated at checkout.</div>
               <div style={{ display: 'flex', gap: 10, marginTop: 20 }}>
                 <Link
                   to="/shop"

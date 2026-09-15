@@ -14,7 +14,7 @@ export function ProductCard({ product, variant = 'full' }: { product: Product; v
   // coming-soon item with a real price shows it like any other product.
   const priceKnown = product.price > 0
   const badge = comingSoon ? 'Coming soon' : product.preorder ? 'Pre-order' : soldOut ? 'Sold out' : onSale ? 'Sale' : null
-  const badgeBg = comingSoon || soldOut ? '#98a1ab' : product.preorder ? '#3f7a63' : '#b4622f'
+  const badgeBg = comingSoon || soldOut ? '#5a6875' : product.preorder ? '#3f7a63' : '#b4622f'
 
   const compact = variant === 'compact'
   const padding = compact ? 18 : 20
@@ -61,7 +61,7 @@ export function ProductCard({ product, variant = 'full' }: { product: Product; v
               fontSize: 10,
               letterSpacing: '0.1em',
               textTransform: 'uppercase',
-              color: '#98a1ab',
+              color: '#5a6875',
               textAlign: 'center',
               padding: compact ? 16 : 18,
             }}
@@ -103,17 +103,17 @@ export function ProductCard({ product, variant = 'full' }: { product: Product; v
       </h3>
       <div style={{ display: 'flex', alignItems: 'baseline', gap: 8, marginTop: 10 }}>
         {comingSoon && !priceKnown ? (
-          <span style={{ fontSize: priceFontSize - 2, fontWeight: 500, color: '#98a1ab' }}>
+          <span style={{ fontSize: priceFontSize - 2, fontWeight: 500, color: '#5a6875' }}>
             Price to be announced
           </span>
         ) : (
           <>
             {onSale && (
-              <span style={{ fontSize: priceFontSize - 3, color: '#98a1ab', textDecoration: 'line-through' }}>
+              <span style={{ fontSize: priceFontSize - 3, color: '#5a6875', textDecoration: 'line-through' }}>
                 {formatMoney(product.compareAtPrice!)}
               </span>
             )}
-            <span style={{ fontSize: priceFontSize, fontWeight: 600, color: comingSoon ? '#98a1ab' : '#131b28' }}>
+            <span style={{ fontSize: priceFontSize, fontWeight: 600, color: comingSoon ? '#5a6875' : '#131b28' }}>
               {formatMoney(product.price)}
             </span>
           </>

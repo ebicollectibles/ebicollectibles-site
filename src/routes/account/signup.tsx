@@ -95,7 +95,7 @@ function SignupPage() {
         {googleBusy ? 'Redirecting…' : 'Continue with Google'}
       </button>
 
-      <div style={{ display: 'flex', alignItems: 'center', gap: 10, margin: '20px 0', fontSize: 11.5, color: '#98a1ab' }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: 10, margin: '20px 0', fontSize: 11.5, color: '#5a6875' }}>
         <div style={{ flex: 1, height: 1, background: '#e3e6ea' }} />
         or
         <div style={{ flex: 1, height: 1, background: '#e3e6ea' }} />
@@ -130,7 +130,7 @@ function SignupPage() {
           className="ebi-field"
           style={field}
         />
-        <p style={{ fontSize: 11, color: '#98a1ab', marginTop: 6 }}>At least 8 characters.</p>
+        <p style={{ fontSize: 11, color: '#5a6875', marginTop: 6 }}>At least 8 characters.</p>
         {error && <p style={{ fontSize: 12.5, color: '#b4622f', marginTop: 8 }}>{error}</p>}
         <button type="submit" disabled={submitting} style={{ ...submitBtn, marginTop: 16, opacity: submitting ? 0.6 : 1 }}>
           {submitting ? 'Creating account…' : 'Create account'}

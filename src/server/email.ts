@@ -405,11 +405,11 @@ export async function sendVerificationCodeEmail(opts: { email: string; code: str
 
   const html = `
   <div style="font-family:Helvetica,Arial,sans-serif;max-width:480px;margin:0 auto;padding:24px 20px;">
-    <div style="font-size:12px;letter-spacing:0.08em;text-transform:uppercase;color:#98a1ab;font-weight:700;">EBI Collectibles</div>
+    <div style="font-size:12px;letter-spacing:0.08em;text-transform:uppercase;color:#5a6875;font-weight:700;">EBI Collectibles</div>
     <h1 style="font-size:20px;margin:12px 0 4px;color:#131b28;">Verify your email</h1>
     <p style="font-size:13.5px;color:#5a6875;margin:0 0 20px;">Enter this code to finish setting up your account. It expires in 15 minutes.</p>
     <div style="font-family:'Courier New',monospace;font-size:32px;font-weight:700;letter-spacing:0.2em;color:#131b28;background:#f6f7f8;padding:16px 20px;text-align:center;border-radius:4px;">${opts.code}</div>
-    <p style="font-size:12px;color:#98a1ab;margin:20px 0 0;">If you didn't request this, you can ignore this email.</p>
+    <p style="font-size:12px;color:#5a6875;margin:20px 0 0;">If you didn't request this, you can ignore this email.</p>
   </div>`
 
   const text = `Your EBI Collectibles verification code is ${opts.code}. It expires in 15 minutes.`
@@ -445,11 +445,11 @@ export async function sendPasswordResetCodeEmail(opts: { email: string; code: st
 
   const html = `
   <div style="font-family:Helvetica,Arial,sans-serif;max-width:480px;margin:0 auto;padding:24px 20px;">
-    <div style="font-size:12px;letter-spacing:0.08em;text-transform:uppercase;color:#98a1ab;font-weight:700;">EBI Collectibles</div>
+    <div style="font-size:12px;letter-spacing:0.08em;text-transform:uppercase;color:#5a6875;font-weight:700;">EBI Collectibles</div>
     <h1 style="font-size:20px;margin:12px 0 4px;color:#131b28;">Reset your password</h1>
     <p style="font-size:13.5px;color:#5a6875;margin:0 0 20px;">Enter this code to set a new password. It expires in 15 minutes.</p>
     <div style="font-family:'Courier New',monospace;font-size:32px;font-weight:700;letter-spacing:0.2em;color:#131b28;background:#f6f7f8;padding:16px 20px;text-align:center;border-radius:4px;">${opts.code}</div>
-    <p style="font-size:12px;color:#98a1ab;margin:20px 0 0;">If you didn't request this, you can ignore this email — your password won't change.</p>
+    <p style="font-size:12px;color:#5a6875;margin:20px 0 0;">If you didn't request this, you can ignore this email — your password won't change.</p>
   </div>`
 
   const text = `Your EBI Collectibles password reset code is ${opts.code}. It expires in 15 minutes.`

@@ -43,7 +43,7 @@ const unitLabel: React.CSSProperties = {
   fontSize: 9.5,
   letterSpacing: '0.1em',
   textTransform: 'uppercase',
-  color: '#98a1ab',
+  color: '#a3adb8',
   marginTop: 3,
 }
 
@@ -85,7 +85,7 @@ export function AnniversaryCountdown() {
         />
 
         <div style={{ textAlign: 'left' }}>
-          <div style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 10, letterSpacing: '0.14em', textTransform: 'uppercase', color: '#98a1ab' }}>
+          <div style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 10, letterSpacing: '0.14em', textTransform: 'uppercase', color: '#a3adb8' }}>
             Pokémon TCG · 30th Anniversary
           </div>
           <div style={{ fontSize: 16.5, fontWeight: 700, letterSpacing: '-0.01em', marginTop: 3 }}>

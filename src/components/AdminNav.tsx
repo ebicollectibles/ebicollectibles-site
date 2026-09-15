@@ -38,7 +38,7 @@ export function AdminNav({ onLogout }: { onLogout: () => void }) {
         Security
       </Link>
       <div style={{ flex: 1 }} />
-      <button onClick={onLogout} style={{ background: 'none', border: 0, fontSize: 13, color: '#98a1ab', cursor: 'pointer' }}>
+      <button onClick={onLogout} style={{ background: 'none', border: 0, fontSize: 13, color: '#5a6875', cursor: 'pointer' }}>
         Log out
       </button>
     </div>

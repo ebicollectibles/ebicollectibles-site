@@ -136,7 +136,7 @@ function ShopPage() {
         <div style={{ fontSize: 12.5, fontWeight: 700, letterSpacing: '0.02em', marginBottom: 10 }}>Product type</div>
         {PRODUCT_CATEGORIES.map((cat) => (
           <div key={cat} style={{ marginBottom: 14 }}>
-            <div style={{ fontSize: 11, fontWeight: 700, color: '#98a1ab', textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: 4 }}>
+            <div style={{ fontSize: 11, fontWeight: 700, color: '#5a6875', textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: 4 }}>
               {cat}
             </div>
             {SUBCATEGORIES_BY_CATEGORY[cat].map((s) => {
@@ -153,7 +153,7 @@ function ShopPage() {
                     style={{ width: 14, height: 14, accentColor: '#131b28', cursor: 'pointer' }}
                   />
                   <span style={{ flex: 1 }}>{s}</span>
-                  <span style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 10.5, color: '#98a1ab' }}>{count}</span>
+                  <span style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 10.5, color: '#5a6875' }}>{count}</span>
                 </label>
               )
             })}

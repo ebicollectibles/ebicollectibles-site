@@ -15,7 +15,7 @@ const label: React.CSSProperties = {
   fontWeight: 700,
   letterSpacing: '0.08em',
   textTransform: 'uppercase',
-  color: '#98a1ab',
+  color: '#5a6875',
   marginBottom: 4,
 }
 const field: React.CSSProperties = {
@@ -121,7 +121,7 @@ function SetPasswordForm({ onSuccess }: { onSuccess: () => void }) {
           {submitting ? 'Setting…' : 'Set password'}
         </button>
       </form>
-      <p style={{ fontSize: 11, color: '#98a1ab', margin: '6px 0 0' }}>At least 8 characters.</p>
+      <p style={{ fontSize: 11, color: '#5a6875', margin: '6px 0 0' }}>At least 8 characters.</p>
       {error && <p style={{ fontSize: 12.5, color: '#b4622f', marginTop: 8 }}>{error}</p>}
     </div>
   )

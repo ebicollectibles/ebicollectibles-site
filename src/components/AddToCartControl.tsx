@@ -164,7 +164,7 @@ export function AddToCartControl({
         gap: 6,
         border: '1px solid #131b28',
         background: disabledState ? '#ffffff' : '#131b28',
-        color: disabledState ? '#98a1ab' : '#ffffff',
+        color: disabledState ? '#5a6875' : '#ffffff',
         borderRadius: 2,
         padding,
         fontSize,

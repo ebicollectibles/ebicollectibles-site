@@ -126,7 +126,7 @@ function LoginPage() {
         {googleBusy ? 'Redirecting…' : 'Continue with Google'}
       </button>
 
-      <div style={{ display: 'flex', alignItems: 'center', gap: 10, margin: '20px 0', fontSize: 11.5, color: '#98a1ab' }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: 10, margin: '20px 0', fontSize: 11.5, color: '#5a6875' }}>
         <div style={{ flex: 1, height: 1, background: '#e3e6ea' }} />
         or
         <div style={{ flex: 1, height: 1, background: '#e3e6ea' }} />

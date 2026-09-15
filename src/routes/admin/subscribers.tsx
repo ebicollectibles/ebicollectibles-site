@@ -95,7 +95,7 @@ function AdminSubscribersPage() {
       />
       <div style={{ display: 'flex', alignItems: 'baseline', gap: 12, marginTop: 24 }}>
         <h1 style={{ fontSize: 24, fontWeight: 700, margin: 0 }}>Subscribers</h1>
-        <span style={{ fontSize: 13.5, color: '#98a1ab' }}>
+        <span style={{ fontSize: 13.5, color: '#5a6875' }}>
           {activeCount} active · {subscribers.length} total
         </span>
       </div>
@@ -103,7 +103,7 @@ function AdminSubscribersPage() {
       {subscribers.length === 0 && <p style={{ fontSize: 13.5, color: '#131b28', marginTop: 16 }}>No subscribers yet.</p>}
 
       {subscribers.length > 0 && (
-        <div className="ebi-admin-scroll-hint" style={{ fontSize: 11.5, color: '#98a1ab', marginTop: 14 }}>
+        <div className="ebi-admin-scroll-hint" style={{ fontSize: 11.5, color: '#5a6875', marginTop: 14 }}>
           Swipe to see more →
         </div>
       )}
@@ -126,14 +126,14 @@ function AdminSubscribersPage() {
               return (
                 <tr key={s.id}>
                   <td style={td}>{s.email}</td>
-                  <td style={{ ...td, color: s.firstName ? '#131b28' : '#98a1ab' }}>{s.firstName || '—'}</td>
+                  <td style={{ ...td, color: s.firstName ? '#131b28' : '#5a6875' }}>{s.firstName || '—'}</td>
                   <td style={td}>
                     <span
                       style={{
                         fontFamily: "'IBM Plex Mono', monospace",
                         fontSize: 10.5,
                         textTransform: 'uppercase',
-                        color: active ? '#3f7a63' : '#98a1ab',
+                        color: active ? '#3f7a63' : '#5a6875',
                       }}
                     >
                       {active ? 'Active' : 'Unsubscribed'}
@@ -209,7 +209,7 @@ function AdminSubscribersPage() {
       )}
 
       <h2 style={{ fontSize: 15, fontWeight: 700, marginTop: 44, marginBottom: 16 }}>Activity</h2>
-      <p style={{ fontSize: 12.5, color: '#98a1ab', margin: '0 0 16px' }}>
+      <p style={{ fontSize: 12.5, color: '#5a6875', margin: '0 0 16px' }}>
         Every subscribe / unsubscribe, in order — this is where a resubscribe shows up as two events for the same email.
       </p>
 
@@ -233,9 +233,9 @@ function AdminSubscribersPage() {
                 <span style={{ color: eventColor[e.type] ?? '#131b28', fontWeight: 600 }}>{eventLabel[e.type] ?? e.type}</span>
                 {' — '}
                 {e.email}
-                {e.source && <span style={{ color: '#98a1ab' }}> ({sourceLabel[e.source] ?? e.source})</span>}
+                {e.source && <span style={{ color: '#5a6875' }}> ({sourceLabel[e.source] ?? e.source})</span>}
               </span>
-              <span style={{ color: '#98a1ab', fontFamily: "'IBM Plex Mono', monospace", fontSize: 11.5, whiteSpace: 'nowrap' }}>
+              <span style={{ color: '#5a6875', fontFamily: "'IBM Plex Mono', monospace", fontSize: 11.5, whiteSpace: 'nowrap' }}>
                 {new Date(e.createdAt).toLocaleString()}
               </span>
             </div>

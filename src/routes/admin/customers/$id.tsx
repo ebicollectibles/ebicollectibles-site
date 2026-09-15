@@ -17,11 +17,11 @@ const paymentColor: Record<string, string> = {
   paid: '#3f7a63',
   test: '#b4622f',
   failed: '#b4622f',
-  unpaid: '#98a1ab',
+  unpaid: '#5a6875',
 }
 
 const fulfillmentColor: Record<string, string> = {
-  pending: '#98a1ab',
+  pending: '#5a6875',
   partially_shipped: '#3a6ea5',
   shipped: '#3f7a63',
   cancelled: '#b4622f',
@@ -107,20 +107,20 @@ function AdminCustomerDetailPage() {
                 <div style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 13, fontWeight: 600 }}>
                   #EBI-{order.orderNo}
                 </div>
-                <div style={{ marginTop: 4, fontSize: 12, color: '#98a1ab' }}>
+                <div style={{ marginTop: 4, fontSize: 12, color: '#5a6875' }}>
                   {new Date(order.createdAt).toLocaleDateString()} · {itemCount} item{itemCount === 1 ? '' : 's'} ·{' '}
-                  <span style={{ color: fulfillmentColor[order.fulfillmentStatus] ?? '#98a1ab' }}>
+                  <span style={{ color: fulfillmentColor[order.fulfillmentStatus] ?? '#5a6875' }}>
                     {fulfillmentLabel[order.fulfillmentStatus] ?? order.fulfillmentStatus}
                   </span>
                   {' · '}
-                  <span style={{ color: paymentColor[order.paymentStatus] ?? '#98a1ab' }}>{order.paymentStatus}</span>
+                  <span style={{ color: paymentColor[order.paymentStatus] ?? '#5a6875' }}>{order.paymentStatus}</span>
                 </div>
               </div>
               <div style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
                 <span style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 14, fontWeight: 600 }}>
                   {formatMoney(order.total)}
                 </span>
-                <span style={{ fontSize: 13, color: '#98a1ab' }}>›</span>
+                <span style={{ fontSize: 13, color: '#5a6875' }}>›</span>
               </div>
             </Link>
           )
@@ -170,7 +170,7 @@ function AdminCustomerDetailPage() {
       <h2 style={{ fontSize: 15, fontWeight: 700, marginTop: 36, marginBottom: 16 }}>Recent activity</h2>
 
       {events.length === 0 ? (
-        <p style={{ fontSize: 13.5, color: '#98a1ab' }}>No recorded activity yet.</p>
+        <p style={{ fontSize: 13.5, color: '#5a6875' }}>No recorded activity yet.</p>
       ) : (
         <div style={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
           {events.map((event, i) => (
@@ -189,9 +189,9 @@ function AdminCustomerDetailPage() {
                 <span style={{ color: eventColor[event.type] ?? '#131b28', fontWeight: 600 }}>
                   {eventLabel[event.type] ?? event.type}
                 </span>
-                {event.detail && <span style={{ color: '#98a1ab' }}> — {event.detail}</span>}
+                {event.detail && <span style={{ color: '#5a6875' }}> — {event.detail}</span>}
               </span>
-              <span style={{ color: '#98a1ab', fontFamily: "'IBM Plex Mono', monospace", fontSize: 11.5, whiteSpace: 'nowrap' }}>
+              <span style={{ color: '#5a6875', fontFamily: "'IBM Plex Mono', monospace", fontSize: 11.5, whiteSpace: 'nowrap' }}>
                 {new Date(event.createdAt).toLocaleString()}
               </span>
             </div>

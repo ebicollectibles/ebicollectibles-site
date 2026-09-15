@@ -175,7 +175,7 @@ function MarketplaceOrdersPage() {
             padding: '8px 2px',
             fontSize: 13,
             fontWeight: 600,
-            color: !showShipped ? '#131b28' : '#98a1ab',
+            color: !showShipped ? '#131b28' : '#5a6875',
             cursor: 'pointer',
           }}
         >
@@ -190,7 +190,7 @@ function MarketplaceOrdersPage() {
             padding: '8px 2px',
             fontSize: 13,
             fontWeight: 600,
-            color: showShipped ? '#131b28' : '#98a1ab',
+            color: showShipped ? '#131b28' : '#5a6875',
             cursor: 'pointer',
           }}
         >
@@ -220,13 +220,13 @@ function MarketplaceOrdersPage() {
                 <tr key={order.id}>
                   <td style={{ ...td, fontFamily: "'IBM Plex Mono', monospace", fontSize: 11.5 }}>
                     {order.sourceName}
-                    {order.referenceId && <div style={{ color: '#98a1ab', fontSize: 10.5 }}>{order.referenceId}</div>}
+                    {order.referenceId && <div style={{ color: '#5a6875', fontSize: 10.5 }}>{order.referenceId}</div>}
                   </td>
                   <td style={td}>
                     <div>
                       {order.firstName} {order.lastName}
                     </div>
-                    <div style={{ fontSize: 11.5, color: '#98a1ab' }}>{order.email}</div>
+                    <div style={{ fontSize: 11.5, color: '#5a6875' }}>{order.email}</div>
                   </td>
                   <td style={{ ...td, fontSize: 12.5 }}>
                     {order.items.map((item, i) => (
@@ -240,9 +240,9 @@ function MarketplaceOrdersPage() {
                     {showShipped ? (
                       <div style={{ fontSize: 12.5 }}>
                         {order.carrier || '—'}
-                        {order.trackingNumber && <div style={{ color: '#98a1ab', fontSize: 11.5 }}>{order.trackingNumber}</div>}
+                        {order.trackingNumber && <div style={{ color: '#5a6875', fontSize: 11.5 }}>{order.trackingNumber}</div>}
                         {order.shippedAt && (
-                          <div style={{ color: '#98a1ab', fontSize: 11 }}>Marked shipped {new Date(order.shippedAt).toLocaleString()}</div>
+                          <div style={{ color: '#5a6875', fontSize: 11 }}>Marked shipped {new Date(order.shippedAt).toLocaleString()}</div>
                         )}
                         {order.emailStatus && order.emailStatus !== 'sent' && (
                           <div style={{ color: '#b4622f', fontSize: 11 }}>Email {order.emailStatus}{order.emailError ? `: ${order.emailError}` : ''}</div>

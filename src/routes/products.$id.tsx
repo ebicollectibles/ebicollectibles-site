@@ -125,9 +125,9 @@ function ProductDetailPage() {
   // coming-soon item with a real price shows it like any other product.
   const priceKnown = product.price > 0
   const badge = comingSoon ? 'Coming soon' : product.preorder ? 'Pre-order' : soldOut ? 'Sold out' : onSale ? 'Sale' : null
-  const badgeBg = comingSoon || soldOut ? '#98a1ab' : product.preorder ? '#3f7a63' : '#b4622f'
+  const badgeBg = comingSoon || soldOut ? '#5a6875' : product.preorder ? '#3f7a63' : '#b4622f'
   const stockLabel = comingSoon ? 'Coming soon' : soldOut ? 'Out of stock' : product.preorder ? 'Ships on release' : `${product.stock} in stock`
-  const stockColor = comingSoon || soldOut ? '#98a1ab' : '#3f7a63'
+  const stockColor = comingSoon || soldOut ? '#5a6875' : '#3f7a63'
 
   return (
     <section style={{ maxWidth: 1240, margin: '0 auto', padding: '40px 20px 90px' }}>
@@ -180,7 +180,7 @@ function ProductDetailPage() {
                   fontSize: 11,
                   letterSpacing: '0.1em',
                   textTransform: 'uppercase',
-                  color: '#98a1ab',
+                  color: '#5a6875',
                   textAlign: 'center',
                   padding: 24,
                 }}
@@ -244,15 +244,15 @@ function ProductDetailPage() {
           </h1>
           <div style={{ display: 'flex', alignItems: 'baseline', gap: 12, marginTop: 18, flexWrap: 'wrap' }}>
             {comingSoon && !priceKnown ? (
-              <span style={{ fontSize: 18, fontWeight: 500, color: '#98a1ab' }}>Price to be announced</span>
+              <span style={{ fontSize: 18, fontWeight: 500, color: '#5a6875' }}>Price to be announced</span>
             ) : (
               <>
                 {onSale && (
-                  <span style={{ fontSize: 18, color: '#98a1ab', textDecoration: 'line-through' }}>
+                  <span style={{ fontSize: 18, color: '#5a6875', textDecoration: 'line-through' }}>
                     {formatMoney(product.compareAtPrice!)}
                   </span>
                 )}
-                <span style={{ fontSize: 26, fontWeight: 700, color: comingSoon ? '#98a1ab' : '#131b28' }}>
+                <span style={{ fontSize: 26, fontWeight: 700, color: comingSoon ? '#5a6875' : '#131b28' }}>
                   {formatMoney(product.price)}
                 </span>
               </>

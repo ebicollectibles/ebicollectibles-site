@@ -96,7 +96,7 @@ function EditProductPage() {
 
       <h2 style={{ fontSize: 15, fontWeight: 700, marginTop: 36, marginBottom: 16 }}>Edit history</h2>
       {product.editHistory.length === 0 ? (
-        <p style={{ fontSize: 13.5, color: '#98a1ab' }}>No recorded edits yet.</p>
+        <p style={{ fontSize: 13.5, color: '#5a6875' }}>No recorded edits yet.</p>
       ) : (
         <div style={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
           {product.editHistory.map((edit, i) => (
@@ -106,11 +106,11 @@ function EditProductPage() {
             >
               <span>
                 <span style={{ fontWeight: 600 }}>{fieldLabel[edit.field] ?? edit.field}</span>{' '}
-                <span style={{ color: '#98a1ab' }}>
+                <span style={{ color: '#5a6875' }}>
                   {edit.oldValue ?? '—'} → {edit.newValue ?? '—'}
                 </span>
               </span>
-              <span style={{ color: '#98a1ab', fontFamily: "'IBM Plex Mono', monospace", fontSize: 11.5 }}>
+              <span style={{ color: '#5a6875', fontFamily: "'IBM Plex Mono', monospace", fontSize: 11.5 }}>
                 {new Date(edit.createdAt).toLocaleString()}
               </span>
             </div>

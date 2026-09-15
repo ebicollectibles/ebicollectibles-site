@@ -69,7 +69,7 @@ const field: React.CSSProperties = {
 const disabledField: React.CSSProperties = {
   ...field,
   background: '#f6f7f8',
-  color: '#98a1ab',
+  color: '#5a6875',
   cursor: 'not-allowed',
 }
 const label: React.CSSProperties = { fontSize: 12.5, fontWeight: 600, marginBottom: 6, display: 'block' }
@@ -359,8 +359,8 @@ function ImagePicker({ onSelect, onClose }: { onSelect: (url: string) => void; o
           ))}
         </div>
         {error && <p style={{ fontSize: 12.5, color: '#b4622f' }}>{error}</p>}
-        {!listing && !error && <p style={{ fontSize: 13, color: '#98a1ab' }}>Loading…</p>}
-        {isEmpty && <p style={{ fontSize: 13, color: '#98a1ab' }}>Nothing in this folder yet.</p>}
+        {!listing && !error && <p style={{ fontSize: 13, color: '#5a6875' }}>Loading…</p>}
+        {isEmpty && <p style={{ fontSize: 13, color: '#5a6875' }}>Nothing in this folder yet.</p>}
         {listing && listing.files.length > 0 && (
           <input
             aria-label="Search this folder's images by file name"
@@ -373,7 +373,7 @@ function ImagePicker({ onSelect, onClose }: { onSelect: (url: string) => void; o
           />
         )}
         {filteredFiles && filteredFiles.length === 0 && listing && listing.files.length > 0 && (
-          <p style={{ fontSize: 13, color: '#98a1ab' }}>No file names match "{query}".</p>
+          <p style={{ fontSize: 13, color: '#5a6875' }}>No file names match "{query}".</p>
         )}
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(120px, 1fr))', gap: 12 }}>
           {listing?.folders.map((folder) => (
@@ -461,7 +461,7 @@ function ImagePicker({ onSelect, onClose }: { onSelect: (url: string) => void; o
               >
                 {img.name}
               </div>
-              <div style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 10, color: '#98a1ab' }}>
+              <div style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 10, color: '#5a6875' }}>
                 {formatFileSize(img.size)}
               </div>
             </button>
@@ -545,9 +545,9 @@ function SquarePicker({ onSelect, onClose }: { onSelect: (option: SquareCatalogO
         />
         <div style={{ overflowY: 'auto' }}>
           {error && <p style={{ fontSize: 12.5, color: '#b4622f' }}>{error}</p>}
-          {!options && !error && <p style={{ fontSize: 13, color: '#98a1ab' }}>Loading…</p>}
+          {!options && !error && <p style={{ fontSize: 13, color: '#5a6875' }}>Loading…</p>}
           {options && options.length === 0 && (
-            <p style={{ fontSize: 13, color: '#98a1ab' }}>No matching items found in Square.</p>
+            <p style={{ fontSize: 13, color: '#5a6875' }}>No matching items found in Square.</p>
           )}
           {options?.map((opt) => (
             <button
@@ -568,7 +568,7 @@ function SquarePicker({ onSelect, onClose }: { onSelect: (option: SquareCatalogO
               }}
             >
               <div style={{ fontWeight: 600 }}>{opt.label}</div>
-              {opt.sku && <div style={{ fontSize: 11.5, color: '#98a1ab', marginTop: 2 }}>SKU: {opt.sku}</div>}
+              {opt.sku && <div style={{ fontSize: 11.5, color: '#5a6875', marginTop: 2 }}>SKU: {opt.sku}</div>}
             </button>
           ))}
         </div>
@@ -735,7 +735,7 @@ export function ProductForm({
                 type="button"
                 onClick={() => set('tags', values.tags.filter((t) => t !== tag))}
                 aria-label={`Remove tag ${tag}`}
-                style={{ background: 'none', border: 0, padding: 0, cursor: 'pointer', color: '#98a1ab', fontSize: 13, lineHeight: 1 }}
+                style={{ background: 'none', border: 0, padding: 0, cursor: 'pointer', color: '#5a6875', fontSize: 13, lineHeight: 1 }}
               >
                 ×
               </button>
@@ -821,7 +821,7 @@ export function ProductForm({
             required
           />
           {values.squareVariationId && (
-            <p style={{ fontSize: 11, color: '#98a1ab', marginTop: 6 }}>Synced live from Square — edit the price there.</p>
+            <p style={{ fontSize: 11, color: '#5a6875', marginTop: 6 }}>Synced live from Square — edit the price there.</p>
           )}
         </div>
         <div>
@@ -841,7 +841,7 @@ export function ProductForm({
             required
           />
           {values.squareVariationId && (
-            <p style={{ fontSize: 11, color: '#98a1ab', marginTop: 6 }}>Synced live from Square — edit the stock there.</p>
+            <p style={{ fontSize: 11, color: '#5a6875', marginTop: 6 }}>Synced live from Square — edit the stock there.</p>
           )}
         </div>
       </div>
@@ -897,7 +897,7 @@ export function ProductForm({
             >
               + Link to a Square catalog item
             </button>
-            <p style={{ fontSize: 11.5, color: '#98a1ab', marginTop: 6 }}>
+            <p style={{ fontSize: 11.5, color: '#5a6875', marginTop: 6 }}>
               Links this product to an item in your Square catalog (e.g. one already managed by another app). When linked, price and
               stock above are both read live from Square instead — edit them there, not here — and a sale here deducts from the same
               Square inventory.

@@ -115,9 +115,9 @@ function InfoTooltip({ text }: { text: string }) {
           width: 16,
           height: 16,
           borderRadius: '50%',
-          border: '1px solid #98a1ab',
+          border: '1px solid #5a6875',
           background: 'none',
-          color: '#98a1ab',
+          color: '#5a6875',
           fontSize: 10.5,
           fontWeight: 700,
           lineHeight: '14px',
@@ -530,7 +530,7 @@ function CheckoutPage() {
                     required
                     aria-label="Shipping state"
                     className="ebi-field"
-                    style={{ ...fieldStyle, color: contact.state ? fieldStyle.color : '#98a1ab' }}
+                    style={{ ...fieldStyle, color: contact.state ? fieldStyle.color : '#5a6875' }}
                     value={contact.state}
                     onChange={(e) => {
                       e.target.setCustomValidity('')
@@ -607,7 +607,7 @@ function CheckoutPage() {
                       required
                       aria-label="Billing state"
                       className="ebi-field"
-                      style={{ ...fieldStyle, color: billing.state ? fieldStyle.color : '#98a1ab' }}
+                      style={{ ...fieldStyle, color: billing.state ? fieldStyle.color : '#5a6875' }}
                       value={billing.state}
                       onChange={(e) => {
                         e.target.setCustomValidity('')
@@ -669,7 +669,7 @@ function CheckoutPage() {
                           style={{ ...fieldStyle, fontFamily: "'IBM Plex Mono', monospace", background: '#f6f7f8' }}
                         />
                       </div>
-                      <p style={{ fontSize: 11.5, color: '#98a1ab', marginTop: 8 }}>
+                      <p style={{ fontSize: 11.5, color: '#5a6875', marginTop: 8 }}>
                         Payments aren't configured yet — orders will be recorded without charging a card. Set
                         SQUARE_ACCESS_TOKEN / VITE_SQUARE_APPLICATION_ID to go live.
                       </p>
@@ -701,7 +701,7 @@ function CheckoutPage() {
                 </div>
                 <div style={{ flex: 1 }}>
                   <div style={{ fontSize: 13, fontWeight: 600, lineHeight: 1.35 }}>{line.product.name}</div>
-                  <div style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 11, color: '#98a1ab', marginTop: 3 }}>
+                  <div style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 11, color: '#5a6875', marginTop: 3 }}>
                     Qty {line.qty}
                   </div>
                 </div>
@@ -760,7 +760,7 @@ function CheckoutPage() {
               >
                 {submitting ? 'Placing order…' : 'Place order'}
               </button>
-              <p style={{ fontSize: 11.5, lineHeight: 1.5, color: '#98a1ab', margin: '12px 0 0' }}>
+              <p style={{ fontSize: 11.5, lineHeight: 1.5, color: '#5a6875', margin: '12px 0 0' }}>
                 Carrier is chosen by us for the safest delivery.
               </p>
             </>
@@ -802,7 +802,7 @@ function ChoicePanel({
 
       <div style={{ ...cardStyle, borderColor: '#131b28' }}>
         <h2 style={{ fontSize: 15.5, fontWeight: 700, margin: 0 }}>Sign in</h2>
-        <p style={{ fontSize: 12.5, color: '#98a1ab', margin: '6px 0 16px', lineHeight: 1.5, maxWidth: '46ch' }}>
+        <p style={{ fontSize: 12.5, color: '#5a6875', margin: '6px 0 16px', lineHeight: 1.5, maxWidth: '46ch' }}>
           Skip retyping your address, and track this order from your account. New here?{' '}
           <Link to="/account/signup" style={{ color: '#131b28', fontWeight: 600 }}>
             Create an account
@@ -814,7 +814,7 @@ function ChoicePanel({
           {googleBusy ? 'Redirecting…' : 'Continue with Google'}
         </button>
 
-        <div style={{ display: 'flex', alignItems: 'center', gap: 10, margin: '16px 0', fontSize: 11.5, color: '#98a1ab' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 10, margin: '16px 0', fontSize: 11.5, color: '#5a6875' }}>
           <div style={{ flex: 1, height: 1, background: '#e3e6ea' }} />
           or
           <div style={{ flex: 1, height: 1, background: '#e3e6ea' }} />
@@ -862,7 +862,7 @@ function ChoicePanel({
 
       <div style={cardStyle}>
         <h2 style={{ fontSize: 15.5, fontWeight: 700, margin: 0 }}>Continue as guest</h2>
-        <p style={{ fontSize: 12.5, color: '#98a1ab', margin: '6px 0 16px', lineHeight: 1.5, maxWidth: '46ch' }}>
+        <p style={{ fontSize: 12.5, color: '#5a6875', margin: '6px 0 16px', lineHeight: 1.5, maxWidth: '46ch' }}>
           Enter your shipping details and pay — we'll email your receipt. No account required.
         </p>
         <button type="button" onClick={onContinueAsGuest} style={outlineBtn}>

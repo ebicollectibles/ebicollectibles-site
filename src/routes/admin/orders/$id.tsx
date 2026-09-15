@@ -17,11 +17,11 @@ const paymentColor: Record<string, string> = {
   paid: '#3f7a63',
   test: '#b4622f',
   failed: '#b4622f',
-  unpaid: '#98a1ab',
+  unpaid: '#5a6875',
 }
 
 const fulfillmentColor: Record<string, string> = {
-  pending: '#98a1ab',
+  pending: '#5a6875',
   partially_shipped: '#3a6ea5',
   shipped: '#3f7a63',
   cancelled: '#b4622f',
@@ -65,7 +65,7 @@ const emailTypeLabel: Record<string, string> = {
 const emailStatusColor: Record<string, string> = {
   sent: '#3f7a63',
   failed: '#b4622f',
-  skipped: '#98a1ab',
+  skipped: '#5a6875',
 }
 
 const tagStyle: React.CSSProperties = {
@@ -184,7 +184,7 @@ function AdminOrderDetailPage() {
               fontFamily: "'IBM Plex Mono', monospace",
               fontSize: 10.5,
               textTransform: 'uppercase',
-              color: paymentColor[order.paymentStatus] ?? '#98a1ab',
+              color: paymentColor[order.paymentStatus] ?? '#5a6875',
             }}
           >
             {order.paymentStatus}
@@ -218,7 +218,7 @@ function AdminOrderDetailPage() {
               </div>
               <div style={{ flex: 1, minWidth: 0 }}>
                 <div style={{ fontSize: 13.5, color: '#131b28' }}>{item.productName}</div>
-                <div style={{ fontSize: 12, color: '#98a1ab' }}>
+                <div style={{ fontSize: 12, color: '#5a6875' }}>
                   {item.qty} × {formatMoney(item.unitPrice)}
                 </div>
               </div>
@@ -250,7 +250,7 @@ function AdminOrderDetailPage() {
 
         {(order.paymentMethodSummary || order.riskLevel || order.avsStatus || order.cvvStatus) && (
           <div style={{ marginTop: 16, paddingTop: 16, borderTop: '1px solid #f0f2f4' }}>
-            <div style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 10.5, letterSpacing: '0.1em', textTransform: 'uppercase', color: '#98a1ab' }}>
+            <div style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 10.5, letterSpacing: '0.1em', textTransform: 'uppercase', color: '#5a6875' }}>
               Payment
             </div>
             {order.paymentMethodSummary && <div style={{ marginTop: 6, fontSize: 13, color: '#131b28' }}>{order.paymentMethodSummary}</div>}
@@ -262,8 +262,8 @@ function AdminOrderDetailPage() {
                       fontFamily: "'IBM Plex Mono', monospace",
                       fontSize: 10.5,
                       textTransform: 'uppercase',
-                      color: riskColor[order.riskLevel] ?? '#98a1ab',
-                      border: `1px solid ${riskColor[order.riskLevel] ?? '#98a1ab'}`,
+                      color: riskColor[order.riskLevel] ?? '#5a6875',
+                      border: `1px solid ${riskColor[order.riskLevel] ?? '#5a6875'}`,
                       borderRadius: 2,
                       padding: '3px 7px',
                     }}
@@ -288,7 +288,7 @@ function AdminOrderDetailPage() {
 
         <div style={{ marginTop: 16, paddingTop: 16, borderTop: '1px solid #f0f2f4', display: 'flex', flexWrap: 'wrap', gap: 32 }}>
           <div>
-            <div style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 10.5, letterSpacing: '0.1em', textTransform: 'uppercase', color: '#98a1ab' }}>
+            <div style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 10.5, letterSpacing: '0.1em', textTransform: 'uppercase', color: '#5a6875' }}>
               Shipping address
             </div>
             <div style={{ marginTop: 6, fontSize: 13, color: '#131b28', lineHeight: 1.5 }}>
@@ -308,7 +308,7 @@ function AdminOrderDetailPage() {
           </div>
 
           <div>
-            <div style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 10.5, letterSpacing: '0.1em', textTransform: 'uppercase', color: '#98a1ab' }}>
+            <div style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 10.5, letterSpacing: '0.1em', textTransform: 'uppercase', color: '#5a6875' }}>
               Billing address
             </div>
             <div style={{ marginTop: 6, fontSize: 13, color: '#131b28', lineHeight: 1.5 }}>
@@ -328,7 +328,7 @@ function AdminOrderDetailPage() {
           </div>
         </div>
 
-        <div style={{ marginTop: 12, fontSize: 11.5, color: '#98a1ab' }}>
+        <div style={{ marginTop: 12, fontSize: 11.5, color: '#5a6875' }}>
           {order.shipMethod} · placed {new Date(order.createdAt).toLocaleString()}
         </div>
 
@@ -338,7 +338,7 @@ function AdminOrderDetailPage() {
               fontFamily: "'IBM Plex Mono', monospace",
               fontSize: 10.5,
               textTransform: 'uppercase',
-              color: fulfillmentColor[order.fulfillmentStatus] ?? '#98a1ab',
+              color: fulfillmentColor[order.fulfillmentStatus] ?? '#5a6875',
             }}
           >
             {fulfillmentLabel[order.fulfillmentStatus] ?? order.fulfillmentStatus}
@@ -393,14 +393,14 @@ function AdminOrderDetailPage() {
                     fontFamily: "'IBM Plex Mono', monospace",
                     textTransform: 'uppercase',
                     fontWeight: 600,
-                    color: fulfillmentColor[s.status] ?? '#98a1ab',
+                    color: fulfillmentColor[s.status] ?? '#5a6875',
                     width: 100,
                     flexShrink: 0,
                   }}
                 >
                   {fulfillmentLabel[s.status] ?? s.status}
                 </span>
-                <span style={{ color: '#98a1ab' }}>{new Date(s.createdAt).toLocaleString()}</span>
+                <span style={{ color: '#5a6875' }}>{new Date(s.createdAt).toLocaleString()}</span>
               </div>
             ))}
           </div>
@@ -426,7 +426,7 @@ function AdminOrderDetailPage() {
                       }}
                       style={{ width: 56, border: '1px solid #cfd4da', borderRadius: 2, padding: '4px 6px', fontSize: 12 }}
                     />
-                    <span style={{ color: '#98a1ab', fontSize: 11, minWidth: 62 }}>of {left} left</span>
+                    <span style={{ color: '#5a6875', fontSize: 11, minWidth: 62 }}>of {left} left</span>
                   </div>
                 )
               })}
@@ -470,7 +470,7 @@ function AdminOrderDetailPage() {
               <button
                 disabled={updating}
                 onClick={() => setShipFormOpen(false)}
-                style={{ background: 'none', border: 0, fontSize: 11, color: '#98a1ab', cursor: 'pointer' }}
+                style={{ background: 'none', border: 0, fontSize: 11, color: '#5a6875', cursor: 'pointer' }}
               >
                 Cancel
               </button>
@@ -500,7 +500,7 @@ function AdminOrderDetailPage() {
                   {' — '}
                   {s.items.map((i) => `${i.qty}× ${i.productName}`).join(', ')}
                   {' · '}
-                  <span style={{ color: '#98a1ab' }}>{new Date(s.createdAt).toLocaleString()}</span>
+                  <span style={{ color: '#5a6875' }}>{new Date(s.createdAt).toLocaleString()}</span>
                 </div>
               )
             })}
@@ -508,11 +508,11 @@ function AdminOrderDetailPage() {
         )}
 
         {order.emails.length > 0 && (
-          <div style={{ marginTop: 8, fontSize: 11, color: '#98a1ab' }}>
+          <div style={{ marginTop: 8, fontSize: 11, color: '#5a6875' }}>
             {order.emails.map((e, i) => (
               <span key={i}>
                 {i > 0 && ' · '}
-                <span style={{ color: emailStatusColor[e.status] ?? '#98a1ab' }}>
+                <span style={{ color: emailStatusColor[e.status] ?? '#5a6875' }}>
                   {emailTypeLabel[e.type] ?? e.type} {e.status}
                 </span>
                 {e.status === 'failed' && e.errorMessage ? ` (${e.errorMessage})` : ''}

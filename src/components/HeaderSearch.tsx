@@ -98,7 +98,7 @@ export function HeaderSearch({
           cursor: 'text',
         }}
       >
-        <span aria-hidden="true" style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 12, color: '#98a1ab' }}>
+        <span aria-hidden="true" style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 12, color: '#5a6875' }}>
           ⌕
         </span>
         <input
@@ -152,7 +152,7 @@ export function HeaderSearch({
           }}
         >
           {matches.length === 0 ? (
-            <div style={{ padding: '14px 14px', fontSize: 12.5, color: '#98a1ab' }}>No products found.</div>
+            <div style={{ padding: '14px 14px', fontSize: 12.5, color: '#5a6875' }}>No products found.</div>
           ) : (
             matches.map((p, i) => (
               <button
