@@ -647,6 +647,11 @@ function CheckoutPage() {
                     <>
                       <ApplePayButton
                         amount={total}
+                        lineItems={[
+                          { label: 'Subtotal', amount: cart.subtotal },
+                          { label: 'Shipping', amount: cart.shippingCost },
+                          ...(contact.state === 'WA' ? [{ label: 'Tax', amount: tax }] : []),
+                        ]}
                         disabled={submitting || !contactComplete || !billingComplete || mixedPreorder}
                         onTokenize={(sourceId) => finishOrder(sourceId)}
                         onError={setError}

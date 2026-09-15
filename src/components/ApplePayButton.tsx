@@ -19,17 +19,27 @@ const SDK_SRC = ENVIRONMENT === 'production' ? 'https://web.squarecdn.com/v1/squ
 // card field is always shown alongside it.
 export function ApplePayButton({
   amount,
+  lineItems,
   onTokenize,
   onError,
   disabled,
 }: {
   amount: number
+  // Shown above the total in the Apple Pay sheet — e.g. Subtotal/Shipping/
+  // Tax, the same breakdown as the order summary on the rest of the
+  // checkout page. Optional: with nothing passed, the sheet just shows the
+  // one total line.
+  lineItems?: Array<{ label: string; amount: number }>
   onTokenize: (sourceId: string) => void
   onError: (message: string) => void
   disabled?: boolean
 }) {
   const [available, setAvailable] = React.useState(false)
   const applePayRef = React.useRef<any>(null)
+  // amount alone doesn't catch every case where the breakdown changed but
+  // happened to sum to the same total — stringify lineItems too so the
+  // sheet is rebuilt whenever the actual numbers shown in it change.
+  const lineItemsKey = lineItems?.map((l) => `${l.label}:${l.amount}`).join('|') ?? ''
 
   React.useEffect(() => {
     if (!APP_ID || !LOCATION_ID || amount <= 0) return
@@ -52,6 +62,7 @@ export function ApplePayButton({
           countryCode: 'US',
           currencyCode: 'USD',
           total: { amount: amount.toFixed(2), label: 'EBI Collectibles' },
+          lineItems: lineItems?.map((l) => ({ label: l.label, amount: l.amount.toFixed(2) })),
         })
         const applePay = await payments.applePay(paymentRequest)
         if (cancelled) return
@@ -69,7 +80,8 @@ export function ApplePayButton({
     return () => {
       cancelled = true
     }
-  }, [amount])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [amount, lineItemsKey])
 
   const handleClick = async () => {
     if (!applePayRef.current) return
