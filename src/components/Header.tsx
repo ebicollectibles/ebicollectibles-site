@@ -1,6 +1,7 @@
 import * as React from 'react'
 import { Link, useNavigate, useRouter, useRouterState } from '@tanstack/react-router'
 import { useCart } from '~/lib/cart-context'
+import { SHOW_ACRYLICS } from '~/lib/feature-flags'
 import { customerLogout } from '~/server/customer-auth'
 import { HeaderSearch } from '~/components/HeaderSearch'
 
@@ -185,14 +186,16 @@ export function Header({ customer }: { customer: HeaderCustomer | null }) {
               </div>
             )}
           </div>
-          <Link
-            to="/shop"
-            search={{ category: 'Acrylic Cases' }}
-            className="ebi-nav-link"
-            style={{ color: '#5a6875', padding: '4px 0' }}
-          >
-            Acrylics
-          </Link>
+          {SHOW_ACRYLICS && (
+            <Link
+              to="/shop"
+              search={{ category: 'Acrylic Cases' }}
+              className="ebi-nav-link"
+              style={{ color: '#5a6875', padding: '4px 0' }}
+            >
+              Acrylics
+            </Link>
+          )}
           <Link to="/shipping-returns" style={{ color: navColor(pathname === '/shipping-returns'), padding: '4px 0' }}>
             Shipping &amp; returns
           </Link>
@@ -318,13 +321,15 @@ export function Header({ customer }: { customer: HeaderCustomer | null }) {
           <Link to="/shop" search={{ subcategory: 'Special Products' }} style={{ color: '#5a6875', padding: '10px 0', borderBottom: '1px solid #f0f2f4' }}>
             Special Products
           </Link>
-          <Link
-            to="/shop"
-            search={{ category: 'Acrylic Cases' }}
-            style={{ color: '#5a6875', padding: '10px 0', borderBottom: '1px solid #f0f2f4' }}
-          >
-            Acrylics
-          </Link>
+          {SHOW_ACRYLICS && (
+            <Link
+              to="/shop"
+              search={{ category: 'Acrylic Cases' }}
+              style={{ color: '#5a6875', padding: '10px 0', borderBottom: '1px solid #f0f2f4' }}
+            >
+              Acrylics
+            </Link>
+          )}
           <Link
             to="/shipping-returns"
             style={{ color: navColor(pathname === '/shipping-returns'), padding: '10px 0', borderBottom: '1px solid #f0f2f4' }}

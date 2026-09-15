@@ -1,4 +1,5 @@
 import { Link } from '@tanstack/react-router'
+import { SHOW_ACRYLICS } from '~/lib/feature-flags'
 
 export function Footer() {
   return (
@@ -53,9 +54,11 @@ export function Footer() {
             <Link to="/shop" search={{ subcategory: 'Special Products' }}>
               Special Products
             </Link>
-            <Link to="/shop" search={{ category: 'Acrylic Cases' }}>
-              Acrylic Cases
-            </Link>
+            {SHOW_ACRYLICS && (
+              <Link to="/shop" search={{ category: 'Acrylic Cases' }}>
+                Acrylic Cases
+              </Link>
+            )}
           </div>
         </div>
         <div>
