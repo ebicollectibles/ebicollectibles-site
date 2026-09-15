@@ -10,6 +10,18 @@ const isDev = process.env.DEPLOY_TARGET === 'dev'
 export default defineNitroConfig({
   compatibilityDate: '2024-09-19',
   preset: 'cloudflare_module',
+  // Square's Apple Pay domain verification fetches this file and requires
+  // it to come back as an actual download (Content-Disposition: attachment)
+  // rather than rendered inline — the default static-asset response for an
+  // extensionless file doesn't set that on its own.
+  routeRules: {
+    '/.well-known/apple-developer-merchantid-domain-association': {
+      headers: {
+        'content-type': 'application/octet-stream',
+        'content-disposition': 'attachment; filename="apple-developer-merchantid-domain-association"',
+      },
+    },
+  },
   cloudflare: {
     deployConfig: true,
     nodeCompat: true,
