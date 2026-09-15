@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { computeOrderTotals, findUnorderableLine } from './order-math'
+import { computeOrderTotals, findUnorderableLine, hasMixedPreorderCart } from './order-math'
 
 describe('computeOrderTotals', () => {
   it('computes subtotal, flat shipping, tax, and total', () => {
@@ -58,5 +58,28 @@ describe('findUnorderableLine', () => {
     expect(findUnorderableLine([{ productId: 'normal' }, { productId: 'soon' }, { productId: 'hidden' }], productById)).toMatch(
       /Coming Soon Item/,
     )
+  })
+})
+
+describe('hasMixedPreorderCart', () => {
+  it('allows an all-regular cart', () => {
+    expect(hasMixedPreorderCart([{ preorder: false }, { preorder: false }])).toBe(false)
+  })
+
+  it('allows an all-preorder cart', () => {
+    expect(hasMixedPreorderCart([{ preorder: true }, { preorder: true }])).toBe(false)
+  })
+
+  it('flags a cart mixing preorder and regular items', () => {
+    expect(hasMixedPreorderCart([{ preorder: false }, { preorder: true }])).toBe(true)
+  })
+
+  it('allows a single-item cart of either kind', () => {
+    expect(hasMixedPreorderCart([{ preorder: true }])).toBe(false)
+    expect(hasMixedPreorderCart([{ preorder: false }])).toBe(false)
+  })
+
+  it('allows an empty cart', () => {
+    expect(hasMixedPreorderCart([])).toBe(false)
   })
 })

@@ -5,6 +5,7 @@ import { ApplePayButton } from '~/components/ApplePayButton'
 import { PasswordInput } from '~/components/PasswordInput'
 import { trackEvent } from '~/lib/analytics'
 import { useCart, type BillingAddress, type CheckoutContact } from '~/lib/cart-context'
+import { hasMixedPreorderCart, MIXED_PREORDER_ERROR } from '~/lib/order-math'
 import { formatMoney } from '~/lib/products'
 import { US_STATES } from '~/lib/us-states'
 import { customerLogout, getCurrentCustomer } from '~/server/customer-auth'
@@ -159,6 +160,7 @@ function InfoTooltip({ text }: { text: string }) {
 
 function CheckoutPage() {
   const cart = useCart()
+  const mixedPreorder = hasMixedPreorderCart(cart.lines.map((l) => ({ preorder: !!l.product.preorder })))
   const initialAccount = Route.useLoaderData()
   const router = useRouter()
   const navigate = useNavigate()
@@ -306,6 +308,10 @@ function CheckoutPage() {
 
   const finishOrder = async (sourceId: string | null) => {
     setError(null)
+    if (mixedPreorder) {
+      setError(MIXED_PREORDER_ERROR)
+      return
+    }
     setSubmitting(true)
     try {
       const effectiveBilling: BillingAddress = sameAsShipping
@@ -641,7 +647,7 @@ function CheckoutPage() {
                     <>
                       <ApplePayButton
                         amount={total}
-                        disabled={submitting || !contactComplete || !billingComplete}
+                        disabled={submitting || !contactComplete || !billingComplete || mixedPreorder}
                         onTokenize={(sourceId) => finishOrder(sourceId)}
                         onError={setError}
                       />
@@ -712,6 +718,9 @@ function CheckoutPage() {
           {cart.cartEmpty && (
             <p style={{ fontSize: 13.5, color: '#131b28', margin: '4px 0 0' }}>Your cart is empty — add a box to check out.</p>
           )}
+          {mixedPreorder && (
+            <p style={{ fontSize: 12.5, color: '#b4622f', margin: '12px 0 0', lineHeight: 1.5 }}>{MIXED_PREORDER_ERROR}</p>
+          )}
           <div style={{ marginTop: 22, paddingTop: 18, borderTop: '1px solid #e3e6ea', display: 'flex', flexDirection: 'column', gap: 9, fontSize: 13.5 }}>
             <div style={{ display: 'flex', justifyContent: 'space-between' }}>
               <span style={{ color: '#131b28' }}>Subtotal</span>
@@ -742,7 +751,7 @@ function CheckoutPage() {
               <button
                 type="submit"
                 form="checkout-form"
-                disabled={cart.cartEmpty || submitting}
+                disabled={cart.cartEmpty || mixedPreorder || submitting}
                 className="ebi-btn-dark"
                 style={{
                   marginTop: 14,
@@ -754,8 +763,8 @@ function CheckoutPage() {
                   padding: 15,
                   fontSize: 14,
                   fontWeight: 600,
-                  cursor: cart.cartEmpty || submitting ? 'not-allowed' : 'pointer',
-                  opacity: cart.cartEmpty || submitting ? 0.45 : 1,
+                  cursor: cart.cartEmpty || mixedPreorder || submitting ? 'not-allowed' : 'pointer',
+                  opacity: cart.cartEmpty || mixedPreorder || submitting ? 0.45 : 1,
                 }}
               >
                 {submitting ? 'Placing order…' : 'Place order'}

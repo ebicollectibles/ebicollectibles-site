@@ -1,6 +1,7 @@
 import * as React from 'react'
 import { createFileRoute, Link, useNavigate } from '@tanstack/react-router'
 import { useCart } from '~/lib/cart-context'
+import { hasMixedPreorderCart, MIXED_PREORDER_ERROR } from '~/lib/order-math'
 import { formatMoney } from '~/lib/products'
 
 export const Route = createFileRoute('/cart')({
@@ -20,6 +21,7 @@ const monoLabel: React.CSSProperties = {
 function CartPage() {
   const { lines, cartCount, cartEmpty, subtotal, bump, removeFromCart } = useCart()
   const navigate = useNavigate()
+  const mixedPreorder = hasMixedPreorderCart(lines.map((l) => ({ preorder: !!l.product.preorder })))
 
   return (
     <section style={{ maxWidth: 900, margin: '0 auto', padding: '40px 20px 90px' }}>
@@ -141,6 +143,9 @@ function CartPage() {
                 <span style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 20, fontWeight: 500 }}>{formatMoney(subtotal)}</span>
               </div>
               <div style={{ fontSize: 11.5, color: '#5a6875', marginTop: 8 }}>Shipping and tax are calculated at checkout.</div>
+              {mixedPreorder && (
+                <div style={{ fontSize: 12.5, color: '#b4622f', marginTop: 12, lineHeight: 1.5 }}>{MIXED_PREORDER_ERROR}</div>
+              )}
               <div style={{ display: 'flex', gap: 10, marginTop: 20 }}>
                 <Link
                   to="/shop"
@@ -161,6 +166,7 @@ function CartPage() {
                 </Link>
                 <button
                   onClick={() => navigate({ to: '/checkout' })}
+                  disabled={mixedPreorder}
                   className="ebi-btn-dark"
                   style={{
                     flex: 1,
@@ -171,7 +177,8 @@ function CartPage() {
                     padding: 13,
                     fontSize: 13,
                     fontWeight: 600,
-                    cursor: 'pointer',
+                    cursor: mixedPreorder ? 'not-allowed' : 'pointer',
+                    opacity: mixedPreorder ? 0.45 : 1,
                   }}
                 >
                   Checkout

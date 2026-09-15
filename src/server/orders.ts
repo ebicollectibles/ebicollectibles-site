@@ -4,7 +4,7 @@ import { eq, inArray, sql } from 'drizzle-orm'
 import { getDb } from '~/lib/db/client'
 import { withTransaction } from '~/lib/db/transactional-client'
 import { emailEvents, orderCounters, orderItems, orderStatusEvents, orders, paymentAttempts, products as productsTable, users } from '~/lib/db/schema'
-import { computeOrderTotals, findUnorderableLine } from '~/lib/order-math'
+import { MIXED_PREORDER_ERROR, computeOrderTotals, findUnorderableLine, hasMixedPreorderCart } from '~/lib/order-math'
 import { US_STATE_CODES } from '~/lib/us-states'
 import { chargeSquarePayment, createSquareOrder, getSquareInventoryCounts, recordSquareInventorySale } from './square'
 import { sendOrderConfirmationEmail } from './email'
@@ -76,6 +76,13 @@ export const placeOrder = createServerFn({ method: 'POST' })
     // direct API call tries to check one out.
     const unorderableError = findUnorderableLine(data.lines, productById)
     if (unorderableError) throw new Error(unorderableError)
+
+    // Pre-order items ship separately from in-stock ones — reject a mixed
+    // cart here too, beyond the disabled checkout button, for the same
+    // stale-cart/direct-API-call reasons as above.
+    if (hasMixedPreorderCart(productRows.map((p) => ({ preorder: p.preorder })))) {
+      throw new Error(MIXED_PREORDER_ERROR)
+    }
 
     // Products linked to Square (squareVariationId set) are stock-tracked in
     // Square, not locally — check live there before charging, since another

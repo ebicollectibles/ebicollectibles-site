@@ -26,3 +26,16 @@ export function findUnorderableLine(
   }
   return null
 }
+
+export const MIXED_PREORDER_ERROR =
+  'Your cart mixes pre-order and in-stock items — pre-order items ship separately, so please check out in two orders.'
+
+// A pre-order product ships on its own later date, separate from anything
+// in stock now — mixing the two in one order would either hold the in-stock
+// items hostage to the pre-order's release date or need to be split into
+// two shipments after the fact. Blocking it at checkout is simpler and
+// matches what "ships separately" means. Same minimal shape works for both
+// client-side cart lines and server-side product rows.
+export function hasMixedPreorderCart(items: Array<{ preorder: boolean }>): boolean {
+  return items.some((i) => i.preorder) && items.some((i) => !i.preorder)
+}
