@@ -10,8 +10,10 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as BestSellingRouteImport } from './routes/best-selling'
 import { Route as CartRouteImport } from './routes/cart'
 import { Route as CheckoutRouteImport } from './routes/checkout'
+import { Route as NewAndUpcomingRouteImport } from './routes/new-and-upcoming'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as ShippingReturnsRouteImport } from './routes/shipping-returns'
 import { Route as ShopRouteImport } from './routes/shop'
@@ -44,6 +46,11 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const BestSellingRoute = BestSellingRouteImport.update({
+  id: '/best-selling',
+  path: '/best-selling',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const CartRoute = CartRouteImport.update({
   id: '/cart',
   path: '/cart',
@@ -52,6 +59,11 @@ const CartRoute = CartRouteImport.update({
 const CheckoutRoute = CheckoutRouteImport.update({
   id: '/checkout',
   path: '/checkout',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const NewAndUpcomingRoute = NewAndUpcomingRouteImport.update({
+  id: '/new-and-upcoming',
+  path: '/new-and-upcoming',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PrivacyRoute = PrivacyRouteImport.update({
@@ -187,8 +199,10 @@ const AuthGoogleStartRoute = AuthGoogleStartRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/best-selling': typeof BestSellingRoute
   '/cart': typeof CartRoute
   '/checkout': typeof CheckoutRoute
+  '/new-and-upcoming': typeof NewAndUpcomingRoute
   '/privacy': typeof PrivacyRoute
   '/shipping-returns': typeof ShippingReturnsRoute
   '/shop': typeof ShopRoute
@@ -218,8 +232,10 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/best-selling': typeof BestSellingRoute
   '/cart': typeof CartRoute
   '/checkout': typeof CheckoutRoute
+  '/new-and-upcoming': typeof NewAndUpcomingRoute
   '/privacy': typeof PrivacyRoute
   '/shipping-returns': typeof ShippingReturnsRoute
   '/shop': typeof ShopRoute
@@ -250,8 +266,10 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/best-selling': typeof BestSellingRoute
   '/cart': typeof CartRoute
   '/checkout': typeof CheckoutRoute
+  '/new-and-upcoming': typeof NewAndUpcomingRoute
   '/privacy': typeof PrivacyRoute
   '/shipping-returns': typeof ShippingReturnsRoute
   '/shop': typeof ShopRoute
@@ -283,8 +301,10 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/best-selling'
     | '/cart'
     | '/checkout'
+    | '/new-and-upcoming'
     | '/privacy'
     | '/shipping-returns'
     | '/shop'
@@ -314,8 +334,10 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/best-selling'
     | '/cart'
     | '/checkout'
+    | '/new-and-upcoming'
     | '/privacy'
     | '/shipping-returns'
     | '/shop'
@@ -345,8 +367,10 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/best-selling'
     | '/cart'
     | '/checkout'
+    | '/new-and-upcoming'
     | '/privacy'
     | '/shipping-returns'
     | '/shop'
@@ -377,8 +401,10 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  BestSellingRoute: typeof BestSellingRoute
   CartRoute: typeof CartRoute
   CheckoutRoute: typeof CheckoutRoute
+  NewAndUpcomingRoute: typeof NewAndUpcomingRoute
   PrivacyRoute: typeof PrivacyRoute
   ShippingReturnsRoute: typeof ShippingReturnsRoute
   ShopRoute: typeof ShopRoute
@@ -416,6 +442,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/best-selling': {
+      id: '/best-selling'
+      path: '/best-selling'
+      fullPath: '/best-selling'
+      preLoaderRoute: typeof BestSellingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/cart': {
       id: '/cart'
       path: '/cart'
@@ -428,6 +461,13 @@ declare module '@tanstack/react-router' {
       path: '/checkout'
       fullPath: '/checkout'
       preLoaderRoute: typeof CheckoutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/new-and-upcoming': {
+      id: '/new-and-upcoming'
+      path: '/new-and-upcoming'
+      fullPath: '/new-and-upcoming'
+      preLoaderRoute: typeof NewAndUpcomingRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/privacy': {
@@ -617,8 +657,10 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  BestSellingRoute: BestSellingRoute,
   CartRoute: CartRoute,
   CheckoutRoute: CheckoutRoute,
+  NewAndUpcomingRoute: NewAndUpcomingRoute,
   PrivacyRoute: PrivacyRoute,
   ShippingReturnsRoute: ShippingReturnsRoute,
   ShopRoute: ShopRoute,

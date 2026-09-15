@@ -3,7 +3,12 @@ import { createFileRoute, Link } from '@tanstack/react-router'
 import { ProductCard } from '~/components/ProductCard'
 import { AnniversaryCountdown } from '~/components/AnniversaryCountdown'
 import { useCart } from '~/lib/cart-context'
+import { rankProducts } from '~/lib/products'
 import { subscribeToNewsletter, getMySubscriptionStatus } from '~/server/subscribers'
+
+// How many show in the homepage teaser before "View All" takes over —
+// 2 columns × 4 rows on mobile/tablet (see .ebi-arrivals-grid in app.css).
+const HOMEPAGE_SECTION_SIZE = 8
 
 export const Route = createFileRoute('/')({
   loader: () => getMySubscriptionStatus(),
@@ -18,18 +23,10 @@ const monoLabel: React.CSSProperties = {
   color: '#131b28',
 }
 
-// Both homepage sections below are just "every product carrying this tag,
-// ordered by sortOrder" — admin curates each by tagging products in
-// /admin, no separate flags or dedicated UI needed. See the sortOrder
-// comment in lib/db/schema.ts for why ordering is shared across tags
-// rather than per-tag.
-const byTag = (products: ReturnType<typeof useCart>['products'], tag: string) =>
-  products.filter((p) => p.tags?.includes(tag)).sort((a, b) => a.sortOrder - b.sortOrder)
-
 function HomePage() {
   const { products } = useCart()
-  const newAndUpcoming = byTag(products, 'New & Upcoming')
-  const bestSelling = byTag(products, 'Best Selling')
+  const bestSelling = rankProducts(products, 'bestSellingRank')
+  const newAndUpcoming = rankProducts(products, 'newAndUpcomingRank')
   const totalProductCount = products.length
   const subStatus = Route.useLoaderData()
 
@@ -170,41 +167,6 @@ function HomePage() {
         </div>
       </section>
 
-      {newAndUpcoming.length > 0 && (
-        <section style={{ maxWidth: 1240, margin: '0 auto', padding: '68px 20px 0' }}>
-          <div
-            style={{
-              display: 'flex',
-              flexWrap: 'wrap',
-              alignItems: 'flex-end',
-              justifyContent: 'space-between',
-              gap: 24,
-              paddingBottom: 22,
-              borderBottom: '1px solid #131b28',
-            }}
-          >
-            <div>
-              <h2 style={{ fontSize: 30, letterSpacing: '-0.02em', fontWeight: 700, margin: 0 }}>New &amp; Upcoming</h2>
-            </div>
-            <Link to="/shop" style={{ fontSize: 13, fontWeight: 600, color: '#3f7a63', paddingBottom: 4 }}>
-              View all {totalProductCount} products →
-            </Link>
-          </div>
-          <div
-            className="ebi-arrivals-grid"
-            style={{
-              background: '#e3e6ea',
-              border: '1px solid #e3e6ea',
-              borderTop: 0,
-            }}
-          >
-            {newAndUpcoming.map((p) => (
-              <ProductCard key={p.id} product={p} variant="compact" />
-            ))}
-          </div>
-        </section>
-      )}
-
       {bestSelling.length > 0 && (
         <section style={{ maxWidth: 1240, margin: '0 auto', padding: '68px 20px 0' }}>
           <div
@@ -219,6 +181,9 @@ function HomePage() {
             }}
           >
             <h2 style={{ fontSize: 30, letterSpacing: '-0.02em', fontWeight: 700, margin: 0 }}>Best Selling</h2>
+            <Link to="/shop" style={{ fontSize: 13, fontWeight: 600, color: '#3f7a63', paddingBottom: 4 }}>
+              View all {totalProductCount} products →
+            </Link>
           </div>
           <div
             className="ebi-arrivals-grid"
@@ -228,10 +193,62 @@ function HomePage() {
               borderTop: 0,
             }}
           >
-            {bestSelling.map((p) => (
+            {bestSelling.slice(0, HOMEPAGE_SECTION_SIZE).map((p) => (
               <ProductCard key={p.id} product={p} variant="compact" />
             ))}
           </div>
+          {bestSelling.length > HOMEPAGE_SECTION_SIZE && (
+            <div style={{ textAlign: 'center', marginTop: 24 }}>
+              <Link
+                to="/best-selling"
+                className="ebi-btn-dark"
+                style={{ display: 'inline-block', background: '#131b28', color: '#ffffff', border: 0, borderRadius: 2, padding: '13px 26px', fontSize: 13, fontWeight: 600 }}
+              >
+                View All
+              </Link>
+            </div>
+          )}
+        </section>
+      )}
+
+      {newAndUpcoming.length > 0 && (
+        <section style={{ maxWidth: 1240, margin: '0 auto', padding: '68px 20px 0' }}>
+          <div
+            style={{
+              display: 'flex',
+              flexWrap: 'wrap',
+              alignItems: 'flex-end',
+              justifyContent: 'space-between',
+              gap: 24,
+              paddingBottom: 22,
+              borderBottom: '1px solid #131b28',
+            }}
+          >
+            <h2 style={{ fontSize: 30, letterSpacing: '-0.02em', fontWeight: 700, margin: 0 }}>New &amp; Upcoming</h2>
+          </div>
+          <div
+            className="ebi-arrivals-grid"
+            style={{
+              background: '#e3e6ea',
+              border: '1px solid #e3e6ea',
+              borderTop: 0,
+            }}
+          >
+            {newAndUpcoming.slice(0, HOMEPAGE_SECTION_SIZE).map((p) => (
+              <ProductCard key={p.id} product={p} variant="compact" />
+            ))}
+          </div>
+          {newAndUpcoming.length > HOMEPAGE_SECTION_SIZE && (
+            <div style={{ textAlign: 'center', marginTop: 24 }}>
+              <Link
+                to="/new-and-upcoming"
+                className="ebi-btn-dark"
+                style={{ display: 'inline-block', background: '#131b28', color: '#ffffff', border: 0, borderRadius: 2, padding: '13px 26px', fontSize: 13, fontWeight: 600 }}
+              >
+                View All
+              </Link>
+            </div>
+          )}
         </section>
       )}
 

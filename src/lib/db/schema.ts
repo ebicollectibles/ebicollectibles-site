@@ -22,15 +22,16 @@ export const products = pgTable('products', {
   images: text('images').array().notNull().default([]),
   // Free-form collection labels (e.g. "Gem Series", "CSV Series") — see
   // ProductSubcategory in lib/products.ts for why these are tags rather
-  // than a fixed subcategory. "New & Upcoming" and "Best Selling" are also
-  // just tags (not their own columns) — the homepage sections of the same
-  // name are simply every product carrying that tag.
+  // than a fixed subcategory.
   tags: text('tags').array().notNull().default([]),
-  // Manual position within any tag-filtered list on the homepage (e.g.
-  // "New & Upcoming", "Best Selling") — lower shows first. Shared across
-  // every such section rather than per-section, since one admin curating a
-  // handful of tags at a time doesn't need independent orderings per tag.
-  sortOrder: integer('sort_order').notNull().default(0),
+  // Rank within the homepage "Best Selling" / "New & Upcoming" sections and
+  // their "View All" pages — lower shows first. Every product participates
+  // (unlike tags, there's no separate opt-in): null means unranked, and
+  // unranked products fill in after the ranked ones, newest first. Two
+  // separate columns (not one shared order, and not reusing tags) because a
+  // product's position in one has nothing to do with the other.
+  bestSellingRank: integer('best_selling_rank'),
+  newAndUpcomingRank: integer('new_and_upcoming_rank'),
   // Per-product description shown on its detail page. Falls back to a
   // generic trust-building paragraph on the frontend when empty — not
   // every product needs custom copy written before it can go live.

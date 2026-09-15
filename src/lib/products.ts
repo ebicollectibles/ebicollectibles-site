@@ -34,9 +34,10 @@ export interface Product {
   // subcategory, not a fixed list: admin can create a new one just by
   // typing it on a product, no code change needed to add a collection.
   tags?: string[]
-  // Manual position within any tag-filtered homepage section (lower shows
-  // first) — see the sortOrder comment in lib/db/schema.ts.
-  sortOrder: number
+  // Rank within "Best Selling" / "New & Upcoming" — see the comment in
+  // lib/db/schema.ts. Undefined/null means unranked.
+  bestSellingRank?: number
+  newAndUpcomingRank?: number
   description?: string
   preorder?: boolean
   comingSoon?: boolean
@@ -50,4 +51,15 @@ export const FLAT_SHIPPING_RATE = 10
 
 export function formatMoney(n: number): string {
   return '$' + n.toFixed(2)
+}
+
+// Shared by the homepage's Best Selling/New & Upcoming teasers and their
+// "View All" pages: ranked products first (lowest rank first), then every
+// unranked product after them. `products` is assumed to already be in
+// createdAt-ascending order (how getProducts returns it) — reversed for the
+// unranked tail so those come out newest-first.
+export function rankProducts(products: Product[], rankField: 'bestSellingRank' | 'newAndUpcomingRank'): Product[] {
+  const ranked = products.filter((p) => p[rankField] != null).sort((a, b) => a[rankField]! - b[rankField]!)
+  const unranked = products.filter((p) => p[rankField] == null).slice().reverse()
+  return [...ranked, ...unranked]
 }

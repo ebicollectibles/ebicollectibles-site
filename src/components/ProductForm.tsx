@@ -19,7 +19,10 @@ export interface ProductFormValues {
   imgAlt: string
   images: string[]
   tags: string[]
-  sortOrder: number
+  // 0 means unranked (converted to null on submit) — same convention as
+  // compareAtPrice below.
+  bestSellingRank: number
+  newAndUpcomingRank: number
   description: string
   preorder: boolean
   comingSoon: boolean
@@ -42,7 +45,8 @@ const emptyValues: ProductFormValues = {
   imgAlt: '',
   images: [],
   tags: [],
-  sortOrder: 0,
+  bestSellingRank: 0,
+  newAndUpcomingRank: 0,
   description: '',
   preorder: false,
   comingSoon: false,
@@ -750,21 +754,39 @@ export function ProductForm({
           placeholder="Type a tag and press Enter"
         />
       </div>
-      <div style={{ marginBottom: 16 }}>
-        <label htmlFor="pf-sort-order" style={label}>
-          Sort order
-        </label>
-        <input
-          id="pf-sort-order"
-          type="number"
-          className="ebi-field"
-          style={{ ...field, maxWidth: 120 }}
-          value={values.sortOrder}
-          onChange={(e) => set('sortOrder', e.target.value === '' ? 0 : Number(e.target.value))}
-        />
-        <p style={{ fontSize: 11.5, color: '#98a1ab', marginTop: 6 }}>
-          Position within "New &amp; Upcoming" / "Best Selling" on the homepage — lower shows first.
-        </p>
+      <div style={{ marginBottom: 16, display: 'flex', gap: 20, flexWrap: 'wrap' }}>
+        <div>
+          <label htmlFor="pf-best-selling-rank" style={label}>
+            Best Selling rank
+          </label>
+          <input
+            id="pf-best-selling-rank"
+            type="number"
+            className="ebi-field"
+            style={{ ...field, maxWidth: 120 }}
+            value={values.bestSellingRank}
+            onChange={(e) => set('bestSellingRank', e.target.value === '' ? 0 : Number(e.target.value))}
+          />
+          <p style={{ fontSize: 11.5, color: '#98a1ab', marginTop: 6, maxWidth: 200 }}>
+            1 = shows first. Leave 0 to leave it unranked (it'll still appear, just after every ranked product).
+          </p>
+        </div>
+        <div>
+          <label htmlFor="pf-new-upcoming-rank" style={label}>
+            New &amp; Upcoming rank
+          </label>
+          <input
+            id="pf-new-upcoming-rank"
+            type="number"
+            className="ebi-field"
+            style={{ ...field, maxWidth: 120 }}
+            value={values.newAndUpcomingRank}
+            onChange={(e) => set('newAndUpcomingRank', e.target.value === '' ? 0 : Number(e.target.value))}
+          />
+          <p style={{ fontSize: 11.5, color: '#98a1ab', marginTop: 6, maxWidth: 200 }}>
+            Same idea, independent of Best Selling rank.
+          </p>
+        </div>
       </div>
       <div
         style={{
