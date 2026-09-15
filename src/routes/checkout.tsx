@@ -649,42 +649,52 @@ function CheckoutPage() {
                 <div style={{ marginTop: 14 }}>
                   {squareConfigured ? (
                     <>
-                      {applePayAvailable && (
-                        <div style={{ display: 'flex', flexDirection: 'column', gap: 8, marginBottom: 16 }}>
-                          <label
+                      <div style={{ marginBottom: 16 }}>
+                        <div
+                          style={{
+                            border: applePayAvailable ? '1px solid ' + (paymentMethod === 'card' ? '#131b28' : '#cfd4da') : 'none',
+                            borderRadius: 2,
+                            marginBottom: applePayAvailable ? 10 : 0,
+                          }}
+                        >
+                          {applePayAvailable && (
+                            <label
+                              style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '12px 14px', cursor: 'pointer' }}
+                            >
+                              <input
+                                type="radio"
+                                name="payment-method"
+                                checked={paymentMethod === 'card'}
+                                onChange={() => setPaymentMethod('card')}
+                                style={{ width: 16, height: 16, accentColor: '#131b28', flexShrink: 0 }}
+                              />
+                              <span style={{ fontSize: 13.5, fontWeight: 600 }}>Credit Card</span>
+                              <span style={{ marginLeft: 'auto' }}>
+                                <CardBrandLogos />
+                              </span>
+                            </label>
+                          )}
+                          <div
                             style={{
-                              display: 'flex',
-                              alignItems: 'center',
-                              gap: 10,
-                              padding: '12px 14px',
-                              border: '1px solid ' + (paymentMethod === 'card' ? '#131b28' : '#cfd4da'),
-                              borderRadius: 2,
-                              cursor: 'pointer',
+                              display: !applePayAvailable || paymentMethod === 'card' ? 'block' : 'none',
+                              padding: applePayAvailable ? '0 14px 14px' : 0,
                             }}
                           >
-                            <input
-                              type="radio"
-                              name="payment-method"
-                              checked={paymentMethod === 'card'}
-                              onChange={() => setPaymentMethod('card')}
-                              style={{ width: 16, height: 16, accentColor: '#131b28', flexShrink: 0 }}
-                            />
-                            <span style={{ fontSize: 13.5, fontWeight: 600 }}>Credit Card</span>
-                            <span style={{ marginLeft: 'auto' }}>
-                              <CardBrandLogos />
-                            </span>
-                          </label>
-                          <label
-                            style={{
-                              display: 'flex',
-                              alignItems: 'center',
-                              gap: 10,
-                              padding: '12px 14px',
-                              border: '1px solid ' + (paymentMethod === 'applePay' ? '#131b28' : '#cfd4da'),
-                              borderRadius: 2,
-                              cursor: 'pointer',
-                            }}
-                          >
+                            <SquareCardField ref={cardRef} />
+                          </div>
+                        </div>
+
+                        {/* Always mounted (never conditionally removed) even while hidden — its
+                            own onAvailabilityChange call below is what sets applePayAvailable in
+                            the first place, so it has to exist before that's known to be true. */}
+                        <div
+                          style={{
+                            display: applePayAvailable ? 'block' : 'none',
+                            border: '1px solid ' + (paymentMethod === 'applePay' ? '#131b28' : '#cfd4da'),
+                            borderRadius: 2,
+                          }}
+                        >
+                          <label style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '12px 14px', cursor: 'pointer' }}>
                             <input
                               type="radio"
                               name="payment-method"
@@ -697,27 +707,24 @@ function CheckoutPage() {
                                 on Apple devices, which is exactly who ever sees this option (Apple
                                 Pay is only ever available in Safari on a Mac/iPhone/iPad). */}
                             <span style={{ marginLeft: 'auto', fontSize: 15 }} aria-hidden="true">
-                              {''} Pay
+                              {'\uF8FF'} Pay
                             </span>
                           </label>
+                          <div style={{ display: paymentMethod === 'applePay' ? 'block' : 'none', padding: '0 14px 14px' }}>
+                            <ApplePayButton
+                              amount={total}
+                              lineItems={[
+                                { label: 'Subtotal', amount: cart.subtotal },
+                                { label: 'Shipping', amount: cart.shippingCost },
+                                ...(contact.state === 'WA' ? [{ label: 'Tax', amount: tax }] : []),
+                              ]}
+                              disabled={submitting || !contactComplete || !billingComplete || mixedPreorder}
+                              onTokenize={(sourceId) => finishOrder(sourceId)}
+                              onError={setError}
+                              onAvailabilityChange={setApplePayAvailable}
+                            />
+                          </div>
                         </div>
-                      )}
-                      <div style={{ display: !applePayAvailable || paymentMethod === 'card' ? 'block' : 'none' }}>
-                        <SquareCardField ref={cardRef} />
-                      </div>
-                      <div style={{ display: applePayAvailable && paymentMethod === 'applePay' ? 'block' : 'none' }}>
-                        <ApplePayButton
-                          amount={total}
-                          lineItems={[
-                            { label: 'Subtotal', amount: cart.subtotal },
-                            { label: 'Shipping', amount: cart.shippingCost },
-                            ...(contact.state === 'WA' ? [{ label: 'Tax', amount: tax }] : []),
-                          ]}
-                          disabled={submitting || !contactComplete || !billingComplete || mixedPreorder}
-                          onTokenize={(sourceId) => finishOrder(sourceId)}
-                          onError={setError}
-                          onAvailabilityChange={setApplePayAvailable}
-                        />
                       </div>
                     </>
                   ) : (
