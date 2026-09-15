@@ -31,7 +31,6 @@ function HomePage() {
   const { products } = useCart()
   const bestSelling = rankProducts(products, 'bestSellingRank')
   const newAndUpcoming = rankProducts(products, 'newAndUpcomingRank')
-  const totalProductCount = products.length
   const subStatus = Route.useLoaderData()
 
   const [subscribeEmail, setSubscribeEmail] = React.useState(subStatus.email ?? '')
@@ -187,9 +186,6 @@ function HomePage() {
             }}
           >
             <h2 style={{ fontSize: 30, letterSpacing: '-0.02em', fontWeight: 700, margin: 0 }}>Best Selling</h2>
-            <Link to="/shop" style={{ fontSize: 13, fontWeight: 600, color: '#3f7a63', paddingBottom: 4 }}>
-              View all {totalProductCount} products →
-            </Link>
           </div>
           <div
             className="ebi-arrivals-grid"
