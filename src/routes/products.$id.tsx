@@ -1,6 +1,7 @@
 import * as React from 'react'
 import { createFileRoute, Link } from '@tanstack/react-router'
 import { AddToCartControl } from '~/components/AddToCartControl'
+import { FormattedText } from '~/components/FormattedText'
 import { ProductCard } from '~/components/ProductCard'
 import { ResponsiveImage } from '~/components/ResponsiveImage'
 import { trackEvent } from '~/lib/analytics'
@@ -262,15 +263,13 @@ function ProductDetailPage() {
             )}
           </div>
 
-          <p style={{ fontSize: 14.5, lineHeight: 1.65, color: '#131b28', maxWidth: '52ch', margin: '20px 0 0', whiteSpace: 'pre-line' }}>
-            {product.description || (
-              <>
-                Sourced through authorised mainland distribution — never a grey-market repack. This unit is
-                weight-checked against factory spec, seam-inspected and photographed against its case code before it
-                ships, with those photos included in your tracking email.
-              </>
-            )}
-          </p>
+          <FormattedText
+            text={
+              product.description ||
+              'Sourced through authorised mainland distribution — never a grey-market repack. This unit is weight-checked against factory spec, seam-inspected and photographed against its case code before it ships, with those photos included in your tracking email.'
+            }
+            style={{ fontSize: 14.5, lineHeight: 1.65, color: '#131b28', maxWidth: '52ch', margin: '20px 0 0' }}
+          />
 
           <AddToCartControl product={product} padding={14} fontSize={13.5} qtyBtnWidth={48} maxWidth={320} marginTop={26} />
         </div>

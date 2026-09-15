@@ -1073,6 +1073,10 @@ export function ProductForm({
           onChange={(e) => set('description', e.target.value)}
           placeholder="What's in the box, set details, pull rates, condition notes…"
         />
+        <p style={{ fontSize: 11.5, color: '#5a6875', margin: '6px 0 0' }}>
+          Supports basic formatting: lines starting with "*" or "-" become a bullet list, "1." becomes a numbered
+          list, and **bold** / *italic* work inline.
+        </p>
       </div>
       <label style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: 13, marginBottom: 12 }}>
         <input type="checkbox" checked={values.preorder} onChange={(e) => set('preorder', e.target.checked)} />
