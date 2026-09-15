@@ -752,7 +752,7 @@ export function ProductForm({
       </div>
       <div style={{ marginBottom: 16 }}>
         <label htmlFor="pf-sort-order" style={label}>
-          Sort order (within "New &amp; Upcoming" / "Best Selling" — lower shows first)
+          Sort order
         </label>
         <input
           id="pf-sort-order"
@@ -762,6 +762,9 @@ export function ProductForm({
           value={values.sortOrder}
           onChange={(e) => set('sortOrder', e.target.value === '' ? 0 : Number(e.target.value))}
         />
+        <p style={{ fontSize: 11.5, color: '#98a1ab', marginTop: 6 }}>
+          Position within "New &amp; Upcoming" / "Best Selling" on the homepage — lower shows first.
+        </p>
       </div>
       <div
         style={{
