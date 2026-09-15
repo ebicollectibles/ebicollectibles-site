@@ -97,12 +97,6 @@ export function ApplePayButton({
     }
   }
 
-  const applePayLogo = (
-    <svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-      <path d="M16.7 1.3c-1 1.2-2.6 2.1-4.2 2-.2-1.6.6-3.3 1.5-4.3C15 -.2 16.8-1 18.2-1c.1 1.6-.5 3.2-1.5 4.3zM19.6 8.2c-2.3-.1-4.3 1.3-5.4 1.3-1.1 0-2.8-1.3-4.6-1.2-2.4 0-4.6 1.4-5.8 3.5-2.5 4.3-.7 10.7 1.8 14.2 1.2 1.7 2.6 3.7 4.5 3.6 1.8-.1 2.5-1.2 4.6-1.2 2.2 0 2.8 1.2 4.6 1.1 1.9 0 3.2-1.7 4.4-3.4 1.4-2 2-3.9 2-4-.1 0-3.8-1.5-3.9-5.7-.1-3.5 2.8-5.2 3-5.3-1.6-2.4-4.1-2.7-5-2.9z" />
-    </svg>
-  )
-
   // Not available here (wrong browser/device, no card in Wallet, or the
   // domain isn't verified with Square yet) — render nothing, per the
   // comment above. A visible placeholder would make it look like an Apple
@@ -115,26 +109,7 @@ export function ApplePayButton({
       onClick={handleClick}
       disabled={disabled}
       aria-label="Pay with Apple Pay"
-      style={{
-        width: '100%',
-        height: 44,
-        marginBottom: 14,
-        background: '#000000',
-        border: 0,
-        borderRadius: 4,
-        cursor: disabled ? 'not-allowed' : 'pointer',
-        opacity: disabled ? 0.6 : 1,
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        gap: 6,
-        color: '#ffffff',
-        fontSize: 16,
-        fontWeight: 500,
-      }}
-    >
-      {applePayLogo}
-      Pay
-    </button>
+      className="ebi-apple-pay-button"
+    />
   )
 }
