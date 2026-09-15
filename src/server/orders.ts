@@ -71,12 +71,16 @@ export const placeOrder = createServerFn({ method: 'POST' })
     const productById = new Map(productRows.map((p) => [p.id, p]))
 
     // Defense-in-depth beyond the disabled add-to-cart button — a coming-soon
-    // product is listed but never purchasable, so reject it here too even if
-    // a stale cart or a direct API call tries to check one out.
+    // or unpublished product is listed (or was, before being hidden) but
+    // never purchasable, so reject it here too even if a stale cart or a
+    // direct API call tries to check one out.
     for (const line of data.lines) {
       const product = productById.get(line.productId)
       if (product?.comingSoon) {
         throw new Error(`"${product.name}" isn't available to order yet — refresh your cart and try again.`)
+      }
+      if (product && !product.published) {
+        throw new Error(`"${product.name}" is no longer available — refresh your cart and try again.`)
       }
     }
 
