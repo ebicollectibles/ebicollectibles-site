@@ -51,6 +51,10 @@ export function ExpressApplePayButton({
             { label: 'Subtotal', amount: cart.subtotal.toFixed(2) },
             { label: 'Shipping', amount: cart.shippingCost.toFixed(2) },
           ],
+          // Only one rate exists, but showing it as a "Shipping Method" row
+          // (rather than just a line in the total) is what buyers expect
+          // from Apple Pay — every other flat-rate checkout still shows it.
+          shippingOptions: [{ id: 'flat', label: 'Standard Shipping', amount: cart.shippingCost.toFixed(2) }],
           total: {
             amount: (cart.subtotal + cart.shippingCost).toFixed(2),
             label: 'EBI Collectibles',
