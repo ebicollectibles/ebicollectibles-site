@@ -10,6 +10,10 @@ import { subscribeToNewsletter, getMySubscriptionStatus } from '~/server/subscri
 // 2 columns × 4 rows on mobile/tablet (see .ebi-arrivals-grid in app.css).
 const HOMEPAGE_SECTION_SIZE = 8
 
+// Hidden for now, at Leon's request — flip back to true to bring the hero
+// banner back.
+const SHOW_HERO = false
+
 export const Route = createFileRoute('/')({
   loader: () => getMySubscriptionStatus(),
   component: HomePage,
@@ -81,6 +85,7 @@ function HomePage() {
   return (
     <>
       <AnniversaryCountdown />
+      {SHOW_HERO && (
       <section style={{ borderBottom: '1px solid #e3e6ea', background: '#f6f7f8' }}>
         <div
           className="ebi-hero-grid"
@@ -166,6 +171,7 @@ function HomePage() {
           </div>
         </div>
       </section>
+      )}
 
       {bestSelling.length > 0 && (
         <section style={{ maxWidth: 1240, margin: '0 auto', padding: '68px 20px 0' }}>
