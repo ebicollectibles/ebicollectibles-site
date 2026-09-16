@@ -24,11 +24,15 @@ function CartPage() {
   const { lines, cartCount, cartEmpty, subtotal, bump, removeFromCart } = useCart()
   const navigate = useNavigate()
   const mixedPreorder = hasMixedPreorderCart(lines.map((l) => ({ preorder: !!l.product.preorder })))
-  const [confirmed, setConfirmed] = React.useState<{ orderNo: number; paymentStatus: string } | null>(null)
+  const [confirmed, setConfirmed] = React.useState<{ orderNo: number; paymentStatus: string; hasPreorder: boolean } | null>(
+    null,
+  )
   const [expressError, setExpressError] = React.useState<string | null>(null)
 
   if (confirmed) {
-    return <OrderConfirmation orderNo={confirmed.orderNo} paymentStatus={confirmed.paymentStatus} />
+    return (
+      <OrderConfirmation orderNo={confirmed.orderNo} paymentStatus={confirmed.paymentStatus} hasPreorder={confirmed.hasPreorder} />
+    )
   }
 
   return (

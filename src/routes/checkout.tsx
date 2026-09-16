@@ -230,7 +230,7 @@ function CheckoutPage() {
       billing.city.trim() !== '' &&
       billing.state.trim() !== '' &&
       billing.zip.trim() !== '')
-  const [confirmed, setConfirmed] = React.useState<{ orderNo: number; paymentStatus: string } | null>(null)
+  const [confirmed, setConfirmed] = React.useState<{ orderNo: number; paymentStatus: string; hasPreorder: boolean } | null>(null)
   const [submitting, setSubmitting] = React.useState(false)
   const [error, setError] = React.useState<string | null>(null)
   const [applePayAvailable, setApplePayAvailable] = React.useState(false)
@@ -272,7 +272,7 @@ function CheckoutPage() {
   const [googleBusy, setGoogleBusy] = React.useState(false)
 
   if (confirmed) {
-    return <OrderConfirmation orderNo={confirmed.orderNo} paymentStatus={confirmed.paymentStatus} />
+    return <OrderConfirmation orderNo={confirmed.orderNo} paymentStatus={confirmed.paymentStatus} hasPreorder={confirmed.hasPreorder} />
   }
 
   const field = (
@@ -342,7 +342,7 @@ function CheckoutPage() {
         shipping: cart.shippingCost,
         items: cart.lines.map((l) => ({ item_id: l.product.id, item_name: l.product.name, price: l.product.price, quantity: l.qty })),
       })
-      setConfirmed({ orderNo: result.orderNo, paymentStatus: result.paymentStatus })
+      setConfirmed({ orderNo: result.orderNo, paymentStatus: result.paymentStatus, hasPreorder: cart.lines.some((l) => l.product.preorder) })
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Something went wrong placing your order.')
     } finally {
