@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { computeOrderTotals, findUnorderableLine, hasMixedPreorderCart } from './order-math'
+import { computeOrderTotals, findUnorderableLine, hasDelayedShipment, hasMixedPreorderCart } from './order-math'
 
 describe('computeOrderTotals', () => {
   it('computes subtotal, flat shipping, tax, and total', () => {
@@ -81,5 +81,23 @@ describe('hasMixedPreorderCart', () => {
 
   it('allows an empty cart', () => {
     expect(hasMixedPreorderCart([])).toBe(false)
+  })
+})
+
+describe('hasDelayedShipment', () => {
+  it('is false when nothing in the cart ships with delay', () => {
+    expect(hasDelayedShipment([{ shipsWithDelay: false }, { shipsWithDelay: false }])).toBe(false)
+  })
+
+  it('is true when at least one line ships with delay', () => {
+    expect(hasDelayedShipment([{ shipsWithDelay: false }, { shipsWithDelay: true }])).toBe(true)
+  })
+
+  it('is true for a single delayed item, unlike the preorder mixed-cart check', () => {
+    expect(hasDelayedShipment([{ shipsWithDelay: true }])).toBe(true)
+  })
+
+  it('allows an empty cart', () => {
+    expect(hasDelayedShipment([])).toBe(false)
   })
 })

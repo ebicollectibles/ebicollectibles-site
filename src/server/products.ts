@@ -48,6 +48,7 @@ function toProduct(row: typeof productsTable.$inferSelect): Product {
     hideFromNewAndUpcoming: row.hideFromNewAndUpcoming,
     description: row.description ?? undefined,
     preorder: row.preorder,
+    shipsWithDelay: row.shipsWithDelay,
     comingSoon: row.comingSoon,
     placeholder: row.placeholder ?? undefined,
   }

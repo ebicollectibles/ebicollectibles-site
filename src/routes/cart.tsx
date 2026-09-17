@@ -3,7 +3,7 @@ import { createFileRoute, Link, useNavigate } from '@tanstack/react-router'
 import { ExpressApplePayButton } from '~/components/ExpressApplePayButton'
 import { OrderConfirmation } from '~/components/OrderConfirmation'
 import { useCart } from '~/lib/cart-context'
-import { hasMixedPreorderCart, MIXED_PREORDER_ERROR } from '~/lib/order-math'
+import { DELAYED_SHIPMENT_WARNING, hasDelayedShipment, hasMixedPreorderCart, MIXED_PREORDER_ERROR } from '~/lib/order-math'
 import { formatMoney } from '~/lib/products'
 
 export const Route = createFileRoute('/cart')({
@@ -24,14 +24,23 @@ function CartPage() {
   const { lines, cartCount, cartEmpty, subtotal, bump, removeFromCart } = useCart()
   const navigate = useNavigate()
   const mixedPreorder = hasMixedPreorderCart(lines.map((l) => ({ preorder: !!l.product.preorder })))
-  const [confirmed, setConfirmed] = React.useState<{ orderNo: number; paymentStatus: string; hasPreorder: boolean } | null>(
-    null,
-  )
+  const delayedShipment = hasDelayedShipment(lines.map((l) => ({ shipsWithDelay: !!l.product.shipsWithDelay })))
+  const [confirmed, setConfirmed] = React.useState<{
+    orderNo: number
+    paymentStatus: string
+    hasPreorder: boolean
+    hasDelayedShipment: boolean
+  } | null>(null)
   const [expressError, setExpressError] = React.useState<string | null>(null)
 
   if (confirmed) {
     return (
-      <OrderConfirmation orderNo={confirmed.orderNo} paymentStatus={confirmed.paymentStatus} hasPreorder={confirmed.hasPreorder} />
+      <OrderConfirmation
+        orderNo={confirmed.orderNo}
+        paymentStatus={confirmed.paymentStatus}
+        hasPreorder={confirmed.hasPreorder}
+        hasDelayedShipment={confirmed.hasDelayedShipment}
+      />
     )
   }
 
@@ -157,6 +166,9 @@ function CartPage() {
               <div style={{ fontSize: 11.5, color: '#5a6875', marginTop: 8 }}>Shipping and tax are calculated at checkout.</div>
               {mixedPreorder && (
                 <div style={{ fontSize: 12.5, color: '#b4622f', marginTop: 12, lineHeight: 1.5 }}>{MIXED_PREORDER_ERROR}</div>
+              )}
+              {!mixedPreorder && delayedShipment && (
+                <div style={{ fontSize: 12.5, color: '#b4622f', marginTop: 12, lineHeight: 1.5 }}>{DELAYED_SHIPMENT_WARNING}</div>
               )}
               <div style={{ display: 'flex', gap: 10, marginTop: 20 }}>
                 <Link

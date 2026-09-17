@@ -16,7 +16,7 @@ export function ExpressApplePayButton({
   onError,
 }: {
   disabled?: boolean
-  onOrderPlaced: (result: { orderNo: number; paymentStatus: string; hasPreorder: boolean }) => void
+  onOrderPlaced: (result: { orderNo: number; paymentStatus: string; hasPreorder: boolean; hasDelayedShipment: boolean }) => void
   onError: (message: string) => void
 }) {
   const cart = useCart()
@@ -158,6 +158,7 @@ export function ExpressApplePayButton({
         orderNo: orderResult.orderNo,
         paymentStatus: orderResult.paymentStatus,
         hasPreorder: cart.lines.some((l) => l.product.preorder),
+        hasDelayedShipment: cart.lines.some((l) => l.product.shipsWithDelay),
       })
     } catch (err) {
       onError(err instanceof Error ? err.message : 'Apple Pay could not be completed.')

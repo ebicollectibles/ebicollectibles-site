@@ -68,6 +68,7 @@ function EditProductPage() {
           hideFromNewAndUpcoming: product.hideFromNewAndUpcoming,
           description: product.description ?? '',
           preorder: product.preorder,
+          shipsWithDelay: product.shipsWithDelay,
           comingSoon: product.comingSoon,
           placeholder: product.placeholder ?? '',
           published: product.published,

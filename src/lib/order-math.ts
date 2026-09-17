@@ -39,3 +39,13 @@ export const MIXED_PREORDER_ERROR =
 export function hasMixedPreorderCart(items: Array<{ preorder: boolean }>): boolean {
   return items.some((i) => i.preorder) && items.some((i) => !i.preorder)
 }
+
+// Unlike preorder, a delayed-shipment item doesn't block checkout when mixed
+// with other items — it's a heads-up, not a hard rule, so this is just "is
+// there at least one" rather than a mixed-cart check.
+export function hasDelayedShipment(items: Array<{ shipsWithDelay: boolean }>): boolean {
+  return items.some((i) => i.shipsWithDelay)
+}
+
+export const DELAYED_SHIPMENT_WARNING =
+  "This order includes an item that's still on its way to us — everything in this order ships together once it arrives."

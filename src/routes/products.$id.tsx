@@ -262,6 +262,11 @@ function ProductDetailPage() {
               <span style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 12, color: stockColor }}>{stockLabel}</span>
             )}
           </div>
+          {!comingSoon && !soldOut && product.shipsWithDelay && (
+            <p style={{ fontSize: 12.5, color: '#b4622f', margin: '8px 0 0', lineHeight: 1.5 }}>
+              This item is still on its way to us — an order with it ships once it arrives.
+            </p>
+          )}
 
           <FormattedText
             text={

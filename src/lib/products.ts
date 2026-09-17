@@ -43,6 +43,11 @@ export interface Product {
   hideFromNewAndUpcoming?: boolean
   description?: string
   preorder?: boolean
+  // In stock and purchasable, but fulfillment is temporarily delayed — see
+  // the comment in lib/db/schema.ts. Unlike preorder, doesn't block being
+  // ordered alongside other items; the UI just warns the whole order will
+  // ship together once this item is ready.
+  shipsWithDelay?: boolean
   comingSoon?: boolean
   placeholder?: string
 }

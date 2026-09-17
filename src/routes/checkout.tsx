@@ -7,7 +7,7 @@ import { OrderConfirmation } from '~/components/OrderConfirmation'
 import { PasswordInput } from '~/components/PasswordInput'
 import { trackEvent } from '~/lib/analytics'
 import { useCart, type BillingAddress, type CheckoutContact } from '~/lib/cart-context'
-import { hasMixedPreorderCart, MIXED_PREORDER_ERROR } from '~/lib/order-math'
+import { DELAYED_SHIPMENT_WARNING, hasDelayedShipment, hasMixedPreorderCart, MIXED_PREORDER_ERROR } from '~/lib/order-math'
 import { formatMoney } from '~/lib/products'
 import { US_STATES } from '~/lib/us-states'
 import { customerLogout, getCurrentCustomer } from '~/server/customer-auth'
@@ -167,6 +167,7 @@ function InfoTooltip({ text }: { text: string }) {
 function CheckoutPage() {
   const cart = useCart()
   const mixedPreorder = hasMixedPreorderCart(cart.lines.map((l) => ({ preorder: !!l.product.preorder })))
+  const delayedShipment = hasDelayedShipment(cart.lines.map((l) => ({ shipsWithDelay: !!l.product.shipsWithDelay })))
   const initialAccount = Route.useLoaderData()
   const router = useRouter()
   const navigate = useNavigate()
@@ -230,7 +231,12 @@ function CheckoutPage() {
       billing.city.trim() !== '' &&
       billing.state.trim() !== '' &&
       billing.zip.trim() !== '')
-  const [confirmed, setConfirmed] = React.useState<{ orderNo: number; paymentStatus: string; hasPreorder: boolean } | null>(null)
+  const [confirmed, setConfirmed] = React.useState<{
+    orderNo: number
+    paymentStatus: string
+    hasPreorder: boolean
+    hasDelayedShipment: boolean
+  } | null>(null)
   const [submitting, setSubmitting] = React.useState(false)
   const [error, setError] = React.useState<string | null>(null)
   const [applePayAvailable, setApplePayAvailable] = React.useState(false)
@@ -272,7 +278,14 @@ function CheckoutPage() {
   const [googleBusy, setGoogleBusy] = React.useState(false)
 
   if (confirmed) {
-    return <OrderConfirmation orderNo={confirmed.orderNo} paymentStatus={confirmed.paymentStatus} hasPreorder={confirmed.hasPreorder} />
+    return (
+      <OrderConfirmation
+        orderNo={confirmed.orderNo}
+        paymentStatus={confirmed.paymentStatus}
+        hasPreorder={confirmed.hasPreorder}
+        hasDelayedShipment={confirmed.hasDelayedShipment}
+      />
+    )
   }
 
   const field = (
@@ -342,7 +355,12 @@ function CheckoutPage() {
         shipping: cart.shippingCost,
         items: cart.lines.map((l) => ({ item_id: l.product.id, item_name: l.product.name, price: l.product.price, quantity: l.qty })),
       })
-      setConfirmed({ orderNo: result.orderNo, paymentStatus: result.paymentStatus, hasPreorder: cart.lines.some((l) => l.product.preorder) })
+      setConfirmed({
+        orderNo: result.orderNo,
+        paymentStatus: result.paymentStatus,
+        hasPreorder: cart.lines.some((l) => l.product.preorder),
+        hasDelayedShipment: cart.lines.some((l) => l.product.shipsWithDelay),
+      })
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Something went wrong placing your order.')
     } finally {
@@ -798,6 +816,9 @@ function CheckoutPage() {
           )}
           {mixedPreorder && (
             <p style={{ fontSize: 12.5, color: '#b4622f', margin: '12px 0 0', lineHeight: 1.5 }}>{MIXED_PREORDER_ERROR}</p>
+          )}
+          {!mixedPreorder && delayedShipment && (
+            <p style={{ fontSize: 12.5, color: '#b4622f', margin: '12px 0 0', lineHeight: 1.5 }}>{DELAYED_SHIPMENT_WARNING}</p>
           )}
           <div style={{ marginTop: 22, paddingTop: 18, borderTop: '1px solid #e3e6ea', display: 'flex', flexDirection: 'column', gap: 9, fontSize: 13.5 }}>
             <div style={{ display: 'flex', justifyContent: 'space-between' }}>

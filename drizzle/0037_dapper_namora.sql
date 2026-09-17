@@ -1,0 +1,1 @@
+ALTER TABLE "products" ADD COLUMN "ships_with_delay" boolean DEFAULT false NOT NULL;

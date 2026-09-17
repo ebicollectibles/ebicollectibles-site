@@ -45,6 +45,13 @@ export const products = pgTable('products', {
   // every product needs custom copy written before it can go live.
   description: text('description'),
   preorder: boolean('preorder').notNull().default(false),
+  // In stock and purchasable now, unlike preorder — but physical fulfillment
+  // is temporarily delayed (e.g. stock is in transit to us), so an order
+  // containing it ships as one shipment once it arrives rather than
+  // splitting. Doesn't block mixing with other items the way preorder does
+  // (see hasMixedPreorderCart) — it's a warning, not a hard rule, and is
+  // meant to be a short-lived admin toggle, not a permanent product trait.
+  shipsWithDelay: boolean('ships_with_delay').notNull().default(false),
   // Listed and visible in the shop, but not yet purchasable — no price
   // shown, cart/checkout refuses it server-side too (see placeOrder), not
   // just a disabled button client-side. Distinct from `preorder` (which IS

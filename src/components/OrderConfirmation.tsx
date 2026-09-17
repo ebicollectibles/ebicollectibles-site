@@ -7,6 +7,7 @@ export function OrderConfirmation({
   orderNo,
   paymentStatus,
   hasPreorder,
+  hasDelayedShipment,
 }: {
   orderNo: number
   paymentStatus: string
@@ -14,6 +15,10 @@ export function OrderConfirmation({
   // pre-order or none — no need to say which items, just whether this
   // order falls under the pre-order (final sale) terms.
   hasPreorder?: boolean
+  // Unlike hasPreorder, this can appear alongside regular items in the same
+  // order (see hasDelayedShipment in lib/order-math.ts) — it's a shipping
+  // timing heads-up, not a final-sale policy.
+  hasDelayedShipment?: boolean
 }) {
   return (
     <section style={{ maxWidth: 640, margin: '0 auto', padding: '110px 28px 140px', textAlign: 'center' }}>
@@ -61,6 +66,23 @@ export function OrderConfirmation({
               Shipping &amp; Returns Policy
             </Link>{' '}
             for details.
+          </p>
+        </div>
+      )}
+      {!hasPreorder && hasDelayedShipment && (
+        <div
+          style={{
+            marginTop: 20,
+            padding: '12px 16px',
+            background: '#fdf3ec',
+            border: '1px solid #e6c4a8',
+            borderRadius: 2,
+            textAlign: 'left',
+          }}
+        >
+          <p style={{ fontSize: 13, lineHeight: 1.6, color: '#131b28', margin: 0 }}>
+            This order includes an item that's still on its way to us — everything in this order ships together
+            once it arrives.
           </p>
         </div>
       )}
