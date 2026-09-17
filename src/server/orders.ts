@@ -84,29 +84,37 @@ export const placeOrder = createServerFn({ method: 'POST' })
       throw new Error(MIXED_PREORDER_ERROR)
     }
 
-    // Products linked to Square (squareVariationId set) are stock- and
-    // price-tracked in Square, not locally — check both live there before
-    // charging. Stock: another app selling against the same Square account
-    // may have moved it since our last read. Price: the product page already
-    // shows Square's live price (see overlaySquareData), so charging the
-    // stale locally-stored price here would silently charge a different
-    // amount than what the customer saw on the page.
     const squareLines = data.lines.filter((l) => productById.get(l.productId)?.squareVariationId)
-    let squareLivePrices: Record<string, number> = {}
-    if (squareLines.length > 0) {
-      const variationIds = squareLines.map((l) => productById.get(l.productId)!.squareVariationId!)
-      const [counts, prices] = await Promise.all([getSquareInventoryCounts(variationIds), getSquareCatalogPrices(variationIds)])
-      squareLivePrices = prices
-      for (const line of squareLines) {
-        const product = productById.get(line.productId)!
-        const available = counts[product.squareVariationId!] ?? 0
-        if (available < line.qty) {
-          throw new Error(`Not enough stock for "${product.name}" — refresh your cart and try again.`)
-        }
-      }
-    }
 
     const result = await withTransaction(async (tx) => {
+      // Products linked to Square (squareVariationId set) are stock- and
+      // price-tracked in Square, not locally — check both live there,
+      // right before we build line details and charge, rather than
+      // earlier in the request. This is a check-then-charge gap (Square
+      // has no atomic reserve/decrement-if-available API the way our own
+      // Postgres UPDATE below does), so it can't be made fully race-proof,
+      // but doing it this late shrinks the window to essentially just the
+      // createSquareOrder + chargeSquarePayment calls that follow, instead
+      // of also covering tax resolution and everything else above. Stock:
+      // another app selling against the same Square account may have moved
+      // it since our last read. Price: the product page already shows
+      // Square's live price (see overlaySquareData), so charging the stale
+      // locally-stored price here would silently charge a different amount
+      // than what the customer saw on the page.
+      let squareLivePrices: Record<string, number> = {}
+      if (squareLines.length > 0) {
+        const variationIds = squareLines.map((l) => productById.get(l.productId)!.squareVariationId!)
+        const [counts, prices] = await Promise.all([getSquareInventoryCounts(variationIds), getSquareCatalogPrices(variationIds)])
+        squareLivePrices = prices
+        for (const line of squareLines) {
+          const product = productById.get(line.productId)!
+          const available = counts[product.squareVariationId!] ?? 0
+          if (available < line.qty) {
+            throw new Error(`Not enough stock for "${product.name}" — refresh your cart and try again.`)
+          }
+        }
+      }
+
       // Lock and validate stock, decrementing atomically per line — only
       // for products not tracked in Square (already validated above).
       const lineDetails: Array<{
