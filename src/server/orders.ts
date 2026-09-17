@@ -6,7 +6,7 @@ import { withTransaction } from '~/lib/db/transactional-client'
 import { emailEvents, orderCounters, orderItems, orderStatusEvents, orders, paymentAttempts, products as productsTable, users } from '~/lib/db/schema'
 import { MIXED_PREORDER_ERROR, computeOrderTotals, findUnorderableLine, hasMixedPreorderCart } from '~/lib/order-math'
 import { US_STATE_CODES } from '~/lib/us-states'
-import { chargeSquarePayment, createSquareOrder, getSquareInventoryCounts, recordSquareInventorySale } from './square'
+import { chargeSquarePayment, createSquareOrder, getSquareCatalogPrices, getSquareInventoryCounts, recordSquareInventorySale } from './square'
 import { sendOrderConfirmationEmail } from './email'
 import { getCurrentUserId } from './customer-auth'
 import { resolveSalesTaxRate } from './tax'
@@ -84,14 +84,19 @@ export const placeOrder = createServerFn({ method: 'POST' })
       throw new Error(MIXED_PREORDER_ERROR)
     }
 
-    // Products linked to Square (squareVariationId set) are stock-tracked in
-    // Square, not locally — check live there before charging, since another
-    // app selling against the same Square account may have moved stock
-    // since our last read.
+    // Products linked to Square (squareVariationId set) are stock- and
+    // price-tracked in Square, not locally — check both live there before
+    // charging. Stock: another app selling against the same Square account
+    // may have moved it since our last read. Price: the product page already
+    // shows Square's live price (see overlaySquareData), so charging the
+    // stale locally-stored price here would silently charge a different
+    // amount than what the customer saw on the page.
     const squareLines = data.lines.filter((l) => productById.get(l.productId)?.squareVariationId)
+    let squareLivePrices: Record<string, number> = {}
     if (squareLines.length > 0) {
       const variationIds = squareLines.map((l) => productById.get(l.productId)!.squareVariationId!)
-      const counts = await getSquareInventoryCounts(variationIds)
+      const [counts, prices] = await Promise.all([getSquareInventoryCounts(variationIds), getSquareCatalogPrices(variationIds)])
+      squareLivePrices = prices
       for (const line of squareLines) {
         const product = productById.get(line.productId)!
         const available = counts[product.squareVariationId!] ?? 0
@@ -117,7 +122,11 @@ export const placeOrder = createServerFn({ method: 'POST' })
         if (!product) throw new Error('One of the items in your cart no longer exists — refresh your cart and try again.')
 
         if (product.squareVariationId) {
-          lineDetails.push({ productId: product.id, name: product.name, img: product.img, unitPrice: product.price, qty: line.qty })
+          // Variable-pricing items have no fixed price in Square (absent from
+          // squareLivePrices) — fall back to the stored price rather than
+          // treat them as free, same as the product page's own fallback.
+          const unitPrice = squareLivePrices[product.squareVariationId] ?? product.price
+          lineDetails.push({ productId: product.id, name: product.name, img: product.img, unitPrice, qty: line.qty })
           continue
         }
 
