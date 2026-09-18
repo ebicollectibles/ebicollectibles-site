@@ -2,6 +2,7 @@ import { createFileRoute, Link } from '@tanstack/react-router'
 import { requireCustomer } from '~/server/customer-auth'
 import { getMyOrder } from '~/server/customers'
 import { formatMoney } from '~/lib/products'
+import { carrierTrackingUrl } from '~/lib/carriers'
 
 export const Route = createFileRoute('/account/orders/$id')({
   beforeLoad: () => requireCustomer(),
@@ -67,6 +68,41 @@ function OrderDetailPage() {
         </span>
       </div>
       <div style={{ marginTop: 4, fontSize: 12, color: '#5a6875' }}>{new Date(order.createdAt).toLocaleString()}</div>
+
+      {order.shipments.length > 0 && (
+        <div style={{ marginTop: 20, paddingTop: 16, borderTop: '1px solid #e3e6ea' }}>
+          <div style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 10.5, letterSpacing: '0.1em', textTransform: 'uppercase', color: '#5a6875' }}>
+            Tracking
+          </div>
+          <div style={{ marginTop: 10, display: 'flex', flexDirection: 'column', gap: 14 }}>
+            {order.shipments.map((s) => {
+              const url = carrierTrackingUrl(s.carrier, s.trackingNumber)
+              return (
+                <div key={s.id}>
+                  <div style={{ fontSize: 13.5, color: '#131b28' }}>
+                    <span style={{ fontWeight: 700 }}>{s.carrier || 'Package'}</span>
+                    {s.trackingNumber &&
+                      (url ? (
+                        <>
+                          {' — '}
+                          <a href={url} target="_blank" rel="noreferrer" style={{ color: '#3f7a63', fontWeight: 600 }}>
+                            {s.trackingNumber}
+                          </a>
+                        </>
+                      ) : (
+                        ` — ${s.trackingNumber}`
+                      ))}
+                  </div>
+                  <div style={{ marginTop: 2, fontSize: 12, color: '#5a6875' }}>
+                    {s.items.map((i) => `${i.qty} × ${i.productName}`).join(', ')} · shipped{' '}
+                    {new Date(s.createdAt).toLocaleDateString()}
+                  </div>
+                </div>
+              )
+            })}
+          </div>
+        </div>
+      )}
 
       <div style={{ marginTop: 24, display: 'flex', flexDirection: 'column', gap: 12 }}>
         {order.items.map((item) => (

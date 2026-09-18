@@ -22,7 +22,7 @@ import {
 } from '~/lib/db/schema'
 import { CARRIERS } from '~/lib/carriers'
 import { PRODUCT_CATEGORIES, SUBCATEGORIES_BY_CATEGORY, ALL_SUBCATEGORIES } from '~/lib/products'
-import { computeFulfillmentStatus, remainingQtyByItem } from '~/lib/shipments'
+import { buildShipmentsByOrder, computeFulfillmentStatus, groupBy, remainingQtyByItem } from '~/lib/shipments'
 import { assertAdmin } from './admin-auth'
 import { sendMarketplaceShipmentEmail, sendShipmentEmail } from './email'
 import { getSquareCatalogImages, overlaySquareData, searchMarketplaceOrders, searchSquareCatalogItems } from './square'
@@ -209,37 +209,6 @@ export const adminDeleteProduct = createServerFn({ method: 'POST' })
     await db.delete(productsTable).where(eq(productsTable.id, data.id))
     return { ok: true }
   })
-
-function groupBy<T, K>(rows: T[], key: (row: T) => K): Map<K, T[]> {
-  const map = new Map<K, T[]>()
-  for (const row of rows) {
-    const k = key(row)
-    const list = map.get(k) ?? []
-    list.push(row)
-    map.set(k, list)
-  }
-  return map
-}
-
-// Attaches each shipment's line items (with product names, for display) and
-// groups the resulting shipments by order id — shared by adminListOrders and
-// adminGetCustomer so the two don't drift.
-function buildShipmentsByOrder(
-  shipmentRows: Array<{ id: string; orderId: string; carrier: string | null; trackingNumber: string | null; createdAt: Date }>,
-  shipmentItemRows: Array<{ shipmentId: string; orderItemId: string; qty: number }>,
-  itemById: Map<string, { productName: string }>,
-) {
-  const itemsByShipment = groupBy(shipmentItemRows, (si) => si.shipmentId)
-  const shipmentsWithItems = shipmentRows.map((s) => ({
-    ...s,
-    items: (itemsByShipment.get(s.id) ?? []).map((si) => ({
-      orderItemId: si.orderItemId,
-      qty: si.qty,
-      productName: itemById.get(si.orderItemId)?.productName ?? 'Unknown item',
-    })),
-  }))
-  return groupBy(shipmentsWithItems, (s) => s.orderId)
-}
 
 // Surface-level only (no items/status history/shipments/emails) — the list
 // view is meant to be scannable, with everything else a click away on

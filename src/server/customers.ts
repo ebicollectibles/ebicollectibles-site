@@ -1,6 +1,7 @@
 import { createServerFn } from '@tanstack/react-start'
 import { z } from 'zod'
 import { hashPassword, verifyPassword } from '~/lib/auth/password'
+import { buildShipmentsByOrder } from '~/lib/shipments'
 import {
   getCurrentUserId,
   setCustomerSession,
@@ -341,13 +342,20 @@ export const getMyOrder = createServerFn({ method: 'GET' })
     if (!userId) throw new Error('Not logged in.')
 
     const { getDb } = await import('~/lib/db/client')
-    const { orderItems, orders } = await import('~/lib/db/schema')
-    const { eq } = await import('drizzle-orm')
+    const { orderItems, orders, shipmentItems, shipments } = await import('~/lib/db/schema')
+    const { eq, inArray } = await import('drizzle-orm')
     const db = getDb()
 
     const [order] = await db.select().from(orders).where(eq(orders.id, data.id)).limit(1)
     if (!order || order.userId !== userId) return null
 
     const items = await db.select().from(orderItems).where(eq(orderItems.orderId, data.id))
-    return { ...order, items }
+    const shipmentRows = await db.select().from(shipments).where(eq(shipments.orderId, data.id))
+    const shipmentIds = shipmentRows.map((s) => s.id)
+    const shipmentItemRows =
+      shipmentIds.length === 0 ? [] : await db.select().from(shipmentItems).where(inArray(shipmentItems.shipmentId, shipmentIds))
+    const itemById = new Map(items.map((i) => [i.id, i]))
+    const orderShipments = buildShipmentsByOrder(shipmentRows, shipmentItemRows, itemById).get(data.id) ?? []
+
+    return { ...order, items, shipments: orderShipments }
   })
