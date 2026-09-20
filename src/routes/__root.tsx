@@ -17,6 +17,8 @@ import appCss from '~/styles/app.css?url'
 // repository *variable* for production (see README-DEPLOY.md).
 const GA_MEASUREMENT_ID = import.meta.env.VITE_GA_MEASUREMENT_ID as string | undefined
 
+const SITE_URL = 'https://ebicollectibles.com'
+
 export const Route = createRootRoute({
   loader: async () => {
     const [products, customer] = await Promise.all([getProducts(), getCurrentCustomer()])
@@ -73,12 +75,20 @@ function RootDocument({ children }: { children: React.ReactNode }) {
   const data = Route.useLoaderData()
   const products = data?.products ?? []
   const customer = data?.customer ?? null
-  const isAdmin = useRouterState({ select: (s) => s.location.pathname.startsWith('/admin') })
+  const pathname = useRouterState({ select: (s) => s.location.pathname })
+  const isAdmin = pathname.startsWith('/admin')
+  // Self-referencing canonical, stripping any query string (e.g. /shop's
+  // filter params) — without this, Search Console treats filtered/param
+  // variants of a page as duplicates with no signal for which URL is the
+  // "real" one. Leaf routes don't need to override this; the pathname
+  // alone is always the right canonical target here.
+  const canonicalUrl = pathname === '/' ? SITE_URL : `${SITE_URL}${pathname}`
 
   return (
     <html lang="en">
       <head>
         <HeadContent />
+        <link rel="canonical" href={canonicalUrl} />
         {/* Skipped on /admin — that's the operator's own traffic, not a visitor to track. */}
         {GA_MEASUREMENT_ID && !isAdmin && (
           <>
