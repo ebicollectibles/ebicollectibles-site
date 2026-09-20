@@ -78,7 +78,6 @@ export function Footer() {
             <Link to="/return-policy">Refund policy</Link>
             <Link to="/privacy">Privacy policy</Link>
             <Link to="/terms-of-service">Terms of service</Link>
-            <a href="mailto:hello@ebicollectibles.com">Contact us</a>
           </div>
         </div>
         <div>
