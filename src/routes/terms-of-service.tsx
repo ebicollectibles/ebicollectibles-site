@@ -1,5 +1,6 @@
 import type * as React from 'react'
 import { createFileRoute, Link } from '@tanstack/react-router'
+import { SHOW_CONTACT_EMAIL } from '~/lib/feature-flags'
 
 export const Route = createFileRoute('/terms-of-service')({
   component: TermsOfServicePage,
@@ -121,16 +122,18 @@ function TermsOfServicePage() {
           </p>
         </div>
 
-        <div>
-          <h2 style={h2}>Contact us</h2>
-          <p style={p}>
-            Questions about these terms? Email{' '}
-            <a href="mailto:hello@ebicollectibles.com" style={link}>
-              hello@ebicollectibles.com
-            </a>
-            .
-          </p>
-        </div>
+        {SHOW_CONTACT_EMAIL && (
+          <div>
+            <h2 style={h2}>Contact us</h2>
+            <p style={p}>
+              Questions about these terms? Email{' '}
+              <a href="mailto:hello@ebicollectibles.com" style={link}>
+                hello@ebicollectibles.com
+              </a>
+              .
+            </p>
+          </div>
+        )}
       </div>
     </section>
   )

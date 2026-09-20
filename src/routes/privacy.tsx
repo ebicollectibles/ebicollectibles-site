@@ -1,5 +1,6 @@
 import type * as React from 'react'
 import { createFileRoute } from '@tanstack/react-router'
+import { SHOW_CONTACT_EMAIL } from '~/lib/feature-flags'
 
 export const Route = createFileRoute('/privacy')({
   component: PrivacyPolicyPage,
@@ -99,16 +100,18 @@ function PrivacyPolicyPage() {
           </p>
         </div>
 
-        <div>
-          <h2 style={h2}>Contact us</h2>
-          <p style={p}>
-            Questions about this policy? Email{' '}
-            <a href="mailto:hello@ebicollectibles.com" style={{ color: '#3f7a63' }}>
-              hello@ebicollectibles.com
-            </a>
-            .
-          </p>
-        </div>
+        {SHOW_CONTACT_EMAIL && (
+          <div>
+            <h2 style={h2}>Contact us</h2>
+            <p style={p}>
+              Questions about this policy? Email{' '}
+              <a href="mailto:hello@ebicollectibles.com" style={{ color: '#3f7a63' }}>
+                hello@ebicollectibles.com
+              </a>
+              .
+            </p>
+          </div>
+        )}
       </div>
     </section>
   )
