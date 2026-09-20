@@ -53,7 +53,7 @@ function TermsOfServicePage() {
             <li>Payments are processed by Square. We never see or store your full card number, CVV, or bank details.</li>
             <li>
               Cancellations, returns, and refunds are governed by our{' '}
-              <Link to="/refund-policy" style={link}>
+              <Link to="/return-policy" style={link}>
                 refund policy
               </Link>
               .

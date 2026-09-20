@@ -62,7 +62,7 @@ export function OrderConfirmation({
           <p style={{ fontSize: 13, lineHeight: 1.6, color: '#131b28', margin: 0 }}>
             This order includes a pre-order item. Pre-orders are charged in full and are final, with no
             cancellations once placed. See our{' '}
-            <Link to="/refund-policy" style={{ color: '#131b28', fontWeight: 600 }}>
+            <Link to="/return-policy" style={{ color: '#131b28', fontWeight: 600 }}>
               Refund Policy
             </Link>{' '}
             for details.
