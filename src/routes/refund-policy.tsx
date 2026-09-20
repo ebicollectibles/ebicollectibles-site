@@ -1,10 +1,10 @@
-import { createFileRoute } from '@tanstack/react-router'
+import { createFileRoute, Link } from '@tanstack/react-router'
 
-export const Route = createFileRoute('/shipping-returns')({
-  component: ShippingReturnsPage,
+export const Route = createFileRoute('/refund-policy')({
+  component: RefundPolicyPage,
 })
 
-function ShippingReturnsPage() {
+function RefundPolicyPage() {
   return (
     <section style={{ maxWidth: 720, margin: '0 auto', padding: '40px 20px 90px', fontFamily: 'Archivo, Helvetica, sans-serif' }}>
       <div
@@ -18,30 +18,12 @@ function ShippingReturnsPage() {
       >
         Support
       </div>
-      <h1 style={{ fontSize: 38, letterSpacing: '-0.025em', fontWeight: 700, margin: '10px 0 0' }}>Shipping &amp; returns</h1>
+      <h1 style={{ fontSize: 38, letterSpacing: '-0.025em', fontWeight: 700, margin: '10px 0 0' }}>Refund policy</h1>
 
       <div style={{ marginTop: 40, display: 'flex', flexDirection: 'column', gap: 32 }}>
         <div>
-          <h2 style={{ fontSize: 18, fontWeight: 700, margin: '0 0 10px' }}>Shipping</h2>
+          <h2 style={{ fontSize: 18, fontWeight: 700, margin: '0 0 10px' }}>Pre-orders are final</h2>
           <p style={{ fontSize: 14.5, lineHeight: 1.65, color: '#131b28', margin: 0, maxWidth: '65ch' }}>
-            We currently ship within the United States only. All orders ship flat-rate ($10.00). Carrier is
-            selected by us for the safest, fastest route to your address, and we don't offer carrier choice at
-            checkout. Every order ships with tracking, emailed the moment it goes out.
-          </p>
-        </div>
-
-        <div>
-          <h2 style={{ fontSize: 18, fontWeight: 700, margin: '0 0 10px' }}>Pre-orders</h2>
-          <p style={{ fontSize: 14.5, lineHeight: 1.65, color: '#131b28', margin: 0, maxWidth: '65ch' }}>
-            Pre-order items are charged in full at checkout and ship separately from any in-stock items in the
-            same order. For this reason, a cart that mixes a pre-order with an in-stock item can't be checked out
-            together.
-          </p>
-          <p style={{ fontSize: 14.5, lineHeight: 1.65, color: '#131b28', margin: '16px 0 0', maxWidth: '65ch' }}>
-            Release and ship dates are estimates provided by the manufacturer or distributor and may change
-            without notice. We'll email you if a pre-order's timeline changes.
-          </p>
-          <p style={{ fontSize: 14.5, lineHeight: 1.65, color: '#131b28', margin: '16px 0 0', maxWidth: '65ch' }}>
             Pre-orders are final. Once placed, a pre-order can't be canceled or refunded for a change of mind.
           </p>
         </div>
@@ -62,7 +44,7 @@ function ShippingReturnsPage() {
           <p style={{ fontSize: 14.5, lineHeight: 1.65, color: '#131b28', margin: '16px 0 0', maxWidth: '65ch' }}>
             Submitting a cancellation request does not guarantee that an order can be canceled. Orders that have
             already been processed for shipment or shipped can't be canceled, and pre-orders can't be canceled at
-            all once placed (see "Pre-orders" above).
+            all once placed (see above).
           </p>
         </div>
 
@@ -83,18 +65,12 @@ function ShippingReturnsPage() {
             order number, a description of the issue, and clear photos of the item and packaging. We'll review
             the information and work with you toward an appropriate resolution.
           </p>
-        </div>
-
-        <div>
-          <h2 style={{ fontSize: 18, fontWeight: 700, margin: '0 0 10px' }}>Product &amp; packaging condition</h2>
-          <p style={{ fontSize: 14.5, lineHeight: 1.65, color: '#131b28', margin: 0, maxWidth: '65ch' }}>
-            We inspect products before shipment and package orders to help protect them during transit. However,
-            collectible packaging may still show minor cosmetic imperfections from manufacturing, distribution,
-            or shipping, including small dents, scuffs, scratches, corner wear, or loose or uneven shrink wrap.
-          </p>
           <p style={{ fontSize: 14.5, lineHeight: 1.65, color: '#131b28', margin: '16px 0 0', maxWidth: '65ch' }}>
-            Unless a listing specifically describes an item as mint or collector-grade, minor cosmetic
-            imperfections to exterior packaging are not considered product damage.
+            See our{' '}
+            <Link to="/shipping-policy" style={{ color: '#3f7a63' }}>
+              shipping policy
+            </Link>{' '}
+            for what counts as normal cosmetic wear versus product damage.
           </p>
         </div>
       </div>

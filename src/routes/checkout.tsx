@@ -870,8 +870,12 @@ function CheckoutPage() {
               </button>
               <p style={{ fontSize: 11.5, lineHeight: 1.5, color: '#5a6875', margin: '12px 0 0' }}>
                 Carrier is chosen by us for the safest delivery. By placing this order, you agree to our{' '}
-                <Link to="/shipping-returns" style={{ color: '#131b28', fontWeight: 600 }}>
-                  Shipping &amp; Returns Policy
+                <Link to="/shipping-policy" style={{ color: '#131b28', fontWeight: 600 }}>
+                  Shipping Policy
+                </Link>{' '}
+                and{' '}
+                <Link to="/refund-policy" style={{ color: '#131b28', fontWeight: 600 }}>
+                  Refund Policy
                 </Link>
                 .
               </p>

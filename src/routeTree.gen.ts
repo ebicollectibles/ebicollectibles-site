@@ -15,8 +15,10 @@ import { Route as CartRouteImport } from './routes/cart'
 import { Route as CheckoutRouteImport } from './routes/checkout'
 import { Route as NewAndUpcomingRouteImport } from './routes/new-and-upcoming'
 import { Route as PrivacyRouteImport } from './routes/privacy'
-import { Route as ShippingReturnsRouteImport } from './routes/shipping-returns'
+import { Route as RefundPolicyRouteImport } from './routes/refund-policy'
+import { Route as ShippingPolicyRouteImport } from './routes/shipping-policy'
 import { Route as ShopRouteImport } from './routes/shop'
+import { Route as TermsOfServiceRouteImport } from './routes/terms-of-service'
 import { Route as AccountIndexRouteImport } from './routes/account/index'
 import { Route as AccountForgotPasswordRouteImport } from './routes/account/forgot-password'
 import { Route as AccountLoginRouteImport } from './routes/account/login'
@@ -73,14 +75,24 @@ const PrivacyRoute = PrivacyRouteImport.update({
   path: '/privacy',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ShippingReturnsRoute = ShippingReturnsRouteImport.update({
-  id: '/shipping-returns',
-  path: '/shipping-returns',
+const RefundPolicyRoute = RefundPolicyRouteImport.update({
+  id: '/refund-policy',
+  path: '/refund-policy',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ShippingPolicyRoute = ShippingPolicyRouteImport.update({
+  id: '/shipping-policy',
+  path: '/shipping-policy',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ShopRoute = ShopRouteImport.update({
   id: '/shop',
   path: '/shop',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TermsOfServiceRoute = TermsOfServiceRouteImport.update({
+  id: '/terms-of-service',
+  path: '/terms-of-service',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AccountIndexRoute = AccountIndexRouteImport.update({
@@ -216,8 +228,10 @@ export interface FileRoutesByFullPath {
   '/checkout': typeof CheckoutRoute
   '/new-and-upcoming': typeof NewAndUpcomingRoute
   '/privacy': typeof PrivacyRoute
-  '/shipping-returns': typeof ShippingReturnsRoute
+  '/refund-policy': typeof RefundPolicyRoute
+  '/shipping-policy': typeof ShippingPolicyRoute
   '/shop': typeof ShopRoute
+  '/terms-of-service': typeof TermsOfServiceRoute
   '/account/forgot-password': typeof AccountForgotPasswordRoute
   '/account/login': typeof AccountLoginRoute
   '/account/profile': typeof AccountProfileRoute
@@ -251,8 +265,10 @@ export interface FileRoutesByTo {
   '/checkout': typeof CheckoutRoute
   '/new-and-upcoming': typeof NewAndUpcomingRoute
   '/privacy': typeof PrivacyRoute
-  '/shipping-returns': typeof ShippingReturnsRoute
+  '/refund-policy': typeof RefundPolicyRoute
+  '/shipping-policy': typeof ShippingPolicyRoute
   '/shop': typeof ShopRoute
+  '/terms-of-service': typeof TermsOfServiceRoute
   '/account/forgot-password': typeof AccountForgotPasswordRoute
   '/account/login': typeof AccountLoginRoute
   '/account/profile': typeof AccountProfileRoute
@@ -287,8 +303,10 @@ export interface FileRoutesById {
   '/checkout': typeof CheckoutRoute
   '/new-and-upcoming': typeof NewAndUpcomingRoute
   '/privacy': typeof PrivacyRoute
-  '/shipping-returns': typeof ShippingReturnsRoute
+  '/refund-policy': typeof RefundPolicyRoute
+  '/shipping-policy': typeof ShippingPolicyRoute
   '/shop': typeof ShopRoute
+  '/terms-of-service': typeof TermsOfServiceRoute
   '/account/forgot-password': typeof AccountForgotPasswordRoute
   '/account/login': typeof AccountLoginRoute
   '/account/profile': typeof AccountProfileRoute
@@ -324,8 +342,10 @@ export interface FileRouteTypes {
     | '/checkout'
     | '/new-and-upcoming'
     | '/privacy'
-    | '/shipping-returns'
+    | '/refund-policy'
+    | '/shipping-policy'
     | '/shop'
+    | '/terms-of-service'
     | '/account/forgot-password'
     | '/account/login'
     | '/account/profile'
@@ -359,8 +379,10 @@ export interface FileRouteTypes {
     | '/checkout'
     | '/new-and-upcoming'
     | '/privacy'
-    | '/shipping-returns'
+    | '/refund-policy'
+    | '/shipping-policy'
     | '/shop'
+    | '/terms-of-service'
     | '/account/forgot-password'
     | '/account/login'
     | '/account/profile'
@@ -394,8 +416,10 @@ export interface FileRouteTypes {
     | '/checkout'
     | '/new-and-upcoming'
     | '/privacy'
-    | '/shipping-returns'
+    | '/refund-policy'
+    | '/shipping-policy'
     | '/shop'
+    | '/terms-of-service'
     | '/account/forgot-password'
     | '/account/login'
     | '/account/profile'
@@ -430,8 +454,10 @@ export interface RootRouteChildren {
   CheckoutRoute: typeof CheckoutRoute
   NewAndUpcomingRoute: typeof NewAndUpcomingRoute
   PrivacyRoute: typeof PrivacyRoute
-  ShippingReturnsRoute: typeof ShippingReturnsRoute
+  RefundPolicyRoute: typeof RefundPolicyRoute
+  ShippingPolicyRoute: typeof ShippingPolicyRoute
   ShopRoute: typeof ShopRoute
+  TermsOfServiceRoute: typeof TermsOfServiceRoute
   AccountForgotPasswordRoute: typeof AccountForgotPasswordRoute
   AccountLoginRoute: typeof AccountLoginRoute
   AccountProfileRoute: typeof AccountProfileRoute
@@ -503,11 +529,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PrivacyRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/shipping-returns': {
-      id: '/shipping-returns'
-      path: '/shipping-returns'
-      fullPath: '/shipping-returns'
-      preLoaderRoute: typeof ShippingReturnsRouteImport
+    '/refund-policy': {
+      id: '/refund-policy'
+      path: '/refund-policy'
+      fullPath: '/refund-policy'
+      preLoaderRoute: typeof RefundPolicyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/shipping-policy': {
+      id: '/shipping-policy'
+      path: '/shipping-policy'
+      fullPath: '/shipping-policy'
+      preLoaderRoute: typeof ShippingPolicyRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/shop': {
@@ -515,6 +548,13 @@ declare module '@tanstack/react-router' {
       path: '/shop'
       fullPath: '/shop'
       preLoaderRoute: typeof ShopRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/terms-of-service': {
+      id: '/terms-of-service'
+      path: '/terms-of-service'
+      fullPath: '/terms-of-service'
+      preLoaderRoute: typeof TermsOfServiceRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/account/': {
@@ -702,8 +742,10 @@ const rootRouteChildren: RootRouteChildren = {
   CheckoutRoute: CheckoutRoute,
   NewAndUpcomingRoute: NewAndUpcomingRoute,
   PrivacyRoute: PrivacyRoute,
-  ShippingReturnsRoute: ShippingReturnsRoute,
+  RefundPolicyRoute: RefundPolicyRoute,
+  ShippingPolicyRoute: ShippingPolicyRoute,
   ShopRoute: ShopRoute,
+  TermsOfServiceRoute: TermsOfServiceRoute,
   AccountForgotPasswordRoute: AccountForgotPasswordRoute,
   AccountLoginRoute: AccountLoginRoute,
   AccountProfileRoute: AccountProfileRoute,
