@@ -319,14 +319,16 @@ interface MarketplaceShipmentEmailData {
   zip: string | null
   carrier: string | null
   trackingNumber: string | null
+  // Whether this shipment covers everything left on the order — see the
+  // same field on ShipmentEmailData above. Marketplace orders can now also
+  // go out in more than one package (see marketplace_shipments in schema.ts).
+  isFinalShipment: boolean
   items: OrderEmailItem[]
 }
 
 // Same shape/contract as sendShipmentEmail, for orders placed on a
 // different storefront selling against this same Square inventory (e.g.
-// DropNotify) — see marketplace_orders in schema.ts. Always the final
-// (only) shipment — marketplace orders aren't split across multiple
-// packages here.
+// DropNotify) — see marketplace_orders/marketplace_shipments in schema.ts.
 export async function sendMarketplaceShipmentEmail(order: MarketplaceShipmentEmailData): Promise<EmailSendResult> {
   const apiKey = process.env.RESEND_API_KEY
   const from = process.env.ORDER_FROM_EMAIL
@@ -349,10 +351,19 @@ export async function sendMarketplaceShipmentEmail(order: MarketplaceShipmentEma
   `
 
   const sourceName = escapeHtml(order.sourceName)
-  const heading = `Your ${sourceName} order is on its way${order.firstName ? `, ${escapeHtml(order.firstName)}` : ''}!`
-  const intro = order.referenceId ? `Order ${escapeHtml(order.referenceId)} has shipped.` : "Here's what shipped and how to track it."
+  const badgeLabel = order.isFinalShipment ? 'Shipped' : 'Partially shipped'
+  const heading = order.isFinalShipment
+    ? `Your ${sourceName} order is on its way${order.firstName ? `, ${escapeHtml(order.firstName)}` : ''}!`
+    : `Part of your ${sourceName} order is on its way${order.firstName ? `, ${escapeHtml(order.firstName)}` : ''}!`
+  const intro = order.isFinalShipment
+    ? order.referenceId
+      ? `Order ${escapeHtml(order.referenceId)} has shipped.`
+      : "Here's what shipped and how to track it."
+    : order.referenceId
+      ? `This is one shipment from order ${escapeHtml(order.referenceId)} — the rest is still on its way separately.`
+      : 'This is one shipment from your order — the rest is still on its way separately.'
 
-  const html = emailShell({ badgeLabel: 'Shipped', badgeColor: GREEN, heading, intro, bodyHtml })
+  const html = emailShell({ badgeLabel, badgeColor: GREEN, heading, intro, bodyHtml })
 
   const itemsLine = order.items.map((item) => `${item.qty}× ${item.productName}`).join(', ')
   const text = [
@@ -375,7 +386,13 @@ export async function sendMarketplaceShipmentEmail(order: MarketplaceShipmentEma
     body: JSON.stringify({
       from,
       to: order.email,
-      subject: order.referenceId ? `Your order has shipped — ${order.referenceId}` : `Your ${order.sourceName} order has shipped`,
+      subject: order.isFinalShipment
+        ? order.referenceId
+          ? `Your order has shipped — ${order.referenceId}`
+          : `Your ${order.sourceName} order has shipped`
+        : order.referenceId
+          ? `Part of your order has shipped — ${order.referenceId}`
+          : `Part of your ${order.sourceName} order has shipped`,
       html,
       text,
     }),

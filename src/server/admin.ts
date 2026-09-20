@@ -7,6 +7,8 @@ import {
   emailEvents,
   marketplaceOrderItems,
   marketplaceOrders,
+  marketplaceShipmentItems,
+  marketplaceShipments,
   orderItems,
   orderStatusEvents,
   orders,
@@ -359,6 +361,62 @@ export const adminCreateShipment = createServerFn({ method: 'POST' })
     return { ok: true, status: newStatus }
   })
 
+// Same idea as adminSendMarketplaceShipmentTest — sends the real email
+// through the real pipeline (images, formatting, and all) to an address
+// admin picks, previewing whichever items/qty are currently staged in the
+// ship form, but never writes anything (no shipment record, no order row
+// change, no email_events row, doesn't count as "sent").
+export const adminSendShipmentTest = createServerFn({ method: 'POST' })
+  .validator(
+    z.object({
+      orderId: z.string(),
+      testEmail: z.string().email(),
+      carrier: z.enum(CARRIERS).nullable().optional(),
+      trackingNumber: z.string().trim().nullable().optional(),
+      items: z.array(z.object({ orderItemId: z.string(), qty: z.number().int().positive() })).min(1),
+    }),
+  )
+  .handler(async ({ data }) => {
+    await assertAdmin()
+    const db = getDb()
+
+    const [order] = await db.select().from(orders).where(eq(orders.id, data.orderId)).limit(1)
+    if (!order) throw new Error('Order not found.')
+
+    const allItems = await db.select().from(orderItems).where(eq(orderItems.orderId, data.orderId))
+    const itemById = new Map(allItems.map((i) => [i.id, i]))
+
+    const priorShipments = await db.select({ id: shipments.id }).from(shipments).where(eq(shipments.orderId, data.orderId))
+    const priorShipmentIds = priorShipments.map((s) => s.id)
+    const priorShipmentItemRows =
+      priorShipmentIds.length === 0 ? [] : await db.select().from(shipmentItems).where(inArray(shipmentItems.shipmentId, priorShipmentIds))
+    const priorShippedItems = priorShipmentItemRows.map((si) => ({ orderItemId: si.orderItemId, qty: si.qty }))
+    const isFinalShipment = computeFulfillmentStatus(allItems, [...priorShippedItems, ...data.items]) === 'shipped'
+
+    const sendResult = await sendShipmentEmail({
+      orderNo: order.orderNo,
+      email: data.testEmail,
+      firstName: order.firstName,
+      lastName: order.lastName,
+      street: order.street,
+      apartment: order.apartment,
+      city: order.city,
+      state: order.state,
+      zip: order.zip,
+      carrier: data.carrier || null,
+      trackingNumber: data.trackingNumber?.trim() || null,
+      isFinalShipment,
+      items: data.items.map((line) => {
+        const item = itemById.get(line.orderItemId)
+        if (!item) throw new Error('One of the selected items does not belong to this order.')
+        return { productName: item.productName, qty: line.qty, unitPrice: item.unitPrice, img: item.img }
+      }),
+    })
+
+    if (sendResult.status !== 'sent') throw new Error(sendResult.error || `Test send ${sendResult.status}.`)
+    return { ok: true }
+  })
+
 export const adminListPaymentFailures = createServerFn({ method: 'GET' }).handler(async () => {
   await assertAdmin()
   const db = getDb()
@@ -566,10 +624,45 @@ export const adminListMarketplaceOrders = createServerFn({ method: 'GET' }).hand
   await assertAdmin()
   const db = getDb()
   const orderRows = await db.select().from(marketplaceOrders).orderBy(desc(marketplaceOrders.placedAt))
-  const itemRows = orderRows.length === 0 ? [] : await db.select().from(marketplaceOrderItems).where(inArray(marketplaceOrderItems.marketplaceOrderId, orderRows.map((o) => o.id)))
+  const orderIds = orderRows.map((o) => o.id)
+  const itemRows = orderIds.length === 0 ? [] : await db.select().from(marketplaceOrderItems).where(inArray(marketplaceOrderItems.marketplaceOrderId, orderIds))
   const itemsByOrder = groupBy(itemRows, (i) => i.marketplaceOrderId)
-  return orderRows.map((order) => ({ ...order, items: itemsByOrder.get(order.id) ?? [] }))
+
+  const shipmentRows =
+    orderIds.length === 0 ? [] : await db.select().from(marketplaceShipments).where(inArray(marketplaceShipments.marketplaceOrderId, orderIds)).orderBy(asc(marketplaceShipments.createdAt))
+  const shipmentIds = shipmentRows.map((s) => s.id)
+  const shipmentItemRows =
+    shipmentIds.length === 0 ? [] : await db.select().from(marketplaceShipmentItems).where(inArray(marketplaceShipmentItems.shipmentId, shipmentIds))
+  const itemById = new Map(itemRows.map((i) => [i.id, i]))
+  const shipmentsByOrder = buildMarketplaceShipmentsByOrder(shipmentRows, shipmentItemRows, itemById)
+
+  return orderRows.map((order) => ({
+    ...order,
+    items: itemsByOrder.get(order.id) ?? [],
+    shipments: shipmentsByOrder.get(order.id) ?? [],
+  }))
 })
+
+// Same shape as buildShipmentsByOrder (lib/shipments.ts), kept local since
+// marketplace shipment rows use marketplaceOrderId/marketplaceOrderItemId
+// rather than orderId/orderItemId — not worth genericizing the shared
+// helper over both field-name shapes.
+function buildMarketplaceShipmentsByOrder(
+  shipmentRows: (typeof marketplaceShipments.$inferSelect)[],
+  shipmentItemRows: (typeof marketplaceShipmentItems.$inferSelect)[],
+  itemById: Map<string, { productName: string }>,
+) {
+  const itemsByShipment = groupBy(shipmentItemRows, (si) => si.shipmentId)
+  const shipmentsWithItems = shipmentRows.map((s) => ({
+    ...s,
+    items: (itemsByShipment.get(s.id) ?? []).map((si) => ({
+      marketplaceOrderItemId: si.marketplaceOrderItemId,
+      qty: si.qty,
+      productName: itemById.get(si.marketplaceOrderItemId)?.productName ?? 'Unknown item',
+    })),
+  }))
+  return groupBy(shipmentsWithItems, (s) => s.marketplaceOrderId)
+}
 
 // Pulls orders from Square (filtered to MARKETPLACE_ORDER_SOURCES, paid —
 // see searchMarketplaceOrders) and either inserts ones never seen before or
@@ -596,10 +689,23 @@ export const adminSyncMarketplaceOrders = createServerFn({ method: 'POST' }).han
   const existing = await db.select({ squareOrderId: marketplaceOrders.squareOrderId, id: marketplaceOrders.id, shippedAt: marketplaceOrders.shippedAt }).from(marketplaceOrders)
   const existingBySquareId = new Map(existing.map((r) => [r.squareOrderId, r]))
 
+  // Orders that already have at least one recorded (partial or full)
+  // shipment must never be refreshed below — the refresh path deletes and
+  // reinserts marketplace_order_items, and marketplace_shipment_items
+  // cascade-deletes off those same item ids, which would silently wipe the
+  // shipment history. !row.shippedAt alone isn't enough to guard against
+  // this once an order can be partially shipped (shippedAt only gets set
+  // once nothing is left to ship — see adminCreateMarketplaceShipment).
+  const shipmentCounts = await db
+    .select({ marketplaceOrderId: marketplaceShipments.marketplaceOrderId, count: sql<number>`count(*)::int` })
+    .from(marketplaceShipments)
+    .groupBy(marketplaceShipments.marketplaceOrderId)
+  const orderIdsWithShipments = new Set(shipmentCounts.map((r) => r.marketplaceOrderId))
+
   const newOrders = squareOrders.filter((o) => !existingBySquareId.has(o.squareOrderId))
   const refreshOrders = squareOrders.filter((o) => {
     const row = existingBySquareId.get(o.squareOrderId)
-    return row && !row.shippedAt
+    return row && !row.shippedAt && !orderIdsWithShipments.has(row.id)
   })
 
   // Best-effort photo for each line item, purely for display — a miss just
@@ -698,12 +804,19 @@ export const adminSyncMarketplaceOrders = createServerFn({ method: 'POST' }).han
   return { imported: newOrders.length, refreshed: refreshOrders.length }
 })
 
-export const adminSendMarketplaceShipment = createServerFn({ method: 'POST' })
+// Same idea as adminCreateShipment for regular orders — a marketplace order
+// can now go out in more than one package. Validates the requested items/
+// qty against what's actually still owed (via remainingQtyByItem, using the
+// same generic {id,qty}/{orderItemId,qty} shapes as regular orders), records
+// the shipment, emails the customer about just this shipment, and only marks
+// the order's legacy shippedAt once nothing is left to ship.
+export const adminCreateMarketplaceShipment = createServerFn({ method: 'POST' })
   .validator(
     z.object({
       id: z.string(),
       carrier: z.enum(CARRIERS).nullable().optional(),
       trackingNumber: z.string().trim().nullable().optional(),
+      items: z.array(z.object({ marketplaceOrderItemId: z.string(), qty: z.number().int().positive() })).min(1),
     }),
   )
   .handler(async ({ data }) => {
@@ -713,39 +826,89 @@ export const adminSendMarketplaceShipment = createServerFn({ method: 'POST' })
     const [order] = await db.select().from(marketplaceOrders).where(eq(marketplaceOrders.id, data.id)).limit(1)
     if (!order) throw new Error('Marketplace order not found.')
 
-    const items = await db.select().from(marketplaceOrderItems).where(eq(marketplaceOrderItems.marketplaceOrderId, data.id))
+    const allItems = await db.select().from(marketplaceOrderItems).where(eq(marketplaceOrderItems.marketplaceOrderId, data.id))
+    const itemById = new Map(allItems.map((i) => [i.id, i]))
+
+    const priorShipments = await db.select({ id: marketplaceShipments.id }).from(marketplaceShipments).where(eq(marketplaceShipments.marketplaceOrderId, data.id))
+    const priorShipmentIds = priorShipments.map((s) => s.id)
+    const priorShipmentItemRows =
+      priorShipmentIds.length === 0 ? [] : await db.select().from(marketplaceShipmentItems).where(inArray(marketplaceShipmentItems.shipmentId, priorShipmentIds))
+    const priorShippedItems = priorShipmentItemRows.map((si) => ({ orderItemId: si.marketplaceOrderItemId, qty: si.qty }))
+
+    const remaining = remainingQtyByItem(allItems, priorShippedItems)
+    for (const line of data.items) {
+      const item = itemById.get(line.marketplaceOrderItemId)
+      if (!item) throw new Error('One of the selected items does not belong to this order.')
+      const available = remaining.get(line.marketplaceOrderItemId) ?? 0
+      if (line.qty > available) throw new Error(`Only ${available} of "${item.productName}" remain to be shipped.`)
+    }
+
     const carrier = data.carrier || null
     const trackingNumber = data.trackingNumber || null
 
-    const sendResult = await sendMarketplaceShipmentEmail({
-      sourceName: order.sourceName,
-      referenceId: order.referenceId,
-      email: order.email,
-      firstName: order.firstName,
-      lastName: order.lastName,
-      street: order.street,
-      apartment: order.apartment,
-      city: order.city,
-      state: order.state,
-      zip: order.zip,
-      carrier,
-      trackingNumber,
-      items: items.map((i) => ({ productName: i.productName, qty: i.qty, unitPrice: i.unitPrice ?? 0, img: i.img })),
-    })
+    const [shipment] = await db.insert(marketplaceShipments).values({ marketplaceOrderId: data.id, carrier, trackingNumber }).returning()
+    await db
+      .insert(marketplaceShipmentItems)
+      .values(data.items.map((line) => ({ shipmentId: shipment.id, marketplaceOrderItemId: line.marketplaceOrderItemId, qty: line.qty })))
 
+    const thisShipmentItems = data.items.map((line) => ({ orderItemId: line.marketplaceOrderItemId, qty: line.qty }))
+    const newStatus = computeFulfillmentStatus(allItems, [...priorShippedItems, ...thisShipmentItems])
+    const isFinalShipment = newStatus === 'shipped'
+
+    // Best-effort: a failed/skipped send shouldn't block the shipment record
+    // itself — same contract as adminCreateShipment for regular orders.
+    let sendResult: { status: 'sent' | 'failed' | 'skipped'; error?: string }
+    try {
+      const shippedLines = data.items.map((line) => {
+        const item = itemById.get(line.marketplaceOrderItemId)!
+        return { productName: item.productName, qty: line.qty, unitPrice: item.unitPrice ?? 0, img: item.img }
+      })
+      sendResult = await sendMarketplaceShipmentEmail({
+        sourceName: order.sourceName,
+        referenceId: order.referenceId,
+        email: order.email,
+        firstName: order.firstName,
+        lastName: order.lastName,
+        street: order.street,
+        apartment: order.apartment,
+        city: order.city,
+        state: order.state,
+        zip: order.zip,
+        carrier,
+        trackingNumber,
+        isFinalShipment,
+        items: shippedLines,
+      })
+    } catch (err) {
+      console.error(`Failed to send marketplace shipment email for order ${order.id}:`, err)
+      sendResult = { status: 'failed', error: err instanceof Error ? err.message : 'Unknown error' }
+    }
+
+    await db.update(marketplaceShipments).set({ emailStatus: sendResult.status, emailError: sendResult.error ?? null }).where(eq(marketplaceShipments.id, shipment.id))
+
+    // Legacy columns mirror the most recent shipment (quick-glance display,
+    // and orders shipped before this table existed) — shippedAt only once
+    // fully shipped, matching orders.fulfillmentStatus's derivation.
     await db
       .update(marketplaceOrders)
-      .set({ carrier, trackingNumber, shippedAt: new Date(), emailStatus: sendResult.status, emailError: sendResult.error ?? null })
+      .set({
+        carrier,
+        trackingNumber,
+        emailStatus: sendResult.status,
+        emailError: sendResult.error ?? null,
+        ...(isFinalShipment ? { shippedAt: new Date() } : {}),
+      })
       .where(eq(marketplaceOrders.id, data.id))
 
-    return { ok: true, emailStatus: sendResult.status }
+    return { ok: true, status: newStatus }
   })
 
 // Sends the real email through the real pipeline (so it's an honest
 // preview of what a customer would get, image loading and all) but to an
-// address admin picks — never the order's own email — and never touches
-// the order row (no shippedAt/emailStatus write, doesn't count as "sent").
-// Purely a "does this look right" check before using the real send above.
+// address admin picks — never the order's own email — and never writes
+// anything (no shipment record, no order row change, doesn't count as
+// "sent"). Purely a "does this look right" check before using the real
+// send above, previewing whichever items/qty are currently staged for it.
 export const adminSendMarketplaceShipmentTest = createServerFn({ method: 'POST' })
   .validator(
     z.object({
@@ -753,6 +916,7 @@ export const adminSendMarketplaceShipmentTest = createServerFn({ method: 'POST' 
       testEmail: z.string().email(),
       carrier: z.enum(CARRIERS).nullable().optional(),
       trackingNumber: z.string().trim().nullable().optional(),
+      items: z.array(z.object({ marketplaceOrderItemId: z.string(), qty: z.number().int().positive() })).min(1),
     }),
   )
   .handler(async ({ data }) => {
@@ -762,7 +926,16 @@ export const adminSendMarketplaceShipmentTest = createServerFn({ method: 'POST' 
     const [order] = await db.select().from(marketplaceOrders).where(eq(marketplaceOrders.id, data.id)).limit(1)
     if (!order) throw new Error('Marketplace order not found.')
 
-    const items = await db.select().from(marketplaceOrderItems).where(eq(marketplaceOrderItems.marketplaceOrderId, data.id))
+    const allItems = await db.select().from(marketplaceOrderItems).where(eq(marketplaceOrderItems.marketplaceOrderId, data.id))
+    const itemById = new Map(allItems.map((i) => [i.id, i]))
+
+    const priorShipments = await db.select({ id: marketplaceShipments.id }).from(marketplaceShipments).where(eq(marketplaceShipments.marketplaceOrderId, data.id))
+    const priorShipmentIds = priorShipments.map((s) => s.id)
+    const priorShipmentItemRows =
+      priorShipmentIds.length === 0 ? [] : await db.select().from(marketplaceShipmentItems).where(inArray(marketplaceShipmentItems.shipmentId, priorShipmentIds))
+    const priorShippedItems = priorShipmentItemRows.map((si) => ({ orderItemId: si.marketplaceOrderItemId, qty: si.qty }))
+    const thisShipmentItems = data.items.map((line) => ({ orderItemId: line.marketplaceOrderItemId, qty: line.qty }))
+    const isFinalShipment = computeFulfillmentStatus(allItems, [...priorShippedItems, ...thisShipmentItems]) === 'shipped'
 
     const sendResult = await sendMarketplaceShipmentEmail({
       sourceName: order.sourceName,
@@ -777,7 +950,12 @@ export const adminSendMarketplaceShipmentTest = createServerFn({ method: 'POST' 
       zip: order.zip,
       carrier: data.carrier || null,
       trackingNumber: data.trackingNumber?.trim() || null,
-      items: items.map((i) => ({ productName: i.productName, qty: i.qty, unitPrice: i.unitPrice ?? 0, img: i.img })),
+      isFinalShipment,
+      items: data.items.map((line) => {
+        const item = itemById.get(line.marketplaceOrderItemId)
+        if (!item) throw new Error('One of the selected items does not belong to this order.')
+        return { productName: item.productName, qty: line.qty, unitPrice: item.unitPrice ?? 0, img: item.img }
+      }),
     })
 
     if (sendResult.status !== 'sent') throw new Error(sendResult.error || `Test send ${sendResult.status}.`)

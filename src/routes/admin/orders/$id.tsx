@@ -2,7 +2,7 @@ import * as React from 'react'
 import { createFileRoute, Link, useNavigate, useRouter } from '@tanstack/react-router'
 import { AdminNav } from '~/components/AdminNav'
 import { requireAdmin, adminLogout } from '~/server/admin-auth'
-import { adminCreateShipment, adminGetOrder, adminUpdateOrderStatus } from '~/server/admin'
+import { adminCreateShipment, adminGetOrder, adminSendShipmentTest, adminUpdateOrderStatus } from '~/server/admin'
 import { formatMoney } from '~/lib/products'
 import { CARRIERS, carrierTrackingUrl } from '~/lib/carriers'
 import { remainingQtyByItem } from '~/lib/shipments'
@@ -87,6 +87,9 @@ function AdminOrderDetailPage() {
   const [carrierInput, setCarrierInput] = React.useState('')
   const [trackingInput, setTrackingInput] = React.useState('')
   const [shipQtyByItem, setShipQtyByItem] = React.useState<Record<string, number>>({})
+  const [testEmail, setTestEmail] = React.useState('eastblueinternational@gmail.com')
+  const [testing, setTesting] = React.useState(false)
+  const [testMessage, setTestMessage] = React.useState<string | null>(null)
 
   if (!order) {
     return (
@@ -129,6 +132,7 @@ function AdminOrderDetailPage() {
     setShipFormOpen(true)
     setCarrierInput('')
     setTrackingInput('')
+    setTestMessage(null)
     const initial: Record<string, number> = {}
     for (const item of order.items) {
       const left = remaining.get(item.id) ?? 0
@@ -156,6 +160,33 @@ function AdminOrderDetailPage() {
       await router.invalidate()
     } finally {
       setUpdating(false)
+    }
+  }
+
+  // Previews whatever items/qty are currently staged in the ship form —
+  // doesn't write anything, doesn't require the shipment to exist yet.
+  const sendTest = async () => {
+    const items = Object.entries(shipQtyByItem)
+      .filter(([, qty]) => qty > 0)
+      .map(([orderItemId, qty]) => ({ orderItemId, qty }))
+    if (items.length === 0) return
+    setTesting(true)
+    setTestMessage(null)
+    try {
+      await adminSendShipmentTest({
+        data: {
+          orderId: order.id,
+          testEmail,
+          carrier: (carrierInput || null) as (typeof CARRIERS)[number] | null,
+          trackingNumber: trackingInput.trim() || null,
+          items,
+        },
+      })
+      setTestMessage(`Sent to ${testEmail}.`)
+    } catch (err) {
+      setTestMessage(err instanceof Error ? err.message : 'Test send failed.')
+    } finally {
+      setTesting(false)
     }
   }
 
@@ -475,6 +506,33 @@ function AdminOrderDetailPage() {
                 Cancel
               </button>
             </div>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap', marginTop: 8 }}>
+              <input
+                value={testEmail}
+                onChange={(e) => setTestEmail(e.target.value)}
+                placeholder="Test email address"
+                style={{ flex: 1, minWidth: 160, border: '1px solid #cfd4da', borderRadius: 2, padding: '5px 8px', fontSize: 12 }}
+              />
+              <button
+                disabled={testing || totalToShip === 0}
+                onClick={sendTest}
+                style={{
+                  background: 'none',
+                  color: '#131b28',
+                  border: '1px solid #cfd4da',
+                  borderRadius: 2,
+                  padding: '5px 12px',
+                  fontSize: 11.5,
+                  cursor: testing || totalToShip === 0 ? 'default' : 'pointer',
+                  opacity: testing || totalToShip === 0 ? 0.5 : 1,
+                }}
+              >
+                {testing ? 'Sending test…' : 'Send test to me'}
+              </button>
+            </div>
+            {testMessage && (
+              <div style={{ color: testMessage.startsWith('Sent') ? '#3f7a63' : '#b4622f', fontSize: 11, marginTop: 6 }}>{testMessage}</div>
+            )}
           </div>
         )}
 

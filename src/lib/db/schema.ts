@@ -372,6 +372,38 @@ export const marketplaceOrderItems = pgTable('marketplace_order_items', {
   qty: integer('qty').notNull(),
 })
 
+// Same idea as shipments/shipmentItems above, for marketplace orders — a
+// DropNotify (etc.) order can also go out in more than one package.
+// marketplaceOrders keeps its own carrier/trackingNumber/shippedAt/
+// emailStatus/emailError columns too: those now mirror the *most recent*
+// shipment (for quick-glance display and for orders shipped before this
+// table existed, which have no rows here) while shippedAt specifically
+// still only gets set once nothing is left to ship — see adminCreateMarketplaceShipment.
+export const marketplaceShipments = pgTable('marketplace_shipments', {
+  id: uuid('id').primaryKey().defaultRandom(),
+  marketplaceOrderId: uuid('marketplace_order_id')
+    .notNull()
+    .references(() => marketplaceOrders.id, { onDelete: 'cascade' }),
+  carrier: text('carrier'),
+  trackingNumber: text('tracking_number'),
+  emailStatus: text('email_status'), // sent | failed | skipped
+  emailError: text('email_error'),
+  createdAt: timestamp('created_at', { withTimezone: true }).notNull().defaultNow(),
+})
+
+// How much of a given marketplace_order_item went into a given
+// marketplace_shipment — mirrors shipment_items above.
+export const marketplaceShipmentItems = pgTable('marketplace_shipment_items', {
+  id: uuid('id').primaryKey().defaultRandom(),
+  shipmentId: uuid('shipment_id')
+    .notNull()
+    .references(() => marketplaceShipments.id, { onDelete: 'cascade' }),
+  marketplaceOrderItemId: uuid('marketplace_order_item_id')
+    .notNull()
+    .references(() => marketplaceOrderItems.id, { onDelete: 'cascade' }),
+  qty: integer('qty').notNull(),
+})
+
 // General marketing list (new drops, restocks) — separate from customer
 // accounts (users) since a subscriber never needs to log in. Fed by the
 // homepage signup form, the checkout opt-in checkbox, and admin actions.

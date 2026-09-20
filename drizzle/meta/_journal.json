@@ -267,6 +267,13 @@
       "when": 1789682158675,
       "tag": "0037_dapper_namora",
       "breakpoints": true
+    },
+    {
+      "idx": 38,
+      "version": "7",
+      "when": 1789919549555,
+      "tag": "0038_dark_banshee",
+      "breakpoints": true
     }
   ]
 }
