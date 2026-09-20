@@ -5,7 +5,7 @@
 
 const SITE_URL = 'https://ebicollectibles.com'
 
-const STATIC_PATHS = ['', '/shop', '/shipping-policy', '/return-policy', '/privacy', '/terms-of-service']
+const STATIC_PATHS = ['', '/shop', '/shipping-policy', '/refund-policy', '/privacy', '/terms-of-service']
 
 function xmlEscape(s: string): string {
   return s.replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]!)

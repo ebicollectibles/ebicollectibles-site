@@ -874,7 +874,7 @@ function CheckoutPage() {
                   Shipping Policy
                 </Link>{' '}
                 and{' '}
-                <Link to="/return-policy" style={{ color: '#131b28', fontWeight: 600 }}>
+                <Link to="/refund-policy" style={{ color: '#131b28', fontWeight: 600 }}>
                   Refund Policy
                 </Link>
                 .

@@ -15,7 +15,7 @@ import { Route as CartRouteImport } from './routes/cart'
 import { Route as CheckoutRouteImport } from './routes/checkout'
 import { Route as NewAndUpcomingRouteImport } from './routes/new-and-upcoming'
 import { Route as PrivacyRouteImport } from './routes/privacy'
-import { Route as ReturnPolicyRouteImport } from './routes/return-policy'
+import { Route as RefundPolicyRouteImport } from './routes/refund-policy'
 import { Route as ShippingPolicyRouteImport } from './routes/shipping-policy'
 import { Route as ShopRouteImport } from './routes/shop'
 import { Route as TermsOfServiceRouteImport } from './routes/terms-of-service'
@@ -75,9 +75,9 @@ const PrivacyRoute = PrivacyRouteImport.update({
   path: '/privacy',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ReturnPolicyRoute = ReturnPolicyRouteImport.update({
-  id: '/return-policy',
-  path: '/return-policy',
+const RefundPolicyRoute = RefundPolicyRouteImport.update({
+  id: '/refund-policy',
+  path: '/refund-policy',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ShippingPolicyRoute = ShippingPolicyRouteImport.update({
@@ -228,7 +228,7 @@ export interface FileRoutesByFullPath {
   '/checkout': typeof CheckoutRoute
   '/new-and-upcoming': typeof NewAndUpcomingRoute
   '/privacy': typeof PrivacyRoute
-  '/return-policy': typeof ReturnPolicyRoute
+  '/refund-policy': typeof RefundPolicyRoute
   '/shipping-policy': typeof ShippingPolicyRoute
   '/shop': typeof ShopRoute
   '/terms-of-service': typeof TermsOfServiceRoute
@@ -265,7 +265,7 @@ export interface FileRoutesByTo {
   '/checkout': typeof CheckoutRoute
   '/new-and-upcoming': typeof NewAndUpcomingRoute
   '/privacy': typeof PrivacyRoute
-  '/return-policy': typeof ReturnPolicyRoute
+  '/refund-policy': typeof RefundPolicyRoute
   '/shipping-policy': typeof ShippingPolicyRoute
   '/shop': typeof ShopRoute
   '/terms-of-service': typeof TermsOfServiceRoute
@@ -303,7 +303,7 @@ export interface FileRoutesById {
   '/checkout': typeof CheckoutRoute
   '/new-and-upcoming': typeof NewAndUpcomingRoute
   '/privacy': typeof PrivacyRoute
-  '/return-policy': typeof ReturnPolicyRoute
+  '/refund-policy': typeof RefundPolicyRoute
   '/shipping-policy': typeof ShippingPolicyRoute
   '/shop': typeof ShopRoute
   '/terms-of-service': typeof TermsOfServiceRoute
@@ -342,7 +342,7 @@ export interface FileRouteTypes {
     | '/checkout'
     | '/new-and-upcoming'
     | '/privacy'
-    | '/return-policy'
+    | '/refund-policy'
     | '/shipping-policy'
     | '/shop'
     | '/terms-of-service'
@@ -379,7 +379,7 @@ export interface FileRouteTypes {
     | '/checkout'
     | '/new-and-upcoming'
     | '/privacy'
-    | '/return-policy'
+    | '/refund-policy'
     | '/shipping-policy'
     | '/shop'
     | '/terms-of-service'
@@ -416,7 +416,7 @@ export interface FileRouteTypes {
     | '/checkout'
     | '/new-and-upcoming'
     | '/privacy'
-    | '/return-policy'
+    | '/refund-policy'
     | '/shipping-policy'
     | '/shop'
     | '/terms-of-service'
@@ -454,7 +454,7 @@ export interface RootRouteChildren {
   CheckoutRoute: typeof CheckoutRoute
   NewAndUpcomingRoute: typeof NewAndUpcomingRoute
   PrivacyRoute: typeof PrivacyRoute
-  ReturnPolicyRoute: typeof ReturnPolicyRoute
+  RefundPolicyRoute: typeof RefundPolicyRoute
   ShippingPolicyRoute: typeof ShippingPolicyRoute
   ShopRoute: typeof ShopRoute
   TermsOfServiceRoute: typeof TermsOfServiceRoute
@@ -529,11 +529,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PrivacyRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/return-policy': {
-      id: '/return-policy'
-      path: '/return-policy'
-      fullPath: '/return-policy'
-      preLoaderRoute: typeof ReturnPolicyRouteImport
+    '/refund-policy': {
+      id: '/refund-policy'
+      path: '/refund-policy'
+      fullPath: '/refund-policy'
+      preLoaderRoute: typeof RefundPolicyRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/shipping-policy': {
@@ -742,7 +742,7 @@ const rootRouteChildren: RootRouteChildren = {
   CheckoutRoute: CheckoutRoute,
   NewAndUpcomingRoute: NewAndUpcomingRoute,
   PrivacyRoute: PrivacyRoute,
-  ReturnPolicyRoute: ReturnPolicyRoute,
+  RefundPolicyRoute: RefundPolicyRoute,
   ShippingPolicyRoute: ShippingPolicyRoute,
   ShopRoute: ShopRoute,
   TermsOfServiceRoute: TermsOfServiceRoute,

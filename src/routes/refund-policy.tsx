@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from '@tanstack/react-router'
 
-export const Route = createFileRoute('/return-policy')({
+export const Route = createFileRoute('/refund-policy')({
   component: RefundPolicyPage,
 })
 
