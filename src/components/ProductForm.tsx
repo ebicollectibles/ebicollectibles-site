@@ -617,9 +617,6 @@ export function ProductForm({
   const [squarePickerOpen, setSquarePickerOpen] = React.useState(false)
   const [squareLabel, setSquareLabel] = React.useState<string | null>(null)
   const [tagDraft, setTagDraft] = React.useState('')
-  // Purely a display/entry convenience — weightLb (the only thing actually
-  // stored) always stays in pounds regardless of which unit is picked here.
-  const [weightUnit, setWeightUnit] = React.useState<'lb' | 'oz'>('lb')
 
   React.useEffect(() => {
     if (!values.squareVariationId) {
@@ -1165,37 +1162,46 @@ export function ProductForm({
         </div>
       </div>
       <div style={{ marginBottom: 16, maxWidth: 280 }}>
-        <label htmlFor="pf-weight" style={label}>
+        <label htmlFor="pf-weight-lb" style={label}>
           Weight
         </label>
-        <div style={{ display: 'flex', gap: 8 }}>
+        <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
           <input
-            id="pf-weight"
+            id="pf-weight-lb"
             type="number"
             min={0}
-            step={0.01}
+            step={1}
             className="ebi-field"
             style={{ ...field, flex: 1 }}
-            value={weightUnit === 'oz' ? (values.weightLb ? Math.round(values.weightLb * 16 * 100) / 100 : '') : values.weightLb || ''}
+            value={Math.floor(values.weightLb || 0) || ''}
             onChange={(e) => {
-              const n = Number(e.target.value)
-              set('weightLb', weightUnit === 'oz' ? n / 16 : n)
+              const lbPart = Math.max(0, Math.floor(Number(e.target.value)) || 0)
+              const ozPart = ((values.weightLb || 0) % 1) * 16
+              set('weightLb', lbPart + ozPart / 16)
             }}
-            placeholder={weightUnit === 'oz' ? '5.6' : '0.35'}
+            placeholder="0"
           />
-          <select
+          <span style={{ fontSize: 13, color: '#5a6875' }}>lb</span>
+          <input
+            type="number"
+            min={0}
+            max={15.99}
+            step={0.1}
             className="ebi-field"
-            style={{ ...field, flex: '0 0 68px', padding: '11px 8px' }}
-            value={weightUnit}
-            onChange={(e) => setWeightUnit(e.target.value as 'lb' | 'oz')}
-          >
-            <option value="lb">lb</option>
-            <option value="oz">oz</option>
-          </select>
+            style={{ ...field, flex: 1 }}
+            value={Math.round(((values.weightLb || 0) % 1) * 16 * 100) / 100 || ''}
+            onChange={(e) => {
+              const lbPart = Math.floor(values.weightLb || 0)
+              const ozPart = Math.max(0, Number(e.target.value) || 0)
+              set('weightLb', lbPart + ozPart / 16)
+            }}
+            placeholder="0"
+          />
+          <span style={{ fontSize: 13, color: '#5a6875' }}>oz</span>
         </div>
         <p style={{ fontSize: 11.5, color: '#5a6875', margin: '6px 0 0' }}>
-          Used to quote real Alaska/Hawaii shipping cost via Shippo — leave blank and a conservative default is used
-          instead. Stored as pounds either way; oz is just easier to type for light items.
+          Used to quote real Alaska/Hawaii shipping cost via Shippo — leave both blank and a conservative default is
+          used instead.
         </p>
       </div>
       <label style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: 13, marginBottom: 12 }}>
