@@ -116,8 +116,7 @@ export const adminAdjustStoreCredit = createServerFn({ method: 'POST' })
       const [user] = await db.select({ email: users.email, name: users.name }).from(users).where(eq(users.id, data.userId)).limit(1)
       if (user?.email) {
         try {
-          const balance = await getStoreCreditBalance(data.userId)
-          const result = await sendStoreCreditEmail({ email: user.email, name: user.name, amount: data.amount, balance })
+          const result = await sendStoreCreditEmail({ email: user.email, name: user.name, amount: data.amount })
           await db.insert(emailEvents).values({
             orderId: null,
             email: user.email,

@@ -218,18 +218,23 @@ interface StoreCreditEmailData {
   // the checkout form collects) — whatever they entered at signup.
   name: string | null
   amount: number
-  balance: number
 }
+
+const LOGIN_URL = 'https://ebicollectibles.com/account/login'
 
 export async function sendStoreCreditEmail(data: StoreCreditEmailData): Promise<EmailSendResult> {
   const apiKey = process.env.RESEND_API_KEY
   const from = process.env.ORDER_FROM_EMAIL
   if (!apiKey || !from) return { status: 'skipped' }
 
+  // No running balance shown here deliberately — it's one more number that
+  // can go stale by the time they read the email (another grant, another
+  // order). The button sends them to log in and see the real, current
+  // balance on /account/orders instead of trusting a snapshot.
   const bodyHtml = `
     ${labelValueBlock('Amount added', formatMoney(data.amount))}
-    ${labelValueBlock('New balance', formatMoney(data.balance))}
-    <p style="font-size:13px;color:${MUTED};margin:0;">It'll apply automatically at your next checkout — no code needed.</p>
+    <p style="font-size:13px;color:${MUTED};margin:0 0 24px;">It'll apply automatically at your next checkout — no code needed.</p>
+    <a href="${LOGIN_URL}" style="display:inline-block;background:${INK};color:#ffffff;font-size:13px;font-weight:700;text-decoration:none;padding:12px 22px;border-radius:3px;">Log in to your account</a>
   `
 
   const html = emailShell({
@@ -244,8 +249,9 @@ export async function sendStoreCreditEmail(data: StoreCreditEmailData): Promise<
     `You've got store credit${data.name ? `, ${data.name}` : ''}!`,
     `${formatMoney(data.amount)} has been added to your account from EBI Collectibles.`,
     '',
-    `New balance: ${formatMoney(data.balance)}`,
     `It'll apply automatically at your next checkout — no code needed.`,
+    '',
+    `Log in to your account: ${LOGIN_URL}`,
   ].join('\n')
 
   const res = await fetch('https://api.resend.com/emails', {
