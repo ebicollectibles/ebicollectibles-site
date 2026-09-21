@@ -3,9 +3,10 @@ import { z } from 'zod'
 import { desc, eq, sql } from 'drizzle-orm'
 import { getDb } from '~/lib/db/client'
 import { withTransaction } from '~/lib/db/transactional-client'
-import { storeCreditBalances, storeCreditEvents } from '~/lib/db/schema'
+import { emailEvents, storeCreditBalances, storeCreditEvents, users } from '~/lib/db/schema'
 import { assertAdmin } from './admin-auth'
 import { getCurrentUserId } from './customer-auth'
+import { sendStoreCreditEmail } from './email'
 
 type Tx = Parameters<Parameters<typeof withTransaction>[0]>[0]
 
@@ -105,6 +106,31 @@ export const adminAdjustStoreCredit = createServerFn({ method: 'POST' })
         await tx.insert(storeCreditEvents).values({ userId: data.userId, type: 'adjusted', amount: data.amount, reason: data.reason })
       }
     })
+
+    // Best-effort notification, only for a fresh grant — run after the
+    // transaction commits so a failed/skipped send never undoes or blocks
+    // the actual credit (same philosophy as sendOrderConfirmationEmail in
+    // server/orders.ts).
+    if (data.amount > 0) {
+      const db = getDb()
+      const [user] = await db.select({ email: users.email, name: users.name }).from(users).where(eq(users.id, data.userId)).limit(1)
+      if (user?.email) {
+        try {
+          const balance = await getStoreCreditBalance(data.userId)
+          const result = await sendStoreCreditEmail({ email: user.email, name: user.name, amount: data.amount, balance })
+          await db.insert(emailEvents).values({
+            orderId: null,
+            email: user.email,
+            type: 'store_credit_issued',
+            status: result.status,
+            errorMessage: result.error ?? null,
+          })
+        } catch (err) {
+          console.error(`Failed to send store credit email to user ${data.userId}:`, err)
+        }
+      }
+    }
+
     return { ok: true }
   })
 

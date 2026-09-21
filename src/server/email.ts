@@ -207,6 +207,72 @@ export async function sendOrderConfirmationEmail(order: OrderEmailData): Promise
   return { status: 'sent' }
 }
 
+// Same best-effort, return-a-result contract as sendOrderConfirmationEmail —
+// called right after admin issues store credit (see server/store-credit.ts).
+// Only for a fresh grant, never for a deduction/correction or an automatic
+// refund reversal — those aren't "you got something" moments for the
+// customer the way a new grant is.
+interface StoreCreditEmailData {
+  email: string
+  // users.name is a single free-text field (not split into first/last like
+  // the checkout form collects) — whatever they entered at signup.
+  name: string | null
+  amount: number
+  balance: number
+}
+
+export async function sendStoreCreditEmail(data: StoreCreditEmailData): Promise<EmailSendResult> {
+  const apiKey = process.env.RESEND_API_KEY
+  const from = process.env.ORDER_FROM_EMAIL
+  if (!apiKey || !from) return { status: 'skipped' }
+
+  const bodyHtml = `
+    ${labelValueBlock('Amount added', formatMoney(data.amount))}
+    ${labelValueBlock('New balance', formatMoney(data.balance))}
+    <p style="font-size:13px;color:${MUTED};margin:0;">It'll apply automatically at your next checkout — no code needed.</p>
+  `
+
+  const html = emailShell({
+    badgeLabel: 'Store credit added',
+    badgeColor: GREEN,
+    heading: `You've got store credit${data.name ? `, ${escapeHtml(data.name)}` : ''}!`,
+    intro: `From EBI Collectibles — ${formatMoney(data.amount)} has been added to your account.`,
+    bodyHtml,
+  })
+
+  const text = [
+    `You've got store credit${data.name ? `, ${data.name}` : ''}!`,
+    `${formatMoney(data.amount)} has been added to your account from EBI Collectibles.`,
+    '',
+    `New balance: ${formatMoney(data.balance)}`,
+    `It'll apply automatically at your next checkout — no code needed.`,
+  ].join('\n')
+
+  const res = await fetch('https://api.resend.com/emails', {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${apiKey}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      from,
+      to: data.email,
+      subject: `You've received ${formatMoney(data.amount)} in store credit`,
+      html,
+      text,
+    }),
+  })
+
+  if (!res.ok) {
+    const json = await res.json().catch(() => null)
+    const error = json?.message || `HTTP ${res.status}`
+    console.error('Failed to send store credit email:', error)
+    return { status: 'failed', error }
+  }
+
+  return { status: 'sent' }
+}
+
 interface ShipmentEmailData {
   orderNo: number
   email: string | null
