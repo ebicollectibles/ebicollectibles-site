@@ -40,6 +40,12 @@ export const products = pgTable('products', {
   // mapping in code — the exact taxonomy path needs to come from Google's
   // own current category list, not guessed.
   googleProductCategory: text('google_product_category'),
+  // Per-unit weight in pounds — needed to get a real Shippo rate quote for
+  // Alaska/Hawaii orders (see resolveHiAkShippingRate in server/shippo.ts).
+  // Nullable/admin-filled like gtin/brand/etc; a product with no weight set
+  // falls back to a conservative default in that lookup rather than
+  // quoting nothing.
+  weightLb: numeric('weight_lb', { precision: 6, scale: 3, mode: 'number' }),
   img: text('img'),
   // Tablet/mobile are optional — a viewport falls back to `img` (the
   // desktop/default version) when its size-specific version isn't set.

@@ -3,9 +3,12 @@ import { FLAT_SHIPPING_RATE } from './products'
 // Pulled out of server/orders.ts's placeOrder so this money math has one
 // source of truth and can be unit tested without a database — a rounding or
 // ordering mistake here means every order is charged wrong.
-export function computeOrderTotals(lines: Array<{ unitPrice: number; qty: number }>, taxRate: number) {
+// shippingCostOverride lets a caller substitute a real Shippo-quoted rate
+// (Alaska/Hawaii — see server/shippo.ts) in place of the flat rate; omit it
+// for the normal flat-rate-everywhere-else behavior.
+export function computeOrderTotals(lines: Array<{ unitPrice: number; qty: number }>, taxRate: number, shippingCostOverride?: number) {
   const subtotal = lines.reduce((t, l) => t + l.unitPrice * l.qty, 0)
-  const shippingCost = subtotal === 0 ? 0 : FLAT_SHIPPING_RATE
+  const shippingCost = subtotal === 0 ? 0 : (shippingCostOverride ?? FLAT_SHIPPING_RATE)
   const tax = Math.round(subtotal * taxRate * 100) / 100
   const total = subtotal + shippingCost + tax
   return { subtotal, shippingCost, tax, total }

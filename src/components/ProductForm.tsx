@@ -43,6 +43,7 @@ export interface ProductFormValues {
   brand: string
   condition: GoogleCondition
   googleProductCategory: string
+  weightLb: number
 }
 
 const emptyValues: ProductFormValues = {
@@ -74,6 +75,7 @@ const emptyValues: ProductFormValues = {
   brand: '',
   condition: 'new',
   googleProductCategory: '',
+  weightLb: 0,
 }
 
 const field: React.CSSProperties = {
@@ -1158,6 +1160,26 @@ export function ProductForm({
             Copy the exact path (or its numeric ID) from Merchant Center's own category picker — not guessed here.
           </p>
         </div>
+      </div>
+      <div style={{ marginBottom: 16, maxWidth: 200 }}>
+        <label htmlFor="pf-weight" style={label}>
+          Weight (lb)
+        </label>
+        <input
+          id="pf-weight"
+          type="number"
+          min={0}
+          step={0.01}
+          className="ebi-field"
+          style={field}
+          value={values.weightLb || ''}
+          onChange={(e) => set('weightLb', Number(e.target.value))}
+          placeholder="0.35"
+        />
+        <p style={{ fontSize: 11.5, color: '#5a6875', margin: '6px 0 0' }}>
+          Used to quote real Alaska/Hawaii shipping cost via Shippo — leave blank and a conservative default is used
+          instead.
+        </p>
       </div>
       <label style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: 13, marginBottom: 12 }}>
         <input type="checkbox" checked={values.preorder} onChange={(e) => set('preorder', e.target.checked)} />

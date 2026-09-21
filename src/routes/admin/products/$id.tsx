@@ -77,6 +77,7 @@ function EditProductPage() {
           brand: product.brand ?? '',
           condition: (product.condition as GoogleCondition) ?? 'new',
           googleProductCategory: product.googleProductCategory ?? '',
+          weightLb: product.weightLb ?? 0,
         }}
         onSubmit={async (values) => {
           await adminUpdateProduct({
@@ -98,6 +99,7 @@ function EditProductPage() {
               brand: values.brand.trim() || undefined,
               condition: values.condition || null,
               googleProductCategory: values.googleProductCategory.trim() || undefined,
+              weightLb: values.weightLb || null,
             },
           })
           navigate({ to: '/admin' })

@@ -1,0 +1,1 @@
+ALTER TABLE "products" ADD COLUMN "weight_lb" numeric(6, 3);

@@ -14,6 +14,7 @@ import { customerLogout, getCurrentCustomer } from '~/server/customer-auth'
 import { customerLogin } from '~/server/customers'
 import { startGoogleAuth } from '~/server/google-auth'
 import { getSalesTaxRate } from '~/server/tax'
+import { getHiAkShippingEstimate } from '~/server/shippo'
 
 export const Route = createFileRoute('/checkout')({
   loader: () => getCurrentCustomer(),
@@ -269,7 +270,49 @@ function CheckoutPage() {
     }
   }, [contact.state, contact.street, contact.city, contact.zip])
   const tax = Math.round(cart.subtotal * taxRate * 100) / 100
-  const total = cart.subtotal + cart.shippingCost + tax
+
+  // Alaska/Hawaii only — everywhere else keeps the flat cart.shippingCost.
+  // Same debounced-preview/authoritative-server-recompute split as tax
+  // above; falls back to the flat rate on any failure so a Shippo hiccup
+  // never blocks checkout.
+  const [hiAkShippingCost, setHiAkShippingCost] = React.useState<number | null>(null)
+  React.useEffect(() => {
+    if (contact.state !== 'HI' && contact.state !== 'AK') {
+      setHiAkShippingCost(null)
+      return
+    }
+    if (contact.street.trim() === '' || contact.city.trim() === '' || contact.zip.trim() === '') {
+      setHiAkShippingCost(null)
+      return
+    }
+    let cancelled = false
+    const timer = setTimeout(() => {
+      getHiAkShippingEstimate({
+        data: {
+          items: cart.lines.map((l) => ({ weightLb: l.product.weightLb, qty: l.qty })),
+          name: `${contact.firstName} ${contact.lastName}`.trim(),
+          state: contact.state,
+          street: contact.street,
+          apartment: contact.apartment,
+          city: contact.city,
+          zip: contact.zip,
+        },
+      })
+        .then((result) => {
+          if (!cancelled) setHiAkShippingCost(result.rate)
+        })
+        .catch(() => {
+          if (!cancelled) setHiAkShippingCost(null)
+        })
+    }, 500)
+    return () => {
+      cancelled = true
+      clearTimeout(timer)
+    }
+  }, [contact.state, contact.street, contact.apartment, contact.city, contact.zip, contact.firstName, contact.lastName, cart.lines])
+  const shippingCost = hiAkShippingCost ?? cart.shippingCost
+  const shippingLabel = cart.cartEmpty ? '—' : formatMoney(shippingCost)
+  const total = cart.subtotal + shippingCost + tax
 
   const [signinEmail, setSigninEmail] = React.useState('')
   const [signinPassword, setSigninPassword] = React.useState('')
@@ -352,7 +395,7 @@ function CheckoutPage() {
         currency: 'USD',
         value: total,
         tax,
-        shipping: cart.shippingCost,
+        shipping: shippingCost,
         items: cart.lines.map((l) => ({ item_id: l.product.id, item_name: l.product.name, price: l.product.price, quantity: l.qty })),
       })
       setConfirmed({
@@ -737,7 +780,7 @@ function CheckoutPage() {
                               amount={total}
                               lineItems={[
                                 { label: 'Subtotal', amount: cart.subtotal },
-                                { label: 'Shipping', amount: cart.shippingCost },
+                                { label: 'Shipping', amount: shippingCost },
                                 ...(contact.state === 'WA' ? [{ label: 'Tax', amount: tax }] : []),
                               ]}
                               disabled={submitting || !contactComplete || !billingComplete || mixedPreorder}
@@ -827,7 +870,7 @@ function CheckoutPage() {
             </div>
             <div style={{ display: 'flex', justifyContent: 'space-between' }}>
               <span style={{ color: '#131b28' }}>Shipping</span>
-              <span style={{ fontFamily: "'IBM Plex Mono', monospace" }}>{cart.shippingLabel}</span>
+              <span style={{ fontFamily: "'IBM Plex Mono', monospace" }}>{shippingLabel}</span>
             </div>
             {contact.state === 'WA' && (
               <div style={{ display: 'flex', justifyContent: 'space-between' }}>

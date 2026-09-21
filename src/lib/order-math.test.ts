@@ -29,6 +29,17 @@ describe('computeOrderTotals', () => {
     expect(result.tax).toBe(0)
     expect(result.total).toBe(50) // subtotal + flat shipping, no tax
   })
+
+  it('uses the override shipping cost when given (e.g. a Shippo AK/HI quote)', () => {
+    const result = computeOrderTotals([{ unitPrice: 40, qty: 1 }], 0, 27.5)
+    expect(result.shippingCost).toBe(27.5)
+    expect(result.total).toBe(67.5)
+  })
+
+  it('still charges no shipping for an empty cart even with an override', () => {
+    const result = computeOrderTotals([], 0, 27.5)
+    expect(result.shippingCost).toBe(0)
+  })
 })
 
 describe('findUnorderableLine', () => {

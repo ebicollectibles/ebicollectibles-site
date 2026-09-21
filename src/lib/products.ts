@@ -54,6 +54,7 @@ export interface Product {
   brand?: string
   condition?: GoogleCondition
   googleProductCategory?: string
+  weightLb?: number
 }
 
 // Google's condition [condition] attribute values — see the comment on

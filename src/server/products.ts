@@ -55,5 +55,6 @@ function toProduct(row: typeof productsTable.$inferSelect): Product {
     brand: row.brand ?? undefined,
     condition: (row.condition as Product['condition']) ?? undefined,
     googleProductCategory: row.googleProductCategory ?? undefined,
+    weightLb: row.weightLb ?? undefined,
   }
 }

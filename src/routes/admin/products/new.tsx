@@ -42,6 +42,7 @@ function NewProductPage() {
               brand: values.brand.trim() || undefined,
               condition: values.condition || null,
               googleProductCategory: values.googleProductCategory.trim() || undefined,
+              weightLb: values.weightLb || null,
             },
           })
           navigate({ to: '/admin' })

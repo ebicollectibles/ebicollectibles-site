@@ -288,6 +288,13 @@
       "when": 1789966303847,
       "tag": "0040_odd_black_widow",
       "breakpoints": true
+    },
+    {
+      "idx": 41,
+      "version": "7",
+      "when": 1789968870570,
+      "tag": "0041_furry_aqueduct",
+      "breakpoints": true
     }
   ]
 }

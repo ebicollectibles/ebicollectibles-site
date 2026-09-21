@@ -10,6 +10,7 @@ import { chargeSquarePayment, createSquareOrder, getSquareCatalogPrices, getSqua
 import { sendOrderConfirmationEmail } from './email'
 import { getCurrentUserId } from './customer-auth'
 import { resolveSalesTaxRate } from './tax'
+import { isHiOrAk, resolveHiAkShippingRate } from './shippo'
 import { upsertSubscriber } from './subscribers'
 
 const placeOrderSchema = z.object({
@@ -59,16 +60,34 @@ export const placeOrder = createServerFn({ method: 'POST' })
       userId = existing?.id ?? null
     }
 
-    // Resolved outside the transaction below — it's an external HTTP call
-    // (WA Dept. of Revenue), and a DB transaction holding row locks is the
-    // wrong place to be waiting on that.
-    const taxRate = await resolveSalesTaxRate(data.contact)
-
     const productRows = await db
       .select()
       .from(productsTable)
       .where(inArray(productsTable.id, data.lines.map((l) => l.productId)))
     const productById = new Map(productRows.map((p) => [p.id, p]))
+
+    // Resolved outside the transaction below — both are external HTTP calls
+    // (WA Dept. of Revenue; Shippo), and a DB transaction holding row locks
+    // is the wrong place to be waiting on either. shippingCostOverride stays
+    // undefined outside AK/HI (computeOrderTotals then uses the flat rate)
+    // and also falls back to it if the Shippo lookup fails for any reason —
+    // never blocks checkout on a shipping-API hiccup.
+    const [taxRate, shippingCostOverride] = await Promise.all([
+      resolveSalesTaxRate(data.contact),
+      isHiOrAk(data.contact.state)
+        ? resolveHiAkShippingRate({
+            items: data.lines.map((l) => ({ weightLb: productById.get(l.productId)?.weightLb, qty: l.qty })),
+            toAddress: {
+              name: `${data.contact.firstName} ${data.contact.lastName}`.trim(),
+              street: data.contact.street,
+              apartment: data.contact.apartment,
+              city: data.contact.city,
+              state: data.contact.state,
+              zip: data.contact.zip,
+            },
+          }).then((rate) => rate ?? undefined)
+        : Promise.resolve(undefined),
+    ])
 
     // Defense-in-depth beyond the disabled add-to-cart button — a coming-soon
     // or unpublished product is listed (or was, before being hidden) but
@@ -157,7 +176,7 @@ export const placeOrder = createServerFn({ method: 'POST' })
         })
       }
 
-      const { subtotal, shippingCost, tax, total } = computeOrderTotals(lineDetails, taxRate)
+      const { subtotal, shippingCost, tax, total } = computeOrderTotals(lineDetails, taxRate, shippingCostOverride)
 
       const [counter] = await tx
         .update(orderCounters)
