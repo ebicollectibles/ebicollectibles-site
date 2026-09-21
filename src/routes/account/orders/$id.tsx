@@ -146,9 +146,15 @@ function OrderDetailPage() {
             <span>{formatMoney(order.tax)}</span>
           </div>
         )}
+        {order.creditApplied > 0 && (
+          <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 12.5, color: '#3f7a63' }}>
+            <span>Store credit</span>
+            <span>-{formatMoney(order.creditApplied)}</span>
+          </div>
+        )}
         <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 14, fontWeight: 700, marginTop: 4 }}>
-          <span>Total</span>
-          <span style={{ fontFamily: "'IBM Plex Mono', monospace" }}>{formatMoney(order.total)}</span>
+          <span>{order.creditApplied > 0 ? 'Amount charged' : 'Total'}</span>
+          <span style={{ fontFamily: "'IBM Plex Mono', monospace" }}>{formatMoney(order.total - order.creditApplied)}</span>
         </div>
       </div>
 

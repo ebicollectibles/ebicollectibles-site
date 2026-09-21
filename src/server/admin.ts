@@ -18,6 +18,7 @@ import {
   refundEvents,
   shipmentItems,
   shipments,
+  storeCreditBalances,
   subscriberEvents,
   subscribers,
   users,
@@ -478,7 +479,10 @@ export const adminListCustomers = createServerFn({ method: 'GET' }).handler(asyn
     .groupBy(orders.userId)
   const countByUser = new Map(counts.map((c) => [c.userId, c.count]))
 
-  return customerRows.map((c) => ({ ...c, orderCount: countByUser.get(c.id) ?? 0 }))
+  const balances = await db.select({ userId: storeCreditBalances.userId, balance: storeCreditBalances.balance }).from(storeCreditBalances)
+  const balanceByUser = new Map(balances.map((b) => [b.userId, b.balance]))
+
+  return customerRows.map((c) => ({ ...c, orderCount: countByUser.get(c.id) ?? 0, creditBalance: balanceByUser.get(c.id) ?? 0 }))
 })
 
 export const adminListSubscribers = createServerFn({ method: 'GET' }).handler(async () => {

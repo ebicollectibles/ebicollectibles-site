@@ -3,6 +3,7 @@ import { createFileRoute, Link, useNavigate } from '@tanstack/react-router'
 import { AdminNav } from '~/components/AdminNav'
 import { requireAdmin, adminLogout } from '~/server/admin-auth'
 import { adminListCustomers } from '~/server/admin'
+import { formatMoney } from '~/lib/products'
 
 const CUSTOMERS_PER_PAGE = 20
 
@@ -62,6 +63,7 @@ function AdminCustomersPage() {
               <th style={th}>Email</th>
               <th style={th}>Sign-in</th>
               <th style={th}>Orders</th>
+              <th style={th}>Credit</th>
               <th style={th}>Last login</th>
               <th style={th}>Joined</th>
               <th style={th}></th>
@@ -76,6 +78,9 @@ function AdminCustomersPage() {
                   {c.hasPassword && c.hasGoogle ? 'Password + Google' : c.hasGoogle ? 'Google' : 'Password'}
                 </td>
                 <td style={{ ...td, fontFamily: "'IBM Plex Mono', monospace" }}>{c.orderCount}</td>
+                <td style={{ ...td, fontFamily: "'IBM Plex Mono', monospace" }}>
+                  {c.creditBalance > 0 ? formatMoney(c.creditBalance) : <span style={{ color: '#5a6875' }}>—</span>}
+                </td>
                 <td style={{ ...td, fontSize: 12, color: '#5a6875' }}>
                   {c.lastLoginAt ? new Date(c.lastLoginAt).toLocaleString() : 'Never'}
                 </td>

@@ -277,6 +277,18 @@ function AdminOrderDetailPage() {
             <span>Total</span>
             <span style={{ fontFamily: "'IBM Plex Mono', monospace" }}>{formatMoney(order.total)}</span>
           </div>
+          {order.creditApplied > 0 && (
+            <>
+              <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 12.5, color: '#3f7a63' }}>
+                <span>Store credit applied</span>
+                <span>-{formatMoney(order.creditApplied)}</span>
+              </div>
+              <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 13, fontWeight: 600 }}>
+                <span>Charged to card</span>
+                <span style={{ fontFamily: "'IBM Plex Mono', monospace" }}>{formatMoney(order.total - order.creditApplied)}</span>
+              </div>
+            </>
+          )}
         </div>
 
         {(order.paymentMethodSummary || order.riskLevel || order.avsStatus || order.cvvStatus) && (
