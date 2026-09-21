@@ -4,6 +4,7 @@ import { useCart, type BillingAddress, type CheckoutContact } from '~/lib/cart-c
 import { US_STATE_CODES } from '~/lib/us-states'
 import { trackEvent } from '~/lib/analytics'
 import { getSalesTaxRate } from '~/server/tax'
+import { getMyStoreCredit } from '~/server/store-credit'
 
 // Lets someone pay straight from the cart page with Apple Pay, skipping the
 // regular checkout form entirely — Apple Pay collects the shipping/billing
@@ -24,6 +25,32 @@ export function ExpressApplePayButton({
   const applePayRef = React.useRef<any>(null)
   const [busy, setBusy] = React.useState(false)
 
+  // Store credit only exists for signed-in accounts (see
+  // server/store-credit.ts) — getMyStoreCredit already returns 0 for a
+  // guest, so no separate "am I signed in" check is needed here. This is
+  // the same preview-only balance checkout.tsx uses; placeOrder always
+  // re-derives and clamps the real amount server-side regardless of what's
+  // shown in the Apple Pay sheet.
+  const [creditBalance, setCreditBalance] = React.useState(0)
+  React.useEffect(() => {
+    let cancelled = false
+    getMyStoreCredit()
+      .then((result) => {
+        if (!cancelled) setCreditBalance(result.balance)
+      })
+      .catch(() => {
+        if (!cancelled) setCreditBalance(0)
+      })
+    return () => {
+      cancelled = true
+    }
+  }, [])
+
+  // handleClick reads this when placing the order — a ref rather than state
+  // since it's updated from inside the Apple Pay SDK's own event handler
+  // (shippingcontactchanged), not from a React render.
+  const creditAppliedRef = React.useRef(0)
+
   React.useEffect(() => {
     if (!SQUARE_APP_ID || !SQUARE_LOCATION_ID || cart.cartEmpty) return
     let cancelled = false
@@ -33,6 +60,20 @@ export function ExpressApplePayButton({
       if (cancelled || !window.Square) return
       try {
         const payments = window.Square.payments(SQUARE_APP_ID, SQUARE_LOCATION_ID)
+
+        const initialTotal = cart.subtotal + cart.shippingCost
+        const initialCreditApplied = Math.min(creditBalance, initialTotal)
+        const initialAmountDue = Math.max(0, Math.round((initialTotal - initialCreditApplied) * 100) / 100)
+        // Nothing left to charge via card before tax is even known — Apple
+        // Pay has nothing to do here. The regular checkout page (or the
+        // "Checkout" button just above this one) handles a fully-credit-
+        // covered order correctly; this express button just sits out.
+        if (initialAmountDue <= 0 && creditBalance > 0) {
+          setAvailable(false)
+          return
+        }
+        creditAppliedRef.current = initialCreditApplied
+
         // Tax is unknown until Apple Pay tells us a shipping address (see
         // the shippingcontactchanged handler below) — starts at $0 and
         // updates live once the buyer picks an address in the sheet, the
@@ -50,13 +91,14 @@ export function ExpressApplePayButton({
           lineItems: [
             { label: 'Subtotal', amount: cart.subtotal.toFixed(2) },
             { label: 'Shipping', amount: cart.shippingCost.toFixed(2) },
+            ...(initialCreditApplied > 0 ? [{ label: 'Store credit', amount: (-initialCreditApplied).toFixed(2) }] : []),
           ],
           // Only one rate exists, but showing it as a "Shipping Method" row
           // (rather than just a line in the total) is what buyers expect
           // from Apple Pay — every other flat-rate checkout still shows it.
           shippingOptions: [{ id: 'flat', label: 'Standard Shipping', amount: cart.shippingCost.toFixed(2) }],
           total: {
-            amount: (cart.subtotal + cart.shippingCost).toFixed(2),
+            amount: initialAmountDue.toFixed(2),
             label: 'EBI Collectibles',
           },
         })
@@ -73,12 +115,16 @@ export function ExpressApplePayButton({
           }).catch(() => ({ rate: 0 }))
           const tax = Math.round(cart.subtotal * rate * 100) / 100
           const total = cart.subtotal + cart.shippingCost + tax
+          const creditApplied = Math.min(creditBalance, total)
+          const amountDue = Math.max(0, Math.round((total - creditApplied) * 100) / 100)
+          creditAppliedRef.current = creditApplied
           return {
-            total: { amount: total.toFixed(2), label: 'EBI Collectibles' },
+            total: { amount: amountDue.toFixed(2), label: 'EBI Collectibles' },
             lineItems: [
               { label: 'Subtotal', amount: cart.subtotal.toFixed(2) },
               { label: 'Shipping', amount: cart.shippingCost.toFixed(2) },
               ...(rate > 0 ? [{ label: 'Tax', amount: tax.toFixed(2) }] : []),
+              ...(creditApplied > 0 ? [{ label: 'Store credit', amount: (-creditApplied).toFixed(2) }] : []),
             ],
           }
         })
@@ -98,7 +144,7 @@ export function ExpressApplePayButton({
       cancelled = true
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [cart.cartEmpty, cart.subtotal, cart.shippingCost])
+  }, [cart.cartEmpty, cart.subtotal, cart.shippingCost, creditBalance])
 
   const handleClick = async () => {
     if (!applePayRef.current || busy) return
@@ -147,7 +193,7 @@ export function ExpressApplePayButton({
           }
         : { ...contact }
 
-      const orderResult = await cart.placeOrder({ contact, billing, sourceId: result.token, emailOptIn: false })
+      const orderResult = await cart.placeOrder({ contact, billing, sourceId: result.token, emailOptIn: false, creditApplied: creditAppliedRef.current })
       trackEvent('purchase', {
         transaction_id: String(orderResult.orderNo),
         currency: 'USD',
