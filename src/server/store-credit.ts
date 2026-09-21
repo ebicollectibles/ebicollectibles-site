@@ -23,14 +23,19 @@ export async function getStoreCreditBalance(userId: string): Promise<number> {
   return row?.balance ?? 0
 }
 
-async function getStoreCreditHistory(userId: string) {
+// includeReason is false for the customer-facing history (see
+// getMyStoreCredit) — the reason picked from the admin dropdown (e.g.
+// "Damaged or defective item", or whatever detail was typed for "Other") is
+// bookkeeping for the store, not something to put in front of the customer
+// unfiltered. Admin's own view (adminGetStoreCredit) gets the full detail.
+async function getStoreCreditHistory(userId: string, includeReason: boolean) {
   const db = getDb()
   return db
     .select({
       type: storeCreditEvents.type,
       amount: storeCreditEvents.amount,
       orderId: storeCreditEvents.orderId,
-      reason: storeCreditEvents.reason,
+      reason: includeReason ? storeCreditEvents.reason : sql<string | null>`null`,
       createdAt: storeCreditEvents.createdAt,
     })
     .from(storeCreditEvents)
@@ -61,7 +66,7 @@ export async function issueOrReverseStoreCredit(tx: Tx, opts: { userId: string; 
 export const getMyStoreCredit = createServerFn({ method: 'GET' }).handler(async () => {
   const userId = await getCurrentUserId()
   if (!userId) return { balance: 0, history: [] }
-  const [balance, history] = await Promise.all([getStoreCreditBalance(userId), getStoreCreditHistory(userId)])
+  const [balance, history] = await Promise.all([getStoreCreditBalance(userId), getStoreCreditHistory(userId, false)])
   return { balance, history }
 })
 
@@ -100,6 +105,6 @@ export const adminGetStoreCredit = createServerFn({ method: 'GET' })
   .validator(z.object({ userId: z.string() }))
   .handler(async ({ data }) => {
     await assertAdmin()
-    const [balance, history] = await Promise.all([getStoreCreditBalance(data.userId), getStoreCreditHistory(data.userId)])
+    const [balance, history] = await Promise.all([getStoreCreditBalance(data.userId), getStoreCreditHistory(data.userId, true)])
     return { balance, history }
   })
