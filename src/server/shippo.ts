@@ -1,5 +1,6 @@
 import { createServerFn } from '@tanstack/react-start'
 import { z } from 'zod'
+import { isHiOrAk } from '~/lib/order-math'
 
 // Real, address-based shipping cost for Alaska/Hawaii only — everywhere
 // else keeps the flat FLAT_SHIPPING_RATE. UPS/FedEx ground doesn't even
@@ -10,8 +11,6 @@ import { z } from 'zod'
 // conversation this was built from for the cost research behind it.
 
 const SHIPPO_API_URL = 'https://api.goshippo.com/shipments/'
-
-export const HI_AK_STATES = ['HI', 'AK'] as const
 
 // Used for any cart line whose product has no weightLb set yet (admin adds
 // these over time) — conservative-but-not-silent: better to quote against a
@@ -38,10 +37,6 @@ interface ShippoRate {
 interface ShippoShipmentResponse {
   rates?: ShippoRate[]
   messages?: Array<{ text?: string; source?: string }>
-}
-
-export function isHiOrAk(state: string | null | undefined): boolean {
-  return (HI_AK_STATES as readonly string[]).includes((state ?? '').trim().toUpperCase())
 }
 
 // Returns the cheapest quoted rate in dollars, or null if Shippo isn't

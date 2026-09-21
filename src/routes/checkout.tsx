@@ -7,7 +7,8 @@ import { OrderConfirmation } from '~/components/OrderConfirmation'
 import { PasswordInput } from '~/components/PasswordInput'
 import { trackEvent } from '~/lib/analytics'
 import { useCart, type BillingAddress, type CheckoutContact } from '~/lib/cart-context'
-import { DELAYED_SHIPMENT_WARNING, hasDelayedShipment, hasMixedPreorderCart, MIXED_PREORDER_ERROR } from '~/lib/order-math'
+import { DELAYED_SHIPMENT_WARNING, hasDelayedShipment, hasMixedPreorderCart, isHiOrAk, MIXED_PREORDER_ERROR } from '~/lib/order-math'
+import { BLOCK_HI_AK_CHECKOUT } from '~/lib/feature-flags'
 import { formatMoney } from '~/lib/products'
 import { US_STATES } from '~/lib/us-states'
 import { customerLogout, getCurrentCustomer } from '~/server/customer-auth'
@@ -213,7 +214,12 @@ function CheckoutPage() {
     setCheckoutAs(initialAccount ? 'account' : null)
     setContact(initialAccount ? { ...emptyContact, email: initialAccount.email, ...splitName(initialAccount.name) } : emptyContact)
   }, [initialAccountId, initialAccount])
+  // See BLOCK_HI_AK_CHECKOUT in feature-flags.ts — Shippo isn't live yet, so
+  // rather than charge the flat mainland rate on a package that can genuinely
+  // cost more, checkout is blocked outright for these two states for now.
+  const hiAkBlocked = BLOCK_HI_AK_CHECKOUT && isHiOrAk(contact.state)
   const contactComplete =
+    !hiAkBlocked &&
     EMAIL_RE.test(contact.email.trim()) &&
     contact.firstName.trim() !== '' &&
     contact.lastName.trim() !== '' &&
@@ -277,7 +283,7 @@ function CheckoutPage() {
   // never blocks checkout.
   const [hiAkShippingCost, setHiAkShippingCost] = React.useState<number | null>(null)
   React.useEffect(() => {
-    if (contact.state !== 'HI' && contact.state !== 'AK') {
+    if (hiAkBlocked || (contact.state !== 'HI' && contact.state !== 'AK')) {
       setHiAkShippingCost(null)
       return
     }
@@ -309,7 +315,7 @@ function CheckoutPage() {
       cancelled = true
       clearTimeout(timer)
     }
-  }, [contact.state, contact.street, contact.apartment, contact.city, contact.zip, contact.firstName, contact.lastName, cart.lines])
+  }, [hiAkBlocked, contact.state, contact.street, contact.apartment, contact.city, contact.zip, contact.firstName, contact.lastName, cart.lines])
   const shippingCost = hiAkShippingCost ?? cart.shippingCost
   const shippingLabel = cart.cartEmpty ? '—' : formatMoney(shippingCost)
   const total = cart.subtotal + shippingCost + tax
@@ -629,6 +635,25 @@ function CheckoutPage() {
                     {...field('zip', { valueMissing: 'Enter the ZIP code to ship to.' })}
                   />
                 </div>
+                {hiAkBlocked && (
+                  <div
+                    style={{
+                      marginTop: 14,
+                      padding: '12px 16px',
+                      background: '#fdf3ec',
+                      border: '1px solid #e6c4a8',
+                      borderRadius: 2,
+                    }}
+                  >
+                    <p style={{ fontSize: 13, lineHeight: 1.6, color: '#131b28', margin: 0 }}>
+                      We can't ship to Alaska or Hawaii through the site just yet. Email{' '}
+                      <a href="mailto:eastblueinternational@gmail.com" style={{ color: '#131b28', fontWeight: 600 }}>
+                        eastblueinternational@gmail.com
+                      </a>{' '}
+                      and we'll get your order sorted directly.
+                    </p>
+                  </div>
+                )}
               </div>
 
               <div style={{ borderTop: '1px solid #e3e6ea', marginTop: 30, paddingTop: 22 }}>

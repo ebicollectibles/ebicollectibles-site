@@ -4,13 +4,14 @@ import { eq, inArray, sql } from 'drizzle-orm'
 import { getDb } from '~/lib/db/client'
 import { withTransaction } from '~/lib/db/transactional-client'
 import { emailEvents, orderCounters, orderItems, orderStatusEvents, orders, paymentAttempts, products as productsTable, users } from '~/lib/db/schema'
-import { MIXED_PREORDER_ERROR, computeOrderTotals, findUnorderableLine, hasMixedPreorderCart } from '~/lib/order-math'
+import { MIXED_PREORDER_ERROR, computeOrderTotals, findUnorderableLine, hasMixedPreorderCart, isHiOrAk } from '~/lib/order-math'
 import { US_STATE_CODES } from '~/lib/us-states'
+import { BLOCK_HI_AK_CHECKOUT } from '~/lib/feature-flags'
 import { chargeSquarePayment, createSquareOrder, getSquareCatalogPrices, getSquareInventoryCounts, recordSquareInventorySale } from './square'
 import { sendOrderConfirmationEmail } from './email'
 import { getCurrentUserId } from './customer-auth'
 import { resolveSalesTaxRate } from './tax'
-import { isHiOrAk, resolveHiAkShippingRate } from './shippo'
+import { resolveHiAkShippingRate } from './shippo'
 import { upsertSubscriber } from './subscribers'
 
 const placeOrderSchema = z.object({
@@ -42,6 +43,17 @@ const placeOrderSchema = z.object({
 export const placeOrder = createServerFn({ method: 'POST' })
   .validator(placeOrderSchema)
   .handler(async ({ data }) => {
+    // Checked first, before any DB/external work — see BLOCK_HI_AK_CHECKOUT
+    // in feature-flags.ts. The checkout form already blocks submission for
+    // AK/HI while this is on, but this is the authoritative guard (a direct
+    // API call, or a bypass like the Apple Pay quick-pay flow which collects
+    // its own address, must never slip through).
+    if (BLOCK_HI_AK_CHECKOUT && isHiOrAk(data.contact.state)) {
+      throw new Error(
+        "We can't ship to Alaska or Hawaii through the site yet — email eastblueinternational@gmail.com and we'll get your order sorted directly.",
+      )
+    }
+
     const sessionUserId = await getCurrentUserId()
     const checkoutMode: 'guest' | 'account' = sessionUserId ? 'account' : 'guest'
     const db = getDb()

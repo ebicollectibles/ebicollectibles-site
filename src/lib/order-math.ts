@@ -52,3 +52,13 @@ export function hasDelayedShipment(items: Array<{ shipsWithDelay: boolean }>): b
 
 export const DELAYED_SHIPMENT_WARNING =
   "This order includes an item that's still on its way to us — everything in this order ships together once it arrives."
+
+// Shared by checkout.tsx (early "we can't ship there yet" messaging) and
+// server/orders.ts + server/shippo.ts (the real cost lookup and, while
+// BLOCK_HI_AK_CHECKOUT is on, the hard reject) — kept here rather than in
+// server/shippo.ts so client code can check it without importing a server
+// module.
+export const HI_AK_STATES = ['HI', 'AK'] as const
+export function isHiOrAk(state: string | null | undefined): boolean {
+  return (HI_AK_STATES as readonly string[]).includes((state ?? '').trim().toUpperCase())
+}
