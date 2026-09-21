@@ -10,12 +10,12 @@ export const SHOW_ACRYLICS = true
 // like the refund-policy page already does for cancellation requests).
 export const SHOW_CONTACT_EMAIL = false
 
-// Shippo isn't wired up with a real API key/ship-from address yet (see
-// server/shippo.ts) — until it is, block Alaska/Hawaii checkout outright
-// rather than charge the flat mainland rate on a package that can
-// genuinely cost more to ship there. Customers are told early (as soon as
-// they pick the state, in checkout.tsx) and pointed at
-// eastblueinternational@gmail.com to order directly instead. Flip to false
-// once SHIPPO_API_KEY + SHIP_FROM_* are set and you've verified a real
-// AK/HI quote comes back correctly.
-export const BLOCK_HI_AK_CHECKOUT = true
+// Shippo is now wired up with a real API key + ship-from address (Cloudflare
+// Worker secrets) — verified 2026-09-21 with live CreateShipment quotes to
+// both Honolulu, HI and Anchorage, AK, both returning sane real rates
+// (~$9-11 for a 1lb parcel, close to the flat $10) with no USPS Flat Rate
+// service levels involved. AK/HI checkout now uses the real Shippo quote
+// (server/shippo.ts) instead of being blocked. Flip back to true if Shippo
+// ever needs to be disabled again (e.g. key revoked, ship-from address
+// changes and needs re-verifying).
+export const BLOCK_HI_AK_CHECKOUT = false
