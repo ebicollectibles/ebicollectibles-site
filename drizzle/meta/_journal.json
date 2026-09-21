@@ -281,6 +281,13 @@
       "when": 1789953902960,
       "tag": "0039_red_triathlon",
       "breakpoints": true
+    },
+    {
+      "idx": 40,
+      "version": "7",
+      "when": 1789966303847,
+      "tag": "0040_odd_black_widow",
+      "breakpoints": true
     }
   ]
 }

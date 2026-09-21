@@ -25,6 +25,21 @@ export const products = pgTable('products', {
   // constant across this catalog today, but a real column rather than a
   // hardcoded value in case a different licensed line is ever carried.
   brand: text('brand'),
+  // Google's condition [condition] values: new | used | refurbished — this
+  // catalog needs it because the same GTIN/product can legitimately be
+  // sold both still-sealed ("new") and opened-by-us-to-reveal-contents
+  // ("used"); Google's own definition of "new" requires unopened original
+  // packaging, so an opened item must say "used" or the listing risks a
+  // condition-mismatch flag against its own description.
+  condition: text('condition'),
+  // Google's google_product_category [google_product_category] — the
+  // exact taxonomy string/ID from Merchant Center's own category picker,
+  // e.g. "Arts & Entertainment > Hobbies & Creative Arts > Collectibles >
+  // Collectible Trading Cards". Deliberately free text filled in by admin
+  // per product/subcategory rather than a hardcoded per-subcategory
+  // mapping in code — the exact taxonomy path needs to come from Google's
+  // own current category list, not guessed.
+  googleProductCategory: text('google_product_category'),
   img: text('img'),
   // Tablet/mobile are optional — a viewport falls back to `img` (the
   // desktop/default version) when its size-specific version isn't set.

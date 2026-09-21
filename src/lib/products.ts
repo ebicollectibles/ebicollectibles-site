@@ -52,7 +52,14 @@ export interface Product {
   placeholder?: string
   gtin?: string
   brand?: string
+  condition?: GoogleCondition
+  googleProductCategory?: string
 }
+
+// Google's condition [condition] attribute values — see the comment on
+// products.condition in lib/db/schema.ts.
+export const GOOGLE_CONDITIONS = ['new', 'used', 'refurbished'] as const
+export type GoogleCondition = (typeof GOOGLE_CONDITIONS)[number]
 
 // GS1 check-digit validation for a GTIN-13 (UPC/EAN barcode) — shared by
 // the admin form (instant feedback) and the server (authoritative check).

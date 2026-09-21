@@ -40,6 +40,8 @@ function NewProductPage() {
               placeholder: values.placeholder || undefined,
               gtin: values.gtin.trim() || null,
               brand: values.brand.trim() || undefined,
+              condition: values.condition || null,
+              googleProductCategory: values.googleProductCategory.trim() || undefined,
             },
           })
           navigate({ to: '/admin' })

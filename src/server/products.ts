@@ -53,5 +53,7 @@ function toProduct(row: typeof productsTable.$inferSelect): Product {
     placeholder: row.placeholder ?? undefined,
     gtin: row.gtin ?? undefined,
     brand: row.brand ?? undefined,
+    condition: (row.condition as Product['condition']) ?? undefined,
+    googleProductCategory: row.googleProductCategory ?? undefined,
   }
 }

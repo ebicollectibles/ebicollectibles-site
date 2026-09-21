@@ -11,6 +11,15 @@ import { getProduct } from '~/server/products'
 
 const SITE_URL = 'https://ebicollectibles.com'
 
+// schema.org's itemCondition values Google's structured-data guidance maps
+// its condition attribute onto — see the comment on products.condition in
+// lib/db/schema.ts for why the same product can legitimately be either.
+const CONDITION_SCHEMA_URL: Record<string, string> = {
+  new: 'https://schema.org/NewCondition',
+  used: 'https://schema.org/UsedCondition',
+  refurbished: 'https://schema.org/RefurbishedCondition',
+}
+
 function absoluteImageUrl(img: string | undefined): string | undefined {
   if (!img) return undefined
   return img.startsWith('http') ? img : `${SITE_URL}${img.startsWith('/') ? '' : '/'}${img}`
@@ -54,12 +63,14 @@ export const Route = createFileRoute('/products/$id')({
             // than "not provided."
             ...(loaderData.gtin ? { gtin13: loaderData.gtin } : {}),
             ...(loaderData.brand ? { brand: { '@type': 'Brand', name: loaderData.brand } } : {}),
+            ...(loaderData.googleProductCategory ? { category: loaderData.googleProductCategory } : {}),
             offers: {
               '@type': 'Offer',
               url,
               priceCurrency: 'USD',
               price: loaderData.price,
               availability: loaderData.stock > 0 ? 'https://schema.org/InStock' : 'https://schema.org/OutOfStock',
+              ...(loaderData.condition ? { itemCondition: CONDITION_SCHEMA_URL[loaderData.condition] } : {}),
             },
           },
         },

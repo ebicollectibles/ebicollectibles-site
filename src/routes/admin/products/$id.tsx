@@ -3,6 +3,7 @@ import { AdminNav } from '~/components/AdminNav'
 import { ProductForm } from '~/components/ProductForm'
 import { requireAdmin, adminLogout } from '~/server/admin-auth'
 import { adminGetProduct, adminUpdateProduct, adminDeleteProduct } from '~/server/admin'
+import type { GoogleCondition } from '~/lib/products'
 
 export const Route = createFileRoute('/admin/products/$id')({
   beforeLoad: () => requireAdmin(),
@@ -74,6 +75,8 @@ function EditProductPage() {
           published: product.published,
           gtin: product.gtin ?? '',
           brand: product.brand ?? '',
+          condition: (product.condition as GoogleCondition) ?? 'new',
+          googleProductCategory: product.googleProductCategory ?? '',
         }}
         onSubmit={async (values) => {
           await adminUpdateProduct({
@@ -93,6 +96,8 @@ function EditProductPage() {
               placeholder: values.placeholder || undefined,
               gtin: values.gtin.trim() || null,
               brand: values.brand.trim() || undefined,
+              condition: values.condition || null,
+              googleProductCategory: values.googleProductCategory.trim() || undefined,
             },
           })
           navigate({ to: '/admin' })

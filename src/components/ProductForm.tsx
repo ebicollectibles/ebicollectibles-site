@@ -1,5 +1,13 @@
 import * as React from 'react'
-import { PRODUCT_CATEGORIES, SUBCATEGORIES_BY_CATEGORY, isValidGtin13, type ProductCategory, type ProductSubcategory } from '~/lib/products'
+import {
+  PRODUCT_CATEGORIES,
+  SUBCATEGORIES_BY_CATEGORY,
+  isValidGtin13,
+  GOOGLE_CONDITIONS,
+  type GoogleCondition,
+  type ProductCategory,
+  type ProductSubcategory,
+} from '~/lib/products'
 import { listProductImages, uploadProductImage } from '~/server/uploads'
 import { adminSearchSquareCatalog } from '~/server/admin'
 import type { SquareCatalogOption } from '~/server/square'
@@ -33,6 +41,8 @@ export interface ProductFormValues {
   published: boolean
   gtin: string
   brand: string
+  condition: GoogleCondition
+  googleProductCategory: string
 }
 
 const emptyValues: ProductFormValues = {
@@ -62,6 +72,8 @@ const emptyValues: ProductFormValues = {
   published: true,
   gtin: '',
   brand: '',
+  condition: 'new',
+  googleProductCategory: '',
 }
 
 const field: React.CSSProperties = {
@@ -1109,6 +1121,42 @@ export function ProductForm({
             Brand (for Google Shopping, e.g. "Pokémon")
           </label>
           <input id="pf-brand" className="ebi-field" style={field} value={values.brand} onChange={(e) => set('brand', e.target.value)} placeholder="Pokémon" />
+        </div>
+      </div>
+      <div style={{ marginBottom: 16, display: 'flex', gap: 12 }}>
+        <div style={{ flex: 1 }}>
+          <label htmlFor="pf-condition" style={label}>
+            Condition (for Google Shopping)
+          </label>
+          <select
+            id="pf-condition"
+            className="ebi-field"
+            style={field}
+            value={values.condition}
+            onChange={(e) => set('condition', e.target.value as GoogleCondition)}
+          >
+            {GOOGLE_CONDITIONS.map((c) => (
+              <option key={c} value={c}>
+                {c === 'new' ? 'New (sealed)' : c === 'used' ? 'Used (e.g. opened to reveal contents)' : 'Refurbished'}
+              </option>
+            ))}
+          </select>
+        </div>
+        <div style={{ flex: 1 }}>
+          <label htmlFor="pf-google-category" style={label}>
+            Google product category (optional)
+          </label>
+          <input
+            id="pf-google-category"
+            className="ebi-field"
+            style={field}
+            value={values.googleProductCategory}
+            onChange={(e) => set('googleProductCategory', e.target.value)}
+            placeholder="Arts & Entertainment > Hobbies & Creative Arts > Collectibles > Collectible Trading Cards"
+          />
+          <p style={{ fontSize: 11.5, color: '#5a6875', margin: '6px 0 0' }}>
+            Copy the exact path (or its numeric ID) from Merchant Center's own category picker — not guessed here.
+          </p>
         </div>
       </div>
       <label style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: 13, marginBottom: 12 }}>

@@ -23,7 +23,7 @@ import {
   users,
 } from '~/lib/db/schema'
 import { CARRIERS } from '~/lib/carriers'
-import { PRODUCT_CATEGORIES, SUBCATEGORIES_BY_CATEGORY, ALL_SUBCATEGORIES, isValidGtin13 } from '~/lib/products'
+import { PRODUCT_CATEGORIES, SUBCATEGORIES_BY_CATEGORY, ALL_SUBCATEGORIES, isValidGtin13, GOOGLE_CONDITIONS } from '~/lib/products'
 import { buildShipmentsByOrder, computeFulfillmentStatus, groupBy, remainingQtyByItem } from '~/lib/shipments'
 import { assertAdmin } from './admin-auth'
 import { sendMarketplaceShipmentEmail, sendShipmentEmail } from './email'
@@ -66,6 +66,8 @@ const productBaseSchema = z.object({
     .nullable()
     .optional(),
   brand: z.string().trim().optional(),
+  condition: z.enum(GOOGLE_CONDITIONS).nullable().optional(),
+  googleProductCategory: z.string().trim().optional(),
 })
 
 function withSubcategoryCheck<T extends z.ZodObject<z.ZodRawShape>>(schema: T) {
