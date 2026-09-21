@@ -40,6 +40,24 @@ describe('computeOrderTotals', () => {
     const result = computeOrderTotals([], 0, 27.5)
     expect(result.shippingCost).toBe(0)
   })
+
+  it('defaults amountDue to the full total when no credit is applied', () => {
+    const result = computeOrderTotals([{ unitPrice: 40, qty: 1 }], 0)
+    expect(result.creditApplied).toBe(0)
+    expect(result.amountDue).toBe(result.total)
+  })
+
+  it('subtracts applied store credit from amountDue but not from total', () => {
+    const result = computeOrderTotals([{ unitPrice: 40, qty: 1 }], 0, undefined, 10)
+    expect(result.total).toBe(50)
+    expect(result.creditApplied).toBe(10)
+    expect(result.amountDue).toBe(40)
+  })
+
+  it('clamps amountDue to zero when credit covers or exceeds the total', () => {
+    const result = computeOrderTotals([{ unitPrice: 40, qty: 1 }], 0, undefined, 999)
+    expect(result.amountDue).toBe(0)
+  })
 })
 
 describe('findUnorderableLine', () => {

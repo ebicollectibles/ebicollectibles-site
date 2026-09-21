@@ -204,7 +204,14 @@ export const orders = pgTable('orders', {
   subtotal: numeric('subtotal', { precision: 10, scale: 2, mode: 'number' }).notNull(),
   shippingCost: numeric('shipping_cost', { precision: 10, scale: 2, mode: 'number' }).notNull(),
   tax: numeric('tax', { precision: 10, scale: 2, mode: 'number' }).notNull(),
+  // Gross order value — what the customer got in goods/shipping/tax. Doesn't
+  // subtract creditApplied below; that's what was ACTUALLY charged to a
+  // card, kept separate so a $0-card order (fully covered by credit) still
+  // shows its true value here, not $0.
   total: numeric('total', { precision: 10, scale: 2, mode: 'number' }).notNull(),
+  // Store credit redeemed against this order, if any — see
+  // server/store-credit.ts. 0 for the vast majority of orders.
+  creditApplied: numeric('credit_applied', { precision: 10, scale: 2, mode: 'number' }).notNull().default(0),
   paymentStatus: text('payment_status').notNull().default('unpaid'), // unpaid | paid | test | failed
   squarePaymentId: text('square_payment_id'),
   // Human-readable summary of how the order was paid, e.g. "Visa •••• 4242"
@@ -466,5 +473,36 @@ export const subscriberEvents = pgTable('subscriber_events', {
   email: text('email').notNull(),
   type: text('type').notNull(), // 'subscribed' | 'unsubscribed'
   source: text('source'), // set for 'subscribed' events only ('homepage' | 'checkout' | 'admin')
+  createdAt: timestamp('created_at', { withTimezone: true }).notNull().defaultNow(),
+})
+
+// Fast, atomically-updated current balance — same pattern as products.stock
+// (guarded UPDATE ... WHERE balance >= amount prevents a double-spend race,
+// see server/store-credit.ts's redeemStoreCredit). storeCreditEvents below
+// is the append-only audit trail, same relationship as products.stock has
+// to productEditEvents. One row per user, created on first issue.
+export const storeCreditBalances = pgTable('store_credit_balances', {
+  userId: uuid('user_id')
+    .primaryKey()
+    .references(() => users.id, { onDelete: 'cascade' }),
+  balance: numeric('balance', { precision: 10, scale: 2, mode: 'number' }).notNull().default(0),
+  updatedAt: timestamp('updated_at', { withTimezone: true }).notNull().defaultNow(),
+})
+
+// Every dollar issued or spent, permanently — balance above is derivable
+// from summing these, but kept as a separate fast-path column rather than
+// recomputed by aggregate on every read (see the comment there). amount is
+// signed: positive for issued/reversed, negative for redeemed/adjusted-down.
+export const storeCreditEvents = pgTable('store_credit_events', {
+  id: uuid('id').primaryKey().defaultRandom(),
+  userId: uuid('user_id')
+    .notNull()
+    .references(() => users.id, { onDelete: 'cascade' }),
+  type: text('type').notNull(), // issued | redeemed | reversed | adjusted
+  amount: numeric('amount', { precision: 10, scale: 2, mode: 'number' }).notNull(),
+  // Set on 'redeemed' (which order spent it) and 'reversed' (which refund
+  // gave it back) — null for an admin-issued grant or a manual correction.
+  orderId: uuid('order_id').references(() => orders.id, { onDelete: 'set null' }),
+  reason: text('reason'),
   createdAt: timestamp('created_at', { withTimezone: true }).notNull().defaultNow(),
 })

@@ -48,8 +48,8 @@ export async function handleSquareWebhook(request: Request): Promise<Response> {
     const refund = event?.data?.object?.refund
     if (refund?.id) {
       const { getDb } = await import('~/lib/db/client')
-      const { orders, refundEvents } = await import('~/lib/db/schema')
-      const { eq } = await import('drizzle-orm')
+      const { orders, refundEvents, storeCreditBalances, storeCreditEvents } = await import('~/lib/db/schema')
+      const { eq, sql } = await import('drizzle-orm')
       const db = getDb()
 
       const squarePaymentId: string | undefined = refund.payment_id
@@ -62,7 +62,7 @@ export async function handleSquareWebhook(request: Request): Promise<Response> {
       const amount = refund.amount_money?.amount != null ? refund.amount_money.amount / 100 : null
       const squareRefundId: string = refund.id
 
-      const [existing] = await db.select({ id: refundEvents.id }).from(refundEvents).where(eq(refundEvents.squareRefundId, squareRefundId)).limit(1)
+      const [existing] = await db.select({ id: refundEvents.id, status: refundEvents.status }).from(refundEvents).where(eq(refundEvents.squareRefundId, squareRefundId)).limit(1)
       if (existing) {
         await db
           .update(refundEvents)
@@ -77,6 +77,40 @@ export async function handleSquareWebhook(request: Request): Promise<Response> {
           status: refund.status ?? null,
           reason: refund.reason ?? null,
         })
+      }
+
+      // Auto-restore store credit only on this refund's first transition to
+      // COMPLETED (guards against the webhook firing again for the same
+      // status — Square retries and re-sends updates), and only when it's a
+      // FULL refund of what was actually charged to the card (amountDue,
+      // not the order's gross total — see server/store-credit.ts). A
+      // partial refund doesn't auto-restore anything; that's a manual admin
+      // action, since guessing the right split would be too easy to get
+      // wrong with real money.
+      const justCompleted = refund.status === 'COMPLETED' && existing?.status !== 'COMPLETED'
+      if (justCompleted && orderId && amount != null) {
+        const [order] = await db
+          .select({ userId: orders.userId, total: orders.total, creditApplied: orders.creditApplied })
+          .from(orders)
+          .where(eq(orders.id, orderId))
+          .limit(1)
+        const amountCharged = order ? order.total - order.creditApplied : null
+        if (order?.userId && order.creditApplied > 0 && amountCharged != null && amount >= amountCharged - 0.005) {
+          await db
+            .insert(storeCreditBalances)
+            .values({ userId: order.userId, balance: order.creditApplied })
+            .onConflictDoUpdate({
+              target: storeCreditBalances.userId,
+              set: { balance: sql`${storeCreditBalances.balance} + ${order.creditApplied}`, updatedAt: new Date() },
+            })
+          await db.insert(storeCreditEvents).values({
+            userId: order.userId,
+            type: 'reversed',
+            amount: order.creditApplied,
+            orderId,
+            reason: 'Full refund',
+          })
+        }
       }
     }
   }

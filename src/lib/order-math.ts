@@ -5,13 +5,23 @@ import { FLAT_SHIPPING_RATE } from './products'
 // ordering mistake here means every order is charged wrong.
 // shippingCostOverride lets a caller substitute a real Shippo-quoted rate
 // (Alaska/Hawaii — see server/shippo.ts) in place of the flat rate; omit it
-// for the normal flat-rate-everywhere-else behavior.
-export function computeOrderTotals(lines: Array<{ unitPrice: number; qty: number }>, taxRate: number, shippingCostOverride?: number) {
+// for the normal flat-rate-everywhere-else behavior. creditApplied (see
+// server/store-credit.ts) is store credit redeemed against this order —
+// `total` stays the order's true gross value (what the receipt/admin should
+// show), while `amountDue` is what's actually charged to a card, clamped to
+// never go negative.
+export function computeOrderTotals(
+  lines: Array<{ unitPrice: number; qty: number }>,
+  taxRate: number,
+  shippingCostOverride?: number,
+  creditApplied = 0,
+) {
   const subtotal = lines.reduce((t, l) => t + l.unitPrice * l.qty, 0)
   const shippingCost = subtotal === 0 ? 0 : (shippingCostOverride ?? FLAT_SHIPPING_RATE)
   const tax = Math.round(subtotal * taxRate * 100) / 100
   const total = subtotal + shippingCost + tax
-  return { subtotal, shippingCost, tax, total }
+  const amountDue = Math.max(0, Math.round((total - creditApplied) * 100) / 100)
+  return { subtotal, shippingCost, tax, total, creditApplied, amountDue }
 }
 
 // Same idea for the "is this line even orderable" business rules — kept as

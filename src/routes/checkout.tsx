@@ -16,6 +16,7 @@ import { customerLogin } from '~/server/customers'
 import { startGoogleAuth } from '~/server/google-auth'
 import { getSalesTaxRate } from '~/server/tax'
 import { getHiAkShippingEstimate } from '~/server/shippo'
+import { getMyStoreCredit } from '~/server/store-credit'
 
 export const Route = createFileRoute('/checkout')({
   loader: () => getCurrentCustomer(),
@@ -320,6 +321,35 @@ function CheckoutPage() {
   const shippingLabel = cart.cartEmpty ? '—' : formatMoney(shippingCost)
   const total = cart.subtotal + shippingCost + tax
 
+  // Store credit only exists for signed-in accounts (see
+  // server/store-credit.ts) — fetched once on sign-in, not re-fetched as
+  // the form changes. Defaults to applying automatically when available,
+  // same as how a gift card balance behaves at Amazon checkout; the
+  // checkbox lets someone opt out (e.g. saving it for a future order).
+  // placeOrder always re-derives and clamps this from the real DB balance —
+  // this is purely a preview.
+  const [creditBalance, setCreditBalance] = React.useState(0)
+  const [applyCredit, setApplyCredit] = React.useState(true)
+  React.useEffect(() => {
+    if (checkoutAs !== 'account') {
+      setCreditBalance(0)
+      return
+    }
+    let cancelled = false
+    getMyStoreCredit()
+      .then((result) => {
+        if (!cancelled) setCreditBalance(result.balance)
+      })
+      .catch(() => {
+        if (!cancelled) setCreditBalance(0)
+      })
+    return () => {
+      cancelled = true
+    }
+  }, [checkoutAs])
+  const creditApplied = applyCredit ? Math.min(creditBalance, total) : 0
+  const amountDue = Math.max(0, Math.round((total - creditApplied) * 100) / 100)
+
   const [signinEmail, setSigninEmail] = React.useState('')
   const [signinPassword, setSigninPassword] = React.useState('')
   const [signinError, setSigninError] = React.useState<string | null>(null)
@@ -395,7 +425,7 @@ function CheckoutPage() {
             zip: contact.zip,
           }
         : billing
-      const result = await cart.placeOrder({ contact, billing: effectiveBilling, sourceId, emailOptIn })
+      const result = await cart.placeOrder({ contact, billing: effectiveBilling, sourceId, emailOptIn, creditApplied })
       trackEvent('purchase', {
         transaction_id: String(result.orderNo),
         currency: 'USD',
@@ -420,7 +450,10 @@ function CheckoutPage() {
   const submit = async () => {
     if (hiAkBlocked) return
     let sourceId: string | null = null
-    if (squareConfigured) {
+    // Fully covered by store credit — nothing to tokenize, no card was
+    // ever asked for. placeOrder skips Square entirely in this case too
+    // (see server/orders.ts).
+    if (squareConfigured && amountDue > 0) {
       try {
         sourceId = (await cardRef.current?.tokenize()) ?? null
       } catch (err) {
@@ -803,13 +836,17 @@ function CheckoutPage() {
                           </label>
                           <div style={{ display: paymentMethod === 'applePay' ? 'block' : 'none', padding: '0 14px 14px' }}>
                             <ApplePayButton
-                              amount={total}
+                              amount={amountDue}
                               lineItems={[
                                 { label: 'Subtotal', amount: cart.subtotal },
                                 { label: 'Shipping', amount: shippingCost },
                                 ...(contact.state === 'WA' ? [{ label: 'Tax', amount: tax }] : []),
+                                ...(creditApplied > 0 ? [{ label: 'Store credit', amount: -creditApplied }] : []),
                               ]}
-                              disabled={submitting || !contactComplete || !billingComplete || mixedPreorder}
+                              // amountDue <= 0 means credit alone covers the order — nothing
+                              // for Apple Pay to charge, so it's disabled; "Place order"
+                              // handles that case directly (see submit()).
+                              disabled={submitting || !contactComplete || !billingComplete || mixedPreorder || amountDue <= 0}
                               onTokenize={(sourceId) => finishOrder(sourceId)}
                               onError={setError}
                               onAvailabilityChange={setApplePayAvailable}
@@ -904,10 +941,37 @@ function CheckoutPage() {
                 <span style={{ fontFamily: "'IBM Plex Mono', monospace" }}>{formatMoney(tax)}</span>
               </div>
             )}
+            {creditApplied > 0 && (
+              <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                <span style={{ color: '#3f7a63' }}>Store credit</span>
+                <span style={{ fontFamily: "'IBM Plex Mono', monospace", color: '#3f7a63' }}>-{formatMoney(creditApplied)}</span>
+              </div>
+            )}
           </div>
+          {checkoutAs === 'account' && creditBalance > 0 && (
+            <label
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: 8,
+                marginTop: 14,
+                padding: '10px 12px',
+                background: '#f6f7f8',
+                borderRadius: 2,
+                fontSize: 12.5,
+                color: '#131b28',
+                cursor: 'pointer',
+              }}
+            >
+              <input type="checkbox" checked={applyCredit} onChange={(e) => setApplyCredit(e.target.checked)} />
+              <span>
+                Store credit available: <strong>{formatMoney(creditBalance)}</strong> — apply to this order
+              </span>
+            </label>
+          )}
           <div style={{ marginTop: 16, paddingTop: 16, borderTop: '1px solid #131b28', display: 'flex', justifyContent: 'space-between', alignItems: 'baseline' }}>
             <span style={{ fontSize: 15, fontWeight: 700 }}>Total</span>
-            <span style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 21, fontWeight: 500 }}>{formatMoney(total)}</span>
+            <span style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 21, fontWeight: 500 }}>{formatMoney(amountDue)}</span>
           </div>
           {checkoutAs !== null && (
             <>

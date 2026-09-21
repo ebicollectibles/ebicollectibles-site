@@ -3,7 +3,18 @@ import { z } from 'zod'
 import { eq, inArray, sql } from 'drizzle-orm'
 import { getDb } from '~/lib/db/client'
 import { withTransaction } from '~/lib/db/transactional-client'
-import { emailEvents, orderCounters, orderItems, orderStatusEvents, orders, paymentAttempts, products as productsTable, users } from '~/lib/db/schema'
+import {
+  emailEvents,
+  orderCounters,
+  orderItems,
+  orderStatusEvents,
+  orders,
+  paymentAttempts,
+  products as productsTable,
+  storeCreditBalances,
+  storeCreditEvents,
+  users,
+} from '~/lib/db/schema'
 import { MIXED_PREORDER_ERROR, computeOrderTotals, findUnorderableLine, hasMixedPreorderCart, isHiOrAk } from '~/lib/order-math'
 import { US_STATE_CODES } from '~/lib/us-states'
 import { BLOCK_HI_AK_CHECKOUT } from '~/lib/feature-flags'
@@ -38,6 +49,11 @@ const placeOrderSchema = z.object({
   }),
   sourceId: z.string().nullable().optional(),
   emailOptIn: z.boolean().optional().default(false),
+  // How much store credit the shopper asked to apply — always re-clamped
+  // below against their real balance and the order's own total; never
+  // trusted as-is. Silently ignored for guest checkout (credit only exists
+  // for signed-in accounts — see server/store-credit.ts).
+  creditApplied: z.number().min(0).optional().default(0),
 })
 
 export const placeOrder = createServerFn({ method: 'POST' })
@@ -190,6 +206,28 @@ export const placeOrder = createServerFn({ method: 'POST' })
 
       const { subtotal, shippingCost, tax, total } = computeOrderTotals(lineDetails, taxRate, shippingCostOverride)
 
+      // Store credit: clamp the requested amount to what's actually
+      // possible (signed-in only, never more than this order costs), then
+      // atomically decrement the balance right away — same guarded
+      // UPDATE ... WHERE balance >= amount shape as the stock decrement
+      // above, so a stale/concurrent redemption elsewhere fails cleanly
+      // here rather than allowing a double-spend. This happens before the
+      // Square charge (and before the order row exists) specifically so a
+      // failed charge below rolls the decrement back too — the ledger event
+      // itself is written after the order row exists, once its id is known.
+      let creditApplied = 0
+      if (userId && data.creditApplied > 0) {
+        const requested = Math.min(data.creditApplied, total)
+        const [updated] = await tx
+          .update(storeCreditBalances)
+          .set({ balance: sql`${storeCreditBalances.balance} - ${requested}`, updatedAt: new Date() })
+          .where(sql`${storeCreditBalances.userId} = ${userId} AND ${storeCreditBalances.balance} >= ${requested}`)
+          .returning()
+        if (!updated) throw new Error('Your store credit balance changed — please refresh and try again.')
+        creditApplied = requested
+      }
+      const amountDue = Math.max(0, Math.round((total - creditApplied) * 100) / 100)
+
       const [counter] = await tx
         .update(orderCounters)
         .set({ nextOrderNo: sql`${orderCounters.nextOrderNo} + 1` })
@@ -210,19 +248,26 @@ export const placeOrder = createServerFn({ method: 'POST' })
       })
       const squareOrderId = squareOrder && squareOrder.totalCents === Math.round(total * 100) ? squareOrder.orderId : null
 
-      const charge = await chargeSquarePayment({
-        sourceId: data.sourceId ?? null,
-        amount: total,
-        orderNo,
-        squareOrderId,
-        billingAddress: {
-          addressLine1: data.billing.street,
-          addressLine2: data.billing.apartment || undefined,
-          locality: data.billing.city,
-          administrativeDistrictLevel1: data.billing.state,
-          postalCode: data.billing.zip,
-        },
-      })
+      // Fully covered by store credit — skip Square entirely rather than
+      // send it a $0 charge (which it'd reject anyway). No card was
+      // involved, so there's nothing to tokenize on the client side either
+      // (see checkout.tsx's submit()).
+      const charge =
+        amountDue <= 0
+          ? { status: 'paid' as const, squarePaymentId: undefined, paymentMethodSummary: 'Store credit', riskLevel: undefined, avsStatus: undefined, cvvStatus: undefined }
+          : await chargeSquarePayment({
+              sourceId: data.sourceId ?? null,
+              amount: amountDue,
+              orderNo,
+              squareOrderId,
+              billingAddress: {
+                addressLine1: data.billing.street,
+                addressLine2: data.billing.apartment || undefined,
+                locality: data.billing.city,
+                administrativeDistrictLevel1: data.billing.state,
+                postalCode: data.billing.zip,
+              },
+            })
       if (charge.status === 'failed') {
         // Logged on the outer (non-transactional) connection so it survives
         // this transaction's rollback — no order row exists for a failed
@@ -231,7 +276,7 @@ export const placeOrder = createServerFn({ method: 'POST' })
           await db.insert(paymentAttempts).values({
             userId,
             email: data.contact.email || null,
-            amount: total,
+            amount: amountDue,
             errorMessage: charge.error || 'Payment failed',
           })
         } catch (err) {
@@ -267,6 +312,7 @@ export const placeOrder = createServerFn({ method: 'POST' })
           shippingCost,
           tax,
           total,
+          creditApplied,
           paymentStatus: charge.status,
           squarePaymentId: charge.squarePaymentId,
           paymentMethodSummary: charge.paymentMethodSummary ?? null,
@@ -289,6 +335,14 @@ export const placeOrder = createServerFn({ method: 'POST' })
 
       await tx.insert(orderStatusEvents).values({ orderId: order.id, status: order.fulfillmentStatus })
 
+      // Ledger event written now that the order's id exists — the balance
+      // itself was already decremented atomically above, before the Square
+      // charge, so this is just the audit trail (account page history,
+      // admin visibility) catching up.
+      if (creditApplied > 0 && userId) {
+        await tx.insert(storeCreditEvents).values({ userId, type: 'redeemed', amount: -creditApplied, orderId: order.id })
+      }
+
       if (data.emailOptIn && data.contact.email) {
         await upsertSubscriber(tx, data.contact.email.trim().toLowerCase(), 'checkout', data.contact.firstName)
       }
@@ -297,6 +351,8 @@ export const placeOrder = createServerFn({ method: 'POST' })
         orderId: order.id,
         orderNo,
         total,
+        creditApplied,
+        amountDue,
         paymentStatus: charge.status,
         paymentMethodSummary: charge.paymentMethodSummary ?? null,
         subtotal,
@@ -353,5 +409,11 @@ export const placeOrder = createServerFn({ method: 'POST' })
       console.error(`Failed to send confirmation email for order ${result.orderNo}:`, err)
     }
 
-    return { orderNo: result.orderNo, total: result.total, paymentStatus: result.paymentStatus }
+    return {
+      orderNo: result.orderNo,
+      total: result.total,
+      creditApplied: result.creditApplied,
+      amountDue: result.amountDue,
+      paymentStatus: result.paymentStatus,
+    }
   })

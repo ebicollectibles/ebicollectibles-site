@@ -1,11 +1,16 @@
+import * as React from 'react'
 import { createFileRoute, Link } from '@tanstack/react-router'
 import { requireCustomer } from '~/server/customer-auth'
 import { getMyOrders } from '~/server/customers'
+import { getMyStoreCredit } from '~/server/store-credit'
 import { formatMoney } from '~/lib/products'
 
 export const Route = createFileRoute('/account/orders/')({
   beforeLoad: () => requireCustomer(),
-  loader: () => getMyOrders(),
+  loader: async () => {
+    const [orders, credit] = await Promise.all([getMyOrders(), getMyStoreCredit()])
+    return { orders, credit }
+  },
   component: OrdersPage,
 })
 
@@ -16,12 +21,74 @@ const fulfillmentLabel: Record<string, string> = {
   cancelled: 'Cancelled',
 }
 
+const creditEventLabel: Record<string, string> = {
+  issued: 'Credit issued',
+  redeemed: 'Used on order',
+  reversed: 'Refund restored',
+  adjusted: 'Adjustment',
+}
+
+function StoreCreditCard({ credit }: { credit: { balance: number; history: Array<{ type: string; amount: number; reason: string | null; createdAt: Date | string }> } }) {
+  const [expanded, setExpanded] = React.useState(false)
+  if (credit.balance <= 0 && credit.history.length === 0) return null
+
+  return (
+    <div style={{ border: '1px solid #e3e6ea', borderRadius: 4, padding: '16px 20px', marginTop: 24 }}>
+      <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between' }}>
+        <div>
+          <div style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 10.5, letterSpacing: '0.1em', textTransform: 'uppercase', color: '#5a6875' }}>
+            Store credit
+          </div>
+          <div style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 22, fontWeight: 600, marginTop: 4 }}>{formatMoney(credit.balance)}</div>
+        </div>
+        {credit.history.length > 0 && (
+          <button
+            type="button"
+            onClick={() => setExpanded((e) => !e)}
+            style={{ background: 'none', border: 0, padding: 0, fontSize: 12, color: '#5a6875', textDecoration: 'underline', cursor: 'pointer' }}
+          >
+            {expanded ? 'Hide history' : 'View history'}
+          </button>
+        )}
+      </div>
+      {expanded && (
+        <div style={{ marginTop: 14, paddingTop: 14, borderTop: '1px solid #f0f2f4', display: 'flex', flexDirection: 'column', gap: 8 }}>
+          {credit.history.map((event, i) => (
+            <div key={i} style={{ display: 'flex', justifyContent: 'space-between', gap: 12, fontSize: 12.5 }}>
+              <div>
+                <span style={{ color: '#131b28' }}>{creditEventLabel[event.type] ?? event.type}</span>
+                {event.reason && <span style={{ color: '#5a6875' }}> — {event.reason}</span>}
+                <div style={{ color: '#5a6875', fontFamily: "'IBM Plex Mono', monospace", fontSize: 11, marginTop: 2 }}>
+                  {new Date(event.createdAt).toLocaleDateString()}
+                </div>
+              </div>
+              <span
+                style={{
+                  fontFamily: "'IBM Plex Mono', monospace",
+                  fontWeight: 600,
+                  color: event.amount >= 0 ? '#3f7a63' : '#131b28',
+                  whiteSpace: 'nowrap',
+                }}
+              >
+                {event.amount >= 0 ? '+' : ''}
+                {formatMoney(event.amount)}
+              </span>
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  )
+}
+
 function OrdersPage() {
-  const orders = Route.useLoaderData()
+  const { orders, credit } = Route.useLoaderData()
 
   return (
     <section style={{ maxWidth: 760, margin: '0 auto', padding: '48px 24px 100px', fontFamily: 'Archivo, Helvetica, sans-serif' }}>
       <h1 style={{ fontSize: 26, fontWeight: 700, margin: 0 }}>Order history</h1>
+
+      <StoreCreditCard credit={credit} />
 
       {orders.length === 0 ? (
         <div style={{ textAlign: 'center', padding: '70px 20px' }}>

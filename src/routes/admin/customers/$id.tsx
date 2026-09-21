@@ -1,17 +1,130 @@
 import * as React from 'react'
-import { createFileRoute, Link, useNavigate } from '@tanstack/react-router'
+import { createFileRoute, Link, useNavigate, useRouter } from '@tanstack/react-router'
 import { AdminNav } from '~/components/AdminNav'
 import { requireAdmin, adminLogout } from '~/server/admin-auth'
 import { adminGetCustomer } from '~/server/admin'
+import { adminAdjustStoreCredit, adminGetStoreCredit } from '~/server/store-credit'
 import { formatMoney } from '~/lib/products'
 
 const ORDERS_PER_PAGE = 10
 
 export const Route = createFileRoute('/admin/customers/$id')({
   beforeLoad: () => requireAdmin(),
-  loader: ({ params }) => adminGetCustomer({ data: { id: params.id } }),
+  loader: async ({ params }) => {
+    const [data, credit] = await Promise.all([adminGetCustomer({ data: { id: params.id } }), adminGetStoreCredit({ data: { userId: params.id } })])
+    return data ? { ...data, credit } : null
+  },
   component: AdminCustomerDetailPage,
 })
+
+const creditEventLabel: Record<string, string> = {
+  issued: 'Issued',
+  redeemed: 'Used on order',
+  reversed: 'Restored (refund)',
+  adjusted: 'Adjustment',
+}
+
+function StoreCreditPanel({ userId, credit }: { userId: string; credit: { balance: number; history: Array<{ type: string; amount: number; orderId: string | null; reason: string | null; createdAt: Date | string }> } }) {
+  const router = useRouter()
+  const [amount, setAmount] = React.useState('')
+  const [reason, setReason] = React.useState('')
+  const [busy, setBusy] = React.useState(false)
+  const [formError, setFormError] = React.useState<string | null>(null)
+
+  const submit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    const parsed = Number(amount)
+    if (!Number.isFinite(parsed) || parsed === 0) {
+      setFormError('Enter a non-zero dollar amount (negative to correct a mistaken grant).')
+      return
+    }
+    if (!reason.trim()) {
+      setFormError('A reason is required — this shows in the customer-facing history too.')
+      return
+    }
+    setBusy(true)
+    setFormError(null)
+    try {
+      await adminAdjustStoreCredit({ data: { userId, amount: parsed, reason: reason.trim() } })
+      setAmount('')
+      setReason('')
+      await router.invalidate()
+    } catch (err) {
+      setFormError(err instanceof Error ? err.message : 'Could not update store credit.')
+    } finally {
+      setBusy(false)
+    }
+  }
+
+  return (
+    <div style={{ border: '1px solid #e3e6ea', borderRadius: 4, padding: '18px 20px', marginTop: 24 }}>
+      <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between' }}>
+        <div>
+          <div style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 10.5, letterSpacing: '0.1em', textTransform: 'uppercase', color: '#5a6875' }}>
+            Store credit
+          </div>
+          <div style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 22, fontWeight: 600, marginTop: 4 }}>{formatMoney(credit.balance)}</div>
+        </div>
+      </div>
+
+      <form onSubmit={submit} style={{ display: 'flex', gap: 8, marginTop: 16, flexWrap: 'wrap', alignItems: 'flex-start' }}>
+        <input
+          type="number"
+          step="0.01"
+          placeholder="Amount, e.g. 10 (or -10 to correct)"
+          value={amount}
+          onChange={(e) => setAmount(e.target.value)}
+          style={{ flex: '1 1 220px', padding: '8px 10px', border: '1px solid #cfd4da', borderRadius: 2, fontSize: 13 }}
+        />
+        <input
+          type="text"
+          placeholder="Reason (required)"
+          value={reason}
+          onChange={(e) => setReason(e.target.value)}
+          style={{ flex: '2 1 260px', padding: '8px 10px', border: '1px solid #cfd4da', borderRadius: 2, fontSize: 13 }}
+        />
+        <button
+          type="submit"
+          disabled={busy}
+          style={{
+            background: '#131b28',
+            color: '#ffffff',
+            border: 0,
+            borderRadius: 2,
+            padding: '9px 16px',
+            fontSize: 13,
+            fontWeight: 600,
+            cursor: busy ? 'not-allowed' : 'pointer',
+            opacity: busy ? 0.6 : 1,
+          }}
+        >
+          {busy ? 'Saving…' : 'Apply'}
+        </button>
+      </form>
+      {formError && <p style={{ fontSize: 12.5, color: '#b4622f', marginTop: 8 }}>{formError}</p>}
+
+      {credit.history.length > 0 && (
+        <div style={{ marginTop: 18, paddingTop: 14, borderTop: '1px solid #f0f2f4', display: 'flex', flexDirection: 'column', gap: 8 }}>
+          {credit.history.map((event, i) => (
+            <div key={i} style={{ display: 'flex', justifyContent: 'space-between', gap: 12, fontSize: 12.5 }}>
+              <div>
+                <span style={{ color: '#131b28' }}>{creditEventLabel[event.type] ?? event.type}</span>
+                {event.reason && <span style={{ color: '#5a6875' }}> — {event.reason}</span>}
+                <div style={{ color: '#5a6875', fontFamily: "'IBM Plex Mono', monospace", fontSize: 11, marginTop: 2 }}>
+                  {new Date(event.createdAt).toLocaleString()}
+                </div>
+              </div>
+              <span style={{ fontFamily: "'IBM Plex Mono', monospace", fontWeight: 600, color: event.amount >= 0 ? '#3f7a63' : '#b4622f', whiteSpace: 'nowrap' }}>
+                {event.amount >= 0 ? '+' : ''}
+                {formatMoney(event.amount)}
+              </span>
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  )
+}
 
 const paymentColor: Record<string, string> = {
   paid: '#3f7a63',
@@ -47,7 +160,7 @@ function AdminCustomerDetailPage() {
     )
   }
 
-  const { customer, orders, events } = data
+  const { customer, orders, events, credit } = data
   const totalPages = Math.max(1, Math.ceil(orders.length / ORDERS_PER_PAGE))
   const currentPage = Math.min(page, totalPages)
   const pageOrders = orders.slice((currentPage - 1) * ORDERS_PER_PAGE, currentPage * ORDERS_PER_PAGE)
@@ -78,6 +191,8 @@ function AdminCustomerDetailPage() {
         <span>·</span>
         <span>Last login {customer.lastLoginAt ? new Date(customer.lastLoginAt).toLocaleString() : 'never'}</span>
       </div>
+
+      <StoreCreditPanel userId={customer.id} credit={credit} />
 
       <h2 style={{ fontSize: 15, fontWeight: 700, marginTop: 36, marginBottom: 16 }}>Order history</h2>
 
