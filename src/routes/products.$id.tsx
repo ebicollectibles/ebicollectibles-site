@@ -46,6 +46,14 @@ export const Route = createFileRoute('/products/$id')({
             name: loaderData.name,
             ...(image ? { image: [image] } : {}),
             description,
+            // Feeds Google's free Shopping listings via automated feeds
+            // (structured data read straight off the page, no submitted
+            // feed file) — omitted entirely when not yet filled in on a
+            // product, rather than emitting an empty string, since Google
+            // treats a present-but-empty identifier as an error rather
+            // than "not provided."
+            ...(loaderData.gtin ? { gtin13: loaderData.gtin } : {}),
+            ...(loaderData.brand ? { brand: { '@type': 'Brand', name: loaderData.brand } } : {}),
             offers: {
               '@type': 'Offer',
               url,
