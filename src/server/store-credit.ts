@@ -27,7 +27,12 @@ export async function getStoreCreditBalance(userId: string): Promise<number> {
 // getMyStoreCredit) — the reason picked from the admin dropdown (e.g.
 // "Damaged or defective item", or whatever detail was typed for "Other") is
 // bookkeeping for the store, not something to put in front of the customer
-// unfiltered. Admin's own view (adminGetStoreCredit) gets the full detail.
+// unfiltered. Admin's own view (adminGetStoreCredit) gets the full detail;
+// the customer gets a generic attribution instead for the two
+// admin-initiated event types (issued/adjusted) — enough to say "this was
+// deliberate, not a glitch" without any of the internal specifics. redeemed
+// and reversed are self-explanatory from their type label alone (see
+// creditEventLabel in account/orders/index.tsx), so no extra text there.
 async function getStoreCreditHistory(userId: string, includeReason: boolean) {
   const db = getDb()
   return db
@@ -35,7 +40,9 @@ async function getStoreCreditHistory(userId: string, includeReason: boolean) {
       type: storeCreditEvents.type,
       amount: storeCreditEvents.amount,
       orderId: storeCreditEvents.orderId,
-      reason: includeReason ? storeCreditEvents.reason : sql<string | null>`null`,
+      reason: includeReason
+        ? storeCreditEvents.reason
+        : sql<string | null>`case when ${storeCreditEvents.type} in ('issued', 'adjusted') then 'From EBI Collectibles' else null end`,
       createdAt: storeCreditEvents.createdAt,
     })
     .from(storeCreditEvents)
