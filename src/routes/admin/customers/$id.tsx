@@ -89,8 +89,9 @@ function AdminCustomerDetailPage() {
           return (
             <Link
               key={order.id}
-              to="/admin/orders/$id"
+              to="/admin/order-customer-view/$id"
               params={{ id: order.id }}
+              search={{ customerId: customer.id }}
               style={{
                 display: 'flex',
                 alignItems: 'center',
