@@ -10,12 +10,13 @@ export const SHOW_ACRYLICS = true
 // like the refund-policy page already does for cancellation requests).
 export const SHOW_CONTACT_EMAIL = false
 
-// Shippo is now wired up with a real API key + ship-from address (Cloudflare
-// Worker secrets) — verified 2026-09-21 with live CreateShipment quotes to
-// both Honolulu, HI and Anchorage, AK, both returning sane real rates
-// (~$9-11 for a 1lb parcel, close to the flat $10) with no USPS Flat Rate
-// service levels involved. AK/HI checkout now uses the real Shippo quote
-// (server/shippo.ts) instead of being blocked. Flip back to true if Shippo
-// ever needs to be disabled again (e.g. key revoked, ship-from address
-// changes and needs re-verifying).
-export const BLOCK_HI_AK_CHECKOUT = false
+// Shippo itself is wired up and verified working (real API key + ship-from
+// address as Cloudflare Worker secrets, live-tested 2026-09-21 against both
+// Honolulu, HI and Anchorage, AK). But no products have a real weightLb set
+// yet, so resolveHiAkShippingRate (server/shippo.ts) falls back to a flat
+// 0.5lb guess per item for every line — that's fine for something small, but
+// badly undercharges for anything heavier (e.g. a sealed booster box),
+// recreating the exact under-charging risk this feature exists to avoid.
+// Block AK/HI checkout again until product weights are actually filled in
+// via the admin form, then flip this back to false.
+export const BLOCK_HI_AK_CHECKOUT = true
