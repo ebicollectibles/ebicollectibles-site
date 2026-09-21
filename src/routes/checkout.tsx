@@ -418,6 +418,7 @@ function CheckoutPage() {
   }
 
   const submit = async () => {
+    if (hiAkBlocked) return
     let sourceId: string | null = null
     if (squareConfigured) {
       try {
@@ -918,7 +919,7 @@ function CheckoutPage() {
               <button
                 type="submit"
                 form="checkout-form"
-                disabled={cart.cartEmpty || mixedPreorder || submitting}
+                disabled={cart.cartEmpty || mixedPreorder || submitting || hiAkBlocked}
                 className="ebi-btn-dark"
                 style={{
                   marginTop: 14,
@@ -930,8 +931,8 @@ function CheckoutPage() {
                   padding: 15,
                   fontSize: 14,
                   fontWeight: 600,
-                  cursor: cart.cartEmpty || mixedPreorder || submitting ? 'not-allowed' : 'pointer',
-                  opacity: cart.cartEmpty || mixedPreorder || submitting ? 0.45 : 1,
+                  cursor: cart.cartEmpty || mixedPreorder || submitting || hiAkBlocked ? 'not-allowed' : 'pointer',
+                  opacity: cart.cartEmpty || mixedPreorder || submitting || hiAkBlocked ? 0.45 : 1,
                 }}
               >
                 {submitting ? 'Placing order…' : 'Place order'}
