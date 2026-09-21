@@ -50,6 +50,24 @@ export interface Product {
   shipsWithDelay?: boolean
   comingSoon?: boolean
   placeholder?: string
+  gtin?: string
+  brand?: string
+}
+
+// GS1 check-digit validation for a GTIN-13 (UPC/EAN barcode) — shared by
+// the admin form (instant feedback) and the server (authoritative check).
+// Algorithm: from the 12 digits excluding the check digit, weight the
+// rightmost 3, alternating 1/3 going left, sum, check digit = (10 - sum%10) % 10.
+export function isValidGtin13(value: string): boolean {
+  if (!/^\d{13}$/.test(value)) return false
+  const digits = value.split('').map(Number)
+  const checkDigit = digits[12]
+  let sum = 0
+  for (let i = 0; i < 12; i++) {
+    const fromRight = 11 - i
+    sum += digits[i] * (fromRight % 2 === 0 ? 3 : 1)
+  }
+  return (10 - (sum % 10)) % 10 === checkDigit
 }
 
 // Product catalog now lives in Postgres (see src/lib/db/schema.ts and

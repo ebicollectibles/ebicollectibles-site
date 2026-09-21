@@ -72,6 +72,8 @@ function EditProductPage() {
           comingSoon: product.comingSoon,
           placeholder: product.placeholder ?? '',
           published: product.published,
+          gtin: product.gtin ?? '',
+          brand: product.brand ?? '',
         }}
         onSubmit={async (values) => {
           await adminUpdateProduct({
@@ -89,6 +91,8 @@ function EditProductPage() {
               images: values.images.map((u) => u.trim()).filter(Boolean),
               description: values.description.trim() || undefined,
               placeholder: values.placeholder || undefined,
+              gtin: values.gtin.trim() || null,
+              brand: values.brand.trim() || undefined,
             },
           })
           navigate({ to: '/admin' })

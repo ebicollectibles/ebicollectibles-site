@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { formatMoney, rankProducts, type Product } from './products'
+import { formatMoney, isValidGtin13, rankProducts, type Product } from './products'
 
 function product(overrides: Partial<Product> & { id: string }): Product {
   return {
@@ -53,5 +53,25 @@ describe('rankProducts', () => {
     const products = [product({ id: 'p', bestSellingRank: 1, hideFromNewAndUpcoming: true })]
     expect(rankProducts(products, 'bestSellingRank').map((p) => p.id)).toEqual(['p'])
     expect(rankProducts(products, 'newAndUpcomingRank').map((p) => p.id)).toEqual([])
+  })
+})
+
+describe('isValidGtin13', () => {
+  it('accepts a real, correctly-check-digited GTIN-13', () => {
+    expect(isValidGtin13('4006381333931')).toBe(true)
+  })
+
+  it('rejects a GTIN-13 with a wrong check digit', () => {
+    expect(isValidGtin13('4006381333930')).toBe(false)
+  })
+
+  it('rejects anything not exactly 13 digits', () => {
+    expect(isValidGtin13('123')).toBe(false)
+    expect(isValidGtin13('40063813339312')).toBe(false)
+    expect(isValidGtin13('')).toBe(false)
+  })
+
+  it('rejects non-numeric input', () => {
+    expect(isValidGtin13('400638133393a')).toBe(false)
   })
 })

@@ -51,5 +51,7 @@ function toProduct(row: typeof productsTable.$inferSelect): Product {
     shipsWithDelay: row.shipsWithDelay,
     comingSoon: row.comingSoon,
     placeholder: row.placeholder ?? undefined,
+    gtin: row.gtin ?? undefined,
+    brand: row.brand ?? undefined,
   }
 }

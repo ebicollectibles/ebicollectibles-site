@@ -12,6 +12,19 @@ export const products = pgTable('products', {
   compareAtPrice: numeric('compare_at_price', { precision: 10, scale: 2, mode: 'number' }),
   stock: integer('stock').notNull().default(0),
   squareVariationId: text('square_variation_id'),
+  // GS1 GTIN-13 (UPC/EAN barcode) — same field name/format Square uses on
+  // its own catalog items, kept here rather than read live from Square
+  // since it's static (never changes with stock/price) and not every
+  // product is necessarily linked to Square. Feeds a future Google
+  // Merchant Center product feed; validated (13 digits + correct check
+  // digit) in admin.ts, not at the DB level, since it's optional per
+  // product (many won't have one yet).
+  gtin: text('gtin'),
+  // The manufacturer/IP brand shown to shoppers (e.g. "Pokémon") — not the
+  // seller name, which Merchant Center already knows separately. Near-
+  // constant across this catalog today, but a real column rather than a
+  // hardcoded value in case a different licensed line is ever carried.
+  brand: text('brand'),
   img: text('img'),
   // Tablet/mobile are optional — a viewport falls back to `img` (the
   // desktop/default version) when its size-specific version isn't set.

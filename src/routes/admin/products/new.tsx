@@ -38,6 +38,8 @@ function NewProductPage() {
               images: values.images.map((u) => u.trim()).filter(Boolean),
               description: values.description.trim() || undefined,
               placeholder: values.placeholder || undefined,
+              gtin: values.gtin.trim() || null,
+              brand: values.brand.trim() || undefined,
             },
           })
           navigate({ to: '/admin' })

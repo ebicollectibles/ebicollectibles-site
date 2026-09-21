@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { PRODUCT_CATEGORIES, SUBCATEGORIES_BY_CATEGORY, type ProductCategory, type ProductSubcategory } from '~/lib/products'
+import { PRODUCT_CATEGORIES, SUBCATEGORIES_BY_CATEGORY, isValidGtin13, type ProductCategory, type ProductSubcategory } from '~/lib/products'
 import { listProductImages, uploadProductImage } from '~/server/uploads'
 import { adminSearchSquareCatalog } from '~/server/admin'
 import type { SquareCatalogOption } from '~/server/square'
@@ -31,6 +31,8 @@ export interface ProductFormValues {
   comingSoon: boolean
   placeholder: string
   published: boolean
+  gtin: string
+  brand: string
 }
 
 const emptyValues: ProductFormValues = {
@@ -58,6 +60,8 @@ const emptyValues: ProductFormValues = {
   comingSoon: false,
   placeholder: '',
   published: true,
+  gtin: '',
+  brand: '',
 }
 
 const field: React.CSSProperties = {
@@ -1079,6 +1083,33 @@ export function ProductForm({
           Supports basic formatting: lines starting with "*" or "-" become a bullet list, "1." becomes a numbered
           list, and **bold** / *italic* work inline.
         </p>
+      </div>
+      <div style={{ marginBottom: 16, display: 'flex', gap: 12 }}>
+        <div style={{ flex: 1 }}>
+          <label htmlFor="pf-gtin" style={label}>
+            GTIN-13 (barcode)
+          </label>
+          <input
+            id="pf-gtin"
+            className="ebi-field"
+            style={field}
+            value={values.gtin}
+            onChange={(e) => set('gtin', e.target.value)}
+            placeholder="e.g. 4006381333931"
+            inputMode="numeric"
+          />
+          {values.gtin.trim() && !isValidGtin13(values.gtin.trim()) && (
+            <p style={{ fontSize: 11.5, color: '#b4622f', margin: '6px 0 0' }}>
+              Not a valid 13-digit GTIN — check the digits (including the last, check digit).
+            </p>
+          )}
+        </div>
+        <div style={{ flex: 1 }}>
+          <label htmlFor="pf-brand" style={label}>
+            Brand (for Google Shopping, e.g. "Pokémon")
+          </label>
+          <input id="pf-brand" className="ebi-field" style={field} value={values.brand} onChange={(e) => set('brand', e.target.value)} placeholder="Pokémon" />
+        </div>
       </div>
       <label style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: 13, marginBottom: 12 }}>
         <input type="checkbox" checked={values.preorder} onChange={(e) => set('preorder', e.target.checked)} />

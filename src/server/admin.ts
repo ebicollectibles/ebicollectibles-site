@@ -23,7 +23,7 @@ import {
   users,
 } from '~/lib/db/schema'
 import { CARRIERS } from '~/lib/carriers'
-import { PRODUCT_CATEGORIES, SUBCATEGORIES_BY_CATEGORY, ALL_SUBCATEGORIES } from '~/lib/products'
+import { PRODUCT_CATEGORIES, SUBCATEGORIES_BY_CATEGORY, ALL_SUBCATEGORIES, isValidGtin13 } from '~/lib/products'
 import { buildShipmentsByOrder, computeFulfillmentStatus, groupBy, remainingQtyByItem } from '~/lib/shipments'
 import { assertAdmin } from './admin-auth'
 import { sendMarketplaceShipmentEmail, sendShipmentEmail } from './email'
@@ -59,6 +59,13 @@ const productBaseSchema = z.object({
   comingSoon: z.boolean().optional().default(false),
   placeholder: z.string().optional(),
   published: z.boolean().optional().default(true),
+  gtin: z
+    .string()
+    .trim()
+    .refine(isValidGtin13, 'Must be a valid 13-digit GTIN (correct check digit).')
+    .nullable()
+    .optional(),
+  brand: z.string().trim().optional(),
 })
 
 function withSubcategoryCheck<T extends z.ZodObject<z.ZodRawShape>>(schema: T) {
