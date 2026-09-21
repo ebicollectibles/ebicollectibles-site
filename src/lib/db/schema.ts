@@ -503,6 +503,14 @@ export const storeCreditEvents = pgTable('store_credit_events', {
   // Set on 'redeemed' (which order spent it) and 'reversed' (which refund
   // gave it back) — null for an admin-issued grant or a manual correction.
   orderId: uuid('order_id').references(() => orders.id, { onDelete: 'set null' }),
+  // Standard category from the admin dropdown (see lib/store-credit.ts) —
+  // shown to admin in full, reduced to a generic attribution for the
+  // customer (see getStoreCreditHistory in server/store-credit.ts).
   reason: text('reason'),
+  // Free-text detail for admin's own bookkeeping — e.g. "combined orders
+  // #EBI-102 and #EBI-104 into one shipment, refunding the difference as
+  // credit." Admin-only, always: never included in the customer-facing
+  // history query, unlike reason above (which is filtered per-request).
+  note: text('note'),
   createdAt: timestamp('created_at', { withTimezone: true }).notNull().defaultNow(),
 })

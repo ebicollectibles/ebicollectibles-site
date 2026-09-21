@@ -44,6 +44,10 @@ async function getStoreCreditHistory(userId: string, includeReason: boolean) {
       reason: includeReason
         ? storeCreditEvents.reason
         : sql<string | null>`case when ${storeCreditEvents.type} in ('issued', 'adjusted') then 'From EBI Collectibles' else null end`,
+      // note is never included for the customer — always admin-only,
+      // unlike reason above which at least has a generic customer-facing
+      // fallback. There's no customer-facing equivalent for note at all.
+      note: includeReason ? storeCreditEvents.note : sql<string | null>`null`,
       createdAt: storeCreditEvents.createdAt,
     })
     .from(storeCreditEvents)
@@ -61,12 +65,14 @@ async function getStoreCreditHistory(userId: string, includeReason: boolean) {
 // rather than pulled into products.ts.
 
 /** amount must be > 0. Used both for a fresh admin grant and for restoring credit after a refund (no order-id ordering problem here — the order already exists in both cases). */
-export async function issueOrReverseStoreCredit(tx: Tx, opts: { userId: string; amount: number; type: 'issued' | 'reversed'; orderId?: string; reason?: string }) {
+export async function issueOrReverseStoreCredit(tx: Tx, opts: { userId: string; amount: number; type: 'issued' | 'reversed'; orderId?: string; reason?: string; note?: string }) {
   await tx
     .insert(storeCreditBalances)
     .values({ userId: opts.userId, balance: opts.amount })
     .onConflictDoUpdate({ target: storeCreditBalances.userId, set: { balance: sql`${storeCreditBalances.balance} + ${opts.amount}`, updatedAt: new Date() } })
-  await tx.insert(storeCreditEvents).values({ userId: opts.userId, type: opts.type, amount: opts.amount, orderId: opts.orderId ?? null, reason: opts.reason ?? null })
+  await tx
+    .insert(storeCreditEvents)
+    .values({ userId: opts.userId, type: opts.type, amount: opts.amount, orderId: opts.orderId ?? null, reason: opts.reason ?? null, note: opts.note ?? null })
 }
 
 // --- Customer-facing: account page balance + history ---
@@ -86,15 +92,21 @@ const adjustSchema = z.object({
   // Negative: correct a mistaken grant. Never zero — nothing to record.
   amount: z.number().refine((n) => n !== 0, 'Amount cannot be zero.'),
   reason: z.string().trim().min(1, 'A reason is required.'),
+  // Free-text, admin-only, optional — see the note column's comment in
+  // lib/db/schema.ts. Distinct from reason: reason is the standardized
+  // customer-adjacent category, note is whatever extra context admin wants
+  // on file that should never reach the customer under any circumstance.
+  note: z.string().trim().optional(),
 })
 
 export const adminAdjustStoreCredit = createServerFn({ method: 'POST' })
   .validator(adjustSchema)
   .handler(async ({ data }) => {
     await assertAdmin()
+    const note = data.note || undefined
     await withTransaction(async (tx) => {
       if (data.amount > 0) {
-        await issueOrReverseStoreCredit(tx, { userId: data.userId, amount: data.amount, type: 'issued', reason: data.reason })
+        await issueOrReverseStoreCredit(tx, { userId: data.userId, amount: data.amount, type: 'issued', reason: data.reason, note })
       } else {
         const deduction = Math.abs(data.amount)
         const [updated] = await tx
@@ -103,7 +115,7 @@ export const adminAdjustStoreCredit = createServerFn({ method: 'POST' })
           .where(sql`${storeCreditBalances.userId} = ${data.userId} AND ${storeCreditBalances.balance} >= ${deduction}`)
           .returning()
         if (!updated) throw new Error("Can't deduct more than the customer's current balance.")
-        await tx.insert(storeCreditEvents).values({ userId: data.userId, type: 'adjusted', amount: data.amount, reason: data.reason })
+        await tx.insert(storeCreditEvents).values({ userId: data.userId, type: 'adjusted', amount: data.amount, reason: data.reason, note: note ?? null })
       }
     })
 

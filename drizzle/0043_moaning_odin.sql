@@ -1,0 +1,1 @@
+ALTER TABLE "store_credit_events" ADD COLUMN "note" text;

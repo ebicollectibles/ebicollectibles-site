@@ -25,11 +25,18 @@ const creditEventLabel: Record<string, string> = {
   adjusted: 'Adjustment',
 }
 
-function StoreCreditPanel({ userId, credit }: { userId: string; credit: { balance: number; history: Array<{ type: string; amount: number; orderId: string | null; reason: string | null; createdAt: Date | string }> } }) {
+function StoreCreditPanel({
+  userId,
+  credit,
+}: {
+  userId: string
+  credit: { balance: number; history: Array<{ type: string; amount: number; orderId: string | null; reason: string | null; note: string | null; createdAt: Date | string }> }
+}) {
   const router = useRouter()
   const [amount, setAmount] = React.useState('')
   const [reason, setReason] = React.useState('')
   const [otherDetail, setOtherDetail] = React.useState('')
+  const [note, setNote] = React.useState('')
   const [busy, setBusy] = React.useState(false)
   const [formError, setFormError] = React.useState<string | null>(null)
 
@@ -52,10 +59,11 @@ function StoreCreditPanel({ userId, credit }: { userId: string; credit: { balanc
     setBusy(true)
     setFormError(null)
     try {
-      await adminAdjustStoreCredit({ data: { userId, amount: parsed, reason: finalReason } })
+      await adminAdjustStoreCredit({ data: { userId, amount: parsed, reason: finalReason, note: note.trim() || undefined } })
       setAmount('')
       setReason('')
       setOtherDetail('')
+      setNote('')
       await router.invalidate()
     } catch (err) {
       setFormError(err instanceof Error ? err.message : 'Could not update store credit.')
@@ -105,6 +113,13 @@ function StoreCreditPanel({ userId, credit }: { userId: string; credit: { balanc
             style={{ flex: '2 1 220px', padding: '8px 10px', border: '1px solid #cfd4da', borderRadius: 2, fontSize: 13 }}
           />
         )}
+        <textarea
+          placeholder="Internal note (optional) — never shown to the customer, e.g. which order this relates to"
+          value={note}
+          onChange={(e) => setNote(e.target.value)}
+          rows={2}
+          style={{ flex: '1 1 100%', padding: '8px 10px', border: '1px solid #cfd4da', borderRadius: 2, fontSize: 13, fontFamily: 'inherit', resize: 'vertical' }}
+        />
         <button
           type="submit"
           disabled={busy}
@@ -132,6 +147,7 @@ function StoreCreditPanel({ userId, credit }: { userId: string; credit: { balanc
               <div>
                 <span style={{ color: '#131b28' }}>{creditEventLabel[event.type] ?? event.type}</span>
                 {event.reason && <span style={{ color: '#5a6875' }}> — {event.reason}</span>}
+                {event.note && <div style={{ color: '#5a6875', fontStyle: 'italic', marginTop: 2 }}>{event.note}</div>}
                 <div style={{ color: '#5a6875', fontFamily: "'IBM Plex Mono', monospace", fontSize: 11, marginTop: 2 }}>
                   {new Date(event.createdAt).toLocaleString()}
                 </div>
