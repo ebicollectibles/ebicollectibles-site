@@ -6,7 +6,8 @@ import { ProductCard } from '~/components/ProductCard'
 import { ResponsiveImage } from '~/components/ResponsiveImage'
 import { trackEvent } from '~/lib/analytics'
 import { useCart } from '~/lib/cart-context'
-import { formatMoney } from '~/lib/products'
+import { FLAT_SHIPPING_RATE, formatMoney } from '~/lib/products'
+import { RETURN_POLICY_CATEGORY_URL, SHIPPING_HANDLING_MAX_DAYS, SHIPPING_HANDLING_MIN_DAYS, SHIPS_TO_COUNTRY } from '~/lib/policy'
 import { getProduct } from '~/server/products'
 
 const SITE_URL = 'https://ebicollectibles.com'
@@ -71,6 +72,34 @@ export const Route = createFileRoute('/products/$id')({
               price: loaderData.price,
               availability: loaderData.stock > 0 ? 'https://schema.org/InStock' : 'https://schema.org/OutOfStock',
               ...(loaderData.condition ? { itemCondition: CONDITION_SCHEMA_URL[loaderData.condition] } : {}),
+              // Flat rate is accurate for every order that can currently be
+              // placed — Alaska/Hawaii checkout is blocked while their real
+              // Shippo-quoted rate is being rolled out (BLOCK_HI_AK_CHECKOUT
+              // in feature-flags.ts); revisit this once that's lifted, since
+              // those two states won't pay the flat rate anymore.
+              shippingDetails: {
+                '@type': 'OfferShippingDetails',
+                shippingRate: { '@type': 'MonetaryAmount', value: FLAT_SHIPPING_RATE, currency: 'USD' },
+                shippingDestination: { '@type': 'DefinedRegion', addressCountry: SHIPS_TO_COUNTRY },
+                deliveryTime: {
+                  '@type': 'ShippingDeliveryTime',
+                  handlingTime: {
+                    '@type': 'QuantitativeValue',
+                    minValue: SHIPPING_HANDLING_MIN_DAYS,
+                    maxValue: SHIPPING_HANDLING_MAX_DAYS,
+                    unitCode: 'DAY',
+                  },
+                },
+              },
+              // No general returns on sealed collectibles (see
+              // refund-policy.tsx) — RETURN_POLICY_CATEGORY_URL reflects that
+              // honestly rather than implying a return window that doesn't
+              // exist.
+              hasMerchantReturnPolicy: {
+                '@type': 'MerchantReturnPolicy',
+                returnPolicyCategory: RETURN_POLICY_CATEGORY_URL,
+                applicableCountry: SHIPS_TO_COUNTRY,
+              },
             },
           },
         },
