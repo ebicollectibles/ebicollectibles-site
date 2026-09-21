@@ -5,6 +5,7 @@ import { requireAdmin, adminLogout } from '~/server/admin-auth'
 import { adminGetCustomer } from '~/server/admin'
 import { adminAdjustStoreCredit, adminGetStoreCredit } from '~/server/store-credit'
 import { formatMoney } from '~/lib/products'
+import { STORE_CREDIT_REASONS } from '~/lib/store-credit'
 
 const ORDERS_PER_PAGE = 10
 
@@ -28,6 +29,7 @@ function StoreCreditPanel({ userId, credit }: { userId: string; credit: { balanc
   const router = useRouter()
   const [amount, setAmount] = React.useState('')
   const [reason, setReason] = React.useState('')
+  const [otherDetail, setOtherDetail] = React.useState('')
   const [busy, setBusy] = React.useState(false)
   const [formError, setFormError] = React.useState<string | null>(null)
 
@@ -38,16 +40,22 @@ function StoreCreditPanel({ userId, credit }: { userId: string; credit: { balanc
       setFormError('Enter a non-zero dollar amount (negative to correct a mistaken grant).')
       return
     }
-    if (!reason.trim()) {
-      setFormError('A reason is required — this shows in the customer-facing history too.')
+    if (!reason) {
+      setFormError('Select a reason — this shows in the customer-facing history too.')
       return
     }
+    if (reason === 'Other' && !otherDetail.trim()) {
+      setFormError('Describe the reason for "Other".')
+      return
+    }
+    const finalReason = reason === 'Other' ? `Other — ${otherDetail.trim()}` : reason
     setBusy(true)
     setFormError(null)
     try {
-      await adminAdjustStoreCredit({ data: { userId, amount: parsed, reason: reason.trim() } })
+      await adminAdjustStoreCredit({ data: { userId, amount: parsed, reason: finalReason } })
       setAmount('')
       setReason('')
+      setOtherDetail('')
       await router.invalidate()
     } catch (err) {
       setFormError(err instanceof Error ? err.message : 'Could not update store credit.')
@@ -76,13 +84,27 @@ function StoreCreditPanel({ userId, credit }: { userId: string; credit: { balanc
           onChange={(e) => setAmount(e.target.value)}
           style={{ flex: '1 1 220px', padding: '8px 10px', border: '1px solid #cfd4da', borderRadius: 2, fontSize: 13 }}
         />
-        <input
-          type="text"
-          placeholder="Reason (required)"
+        <select
           value={reason}
           onChange={(e) => setReason(e.target.value)}
-          style={{ flex: '2 1 260px', padding: '8px 10px', border: '1px solid #cfd4da', borderRadius: 2, fontSize: 13 }}
-        />
+          style={{ flex: '2 1 220px', padding: '8px 10px', border: '1px solid #cfd4da', borderRadius: 2, fontSize: 13, color: reason ? '#131b28' : '#5a6875' }}
+        >
+          <option value="">Select a reason…</option>
+          {STORE_CREDIT_REASONS.map((r) => (
+            <option key={r} value={r}>
+              {r}
+            </option>
+          ))}
+        </select>
+        {reason === 'Other' && (
+          <input
+            type="text"
+            placeholder="Describe the reason"
+            value={otherDetail}
+            onChange={(e) => setOtherDetail(e.target.value)}
+            style={{ flex: '2 1 220px', padding: '8px 10px', border: '1px solid #cfd4da', borderRadius: 2, fontSize: 13 }}
+          />
+        )}
         <button
           type="submit"
           disabled={busy}
