@@ -4,17 +4,19 @@
 // back into real structure at display time, recognizing the handful of
 // markdown conventions people paste from without thinking about it:
 // "*"/"-"/"+ " for a bullet list, "1. " for a numbered list, and
-// "**bold**"/"*italic*" inline. Every blank line is preserved as its own
-// line break (so pressing Enter twice leaves visibly more space than once —
-// they're not collapsed to a single fixed paragraph gap regardless of how
-// many there are). Deliberately not a full markdown parser (no headings,
+// "**bold**"/"*italic*" inline. Every blank line counts toward the gap
+// that follows it — whether it's inside one paragraph (rendered as extra
+// <br>s) or between two blocks like a list and the paragraph after it
+// (rendered as extra margin) — so pressing Enter more times always leaves
+// visibly more space, never the same fixed gap no matter how many blank
+// lines were typed. Deliberately not a full markdown parser (no headings,
 // links, code, nesting) — just enough to stop pasted formatting from being
 // silently thrown away.
 
 export type DescriptionBlock =
-  | { type: 'paragraph'; lines: string[] }
-  | { type: 'bullet-list'; items: string[] }
-  | { type: 'numbered-list'; items: string[] }
+  | { type: 'paragraph'; lines: string[]; gapBefore?: number }
+  | { type: 'bullet-list'; items: string[]; gapBefore?: number }
+  | { type: 'numbered-list'; items: string[]; gapBefore?: number }
 
 const BULLET_RE = /^[*\-+]\s+(.*)$/
 const NUMBERED_RE = /^\d+[.)]\s+(.*)$/
@@ -22,17 +24,24 @@ const NUMBERED_RE = /^\d+[.)]\s+(.*)$/
 export function parseDescriptionBlocks(text: string): DescriptionBlock[] {
   const blocks: DescriptionBlock[] = []
   const paragraphLines: string[] = []
-  let currentList: { type: 'bullet-list' | 'numbered-list'; items: string[] } | null = null
+  let paragraphGapBefore = 0
+  let currentList: { type: 'bullet-list' | 'numbered-list'; items: string[]; gapBefore: number } | null = null
+  let blankRun = 0
 
   const flushParagraph = () => {
     if (paragraphLines.length > 0) {
-      blocks.push({ type: 'paragraph', lines: [...paragraphLines] })
+      const block: DescriptionBlock = { type: 'paragraph', lines: [...paragraphLines] }
+      if (paragraphGapBefore > 1) block.gapBefore = paragraphGapBefore
+      blocks.push(block)
       paragraphLines.length = 0
+      paragraphGapBefore = 0
     }
   }
   const flushList = () => {
     if (currentList) {
-      blocks.push(currentList)
+      const block: DescriptionBlock = { type: currentList.type, items: currentList.items }
+      if (currentList.gapBefore > 1) block.gapBefore = currentList.gapBefore
+      blocks.push(block)
       currentList = null
     }
   }
@@ -40,39 +49,46 @@ export function parseDescriptionBlocks(text: string): DescriptionBlock[] {
   for (const rawLine of text.replace(/\r\n/g, '\n').split('\n')) {
     const line = rawLine.trim()
     if (line === '') {
-      // A blank line still ends an in-progress list (writing prose after a
-      // list should read as prose, not another list item), but no longer
-      // forces a new paragraph block — it's appended as an empty line
-      // inside the current one instead, so it actually renders as a <br>
-      // gap. That's what makes hitting Enter more than once do anything:
-      // previously any run of blank lines collapsed to the same fixed
-      // paragraph margin no matter how many there were.
-      flushList()
-      if (paragraphLines.length > 0) paragraphLines.push('')
+      blankRun++
       continue
     }
 
     const bulletMatch = line.match(BULLET_RE)
     const numberedMatch = !bulletMatch ? line.match(NUMBERED_RE) : null
 
-    if (bulletMatch) {
-      flushParagraph()
-      if (currentList?.type !== 'bullet-list') {
+    if (bulletMatch || numberedMatch) {
+      const type: 'bullet-list' | 'numbered-list' = bulletMatch ? 'bullet-list' : 'numbered-list'
+      const captured = (bulletMatch ?? numberedMatch)![1]
+      if (blankRun > 0) {
+        // A blank line always ends an in-progress list (writing more items
+        // after a gap should read as a fresh list, not a continuation), and
+        // however many blank lines there were becomes this new list's gap.
+        flushParagraph()
         flushList()
-        currentList = { type: 'bullet-list', items: [] }
-      }
-      currentList.items.push(bulletMatch[1])
-    } else if (numberedMatch) {
-      flushParagraph()
-      if (currentList?.type !== 'numbered-list') {
+        currentList = { type, items: [captured], gapBefore: blankRun }
+      } else if (currentList !== null && currentList.type === type) {
+        currentList.items.push(captured)
+      } else {
+        flushParagraph()
         flushList()
-        currentList = { type: 'numbered-list', items: [] }
+        currentList = { type, items: [captured], gapBefore: 0 }
       }
-      currentList.items.push(numberedMatch[1])
     } else {
-      flushList()
-      paragraphLines.push(line)
+      if (currentList) {
+        flushList()
+        paragraphLines.push(line)
+        paragraphGapBefore = blocks.length > 0 ? blankRun : 0
+      } else if (blankRun > 0 && paragraphLines.length > 0) {
+        // Still inside the same paragraph — each blank line becomes its own
+        // empty line so it renders as its own <br> gap.
+        for (let i = 0; i < blankRun; i++) paragraphLines.push('')
+        paragraphLines.push(line)
+      } else {
+        if (paragraphLines.length === 0) paragraphGapBefore = blocks.length > 0 ? blankRun : 0
+        paragraphLines.push(line)
+      }
     }
+    blankRun = 0
   }
   flushParagraph()
   flushList()

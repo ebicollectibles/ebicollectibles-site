@@ -19,9 +19,14 @@ export function FormattedText({ text, style }: { text: string; style?: React.CSS
   return (
     <div style={{ whiteSpace: 'pre-wrap', ...style }}>
       {blocks.map((block, i) => {
+        // One blank line between blocks is the default gap (the 12px margin
+        // below); each additional one adds another 12px on top of it, so
+        // typing more blank lines before a block actually pushes it further.
+        const marginTop = block.gapBefore && block.gapBefore > 1 ? (block.gapBefore - 1) * 12 : undefined
+
         if (block.type === 'bullet-list') {
           return (
-            <ul key={i} style={{ margin: '0 0 12px', paddingLeft: 22 }}>
+            <ul key={i} style={{ margin: '0 0 12px', marginTop, paddingLeft: 22 }}>
               {block.items.map((item, j) => (
                 <li key={j} style={{ marginBottom: 4 }}>
                   <Inline line={item} />
@@ -32,7 +37,7 @@ export function FormattedText({ text, style }: { text: string; style?: React.CSS
         }
         if (block.type === 'numbered-list') {
           return (
-            <ol key={i} style={{ margin: '0 0 12px', paddingLeft: 22 }}>
+            <ol key={i} style={{ margin: '0 0 12px', marginTop, paddingLeft: 22 }}>
               {block.items.map((item, j) => (
                 <li key={j} style={{ marginBottom: 4 }}>
                   <Inline line={item} />
@@ -42,7 +47,7 @@ export function FormattedText({ text, style }: { text: string; style?: React.CSS
           )
         }
         return (
-          <p key={i} style={{ margin: i === blocks.length - 1 ? 0 : '0 0 12px' }}>
+          <p key={i} style={{ margin: i === blocks.length - 1 ? 0 : '0 0 12px', marginTop }}>
             {block.lines.map((line, j) => (
               <span key={j}>
                 {j > 0 && <br />}

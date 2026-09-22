@@ -26,6 +26,30 @@ describe('parseDescriptionBlocks', () => {
     ])
   })
 
+  it('carries a bigger gap between two lists when more blank lines separated them', () => {
+    const blocks = parseDescriptionBlocks('* One\n* Two\n\n\n\n* Three\n* Four')
+    expect(blocks).toEqual([
+      { type: 'bullet-list', items: ['One', 'Two'] },
+      { type: 'bullet-list', items: ['Three', 'Four'], gapBefore: 3 },
+    ])
+  })
+
+  it('carries a bigger gap between a list and the paragraph after it', () => {
+    const blocks = parseDescriptionBlocks('* One\n* Two\n\n\nClosing line')
+    expect(blocks).toEqual([
+      { type: 'bullet-list', items: ['One', 'Two'] },
+      { type: 'paragraph', lines: ['Closing line'], gapBefore: 2 },
+    ])
+  })
+
+  it('carries a bigger gap between a paragraph and the list after it', () => {
+    const blocks = parseDescriptionBlocks('Intro line\n\n\n* One\n* Two')
+    expect(blocks).toEqual([
+      { type: 'paragraph', lines: ['Intro line'] },
+      { type: 'bullet-list', items: ['One', 'Two'], gapBefore: 2 },
+    ])
+  })
+
   it('turns "* "/"- "/"+ " lines into a bullet list', () => {
     const blocks = parseDescriptionBlocks('* Set code: CBB4C\n- Contents: 18 packs\n+ Ships from: US')
     expect(blocks).toEqual([{ type: 'bullet-list', items: ['Set code: CBB4C', 'Contents: 18 packs', 'Ships from: US'] }])
