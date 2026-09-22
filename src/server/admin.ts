@@ -70,6 +70,10 @@ const productBaseSchema = z.object({
   condition: z.enum(GOOGLE_CONDITIONS).nullable().optional(),
   googleProductCategory: z.string().trim().optional(),
   weightLb: z.number().positive().nullable().optional(),
+  variantGroupId: z.string().trim().optional(),
+  variantLabel: z.string().trim().optional(),
+  variantSortOrder: z.number().int().nullable().optional(),
+  hideFromShopGrid: z.boolean().optional().default(false),
 })
 
 function withSubcategoryCheck<T extends z.ZodObject<z.ZodRawShape>>(schema: T) {

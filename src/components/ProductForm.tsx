@@ -44,6 +44,12 @@ export interface ProductFormValues {
   condition: GoogleCondition
   googleProductCategory: string
   weightLb: number
+  variantGroupId: string
+  variantLabel: string
+  // 0 means unset (converted to null on submit) — same convention as
+  // bestSellingRank/compareAtPrice above.
+  variantSortOrder: number
+  hideFromShopGrid: boolean
 }
 
 const emptyValues: ProductFormValues = {
@@ -76,6 +82,10 @@ const emptyValues: ProductFormValues = {
   condition: 'new',
   googleProductCategory: '',
   weightLb: 0,
+  variantGroupId: '',
+  variantLabel: '',
+  variantSortOrder: 0,
+  hideFromShopGrid: false,
 }
 
 const field: React.CSSProperties = {
@@ -1203,6 +1213,61 @@ export function ProductForm({
           Used to quote real Alaska/Hawaii shipping cost via Shippo — leave both blank and a conservative default is
           used instead.
         </p>
+      </div>
+      <div style={{ marginBottom: 20, padding: 14, border: '1px solid #e3e6ea', borderRadius: 4 }}>
+        <div style={{ fontSize: 13, fontWeight: 700, marginBottom: 4 }}>Variants (optional)</div>
+        <p style={{ fontSize: 11.5, color: '#5a6875', margin: '0 0 12px' }}>
+          Give two or more products the same Variant group ID (e.g. a sealed blind box plus each specific opened
+          figure it can contain) and they'll show as selectable options on each other's product page. Each one is
+          still a fully separate product with its own price, stock and Square link.
+        </p>
+        <div style={{ display: 'flex', gap: 14, marginBottom: 12 }}>
+          <div style={{ flex: 2 }}>
+            <label htmlFor="pf-variant-group" style={label}>
+              Variant group ID
+            </label>
+            <input
+              id="pf-variant-group"
+              className="ebi-field"
+              style={field}
+              value={values.variantGroupId}
+              onChange={(e) => set('variantGroupId', e.target.value)}
+              placeholder="e.g. gem6-blindbox"
+            />
+          </div>
+          <div style={{ flex: 2 }}>
+            <label htmlFor="pf-variant-label" style={label}>
+              Option label
+            </label>
+            <input
+              id="pf-variant-label"
+              className="ebi-field"
+              style={field}
+              value={values.variantLabel}
+              onChange={(e) => set('variantLabel', e.target.value)}
+              placeholder="e.g. Sealed, or Pikachu"
+            />
+          </div>
+          <div style={{ flex: 1 }}>
+            <label htmlFor="pf-variant-sort" style={label}>
+              Order
+            </label>
+            <input
+              id="pf-variant-sort"
+              type="number"
+              className="ebi-field"
+              style={field}
+              value={values.variantSortOrder || ''}
+              onChange={(e) => set('variantSortOrder', Number(e.target.value) || 0)}
+              placeholder="0"
+            />
+          </div>
+        </div>
+        <label style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: 13 }}>
+          <input type="checkbox" checked={values.hideFromShopGrid} onChange={(e) => set('hideFromShopGrid', e.target.checked)} />
+          Hide from shop grid, search and homepage sections — only reachable via the variant selector on a sibling
+          product's page (still has its own working product page, and syncs with Square normally)
+        </label>
       </div>
       <label style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: 13, marginBottom: 12 }}>
         <input type="checkbox" checked={values.preorder} onChange={(e) => set('preorder', e.target.checked)} />

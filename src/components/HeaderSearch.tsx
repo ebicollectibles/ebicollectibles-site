@@ -25,7 +25,9 @@ export function HeaderSearch({
   const inputId = React.useId()
 
   const query = value.trim().toLowerCase()
-  const matches = query ? products.filter((p) => p.name.toLowerCase().includes(query)).slice(0, MAX_RESULTS) : []
+  const matches = query
+    ? products.filter((p) => !p.hideFromShopGrid && p.name.toLowerCase().includes(query)).slice(0, MAX_RESULTS)
+    : []
 
   React.useEffect(() => {
     setHighlighted(0)

@@ -78,6 +78,10 @@ function EditProductPage() {
           condition: (product.condition as GoogleCondition) ?? 'new',
           googleProductCategory: product.googleProductCategory ?? '',
           weightLb: product.weightLb ?? 0,
+          variantGroupId: product.variantGroupId ?? '',
+          variantLabel: product.variantLabel ?? '',
+          variantSortOrder: product.variantSortOrder ?? 0,
+          hideFromShopGrid: product.hideFromShopGrid,
         }}
         onSubmit={async (values) => {
           await adminUpdateProduct({
@@ -100,6 +104,9 @@ function EditProductPage() {
               condition: values.condition || null,
               googleProductCategory: values.googleProductCategory.trim() || undefined,
               weightLb: values.weightLb || null,
+              variantGroupId: values.variantGroupId.trim() || undefined,
+              variantLabel: values.variantLabel.trim() || undefined,
+              variantSortOrder: values.variantSortOrder || null,
             },
           })
           navigate({ to: '/admin' })

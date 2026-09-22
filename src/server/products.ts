@@ -56,5 +56,9 @@ function toProduct(row: typeof productsTable.$inferSelect): Product {
     condition: (row.condition as Product['condition']) ?? undefined,
     googleProductCategory: row.googleProductCategory ?? undefined,
     weightLb: row.weightLb ?? undefined,
+    variantGroupId: row.variantGroupId ?? undefined,
+    variantLabel: row.variantLabel ?? undefined,
+    variantSortOrder: row.variantSortOrder ?? undefined,
+    hideFromShopGrid: row.hideFromShopGrid,
   }
 }

@@ -55,6 +55,17 @@ export interface Product {
   condition?: GoogleCondition
   googleProductCategory?: string
   weightLb?: number
+  // Product variants (e.g. a sealed blind box + each specific opened
+  // figure) — see the comment in lib/db/schema.ts. Every product sharing
+  // the same variantGroupId is a full, independently sellable product;
+  // products.$id.tsx renders them as a selector on each other's page.
+  variantGroupId?: string
+  variantLabel?: string
+  variantSortOrder?: number
+  // Keeps a variant out of grid-style listings (shop, home sections,
+  // header search — see rankProducts below) without affecting its own
+  // detail page, Square sync, or orderability.
+  hideFromShopGrid?: boolean
 }
 
 // Google's condition [condition] attribute values — see the comment on
@@ -100,7 +111,10 @@ const HIDE_FIELD = {
 // in createdAt-ascending order (how getProducts returns it) — reversed for
 // the unranked tail so those come out newest-first.
 export function rankProducts(products: Product[], rankField: 'bestSellingRank' | 'newAndUpcomingRank'): Product[] {
-  const eligible = products.filter((p) => !p[HIDE_FIELD[rankField]])
+  // A variant meant only to be reached via its sibling's selector (see
+  // hideFromShopGrid on Product above) shouldn't surface here either, same
+  // as it's excluded from the shop grid and header search.
+  const eligible = products.filter((p) => !p[HIDE_FIELD[rankField]] && !p.hideFromShopGrid)
   const ranked = eligible.filter((p) => p[rankField] != null).sort((a, b) => a[rankField]! - b[rankField]!)
   const unranked = eligible.filter((p) => p[rankField] == null).slice().reverse()
   return [...ranked, ...unranked]

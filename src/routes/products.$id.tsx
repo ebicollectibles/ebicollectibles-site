@@ -144,6 +144,19 @@ function ProductDetailPage() {
     })
   }, [product?.id])
 
+  // Every product sharing this one's variantGroupId (including itself, so
+  // it renders inline as the selected option) — see the comment on
+  // Product.variantGroupId in lib/products.ts. Already available in
+  // `products` (the full root-loaded list), no extra fetch needed: every
+  // variant is a real product in its own right, including the ones with
+  // hideFromShopGrid set.
+  const variants = React.useMemo(() => {
+    if (!product?.variantGroupId) return []
+    return products
+      .filter((p) => p.variantGroupId === product.variantGroupId)
+      .sort((a, b) => (a.variantSortOrder ?? Infinity) - (b.variantSortOrder ?? Infinity) || a.name.localeCompare(b.name))
+  }, [products, product])
+
   const related = React.useMemo(() => {
     if (!product) return []
     const sameType = products.filter((p) => p.id !== product.id && p.subcategory === product.subcategory)
@@ -314,6 +327,41 @@ function ProductDetailPage() {
             <p style={{ fontSize: 12.5, color: '#b4622f', margin: '8px 0 0', lineHeight: 1.5 }}>
               This item is still on its way to us — an order with it ships once it arrives.
             </p>
+          )}
+
+          {variants.length > 1 && (
+            <div style={{ marginTop: 22 }}>
+              <div style={monoLabel}>Options</div>
+              <div style={{ display: 'flex', gap: 10, marginTop: 10, flexWrap: 'wrap' }}>
+                {variants.map((v) => {
+                  const isCurrent = v.id === product.id
+                  return (
+                    <Link
+                      key={v.id}
+                      to="/products/$id"
+                      params={{ id: v.id }}
+                      aria-current={isCurrent ? 'true' : undefined}
+                      style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: 8,
+                        padding: '7px 12px 7px 7px',
+                        border: `1px solid ${isCurrent ? '#131b28' : '#e3e6ea'}`,
+                        borderRadius: 2,
+                        textDecoration: 'none',
+                        color: '#131b28',
+                        background: isCurrent ? '#f6f7f8' : '#ffffff',
+                      }}
+                    >
+                      <div style={{ width: 36, height: 36, flexShrink: 0, background: '#f6f7f8', borderRadius: 2, overflow: 'hidden' }}>
+                        {v.img && <img src={v.img} alt="" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />}
+                      </div>
+                      <span style={{ fontSize: 12.5, fontWeight: isCurrent ? 700 : 500 }}>{v.variantLabel || v.name}</span>
+                    </Link>
+                  )
+                })}
+              </div>
+            </div>
           )}
 
           <FormattedText

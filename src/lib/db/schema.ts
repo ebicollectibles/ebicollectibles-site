@@ -66,6 +66,28 @@ export const products = pgTable('products', {
   // product's position in one has nothing to do with the other.
   bestSellingRank: integer('best_selling_rank'),
   newAndUpcomingRank: integer('new_and_upcoming_rank'),
+  // Product variants (e.g. a sealed blind box + each specific opened figure
+  // it can contain) — each variant is a FULL product row with its own
+  // price/stock/Square link (not a lightweight sub-record), since each one
+  // genuinely is sold and tracked separately. variantGroupId is a plain
+  // string admin chooses and types identically on every product in the
+  // group (e.g. "gem6-blindbox") — products.$id.tsx renders every other
+  // product sharing it as a selector, ordered by variantSortOrder (nulls
+  // last). hideFromShopGrid (below) is what keeps the individual opened
+  // figures out of the main shop grid/search/home sections while the
+  // sealed box stays the one that's actually browsed to normally.
+  variantGroupId: text('variant_group_id'),
+  variantLabel: text('variant_label'),
+  variantSortOrder: integer('variant_sort_order'),
+  // Distinct from `published` (which makes a product entirely
+  // unreachable, including its own detail page — see getProduct in
+  // server/products.ts) — this only hides it from grid-style listings
+  // (shop.tsx, home page sections, header search; see rankProducts in
+  // lib/products.ts). A variant that's only meant to be reached via its
+  // sibling's selector needs to stay fully orderable and individually
+  // linkable (including for Square sync and its own SEO/JSON-LD), just
+  // not independently browsable.
+  hideFromShopGrid: boolean('hide_from_shop_grid').notNull().default(false),
   // Absolute opt-out of the "unranked products fill in after the curated
   // ones" behavior above — e.g. a preorder that isn't shippable yet
   // shouldn't show up as Best Selling filler just because it's newest.

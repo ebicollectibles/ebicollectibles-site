@@ -99,6 +99,11 @@ function ShopPage() {
   const query = (search.q ?? '').trim().toLowerCase()
 
   let visible = products.filter((p) => {
+    // A variant meant only to be reached via its sibling's selector (see
+    // Product.hideFromShopGrid in lib/products.ts) doesn't get its own
+    // grid tile — same reasoning as rankProducts excluding it from the
+    // homepage sections.
+    if (p.hideFromShopGrid) return false
     if (query && !p.name.toLowerCase().includes(query)) return false
     if (subcategories.length && !subcategories.includes(p.subcategory)) return false
     if (inStockOnly && p.stock === 0) return false
@@ -140,7 +145,7 @@ function ShopPage() {
               {cat}
             </div>
             {SUBCATEGORIES_BY_CATEGORY[cat].map((s) => {
-              const count = products.filter((p) => p.subcategory === s).length
+              const count = products.filter((p) => p.subcategory === s && !p.hideFromShopGrid).length
               return (
                 <label
                   key={s}
