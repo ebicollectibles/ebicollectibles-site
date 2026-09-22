@@ -17,7 +17,7 @@ export function FormattedText({ text, style }: { text: string; style?: React.CSS
   const blocks = parseDescriptionBlocks(text)
 
   return (
-    <div style={style}>
+    <div style={{ whiteSpace: 'pre-wrap', ...style }}>
       {blocks.map((block, i) => {
         if (block.type === 'bullet-list') {
           return (
