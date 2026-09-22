@@ -77,7 +77,12 @@ function CartPage() {
           <div style={{ borderTop: '1px solid #131b28', marginTop: 24 }}>
             {lines.map((line) => (
               <div key={line.id} style={{ display: 'flex', gap: 20, padding: '24px 4px', borderBottom: '1px solid #e3e6ea' }}>
-                <div className="ebi-cart-line-image" style={{ flexShrink: 0, background: '#f6f7f8', overflow: 'hidden' }}>
+                <Link
+                  to="/products/$id"
+                  params={{ id: line.product.id }}
+                  className="ebi-cart-line-image"
+                  style={{ flexShrink: 0, background: '#f6f7f8', overflow: 'hidden', display: 'block' }}
+                >
                   {line.product.img ? (
                     <img
                       src={line.product.img}
@@ -88,10 +93,16 @@ function CartPage() {
                   ) : (
                     <div style={{ width: '100%', height: '100%', backgroundImage: STRIPES }} />
                   )}
-                </div>
+                </Link>
                 <div style={{ flex: 1, minWidth: 0, display: 'flex', flexDirection: 'column' }}>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: 12 }}>
-                    <div style={{ fontSize: 16, fontWeight: 600, lineHeight: 1.35 }}>{line.product.name}</div>
+                    <Link
+                      to="/products/$id"
+                      params={{ id: line.product.id }}
+                      style={{ fontSize: 16, fontWeight: 600, lineHeight: 1.35, color: 'inherit', textDecoration: 'none' }}
+                    >
+                      {line.product.name}
+                    </Link>
                     <div style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 16, fontWeight: 600, flexShrink: 0 }}>
                       {formatMoney(line.lineTotal)}
                     </div>
