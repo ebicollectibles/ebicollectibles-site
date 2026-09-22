@@ -5,6 +5,8 @@ import { US_STATE_CODES } from '~/lib/us-states'
 import { trackEvent } from '~/lib/analytics'
 import { getSalesTaxRate } from '~/server/tax'
 import { getMyStoreCredit } from '~/server/store-credit'
+import { isHiOrAk } from '~/lib/order-math'
+import { BLOCK_HI_AK_CHECKOUT } from '~/lib/feature-flags'
 
 // Lets someone pay straight from the cart page with Apple Pay, skipping the
 // regular checkout form entirely — Apple Pay collects the shipping/billing
@@ -110,6 +112,18 @@ export function ExpressApplePayButton({
           if (contact.state && !US_STATE_CODES.includes(contact.state)) {
             return { error: 'Enter a valid US state.' }
           }
+          // Checked here — as soon as Apple Pay reports a shipping address,
+          // before the buyer ever reaches Face ID/Touch ID confirmation —
+          // rather than only server-side in placeOrder. Same reasoning as
+          // checkout.tsx's contactComplete gate on the in-page Apple Pay
+          // button; this express flow has no address to check until Apple
+          // Pay hands one over, so the check has to live in this handler
+          // instead of on the button itself.
+          if (BLOCK_HI_AK_CHECKOUT && isHiOrAk(contact.state)) {
+            return {
+              error: "We can't ship to Alaska or Hawaii through the site yet — email eastblueinternational@gmail.com and we'll get your order sorted directly.",
+            }
+          }
           const { rate } = await getSalesTaxRate({
             data: { state: contact.state ?? '', city: contact.city ?? '', zip: contact.postalCode ?? '', street: contact.addressLines?.[0] ?? '' },
           }).catch(() => ({ rate: 0 }))
@@ -164,6 +178,14 @@ export function ExpressApplePayButton({
       }
       if (!shippingContact.email) {
         onError('Apple Pay did not share an email address — try again or use the regular checkout.')
+        return
+      }
+      // Belt-and-suspenders — shippingcontactchanged above already rejects
+      // this before Face ID/Touch ID, but re-check here too rather than
+      // trust that a completed tokenize() necessarily went through that
+      // path cleanly.
+      if (BLOCK_HI_AK_CHECKOUT && isHiOrAk(shippingContact.state)) {
+        onError("We can't ship to Alaska or Hawaii through the site yet — email eastblueinternational@gmail.com and we'll get your order sorted directly.")
         return
       }
 
