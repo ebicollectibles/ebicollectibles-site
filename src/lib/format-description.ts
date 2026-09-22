@@ -2,11 +2,14 @@
 // admin panel — no rich-text editor — so a pasted "* Set code: CBB4C" list
 // arrives as literal asterisk characters, not a bullet. This turns that
 // back into real structure at display time, recognizing the handful of
-// markdown conventions people paste from without thinking about it: blank
-// lines between paragraphs, "*"/"-"/"+ " for a bullet list, "1. " for a
-// numbered list, and "**bold**"/"*italic*" inline. Deliberately not a full
-// markdown parser (no headings, links, code, nesting) — just enough to stop
-// pasted formatting from being silently thrown away.
+// markdown conventions people paste from without thinking about it:
+// "*"/"-"/"+ " for a bullet list, "1. " for a numbered list, and
+// "**bold**"/"*italic*" inline. Every blank line is preserved as its own
+// line break (so pressing Enter twice leaves visibly more space than once —
+// they're not collapsed to a single fixed paragraph gap regardless of how
+// many there are). Deliberately not a full markdown parser (no headings,
+// links, code, nesting) — just enough to stop pasted formatting from being
+// silently thrown away.
 
 export type DescriptionBlock =
   | { type: 'paragraph'; lines: string[] }
@@ -37,8 +40,15 @@ export function parseDescriptionBlocks(text: string): DescriptionBlock[] {
   for (const rawLine of text.replace(/\r\n/g, '\n').split('\n')) {
     const line = rawLine.trim()
     if (line === '') {
-      flushParagraph()
+      // A blank line still ends an in-progress list (writing prose after a
+      // list should read as prose, not another list item), but no longer
+      // forces a new paragraph block — it's appended as an empty line
+      // inside the current one instead, so it actually renders as a <br>
+      // gap. That's what makes hitting Enter more than once do anything:
+      // previously any run of blank lines collapsed to the same fixed
+      // paragraph margin no matter how many there were.
       flushList()
+      if (paragraphLines.length > 0) paragraphLines.push('')
       continue
     }
 

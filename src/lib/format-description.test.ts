@@ -6,10 +6,23 @@ describe('parseDescriptionBlocks', () => {
     expect(parseDescriptionBlocks('Line one\nLine two')).toEqual([{ type: 'paragraph', lines: ['Line one', 'Line two'] }])
   })
 
-  it('splits on blank lines into separate paragraphs', () => {
-    expect(parseDescriptionBlocks('First\n\nSecond')).toEqual([
-      { type: 'paragraph', lines: ['First'] },
-      { type: 'paragraph', lines: ['Second'] },
+  it('keeps a blank line as a visible gap within one paragraph, not a separate block', () => {
+    expect(parseDescriptionBlocks('First\n\nSecond')).toEqual([{ type: 'paragraph', lines: ['First', '', 'Second'] }])
+  })
+
+  it('preserves every blank line, so two in a row leave a bigger gap than one', () => {
+    expect(parseDescriptionBlocks('First\n\n\nSecond')).toEqual([{ type: 'paragraph', lines: ['First', '', '', 'Second'] }])
+  })
+
+  it('ignores a leading blank line rather than starting with an empty gap', () => {
+    expect(parseDescriptionBlocks('\n\nFirst line')).toEqual([{ type: 'paragraph', lines: ['First line'] }])
+  })
+
+  it('still ends a list on a blank line, read as prose starting fresh after it', () => {
+    const blocks = parseDescriptionBlocks('* Bullet one\n* Bullet two\n\nClosing line')
+    expect(blocks).toEqual([
+      { type: 'bullet-list', items: ['Bullet one', 'Bullet two'] },
+      { type: 'paragraph', lines: ['Closing line'] },
     ])
   })
 
