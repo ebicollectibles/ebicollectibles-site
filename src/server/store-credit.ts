@@ -3,7 +3,7 @@ import { z } from 'zod'
 import { desc, eq, sql } from 'drizzle-orm'
 import { getDb } from '~/lib/db/client'
 import { withTransaction } from '~/lib/db/transactional-client'
-import { emailEvents, storeCreditBalances, storeCreditEvents, users } from '~/lib/db/schema'
+import { emailEvents, orders, storeCreditBalances, storeCreditEvents, users } from '~/lib/db/schema'
 import { assertAdmin } from './admin-auth'
 import { getCurrentUserId } from './customer-auth'
 import { sendStoreCreditEmail } from './email'
@@ -41,6 +41,12 @@ async function getStoreCreditHistory(userId: string, includeReason: boolean) {
       type: storeCreditEvents.type,
       amount: storeCreditEvents.amount,
       orderId: storeCreditEvents.orderId,
+      // Left join, not inner — orderId is null for an admin grant/manual
+      // adjustment, and a 'redeemed'/'reversed' row should still show even
+      // if its order somehow got deleted (onDelete: 'set null' on
+      // storeCreditEvents.orderId already handles that case at the FK
+      // level; orderNo just comes back null here to match).
+      orderNo: orders.orderNo,
       reason: includeReason
         ? storeCreditEvents.reason
         : sql<string | null>`case when ${storeCreditEvents.type} in ('issued', 'adjusted') then 'From EBI Collectibles' else null end`,
@@ -51,6 +57,7 @@ async function getStoreCreditHistory(userId: string, includeReason: boolean) {
       createdAt: storeCreditEvents.createdAt,
     })
     .from(storeCreditEvents)
+    .leftJoin(orders, eq(storeCreditEvents.orderId, orders.id))
     .where(eq(storeCreditEvents.userId, userId))
     .orderBy(desc(storeCreditEvents.createdAt))
     .limit(100)

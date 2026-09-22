@@ -30,7 +30,7 @@ function StoreCreditPanel({
   credit,
 }: {
   userId: string
-  credit: { balance: number; history: Array<{ type: string; amount: number; orderId: string | null; reason: string | null; note: string | null; createdAt: Date | string }> }
+  credit: { balance: number; history: Array<{ type: string; amount: number; orderId: string | null; orderNo: number | null; reason: string | null; note: string | null; createdAt: Date | string }> }
 }) {
   const router = useRouter()
   const [amount, setAmount] = React.useState('')
@@ -146,6 +146,18 @@ function StoreCreditPanel({
             <div key={i} style={{ display: 'flex', justifyContent: 'space-between', gap: 12, fontSize: 12.5 }}>
               <div>
                 <span style={{ color: '#131b28' }}>{creditEventLabel[event.type] ?? event.type}</span>
+                {event.orderId && event.orderNo != null && (
+                  <>
+                    {' '}
+                    <Link
+                      to="/admin/orders/$id"
+                      params={{ id: event.orderId }}
+                      style={{ color: '#3f7a63', fontWeight: 600, textDecoration: 'none' }}
+                    >
+                      #EBI-{event.orderNo}
+                    </Link>
+                  </>
+                )}
                 {event.reason && <span style={{ color: '#5a6875' }}> — {event.reason}</span>}
                 {event.note && <div style={{ color: '#5a6875', fontStyle: 'italic', marginTop: 2 }}>{event.note}</div>}
                 <div style={{ color: '#5a6875', fontFamily: "'IBM Plex Mono', monospace", fontSize: 11, marginTop: 2 }}>

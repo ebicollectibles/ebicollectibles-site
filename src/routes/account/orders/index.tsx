@@ -28,7 +28,11 @@ const creditEventLabel: Record<string, string> = {
   adjusted: 'Adjustment',
 }
 
-function StoreCreditCard({ credit }: { credit: { balance: number; history: Array<{ type: string; amount: number; reason: string | null; createdAt: Date | string }> } }) {
+function StoreCreditCard({
+  credit,
+}: {
+  credit: { balance: number; history: Array<{ type: string; amount: number; orderId: string | null; orderNo: number | null; reason: string | null; createdAt: Date | string }> }
+}) {
   const [expanded, setExpanded] = React.useState(false)
   if (credit.balance <= 0 && credit.history.length === 0) return null
 
@@ -57,6 +61,14 @@ function StoreCreditCard({ credit }: { credit: { balance: number; history: Array
             <div key={i} style={{ display: 'flex', justifyContent: 'space-between', gap: 12, fontSize: 12.5 }}>
               <div>
                 <span style={{ color: '#131b28' }}>{creditEventLabel[event.type] ?? event.type}</span>
+                {event.orderId && event.orderNo != null && (
+                  <>
+                    {' '}
+                    <Link to="/account/orders/$id" params={{ id: event.orderId }} style={{ color: '#3f7a63', fontWeight: 600, textDecoration: 'none' }}>
+                      #EBI-{event.orderNo}
+                    </Link>
+                  </>
+                )}
                 {event.reason && <span style={{ color: '#5a6875' }}> — {event.reason}</span>}
                 <div style={{ color: '#5a6875', fontFamily: "'IBM Plex Mono', monospace", fontSize: 11, marginTop: 2 }}>
                   {new Date(event.createdAt).toLocaleDateString()}
