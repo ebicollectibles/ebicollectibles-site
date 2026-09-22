@@ -65,6 +65,13 @@ export const Route = createFileRoute('/products/$id')({
             ...(loaderData.gtin ? { gtin13: loaderData.gtin } : {}),
             ...(loaderData.brand ? { brand: { '@type': 'Brand', name: loaderData.brand } } : {}),
             ...(loaderData.googleProductCategory ? { category: loaderData.googleProductCategory } : {}),
+            // No mpn field exists, so brand alone never satisfies Google's
+            // identifier requirement — anything without a gtin genuinely has
+            // no qualifying identifier. Telling Google that explicitly (vs.
+            // just omitting gtin13) stops it from flagging the product as
+            // "missing identifier" indefinitely, since it can't otherwise
+            // tell "none exists" from "forgot to add it."
+            ...(loaderData.gtin ? {} : { identifierExists: false }),
             offers: {
               '@type': 'Offer',
               url,
