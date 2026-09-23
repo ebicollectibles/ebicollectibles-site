@@ -2,7 +2,7 @@ import * as React from 'react'
 import { createFileRoute, Link, useNavigate } from '@tanstack/react-router'
 import { AdminNav } from '~/components/AdminNav'
 import { requireAdmin, adminLogout } from '~/server/admin-auth'
-import { adminListOrders, adminListPaymentFailures, adminSendDelayNotice } from '~/server/admin'
+import { adminListOrders, adminListPaymentFailures, adminSendDelayNotice, adminSendDelayNoticeTest } from '~/server/admin'
 import { formatMoney } from '~/lib/products'
 
 const ORDERS_PER_PAGE = 20
@@ -82,6 +82,9 @@ function AdminOrdersPage() {
   const [sending, setSending] = React.useState(false)
   const [sendResult, setSendResult] = React.useState<{ sent: number; failed: number; skipped: number } | null>(null)
   const [sendError, setSendError] = React.useState<string | null>(null)
+  const [testEmail, setTestEmail] = React.useState('eastblueinternational@gmail.com')
+  const [testSending, setTestSending] = React.useState(false)
+  const [testResult, setTestResult] = React.useState<string | null>(null)
 
   const filteredOrders = React.useMemo(() => {
     const query = itemFilter.trim().toLowerCase()
@@ -132,6 +135,24 @@ function AdminOrdersPage() {
       setSendError(err instanceof Error ? err.message : 'Failed to send.')
     } finally {
       setSending(false)
+    }
+  }
+
+  const sendTest = async () => {
+    if (!message.trim() || !testEmail.trim() || selectedIds.size === 0) return
+    setTestSending(true)
+    setTestResult(null)
+    try {
+      // Uses whichever selected order comes first as the sample content —
+      // real items, real order number — so the preview matches what a
+      // customer would actually see.
+      const sampleOrderId = [...selectedIds][0]
+      const { result } = await adminSendDelayNoticeTest({ data: { orderId: sampleOrderId, message: message.trim(), testEmail: testEmail.trim() } })
+      setTestResult(result.status === 'sent' ? `Test sent to ${testEmail.trim()}.` : `Test ${result.status}${result.error ? `: ${result.error}` : '.'}`)
+    } catch (err) {
+      setTestResult(err instanceof Error ? err.message : 'Failed to send test.')
+    } finally {
+      setTestSending(false)
     }
   }
 
@@ -229,7 +250,34 @@ function AdminOrdersPage() {
                     rows={6}
                     style={{ width: '100%', padding: 10, fontSize: 13.5, lineHeight: 1.5, border: '1px solid #cfd4da', borderRadius: 2, fontFamily: 'inherit', resize: 'vertical' }}
                   />
-                  <div style={{ display: 'flex', gap: 10, marginTop: 10, alignItems: 'center' }}>
+                  <div style={{ display: 'flex', gap: 8, marginTop: 10, alignItems: 'center', flexWrap: 'wrap' }}>
+                    <input
+                      value={testEmail}
+                      onChange={(e) => setTestEmail(e.target.value)}
+                      placeholder="your email"
+                      type="email"
+                      style={{ padding: '8px 10px', fontSize: 12.5, border: '1px solid #cfd4da', borderRadius: 2, width: 220 }}
+                    />
+                    <button
+                      onClick={sendTest}
+                      disabled={testSending || !message.trim() || !testEmail.trim()}
+                      style={{
+                        background: '#fff',
+                        color: '#131b28',
+                        border: '1px solid #cfd4da',
+                        borderRadius: 2,
+                        padding: '8px 14px',
+                        fontSize: 12.5,
+                        fontWeight: 600,
+                        cursor: testSending ? 'default' : 'pointer',
+                        opacity: testSending ? 0.6 : 1,
+                      }}
+                    >
+                      {testSending ? 'Sending test…' : 'Send test to this address'}
+                    </button>
+                    {testResult && <span style={{ fontSize: 12, color: '#5a6875' }}>{testResult}</span>}
+                  </div>
+                  <div style={{ display: 'flex', gap: 10, marginTop: 12, alignItems: 'center' }}>
                     <button
                       onClick={sendNotice}
                       disabled={sending || !message.trim()}

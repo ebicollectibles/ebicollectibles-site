@@ -303,6 +303,33 @@ export const adminSendDelayNotice = createServerFn({ method: 'POST' })
     return { results }
   })
 
+// Sends the real content (a real order's items, the message as typed) to
+// one address of the admin's choosing instead of the customer on file —
+// lets admin see exactly what's about to go out before committing to the
+// real send. Deliberately not logged to email_events (it's not a
+// customer-facing send) and doesn't touch fulfillment/order state.
+export const adminSendDelayNoticeTest = createServerFn({ method: 'POST' })
+  .validator(z.object({ orderId: z.string(), message: z.string().trim().min(1), testEmail: z.string().trim().email() }))
+  .handler(async ({ data }) => {
+    await assertAdmin()
+    const db = getDb()
+
+    const [order] = await db.select().from(orders).where(eq(orders.id, data.orderId)).limit(1)
+    if (!order) throw new Error('Order not found.')
+    const items = await db.select().from(orderItems).where(eq(orderItems.orderId, data.orderId))
+
+    const sendResult = await sendShippingDelayEmail({
+      orderNo: order.orderNo,
+      orderId: order.id,
+      email: data.testEmail,
+      firstName: order.firstName,
+      message: data.message,
+      items: items.map((i) => ({ productName: i.productName, qty: i.qty, unitPrice: i.unitPrice, img: i.img })),
+    })
+
+    return { result: sendResult }
+  })
+
 export const adminGetOrder = createServerFn({ method: 'GET' })
   .validator(z.object({ id: z.string() }))
   .handler(async ({ data }) => {
