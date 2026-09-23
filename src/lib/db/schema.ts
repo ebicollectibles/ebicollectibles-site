@@ -318,7 +318,7 @@ export const emailEvents = pgTable('email_events', {
   id: uuid('id').primaryKey().defaultRandom(),
   orderId: uuid('order_id').references(() => orders.id, { onDelete: 'set null' }),
   email: text('email'),
-  type: text('type').notNull(), // order_confirmation | shipment_notice | store_credit_issued
+  type: text('type').notNull(), // order_confirmation | shipment_notice | store_credit_issued | shipping_delay
   status: text('status').notNull(), // sent | failed | skipped (no email on file / sending not configured)
   errorMessage: text('error_message'),
   createdAt: timestamp('created_at', { withTimezone: true }).notNull().defaultNow(),

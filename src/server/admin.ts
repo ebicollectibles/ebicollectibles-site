@@ -27,7 +27,7 @@ import { CARRIERS } from '~/lib/carriers'
 import { PRODUCT_CATEGORIES, SUBCATEGORIES_BY_CATEGORY, ALL_SUBCATEGORIES, isValidGtin13, GOOGLE_CONDITIONS } from '~/lib/products'
 import { buildShipmentsByOrder, computeFulfillmentStatus, groupBy, remainingQtyByItem } from '~/lib/shipments'
 import { assertAdmin } from './admin-auth'
-import { sendMarketplaceShipmentEmail, sendShipmentEmail } from './email'
+import { sendMarketplaceShipmentEmail, sendShipmentEmail, sendShippingDelayEmail, type EmailSendResult } from './email'
 import { getSquareCatalogImages, overlaySquareData, searchMarketplaceOrders, searchSquareCatalogItems } from './square'
 import { upsertSubscriber } from './subscribers'
 
@@ -239,15 +239,69 @@ export const adminListOrders = createServerFn({ method: 'GET' }).handler(async (
     .select({ orderId: refundEvents.orderId, amount: refundEvents.amount, status: refundEvents.status })
     .from(refundEvents)
     .where(eq(refundEvents.status, 'COMPLETED'))
+  // Item names per order — just enough to filter/display "orders containing
+  // this product" on the list page (e.g. picking out everyone still waiting
+  // on one specific item to send a delay notice), not the full line items.
+  const itemRows = await db.select({ orderId: orderItems.orderId, productName: orderItems.productName }).from(orderItems)
 
   const refundedByOrder = new Map<string, number>()
   for (const r of refundRows) {
     if (!r.orderId) continue
     refundedByOrder.set(r.orderId, (refundedByOrder.get(r.orderId) ?? 0) + (r.amount ?? 0))
   }
+  const itemNamesByOrder = groupBy(itemRows, (i) => i.orderId)
 
-  return orderRows.map((order) => ({ ...order, totalRefunded: refundedByOrder.get(order.id) ?? 0 }))
+  return orderRows.map((order) => ({
+    ...order,
+    totalRefunded: refundedByOrder.get(order.id) ?? 0,
+    itemNames: (itemNamesByOrder.get(order.id) ?? []).map((i) => i.productName),
+  }))
 })
+
+export const adminSendDelayNotice = createServerFn({ method: 'POST' })
+  .validator(z.object({ orderIds: z.array(z.string()).min(1), message: z.string().trim().min(1) }))
+  .handler(async ({ data }) => {
+    await assertAdmin()
+    const db = getDb()
+
+    const orderRows = await db.select().from(orders).where(inArray(orders.id, data.orderIds))
+    const itemRows = await db.select().from(orderItems).where(inArray(orderItems.orderId, data.orderIds))
+    const itemsByOrder = groupBy(itemRows, (i) => i.orderId)
+
+    const results: { orderId: string; orderNo: number; status: EmailSendResult['status'] }[] = []
+    for (const order of orderRows) {
+      const items = (itemsByOrder.get(order.id) ?? []).map((i) => ({
+        productName: i.productName,
+        qty: i.qty,
+        unitPrice: i.unitPrice,
+        img: i.img,
+      }))
+      let sendResult: EmailSendResult
+      try {
+        sendResult = await sendShippingDelayEmail({
+          orderNo: order.orderNo,
+          orderId: order.id,
+          email: order.email,
+          firstName: order.firstName,
+          message: data.message,
+          items,
+        })
+      } catch (err) {
+        console.error(`Failed to send delay email for order ${order.orderNo}:`, err)
+        sendResult = { status: 'failed', error: err instanceof Error ? err.message : String(err) }
+      }
+      await db.insert(emailEvents).values({
+        orderId: order.id,
+        email: order.email,
+        type: 'shipping_delay',
+        status: sendResult.status,
+        errorMessage: sendResult.error ?? null,
+      })
+      results.push({ orderId: order.id, orderNo: order.orderNo, status: sendResult.status })
+    }
+
+    return { results }
+  })
 
 export const adminGetOrder = createServerFn({ method: 'GET' })
   .validator(z.object({ id: z.string() }))

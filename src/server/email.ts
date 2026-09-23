@@ -221,6 +221,8 @@ interface StoreCreditEmailData {
 }
 
 const LOGIN_URL = 'https://ebicollectibles.com/account/login'
+const SITE_URL = 'https://ebicollectibles.com'
+const AMBER = '#b4622f'
 
 export async function sendStoreCreditEmail(data: StoreCreditEmailData): Promise<EmailSendResult> {
   const apiKey = process.env.RESEND_API_KEY
@@ -273,6 +275,78 @@ export async function sendStoreCreditEmail(data: StoreCreditEmailData): Promise<
     const json = await res.json().catch(() => null)
     const error = json?.message || `HTTP ${res.status}`
     console.error('Failed to send store credit email:', error)
+    return { status: 'failed', error }
+  }
+
+  return { status: 'sent' }
+}
+
+interface DelayEmailData {
+  orderNo: number
+  orderId: string
+  email: string | null
+  firstName: string | null
+  // Admin-written, free text — this is what actually explains the delay
+  // (customs, a manufacturer restock, etc.), since no canned copy fits every
+  // reason an order is running late.
+  message: string
+  items: OrderEmailItem[]
+}
+
+// Best-effort, same contract as the other order emails — sent from the
+// admin order list for one or more selected orders at once (see
+// adminSendDelayNotice), not tied to any status change of its own.
+export async function sendShippingDelayEmail(data: DelayEmailData): Promise<EmailSendResult> {
+  const apiKey = process.env.RESEND_API_KEY
+  const from = process.env.ORDER_FROM_EMAIL
+  if (!apiKey || !from || !data.email) return { status: 'skipped' }
+
+  const orderUrl = `${SITE_URL}/account/orders/${data.orderId}`
+  const messageHtml = escapeHtml(data.message).replace(/\n/g, '<br>')
+
+  const bodyHtml = `
+    <p style="font-size:13.5px;color:${INK};line-height:1.6;margin:0 0 20px;">${messageHtml}</p>
+    ${itemsTableHtml(data.items, { showPrice: false })}
+    <a href="${orderUrl}" style="display:inline-block;background:${INK};color:#ffffff;font-size:13px;font-weight:700;text-decoration:none;padding:12px 22px;border-radius:3px;">View your order</a>
+  `
+
+  const html = emailShell({
+    badgeLabel: 'Order update',
+    badgeColor: AMBER,
+    heading: `An update on your order${data.firstName ? `, ${escapeHtml(data.firstName)}` : ''}`,
+    intro: `Order #EBI-${data.orderNo} hasn't shipped yet — here's what's going on.`,
+    bodyHtml,
+  })
+
+  const itemsLine = data.items.map((item) => `${item.qty}× ${item.productName}`).join(', ')
+  const text = [
+    `An update on your order${data.firstName ? `, ${data.firstName}` : ''}`,
+    `Order #EBI-${data.orderNo} hasn't shipped yet — here's what's going on. Includes: ${itemsLine}.`,
+    '',
+    data.message,
+    '',
+    `View your order: ${orderUrl}`,
+  ].join('\n')
+
+  const res = await fetch('https://api.resend.com/emails', {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${apiKey}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      from,
+      to: data.email,
+      subject: `An update on your order — #EBI-${data.orderNo}`,
+      html,
+      text,
+    }),
+  })
+
+  if (!res.ok) {
+    const json = await res.json().catch(() => null)
+    const error = json?.message || `HTTP ${res.status}`
+    console.error(`Failed to send delay email for order ${data.orderNo}:`, error)
     return { status: 'failed', error }
   }
 
