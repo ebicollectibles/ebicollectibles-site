@@ -1,4 +1,5 @@
-import { boolean, integer, numeric, pgTable, text, timestamp, uuid } from 'drizzle-orm/pg-core'
+import { sql } from 'drizzle-orm'
+import { boolean, index, integer, numeric, pgTable, text, timestamp, uuid } from 'drizzle-orm/pg-core'
 
 export const products = pgTable('products', {
   id: text('id').primaryKey(),
@@ -190,7 +191,7 @@ export const authEvents = pgTable('auth_events', {
   asOrganization: text('as_organization'),
   country: text('country'),
   createdAt: timestamp('created_at', { withTimezone: true }).notNull().defaultNow(),
-})
+}, (table) => [index('auth_events_user_id_idx').on(table.userId)])
 
 export const orders = pgTable('orders', {
   id: uuid('id').primaryKey().defaultRandom(),
@@ -258,7 +259,14 @@ export const orders = pgTable('orders', {
   // "pending" are ever set directly by an admin action.
   fulfillmentStatus: text('fulfillment_status').notNull().default('pending'),
   createdAt: timestamp('created_at', { withTimezone: true }).notNull().defaultNow(),
-})
+}, (table) => [
+  index('orders_user_id_idx').on(table.userId),
+  // Matches the shape of the one query that actually filters on this
+  // column (guest-checkout-under-an-existing-email lookup in customers.ts,
+  // which wraps both sides in lower()) — a plain index on email wouldn't be
+  // used by that query's planner.
+  index('orders_email_lower_idx').on(sql`lower(${table.email})`),
+])
 
 // Timestamped fulfillment-status timeline per order (pending -> shipped ->
 // cancelled etc.) — the order row only holds the *current* status, this is
@@ -270,7 +278,7 @@ export const orderStatusEvents = pgTable('order_status_events', {
     .references(() => orders.id, { onDelete: 'cascade' }),
   status: text('status').notNull(),
   createdAt: timestamp('created_at', { withTimezone: true }).notNull().defaultNow(),
-})
+}, (table) => [index('order_status_events_order_id_idx').on(table.orderId)])
 
 // Declined/failed Square charges. No order row exists for these (the order
 // insert only happens after a successful charge), so this is the only
@@ -282,7 +290,7 @@ export const paymentAttempts = pgTable('payment_attempts', {
   amount: numeric('amount', { precision: 10, scale: 2, mode: 'number' }),
   errorMessage: text('error_message'),
   createdAt: timestamp('created_at', { withTimezone: true }).notNull().defaultNow(),
-})
+}, (table) => [index('payment_attempts_user_id_idx').on(table.userId), index('payment_attempts_email_idx').on(table.email)])
 
 // Admin-made edits to a product's price/compare-at-price/stock — separate
 // from the per-order stock decrements that happen automatically on sale.
@@ -294,7 +302,7 @@ export const productEditEvents = pgTable('product_edit_events', {
   oldValue: text('old_value'),
   newValue: text('new_value'),
   createdAt: timestamp('created_at', { withTimezone: true }).notNull().defaultNow(),
-})
+}, (table) => [index('product_edit_events_product_id_idx').on(table.productId)])
 
 // Refunds reported by Square via webhook. Kept separate from
 // orders.paymentStatus (paid/test/failed/unpaid) rather than overloading
@@ -309,7 +317,7 @@ export const refundEvents = pgTable('refund_events', {
   status: text('status'), // Square refund status: PENDING | COMPLETED | REJECTED | FAILED
   reason: text('reason'),
   createdAt: timestamp('created_at', { withTimezone: true }).notNull().defaultNow(),
-})
+}, (table) => [index('refund_events_order_id_idx').on(table.orderId)])
 
 // Every customer-facing email attempt tied to an order — order confirmation
 // and shipment notices so far. Lets admin see whether a given send actually
@@ -322,7 +330,7 @@ export const emailEvents = pgTable('email_events', {
   status: text('status').notNull(), // sent | failed | skipped (no email on file / sending not configured)
   errorMessage: text('error_message'),
   createdAt: timestamp('created_at', { withTimezone: true }).notNull().defaultNow(),
-})
+}, (table) => [index('email_events_order_id_idx').on(table.orderId)])
 
 export const orderItems = pgTable('order_items', {
   id: uuid('id').primaryKey().defaultRandom(),
@@ -337,7 +345,7 @@ export const orderItems = pgTable('order_items', {
   img: text('img'),
   unitPrice: numeric('unit_price', { precision: 10, scale: 2, mode: 'number' }).notNull(),
   qty: integer('qty').notNull(),
-})
+}, (table) => [index('order_items_order_id_idx').on(table.orderId)])
 
 // An order can ship in more than one package (e.g. part USPS, part UPS
 // because of a backorder or box-size split) — each package is its own
@@ -352,7 +360,7 @@ export const shipments = pgTable('shipments', {
   carrier: text('carrier'),
   trackingNumber: text('tracking_number'),
   createdAt: timestamp('created_at', { withTimezone: true }).notNull().defaultNow(),
-})
+}, (table) => [index('shipments_order_id_idx').on(table.orderId)])
 
 // How much of a given order_item went into a given shipment — a single
 // line (e.g. "3x Booster Box") can itself be split across shipments, so
@@ -366,7 +374,7 @@ export const shipmentItems = pgTable('shipment_items', {
     .notNull()
     .references(() => orderItems.id, { onDelete: 'cascade' }),
   qty: integer('qty').notNull(),
-})
+}, (table) => [index('shipment_items_shipment_id_idx').on(table.shipmentId)])
 
 export const orderCounters = pgTable('order_counters', {
   id: text('id').primaryKey(),
@@ -433,7 +441,7 @@ export const marketplaceOrderItems = pgTable('marketplace_order_items', {
   squareCatalogObjectId: text('square_catalog_object_id'),
   unitPrice: numeric('unit_price', { precision: 10, scale: 2, mode: 'number' }),
   qty: integer('qty').notNull(),
-})
+}, (table) => [index('marketplace_order_items_marketplace_order_id_idx').on(table.marketplaceOrderId)])
 
 // Same idea as shipments/shipmentItems above, for marketplace orders — a
 // DropNotify (etc.) order can also go out in more than one package.
@@ -452,7 +460,7 @@ export const marketplaceShipments = pgTable('marketplace_shipments', {
   emailStatus: text('email_status'), // sent | failed | skipped
   emailError: text('email_error'),
   createdAt: timestamp('created_at', { withTimezone: true }).notNull().defaultNow(),
-})
+}, (table) => [index('marketplace_shipments_marketplace_order_id_idx').on(table.marketplaceOrderId)])
 
 // How much of a given marketplace_order_item went into a given
 // marketplace_shipment — mirrors shipment_items above.
@@ -465,7 +473,7 @@ export const marketplaceShipmentItems = pgTable('marketplace_shipment_items', {
     .notNull()
     .references(() => marketplaceOrderItems.id, { onDelete: 'cascade' }),
   qty: integer('qty').notNull(),
-})
+}, (table) => [index('marketplace_shipment_items_shipment_id_idx').on(table.shipmentId)])
 
 // General marketing list (new drops, restocks) — separate from customer
 // accounts (users) since a subscriber never needs to log in. Fed by the
@@ -535,4 +543,4 @@ export const storeCreditEvents = pgTable('store_credit_events', {
   // history query, unlike reason above (which is filtered per-request).
   note: text('note'),
   createdAt: timestamp('created_at', { withTimezone: true }).notNull().defaultNow(),
-})
+}, (table) => [index('store_credit_events_user_id_idx').on(table.userId), index('store_credit_events_order_id_idx').on(table.orderId)])
