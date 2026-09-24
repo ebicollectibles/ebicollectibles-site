@@ -3,7 +3,7 @@ import { AdminNav } from '~/components/AdminNav'
 import { ProductForm } from '~/components/ProductForm'
 import { requireAdmin, adminLogout } from '~/server/admin-auth'
 import { adminGetProduct, adminUpdateProduct, adminDeleteProduct } from '~/server/admin'
-import type { GoogleCondition } from '~/lib/products'
+import type { GoogleCondition, ProductCategory, ProductSubcategory } from '~/lib/products'
 
 export const Route = createFileRoute('/admin/products/$id')({
   beforeLoad: () => requireAdmin(),
@@ -51,8 +51,12 @@ function EditProductPage() {
         initial={{
           id: product.id,
           name: product.name,
-          category: product.category as any,
-          subcategory: product.subcategory as any,
+          // Cast, not "any" — admin.ts's z.enum() already guarantees these are
+          // always one of the valid values at write time; Drizzle just can't
+          // know that from a plain text() column, so the DB read comes back
+          // typed as a bare string.
+          category: product.category as ProductCategory,
+          subcategory: product.subcategory as ProductSubcategory,
           price: product.price,
           compareAtPrice: product.compareAtPrice ?? 0,
           stock: product.stock,
