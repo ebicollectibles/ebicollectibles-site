@@ -277,12 +277,34 @@ function AdminLinksPage() {
                   <td style={{ ...td, fontFamily: "'IBM Plex Mono', monospace", fontWeight: 500 }}>{link.clickCount}</td>
                   <td style={{ ...td, fontSize: 12, color: '#5a6875' }}>{new Date(link.createdAt).toLocaleDateString()}</td>
                   <td style={{ ...td, textAlign: 'right', whiteSpace: 'nowrap' }}>
-                    <button
-                      onClick={() => copyUrl(link.id, link.slug)}
-                      style={{ background: 'none', border: 'none', color: copiedId === link.id ? '#3f7a63' : '#131b28', fontSize: 12.5, cursor: 'pointer', marginRight: 12 }}
-                    >
-                      {copiedId === link.id ? 'Copied' : 'Copy'}
-                    </button>
+                    <span style={{ position: 'relative', display: 'inline-block' }}>
+                      {copiedId === link.id && (
+                        <span
+                          style={{
+                            position: 'absolute',
+                            bottom: '100%',
+                            left: '50%',
+                            transform: 'translateX(-50%)',
+                            marginBottom: 6,
+                            background: '#131b28',
+                            color: '#fff',
+                            fontSize: 11,
+                            padding: '4px 8px',
+                            borderRadius: 3,
+                            whiteSpace: 'nowrap',
+                            pointerEvents: 'none',
+                          }}
+                        >
+                          Copied to clipboard
+                        </span>
+                      )}
+                      <button
+                        onClick={() => copyUrl(link.id, link.slug)}
+                        style={{ background: 'none', border: 'none', color: '#131b28', fontSize: 12.5, cursor: 'pointer', marginRight: 12 }}
+                      >
+                        Copy
+                      </button>
+                    </span>
                     <button onClick={() => startEdit(link)} style={{ background: 'none', border: 'none', color: '#3f7a63', fontSize: 12.5, cursor: 'pointer', marginRight: 12 }}>
                       Edit
                     </button>
