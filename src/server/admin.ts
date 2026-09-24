@@ -18,6 +18,7 @@ import {
   refundEvents,
   shipmentItems,
   shipments,
+  shortLinks,
   storeCreditBalances,
   subscriberEvents,
   subscribers,
@@ -1069,5 +1070,77 @@ export const adminSendMarketplaceShipmentTest = createServerFn({ method: 'POST' 
     })
 
     if (sendResult.status !== 'sent') throw new Error(sendResult.error || `Test send ${sendResult.status}.`)
+    return { ok: true }
+  })
+
+export const adminListShortLinks = createServerFn({ method: 'GET' }).handler(async () => {
+  await assertAdmin()
+  const db = getDb()
+  return db.select().from(shortLinks).orderBy(desc(shortLinks.createdAt))
+})
+
+// Lowercase/digits/hyphens only — keeps every /go/{slug} link readable and
+// safe to paste anywhere without URL-encoding surprises.
+const shortLinkSlugSchema = z
+  .string()
+  .trim()
+  .min(1, 'Slug is required.')
+  .regex(/^[a-z0-9-]+$/, 'Lowercase letters, numbers, and hyphens only.')
+
+const shortLinkBaseSchema = z.object({
+  slug: shortLinkSlugSchema,
+  // Anything /go/{slug} should send visitors to — a path on this site
+  // ("/products/abc123", "/shop") or a full external URL. Not limited to
+  // products: same mechanism works for a Discord post pointing at the FAQ,
+  // a sale, or anywhere else.
+  destinationPath: z.string().trim().min(1, 'Destination is required.'),
+  utmSource: z.string().trim().optional(),
+  utmMedium: z.string().trim().optional(),
+  utmCampaign: z.string().trim().optional(),
+})
+
+export const adminCreateShortLink = createServerFn({ method: 'POST' })
+  .validator(shortLinkBaseSchema)
+  .handler(async ({ data }) => {
+    await assertAdmin()
+    const db = getDb()
+    const existing = await db.select({ id: shortLinks.id }).from(shortLinks).where(eq(shortLinks.slug, data.slug)).limit(1)
+    if (existing.length > 0) throw new Error(`/go/${data.slug} is already taken.`)
+    await db.insert(shortLinks).values({
+      slug: data.slug,
+      destinationPath: data.destinationPath,
+      utmSource: data.utmSource || null,
+      utmMedium: data.utmMedium || null,
+      utmCampaign: data.utmCampaign || null,
+    })
+    return { ok: true }
+  })
+
+export const adminUpdateShortLink = createServerFn({ method: 'POST' })
+  .validator(shortLinkBaseSchema.extend({ id: z.string() }))
+  .handler(async ({ data }) => {
+    await assertAdmin()
+    const db = getDb()
+    const existing = await db.select({ id: shortLinks.id }).from(shortLinks).where(eq(shortLinks.slug, data.slug)).limit(1)
+    if (existing.length > 0 && existing[0].id !== data.id) throw new Error(`/go/${data.slug} is already taken.`)
+    await db
+      .update(shortLinks)
+      .set({
+        slug: data.slug,
+        destinationPath: data.destinationPath,
+        utmSource: data.utmSource || null,
+        utmMedium: data.utmMedium || null,
+        utmCampaign: data.utmCampaign || null,
+      })
+      .where(eq(shortLinks.id, data.id))
+    return { ok: true }
+  })
+
+export const adminDeleteShortLink = createServerFn({ method: 'POST' })
+  .validator(z.object({ id: z.string() }))
+  .handler(async ({ data }) => {
+    await assertAdmin()
+    const db = getDb()
+    await db.delete(shortLinks).where(eq(shortLinks.id, data.id))
     return { ok: true }
   })

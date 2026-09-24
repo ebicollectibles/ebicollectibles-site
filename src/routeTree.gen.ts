@@ -28,11 +28,13 @@ import { Route as AccountSignupRouteImport } from './routes/account/signup'
 import { Route as AccountVerifyRouteImport } from './routes/account/verify'
 import { Route as AdminIndexRouteImport } from './routes/admin/index'
 import { Route as AdminBestSellingRouteImport } from './routes/admin/best-selling'
+import { Route as AdminLinksRouteImport } from './routes/admin/links'
 import { Route as AdminLoginRouteImport } from './routes/admin/login'
 import { Route as AdminMarketplaceOrdersRouteImport } from './routes/admin/marketplace-orders'
 import { Route as AdminNewAndUpcomingRouteImport } from './routes/admin/new-and-upcoming'
 import { Route as AdminSecurityRouteImport } from './routes/admin/security'
 import { Route as AdminSubscribersRouteImport } from './routes/admin/subscribers'
+import { Route as GoSlugRouteImport } from './routes/go.$slug'
 import { Route as ProductsIdRouteImport } from './routes/products.$id'
 import { Route as AccountOrdersIndexRouteImport } from './routes/account/orders/index'
 import { Route as AccountOrdersIdRouteImport } from './routes/account/orders/$id'
@@ -141,6 +143,11 @@ const AdminBestSellingRoute = AdminBestSellingRouteImport.update({
   path: '/admin/best-selling',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminLinksRoute = AdminLinksRouteImport.update({
+  id: '/admin/links',
+  path: '/admin/links',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AdminLoginRoute = AdminLoginRouteImport.update({
   id: '/admin/login',
   path: '/admin/login',
@@ -164,6 +171,11 @@ const AdminSecurityRoute = AdminSecurityRouteImport.update({
 const AdminSubscribersRoute = AdminSubscribersRouteImport.update({
   id: '/admin/subscribers',
   path: '/admin/subscribers',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GoSlugRoute = GoSlugRouteImport.update({
+  id: '/go/$slug',
+  path: '/go/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ProductsIdRoute = ProductsIdRouteImport.update({
@@ -246,11 +258,13 @@ export interface FileRoutesByFullPath {
   '/account/signup': typeof AccountSignupRoute
   '/account/verify': typeof AccountVerifyRoute
   '/admin/best-selling': typeof AdminBestSellingRoute
+  '/admin/links': typeof AdminLinksRoute
   '/admin/login': typeof AdminLoginRoute
   '/admin/marketplace-orders': typeof AdminMarketplaceOrdersRoute
   '/admin/new-and-upcoming': typeof AdminNewAndUpcomingRoute
   '/admin/security': typeof AdminSecurityRoute
   '/admin/subscribers': typeof AdminSubscribersRoute
+  '/go/$slug': typeof GoSlugRoute
   '/products/$id': typeof ProductsIdRoute
   '/account/': typeof AccountIndexRoute
   '/admin/': typeof AdminIndexRoute
@@ -284,11 +298,13 @@ export interface FileRoutesByTo {
   '/account/signup': typeof AccountSignupRoute
   '/account/verify': typeof AccountVerifyRoute
   '/admin/best-selling': typeof AdminBestSellingRoute
+  '/admin/links': typeof AdminLinksRoute
   '/admin/login': typeof AdminLoginRoute
   '/admin/marketplace-orders': typeof AdminMarketplaceOrdersRoute
   '/admin/new-and-upcoming': typeof AdminNewAndUpcomingRoute
   '/admin/security': typeof AdminSecurityRoute
   '/admin/subscribers': typeof AdminSubscribersRoute
+  '/go/$slug': typeof GoSlugRoute
   '/products/$id': typeof ProductsIdRoute
   '/account': typeof AccountIndexRoute
   '/admin': typeof AdminIndexRoute
@@ -323,11 +339,13 @@ export interface FileRoutesById {
   '/account/signup': typeof AccountSignupRoute
   '/account/verify': typeof AccountVerifyRoute
   '/admin/best-selling': typeof AdminBestSellingRoute
+  '/admin/links': typeof AdminLinksRoute
   '/admin/login': typeof AdminLoginRoute
   '/admin/marketplace-orders': typeof AdminMarketplaceOrdersRoute
   '/admin/new-and-upcoming': typeof AdminNewAndUpcomingRoute
   '/admin/security': typeof AdminSecurityRoute
   '/admin/subscribers': typeof AdminSubscribersRoute
+  '/go/$slug': typeof GoSlugRoute
   '/products/$id': typeof ProductsIdRoute
   '/account/': typeof AccountIndexRoute
   '/admin/': typeof AdminIndexRoute
@@ -363,11 +381,13 @@ export interface FileRouteTypes {
     | '/account/signup'
     | '/account/verify'
     | '/admin/best-selling'
+    | '/admin/links'
     | '/admin/login'
     | '/admin/marketplace-orders'
     | '/admin/new-and-upcoming'
     | '/admin/security'
     | '/admin/subscribers'
+    | '/go/$slug'
     | '/products/$id'
     | '/account/'
     | '/admin/'
@@ -401,11 +421,13 @@ export interface FileRouteTypes {
     | '/account/signup'
     | '/account/verify'
     | '/admin/best-selling'
+    | '/admin/links'
     | '/admin/login'
     | '/admin/marketplace-orders'
     | '/admin/new-and-upcoming'
     | '/admin/security'
     | '/admin/subscribers'
+    | '/go/$slug'
     | '/products/$id'
     | '/account'
     | '/admin'
@@ -439,11 +461,13 @@ export interface FileRouteTypes {
     | '/account/signup'
     | '/account/verify'
     | '/admin/best-selling'
+    | '/admin/links'
     | '/admin/login'
     | '/admin/marketplace-orders'
     | '/admin/new-and-upcoming'
     | '/admin/security'
     | '/admin/subscribers'
+    | '/go/$slug'
     | '/products/$id'
     | '/account/'
     | '/admin/'
@@ -478,11 +502,13 @@ export interface RootRouteChildren {
   AccountSignupRoute: typeof AccountSignupRoute
   AccountVerifyRoute: typeof AccountVerifyRoute
   AdminBestSellingRoute: typeof AdminBestSellingRoute
+  AdminLinksRoute: typeof AdminLinksRoute
   AdminLoginRoute: typeof AdminLoginRoute
   AdminMarketplaceOrdersRoute: typeof AdminMarketplaceOrdersRoute
   AdminNewAndUpcomingRoute: typeof AdminNewAndUpcomingRoute
   AdminSecurityRoute: typeof AdminSecurityRoute
   AdminSubscribersRoute: typeof AdminSubscribersRoute
+  GoSlugRoute: typeof GoSlugRoute
   ProductsIdRoute: typeof ProductsIdRoute
   AccountIndexRoute: typeof AccountIndexRoute
   AdminIndexRoute: typeof AdminIndexRoute
@@ -634,6 +660,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminBestSellingRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin/links': {
+      id: '/admin/links'
+      path: '/admin/links'
+      fullPath: '/admin/links'
+      preLoaderRoute: typeof AdminLinksRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/admin/login': {
       id: '/admin/login'
       path: '/admin/login'
@@ -667,6 +700,13 @@ declare module '@tanstack/react-router' {
       path: '/admin/subscribers'
       fullPath: '/admin/subscribers'
       preLoaderRoute: typeof AdminSubscribersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/go/$slug': {
+      id: '/go/$slug'
+      path: '/go/$slug'
+      fullPath: '/go/$slug'
+      preLoaderRoute: typeof GoSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/products/$id': {
@@ -774,11 +814,13 @@ const rootRouteChildren: RootRouteChildren = {
   AccountSignupRoute: AccountSignupRoute,
   AccountVerifyRoute: AccountVerifyRoute,
   AdminBestSellingRoute: AdminBestSellingRoute,
+  AdminLinksRoute: AdminLinksRoute,
   AdminLoginRoute: AdminLoginRoute,
   AdminMarketplaceOrdersRoute: AdminMarketplaceOrdersRoute,
   AdminNewAndUpcomingRoute: AdminNewAndUpcomingRoute,
   AdminSecurityRoute: AdminSecurityRoute,
   AdminSubscribersRoute: AdminSubscribersRoute,
+  GoSlugRoute: GoSlugRoute,
   ProductsIdRoute: ProductsIdRoute,
   AccountIndexRoute: AccountIndexRoute,
   AdminIndexRoute: AdminIndexRoute,

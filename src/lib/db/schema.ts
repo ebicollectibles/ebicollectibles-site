@@ -544,3 +544,23 @@ export const storeCreditEvents = pgTable('store_credit_events', {
   note: text('note'),
   createdAt: timestamp('created_at', { withTimezone: true }).notNull().defaultNow(),
 }, (table) => [index('store_credit_events_user_id_idx').on(table.userId), index('store_credit_events_order_id_idx').on(table.orderId)])
+
+// Branded /go/{slug} redirects for posting clean, trackable links outside
+// the site (Discord announcements, etc.) — admin picks the slug (not a
+// random hash) and the destination, which can be any path or full URL, not
+// just a product page. utmSource/Medium/Campaign are appended to the
+// destination at redirect time rather than baked into destinationPath, so
+// they show up consistently in GA4 without admin having to hand-build a
+// query string per link. clickCount is a fast at-a-glance counter — not a
+// replacement for GA4, just answers "did anyone click this" without
+// leaving the admin panel.
+export const shortLinks = pgTable('short_links', {
+  id: uuid('id').primaryKey().defaultRandom(),
+  slug: text('slug').notNull().unique(),
+  destinationPath: text('destination_path').notNull(),
+  utmSource: text('utm_source'),
+  utmMedium: text('utm_medium'),
+  utmCampaign: text('utm_campaign'),
+  clickCount: integer('click_count').notNull().default(0),
+  createdAt: timestamp('created_at', { withTimezone: true }).notNull().defaultNow(),
+})

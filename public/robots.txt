@@ -4,5 +4,6 @@ Disallow: /admin
 Disallow: /account/
 Disallow: /checkout
 Disallow: /cart
+Disallow: /go/
 
 Sitemap: https://ebicollectibles.com/sitemap.xml
