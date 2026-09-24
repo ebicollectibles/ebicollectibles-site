@@ -2,11 +2,14 @@ import * as React from 'react'
 import { createFileRoute, useNavigate, useRouter } from '@tanstack/react-router'
 import { AdminNav } from '~/components/AdminNav'
 import { requireAdmin, adminLogout } from '~/server/admin-auth'
-import { adminListShortLinks, adminCreateShortLink, adminUpdateShortLink, adminDeleteShortLink } from '~/server/admin'
+import { adminListShortLinks, adminListProducts, adminCreateShortLink, adminUpdateShortLink, adminDeleteShortLink } from '~/server/admin'
 
 export const Route = createFileRoute('/admin/links')({
   beforeLoad: () => requireAdmin(),
-  loader: () => adminListShortLinks(),
+  loader: async () => {
+    const [links, products] = await Promise.all([adminListShortLinks(), adminListProducts()])
+    return { links, products }
+  },
   component: AdminLinksPage,
 })
 
@@ -50,16 +53,18 @@ const emptyForm = { slug: '', destinationPath: '', utmSource: 'discord', utmMedi
 function AdminLinksPage() {
   const navigate = useNavigate()
   const router = useRouter()
-  const links = Route.useLoaderData()
+  const { links, products } = Route.useLoaderData()
   const [editingId, setEditingId] = React.useState<string | null>(null)
   const [showForm, setShowForm] = React.useState(false)
   const [form, setForm] = React.useState(emptyForm)
+  const [pickedProductId, setPickedProductId] = React.useState('')
   const [saving, setSaving] = React.useState(false)
   const [error, setError] = React.useState<string | null>(null)
 
   const startCreate = () => {
     setEditingId(null)
     setForm(emptyForm)
+    setPickedProductId('')
     setError(null)
     setShowForm(true)
   }
@@ -157,6 +162,22 @@ function AdminLinksPage() {
                 placeholder="/products/abc123 or https://…"
                 style={input}
               />
+              <select
+                value={pickedProductId}
+                onChange={(e) => {
+                  const id = e.target.value
+                  if (id) setForm((f) => ({ ...f, destinationPath: `/products/${id}` }))
+                  setPickedProductId('')
+                }}
+                style={{ ...input, marginTop: 8, color: '#5a6875' }}
+              >
+                <option value="">…or pick a product</option>
+                {products.map((p) => (
+                  <option key={p.id} value={p.id}>
+                    {p.name}
+                  </option>
+                ))}
+              </select>
             </div>
             <div>
               <label style={label}>utm_source</label>
