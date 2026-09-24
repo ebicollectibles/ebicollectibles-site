@@ -4,6 +4,11 @@ import { z } from 'zod'
 import { ProductCard } from '~/components/ProductCard'
 import { useCart } from '~/lib/cart-context'
 import { PRODUCT_CATEGORIES, SUBCATEGORIES_BY_CATEGORY, ALL_SUBCATEGORIES, type ProductCategory, type ProductSubcategory } from '~/lib/products'
+import { SHOW_ACRYLICS } from '~/lib/feature-flags'
+
+// Same set of category pills shown everywhere on this page — computed once
+// so the filter panel and product-visibility check can't drift apart.
+const VISIBLE_CATEGORIES = PRODUCT_CATEGORIES.filter((cat) => SHOW_ACRYLICS || cat !== 'Acrylic Cases')
 
 const categoryLabel = (cat: ProductCategory) => (cat === 'Chinese Pokémon Products' ? 'Pokemon (Simplified Chinese)' : cat)
 
@@ -104,6 +109,7 @@ function ShopPage() {
     // grid tile — same reasoning as rankProducts excluding it from the
     // homepage sections.
     if (p.hideFromShopGrid) return false
+    if (!SHOW_ACRYLICS && p.category === 'Acrylic Cases') return false
     if (query && !p.name.toLowerCase().includes(query)) return false
     if (subcategories.length && !subcategories.includes(p.subcategory)) return false
     if (inStockOnly && p.stock === 0) return false
@@ -139,7 +145,7 @@ function ShopPage() {
       <div style={monoLabel}>Filter</div>
       <div style={{ marginTop: 20 }}>
         <div style={{ fontSize: 12.5, fontWeight: 700, letterSpacing: '0.02em', marginBottom: 10 }}>Product type</div>
-        {PRODUCT_CATEGORIES.map((cat) => (
+        {VISIBLE_CATEGORIES.map((cat) => (
           <div key={cat} style={{ marginBottom: 14 }}>
             <div style={{ fontSize: 11, fontWeight: 700, color: '#5a6875', textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: 4 }}>
               {cat}

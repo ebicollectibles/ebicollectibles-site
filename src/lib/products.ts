@@ -1,3 +1,5 @@
+import { SHOW_ACRYLICS } from './feature-flags'
+
 export const PRODUCT_CATEGORIES = ['Chinese Pokémon Products', 'Acrylic Cases'] as const
 export type ProductCategory = (typeof PRODUCT_CATEGORIES)[number]
 
@@ -113,8 +115,11 @@ const HIDE_FIELD = {
 export function rankProducts(products: Product[], rankField: 'bestSellingRank' | 'newAndUpcomingRank'): Product[] {
   // A variant meant only to be reached via its sibling's selector (see
   // hideFromShopGrid on Product above) shouldn't surface here either, same
-  // as it's excluded from the shop grid and header search.
-  const eligible = products.filter((p) => !p[HIDE_FIELD[rankField]] && !p.hideFromShopGrid)
+  // as it's excluded from the shop grid and header search. Acrylic Cases is
+  // excluded too while SHOW_ACRYLICS is off, same reasoning as shop.tsx.
+  const eligible = products.filter(
+    (p) => !p[HIDE_FIELD[rankField]] && !p.hideFromShopGrid && (SHOW_ACRYLICS || p.category !== 'Acrylic Cases'),
+  )
   const ranked = eligible.filter((p) => p[rankField] != null).sort((a, b) => a[rankField]! - b[rankField]!)
   const unranked = eligible.filter((p) => p[rankField] == null).slice().reverse()
   return [...ranked, ...unranked]

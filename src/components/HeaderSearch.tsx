@@ -1,6 +1,7 @@
 import * as React from 'react'
 import { useNavigate } from '@tanstack/react-router'
 import { useCart } from '~/lib/cart-context'
+import { SHOW_ACRYLICS } from '~/lib/feature-flags'
 
 const MAX_RESULTS = 6
 
@@ -26,7 +27,9 @@ export function HeaderSearch({
 
   const query = value.trim().toLowerCase()
   const matches = query
-    ? products.filter((p) => !p.hideFromShopGrid && p.name.toLowerCase().includes(query)).slice(0, MAX_RESULTS)
+    ? products
+        .filter((p) => !p.hideFromShopGrid && (SHOW_ACRYLICS || p.category !== 'Acrylic Cases') && p.name.toLowerCase().includes(query))
+        .slice(0, MAX_RESULTS)
     : []
 
   React.useEffect(() => {
