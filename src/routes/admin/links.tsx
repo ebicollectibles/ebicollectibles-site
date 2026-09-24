@@ -60,6 +60,22 @@ function AdminLinksPage() {
   const [pickedProductId, setPickedProductId] = React.useState('')
   const [saving, setSaving] = React.useState(false)
   const [error, setError] = React.useState<string | null>(null)
+  const [copiedId, setCopiedId] = React.useState<string | null>(null)
+
+  const copyUrl = async (id: string, slug: string) => {
+    const url = `${SITE_URL}/go/${slug}`
+    try {
+      await navigator.clipboard.writeText(url)
+    } catch {
+      // Clipboard API can be blocked (no HTTPS context, permissions, older
+      // browser) — fall back to a prompt so the URL is still copyable by
+      // hand instead of silently doing nothing.
+      window.prompt('Copy this link:', url)
+      return
+    }
+    setCopiedId(id)
+    setTimeout(() => setCopiedId((current) => (current === id ? null : current)), 1500)
+  }
 
   const startCreate = () => {
     setEditingId(null)
@@ -261,6 +277,12 @@ function AdminLinksPage() {
                   <td style={{ ...td, fontFamily: "'IBM Plex Mono', monospace", fontWeight: 500 }}>{link.clickCount}</td>
                   <td style={{ ...td, fontSize: 12, color: '#5a6875' }}>{new Date(link.createdAt).toLocaleDateString()}</td>
                   <td style={{ ...td, textAlign: 'right', whiteSpace: 'nowrap' }}>
+                    <button
+                      onClick={() => copyUrl(link.id, link.slug)}
+                      style={{ background: 'none', border: 'none', color: copiedId === link.id ? '#3f7a63' : '#131b28', fontSize: 12.5, cursor: 'pointer', marginRight: 12 }}
+                    >
+                      {copiedId === link.id ? 'Copied' : 'Copy'}
+                    </button>
                     <button onClick={() => startEdit(link)} style={{ background: 'none', border: 'none', color: '#3f7a63', fontSize: 12.5, cursor: 'pointer', marginRight: 12 }}>
                       Edit
                     </button>
