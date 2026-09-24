@@ -827,40 +827,51 @@ export const adminSyncMarketplaceOrders = createServerFn({ method: 'POST' }).han
   const imgByCatalogId = new Map(matchedProducts.map((p) => [p.squareVariationId, p.img]))
   const resolveImg = (catalogObjectId: string | null) => (catalogObjectId ? squareImages[catalogObjectId] ?? imgByCatalogId.get(catalogObjectId) ?? null : null)
 
-  for (const order of newOrders) {
-    const [row] = await db
+  if (newOrders.length > 0) {
+    // Two batched multi-row inserts instead of two per order — a sync can
+    // pull in many new orders at once, and there's no per-order dependency
+    // besides needing each order's own new id for its items, which the
+    // first insert's RETURNING already gives us keyed by squareOrderId (so
+    // this doesn't rely on row order matching input order).
+    const insertedRows = await db
       .insert(marketplaceOrders)
-      .values({
-        squareOrderId: order.squareOrderId,
-        sourceName: order.sourceName,
-        referenceId: order.referenceId,
-        email: order.email,
-        firstName: order.firstName,
-        lastName: order.lastName,
-        phone: order.phone,
-        street: order.street,
-        apartment: order.apartment,
-        city: order.city,
-        state: order.state,
-        zip: order.zip,
-        placedAt: new Date(order.placedAt),
-        // Pre-fill from Square when the other storefront already recorded a
-        // carrier/tracking number itself — admin still reviews and clicks
-        // "send" (see adminSendMarketplaceShipment), this just saves retyping.
-        carrier: order.carrier,
-        trackingNumber: order.trackingNumber,
-      })
-      .returning()
+      .values(
+        newOrders.map((order) => ({
+          squareOrderId: order.squareOrderId,
+          sourceName: order.sourceName,
+          referenceId: order.referenceId,
+          email: order.email,
+          firstName: order.firstName,
+          lastName: order.lastName,
+          phone: order.phone,
+          street: order.street,
+          apartment: order.apartment,
+          city: order.city,
+          state: order.state,
+          zip: order.zip,
+          placedAt: new Date(order.placedAt),
+          // Pre-fill from Square when the other storefront already recorded
+          // a carrier/tracking number itself — admin still reviews and
+          // clicks "send" (see adminSendMarketplaceShipment), this just
+          // saves retyping.
+          carrier: order.carrier,
+          trackingNumber: order.trackingNumber,
+        })),
+      )
+      .returning({ id: marketplaceOrders.id, squareOrderId: marketplaceOrders.squareOrderId })
+    const newRowIdBySquareOrderId = new Map(insertedRows.map((r) => [r.squareOrderId, r.id]))
 
     await db.insert(marketplaceOrderItems).values(
-      order.items.map((item) => ({
-        marketplaceOrderId: row.id,
-        productName: item.productName,
-        img: resolveImg(item.squareCatalogObjectId),
-        squareCatalogObjectId: item.squareCatalogObjectId,
-        unitPrice: item.unitPrice,
-        qty: item.qty,
-      })),
+      newOrders.flatMap((order) =>
+        order.items.map((item) => ({
+          marketplaceOrderId: newRowIdBySquareOrderId.get(order.squareOrderId)!,
+          productName: item.productName,
+          img: resolveImg(item.squareCatalogObjectId),
+          squareCatalogObjectId: item.squareCatalogObjectId,
+          unitPrice: item.unitPrice,
+          qty: item.qty,
+        })),
+      ),
     )
   }
 
