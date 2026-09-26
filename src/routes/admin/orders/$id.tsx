@@ -291,7 +291,7 @@ function AdminOrderDetailPage() {
           )}
         </div>
 
-        {(order.paymentMethodSummary || order.riskLevel || order.avsStatus || order.cvvStatus) && (
+        {(order.paymentMethodSummary || order.riskLevel || order.avsStatus || order.cvvStatus || order.squareOrderId || order.squareOrderLinkError) && (
           <div style={{ marginTop: 16, paddingTop: 16, borderTop: '1px solid #f0f2f4' }}>
             <div style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 10.5, letterSpacing: '0.1em', textTransform: 'uppercase', color: '#5a6875' }}>
               Payment
@@ -324,6 +324,16 @@ function AdminOrderDetailPage() {
                     {cvvLabel[order.cvvStatus] ?? order.cvvStatus}
                   </span>
                 )}
+              </div>
+            )}
+            {order.squareOrderId && (
+              <div style={{ marginTop: 10, fontSize: 12, color: '#5a6875' }}>
+                Square order: <span style={{ fontFamily: "'IBM Plex Mono', monospace" }}>{order.squareOrderId}</span>
+              </div>
+            )}
+            {order.squareOrderLinkError && (
+              <div style={{ marginTop: 10, fontSize: 12, color: '#b4622f', lineHeight: 1.5 }}>
+                Didn't show up as an itemized order in Square (the charge itself was unaffected): {order.squareOrderLinkError}
               </div>
             )}
           </div>

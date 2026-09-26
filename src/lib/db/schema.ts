@@ -237,6 +237,20 @@ export const orders = pgTable('orders', {
   creditApplied: numeric('credit_applied', { precision: 10, scale: 2, mode: 'number' }).notNull().default(0),
   paymentStatus: text('payment_status').notNull().default('unpaid'), // unpaid | paid | test | failed
   squarePaymentId: text('square_payment_id'),
+  // Square's own /v2/orders Order id, set only when createSquareOrder
+  // (server/square.ts) succeeds AND its computed total matches ours to the
+  // cent — this is what makes the sale show up itemized under Square's
+  // "Orders" tab, not just as a bare payment under "Transactions". Null
+  // doesn't mean anything went wrong with the actual charge — see
+  // squareOrderLinkError for why it wasn't linked, when it wasn't.
+  squareOrderId: text('square_order_id'),
+  // Human-readable reason the Square Order above never got linked — a
+  // Square API error, an unexpected response shape, or a totals mismatch.
+  // Null whenever squareOrderId is set (linked fine) or the order was
+  // fully covered by store credit (Square was never involved). Exists so
+  // this is diagnosable from the order detail page instead of needing
+  // Cloudflare Worker logs.
+  squareOrderLinkError: text('square_order_link_error'),
   // Human-readable summary of how the order was paid, e.g. "Visa •••• 4242"
   // or "Apple Pay" — derived from Square's already-redacted payment
   // response (never a full card number), shown on receipts as reference.

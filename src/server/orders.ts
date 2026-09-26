@@ -239,14 +239,24 @@ export const placeOrder = createServerFn({ method: 'POST' })
       // Square Order alongside the payment. Only linked to the payment below
       // if Square's own computed total matches ours exactly — a mismatch
       // (rare rounding edge case) just means this order won't show line
-      // items in Square, never a failed or overcharged payment.
+      // items in Square, never a failed or overcharged payment. Either way,
+      // squareOrderLinkError below records exactly why so it's visible on
+      // the order itself instead of only in Worker logs.
       const squareOrder = await createSquareOrder({
         orderNo,
         lineItems: lineDetails.map((l) => ({ name: l.name, quantity: l.qty, unitPrice: l.unitPrice })),
         shippingCost,
         tax,
       })
-      const squareOrderId = squareOrder && squareOrder.totalCents === Math.round(total * 100) ? squareOrder.orderId : null
+      let squareOrderId: string | null = null
+      let squareOrderLinkError: string | null = null
+      if ('error' in squareOrder) {
+        squareOrderLinkError = squareOrder.error
+      } else if (squareOrder.totalCents !== Math.round(total * 100)) {
+        squareOrderLinkError = `Square computed a different total ($${(squareOrder.totalCents / 100).toFixed(2)}) than ours ($${total.toFixed(2)}) — order wasn't linked.`
+      } else {
+        squareOrderId = squareOrder.orderId
+      }
 
       // Fully covered by store credit — skip Square entirely rather than
       // send it a $0 charge (which it'd reject anyway). No card was
@@ -315,6 +325,8 @@ export const placeOrder = createServerFn({ method: 'POST' })
           creditApplied,
           paymentStatus: charge.status,
           squarePaymentId: charge.squarePaymentId,
+          squareOrderId,
+          squareOrderLinkError,
           paymentMethodSummary: charge.paymentMethodSummary ?? null,
           riskLevel: charge.riskLevel ?? null,
           avsStatus: charge.avsStatus ?? null,

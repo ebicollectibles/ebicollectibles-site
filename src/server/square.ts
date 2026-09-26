@@ -72,20 +72,24 @@ function squareHeaders(accessToken: string) {
 // otherwise CreatePayment alone only ever tells Square a single dollar
 // amount, with no idea what was actually sold. Ad-hoc line items (name +
 // price) are used instead of catalog_object_id so this works whether or not
-// the product is linked to Square's catalog. Best-effort: returns null on
-// any failure (including Square not configured), and the caller should
-// still charge the payment without an order_id rather than block checkout
-// over dashboard cosmetics. Also returns Square's own computed total so the
-// caller can refuse to link a mismatched order rather than risk CreatePayment
-// rejecting (or silently overcharging) over a rounding difference.
+// the product is linked to Square's catalog. Best-effort: returns a human-
+// readable `error` on any failure (including Square not configured) instead
+// of throwing, and the caller should still charge the payment without an
+// order_id rather than block checkout over dashboard cosmetics — but the
+// caller also persists that error (orders.squareOrderLinkError) so "why
+// didn't this show up in Square" is answerable from the admin panel instead
+// of needing Cloudflare Worker logs. Also returns Square's own computed
+// total so the caller can refuse to link a mismatched order rather than
+// risk CreatePayment rejecting (or silently overcharging) over a rounding
+// difference.
 export async function createSquareOrder(opts: {
   orderNo: number
   lineItems: Array<{ name: string; quantity: number; unitPrice: number }>
   shippingCost: number
   tax: number
-}): Promise<{ orderId: string; totalCents: number } | null> {
+}): Promise<{ orderId: string; totalCents: number } | { error: string }> {
   const { accessToken, locationId, baseUrl } = squareConfig()
-  if (!accessToken || !locationId) return null
+  if (!accessToken || !locationId) return { error: 'Square is not configured (missing access token or location id).' }
 
   const lineItems = opts.lineItems.map((l) => ({
     name: l.name,
@@ -110,16 +114,18 @@ export async function createSquareOrder(opts: {
     })
     const json = await res.json().catch(() => null)
     if (!res.ok) {
+      const message = json?.errors?.[0]?.detail || `Square API error (${res.status})`
       console.error(`Failed to create Square order for order ${opts.orderNo}:`, json?.errors)
-      return null
+      return { error: message }
     }
     const orderId = json?.order?.id
     const totalCents = json?.order?.total_money?.amount
-    if (!orderId || typeof totalCents !== 'number') return null
+    if (!orderId || typeof totalCents !== 'number') return { error: 'Unexpected response from Square (missing order id or total).' }
     return { orderId, totalCents }
   } catch (err) {
+    const message = err instanceof Error ? err.message : String(err)
     console.error(`Failed to create Square order for order ${opts.orderNo}:`, err)
-    return null
+    return { error: message }
   }
 }
 
