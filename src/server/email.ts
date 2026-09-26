@@ -353,6 +353,73 @@ export async function sendShippingDelayEmail(data: DelayEmailData): Promise<Emai
   return { status: 'sent' }
 }
 
+interface NotifyMeAlertData {
+  email: string
+  name: string | null
+  productId: string
+  productName: string
+  productImg: string | null
+  price: number
+}
+
+// Sent to everyone who signed up for a specific product once admin
+// triggers the blast (see adminSendNotifyMeBlast) — one send per signup,
+// never automatic, since these are typically one-of-a-kind items admin
+// wants to hand-time the announcement for.
+export async function sendNotifyMeAlertEmail(data: NotifyMeAlertData): Promise<EmailSendResult> {
+  const apiKey = process.env.RESEND_API_KEY
+  const from = process.env.ORDER_FROM_EMAIL
+  if (!apiKey || !from) return { status: 'skipped' }
+
+  const productUrl = `${SITE_URL}/products/${data.productId}`
+
+  const bodyHtml = `
+    ${itemThumbnailHtml({ productName: data.productName, qty: 1, unitPrice: data.price, img: data.productImg })}
+    <p style="font-size:13px;color:${MUTED};margin:16px 0 24px;">This is a one-of-a-kind piece — once it's gone, it's gone.</p>
+    <a href="${productUrl}" style="display:inline-block;background:${INK};color:#ffffff;font-size:13px;font-weight:700;text-decoration:none;padding:12px 22px;border-radius:3px;">Shop now</a>
+  `
+
+  const html = emailShell({
+    badgeLabel: 'Now available',
+    badgeColor: GREEN,
+    heading: `${escapeHtml(data.productName)} is here${data.name ? `, ${escapeHtml(data.name)}` : ''}!`,
+    intro: `You asked to be notified — it's live now.`,
+    bodyHtml,
+  })
+
+  const text = [
+    `${data.productName} is here${data.name ? `, ${data.name}` : ''}!`,
+    `You asked to be notified — it's live now at ${formatMoney(data.price)}.`,
+    `This is a one-of-a-kind piece — once it's gone, it's gone.`,
+    '',
+    `Shop now: ${productUrl}`,
+  ].join('\n')
+
+  const res = await fetch('https://api.resend.com/emails', {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${apiKey}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      from,
+      to: data.email,
+      subject: `${data.productName} is now available`,
+      html,
+      text,
+    }),
+  })
+
+  if (!res.ok) {
+    const json = await res.json().catch(() => null)
+    const error = json?.message || `HTTP ${res.status}`
+    console.error(`Failed to send notify-me alert for product ${data.productId}:`, error)
+    return { status: 'failed', error }
+  }
+
+  return { status: 'sent' }
+}
+
 interface ShipmentEmailData {
   orderNo: number
   email: string | null

@@ -1,5 +1,5 @@
 import { sql } from 'drizzle-orm'
-import { boolean, index, integer, numeric, pgTable, text, timestamp, uuid } from 'drizzle-orm/pg-core'
+import { boolean, index, integer, numeric, pgTable, text, timestamp, uniqueIndex, uuid } from 'drizzle-orm/pg-core'
 
 export const products = pgTable('products', {
   id: text('id').primaryKey(),
@@ -326,7 +326,7 @@ export const emailEvents = pgTable('email_events', {
   id: uuid('id').primaryKey().defaultRandom(),
   orderId: uuid('order_id').references(() => orders.id, { onDelete: 'set null' }),
   email: text('email'),
-  type: text('type').notNull(), // order_confirmation | shipment_notice | store_credit_issued | shipping_delay
+  type: text('type').notNull(), // order_confirmation | shipment_notice | store_credit_issued | shipping_delay | notify_me_alert
   status: text('status').notNull(), // sent | failed | skipped (no email on file / sending not configured)
   errorMessage: text('error_message'),
   createdAt: timestamp('created_at', { withTimezone: true }).notNull().defaultNow(),
@@ -564,3 +564,32 @@ export const shortLinks = pgTable('short_links', {
   clickCount: integer('click_count').notNull().default(0),
   createdAt: timestamp('created_at', { withTimezone: true }).notNull().defaultNow(),
 })
+
+// Sign-in-gated "notify me" — deliberately requires a real account rather
+// than a bare email, so a signup is a genuine signal (one named person, not
+// an anonymous click or a bot) rather than noise. Doubles as both the
+// interest count admin uses to gauge demand on a limited item before/during
+// a drop, and the send list for the "it's live" email once admin triggers
+// it. One row per (user, product) — the unique index makes signing up
+// twice a no-op rather than a duplicate row.
+export const notifyMeSignups = pgTable(
+  'notify_me_signups',
+  {
+    id: uuid('id').primaryKey().defaultRandom(),
+    userId: uuid('user_id')
+      .notNull()
+      .references(() => users.id, { onDelete: 'cascade' }),
+    productId: text('product_id')
+      .notNull()
+      .references(() => products.id, { onDelete: 'cascade' }),
+    // Set once the "it's live" email has actually gone out for this
+    // signup — lets admin see who's still pending vs already notified, and
+    // stops a second blast on the same product from re-emailing someone.
+    notifiedAt: timestamp('notified_at', { withTimezone: true }),
+    createdAt: timestamp('created_at', { withTimezone: true }).notNull().defaultNow(),
+  },
+  (table) => [
+    uniqueIndex('notify_me_signups_user_product_unique').on(table.userId, table.productId),
+    index('notify_me_signups_product_id_idx').on(table.productId),
+  ],
+)

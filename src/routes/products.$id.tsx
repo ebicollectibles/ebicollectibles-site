@@ -2,6 +2,7 @@ import * as React from 'react'
 import { createFileRoute, Link, useNavigate } from '@tanstack/react-router'
 import { AddToCartControl } from '~/components/AddToCartControl'
 import { FormattedText } from '~/components/FormattedText'
+import { NotifyMeButton } from '~/components/NotifyMeButton'
 import { ProductCard } from '~/components/ProductCard'
 import { ResponsiveImage } from '~/components/ResponsiveImage'
 import { trackEvent } from '~/lib/analytics'
@@ -376,6 +377,7 @@ function ProductDetailPage() {
           />
 
           <AddToCartControl product={product} padding={14} fontSize={13.5} qtyBtnWidth={48} maxWidth={320} marginTop={26} />
+          {(comingSoon || soldOut) && <NotifyMeButton productId={product.id} padding={14} fontSize={13.5} maxWidth={320} marginTop={12} />}
         </div>
       </div>
 

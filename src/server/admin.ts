@@ -9,6 +9,7 @@ import {
   marketplaceOrders,
   marketplaceShipmentItems,
   marketplaceShipments,
+  notifyMeSignups,
   orderItems,
   orderStatusEvents,
   orders,
@@ -28,7 +29,7 @@ import { CARRIERS } from '~/lib/carriers'
 import { PRODUCT_CATEGORIES, SUBCATEGORIES_BY_CATEGORY, ALL_SUBCATEGORIES, isValidGtin13, GOOGLE_CONDITIONS } from '~/lib/products'
 import { buildShipmentsByOrder, computeFulfillmentStatus, groupBy, remainingQtyByItem } from '~/lib/shipments'
 import { assertAdmin } from './admin-auth'
-import { sendMarketplaceShipmentEmail, sendShipmentEmail, sendShippingDelayEmail, type EmailSendResult } from './email'
+import { sendMarketplaceShipmentEmail, sendNotifyMeAlertEmail, sendShipmentEmail, sendShippingDelayEmail, type EmailSendResult } from './email'
 import { getSquareCatalogImages, overlaySquareData, searchMarketplaceOrders, searchSquareCatalogItems } from './square'
 import { upsertSubscriber } from './subscribers'
 
@@ -1143,4 +1144,87 @@ export const adminDeleteShortLink = createServerFn({ method: 'POST' })
     const db = getDb()
     await db.delete(shortLinks).where(eq(shortLinks.id, data.id))
     return { ok: true }
+  })
+
+// One row per product that has at least one signup, most-signed-up first —
+// only products anyone actually cares about show up here, not the whole
+// catalog. `pending` (not yet notified) is what "Send now" would actually
+// email right now; `total` also counts people already notified by an
+// earlier blast on the same product.
+export const adminListNotifyMeSignups = createServerFn({ method: 'GET' }).handler(async () => {
+  await assertAdmin()
+  const db = getDb()
+  const rows = await db
+    .select({
+      productId: notifyMeSignups.productId,
+      productName: productsTable.name,
+      productImg: productsTable.img,
+      notifiedAt: notifyMeSignups.notifiedAt,
+    })
+    .from(notifyMeSignups)
+    .innerJoin(productsTable, eq(notifyMeSignups.productId, productsTable.id))
+
+  const byProduct = groupBy(rows, (r) => r.productId)
+  const results = [...byProduct.entries()].map(([productId, signups]) => ({
+    productId,
+    productName: signups[0].productName,
+    productImg: signups[0].productImg,
+    total: signups.length,
+    pending: signups.filter((s) => !s.notifiedAt).length,
+  }))
+  results.sort((a, b) => b.total - a.total)
+  return results
+})
+
+// Emails everyone still pending (not yet notified) for one product — a
+// second blast on the same product only reaches whoever signed up since
+// the last one, since notifiedAt is what marks someone as done. Best-
+// effort per recipient: one failed/skipped send never blocks the rest.
+export const adminSendNotifyMeBlast = createServerFn({ method: 'POST' })
+  .validator(z.object({ productId: z.string() }))
+  .handler(async ({ data }) => {
+    await assertAdmin()
+    const db = getDb()
+
+    const [product] = await db.select().from(productsTable).where(eq(productsTable.id, data.productId)).limit(1)
+    if (!product) throw new Error('Product not found.')
+
+    const pending = await db
+      .select({ id: notifyMeSignups.id, email: users.email, name: users.name })
+      .from(notifyMeSignups)
+      .innerJoin(users, eq(notifyMeSignups.userId, users.id))
+      .where(and(eq(notifyMeSignups.productId, data.productId), isNull(notifyMeSignups.notifiedAt)))
+
+    const tally = { sent: 0, failed: 0, skipped: 0 }
+    for (const signup of pending) {
+      let sendResult: EmailSendResult
+      try {
+        sendResult = await sendNotifyMeAlertEmail({
+          email: signup.email,
+          name: signup.name,
+          productId: product.id,
+          productName: product.name,
+          productImg: product.img,
+          price: product.price,
+        })
+      } catch (err) {
+        console.error(`Failed to send notify-me alert to ${signup.email} for product ${product.id}:`, err)
+        sendResult = { status: 'failed', error: err instanceof Error ? err.message : String(err) }
+      }
+      await db.insert(emailEvents).values({
+        orderId: null,
+        email: signup.email,
+        type: 'notify_me_alert',
+        status: sendResult.status,
+        errorMessage: sendResult.error ?? null,
+      })
+      // Only a real send marks someone as done — 'failed'/'skipped' leave
+      // notifiedAt null so a retry (fix the config, click Send again)
+      // actually reaches them instead of silently skipping them forever.
+      if (sendResult.status === 'sent') {
+        await db.update(notifyMeSignups).set({ notifiedAt: new Date() }).where(eq(notifyMeSignups.id, signup.id))
+      }
+      tally[sendResult.status]++
+    }
+    return tally
   })
