@@ -3,7 +3,16 @@ import { SHOW_ACRYLICS } from './feature-flags'
 export const PRODUCT_CATEGORIES = ['Chinese Pokémon Products', 'Acrylic Cases'] as const
 export type ProductCategory = (typeof PRODUCT_CATEGORIES)[number]
 
-export type ProductSubcategory = 'Booster Box' | 'Blind Box' | 'Figure' | 'Plush' | 'Special Products' | 'ETB Case' | 'Booster Box Case' | 'SPC Box Case'
+export type ProductSubcategory =
+  | 'Booster Box'
+  | 'Blind Box'
+  | 'Figure'
+  | 'Plush'
+  | 'Special Products'
+  | 'ETB Case'
+  | 'Booster Box Case'
+  | 'SPC Box Case'
+  | 'First Partner Case'
 
 // Which subcategories are valid under each category — drives the dependent
 // dropdown in the admin product form and the grouped shop filter. "Gem
@@ -13,7 +22,7 @@ export type ProductSubcategory = 'Booster Box' | 'Blind Box' | 'Figure' | 'Plush
 // ones without a code change each time.
 export const SUBCATEGORIES_BY_CATEGORY: Record<ProductCategory, ProductSubcategory[]> = {
   'Chinese Pokémon Products': ['Booster Box', 'Blind Box', 'Figure', 'Plush', 'Special Products'],
-  'Acrylic Cases': ['ETB Case', 'Booster Box Case', 'SPC Box Case'],
+  'Acrylic Cases': ['ETB Case', 'Booster Box Case', 'SPC Box Case', 'First Partner Case'],
 }
 
 export const ALL_SUBCATEGORIES: ProductSubcategory[] = Object.values(SUBCATEGORIES_BY_CATEGORY).flat()
