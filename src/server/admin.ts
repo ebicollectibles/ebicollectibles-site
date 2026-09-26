@@ -30,7 +30,7 @@ import { PRODUCT_CATEGORIES, SUBCATEGORIES_BY_CATEGORY, ALL_SUBCATEGORIES, isVal
 import { buildShipmentsByOrder, computeFulfillmentStatus, groupBy, remainingQtyByItem } from '~/lib/shipments'
 import { assertAdmin } from './admin-auth'
 import { sendMarketplaceShipmentEmail, sendNotifyMeAlertEmail, sendShipmentEmail, sendShippingDelayEmail, type EmailSendResult } from './email'
-import { getSquareCatalogImages, overlaySquareData, searchMarketplaceOrders, searchSquareCatalogItems } from './square'
+import { completeSquareOrderFulfillment, getSquareCatalogImages, overlaySquareData, searchMarketplaceOrders, searchSquareCatalogItems } from './square'
 import { upsertSubscriber } from './subscribers'
 
 // Base object (not yet refined) so adminUpdateProduct can still .extend() it
@@ -454,6 +454,21 @@ export const adminCreateShipment = createServerFn({ method: 'POST' })
       })
     } catch (err) {
       console.error(`Failed to send shipment email for order ${order.orderNo}:`, err)
+    }
+
+    // Best-effort: tell Square this order actually shipped, so its
+    // dashboard doesn't just sit at whatever state checkout left it in.
+    // Only once the order is fully shipped (not on a partial shipment) —
+    // the one fulfillment attached at checkout covers the whole order, not
+    // per-line-item, so completing it early would misrepresent an order
+    // that still has items left to go out.
+    if (newStatus === 'shipped' && order.squareOrderId) {
+      try {
+        const result = await completeSquareOrderFulfillment({ squareOrderId: order.squareOrderId, trackingNumber, carrier })
+        if ('error' in result) console.error(`Failed to sync shipped status to Square for order ${order.orderNo}:`, result.error)
+      } catch (err) {
+        console.error(`Failed to sync shipped status to Square for order ${order.orderNo}:`, err)
+      }
     }
 
     return { ok: true, status: newStatus }

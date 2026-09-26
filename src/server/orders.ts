@@ -247,6 +247,15 @@ export const placeOrder = createServerFn({ method: 'POST' })
         lineItems: lineDetails.map((l) => ({ name: l.name, quantity: l.qty, unitPrice: l.unitPrice })),
         shippingCost,
         tax,
+        recipient: {
+          name: `${data.contact.firstName} ${data.contact.lastName}`,
+          phone: data.contact.phone || null,
+          street: data.contact.street,
+          apartment: data.contact.apartment || null,
+          city: data.contact.city,
+          state: data.contact.state,
+          zip: data.contact.zip,
+        },
       })
       let squareOrderId: string | null = null
       let squareOrderLinkError: string | null = null

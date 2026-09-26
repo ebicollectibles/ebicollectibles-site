@@ -67,6 +67,12 @@ function squareHeaders(accessToken: string) {
   }
 }
 
+// A fixed uid (not Square-generated) for the one shipment fulfillment every
+// order gets — lets completeSquareOrderFulfillment below target it directly
+// with an UpdateOrder call instead of first fetching the order to look it
+// up. Only meaningful within one order, so a constant is fine.
+const SHIPMENT_FULFILLMENT_UID = 'shipment'
+
 // Creates a Square Order carrying line items (plus shipping/tax as their own
 // ad-hoc lines) so the sale shows up itemized in the Square Dashboard —
 // otherwise CreatePayment alone only ever tells Square a single dollar
@@ -82,11 +88,27 @@ function squareHeaders(accessToken: string) {
 // total so the caller can refuse to link a mismatched order rather than
 // risk CreatePayment rejecting (or silently overcharging) over a rounding
 // difference.
+//
+// Carries a SHIPMENT fulfillment (state PROPOSED) rather than none — Square
+// auto-completes an order the moment it's fully paid *only when it has no
+// fulfillments*; without this, every order would show as "Completed" in
+// Square's dashboard the instant it's paid, even though nothing has shipped
+// yet, and Shippo's "import from Square" flow needs a real fulfillment to
+// recognize the order as still needing a label in the first place.
 export async function createSquareOrder(opts: {
   orderNo: number
   lineItems: Array<{ name: string; quantity: number; unitPrice: number }>
   shippingCost: number
   tax: number
+  recipient: {
+    name: string
+    phone: string | null
+    street: string
+    apartment: string | null
+    city: string
+    state: string
+    zip: string
+  }
 }): Promise<{ orderId: string; totalCents: number } | { error: string }> {
   const { accessToken, locationId, baseUrl } = squareConfig()
   if (!accessToken || !locationId) return { error: 'Square is not configured (missing access token or location id).' }
@@ -109,7 +131,31 @@ export async function createSquareOrder(opts: {
       headers: squareHeaders(accessToken),
       body: JSON.stringify({
         idempotency_key: `ebi-order-${opts.orderNo}-create`,
-        order: { location_id: locationId, line_items: lineItems },
+        order: {
+          location_id: locationId,
+          line_items: lineItems,
+          fulfillments: [
+            {
+              uid: SHIPMENT_FULFILLMENT_UID,
+              type: 'SHIPMENT',
+              state: 'PROPOSED',
+              shipment_details: {
+                recipient: {
+                  display_name: opts.recipient.name,
+                  phone_number: opts.recipient.phone || undefined,
+                  address: {
+                    address_line_1: opts.recipient.street,
+                    address_line_2: opts.recipient.apartment || undefined,
+                    locality: opts.recipient.city,
+                    administrative_district_level_1: opts.recipient.state,
+                    postal_code: opts.recipient.zip,
+                    country: 'US',
+                  },
+                },
+              },
+            },
+          ],
+        },
       }),
     })
     const json = await res.json().catch(() => null)
@@ -125,6 +171,72 @@ export async function createSquareOrder(opts: {
   } catch (err) {
     const message = err instanceof Error ? err.message : String(err)
     console.error(`Failed to create Square order for order ${opts.orderNo}:`, err)
+    return { error: message }
+  }
+}
+
+// Marks the order's shipment fulfillment (and the order itself) COMPLETED
+// in Square with the real tracking info attached — called when admin
+// records a shipment on this site (see adminCreateShipment), so Square's
+// own dashboard reflects reality instead of sitting stale at whatever
+// state it was in from checkout. Best-effort, same as createSquareOrder:
+// never blocks or fails the actual shipment record, just logs on failure.
+// UpdateOrder requires the order's current version (optimistic concurrency)
+// — fetched fresh right before updating rather than trusting a stale one.
+export async function completeSquareOrderFulfillment(opts: {
+  squareOrderId: string
+  trackingNumber: string | null
+  carrier: string | null
+}): Promise<{ ok: true } | { error: string }> {
+  const { accessToken, locationId, baseUrl } = squareConfig()
+  if (!accessToken || !locationId) return { error: 'Square is not configured (missing access token or location id).' }
+
+  try {
+    const getRes = await fetch(`${baseUrl}/v2/orders/${opts.squareOrderId}`, {
+      method: 'GET',
+      headers: squareHeaders(accessToken),
+    })
+    const getJson = await getRes.json().catch(() => null)
+    if (!getRes.ok) {
+      const message = getJson?.errors?.[0]?.detail || `Square API error (${getRes.status})`
+      console.error(`Failed to fetch Square order ${opts.squareOrderId} before completing fulfillment:`, getJson?.errors)
+      return { error: message }
+    }
+    const version = getJson?.order?.version
+    if (typeof version !== 'number') return { error: 'Unexpected response from Square (missing order version).' }
+
+    const res = await fetch(`${baseUrl}/v2/orders/${opts.squareOrderId}`, {
+      method: 'PUT',
+      headers: squareHeaders(accessToken),
+      body: JSON.stringify({
+        idempotency_key: `ebi-order-${opts.squareOrderId}-ship`,
+        order: {
+          location_id: locationId,
+          version,
+          state: 'COMPLETED',
+          fulfillments: [
+            {
+              uid: SHIPMENT_FULFILLMENT_UID,
+              state: 'COMPLETED',
+              shipment_details: {
+                tracking_number: opts.trackingNumber || undefined,
+                carrier: opts.carrier || undefined,
+              },
+            },
+          ],
+        },
+      }),
+    })
+    const json = await res.json().catch(() => null)
+    if (!res.ok) {
+      const message = json?.errors?.[0]?.detail || `Square API error (${res.status})`
+      console.error(`Failed to complete Square order fulfillment ${opts.squareOrderId}:`, json?.errors)
+      return { error: message }
+    }
+    return { ok: true }
+  } catch (err) {
+    const message = err instanceof Error ? err.message : String(err)
+    console.error(`Failed to complete Square order fulfillment ${opts.squareOrderId}:`, err)
     return { error: message }
   }
 }
