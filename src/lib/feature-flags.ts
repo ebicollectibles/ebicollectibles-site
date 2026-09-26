@@ -3,7 +3,7 @@
 // since it's referenced from nav (header + footer) as well as shop
 // filtering, search, and homepage ranking, so one flag hides it everywhere
 // rather than just off the nav.
-export const SHOW_ACRYLICS = false
+export const SHOW_ACRYLICS = true
 
 // hello@ebicollectibles.com isn't set up yet (mail bounces) — hides the
 // "Contact us" section on /privacy and /terms-of-service until the
