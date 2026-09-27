@@ -63,7 +63,7 @@ function AdminLinksPage() {
   const [copiedId, setCopiedId] = React.useState<string | null>(null)
 
   const copyUrl = async (id: string, slug: string) => {
-    const url = `${SITE_URL}/go/${slug}`
+    const url = `${SITE_URL}/links/${slug}`
     try {
       await navigator.clipboard.writeText(url)
     } catch {
@@ -127,7 +127,7 @@ function AdminLinksPage() {
   }
 
   const remove = async (id: string, slug: string) => {
-    if (!confirm(`Delete /go/${slug}? Any posted links using it will stop working.`)) return
+    if (!confirm(`Delete /links/${slug}? Any posted links using it will stop working.`)) return
     await adminDeleteShortLink({ data: { id } })
     await router.invalidate()
   }
@@ -144,7 +144,7 @@ function AdminLinksPage() {
         <div>
           <h1 style={{ fontSize: 24, fontWeight: 700, margin: 0 }}>Short links</h1>
           <p style={{ fontSize: 13, color: '#5a6875', margin: '6px 0 0' }}>
-            Branded <code>/go/</code> links for Discord and anywhere else you post outside the site.
+            Branded <code>/links/</code> links for Discord and anywhere else you post outside the site.
           </p>
         </div>
         {!showForm && (
@@ -162,7 +162,7 @@ function AdminLinksPage() {
           <h2 style={{ fontSize: 14, fontWeight: 700, margin: '0 0 14px' }}>{editingId ? 'Edit link' : 'New link'}</h2>
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 14 }}>
             <div>
-              <label style={label}>Slug (/go/…)</label>
+              <label style={label}>Slug (/links/…)</label>
               <input
                 value={form.slug}
                 onChange={(e) => setForm((f) => ({ ...f, slug: e.target.value }))}
@@ -220,7 +220,7 @@ function AdminLinksPage() {
           </div>
           {form.slug.trim() && (
             <p style={{ fontSize: 12, color: '#5a6875', marginTop: 12 }}>
-              {SITE_URL}/go/{form.slug.trim().toLowerCase()}
+              {SITE_URL}/links/{form.slug.trim().toLowerCase()}
             </p>
           )}
           <div style={{ display: 'flex', gap: 10, marginTop: 14, alignItems: 'center' }}>
@@ -267,7 +267,7 @@ function AdminLinksPage() {
             <tbody>
               {links.map((link) => (
                 <tr key={link.id}>
-                  <td style={{ ...td, fontFamily: "'IBM Plex Mono', monospace", fontWeight: 600 }}>/go/{link.slug}</td>
+                  <td style={{ ...td, fontFamily: "'IBM Plex Mono', monospace", fontWeight: 600 }}>/links/{link.slug}</td>
                   <td style={{ ...td, maxWidth: 260, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', color: '#5a6875' }}>
                     {link.destinationPath}
                   </td>

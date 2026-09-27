@@ -36,6 +36,7 @@ import { Route as AdminNotifyMeRouteImport } from './routes/admin/notify-me'
 import { Route as AdminSecurityRouteImport } from './routes/admin/security'
 import { Route as AdminSubscribersRouteImport } from './routes/admin/subscribers'
 import { Route as GoSlugRouteImport } from './routes/go.$slug'
+import { Route as LinksSlugRouteImport } from './routes/links.$slug'
 import { Route as ProductsIdRouteImport } from './routes/products.$id'
 import { Route as AccountOrdersIndexRouteImport } from './routes/account/orders/index'
 import { Route as AccountOrdersIdRouteImport } from './routes/account/orders/$id'
@@ -184,6 +185,11 @@ const GoSlugRoute = GoSlugRouteImport.update({
   path: '/go/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
+const LinksSlugRoute = LinksSlugRouteImport.update({
+  id: '/links/$slug',
+  path: '/links/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ProductsIdRoute = ProductsIdRouteImport.update({
   id: '/products/$id',
   path: '/products/$id',
@@ -272,6 +278,7 @@ export interface FileRoutesByFullPath {
   '/admin/security': typeof AdminSecurityRoute
   '/admin/subscribers': typeof AdminSubscribersRoute
   '/go/$slug': typeof GoSlugRoute
+  '/links/$slug': typeof LinksSlugRoute
   '/products/$id': typeof ProductsIdRoute
   '/account/': typeof AccountIndexRoute
   '/admin/': typeof AdminIndexRoute
@@ -313,6 +320,7 @@ export interface FileRoutesByTo {
   '/admin/security': typeof AdminSecurityRoute
   '/admin/subscribers': typeof AdminSubscribersRoute
   '/go/$slug': typeof GoSlugRoute
+  '/links/$slug': typeof LinksSlugRoute
   '/products/$id': typeof ProductsIdRoute
   '/account': typeof AccountIndexRoute
   '/admin': typeof AdminIndexRoute
@@ -355,6 +363,7 @@ export interface FileRoutesById {
   '/admin/security': typeof AdminSecurityRoute
   '/admin/subscribers': typeof AdminSubscribersRoute
   '/go/$slug': typeof GoSlugRoute
+  '/links/$slug': typeof LinksSlugRoute
   '/products/$id': typeof ProductsIdRoute
   '/account/': typeof AccountIndexRoute
   '/admin/': typeof AdminIndexRoute
@@ -398,6 +407,7 @@ export interface FileRouteTypes {
     | '/admin/security'
     | '/admin/subscribers'
     | '/go/$slug'
+    | '/links/$slug'
     | '/products/$id'
     | '/account/'
     | '/admin/'
@@ -439,6 +449,7 @@ export interface FileRouteTypes {
     | '/admin/security'
     | '/admin/subscribers'
     | '/go/$slug'
+    | '/links/$slug'
     | '/products/$id'
     | '/account'
     | '/admin'
@@ -480,6 +491,7 @@ export interface FileRouteTypes {
     | '/admin/security'
     | '/admin/subscribers'
     | '/go/$slug'
+    | '/links/$slug'
     | '/products/$id'
     | '/account/'
     | '/admin/'
@@ -522,6 +534,7 @@ export interface RootRouteChildren {
   AdminSecurityRoute: typeof AdminSecurityRoute
   AdminSubscribersRoute: typeof AdminSubscribersRoute
   GoSlugRoute: typeof GoSlugRoute
+  LinksSlugRoute: typeof LinksSlugRoute
   ProductsIdRoute: typeof ProductsIdRoute
   AccountIndexRoute: typeof AccountIndexRoute
   AdminIndexRoute: typeof AdminIndexRoute
@@ -729,6 +742,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof GoSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/links/$slug': {
+      id: '/links/$slug'
+      path: '/links/$slug'
+      fullPath: '/links/$slug'
+      preLoaderRoute: typeof LinksSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/products/$id': {
       id: '/products/$id'
       path: '/products/$id'
@@ -842,6 +862,7 @@ const rootRouteChildren: RootRouteChildren = {
   AdminSecurityRoute: AdminSecurityRoute,
   AdminSubscribersRoute: AdminSubscribersRoute,
   GoSlugRoute: GoSlugRoute,
+  LinksSlugRoute: LinksSlugRoute,
   ProductsIdRoute: ProductsIdRoute,
   AccountIndexRoute: AccountIndexRoute,
   AdminIndexRoute: AdminIndexRoute,

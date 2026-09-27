@@ -1,14 +1,13 @@
 import { createFileRoute, redirect } from '@tanstack/react-router'
-import { resolveShortLink } from '~/server/short-links'
 
-// Branded shortlink redirect — see shortLinks in lib/db/schema.ts. An
-// unknown slug just goes home rather than erroring, since the only way to
-// land here with a bad slug is a mistyped/expired link someone else wrote.
+// /go/ is the old prefix, kept only so links already posted somewhere
+// (Discord, etc.) don't break — forwards straight to the real /links/$slug
+// route, which does the actual resolving. New links should always be
+// generated as /links/$slug (see admin/links.tsx); nothing should ever
+// point here on purpose anymore.
 export const Route = createFileRoute('/go/$slug')({
-  loader: async ({ params }) => {
-    const result = await resolveShortLink({ data: { slug: params.slug } })
-    if (!result) throw redirect({ to: '/' })
-    throw redirect({ href: result.url, statusCode: 302 })
+  loader: ({ params }) => {
+    throw redirect({ to: '/links/$slug', params: { slug: params.slug } })
   },
   component: () => null,
 })

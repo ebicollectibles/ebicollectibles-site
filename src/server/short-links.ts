@@ -6,7 +6,7 @@ import { shortLinks } from '~/lib/db/schema'
 
 const SITE_URL = 'https://ebicollectibles.com'
 
-// Looks up a /go/{slug} redirect and bumps its click count in the same
+// Looks up a /links/{slug} redirect and bumps its click count in the same
 // query (UPDATE ... RETURNING) — one round trip, no separate read-then-
 // write. Public/unauthenticated by design, same as getProduct: anyone with
 // the link is meant to be able to follow it. Returns null for an unknown

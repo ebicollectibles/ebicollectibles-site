@@ -1095,8 +1095,8 @@ export const adminListShortLinks = createServerFn({ method: 'GET' }).handler(asy
   return db.select().from(shortLinks).orderBy(desc(shortLinks.createdAt))
 })
 
-// Lowercase/digits/hyphens only — keeps every /go/{slug} link readable and
-// safe to paste anywhere without URL-encoding surprises.
+// Lowercase/digits/hyphens only — keeps every /links/{slug} link readable
+// and safe to paste anywhere without URL-encoding surprises.
 const shortLinkSlugSchema = z
   .string()
   .trim()
@@ -1105,7 +1105,7 @@ const shortLinkSlugSchema = z
 
 const shortLinkBaseSchema = z.object({
   slug: shortLinkSlugSchema,
-  // Anything /go/{slug} should send visitors to — a path on this site
+  // Anything /links/{slug} should send visitors to — a path on this site
   // ("/products/abc123", "/shop") or a full external URL. Not limited to
   // products: same mechanism works for a Discord post pointing at the FAQ,
   // a sale, or anywhere else.
@@ -1121,7 +1121,7 @@ export const adminCreateShortLink = createServerFn({ method: 'POST' })
     await assertAdmin()
     const db = getDb()
     const existing = await db.select({ id: shortLinks.id }).from(shortLinks).where(eq(shortLinks.slug, data.slug)).limit(1)
-    if (existing.length > 0) throw new Error(`/go/${data.slug} is already taken.`)
+    if (existing.length > 0) throw new Error(`/links/${data.slug} is already taken.`)
     await db.insert(shortLinks).values({
       slug: data.slug,
       destinationPath: data.destinationPath,
@@ -1138,7 +1138,7 @@ export const adminUpdateShortLink = createServerFn({ method: 'POST' })
     await assertAdmin()
     const db = getDb()
     const existing = await db.select({ id: shortLinks.id }).from(shortLinks).where(eq(shortLinks.slug, data.slug)).limit(1)
-    if (existing.length > 0 && existing[0].id !== data.id) throw new Error(`/go/${data.slug} is already taken.`)
+    if (existing.length > 0 && existing[0].id !== data.id) throw new Error(`/links/${data.slug} is already taken.`)
     await db
       .update(shortLinks)
       .set({

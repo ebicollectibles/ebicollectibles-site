@@ -559,7 +559,7 @@ export const storeCreditEvents = pgTable('store_credit_events', {
   createdAt: timestamp('created_at', { withTimezone: true }).notNull().defaultNow(),
 }, (table) => [index('store_credit_events_user_id_idx').on(table.userId), index('store_credit_events_order_id_idx').on(table.orderId)])
 
-// Branded /go/{slug} redirects for posting clean, trackable links outside
+// Branded /links/{slug} redirects for posting clean, trackable links outside
 // the site (Discord announcements, etc.) — admin picks the slug (not a
 // random hash) and the destination, which can be any path or full URL, not
 // just a product page. utmSource/Medium/Campaign are appended to the
