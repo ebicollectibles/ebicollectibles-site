@@ -28,7 +28,12 @@ export function Header({ customer }: { customer: HeaderCustomer | null }) {
   const locationHref = useRouterState({ select: (s) => s.location.href })
   const router = useRouter()
   const navigate = useNavigate()
-  const { signOut } = useAuth()
+  // Gates the header's logged-in/out UI on Clerk's own session state, not
+  // on whether our users table has a row linked yet — those can briefly
+  // disagree (e.g. a session that never finished syncing), and this way
+  // there's always a working "Log out" whenever Clerk thinks you're
+  // signed in, instead of a stuck "Log in" with no way back out.
+  const { isSignedIn, signOut } = useAuth()
   const { cartCount } = useCart()
   const [menuOpen, setMenuOpen] = React.useState(false)
   const [pokemonMenuOpen, setPokemonMenuOpen] = React.useState(false)
@@ -206,7 +211,7 @@ export function Header({ customer }: { customer: HeaderCustomer | null }) {
 
         <HeaderSearch variant="desktop" />
 
-        {customer ? (
+        {isSignedIn ? (
           <div ref={accountMenuRef} className="ebi-header-account" style={{ position: 'relative', flexShrink: 0 }}>
             <button
               type="button"
@@ -337,7 +342,7 @@ export function Header({ customer }: { customer: HeaderCustomer | null }) {
           >
             Shipping policy
           </Link>
-          {customer ? (
+          {isSignedIn ? (
             <>
               <Link to="/account/orders" style={{ color: navColor(pathname.startsWith('/account/orders')), padding: '10px 0', borderBottom: '1px solid #f0f2f4' }}>
                 Orders
