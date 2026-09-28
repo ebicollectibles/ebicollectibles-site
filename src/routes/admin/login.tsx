@@ -1,6 +1,9 @@
 import * as React from 'react'
 import { createFileRoute, useNavigate } from '@tanstack/react-router'
-import { adminLogin } from '~/server/admin-auth'
+import { useSignIn } from '@clerk/tanstack-react-start/legacy'
+import { useClerk } from '@clerk/tanstack-react-start'
+import { verifyAdminAccess } from '~/server/admin-auth'
+import { clerkErrorMessage } from '~/lib/clerk-error'
 
 export const Route = createFileRoute('/admin/login')({
   component: AdminLoginPage,
@@ -8,19 +11,36 @@ export const Route = createFileRoute('/admin/login')({
 
 function AdminLoginPage() {
   const navigate = useNavigate()
+  const clerk = useClerk()
+  const { isLoaded, signIn, setActive } = useSignIn()
+  const [email, setEmail] = React.useState('')
   const [password, setPassword] = React.useState('')
   const [error, setError] = React.useState<string | null>(null)
   const [submitting, setSubmitting] = React.useState(false)
 
   const submit = async (e: React.FormEvent) => {
     e.preventDefault()
+    if (!isLoaded) return
     setError(null)
     setSubmitting(true)
     try {
-      await adminLogin({ data: { password } })
+      const result = await signIn.create({ strategy: 'password', identifier: email, password })
+      if (result.status !== 'complete') {
+        throw new Error("Couldn't finish signing in — try again.")
+      }
+      await setActive({ session: result.createdSessionId })
+      try {
+        await verifyAdminAccess()
+      } catch (accessErr) {
+        // A real account, just not one flagged as admin — sign back out
+        // rather than leaving a non-admin Clerk session sitting on this
+        // page, since every admin route/action re-checks this anyway.
+        await clerk.signOut()
+        throw accessErr
+      }
       navigate({ to: '/admin' })
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Login failed.')
+      setError(clerkErrorMessage(err, 'Login failed.'))
     } finally {
       setSubmitting(false)
     }
@@ -55,12 +75,12 @@ function AdminLoginPage() {
           Admin
         </div>
         <input
-          type="password"
-          placeholder="Password"
-          aria-label="Password"
+          type="email"
+          placeholder="Email"
+          aria-label="Email"
           autoFocus
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
           className="ebi-field"
           style={{
             marginTop: 20,
@@ -72,10 +92,27 @@ function AdminLoginPage() {
             outline: 'none',
           }}
         />
+        <input
+          type="password"
+          placeholder="Password"
+          aria-label="Password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          className="ebi-field"
+          style={{
+            marginTop: 10,
+            width: '100%',
+            border: '1px solid #cfd4da',
+            borderRadius: 2,
+            padding: '12px 14px',
+            fontSize: 14,
+            outline: 'none',
+          }}
+        />
         {error && <p style={{ fontSize: 12.5, color: '#b4622f', marginTop: 10 }}>{error}</p>}
         <button
           type="submit"
-          disabled={submitting}
+          disabled={submitting || !isLoaded}
           style={{
             marginTop: 16,
             width: '100%',

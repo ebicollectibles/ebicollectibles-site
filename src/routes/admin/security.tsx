@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { createFileRoute, useNavigate } from '@tanstack/react-router'
 import { AdminNav } from '~/components/AdminNav'
-import { requireAdmin, adminLogout } from '~/server/admin-auth'
+import { requireAdmin } from '~/server/admin-auth'
 import { adminListSecurityEvents } from '~/server/admin'
 import { looksLikeDatacenter } from '~/server/request-signals'
 
@@ -44,12 +44,7 @@ function AdminSecurityPage() {
 
   return (
     <div style={{ maxWidth: 1000, margin: '0 auto', padding: '32px 28px 80px', fontFamily: 'Archivo, Helvetica, sans-serif' }}>
-      <AdminNav
-        onLogout={async () => {
-          await adminLogout()
-          navigate({ to: '/admin/login' })
-        }}
-      />
+      <AdminNav />
       <h1 style={{ fontSize: 24, fontWeight: 700, marginTop: 24 }}>Security</h1>
       <p style={{ fontSize: 12.5, color: '#5a6875', margin: '8px 0 0', maxWidth: '60ch' }}>
         Every signup, login, admin login and related event, most recent first, with the IP, network owner and country

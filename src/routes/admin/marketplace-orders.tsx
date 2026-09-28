@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { createFileRoute, useNavigate, useRouter } from '@tanstack/react-router'
 import { AdminNav } from '~/components/AdminNav'
-import { requireAdmin, adminLogout } from '~/server/admin-auth'
+import { requireAdmin } from '~/server/admin-auth'
 import {
   adminCreateMarketplaceShipment,
   adminListMarketplaceOrders,
@@ -171,12 +171,7 @@ function MarketplaceOrdersPage() {
 
   return (
     <div style={{ maxWidth: 1100, margin: '0 auto', padding: '32px 28px 80px', fontFamily: 'Archivo, Helvetica, sans-serif' }}>
-      <AdminNav
-        onLogout={async () => {
-          await adminLogout()
-          navigate({ to: '/admin/login' })
-        }}
-      />
+      <AdminNav />
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: 24, flexWrap: 'wrap', gap: 12 }}>
         <h1 style={{ fontSize: 24, fontWeight: 700, margin: 0 }}>Marketplace orders</h1>
         <button

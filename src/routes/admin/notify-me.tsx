@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { createFileRoute, Link, useNavigate, useRouter } from '@tanstack/react-router'
 import { AdminNav } from '~/components/AdminNav'
-import { requireAdmin, adminLogout } from '~/server/admin-auth'
+import { requireAdmin } from '~/server/admin-auth'
 import { adminListNotifyMeSignups, adminSendNotifyMeBlast } from '~/server/admin'
 
 export const Route = createFileRoute('/admin/notify-me')({
@@ -51,12 +51,7 @@ function AdminNotifyMePage() {
 
   return (
     <div style={{ maxWidth: 900, margin: '0 auto', padding: '32px 28px 80px', fontFamily: 'Archivo, Helvetica, sans-serif' }}>
-      <AdminNav
-        onLogout={async () => {
-          await adminLogout()
-          navigate({ to: '/admin/login' })
-        }}
-      />
+      <AdminNav />
       <div style={{ marginTop: 24 }}>
         <h1 style={{ fontSize: 24, fontWeight: 700, margin: 0 }}>Notify me signups</h1>
         <p style={{ fontSize: 13, color: '#5a6875', margin: '6px 0 0' }}>

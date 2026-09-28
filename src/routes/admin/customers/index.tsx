@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { createFileRoute, Link, useNavigate } from '@tanstack/react-router'
 import { AdminNav } from '~/components/AdminNav'
-import { requireAdmin, adminLogout } from '~/server/admin-auth'
+import { requireAdmin } from '~/server/admin-auth'
 import { adminListCustomers } from '~/server/admin'
 import { formatMoney } from '~/lib/products'
 
@@ -40,12 +40,7 @@ function AdminCustomersPage() {
 
   return (
     <div style={{ maxWidth: 1000, margin: '0 auto', padding: '32px 28px 80px', fontFamily: 'Archivo, Helvetica, sans-serif' }}>
-      <AdminNav
-        onLogout={async () => {
-          await adminLogout()
-          navigate({ to: '/admin/login' })
-        }}
-      />
+      <AdminNav />
       <h1 style={{ fontSize: 24, fontWeight: 700, marginTop: 24 }}>Customers</h1>
 
       {customers.length === 0 && <p style={{ fontSize: 13.5, color: '#131b28', marginTop: 16 }}>No customer accounts yet.</p>}

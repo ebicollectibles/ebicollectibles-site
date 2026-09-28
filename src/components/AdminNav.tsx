@@ -1,6 +1,17 @@
-import { Link } from '@tanstack/react-router'
+import { Link, useNavigate, useRouter } from '@tanstack/react-router'
+import { useAuth } from '@clerk/tanstack-react-start'
 
-export function AdminNav({ onLogout }: { onLogout: () => void }) {
+export function AdminNav() {
+  const router = useRouter()
+  const navigate = useNavigate()
+  const { signOut } = useAuth()
+
+  const logout = async () => {
+    await signOut()
+    await router.invalidate()
+    navigate({ to: '/admin/login' })
+  }
+
   return (
     <div
       style={{
@@ -44,7 +55,7 @@ export function AdminNav({ onLogout }: { onLogout: () => void }) {
         Notify me
       </Link>
       <div style={{ flex: 1 }} />
-      <button onClick={onLogout} style={{ background: 'none', border: 0, fontSize: 13, color: '#5a6875', cursor: 'pointer' }}>
+      <button onClick={logout} style={{ background: 'none', border: 0, fontSize: 13, color: '#5a6875', cursor: 'pointer' }}>
         Log out
       </button>
     </div>

@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { createFileRoute, Link, useNavigate, useRouter } from '@tanstack/react-router'
 import { AdminNav } from '~/components/AdminNav'
-import { requireAdmin, adminLogout } from '~/server/admin-auth'
+import { requireAdmin } from '~/server/admin-auth'
 import { adminGetCustomer } from '~/server/admin'
 import { adminAdjustStoreCredit, adminGetStoreCredit } from '~/server/store-credit'
 import { formatMoney } from '~/lib/products'
@@ -217,12 +217,7 @@ function AdminCustomerDetailPage() {
 
   return (
     <div style={{ maxWidth: 1000, margin: '0 auto', padding: '32px 28px 80px', fontFamily: 'Archivo, Helvetica, sans-serif' }}>
-      <AdminNav
-        onLogout={async () => {
-          await adminLogout()
-          navigate({ to: '/admin/login' })
-        }}
-      />
+      <AdminNav />
 
       <Link to="/admin/customers" style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 11.5, color: '#5a6875' }}>
         ← All customers

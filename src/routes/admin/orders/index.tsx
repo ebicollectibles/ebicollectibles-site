@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { createFileRoute, Link, useNavigate } from '@tanstack/react-router'
 import { AdminNav } from '~/components/AdminNav'
-import { requireAdmin, adminLogout } from '~/server/admin-auth'
+import { requireAdmin } from '~/server/admin-auth'
 import { adminListOrders, adminListPaymentFailures, adminSendDelayNotice, adminSendDelayNoticeTest } from '~/server/admin'
 import { formatMoney } from '~/lib/products'
 
@@ -158,12 +158,7 @@ function AdminOrdersPage() {
 
   return (
     <div style={{ maxWidth: 1100, margin: '0 auto', padding: '32px 28px 80px', fontFamily: 'Archivo, Helvetica, sans-serif' }}>
-      <AdminNav
-        onLogout={async () => {
-          await adminLogout()
-          navigate({ to: '/admin/login' })
-        }}
-      />
+      <AdminNav />
       <h1 style={{ fontSize: 24, fontWeight: 700, marginTop: 24 }}>Orders</h1>
 
       {paymentFailures.length > 0 && (
