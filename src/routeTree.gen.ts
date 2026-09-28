@@ -48,8 +48,6 @@ import { Route as AdminOrdersIndexRouteImport } from './routes/admin/orders/inde
 import { Route as AdminOrdersIdRouteImport } from './routes/admin/orders/$id'
 import { Route as AdminProductsIdRouteImport } from './routes/admin/products/$id'
 import { Route as AdminProductsNewRouteImport } from './routes/admin/products/new'
-import { Route as AuthGoogleCallbackRouteImport } from './routes/auth.google.callback'
-import { Route as AuthGoogleStartRouteImport } from './routes/auth.google.start'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -247,16 +245,6 @@ const AdminProductsNewRoute = AdminProductsNewRouteImport.update({
   path: '/admin/products/new',
   getParentRoute: () => rootRouteImport,
 } as any)
-const AuthGoogleCallbackRoute = AuthGoogleCallbackRouteImport.update({
-  id: '/auth/google/callback',
-  path: '/auth/google/callback',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AuthGoogleStartRoute = AuthGoogleStartRouteImport.update({
-  id: '/auth/google/start',
-  path: '/auth/google/start',
-  getParentRoute: () => rootRouteImport,
-} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -295,8 +283,6 @@ export interface FileRoutesByFullPath {
   '/admin/orders/$id': typeof AdminOrdersIdRoute
   '/admin/products/$id': typeof AdminProductsIdRoute
   '/admin/products/new': typeof AdminProductsNewRoute
-  '/auth/google/callback': typeof AuthGoogleCallbackRoute
-  '/auth/google/start': typeof AuthGoogleStartRoute
   '/account/orders/': typeof AccountOrdersIndexRoute
   '/admin/customers/': typeof AdminCustomersIndexRoute
   '/admin/orders/': typeof AdminOrdersIndexRoute
@@ -338,8 +324,6 @@ export interface FileRoutesByTo {
   '/admin/orders/$id': typeof AdminOrdersIdRoute
   '/admin/products/$id': typeof AdminProductsIdRoute
   '/admin/products/new': typeof AdminProductsNewRoute
-  '/auth/google/callback': typeof AuthGoogleCallbackRoute
-  '/auth/google/start': typeof AuthGoogleStartRoute
   '/account/orders': typeof AccountOrdersIndexRoute
   '/admin/customers': typeof AdminCustomersIndexRoute
   '/admin/orders': typeof AdminOrdersIndexRoute
@@ -382,8 +366,6 @@ export interface FileRoutesById {
   '/admin/orders/$id': typeof AdminOrdersIdRoute
   '/admin/products/$id': typeof AdminProductsIdRoute
   '/admin/products/new': typeof AdminProductsNewRoute
-  '/auth/google/callback': typeof AuthGoogleCallbackRoute
-  '/auth/google/start': typeof AuthGoogleStartRoute
   '/account/orders/': typeof AccountOrdersIndexRoute
   '/admin/customers/': typeof AdminCustomersIndexRoute
   '/admin/orders/': typeof AdminOrdersIndexRoute
@@ -427,8 +409,6 @@ export interface FileRouteTypes {
     | '/admin/orders/$id'
     | '/admin/products/$id'
     | '/admin/products/new'
-    | '/auth/google/callback'
-    | '/auth/google/start'
     | '/account/orders/'
     | '/admin/customers/'
     | '/admin/orders/'
@@ -470,8 +450,6 @@ export interface FileRouteTypes {
     | '/admin/orders/$id'
     | '/admin/products/$id'
     | '/admin/products/new'
-    | '/auth/google/callback'
-    | '/auth/google/start'
     | '/account/orders'
     | '/admin/customers'
     | '/admin/orders'
@@ -513,8 +491,6 @@ export interface FileRouteTypes {
     | '/admin/orders/$id'
     | '/admin/products/$id'
     | '/admin/products/new'
-    | '/auth/google/callback'
-    | '/auth/google/start'
     | '/account/orders/'
     | '/admin/customers/'
     | '/admin/orders/'
@@ -557,8 +533,6 @@ export interface RootRouteChildren {
   AdminOrdersIdRoute: typeof AdminOrdersIdRoute
   AdminProductsIdRoute: typeof AdminProductsIdRoute
   AdminProductsNewRoute: typeof AdminProductsNewRoute
-  AuthGoogleCallbackRoute: typeof AuthGoogleCallbackRoute
-  AuthGoogleStartRoute: typeof AuthGoogleStartRoute
   AccountOrdersIndexRoute: typeof AccountOrdersIndexRoute
   AdminCustomersIndexRoute: typeof AdminCustomersIndexRoute
   AdminOrdersIndexRoute: typeof AdminOrdersIndexRoute
@@ -839,20 +813,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminProductsNewRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/auth/google/callback': {
-      id: '/auth/google/callback'
-      path: '/auth/google/callback'
-      fullPath: '/auth/google/callback'
-      preLoaderRoute: typeof AuthGoogleCallbackRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/auth/google/start': {
-      id: '/auth/google/start'
-      path: '/auth/google/start'
-      fullPath: '/auth/google/start'
-      preLoaderRoute: typeof AuthGoogleStartRouteImport
-      parentRoute: typeof rootRouteImport
-    }
   }
 }
 
@@ -893,8 +853,6 @@ const rootRouteChildren: RootRouteChildren = {
   AdminOrdersIdRoute: AdminOrdersIdRoute,
   AdminProductsIdRoute: AdminProductsIdRoute,
   AdminProductsNewRoute: AdminProductsNewRoute,
-  AuthGoogleCallbackRoute: AuthGoogleCallbackRoute,
-  AuthGoogleStartRoute: AuthGoogleStartRoute,
   AccountOrdersIndexRoute: AccountOrdersIndexRoute,
   AdminCustomersIndexRoute: AdminCustomersIndexRoute,
   AdminOrdersIndexRoute: AdminOrdersIndexRoute,
