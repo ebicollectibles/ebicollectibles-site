@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { createFileRoute, Link, useNavigate, useRouter } from '@tanstack/react-router'
+import { createFileRoute, Link, useRouter } from '@tanstack/react-router'
 import { SquareCardField, squareConfigured, type SquareCardFieldHandle } from '~/components/SquareCardField'
 import { ApplePayButton } from '~/components/ApplePayButton'
 import { CardBrandLogos } from '~/components/CardBrandLogos'
@@ -12,9 +12,9 @@ import { BLOCK_HI_AK_CHECKOUT } from '~/lib/feature-flags'
 import { formatMoney } from '~/lib/products'
 import { US_STATES } from '~/lib/us-states'
 import { useAuth } from '@clerk/tanstack-react-start'
-import { getCurrentCustomer } from '~/server/customer-auth'
-import { customerLogin } from '~/server/customers'
-import { startGoogleAuth } from '~/server/google-auth'
+import { useSignIn } from '@clerk/tanstack-react-start/legacy'
+import { getCurrentCustomer, syncClerkUser } from '~/server/customer-auth'
+import { clerkErrorMessage } from '~/lib/clerk-error'
 import { getSalesTaxRate } from '~/server/tax'
 import { getHiAkShippingEstimate } from '~/server/shippo'
 import { getMyStoreCredit } from '~/server/store-credit'
@@ -174,8 +174,8 @@ function CheckoutPage() {
   const delayedShipment = hasDelayedShipment(cart.lines.map((l) => ({ shipsWithDelay: !!l.product.shipsWithDelay })))
   const initialAccount = Route.useLoaderData()
   const router = useRouter()
-  const navigate = useNavigate()
   const { signOut } = useAuth()
+  const { isLoaded: signInLoaded, signIn, setActive } = useSignIn()
   const cardRef = React.useRef<SquareCardFieldHandle>(null)
 
   // Fires once the cart has actually hydrated from localStorage (it starts
@@ -480,14 +480,16 @@ function CheckoutPage() {
 
   const submitSignin = async (e: React.FormEvent) => {
     e.preventDefault()
+    if (!signInLoaded) return
     setSigninError(null)
     setSigninSubmitting(true)
     try {
-      const result = await customerLogin({ data: { email: signinEmail, password: signinPassword } })
-      if (result.verificationRequired) {
-        navigate({ to: '/account/verify', search: { email: result.email } })
-        return
+      const result = await signIn.create({ strategy: 'password', identifier: signinEmail, password: signinPassword })
+      if (result.status !== 'complete') {
+        throw new Error("Couldn't finish signing in — try again.")
       }
+      await setActive({ session: result.createdSessionId })
+      await syncClerkUser()
       await router.invalidate()
       const acct = await getCurrentCustomer()
       setAccount(acct)
@@ -498,20 +500,24 @@ function CheckoutPage() {
       }))
       setCheckoutAs('account')
     } catch (err) {
-      setSigninError(err instanceof Error ? err.message : 'Sign in failed.')
+      setSigninError(clerkErrorMessage(err, 'Sign in failed.'))
     } finally {
       setSigninSubmitting(false)
     }
   }
 
   const continueWithGoogle = async () => {
+    if (!signInLoaded) return
     setSigninError(null)
     setGoogleBusy(true)
     try {
-      const { url } = await startGoogleAuth({ data: { next: '/checkout' } })
-      window.location.href = url
+      await signIn.authenticateWithRedirect({
+        strategy: 'oauth_google',
+        redirectUrl: '/sso-callback',
+        redirectUrlComplete: '/checkout',
+      })
     } catch (err) {
-      setSigninError(err instanceof Error ? err.message : 'Google sign-in is not available right now.')
+      setSigninError(clerkErrorMessage(err, 'Google sign-in is not available right now.'))
       setGoogleBusy(false)
     }
   }
