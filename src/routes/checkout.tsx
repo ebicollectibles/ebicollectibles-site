@@ -11,7 +11,8 @@ import { DELAYED_SHIPMENT_WARNING, hasDelayedShipment, hasMixedPreorderCart, isH
 import { BLOCK_HI_AK_CHECKOUT } from '~/lib/feature-flags'
 import { formatMoney } from '~/lib/products'
 import { US_STATES } from '~/lib/us-states'
-import { customerLogout, getCurrentCustomer } from '~/server/customer-auth'
+import { useAuth } from '@clerk/tanstack-react-start'
+import { getCurrentCustomer } from '~/server/customer-auth'
 import { customerLogin } from '~/server/customers'
 import { startGoogleAuth } from '~/server/google-auth'
 import { getSalesTaxRate } from '~/server/tax'
@@ -174,6 +175,7 @@ function CheckoutPage() {
   const initialAccount = Route.useLoaderData()
   const router = useRouter()
   const navigate = useNavigate()
+  const { signOut } = useAuth()
   const cardRef = React.useRef<SquareCardFieldHandle>(null)
 
   // Fires once the cart has actually hydrated from localStorage (it starts
@@ -469,7 +471,7 @@ function CheckoutPage() {
   const switchToSignin = () => setCheckoutAs(null)
 
   const switchAccount = async () => {
-    await customerLogout()
+    await signOut()
     await router.invalidate()
     setAccount(null)
     setCheckoutAs(null)

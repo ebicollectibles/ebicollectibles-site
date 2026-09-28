@@ -1,6 +1,7 @@
 import * as React from 'react'
 import { createFileRoute, Link, useNavigate } from '@tanstack/react-router'
-import { requestPasswordReset } from '~/server/customers'
+import { useSignIn } from '@clerk/tanstack-react-start/legacy'
+import { clerkErrorMessage } from '~/lib/clerk-error'
 
 export const Route = createFileRoute('/account/forgot-password')({
   component: ForgotPasswordPage,
@@ -32,19 +33,21 @@ const submitBtn: React.CSSProperties = {
 
 function ForgotPasswordPage() {
   const navigate = useNavigate()
+  const { isLoaded, signIn } = useSignIn()
   const [email, setEmail] = React.useState('')
   const [error, setError] = React.useState<string | null>(null)
   const [submitting, setSubmitting] = React.useState(false)
 
   const submit = async (e: React.FormEvent) => {
     e.preventDefault()
+    if (!isLoaded) return
     setError(null)
     setSubmitting(true)
     try {
-      await requestPasswordReset({ data: { email } })
-      navigate({ to: '/account/reset-password', search: { email } })
+      await signIn.create({ strategy: 'reset_password_email_code', identifier: email })
+      navigate({ to: '/account/reset-password' })
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Failed to send reset code.')
+      setError(clerkErrorMessage(err, 'Failed to send reset code.'))
     } finally {
       setSubmitting(false)
     }
@@ -72,7 +75,7 @@ function ForgotPasswordPage() {
           autoFocus
         />
         {error && <p style={{ fontSize: 12.5, color: '#b4622f', marginTop: 12 }}>{error}</p>}
-        <button type="submit" disabled={submitting} style={{ ...submitBtn, marginTop: 16, opacity: submitting ? 0.6 : 1 }}>
+        <button type="submit" disabled={submitting || !isLoaded} style={{ ...submitBtn, marginTop: 16, opacity: submitting ? 0.6 : 1 }}>
           {submitting ? 'Sending…' : 'Send reset code'}
         </button>
       </form>

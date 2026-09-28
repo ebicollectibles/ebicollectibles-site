@@ -18,6 +18,7 @@ import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as RefundPolicyRouteImport } from './routes/refund-policy'
 import { Route as ShippingPolicyRouteImport } from './routes/shipping-policy'
 import { Route as ShopRouteImport } from './routes/shop'
+import { Route as SsoCallbackRouteImport } from './routes/sso-callback'
 import { Route as TermsOfServiceRouteImport } from './routes/terms-of-service'
 import { Route as AccountIndexRouteImport } from './routes/account/index'
 import { Route as AccountForgotPasswordRouteImport } from './routes/account/forgot-password'
@@ -93,6 +94,11 @@ const ShippingPolicyRoute = ShippingPolicyRouteImport.update({
 const ShopRoute = ShopRouteImport.update({
   id: '/shop',
   path: '/shop',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SsoCallbackRoute = SsoCallbackRouteImport.update({
+  id: '/sso-callback',
+  path: '/sso-callback',
   getParentRoute: () => rootRouteImport,
 } as any)
 const TermsOfServiceRoute = TermsOfServiceRouteImport.update({
@@ -262,6 +268,7 @@ export interface FileRoutesByFullPath {
   '/refund-policy': typeof RefundPolicyRoute
   '/shipping-policy': typeof ShippingPolicyRoute
   '/shop': typeof ShopRoute
+  '/sso-callback': typeof SsoCallbackRoute
   '/terms-of-service': typeof TermsOfServiceRoute
   '/account/forgot-password': typeof AccountForgotPasswordRoute
   '/account/login': typeof AccountLoginRoute
@@ -304,6 +311,7 @@ export interface FileRoutesByTo {
   '/refund-policy': typeof RefundPolicyRoute
   '/shipping-policy': typeof ShippingPolicyRoute
   '/shop': typeof ShopRoute
+  '/sso-callback': typeof SsoCallbackRoute
   '/terms-of-service': typeof TermsOfServiceRoute
   '/account/forgot-password': typeof AccountForgotPasswordRoute
   '/account/login': typeof AccountLoginRoute
@@ -347,6 +355,7 @@ export interface FileRoutesById {
   '/refund-policy': typeof RefundPolicyRoute
   '/shipping-policy': typeof ShippingPolicyRoute
   '/shop': typeof ShopRoute
+  '/sso-callback': typeof SsoCallbackRoute
   '/terms-of-service': typeof TermsOfServiceRoute
   '/account/forgot-password': typeof AccountForgotPasswordRoute
   '/account/login': typeof AccountLoginRoute
@@ -391,6 +400,7 @@ export interface FileRouteTypes {
     | '/refund-policy'
     | '/shipping-policy'
     | '/shop'
+    | '/sso-callback'
     | '/terms-of-service'
     | '/account/forgot-password'
     | '/account/login'
@@ -433,6 +443,7 @@ export interface FileRouteTypes {
     | '/refund-policy'
     | '/shipping-policy'
     | '/shop'
+    | '/sso-callback'
     | '/terms-of-service'
     | '/account/forgot-password'
     | '/account/login'
@@ -475,6 +486,7 @@ export interface FileRouteTypes {
     | '/refund-policy'
     | '/shipping-policy'
     | '/shop'
+    | '/sso-callback'
     | '/terms-of-service'
     | '/account/forgot-password'
     | '/account/login'
@@ -518,6 +530,7 @@ export interface RootRouteChildren {
   RefundPolicyRoute: typeof RefundPolicyRoute
   ShippingPolicyRoute: typeof ShippingPolicyRoute
   ShopRoute: typeof ShopRoute
+  SsoCallbackRoute: typeof SsoCallbackRoute
   TermsOfServiceRoute: typeof TermsOfServiceRoute
   AccountForgotPasswordRoute: typeof AccountForgotPasswordRoute
   AccountLoginRoute: typeof AccountLoginRoute
@@ -614,6 +627,13 @@ declare module '@tanstack/react-router' {
       path: '/shop'
       fullPath: '/shop'
       preLoaderRoute: typeof ShopRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sso-callback': {
+      id: '/sso-callback'
+      path: '/sso-callback'
+      fullPath: '/sso-callback'
+      preLoaderRoute: typeof SsoCallbackRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/terms-of-service': {
@@ -846,6 +866,7 @@ const rootRouteChildren: RootRouteChildren = {
   RefundPolicyRoute: RefundPolicyRoute,
   ShippingPolicyRoute: ShippingPolicyRoute,
   ShopRoute: ShopRoute,
+  SsoCallbackRoute: SsoCallbackRoute,
   TermsOfServiceRoute: TermsOfServiceRoute,
   AccountForgotPasswordRoute: AccountForgotPasswordRoute,
   AccountLoginRoute: AccountLoginRoute,

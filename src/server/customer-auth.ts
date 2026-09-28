@@ -5,8 +5,13 @@ interface CustomerSessionData {
   userId?: string
 }
 
-// Same pattern as admin-auth.ts: wrapped in createServerOnlyFn so the
-// bundler strips the server-only import out of the client build.
+// --- Legacy iron-session helpers ---------------------------------------
+// Superseded by Clerk (see getCurrentUserId below) for every live sign-in/
+// sign-up path. Kept only because customers.ts's old email+code flows
+// (customerSignup, customerLogin, verifyEmailCode, resetPasswordWithCode)
+// still reference setCustomerSession below — those aren't wired into any
+// route anymore, but ripping them out is its own cleanup pass, not bundled
+// into the Clerk migration.
 const readCustomerSession = createServerOnlyFn(async (): Promise<string | null> => {
   const { getSession } = await import('@tanstack/react-start/server')
   const session = await getSession<CustomerSessionData>(sessionConfig())
@@ -35,24 +40,37 @@ function sessionConfig() {
   }
 }
 
-/** Server-only helper for other server functions (e.g. placeOrder) to tag an order with the logged-in customer, if any. */
-export const getCurrentUserId = readCustomerSession
+export const setCustomerSession = writeCustomerSession
+
+// --- Clerk-backed session -----------------------------------------------
+
+/**
+ * Server-only helper for other server functions (e.g. placeOrder) to tag an
+ * order with the logged-in customer, if any. Resolves Clerk's session to
+ * our own users.id via the clerkUserId column — a plain lookup, never a
+ * write; the row itself is created by syncClerkUser right after a
+ * successful client-side sign-in/sign-up.
+ */
+export const getCurrentUserId = createServerOnlyFn(async (): Promise<string | null> => {
+  const { auth } = await import('@clerk/tanstack-react-start/server')
+  const { userId: clerkUserId } = await auth()
+  if (!clerkUserId) return null
+  const { getDb } = await import('~/lib/db/client')
+  const { users } = await import('~/lib/db/schema')
+  const { eq } = await import('drizzle-orm')
+  const db = getDb()
+  const [row] = await db.select({ id: users.id }).from(users).where(eq(users.clerkUserId, clerkUserId)).limit(1)
+  return row?.id ?? null
+})
 
 export const getCurrentCustomer = createServerFn({ method: 'GET' }).handler(async () => {
-  const userId = await readCustomerSession()
+  const userId = await getCurrentUserId()
   if (!userId) return null
   const { getDb } = await import('~/lib/db/client')
   const { users } = await import('~/lib/db/schema')
-  const { eq, sql } = await import('drizzle-orm')
+  const { eq } = await import('drizzle-orm')
   const db = getDb()
-  // hasPassword, never the hash itself — this crosses the wire to the
-  // client (it's what the profile page uses to offer "set a password" for
-  // a Google-only account), so only a boolean is ever selected here.
-  const [user] = await db
-    .select({ id: users.id, email: users.email, name: users.name, hasPassword: sql<boolean>`(${users.passwordHash} is not null)` })
-    .from(users)
-    .where(eq(users.id, userId))
-    .limit(1)
+  const [user] = await db.select({ id: users.id, email: users.email, name: users.name }).from(users).where(eq(users.id, userId)).limit(1)
   return user ?? null
 })
 
@@ -63,12 +81,50 @@ export async function requireCustomer() {
   }
 }
 
-export const customerLogout = createServerFn({ method: 'POST' }).handler(async () => {
-  await writeCustomerSession(null)
-  return { ok: true }
-})
+/**
+ * Called once, client-side, right after Clerk's setActive() resolves on
+ * sign-in or sign-up — finds or creates the matching row in our own users
+ * table. Looked up by clerkUserId first; a case-insensitive email match
+ * links a pre-existing guest-order account (or a pre-migration account)
+ * instead of creating a duplicate. A brand-new row also claims any past
+ * guest orders under that email, same as the old signup flow did.
+ */
+export const syncClerkUser = createServerFn({ method: 'POST' }).handler(async () => {
+  const { auth, clerkClient } = await import('@clerk/tanstack-react-start/server')
+  const { userId: clerkUserId } = await auth()
+  if (!clerkUserId) throw new Error('Not signed in.')
 
-export const setCustomerSession = writeCustomerSession
+  const clerkUser = await clerkClient().users.getUser(clerkUserId)
+  const primaryEmail =
+    clerkUser.emailAddresses.find((e) => e.id === clerkUser.primaryEmailAddressId)?.emailAddress ?? clerkUser.emailAddresses[0]?.emailAddress
+  if (!primaryEmail) throw new Error('This account has no email address.')
+  const email = primaryEmail.toLowerCase()
+  const name = [clerkUser.firstName, clerkUser.lastName].filter(Boolean).join(' ') || null
+
+  const { getDb } = await import('~/lib/db/client')
+  const { users } = await import('~/lib/db/schema')
+  const { eq, sql } = await import('drizzle-orm')
+  const db = getDb()
+
+  const [byClerkId] = await db.select({ id: users.id }).from(users).where(eq(users.clerkUserId, clerkUserId)).limit(1)
+  if (byClerkId) {
+    await touchLastLogin(byClerkId.id)
+    return { id: byClerkId.id }
+  }
+
+  const [byEmail] = await db.select({ id: users.id }).from(users).where(sql`lower(${users.email}) = ${email}`).limit(1)
+  if (byEmail) {
+    await db.update(users).set({ clerkUserId }).where(eq(users.id, byEmail.id))
+    await touchLastLogin(byEmail.id)
+    return { id: byEmail.id }
+  }
+
+  const [created] = await db.insert(users).values({ clerkUserId, email, name, emailVerifiedAt: new Date() }).returning({ id: users.id })
+  const { linkGuestOrders } = await import('./customers')
+  await linkGuestOrders(db, created.id, email)
+  await recordAuthEvent({ userId: created.id, email, type: 'signup' })
+  return { id: created.id }
+})
 
 // --- Lightweight auth/security event log — see schema.ts's authEvents comment. ---
 

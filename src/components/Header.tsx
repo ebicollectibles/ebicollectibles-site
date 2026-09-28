@@ -1,8 +1,8 @@
 import * as React from 'react'
 import { Link, useNavigate, useRouter, useRouterState } from '@tanstack/react-router'
+import { useAuth } from '@clerk/tanstack-react-start'
 import { useCart } from '~/lib/cart-context'
 import { SHOW_ACRYLICS } from '~/lib/feature-flags'
-import { customerLogout } from '~/server/customer-auth'
 import { HeaderSearch } from '~/components/HeaderSearch'
 
 interface HeaderCustomer {
@@ -28,6 +28,7 @@ export function Header({ customer }: { customer: HeaderCustomer | null }) {
   const locationHref = useRouterState({ select: (s) => s.location.href })
   const router = useRouter()
   const navigate = useNavigate()
+  const { signOut } = useAuth()
   const { cartCount } = useCart()
   const [menuOpen, setMenuOpen] = React.useState(false)
   const [pokemonMenuOpen, setPokemonMenuOpen] = React.useState(false)
@@ -38,7 +39,7 @@ export function Header({ customer }: { customer: HeaderCustomer | null }) {
   const navColor = (active: boolean) => (active ? '#131b28' : '#5a6875')
 
   const logout = async () => {
-    await customerLogout()
+    await signOut()
     await router.invalidate()
     navigate({ to: '/' })
   }

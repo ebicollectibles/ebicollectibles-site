@@ -1,12 +1,10 @@
 import * as React from 'react'
-import { createFileRoute, useNavigate, useRouter } from '@tanstack/react-router'
-import { z } from 'zod'
-import { verifyEmailCode, resendVerificationCode } from '~/server/customers'
-
-const searchSchema = z.object({ email: z.string().email() })
+import { createFileRoute, Link, useNavigate, useRouter } from '@tanstack/react-router'
+import { useSignUp } from '@clerk/tanstack-react-start/legacy'
+import { syncClerkUser } from '~/server/customer-auth'
+import { clerkErrorMessage } from '~/lib/clerk-error'
 
 export const Route = createFileRoute('/account/verify')({
-  validateSearch: searchSchema,
   component: VerifyPage,
 })
 
@@ -37,7 +35,7 @@ const submitBtn: React.CSSProperties = {
 function VerifyPage() {
   const navigate = useNavigate()
   const router = useRouter()
-  const { email } = Route.useSearch()
+  const { isLoaded, signUp, setActive } = useSignUp()
   const [code, setCode] = React.useState('')
   const [error, setError] = React.useState<string | null>(null)
   const [submitting, setSubmitting] = React.useState(false)
@@ -50,30 +48,53 @@ function VerifyPage() {
     return () => clearTimeout(t)
   }, [cooldown])
 
+  // No pending sign-up (fresh tab, expired attempt, etc.) — nothing to
+  // verify here, so send them back to start one instead of showing a dead
+  // form.
+  if (isLoaded && !signUp?.emailAddress) {
+    return (
+      <section style={{ maxWidth: 400, margin: '0 auto', padding: '70px 24px 100px', fontFamily: 'Archivo, Helvetica, sans-serif', textAlign: 'center' }}>
+        <p style={{ fontSize: 13.5, color: '#131b28' }}>
+          Nothing to verify right now.{' '}
+          <Link to="/account/signup" style={{ color: '#131b28', fontWeight: 600 }}>
+            Start signing up
+          </Link>
+        </p>
+      </section>
+    )
+  }
+
   const submit = async (e: React.FormEvent) => {
     e.preventDefault()
+    if (!isLoaded) return
     setError(null)
     setSubmitting(true)
     try {
-      await verifyEmailCode({ data: { email, code } })
+      const result = await signUp.attemptEmailAddressVerification({ code })
+      if (result.status !== 'complete') {
+        throw new Error('Incorrect code.')
+      }
+      await setActive({ session: result.createdSessionId })
+      await syncClerkUser()
       await router.invalidate()
       navigate({ to: '/account/orders' })
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Verification failed.')
+      setError(clerkErrorMessage(err, 'Verification failed.'))
     } finally {
       setSubmitting(false)
     }
   }
 
   const resend = async () => {
+    if (!isLoaded) return
     setError(null)
     setResendState('sending')
     try {
-      await resendVerificationCode({ data: { email } })
+      await signUp.prepareEmailAddressVerification({ strategy: 'email_code' })
       setResendState('sent')
       setCooldown(30)
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Failed to resend code.')
+      setError(clerkErrorMessage(err, 'Failed to resend code.'))
       setResendState('idle')
     }
   }
@@ -82,7 +103,7 @@ function VerifyPage() {
     <section style={{ maxWidth: 400, margin: '0 auto', padding: '70px 24px 100px', fontFamily: 'Archivo, Helvetica, sans-serif' }}>
       <h1 style={{ fontSize: 26, fontWeight: 700, marginBottom: 6 }}>Verify your email</h1>
       <p style={{ fontSize: 13.5, color: '#131b28', marginBottom: 28 }}>
-        We sent a 6-digit code to <strong>{email}</strong>. Enter it below to finish setting up your account.
+        We sent a 6-digit code to <strong>{signUp?.emailAddress}</strong>. Enter it below to finish setting up your account.
       </p>
 
       <form onSubmit={submit}>

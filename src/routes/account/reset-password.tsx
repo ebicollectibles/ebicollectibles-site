@@ -1,13 +1,11 @@
 import * as React from 'react'
-import { createFileRoute, useNavigate, useRouter } from '@tanstack/react-router'
-import { z } from 'zod'
-import { resetPasswordWithCode, resendPasswordResetCode } from '~/server/customers'
+import { createFileRoute, Link, useNavigate, useRouter } from '@tanstack/react-router'
+import { useSignIn } from '@clerk/tanstack-react-start/legacy'
+import { syncClerkUser } from '~/server/customer-auth'
+import { clerkErrorMessage } from '~/lib/clerk-error'
 import { PasswordInput } from '~/components/PasswordInput'
 
-const searchSchema = z.object({ email: z.string().email() })
-
 export const Route = createFileRoute('/account/reset-password')({
-  validateSearch: searchSchema,
   component: ResetPasswordPage,
 })
 
@@ -45,7 +43,7 @@ const submitBtn: React.CSSProperties = {
 function ResetPasswordPage() {
   const navigate = useNavigate()
   const router = useRouter()
-  const { email } = Route.useSearch()
+  const { isLoaded, signIn, setActive } = useSignIn()
   const [code, setCode] = React.useState('')
   const [newPassword, setNewPassword] = React.useState('')
   const [error, setError] = React.useState<string | null>(null)
@@ -59,30 +57,56 @@ function ResetPasswordPage() {
     return () => clearTimeout(t)
   }, [cooldown])
 
+  // No pending reset attempt (fresh tab, expired attempt, etc.) — send
+  // them back to request a fresh code instead of showing a dead form.
+  if (isLoaded && !signIn?.identifier) {
+    return (
+      <section style={{ maxWidth: 400, margin: '0 auto', padding: '70px 24px 100px', fontFamily: 'Archivo, Helvetica, sans-serif', textAlign: 'center' }}>
+        <p style={{ fontSize: 13.5, color: '#131b28' }}>
+          Nothing to reset right now.{' '}
+          <Link to="/account/forgot-password" style={{ color: '#131b28', fontWeight: 600 }}>
+            Request a reset code
+          </Link>
+        </p>
+      </section>
+    )
+  }
+
   const submit = async (e: React.FormEvent) => {
     e.preventDefault()
+    if (!isLoaded) return
     setError(null)
     setSubmitting(true)
     try {
-      await resetPasswordWithCode({ data: { email, code, newPassword } })
+      const attempt = await signIn.attemptFirstFactor({ strategy: 'reset_password_email_code', code })
+      if (attempt.status !== 'needs_new_password') {
+        throw new Error('Incorrect code.')
+      }
+      const result = await signIn.resetPassword({ password: newPassword })
+      if (result.status !== 'complete') {
+        throw new Error("Couldn't finish resetting your password — try again.")
+      }
+      await setActive({ session: result.createdSessionId })
+      await syncClerkUser()
       await router.invalidate()
       navigate({ to: '/account/orders' })
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Failed to reset password.')
+      setError(clerkErrorMessage(err, 'Failed to reset password.'))
     } finally {
       setSubmitting(false)
     }
   }
 
   const resend = async () => {
+    if (!isLoaded || !signIn?.identifier) return
     setError(null)
     setResendState('sending')
     try {
-      await resendPasswordResetCode({ data: { email } })
+      await signIn.create({ strategy: 'reset_password_email_code', identifier: signIn.identifier })
       setResendState('sent')
       setCooldown(30)
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Failed to resend code.')
+      setError(clerkErrorMessage(err, 'Failed to resend code.'))
       setResendState('idle')
     }
   }
@@ -91,7 +115,7 @@ function ResetPasswordPage() {
     <section style={{ maxWidth: 400, margin: '0 auto', padding: '70px 24px 100px', fontFamily: 'Archivo, Helvetica, sans-serif' }}>
       <h1 style={{ fontSize: 26, fontWeight: 700, marginBottom: 6 }}>Verify your email</h1>
       <p style={{ fontSize: 13.5, color: '#131b28', marginBottom: 28 }}>
-        We sent a 6-digit code to <strong>{email}</strong>. Enter it below and choose a password.
+        We sent a 6-digit code to <strong>{signIn?.identifier}</strong>. Enter it below and choose a password.
       </p>
 
       <form onSubmit={submit}>

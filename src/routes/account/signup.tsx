@@ -1,7 +1,8 @@
 import * as React from 'react'
 import { createFileRoute, Link, useNavigate, useRouter } from '@tanstack/react-router'
-import { customerSignup } from '~/server/customers'
-import { startGoogleAuth } from '~/server/google-auth'
+import { useSignUp } from '@clerk/tanstack-react-start/legacy'
+import { syncClerkUser } from '~/server/customer-auth'
+import { clerkErrorMessage } from '~/lib/clerk-error'
 import { PasswordInput } from '~/components/PasswordInput'
 
 export const Route = createFileRoute('/account/signup')({
@@ -46,6 +47,7 @@ const googleBtn: React.CSSProperties = {
 function SignupPage() {
   const navigate = useNavigate()
   const router = useRouter()
+  const { isLoaded, signUp, setActive } = useSignUp()
   const [name, setName] = React.useState('')
   const [email, setEmail] = React.useState('')
   const [password, setPassword] = React.useState('')
@@ -55,31 +57,43 @@ function SignupPage() {
 
   const submit = async (e: React.FormEvent) => {
     e.preventDefault()
+    if (!isLoaded) return
     setError(null)
     setSubmitting(true)
     try {
-      const result = await customerSignup({ data: { email, password, name } })
-      await router.invalidate()
-      if (result.verificationRequired) {
-        navigate({ to: '/account/verify', search: { email: result.email } })
-      } else {
+      const result = await signUp.create({ emailAddress: email, password, firstName: name || undefined })
+      if (result.status === 'complete') {
+        await setActive({ session: result.createdSessionId })
+        await syncClerkUser()
+        await router.invalidate()
         navigate({ to: '/account/orders' })
+        return
       }
+      // Almost always 'missing_requirements' here — Clerk wants the email
+      // verified before the account is usable. verify.tsx picks up the
+      // same pending signUp attempt (Clerk persists it client-side) rather
+      // than needing the email passed along explicitly.
+      await signUp.prepareEmailAddressVerification({ strategy: 'email_code' })
+      navigate({ to: '/account/verify' })
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Signup failed.')
+      setError(clerkErrorMessage(err, 'Signup failed.'))
     } finally {
       setSubmitting(false)
     }
   }
 
   const continueWithGoogle = async () => {
+    if (!isLoaded) return
     setError(null)
     setGoogleBusy(true)
     try {
-      const { url } = await startGoogleAuth()
-      window.location.href = url
+      await signUp.authenticateWithRedirect({
+        strategy: 'oauth_google',
+        redirectUrl: '/sso-callback',
+        redirectUrlComplete: '/account/orders',
+      })
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Google sign-in is not available right now.')
+      setError(clerkErrorMessage(err, 'Google sign-in is not available right now.'))
       setGoogleBusy(false)
     }
   }
@@ -94,7 +108,7 @@ function SignupPage() {
         </Link>
       </p>
 
-      <button type="button" onClick={continueWithGoogle} disabled={googleBusy} style={googleBtn}>
+      <button type="button" onClick={continueWithGoogle} disabled={googleBusy || !isLoaded} style={googleBtn}>
         {googleBusy ? 'Redirecting…' : 'Continue with Google'}
       </button>
 
@@ -135,7 +149,7 @@ function SignupPage() {
         />
         <p style={{ fontSize: 11, color: '#5a6875', marginTop: 6 }}>At least 8 characters.</p>
         {error && <p style={{ fontSize: 12.5, color: '#b4622f', marginTop: 8 }}>{error}</p>}
-        <button type="submit" disabled={submitting} style={{ ...submitBtn, marginTop: 16, opacity: submitting ? 0.6 : 1 }}>
+        <button type="submit" disabled={submitting || !isLoaded} style={{ ...submitBtn, marginTop: 16, opacity: submitting ? 0.6 : 1 }}>
           {submitting ? 'Creating account…' : 'Create account'}
         </button>
       </form>
