@@ -39,6 +39,13 @@ jobs:
           # client bundle at build time, so a repository variable rather
           # than a Worker secret.
           VITE_GA_MEASUREMENT_ID: ${{ vars.VITE_GA_MEASUREMENT_ID }}
+          # A Clerk publishable key is meant to ship in the client bundle,
+          # same as the Square application id above. Set this as a GitHub
+          # Actions repository *variable* — the PRODUCTION Clerk instance's
+          # publishable key, not the dev one — when ready to cut over. The
+          # matching CLERK_SECRET_KEY is a Cloudflare Worker secret on the
+          # production Worker, never a GitHub Actions value.
+          VITE_CLERK_PUBLISHABLE_KEY: ${{ vars.VITE_CLERK_PUBLISHABLE_KEY_PROD }}
 
       - name: Deploy
         uses: cloudflare/wrangler-action@v3
