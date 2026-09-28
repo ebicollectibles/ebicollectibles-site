@@ -57,6 +57,17 @@ binding for connection pooling on Workers) — the local tooling doesn't.
   ```
   DATABASE_URL=postgres://...
   ```
+  **`npm run migrate-users:clerk -- <dev|prod> [--commit]`** (the customer
+  migration to Clerk — see task tracking, not run yet as of writing this)
+  reads the same two files, but needs a second line in each:
+  ```
+  CLERK_SECRET_KEY=sk_...
+  ```
+  the secret key for whichever Clerk instance that target should create
+  accounts in (the dev Clerk app's key for `.env.dev`; a real production
+  Clerk instance's key for `.env.prod`, once one exists). Defaults to a dry
+  run — add `--commit` to actually create accounts, which then requires
+  typing `migrate` to confirm.
   `db:migrate:prod` also prints the target host and requires typing `yes` to
   continue, since a wrong-target migration against production is much harder
   to walk back than against dev. (The bare `npm run db:migrate` still exists,

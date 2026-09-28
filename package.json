@@ -12,6 +12,7 @@
     "db:migrate:prod": "node scripts/migrate-target.mjs prod",
     "db:seed": "tsx scripts/seed.ts",
     "db:studio": "drizzle-kit studio",
+    "migrate-users:clerk": "tsx scripts/migrate-users-to-clerk.ts",
     "test": "vitest run"
   },
   "dependencies": {
