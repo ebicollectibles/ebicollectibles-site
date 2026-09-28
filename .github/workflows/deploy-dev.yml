@@ -38,6 +38,11 @@ jobs:
           VITE_SQUARE_ENVIRONMENT: sandbox
           # Deliberately no VITE_GA_MEASUREMENT_ID — dev traffic should never
           # land in production analytics.
+          # Not secret — a Clerk publishable key is meant to ship in the
+          # client bundle, same as the Square application id above. The
+          # matching CLERK_SECRET_KEY is a Worker secret on the dev Worker
+          # only, never a GitHub Actions value — see README-DEPLOY.md.
+          VITE_CLERK_PUBLISHABLE_KEY: ${{ vars.VITE_CLERK_PUBLISHABLE_KEY }}
 
       - name: Deploy
         uses: cloudflare/wrangler-action@v3
