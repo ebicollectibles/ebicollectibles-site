@@ -128,6 +128,11 @@ export const users = pgTable('users', {
   email: text('email').notNull().unique(),
   passwordHash: text('password_hash'),
   googleId: text('google_id').unique(),
+  // Set once this row is migrated to Clerk (see the Clerk migration script).
+  // Our own users.id stays the source of truth for every FK (orders,
+  // storeCreditBalances, etc.) — this just maps to Clerk's own user id so
+  // customer-auth.ts can look up "which of our rows is this Clerk session."
+  clerkUserId: text('clerk_user_id').unique(),
   name: text('name'),
   lastLoginAt: timestamp('last_login_at', { withTimezone: true }),
   // Null until verified. New password signups must verify via emailed code

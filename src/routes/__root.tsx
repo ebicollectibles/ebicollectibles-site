@@ -1,5 +1,6 @@
 /// <reference types="vite/client" />
 import { HeadContent, Scripts, createRootRoute, useRouterState } from '@tanstack/react-router'
+import { ClerkProvider } from '@clerk/tanstack-react-start'
 import * as React from 'react'
 import { DefaultCatchBoundary } from '~/components/DefaultCatchBoundary'
 import { NotFound } from '~/components/NotFound'
@@ -102,18 +103,20 @@ function RootDocument({ children }: { children: React.ReactNode }) {
         )}
       </head>
       <body>
-        <CartProvider products={products}>
-          {isAdmin ? (
-            <main>{children}</main>
-          ) : (
-            <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', background: '#ffffff' }}>
-              <AnnouncementBar />
-              <Header customer={customer} />
-              <main style={{ flex: 1 }}>{children}</main>
-              <Footer />
-            </div>
-          )}
-        </CartProvider>
+        <ClerkProvider>
+          <CartProvider products={products}>
+            {isAdmin ? (
+              <main>{children}</main>
+            ) : (
+              <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', background: '#ffffff' }}>
+                <AnnouncementBar />
+                <Header customer={customer} />
+                <main style={{ flex: 1 }}>{children}</main>
+                <Footer />
+              </div>
+            )}
+          </CartProvider>
+        </ClerkProvider>
         <Scripts />
       </body>
     </html>
