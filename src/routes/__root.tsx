@@ -10,6 +10,7 @@ import { Footer } from '~/components/Footer'
 import { CartProvider } from '~/lib/cart-context'
 import { getProducts } from '~/server/products'
 import { getCurrentCustomer } from '~/server/customer-auth'
+import { isMaintenanceMode } from '~/server/maintenance'
 import appCss from '~/styles/app.css?url'
 
 // Not secret — a GA4 measurement ID is meant to be visible in the page
@@ -22,8 +23,8 @@ const SITE_URL = 'https://ebicollectibles.com'
 
 export const Route = createRootRoute({
   loader: async () => {
-    const [products, customer] = await Promise.all([getProducts(), getCurrentCustomer()])
-    return { products, customer }
+    const [products, customer, maintenanceMode] = await Promise.all([getProducts(), getCurrentCustomer(), isMaintenanceMode()])
+    return { products, customer, maintenanceMode }
   },
   head: () => ({
     meta: [
@@ -76,8 +77,13 @@ function RootDocument({ children }: { children: React.ReactNode }) {
   const data = Route.useLoaderData()
   const products = data?.products ?? []
   const customer = data?.customer ?? null
+  const maintenanceMode = data?.maintenanceMode ?? false
   const pathname = useRouterState({ select: (s) => s.location.pathname })
   const isAdmin = pathname.startsWith('/admin')
+  // /admin is never gated — the operator needs it working precisely during
+  // a maintenance window (running the migration, checking things over)
+  // even while the customer-facing site shows "back soon".
+  const showMaintenance = maintenanceMode && !isAdmin
   // Self-referencing canonical, stripping any query string (e.g. /shop's
   // filter params) — without this, Search Console treats filtered/param
   // variants of a page as duplicates with no signal for which URL is the
@@ -105,7 +111,9 @@ function RootDocument({ children }: { children: React.ReactNode }) {
       <body>
         <ClerkProvider>
           <CartProvider products={products}>
-            {isAdmin ? (
+            {showMaintenance ? (
+              <MaintenancePage />
+            ) : isAdmin ? (
               <main>{children}</main>
             ) : (
               <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', background: '#ffffff' }}>
@@ -120,5 +128,29 @@ function RootDocument({ children }: { children: React.ReactNode }) {
         <Scripts />
       </body>
     </html>
+  )
+}
+
+function MaintenancePage() {
+  return (
+    <div
+      style={{
+        minHeight: '100vh',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        padding: 24,
+        textAlign: 'center',
+        fontFamily: 'Archivo, Helvetica, sans-serif',
+        background: '#ffffff',
+      }}
+    >
+      <img src="/assets/ebi-logo.jpg" alt="EBI Collectibles" style={{ width: 56, height: 56, objectFit: 'contain', mixBlendMode: 'multiply', marginBottom: 20 }} />
+      <h1 style={{ fontSize: 24, fontWeight: 700, margin: 0 }}>We'll be back shortly</h1>
+      <p style={{ fontSize: 14, color: '#5a6875', maxWidth: 380, marginTop: 10, lineHeight: 1.6 }}>
+        We're making some quick improvements to the site. This usually only takes a few minutes — thanks for your patience.
+      </p>
+    </div>
   )
 }
