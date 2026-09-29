@@ -7,14 +7,16 @@ Drizzle ORM), Square for payments.
 
 ```bash
 npm install
-cp .env.example .env      # fill in DATABASE_URL, ADMIN_PASSWORD, SESSION_SECRET
+cp .env.example .env      # fill in DATABASE_URL, VITE_CLERK_PUBLISHABLE_KEY, CLERK_SECRET_KEY
 npm run db:generate        # only needed after changing src/lib/db/schema.ts
 npm run db:migrate         # applies drizzle/*.sql to DATABASE_URL
 npm run db:seed            # loads the starting 13-product catalog
 npm run dev                 # http://localhost:3000
 ```
 
-Admin panel: `http://localhost:3000/admin` (password = `ADMIN_PASSWORD`).
+Admin panel: `http://localhost:3000/admin` — logs in through Clerk like any
+other account; see "Customer + admin accounts (Clerk)" below for how a Clerk
+user becomes an admin.
 
 Square is optional locally — with `SQUARE_ACCESS_TOKEN`/`VITE_SQUARE_APPLICATION_ID`
 unset, checkout still works end-to-end but records orders as `payment_status: 'test'`
@@ -114,11 +116,11 @@ silently split traffic/secrets across two different Workers.
    ```bash
    cd .output/server
    npx wrangler secret put DATABASE_URL
-   npx wrangler secret put ADMIN_PASSWORD
-   npx wrangler secret put SESSION_SECRET
    npx wrangler secret put SQUARE_ACCESS_TOKEN
    npx wrangler secret put SQUARE_LOCATION_ID
    npx wrangler secret put SQUARE_ENVIRONMENT   # "sandbox" or "production" — defaults to sandbox if unset
+   npx wrangler secret put CLERK_SECRET_KEY     # the PRODUCTION Clerk instance's secret key — see "Production cutover" below
+   npx wrangler secret put CUSTOMER_DATABASE_URL   # app_customer role on the production database — run scripts/rls-setup.sql against it first
    ```
    `VITE_SQUARE_*` vars are compiled into the client bundle at build time
    instead (see Square section below) — they're not secrets, so they're just
@@ -209,8 +211,7 @@ One-time setup:
    npm run build   # the --name flag below overrides whichever Worker name gets built
    cd .output/server
    npx wrangler secret put DATABASE_URL --name ebicollectibles-ebicollectibles-site-dev   # the Neon branch from step 1
-   npx wrangler secret put ADMIN_PASSWORD --name ebicollectibles-ebicollectibles-site-dev
-   npx wrangler secret put SESSION_SECRET --name ebicollectibles-ebicollectibles-site-dev
+   npx wrangler secret put CLERK_SECRET_KEY --name ebicollectibles-ebicollectibles-site-dev   # the DEVELOPMENT Clerk instance's secret key
    npx wrangler secret put SQUARE_ACCESS_TOKEN --name ebicollectibles-ebicollectibles-site-dev   # Sandbox token from step 2
    npx wrangler secret put SQUARE_LOCATION_ID --name ebicollectibles-ebicollectibles-site-dev     # Sandbox location from step 2
    npx wrangler secret put SQUARE_ENVIRONMENT --name ebicollectibles-ebicollectibles-site-dev      # sandbox
@@ -282,37 +283,75 @@ name). Uses the same `RESEND_API_KEY`/`ORDER_FROM_EMAIL` secrets above to send
 the shipped email. Until `MARKETPLACE_ORDER_SOURCES` is set, the sync button
 just errors with a message saying so — nothing else on the site is affected.
 
-## Customer accounts
+## Customer + admin accounts (Clerk)
 
-Email/password and "Continue with Google" sign-in for customers
-(`src/server/customers.ts`, `src/server/google-auth.ts`) — an account page at
-`/account` shows order history, including past guest orders placed under the
-same email (linked automatically the moment an account is created).
+Both customer sign-up/sign-in (email+password, "Continue with Google") and
+admin login run through [Clerk](https://clerk.com) — see `src/server/customer-auth.ts`
+and `src/server/admin-auth.ts`. An account page at `/account` shows order
+history, including past guest orders placed under the same email (linked
+automatically the moment an account is created — `linkGuestOrders` in
+`src/server/customers.ts`).
 
-**Note**: this build does not send a "verify your email" link — an account is
-usable immediately on signup, including claiming past guest orders by email
-match alone. Fine for a small store; add email verification (reusing the
-Resend integration above) later if that matters more as the store grows.
+An admin user is just a normal Clerk user with `privateMetadata.isAdmin: true`
+set on their Clerk account (Clerk dashboard → Users → pick the user → edit
+metadata, or via the Backend API) — `admin-auth.ts` checks that flag, there's
+no separate admin login system.
 
-Password accounts need nothing beyond what's already set (`SESSION_SECRET`).
-Google sign-in is optional — the "Continue with Google" button simply
-doesn't work (clear error message) until these are set:
+Dev and production are **separate Clerk instances** (a Clerk "application"
+has one Development instance and one Production instance, each with its own
+keys, users, and social-connection config) — see "Production cutover" below
+for standing the production one up.
 
-1. In [Google Cloud Console](https://console.cloud.google.com/apis/credentials),
-   create an OAuth Client ID (type: **Web application**).
-2. Add **Authorized redirect URIs** for every environment you'll use:
-   `http://localhost:3000/auth/google/callback` for local dev, and your
-   production URL, e.g. `https://ebicollectibles.com/auth/google/callback`.
-3. Set as Worker secrets: `GOOGLE_CLIENT_ID`, `GOOGLE_CLIENT_SECRET`,
-   `GOOGLE_REDIRECT_URI` (must exactly match one of the URIs from step 2 —
-   use the production one for the deployed Worker). `npx wrangler secret put
-   <NAME>` — takes effect immediately, no redeploy needed.
+## Production cutover
 
-Accounts are matched/linked by email: if someone signs up with a
-password using the same email as an existing Google-only account (or vice
-versa), Google sign-in only auto-links because Google verifies the email
-itself — this is what makes it safe to trust without our own verification
-step.
+Everything above gets you a working dev site. This is what's still needed to
+go live for real, in order — each of these only has to happen once:
+
+1. **Create the Clerk production instance.** Clerk dashboard → your app →
+   there's a Development/Production instance switcher; follow its prompts.
+   Production requires its own domain (it can't run on `*.workers.dev` the
+   way dev does) — Clerk walks you through adding DNS records to verify it.
+2. **Reconfigure Google as a social connection on the production instance.**
+   Clerk's dev instance uses Clerk's own shared OAuth credentials for Google
+   sign-in; production requires your own Google OAuth Client ID/Secret (Google
+   Cloud Console → Credentials → OAuth Client ID → Web application), with
+   the exact redirect URI Clerk's production social-connection screen shows
+   you added as an Authorized redirect URI.
+3. **Get the production instance's keys** (dashboard → API Keys, with the
+   Production instance selected):
+   - `VITE_CLERK_PUBLISHABLE_KEY_PROD` → set as a **GitHub Actions repository
+     variable** (Settings → Secrets and variables → Actions → Variables) —
+     `deploy.yml` already reads this.
+   - `CLERK_SECRET_KEY` → set as a **Cloudflare Worker secret** on the
+     production Worker (`npx wrangler secret put CLERK_SECRET_KEY`, see step 2
+     under "Cloudflare Workers deploy" above) — never a GitHub Actions value.
+4. **Set up RLS on the production database.** Run `scripts/rls-setup.sql`
+   against your production Neon branch (same script as dev, different
+   branch/password), then set `CUSTOMER_DATABASE_URL` as a production Worker
+   secret pointing at the `app_customer` role it creates.
+5. **Mark yourself admin** on the production Clerk instance (see the
+   `privateMetadata.isAdmin` note above) *before* disabling any old admin
+   login path, so you're never locked out.
+6. **Migrate existing customers.** `.env.prod` needs the production
+   `DATABASE_URL` and the production instance's `CLERK_SECRET_KEY`. Dry run
+   first, then commit for real — this creates a real Clerk account (no
+   password — see the comment at the top of the script for why) for every
+   existing customer row in one shot:
+   ```bash
+   npm run migrate-users:clerk prod
+   npm run migrate-users:clerk prod -- --commit
+   ```
+7. **Optional: use maintenance mode for the cutover window.** Set
+   `MAINTENANCE_MODE=true` as a production Worker secret right before step 6
+   so customers can't sign in mid-migration; unset it (or set to anything
+   else) once done. `/admin` keeps working the whole time regardless.
+8. **Deploy** — push to `main` (or run the `deploy.yml` workflow manually)
+   now that all the secrets/variables above are in place.
+
+Accounts are matched/linked by email throughout: if someone with a migrated
+(no-password) account signs in with Google using the same email, Clerk
+auto-links it — Google's own verified-email claim is what makes that safe to
+trust without a separate verification step on our side.
 
 ## Product image uploads (R2)
 
@@ -362,7 +401,8 @@ events) — just needs the measurement ID:
 
 ## Admin panel
 
-`/admin` — single shared password (`ADMIN_PASSWORD`), no user accounts. Manage
-products (create/edit/delete, including stock) and view orders. Session is a
-signed, encrypted 7-day cookie (`SESSION_SECRET` must be ≥32 random
-characters — `openssl rand -base64 32`).
+`/admin` — manage products (create/edit/delete, including stock) and view
+orders. Login is a normal Clerk account with `privateMetadata.isAdmin: true`
+set on it (see "Customer + admin accounts (Clerk)" above) — there's no
+separate shared password anymore. `ADMIN_PASSWORD`/`SESSION_SECRET` are
+unused legacy leftovers (see `.env.example`), safe to leave unset.
