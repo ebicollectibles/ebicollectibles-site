@@ -214,6 +214,7 @@ One-time setup:
    npx wrangler secret put SQUARE_ACCESS_TOKEN --name ebicollectibles-ebicollectibles-site-dev   # Sandbox token from step 2
    npx wrangler secret put SQUARE_LOCATION_ID --name ebicollectibles-ebicollectibles-site-dev     # Sandbox location from step 2
    npx wrangler secret put SQUARE_ENVIRONMENT --name ebicollectibles-ebicollectibles-site-dev      # sandbox
+   npx wrangler secret put CUSTOMER_DATABASE_URL --name ebicollectibles-ebicollectibles-site-dev   # app_customer role — run scripts/rls-setup.sql first
    ```
    Resend/Google OAuth secrets can be left unset on the dev Worker — email
    sending and Google sign-in just no-op/stay disabled, nothing else breaks.

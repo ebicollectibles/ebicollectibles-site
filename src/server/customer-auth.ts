@@ -28,12 +28,9 @@ export const getCurrentUserId = createServerOnlyFn(async (): Promise<string | nu
 export const getCurrentCustomer = createServerFn({ method: 'GET' }).handler(async () => {
   const userId = await getCurrentUserId()
   if (!userId) return null
-  const { getDb } = await import('~/lib/db/client')
-  const { users } = await import('~/lib/db/schema')
-  const { eq } = await import('drizzle-orm')
-  const db = getDb()
-  const [user] = await db.select({ id: users.id, email: users.email, name: users.name }).from(users).where(eq(users.id, userId)).limit(1)
-  return user ?? null
+  const { getCustomerScopedRows } = await import('~/lib/db/client')
+  const [userRows] = await getCustomerScopedRows(userId, (sql) => [sql`select id, email, name from users where id = ${userId} limit 1`])
+  return (userRows[0] as { id: string; email: string; name: string | null } | undefined) ?? null
 })
 
 /** Redirects to the login page — use in route `beforeLoad` for account pages. */

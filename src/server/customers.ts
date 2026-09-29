@@ -21,35 +21,35 @@ export async function linkGuestOrders(db: ReturnType<typeof getDb>, userId: stri
     .where(and(sql`lower(${orders.email}) = ${email}`, isNull(orders.userId)))
 }
 
+// These two read via the RLS-scoped app_customer role (getCustomerScopedRows,
+// see client.ts) instead of the normal Drizzle query builder — drizzle-orm's
+// neon-http driver has no transaction support, and the set_config() that
+// scopes RLS to this user has to run in the same transaction as the actual
+// query (see scripts/rls-setup.sql for the policies this relies on).
+type OrderRow = typeof import('~/lib/db/schema').orders.$inferSelect
+type OrderItemRow = typeof import('~/lib/db/schema').orderItems.$inferSelect
+type ShipmentRow = typeof import('~/lib/db/schema').shipments.$inferSelect
+type ShipmentItemRow = typeof import('~/lib/db/schema').shipmentItems.$inferSelect
+
 export const getMyOrders = createServerFn({ method: 'GET' }).handler(async () => {
   const userId = await getCurrentUserId()
   if (!userId) throw new Error('Not logged in.')
 
-  const { getDb } = await import('~/lib/db/client')
-  const { orderItems, orders } = await import('~/lib/db/schema')
-  const { desc, eq, inArray } = await import('drizzle-orm')
-  const db = getDb()
+  const { getCustomerScopedRows } = await import('~/lib/db/client')
+  const [orderRows, itemRows] = await getCustomerScopedRows(userId, (sql) => [
+    sql`select * from orders where user_id = ${userId} order by created_at desc`,
+    sql`select oi.* from order_items oi join orders o on o.id = oi.order_id where o.user_id = ${userId}`,
+  ])
+  const orders = orderRows as OrderRow[]
+  const items = itemRows as OrderItemRow[]
 
-  const orderRows = await db.select().from(orders).where(eq(orders.userId, userId)).orderBy(desc(orders.createdAt))
-  const itemRows =
-    orderRows.length === 0
-      ? []
-      : await db
-          .select()
-          .from(orderItems)
-          .where(
-            inArray(
-              orderItems.orderId,
-              orderRows.map((o) => o.id),
-            ),
-          )
-  const itemsByOrder = new Map<string, typeof itemRows>()
-  for (const item of itemRows) {
+  const itemsByOrder = new Map<string, OrderItemRow[]>()
+  for (const item of items) {
     const list = itemsByOrder.get(item.orderId) ?? []
     list.push(item)
     itemsByOrder.set(item.orderId, list)
   }
-  return orderRows.map((order) => ({ ...order, items: itemsByOrder.get(order.id) ?? [] }))
+  return orders.map((order) => ({ ...order, items: itemsByOrder.get(order.id) ?? [] }))
 })
 
 export const getMyOrder = createServerFn({ method: 'GET' })
@@ -58,21 +58,21 @@ export const getMyOrder = createServerFn({ method: 'GET' })
     const userId = await getCurrentUserId()
     if (!userId) throw new Error('Not logged in.')
 
-    const { getDb } = await import('~/lib/db/client')
-    const { orderItems, orders, shipmentItems, shipments } = await import('~/lib/db/schema')
-    const { eq, inArray } = await import('drizzle-orm')
-    const db = getDb()
+    const { getCustomerScopedRows } = await import('~/lib/db/client')
+    const [orderRows, itemRows, shipmentRows, shipmentItemRows] = await getCustomerScopedRows(userId, (sql) => [
+      sql`select * from orders where id = ${data.id} and user_id = ${userId} limit 1`,
+      sql`select * from order_items where order_id = ${data.id}`,
+      sql`select * from shipments where order_id = ${data.id}`,
+      sql`select si.* from shipment_items si join shipments s on s.id = si.shipment_id where s.order_id = ${data.id}`,
+    ])
+    const order = (orderRows as OrderRow[])[0]
+    if (!order) return null
 
-    const [order] = await db.select().from(orders).where(eq(orders.id, data.id)).limit(1)
-    if (!order || order.userId !== userId) return null
-
-    const items = await db.select().from(orderItems).where(eq(orderItems.orderId, data.id))
-    const shipmentRows = await db.select().from(shipments).where(eq(shipments.orderId, data.id))
-    const shipmentIds = shipmentRows.map((s) => s.id)
-    const shipmentItemRows =
-      shipmentIds.length === 0 ? [] : await db.select().from(shipmentItems).where(inArray(shipmentItems.shipmentId, shipmentIds))
+    const items = itemRows as OrderItemRow[]
+    const shipments = shipmentRows as ShipmentRow[]
+    const shipmentItems = shipmentItemRows as ShipmentItemRow[]
     const itemById = new Map(items.map((i) => [i.id, i]))
-    const orderShipments = buildShipmentsByOrder(shipmentRows, shipmentItemRows, itemById).get(data.id) ?? []
+    const orderShipments = buildShipmentsByOrder(shipments, shipmentItems, itemById).get(data.id) ?? []
 
     return { ...order, items, shipments: orderShipments }
   })
