@@ -146,7 +146,7 @@ function MaintenancePage() {
         background: '#ffffff',
       }}
     >
-      <img src="/assets/ebi-logo.jpg" alt="EBI Collectibles" style={{ width: 56, height: 56, objectFit: 'contain', mixBlendMode: 'multiply', marginBottom: 20 }} />
+      <img src="/assets/ebi-logo.jpg" alt="EBI Collectibles" style={{ width: 96, height: 96, objectFit: 'contain', mixBlendMode: 'multiply', marginBottom: 20 }} />
       <h1 style={{ fontSize: 24, fontWeight: 700, margin: 0 }}>We'll be back shortly</h1>
       <p style={{ fontSize: 14, color: '#5a6875', maxWidth: 380, marginTop: 10, lineHeight: 1.6 }}>
         We're making some quick improvements to the site. This usually only takes a few minutes — thanks for your patience.
