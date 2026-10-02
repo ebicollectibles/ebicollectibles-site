@@ -277,6 +277,18 @@ export const orders = pgTable('orders', {
   // whenever a shipment is recorded — only "cancelled" and reverting to
   // "pending" are ever set directly by an admin action.
   fulfillmentStatus: text('fulfillment_status').notNull().default('pending'),
+  // Set at checkout (see resolveAffiliateAttribution in server/affiliates.ts)
+  // when the ebi_ref cookie matched an active affiliate and the order
+  // actually got charged — never retroactively assigned after the fact.
+  affiliateId: uuid('affiliate_id').references(() => affiliates.id, { onDelete: 'set null' }),
+  // Snapshotted at order time (affiliate's rate x subtotal, excluding tax
+  // and shipping) — a later change to the affiliate's own rate must never
+  // retroactively change what a past order owes, same reasoning as
+  // order_items.unitPrice snapshotting the product's price at purchase.
+  affiliateCommission: numeric('affiliate_commission', { precision: 10, scale: 2, mode: 'number' }),
+  // Set once admin has actually paid the affiliate for this order (outside
+  // the app — Venmo/PayPal/etc.) — null means owed-but-unpaid.
+  affiliateCommissionPaidAt: timestamp('affiliate_commission_paid_at', { withTimezone: true }),
   createdAt: timestamp('created_at', { withTimezone: true }).notNull().defaultNow(),
 }, (table) => [
   index('orders_user_id_idx').on(table.userId),
@@ -285,7 +297,29 @@ export const orders = pgTable('orders', {
   // which wraps both sides in lower()) — a plain index on email wouldn't be
   // used by that query's planner.
   index('orders_email_lower_idx').on(sql`lower(${table.email})`),
+  index('orders_affiliate_id_idx').on(table.affiliateId),
 ])
+
+// An affiliate/referral partner — tracked via a `?ref=<code>` query param on
+// any page (captured client-side into a 30-day cookie, see __root.tsx) or a
+// short link that bakes the same param into its destination (shortLinks
+// above). code is stored lowercased/trimmed so "Zephyr"/"zephyr " can't
+// become two different-looking rows for the same person, and so matching it
+// against the cookie at checkout is a plain equality check.
+export const affiliates = pgTable('affiliates', {
+  id: uuid('id').primaryKey().defaultRandom(),
+  code: text('code').notNull().unique(),
+  name: text('name').notNull(),
+  email: text('email'),
+  // Percent of subtotal, e.g. 10 = 10%. Snapshotted onto each attributed
+  // order at checkout — changing this only affects orders placed after.
+  commissionRate: numeric('commission_rate', { precision: 5, scale: 2, mode: 'number' }).notNull(),
+  // An affiliate is never deleted (their past orders/commission history
+  // must stay intact) — deactivating just stops new orders from attributing
+  // to them; existing attributed orders and owed commission are unaffected.
+  active: boolean('active').notNull().default(true),
+  createdAt: timestamp('created_at', { withTimezone: true }).notNull().defaultNow(),
+})
 
 // Timestamped fulfillment-status timeline per order (pending -> shipped ->
 // cancelled etc.) — the order row only holds the *current* status, this is

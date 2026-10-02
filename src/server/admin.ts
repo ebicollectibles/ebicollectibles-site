@@ -3,6 +3,7 @@ import { z } from 'zod'
 import { and, asc, desc, eq, inArray, isNotNull, isNull, notInArray, or, sql } from 'drizzle-orm'
 import { getDb } from '~/lib/db/client'
 import {
+  affiliates,
   authEvents,
   emailEvents,
   marketplaceOrderItems,
@@ -1242,4 +1243,113 @@ export const adminSendNotifyMeBlast = createServerFn({ method: 'POST' })
       tally[sendResult.status]++
     }
     return tally
+  })
+
+// --- Affiliates ---
+
+// Letters/numbers/hyphens only, lowercased — this is the literal ?ref=
+// value a real person types or pastes, so anything that needs escaping in
+// a URL (spaces, punctuation) is rejected outright rather than silently
+// mangled. Matching at checkout (resolveAffiliateAttribution) lowercases
+// the cookie value the same way, so "Zephyr"/"zephyr" are always one code.
+const affiliateCodeSchema = z
+  .string()
+  .trim()
+  .toLowerCase()
+  .min(2, 'At least 2 characters.')
+  .max(40, 'At most 40 characters.')
+  .regex(/^[a-z0-9-]+$/, 'Letters, numbers, and hyphens only.')
+
+const affiliateFieldsSchema = z.object({
+  code: affiliateCodeSchema,
+  name: z.string().trim().min(1, 'Name is required.'),
+  email: z.string().trim().toLowerCase().email().optional().or(z.literal('')),
+  // Percent of subtotal — bounded to a sane range rather than just
+  // "positive," since this is a plain number field an admin fat-fingers
+  // once and every future order silently commissions at that rate until
+  // someone notices.
+  commissionRate: z.number().min(0, 'Must be 0 or more.').max(50, "Over 50% isn't allowed — check the number."),
+})
+
+export const adminListAffiliates = createServerFn({ method: 'GET' }).handler(async () => {
+  await assertAdmin()
+  const db = getDb()
+  const affiliateRows = await db.select().from(affiliates).orderBy(desc(affiliates.createdAt))
+
+  const totals = await db
+    .select({
+      affiliateId: orders.affiliateId,
+      orderCount: sql<string>`count(*)`,
+      totalCommission: sql<string>`coalesce(sum(${orders.affiliateCommission}), 0)`,
+      paidCommission: sql<string>`coalesce(sum(${orders.affiliateCommission}) filter (where ${orders.affiliateCommissionPaidAt} is not null), 0)`,
+    })
+    .from(orders)
+    .where(isNotNull(orders.affiliateId))
+    .groupBy(orders.affiliateId)
+  const totalsByAffiliate = new Map(totals.map((t) => [t.affiliateId, t]))
+
+  return affiliateRows.map((affiliate) => {
+    const t = totalsByAffiliate.get(affiliate.id)
+    const totalCommission = Number(t?.totalCommission ?? 0)
+    const paidCommission = Number(t?.paidCommission ?? 0)
+    return {
+      ...affiliate,
+      orderCount: Number(t?.orderCount ?? 0),
+      totalCommission,
+      paidCommission,
+      owedCommission: Math.round((totalCommission - paidCommission) * 100) / 100,
+    }
+  })
+})
+
+async function assertAffiliateCodeAvailable(code: string, excludingId?: string) {
+  const db = getDb()
+  const [existing] = await db
+    .select({ id: affiliates.id })
+    .from(affiliates)
+    .where(excludingId ? and(eq(affiliates.code, code), sql`${affiliates.id} != ${excludingId}`) : eq(affiliates.code, code))
+    .limit(1)
+  if (existing) throw new Error(`"${code}" is already taken by another affiliate.`)
+}
+
+export const adminCreateAffiliate = createServerFn({ method: 'POST' })
+  .validator(affiliateFieldsSchema)
+  .handler(async ({ data }) => {
+    await assertAdmin()
+    await assertAffiliateCodeAvailable(data.code)
+    const db = getDb()
+    const [created] = await db
+      .insert(affiliates)
+      .values({ code: data.code, name: data.name, email: data.email || null, commissionRate: data.commissionRate })
+      .returning()
+    return created
+  })
+
+export const adminUpdateAffiliate = createServerFn({ method: 'POST' })
+  .validator(affiliateFieldsSchema.extend({ id: z.string(), active: z.boolean() }))
+  .handler(async ({ data }) => {
+    await assertAdmin()
+    await assertAffiliateCodeAvailable(data.code, data.id)
+    const db = getDb()
+    await db
+      .update(affiliates)
+      .set({ code: data.code, name: data.name, email: data.email || null, commissionRate: data.commissionRate, active: data.active })
+      .where(eq(affiliates.id, data.id))
+    return { ok: true }
+  })
+
+// Bulk rather than per-order — in practice admin pays an affiliate out
+// (Venmo/PayPal/etc., outside this app) once for everything accumulated
+// since the last payout, not order by order.
+export const adminMarkAffiliateCommissionPaid = createServerFn({ method: 'POST' })
+  .validator(z.object({ affiliateId: z.string() }))
+  .handler(async ({ data }) => {
+    await assertAdmin()
+    const db = getDb()
+    const updated = await db
+      .update(orders)
+      .set({ affiliateCommissionPaidAt: sql`now()` })
+      .where(and(eq(orders.affiliateId, data.affiliateId), isNotNull(orders.affiliateCommission), isNull(orders.affiliateCommissionPaidAt)))
+      .returning({ id: orders.id })
+    return { markedCount: updated.length }
   })

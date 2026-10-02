@@ -28,6 +28,7 @@ import { Route as AccountResetPasswordRouteImport } from './routes/account/reset
 import { Route as AccountSignupRouteImport } from './routes/account/signup'
 import { Route as AccountVerifyRouteImport } from './routes/account/verify'
 import { Route as AdminIndexRouteImport } from './routes/admin/index'
+import { Route as AdminAffiliatesRouteImport } from './routes/admin/affiliates'
 import { Route as AdminBestSellingRouteImport } from './routes/admin/best-selling'
 import { Route as AdminLinksRouteImport } from './routes/admin/links'
 import { Route as AdminLoginRouteImport } from './routes/admin/login'
@@ -142,6 +143,11 @@ const AccountVerifyRoute = AccountVerifyRouteImport.update({
 const AdminIndexRoute = AdminIndexRouteImport.update({
   id: '/admin/',
   path: '/admin/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminAffiliatesRoute = AdminAffiliatesRouteImport.update({
+  id: '/admin/affiliates',
+  path: '/admin/affiliates',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AdminBestSellingRoute = AdminBestSellingRouteImport.update({
@@ -264,6 +270,7 @@ export interface FileRoutesByFullPath {
   '/account/reset-password': typeof AccountResetPasswordRoute
   '/account/signup': typeof AccountSignupRoute
   '/account/verify': typeof AccountVerifyRoute
+  '/admin/affiliates': typeof AdminAffiliatesRoute
   '/admin/best-selling': typeof AdminBestSellingRoute
   '/admin/links': typeof AdminLinksRoute
   '/admin/login': typeof AdminLoginRoute
@@ -305,6 +312,7 @@ export interface FileRoutesByTo {
   '/account/reset-password': typeof AccountResetPasswordRoute
   '/account/signup': typeof AccountSignupRoute
   '/account/verify': typeof AccountVerifyRoute
+  '/admin/affiliates': typeof AdminAffiliatesRoute
   '/admin/best-selling': typeof AdminBestSellingRoute
   '/admin/links': typeof AdminLinksRoute
   '/admin/login': typeof AdminLoginRoute
@@ -347,6 +355,7 @@ export interface FileRoutesById {
   '/account/reset-password': typeof AccountResetPasswordRoute
   '/account/signup': typeof AccountSignupRoute
   '/account/verify': typeof AccountVerifyRoute
+  '/admin/affiliates': typeof AdminAffiliatesRoute
   '/admin/best-selling': typeof AdminBestSellingRoute
   '/admin/links': typeof AdminLinksRoute
   '/admin/login': typeof AdminLoginRoute
@@ -390,6 +399,7 @@ export interface FileRouteTypes {
     | '/account/reset-password'
     | '/account/signup'
     | '/account/verify'
+    | '/admin/affiliates'
     | '/admin/best-selling'
     | '/admin/links'
     | '/admin/login'
@@ -431,6 +441,7 @@ export interface FileRouteTypes {
     | '/account/reset-password'
     | '/account/signup'
     | '/account/verify'
+    | '/admin/affiliates'
     | '/admin/best-selling'
     | '/admin/links'
     | '/admin/login'
@@ -472,6 +483,7 @@ export interface FileRouteTypes {
     | '/account/reset-password'
     | '/account/signup'
     | '/account/verify'
+    | '/admin/affiliates'
     | '/admin/best-selling'
     | '/admin/links'
     | '/admin/login'
@@ -514,6 +526,7 @@ export interface RootRouteChildren {
   AccountResetPasswordRoute: typeof AccountResetPasswordRoute
   AccountSignupRoute: typeof AccountSignupRoute
   AccountVerifyRoute: typeof AccountVerifyRoute
+  AdminAffiliatesRoute: typeof AdminAffiliatesRoute
   AdminBestSellingRoute: typeof AdminBestSellingRoute
   AdminLinksRoute: typeof AdminLinksRoute
   AdminLoginRoute: typeof AdminLoginRoute
@@ -671,6 +684,13 @@ declare module '@tanstack/react-router' {
       path: '/admin'
       fullPath: '/admin/'
       preLoaderRoute: typeof AdminIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/affiliates': {
+      id: '/admin/affiliates'
+      path: '/admin/affiliates'
+      fullPath: '/admin/affiliates'
+      preLoaderRoute: typeof AdminAffiliatesRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/admin/best-selling': {
@@ -834,6 +854,7 @@ const rootRouteChildren: RootRouteChildren = {
   AccountResetPasswordRoute: AccountResetPasswordRoute,
   AccountSignupRoute: AccountSignupRoute,
   AccountVerifyRoute: AccountVerifyRoute,
+  AdminAffiliatesRoute: AdminAffiliatesRoute,
   AdminBestSellingRoute: AdminBestSellingRoute,
   AdminLinksRoute: AdminLinksRoute,
   AdminLoginRoute: AdminLoginRoute,

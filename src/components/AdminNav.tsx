@@ -51,6 +51,9 @@ export function AdminNav() {
       <Link to="/admin/links" style={{ fontSize: 13, color: '#131b28' }}>
         Links
       </Link>
+      <Link to="/admin/affiliates" style={{ fontSize: 13, color: '#131b28' }}>
+        Affiliates
+      </Link>
       <Link to="/admin/notify-me" style={{ fontSize: 13, color: '#131b28' }}>
         Notify me
       </Link>

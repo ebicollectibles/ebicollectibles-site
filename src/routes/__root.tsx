@@ -11,6 +11,7 @@ import { CartProvider } from '~/lib/cart-context'
 import { getProducts } from '~/server/products'
 import { getCurrentCustomer } from '~/server/customer-auth'
 import { isMaintenanceMode } from '~/server/maintenance'
+import { AFFILIATE_REF_COOKIE } from '~/lib/affiliate-ref'
 import appCss from '~/styles/app.css?url'
 
 // Not secret — a GA4 measurement ID is meant to be visible in the page
@@ -79,7 +80,23 @@ function RootDocument({ children }: { children: React.ReactNode }) {
   const customer = data?.customer ?? null
   const maintenanceMode = data?.maintenanceMode ?? false
   const pathname = useRouterState({ select: (s) => s.location.pathname })
+  const href = useRouterState({ select: (s) => s.location.href })
   const isAdmin = pathname.startsWith('/admin')
+
+  // Captures `?ref=<code>` into a 30-day cookie on any page (a specific
+  // product, the shop, anywhere) — re-runs on every navigation (href
+  // changes on both pathname and search-param changes), not just on first
+  // load, since this is the client-rendered shell and persists across
+  // client-side route transitions. Last-touch: a newer ref overwrites an
+  // older one. Validating the code against real affiliates happens later,
+  // at checkout (resolveAffiliateAttribution) — nothing here needs to be
+  // trusted, an unknown code just never matches anything.
+  React.useEffect(() => {
+    const ref = new URLSearchParams(window.location.search).get('ref')
+    const code = ref?.trim().toLowerCase()
+    if (!code) return
+    document.cookie = `${AFFILIATE_REF_COOKIE}=${encodeURIComponent(code)}; path=/; max-age=${30 * 24 * 60 * 60}; samesite=lax`
+  }, [href])
   // /admin is never gated — the operator needs it working precisely during
   // a maintenance window (running the migration, checking things over)
   // even while the customer-facing site shows "back soon".

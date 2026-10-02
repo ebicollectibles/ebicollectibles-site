@@ -1,4 +1,5 @@
 import { createServerFn } from '@tanstack/react-start'
+import { getCookie } from '@tanstack/react-start/server'
 import { z } from 'zod'
 import { eq, inArray, sql } from 'drizzle-orm'
 import { getDb } from '~/lib/db/client'
@@ -24,6 +25,8 @@ import { getCurrentUserId } from './customer-auth'
 import { resolveSalesTaxRate } from './tax'
 import { resolveHiAkShippingRate } from './shippo'
 import { upsertSubscriber } from './subscribers'
+import { computeAffiliateCommission, resolveAffiliateAttribution } from './affiliates'
+import { AFFILIATE_REF_COOKIE } from '~/lib/affiliate-ref'
 
 const placeOrderSchema = z.object({
   lines: z.array(z.object({ productId: z.string(), qty: z.number().int().positive() })).min(1),
@@ -73,6 +76,8 @@ export const placeOrder = createServerFn({ method: 'POST' })
     const sessionUserId = await getCurrentUserId()
     const checkoutMode: 'guest' | 'account' = sessionUserId ? 'account' : 'guest'
     const db = getDb()
+
+    const affiliateAttribution = await resolveAffiliateAttribution(getCookie(AFFILIATE_REF_COOKIE), data.contact.email)
 
     // Guest checkout under an email that already has an account still gets
     // linked to it — same trust reasoning as linking past guest orders at
@@ -304,6 +309,13 @@ export const placeOrder = createServerFn({ method: 'POST' })
         throw new Error(charge.error || 'Payment failed — please check your card details and try again.')
       }
 
+      // Only commissioned on a real 'paid' order — never 'test' (no real
+      // money changed hands, SQUARE_ACCESS_TOKEN unset). A referred order
+      // fully covered by store credit still reports 'paid' above and still
+      // counts: it's a real sale the referral drove, just not a card charge.
+      const affiliateCommission =
+        affiliateAttribution && charge.status === 'paid' ? computeAffiliateCommission(subtotal, affiliateAttribution.commissionRate) : null
+
       const [order] = await tx
         .insert(orders)
         .values({
@@ -340,6 +352,8 @@ export const placeOrder = createServerFn({ method: 'POST' })
           riskLevel: charge.riskLevel ?? null,
           avsStatus: charge.avsStatus ?? null,
           cvvStatus: charge.cvvStatus ?? null,
+          affiliateId: affiliateCommission !== null ? affiliateAttribution!.affiliateId : null,
+          affiliateCommission,
         })
         .returning()
 
