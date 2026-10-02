@@ -15,6 +15,7 @@ import { useAuth } from '@clerk/tanstack-react-start'
 import { useSignIn } from '@clerk/tanstack-react-start/legacy'
 import { getCurrentCustomer, syncClerkUser } from '~/server/customer-auth'
 import { clerkErrorMessage } from '~/lib/clerk-error'
+import { attemptClientTrustCode, challengeClientTrustIfNeeded } from '~/lib/clerk-client-trust'
 import { getSalesTaxRate } from '~/server/tax'
 import { getHiAkShippingEstimate } from '~/server/shippo'
 import { getMyStoreCredit } from '~/server/store-credit'
@@ -354,6 +355,8 @@ function CheckoutPage() {
 
   const [signinEmail, setSigninEmail] = React.useState('')
   const [signinPassword, setSigninPassword] = React.useState('')
+  const [signinCode, setSigninCode] = React.useState('')
+  const [signinNeedsCode, setSigninNeedsCode] = React.useState(false)
   const [signinError, setSigninError] = React.useState<string | null>(null)
   const [signinSubmitting, setSigninSubmitting] = React.useState(false)
   const [googleBusy, setGoogleBusy] = React.useState(false)
@@ -478,6 +481,22 @@ function CheckoutPage() {
     setContact(emptyContact)
   }
 
+  const afterSignedIn = async (sessionId: string) => {
+    // Only ever called from submitSignin/submitSigninCode after their own
+    // `if (!signInLoaded) return` guard already passed.
+    await setActive!({ session: sessionId })
+    await syncClerkUser()
+    await router.invalidate()
+    const acct = await getCurrentCustomer()
+    setAccount(acct)
+    setContact((c) => ({
+      ...c,
+      email: acct?.email ?? signinEmail,
+      ...(acct ? splitName(acct.name) : {}),
+    }))
+    setCheckoutAs('account')
+  }
+
   const submitSignin = async (e: React.FormEvent) => {
     e.preventDefault()
     if (!signInLoaded) return
@@ -485,20 +504,29 @@ function CheckoutPage() {
     setSigninSubmitting(true)
     try {
       const result = await signIn.create({ strategy: 'password', identifier: signinEmail, password: signinPassword })
+      if (await challengeClientTrustIfNeeded(signIn, result)) {
+        setSigninNeedsCode(true)
+        return
+      }
       if (result.status !== 'complete') {
         throw new Error("Couldn't finish signing in — try again.")
       }
-      await setActive({ session: result.createdSessionId })
-      await syncClerkUser()
-      await router.invalidate()
-      const acct = await getCurrentCustomer()
-      setAccount(acct)
-      setContact((c) => ({
-        ...c,
-        email: acct?.email ?? signinEmail,
-        ...(acct ? splitName(acct.name) : {}),
-      }))
-      setCheckoutAs('account')
+      await afterSignedIn(result.createdSessionId!)
+    } catch (err) {
+      setSigninError(clerkErrorMessage(err, 'Sign in failed.'))
+    } finally {
+      setSigninSubmitting(false)
+    }
+  }
+
+  const submitSigninCode = async (e: React.FormEvent) => {
+    e.preventDefault()
+    if (!signInLoaded) return
+    setSigninError(null)
+    setSigninSubmitting(true)
+    try {
+      const result = await attemptClientTrustCode(signIn, signinCode)
+      await afterSignedIn(result.createdSessionId!)
     } catch (err) {
       setSigninError(clerkErrorMessage(err, 'Sign in failed.'))
     } finally {
@@ -537,10 +565,14 @@ function CheckoutPage() {
               setSigninEmail={setSigninEmail}
               signinPassword={signinPassword}
               setSigninPassword={setSigninPassword}
+              signinCode={signinCode}
+              setSigninCode={setSigninCode}
+              signinNeedsCode={signinNeedsCode}
               signinError={signinError}
               signinSubmitting={signinSubmitting}
               googleBusy={googleBusy}
               onSubmitSignin={submitSignin}
+              onSubmitSigninCode={submitSigninCode}
               onContinueWithGoogle={continueWithGoogle}
               onContinueAsGuest={continueAsGuest}
             />
@@ -1033,10 +1065,14 @@ function ChoicePanel({
   setSigninEmail,
   signinPassword,
   setSigninPassword,
+  signinCode,
+  setSigninCode,
+  signinNeedsCode,
   signinError,
   signinSubmitting,
   googleBusy,
   onSubmitSignin,
+  onSubmitSigninCode,
   onContinueWithGoogle,
   onContinueAsGuest,
 }: {
@@ -1044,10 +1080,14 @@ function ChoicePanel({
   setSigninEmail: (v: string) => void
   signinPassword: string
   setSigninPassword: (v: string) => void
+  signinCode: string
+  setSigninCode: (v: string) => void
+  signinNeedsCode: boolean
   signinError: string | null
   signinSubmitting: boolean
   googleBusy: boolean
   onSubmitSignin: (e: React.FormEvent) => void
+  onSubmitSigninCode: (e: React.FormEvent) => void
   onContinueWithGoogle: () => void
   onContinueAsGuest: () => void
 }) {
@@ -1059,62 +1099,95 @@ function ChoicePanel({
 
       <div style={{ ...cardStyle, borderColor: '#131b28' }}>
         <h2 style={{ fontSize: 15.5, fontWeight: 700, margin: 0 }}>Sign in</h2>
-        <p style={{ fontSize: 12.5, color: '#5a6875', margin: '6px 0 16px', lineHeight: 1.5, maxWidth: '46ch' }}>
-          Skip retyping your address, and track this order from your account. New here?{' '}
-          <Link to="/account/signup" style={{ color: '#131b28', fontWeight: 600 }}>
-            Create an account
-          </Link>{' '}
-          instead.
-        </p>
 
-        <button type="button" onClick={onContinueWithGoogle} disabled={googleBusy} style={{ ...outlineBtn, cursor: googleBusy ? 'not-allowed' : 'pointer', opacity: googleBusy ? 0.6 : 1 }}>
-          {googleBusy ? 'Redirecting…' : 'Continue with Google'}
-        </button>
-
-        <div style={{ display: 'flex', alignItems: 'center', gap: 10, margin: '16px 0', fontSize: 11.5, color: '#5a6875' }}>
-          <div style={{ flex: 1, height: 1, background: '#e3e6ea' }} />
-          or
-          <div style={{ flex: 1, height: 1, background: '#e3e6ea' }} />
-        </div>
-
-        <form onSubmit={onSubmitSignin}>
-          <label htmlFor="checkout-signin-email" style={label}>
-            Email
-          </label>
-          <input
-            id="checkout-signin-email"
-            type="email"
-            required
-            value={signinEmail}
-            onChange={(e) => setSigninEmail(e.target.value)}
-            className="ebi-field"
-            style={{ ...fieldStyle, width: '100%' }}
-          />
-          <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', marginTop: 14 }}>
-            <label htmlFor="checkout-signin-password" style={{ ...label, marginTop: 0, marginBottom: 0 }}>
-              Password
+        {signinNeedsCode ? (
+          <form onSubmit={onSubmitSigninCode}>
+            <p style={{ fontSize: 12.5, color: '#5a6875', margin: '6px 0 16px', lineHeight: 1.5, maxWidth: '46ch' }}>
+              For your security, we emailed a code to {signinEmail}. Enter it below.
+            </p>
+            <label htmlFor="checkout-signin-code" style={label}>
+              Code
             </label>
-            <Link to="/account/forgot-password" style={{ fontSize: 12, color: '#5a6875' }}>
-              Forgot password?
-            </Link>
-          </div>
-          <PasswordInput
-            id="checkout-signin-password"
-            required
-            value={signinPassword}
-            onChange={(e) => setSigninPassword(e.target.value)}
-            className="ebi-field"
-            style={{ ...fieldStyle, width: '100%', marginTop: 6 }}
-          />
-          {signinError && <p style={{ fontSize: 12.5, color: '#b4622f', marginTop: 14 }}>{signinError}</p>}
-          <button
-            type="submit"
-            disabled={signinSubmitting}
-            style={{ ...darkBtn, marginTop: 16, cursor: signinSubmitting ? 'not-allowed' : 'pointer', opacity: signinSubmitting ? 0.6 : 1 }}
-          >
-            {signinSubmitting ? 'Signing in…' : 'Sign in →'}
-          </button>
-        </form>
+            <input
+              id="checkout-signin-code"
+              type="text"
+              inputMode="numeric"
+              required
+              autoFocus
+              value={signinCode}
+              onChange={(e) => setSigninCode(e.target.value)}
+              className="ebi-field"
+              style={{ ...fieldStyle, width: '100%' }}
+            />
+            {signinError && <p style={{ fontSize: 12.5, color: '#b4622f', marginTop: 14 }}>{signinError}</p>}
+            <button
+              type="submit"
+              disabled={signinSubmitting}
+              style={{ ...darkBtn, marginTop: 16, cursor: signinSubmitting ? 'not-allowed' : 'pointer', opacity: signinSubmitting ? 0.6 : 1 }}
+            >
+              {signinSubmitting ? 'Verifying…' : 'Verify code →'}
+            </button>
+          </form>
+        ) : (
+          <>
+            <p style={{ fontSize: 12.5, color: '#5a6875', margin: '6px 0 16px', lineHeight: 1.5, maxWidth: '46ch' }}>
+              Skip retyping your address, and track this order from your account. New here?{' '}
+              <Link to="/account/signup" style={{ color: '#131b28', fontWeight: 600 }}>
+                Create an account
+              </Link>{' '}
+              instead.
+            </p>
+
+            <button type="button" onClick={onContinueWithGoogle} disabled={googleBusy} style={{ ...outlineBtn, cursor: googleBusy ? 'not-allowed' : 'pointer', opacity: googleBusy ? 0.6 : 1 }}>
+              {googleBusy ? 'Redirecting…' : 'Continue with Google'}
+            </button>
+
+            <div style={{ display: 'flex', alignItems: 'center', gap: 10, margin: '16px 0', fontSize: 11.5, color: '#5a6875' }}>
+              <div style={{ flex: 1, height: 1, background: '#e3e6ea' }} />
+              or
+              <div style={{ flex: 1, height: 1, background: '#e3e6ea' }} />
+            </div>
+
+            <form onSubmit={onSubmitSignin}>
+              <label htmlFor="checkout-signin-email" style={label}>
+                Email
+              </label>
+              <input
+                id="checkout-signin-email"
+                type="email"
+                required
+                value={signinEmail}
+                onChange={(e) => setSigninEmail(e.target.value)}
+                className="ebi-field"
+                style={{ ...fieldStyle, width: '100%' }}
+              />
+              <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', marginTop: 14 }}>
+                <label htmlFor="checkout-signin-password" style={{ ...label, marginTop: 0, marginBottom: 0 }}>
+                  Password
+                </label>
+                <Link to="/account/forgot-password" style={{ fontSize: 12, color: '#5a6875' }}>
+                  Forgot password?
+                </Link>
+              </div>
+              <PasswordInput
+                id="checkout-signin-password"
+                required
+                value={signinPassword}
+                onChange={(e) => setSigninPassword(e.target.value)}
+                className="ebi-field"
+                style={{ ...fieldStyle, width: '100%', marginTop: 6 }}
+              />
+              {signinError && <p style={{ fontSize: 12.5, color: '#b4622f', marginTop: 14 }}>{signinError}</p>}
+              <button
+                type="submit"
+                disabled={signinSubmitting}
+                style={{ ...darkBtn, marginTop: 16, cursor: signinSubmitting ? 'not-allowed' : 'pointer', opacity: signinSubmitting ? 0.6 : 1 }}
+              >
+                {signinSubmitting ? 'Signing in…' : 'Sign in →'}
+              </button>
+            </form>
+          </>
+        )}
       </div>
 
       <div style={cardStyle}>

@@ -4,6 +4,7 @@ import { z } from 'zod'
 import { useSignIn } from '@clerk/tanstack-react-start/legacy'
 import { syncClerkUser } from '~/server/customer-auth'
 import { clerkErrorMessage } from '~/lib/clerk-error'
+import { attemptClientTrustCode, challengeClientTrustIfNeeded } from '~/lib/clerk-client-trust'
 import { PasswordInput } from '~/components/PasswordInput'
 
 const searchSchema = z.object({ error: z.string().optional() })
@@ -55,9 +56,20 @@ function LoginPage() {
   const { isLoaded, signIn, setActive } = useSignIn()
   const [email, setEmail] = React.useState('')
   const [password, setPassword] = React.useState('')
+  const [code, setCode] = React.useState('')
+  const [needsCode, setNeedsCode] = React.useState(false)
   const [error, setError] = React.useState<string | null>(search.error ?? null)
   const [submitting, setSubmitting] = React.useState(false)
   const [googleBusy, setGoogleBusy] = React.useState(false)
+
+  const afterSignedIn = async (sessionId: string) => {
+    // Only ever called from submit/submitCode after their own
+    // `if (!isLoaded) return` guard already passed.
+    await setActive!({ session: sessionId })
+    await syncClerkUser()
+    await router.invalidate()
+    navigate({ to: '/account/orders' })
+  }
 
   const submit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -66,13 +78,29 @@ function LoginPage() {
     setSubmitting(true)
     try {
       const result = await signIn.create({ strategy: 'password', identifier: email, password })
+      if (await challengeClientTrustIfNeeded(signIn, result)) {
+        setNeedsCode(true)
+        return
+      }
       if (result.status !== 'complete') {
         throw new Error("Couldn't finish signing in — try again.")
       }
-      await setActive({ session: result.createdSessionId })
-      await syncClerkUser()
-      await router.invalidate()
-      navigate({ to: '/account/orders' })
+      await afterSignedIn(result.createdSessionId!)
+    } catch (err) {
+      setError(clerkErrorMessage(err, 'Login failed.'))
+    } finally {
+      setSubmitting(false)
+    }
+  }
+
+  const submitCode = async (e: React.FormEvent) => {
+    e.preventDefault()
+    if (!isLoaded) return
+    setError(null)
+    setSubmitting(true)
+    try {
+      const result = await attemptClientTrustCode(signIn, code)
+      await afterSignedIn(result.createdSessionId!)
     } catch (err) {
       setError(clerkErrorMessage(err, 'Login failed.'))
     } finally {
@@ -99,57 +127,86 @@ function LoginPage() {
   return (
     <section style={{ maxWidth: 400, margin: '0 auto', padding: '70px 24px 100px', fontFamily: 'Archivo, Helvetica, sans-serif' }}>
       <h1 style={{ fontSize: 26, fontWeight: 700, marginBottom: 6 }}>Log in</h1>
-      <p style={{ fontSize: 13.5, color: '#131b28', marginBottom: 28 }}>
-        New here?{' '}
-        <Link to="/account/signup" style={{ color: '#131b28', fontWeight: 600 }}>
-          Create an account
-        </Link>
-      </p>
 
-      <button type="button" onClick={continueWithGoogle} disabled={googleBusy || !isLoaded} style={googleBtn}>
-        {googleBusy ? 'Redirecting…' : 'Continue with Google'}
-      </button>
-
-      <div style={{ display: 'flex', alignItems: 'center', gap: 10, margin: '20px 0', fontSize: 11.5, color: '#5a6875' }}>
-        <div style={{ flex: 1, height: 1, background: '#e3e6ea' }} />
-        or
-        <div style={{ flex: 1, height: 1, background: '#e3e6ea' }} />
-      </div>
-
-      <form onSubmit={submit}>
-        <label htmlFor="login-email" style={label}>
-          Email
-        </label>
-        <input
-          id="login-email"
-          type="email"
-          required
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          className="ebi-field"
-          style={field}
-        />
-        <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', marginTop: 14 }}>
-          <label htmlFor="login-password" style={{ ...label, marginTop: 0, marginBottom: 0 }}>
-            Password
+      {needsCode ? (
+        <form onSubmit={submitCode}>
+          <p style={{ fontSize: 13.5, color: '#3d4753', marginBottom: 20, lineHeight: 1.5 }}>
+            For your security, we emailed a code to {email}. Enter it below.
+          </p>
+          <label htmlFor="login-code" style={label}>
+            Code
           </label>
-          <Link to="/account/forgot-password" style={{ fontSize: 12, color: '#5a6875' }}>
-            Forgot password?
-          </Link>
-        </div>
-        <PasswordInput
-          id="login-password"
-          required
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          className="ebi-field"
-          style={{ ...field, marginTop: 6 }}
-        />
-        {error && <p style={{ fontSize: 12.5, color: '#b4622f', marginTop: 14 }}>{error}</p>}
-        <button type="submit" disabled={submitting || !isLoaded} style={{ ...submitBtn, marginTop: 20, opacity: submitting ? 0.6 : 1 }}>
-          {submitting ? 'Logging in…' : 'Log in'}
-        </button>
-      </form>
+          <input
+            id="login-code"
+            type="text"
+            inputMode="numeric"
+            required
+            autoFocus
+            value={code}
+            onChange={(e) => setCode(e.target.value)}
+            className="ebi-field"
+            style={field}
+          />
+          {error && <p style={{ fontSize: 12.5, color: '#b4622f', marginTop: 14 }}>{error}</p>}
+          <button type="submit" disabled={submitting || !isLoaded} style={{ ...submitBtn, marginTop: 20, opacity: submitting ? 0.6 : 1 }}>
+            {submitting ? 'Verifying…' : 'Verify code'}
+          </button>
+        </form>
+      ) : (
+        <>
+          <p style={{ fontSize: 13.5, color: '#131b28', marginBottom: 28 }}>
+            New here?{' '}
+            <Link to="/account/signup" style={{ color: '#131b28', fontWeight: 600 }}>
+              Create an account
+            </Link>
+          </p>
+
+          <button type="button" onClick={continueWithGoogle} disabled={googleBusy || !isLoaded} style={googleBtn}>
+            {googleBusy ? 'Redirecting…' : 'Continue with Google'}
+          </button>
+
+          <div style={{ display: 'flex', alignItems: 'center', gap: 10, margin: '20px 0', fontSize: 11.5, color: '#5a6875' }}>
+            <div style={{ flex: 1, height: 1, background: '#e3e6ea' }} />
+            or
+            <div style={{ flex: 1, height: 1, background: '#e3e6ea' }} />
+          </div>
+
+          <form onSubmit={submit}>
+            <label htmlFor="login-email" style={label}>
+              Email
+            </label>
+            <input
+              id="login-email"
+              type="email"
+              required
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="ebi-field"
+              style={field}
+            />
+            <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', marginTop: 14 }}>
+              <label htmlFor="login-password" style={{ ...label, marginTop: 0, marginBottom: 0 }}>
+                Password
+              </label>
+              <Link to="/account/forgot-password" style={{ fontSize: 12, color: '#5a6875' }}>
+                Forgot password?
+              </Link>
+            </div>
+            <PasswordInput
+              id="login-password"
+              required
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              className="ebi-field"
+              style={{ ...field, marginTop: 6 }}
+            />
+            {error && <p style={{ fontSize: 12.5, color: '#b4622f', marginTop: 14 }}>{error}</p>}
+            <button type="submit" disabled={submitting || !isLoaded} style={{ ...submitBtn, marginTop: 20, opacity: submitting ? 0.6 : 1 }}>
+              {submitting ? 'Logging in…' : 'Log in'}
+            </button>
+          </form>
+        </>
+      )}
     </section>
   )
 }
