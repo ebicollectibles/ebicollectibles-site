@@ -334,6 +334,23 @@ function AdminOrderDetailPage() {
           </div>
         )}
 
+        {order.affiliate && (
+          <div style={{ marginTop: 16, paddingTop: 16, borderTop: '1px solid #f0f2f4' }}>
+            <div style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 10.5, letterSpacing: '0.1em', textTransform: 'uppercase', color: '#5a6875' }}>
+              Affiliate
+            </div>
+            <div style={{ marginTop: 6, fontSize: 13, color: '#131b28' }}>
+              Referred by <strong>{order.affiliate.name}</strong> (?ref={order.affiliate.code})
+              {order.affiliateCommission != null && <> — ${order.affiliateCommission.toFixed(2)} commission</>}
+              {order.affiliateCommission != null && (
+                <span style={{ marginLeft: 8, fontSize: 11.5, color: order.affiliateCommissionPaidAt ? '#3f7a63' : '#b4622f' }}>
+                  {order.affiliateCommissionPaidAt ? 'Paid' : 'Owed'}
+                </span>
+              )}
+            </div>
+          </div>
+        )}
+
         <div style={{ marginTop: 16, paddingTop: 16, borderTop: '1px solid #f0f2f4', display: 'flex', flexWrap: 'wrap', gap: 32 }}>
           <div>
             <div style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 10.5, letterSpacing: '0.1em', textTransform: 'uppercase', color: '#5a6875' }}>

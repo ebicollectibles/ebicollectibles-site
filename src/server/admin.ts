@@ -364,7 +364,13 @@ export const adminGetOrder = createServerFn({ method: 'GET' })
     const itemById = new Map(items.map((i) => [i.id, i]))
     const orderShipments = buildShipmentsByOrder(shipmentRows, shipmentItemRows, itemById).get(data.id) ?? []
 
-    return { ...order, items, statusHistory, refunds, emails, shipments: orderShipments }
+    let affiliate: { code: string; name: string } | null = null
+    if (order.affiliateId) {
+      const [row] = await db.select({ code: affiliates.code, name: affiliates.name }).from(affiliates).where(eq(affiliates.id, order.affiliateId)).limit(1)
+      affiliate = row ?? null
+    }
+
+    return { ...order, items, statusHistory, refunds, emails, shipments: orderShipments, affiliate }
   })
 
 // "shipped" and "partially_shipped" are never set directly — they're always
@@ -1276,31 +1282,74 @@ export const adminListAffiliates = createServerFn({ method: 'GET' }).handler(asy
   const db = getDb()
   const affiliateRows = await db.select().from(affiliates).orderBy(desc(affiliates.createdAt))
 
-  const totals = await db
-    .select({
-      affiliateId: orders.affiliateId,
-      orderCount: sql<string>`count(*)`,
-      totalCommission: sql<string>`coalesce(sum(${orders.affiliateCommission}), 0)`,
-      paidCommission: sql<string>`coalesce(sum(${orders.affiliateCommission}) filter (where ${orders.affiliateCommissionPaidAt} is not null), 0)`,
-    })
+  const attributedOrders = await db
+    .select({ affiliateId: orders.affiliateId, orderId: orders.id, affiliateCommission: orders.affiliateCommission, paidAt: orders.affiliateCommissionPaidAt })
     .from(orders)
     .where(isNotNull(orders.affiliateId))
-    .groupBy(orders.affiliateId)
-  const totalsByAffiliate = new Map(totals.map((t) => [t.affiliateId, t]))
+
+  // An order with a completed refund never counts toward what's owed —
+  // never pay commission on money that was given back. It still shows up
+  // in adminListAffiliateOrders' per-order breakdown, flagged, rather than
+  // silently vanishing from the numbers.
+  const refundedIds =
+    attributedOrders.length === 0
+      ? []
+      : await db
+          .select({ orderId: refundEvents.orderId })
+          .from(refundEvents)
+          .where(and(eq(refundEvents.status, 'COMPLETED'), inArray(refundEvents.orderId, attributedOrders.map((o) => o.orderId))))
+  const refundedSet = new Set(refundedIds.map((r) => r.orderId))
+
+  const byAffiliate = groupBy(attributedOrders, (o) => o.affiliateId!)
 
   return affiliateRows.map((affiliate) => {
-    const t = totalsByAffiliate.get(affiliate.id)
-    const totalCommission = Number(t?.totalCommission ?? 0)
-    const paidCommission = Number(t?.paidCommission ?? 0)
+    const orderRows = byAffiliate.get(affiliate.id) ?? []
+    let totalCommission = 0
+    let paidCommission = 0
+    let owedCommission = 0
+    for (const o of orderRows) {
+      const commission = Number(o.affiliateCommission ?? 0)
+      totalCommission += commission
+      if (o.paidAt) paidCommission += commission
+      else if (!refundedSet.has(o.orderId)) owedCommission += commission
+    }
     return {
       ...affiliate,
-      orderCount: Number(t?.orderCount ?? 0),
-      totalCommission,
-      paidCommission,
-      owedCommission: Math.round((totalCommission - paidCommission) * 100) / 100,
+      orderCount: orderRows.length,
+      totalCommission: Math.round(totalCommission * 100) / 100,
+      paidCommission: Math.round(paidCommission * 100) / 100,
+      owedCommission: Math.round(owedCommission * 100) / 100,
     }
   })
 })
+
+export const adminListAffiliateOrders = createServerFn({ method: 'GET' })
+  .validator(z.object({ affiliateId: z.string() }))
+  .handler(async ({ data }) => {
+    await assertAdmin()
+    const db = getDb()
+    const orderRows = await db
+      .select({
+        id: orders.id,
+        orderNo: orders.orderNo,
+        createdAt: orders.createdAt,
+        subtotal: orders.subtotal,
+        affiliateCommission: orders.affiliateCommission,
+        affiliateCommissionPaidAt: orders.affiliateCommissionPaidAt,
+      })
+      .from(orders)
+      .where(eq(orders.affiliateId, data.affiliateId))
+      .orderBy(desc(orders.createdAt))
+    if (orderRows.length === 0) return []
+
+    const refundedIds = await db
+      .select({ orderId: refundEvents.orderId })
+      .from(refundEvents)
+      .where(and(eq(refundEvents.status, 'COMPLETED'), inArray(refundEvents.orderId, orderRows.map((o) => o.id))))
+    const refundedSet = new Set(refundedIds.map((r) => r.orderId))
+
+    return orderRows.map((o) => ({ ...o, refunded: refundedSet.has(o.id) }))
+  })
 
 async function assertAffiliateCodeAvailable(code: string, excludingId?: string) {
   const db = getDb()
@@ -1346,10 +1395,28 @@ export const adminMarkAffiliateCommissionPaid = createServerFn({ method: 'POST' 
   .handler(async ({ data }) => {
     await assertAdmin()
     const db = getDb()
+    const candidates = await db
+      .select({ id: orders.id })
+      .from(orders)
+      .where(and(eq(orders.affiliateId, data.affiliateId), isNotNull(orders.affiliateCommission), isNull(orders.affiliateCommissionPaidAt)))
+    if (candidates.length === 0) return { markedCount: 0 }
+
+    // Same rule as adminListAffiliates' owed total — a refunded order was
+    // never counted as owed, so it must never be swept up into "paid" here
+    // either (that would make owed go negative and silently hide that this
+    // order shouldn't have been part of the payout in the first place).
+    const refundedIds = await db
+      .select({ orderId: refundEvents.orderId })
+      .from(refundEvents)
+      .where(and(eq(refundEvents.status, 'COMPLETED'), inArray(refundEvents.orderId, candidates.map((o) => o.id))))
+    const refundedSet = new Set(refundedIds.map((r) => r.orderId))
+    const payableIds = candidates.map((o) => o.id).filter((id) => !refundedSet.has(id))
+    if (payableIds.length === 0) return { markedCount: 0 }
+
     const updated = await db
       .update(orders)
       .set({ affiliateCommissionPaidAt: sql`now()` })
-      .where(and(eq(orders.affiliateId, data.affiliateId), isNotNull(orders.affiliateCommission), isNull(orders.affiliateCommissionPaidAt)))
+      .where(inArray(orders.id, payableIds))
       .returning({ id: orders.id })
     return { markedCount: updated.length }
   })

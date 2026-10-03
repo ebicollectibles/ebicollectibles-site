@@ -1,8 +1,8 @@
 import * as React from 'react'
-import { createFileRoute, useRouter } from '@tanstack/react-router'
+import { createFileRoute, Link, useRouter } from '@tanstack/react-router'
 import { AdminNav } from '~/components/AdminNav'
 import { requireAdmin } from '~/server/admin-auth'
-import { adminListAffiliates, adminCreateAffiliate, adminUpdateAffiliate, adminMarkAffiliateCommissionPaid } from '~/server/admin'
+import { adminListAffiliates, adminListAffiliateOrders, adminCreateAffiliate, adminUpdateAffiliate, adminMarkAffiliateCommissionPaid } from '~/server/admin'
 
 export const Route = createFileRoute('/admin/affiliates')({
   beforeLoad: () => requireAdmin(),
@@ -61,6 +61,11 @@ function AdminAffiliatesPage() {
   const [error, setError] = React.useState<string | null>(null)
   const [copiedId, setCopiedId] = React.useState<string | null>(null)
   const [payingId, setPayingId] = React.useState<string | null>(null)
+  const [expandedId, setExpandedId] = React.useState<string | null>(null)
+
+  const toggleExpanded = (id: string) => {
+    setExpandedId((current) => (current === id ? null : id))
+  }
 
   const copyLink = async (id: string, code: string) => {
     const url = `${SITE_URL}/?ref=${code}`
@@ -250,7 +255,8 @@ function AdminAffiliatesPage() {
             </thead>
             <tbody>
               {affiliates.map((a) => (
-                <tr key={a.id}>
+                <React.Fragment key={a.id}>
+                <tr>
                   <td style={td}>
                     <div style={{ fontWeight: 600 }}>{a.name}</div>
                     <div style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 11.5, color: '#5a6875' }}>?ref={a.code}</div>
@@ -268,7 +274,18 @@ function AdminAffiliatesPage() {
                       {a.active ? 'Active' : 'Inactive'}
                     </span>
                   </td>
-                  <td style={{ ...td, fontFamily: "'IBM Plex Mono', monospace" }}>{a.orderCount}</td>
+                  <td style={{ ...td, fontFamily: "'IBM Plex Mono', monospace" }}>
+                    {a.orderCount > 0 ? (
+                      <button
+                        onClick={() => toggleExpanded(a.id)}
+                        style={{ background: 'none', border: 'none', color: '#131b28', fontFamily: 'inherit', fontSize: 'inherit', cursor: 'pointer', textDecoration: 'underline', padding: 0 }}
+                      >
+                        {a.orderCount} {expandedId === a.id ? '▲' : '▼'}
+                      </button>
+                    ) : (
+                      a.orderCount
+                    )}
+                  </td>
                   <td style={{ ...td, fontFamily: "'IBM Plex Mono', monospace", fontWeight: a.owedCommission > 0 ? 700 : 400, color: a.owedCommission > 0 ? '#b4622f' : '#131b28' }}>
                     {money(a.owedCommission)}
                   </td>
@@ -316,11 +333,81 @@ function AdminAffiliatesPage() {
                     </button>
                   </td>
                 </tr>
+                {expandedId === a.id && (
+                  <tr>
+                    <td colSpan={7} style={{ padding: 0, borderBottom: '1px solid #e3e6ea' }}>
+                      <AffiliateOrders affiliateId={a.id} />
+                    </td>
+                  </tr>
+                )}
+                </React.Fragment>
               ))}
             </tbody>
           </table>
         </div>
       )}
+    </div>
+  )
+}
+
+function AffiliateOrders({ affiliateId }: { affiliateId: string }) {
+  const [orders, setOrders] = React.useState<Awaited<ReturnType<typeof adminListAffiliateOrders>> | null>(null)
+  const [error, setError] = React.useState<string | null>(null)
+
+  React.useEffect(() => {
+    let cancelled = false
+    adminListAffiliateOrders({ data: { affiliateId } })
+      .then((rows) => {
+        if (!cancelled) setOrders(rows)
+      })
+      .catch((err) => {
+        if (!cancelled) setError(err instanceof Error ? err.message : 'Failed to load orders.')
+      })
+    return () => {
+      cancelled = true
+    }
+  }, [affiliateId])
+
+  if (error) return <p style={{ fontSize: 12.5, color: '#b4622f', padding: '12px 16px' }}>{error}</p>
+  if (!orders) return <p style={{ fontSize: 12.5, color: '#5a6875', padding: '12px 16px' }}>Loading…</p>
+  if (orders.length === 0) return <p style={{ fontSize: 12.5, color: '#5a6875', padding: '12px 16px' }}>No orders yet.</p>
+
+  return (
+    <div style={{ background: '#f6f7f8', padding: '10px 16px 14px' }}>
+      <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+        <thead>
+          <tr>
+            <th style={{ ...th, borderBottom: '1px solid #cfd4da' }}>Order</th>
+            <th style={{ ...th, borderBottom: '1px solid #cfd4da' }}>Date</th>
+            <th style={{ ...th, borderBottom: '1px solid #cfd4da' }}>Subtotal</th>
+            <th style={{ ...th, borderBottom: '1px solid #cfd4da' }}>Commission</th>
+            <th style={{ ...th, borderBottom: '1px solid #cfd4da' }}>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          {orders.map((o) => (
+            <tr key={o.id}>
+              <td style={{ ...td, borderBottom: '1px solid #e8eaec' }}>
+                <Link to="/admin/orders/$id" params={{ id: o.id }} style={{ color: '#131b28', fontFamily: "'IBM Plex Mono', monospace" }}>
+                  #{o.orderNo}
+                </Link>
+              </td>
+              <td style={{ ...td, borderBottom: '1px solid #e8eaec', color: '#5a6875' }}>{new Date(o.createdAt).toLocaleDateString()}</td>
+              <td style={{ ...td, borderBottom: '1px solid #e8eaec', fontFamily: "'IBM Plex Mono', monospace" }}>{money(o.subtotal)}</td>
+              <td style={{ ...td, borderBottom: '1px solid #e8eaec', fontFamily: "'IBM Plex Mono', monospace" }}>{money(o.affiliateCommission ?? 0)}</td>
+              <td style={{ ...td, borderBottom: '1px solid #e8eaec' }}>
+                {o.refunded ? (
+                  <span style={{ fontSize: 11.5, color: '#b4622f' }}>Refunded — excluded</span>
+                ) : o.affiliateCommissionPaidAt ? (
+                  <span style={{ fontSize: 11.5, color: '#3f7a63' }}>Paid</span>
+                ) : (
+                  <span style={{ fontSize: 11.5, color: '#5a6875' }}>Owed</span>
+                )}
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
   )
 }
