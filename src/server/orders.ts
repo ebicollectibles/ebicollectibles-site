@@ -313,8 +313,14 @@ export const placeOrder = createServerFn({ method: 'POST' })
       // money changed hands, SQUARE_ACCESS_TOKEN unset). A referred order
       // fully covered by store credit still reports 'paid' above and still
       // counts: it's a real sale the referral drove, just not a card charge.
+      // A scoped affiliate (see computeAffiliateCommission) can land on
+      // exactly 0 here if nothing in the cart matches what they're assigned
+      // to — still attributed (affiliateId gets set below) so admin can see
+      // the click converted to *something*, just with no commission owed.
       const affiliateCommission =
-        affiliateAttribution && charge.status === 'paid' ? computeAffiliateCommission(subtotal, affiliateAttribution.commissionRate) : null
+        affiliateAttribution && charge.status === 'paid'
+          ? computeAffiliateCommission(lineDetails, affiliateAttribution.commissionRate, affiliateAttribution.scopedProductIds)
+          : null
 
       const [order] = await tx
         .insert(orders)

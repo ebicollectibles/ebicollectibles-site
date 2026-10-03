@@ -2,11 +2,21 @@ import * as React from 'react'
 import { createFileRoute, Link, useRouter } from '@tanstack/react-router'
 import { AdminNav } from '~/components/AdminNav'
 import { requireAdmin } from '~/server/admin-auth'
-import { adminListAffiliates, adminListAffiliateOrders, adminCreateAffiliate, adminUpdateAffiliate, adminMarkAffiliateCommissionPaid } from '~/server/admin'
+import {
+  adminListAffiliates,
+  adminListAffiliateOrders,
+  adminCreateAffiliate,
+  adminUpdateAffiliate,
+  adminMarkAffiliateCommissionPaid,
+  adminListProducts,
+} from '~/server/admin'
 
 export const Route = createFileRoute('/admin/affiliates')({
   beforeLoad: () => requireAdmin(),
-  loader: async () => ({ affiliates: await adminListAffiliates() }),
+  loader: async () => {
+    const [affiliates, products] = await Promise.all([adminListAffiliates(), adminListProducts()])
+    return { affiliates, products }
+  },
   component: AdminAffiliatesPage,
 })
 
@@ -45,7 +55,7 @@ const input: React.CSSProperties = {
 
 const SITE_URL = 'https://ebicollectibles.com'
 
-const emptyForm = { code: '', name: '', email: '', commissionRate: '10', active: true }
+const emptyForm = { code: '', name: '', email: '', commissionRate: '10', active: true, productIds: [] as string[] }
 
 function money(n: number) {
   return `$${n.toFixed(2)}`
@@ -53,7 +63,7 @@ function money(n: number) {
 
 function AdminAffiliatesPage() {
   const router = useRouter()
-  const { affiliates } = Route.useLoaderData()
+  const { affiliates, products } = Route.useLoaderData()
   const [editingId, setEditingId] = React.useState<string | null>(null)
   const [showForm, setShowForm] = React.useState(false)
   const [form, setForm] = React.useState(emptyForm)
@@ -93,6 +103,7 @@ function AdminAffiliatesPage() {
       email: affiliate.email ?? '',
       commissionRate: String(affiliate.commissionRate),
       active: affiliate.active,
+      productIds: affiliate.productIds,
     })
     setError(null)
     setShowForm(true)
@@ -100,6 +111,13 @@ function AdminAffiliatesPage() {
   const cancel = () => {
     setShowForm(false)
     setError(null)
+  }
+
+  const toggleProduct = (productId: string) => {
+    setForm((f) => ({
+      ...f,
+      productIds: f.productIds.includes(productId) ? f.productIds.filter((id) => id !== productId) : [...f.productIds, productId],
+    }))
   }
 
   const save = async () => {
@@ -111,7 +129,7 @@ function AdminAffiliatesPage() {
     setSaving(true)
     setError(null)
     try {
-      const data = { code: form.code.trim().toLowerCase(), name: form.name.trim(), email: form.email.trim(), commissionRate: rate }
+      const data = { code: form.code.trim().toLowerCase(), name: form.name.trim(), email: form.email.trim(), commissionRate: rate, productIds: form.productIds }
       if (editingId) {
         await adminUpdateAffiliate({ data: { ...data, id: editingId, active: form.active } })
       } else {
@@ -181,7 +199,7 @@ function AdminAffiliatesPage() {
               />
             </div>
             <div>
-              <label style={label}>Commission rate (% of subtotal)</label>
+              <label style={label}>Commission rate (% of the commissionable amount)</label>
               <input
                 type="number"
                 min={0}
@@ -205,6 +223,24 @@ function AdminAffiliatesPage() {
                 </select>
               </div>
             )}
+          </div>
+          <div style={{ marginTop: 14 }}>
+            <label style={label}>Scoped to products (optional)</label>
+            <p style={{ fontSize: 12, color: '#5a6875', margin: '0 0 8px', lineHeight: 1.4 }}>
+              Leave all unchecked for a general affiliate, commissioned on the whole order. Check specific products if this affiliate is only
+              being paid to promote those — commission then only counts what's actually in the cart from this list.
+            </p>
+            <div style={{ border: '1px solid #cfd4da', borderRadius: 2, maxHeight: 180, overflowY: 'auto', background: '#fff' }}>
+              {products.map((p) => (
+                <label
+                  key={p.id}
+                  style={{ display: 'flex', alignItems: 'center', gap: 8, padding: '6px 10px', fontSize: 12.5, borderBottom: '1px solid #f0f2f4', cursor: 'pointer' }}
+                >
+                  <input type="checkbox" checked={form.productIds.includes(p.id)} onChange={() => toggleProduct(p.id)} />
+                  {p.name}
+                </label>
+              ))}
+            </div>
           </div>
           {form.code.trim() && (
             <p style={{ fontSize: 12, color: '#5a6875', marginTop: 12 }}>
@@ -260,6 +296,9 @@ function AdminAffiliatesPage() {
                   <td style={td}>
                     <div style={{ fontWeight: 600 }}>{a.name}</div>
                     <div style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 11.5, color: '#5a6875' }}>?ref={a.code}</div>
+                    <div style={{ fontSize: 11, color: '#5a6875', marginTop: 2 }}>
+                      {a.productNames.length === 0 ? 'All products' : `Scoped: ${a.productNames.join(', ')}`}
+                    </div>
                   </td>
                   <td style={td}>{a.commissionRate}%</td>
                   <td style={td}>

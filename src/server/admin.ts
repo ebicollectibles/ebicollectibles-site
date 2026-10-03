@@ -3,6 +3,7 @@ import { z } from 'zod'
 import { and, asc, desc, eq, inArray, isNotNull, isNull, notInArray, or, sql } from 'drizzle-orm'
 import { getDb } from '~/lib/db/client'
 import {
+  affiliateProducts,
   affiliates,
   authEvents,
   emailEvents,
@@ -1275,12 +1276,22 @@ const affiliateFieldsSchema = z.object({
   // once and every future order silently commissions at that rate until
   // someone notices.
   commissionRate: z.number().min(0, 'Must be 0 or more.').max(50, "Over 50% isn't allowed — check the number."),
+  // Empty = unscoped (commission on the whole order, the original
+  // behavior). Non-empty restricts commission to just these products —
+  // see computeAffiliateCommission in server/affiliates.ts.
+  productIds: z.array(z.string()).default([]),
 })
 
 export const adminListAffiliates = createServerFn({ method: 'GET' }).handler(async () => {
   await assertAdmin()
   const db = getDb()
   const affiliateRows = await db.select().from(affiliates).orderBy(desc(affiliates.createdAt))
+
+  const scopedRows = await db
+    .select({ affiliateId: affiliateProducts.affiliateId, productId: affiliateProducts.productId, productName: productsTable.name })
+    .from(affiliateProducts)
+    .innerJoin(productsTable, eq(productsTable.id, affiliateProducts.productId))
+  const scopedByAffiliate = groupBy(scopedRows, (r) => r.affiliateId)
 
   const attributedOrders = await db
     .select({ affiliateId: orders.affiliateId, orderId: orders.id, affiliateCommission: orders.affiliateCommission, paidAt: orders.affiliateCommissionPaidAt })
@@ -1313,12 +1324,15 @@ export const adminListAffiliates = createServerFn({ method: 'GET' }).handler(asy
       if (o.paidAt) paidCommission += commission
       else if (!refundedSet.has(o.orderId)) owedCommission += commission
     }
+    const scoped = scopedByAffiliate.get(affiliate.id) ?? []
     return {
       ...affiliate,
       orderCount: orderRows.length,
       totalCommission: Math.round(totalCommission * 100) / 100,
       paidCommission: Math.round(paidCommission * 100) / 100,
       owedCommission: Math.round(owedCommission * 100) / 100,
+      productIds: scoped.map((s) => s.productId),
+      productNames: scoped.map((s) => s.productName),
     }
   })
 })
@@ -1371,6 +1385,9 @@ export const adminCreateAffiliate = createServerFn({ method: 'POST' })
       .insert(affiliates)
       .values({ code: data.code, name: data.name, email: data.email || null, commissionRate: data.commissionRate })
       .returning()
+    if (data.productIds.length > 0) {
+      await db.insert(affiliateProducts).values(data.productIds.map((productId) => ({ affiliateId: created.id, productId })))
+    }
     return created
   })
 
@@ -1384,6 +1401,12 @@ export const adminUpdateAffiliate = createServerFn({ method: 'POST' })
       .update(affiliates)
       .set({ code: data.code, name: data.name, email: data.email || null, commissionRate: data.commissionRate, active: data.active })
       .where(eq(affiliates.id, data.id))
+    // Full replace rather than a diff — simpler, and this is a handful of
+    // rows per affiliate at most, not a hot path.
+    await db.delete(affiliateProducts).where(eq(affiliateProducts.affiliateId, data.id))
+    if (data.productIds.length > 0) {
+      await db.insert(affiliateProducts).values(data.productIds.map((productId) => ({ affiliateId: data.id, productId })))
+    }
     return { ok: true }
   })
 

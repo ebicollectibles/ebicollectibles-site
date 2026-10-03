@@ -18,17 +18,22 @@
  *   but that requires an actual paid order to exist either way, and admin
  *   reviews payouts before sending real money — this catches the naive
  *   case for free, not meant to be cryptographically airtight.
+ *
+ * scopedProductIds is the set this affiliate is restricted to (e.g.
+ * someone paid to post about one specific item on Discord) — empty means
+ * unscoped, commission on the whole order, same as before product scoping
+ * existed.
  */
 export async function resolveAffiliateAttribution(
   refCode: string | undefined,
   checkoutEmail: string,
-): Promise<{ affiliateId: string; commissionRate: number } | null> {
+): Promise<{ affiliateId: string; commissionRate: number; scopedProductIds: string[] } | null> {
   if (!refCode) return null
   const code = refCode.trim().toLowerCase()
   if (!code) return null
 
   const { getDb } = await import('~/lib/db/client')
-  const { affiliates } = await import('~/lib/db/schema')
+  const { affiliates, affiliateProducts } = await import('~/lib/db/schema')
   const { and, eq } = await import('drizzle-orm')
   const db = getDb()
 
@@ -43,10 +48,26 @@ export async function resolveAffiliateAttribution(
     return null
   }
 
-  return { affiliateId: affiliate.id, commissionRate: affiliate.commissionRate }
+  const scopedRows = await db.select({ productId: affiliateProducts.productId }).from(affiliateProducts).where(eq(affiliateProducts.affiliateId, affiliate.id))
+
+  return { affiliateId: affiliate.id, commissionRate: affiliate.commissionRate, scopedProductIds: scopedRows.map((r) => r.productId) }
 }
 
-/** Rounds to the cent, same convention as every other money calc in this app (see order-math.ts). */
-export function computeAffiliateCommission(subtotal: number, commissionRate: number): number {
-  return Math.round(subtotal * (commissionRate / 100) * 100) / 100
+/**
+ * Commission = rate x the commissionable subtotal, rounded to the cent
+ * (same convention as every other money calc in this app, see
+ * order-math.ts). Unscoped affiliates (scopedProductIds empty) commission
+ * on the full order subtotal; a scoped affiliate only commissions on the
+ * lines matching their assigned product(s) — a referred customer who buys
+ * something else entirely earns them nothing on that portion.
+ */
+export function computeAffiliateCommission(
+  lineDetails: Array<{ productId: string; unitPrice: number; qty: number }>,
+  commissionRate: number,
+  scopedProductIds: string[],
+): number {
+  const scoped = new Set(scopedProductIds)
+  const commissionableSubtotal =
+    scoped.size === 0 ? lineDetails.reduce((sum, l) => sum + l.unitPrice * l.qty, 0) : lineDetails.filter((l) => scoped.has(l.productId)).reduce((sum, l) => sum + l.unitPrice * l.qty, 0)
+  return Math.round(commissionableSubtotal * (commissionRate / 100) * 100) / 100
 }

@@ -1,5 +1,5 @@
 import { sql } from 'drizzle-orm'
-import { boolean, index, integer, numeric, pgTable, text, timestamp, uniqueIndex, uuid } from 'drizzle-orm/pg-core'
+import { boolean, index, integer, numeric, pgTable, primaryKey, text, timestamp, uniqueIndex, uuid } from 'drizzle-orm/pg-core'
 
 export const products = pgTable('products', {
   id: text('id').primaryKey(),
@@ -311,8 +311,12 @@ export const affiliates = pgTable('affiliates', {
   code: text('code').notNull().unique(),
   name: text('name').notNull(),
   email: text('email'),
-  // Percent of subtotal, e.g. 10 = 10%. Snapshotted onto each attributed
-  // order at checkout — changing this only affects orders placed after.
+  // Percent of the commissionable subtotal, e.g. 10 = 10%. "Commissionable"
+  // is the whole order unless affiliateProducts below restricts this
+  // affiliate to specific products, in which case it's just the portion of
+  // the order's subtotal from those — see resolveAffiliateAttribution.
+  // Snapshotted onto each attributed order at checkout — changing this only
+  // affects orders placed after.
   commissionRate: numeric('commission_rate', { precision: 5, scale: 2, mode: 'number' }).notNull(),
   // An affiliate is never deleted (their past orders/commission history
   // must stay intact) — deactivating just stops new orders from attributing
@@ -320,6 +324,24 @@ export const affiliates = pgTable('affiliates', {
   active: boolean('active').notNull().default(true),
   createdAt: timestamp('created_at', { withTimezone: true }).notNull().defaultNow(),
 })
+
+// Restricts an affiliate's commission to specific products — e.g. someone
+// paid to post about one exact item on Discord shouldn't earn commission
+// on an unrelated purchase someone happens to make after clicking their
+// link. No rows for a given affiliate means unscoped: commission on the
+// whole order, same as before this table existed.
+export const affiliateProducts = pgTable(
+  'affiliate_products',
+  {
+    affiliateId: uuid('affiliate_id')
+      .notNull()
+      .references(() => affiliates.id, { onDelete: 'cascade' }),
+    productId: text('product_id')
+      .notNull()
+      .references(() => products.id, { onDelete: 'cascade' }),
+  },
+  (table) => [primaryKey({ columns: [table.affiliateId, table.productId] })],
+)
 
 // Timestamped fulfillment-status timeline per order (pending -> shipped ->
 // cancelled etc.) — the order row only holds the *current* status, this is
