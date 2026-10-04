@@ -2,7 +2,13 @@ import * as React from 'react'
 import { createFileRoute, Link, useNavigate, useRouter } from '@tanstack/react-router'
 import { AdminNav } from '~/components/AdminNav'
 import { requireAdmin } from '~/server/admin-auth'
-import { adminListNotifyMeEvents, adminListNotifyMeSignups, adminListNotifyMeSignupsForProduct, adminSendNotifyMeBlast } from '~/server/admin'
+import {
+  adminListNotifyMeEvents,
+  adminListNotifyMeSignups,
+  adminListNotifyMeSignupsForProduct,
+  adminSendNotifyMeBlast,
+  adminSendNotifyMeTestEmail,
+} from '~/server/admin'
 
 const EVENTS_PER_PAGE = 30
 
@@ -100,6 +106,9 @@ function AdminNotifyMePage() {
   const [eventPage, setEventPage] = React.useState(1)
   const [expandedId, setExpandedId] = React.useState<string | null>(null)
   const toggleExpanded = (productId: string) => setExpandedId((id) => (id === productId ? null : productId))
+  const [testEmail, setTestEmail] = React.useState('eastblueinternational@gmail.com')
+  const [testingId, setTestingId] = React.useState<string | null>(null)
+  const [testResult, setTestResult] = React.useState<{ productId: string; text: string } | null>(null)
 
   const totalEventPages = Math.max(1, Math.ceil(events.length / EVENTS_PER_PAGE))
   const currentEventPage = Math.min(eventPage, totalEventPages)
@@ -121,6 +130,24 @@ function AdminNotifyMePage() {
     }
   }
 
+  // Sends the real email through the real pipeline to testEmail instead of
+  // the signup list — doesn't mark anyone notified, doesn't count as a send.
+  const sendTest = async (productId: string) => {
+    setTestingId(productId)
+    setTestResult(null)
+    try {
+      const sendResult = await adminSendNotifyMeTestEmail({ data: { productId, testEmail } })
+      setTestResult({
+        productId,
+        text: sendResult.status === 'sent' ? `Sent to ${testEmail}.` : `${sendResult.status}${sendResult.error ? `: ${sendResult.error}` : '.'}`,
+      })
+    } catch (err) {
+      setTestResult({ productId, text: err instanceof Error ? err.message : 'Test send failed.' })
+    } finally {
+      setTestingId(null)
+    }
+  }
+
   return (
     <div style={{ maxWidth: 900, margin: '0 auto', padding: '32px 28px 80px', fontFamily: 'Archivo, Helvetica, sans-serif' }}>
       <AdminNav />
@@ -129,6 +156,15 @@ function AdminNotifyMePage() {
         <p style={{ fontSize: 13, color: '#5a6875', margin: '6px 0 0' }}>
           Sign-in-gated interest per product — a real demand signal, and the send list for "it's live" once you're ready.
         </p>
+      </div>
+
+      <div style={{ marginTop: 16, display: 'flex', alignItems: 'center', gap: 8 }}>
+        <label style={{ fontSize: 12, color: '#5a6875' }}>Test emails go to:</label>
+        <input
+          value={testEmail}
+          onChange={(e) => setTestEmail(e.target.value)}
+          style={{ border: '1px solid #cfd4da', borderRadius: 2, padding: '5px 8px', fontSize: 12, minWidth: 220 }}
+        />
       </div>
 
       {signups.length === 0 && <p style={{ fontSize: 13.5, color: '#131b28', marginTop: 20 }}>No signups yet.</p>}
@@ -164,6 +200,24 @@ function AdminNotifyMePage() {
                   <td style={{ ...td, fontFamily: "'IBM Plex Mono', monospace", color: s.pending > 0 ? '#3f7a63' : '#cfd4da' }}>{s.pending}</td>
                   <td style={{ ...td, textAlign: 'right', whiteSpace: 'nowrap' }}>
                     {result?.productId === s.productId && <span style={{ fontSize: 11.5, color: '#5a6875', marginRight: 12 }}>{result.text}</span>}
+                    {testResult?.productId === s.productId && <span style={{ fontSize: 11.5, color: '#5a6875', marginRight: 12 }}>{testResult.text}</span>}
+                    <button
+                      onClick={() => sendTest(s.productId)}
+                      disabled={testingId === s.productId}
+                      style={{
+                        background: 'none',
+                        border: '1px solid #cfd4da',
+                        borderRadius: 2,
+                        padding: '7px 14px',
+                        fontSize: 12,
+                        color: '#131b28',
+                        cursor: testingId ? 'default' : 'pointer',
+                        opacity: testingId === s.productId ? 0.6 : 1,
+                        marginRight: 8,
+                      }}
+                    >
+                      {testingId === s.productId ? 'Sending…' : 'Send test to me'}
+                    </button>
                     <button
                       onClick={() => send(s.productId, s.productName)}
                       disabled={s.pending === 0 || sendingId === s.productId}

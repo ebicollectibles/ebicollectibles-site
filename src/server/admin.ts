@@ -1305,6 +1305,27 @@ export const adminSendNotifyMeBlast = createServerFn({ method: 'POST' })
     return tally
   })
 
+// Sends the real "it's live" email through the real pipeline (image,
+// price, copy and all) to an address admin picks, previewing the exact
+// alert signups for this product will get — but never touches real state
+// (no notifiedAt update, no email_events row, doesn't count as a send).
+export const adminSendNotifyMeTestEmail = createServerFn({ method: 'POST' })
+  .validator(z.object({ productId: z.string(), testEmail: z.string().email() }))
+  .handler(async ({ data }) => {
+    await assertAdmin()
+    const db = getDb()
+    const [product] = await db.select().from(productsTable).where(eq(productsTable.id, data.productId)).limit(1)
+    if (!product) throw new Error('Product not found.')
+    return sendNotifyMeAlertEmail({
+      email: data.testEmail,
+      name: null,
+      productId: product.id,
+      productName: product.name,
+      productImg: product.img,
+      price: product.price,
+    })
+  })
+
 // --- Affiliates ---
 
 // Letters/numbers/hyphens only, lowercased — this is the literal ?ref=
