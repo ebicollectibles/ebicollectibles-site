@@ -3,6 +3,8 @@ import { createFileRoute, Link, useNavigate, useRouter } from '@tanstack/react-r
 import { AdminNav } from '~/components/AdminNav'
 import { requireAdmin } from '~/server/admin-auth'
 import {
+  adminListNotifyMeBlastRecipients,
+  adminListNotifyMeBlastsForProduct,
   adminListNotifyMeEvents,
   adminListNotifyMeSignups,
   adminListNotifyMeSignupsForProduct,
@@ -99,6 +101,96 @@ function NotifyMeSignupList({ productId }: { productId: string }) {
   )
 }
 
+function NotifyMeBlastRecipients({ blastId }: { blastId: string }) {
+  const [recipients, setRecipients] = React.useState<Awaited<ReturnType<typeof adminListNotifyMeBlastRecipients>> | null>(null)
+  const [error, setError] = React.useState<string | null>(null)
+
+  React.useEffect(() => {
+    let cancelled = false
+    adminListNotifyMeBlastRecipients({ data: { blastId } })
+      .then((rows) => {
+        if (!cancelled) setRecipients(rows)
+      })
+      .catch((err) => {
+        if (!cancelled) setError(err instanceof Error ? err.message : 'Failed to load recipients.')
+      })
+    return () => {
+      cancelled = true
+    }
+  }, [blastId])
+
+  if (error) return <p style={{ fontSize: 11.5, color: '#b4622f', margin: '8px 0 0' }}>{error}</p>
+  if (!recipients) return <p style={{ fontSize: 11.5, color: '#5a6875', margin: '8px 0 0' }}>Loading…</p>
+  if (recipients.length === 0) return <p style={{ fontSize: 11.5, color: '#5a6875', margin: '8px 0 0' }}>Nobody was actually emailed in this batch.</p>
+
+  return (
+    <ul style={{ margin: '8px 0 0', paddingLeft: 18, fontSize: 12, color: '#131b28' }}>
+      {recipients.map((r) => (
+        <li key={r.id}>{r.email}</li>
+      ))}
+    </ul>
+  )
+}
+
+// Every past "Send now" batch for one product — the persistent history
+// behind the toggle, independent of notifyMeSignups.notifiedAt (which gets
+// cleared again if someone re-signs-up for a later restock).
+function NotifyMeBlastHistory({ productId }: { productId: string }) {
+  const [blasts, setBlasts] = React.useState<Awaited<ReturnType<typeof adminListNotifyMeBlastsForProduct>> | null>(null)
+  const [error, setError] = React.useState<string | null>(null)
+  const [openBlastId, setOpenBlastId] = React.useState<string | null>(null)
+
+  React.useEffect(() => {
+    let cancelled = false
+    adminListNotifyMeBlastsForProduct({ data: { productId } })
+      .then((rows) => {
+        if (!cancelled) setBlasts(rows)
+      })
+      .catch((err) => {
+        if (!cancelled) setError(err instanceof Error ? err.message : 'Failed to load history.')
+      })
+    return () => {
+      cancelled = true
+    }
+  }, [productId])
+
+  if (error) return <p style={{ fontSize: 12.5, color: '#b4622f', padding: '12px 16px' }}>{error}</p>
+  if (!blasts) return <p style={{ fontSize: 12.5, color: '#5a6875', padding: '12px 16px' }}>Loading…</p>
+  if (blasts.length === 0) return <p style={{ fontSize: 12.5, color: '#5a6875', padding: '12px 16px' }}>No batches sent yet.</p>
+
+  return (
+    <div style={{ background: '#f6f7f8', padding: '10px 16px 14px' }}>
+      {blasts.map((b) => (
+        <div key={b.id} style={{ borderBottom: '1px solid #e8eaec', padding: '8px 0' }}>
+          <button
+            onClick={() => setOpenBlastId((id) => (id === b.id ? null : b.id))}
+            style={{
+              background: 'none',
+              border: 'none',
+              padding: 0,
+              cursor: 'pointer',
+              display: 'flex',
+              justifyContent: 'space-between',
+              width: '100%',
+              fontSize: 12.5,
+            }}
+          >
+            <span>
+              <span style={{ fontWeight: 600, color: '#3f7a63' }}>{b.sentCount} sent</span>
+              {b.failedCount > 0 && <span style={{ color: '#b4622f' }}> · {b.failedCount} failed</span>}
+              {b.skippedCount > 0 && <span style={{ color: '#5a6875' }}> · {b.skippedCount} skipped</span>}
+            </span>
+            <span style={{ color: '#5a6875', fontFamily: "'IBM Plex Mono', monospace", whiteSpace: 'nowrap' }}>
+              {new Date(b.createdAt).toLocaleString()} {openBlastId === b.id ? '▲' : '▼'}
+            </span>
+          </button>
+          {openBlastId === b.id && <NotifyMeBlastRecipients blastId={b.id} />}
+        </div>
+      ))}
+    </div>
+  )
+}
+
 function AdminNotifyMePage() {
   const navigate = useNavigate()
   const router = useRouter()
@@ -108,6 +200,8 @@ function AdminNotifyMePage() {
   const [eventPage, setEventPage] = React.useState(1)
   const [expandedId, setExpandedId] = React.useState<string | null>(null)
   const toggleExpanded = (productId: string) => setExpandedId((id) => (id === productId ? null : productId))
+  const [historyExpandedId, setHistoryExpandedId] = React.useState<string | null>(null)
+  const toggleHistoryExpanded = (productId: string) => setHistoryExpandedId((id) => (id === productId ? null : productId))
   const [testEmail, setTestEmail] = React.useState('eastblueinternational@gmail.com')
   const [testingId, setTestingId] = React.useState<string | null>(null)
   const [testResult, setTestResult] = React.useState<{ productId: string; text: string } | null>(null)
@@ -179,6 +273,7 @@ function AdminNotifyMePage() {
                 <th style={th}>Product</th>
                 <th style={th}>Interested</th>
                 <th style={th}>Pending</th>
+                <th style={th}>History</th>
                 <th style={th}></th>
               </tr>
             </thead>
@@ -200,6 +295,14 @@ function AdminNotifyMePage() {
                     </button>
                   </td>
                   <td style={{ ...td, fontFamily: "'IBM Plex Mono', monospace", color: s.pending > 0 ? '#3f7a63' : '#cfd4da' }}>{s.pending}</td>
+                  <td style={td}>
+                    <button
+                      onClick={() => toggleHistoryExpanded(s.productId)}
+                      style={{ background: 'none', border: 'none', color: '#131b28', fontFamily: 'inherit', fontSize: 'inherit', cursor: 'pointer', textDecoration: 'underline', padding: 0 }}
+                    >
+                      View {historyExpandedId === s.productId ? '▲' : '▼'}
+                    </button>
+                  </td>
                   <td style={{ ...td, textAlign: 'right', whiteSpace: 'nowrap' }}>
                     {result?.productId === s.productId && <span style={{ fontSize: 11.5, color: '#5a6875', marginRight: 12 }}>{result.text}</span>}
                     {testResult?.productId === s.productId && <span style={{ fontSize: 11.5, color: '#5a6875', marginRight: 12 }}>{testResult.text}</span>}
@@ -241,8 +344,15 @@ function AdminNotifyMePage() {
                 </tr>
                 {expandedId === s.productId && (
                   <tr>
-                    <td colSpan={4} style={{ padding: 0, borderBottom: '1px solid #e3e6ea' }}>
+                    <td colSpan={5} style={{ padding: 0, borderBottom: '1px solid #e3e6ea' }}>
                       <NotifyMeSignupList productId={s.productId} />
+                    </td>
+                  </tr>
+                )}
+                {historyExpandedId === s.productId && (
+                  <tr>
+                    <td colSpan={5} style={{ padding: 0, borderBottom: '1px solid #e3e6ea' }}>
+                      <NotifyMeBlastHistory productId={s.productId} />
                     </td>
                   </tr>
                 )}

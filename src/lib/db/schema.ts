@@ -678,6 +678,26 @@ export const notifyMeSignups = pgTable(
 // "who signed up and backed out, and when," not just the current state in
 // notifyMeSignups above. email/productName are snapshotted at insert time
 // so history survives a deleted user or product, same as productEditEvents.
+// One row per admin-triggered "Send now" blast — lets a product's
+// notification history be shown as discrete batches ("sent Jan 5, 5
+// people") instead of a flat, ungrouped list of individual sends.
+// productId/productName are both nullable/snapshotted the same way
+// productEditEvents does it, so a blast stays visible after its product is
+// deleted.
+export const notifyMeBlasts = pgTable(
+  'notify_me_blasts',
+  {
+    id: uuid('id').primaryKey().defaultRandom(),
+    productId: text('product_id').references(() => products.id, { onDelete: 'set null' }),
+    productName: text('product_name').notNull(),
+    sentCount: integer('sent_count').notNull(),
+    failedCount: integer('failed_count').notNull().default(0),
+    skippedCount: integer('skipped_count').notNull().default(0),
+    createdAt: timestamp('created_at', { withTimezone: true }).notNull().defaultNow(),
+  },
+  (table) => [index('notify_me_blasts_product_id_idx').on(table.productId)],
+)
+
 export const notifyMeEvents = pgTable(
   'notify_me_events',
   {
@@ -687,7 +707,11 @@ export const notifyMeEvents = pgTable(
     productId: text('product_id').references(() => products.id, { onDelete: 'set null' }),
     productName: text('product_name').notNull(),
     type: text('type').notNull(), // 'signed_up' | 'canceled' | 'notified'
+    // Set only on 'notified' events — which batch (notifyMeBlasts row) this
+    // particular send belongs to, so a product's past notifications can be
+    // grouped by batch instead of read as one continuous event stream.
+    blastId: uuid('blast_id').references(() => notifyMeBlasts.id, { onDelete: 'set null' }),
     createdAt: timestamp('created_at', { withTimezone: true }).notNull().defaultNow(),
   },
-  (table) => [index('notify_me_events_product_id_idx').on(table.productId)],
+  (table) => [index('notify_me_events_product_id_idx').on(table.productId), index('notify_me_events_blast_id_idx').on(table.blastId)],
 )

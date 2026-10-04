@@ -11,6 +11,7 @@ import {
   marketplaceOrders,
   marketplaceShipmentItems,
   marketplaceShipments,
+  notifyMeBlasts,
   notifyMeEvents,
   notifyMeSignups,
   orderItems,
@@ -1234,6 +1235,41 @@ export const adminListNotifyMeSignupsForProduct = createServerFn({ method: 'GET'
       .orderBy(desc(notifyMeSignups.createdAt))
   })
 
+// Every past "Send now" batch for one product, newest first — the
+// per-product notification history: when each blast went out and its
+// tally. adminListNotifyMeBlastRecipients below fills in who, per batch.
+export const adminListNotifyMeBlastsForProduct = createServerFn({ method: 'GET' })
+  .validator(z.object({ productId: z.string() }))
+  .handler(async ({ data }) => {
+    await assertAdmin()
+    const db = getDb()
+    return db
+      .select({
+        id: notifyMeBlasts.id,
+        sentCount: notifyMeBlasts.sentCount,
+        failedCount: notifyMeBlasts.failedCount,
+        skippedCount: notifyMeBlasts.skippedCount,
+        createdAt: notifyMeBlasts.createdAt,
+      })
+      .from(notifyMeBlasts)
+      .where(eq(notifyMeBlasts.productId, data.productId))
+      .orderBy(desc(notifyMeBlasts.createdAt))
+  })
+
+// Who actually got emailed in one specific batch — the drill-down behind
+// a single row from adminListNotifyMeBlastsForProduct.
+export const adminListNotifyMeBlastRecipients = createServerFn({ method: 'GET' })
+  .validator(z.object({ blastId: z.string() }))
+  .handler(async ({ data }) => {
+    await assertAdmin()
+    const db = getDb()
+    return db
+      .select({ id: notifyMeEvents.id, email: notifyMeEvents.email, createdAt: notifyMeEvents.createdAt })
+      .from(notifyMeEvents)
+      .where(and(eq(notifyMeEvents.blastId, data.blastId), eq(notifyMeEvents.type, 'notified')))
+      .orderBy(desc(notifyMeEvents.createdAt))
+  })
+
 // Full signup/cancel history across every product — this is what answers
 // "who signed up and backed out, and when," not just the current totals
 // adminListNotifyMeSignups returns.
@@ -1272,6 +1308,17 @@ export const adminSendNotifyMeBlast = createServerFn({ method: 'POST' })
       .innerJoin(users, eq(notifyMeSignups.userId, users.id))
       .where(and(eq(notifyMeSignups.productId, data.productId), isNull(notifyMeSignups.notifiedAt)))
 
+    if (pending.length === 0) return { sent: 0, failed: 0, skipped: 0 }
+
+    // One row per blast — created up front (counts filled in once the loop
+    // finishes) so every 'notified' event below can tag itself with which
+    // batch it belongs to, letting a product's notification history read
+    // as discrete sends rather than one flat stream.
+    const [blast] = await db
+      .insert(notifyMeBlasts)
+      .values({ productId: product.id, productName: product.name, sentCount: 0 })
+      .returning({ id: notifyMeBlasts.id })
+
     const tally = { sent: 0, failed: 0, skipped: 0 }
     for (const signup of pending) {
       let sendResult: EmailSendResult
@@ -1306,10 +1353,15 @@ export const adminSendNotifyMeBlast = createServerFn({ method: 'POST' })
           productId: product.id,
           productName: product.name,
           type: 'notified',
+          blastId: blast.id,
         })
       }
       tally[sendResult.status]++
     }
+    await db
+      .update(notifyMeBlasts)
+      .set({ sentCount: tally.sent, failedCount: tally.failed, skippedCount: tally.skipped })
+      .where(eq(notifyMeBlasts.id, blast.id))
     return tally
   })
 
