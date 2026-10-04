@@ -72,6 +72,24 @@ function AdminAffiliatesPage() {
   const [copiedId, setCopiedId] = React.useState<string | null>(null)
   const [payingId, setPayingId] = React.useState<string | null>(null)
   const [expandedId, setExpandedId] = React.useState<string | null>(null)
+  const [productSearch, setProductSearch] = React.useState('')
+
+  // Selected items first (so a pick never scrolls out of view as the list
+  // grows), alphabetical within each group, filtered by the search box —
+  // a long, uncategorized product catalog is otherwise tedious to scan for
+  // a specific handful of items.
+  const sortedProducts = React.useMemo(() => {
+    const query = productSearch.trim().toLowerCase()
+    return products
+      .filter((p) => !query || p.name.toLowerCase().includes(query))
+      .slice()
+      .sort((a, b) => {
+        const aSelected = form.productIds.includes(a.id)
+        const bSelected = form.productIds.includes(b.id)
+        if (aSelected !== bSelected) return aSelected ? -1 : 1
+        return a.name.localeCompare(b.name)
+      })
+  }, [products, productSearch, form.productIds])
 
   const toggleExpanded = (id: string) => {
     setExpandedId((current) => (current === id ? null : id))
@@ -230,11 +248,45 @@ function AdminAffiliatesPage() {
               Leave all unchecked for a general affiliate, commissioned on the whole order. Check specific products if this affiliate is only
               being paid to promote those — commission then only counts what's actually in the cart from this list.
             </p>
-            <div style={{ border: '1px solid #cfd4da', borderRadius: 2, maxHeight: 180, overflowY: 'auto', background: '#fff' }}>
-              {products.map((p) => (
+            <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 6 }}>
+              <input
+                type="text"
+                value={productSearch}
+                onChange={(e) => setProductSearch(e.target.value)}
+                placeholder="Search products…"
+                style={{ ...input, flex: 1 }}
+              />
+              <span style={{ fontSize: 11.5, color: '#5a6875', whiteSpace: 'nowrap' }}>
+                {form.productIds.length} selected
+                {form.productIds.length > 0 && (
+                  <>
+                    {' · '}
+                    <button
+                      type="button"
+                      onClick={() => setForm((f) => ({ ...f, productIds: [] }))}
+                      style={{ background: 'none', border: 'none', color: '#131b28', fontSize: 11.5, cursor: 'pointer', padding: 0, textDecoration: 'underline' }}
+                    >
+                      Clear
+                    </button>
+                  </>
+                )}
+              </span>
+            </div>
+            <div style={{ border: '1px solid #cfd4da', borderRadius: 2, maxHeight: 220, overflowY: 'auto', background: '#fff' }}>
+              {sortedProducts.length === 0 && <p style={{ fontSize: 12.5, color: '#5a6875', padding: '10px 12px', margin: 0 }}>No products match "{productSearch}".</p>}
+              {sortedProducts.map((p) => (
                 <label
                   key={p.id}
-                  style={{ display: 'flex', alignItems: 'center', gap: 8, padding: '6px 10px', fontSize: 12.5, borderBottom: '1px solid #f0f2f4', cursor: 'pointer' }}
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: 8,
+                    padding: '6px 10px',
+                    fontSize: 12.5,
+                    borderBottom: '1px solid #f0f2f4',
+                    cursor: 'pointer',
+                    background: form.productIds.includes(p.id) ? '#f0f5f2' : 'transparent',
+                  }}
                 >
                   <input type="checkbox" checked={form.productIds.includes(p.id)} onChange={() => toggleProduct(p.id)} />
                   {p.name}
