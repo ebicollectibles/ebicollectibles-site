@@ -4,6 +4,7 @@ import { useSignUp } from '@clerk/tanstack-react-start/legacy'
 import { syncClerkUser } from '~/server/customer-auth'
 import { clerkErrorMessage } from '~/lib/clerk-error'
 import { PasswordInput } from '~/components/PasswordInput'
+import { DiscordIcon } from '~/components/DiscordIcon'
 
 export const Route = createFileRoute('/account/signup')({
   component: SignupPage,
@@ -37,6 +38,22 @@ const googleBtn: React.CSSProperties = {
   background: '#ffffff',
   color: '#131b28',
   border: '1px solid #cfd4da',
+  borderRadius: 2,
+  padding: '12px 22px',
+  fontSize: 13.5,
+  fontWeight: 600,
+  cursor: 'pointer',
+}
+// Discord's brand purple ("blurple") — see discord.com/branding.
+const discordBtn: React.CSSProperties = {
+  width: '100%',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  gap: 8,
+  background: '#5865F2',
+  color: '#ffffff',
+  border: 0,
   borderRadius: 2,
   padding: '12px 22px',
   fontSize: 13.5,
@@ -129,7 +146,13 @@ function SignupPage() {
         {googleBusy ? 'Redirecting…' : 'Continue with Google'}
       </button>
 
-      <button type="button" onClick={continueWithDiscord} disabled={googleBusy || discordBusy || !isLoaded} style={{ ...googleBtn, marginTop: 10 }}>
+      <button
+        type="button"
+        onClick={continueWithDiscord}
+        disabled={googleBusy || discordBusy || !isLoaded}
+        style={{ ...discordBtn, marginTop: 10, opacity: discordBusy ? 0.85 : 1 }}
+      >
+        <DiscordIcon />
         {discordBusy ? 'Redirecting…' : 'Continue with Discord'}
       </button>
 

@@ -5,6 +5,7 @@ import { ApplePayButton } from '~/components/ApplePayButton'
 import { CardBrandLogos } from '~/components/CardBrandLogos'
 import { OrderConfirmation } from '~/components/OrderConfirmation'
 import { PasswordInput } from '~/components/PasswordInput'
+import { DiscordIcon } from '~/components/DiscordIcon'
 import { trackEvent } from '~/lib/analytics'
 import { useCart, type BillingAddress, type CheckoutContact } from '~/lib/cart-context'
 import { DELAYED_SHIPMENT_WARNING, hasDelayedShipment, hasMixedPreorderCart, isHiOrAk, MIXED_PREORDER_ERROR } from '~/lib/order-math'
@@ -69,6 +70,22 @@ const outlineBtn: React.CSSProperties = {
   background: '#ffffff',
   color: '#131b28',
   border: '1px solid #cfd4da',
+  borderRadius: 2,
+  padding: '12px 22px',
+  fontSize: 13.5,
+  fontWeight: 600,
+  cursor: 'pointer',
+}
+// Discord's brand purple ("blurple") — see discord.com/branding.
+const discordBtn: React.CSSProperties = {
+  width: '100%',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  gap: 8,
+  background: '#5865F2',
+  color: '#ffffff',
+  border: 0,
   borderRadius: 2,
   padding: '12px 22px',
   fontSize: 13.5,
@@ -1174,8 +1191,9 @@ function ChoicePanel({
               type="button"
               onClick={onContinueWithDiscord}
               disabled={googleBusy || discordBusy}
-              style={{ ...outlineBtn, marginTop: 10, cursor: googleBusy || discordBusy ? 'not-allowed' : 'pointer', opacity: googleBusy || discordBusy ? 0.6 : 1 }}
+              style={{ ...discordBtn, marginTop: 10, cursor: googleBusy || discordBusy ? 'not-allowed' : 'pointer', opacity: discordBusy ? 0.85 : googleBusy ? 0.6 : 1 }}
             >
+              <DiscordIcon />
               {discordBusy ? 'Redirecting…' : 'Continue with Discord'}
             </button>
 
