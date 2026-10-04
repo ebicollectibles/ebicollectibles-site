@@ -1218,6 +1218,21 @@ export const adminListNotifyMeSignups = createServerFn({ method: 'GET' }).handle
   return results
 })
 
+// Who's actually on the list for one product — the per-person drill-down
+// behind adminListNotifyMeSignups' per-product totals above.
+export const adminListNotifyMeSignupsForProduct = createServerFn({ method: 'GET' })
+  .validator(z.object({ productId: z.string() }))
+  .handler(async ({ data }) => {
+    await assertAdmin()
+    const db = getDb()
+    return db
+      .select({ id: notifyMeSignups.id, email: users.email, name: users.name, createdAt: notifyMeSignups.createdAt, notifiedAt: notifyMeSignups.notifiedAt })
+      .from(notifyMeSignups)
+      .innerJoin(users, eq(notifyMeSignups.userId, users.id))
+      .where(eq(notifyMeSignups.productId, data.productId))
+      .orderBy(desc(notifyMeSignups.createdAt))
+  })
+
 // Full signup/cancel history across every product — this is what answers
 // "who signed up and backed out, and when," not just the current totals
 // adminListNotifyMeSignups returns.

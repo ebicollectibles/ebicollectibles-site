@@ -2,7 +2,7 @@ import * as React from 'react'
 import { createFileRoute, Link, useNavigate, useRouter } from '@tanstack/react-router'
 import { AdminNav } from '~/components/AdminNav'
 import { requireAdmin } from '~/server/admin-auth'
-import { adminListNotifyMeEvents, adminListNotifyMeSignups, adminSendNotifyMeBlast } from '~/server/admin'
+import { adminListNotifyMeEvents, adminListNotifyMeSignups, adminListNotifyMeSignupsForProduct, adminSendNotifyMeBlast } from '~/server/admin'
 
 const EVENTS_PER_PAGE = 30
 
@@ -41,6 +41,56 @@ const td: React.CSSProperties = {
   fontSize: 13,
 }
 
+function NotifyMeSignupList({ productId }: { productId: string }) {
+  const [people, setPeople] = React.useState<Awaited<ReturnType<typeof adminListNotifyMeSignupsForProduct>> | null>(null)
+  const [error, setError] = React.useState<string | null>(null)
+
+  React.useEffect(() => {
+    let cancelled = false
+    adminListNotifyMeSignupsForProduct({ data: { productId } })
+      .then((rows) => {
+        if (!cancelled) setPeople(rows)
+      })
+      .catch((err) => {
+        if (!cancelled) setError(err instanceof Error ? err.message : 'Failed to load signups.')
+      })
+    return () => {
+      cancelled = true
+    }
+  }, [productId])
+
+  if (error) return <p style={{ fontSize: 12.5, color: '#b4622f', padding: '12px 16px' }}>{error}</p>
+  if (!people) return <p style={{ fontSize: 12.5, color: '#5a6875', padding: '12px 16px' }}>Loading…</p>
+  if (people.length === 0) return <p style={{ fontSize: 12.5, color: '#5a6875', padding: '12px 16px' }}>No one yet.</p>
+
+  return (
+    <div style={{ background: '#f6f7f8', padding: '10px 16px 14px' }}>
+      <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+        <thead>
+          <tr>
+            <th style={{ ...th, borderBottom: '1px solid #cfd4da' }}>Name</th>
+            <th style={{ ...th, borderBottom: '1px solid #cfd4da' }}>Email</th>
+            <th style={{ ...th, borderBottom: '1px solid #cfd4da' }}>Signed up</th>
+            <th style={{ ...th, borderBottom: '1px solid #cfd4da' }}>Notified</th>
+          </tr>
+        </thead>
+        <tbody>
+          {people.map((p) => (
+            <tr key={p.id}>
+              <td style={{ ...td, borderBottom: '1px solid #e8eaec', color: p.name ? '#131b28' : '#5a6875' }}>{p.name || '—'}</td>
+              <td style={{ ...td, borderBottom: '1px solid #e8eaec' }}>{p.email}</td>
+              <td style={{ ...td, borderBottom: '1px solid #e8eaec', color: '#5a6875' }}>{new Date(p.createdAt).toLocaleString()}</td>
+              <td style={{ ...td, borderBottom: '1px solid #e8eaec', color: p.notifiedAt ? '#3f7a63' : '#cfd4da' }}>
+                {p.notifiedAt ? new Date(p.notifiedAt).toLocaleString() : 'Pending'}
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  )
+}
+
 function AdminNotifyMePage() {
   const navigate = useNavigate()
   const router = useRouter()
@@ -48,6 +98,8 @@ function AdminNotifyMePage() {
   const [sendingId, setSendingId] = React.useState<string | null>(null)
   const [result, setResult] = React.useState<{ productId: string; text: string } | null>(null)
   const [eventPage, setEventPage] = React.useState(1)
+  const [expandedId, setExpandedId] = React.useState<string | null>(null)
+  const toggleExpanded = (productId: string) => setExpandedId((id) => (id === productId ? null : productId))
 
   const totalEventPages = Math.max(1, Math.ceil(events.length / EVENTS_PER_PAGE))
   const currentEventPage = Math.min(eventPage, totalEventPages)
@@ -94,13 +146,21 @@ function AdminNotifyMePage() {
             </thead>
             <tbody>
               {signups.map((s) => (
-                <tr key={s.productId}>
+                <React.Fragment key={s.productId}>
+                <tr>
                   <td style={td}>
                     <Link to="/products/$id" params={{ id: s.productId }} style={{ color: '#131b28', textDecoration: 'none', fontWeight: 600 }}>
                       {s.productName}
                     </Link>
                   </td>
-                  <td style={{ ...td, fontFamily: "'IBM Plex Mono', monospace", fontWeight: 500 }}>{s.total}</td>
+                  <td style={{ ...td, fontFamily: "'IBM Plex Mono', monospace", fontWeight: 500 }}>
+                    <button
+                      onClick={() => toggleExpanded(s.productId)}
+                      style={{ background: 'none', border: 'none', color: '#131b28', fontFamily: 'inherit', fontSize: 'inherit', cursor: 'pointer', textDecoration: 'underline', padding: 0 }}
+                    >
+                      {s.total} {expandedId === s.productId ? '▲' : '▼'}
+                    </button>
+                  </td>
                   <td style={{ ...td, fontFamily: "'IBM Plex Mono', monospace", color: s.pending > 0 ? '#3f7a63' : '#cfd4da' }}>{s.pending}</td>
                   <td style={{ ...td, textAlign: 'right', whiteSpace: 'nowrap' }}>
                     {result?.productId === s.productId && <span style={{ fontSize: 11.5, color: '#5a6875', marginRight: 12 }}>{result.text}</span>}
@@ -123,6 +183,14 @@ function AdminNotifyMePage() {
                     </button>
                   </td>
                 </tr>
+                {expandedId === s.productId && (
+                  <tr>
+                    <td colSpan={4} style={{ padding: 0, borderBottom: '1px solid #e3e6ea' }}>
+                      <NotifyMeSignupList productId={s.productId} />
+                    </td>
+                  </tr>
+                )}
+                </React.Fragment>
               ))}
             </tbody>
           </table>
