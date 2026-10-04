@@ -90,8 +90,17 @@ function NotifyMeSignupList({ productId }: { productId: string }) {
               <td style={{ ...td, borderBottom: '1px solid #e8eaec', color: p.name ? '#131b28' : '#5a6875' }}>{p.name || '—'}</td>
               <td style={{ ...td, borderBottom: '1px solid #e8eaec' }}>{p.email}</td>
               <td style={{ ...td, borderBottom: '1px solid #e8eaec', color: '#5a6875' }}>{new Date(p.createdAt).toLocaleString()}</td>
-              <td style={{ ...td, borderBottom: '1px solid #e8eaec', color: p.notifiedAt ? '#3f7a63' : '#cfd4da' }}>
-                {p.notifiedAt ? new Date(p.notifiedAt).toLocaleString() : 'Pending'}
+              <td style={{ ...td, borderBottom: '1px solid #e8eaec', color: p.notifiedCount > 0 ? '#3f7a63' : '#cfd4da' }}>
+                {p.notifiedCount === 0 ? (
+                  'Pending'
+                ) : (
+                  <span
+                    title={p.notifiedDates.map((d) => new Date(d).toLocaleString()).join('\n')}
+                    style={{ textDecoration: 'underline dotted', cursor: 'help' }}
+                  >
+                    {p.notifiedCount}× — last {new Date(p.notifiedDates[p.notifiedDates.length - 1]).toLocaleString()}
+                  </span>
+                )}
               </td>
             </tr>
           ))}

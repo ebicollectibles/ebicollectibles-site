@@ -1223,18 +1223,36 @@ export const adminListNotifyMeSignups = createServerFn({ method: 'GET' }).handle
 })
 
 // Who's actually on the list for one product — the per-person drill-down
-// behind adminListNotifyMeSignups' per-product totals above.
+// behind adminListNotifyMeSignups' per-product totals above. notifiedAt on
+// notifyMeSignups only ever reflects the *latest* notify (it gets cleared
+// again on a re-arm — see notifyMeSignUp), so notifiedCount/notifiedDates
+// are pulled from notifyMeEvents instead, which is what actually keeps the
+// full history across every batch this person was ever notified in.
 export const adminListNotifyMeSignupsForProduct = createServerFn({ method: 'GET' })
   .validator(z.object({ productId: z.string() }))
   .handler(async ({ data }) => {
     await assertAdmin()
     const db = getDb()
-    return db
-      .select({ id: notifyMeSignups.id, email: users.email, name: users.name, createdAt: notifyMeSignups.createdAt, notifiedAt: notifyMeSignups.notifiedAt })
+    const signups = await db
+      .select({ id: notifyMeSignups.id, userId: notifyMeSignups.userId, email: users.email, name: users.name, createdAt: notifyMeSignups.createdAt, notifiedAt: notifyMeSignups.notifiedAt })
       .from(notifyMeSignups)
       .innerJoin(users, eq(notifyMeSignups.userId, users.id))
       .where(eq(notifyMeSignups.productId, data.productId))
       .orderBy(desc(notifyMeSignups.createdAt))
+
+    const notifiedEvents = await db
+      .select({ userId: notifyMeEvents.userId, createdAt: notifyMeEvents.createdAt })
+      .from(notifyMeEvents)
+      .where(and(eq(notifyMeEvents.productId, data.productId), eq(notifyMeEvents.type, 'notified')))
+    const notifiedDatesByUser = groupBy(
+      notifiedEvents.filter((e) => e.userId),
+      (e) => e.userId as string,
+    )
+
+    return signups.map((s) => {
+      const dates = (notifiedDatesByUser.get(s.userId) ?? []).map((e) => e.createdAt).sort((a, b) => a.getTime() - b.getTime())
+      return { ...s, notifiedCount: dates.length, notifiedDates: dates }
+    })
   })
 
 // Every past "Send now" batch for one product, newest first — the
@@ -1315,7 +1333,7 @@ export const adminSendNotifyMeBlast = createServerFn({ method: 'POST' })
     if (!product) throw new Error('Product not found.')
 
     const pending = await db
-      .select({ id: notifyMeSignups.id, userId: notifyMeSignups.userId, email: users.email, name: users.name })
+      .select({ id: notifyMeSignups.id, userId: notifyMeSignups.userId, email: users.email })
       .from(notifyMeSignups)
       .innerJoin(users, eq(notifyMeSignups.userId, users.id))
       .where(and(eq(notifyMeSignups.productId, data.productId), isNull(notifyMeSignups.notifiedAt)))
@@ -1337,7 +1355,6 @@ export const adminSendNotifyMeBlast = createServerFn({ method: 'POST' })
       try {
         sendResult = await sendNotifyMeAlertEmail({
           email: signup.email,
-          name: signup.name,
           productId: product.id,
           productName: product.name,
           productImg: product.img,
@@ -1395,7 +1412,6 @@ export const adminSendNotifyMeTestEmail = createServerFn({ method: 'POST' })
     if (!product) throw new Error('Product not found.')
     return sendNotifyMeAlertEmail({
       email: data.testEmail,
-      name: null,
       productId: product.id,
       productName: product.name,
       productImg: product.img,
