@@ -162,6 +162,24 @@ export const adminSearchSquareCatalog = createServerFn({ method: 'GET' })
     return searchSquareCatalogItems(data.query)
   })
 
+export const adminListVariantSiblings = createServerFn({ method: 'GET' })
+  .validator(z.object({ variantGroupId: z.string(), excludeId: z.string().optional() }))
+  .handler(async ({ data }) => {
+    await assertAdmin()
+    const groupId = data.variantGroupId.trim()
+    if (!groupId) return []
+    const db = getDb()
+    const where = data.excludeId
+      ? and(eq(productsTable.variantGroupId, groupId), sql`${productsTable.id} != ${data.excludeId}`)
+      : eq(productsTable.variantGroupId, groupId)
+    const rows = await db
+      .select({ id: productsTable.id, name: productsTable.name, variantLabel: productsTable.variantLabel, variantSortOrder: productsTable.variantSortOrder })
+      .from(productsTable)
+      .where(where)
+      .orderBy(asc(productsTable.variantSortOrder), asc(productsTable.name))
+    return rows
+  })
+
 export const adminCreateProduct = createServerFn({ method: 'POST' })
   .validator(productSchema)
   .handler(async ({ data }) => {

@@ -9,7 +9,7 @@ import {
   type ProductSubcategory,
 } from '~/lib/products'
 import { listProductImages, uploadProductImage } from '~/server/uploads'
-import { adminSearchSquareCatalog } from '~/server/admin'
+import { adminListVariantSiblings, adminSearchSquareCatalog } from '~/server/admin'
 import type { SquareCatalogOption } from '~/server/square'
 
 export interface ProductFormValues {
@@ -498,6 +498,82 @@ function ImagePicker({ onSelect, onClose }: { onSelect: (url: string) => void; o
           ))}
         </div>
       </div>
+    </div>
+  )
+}
+
+function VariantSiblingsHint({
+  groupId,
+  excludeId,
+  currentOrder,
+  onPickOrder,
+}: {
+  groupId: string
+  excludeId?: string
+  currentOrder: number
+  onPickOrder: (n: number) => void
+}) {
+  const [siblings, setSiblings] = React.useState<
+    { id: string; name: string; variantLabel: string | null; variantSortOrder: number | null }[] | null
+  >(null)
+
+  React.useEffect(() => {
+    const group = groupId.trim()
+    if (!group) {
+      setSiblings(null)
+      return
+    }
+    let cancelled = false
+    const timer = setTimeout(() => {
+      adminListVariantSiblings({ data: { variantGroupId: group, excludeId } })
+        .then((rows) => {
+          if (!cancelled) setSiblings(rows)
+        })
+        .catch(() => {
+          if (!cancelled) setSiblings(null)
+        })
+    }, 300)
+    return () => {
+      cancelled = true
+      clearTimeout(timer)
+    }
+  }, [groupId, excludeId])
+
+  if (!groupId.trim() || siblings === null) return null
+
+  if (siblings.length === 0) {
+    return (
+      <p style={{ fontSize: 11.5, color: '#5a6875', margin: '0 0 12px' }}>
+        No other products use this group yet — this will be the first.
+      </p>
+    )
+  }
+
+  const usedOrders = new Set(siblings.map((s) => s.variantSortOrder ?? 0))
+  let nextFree = 0
+  while (usedOrders.has(nextFree)) nextFree++
+  const collision = usedOrders.has(currentOrder)
+
+  return (
+    <div style={{ marginBottom: 12, padding: '8px 10px', background: '#f7f8f9', borderRadius: 3 }}>
+      <div style={{ fontSize: 11.5, color: collision ? '#b4622f' : '#5a6875', marginBottom: 6 }}>
+        Already in this group{collision ? ` — order ${currentOrder} is already taken` : ''}:
+      </div>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
+        {siblings.map((s) => (
+          <div key={s.id} style={{ display: 'flex', justifyContent: 'space-between', fontSize: 12 }}>
+            <span>{s.variantLabel || s.name}</span>
+            <span style={{ fontFamily: "'IBM Plex Mono', monospace", color: '#5a6875' }}>{s.variantSortOrder ?? 0}</span>
+          </div>
+        ))}
+      </div>
+      <button
+        type="button"
+        onClick={() => onPickOrder(nextFree)}
+        style={{ marginTop: 6, background: 'none', border: '1px solid #cfd4da', borderRadius: 2, padding: '3px 8px', fontSize: 11, cursor: 'pointer' }}
+      >
+        Use next free order ({nextFree})
+      </button>
     </div>
   )
 }
@@ -1263,6 +1339,12 @@ export function ProductForm({
             />
           </div>
         </div>
+        <VariantSiblingsHint
+          groupId={values.variantGroupId}
+          excludeId={values.id || undefined}
+          currentOrder={values.variantSortOrder}
+          onPickOrder={(n) => set('variantSortOrder', n)}
+        />
         <label style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: 13 }}>
           <input type="checkbox" checked={values.hideFromShopGrid} onChange={(e) => set('hideFromShopGrid', e.target.checked)} />
           Hide from shop grid, search and homepage sections — only reachable via the variant selector on a sibling
