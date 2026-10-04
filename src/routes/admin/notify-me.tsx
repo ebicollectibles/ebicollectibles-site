@@ -230,6 +230,10 @@ function AdminNotifyMePage() {
   const toggleExpanded = (productId: string) => setExpandedId((id) => (id === productId ? null : productId))
   const [historyExpandedId, setHistoryExpandedId] = React.useState<string | null>(null)
   const toggleHistoryExpanded = (productId: string) => setHistoryExpandedId((id) => (id === productId ? null : productId))
+  // Bumped on every real send so an already-open History panel remounts
+  // (via the key below) and re-fetches instead of showing what it loaded
+  // before this send happened.
+  const [historyRefreshKey, setHistoryRefreshKey] = React.useState(0)
   const [testEmail, setTestEmail] = React.useState('eastblueinternational@gmail.com')
   const [testingId, setTestingId] = React.useState<string | null>(null)
   const [testResult, setTestResult] = React.useState<{ productId: string; text: string } | null>(null)
@@ -248,6 +252,7 @@ function AdminNotifyMePage() {
       if (tally.skipped > 0) parts.push(`skipped ${tally.skipped}`)
       if (tally.failed > 0) parts.push(`failed ${tally.failed}`)
       setResult({ productId, text: parts.join(', ') + '.' })
+      setHistoryRefreshKey((n) => n + 1)
       await router.invalidate()
     } finally {
       setSendingId(null)
@@ -380,7 +385,7 @@ function AdminNotifyMePage() {
                 {historyExpandedId === s.productId && (
                   <tr>
                     <td colSpan={5} style={{ padding: 0, borderBottom: '1px solid #e3e6ea' }}>
-                      <NotifyMeBlastHistory productId={s.productId} />
+                      <NotifyMeBlastHistory key={historyRefreshKey} productId={s.productId} />
                     </td>
                   </tr>
                 )}
