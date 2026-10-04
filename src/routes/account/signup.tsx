@@ -5,6 +5,7 @@ import { syncClerkUser } from '~/server/customer-auth'
 import { clerkErrorMessage } from '~/lib/clerk-error'
 import { PasswordInput } from '~/components/PasswordInput'
 import { DiscordIcon } from '~/components/DiscordIcon'
+import { GoogleIcon } from '~/components/GoogleIcon'
 
 export const Route = createFileRoute('/account/signup')({
   component: SignupPage,
@@ -35,6 +36,10 @@ const submitBtn: React.CSSProperties = {
 }
 const googleBtn: React.CSSProperties = {
   width: '100%',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  gap: 8,
   background: '#ffffff',
   color: '#131b28',
   border: '1px solid #cfd4da',
@@ -143,6 +148,7 @@ function SignupPage() {
       </p>
 
       <button type="button" onClick={continueWithGoogle} disabled={googleBusy || discordBusy || !isLoaded} style={googleBtn}>
+        <GoogleIcon />
         {googleBusy ? 'Redirecting…' : 'Continue with Google'}
       </button>
 

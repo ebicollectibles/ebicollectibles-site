@@ -7,6 +7,7 @@ import { clerkErrorMessage } from '~/lib/clerk-error'
 import { attemptClientTrustCode, challengeClientTrustIfNeeded } from '~/lib/clerk-client-trust'
 import { PasswordInput } from '~/components/PasswordInput'
 import { DiscordIcon } from '~/components/DiscordIcon'
+import { GoogleIcon } from '~/components/GoogleIcon'
 
 const searchSchema = z.object({ error: z.string().optional() })
 
@@ -40,6 +41,10 @@ const submitBtn: React.CSSProperties = {
 }
 const googleBtn: React.CSSProperties = {
   width: '100%',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  gap: 8,
   background: '#ffffff',
   color: '#131b28',
   border: '1px solid #cfd4da',
@@ -196,6 +201,7 @@ function LoginPage() {
           </p>
 
           <button type="button" onClick={continueWithGoogle} disabled={googleBusy || discordBusy || !isLoaded} style={googleBtn}>
+            <GoogleIcon />
             {googleBusy ? 'Redirecting…' : 'Continue with Google'}
           </button>
 

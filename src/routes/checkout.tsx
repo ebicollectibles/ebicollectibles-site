@@ -6,6 +6,7 @@ import { CardBrandLogos } from '~/components/CardBrandLogos'
 import { OrderConfirmation } from '~/components/OrderConfirmation'
 import { PasswordInput } from '~/components/PasswordInput'
 import { DiscordIcon } from '~/components/DiscordIcon'
+import { GoogleIcon } from '~/components/GoogleIcon'
 import { trackEvent } from '~/lib/analytics'
 import { useCart, type BillingAddress, type CheckoutContact } from '~/lib/cart-context'
 import { DELAYED_SHIPMENT_WARNING, hasDelayedShipment, hasMixedPreorderCart, isHiOrAk, MIXED_PREORDER_ERROR } from '~/lib/order-math'
@@ -1182,8 +1183,17 @@ function ChoicePanel({
               type="button"
               onClick={onContinueWithGoogle}
               disabled={googleBusy || discordBusy}
-              style={{ ...outlineBtn, cursor: googleBusy || discordBusy ? 'not-allowed' : 'pointer', opacity: googleBusy || discordBusy ? 0.6 : 1 }}
+              style={{
+                ...outlineBtn,
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: 8,
+                cursor: googleBusy || discordBusy ? 'not-allowed' : 'pointer',
+                opacity: googleBusy || discordBusy ? 0.6 : 1,
+              }}
             >
+              <GoogleIcon />
               {googleBusy ? 'Redirecting…' : 'Continue with Google'}
             </button>
 
