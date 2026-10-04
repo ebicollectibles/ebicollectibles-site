@@ -668,3 +668,21 @@ export const notifyMeSignups = pgTable(
     index('notify_me_signups_product_id_idx').on(table.productId),
   ],
 )
+
+// Append-only log of every notify-me signup/cancel — this is what answers
+// "who signed up and backed out, and when," not just the current state in
+// notifyMeSignups above. email/productName are snapshotted at insert time
+// so history survives a deleted user or product, same as productEditEvents.
+export const notifyMeEvents = pgTable(
+  'notify_me_events',
+  {
+    id: uuid('id').primaryKey().defaultRandom(),
+    userId: uuid('user_id').references(() => users.id, { onDelete: 'set null' }),
+    email: text('email').notNull(),
+    productId: text('product_id').references(() => products.id, { onDelete: 'set null' }),
+    productName: text('product_name').notNull(),
+    type: text('type').notNull(), // 'signed_up' | 'canceled'
+    createdAt: timestamp('created_at', { withTimezone: true }).notNull().defaultNow(),
+  },
+  (table) => [index('notify_me_events_product_id_idx').on(table.productId)],
+)

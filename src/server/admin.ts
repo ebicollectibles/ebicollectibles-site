@@ -11,6 +11,7 @@ import {
   marketplaceOrders,
   marketplaceShipmentItems,
   marketplaceShipments,
+  notifyMeEvents,
   notifyMeSignups,
   orderItems,
   orderStatusEvents,
@@ -1215,6 +1216,25 @@ export const adminListNotifyMeSignups = createServerFn({ method: 'GET' }).handle
   }))
   results.sort((a, b) => b.total - a.total)
   return results
+})
+
+// Full signup/cancel history across every product — this is what answers
+// "who signed up and backed out, and when," not just the current totals
+// adminListNotifyMeSignups returns.
+export const adminListNotifyMeEvents = createServerFn({ method: 'GET' }).handler(async () => {
+  await assertAdmin()
+  const db = getDb()
+  return db
+    .select({
+      id: notifyMeEvents.id,
+      email: notifyMeEvents.email,
+      productId: notifyMeEvents.productId,
+      productName: notifyMeEvents.productName,
+      type: notifyMeEvents.type,
+      createdAt: notifyMeEvents.createdAt,
+    })
+    .from(notifyMeEvents)
+    .orderBy(desc(notifyMeEvents.createdAt))
 })
 
 // Emails everyone still pending (not yet notified) for one product — a

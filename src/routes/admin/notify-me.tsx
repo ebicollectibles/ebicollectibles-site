@@ -2,13 +2,28 @@ import * as React from 'react'
 import { createFileRoute, Link, useNavigate, useRouter } from '@tanstack/react-router'
 import { AdminNav } from '~/components/AdminNav'
 import { requireAdmin } from '~/server/admin-auth'
-import { adminListNotifyMeSignups, adminSendNotifyMeBlast } from '~/server/admin'
+import { adminListNotifyMeEvents, adminListNotifyMeSignups, adminSendNotifyMeBlast } from '~/server/admin'
+
+const EVENTS_PER_PAGE = 30
 
 export const Route = createFileRoute('/admin/notify-me')({
   beforeLoad: () => requireAdmin(),
-  loader: () => adminListNotifyMeSignups(),
+  loader: async () => {
+    const [signups, events] = await Promise.all([adminListNotifyMeSignups(), adminListNotifyMeEvents()])
+    return { signups, events }
+  },
   component: AdminNotifyMePage,
 })
+
+const eventLabel: Record<string, string> = {
+  signed_up: 'Signed up',
+  canceled: 'Canceled',
+}
+
+const eventColor: Record<string, string> = {
+  signed_up: '#3f7a63',
+  canceled: '#b4622f',
+}
 
 const th: React.CSSProperties = {
   textAlign: 'left',
@@ -29,9 +44,14 @@ const td: React.CSSProperties = {
 function AdminNotifyMePage() {
   const navigate = useNavigate()
   const router = useRouter()
-  const signups = Route.useLoaderData()
+  const { signups, events } = Route.useLoaderData()
   const [sendingId, setSendingId] = React.useState<string | null>(null)
   const [result, setResult] = React.useState<{ productId: string; text: string } | null>(null)
+  const [eventPage, setEventPage] = React.useState(1)
+
+  const totalEventPages = Math.max(1, Math.ceil(events.length / EVENTS_PER_PAGE))
+  const currentEventPage = Math.min(eventPage, totalEventPages)
+  const pageEvents = events.slice((currentEventPage - 1) * EVENTS_PER_PAGE, currentEventPage * EVENTS_PER_PAGE)
 
   const send = async (productId: string, productName: string) => {
     if (!confirm(`Email everyone still waiting on "${productName}"?`)) return
@@ -106,6 +126,89 @@ function AdminNotifyMePage() {
               ))}
             </tbody>
           </table>
+        </div>
+      )}
+
+      <h2 style={{ fontSize: 15, fontWeight: 700, marginTop: 44, marginBottom: 16 }}>Activity</h2>
+      <p style={{ fontSize: 12.5, color: '#5a6875', margin: '0 0 16px' }}>
+        Every signup / cancel, in order — this is where someone who signed up, canceled, then signed up again shows up
+        as three events.
+      </p>
+
+      {events.length === 0 ? (
+        <p style={{ fontSize: 13.5, color: '#131b28' }}>No activity yet.</p>
+      ) : (
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+          {pageEvents.map((e) => (
+            <div
+              key={e.id}
+              style={{
+                display: 'flex',
+                justifyContent: 'space-between',
+                padding: '8px 0',
+                borderBottom: '1px solid #f0f2f4',
+                fontSize: 12.5,
+                gap: 12,
+              }}
+            >
+              <span>
+                <span style={{ color: eventColor[e.type] ?? '#131b28', fontWeight: 600 }}>{eventLabel[e.type] ?? e.type}</span>
+                {' — '}
+                {e.email}
+                {' on '}
+                {e.productId ? (
+                  <Link to="/products/$id" params={{ id: e.productId }} style={{ color: '#131b28' }}>
+                    {e.productName}
+                  </Link>
+                ) : (
+                  <span style={{ color: '#5a6875' }}>{e.productName} (deleted)</span>
+                )}
+              </span>
+              <span style={{ color: '#5a6875', fontFamily: "'IBM Plex Mono', monospace", fontSize: 11.5, whiteSpace: 'nowrap' }}>
+                {new Date(e.createdAt).toLocaleString()}
+              </span>
+            </div>
+          ))}
+        </div>
+      )}
+
+      {totalEventPages > 1 && (
+        <div style={{ marginTop: 16, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 14 }}>
+          <button
+            disabled={currentEventPage === 1}
+            onClick={() => setEventPage((p) => p - 1)}
+            style={{
+              background: 'none',
+              border: '1px solid #cfd4da',
+              borderRadius: 2,
+              padding: '5px 10px',
+              fontSize: 12,
+              color: '#131b28',
+              cursor: currentEventPage === 1 ? 'default' : 'pointer',
+              opacity: currentEventPage === 1 ? 0.4 : 1,
+            }}
+          >
+            ← Prev
+          </button>
+          <span style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 11.5, color: '#5a6875' }}>
+            Page {currentEventPage} of {totalEventPages}
+          </span>
+          <button
+            disabled={currentEventPage === totalEventPages}
+            onClick={() => setEventPage((p) => p + 1)}
+            style={{
+              background: 'none',
+              border: '1px solid #cfd4da',
+              borderRadius: 2,
+              padding: '5px 10px',
+              fontSize: 12,
+              color: '#131b28',
+              cursor: currentEventPage === totalEventPages ? 'default' : 'pointer',
+              opacity: currentEventPage === totalEventPages ? 0.4 : 1,
+            }}
+          >
+            Next →
+          </button>
         </div>
       )}
     </div>
