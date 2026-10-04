@@ -142,6 +142,7 @@ export const adminAdjustStoreCredit = createServerFn({ method: 'POST' })
             type: 'store_credit_issued',
             status: result.status,
             errorMessage: result.error ?? null,
+            resendId: result.resendId ?? null,
           })
         } catch (err) {
           console.error(`Failed to send store credit email to user ${data.userId}:`, err)

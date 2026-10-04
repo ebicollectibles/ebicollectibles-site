@@ -264,6 +264,34 @@ place and pay just fine, they simply skip sending a confirmation email.
 Until both are set, checkout is unaffected — the email send is skipped
 silently (logged, not thrown) and the order still completes normally.
 
+## Email delivery tracking (Resend webhook)
+
+Optional, on top of the above — lets `/admin/notify-me` (and any other
+admin view that surfaces `email_events`) show whether a sent email was
+actually delivered, opened, clicked, bounced, or marked as spam, not just
+whether the initial send API call succeeded. Without this, every email
+just shows as "Sent."
+
+1. In the Resend dashboard, go to **Webhooks** → **Add Endpoint**.
+2. Endpoint URL: `https://<your domain>/api/webhooks/resend` (production
+   and dev each need their own, since they're different Workers — e.g.
+   `https://ebicollectibles.com/api/webhooks/resend` and the dev domain's
+   equivalent).
+3. Select events: `email.delivered`, `email.opened`, `email.clicked`,
+   `email.bounced`, `email.complained` (`email.sent` and
+   `email.delivery_delayed` are fine to leave off — they aren't tracked).
+4. Copy the **Signing Secret** Resend shows you (`whsec_...`) and set it as
+   a Worker secret: `npx wrangler secret put RESEND_WEBHOOK_SECRET`.
+5. To get `email.opened`/`email.clicked` events at all, open tracking must
+   be turned on for your sending domain — Resend dashboard → your domain →
+   enable open/click tracking. This embeds a small invisible pixel/link
+   rewrite in outgoing emails; standard practice, not visible to recipients.
+
+Until `RESEND_WEBHOOK_SECRET` is set, sending is completely unaffected —
+the webhook endpoint just has nothing to verify against, so Resend's calls
+are rejected with a 401 and emails keep showing as "Sent" with no further
+status, same as before this existed.
+
 ## Marketplace orders (other storefronts selling against this Square inventory)
 
 If another site/app sells against this same Square account and location

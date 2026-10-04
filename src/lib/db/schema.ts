@@ -402,6 +402,16 @@ export const refundEvents = pgTable('refund_events', {
 // Every customer-facing email attempt tied to an order — order confirmation
 // and shipment notices so far. Lets admin see whether a given send actually
 // went out instead of that only living in Cloudflare's worker logs.
+// deliveredAt/openedAt/clickedAt/bouncedAt/complainedAt are the *current*
+// state for this one send, filled in asynchronously as Resend's delivery
+// webhooks arrive (see server/resend-webhook.ts) — status itself only ever
+// reflects the outcome of the initial send API call. resendId is what
+// correlates an incoming webhook event back to this row; it's null for
+// 'failed'/'skipped' rows (no email was ever actually dispatched) and for
+// anything sent before this tracking existed. emailDeliveryEvents below is
+// the full append-only log behind these summary columns — a row can get
+// multiple opens/clicks, which only the log (not these single timestamps)
+// fully captures.
 export const emailEvents = pgTable('email_events', {
   id: uuid('id').primaryKey().defaultRandom(),
   orderId: uuid('order_id').references(() => orders.id, { onDelete: 'set null' }),
@@ -409,8 +419,30 @@ export const emailEvents = pgTable('email_events', {
   type: text('type').notNull(), // order_confirmation | shipment_notice | store_credit_issued | shipping_delay | notify_me_alert
   status: text('status').notNull(), // sent | failed | skipped (no email on file / sending not configured)
   errorMessage: text('error_message'),
+  resendId: text('resend_id'),
+  deliveredAt: timestamp('delivered_at', { withTimezone: true }),
+  openedAt: timestamp('opened_at', { withTimezone: true }),
+  clickedAt: timestamp('clicked_at', { withTimezone: true }),
+  bouncedAt: timestamp('bounced_at', { withTimezone: true }),
+  complainedAt: timestamp('complained_at', { withTimezone: true }),
   createdAt: timestamp('created_at', { withTimezone: true }).notNull().defaultNow(),
-}, (table) => [index('email_events_order_id_idx').on(table.orderId)])
+}, (table) => [index('email_events_order_id_idx').on(table.orderId), index('email_events_resend_id_idx').on(table.resendId)])
+
+// Append-only log of every Resend delivery webhook event received for a
+// send — email_events' deliveredAt/openedAt/etc. columns above are just the
+// latest-of-each-kind summary derived from this; multiple opens/clicks on
+// the same email all land here.
+export const emailDeliveryEvents = pgTable(
+  'email_delivery_events',
+  {
+    id: uuid('id').primaryKey().defaultRandom(),
+    emailEventId: uuid('email_event_id').references(() => emailEvents.id, { onDelete: 'cascade' }),
+    resendId: text('resend_id').notNull(),
+    type: text('type').notNull(), // Resend's raw event type, e.g. 'email.delivered', 'email.opened'
+    createdAt: timestamp('created_at', { withTimezone: true }).notNull().defaultNow(),
+  },
+  (table) => [index('email_delivery_events_email_event_id_idx').on(table.emailEventId)],
+)
 
 export const orderItems = pgTable('order_items', {
   id: uuid('id').primaryKey().defaultRandom(),
@@ -711,6 +743,10 @@ export const notifyMeEvents = pgTable(
     // particular send belongs to, so a product's past notifications can be
     // grouped by batch instead of read as one continuous event stream.
     blastId: uuid('blast_id').references(() => notifyMeBlasts.id, { onDelete: 'set null' }),
+    // Set only on 'notified' events — the email_events row for this exact
+    // send, so its delivered/opened/clicked/bounced status (filled in by
+    // Resend's webhook) can be shown alongside who got notified and when.
+    emailEventId: uuid('email_event_id').references(() => emailEvents.id, { onDelete: 'set null' }),
     createdAt: timestamp('created_at', { withTimezone: true }).notNull().defaultNow(),
   },
   (table) => [index('notify_me_events_product_id_idx').on(table.productId), index('notify_me_events_blast_id_idx').on(table.blastId)],

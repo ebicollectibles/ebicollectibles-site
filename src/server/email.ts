@@ -126,7 +126,10 @@ interface OrderEmailData {
   items: OrderEmailItem[]
 }
 
-export type EmailSendResult = { status: 'sent' | 'failed' | 'skipped'; error?: string }
+// resendId is the Resend-assigned email id from a real send — kept so a
+// later delivery/open/click/bounce webhook (see server/resend-webhook.ts)
+// can be matched back to the email_events row that triggered it.
+export type EmailSendResult = { status: 'sent' | 'failed' | 'skipped'; error?: string; resendId?: string }
 
 // Best-effort: called right after an order is placed and paid for. A failed
 // or skipped send should never affect the order itself — the caller logs
@@ -204,7 +207,8 @@ export async function sendOrderConfirmationEmail(order: OrderEmailData): Promise
     return { status: 'failed', error }
   }
 
-  return { status: 'sent' }
+  const sentJson = await res.json().catch(() => null)
+  return { status: 'sent', resendId: sentJson?.id }
 }
 
 // Same best-effort, return-a-result contract as sendOrderConfirmationEmail —
@@ -278,7 +282,8 @@ export async function sendStoreCreditEmail(data: StoreCreditEmailData): Promise<
     return { status: 'failed', error }
   }
 
-  return { status: 'sent' }
+  const sentJson = await res.json().catch(() => null)
+  return { status: 'sent', resendId: sentJson?.id }
 }
 
 interface DelayEmailData {
@@ -350,7 +355,8 @@ export async function sendShippingDelayEmail(data: DelayEmailData): Promise<Emai
     return { status: 'failed', error }
   }
 
-  return { status: 'sent' }
+  const sentJson = await res.json().catch(() => null)
+  return { status: 'sent', resendId: sentJson?.id }
 }
 
 interface NotifyMeAlertData {
@@ -417,7 +423,8 @@ export async function sendNotifyMeAlertEmail(data: NotifyMeAlertData): Promise<E
     return { status: 'failed', error }
   }
 
-  return { status: 'sent' }
+  const sentJson = await res.json().catch(() => null)
+  return { status: 'sent', resendId: sentJson?.id }
 }
 
 interface ShipmentEmailData {
@@ -510,7 +517,8 @@ export async function sendShipmentEmail(order: ShipmentEmailData): Promise<Email
     return { status: 'failed', error }
   }
 
-  return { status: 'sent' }
+  const sentJson = await res.json().catch(() => null)
+  return { status: 'sent', resendId: sentJson?.id }
 }
 
 interface MarketplaceShipmentEmailData {
@@ -618,7 +626,8 @@ export async function sendMarketplaceShipmentEmail(order: MarketplaceShipmentEma
     return { status: 'failed', error }
   }
 
-  return { status: 'sent' }
+  const sentJson = await res.json().catch(() => null)
+  return { status: 'sent', resendId: sentJson?.id }
 }
 
 // Unlike sendOrderConfirmationEmail, this throws on failure — there's no

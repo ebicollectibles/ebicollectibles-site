@@ -2,6 +2,7 @@ import { createStartHandler, defaultStreamHandler } from '@tanstack/react-start/
 import type { Register } from '@tanstack/react-router'
 import type { RequestHandler } from '@tanstack/react-start/server'
 import { handleSquareWebhook } from './server/square-webhook'
+import { handleResendWebhook } from './server/resend-webhook'
 import { handleSitemapRequest } from './server/sitemap'
 
 const startFetch = createStartHandler(defaultStreamHandler)
@@ -31,14 +32,18 @@ function withSecurityHeaders(response: Response): Response {
   return new Response(response.body, { status: response.status, statusText: response.statusText, headers })
 }
 
-// Square's refund webhook POSTs a raw signed JSON body directly to a fixed
-// URL — it can't go through TanStack's createServerFn RPC mechanism, so it's
-// intercepted here, ahead of the normal router-driven request handling.
+// Square's refund webhook and Resend's delivery webhook both POST a raw
+// signed JSON body directly to a fixed URL — neither can go through
+// TanStack's createServerFn RPC mechanism, so they're intercepted here,
+// ahead of the normal router-driven request handling.
 const entry: ServerEntry = {
   async fetch(request, opts) {
     const url = new URL(request.url)
     if (request.method === 'POST' && url.pathname === '/api/webhooks/square') {
       return handleSquareWebhook(request)
+    }
+    if (request.method === 'POST' && url.pathname === '/api/webhooks/resend') {
+      return handleResendWebhook(request)
     }
     // Enumerates live published products from the DB — a static public/
     // file would go stale the moment a product is added or unpublished.

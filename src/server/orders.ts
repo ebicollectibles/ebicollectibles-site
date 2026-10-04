@@ -445,6 +445,7 @@ export const placeOrder = createServerFn({ method: 'POST' })
         type: 'order_confirmation',
         status: sendResult.status,
         errorMessage: sendResult.error ?? null,
+        resendId: sendResult.resendId ?? null,
       })
     } catch (err) {
       console.error(`Failed to send confirmation email for order ${result.orderNo}:`, err)

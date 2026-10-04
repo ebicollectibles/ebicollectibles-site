@@ -124,12 +124,40 @@ function NotifyMeBlastRecipients({ blastId }: { blastId: string }) {
   if (recipients.length === 0) return <p style={{ fontSize: 11.5, color: '#5a6875', margin: '8px 0 0' }}>Nobody was actually emailed in this batch.</p>
 
   return (
-    <ul style={{ margin: '8px 0 0', paddingLeft: 18, fontSize: 12, color: '#131b28' }}>
-      {recipients.map((r) => (
-        <li key={r.id}>{r.email}</li>
-      ))}
-    </ul>
+    <table style={{ width: '100%', borderCollapse: 'collapse', margin: '8px 0 0' }}>
+      <tbody>
+        {recipients.map((r) => {
+          const status = deliveryStatus(r)
+          return (
+            <tr key={r.id}>
+              <td style={{ padding: '3px 0', fontSize: 12, color: '#131b28' }}>{r.email}</td>
+              <td style={{ padding: '3px 0', fontSize: 11.5, color: status.color, textAlign: 'right', whiteSpace: 'nowrap' }}>
+                {status.label}
+                {status.at && <span style={{ color: '#5a6875' }}> · {new Date(status.at).toLocaleString()}</span>}
+              </td>
+            </tr>
+          )
+        })}
+      </tbody>
+    </table>
   )
+}
+
+// Resend's delivery webhook fills these in asynchronously after the send —
+// a recipient can be "Sent" for a while before "Delivered" arrives, and not
+// every send gets a webhook at all if RESEND_WEBHOOK_SECRET isn't
+// configured, so "Sent" also just means "no delivery confirmation yet."
+function deliveryStatus(r: { deliveredAt: Date | null; openedAt: Date | null; clickedAt: Date | null; bouncedAt: Date | null; complainedAt: Date | null }): {
+  label: string
+  color: string
+  at: Date | null
+} {
+  if (r.complainedAt) return { label: 'Complained', color: '#b4622f', at: r.complainedAt }
+  if (r.bouncedAt) return { label: 'Bounced', color: '#b4622f', at: r.bouncedAt }
+  if (r.clickedAt) return { label: 'Clicked', color: '#3f7a63', at: r.clickedAt }
+  if (r.openedAt) return { label: 'Opened', color: '#3f7a63', at: r.openedAt }
+  if (r.deliveredAt) return { label: 'Delivered', color: '#5a6875', at: r.deliveredAt }
+  return { label: 'Sent', color: '#cfd4da', at: null }
 }
 
 // Every past "Send now" batch for one product — the persistent history

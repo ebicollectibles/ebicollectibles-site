@@ -321,6 +321,7 @@ export const adminSendDelayNotice = createServerFn({ method: 'POST' })
         type: 'shipping_delay',
         status: sendResult.status,
         errorMessage: sendResult.error ?? null,
+        resendId: sendResult.resendId ?? null,
       })
       results.push({ orderId: order.id, orderNo: order.orderNo, status: sendResult.status })
     }
@@ -480,6 +481,7 @@ export const adminCreateShipment = createServerFn({ method: 'POST' })
         type: 'shipment_notice',
         status: sendResult.status,
         errorMessage: sendResult.error ?? null,
+        resendId: sendResult.resendId ?? null,
       })
     } catch (err) {
       console.error(`Failed to send shipment email for order ${order.orderNo}:`, err)
@@ -1264,8 +1266,18 @@ export const adminListNotifyMeBlastRecipients = createServerFn({ method: 'GET' }
     await assertAdmin()
     const db = getDb()
     return db
-      .select({ id: notifyMeEvents.id, email: notifyMeEvents.email, createdAt: notifyMeEvents.createdAt })
+      .select({
+        id: notifyMeEvents.id,
+        email: notifyMeEvents.email,
+        createdAt: notifyMeEvents.createdAt,
+        deliveredAt: emailEvents.deliveredAt,
+        openedAt: emailEvents.openedAt,
+        clickedAt: emailEvents.clickedAt,
+        bouncedAt: emailEvents.bouncedAt,
+        complainedAt: emailEvents.complainedAt,
+      })
       .from(notifyMeEvents)
+      .leftJoin(emailEvents, eq(notifyMeEvents.emailEventId, emailEvents.id))
       .where(and(eq(notifyMeEvents.blastId, data.blastId), eq(notifyMeEvents.type, 'notified')))
       .orderBy(desc(notifyMeEvents.createdAt))
   })
@@ -1335,13 +1347,17 @@ export const adminSendNotifyMeBlast = createServerFn({ method: 'POST' })
         console.error(`Failed to send notify-me alert to ${signup.email} for product ${product.id}:`, err)
         sendResult = { status: 'failed', error: err instanceof Error ? err.message : String(err) }
       }
-      await db.insert(emailEvents).values({
-        orderId: null,
-        email: signup.email,
-        type: 'notify_me_alert',
-        status: sendResult.status,
-        errorMessage: sendResult.error ?? null,
-      })
+      const [emailEvent] = await db
+        .insert(emailEvents)
+        .values({
+          orderId: null,
+          email: signup.email,
+          type: 'notify_me_alert',
+          status: sendResult.status,
+          errorMessage: sendResult.error ?? null,
+          resendId: sendResult.resendId ?? null,
+        })
+        .returning({ id: emailEvents.id })
       // Only a real send marks someone as done — 'failed'/'skipped' leave
       // notifiedAt null so a retry (fix the config, click Send again)
       // actually reaches them instead of silently skipping them forever.
@@ -1354,6 +1370,7 @@ export const adminSendNotifyMeBlast = createServerFn({ method: 'POST' })
           productName: product.name,
           type: 'notified',
           blastId: blast.id,
+          emailEventId: emailEvent.id,
         })
       }
       tally[sendResult.status]++

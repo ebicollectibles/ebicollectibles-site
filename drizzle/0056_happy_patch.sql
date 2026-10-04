@@ -1,0 +1,2 @@
+ALTER TABLE "notify_me_events" ADD COLUMN "email_event_id" uuid;--> statement-breakpoint
+ALTER TABLE "notify_me_events" ADD CONSTRAINT "notify_me_events_email_event_id_email_events_id_fk" FOREIGN KEY ("email_event_id") REFERENCES "public"."email_events"("id") ON DELETE set null ON UPDATE no action;
