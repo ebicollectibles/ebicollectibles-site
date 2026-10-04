@@ -163,6 +163,12 @@ function ProductDetailPage() {
     if (!product?.variantGroupId) return []
     return products
       .filter((p) => p.variantGroupId === product.variantGroupId)
+      // A sibling with no variantLabel set isn't offered as a pickable
+      // option (admin forgot to label it, or it's meant to only be reached
+      // directly/via admin) — except the one currently being viewed, which
+      // always stays in so the dropdown's selected value still matches the
+      // actual page instead of silently falling back to some other option.
+      .filter((p) => p.id === product.id || (p.variantLabel && p.variantLabel.trim()))
       .sort((a, b) => (a.variantSortOrder ?? Infinity) - (b.variantSortOrder ?? Infinity) || a.name.localeCompare(b.name))
   }, [products, product])
 
