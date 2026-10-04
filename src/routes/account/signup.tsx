@@ -54,6 +54,7 @@ function SignupPage() {
   const [error, setError] = React.useState<string | null>(null)
   const [submitting, setSubmitting] = React.useState(false)
   const [googleBusy, setGoogleBusy] = React.useState(false)
+  const [discordBusy, setDiscordBusy] = React.useState(false)
 
   const submit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -98,6 +99,22 @@ function SignupPage() {
     }
   }
 
+  const continueWithDiscord = async () => {
+    if (!isLoaded) return
+    setError(null)
+    setDiscordBusy(true)
+    try {
+      await signUp.authenticateWithRedirect({
+        strategy: 'oauth_discord',
+        redirectUrl: '/sso-callback',
+        redirectUrlComplete: '/account/orders',
+      })
+    } catch (err) {
+      setError(clerkErrorMessage(err, 'Discord sign-in is not available right now.'))
+      setDiscordBusy(false)
+    }
+  }
+
   return (
     <section style={{ maxWidth: 400, margin: '0 auto', padding: '70px 24px 100px', fontFamily: 'Archivo, Helvetica, sans-serif' }}>
       <h1 style={{ fontSize: 26, fontWeight: 700, marginBottom: 6 }}>Create an account</h1>
@@ -108,8 +125,12 @@ function SignupPage() {
         </Link>
       </p>
 
-      <button type="button" onClick={continueWithGoogle} disabled={googleBusy || !isLoaded} style={googleBtn}>
+      <button type="button" onClick={continueWithGoogle} disabled={googleBusy || discordBusy || !isLoaded} style={googleBtn}>
         {googleBusy ? 'Redirecting…' : 'Continue with Google'}
+      </button>
+
+      <button type="button" onClick={continueWithDiscord} disabled={googleBusy || discordBusy || !isLoaded} style={{ ...googleBtn, marginTop: 10 }}>
+        {discordBusy ? 'Redirecting…' : 'Continue with Discord'}
       </button>
 
       <div style={{ display: 'flex', alignItems: 'center', gap: 10, margin: '20px 0', fontSize: 11.5, color: '#5a6875' }}>

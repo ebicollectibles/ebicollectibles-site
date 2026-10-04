@@ -3,10 +3,11 @@ import { createFileRoute, useNavigate, useRouter } from '@tanstack/react-router'
 import { useClerk } from '@clerk/tanstack-react-start'
 import { syncClerkUser } from '~/server/customer-auth'
 
-// Where both login.tsx and signup.tsx point their Google button's
-// redirectUrl — Clerk's OAuth flow bounces the browser back here once
-// Google's side is done, and this page finishes the sign-in/sign-up and
-// forwards on to wherever redirectUrlComplete said (usually /account/orders).
+// Where login.tsx, signup.tsx and checkout.tsx point every OAuth button's
+// redirectUrl (Google, Discord, ...) — Clerk's OAuth flow bounces the
+// browser back here once the provider's side is done, and this page
+// finishes the sign-in/sign-up and forwards on to wherever
+// redirectUrlComplete said (usually /account/orders).
 export const Route = createFileRoute('/sso-callback')({
   component: SsoCallbackPage,
 })
@@ -33,7 +34,7 @@ function SsoCallbackPage() {
         navigate({ href: to })
       })
       .catch((err) => {
-        if (!cancelled) setError(err instanceof Error ? err.message : 'Google sign-in failed.')
+        if (!cancelled) setError(err instanceof Error ? err.message : 'Sign-in failed.')
       })
     return () => {
       cancelled = true

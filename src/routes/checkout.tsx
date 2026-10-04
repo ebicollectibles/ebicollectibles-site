@@ -360,6 +360,7 @@ function CheckoutPage() {
   const [signinError, setSigninError] = React.useState<string | null>(null)
   const [signinSubmitting, setSigninSubmitting] = React.useState(false)
   const [googleBusy, setGoogleBusy] = React.useState(false)
+  const [discordBusy, setDiscordBusy] = React.useState(false)
 
   if (confirmed) {
     return (
@@ -550,6 +551,22 @@ function CheckoutPage() {
     }
   }
 
+  const continueWithDiscord = async () => {
+    if (!signInLoaded) return
+    setSigninError(null)
+    setDiscordBusy(true)
+    try {
+      await signIn.authenticateWithRedirect({
+        strategy: 'oauth_discord',
+        redirectUrl: '/sso-callback',
+        redirectUrlComplete: '/checkout',
+      })
+    } catch (err) {
+      setSigninError(clerkErrorMessage(err, 'Discord sign-in is not available right now.'))
+      setDiscordBusy(false)
+    }
+  }
+
   return (
     <section style={{ maxWidth: 1120, margin: '0 auto', padding: '40px 20px 90px' }}>
       <Link to="/shop" style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 11.5, color: '#5a6875' }}>
@@ -571,9 +588,11 @@ function CheckoutPage() {
               signinError={signinError}
               signinSubmitting={signinSubmitting}
               googleBusy={googleBusy}
+              discordBusy={discordBusy}
               onSubmitSignin={submitSignin}
               onSubmitSigninCode={submitSigninCode}
               onContinueWithGoogle={continueWithGoogle}
+              onContinueWithDiscord={continueWithDiscord}
               onContinueAsGuest={continueAsGuest}
             />
           ) : (
@@ -1071,9 +1090,11 @@ function ChoicePanel({
   signinError,
   signinSubmitting,
   googleBusy,
+  discordBusy,
   onSubmitSignin,
   onSubmitSigninCode,
   onContinueWithGoogle,
+  onContinueWithDiscord,
   onContinueAsGuest,
 }: {
   signinEmail: string
@@ -1086,9 +1107,11 @@ function ChoicePanel({
   signinError: string | null
   signinSubmitting: boolean
   googleBusy: boolean
+  discordBusy: boolean
   onSubmitSignin: (e: React.FormEvent) => void
   onSubmitSigninCode: (e: React.FormEvent) => void
   onContinueWithGoogle: () => void
+  onContinueWithDiscord: () => void
   onContinueAsGuest: () => void
 }) {
   const cardStyle: React.CSSProperties = { border: '1px solid #e3e6ea', borderRadius: 2, padding: '20px 22px', marginBottom: 14 }
@@ -1138,8 +1161,22 @@ function ChoicePanel({
               instead.
             </p>
 
-            <button type="button" onClick={onContinueWithGoogle} disabled={googleBusy} style={{ ...outlineBtn, cursor: googleBusy ? 'not-allowed' : 'pointer', opacity: googleBusy ? 0.6 : 1 }}>
+            <button
+              type="button"
+              onClick={onContinueWithGoogle}
+              disabled={googleBusy || discordBusy}
+              style={{ ...outlineBtn, cursor: googleBusy || discordBusy ? 'not-allowed' : 'pointer', opacity: googleBusy || discordBusy ? 0.6 : 1 }}
+            >
               {googleBusy ? 'Redirecting…' : 'Continue with Google'}
+            </button>
+
+            <button
+              type="button"
+              onClick={onContinueWithDiscord}
+              disabled={googleBusy || discordBusy}
+              style={{ ...outlineBtn, marginTop: 10, cursor: googleBusy || discordBusy ? 'not-allowed' : 'pointer', opacity: googleBusy || discordBusy ? 0.6 : 1 }}
+            >
+              {discordBusy ? 'Redirecting…' : 'Continue with Discord'}
             </button>
 
             <div style={{ display: 'flex', alignItems: 'center', gap: 10, margin: '16px 0', fontSize: 11.5, color: '#5a6875' }}>
