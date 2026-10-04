@@ -10,9 +10,11 @@ export function ProductCard({ product, variant = 'full' }: { product: Product; v
   const comingSoon = product.comingSoon === true
   const soldOut = product.stock === 0
   const onSale = product.compareAtPrice != null && product.compareAtPrice > product.price
-  // Price is only "to be announced" when none has been set yet — a
-  // coming-soon item with a real price shows it like any other product.
-  const priceKnown = product.price > 0
+  // Price is "to be announced" when none has been set yet, or when admin
+  // explicitly hid it (hidePrice overrides even a price synced live from a
+  // linked Square item) — a coming-soon item with a real, shown price
+  // displays it like any other product.
+  const priceKnown = product.price > 0 && !product.hidePrice
   const badge = comingSoon ? 'Coming soon' : product.preorder ? 'Pre-order' : soldOut ? 'Sold out' : onSale ? 'Sale' : null
   const badgeBg = comingSoon || soldOut ? '#5a6875' : product.preorder ? '#3f7a63' : '#b4622f'
 

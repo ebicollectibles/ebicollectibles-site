@@ -60,6 +60,9 @@ export interface Product {
   // ship together once this item is ready.
   shipsWithDelay?: boolean
   comingSoon?: boolean
+  // Forces "Price to be announced" on a coming-soon item even if a real
+  // price is set or synced live from a linked Square catalog item.
+  hidePrice?: boolean
   placeholder?: string
   gtin?: string
   brand?: string

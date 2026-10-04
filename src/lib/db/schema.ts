@@ -115,6 +115,11 @@ export const products = pgTable('products', {
   // purchasable now, for future shipment) and from `published` (which hides
   // it from the shop entirely).
   comingSoon: boolean('coming_soon').notNull().default(false),
+  // Forces "Price to be announced" on a coming-soon item regardless of
+  // what `price` actually holds — including a real price that
+  // overlaySquareData filled in from a linked Square catalog item, which
+  // the plain "price is still 0" check can't see past.
+  hidePrice: boolean('hide_price').notNull().default(false),
   // Lets a product be linked to Square and fully set up while still hidden
   // from the public shop, e.g. staging a listing before its street date.
   published: boolean('published').notNull().default(true),
