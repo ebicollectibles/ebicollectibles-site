@@ -339,32 +339,45 @@ function ProductDetailPage() {
           )}
 
           {variants.length > 1 && (
-            <div style={{ marginTop: 22, maxWidth: 320 }}>
-              <label htmlFor="product-variant-select" style={monoLabel}>
-                Options
-              </label>
-              <select
-                id="product-variant-select"
-                value={product.id}
-                onChange={(e) => navigate({ to: '/products/$id', params: { id: e.target.value } })}
-                style={{
-                  display: 'block',
-                  width: '100%',
-                  marginTop: 10,
-                  padding: '11px 13px',
-                  fontSize: 14,
-                  border: '1px solid #cfd4da',
-                  borderRadius: 2,
-                  background: '#ffffff',
-                  color: '#131b28',
-                }}
-              >
-                {variants.map((v) => (
-                  <option key={v.id} value={v.id}>
-                    {v.variantLabel || v.name}
-                  </option>
-                ))}
-              </select>
+            <div style={{ marginTop: 22 }}>
+              <div style={monoLabel}>Options</div>
+              <div style={{ display: 'flex', gap: 10, marginTop: 10, flexWrap: 'wrap' }}>
+                {variants.map((v) => {
+                  const selected = v.id === product.id
+                  return (
+                    <button
+                      key={v.id}
+                      onClick={() => navigate({ to: '/products/$id', params: { id: v.id } })}
+                      aria-label={v.variantLabel || v.name}
+                      aria-pressed={selected}
+                      style={{ width: 84, padding: 0, background: 'none', border: 'none', cursor: selected ? 'default' : 'pointer', textAlign: 'center' }}
+                    >
+                      <div
+                        style={{
+                          width: 84,
+                          height: 84,
+                          background: '#f6f7f8',
+                          border: `1px solid ${selected ? '#131b28' : '#e3e6ea'}`,
+                          borderRadius: 2,
+                          overflow: 'hidden',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                        }}
+                      >
+                        {v.img ? (
+                          <img src={v.img} alt="" loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
+                        ) : (
+                          <span style={{ fontSize: 10.5, color: '#5a6875' }}>No photo</span>
+                        )}
+                      </div>
+                      <div style={{ marginTop: 6, fontSize: 11.5, lineHeight: 1.3, color: selected ? '#131b28' : '#5a6875', fontWeight: selected ? 600 : 400 }}>
+                        {v.variantLabel || v.name}
+                      </div>
+                    </button>
+                  )
+                })}
+              </div>
             </div>
           )}
 
