@@ -1,6 +1,6 @@
 import { createServerFn } from '@tanstack/react-start'
 import { z } from 'zod'
-import { and, eq } from 'drizzle-orm'
+import { and, eq, isNotNull } from 'drizzle-orm'
 import { getDb } from '~/lib/db/client'
 import { notifyMeEvents, notifyMeSignups, products, users } from '~/lib/db/schema'
 import { getCurrentUserId } from './customer-auth'
@@ -9,19 +9,24 @@ import { getCurrentUserId } from './customer-auth'
 // list for this product — never takes a userId from the client, same
 // reasoning as getMySubscriptionStatus in subscribers.ts. loggedIn:false
 // lets the button show "log in to get notified" instead of a broken toggle.
+// alreadyNotified distinguishes "signed up, still waiting" from "signed up,
+// already got the one-shot alert" — the row survives being notified (see
+// notifyMeSignUp), so without this the button would wrongly keep claiming
+// "we'll email you" for a restock that already happened and won't repeat.
 export const getMyNotifyMeStatus = createServerFn({ method: 'GET' })
   .validator(z.object({ productId: z.string() }))
-  .handler(async ({ data }): Promise<{ loggedIn: boolean; signedUp: boolean }> => {
+  .handler(async ({ data }): Promise<{ loggedIn: boolean; signedUp: boolean; alreadyNotified: boolean }> => {
     const userId = await getCurrentUserId()
-    if (!userId) return { loggedIn: false, signedUp: false }
+    if (!userId) return { loggedIn: false, signedUp: false, alreadyNotified: false }
 
     const db = getDb()
     const [row] = await db
-      .select({ id: notifyMeSignups.id })
+      .select({ notifiedAt: notifyMeSignups.notifiedAt })
       .from(notifyMeSignups)
       .where(and(eq(notifyMeSignups.userId, userId), eq(notifyMeSignups.productId, data.productId)))
       .limit(1)
-    return { loggedIn: true, signedUp: !!row }
+    if (!row) return { loggedIn: true, signedUp: false, alreadyNotified: false }
+    return { loggedIn: true, signedUp: !row.notifiedAt, alreadyNotified: !!row.notifiedAt }
   })
 
 export const notifyMeSignUp = createServerFn({ method: 'POST' })
@@ -31,17 +36,24 @@ export const notifyMeSignUp = createServerFn({ method: 'POST' })
     if (!userId) throw new Error('Log in to get notified.')
 
     const db = getDb()
-    // onConflictDoNothing: signing up twice (double-click, two tabs) is a
-    // silent no-op rather than an error, same as the store-credit-style
-    // idempotent-upsert pattern used elsewhere. .returning() tells us
-    // whether a row was actually inserted, so a no-op signup doesn't log a
-    // duplicate 'signed_up' event.
-    const [inserted] = await db
+    // A brand-new signup inserts a row. Signing up again after already
+    // being notified once (the product's back for another round) re-arms
+    // that same row by clearing notifiedAt — the `where` only matches an
+    // already-notified row, so double-clicking while still pending stays a
+    // true no-op (same idempotent behavior as before, just via
+    // onConflictDoUpdate instead of onConflictDoNothing). .returning()
+    // tells us whether an insert or a real re-arm happened, so a no-op
+    // doesn't log a duplicate 'signed_up' event.
+    const [upserted] = await db
       .insert(notifyMeSignups)
       .values({ userId, productId: data.productId })
-      .onConflictDoNothing()
+      .onConflictDoUpdate({
+        target: [notifyMeSignups.userId, notifyMeSignups.productId],
+        set: { notifiedAt: null },
+        where: isNotNull(notifyMeSignups.notifiedAt),
+      })
       .returning({ id: notifyMeSignups.id })
-    if (inserted) {
+    if (upserted) {
       const [user] = await db.select({ email: users.email }).from(users).where(eq(users.id, userId)).limit(1)
       const [product] = await db.select({ name: products.name }).from(products).where(eq(products.id, data.productId)).limit(1)
       if (user && product) {

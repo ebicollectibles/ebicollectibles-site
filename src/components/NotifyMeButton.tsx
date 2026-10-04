@@ -19,7 +19,7 @@ export function NotifyMeButton({
   maxWidth?: number
   marginTop?: number
 }) {
-  const [status, setStatus] = React.useState<{ loggedIn: boolean; signedUp: boolean } | null>(null)
+  const [status, setStatus] = React.useState<{ loggedIn: boolean; signedUp: boolean; alreadyNotified: boolean } | null>(null)
   const [pending, setPending] = React.useState(false)
 
   React.useEffect(() => {
@@ -67,7 +67,7 @@ export function NotifyMeButton({
           onClick={async () => {
             setPending(true)
             await notifyMeCancel({ data: { productId } })
-            setStatus({ loggedIn: true, signedUp: false })
+            setStatus({ loggedIn: true, signedUp: false, alreadyNotified: false })
             setPending(false)
           }}
           disabled={pending}
@@ -79,12 +79,35 @@ export function NotifyMeButton({
     )
   }
 
+  // The one-shot alert already went out for this product once — signing up
+  // again starts a fresh ask for whatever happens next (another restock,
+  // another drop) rather than claiming an alert is still pending.
+  if (status.alreadyNotified) {
+    return (
+      <div style={{ ...containerStyle, display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 10 }}>
+        <span style={{ fontSize, fontWeight: 600, color: '#5a6875' }}>We already emailed you about this one</span>
+        <button
+          onClick={async () => {
+            setPending(true)
+            await notifyMeSignUp({ data: { productId } })
+            setStatus({ loggedIn: true, signedUp: true, alreadyNotified: false })
+            setPending(false)
+          }}
+          disabled={pending}
+          style={{ background: 'none', border: 'none', color: '#131b28', fontWeight: 600, textDecoration: 'underline', fontSize: fontSize - 1.5, cursor: pending ? 'default' : 'pointer', flexShrink: 0 }}
+        >
+          {pending ? 'Adding…' : 'Notify me again'}
+        </button>
+      </div>
+    )
+  }
+
   return (
     <button
       onClick={async () => {
         setPending(true)
         await notifyMeSignUp({ data: { productId } })
-        setStatus({ loggedIn: true, signedUp: true })
+        setStatus({ loggedIn: true, signedUp: true, alreadyNotified: false })
         setPending(false)
       }}
       disabled={pending}

@@ -681,7 +681,7 @@ export const notifyMeEvents = pgTable(
     email: text('email').notNull(),
     productId: text('product_id').references(() => products.id, { onDelete: 'set null' }),
     productName: text('product_name').notNull(),
-    type: text('type').notNull(), // 'signed_up' | 'canceled'
+    type: text('type').notNull(), // 'signed_up' | 'canceled' | 'notified'
     createdAt: timestamp('created_at', { withTimezone: true }).notNull().defaultNow(),
   },
   (table) => [index('notify_me_events_product_id_idx').on(table.productId)],

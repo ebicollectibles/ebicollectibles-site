@@ -1266,7 +1266,7 @@ export const adminSendNotifyMeBlast = createServerFn({ method: 'POST' })
     if (!product) throw new Error('Product not found.')
 
     const pending = await db
-      .select({ id: notifyMeSignups.id, email: users.email, name: users.name })
+      .select({ id: notifyMeSignups.id, userId: notifyMeSignups.userId, email: users.email, name: users.name })
       .from(notifyMeSignups)
       .innerJoin(users, eq(notifyMeSignups.userId, users.id))
       .where(and(eq(notifyMeSignups.productId, data.productId), isNull(notifyMeSignups.notifiedAt)))
@@ -1299,6 +1299,13 @@ export const adminSendNotifyMeBlast = createServerFn({ method: 'POST' })
       // actually reaches them instead of silently skipping them forever.
       if (sendResult.status === 'sent') {
         await db.update(notifyMeSignups).set({ notifiedAt: new Date() }).where(eq(notifyMeSignups.id, signup.id))
+        await db.insert(notifyMeEvents).values({
+          userId: signup.userId,
+          email: signup.email,
+          productId: product.id,
+          productName: product.name,
+          type: 'notified',
+        })
       }
       tally[sendResult.status]++
     }

@@ -24,11 +24,13 @@ export const Route = createFileRoute('/admin/notify-me')({
 const eventLabel: Record<string, string> = {
   signed_up: 'Signed up',
   canceled: 'Canceled',
+  notified: 'Notified',
 }
 
 const eventColor: Record<string, string> = {
   signed_up: '#3f7a63',
   canceled: '#b4622f',
+  notified: '#5a6875',
 }
 
 const th: React.CSSProperties = {
