@@ -37,6 +37,7 @@ export interface ProductFormValues {
   preorder: boolean
   shipsWithDelay: boolean
   comingSoon: boolean
+  hidePrice: boolean
   placeholder: string
   published: boolean
   gtin: string
@@ -75,6 +76,7 @@ const emptyValues: ProductFormValues = {
   preorder: false,
   shipsWithDelay: false,
   comingSoon: false,
+  hidePrice: false,
   placeholder: '',
   published: true,
   gtin: '',
@@ -1360,10 +1362,16 @@ export function ProductForm({
         Ships with delay — in stock and orderable now, but warns the buyer their whole order waits for this item
         (doesn&apos;t block combining it with other items, unlike pre-order)
       </label>
-      <label style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: 13, marginBottom: 20 }}>
+      <label style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: 13, marginBottom: 12 }}>
         <input type="checkbox" checked={values.comingSoon} onChange={(e) => set('comingSoon', e.target.checked)} />
-        Coming soon — listed but not orderable yet (no price shown, add-to-cart disabled)
+        Coming soon — listed but not orderable yet (add-to-cart disabled)
       </label>
+      {values.comingSoon && (
+        <label style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: 13, marginBottom: 20, marginLeft: 24 }}>
+          <input type="checkbox" checked={values.hidePrice} onChange={(e) => set('hidePrice', e.target.checked)} />
+          Hide price — shows "Price to be announced" even if a price is set or synced from a linked Square item
+        </label>
+      )}
 
       {error && <p style={{ fontSize: 12.5, color: '#b4622f', marginBottom: 12 }}>{error}</p>}
 

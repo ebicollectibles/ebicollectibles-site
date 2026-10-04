@@ -1,0 +1,1 @@
+ALTER TABLE "products" ADD COLUMN "hide_price" boolean DEFAULT false NOT NULL;

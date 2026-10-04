@@ -70,6 +70,7 @@ function EditProductPage() {
           preorder: product.preorder,
           shipsWithDelay: product.shipsWithDelay,
           comingSoon: product.comingSoon,
+          hidePrice: product.hidePrice,
           placeholder: product.placeholder ?? '',
           published: product.published,
           gtin: product.gtin ?? '',
