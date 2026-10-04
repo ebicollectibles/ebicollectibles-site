@@ -380,6 +380,22 @@ function CheckoutPage() {
   const [googleBusy, setGoogleBusy] = React.useState(false)
   const [discordBusy, setDiscordBusy] = React.useState(false)
 
+  // authenticateWithRedirect navigates away without unmounting this
+  // component first — browsers often restore the page from the
+  // back-forward cache on a later Back press instead of reloading it, so
+  // without this the button stays stuck on "Redirecting…" forever.
+  // event.persisted is true specifically for that bfcache-restore case.
+  React.useEffect(() => {
+    const onPageShow = (e: PageTransitionEvent) => {
+      if (e.persisted) {
+        setGoogleBusy(false)
+        setDiscordBusy(false)
+      }
+    }
+    window.addEventListener('pageshow', onPageShow)
+    return () => window.removeEventListener('pageshow', onPageShow)
+  }, [])
+
   if (confirmed) {
     return (
       <OrderConfirmation
