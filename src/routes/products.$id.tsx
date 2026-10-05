@@ -133,17 +133,6 @@ function ProductDetailPage() {
   const product = products.find((p) => p.id === id)
   const navigate = useNavigate()
 
-  const gallery = React.useMemo(() => {
-    if (!product) return []
-    return [product.img, ...(product.images ?? [])].filter((u): u is string => !!u)
-  }, [product])
-
-  const [selectedImage, setSelectedImage] = React.useState(product?.img)
-
-  React.useEffect(() => {
-    setSelectedImage(product?.img)
-  }, [product?.id, product?.img])
-
   React.useEffect(() => {
     if (!product) return
     trackEvent('view_item', {
@@ -187,6 +176,22 @@ function ProductDetailPage() {
     }
   }, [notSellable, variants, selectedVariantId])
   const selectedVariant = notSellable ? variants.find((v) => v.id === selectedVariantId) ?? variants[0] : undefined
+
+  // On a notSellable hub page, the photo shown is whichever variant is
+  // currently selected (its actual photo, not the hub's own collage shot)
+  // — otherwise it's just this page's own product, as normal.
+  const displayProduct = notSellable ? selectedVariant : product
+
+  const gallery = React.useMemo(() => {
+    if (!displayProduct) return []
+    return [displayProduct.img, ...(displayProduct.images ?? [])].filter((u): u is string => !!u)
+  }, [displayProduct])
+
+  const [selectedImage, setSelectedImage] = React.useState(displayProduct?.img)
+
+  React.useEffect(() => {
+    setSelectedImage(displayProduct?.img)
+  }, [displayProduct?.id, displayProduct?.img])
 
   const related = React.useMemo(() => {
     if (!product) return []
@@ -238,12 +243,12 @@ function ProductDetailPage() {
         <div>
           <div style={{ position: 'relative', aspectRatio: '1 / 1', background: '#f6f7f8', overflow: 'hidden' }}>
             {selectedImage ? (
-              selectedImage === product.img ? (
+              selectedImage === displayProduct?.img ? (
                 <ResponsiveImage
-                  desktop={product.img}
-                  tablet={product.imgTablet}
-                  mobile={product.imgMobile}
-                  alt={product.imgAlt || product.name}
+                  desktop={displayProduct?.img}
+                  tablet={displayProduct?.imgTablet}
+                  mobile={displayProduct?.imgMobile}
+                  alt={displayProduct?.imgAlt || displayProduct?.name || product.name}
                   style={{
                     width: '100%',
                     height: '100%',
@@ -253,7 +258,7 @@ function ProductDetailPage() {
               ) : (
                 <img
                   src={selectedImage}
-                  alt={product.imgAlt || product.name}
+                  alt={displayProduct?.imgAlt || displayProduct?.name || product.name}
                   style={{
                     width: '100%',
                     height: '100%',
@@ -281,7 +286,7 @@ function ProductDetailPage() {
                   padding: 24,
                 }}
               >
-                {product.placeholder || 'product shot'}
+                {displayProduct?.placeholder || 'product shot'}
               </div>
             )}
             {badge && (
@@ -374,7 +379,7 @@ function ProductDetailPage() {
             </p>
           )}
 
-          {variants.length > 1 && (
+          {(notSellable ? variants.length >= 1 : variants.length > 1) && (
             <div style={{ marginTop: 22, maxWidth: 320 }}>
               <label htmlFor="product-variant-select" style={monoLabel}>
                 Options
