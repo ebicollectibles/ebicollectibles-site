@@ -30,6 +30,7 @@ import { Route as AccountVerifyRouteImport } from './routes/account/verify'
 import { Route as AdminIndexRouteImport } from './routes/admin/index'
 import { Route as AdminAffiliatesRouteImport } from './routes/admin/affiliates'
 import { Route as AdminBestSellingRouteImport } from './routes/admin/best-selling'
+import { Route as AdminBulkVariantsRouteImport } from './routes/admin/bulk-variants'
 import { Route as AdminLinksRouteImport } from './routes/admin/links'
 import { Route as AdminLoginRouteImport } from './routes/admin/login'
 import { Route as AdminMarketplaceOrdersRouteImport } from './routes/admin/marketplace-orders'
@@ -155,6 +156,11 @@ const AdminBestSellingRoute = AdminBestSellingRouteImport.update({
   path: '/admin/best-selling',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminBulkVariantsRoute = AdminBulkVariantsRouteImport.update({
+  id: '/admin/bulk-variants',
+  path: '/admin/bulk-variants',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AdminLinksRoute = AdminLinksRouteImport.update({
   id: '/admin/links',
   path: '/admin/links',
@@ -272,6 +278,7 @@ export interface FileRoutesByFullPath {
   '/account/verify': typeof AccountVerifyRoute
   '/admin/affiliates': typeof AdminAffiliatesRoute
   '/admin/best-selling': typeof AdminBestSellingRoute
+  '/admin/bulk-variants': typeof AdminBulkVariantsRoute
   '/admin/links': typeof AdminLinksRoute
   '/admin/login': typeof AdminLoginRoute
   '/admin/marketplace-orders': typeof AdminMarketplaceOrdersRoute
@@ -314,6 +321,7 @@ export interface FileRoutesByTo {
   '/account/verify': typeof AccountVerifyRoute
   '/admin/affiliates': typeof AdminAffiliatesRoute
   '/admin/best-selling': typeof AdminBestSellingRoute
+  '/admin/bulk-variants': typeof AdminBulkVariantsRoute
   '/admin/links': typeof AdminLinksRoute
   '/admin/login': typeof AdminLoginRoute
   '/admin/marketplace-orders': typeof AdminMarketplaceOrdersRoute
@@ -357,6 +365,7 @@ export interface FileRoutesById {
   '/account/verify': typeof AccountVerifyRoute
   '/admin/affiliates': typeof AdminAffiliatesRoute
   '/admin/best-selling': typeof AdminBestSellingRoute
+  '/admin/bulk-variants': typeof AdminBulkVariantsRoute
   '/admin/links': typeof AdminLinksRoute
   '/admin/login': typeof AdminLoginRoute
   '/admin/marketplace-orders': typeof AdminMarketplaceOrdersRoute
@@ -401,6 +410,7 @@ export interface FileRouteTypes {
     | '/account/verify'
     | '/admin/affiliates'
     | '/admin/best-selling'
+    | '/admin/bulk-variants'
     | '/admin/links'
     | '/admin/login'
     | '/admin/marketplace-orders'
@@ -443,6 +453,7 @@ export interface FileRouteTypes {
     | '/account/verify'
     | '/admin/affiliates'
     | '/admin/best-selling'
+    | '/admin/bulk-variants'
     | '/admin/links'
     | '/admin/login'
     | '/admin/marketplace-orders'
@@ -485,6 +496,7 @@ export interface FileRouteTypes {
     | '/account/verify'
     | '/admin/affiliates'
     | '/admin/best-selling'
+    | '/admin/bulk-variants'
     | '/admin/links'
     | '/admin/login'
     | '/admin/marketplace-orders'
@@ -528,6 +540,7 @@ export interface RootRouteChildren {
   AccountVerifyRoute: typeof AccountVerifyRoute
   AdminAffiliatesRoute: typeof AdminAffiliatesRoute
   AdminBestSellingRoute: typeof AdminBestSellingRoute
+  AdminBulkVariantsRoute: typeof AdminBulkVariantsRoute
   AdminLinksRoute: typeof AdminLinksRoute
   AdminLoginRoute: typeof AdminLoginRoute
   AdminMarketplaceOrdersRoute: typeof AdminMarketplaceOrdersRoute
@@ -700,6 +713,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminBestSellingRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin/bulk-variants': {
+      id: '/admin/bulk-variants'
+      path: '/admin/bulk-variants'
+      fullPath: '/admin/bulk-variants'
+      preLoaderRoute: typeof AdminBulkVariantsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/admin/links': {
       id: '/admin/links'
       path: '/admin/links'
@@ -856,6 +876,7 @@ const rootRouteChildren: RootRouteChildren = {
   AccountVerifyRoute: AccountVerifyRoute,
   AdminAffiliatesRoute: AdminAffiliatesRoute,
   AdminBestSellingRoute: AdminBestSellingRoute,
+  AdminBulkVariantsRoute: AdminBulkVariantsRoute,
   AdminLinksRoute: AdminLinksRoute,
   AdminLoginRoute: AdminLoginRoute,
   AdminMarketplaceOrdersRoute: AdminMarketplaceOrdersRoute,

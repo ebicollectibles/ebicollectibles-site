@@ -184,6 +184,51 @@ export const adminListVariantSiblings = createServerFn({ method: 'GET' })
     return rows
   })
 
+// One-time cleanup for product lines created before variant grouping
+// existed (e.g. 30 figures each made as their own standalone product) —
+// sets variantGroupId/variantLabel/variantSortOrder on many existing
+// products at once from a pasted sheet, instead of 30 trips through the
+// single-product edit form. Only touches those three columns — everything
+// else about each product (price, images, stock, ...) is left as-is.
+export const adminBulkAssignVariants = createServerFn({ method: 'POST' })
+  .validator(
+    z.object({
+      variantGroupId: z.string().trim().min(1),
+      rows: z
+        .array(
+          z.object({
+            id: z.string().trim().min(1),
+            variantLabel: z.string().trim().optional(),
+            variantSortOrder: z.number().int().nullable().optional(),
+          }),
+        )
+        .min(1),
+    }),
+  )
+  .handler(async ({ data }) => {
+    await assertAdmin()
+    const db = getDb()
+    const results: { id: string; ok: boolean; error?: string }[] = []
+    for (const row of data.rows) {
+      try {
+        const updated = await db
+          .update(productsTable)
+          .set({
+            variantGroupId: data.variantGroupId,
+            variantLabel: row.variantLabel || null,
+            variantSortOrder: row.variantSortOrder ?? null,
+            updatedAt: new Date(),
+          })
+          .where(eq(productsTable.id, row.id))
+          .returning({ id: productsTable.id })
+        results.push(updated.length > 0 ? { id: row.id, ok: true } : { id: row.id, ok: false, error: 'No product with this ID' })
+      } catch (err: any) {
+        results.push({ id: row.id, ok: false, error: err?.message ?? 'Unknown error' })
+      }
+    }
+    return { results }
+  })
+
 export const adminCreateProduct = createServerFn({ method: 'POST' })
   .validator(productSchema)
   .handler(async ({ data }) => {

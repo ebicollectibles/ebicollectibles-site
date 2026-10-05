@@ -57,6 +57,9 @@ export function AdminNav() {
       <Link to="/admin/notify-me" style={{ fontSize: 13, color: '#131b28' }}>
         Notify me
       </Link>
+      <Link to="/admin/bulk-variants" style={{ fontSize: 13, color: '#131b28' }}>
+        Bulk variant assign
+      </Link>
       <div style={{ flex: 1 }} />
       <button onClick={logout} style={{ background: 'none', border: 0, fontSize: 13, color: '#5a6875', cursor: 'pointer' }}>
         Log out
