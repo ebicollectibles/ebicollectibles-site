@@ -251,6 +251,21 @@ function ProductDetailPage() {
     }
   }
 
+  // Caps the thumbnail rail to the main photo's own rendered height (a
+  // square, so this tracks it at any viewport width) instead of letting a
+  // long gallery push the rail — and the whole row — taller than the photo.
+  const mainPhotoRef = React.useRef<HTMLDivElement>(null)
+  const [railMaxHeight, setRailMaxHeight] = React.useState<number>()
+  React.useLayoutEffect(() => {
+    const el = mainPhotoRef.current
+    if (!el) return
+    const update = () => setRailMaxHeight(el.clientHeight)
+    update()
+    const observer = new ResizeObserver(update)
+    observer.observe(el)
+    return () => observer.disconnect()
+  }, [])
+
   const related = React.useMemo(() => {
     if (!product) return []
     const sameType = products.filter((p) => p.id !== product.id && p.subcategory === product.subcategory)
@@ -302,7 +317,7 @@ function ProductDetailPage() {
         <div>
           <div className="ebi-gallery">
             {galleryItems.length > 1 && (
-              <div className="ebi-gallery-rail">
+              <div className="ebi-gallery-rail" style={{ maxHeight: railMaxHeight }}>
                 {galleryItems.map((item, i) => (
                   <button
                     key={`${item.url}-${i}`}
@@ -327,7 +342,10 @@ function ProductDetailPage() {
               </div>
             )}
 
-            <div style={{ position: 'relative', flex: 1, minWidth: 0, aspectRatio: '1 / 1', background: '#f6f7f8', overflow: 'hidden' }}>
+            <div
+              ref={mainPhotoRef}
+              style={{ position: 'relative', flex: 1, minWidth: 0, aspectRatio: '1 / 1', background: '#f6f7f8', overflow: 'hidden' }}
+            >
               {currentPhoto ? (
                 currentPhoto.isHero ? (
                   <ResponsiveImage

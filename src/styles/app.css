@@ -321,6 +321,7 @@ button {
   gap: 8px;
   width: 88px;
   flex-shrink: 0;
+  overflow-y: auto;
 }
 
 .ebi-cart-line-image {
