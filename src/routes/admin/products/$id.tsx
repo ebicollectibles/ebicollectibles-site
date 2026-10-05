@@ -29,16 +29,24 @@ function EditProductPage() {
       <AdminNav />
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: 24 }}>
         <h1 style={{ fontSize: 24, fontWeight: 700, margin: 0 }}>Edit product</h1>
-        <button
-          onClick={async () => {
-            if (!confirm('Delete this product? This cannot be undone.')) return
-            await adminDeleteProduct({ data: { id } })
-            navigate({ to: '/admin' })
-          }}
-          style={{ background: 'none', border: '1px solid #cfd4da', color: '#b4622f', borderRadius: 2, padding: '9px 14px', fontSize: 12.5, cursor: 'pointer' }}
-        >
-          Delete product
-        </button>
+        <div style={{ display: 'flex', gap: 10 }}>
+          <button
+            onClick={() => navigate({ to: '/admin/products/new', search: { duplicateFrom: id } })}
+            style={{ background: 'none', border: '1px solid #cfd4da', color: '#131b28', borderRadius: 2, padding: '9px 14px', fontSize: 12.5, cursor: 'pointer' }}
+          >
+            Duplicate
+          </button>
+          <button
+            onClick={async () => {
+              if (!confirm('Delete this product? This cannot be undone.')) return
+              await adminDeleteProduct({ data: { id } })
+              navigate({ to: '/admin' })
+            }}
+            style={{ background: 'none', border: '1px solid #cfd4da', color: '#b4622f', borderRadius: 2, padding: '9px 14px', fontSize: 12.5, cursor: 'pointer' }}
+          >
+            Delete product
+          </button>
+        </div>
       </div>
       <ProductForm
         submitLabel="Save changes"
