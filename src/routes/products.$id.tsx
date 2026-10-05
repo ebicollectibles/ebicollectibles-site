@@ -7,7 +7,7 @@ import { ProductCard } from '~/components/ProductCard'
 import { ResponsiveImage } from '~/components/ResponsiveImage'
 import { trackEvent } from '~/lib/analytics'
 import { useCart } from '~/lib/cart-context'
-import { FLAT_SHIPPING_RATE, formatMoney } from '~/lib/products'
+import { FLAT_SHIPPING_RATE, formatMoney, type Product } from '~/lib/products'
 import { RETURN_POLICY_CATEGORY_URL, SHIPPING_HANDLING_MAX_DAYS, SHIPPING_HANDLING_MIN_DAYS, SHIPS_TO_COUNTRY } from '~/lib/policy'
 import { getProduct } from '~/server/products'
 
@@ -127,6 +127,43 @@ const monoLabel: React.CSSProperties = {
   color: '#131b28',
 }
 
+function arrowButtonStyle(side: 'left' | 'right'): React.CSSProperties {
+  return {
+    position: 'absolute',
+    top: '50%',
+    transform: 'translateY(-50%)',
+    width: 34,
+    height: 34,
+    borderRadius: '50%',
+    border: '1px solid #e3e6ea',
+    background: 'rgba(255,255,255,0.9)',
+    color: '#131b28',
+    fontSize: 18,
+    lineHeight: 1,
+    padding: 0,
+    cursor: 'pointer',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    ...(side === 'left' ? { left: 8 } : { right: 8 }),
+  }
+}
+
+// One photo in the product's gallery strip — tagged with the variant it
+// belongs to on a notSellable hub page (undefined for the hub's own collage
+// shots), so clicking it or arrowing onto it can sync the Options dropdown,
+// and so picking an Option can jump the gallery to that variant's photo.
+// isHero marks the product's main `img` (the one with tablet/mobile
+// responsive sources) vs. a plain extra shot from `images[]`.
+type GalleryPhoto = {
+  url: string
+  variantId?: string
+  imgTablet?: string
+  imgMobile?: string
+  imgAlt?: string
+  isHero: boolean
+}
+
 function ProductDetailPage() {
   const { id } = Route.useParams()
   const { products } = useCart()
@@ -168,30 +205,55 @@ function ProductDetailPage() {
 
   // On a notSellable hub page, the "Options" dropdown picks which real
   // variant to show/add to cart in place, instead of navigating away —
-  // defaults to the first one so Add to cart works without an extra click.
+  // starts unselected ("Style: Select") rather than defaulting to the
+  // first variant, so the shopper actively picks one.
   const [selectedVariantId, setSelectedVariantId] = React.useState('')
   React.useEffect(() => {
-    if (notSellable && variants.length > 0 && !variants.some((v) => v.id === selectedVariantId)) {
-      setSelectedVariantId(variants[0].id)
+    setSelectedVariantId('')
+  }, [product?.id])
+  const selectedVariant = notSellable ? variants.find((v) => v.id === selectedVariantId) : undefined
+
+  // The gallery strip: this page's own photos first, then — on a notSellable
+  // hub page only — every variant's own photos appended after them, each
+  // tagged with the variant it belongs to.
+  const galleryItems = React.useMemo((): GalleryPhoto[] => {
+    const photosOf = (p: Product, variantId: string | undefined): GalleryPhoto[] => {
+      const photos: GalleryPhoto[] = []
+      if (p.img) photos.push({ url: p.img, variantId, imgTablet: p.imgTablet, imgMobile: p.imgMobile, imgAlt: p.imgAlt || p.name, isHero: true })
+      for (const url of p.images ?? []) {
+        if (url) photos.push({ url, variantId, imgAlt: p.imgAlt || p.name, isHero: false })
+      }
+      return photos
     }
-  }, [notSellable, variants, selectedVariantId])
-  const selectedVariant = notSellable ? variants.find((v) => v.id === selectedVariantId) ?? variants[0] : undefined
+    if (!product) return []
+    const own = photosOf(product, undefined)
+    if (!notSellable) return own
+    return [...own, ...variants.flatMap((v) => photosOf(v, v.id))]
+  }, [product, notSellable, variants])
 
-  // On a notSellable hub page, the photo shown is whichever variant is
-  // currently selected (its actual photo, not the hub's own collage shot)
-  // — otherwise it's just this page's own product, as normal.
-  const displayProduct = notSellable ? selectedVariant : product
-
-  const gallery = React.useMemo(() => {
-    if (!displayProduct) return []
-    return [displayProduct.img, ...(displayProduct.images ?? [])].filter((u): u is string => !!u)
-  }, [displayProduct])
-
-  const [selectedImage, setSelectedImage] = React.useState(displayProduct?.img)
-
+  const [selectedImageIndex, setSelectedImageIndex] = React.useState(0)
   React.useEffect(() => {
-    setSelectedImage(displayProduct?.img)
-  }, [displayProduct?.id, displayProduct?.img])
+    setSelectedImageIndex(0)
+  }, [product?.id])
+  const currentPhoto = galleryItems[selectedImageIndex] ?? galleryItems[0]
+
+  // Jumps the gallery to a variant's own photo (used when the Options
+  // dropdown changes) and syncs the dropdown to match whichever photo is
+  // currently in view (used when arrowing/clicking through the gallery).
+  const selectVariant = (variantId: string) => {
+    setSelectedVariantId(variantId)
+    const idx = galleryItems.findIndex((item) => item.variantId === variantId)
+    if (idx !== -1) setSelectedImageIndex(idx)
+  }
+  const goToPhoto = (index: number) => {
+    if (galleryItems.length === 0) return
+    const wrapped = ((index % galleryItems.length) + galleryItems.length) % galleryItems.length
+    setSelectedImageIndex(wrapped)
+    const item = galleryItems[wrapped]
+    if (notSellable && item.variantId && item.variantId !== selectedVariantId) {
+      setSelectedVariantId(item.variantId)
+    }
+  }
 
   const related = React.useMemo(() => {
     if (!product) return []
@@ -241,97 +303,124 @@ function ProductDetailPage() {
 
       <div className="ebi-product-detail-grid" style={{ marginTop: 24 }}>
         <div>
-          <div style={{ position: 'relative', aspectRatio: '1 / 1', background: '#f6f7f8', overflow: 'hidden' }}>
-            {selectedImage ? (
-              selectedImage === displayProduct?.img ? (
-                <ResponsiveImage
-                  desktop={displayProduct?.img}
-                  tablet={displayProduct?.imgTablet}
-                  mobile={displayProduct?.imgMobile}
-                  alt={displayProduct?.imgAlt || displayProduct?.name || product.name}
-                  style={{
-                    width: '100%',
-                    height: '100%',
-                    objectFit: 'contain',
-                  }}
-                />
-              ) : (
-                <img
-                  src={selectedImage}
-                  alt={displayProduct?.imgAlt || displayProduct?.name || product.name}
-                  style={{
-                    width: '100%',
-                    height: '100%',
-                    objectFit: 'contain',
-                  }}
-                />
-              )
-            ) : (
-              <div style={{ width: '100%', height: '100%', backgroundImage: STRIPES }} />
-            )}
-            {!selectedImage && (
-              <div
-                style={{
-                  position: 'absolute',
-                  inset: 0,
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  fontFamily: "'IBM Plex Mono', monospace",
-                  fontSize: 11,
-                  letterSpacing: '0.1em',
-                  textTransform: 'uppercase',
-                  color: '#5a6875',
-                  textAlign: 'center',
-                  padding: 24,
-                }}
-              >
-                {displayProduct?.placeholder || 'product shot'}
+          <div className="ebi-gallery">
+            {galleryItems.length > 1 && (
+              <div className="ebi-gallery-rail">
+                {galleryItems.map((item, i) => (
+                  <button
+                    key={`${item.url}-${i}`}
+                    onClick={() => goToPhoto(i)}
+                    aria-label={`View photo ${i + 1} of ${galleryItems.length}`}
+                    aria-pressed={i === selectedImageIndex}
+                    style={{
+                      width: 64,
+                      height: 64,
+                      flexShrink: 0,
+                      padding: 0,
+                      background: '#f6f7f8',
+                      border: `1px solid ${i === selectedImageIndex ? '#131b28' : '#e3e6ea'}`,
+                      borderRadius: 2,
+                      cursor: 'pointer',
+                      overflow: 'hidden',
+                    }}
+                  >
+                    <img src={item.url} alt="" loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
+                  </button>
+                ))}
               </div>
             )}
-            {badge && (
-              <div
-                style={{
-                  position: 'absolute',
-                  top: 0,
-                  left: 0,
-                  fontFamily: "'IBM Plex Mono', monospace",
-                  fontSize: 10,
-                  letterSpacing: '0.12em',
-                  textTransform: 'uppercase',
-                  padding: '6px 10px',
-                  background: badgeBg,
-                  color: '#ffffff',
-                }}
-              >
-                {badge}
-              </div>
-            )}
-          </div>
 
-          {gallery.length > 1 && (
-            <div style={{ display: 'flex', gap: 10, marginTop: 10, flexWrap: 'wrap' }}>
-              {gallery.map((url, i) => (
-                <button
-                  key={url}
-                  onClick={() => setSelectedImage(url)}
-                  aria-label={`View photo ${i + 1} of ${gallery.length}`}
-                  aria-pressed={url === selectedImage}
+            <div style={{ position: 'relative', flex: 1, minWidth: 0, aspectRatio: '1 / 1', background: '#f6f7f8', overflow: 'hidden' }}>
+              {currentPhoto ? (
+                currentPhoto.isHero ? (
+                  <ResponsiveImage
+                    desktop={currentPhoto.url}
+                    tablet={currentPhoto.imgTablet}
+                    mobile={currentPhoto.imgMobile}
+                    alt={currentPhoto.imgAlt || product.name}
+                    style={{
+                      width: '100%',
+                      height: '100%',
+                      objectFit: 'contain',
+                    }}
+                  />
+                ) : (
+                  <img
+                    src={currentPhoto.url}
+                    alt={currentPhoto.imgAlt || product.name}
+                    style={{
+                      width: '100%',
+                      height: '100%',
+                      objectFit: 'contain',
+                    }}
+                  />
+                )
+              ) : (
+                <div style={{ width: '100%', height: '100%', backgroundImage: STRIPES }} />
+              )}
+              {!currentPhoto && (
+                <div
                   style={{
-                    width: 64,
-                    height: 64,
-                    flexShrink: 0,
-                    padding: 0,
-                    background: '#f6f7f8',
-                    border: `1px solid ${url === selectedImage ? '#131b28' : '#e3e6ea'}`,
-                    borderRadius: 2,
-                    cursor: 'pointer',
-                    overflow: 'hidden',
+                    position: 'absolute',
+                    inset: 0,
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    fontFamily: "'IBM Plex Mono', monospace",
+                    fontSize: 11,
+                    letterSpacing: '0.1em',
+                    textTransform: 'uppercase',
+                    color: '#5a6875',
+                    textAlign: 'center',
+                    padding: 24,
                   }}
                 >
-                  <img src={url} alt="" loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
-                </button>
-              ))}
+                  {product.placeholder || 'product shot'}
+                </div>
+              )}
+              {badge && (
+                <div
+                  style={{
+                    position: 'absolute',
+                    top: 0,
+                    left: 0,
+                    fontFamily: "'IBM Plex Mono', monospace",
+                    fontSize: 10,
+                    letterSpacing: '0.12em',
+                    textTransform: 'uppercase',
+                    padding: '6px 10px',
+                    background: badgeBg,
+                    color: '#ffffff',
+                  }}
+                >
+                  {badge}
+                </div>
+              )}
+              {galleryItems.length > 1 && (
+                <>
+                  <button onClick={() => goToPhoto(selectedImageIndex - 1)} aria-label="Previous photo" style={arrowButtonStyle('left')}>
+                    ‹
+                  </button>
+                  <button onClick={() => goToPhoto(selectedImageIndex + 1)} aria-label="Next photo" style={arrowButtonStyle('right')}>
+                    ›
+                  </button>
+                </>
+              )}
+            </div>
+          </div>
+
+          {galleryItems.length > 1 && (
+            <div
+              style={{
+                textAlign: 'center',
+                marginTop: 10,
+                fontFamily: "'IBM Plex Mono', monospace",
+                fontSize: 11,
+                letterSpacing: '0.08em',
+                color: '#5a6875',
+              }}
+            >
+              {selectedImageIndex + 1} / {galleryItems.length}
             </div>
           )}
         </div>
@@ -386,10 +475,10 @@ function ProductDetailPage() {
               </label>
               <select
                 id="product-variant-select"
-                value={notSellable ? selectedVariant?.id ?? '' : product.id}
+                value={notSellable ? selectedVariantId : product.id}
                 onChange={(e) => {
                   if (notSellable) {
-                    setSelectedVariantId(e.target.value)
+                    selectVariant(e.target.value)
                   } else {
                     navigate({ to: '/products/$id', params: { id: e.target.value } })
                   }
@@ -406,6 +495,11 @@ function ProductDetailPage() {
                   color: '#131b28',
                 }}
               >
+                {notSellable && (
+                  <option value="" disabled>
+                    Style: Select
+                  </option>
+                )}
                 {variants.map((v) => (
                   <option key={v.id} value={v.id}>
                     {v.variantLabel || v.name}

@@ -310,6 +310,21 @@ button {
   gap: 56px;
 }
 
+.ebi-gallery {
+  display: flex;
+  gap: 10px;
+}
+
+.ebi-gallery-rail {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 64px;
+  flex-shrink: 0;
+  max-height: 480px;
+  overflow-y: auto;
+}
+
 .ebi-cart-line-image {
   width: 130px;
   height: 130px;
@@ -414,6 +429,18 @@ button {
   .ebi-product-detail-grid {
     grid-template-columns: 1fr;
     gap: 32px;
+  }
+
+  .ebi-gallery {
+    flex-direction: column-reverse;
+  }
+
+  .ebi-gallery-rail {
+    flex-direction: row;
+    width: auto;
+    max-height: none;
+    overflow-x: auto;
+    overflow-y: visible;
   }
 
   .ebi-checkout-layout {
