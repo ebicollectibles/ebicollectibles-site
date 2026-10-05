@@ -127,26 +127,22 @@ const monoLabel: React.CSSProperties = {
   color: '#131b28',
 }
 
-function arrowButtonStyle(side: 'left' | 'right'): React.CSSProperties {
-  return {
-    position: 'absolute',
-    top: '50%',
-    transform: 'translateY(-50%)',
-    width: 34,
-    height: 34,
-    borderRadius: '50%',
-    border: '1px solid #e3e6ea',
-    background: 'rgba(255,255,255,0.9)',
-    color: '#131b28',
-    fontSize: 18,
-    lineHeight: 1,
-    padding: 0,
-    cursor: 'pointer',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    ...(side === 'left' ? { left: 8 } : { right: 8 }),
-  }
+// Prev/next buttons flanking the photo counter below the main image —
+// kept off the photo itself so they never cover part of the shot.
+const navArrowStyle: React.CSSProperties = {
+  width: 28,
+  height: 28,
+  borderRadius: '50%',
+  border: '1px solid #e3e6ea',
+  background: '#ffffff',
+  color: '#131b28',
+  fontSize: 16,
+  lineHeight: 1,
+  padding: 0,
+  cursor: 'pointer',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
 }
 
 // One photo in the product's gallery strip — tagged with the variant it
@@ -313,8 +309,8 @@ function ProductDetailPage() {
                     aria-label={`View photo ${i + 1} of ${galleryItems.length}`}
                     aria-pressed={i === selectedImageIndex}
                     style={{
-                      width: 64,
-                      height: 64,
+                      width: 88,
+                      height: 88,
                       flexShrink: 0,
                       padding: 0,
                       background: '#f6f7f8',
@@ -396,31 +392,37 @@ function ProductDetailPage() {
                   {badge}
                 </div>
               )}
-              {galleryItems.length > 1 && (
-                <>
-                  <button onClick={() => goToPhoto(selectedImageIndex - 1)} aria-label="Previous photo" style={arrowButtonStyle('left')}>
-                    ‹
-                  </button>
-                  <button onClick={() => goToPhoto(selectedImageIndex + 1)} aria-label="Next photo" style={arrowButtonStyle('right')}>
-                    ›
-                  </button>
-                </>
-              )}
             </div>
           </div>
 
           {galleryItems.length > 1 && (
             <div
               style={{
-                textAlign: 'center',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: 18,
                 marginTop: 10,
-                fontFamily: "'IBM Plex Mono', monospace",
-                fontSize: 11,
-                letterSpacing: '0.08em',
-                color: '#5a6875',
               }}
             >
-              {selectedImageIndex + 1} / {galleryItems.length}
+              <button onClick={() => goToPhoto(selectedImageIndex - 1)} aria-label="Previous photo" style={navArrowStyle}>
+                ‹
+              </button>
+              <span
+                style={{
+                  fontFamily: "'IBM Plex Mono', monospace",
+                  fontSize: 11,
+                  letterSpacing: '0.08em',
+                  color: '#5a6875',
+                  minWidth: 50,
+                  textAlign: 'center',
+                }}
+              >
+                {selectedImageIndex + 1} / {galleryItems.length}
+              </span>
+              <button onClick={() => goToPhoto(selectedImageIndex + 1)} aria-label="Next photo" style={navArrowStyle}>
+                ›
+              </button>
             </div>
           )}
         </div>

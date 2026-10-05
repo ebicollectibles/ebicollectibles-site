@@ -319,10 +319,8 @@ button {
   display: flex;
   flex-direction: column;
   gap: 8px;
-  width: 64px;
+  width: 88px;
   flex-shrink: 0;
-  max-height: 480px;
-  overflow-y: auto;
 }
 
 .ebi-cart-line-image {
