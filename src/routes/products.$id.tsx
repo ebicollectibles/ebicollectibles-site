@@ -524,6 +524,7 @@ function ProductDetailPage() {
                 {variants.map((v) => (
                   <option key={v.id} value={v.id}>
                     {v.variantLabel || v.name}
+                    {v.stock === 0 ? ' — Out of stock' : ''}
                   </option>
                 ))}
               </select>
