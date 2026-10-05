@@ -153,9 +153,11 @@ function ProductDetailPage() {
     })
   }, [product?.id])
 
-  // Every product sharing this one's variantGroupId (including itself, so
-  // it renders inline as the selected option) — see the comment on
-  // Product.variantGroupId in lib/products.ts. Already available in
+  const notSellable = product?.notSellable === true
+
+  // Every sellable product sharing this one's variantGroupId (including
+  // itself, so it renders inline as the selected option) — see the comment
+  // on Product.variantGroupId in lib/products.ts. Already available in
   // `products` (the full root-loaded list), no extra fetch needed: every
   // variant is a real product in its own right, including the ones with
   // hideFromShopGrid set.
@@ -163,6 +165,9 @@ function ProductDetailPage() {
     if (!product?.variantGroupId) return []
     return products
       .filter((p) => p.variantGroupId === product.variantGroupId)
+      // The notSellable hub/collage listing itself is never a pickable
+      // option — there's nothing to buy about it — even on its own page.
+      .filter((p) => !p.notSellable)
       // A sibling with no variantLabel set isn't offered as a pickable
       // option (admin forgot to label it, or it's meant to only be reached
       // directly/via admin) — except the one currently being viewed, which
@@ -171,6 +176,17 @@ function ProductDetailPage() {
       .filter((p) => p.id === product.id || (p.variantLabel && p.variantLabel.trim()))
       .sort((a, b) => (a.variantSortOrder ?? Infinity) - (b.variantSortOrder ?? Infinity) || a.name.localeCompare(b.name))
   }, [products, product])
+
+  // On a notSellable hub page, the "Options" dropdown picks which real
+  // variant to show/add to cart in place, instead of navigating away —
+  // defaults to the first one so Add to cart works without an extra click.
+  const [selectedVariantId, setSelectedVariantId] = React.useState('')
+  React.useEffect(() => {
+    if (notSellable && variants.length > 0 && !variants.some((v) => v.id === selectedVariantId)) {
+      setSelectedVariantId(variants[0].id)
+    }
+  }, [notSellable, variants, selectedVariantId])
+  const selectedVariant = notSellable ? variants.find((v) => v.id === selectedVariantId) ?? variants[0] : undefined
 
   const related = React.useMemo(() => {
     if (!product) return []
@@ -196,7 +212,6 @@ function ProductDetailPage() {
   }
 
   // notSellable wins over everything else — see the comment in AddToCartControl.tsx.
-  const notSellable = product.notSellable === true
   const comingSoon = !notSellable && product.comingSoon === true
   const soldOut = !notSellable && product.stock === 0
   const onSale = product.compareAtPrice != null && product.compareAtPrice > product.price
@@ -323,7 +338,16 @@ function ProductDetailPage() {
           <h1 style={{ fontSize: 32, letterSpacing: '-0.02em', fontWeight: 700, lineHeight: 1.15, margin: '10px 0 0', textWrap: 'pretty' }}>
             {product.name}
           </h1>
-          {!notSellable && (
+          {notSellable ? (
+            selectedVariant && (
+              <div style={{ display: 'flex', alignItems: 'baseline', gap: 12, marginTop: 18, flexWrap: 'wrap' }}>
+                <span style={{ fontSize: 26, fontWeight: 700, color: '#131b28' }}>{formatMoney(selectedVariant.price)}</span>
+                <span style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 12, color: selectedVariant.stock === 0 ? '#5a6875' : '#3f7a63' }}>
+                  {selectedVariant.stock === 0 ? 'Out of stock' : `${selectedVariant.stock} in stock`}
+                </span>
+              </div>
+            )
+          ) : (
             <div style={{ display: 'flex', alignItems: 'baseline', gap: 12, marginTop: 18, flexWrap: 'wrap' }}>
               {comingSoon && !priceKnown ? (
                 <span style={{ fontSize: 18, fontWeight: 500, color: '#5a6875' }}>Price to be announced</span>
@@ -357,8 +381,14 @@ function ProductDetailPage() {
               </label>
               <select
                 id="product-variant-select"
-                value={product.id}
-                onChange={(e) => navigate({ to: '/products/$id', params: { id: e.target.value } })}
+                value={notSellable ? selectedVariant?.id ?? '' : product.id}
+                onChange={(e) => {
+                  if (notSellable) {
+                    setSelectedVariantId(e.target.value)
+                  } else {
+                    navigate({ to: '/products/$id', params: { id: e.target.value } })
+                  }
+                }}
                 style={{
                   display: 'block',
                   width: '100%',
@@ -384,28 +414,40 @@ function ProductDetailPage() {
             <FormattedText text={product.description} style={{ fontSize: 14.5, lineHeight: 1.65, color: '#131b28', maxWidth: '52ch', margin: '20px 0 0' }} />
           )}
 
-          {notSellable && product.variantGroupId ? (
-            <Link
-              to="/shop"
-              search={{ variantGroup: product.variantGroupId }}
-              style={{
-                display: 'block',
-                width: '100%',
-                maxWidth: 320,
-                marginTop: 26,
-                textAlign: 'center',
-                background: '#131b28',
-                color: '#ffffff',
-                border: 0,
-                borderRadius: 2,
-                padding: 14,
-                fontSize: 13.5,
-                fontWeight: 600,
-                textDecoration: 'none',
-              }}
-            >
-              Browse full collection ({variants.filter((v) => !v.notSellable).length})
-            </Link>
+          {notSellable ? (
+            <>
+              {selectedVariant && (
+                <>
+                  <AddToCartControl product={selectedVariant} padding={14} fontSize={13.5} qtyBtnWidth={48} maxWidth={320} marginTop={26} />
+                  {(selectedVariant.comingSoon || selectedVariant.stock === 0) && (
+                    <NotifyMeButton productId={selectedVariant.id} padding={14} fontSize={13.5} maxWidth={320} marginTop={12} />
+                  )}
+                </>
+              )}
+              {product.variantGroupId && (
+                <Link
+                  to="/shop"
+                  search={{ variantGroup: product.variantGroupId }}
+                  style={{
+                    display: 'block',
+                    width: '100%',
+                    maxWidth: 320,
+                    marginTop: 12,
+                    textAlign: 'center',
+                    background: '#ffffff',
+                    color: '#131b28',
+                    border: '1px solid #131b28',
+                    borderRadius: 2,
+                    padding: 14,
+                    fontSize: 13.5,
+                    fontWeight: 600,
+                    textDecoration: 'none',
+                  }}
+                >
+                  Browse full collection ({variants.length})
+                </Link>
+              )}
+            </>
           ) : (
             <>
               <AddToCartControl product={product} padding={14} fontSize={13.5} qtyBtnWidth={48} maxWidth={320} marginTop={26} />
