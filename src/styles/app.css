@@ -313,6 +313,10 @@ button {
 .ebi-gallery {
   display: flex;
   gap: 10px;
+  /* Without this, the default stretch would force the square main photo to
+     match the rail's height (tall before JS caps it to the photo's own
+     height) instead of letting the photo size itself from its own width. */
+  align-items: flex-start;
 }
 
 .ebi-gallery-rail {
@@ -432,6 +436,9 @@ button {
 
   .ebi-gallery {
     flex-direction: column-reverse;
+    /* Column layout wants the photo and rail both stretched to full width,
+       unlike the row layout's flex-start above. */
+    align-items: stretch;
   }
 
   .ebi-gallery-rail {
