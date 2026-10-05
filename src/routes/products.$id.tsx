@@ -274,8 +274,9 @@ function ProductDetailPage() {
     )
   }
 
-  // notSellable wins over everything else — see the comment in AddToCartControl.tsx.
-  const comingSoon = !notSellable && product.comingSoon === true
+  // notSellable wins over soldOut but not comingSoon — see the comment in
+  // AddToCartControl.tsx.
+  const comingSoon = product.comingSoon === true
   const soldOut = !notSellable && product.stock === 0
   const onSale = product.compareAtPrice != null && product.compareAtPrice > product.price
   // Price is "to be announced" when none has been set yet, or when admin
@@ -434,7 +435,7 @@ function ProductDetailPage() {
           <h1 style={{ fontSize: 32, letterSpacing: '-0.02em', fontWeight: 700, lineHeight: 1.15, margin: '10px 0 0', textWrap: 'pretty' }}>
             {product.name}
           </h1>
-          {notSellable ? (
+          {notSellable && !comingSoon ? (
             selectedVariant && (
               <div style={{ display: 'flex', alignItems: 'baseline', gap: 12, marginTop: 18, flexWrap: 'wrap' }}>
                 <span style={{ fontSize: 26, fontWeight: 700, color: '#131b28' }}>{formatMoney(selectedVariant.price)}</span>
@@ -470,7 +471,7 @@ function ProductDetailPage() {
             </p>
           )}
 
-          {(notSellable ? variants.length >= 1 : variants.length > 1) && (
+          {(notSellable ? !comingSoon && variants.length >= 1 : variants.length > 1) && (
             <div style={{ marginTop: 22, maxWidth: 320 }}>
               <label htmlFor="product-variant-select" style={monoLabel}>
                 Options
@@ -515,7 +516,7 @@ function ProductDetailPage() {
             <FormattedText text={product.description} style={{ fontSize: 14.5, lineHeight: 1.65, color: '#131b28', maxWidth: '52ch', margin: '20px 0 0' }} />
           )}
 
-          {notSellable ? (
+          {notSellable && !comingSoon ? (
             <>
               {selectedVariant && (
                 <>

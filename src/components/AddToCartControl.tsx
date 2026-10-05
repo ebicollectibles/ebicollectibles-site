@@ -65,12 +65,14 @@ export function AddToCartControl({
     revertTimer.current = setTimeout(() => setJustAdded(false), 1400)
   }
 
-  // notSellable wins over everything else — a hub/collage listing is never
-  // "sold out" or "coming soon," it's just never orderable directly.
+  // notSellable wins over soldOut — a hub/collage listing has no stock of
+  // its own — but comingSoon wins over notSellable, so a hub whose full
+  // launch hasn't happened yet reads "Coming soon" rather than inviting a
+  // pick that isn't actually available.
   const notSellable = product.notSellable === true
   const soldOut = !notSellable && product.stock === 0
-  const comingSoon = !notSellable && product.comingSoon === true
-  const btnLabel = notSellable ? 'Choose an option below' : comingSoon ? 'Coming soon' : soldOut ? 'Sold out' : product.preorder ? 'Pre-order' : 'Add to cart'
+  const comingSoon = product.comingSoon === true
+  const btnLabel = comingSoon ? 'Coming soon' : notSellable ? 'Choose an option below' : soldOut ? 'Sold out' : product.preorder ? 'Pre-order' : 'Add to cart'
   const atMaxStock = qtyInCart >= product.stock
 
   // Once added, the card settles into a persistent stepper instead of
