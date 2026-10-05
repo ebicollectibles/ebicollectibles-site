@@ -326,6 +326,13 @@ button {
   width: 88px;
   flex-shrink: 0;
   overflow-y: auto;
+  /* Still scrolls with the wheel/touch past the cap above — just without
+     a visible scrollbar track. */
+  scrollbar-width: none;
+}
+
+.ebi-gallery-rail::-webkit-scrollbar {
+  display: none;
 }
 
 .ebi-cart-line-image {
