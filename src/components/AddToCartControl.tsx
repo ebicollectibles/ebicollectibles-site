@@ -65,17 +65,21 @@ export function AddToCartControl({
     revertTimer.current = setTimeout(() => setJustAdded(false), 1400)
   }
 
-  const soldOut = product.stock === 0
-  const comingSoon = product.comingSoon === true
-  const btnLabel = comingSoon ? 'Coming soon' : soldOut ? 'Sold out' : product.preorder ? 'Pre-order' : 'Add to cart'
+  // notSellable wins over everything else — a hub/collage listing is never
+  // "sold out" or "coming soon," it's just never orderable directly.
+  const notSellable = product.notSellable === true
+  const soldOut = !notSellable && product.stock === 0
+  const comingSoon = !notSellable && product.comingSoon === true
+  const btnLabel = notSellable ? 'Choose an option below' : comingSoon ? 'Coming soon' : soldOut ? 'Sold out' : product.preorder ? 'Pre-order' : 'Add to cart'
   const atMaxStock = qtyInCart >= product.stock
 
   // Once added, the card settles into a persistent stepper instead of
   // reverting to a plain "Add to cart" button — the brief checkmark still
-  // plays first (justAdded), then this takes over. A coming-soon item can
-  // never have been added in the first place, so it always shows the plain
-  // disabled button — never the stepper — regardless of qtyInCart.
-  const showStepper = !comingSoon && qtyInCart > 0 && !justAdded
+  // plays first (justAdded), then this takes over. A coming-soon or
+  // not-sellable item can never have been added in the first place, so it
+  // always shows the plain disabled button — never the stepper —
+  // regardless of qtyInCart.
+  const showStepper = !comingSoon && !notSellable && qtyInCart > 0 && !justAdded
 
   if (showStepper) {
     return (
@@ -147,7 +151,7 @@ export function AddToCartControl({
     )
   }
 
-  const disabledState = comingSoon || soldOut
+  const disabledState = comingSoon || soldOut || notSellable
 
   return (
     <button

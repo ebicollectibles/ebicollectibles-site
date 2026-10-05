@@ -29,11 +29,12 @@ export function computeOrderTotals(
 // logic (as opposed to the DB/Square calls around it) is directly testable.
 export function findUnorderableLine(
   lines: Array<{ productId: string }>,
-  productById: Map<string, { name: string; comingSoon: boolean; published: boolean } | undefined>,
+  productById: Map<string, { name: string; comingSoon: boolean; published: boolean; notSellable: boolean } | undefined>,
 ): string | null {
   for (const line of lines) {
     const product = productById.get(line.productId)
     if (!product) continue
+    if (product.notSellable) return `"${product.name}" isn't available to order directly — refresh your cart and try again.`
     if (product.comingSoon) return `"${product.name}" isn't available to order yet — refresh your cart and try again.`
     if (!product.published) return `"${product.name}" is no longer available — refresh your cart and try again.`
   }

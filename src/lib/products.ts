@@ -63,6 +63,9 @@ export interface Product {
   // Forces "Price to be announced" on a coming-soon item even if a real
   // price is set or synced live from a linked Square catalog item.
   hidePrice?: boolean
+  // A hub/collage listing that only exists to funnel customers to its real
+  // variants — see the comment on products.notSellable in lib/db/schema.ts.
+  notSellable?: boolean
   placeholder?: string
   gtin?: string
   brand?: string

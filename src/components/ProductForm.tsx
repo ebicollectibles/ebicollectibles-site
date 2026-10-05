@@ -38,6 +38,7 @@ export interface ProductFormValues {
   shipsWithDelay: boolean
   comingSoon: boolean
   hidePrice: boolean
+  notSellable: boolean
   placeholder: string
   published: boolean
   gtin: string
@@ -77,6 +78,7 @@ const emptyValues: ProductFormValues = {
   shipsWithDelay: false,
   comingSoon: false,
   hidePrice: false,
+  notSellable: false,
   placeholder: '',
   published: true,
   gtin: '',
@@ -1372,6 +1374,12 @@ export function ProductForm({
           Hide price — shows "Price to be announced" even if a price is set or synced from a linked Square item
         </label>
       )}
+      <label style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: 13, marginBottom: 20 }}>
+        <input type="checkbox" checked={values.notSellable} onChange={(e) => set('notSellable', e.target.checked)} />
+        Not sellable — a hub/collage listing that only exists to show its variants (price and add-to-cart are hidden
+        entirely; checkout refuses it server-side too). Pair this with a Variant group ID below so customers land
+        here and pick a real variant to buy.
+      </label>
 
       {error && <p style={{ fontSize: 12.5, color: '#b4622f', marginBottom: 12 }}>{error}</p>}
 

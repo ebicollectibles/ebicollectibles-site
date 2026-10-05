@@ -120,6 +120,13 @@ export const products = pgTable('products', {
   // overlaySquareData filled in from a linked Square catalog item, which
   // the plain "price is still 0" check can't see past.
   hidePrice: boolean('hide_price').notNull().default(false),
+  // A hub/collage listing whose only job is to funnel customers to its real
+  // variants (see variantGroupId) — add-to-cart is disabled and checkout
+  // refuses it server-side too (see findUnorderableLine), same enforcement
+  // as comingSoon. Distinct from comingSoon (implies it'll become
+  // orderable later) and stock=0/"sold out" (implies it once was) — this
+  // one is never meant to be bought directly, full stop.
+  notSellable: boolean('not_sellable').notNull().default(false),
   // Lets a product be linked to Square and fully set up while still hidden
   // from the public shop, e.g. staging a listing before its street date.
   published: boolean('published').notNull().default(true),

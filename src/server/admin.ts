@@ -65,6 +65,7 @@ const productBaseSchema = z.object({
   shipsWithDelay: z.boolean().optional().default(false),
   comingSoon: z.boolean().optional().default(false),
   hidePrice: z.boolean().optional().default(false),
+  notSellable: z.boolean().optional().default(false),
   placeholder: z.string().optional(),
   published: z.boolean().optional().default(true),
   gtin: z

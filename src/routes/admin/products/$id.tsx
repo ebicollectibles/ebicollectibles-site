@@ -71,6 +71,7 @@ function EditProductPage() {
           shipsWithDelay: product.shipsWithDelay,
           comingSoon: product.comingSoon,
           hidePrice: product.hidePrice,
+          notSellable: product.notSellable,
           placeholder: product.placeholder ?? '',
           published: product.published,
           gtin: product.gtin ?? '',

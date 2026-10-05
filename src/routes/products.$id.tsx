@@ -195,8 +195,10 @@ function ProductDetailPage() {
     )
   }
 
-  const comingSoon = product.comingSoon === true
-  const soldOut = product.stock === 0
+  // notSellable wins over everything else — see the comment in AddToCartControl.tsx.
+  const notSellable = product.notSellable === true
+  const comingSoon = !notSellable && product.comingSoon === true
+  const soldOut = !notSellable && product.stock === 0
   const onSale = product.compareAtPrice != null && product.compareAtPrice > product.price
   // Price is "to be announced" when none has been set yet, or when admin
   // explicitly hid it (hidePrice overrides even a price synced live from a
@@ -321,26 +323,28 @@ function ProductDetailPage() {
           <h1 style={{ fontSize: 32, letterSpacing: '-0.02em', fontWeight: 700, lineHeight: 1.15, margin: '10px 0 0', textWrap: 'pretty' }}>
             {product.name}
           </h1>
-          <div style={{ display: 'flex', alignItems: 'baseline', gap: 12, marginTop: 18, flexWrap: 'wrap' }}>
-            {comingSoon && !priceKnown ? (
-              <span style={{ fontSize: 18, fontWeight: 500, color: '#5a6875' }}>Price to be announced</span>
-            ) : (
-              <>
-                {onSale && (
-                  <span style={{ fontSize: 18, color: '#5a6875', textDecoration: 'line-through' }}>
-                    {formatMoney(product.compareAtPrice!)}
+          {!notSellable && (
+            <div style={{ display: 'flex', alignItems: 'baseline', gap: 12, marginTop: 18, flexWrap: 'wrap' }}>
+              {comingSoon && !priceKnown ? (
+                <span style={{ fontSize: 18, fontWeight: 500, color: '#5a6875' }}>Price to be announced</span>
+              ) : (
+                <>
+                  {onSale && (
+                    <span style={{ fontSize: 18, color: '#5a6875', textDecoration: 'line-through' }}>
+                      {formatMoney(product.compareAtPrice!)}
+                    </span>
+                  )}
+                  <span style={{ fontSize: 26, fontWeight: 700, color: comingSoon ? '#5a6875' : '#131b28' }}>
+                    {formatMoney(product.price)}
                   </span>
-                )}
-                <span style={{ fontSize: 26, fontWeight: 700, color: comingSoon ? '#5a6875' : '#131b28' }}>
-                  {formatMoney(product.price)}
-                </span>
-              </>
-            )}
-            {!(comingSoon && !priceKnown) && (
-              <span style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 12, color: stockColor }}>{stockLabel}</span>
-            )}
-          </div>
-          {!comingSoon && !soldOut && product.shipsWithDelay && (
+                </>
+              )}
+              {!(comingSoon && !priceKnown) && (
+                <span style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 12, color: stockColor }}>{stockLabel}</span>
+              )}
+            </div>
+          )}
+          {!comingSoon && !soldOut && !notSellable && product.shipsWithDelay && (
             <p style={{ fontSize: 12.5, color: '#b4622f', margin: '8px 0 0', lineHeight: 1.5 }}>
               This item is still on its way to us — an order with it ships once it arrives.
             </p>
@@ -380,8 +384,34 @@ function ProductDetailPage() {
             <FormattedText text={product.description} style={{ fontSize: 14.5, lineHeight: 1.65, color: '#131b28', maxWidth: '52ch', margin: '20px 0 0' }} />
           )}
 
-          <AddToCartControl product={product} padding={14} fontSize={13.5} qtyBtnWidth={48} maxWidth={320} marginTop={26} />
-          {(comingSoon || soldOut) && <NotifyMeButton productId={product.id} padding={14} fontSize={13.5} maxWidth={320} marginTop={12} />}
+          {notSellable && product.variantGroupId ? (
+            <Link
+              to="/shop"
+              search={{ variantGroup: product.variantGroupId }}
+              style={{
+                display: 'block',
+                width: '100%',
+                maxWidth: 320,
+                marginTop: 26,
+                textAlign: 'center',
+                background: '#131b28',
+                color: '#ffffff',
+                border: 0,
+                borderRadius: 2,
+                padding: 14,
+                fontSize: 13.5,
+                fontWeight: 600,
+                textDecoration: 'none',
+              }}
+            >
+              Browse full collection ({variants.filter((v) => !v.notSellable).length})
+            </Link>
+          ) : (
+            <>
+              <AddToCartControl product={product} padding={14} fontSize={13.5} qtyBtnWidth={48} maxWidth={320} marginTop={26} />
+              {(comingSoon || soldOut) && <NotifyMeButton productId={product.id} padding={14} fontSize={13.5} maxWidth={320} marginTop={12} />}
+            </>
+          )}
         </div>
       </div>
 

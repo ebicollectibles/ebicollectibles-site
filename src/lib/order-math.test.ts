@@ -62,9 +62,10 @@ describe('computeOrderTotals', () => {
 
 describe('findUnorderableLine', () => {
   const productById = new Map([
-    ['normal', { name: 'Normal Item', comingSoon: false, published: true }],
-    ['soon', { name: 'Coming Soon Item', comingSoon: true, published: true }],
-    ['hidden', { name: 'Hidden Item', comingSoon: false, published: false }],
+    ['normal', { name: 'Normal Item', comingSoon: false, published: true, notSellable: false }],
+    ['soon', { name: 'Coming Soon Item', comingSoon: true, published: true, notSellable: false }],
+    ['hidden', { name: 'Hidden Item', comingSoon: false, published: false, notSellable: false }],
+    ['hub', { name: 'Collage Hub Item', comingSoon: false, published: true, notSellable: true }],
   ])
 
   it('allows an ordinary published, available product', () => {
@@ -77,6 +78,10 @@ describe('findUnorderableLine', () => {
 
   it('rejects an unpublished product', () => {
     expect(findUnorderableLine([{ productId: 'hidden' }], productById)).toMatch(/Hidden Item.*no longer available/)
+  })
+
+  it('rejects a not-sellable hub product', () => {
+    expect(findUnorderableLine([{ productId: 'hub' }], productById)).toMatch(/Collage Hub Item.*isn't available to order directly/)
   })
 
   it('ignores a line whose product was not found (checked elsewhere)', () => {

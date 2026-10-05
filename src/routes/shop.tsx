@@ -20,6 +20,12 @@ const shopSearchSchema = z.object({
   // for the common single-subcategory case.
   subcategories: z.array(z.enum(ALL_SUBCATEGORIES as [string, ...string[]])).optional(),
   q: z.string().optional(),
+  // Browse every product sharing one variantGroupId at once, ignoring
+  // hideFromShopGrid — the one place that flag is deliberately overridden,
+  // for a "see the full collection" link off a notSellable hub listing.
+  // Category/subcategory/search filters are ignored in this mode (a
+  // collection is its own self-contained browse, not a slice of the catalog).
+  variantGroup: z.string().optional(),
 })
 
 export const Route = createFileRoute('/shop')({
@@ -28,7 +34,8 @@ export const Route = createFileRoute('/shop')({
     const label =
       match.search.subcategories?.join(' & ') ||
       match.search.subcategory ||
-      (match.search.category ? categoryLabel(match.search.category) : undefined)
+      (match.search.category ? categoryLabel(match.search.category) : undefined) ||
+      (match.search.variantGroup ? 'Full Collection' : undefined)
     if (!label) return {}
     const title = `${label} — EBI Collectibles`
     const description = `Shop ${label} — Simplified Chinese Pokémon, verified before it ships.`
@@ -103,19 +110,26 @@ function ShopPage() {
 
   const query = (search.q ?? '').trim().toLowerCase()
 
-  let visible = products.filter((p) => {
-    // A variant meant only to be reached via its sibling's selector (see
-    // Product.hideFromShopGrid in lib/products.ts) doesn't get its own
-    // grid tile — same reasoning as rankProducts excluding it from the
-    // homepage sections.
-    if (p.hideFromShopGrid) return false
-    if (!SHOW_ACRYLICS && p.category === 'Acrylic Cases') return false
-    if (query && !p.name.toLowerCase().includes(query)) return false
-    if (subcategories.length && !subcategories.includes(p.subcategory)) return false
-    if (inStockOnly && p.stock === 0) return false
-    if (p.price > maxPrice) return false
-    return true
-  })
+  // A collection view ignores every other filter — it's a deliberate,
+  // self-contained browse of one variant group's full set of real
+  // variants, not a slice of the normal catalog. The notSellable hub
+  // listing itself (if any) is excluded — it's what linked here, not one
+  // of the 30 things to actually buy.
+  let visible = search.variantGroup
+    ? products.filter((p) => p.variantGroupId === search.variantGroup && !p.notSellable)
+    : products.filter((p) => {
+        // A variant meant only to be reached via its sibling's selector (see
+        // Product.hideFromShopGrid in lib/products.ts) doesn't get its own
+        // grid tile — same reasoning as rankProducts excluding it from the
+        // homepage sections.
+        if (p.hideFromShopGrid) return false
+        if (!SHOW_ACRYLICS && p.category === 'Acrylic Cases') return false
+        if (query && !p.name.toLowerCase().includes(query)) return false
+        if (subcategories.length && !subcategories.includes(p.subcategory)) return false
+        if (inStockOnly && p.stock === 0) return false
+        if (p.price > maxPrice) return false
+        return true
+      })
   if (sort === 'low') visible = [...visible].sort((a, b) => a.price - b.price)
   if (sort === 'high') visible = [...visible].sort((a, b) => b.price - a.price)
   if (sort === 'name') visible = [...visible].sort((a, b) => a.name.localeCompare(b.name))
@@ -130,15 +144,21 @@ function ShopPage() {
       subcategories.every((s) => SUBCATEGORIES_BY_CATEGORY[cat].includes(s)),
   )
 
-  const shopTitle = search.q
-    ? `Results for "${search.q}"`
-    : matchedCategory
-      ? categoryLabel(matchedCategory)
-      : subcategories.length === 1
-        ? subcategories[0]
-        : subcategories.length > 1
-          ? subcategories.join(' & ')
-          : 'Chinese Pokémon Products'
+  const collectionHub = search.variantGroup ? products.find((p) => p.variantGroupId === search.variantGroup && p.notSellable) : undefined
+
+  const shopTitle = search.variantGroup
+    ? collectionHub
+      ? `${collectionHub.name} — Full Collection`
+      : 'Full Collection'
+    : search.q
+      ? `Results for "${search.q}"`
+      : matchedCategory
+        ? categoryLabel(matchedCategory)
+        : subcategories.length === 1
+          ? subcategories[0]
+          : subcategories.length > 1
+            ? subcategories.join(' & ')
+            : 'Chinese Pokémon Products'
 
   const filterPanel = (
     <aside className="ebi-sticky-aside">

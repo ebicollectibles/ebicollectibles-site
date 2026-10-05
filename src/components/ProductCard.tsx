@@ -7,8 +7,10 @@ import { AddToCartControl } from '~/components/AddToCartControl'
 const STRIPES = 'repeating-linear-gradient(45deg, #eef0f2 0px, #eef0f2 7px, #f6f7f8 7px, #f6f7f8 14px)'
 
 export function ProductCard({ product, variant = 'full' }: { product: Product; variant?: 'compact' | 'full' }) {
-  const comingSoon = product.comingSoon === true
-  const soldOut = product.stock === 0
+  // notSellable wins over everything else — see the comment in AddToCartControl.tsx.
+  const notSellable = product.notSellable === true
+  const comingSoon = !notSellable && product.comingSoon === true
+  const soldOut = !notSellable && product.stock === 0
   const onSale = product.compareAtPrice != null && product.compareAtPrice > product.price
   // Price is "to be announced" when none has been set yet, or when admin
   // explicitly hid it (hidePrice overrides even a price synced live from a
@@ -103,24 +105,26 @@ export function ProductCard({ product, variant = 'full' }: { product: Product; v
       >
         {product.name}
       </h3>
-      <div style={{ display: 'flex', alignItems: 'baseline', gap: 8, marginTop: 10 }}>
-        {comingSoon && !priceKnown ? (
-          <span style={{ fontSize: priceFontSize - 2, fontWeight: 500, color: '#5a6875' }}>
-            Price to be announced
-          </span>
-        ) : (
-          <>
-            {onSale && (
-              <span style={{ fontSize: priceFontSize - 3, color: '#5a6875', textDecoration: 'line-through' }}>
-                {formatMoney(product.compareAtPrice!)}
-              </span>
-            )}
-            <span style={{ fontSize: priceFontSize, fontWeight: 600, color: comingSoon ? '#5a6875' : '#131b28' }}>
-              {formatMoney(product.price)}
+      {!notSellable && (
+        <div style={{ display: 'flex', alignItems: 'baseline', gap: 8, marginTop: 10 }}>
+          {comingSoon && !priceKnown ? (
+            <span style={{ fontSize: priceFontSize - 2, fontWeight: 500, color: '#5a6875' }}>
+              Price to be announced
             </span>
-          </>
-        )}
-      </div>
+          ) : (
+            <>
+              {onSale && (
+                <span style={{ fontSize: priceFontSize - 3, color: '#5a6875', textDecoration: 'line-through' }}>
+                  {formatMoney(product.compareAtPrice!)}
+                </span>
+              )}
+              <span style={{ fontSize: priceFontSize, fontWeight: 600, color: comingSoon ? '#5a6875' : '#131b28' }}>
+                {formatMoney(product.price)}
+              </span>
+            </>
+          )}
+        </div>
+      )}
       </Link>
       <AddToCartControl product={product} padding={buttonPadding} marginTop={buttonMarginTop} />
     </article>

@@ -1,0 +1,1 @@
+ALTER TABLE "products" ADD COLUMN "not_sellable" boolean DEFAULT false NOT NULL;
