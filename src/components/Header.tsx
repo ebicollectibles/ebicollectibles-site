@@ -20,7 +20,7 @@ function PersonIcon() {
   )
 }
 
-export function Header({ customer }: { customer: HeaderCustomer | null }) {
+export function Header({ customer, isAdminUser = false }: { customer: HeaderCustomer | null; isAdminUser?: boolean }) {
   const pathname = useRouterState({ select: (s) => s.location.pathname })
   // Full href (not just pathname) — the Pokemon submenu links all stay on
   // /shop with different `search` params, so pathname alone never changes
@@ -241,6 +241,21 @@ export function Header({ customer }: { customer: HeaderCustomer | null }) {
                 <Link to="/account/profile" style={{ display: 'block', padding: '9px 14px', fontSize: 13, color: '#3d4753', whiteSpace: 'nowrap' }}>
                   Profile
                 </Link>
+                {isAdminUser && (
+                  <Link
+                    to="/admin"
+                    style={{
+                      display: 'block',
+                      padding: '9px 14px',
+                      fontSize: 13,
+                      color: '#3d4753',
+                      whiteSpace: 'nowrap',
+                      borderTop: '1px solid #f0f2f4',
+                    }}
+                  >
+                    Admin
+                  </Link>
+                )}
                 <button
                   type="button"
                   onClick={logout}
@@ -350,6 +365,11 @@ export function Header({ customer }: { customer: HeaderCustomer | null }) {
               <Link to="/account/profile" style={{ color: navColor(pathname.startsWith('/account/profile')), padding: '10px 0', borderBottom: '1px solid #f0f2f4' }}>
                 Profile
               </Link>
+              {isAdminUser && (
+                <Link to="/admin" style={{ color: navColor(pathname.startsWith('/admin')), padding: '10px 0', borderBottom: '1px solid #f0f2f4' }}>
+                  Admin
+                </Link>
+              )}
               <button
                 type="button"
                 onClick={logout}
