@@ -33,7 +33,7 @@ export async function resolveAffiliateAttribution(
   if (!code) return null
 
   const { getDb } = await import('~/lib/db/client')
-  const { affiliates, affiliateProducts } = await import('~/lib/db/schema')
+  const { affiliates, affiliateProducts, affiliateContacts } = await import('~/lib/db/schema')
   const { and, eq } = await import('drizzle-orm')
   const db = getDb()
 
@@ -44,9 +44,20 @@ export async function resolveAffiliateAttribution(
     .limit(1)
   if (!affiliate) return null
 
-  if (affiliate.email && affiliate.email.toLowerCase() === checkoutEmail.trim().toLowerCase()) {
+  const normalizedCheckoutEmail = checkoutEmail.trim().toLowerCase()
+  if (affiliate.email && affiliate.email.toLowerCase() === normalizedCheckoutEmail) {
     return null
   }
+  // Same guard, extended to every account that can see this affiliate's own
+  // dashboard (see affiliateContacts in schema.ts) — any of them crediting
+  // their own purchase is the same self-referral affiliate.email already
+  // blocked above.
+  const [contactMatch] = await db
+    .select({ email: affiliateContacts.email })
+    .from(affiliateContacts)
+    .where(and(eq(affiliateContacts.affiliateId, affiliate.id), eq(affiliateContacts.email, normalizedCheckoutEmail)))
+    .limit(1)
+  if (contactMatch) return null
 
   const scopedRows = await db.select({ productId: affiliateProducts.productId }).from(affiliateProducts).where(eq(affiliateProducts.affiliateId, affiliate.id))
 

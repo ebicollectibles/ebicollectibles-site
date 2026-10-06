@@ -3,6 +3,7 @@ import { z } from 'zod'
 import { and, asc, desc, eq, inArray, isNotNull, isNull, notInArray, or, sql } from 'drizzle-orm'
 import { getDb } from '~/lib/db/client'
 import {
+  affiliateContacts,
   affiliateProducts,
   affiliates,
   authEvents,
@@ -1493,7 +1494,17 @@ const affiliateFieldsSchema = z.object({
   // behavior). Non-empty restricts commission to just these products —
   // see computeAffiliateCommission in server/affiliates.ts.
   productIds: z.array(z.string()).default([]),
+  // Extra site accounts (beyond `email` above) allowed to see this
+  // affiliate's own dashboard — e.g. a co-owner at the affiliate's
+  // business covering while the usual contact is away. See affiliateContacts
+  // in lib/db/schema.ts.
+  contactEmails: z.array(z.string().trim().toLowerCase().email()).default([]),
 })
+
+/** email + contactEmails, deduped — the full set of logins allowed to see this affiliate's dashboard. */
+function allContactEmails(data: { email?: string; contactEmails: string[] }): string[] {
+  return [...new Set([data.email, ...data.contactEmails].filter((e): e is string => !!e))]
+}
 
 export const adminListAffiliates = createServerFn({ method: 'GET' }).handler(async () => {
   await assertAdmin()
@@ -1505,6 +1516,9 @@ export const adminListAffiliates = createServerFn({ method: 'GET' }).handler(asy
     .from(affiliateProducts)
     .innerJoin(productsTable, eq(productsTable.id, affiliateProducts.productId))
   const scopedByAffiliate = groupBy(scopedRows, (r) => r.affiliateId)
+
+  const contactRows = await db.select({ affiliateId: affiliateContacts.affiliateId, email: affiliateContacts.email }).from(affiliateContacts)
+  const contactsByAffiliate = groupBy(contactRows, (r) => r.affiliateId)
 
   const attributedOrders = await db
     .select({ affiliateId: orders.affiliateId, orderId: orders.id, affiliateCommission: orders.affiliateCommission, paidAt: orders.affiliateCommissionPaidAt })
@@ -1538,6 +1552,7 @@ export const adminListAffiliates = createServerFn({ method: 'GET' }).handler(asy
       else if (!refundedSet.has(o.orderId)) owedCommission += commission
     }
     const scoped = scopedByAffiliate.get(affiliate.id) ?? []
+    const contacts = contactsByAffiliate.get(affiliate.id) ?? []
     return {
       ...affiliate,
       orderCount: orderRows.length,
@@ -1546,6 +1561,7 @@ export const adminListAffiliates = createServerFn({ method: 'GET' }).handler(asy
       owedCommission: Math.round(owedCommission * 100) / 100,
       productIds: scoped.map((s) => s.productId),
       productNames: scoped.map((s) => s.productName),
+      contactEmails: contacts.map((c) => c.email),
     }
   })
 })
@@ -1588,6 +1604,22 @@ async function assertAffiliateCodeAvailable(code: string, excludingId?: string) 
   if (existing) throw new Error(`"${code}" is already taken by another affiliate.`)
 }
 
+async function replaceAffiliateContacts(db: ReturnType<typeof getDb>, affiliateId: string, emails: string[]) {
+  await db.delete(affiliateContacts).where(eq(affiliateContacts.affiliateId, affiliateId))
+  if (emails.length === 0) return
+  try {
+    await db.insert(affiliateContacts).values(emails.map((email) => ({ affiliateId, email })))
+  } catch (err: any) {
+    // affiliateContacts.email is the primary key — one email can only ever
+    // see one affiliate's dashboard, so this means it's already registered
+    // to a different affiliate.
+    if (err?.code === '23505') {
+      throw new Error('One of those emails is already registered to a different affiliate.')
+    }
+    throw err
+  }
+}
+
 export const adminCreateAffiliate = createServerFn({ method: 'POST' })
   .validator(affiliateFieldsSchema)
   .handler(async ({ data }) => {
@@ -1601,6 +1633,7 @@ export const adminCreateAffiliate = createServerFn({ method: 'POST' })
     if (data.productIds.length > 0) {
       await db.insert(affiliateProducts).values(data.productIds.map((productId) => ({ affiliateId: created.id, productId })))
     }
+    await replaceAffiliateContacts(db, created.id, allContactEmails(data))
     return created
   })
 
@@ -1620,6 +1653,7 @@ export const adminUpdateAffiliate = createServerFn({ method: 'POST' })
     if (data.productIds.length > 0) {
       await db.insert(affiliateProducts).values(data.productIds.map((productId) => ({ affiliateId: data.id, productId })))
     }
+    await replaceAffiliateContacts(db, data.id, allContactEmails(data))
     return { ok: true }
   })
 

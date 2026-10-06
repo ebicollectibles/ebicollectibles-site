@@ -355,6 +355,21 @@ export const affiliateProducts = pgTable(
   (table) => [primaryKey({ columns: [table.affiliateId, table.productId] })],
 )
 
+// Site accounts allowed to view this affiliate's own dashboard (and, same
+// as affiliates.email before this table existed, blocked from crediting
+// their own purchase) — e.g. two co-owners at the affiliate's business, each
+// with their own site login. email is the whole primary key: one email
+// grants access to exactly one affiliate, never two, so there's no
+// ambiguity about whose dashboard a given login sees. Matched against the
+// logged-in customer's own account email (see getMyAffiliate in
+// affiliates.ts), same case-insensitive lowercasing as affiliates.code.
+export const affiliateContacts = pgTable('affiliate_contacts', {
+  email: text('email').primaryKey(),
+  affiliateId: uuid('affiliate_id')
+    .notNull()
+    .references(() => affiliates.id, { onDelete: 'cascade' }),
+}, (table) => [index('affiliate_contacts_affiliate_id_idx').on(table.affiliateId)])
+
 // Timestamped fulfillment-status timeline per order (pending -> shipped ->
 // cancelled etc.) — the order row only holds the *current* status, this is
 // the history of how it got there.

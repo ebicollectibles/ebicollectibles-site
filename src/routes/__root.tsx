@@ -11,6 +11,7 @@ import { CartProvider } from '~/lib/cart-context'
 import { getProducts } from '~/server/products'
 import { getCurrentCustomer } from '~/server/customer-auth'
 import { isAdminAuthenticated } from '~/server/admin-auth'
+import { hasMyAffiliate } from '~/server/affiliate-dashboard'
 import { isMaintenanceMode } from '~/server/maintenance'
 import { AFFILIATE_REF_COOKIE } from '~/lib/affiliate-ref'
 import appCss from '~/styles/app.css?url'
@@ -26,11 +27,11 @@ const SITE_URL = 'https://ebicollectibles.com'
 export const Route = createRootRoute({
   loader: async () => {
     const [products, customer, maintenanceMode] = await Promise.all([getProducts(), getCurrentCustomer(), isMaintenanceMode()])
-    // Only checked once a customer session exists — skips the extra Clerk
-    // lookup entirely for the (vast majority of) anonymous visitors, who
-    // can never be an admin anyway.
-    const isAdmin = customer ? await isAdminAuthenticated() : false
-    return { products, customer, maintenanceMode, isAdmin }
+    // Only checked once a customer session exists — skips the extra
+    // lookups entirely for the (vast majority of) anonymous visitors, who
+    // can never be an admin or an affiliate anyway.
+    const [isAdmin, isAffiliate] = customer ? await Promise.all([isAdminAuthenticated(), hasMyAffiliate()]) : [false, false]
+    return { products, customer, maintenanceMode, isAdmin, isAffiliate }
   },
   head: () => ({
     meta: [
@@ -84,6 +85,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
   const products = data?.products ?? []
   const customer = data?.customer ?? null
   const isAdminUser = data?.isAdmin ?? false
+  const isAffiliateUser = data?.isAffiliate ?? false
   const maintenanceMode = data?.maintenanceMode ?? false
   const pathname = useRouterState({ select: (s) => s.location.pathname })
   const href = useRouterState({ select: (s) => s.location.href })
@@ -141,7 +143,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
             ) : (
               <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', background: '#ffffff' }}>
                 <AnnouncementBar />
-                <Header customer={customer} isAdminUser={isAdminUser} />
+                <Header customer={customer} isAdminUser={isAdminUser} isAffiliateUser={isAffiliateUser} />
                 <main style={{ flex: 1 }}>{children}</main>
                 <Footer />
               </div>

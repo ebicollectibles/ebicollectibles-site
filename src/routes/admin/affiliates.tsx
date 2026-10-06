@@ -55,7 +55,7 @@ const input: React.CSSProperties = {
 
 const SITE_URL = 'https://ebicollectibles.com'
 
-const emptyForm = { code: '', name: '', email: '', commissionRate: '10', active: true, productIds: [] as string[] }
+const emptyForm = { code: '', name: '', email: '', commissionRate: '10', active: true, productIds: [] as string[], contactEmails: '' }
 
 function money(n: number) {
   return `$${n.toFixed(2)}`
@@ -104,6 +104,10 @@ function AdminAffiliatesPage() {
       commissionRate: String(affiliate.commissionRate),
       active: affiliate.active,
       productIds: affiliate.productIds,
+      // The primary email above already grants dashboard access on its
+      // own (see allContactEmails in admin.ts) — only show the *extra*
+      // ones here so it doesn't look duplicated.
+      contactEmails: affiliate.contactEmails.filter((e) => e !== (affiliate.email ?? '')).join('\n'),
     })
     setError(null)
     setShowForm(true)
@@ -129,7 +133,11 @@ function AdminAffiliatesPage() {
     setSaving(true)
     setError(null)
     try {
-      const data = { code: form.code.trim().toLowerCase(), name: form.name.trim(), email: form.email.trim(), commissionRate: rate, productIds: form.productIds }
+      const contactEmails = form.contactEmails
+        .split('\n')
+        .map((e) => e.trim().toLowerCase())
+        .filter(Boolean)
+      const data = { code: form.code.trim().toLowerCase(), name: form.name.trim(), email: form.email.trim(), commissionRate: rate, productIds: form.productIds, contactEmails }
       if (editingId) {
         await adminUpdateAffiliate({ data: { ...data, id: editingId, active: form.active } })
       } else {
@@ -197,6 +205,20 @@ function AdminAffiliatesPage() {
                 placeholder="zephyr@example.com"
                 style={input}
               />
+            </div>
+            <div>
+              <label style={label}>Other logins that can see this affiliate's dashboard (optional)</label>
+              <textarea
+                value={form.contactEmails}
+                onChange={(e) => setForm((f) => ({ ...f, contactEmails: e.target.value }))}
+                placeholder={'one email per line\nco-owner@example.com'}
+                rows={3}
+                style={{ ...input, resize: 'vertical' }}
+              />
+              <p style={{ fontSize: 11.5, color: '#5a6875', margin: '4px 0 0' }}>
+                The email above already gets access on its own — add more here for e.g. a co-owner covering while they're away. Each
+                must be a real account on the site.
+              </p>
             </div>
             <div>
               <label style={label}>Commission rate (% of the commissionable amount)</label>
@@ -299,6 +321,9 @@ function AdminAffiliatesPage() {
                     <div style={{ fontSize: 11, color: '#5a6875', marginTop: 2 }}>
                       {a.productNames.length === 0 ? 'All products' : `Scoped: ${a.productNames.join(', ')}`}
                     </div>
+                    {a.contactEmails.length > 1 && (
+                      <div style={{ fontSize: 11, color: '#5a6875', marginTop: 2 }}>{a.contactEmails.length} logins can view this dashboard</div>
+                    )}
                   </td>
                   <td style={td}>{a.commissionRate}%</td>
                   <td style={td}>

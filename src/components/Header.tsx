@@ -20,7 +20,15 @@ function PersonIcon() {
   )
 }
 
-export function Header({ customer, isAdminUser = false }: { customer: HeaderCustomer | null; isAdminUser?: boolean }) {
+export function Header({
+  customer,
+  isAdminUser = false,
+  isAffiliateUser = false,
+}: {
+  customer: HeaderCustomer | null
+  isAdminUser?: boolean
+  isAffiliateUser?: boolean
+}) {
   const pathname = useRouterState({ select: (s) => s.location.pathname })
   // Full href (not just pathname) — the Pokemon submenu links all stay on
   // /shop with different `search` params, so pathname alone never changes
@@ -241,6 +249,11 @@ export function Header({ customer, isAdminUser = false }: { customer: HeaderCust
                 <Link to="/account/profile" style={{ display: 'block', padding: '9px 14px', fontSize: 13, color: '#3d4753', whiteSpace: 'nowrap' }}>
                   Profile
                 </Link>
+                {isAffiliateUser && (
+                  <Link to="/account/affiliate" style={{ display: 'block', padding: '9px 14px', fontSize: 13, color: '#3d4753', whiteSpace: 'nowrap' }}>
+                    Affiliate
+                  </Link>
+                )}
                 {isAdminUser && (
                   <Link
                     to="/admin"
@@ -365,6 +378,11 @@ export function Header({ customer, isAdminUser = false }: { customer: HeaderCust
               <Link to="/account/profile" style={{ color: navColor(pathname.startsWith('/account/profile')), padding: '10px 0', borderBottom: '1px solid #f0f2f4' }}>
                 Profile
               </Link>
+              {isAffiliateUser && (
+                <Link to="/account/affiliate" style={{ color: navColor(pathname.startsWith('/account/affiliate')), padding: '10px 0', borderBottom: '1px solid #f0f2f4' }}>
+                  Affiliate
+                </Link>
+              )}
               {isAdminUser && (
                 <Link to="/admin" style={{ color: navColor(pathname.startsWith('/admin')), padding: '10px 0', borderBottom: '1px solid #f0f2f4' }}>
                   Admin
