@@ -4,7 +4,7 @@ import { requireAdmin } from '~/server/admin-auth'
 import { adminGetAffiliateDashboard } from '~/server/admin'
 import { AffiliateDashboardView } from '~/components/AffiliateDashboard'
 
-export const Route = createFileRoute('/admin/affiliates/$id/dashboard')({
+export const Route = createFileRoute('/admin/affiliates_/$id/dashboard')({
   beforeLoad: () => requireAdmin(),
   loader: ({ params }) => adminGetAffiliateDashboard({ data: { affiliateId: params.id } }),
   component: AdminAffiliateDashboardPage,
