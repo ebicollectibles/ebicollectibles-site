@@ -313,7 +313,7 @@ export const orders = pgTable('orders', {
 ])
 
 // An affiliate/referral partner — tracked via a `?ref=<code>` query param on
-// any page (captured client-side into a 30-day cookie, see __root.tsx) or a
+// any page (captured client-side into a 14-day cookie, see __root.tsx) or a
 // short link that bakes the same param into its destination (shortLinks
 // above). code is stored lowercased/trimmed so "Zephyr"/"zephyr " can't
 // become two different-looking rows for the same person, and so matching it

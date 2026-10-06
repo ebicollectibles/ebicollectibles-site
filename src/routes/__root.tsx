@@ -91,7 +91,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
   const href = useRouterState({ select: (s) => s.location.href })
   const isAdmin = pathname.startsWith('/admin')
 
-  // Captures `?ref=<code>` into a 30-day cookie on any page (a specific
+  // Captures `?ref=<code>` into a 14-day cookie on any page (a specific
   // product, the shop, anywhere) — re-runs on every navigation (href
   // changes on both pathname and search-param changes), not just on first
   // load, since this is the client-rendered shell and persists across
@@ -103,7 +103,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
     const ref = new URLSearchParams(window.location.search).get('ref')
     const code = ref?.trim().toLowerCase()
     if (!code) return
-    document.cookie = `${AFFILIATE_REF_COOKIE}=${encodeURIComponent(code)}; path=/; max-age=${30 * 24 * 60 * 60}; samesite=lax`
+    document.cookie = `${AFFILIATE_REF_COOKIE}=${encodeURIComponent(code)}; path=/; max-age=${14 * 24 * 60 * 60}; samesite=lax`
   }, [href])
   // /admin is never gated — the operator needs it working precisely during
   // a maintenance window (running the migration, checking things over)
