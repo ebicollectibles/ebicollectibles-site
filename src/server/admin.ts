@@ -34,6 +34,7 @@ import { CARRIERS } from '~/lib/carriers'
 import { PRODUCT_CATEGORIES, SUBCATEGORIES_BY_CATEGORY, ALL_SUBCATEGORIES, isValidGtin13, GOOGLE_CONDITIONS } from '~/lib/products'
 import { buildShipmentsByOrder, computeFulfillmentStatus, groupBy, remainingQtyByItem } from '~/lib/shipments'
 import { assertAdmin } from './admin-auth'
+import { buildAffiliateDashboard } from './affiliate-dashboard'
 import { sendMarketplaceShipmentEmail, sendNotifyMeAlertEmail, sendShipmentEmail, sendShippingDelayEmail, type EmailSendResult } from './email'
 import { completeSquareOrderFulfillment, getSquareCatalogImages, overlaySquareData, searchMarketplaceOrders, searchSquareCatalogItems } from './square'
 import { upsertSubscriber } from './subscribers'
@@ -1592,6 +1593,17 @@ export const adminListAffiliateOrders = createServerFn({ method: 'GET' })
     const refundedSet = new Set(refundedIds.map((r) => r.orderId))
 
     return orderRows.map((o) => ({ ...o, refunded: refundedSet.has(o.id) }))
+  })
+
+// Read-only preview of exactly what this affiliate sees on their own
+// /account/affiliate page — renders through the same AffiliateDashboardView
+// component, from the same buildAffiliateDashboard query, so this is
+// provably identical rather than a hand-kept-in-sync lookalike.
+export const adminGetAffiliateDashboard = createServerFn({ method: 'GET' })
+  .validator(z.object({ affiliateId: z.string() }))
+  .handler(async ({ data }) => {
+    await assertAdmin()
+    return buildAffiliateDashboard(data.affiliateId)
   })
 
 async function assertAffiliateCodeAvailable(code: string, excludingId?: string) {

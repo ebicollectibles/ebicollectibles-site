@@ -51,6 +51,7 @@ import { Route as AdminOrdersIndexRouteImport } from './routes/admin/orders/inde
 import { Route as AdminOrdersIdRouteImport } from './routes/admin/orders/$id'
 import { Route as AdminProductsIdRouteImport } from './routes/admin/products/$id'
 import { Route as AdminProductsNewRouteImport } from './routes/admin/products/new'
+import { Route as AdminAffiliatesIdDashboardRouteImport } from './routes/admin/affiliates.$id.dashboard'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -263,6 +264,12 @@ const AdminProductsNewRoute = AdminProductsNewRouteImport.update({
   path: '/admin/products/new',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminAffiliatesIdDashboardRoute =
+  AdminAffiliatesIdDashboardRouteImport.update({
+    id: '/$id/dashboard',
+    path: '/$id/dashboard',
+    getParentRoute: () => AdminAffiliatesRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -283,7 +290,7 @@ export interface FileRoutesByFullPath {
   '/account/reset-password': typeof AccountResetPasswordRoute
   '/account/signup': typeof AccountSignupRoute
   '/account/verify': typeof AccountVerifyRoute
-  '/admin/affiliates': typeof AdminAffiliatesRoute
+  '/admin/affiliates': typeof AdminAffiliatesRouteWithChildren
   '/admin/best-selling': typeof AdminBestSellingRoute
   '/admin/bulk-variants': typeof AdminBulkVariantsRoute
   '/admin/links': typeof AdminLinksRoute
@@ -307,6 +314,7 @@ export interface FileRoutesByFullPath {
   '/account/orders/': typeof AccountOrdersIndexRoute
   '/admin/customers/': typeof AdminCustomersIndexRoute
   '/admin/orders/': typeof AdminOrdersIndexRoute
+  '/admin/affiliates/$id/dashboard': typeof AdminAffiliatesIdDashboardRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -327,7 +335,7 @@ export interface FileRoutesByTo {
   '/account/reset-password': typeof AccountResetPasswordRoute
   '/account/signup': typeof AccountSignupRoute
   '/account/verify': typeof AccountVerifyRoute
-  '/admin/affiliates': typeof AdminAffiliatesRoute
+  '/admin/affiliates': typeof AdminAffiliatesRouteWithChildren
   '/admin/best-selling': typeof AdminBestSellingRoute
   '/admin/bulk-variants': typeof AdminBulkVariantsRoute
   '/admin/links': typeof AdminLinksRoute
@@ -351,6 +359,7 @@ export interface FileRoutesByTo {
   '/account/orders': typeof AccountOrdersIndexRoute
   '/admin/customers': typeof AdminCustomersIndexRoute
   '/admin/orders': typeof AdminOrdersIndexRoute
+  '/admin/affiliates/$id/dashboard': typeof AdminAffiliatesIdDashboardRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -372,7 +381,7 @@ export interface FileRoutesById {
   '/account/reset-password': typeof AccountResetPasswordRoute
   '/account/signup': typeof AccountSignupRoute
   '/account/verify': typeof AccountVerifyRoute
-  '/admin/affiliates': typeof AdminAffiliatesRoute
+  '/admin/affiliates': typeof AdminAffiliatesRouteWithChildren
   '/admin/best-selling': typeof AdminBestSellingRoute
   '/admin/bulk-variants': typeof AdminBulkVariantsRoute
   '/admin/links': typeof AdminLinksRoute
@@ -396,6 +405,7 @@ export interface FileRoutesById {
   '/account/orders/': typeof AccountOrdersIndexRoute
   '/admin/customers/': typeof AdminCustomersIndexRoute
   '/admin/orders/': typeof AdminOrdersIndexRoute
+  '/admin/affiliates/$id/dashboard': typeof AdminAffiliatesIdDashboardRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -442,6 +452,7 @@ export interface FileRouteTypes {
     | '/account/orders/'
     | '/admin/customers/'
     | '/admin/orders/'
+    | '/admin/affiliates/$id/dashboard'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -486,6 +497,7 @@ export interface FileRouteTypes {
     | '/account/orders'
     | '/admin/customers'
     | '/admin/orders'
+    | '/admin/affiliates/$id/dashboard'
   id:
     | '__root__'
     | '/'
@@ -530,6 +542,7 @@ export interface FileRouteTypes {
     | '/account/orders/'
     | '/admin/customers/'
     | '/admin/orders/'
+    | '/admin/affiliates/$id/dashboard'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -551,7 +564,7 @@ export interface RootRouteChildren {
   AccountResetPasswordRoute: typeof AccountResetPasswordRoute
   AccountSignupRoute: typeof AccountSignupRoute
   AccountVerifyRoute: typeof AccountVerifyRoute
-  AdminAffiliatesRoute: typeof AdminAffiliatesRoute
+  AdminAffiliatesRoute: typeof AdminAffiliatesRouteWithChildren
   AdminBestSellingRoute: typeof AdminBestSellingRoute
   AdminBulkVariantsRoute: typeof AdminBulkVariantsRoute
   AdminLinksRoute: typeof AdminLinksRoute
@@ -873,8 +886,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminProductsNewRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin/affiliates/$id/dashboard': {
+      id: '/admin/affiliates/$id/dashboard'
+      path: '/$id/dashboard'
+      fullPath: '/admin/affiliates/$id/dashboard'
+      preLoaderRoute: typeof AdminAffiliatesIdDashboardRouteImport
+      parentRoute: typeof AdminAffiliatesRoute
+    }
   }
 }
+
+interface AdminAffiliatesRouteChildren {
+  AdminAffiliatesIdDashboardRoute: typeof AdminAffiliatesIdDashboardRoute
+}
+
+const AdminAffiliatesRouteChildren: AdminAffiliatesRouteChildren = {
+  AdminAffiliatesIdDashboardRoute: AdminAffiliatesIdDashboardRoute,
+}
+
+const AdminAffiliatesRouteWithChildren = AdminAffiliatesRoute._addFileChildren(
+  AdminAffiliatesRouteChildren,
+)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
@@ -895,7 +927,7 @@ const rootRouteChildren: RootRouteChildren = {
   AccountResetPasswordRoute: AccountResetPasswordRoute,
   AccountSignupRoute: AccountSignupRoute,
   AccountVerifyRoute: AccountVerifyRoute,
-  AdminAffiliatesRoute: AdminAffiliatesRoute,
+  AdminAffiliatesRoute: AdminAffiliatesRouteWithChildren,
   AdminBestSellingRoute: AdminBestSellingRoute,
   AdminBulkVariantsRoute: AdminBulkVariantsRoute,
   AdminLinksRoute: AdminLinksRoute,

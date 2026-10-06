@@ -392,6 +392,13 @@ function AdminAffiliatesPage() {
                         Mark paid
                       </button>
                     )}
+                    <Link
+                      to="/admin/affiliates/$id/dashboard"
+                      params={{ id: a.id }}
+                      style={{ color: '#131b28', fontSize: 12.5, marginRight: 12, textDecoration: 'none' }}
+                    >
+                      View dashboard
+                    </Link>
                     <button onClick={() => startEdit(a)} style={{ background: 'none', border: 'none', color: '#131b28', fontSize: 12.5, cursor: 'pointer' }}>
                       Edit
                     </button>

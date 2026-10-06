@@ -2,55 +2,19 @@ import { createServerFn } from '@tanstack/react-start'
 import { and, desc, eq, inArray } from 'drizzle-orm'
 import { getDb } from '~/lib/db/client'
 import { affiliateContacts, affiliates, orders, refundEvents } from '~/lib/db/schema'
+import type { AffiliateDashboardData } from '~/components/AffiliateDashboard'
 import { getCurrentCustomer } from './customer-auth'
 
 /**
- * Cheap existence check for the header's "Affiliate" nav link — same
- * matching rule as getMyAffiliate below, without pulling every attributed
- * order just to decide whether to show a link.
+ * The dashboard's numbers for one already-known affiliate — shared between
+ * getMyAffiliate below (resolves which affiliate from the logged-in
+ * customer's email) and admin's adminGetAffiliateDashboard (admin already
+ * knows the id), so both ultimately render from the exact same query
+ * rather than two hand-kept-in-sync copies.
  */
-export const hasMyAffiliate = createServerFn({ method: 'GET' }).handler(async () => {
-  const customer = await getCurrentCustomer()
-  if (!customer) return false
-  const email = customer.email.trim().toLowerCase()
-
+export async function buildAffiliateDashboard(affiliateId: string): Promise<AffiliateDashboardData | null> {
   const db = getDb()
-  const [viaContact] = await db.select({ affiliateId: affiliateContacts.affiliateId }).from(affiliateContacts).where(eq(affiliateContacts.email, email)).limit(1)
-  if (viaContact) return true
-  const [viaEmail] = await db.select({ id: affiliates.id }).from(affiliates).where(eq(affiliates.email, email)).limit(1)
-  return !!viaEmail
-})
-
-/**
- * Resolves the logged-in customer's own affiliate record, if any, by
- * matching their account email against affiliateContacts — the same
- * accounts allowed to see this dashboard can also be two or more people at
- * the same affiliate (e.g. co-owners), each with their own site login — or
- * the affiliate's own legacy email field, for one created before that
- * table existed. Returns null for anyone who isn't registered as (or on)
- * any affiliate — the account page hides the "Affiliate" nav link entirely
- * in that case (see isAffiliateUser in __root.tsx), so this is a defensive
- * fallback, not the primary gate.
- *
- * Deliberately exposes only this affiliate's own numbers — no other
- * customer's name, email, or address, and no per-order product detail —
- * same privacy bar as everything else under /account.
- */
-export const getMyAffiliate = createServerFn({ method: 'GET' }).handler(async () => {
-  const customer = await getCurrentCustomer()
-  if (!customer) return null
-  const email = customer.email.trim().toLowerCase()
-
-  const db = getDb()
-  const [viaContact] = await db
-    .select({ affiliateId: affiliateContacts.affiliateId })
-    .from(affiliateContacts)
-    .where(eq(affiliateContacts.email, email))
-    .limit(1)
-
-  const [affiliate] = viaContact
-    ? await db.select().from(affiliates).where(eq(affiliates.id, viaContact.affiliateId)).limit(1)
-    : await db.select().from(affiliates).where(eq(affiliates.email, email)).limit(1)
+  const [affiliate] = await db.select().from(affiliates).where(eq(affiliates.id, affiliateId)).limit(1)
   if (!affiliate) return null
 
   const orderRows = await db
@@ -100,4 +64,56 @@ export const getMyAffiliate = createServerFn({ method: 'GET' }).handler(async ()
     owedCommission: Math.round(owedCommission * 100) / 100,
     orders: orderSummaries,
   }
+}
+
+/**
+ * Cheap existence check for the header's "Affiliate" nav link — same
+ * matching rule as getMyAffiliate below, without pulling every attributed
+ * order just to decide whether to show a link.
+ */
+export const hasMyAffiliate = createServerFn({ method: 'GET' }).handler(async () => {
+  const customer = await getCurrentCustomer()
+  if (!customer) return false
+  const email = customer.email.trim().toLowerCase()
+
+  const db = getDb()
+  const [viaContact] = await db.select({ affiliateId: affiliateContacts.affiliateId }).from(affiliateContacts).where(eq(affiliateContacts.email, email)).limit(1)
+  if (viaContact) return true
+  const [viaEmail] = await db.select({ id: affiliates.id }).from(affiliates).where(eq(affiliates.email, email)).limit(1)
+  return !!viaEmail
+})
+
+/**
+ * Resolves the logged-in customer's own affiliate record, if any, by
+ * matching their account email against affiliateContacts — the same
+ * accounts allowed to see this dashboard can also be two or more people at
+ * the same affiliate (e.g. co-owners), each with their own site login — or
+ * the affiliate's own legacy email field, for one created before that
+ * table existed. Returns null for anyone who isn't registered as (or on)
+ * any affiliate — the account page hides the "Affiliate" nav link entirely
+ * in that case (see isAffiliateUser in __root.tsx), so this is a defensive
+ * fallback, not the primary gate.
+ *
+ * Deliberately exposes only this affiliate's own numbers — no other
+ * customer's name, email, or address, and no per-order product detail —
+ * same privacy bar as everything else under /account.
+ */
+export const getMyAffiliate = createServerFn({ method: 'GET' }).handler(async () => {
+  const customer = await getCurrentCustomer()
+  if (!customer) return null
+  const email = customer.email.trim().toLowerCase()
+
+  const db = getDb()
+  const [viaContact] = await db
+    .select({ affiliateId: affiliateContacts.affiliateId })
+    .from(affiliateContacts)
+    .where(eq(affiliateContacts.email, email))
+    .limit(1)
+
+  const [affiliate] = viaContact
+    ? await db.select({ id: affiliates.id }).from(affiliates).where(eq(affiliates.id, viaContact.affiliateId)).limit(1)
+    : await db.select({ id: affiliates.id }).from(affiliates).where(eq(affiliates.email, email)).limit(1)
+  if (!affiliate) return null
+
+  return buildAffiliateDashboard(affiliate.id)
 })
