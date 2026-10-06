@@ -1,7 +1,7 @@
 import { createServerFn } from '@tanstack/react-start'
 import { and, desc, eq, inArray } from 'drizzle-orm'
 import { getDb } from '~/lib/db/client'
-import { affiliateContacts, affiliates, orders, refundEvents } from '~/lib/db/schema'
+import { affiliateContacts, affiliateProducts, affiliates, orders, products, refundEvents } from '~/lib/db/schema'
 import type { AffiliateDashboardData } from '~/components/AffiliateDashboard'
 import { getCurrentCustomer } from './customer-auth'
 
@@ -16,6 +16,16 @@ export async function buildAffiliateDashboard(affiliateId: string): Promise<Affi
   const db = getDb()
   const [affiliate] = await db.select().from(affiliates).where(eq(affiliates.id, affiliateId)).limit(1)
   if (!affiliate) return null
+
+  const scopedRows = await db
+    .select({ productName: products.name, commissionRate: affiliateProducts.commissionRate })
+    .from(affiliateProducts)
+    .innerJoin(products, eq(products.id, affiliateProducts.productId))
+    .where(eq(affiliateProducts.affiliateId, affiliate.id))
+  // Resolve each row's effective rate (its own override, else the
+  // affiliate's default) here rather than on the client — this is already
+  // what gets charged, no reason to make the UI re-derive it.
+  const scopedProducts = scopedRows.map((r) => ({ productName: r.productName, commissionRate: r.commissionRate ?? affiliate.commissionRate }))
 
   const orderRows = await db
     .select({
@@ -58,6 +68,7 @@ export async function buildAffiliateDashboard(affiliateId: string): Promise<Affi
     code: affiliate.code,
     name: affiliate.name,
     commissionRate: affiliate.commissionRate,
+    scopedProducts,
     orderCount: orderRows.length,
     totalCommission: Math.round(totalCommission * 100) / 100,
     paidCommission: Math.round(paidCommission * 100) / 100,

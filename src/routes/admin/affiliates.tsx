@@ -55,7 +55,15 @@ const input: React.CSSProperties = {
 
 const SITE_URL = 'https://ebicollectibles.com'
 
-const emptyForm = { code: '', name: '', email: '', commissionRate: '10', active: true, productIds: [] as string[], contactEmails: '' }
+const emptyForm = {
+  code: '',
+  name: '',
+  email: '',
+  commissionRate: '10',
+  active: true,
+  scopedProducts: [] as { productId: string; rate: string }[],
+  contactEmails: '',
+}
 
 function money(n: number) {
   return `$${n.toFixed(2)}`
@@ -103,7 +111,7 @@ function AdminAffiliatesPage() {
       email: affiliate.email ?? '',
       commissionRate: String(affiliate.commissionRate),
       active: affiliate.active,
-      productIds: affiliate.productIds,
+      scopedProducts: affiliate.scopedProducts.map((p) => ({ productId: p.productId, rate: p.commissionRate == null ? '' : String(p.commissionRate) })),
       // The primary email above already grants dashboard access on its
       // own (see allContactEmails in admin.ts) — only show the *extra*
       // ones here so it doesn't look duplicated.
@@ -120,8 +128,13 @@ function AdminAffiliatesPage() {
   const toggleProduct = (productId: string) => {
     setForm((f) => ({
       ...f,
-      productIds: f.productIds.includes(productId) ? f.productIds.filter((id) => id !== productId) : [...f.productIds, productId],
+      scopedProducts: f.scopedProducts.some((p) => p.productId === productId)
+        ? f.scopedProducts.filter((p) => p.productId !== productId)
+        : [...f.scopedProducts, { productId, rate: '' }],
     }))
+  }
+  const setProductRate = (productId: string, rate: string) => {
+    setForm((f) => ({ ...f, scopedProducts: f.scopedProducts.map((p) => (p.productId === productId ? { ...p, rate } : p)) }))
   }
 
   const save = async () => {
@@ -130,6 +143,19 @@ function AdminAffiliatesPage() {
       setError('Commission rate must be a number.')
       return
     }
+    const scopedProducts: { productId: string; commissionRate: number | null }[] = []
+    for (const p of form.scopedProducts) {
+      if (p.rate.trim() === '') {
+        scopedProducts.push({ productId: p.productId, commissionRate: null })
+        continue
+      }
+      const productRate = Number(p.rate)
+      if (!Number.isFinite(productRate)) {
+        setError('Each item rate must be a number, or left blank to use the default rate.')
+        return
+      }
+      scopedProducts.push({ productId: p.productId, commissionRate: productRate })
+    }
     setSaving(true)
     setError(null)
     try {
@@ -137,7 +163,7 @@ function AdminAffiliatesPage() {
         .split('\n')
         .map((e) => e.trim().toLowerCase())
         .filter(Boolean)
-      const data = { code: form.code.trim().toLowerCase(), name: form.name.trim(), email: form.email.trim(), commissionRate: rate, productIds: form.productIds, contactEmails }
+      const data = { code: form.code.trim().toLowerCase(), name: form.name.trim(), email: form.email.trim(), commissionRate: rate, scopedProducts, contactEmails }
       if (editingId) {
         await adminUpdateAffiliate({ data: { ...data, id: editingId, active: form.active } })
       } else {
@@ -249,19 +275,37 @@ function AdminAffiliatesPage() {
           <div style={{ marginTop: 14 }}>
             <label style={label}>Scoped to products (optional)</label>
             <p style={{ fontSize: 12, color: '#5a6875', margin: '0 0 8px', lineHeight: 1.4 }}>
-              Leave all unchecked for a general affiliate, commissioned on the whole order. Check specific products if this affiliate is only
-              being paid to promote those — commission then only counts what's actually in the cart from this list.
+              Leave all unchecked for a general affiliate, commissioned on the whole order at the rate above. Check specific products if
+              this affiliate is only being paid to promote those — commission then only counts what's actually in the cart from this
+              list. Give a checked item its own rate to override the default just for that item (blank = use the default, 0 = this item
+              earns nothing).
             </p>
-            <div style={{ border: '1px solid #cfd4da', borderRadius: 2, maxHeight: 180, overflowY: 'auto', background: '#fff' }}>
-              {products.map((p) => (
-                <label
-                  key={p.id}
-                  style={{ display: 'flex', alignItems: 'center', gap: 8, padding: '6px 10px', fontSize: 12.5, borderBottom: '1px solid #f0f2f4', cursor: 'pointer' }}
-                >
-                  <input type="checkbox" checked={form.productIds.includes(p.id)} onChange={() => toggleProduct(p.id)} />
-                  {p.name}
-                </label>
-              ))}
+            <div style={{ border: '1px solid #cfd4da', borderRadius: 2, maxHeight: 220, overflowY: 'auto', background: '#fff' }}>
+              {products.map((p) => {
+                const scoped = form.scopedProducts.find((sp) => sp.productId === p.id)
+                return (
+                  <label
+                    key={p.id}
+                    style={{ display: 'flex', alignItems: 'center', gap: 8, padding: '6px 10px', fontSize: 12.5, borderBottom: '1px solid #f0f2f4', cursor: 'pointer' }}
+                  >
+                    <input type="checkbox" checked={!!scoped} onChange={() => toggleProduct(p.id)} />
+                    <span style={{ flex: 1 }}>{p.name}</span>
+                    {scoped && (
+                      <input
+                        type="number"
+                        min={0}
+                        max={50}
+                        step="0.5"
+                        placeholder={`${form.commissionRate || '—'}%`}
+                        value={scoped.rate}
+                        onChange={(e) => setProductRate(p.id, e.target.value)}
+                        onClick={(e) => e.stopPropagation()}
+                        style={{ width: 72, padding: '3px 6px', fontSize: 12, border: '1px solid #cfd4da', borderRadius: 2, fontFamily: 'inherit' }}
+                      />
+                    )}
+                  </label>
+                )
+              })}
             </div>
           </div>
           {form.code.trim() && (
@@ -319,7 +363,9 @@ function AdminAffiliatesPage() {
                     <div style={{ fontWeight: 600 }}>{a.name}</div>
                     <div style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 11.5, color: '#5a6875' }}>?ref={a.code}</div>
                     <div style={{ fontSize: 11, color: '#5a6875', marginTop: 2 }}>
-                      {a.productNames.length === 0 ? 'All products' : `Scoped: ${a.productNames.join(', ')}`}
+                      {a.scopedProducts.length === 0
+                        ? 'All products'
+                        : `Scoped: ${a.scopedProducts.map((p) => `${p.productName} (${p.commissionRate ?? a.commissionRate}%)`).join(', ')}`}
                     </div>
                     {a.contactEmails.length > 1 && (
                       <div style={{ fontSize: 11, color: '#5a6875', marginTop: 2 }}>{a.contactEmails.length} logins can view this dashboard</div>

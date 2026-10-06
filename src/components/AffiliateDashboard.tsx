@@ -7,6 +7,11 @@ export type AffiliateDashboardData = {
   code: string
   name: string
   commissionRate: number
+  // Empty when unscoped (commissionRate above applies to everything).
+  // Non-empty when restricted to just these products — each one's
+  // commissionRate here is already the effective rate (its own override,
+  // or the affiliate's default if it doesn't have one).
+  scopedProducts: Array<{ productName: string; commissionRate: number }>
   orderCount: number
   totalCommission: number
   paidCommission: number
@@ -75,8 +80,25 @@ export function AffiliateDashboardView({ affiliate, heading = 'Affiliate' }: { a
     <div>
       <h1 style={{ fontSize: 26, fontWeight: 700, margin: 0 }}>{heading}</h1>
       <p style={{ fontSize: 14, color: '#5a6875', marginTop: 8 }}>
-        {affiliate.name} · {affiliate.commissionRate}% commission
+        {affiliate.name} · {affiliate.commissionRate}% {affiliate.scopedProducts.length > 0 ? 'default commission' : 'commission'}
       </p>
+
+      {affiliate.scopedProducts.length > 0 && (
+        <div style={{ marginTop: 16, border: '1px solid #e3e6ea', borderRadius: 4, padding: '16px 20px' }}>
+          <div style={monoLabel}>Rate by item</div>
+          <p style={{ fontSize: 12, color: '#5a6875', margin: '4px 0 10px' }}>
+            Only these items earn commission — anything else bought through the link earns nothing.
+          </p>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
+            {affiliate.scopedProducts.map((p) => (
+              <div key={p.productName} style={{ display: 'flex', justifyContent: 'space-between', gap: 12, fontSize: 13 }}>
+                <span style={{ color: '#131b28' }}>{p.productName}</span>
+                <span style={{ fontFamily: "'IBM Plex Mono', monospace", fontWeight: 600, whiteSpace: 'nowrap' }}>{p.commissionRate}%</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
 
       <div style={{ marginTop: 24, border: '1px solid #e3e6ea', borderRadius: 4, padding: '16px 20px' }}>
         <div style={monoLabel}>Referral link</div>

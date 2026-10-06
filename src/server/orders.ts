@@ -319,7 +319,7 @@ export const placeOrder = createServerFn({ method: 'POST' })
       // the click converted to *something*, just with no commission owed.
       const affiliateCommission =
         affiliateAttribution && charge.status === 'paid'
-          ? computeAffiliateCommission(lineDetails, affiliateAttribution.commissionRate, affiliateAttribution.scopedProductIds)
+          ? computeAffiliateCommission(lineDetails, affiliateAttribution.commissionRate, affiliateAttribution.scopedProducts)
           : null
 
       const [order] = await tx

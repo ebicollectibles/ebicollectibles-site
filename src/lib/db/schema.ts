@@ -342,6 +342,11 @@ export const affiliates = pgTable('affiliates', {
 // on an unrelated purchase someone happens to make after clicking their
 // link. No rows for a given affiliate means unscoped: commission on the
 // whole order, same as before this table existed.
+// commissionRate overrides affiliates.commissionRate for just this one
+// product — null means inherit the affiliate's default rate; 0 means this
+// specific item earns nothing even though it's still in scope (counts as
+// "attributed, no commission owed," not "excluded"). See
+// computeAffiliateCommission in server/affiliates.ts.
 export const affiliateProducts = pgTable(
   'affiliate_products',
   {
@@ -351,6 +356,7 @@ export const affiliateProducts = pgTable(
     productId: text('product_id')
       .notNull()
       .references(() => products.id, { onDelete: 'cascade' }),
+    commissionRate: numeric('commission_rate', { precision: 5, scale: 2, mode: 'number' }),
   },
   (table) => [primaryKey({ columns: [table.affiliateId, table.productId] })],
 )

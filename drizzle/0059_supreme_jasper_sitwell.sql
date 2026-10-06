@@ -1,0 +1,1 @@
+ALTER TABLE "affiliate_products" ADD COLUMN "commission_rate" numeric(5, 2);

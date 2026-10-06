@@ -19,15 +19,21 @@
  *   reviews payouts before sending real money — this catches the naive
  *   case for free, not meant to be cryptographically airtight.
  *
- * scopedProductIds is the set this affiliate is restricted to (e.g.
- * someone paid to post about one specific item on Discord) — empty means
- * unscoped, commission on the whole order, same as before product scoping
- * existed.
+ * scopedProducts is the set this affiliate is restricted to (e.g. someone
+ * paid to post about one specific item on Discord) — empty means unscoped,
+ * commission on the whole order at commissionRate, same as before product
+ * scoping existed. Each scoped product's own commissionRate (set in admin)
+ * overrides the affiliate's default for just that product when set; null
+ * means inherit the default — see computeAffiliateCommission.
  */
 export async function resolveAffiliateAttribution(
   refCode: string | undefined,
   checkoutEmail: string,
-): Promise<{ affiliateId: string; commissionRate: number; scopedProductIds: string[] } | null> {
+): Promise<{
+  affiliateId: string
+  commissionRate: number
+  scopedProducts: Array<{ productId: string; commissionRate: number | null }>
+} | null> {
   if (!refCode) return null
   const code = refCode.trim().toLowerCase()
   if (!code) return null
@@ -59,26 +65,38 @@ export async function resolveAffiliateAttribution(
     .limit(1)
   if (contactMatch) return null
 
-  const scopedRows = await db.select({ productId: affiliateProducts.productId }).from(affiliateProducts).where(eq(affiliateProducts.affiliateId, affiliate.id))
+  const scopedRows = await db
+    .select({ productId: affiliateProducts.productId, commissionRate: affiliateProducts.commissionRate })
+    .from(affiliateProducts)
+    .where(eq(affiliateProducts.affiliateId, affiliate.id))
 
-  return { affiliateId: affiliate.id, commissionRate: affiliate.commissionRate, scopedProductIds: scopedRows.map((r) => r.productId) }
+  return { affiliateId: affiliate.id, commissionRate: affiliate.commissionRate, scopedProducts: scopedRows }
 }
 
 /**
  * Commission = rate x the commissionable subtotal, rounded to the cent
  * (same convention as every other money calc in this app, see
- * order-math.ts). Unscoped affiliates (scopedProductIds empty) commission
- * on the full order subtotal; a scoped affiliate only commissions on the
- * lines matching their assigned product(s) — a referred customer who buys
- * something else entirely earns them nothing on that portion.
+ * order-math.ts). Unscoped affiliates (scopedProducts empty) commission
+ * the whole order at defaultCommissionRate; a scoped affiliate only
+ * commissions the lines matching their assigned product(s), each at its
+ * own override rate if set, else defaultCommissionRate — a referred
+ * customer who buys something else entirely earns them nothing on that
+ * portion, and a scoped product overridden to 0% earns nothing on
+ * purpose.
  */
 export function computeAffiliateCommission(
   lineDetails: Array<{ productId: string; unitPrice: number; qty: number }>,
-  commissionRate: number,
-  scopedProductIds: string[],
+  defaultCommissionRate: number,
+  scopedProducts: Array<{ productId: string; commissionRate: number | null }>,
 ): number {
-  const scoped = new Set(scopedProductIds)
-  const commissionableSubtotal =
-    scoped.size === 0 ? lineDetails.reduce((sum, l) => sum + l.unitPrice * l.qty, 0) : lineDetails.filter((l) => scoped.has(l.productId)).reduce((sum, l) => sum + l.unitPrice * l.qty, 0)
-  return Math.round(commissionableSubtotal * (commissionRate / 100) * 100) / 100
+  if (scopedProducts.length === 0) {
+    const subtotal = lineDetails.reduce((sum, l) => sum + l.unitPrice * l.qty, 0)
+    return Math.round(subtotal * (defaultCommissionRate / 100) * 100) / 100
+  }
+  const rateByProduct = new Map(scopedProducts.map((p) => [p.productId, p.commissionRate ?? defaultCommissionRate]))
+  const commission = lineDetails.reduce((sum, l) => {
+    const rate = rateByProduct.get(l.productId)
+    return rate == null ? sum : sum + l.unitPrice * l.qty * (rate / 100)
+  }, 0)
+  return Math.round(commission * 100) / 100
 }
