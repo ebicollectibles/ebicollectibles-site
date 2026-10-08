@@ -7,14 +7,16 @@ export type AffiliateDashboardData = {
   code: string
   name: string
   commissionRate: number
-  // Products with their own rate — each one's commissionRate here is
-  // already the effective rate (its own override, or the affiliate's
-  // default if it doesn't have one). Does not by itself mean other
-  // products earn nothing — see restrictToScopedProducts.
-  scopedProducts: Array<{ productName: string; commissionRate: number }>
-  // true: ONLY scopedProducts earn anything, everything else earns
-  // nothing. false: everything earns commissionRate by default, and
-  // scopedProducts are just special-cased on top of that.
+  // Every published product with its effective rate (its own override,
+  // or the affiliate's default commissionRate if it doesn't have one).
+  // isDefault marks a row that's just inheriting the default, rather than
+  // having its own override. excluded means this product earns nothing
+  // (only possible when restrictToScopedProducts is true and this product
+  // has no override — commissionRate is 0 in that case too).
+  productRates: Array<{ productName: string; commissionRate: number; isDefault: boolean; excluded: boolean }>
+  // true: ONLY products with their own override earn anything, everything
+  // else earns nothing. false: everything earns commissionRate by
+  // default, and overridden products are just special-cased on top.
   restrictToScopedProducts: boolean
   orderCount: number
   totalCommission: number
@@ -84,22 +86,31 @@ export function AffiliateDashboardView({ affiliate, heading = 'Affiliate' }: { a
     <div>
       <h1 style={{ fontSize: 26, fontWeight: 700, margin: 0 }}>{heading}</h1>
       <p style={{ fontSize: 14, color: '#5a6875', marginTop: 8 }}>
-        {affiliate.name} · {affiliate.commissionRate}% {affiliate.scopedProducts.length > 0 ? 'default commission' : 'commission'}
+        {affiliate.name} · {affiliate.commissionRate}% default commission
       </p>
 
-      {affiliate.scopedProducts.length > 0 && (
+      {affiliate.productRates.length > 0 && (
         <div style={{ marginTop: 16, border: '1px solid #e3e6ea', borderRadius: 4, padding: '16px 20px' }}>
           <div style={monoLabel}>Rate by item</div>
           <p style={{ fontSize: 12, color: '#5a6875', margin: '4px 0 10px' }}>
             {affiliate.restrictToScopedProducts
-              ? 'Only these items earn commission — anything else bought through the link earns nothing.'
-              : `These items earn their own rate — everything else still earns the ${affiliate.commissionRate}% default.`}
+              ? 'Only items with their own rate earn commission — everything else earns nothing.'
+              : `Everything earns the ${affiliate.commissionRate}% default unless it has its own rate below.`}
           </p>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
-            {affiliate.scopedProducts.map((p) => (
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 6, maxHeight: 280, overflowY: 'auto' }}>
+            {affiliate.productRates.map((p) => (
               <div key={p.productName} style={{ display: 'flex', justifyContent: 'space-between', gap: 12, fontSize: 13 }}>
-                <span style={{ color: '#131b28' }}>{p.productName}</span>
-                <span style={{ fontFamily: "'IBM Plex Mono', monospace", fontWeight: 600, whiteSpace: 'nowrap' }}>{p.commissionRate}%</span>
+                <span style={{ color: p.isDefault ? '#5a6875' : '#131b28' }}>{p.productName}</span>
+                <span
+                  style={{
+                    fontFamily: "'IBM Plex Mono', monospace",
+                    fontWeight: p.isDefault ? 400 : 600,
+                    color: p.excluded ? '#5a6875' : '#131b28',
+                    whiteSpace: 'nowrap',
+                  }}
+                >
+                  {p.excluded ? 'Not included' : `${p.commissionRate}%`}
+                </span>
               </div>
             ))}
           </div>

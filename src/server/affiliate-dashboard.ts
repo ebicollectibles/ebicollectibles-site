@@ -17,15 +17,24 @@ export async function buildAffiliateDashboard(affiliateId: string): Promise<Affi
   const [affiliate] = await db.select().from(affiliates).where(eq(affiliates.id, affiliateId)).limit(1)
   if (!affiliate) return null
 
-  const scopedRows = await db
-    .select({ productName: products.name, commissionRate: affiliateProducts.commissionRate })
+  const overrideRows = await db
+    .select({ productId: affiliateProducts.productId, commissionRate: affiliateProducts.commissionRate })
     .from(affiliateProducts)
-    .innerJoin(products, eq(products.id, affiliateProducts.productId))
     .where(eq(affiliateProducts.affiliateId, affiliate.id))
-  // Resolve each row's effective rate (its own override, else the
-  // affiliate's default) here rather than on the client — this is already
-  // what gets charged, no reason to make the UI re-derive it.
-  const scopedProducts = scopedRows.map((r) => ({ productName: r.productName, commissionRate: r.commissionRate ?? affiliate.commissionRate }))
+  const overrideByProduct = new Map(overrideRows.map((r) => [r.productId, r.commissionRate]))
+
+  // Every published product, each with its effective rate — not just the
+  // ones with an override — so the dashboard shows the whole picture
+  // instead of making the viewer infer "everything else is the default."
+  // Resolved here rather than on the client since this is already what
+  // gets charged at checkout, no reason to make the UI re-derive it.
+  const allProducts = await db.select({ productId: products.id, productName: products.name }).from(products).where(eq(products.published, true))
+  const productRates = allProducts.map((p) => {
+    const hasOverride = overrideByProduct.has(p.productId)
+    const excluded = affiliate.restrictToScopedProducts && !hasOverride
+    const commissionRate = excluded ? 0 : overrideByProduct.get(p.productId) ?? affiliate.commissionRate
+    return { productName: p.productName, commissionRate, isDefault: !hasOverride && !excluded, excluded }
+  })
 
   const orderRows = await db
     .select({
@@ -68,7 +77,7 @@ export async function buildAffiliateDashboard(affiliateId: string): Promise<Affi
     code: affiliate.code,
     name: affiliate.name,
     commissionRate: affiliate.commissionRate,
-    scopedProducts,
+    productRates,
     restrictToScopedProducts: affiliate.restrictToScopedProducts,
     orderCount: orderRows.length,
     totalCommission: Math.round(totalCommission * 100) / 100,
