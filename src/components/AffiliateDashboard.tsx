@@ -97,22 +97,53 @@ export function AffiliateDashboardView({ affiliate, heading = 'Affiliate' }: { a
               ? 'Only items with their own rate earn commission — everything else earns nothing.'
               : `Everything earns the ${affiliate.commissionRate}% default unless it has its own rate below.`}
           </p>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 6, maxHeight: 280, overflowY: 'auto' }}>
-            {affiliate.productRates.map((p) => (
-              <div key={p.productName} style={{ display: 'flex', justifyContent: 'space-between', gap: 12, fontSize: 13 }}>
-                <span style={{ color: p.isDefault ? '#5a6875' : '#131b28' }}>{p.productName}</span>
-                <span
-                  style={{
-                    fontFamily: "'IBM Plex Mono', monospace",
-                    fontWeight: p.isDefault ? 400 : 600,
-                    color: p.excluded ? '#5a6875' : '#131b28',
-                    whiteSpace: 'nowrap',
-                  }}
-                >
-                  {p.excluded ? 'Not included' : `${p.commissionRate}%`}
-                </span>
-              </div>
-            ))}
+          <div style={{ maxHeight: 280, overflowY: 'auto' }}>
+            <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+              <thead>
+                <tr>
+                  <th style={{ ...th, position: 'sticky', top: 0, background: '#fff' }}>Item</th>
+                  <th style={{ ...th, position: 'sticky', top: 0, background: '#fff', textAlign: 'right' }}>Rate</th>
+                </tr>
+              </thead>
+              <tbody>
+                {affiliate.productRates.map((p) => (
+                  <tr key={p.productName}>
+                    <td style={{ ...td, color: p.isDefault ? '#5a6875' : '#131b28' }}>{p.productName}</td>
+                    <td style={{ ...td, textAlign: 'right' }}>
+                      {p.excluded ? (
+                        <span
+                          style={{
+                            fontFamily: "'IBM Plex Mono', monospace",
+                            fontSize: 10.5,
+                            letterSpacing: '0.06em',
+                            textTransform: 'uppercase',
+                            color: '#5a6875',
+                          }}
+                        >
+                          Not included
+                        </span>
+                      ) : (
+                        <span
+                          style={{
+                            display: 'inline-block',
+                            padding: '3px 10px',
+                            borderRadius: 10,
+                            fontFamily: "'IBM Plex Mono', monospace",
+                            fontWeight: 700,
+                            fontSize: 12,
+                            whiteSpace: 'nowrap',
+                            background: p.isDefault ? '#eef0f2' : '#e3f0e9',
+                            color: p.isDefault ? '#5a6875' : '#2f6b4f',
+                          }}
+                        >
+                          {p.commissionRate}%
+                        </span>
+                      )}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
         </div>
       )}
