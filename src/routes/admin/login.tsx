@@ -84,11 +84,12 @@ function AdminLoginPage() {
         justifyContent: 'center',
         background: '#f6f7f8',
         fontFamily: 'Archivo, Helvetica, sans-serif',
+        padding: 16,
       }}
     >
       <form
         onSubmit={needsCode ? submitCode : submit}
-        style={{ background: '#ffffff', border: '1px solid #e3e6ea', padding: 32, width: 340, borderRadius: 4 }}
+        style={{ background: '#ffffff', border: '1px solid #e3e6ea', padding: 32, width: 340, maxWidth: '100%', borderRadius: 4 }}
       >
         <div style={{ fontSize: 15, fontWeight: 700, letterSpacing: '0.06em' }}>EBI COLLECTIBLES</div>
         <div

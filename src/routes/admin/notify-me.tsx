@@ -74,8 +74,8 @@ function NotifyMeSignupList({ productId }: { productId: string }) {
   if (people.length === 0) return <p style={{ fontSize: 12.5, color: '#5a6875', padding: '12px 16px' }}>No one yet.</p>
 
   return (
-    <div style={{ background: '#f6f7f8', padding: '10px 16px 14px' }}>
-      <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+    <div style={{ background: '#f6f7f8', padding: '10px 16px 14px', overflowX: 'auto' }}>
+      <table style={{ width: '100%', borderCollapse: 'collapse', minWidth: 560 }}>
         <thead>
           <tr>
             <th style={{ ...th, borderBottom: '1px solid #cfd4da' }}>Name</th>
@@ -133,22 +133,24 @@ function NotifyMeBlastRecipients({ blastId }: { blastId: string }) {
   if (recipients.length === 0) return <p style={{ fontSize: 11.5, color: '#5a6875', margin: '8px 0 0' }}>Nobody was actually emailed in this batch.</p>
 
   return (
-    <table style={{ width: '100%', borderCollapse: 'collapse', margin: '8px 0 0' }}>
-      <tbody>
-        {recipients.map((r) => {
-          const status = deliveryStatus(r)
-          return (
-            <tr key={r.id}>
-              <td style={{ padding: '3px 0', fontSize: 12, color: '#131b28' }}>{r.email}</td>
-              <td style={{ padding: '3px 0', fontSize: 11.5, color: status.color, textAlign: 'right', whiteSpace: 'nowrap' }}>
-                {status.label}
-                {status.at && <span style={{ color: '#5a6875' }}> · {new Date(status.at).toLocaleString()}</span>}
-              </td>
-            </tr>
-          )
-        })}
-      </tbody>
-    </table>
+    <div style={{ overflowX: 'auto' }}>
+      <table style={{ width: '100%', borderCollapse: 'collapse', margin: '8px 0 0', minWidth: 420 }}>
+        <tbody>
+          {recipients.map((r) => {
+            const status = deliveryStatus(r)
+            return (
+              <tr key={r.id}>
+                <td style={{ padding: '3px 0', fontSize: 12, color: '#131b28' }}>{r.email}</td>
+                <td style={{ padding: '3px 0', fontSize: 11.5, color: status.color, textAlign: 'right', whiteSpace: 'nowrap' }}>
+                  {status.label}
+                  {status.at && <span style={{ color: '#5a6875' }}> · {new Date(status.at).toLocaleString()}</span>}
+                </td>
+              </tr>
+            )
+          })}
+        </tbody>
+      </table>
+    </div>
   )
 }
 

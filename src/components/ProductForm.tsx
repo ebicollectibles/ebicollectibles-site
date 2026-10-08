@@ -99,6 +99,14 @@ const field: React.CSSProperties = {
   fontSize: 14,
   outline: 'none',
   width: '100%',
+  // Flex items default to a min-width equal to their content's min-content
+  // size, which for a text input is ~170-200px regardless of `width:
+  // 100%` — without this, every image-URL row (input + Upload + Browse
+  // buttons, all in a flex row) refuses to shrink below that floor and
+  // overflows a narrow phone screen. Harmless everywhere else `field` is
+  // used standalone (not in a flex row), since it has no effect outside
+  // a flex/grid context.
+  minWidth: 0,
 }
 const disabledField: React.CSSProperties = {
   ...field,
@@ -1034,7 +1042,7 @@ export function ProductForm({
         <label htmlFor="pf-img" style={label}>
           Feature image — desktop (leave blank for a placeholder square)
         </label>
-        <div style={{ display: 'flex', gap: 8 }}>
+        <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
           <input
             id="pf-img"
             className="ebi-field"
@@ -1059,7 +1067,7 @@ export function ProductForm({
         <label htmlFor="pf-img-tablet" style={label}>
           Feature image — tablet (optional, falls back to desktop)
         </label>
-        <div style={{ display: 'flex', gap: 8 }}>
+        <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
           <input
             id="pf-img-tablet"
             className="ebi-field"
@@ -1076,7 +1084,7 @@ export function ProductForm({
         <label htmlFor="pf-img-mobile" style={label}>
           Feature image — mobile (optional, falls back to desktop)
         </label>
-        <div style={{ display: 'flex', gap: 8 }}>
+        <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
           <input
             id="pf-img-mobile"
             className="ebi-field"
@@ -1092,7 +1100,7 @@ export function ProductForm({
       <div style={{ marginBottom: 16 }}>
         <label style={label}>Additional images (shown as a gallery on the product page)</label>
         {values.images.map((url, i) => (
-          <div key={i} style={{ display: 'flex', gap: 8, marginBottom: 8 }}>
+          <div key={i} style={{ display: 'flex', gap: 8, marginBottom: 8, flexWrap: 'wrap' }}>
             <input
               aria-label={`Additional image ${i + 1} URL`}
               className="ebi-field"
@@ -1133,7 +1141,7 @@ export function ProductForm({
             </button>
           </div>
         ))}
-        <div style={{ display: 'flex', gap: 8 }}>
+        <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
           <button
             type="button"
             onClick={() => set('images', [...values.images, ''])}
@@ -1188,7 +1196,7 @@ export function ProductForm({
           list, and **bold** / *italic* work inline.
         </p>
       </div>
-      <div style={{ marginBottom: 16, display: 'flex', gap: 12 }}>
+      <div className="ebi-form-grid-2" style={{ marginBottom: 16, gap: 12 }}>
         <div style={{ flex: 1 }}>
           <label htmlFor="pf-gtin" style={label}>
             GTIN-13 (barcode)
@@ -1215,7 +1223,7 @@ export function ProductForm({
           <input id="pf-brand" className="ebi-field" style={field} value={values.brand} onChange={(e) => set('brand', e.target.value)} placeholder="Pokémon" />
         </div>
       </div>
-      <div style={{ marginBottom: 16, display: 'flex', gap: 12 }}>
+      <div className="ebi-form-grid-2" style={{ marginBottom: 16, gap: 12 }}>
         <div style={{ flex: 1 }}>
           <label htmlFor="pf-condition" style={label}>
             Condition (for Google Shopping)
@@ -1301,8 +1309,8 @@ export function ProductForm({
           figure it can contain) and they'll show as selectable options on each other's product page. Each one is
           still a fully separate product with its own price, stock and Square link.
         </p>
-        <div style={{ display: 'flex', gap: 14, marginBottom: 12 }}>
-          <div style={{ flex: 2 }}>
+        <div style={{ display: 'flex', gap: 14, marginBottom: 12, flexWrap: 'wrap' }}>
+          <div style={{ flex: '2 1 160px' }}>
             <label htmlFor="pf-variant-group" style={label}>
               Variant group ID
             </label>
@@ -1315,7 +1323,7 @@ export function ProductForm({
               placeholder="e.g. gem6-blindbox"
             />
           </div>
-          <div style={{ flex: 2 }}>
+          <div style={{ flex: '2 1 160px' }}>
             <label htmlFor="pf-variant-label" style={label}>
               Option label
             </label>
@@ -1328,7 +1336,7 @@ export function ProductForm({
               placeholder="e.g. Sealed, or Pikachu"
             />
           </div>
-          <div style={{ flex: 1 }}>
+          <div style={{ flex: '1 1 90px' }}>
             <label htmlFor="pf-variant-sort" style={label}>
               Order
             </label>

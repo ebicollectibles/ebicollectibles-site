@@ -206,13 +206,29 @@ export function DraggableRankList({ products, field }: { products: AdminProduct[
                   <div style={{ fontSize: 13.5, fontWeight: 600, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{p.name}</div>
                   <div style={{ fontSize: 11.5, color: '#5a6875' }}>{p.subcategory}</div>
                 </div>
-                <div style={{ display: 'flex', flexDirection: 'column', gap: 2, flexShrink: 0 }}>
+                {/* Native HTML5 drag-and-drop (above) never fires on touch, so these
+                    arrows are the only reorder control that works on a phone — sized
+                    for a real tap target, not just a desktop-mouse affordance. */}
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 4, flexShrink: 0 }}>
                   <button
                     type="button"
                     onClick={() => move(i, -1)}
                     disabled={i === 0}
                     aria-label={`Move ${p.name} up`}
-                    style={{ background: 'none', border: '1px solid #cfd4da', borderRadius: 2, width: 22, height: 18, cursor: i === 0 ? 'not-allowed' : 'pointer', opacity: i === 0 ? 0.4 : 1, fontSize: 10, lineHeight: 1 }}
+                    style={{
+                      background: 'none',
+                      border: '1px solid #cfd4da',
+                      borderRadius: 2,
+                      width: 36,
+                      height: 32,
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      cursor: i === 0 ? 'not-allowed' : 'pointer',
+                      opacity: i === 0 ? 0.4 : 1,
+                      fontSize: 13,
+                      lineHeight: 1,
+                    }}
                   >
                     ▲
                   </button>
@@ -221,7 +237,20 @@ export function DraggableRankList({ products, field }: { products: AdminProduct[
                     onClick={() => move(i, 1)}
                     disabled={i === added.length - 1}
                     aria-label={`Move ${p.name} down`}
-                    style={{ background: 'none', border: '1px solid #cfd4da', borderRadius: 2, width: 22, height: 18, cursor: i === added.length - 1 ? 'not-allowed' : 'pointer', opacity: i === added.length - 1 ? 0.4 : 1, fontSize: 10, lineHeight: 1 }}
+                    style={{
+                      background: 'none',
+                      border: '1px solid #cfd4da',
+                      borderRadius: 2,
+                      width: 36,
+                      height: 32,
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      cursor: i === added.length - 1 ? 'not-allowed' : 'pointer',
+                      opacity: i === added.length - 1 ? 0.4 : 1,
+                      fontSize: 13,
+                      lineHeight: 1,
+                    }}
                   >
                     ▼
                   </button>

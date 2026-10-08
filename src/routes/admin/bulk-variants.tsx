@@ -154,22 +154,24 @@ function BulkVariantsPage() {
             {results.filter((r) => r.ok).length} of {results.length} updated
             {results.some((r) => !r.ok) ? ' — see failures below.' : '.'}
           </p>
-          <table style={{ width: '100%', borderCollapse: 'collapse', marginTop: 10 }}>
-            <thead>
-              <tr>
-                <th style={th}>Product ID</th>
-                <th style={th}>Result</th>
-              </tr>
-            </thead>
-            <tbody>
-              {results.map((r) => (
-                <tr key={r.id}>
-                  <td style={{ ...td, fontFamily: "'IBM Plex Mono', monospace" }}>{r.id}</td>
-                  <td style={{ ...td, color: r.ok ? '#3f7a63' : '#b4622f' }}>{r.ok ? 'Updated' : r.error}</td>
+          <div style={{ overflowX: 'auto' }}>
+            <table style={{ width: '100%', borderCollapse: 'collapse', marginTop: 10, minWidth: 420 }}>
+              <thead>
+                <tr>
+                  <th style={th}>Product ID</th>
+                  <th style={th}>Result</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {results.map((r) => (
+                  <tr key={r.id}>
+                    <td style={{ ...td, fontFamily: "'IBM Plex Mono', monospace" }}>{r.id}</td>
+                    <td style={{ ...td, color: r.ok ? '#3f7a63' : '#b4622f' }}>{r.ok ? 'Updated' : r.error}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </div>
       )}
     </div>

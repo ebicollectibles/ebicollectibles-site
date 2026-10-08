@@ -512,8 +512,8 @@ function AffiliateOrders({ affiliateId }: { affiliateId: string }) {
   if (orders.length === 0) return <p style={{ fontSize: 12.5, color: '#5a6875', padding: '12px 16px' }}>No orders yet.</p>
 
   return (
-    <div style={{ background: '#f6f7f8', padding: '10px 16px 14px' }}>
-      <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+    <div style={{ background: '#f6f7f8', padding: '10px 16px 14px', overflowX: 'auto' }}>
+      <table style={{ width: '100%', borderCollapse: 'collapse', minWidth: 520 }}>
         <thead>
           <tr>
             <th style={{ ...th, borderBottom: '1px solid #cfd4da' }}>Order</th>
