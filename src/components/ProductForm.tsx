@@ -582,7 +582,7 @@ function VariantSiblingsHint({
       <button
         type="button"
         onClick={() => onPickOrder(nextFree)}
-        style={{ marginTop: 6, background: 'none', border: '1px solid #cfd4da', borderRadius: 2, padding: '3px 8px', fontSize: 11, cursor: 'pointer' }}
+        style={{ marginTop: 6, background: 'none', border: '1px solid #cfd4da', borderRadius: 2, padding: '6px 10px', fontSize: 11, cursor: 'pointer' }}
       >
         Use next free order ({nextFree})
       </button>
@@ -980,7 +980,7 @@ export function ProductForm({
           >
             <span>{squareLabel ?? `Linked (${values.squareVariationId})`}</span>
             <div style={{ display: 'flex', gap: 8, flexShrink: 0 }}>
-              <button type="button" onClick={() => setSquarePickerOpen(true)} style={{ background: 'none', border: '1px solid #cfd4da', borderRadius: 2, padding: '6px 10px', fontSize: 12, cursor: 'pointer', color: '#5a6875' }}>
+              <button type="button" onClick={() => setSquarePickerOpen(true)} style={{ background: 'none', border: '1px solid #cfd4da', borderRadius: 2, padding: '8px 14px', fontSize: 12, cursor: 'pointer', color: '#5a6875' }}>
                 Change
               </button>
               <button
@@ -990,7 +990,7 @@ export function ProductForm({
                   set('squareVariationId', '')
                   set('stock', 0)
                 }}
-                style={{ background: 'none', border: '1px solid #cfd4da', borderRadius: 2, padding: '6px 10px', fontSize: 12, cursor: 'pointer', color: '#b4622f' }}
+                style={{ background: 'none', border: '1px solid #cfd4da', borderRadius: 2, padding: '8px 14px', fontSize: 12, cursor: 'pointer', color: '#b4622f' }}
               >
                 Unlink
               </button>

@@ -419,7 +419,7 @@ function AdminOrderDetailPage() {
                   background: 'none',
                   border: '1px solid #cfd4da',
                   borderRadius: 2,
-                  padding: '4px 8px',
+                  padding: '7px 12px',
                   fontSize: 11,
                   color: '#131b28',
                   cursor: updating ? 'default' : 'pointer',
@@ -437,7 +437,7 @@ function AdminOrderDetailPage() {
                 background: 'none',
                 border: '1px solid #cfd4da',
                 borderRadius: 2,
-                padding: '4px 8px',
+                padding: '7px 12px',
                 fontSize: 11,
                 color: '#131b28',
                 cursor: updating ? 'default' : 'pointer',
@@ -535,7 +535,7 @@ function AdminOrderDetailPage() {
               <button
                 disabled={updating}
                 onClick={() => setShipFormOpen(false)}
-                style={{ background: 'none', border: 0, fontSize: 11, color: '#5a6875', cursor: 'pointer' }}
+                style={{ background: 'none', border: 0, fontSize: 11, color: '#5a6875', cursor: 'pointer', padding: '6px 10px' }}
               >
                 Cancel
               </button>

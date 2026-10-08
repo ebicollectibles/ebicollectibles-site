@@ -295,15 +295,15 @@ function AdminLinksPage() {
                       )}
                       <button
                         onClick={() => copyUrl(link.id, link.slug)}
-                        style={{ background: 'none', border: 'none', color: '#131b28', fontSize: 12.5, cursor: 'pointer', marginRight: 12 }}
+                        style={{ background: 'none', border: 'none', color: '#131b28', fontSize: 12.5, cursor: 'pointer', marginRight: 12, padding: '6px 4px' }}
                       >
                         Copy
                       </button>
                     </span>
-                    <button onClick={() => startEdit(link)} style={{ background: 'none', border: 'none', color: '#3f7a63', fontSize: 12.5, cursor: 'pointer', marginRight: 12 }}>
+                    <button onClick={() => startEdit(link)} style={{ background: 'none', border: 'none', color: '#3f7a63', fontSize: 12.5, cursor: 'pointer', marginRight: 12, padding: '6px 4px' }}>
                       Edit
                     </button>
-                    <button onClick={() => remove(link.id, link.slug)} style={{ background: 'none', border: 'none', color: '#b4622f', fontSize: 12.5, cursor: 'pointer' }}>
+                    <button onClick={() => remove(link.id, link.slug)} style={{ background: 'none', border: 'none', color: '#b4622f', fontSize: 12.5, cursor: 'pointer', padding: '6px 4px' }}>
                       Delete
                     </button>
                   </td>
