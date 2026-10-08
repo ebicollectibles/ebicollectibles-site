@@ -27,7 +27,7 @@ function EditProductPage() {
   return (
     <div style={{ maxWidth: 1000, margin: '0 auto', padding: '32px 28px 80px', fontFamily: 'Archivo, Helvetica, sans-serif' }}>
       <AdminNav />
-      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: 24 }}>
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: 24, flexWrap: 'wrap', gap: 10 }}>
         <h1 style={{ fontSize: 24, fontWeight: 700, margin: 0 }}>Edit product</h1>
         <div style={{ display: 'flex', gap: 10 }}>
           <button

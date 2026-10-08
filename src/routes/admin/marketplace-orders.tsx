@@ -198,7 +198,7 @@ function MarketplaceOrdersPage() {
       </p>
       {syncMessage && <p style={{ fontSize: 12.5, color: '#3f7a63', marginTop: 8 }}>{syncMessage}</p>}
 
-      <div style={{ marginTop: 16, display: 'flex', alignItems: 'center', gap: 8 }}>
+      <div style={{ marginTop: 16, display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap' }}>
         <label style={{ fontSize: 12, color: '#5a6875' }}>Test emails go to:</label>
         <input
           value={testEmail}

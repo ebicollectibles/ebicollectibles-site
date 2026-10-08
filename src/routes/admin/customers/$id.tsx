@@ -227,7 +227,7 @@ function AdminCustomerDetailPage() {
         <h1 style={{ fontSize: 24, fontWeight: 700, margin: 0 }}>{customer.name || customer.email}</h1>
         {customer.name && <span style={{ fontSize: 13.5, color: '#131b28' }}>{customer.email}</span>}
       </div>
-      <div style={{ marginTop: 8, display: 'flex', gap: 16, fontSize: 12.5, color: '#5a6875' }}>
+      <div style={{ marginTop: 8, display: 'flex', gap: 16, fontSize: 12.5, color: '#5a6875', flexWrap: 'wrap', rowGap: 4 }}>
         <span>{customer.hasPassword && customer.hasGoogle ? 'Password + Google sign-in' : customer.hasGoogle ? 'Google sign-in' : 'Password sign-in'}</span>
         <span>·</span>
         <span>Joined {new Date(customer.createdAt).toLocaleDateString()}</span>
@@ -297,7 +297,7 @@ function AdminCustomerDetailPage() {
               background: 'none',
               border: '1px solid #cfd4da',
               borderRadius: 2,
-              padding: '5px 10px',
+              padding: '8px 14px',
               fontSize: 12,
               color: '#131b28',
               cursor: currentPage === 1 ? 'default' : 'pointer',
@@ -316,7 +316,7 @@ function AdminCustomerDetailPage() {
               background: 'none',
               border: '1px solid #cfd4da',
               borderRadius: 2,
-              padding: '5px 10px',
+              padding: '8px 14px',
               fontSize: 12,
               color: '#131b28',
               cursor: currentPage === totalPages ? 'default' : 'pointer',
