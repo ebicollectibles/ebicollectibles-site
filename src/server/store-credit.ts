@@ -10,6 +10,20 @@ import { sendPendingStoreCreditEmail, sendStoreCreditEmail } from './email'
 
 type Tx = Parameters<Parameters<typeof withTransaction>[0]>[0]
 
+// drizzle-orm's neon-http driver wraps a failed query as "Failed query:
+// <sql>\nparams: <params>" and puts the actual Postgres error (the only
+// part anyone can act on — "relation does not exist", a constraint
+// violation, etc.) on `.cause` instead of in that message. A thrown Error's
+// `.cause` isn't sent to the client by createServerFn, so without this the
+// admin UI shows only the useless wrapper text. Pull the real reason out
+// and rethrow it as the message.
+function unwrapDbError(err: unknown): Error {
+  const cause = err instanceof Error ? (err.cause as unknown) : undefined
+  const causeMessage = cause instanceof Error ? cause.message : typeof cause === 'string' ? cause : null
+  if (causeMessage) return new Error(causeMessage)
+  return err instanceof Error ? err : new Error('Database query failed.')
+}
+
 // Balance lives in its own fast-path column (storeCreditBalances), updated
 // atomically alongside an append-only ledger row (storeCreditEvents) — same
 // two-table relationship as products.stock + productEditEvents. Never
@@ -214,9 +228,13 @@ export const adminIssueStoreCreditByEmail = createServerFn({ method: 'POST' })
     const [existingUser] = await db.select({ id: users.id, name: users.name }).from(users).where(sql`lower(${users.email}) = ${data.email}`).limit(1)
 
     if (existingUser) {
-      await withTransaction(async (tx) => {
-        await issueOrReverseStoreCredit(tx, { userId: existingUser.id, amount: data.amount, type: 'issued', orderId: data.orderId, reason: data.reason, note })
-      })
+      try {
+        await withTransaction(async (tx) => {
+          await issueOrReverseStoreCredit(tx, { userId: existingUser.id, amount: data.amount, type: 'issued', orderId: data.orderId, reason: data.reason, note })
+        })
+      } catch (err) {
+        throw unwrapDbError(err)
+      }
       let status: 'sent' | 'failed' | 'skipped' = 'skipped'
       try {
         const result = await sendStoreCreditEmail({ email: data.email, name: existingUser.name, amount: data.amount })
@@ -228,7 +246,11 @@ export const adminIssueStoreCreditByEmail = createServerFn({ method: 'POST' })
       return { claimed: true as const, emailStatus: status }
     }
 
-    await db.insert(pendingStoreCredits).values({ email: data.email, amount: data.amount, reason: data.reason, note: note ?? null, orderId: data.orderId ?? null })
+    try {
+      await db.insert(pendingStoreCredits).values({ email: data.email, amount: data.amount, reason: data.reason, note: note ?? null, orderId: data.orderId ?? null })
+    } catch (err) {
+      throw unwrapDbError(err)
+    }
     let status: 'sent' | 'failed' | 'skipped' = 'skipped'
     try {
       const result = await sendPendingStoreCreditEmail({ email: data.email, amount: data.amount })
