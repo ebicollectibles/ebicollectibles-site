@@ -161,6 +161,31 @@ export const adminGetStoreCredit = createServerFn({ method: 'GET' })
     return { balance, history }
   })
 
+// --- Admin: preview either store-credit email, sent to an address admin picks ---
+
+// Same idea as adminSendShipmentTest in server/admin.ts — sends the real
+// email through the real pipeline to an address admin picks, but never
+// writes anything (no pendingStoreCredits row, no balance change, no
+// emailEvents row, doesn't count as issued). `kind` picks which of the two
+// templates to preview: 'issued' is what an existing account gets,
+// 'pending' is the sign-up invite a no-account email gets.
+export const adminSendStoreCreditEmailTest = createServerFn({ method: 'POST' })
+  .validator(
+    z.object({
+      testEmail: z.string().trim().email(),
+      amount: z.number().positive('Amount must be greater than zero.'),
+      kind: z.enum(['issued', 'pending']),
+    }),
+  )
+  .handler(async ({ data }) => {
+    await assertAdmin()
+    const result =
+      data.kind === 'issued'
+        ? await sendStoreCreditEmail({ email: data.testEmail, name: null, amount: data.amount })
+        : await sendPendingStoreCreditEmail({ email: data.testEmail, amount: data.amount })
+    return { result }
+  })
+
 // --- Admin: grant credit against an EMAIL, for someone with no account yet ---
 
 const issueByEmailSchema = z.object({

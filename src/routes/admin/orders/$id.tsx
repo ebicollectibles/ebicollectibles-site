@@ -3,7 +3,7 @@ import { createFileRoute, Link, useNavigate, useRouter } from '@tanstack/react-r
 import { AdminNav } from '~/components/AdminNav'
 import { requireAdmin } from '~/server/admin-auth'
 import { adminCreateShipment, adminGetOrder, adminSendShipmentTest, adminUpdateOrderStatus } from '~/server/admin'
-import { adminIssueStoreCreditByEmail } from '~/server/store-credit'
+import { adminIssueStoreCreditByEmail, adminSendStoreCreditEmailTest } from '~/server/store-credit'
 import { formatMoney } from '~/lib/products'
 import { CARRIERS, carrierTrackingUrl } from '~/lib/carriers'
 import { remainingQtyByItem } from '~/lib/shipments'
@@ -38,6 +38,27 @@ function IssueCreditPanel({ email, orderId, hasAccount }: { email: string; order
   const [busy, setBusy] = React.useState(false)
   const [error, setError] = React.useState<string | null>(null)
   const [result, setResult] = React.useState<{ claimed: boolean; emailStatus: string } | null>(null)
+  const [testEmail, setTestEmail] = React.useState('eastblueinternational@gmail.com')
+  const [testing, setTesting] = React.useState(false)
+  const [testMessage, setTestMessage] = React.useState<string | null>(null)
+
+  const sendTest = async () => {
+    const parsed = Number(amount)
+    if (!Number.isFinite(parsed) || parsed <= 0) {
+      setTestMessage('Enter a dollar amount greater than 0 first.')
+      return
+    }
+    setTesting(true)
+    setTestMessage(null)
+    try {
+      await adminSendStoreCreditEmailTest({ data: { testEmail, amount: parsed, kind: hasAccount ? 'issued' : 'pending' } })
+      setTestMessage(`Sent to ${testEmail} — previewing the "${hasAccount ? 'credit added' : 'sign up to claim'}" email.`)
+    } catch (err) {
+      setTestMessage(err instanceof Error ? err.message : 'Test send failed.')
+    } finally {
+      setTesting(false)
+    }
+  }
 
   const submit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -147,6 +168,35 @@ function IssueCreditPanel({ email, orderId, hasAccount }: { email: string; order
         Cancel
       </button>
       {error && <p style={{ flex: '1 1 100%', fontSize: 12.5, color: '#b4622f', margin: 0 }}>{error}</p>}
+
+      <div style={{ flex: '1 1 100%', display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap', marginTop: 4, paddingTop: 10, borderTop: '1px solid #f0f2f4' }}>
+        <input
+          value={testEmail}
+          onChange={(e) => setTestEmail(e.target.value)}
+          placeholder="Test email address"
+          style={{ flex: 1, minWidth: 160, border: '1px solid #cfd4da', borderRadius: 2, padding: '8px 10px', fontSize: 12 }}
+        />
+        <button
+          type="button"
+          disabled={testing}
+          onClick={sendTest}
+          style={{
+            background: 'none',
+            color: '#131b28',
+            border: '1px solid #cfd4da',
+            borderRadius: 2,
+            padding: '8px 14px',
+            fontSize: 11.5,
+            cursor: testing ? 'default' : 'pointer',
+            opacity: testing ? 0.5 : 1,
+          }}
+        >
+          {testing ? 'Sending test…' : 'Send test to me'}
+        </button>
+      </div>
+      {testMessage && (
+        <p style={{ flex: '1 1 100%', color: testMessage.startsWith('Sent') ? '#3f7a63' : '#b4622f', fontSize: 11, margin: 0 }}>{testMessage}</p>
+      )}
     </form>
   )
 }
