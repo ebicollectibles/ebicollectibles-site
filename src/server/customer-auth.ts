@@ -71,12 +71,16 @@ async function findOrCreateUserForClerkSession(clerkUserId: string): Promise<str
   const [byEmail] = await db.select({ id: users.id }).from(users).where(sql`lower(${users.email}) = ${email}`).limit(1)
   if (byEmail) {
     await db.update(users).set({ clerkUserId }).where(eq(users.id, byEmail.id))
+    const { claimPendingStoreCredit } = await import('./store-credit')
+    await claimPendingStoreCredit(db, byEmail.id, email)
     return byEmail.id
   }
 
   const [created] = await db.insert(users).values({ clerkUserId, email, name, emailVerifiedAt: new Date() }).returning({ id: users.id })
   const { linkGuestOrders } = await import('./customers')
   await linkGuestOrders(db, created.id, email)
+  const { claimPendingStoreCredit } = await import('./store-credit')
+  await claimPendingStoreCredit(db, created.id, email)
   await recordAuthEvent({ userId: created.id, email, type: 'signup' })
   return created.id
 }

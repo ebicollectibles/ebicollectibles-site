@@ -1,5 +1,6 @@
 import * as React from 'react'
 import { createFileRoute, Link, useNavigate, useRouter } from '@tanstack/react-router'
+import { z } from 'zod'
 import { useSignUp } from '@clerk/tanstack-react-start/legacy'
 import { syncClerkUser } from '~/server/customer-auth'
 import { clerkErrorMessage } from '~/lib/clerk-error'
@@ -7,7 +8,14 @@ import { PasswordInput } from '~/components/PasswordInput'
 import { DiscordIcon } from '~/components/DiscordIcon'
 import { GoogleIcon } from '~/components/GoogleIcon'
 
+// `?email=` prefills the form — used by the pending-store-credit invite
+// email (see sendPendingStoreCreditEmail in server/email.ts), so clicking
+// "Create your account" there doesn't make someone retype the address the
+// credit is sitting under.
+const searchSchema = z.object({ email: z.string().optional() })
+
 export const Route = createFileRoute('/account/signup')({
+  validateSearch: searchSchema,
   component: SignupPage,
 })
 
@@ -69,9 +77,10 @@ const discordBtn: React.CSSProperties = {
 function SignupPage() {
   const navigate = useNavigate()
   const router = useRouter()
+  const search = Route.useSearch()
   const { isLoaded, signUp, setActive } = useSignUp()
   const [name, setName] = React.useState('')
-  const [email, setEmail] = React.useState('')
+  const [email, setEmail] = React.useState(search.email ?? '')
   const [password, setPassword] = React.useState('')
   const [error, setError] = React.useState<string | null>(null)
   const [submitting, setSubmitting] = React.useState(false)

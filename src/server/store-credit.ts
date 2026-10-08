@@ -1,12 +1,12 @@
 import { createServerFn } from '@tanstack/react-start'
 import { z } from 'zod'
-import { desc, eq, sql } from 'drizzle-orm'
+import { and, desc, eq, isNull, sql } from 'drizzle-orm'
 import { getDb } from '~/lib/db/client'
 import { withTransaction } from '~/lib/db/transactional-client'
-import { emailEvents, orders, storeCreditBalances, storeCreditEvents, users } from '~/lib/db/schema'
+import { emailEvents, orders, pendingStoreCredits, storeCreditBalances, storeCreditEvents, users } from '~/lib/db/schema'
 import { assertAdmin } from './admin-auth'
 import { getCurrentUserId } from './customer-auth'
-import { sendStoreCreditEmail } from './email'
+import { sendPendingStoreCreditEmail, sendStoreCreditEmail } from './email'
 
 type Tx = Parameters<Parameters<typeof withTransaction>[0]>[0]
 
@@ -160,3 +160,124 @@ export const adminGetStoreCredit = createServerFn({ method: 'GET' })
     const [balance, history] = await Promise.all([getStoreCreditBalance(data.userId), getStoreCreditHistory(data.userId, true)])
     return { balance, history }
   })
+
+// --- Admin: grant credit against an EMAIL, for someone with no account yet ---
+
+const issueByEmailSchema = z.object({
+  email: z.string().trim().toLowerCase().email('Enter a valid email address.'),
+  amount: z.number().positive('Amount must be greater than zero.'),
+  reason: z.string().trim().min(1, 'A reason is required.'),
+  note: z.string().trim().optional(),
+  orderId: z.string().optional(),
+})
+
+/**
+ * If an account already exists under this email, credit lands on it
+ * immediately (same path as adminAdjustStoreCredit's grant branch) and the
+ * normal "you've got store credit" email goes out. Otherwise it's parked in
+ * pendingStoreCredits and a different email goes out instead — one that
+ * invites them to create an account with this same email, which is what
+ * actually promotes the grant into spendable credit (see
+ * claimPendingStoreCredit below).
+ */
+export const adminIssueStoreCreditByEmail = createServerFn({ method: 'POST' })
+  .validator(issueByEmailSchema)
+  .handler(async ({ data }) => {
+    await assertAdmin()
+    const db = getDb()
+    const note = data.note || undefined
+    const [existingUser] = await db.select({ id: users.id, name: users.name }).from(users).where(sql`lower(${users.email}) = ${data.email}`).limit(1)
+
+    if (existingUser) {
+      await withTransaction(async (tx) => {
+        await issueOrReverseStoreCredit(tx, { userId: existingUser.id, amount: data.amount, type: 'issued', orderId: data.orderId, reason: data.reason, note })
+      })
+      let status: 'sent' | 'failed' | 'skipped' = 'skipped'
+      try {
+        const result = await sendStoreCreditEmail({ email: data.email, name: existingUser.name, amount: data.amount })
+        status = result.status
+        await db.insert(emailEvents).values({ orderId: data.orderId ?? null, email: data.email, type: 'store_credit_issued', status: result.status, errorMessage: result.error ?? null, resendId: result.resendId ?? null })
+      } catch (err) {
+        console.error(`Failed to send store credit email to ${data.email}:`, err)
+      }
+      return { claimed: true as const, emailStatus: status }
+    }
+
+    await db.insert(pendingStoreCredits).values({ email: data.email, amount: data.amount, reason: data.reason, note: note ?? null, orderId: data.orderId ?? null })
+    let status: 'sent' | 'failed' | 'skipped' = 'skipped'
+    try {
+      const result = await sendPendingStoreCreditEmail({ email: data.email, amount: data.amount })
+      status = result.status
+      await db.insert(emailEvents).values({ orderId: data.orderId ?? null, email: data.email, type: 'store_credit_pending', status: result.status, errorMessage: result.error ?? null, resendId: result.resendId ?? null })
+    } catch (err) {
+      console.error(`Failed to send pending store credit email to ${data.email}:`, err)
+    }
+    return { claimed: false as const, emailStatus: status }
+  })
+
+export const adminListPendingStoreCredits = createServerFn({ method: 'GET' }).handler(async () => {
+  await assertAdmin()
+  const db = getDb()
+  return db
+    .select({
+      id: pendingStoreCredits.id,
+      email: pendingStoreCredits.email,
+      amount: pendingStoreCredits.amount,
+      reason: pendingStoreCredits.reason,
+      note: pendingStoreCredits.note,
+      orderId: pendingStoreCredits.orderId,
+      orderNo: orders.orderNo,
+      createdAt: pendingStoreCredits.createdAt,
+    })
+    .from(pendingStoreCredits)
+    .leftJoin(orders, eq(pendingStoreCredits.orderId, orders.id))
+    .where(and(isNull(pendingStoreCredits.claimedAt), isNull(pendingStoreCredits.canceledAt)))
+    .orderBy(desc(pendingStoreCredits.createdAt))
+})
+
+export const adminCancelPendingStoreCredit = createServerFn({ method: 'POST' })
+  .validator(z.object({ id: z.string() }))
+  .handler(async ({ data }) => {
+    await assertAdmin()
+    const db = getDb()
+    const [updated] = await db
+      .update(pendingStoreCredits)
+      .set({ canceledAt: new Date() })
+      .where(and(eq(pendingStoreCredits.id, data.id), isNull(pendingStoreCredits.claimedAt), isNull(pendingStoreCredits.canceledAt)))
+      .returning()
+    if (!updated) throw new Error('Already claimed or canceled.')
+    return { ok: true }
+  })
+
+// --- Claim: promotes pending-by-email grants into real credit on a new/linked account ---
+
+/**
+ * Called right after a users row is created or linked for `email` (see
+ * findOrCreateUserForClerkSession in customer-auth.ts) — same moment
+ * linkGuestOrders claims past guest orders under that email. Safe to call
+ * on every signup/link, even when there's nothing pending (no-op). Each
+ * pending row is claimed in its own transaction alongside the balance
+ * update, same guarded-write pattern as every other store-credit mutation.
+ */
+export async function claimPendingStoreCredit(db: ReturnType<typeof getDb>, userId: string, email: string) {
+  const lowered = email.trim().toLowerCase()
+  const pending = await db
+    .select()
+    .from(pendingStoreCredits)
+    .where(and(sql`lower(${pendingStoreCredits.email}) = ${lowered}`, isNull(pendingStoreCredits.claimedAt), isNull(pendingStoreCredits.canceledAt)))
+  if (pending.length === 0) return
+
+  for (const row of pending) {
+    await withTransaction(async (tx) => {
+      // Re-check inside the transaction — if a concurrent call already
+      // claimed/canceled this row, skip it instead of double-granting.
+      const [claimedRow] = await tx
+        .update(pendingStoreCredits)
+        .set({ claimedAt: new Date(), claimedUserId: userId })
+        .where(and(eq(pendingStoreCredits.id, row.id), isNull(pendingStoreCredits.claimedAt), isNull(pendingStoreCredits.canceledAt)))
+        .returning()
+      if (!claimedRow) return
+      await issueOrReverseStoreCredit(tx, { userId, amount: row.amount, type: 'issued', orderId: row.orderId ?? undefined, reason: row.reason ?? undefined, note: row.note ?? undefined })
+    })
+  }
+}

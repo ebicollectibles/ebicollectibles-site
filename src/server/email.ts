@@ -286,6 +286,73 @@ export async function sendStoreCreditEmail(data: StoreCreditEmailData): Promise<
   return { status: 'sent', resendId: sentJson?.id }
 }
 
+// Sibling of sendStoreCreditEmail above, for a grant made against an email
+// that has no account yet (see adminIssueStoreCreditByEmail in
+// server/store-credit.ts) — the credit isn't spendable until an account
+// exists under this email, so the CTA here is "create an account" rather
+// than "log in," and it links straight to a signup form prefilled with the
+// email (see the `email` search param read by routes/account/signup.tsx).
+interface PendingStoreCreditEmailData {
+  email: string
+  amount: number
+}
+
+export async function sendPendingStoreCreditEmail(data: PendingStoreCreditEmailData): Promise<EmailSendResult> {
+  const apiKey = process.env.RESEND_API_KEY
+  const from = process.env.ORDER_FROM_EMAIL
+  if (!apiKey || !from) return { status: 'skipped' }
+
+  const signupUrl = `${SITE_URL}/account/signup?email=${encodeURIComponent(data.email)}`
+
+  const bodyHtml = `
+    ${labelValueBlock('Amount set aside', formatMoney(data.amount))}
+    <p style="font-size:13px;color:${MUTED};margin:0 0 24px;">Create a free account with this email address and it'll be added to your balance automatically — no code needed, it'll just be there.</p>
+    <a href="${signupUrl}" style="display:inline-block;background:${INK};color:#ffffff;font-size:13px;font-weight:700;text-decoration:none;padding:12px 22px;border-radius:3px;">Create your account</a>
+  `
+
+  const html = emailShell({
+    badgeLabel: 'Store credit waiting for you',
+    badgeColor: GREEN,
+    heading: `You've got store credit waiting!`,
+    intro: `From EBI Collectibles — ${formatMoney(data.amount)} is set aside for you at ${escapeHtml(data.email)}.`,
+    bodyHtml,
+  })
+
+  const text = [
+    `You've got store credit waiting!`,
+    `${formatMoney(data.amount)} has been set aside for you from EBI Collectibles at ${data.email}.`,
+    '',
+    `Create a free account with this email address and it'll be added to your balance automatically — no code needed.`,
+    '',
+    `Create your account: ${signupUrl}`,
+  ].join('\n')
+
+  const res = await fetch('https://api.resend.com/emails', {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${apiKey}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      from,
+      to: data.email,
+      subject: `${formatMoney(data.amount)} in store credit is waiting for you`,
+      html,
+      text,
+    }),
+  })
+
+  if (!res.ok) {
+    const json = await res.json().catch(() => null)
+    const error = json?.message || `HTTP ${res.status}`
+    console.error('Failed to send pending store credit email:', error)
+    return { status: 'failed', error }
+  }
+
+  const sentJson = await res.json().catch(() => null)
+  return { status: 'sent', resendId: sentJson?.id }
+}
+
 interface DelayEmailData {
   orderNo: number
   orderId: string

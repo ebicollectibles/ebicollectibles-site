@@ -3,9 +3,11 @@ import { createFileRoute, Link, useNavigate, useRouter } from '@tanstack/react-r
 import { AdminNav } from '~/components/AdminNav'
 import { requireAdmin } from '~/server/admin-auth'
 import { adminCreateShipment, adminGetOrder, adminSendShipmentTest, adminUpdateOrderStatus } from '~/server/admin'
+import { adminIssueStoreCreditByEmail } from '~/server/store-credit'
 import { formatMoney } from '~/lib/products'
 import { CARRIERS, carrierTrackingUrl } from '~/lib/carriers'
 import { remainingQtyByItem } from '~/lib/shipments'
+import { STORE_CREDIT_REASONS } from '~/lib/store-credit'
 
 export const Route = createFileRoute('/admin/orders/$id')({
   beforeLoad: () => requireAdmin(),
@@ -25,6 +27,128 @@ const fulfillmentColor: Record<string, string> = {
   partially_shipped: '#3a6ea5',
   shipped: '#3f7a63',
   cancelled: '#b4622f',
+}
+
+function IssueCreditPanel({ email, orderId, hasAccount }: { email: string; orderId: string; hasAccount: boolean }) {
+  const [open, setOpen] = React.useState(false)
+  const [amount, setAmount] = React.useState('')
+  const [reason, setReason] = React.useState('')
+  const [otherDetail, setOtherDetail] = React.useState('')
+  const [note, setNote] = React.useState('')
+  const [busy, setBusy] = React.useState(false)
+  const [error, setError] = React.useState<string | null>(null)
+  const [result, setResult] = React.useState<{ claimed: boolean; emailStatus: string } | null>(null)
+
+  const submit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    const parsed = Number(amount)
+    if (!Number.isFinite(parsed) || parsed <= 0) {
+      setError('Enter a dollar amount greater than 0.')
+      return
+    }
+    if (!reason) {
+      setError('Select a reason.')
+      return
+    }
+    if (reason === 'Other' && !otherDetail.trim()) {
+      setError('Describe the reason for "Other".')
+      return
+    }
+    const finalReason = reason === 'Other' ? `Other — ${otherDetail.trim()}` : reason
+    setBusy(true)
+    setError(null)
+    try {
+      const res = await adminIssueStoreCreditByEmail({ data: { email, amount: parsed, reason: finalReason, note: note.trim() || undefined, orderId } })
+      setResult(res)
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Could not issue credit.')
+    } finally {
+      setBusy(false)
+    }
+  }
+
+  if (result) {
+    return (
+      <p style={{ marginTop: 10, fontSize: 12.5, color: '#3f7a63' }}>
+        {result.claimed
+          ? `${formatMoney(Number(amount))} added to ${email}'s account.`
+          : `${formatMoney(Number(amount))} set aside for ${email} — they'll get it the moment they sign up with that email.`}
+        {result.emailStatus === 'sent' && ' An email went out just now.'}
+        {result.emailStatus === 'failed' && ' (The notification email failed to send — you may want to tell them directly.)'}
+        {result.emailStatus === 'skipped' && ' (No notification email configured — you may want to tell them directly.)'}
+      </p>
+    )
+  }
+
+  if (!open) {
+    return (
+      <button
+        type="button"
+        onClick={() => setOpen(true)}
+        style={{ marginTop: 10, background: 'none', border: '1px solid #cfd4da', borderRadius: 2, padding: '7px 12px', fontSize: 12, cursor: 'pointer', color: '#131b28' }}
+      >
+        Issue store credit to {email}
+      </button>
+    )
+  }
+
+  return (
+    <form onSubmit={submit} style={{ marginTop: 10, border: '1px solid #e3e6ea', borderRadius: 4, padding: 14, display: 'flex', gap: 8, flexWrap: 'wrap', alignItems: 'flex-start' }}>
+      {!hasAccount && (
+        <p style={{ flex: '1 1 100%', fontSize: 12, color: '#5a6875', margin: 0 }}>
+          {email} has no account yet — this will be held for them and claimed automatically the moment they sign up with this email. They'll also get an
+          email now inviting them to.
+        </p>
+      )}
+      <input
+        type="number"
+        step="0.01"
+        placeholder="Amount, e.g. 10"
+        value={amount}
+        onChange={(e) => setAmount(e.target.value)}
+        style={{ flex: '1 1 160px', padding: '8px 10px', border: '1px solid #cfd4da', borderRadius: 2, fontSize: 13 }}
+      />
+      <select
+        value={reason}
+        onChange={(e) => setReason(e.target.value)}
+        style={{ flex: '2 1 200px', padding: '8px 10px', border: '1px solid #cfd4da', borderRadius: 2, fontSize: 13, color: reason ? '#131b28' : '#5a6875' }}
+      >
+        <option value="">Select a reason…</option>
+        {STORE_CREDIT_REASONS.map((r) => (
+          <option key={r} value={r}>
+            {r}
+          </option>
+        ))}
+      </select>
+      {reason === 'Other' && (
+        <input
+          type="text"
+          placeholder="Describe the reason"
+          value={otherDetail}
+          onChange={(e) => setOtherDetail(e.target.value)}
+          style={{ flex: '2 1 200px', padding: '8px 10px', border: '1px solid #cfd4da', borderRadius: 2, fontSize: 13 }}
+        />
+      )}
+      <textarea
+        placeholder="Internal note (optional) — never shown to the customer"
+        value={note}
+        onChange={(e) => setNote(e.target.value)}
+        rows={2}
+        style={{ flex: '1 1 100%', padding: '8px 10px', border: '1px solid #cfd4da', borderRadius: 2, fontSize: 13, fontFamily: 'inherit', resize: 'vertical' }}
+      />
+      <button
+        type="submit"
+        disabled={busy}
+        style={{ background: '#131b28', color: '#fff', border: 0, borderRadius: 2, padding: '8px 16px', fontSize: 13, fontWeight: 600, cursor: busy ? 'default' : 'pointer', opacity: busy ? 0.6 : 1 }}
+      >
+        {busy ? 'Saving…' : 'Issue credit'}
+      </button>
+      <button type="button" onClick={() => setOpen(false)} style={{ background: 'none', border: 'none', color: '#5a6875', fontSize: 12.5, cursor: 'pointer', padding: '8px 10px' }}>
+        Cancel
+      </button>
+      {error && <p style={{ flex: '1 1 100%', fontSize: 12.5, color: '#b4622f', margin: 0 }}>{error}</p>}
+    </form>
+  )
 }
 
 const fulfillmentLabel: Record<string, string> = {
@@ -222,6 +346,7 @@ function AdminOrderDetailPage() {
         {order.firstName} {order.lastName} · {order.email}
         {order.phone ? ` · ${order.phone}` : ''}
       </div>
+      {order.email && <IssueCreditPanel email={order.email} orderId={order.id} hasAccount={!!order.userId} />}
 
       <div style={{ marginTop: 18, border: '1px solid #e3e6ea', borderRadius: 4, padding: 18 }}>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>

@@ -1,17 +1,79 @@
 import * as React from 'react'
-import { createFileRoute, Link, useNavigate } from '@tanstack/react-router'
+import { createFileRoute, Link, useNavigate, useRouter } from '@tanstack/react-router'
 import { AdminNav } from '~/components/AdminNav'
 import { requireAdmin } from '~/server/admin-auth'
 import { adminListCustomers } from '~/server/admin'
+import { adminCancelPendingStoreCredit, adminListPendingStoreCredits } from '~/server/store-credit'
 import { formatMoney } from '~/lib/products'
 
 const CUSTOMERS_PER_PAGE = 20
 
 export const Route = createFileRoute('/admin/customers/')({
   beforeLoad: () => requireAdmin(),
-  loader: () => adminListCustomers(),
+  loader: async () => {
+    const [customers, pendingCredits] = await Promise.all([adminListCustomers(), adminListPendingStoreCredits()])
+    return { customers, pendingCredits }
+  },
   component: AdminCustomersPage,
 })
+
+function PendingCreditsSection({ pendingCredits }: { pendingCredits: Awaited<ReturnType<typeof adminListPendingStoreCredits>> }) {
+  const router = useRouter()
+  const [busyId, setBusyId] = React.useState<string | null>(null)
+
+  if (pendingCredits.length === 0) return null
+
+  const cancel = async (id: string) => {
+    if (!confirm('Cancel this pending credit? It was never claimed, so nothing to reverse — this just removes it.')) return
+    setBusyId(id)
+    try {
+      await adminCancelPendingStoreCredit({ data: { id } })
+      await router.invalidate()
+    } finally {
+      setBusyId(null)
+    }
+  }
+
+  return (
+    <div style={{ marginTop: 28 }}>
+      <h2 style={{ fontSize: 15, fontWeight: 700, margin: 0 }}>Pending credits — no account yet</h2>
+      <p style={{ fontSize: 12.5, color: '#5a6875', margin: '6px 0 0' }}>
+        Set aside for an email with no account. Claimed automatically into real store credit the moment they sign up with that email.
+      </p>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 10, marginTop: 14 }}>
+        {pendingCredits.map((p) => (
+          <div key={p.id} style={{ display: 'flex', justifyContent: 'space-between', gap: 12, fontSize: 13, border: '1px solid #e3e6ea', borderRadius: 4, padding: '10px 14px', flexWrap: 'wrap' }}>
+            <div>
+              <span style={{ color: '#131b28' }}>{p.email}</span>
+              {p.orderId && p.orderNo != null && (
+                <>
+                  {' '}
+                  <Link to="/admin/orders/$id" params={{ id: p.orderId }} style={{ color: '#3f7a63', fontWeight: 600, textDecoration: 'none' }}>
+                    #EBI-{p.orderNo}
+                  </Link>
+                </>
+              )}
+              {p.reason && <span style={{ color: '#5a6875' }}> — {p.reason}</span>}
+              <div style={{ color: '#5a6875', fontFamily: "'IBM Plex Mono', monospace", fontSize: 11, marginTop: 2 }}>
+                {new Date(p.createdAt).toLocaleString()}
+              </div>
+            </div>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
+              <span style={{ fontFamily: "'IBM Plex Mono', monospace", fontWeight: 600, color: '#3f7a63', whiteSpace: 'nowrap' }}>{formatMoney(p.amount)}</span>
+              <button
+                onClick={() => cancel(p.id)}
+                disabled={busyId === p.id}
+                style={{ background: 'none', border: 'none', color: '#b4622f', fontSize: 12, cursor: busyId === p.id ? 'default' : 'pointer', padding: '6px 4px' }}
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  )
+}
 
 const th: React.CSSProperties = {
   textAlign: 'left',
@@ -31,7 +93,7 @@ const td: React.CSSProperties = {
 
 function AdminCustomersPage() {
   const navigate = useNavigate()
-  const customers = Route.useLoaderData()
+  const { customers, pendingCredits } = Route.useLoaderData()
   const [page, setPage] = React.useState(1)
 
   const totalPages = Math.max(1, Math.ceil(customers.length / CUSTOMERS_PER_PAGE))
@@ -130,6 +192,8 @@ function AdminCustomersPage() {
           </button>
         </div>
       )}
+
+      <PendingCreditsSection pendingCredits={pendingCredits} />
     </div>
   )
 }

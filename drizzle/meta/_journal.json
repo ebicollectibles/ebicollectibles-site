@@ -428,6 +428,13 @@
       "when": 1791428538792,
       "tag": "0060_regular_misty_knight",
       "breakpoints": true
+    },
+    {
+      "idx": 61,
+      "version": "7",
+      "when": 1791491828662,
+      "tag": "0061_add_pending_store_credits",
+      "breakpoints": true
     }
   ]
 }

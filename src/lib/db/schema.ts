@@ -692,6 +692,28 @@ export const storeCreditEvents = pgTable('store_credit_events', {
   createdAt: timestamp('created_at', { withTimezone: true }).notNull().defaultNow(),
 }, (table) => [index('store_credit_events_user_id_idx').on(table.userId), index('store_credit_events_order_id_idx').on(table.orderId)])
 
+// For someone who hasn't created an account yet (most commonly a guest
+// checkout) — admin grants credit against their EMAIL instead of a userId,
+// and it's automatically promoted into a real storeCreditBalances grant the
+// moment an account is created under that same email (see
+// claimPendingStoreCredit in server/store-credit.ts, called from
+// findOrCreateUserForClerkSession). Same money/reason/note shape as
+// storeCreditEvents. claimedAt/canceledAt are mutually exclusive in
+// practice (never both set) — canceledAt lets admin retract a mistaken
+// grant before it's claimed.
+export const pendingStoreCredits = pgTable('pending_store_credits', {
+  id: uuid('id').primaryKey().defaultRandom(),
+  email: text('email').notNull(),
+  amount: numeric('amount', { precision: 10, scale: 2, mode: 'number' }).notNull(),
+  reason: text('reason'),
+  note: text('note'),
+  orderId: uuid('order_id').references(() => orders.id, { onDelete: 'set null' }),
+  claimedAt: timestamp('claimed_at', { withTimezone: true }),
+  claimedUserId: uuid('claimed_user_id').references(() => users.id, { onDelete: 'set null' }),
+  canceledAt: timestamp('canceled_at', { withTimezone: true }),
+  createdAt: timestamp('created_at', { withTimezone: true }).notNull().defaultNow(),
+}, (table) => [index('pending_store_credits_email_idx').on(table.email)])
+
 // Branded /links/{slug} redirects for posting clean, trackable links outside
 // the site (Discord announcements, etc.) — admin picks the slug (not a
 // random hash) and the destination, which can be any path or full URL, not
