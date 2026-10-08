@@ -69,6 +69,7 @@ export async function buildAffiliateDashboard(affiliateId: string): Promise<Affi
     name: affiliate.name,
     commissionRate: affiliate.commissionRate,
     scopedProducts,
+    restrictToScopedProducts: affiliate.restrictToScopedProducts,
     orderCount: orderRows.length,
     totalCommission: Math.round(totalCommission * 100) / 100,
     paidCommission: Math.round(paidCommission * 100) / 100,

@@ -1491,13 +1491,17 @@ const affiliateFieldsSchema = z.object({
   // once and every future order silently commissions at that rate until
   // someone notices.
   commissionRate: z.number().min(0, 'Must be 0 or more.').max(50, "Over 50% isn't allowed — check the number."),
-  // Empty = unscoped (commission on the whole order, the original
-  // behavior). Non-empty restricts commission to just these products, each
-  // optionally at its own rate (null = inherit commissionRate above) — see
-  // computeAffiliateCommission in server/affiliates.ts.
+  // Gives these products their own rate (null = inherit commissionRate
+  // above) without by itself excluding any other product — see
+  // restrictToScopedProducts below and computeAffiliateCommission in
+  // server/affiliates.ts.
   scopedProducts: z
     .array(z.object({ productId: z.string(), commissionRate: z.number().min(0, 'Must be 0 or more.').max(50, "Over 50% isn't allowed.").nullable() }))
     .default([]),
+  // false (default): scopedProducts above only sets special rates —
+  // everything else still earns commissionRate. true: ONLY scopedProducts
+  // earn anything; everything else in the cart earns nothing.
+  restrictToScopedProducts: z.boolean().default(false),
   // Extra site accounts (beyond `email` above) allowed to see this
   // affiliate's own dashboard — e.g. a co-owner at the affiliate's
   // business covering while the usual contact is away. See affiliateContacts
@@ -1647,7 +1651,7 @@ export const adminCreateAffiliate = createServerFn({ method: 'POST' })
     const db = getDb()
     const [created] = await db
       .insert(affiliates)
-      .values({ code: data.code, name: data.name, email: data.email || null, commissionRate: data.commissionRate })
+      .values({ code: data.code, name: data.name, email: data.email || null, commissionRate: data.commissionRate, restrictToScopedProducts: data.restrictToScopedProducts })
       .returning()
     if (data.scopedProducts.length > 0) {
       await db.insert(affiliateProducts).values(data.scopedProducts.map((p) => ({ affiliateId: created.id, productId: p.productId, commissionRate: p.commissionRate })))
@@ -1664,7 +1668,14 @@ export const adminUpdateAffiliate = createServerFn({ method: 'POST' })
     const db = getDb()
     await db
       .update(affiliates)
-      .set({ code: data.code, name: data.name, email: data.email || null, commissionRate: data.commissionRate, active: data.active })
+      .set({
+        code: data.code,
+        name: data.name,
+        email: data.email || null,
+        commissionRate: data.commissionRate,
+        restrictToScopedProducts: data.restrictToScopedProducts,
+        active: data.active,
+      })
       .where(eq(affiliates.id, data.id))
     // Full replace rather than a diff — simpler, and this is a handful of
     // rows per affiliate at most, not a hot path.

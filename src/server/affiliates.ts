@@ -19,12 +19,10 @@
  *   reviews payouts before sending real money — this catches the naive
  *   case for free, not meant to be cryptographically airtight.
  *
- * scopedProducts is the set this affiliate is restricted to (e.g. someone
- * paid to post about one specific item on Discord) — empty means unscoped,
- * commission on the whole order at commissionRate, same as before product
- * scoping existed. Each scoped product's own commissionRate (set in admin)
- * overrides the affiliate's default for just that product when set; null
- * means inherit the default — see computeAffiliateCommission.
+ * productRates holds each product that has its own commission rate — null
+ * means that product inherits commissionRate (the default); see
+ * computeAffiliateCommission for how restrictToScopedProducts changes what
+ * happens to a product that ISN'T in this list.
  */
 export async function resolveAffiliateAttribution(
   refCode: string | undefined,
@@ -32,7 +30,8 @@ export async function resolveAffiliateAttribution(
 ): Promise<{
   affiliateId: string
   commissionRate: number
-  scopedProducts: Array<{ productId: string; commissionRate: number | null }>
+  restrictToScopedProducts: boolean
+  productRates: Array<{ productId: string; commissionRate: number | null }>
 } | null> {
   if (!refCode) return null
   const code = refCode.trim().toLowerCase()
@@ -44,7 +43,7 @@ export async function resolveAffiliateAttribution(
   const db = getDb()
 
   const [affiliate] = await db
-    .select({ id: affiliates.id, email: affiliates.email, commissionRate: affiliates.commissionRate })
+    .select({ id: affiliates.id, email: affiliates.email, commissionRate: affiliates.commissionRate, restrictToScopedProducts: affiliates.restrictToScopedProducts })
     .from(affiliates)
     .where(and(eq(affiliates.code, code), eq(affiliates.active, true)))
     .limit(1)
@@ -65,37 +64,43 @@ export async function resolveAffiliateAttribution(
     .limit(1)
   if (contactMatch) return null
 
-  const scopedRows = await db
+  const productRates = await db
     .select({ productId: affiliateProducts.productId, commissionRate: affiliateProducts.commissionRate })
     .from(affiliateProducts)
     .where(eq(affiliateProducts.affiliateId, affiliate.id))
 
-  return { affiliateId: affiliate.id, commissionRate: affiliate.commissionRate, scopedProducts: scopedRows }
+  return {
+    affiliateId: affiliate.id,
+    commissionRate: affiliate.commissionRate,
+    restrictToScopedProducts: affiliate.restrictToScopedProducts,
+    productRates,
+  }
 }
 
 /**
  * Commission = rate x the commissionable subtotal, rounded to the cent
  * (same convention as every other money calc in this app, see
- * order-math.ts). Unscoped affiliates (scopedProducts empty) commission
- * the whole order at defaultCommissionRate; a scoped affiliate only
- * commissions the lines matching their assigned product(s), each at its
- * own override rate if set, else defaultCommissionRate — a referred
- * customer who buys something else entirely earns them nothing on that
- * portion, and a scoped product overridden to 0% earns nothing on
- * purpose.
+ * order-math.ts).
+ *
+ * - restrictToScopedProducts false (the common case): every line earns
+ *   commission — its own rate from productRates if it has one, else
+ *   defaultCommissionRate. A listed override (including 0, "this one item
+ *   earns nothing") never affects any other product.
+ * - restrictToScopedProducts true: ONLY lines listed in productRates earn
+ *   anything (at their own rate, or defaultCommissionRate if unset) — a
+ *   referred customer who buys something else entirely earns nothing on
+ *   that portion. For an affiliate paid to promote one exact item and
+ *   nothing else.
  */
 export function computeAffiliateCommission(
   lineDetails: Array<{ productId: string; unitPrice: number; qty: number }>,
   defaultCommissionRate: number,
-  scopedProducts: Array<{ productId: string; commissionRate: number | null }>,
+  restrictToScopedProducts: boolean,
+  productRates: Array<{ productId: string; commissionRate: number | null }>,
 ): number {
-  if (scopedProducts.length === 0) {
-    const subtotal = lineDetails.reduce((sum, l) => sum + l.unitPrice * l.qty, 0)
-    return Math.round(subtotal * (defaultCommissionRate / 100) * 100) / 100
-  }
-  const rateByProduct = new Map(scopedProducts.map((p) => [p.productId, p.commissionRate ?? defaultCommissionRate]))
+  const rateByProduct = new Map(productRates.map((p) => [p.productId, p.commissionRate ?? defaultCommissionRate]))
   const commission = lineDetails.reduce((sum, l) => {
-    const rate = rateByProduct.get(l.productId)
+    const rate = rateByProduct.has(l.productId) ? rateByProduct.get(l.productId)! : restrictToScopedProducts ? null : defaultCommissionRate
     return rate == null ? sum : sum + l.unitPrice * l.qty * (rate / 100)
   }, 0)
   return Math.round(commission * 100) / 100

@@ -323,13 +323,21 @@ export const affiliates = pgTable('affiliates', {
   code: text('code').notNull().unique(),
   name: text('name').notNull(),
   email: text('email'),
-  // Percent of the commissionable subtotal, e.g. 10 = 10%. "Commissionable"
-  // is the whole order unless affiliateProducts below restricts this
-  // affiliate to specific products, in which case it's just the portion of
-  // the order's subtotal from those — see resolveAffiliateAttribution.
-  // Snapshotted onto each attributed order at checkout — changing this only
-  // affects orders placed after.
+  // Percent of the commissionable subtotal, e.g. 10 = 10%. Applies to every
+  // line that doesn't have its own override in affiliateProducts — see
+  // resolveAffiliateAttribution/computeAffiliateCommission. Snapshotted onto
+  // each attributed order at checkout — changing this only affects orders
+  // placed after.
   commissionRate: numeric('commission_rate', { precision: 5, scale: 2, mode: 'number' }).notNull(),
+  // false (default): every product earns commission — commissionRate above,
+  // unless a given product has its own override row in affiliateProducts.
+  // true: ONLY products listed in affiliateProducts earn anything (each at
+  // its own override, or commissionRate if it doesn't have one) — anything
+  // else in the cart earns nothing. Kept separate from "does this product
+  // have an override rate" so an affiliate can have one special-rate item
+  // while still earning the default on everything else, without that one
+  // listed row silently excluding every other product.
+  restrictToScopedProducts: boolean('restrict_to_scoped_products').notNull().default(false),
   // An affiliate is never deleted (their past orders/commission history
   // must stay intact) — deactivating just stops new orders from attributing
   // to them; existing attributed orders and owed commission are unaffected.
@@ -337,16 +345,15 @@ export const affiliates = pgTable('affiliates', {
   createdAt: timestamp('created_at', { withTimezone: true }).notNull().defaultNow(),
 })
 
-// Restricts an affiliate's commission to specific products — e.g. someone
-// paid to post about one exact item on Discord shouldn't earn commission
-// on an unrelated purchase someone happens to make after clicking their
-// link. No rows for a given affiliate means unscoped: commission on the
-// whole order, same as before this table existed.
-// commissionRate overrides affiliates.commissionRate for just this one
-// product — null means inherit the affiliate's default rate; 0 means this
-// specific item earns nothing even though it's still in scope (counts as
-// "attributed, no commission owed," not "excluded"). See
-// computeAffiliateCommission in server/affiliates.ts.
+// Gives one product its own commission rate for one affiliate — commissionRate
+// overrides affiliates.commissionRate for just this product; null means
+// inherit the affiliate's default rate; 0 means this specific item earns
+// nothing. Having a row here does NOT by itself exclude every other
+// product — every other product still earns the affiliate's default rate
+// unless affiliates.restrictToScopedProducts is also turned on, in which
+// case ONLY products listed here earn anything (e.g. someone paid to post
+// about one exact item on Discord shouldn't earn commission on an
+// unrelated purchase). See computeAffiliateCommission in server/affiliates.ts.
 export const affiliateProducts = pgTable(
   'affiliate_products',
   {

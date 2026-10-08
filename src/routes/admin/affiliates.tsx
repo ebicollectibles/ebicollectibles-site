@@ -62,6 +62,7 @@ const emptyForm = {
   commissionRate: '10',
   active: true,
   scopedProducts: [] as { productId: string; rate: string }[],
+  restrictToScopedProducts: false,
   contactEmails: '',
 }
 
@@ -112,6 +113,7 @@ function AdminAffiliatesPage() {
       commissionRate: String(affiliate.commissionRate),
       active: affiliate.active,
       scopedProducts: affiliate.scopedProducts.map((p) => ({ productId: p.productId, rate: p.commissionRate == null ? '' : String(p.commissionRate) })),
+      restrictToScopedProducts: affiliate.restrictToScopedProducts,
       // The primary email above already grants dashboard access on its
       // own (see allContactEmails in admin.ts) — only show the *extra*
       // ones here so it doesn't look duplicated.
@@ -163,7 +165,15 @@ function AdminAffiliatesPage() {
         .split('\n')
         .map((e) => e.trim().toLowerCase())
         .filter(Boolean)
-      const data = { code: form.code.trim().toLowerCase(), name: form.name.trim(), email: form.email.trim(), commissionRate: rate, scopedProducts, contactEmails }
+      const data = {
+        code: form.code.trim().toLowerCase(),
+        name: form.name.trim(),
+        email: form.email.trim(),
+        commissionRate: rate,
+        scopedProducts,
+        restrictToScopedProducts: form.restrictToScopedProducts,
+        contactEmails,
+      }
       if (editingId) {
         await adminUpdateAffiliate({ data: { ...data, id: editingId, active: form.active } })
       } else {
@@ -273,12 +283,10 @@ function AdminAffiliatesPage() {
             )}
           </div>
           <div style={{ marginTop: 14 }}>
-            <label style={label}>Scoped to products (optional)</label>
+            <label style={label}>Per-item rates (optional)</label>
             <p style={{ fontSize: 12, color: '#5a6875', margin: '0 0 8px', lineHeight: 1.4 }}>
-              Leave all unchecked for a general affiliate, commissioned on the whole order at the rate above. Check specific products if
-              this affiliate is only being paid to promote those — commission then only counts what's actually in the cart from this
-              list. Give a checked item its own rate to override the default just for that item (blank = use the default, 0 = this item
-              earns nothing).
+              Everything earns the rate above by default. Check a product to give it its own rate instead — blank uses the default, 0
+              means this one item earns nothing — without affecting anything else in the cart.
             </p>
             <div style={{ border: '1px solid #cfd4da', borderRadius: 2, maxHeight: 220, overflowY: 'auto', background: '#fff' }}>
               {products.map((p) => {
@@ -307,6 +315,18 @@ function AdminAffiliatesPage() {
                 )
               })}
             </div>
+            <label style={{ display: 'flex', alignItems: 'flex-start', gap: 8, marginTop: 10, fontSize: 12.5, cursor: 'pointer' }}>
+              <input
+                type="checkbox"
+                checked={form.restrictToScopedProducts}
+                onChange={(e) => setForm((f) => ({ ...f, restrictToScopedProducts: e.target.checked }))}
+                style={{ marginTop: 2 }}
+              />
+              <span>
+                Only pay commission on the checked products above — everything else in the cart earns nothing. Use this if this affiliate
+                is only being paid to promote those specific items, not a general referral.
+              </span>
+            </label>
           </div>
           {form.code.trim() && (
             <p style={{ fontSize: 12, color: '#5a6875', marginTop: 12 }}>
@@ -365,7 +385,9 @@ function AdminAffiliatesPage() {
                     <div style={{ fontSize: 11, color: '#5a6875', marginTop: 2 }}>
                       {a.scopedProducts.length === 0
                         ? 'All products'
-                        : `Scoped: ${a.scopedProducts.map((p) => `${p.productName} (${p.commissionRate ?? a.commissionRate}%)`).join(', ')}`}
+                        : `${a.restrictToScopedProducts ? 'Only' : 'Special rates:'} ${a.scopedProducts
+                            .map((p) => `${p.productName} (${p.commissionRate ?? a.commissionRate}%)`)
+                            .join(', ')}${a.restrictToScopedProducts ? '' : ' — everything else at ' + a.commissionRate + '%'}`}
                     </div>
                     {a.contactEmails.length > 1 && (
                       <div style={{ fontSize: 11, color: '#5a6875', marginTop: 2 }}>{a.contactEmails.length} logins can view this dashboard</div>

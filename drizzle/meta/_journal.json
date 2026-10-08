@@ -421,6 +421,13 @@
       "when": 1791269062553,
       "tag": "0059_supreme_jasper_sitwell",
       "breakpoints": true
+    },
+    {
+      "idx": 60,
+      "version": "7",
+      "when": 1791428538792,
+      "tag": "0060_regular_misty_knight",
+      "breakpoints": true
     }
   ]
 }

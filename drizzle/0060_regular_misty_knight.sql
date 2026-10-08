@@ -1,0 +1,1 @@
+ALTER TABLE "affiliates" ADD COLUMN "restrict_to_scoped_products" boolean DEFAULT false NOT NULL;
