@@ -310,6 +310,15 @@ button {
   gap: 56px;
 }
 
+/* Generic 2-column form layout (admin new/edit forms, ProductForm) —
+   stacks to one column once there isn't room for two labeled fields
+   side by side without feeling cramped. */
+.ebi-form-grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
 .ebi-gallery {
   display: flex;
   gap: 10px;
@@ -441,6 +450,10 @@ button {
     gap: 32px;
   }
 
+  .ebi-form-grid-2 {
+    grid-template-columns: 1fr;
+  }
+
   .ebi-gallery {
     flex-direction: column-reverse;
     /* Column layout wants the photo and rail both stretched to full width,
@@ -495,5 +508,16 @@ button {
 
   .ebi-hero-h1 {
     font-size: 30px;
+  }
+
+  /* iOS Safari auto-zooms the whole page on focusing any text input/select/
+     textarea rendered below 16px — this app has plenty at 12-13px (customer
+     site and, especially, admin forms). Forcing 16px here (!important since
+     inline styles otherwise win) stops that zoom without having to touch
+     every inline fontSize individually. */
+  input,
+  select,
+  textarea {
+    font-size: 16px !important;
   }
 }

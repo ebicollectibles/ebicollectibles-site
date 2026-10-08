@@ -913,7 +913,7 @@ export function ProductForm({
           here and just won&apos;t appear in the shop, on the homepage, or at its product page until you check it again.
         </p>
       </div>
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12, marginBottom: 16 }}>
+      <div className="ebi-form-grid-2" style={{ gap: 12, marginBottom: 16 }}>
         <div>
           <label htmlFor="pf-price" style={label}>
             Price (USD)

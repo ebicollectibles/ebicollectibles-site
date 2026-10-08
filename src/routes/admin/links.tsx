@@ -155,7 +155,7 @@ function AdminLinksPage() {
       {showForm && (
         <div style={{ marginTop: 20, border: '1px solid #cfd4da', borderRadius: 4, padding: 18, background: '#f6f7f8' }}>
           <h2 style={{ fontSize: 14, fontWeight: 700, margin: '0 0 14px' }}>{editingId ? 'Edit link' : 'New link'}</h2>
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 14 }}>
+          <div className="ebi-form-grid-2">
             <div>
               <label style={label}>Slug (/links/…)</label>
               <input
