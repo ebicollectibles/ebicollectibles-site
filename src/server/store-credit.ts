@@ -218,21 +218,30 @@ export const adminIssueStoreCreditByEmail = createServerFn({ method: 'POST' })
 export const adminListPendingStoreCredits = createServerFn({ method: 'GET' }).handler(async () => {
   await assertAdmin()
   const db = getDb()
-  return db
-    .select({
-      id: pendingStoreCredits.id,
-      email: pendingStoreCredits.email,
-      amount: pendingStoreCredits.amount,
-      reason: pendingStoreCredits.reason,
-      note: pendingStoreCredits.note,
-      orderId: pendingStoreCredits.orderId,
-      orderNo: orders.orderNo,
-      createdAt: pendingStoreCredits.createdAt,
-    })
-    .from(pendingStoreCredits)
-    .leftJoin(orders, eq(pendingStoreCredits.orderId, orders.id))
-    .where(and(isNull(pendingStoreCredits.claimedAt), isNull(pendingStoreCredits.canceledAt)))
-    .orderBy(desc(pendingStoreCredits.createdAt))
+  try {
+    return await db
+      .select({
+        id: pendingStoreCredits.id,
+        email: pendingStoreCredits.email,
+        amount: pendingStoreCredits.amount,
+        reason: pendingStoreCredits.reason,
+        note: pendingStoreCredits.note,
+        orderId: pendingStoreCredits.orderId,
+        orderNo: orders.orderNo,
+        createdAt: pendingStoreCredits.createdAt,
+      })
+      .from(pendingStoreCredits)
+      .leftJoin(orders, eq(pendingStoreCredits.orderId, orders.id))
+      .where(and(isNull(pendingStoreCredits.claimedAt), isNull(pendingStoreCredits.canceledAt)))
+      .orderBy(desc(pendingStoreCredits.createdAt))
+  } catch (err) {
+    // Loaded unconditionally by the customers list page — must not break
+    // that page in the window between this code deploying and the
+    // pending_store_credits migration running (see claimPendingStoreCredit's
+    // comment for the same reasoning).
+    console.error('adminListPendingStoreCredits: query failed (migration not yet run?):', err)
+    return []
+  }
 })
 
 export const adminCancelPendingStoreCredit = createServerFn({ method: 'POST' })
@@ -258,13 +267,25 @@ export const adminCancelPendingStoreCredit = createServerFn({ method: 'POST' })
  * on every signup/link, even when there's nothing pending (no-op). Each
  * pending row is claimed in its own transaction alongside the balance
  * update, same guarded-write pattern as every other store-credit mutation.
+ *
+ * This runs on every single signup and account-link, so it must never be
+ * the thing that breaks account creation — in particular, right after this
+ * code deploys but before the pending_store_credits migration has run in
+ * that environment, the table doesn't exist yet. Swallow and log rather
+ * than throw; nothing was pending to claim yet anyway in that window.
  */
 export async function claimPendingStoreCredit(db: ReturnType<typeof getDb>, userId: string, email: string) {
   const lowered = email.trim().toLowerCase()
-  const pending = await db
-    .select()
-    .from(pendingStoreCredits)
-    .where(and(sql`lower(${pendingStoreCredits.email}) = ${lowered}`, isNull(pendingStoreCredits.claimedAt), isNull(pendingStoreCredits.canceledAt)))
+  let pending: Array<typeof pendingStoreCredits.$inferSelect>
+  try {
+    pending = await db
+      .select()
+      .from(pendingStoreCredits)
+      .where(and(sql`lower(${pendingStoreCredits.email}) = ${lowered}`, isNull(pendingStoreCredits.claimedAt), isNull(pendingStoreCredits.canceledAt)))
+  } catch (err) {
+    console.error(`claimPendingStoreCredit: lookup failed for ${lowered} (migration not yet run?):`, err)
+    return
+  }
   if (pending.length === 0) return
 
   for (const row of pending) {
