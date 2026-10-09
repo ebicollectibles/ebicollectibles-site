@@ -130,7 +130,12 @@ export async function createSquareOrder(opts: {
       method: 'POST',
       headers: squareHeaders(accessToken),
       body: JSON.stringify({
-        idempotency_key: `ebi-order-${opts.orderNo}-create`,
+        // Same reasoning as chargeSquarePayment's idempotency_key below —
+        // this call and the charge share the same orderNo, allocated inside
+        // the same transaction a failed charge rolls back, so a bare
+        // `-create` key can collide across unrelated retries just like the
+        // payment key did.
+        idempotency_key: `ebi-order-${opts.orderNo}-create-${crypto.randomUUID()}`,
         order: {
           location_id: locationId,
           line_items: lineItems,
@@ -266,7 +271,21 @@ export async function chargeSquarePayment(opts: {
     headers: squareHeaders(accessToken),
     body: JSON.stringify({
       source_id: opts.sourceId,
-      idempotency_key: `ebi-order-${opts.orderNo}`,
+      // A fresh key per call, not a bare `ebi-order-${orderNo}` — orderNo
+      // comes from a counter incremented inside the same DB transaction as
+      // this charge (see placeOrder in orders.ts), and a failed charge
+      // throws, rolling that increment back. The next attempt — a retry by
+      // the same shopper after a decline, or an unrelated checkout by
+      // someone else racing in — then gets the *same* orderNo and would
+      // send Square the *same* idempotency key with different params
+      // (a new card nonce every time at minimum), which Square correctly
+      // rejects as "Different request parameters used for the same
+      // idempotency_key." That's exactly what started happening in
+      // production (see the Oct 2026 payment-failures investigation) —
+      // every retry after one decline was doomed to fail this way until
+      // the stuck order number finally succeeded. orderNo stays in the key
+      // purely for readability in Square's dashboard/logs.
+      idempotency_key: `ebi-order-${opts.orderNo}-${crypto.randomUUID()}`,
       amount_money: {
         amount: Math.round(opts.amount * 100),
         currency: 'USD',
