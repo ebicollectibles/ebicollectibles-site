@@ -2,7 +2,14 @@ import * as React from 'react'
 import { createFileRoute, Link, useNavigate } from '@tanstack/react-router'
 import { AdminNav } from '~/components/AdminNav'
 import { requireAdmin } from '~/server/admin-auth'
-import { adminListOrders, adminListPaymentFailures, adminSendDelayNotice, adminSendDelayNoticeTest } from '~/server/admin'
+import {
+  adminListOrders,
+  adminListPaymentFailures,
+  adminSendCheckoutIssueNotice,
+  adminSendCheckoutIssueNoticeTest,
+  adminSendDelayNotice,
+  adminSendDelayNoticeTest,
+} from '~/server/admin'
 import { formatMoney } from '~/lib/products'
 
 const ORDERS_PER_PAGE = 20
@@ -68,7 +75,104 @@ const td: React.CSSProperties = {
 const DEFAULT_MESSAGE =
   "I wanted to reach out personally — your order hasn't arrived yet, and I wanted to give you a real update rather than let you wonder. [Explain what's going on and the new estimate here.]\n\nI'm sorry for the wait, and happy to answer any questions in the meantime."
 
+const DEFAULT_CHECKOUT_ISSUE_MESSAGE =
+  "Last night there was a technical issue on our end that could prevent some checkouts from completing. It's been fixed now — I'm sorry for the trouble, and I'd love for you to give your order another try."
+
 type AdminOrder = Awaited<ReturnType<typeof adminListOrders>>[number]
+
+function NotifyFailureRow({ email }: { email: string }) {
+  const [open, setOpen] = React.useState(false)
+  const [message, setMessage] = React.useState(DEFAULT_CHECKOUT_ISSUE_MESSAGE)
+  const [sending, setSending] = React.useState(false)
+  const [sent, setSent] = React.useState(false)
+  const [error, setError] = React.useState<string | null>(null)
+  const [testEmail, setTestEmail] = React.useState('eastblueinternational@gmail.com')
+  const [testing, setTesting] = React.useState(false)
+  const [testMessage, setTestMessage] = React.useState<string | null>(null)
+
+  const send = async () => {
+    if (!message.trim()) return
+    setSending(true)
+    setError(null)
+    try {
+      const { result } = await adminSendCheckoutIssueNotice({ data: { email, message: message.trim() } })
+      if (result.status === 'failed') throw new Error(result.error || 'Send failed.')
+      setSent(true)
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Failed to send.')
+    } finally {
+      setSending(false)
+    }
+  }
+
+  const sendTest = async () => {
+    if (!message.trim() || !testEmail.trim()) return
+    setTesting(true)
+    setTestMessage(null)
+    try {
+      const { result } = await adminSendCheckoutIssueNoticeTest({ data: { testEmail: testEmail.trim(), message: message.trim() } })
+      setTestMessage(result.status === 'sent' ? `Sent to ${testEmail.trim()}.` : `Test ${result.status}${result.error ? `: ${result.error}` : '.'}`)
+    } catch (err) {
+      setTestMessage(err instanceof Error ? err.message : 'Failed to send test.')
+    } finally {
+      setTesting(false)
+    }
+  }
+
+  if (sent) return <span style={{ color: '#3f7a63', fontSize: 11.5, fontWeight: 600, whiteSpace: 'nowrap' }}>Sent ✓</span>
+
+  if (!open) {
+    return (
+      <button
+        onClick={() => setOpen(true)}
+        style={{ background: 'none', border: '1px solid #cfd4da', borderRadius: 2, padding: '4px 10px', fontSize: 11, cursor: 'pointer', color: '#131b28', whiteSpace: 'nowrap' }}
+      >
+        Notify
+      </button>
+    )
+  }
+
+  return (
+    <div style={{ width: '100%', marginTop: 8, border: '1px solid #e3c7b4', borderRadius: 4, padding: 12, background: '#fff' }}>
+      <textarea
+        value={message}
+        onChange={(e) => setMessage(e.target.value)}
+        rows={4}
+        style={{ width: '100%', padding: '8px 10px', border: '1px solid #cfd4da', borderRadius: 2, fontSize: 12.5, fontFamily: 'inherit', resize: 'vertical' }}
+      />
+      <div style={{ display: 'flex', gap: 8, marginTop: 8, flexWrap: 'wrap', alignItems: 'center' }}>
+        <button
+          onClick={send}
+          disabled={sending}
+          style={{ background: '#131b28', color: '#fff', border: 0, borderRadius: 2, padding: '7px 14px', fontSize: 12, fontWeight: 600, cursor: sending ? 'default' : 'pointer', opacity: sending ? 0.6 : 1 }}
+        >
+          {sending ? 'Sending…' : `Send to ${email}`}
+        </button>
+        <button onClick={() => setOpen(false)} style={{ background: 'none', border: 'none', color: '#5a6875', fontSize: 12, cursor: 'pointer', padding: '7px 10px' }}>
+          Cancel
+        </button>
+      </div>
+      {error && <p style={{ fontSize: 12, color: '#b4622f', margin: '6px 0 0' }}>{error}</p>}
+
+      <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap', marginTop: 8, paddingTop: 8, borderTop: '1px solid #f0f2f4' }}>
+        <input
+          value={testEmail}
+          onChange={(e) => setTestEmail(e.target.value)}
+          placeholder="Test email address"
+          style={{ flex: 1, minWidth: 160, border: '1px solid #cfd4da', borderRadius: 2, padding: '7px 9px', fontSize: 12 }}
+        />
+        <button
+          disabled={testing}
+          onClick={sendTest}
+          style={{ background: 'none', color: '#131b28', border: '1px solid #cfd4da', borderRadius: 2, padding: '7px 12px', fontSize: 11.5, cursor: testing ? 'default' : 'pointer', opacity: testing ? 0.5 : 1 }}
+        >
+          {testing ? 'Sending test…' : 'Send test to me'}
+        </button>
+      </div>
+      {testMessage && <p style={{ color: testMessage.startsWith('Sent') ? '#3f7a63' : '#b4622f', fontSize: 11, margin: '6px 0 0' }}>{testMessage}</p>}
+    </div>
+  )
+}
 
 function AdminOrdersPage() {
   const navigate = useNavigate()
@@ -166,13 +270,20 @@ function AdminOrdersPage() {
           <h2 style={{ fontSize: 13, fontWeight: 700, margin: 0, color: '#8a4a26' }}>Recent payment failures</h2>
           <div style={{ marginTop: 10, display: 'flex', flexDirection: 'column', gap: 6 }}>
             {paymentFailures.map((f) => (
-              <div key={f.id} style={{ display: 'flex', justifyContent: 'space-between', fontSize: 12.5, color: '#131b28' }}>
-                <span>
-                  {f.email || 'unknown email'} — {formatMoney(f.amount ?? 0)} — {f.errorMessage}
-                </span>
-                <span style={{ color: '#5a6875', fontFamily: "'IBM Plex Mono', monospace", fontSize: 11 }}>
-                  {new Date(f.createdAt).toLocaleString()}
-                </span>
+              <div key={f.id}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', flexWrap: 'wrap', gap: 8, fontSize: 12.5, color: '#131b28' }}>
+                  <span style={{ flex: '1 1 auto' }}>
+                    {f.email || 'unknown email'} — {formatMoney(f.amount ?? 0)} — {f.errorMessage}
+                  </span>
+                  <span style={{ color: '#5a6875', fontFamily: "'IBM Plex Mono', monospace", fontSize: 11, whiteSpace: 'nowrap' }}>
+                    {new Date(f.createdAt).toLocaleString()}
+                  </span>
+                </div>
+                {f.email && (
+                  <div style={{ marginTop: 6 }}>
+                    <NotifyFailureRow email={f.email} />
+                  </div>
+                )}
               </div>
             ))}
           </div>

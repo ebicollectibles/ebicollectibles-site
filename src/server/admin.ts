@@ -35,7 +35,7 @@ import { PRODUCT_CATEGORIES, SUBCATEGORIES_BY_CATEGORY, ALL_SUBCATEGORIES, isVal
 import { buildShipmentsByOrder, computeFulfillmentStatus, groupBy, remainingQtyByItem } from '~/lib/shipments'
 import { assertAdmin } from './admin-auth'
 import { buildAffiliateDashboard } from './affiliate-dashboard'
-import { sendMarketplaceShipmentEmail, sendNotifyMeAlertEmail, sendShipmentEmail, sendShippingDelayEmail, type EmailSendResult } from './email'
+import { sendCheckoutIssueEmail, sendMarketplaceShipmentEmail, sendNotifyMeAlertEmail, sendShipmentEmail, sendShippingDelayEmail, type EmailSendResult } from './email'
 import { completeSquareOrderFulfillment, getSquareCatalogImages, overlaySquareData, searchMarketplaceOrders, searchSquareCatalogItems } from './square'
 import { upsertSubscriber } from './subscribers'
 
@@ -618,6 +618,40 @@ export const adminListPaymentFailures = createServerFn({ method: 'GET' }).handle
     .orderBy(desc(paymentAttempts.createdAt))
     .limit(30)
 })
+
+// Lets admin notify someone whose checkout never became a real order (see
+// "Recent payment failures" on the orders page) — there's no order row to
+// hang this off, so unlike adminSendDelayNotice this takes a bare email
+// address rather than orderIds. firstName is best-effort: a failed
+// attempt never reaches the point where we'd know their name, so the
+// email just skips the greeting when it's not given.
+export const adminSendCheckoutIssueNotice = createServerFn({ method: 'POST' })
+  .validator(z.object({ email: z.string().trim().email(), firstName: z.string().trim().optional(), message: z.string().trim().min(1) }))
+  .handler(async ({ data }) => {
+    await assertAdmin()
+    const db = getDb()
+    const sendResult = await sendCheckoutIssueEmail({ email: data.email, firstName: data.firstName || null, message: data.message })
+    await db.insert(emailEvents).values({
+      orderId: null,
+      email: data.email,
+      type: 'checkout_issue_resolved',
+      status: sendResult.status,
+      errorMessage: sendResult.error ?? null,
+      resendId: sendResult.resendId ?? null,
+    })
+    return { result: sendResult }
+  })
+
+// Same "never writes anything" contract as adminSendDelayNoticeTest — runs
+// the real email through the real pipeline to an address admin picks, logs
+// no emailEvents row, doesn't count as sent.
+export const adminSendCheckoutIssueNoticeTest = createServerFn({ method: 'POST' })
+  .validator(z.object({ testEmail: z.string().trim().email(), message: z.string().trim().min(1) }))
+  .handler(async ({ data }) => {
+    await assertAdmin()
+    const sendResult = await sendCheckoutIssueEmail({ email: data.testEmail, firstName: null, message: data.message })
+    return { result: sendResult }
+  })
 
 export const adminListSecurityEvents = createServerFn({ method: 'GET' }).handler(async () => {
   await assertAdmin()

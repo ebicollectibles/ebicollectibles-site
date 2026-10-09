@@ -426,6 +426,75 @@ export async function sendShippingDelayEmail(data: DelayEmailData): Promise<Emai
   return { status: 'sent', resendId: sentJson?.id }
 }
 
+interface CheckoutIssueEmailData {
+  email: string
+  firstName: string | null
+  // Admin-written, free text — same reasoning as DelayEmailData.message:
+  // what actually happened varies, so there's no single canned body that
+  // fits every incident. The admin UI seeds a sensible default.
+  message: string
+}
+
+// Sent from the admin orders page's "Recent payment failures" list (see
+// adminSendCheckoutIssueNotice) to someone whose checkout attempt never
+// became a real order — there's no order to link to, so unlike
+// sendShippingDelayEmail the CTA just points back at the shop.
+export async function sendCheckoutIssueEmail(data: CheckoutIssueEmailData): Promise<EmailSendResult> {
+  const apiKey = process.env.RESEND_API_KEY
+  const from = process.env.ORDER_FROM_EMAIL
+  if (!apiKey || !from) return { status: 'skipped' }
+
+  const shopUrl = `${SITE_URL}/shop`
+  const messageHtml = escapeHtml(data.message).replace(/\n/g, '<br>')
+
+  const bodyHtml = `
+    <p style="font-size:13.5px;color:${INK};line-height:1.6;margin:0 0 24px;">${messageHtml}</p>
+    <a href="${shopUrl}" style="display:inline-block;background:${INK};color:#ffffff;font-size:13px;font-weight:700;text-decoration:none;padding:12px 22px;border-radius:3px;">Shop again</a>
+  `
+
+  const html = emailShell({
+    badgeLabel: 'Checkout issue resolved',
+    badgeColor: GREEN,
+    heading: `Sorry about that${data.firstName ? `, ${escapeHtml(data.firstName)}` : ''}`,
+    intro: `We noticed your checkout didn't go through recently — here's what happened.`,
+    bodyHtml,
+  })
+
+  const text = [
+    `Sorry about that${data.firstName ? `, ${data.firstName}` : ''}`,
+    `We noticed your checkout didn't go through recently — here's what happened.`,
+    '',
+    data.message,
+    '',
+    `Shop again: ${shopUrl}`,
+  ].join('\n')
+
+  const res = await fetch('https://api.resend.com/emails', {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${apiKey}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      from,
+      to: data.email,
+      subject: 'About your recent checkout attempt',
+      html,
+      text,
+    }),
+  })
+
+  if (!res.ok) {
+    const json = await res.json().catch(() => null)
+    const error = json?.message || `HTTP ${res.status}`
+    console.error(`Failed to send checkout-issue email to ${data.email}:`, error)
+    return { status: 'failed', error }
+  }
+
+  const sentJson = await res.json().catch(() => null)
+  return { status: 'sent', resendId: sentJson?.id }
+}
+
 interface NotifyMeAlertData {
   email: string
   productId: string
