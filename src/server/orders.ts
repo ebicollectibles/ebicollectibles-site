@@ -1,7 +1,7 @@
 import { createServerFn } from '@tanstack/react-start'
 import { getCookie } from '@tanstack/react-start/server'
 import { z } from 'zod'
-import { eq, inArray, sql } from 'drizzle-orm'
+import { and, eq, inArray, isNull, sql } from 'drizzle-orm'
 import { getDb } from '~/lib/db/client'
 import { withTransaction } from '~/lib/db/transactional-client'
 import {
@@ -11,6 +11,7 @@ import {
   orderStatusEvents,
   orders,
   paymentAttempts,
+  pendingStoreCredits,
   products as productsTable,
   storeCreditBalances,
   storeCreditEvents,
@@ -230,6 +231,37 @@ export const placeOrder = createServerFn({ method: 'POST' })
           .returning()
         if (!updated) throw new Error('Your store credit balance changed — please refresh and try again.')
         creditApplied = requested
+      }
+
+      // Pending (email-only, no-account-yet) credit grants — see
+      // server/store-credit.ts's claimPendingStoreCredit, which claims
+      // these at signup. Someone who never creates an account still
+      // deserves the grant the moment they actually complete an order
+      // under that email, guest or not, so claim and apply it right here
+      // too rather than only at signup. Guarded claim (same shape as the
+      // balance decrement above) so a concurrent order can't double-spend
+      // the same pending grant. Folded straight into creditApplied — the
+      // single storeCreditEvents row for the combined total gets written
+      // below once order.id exists, same as the explicit-balance case;
+      // writing a second one here would double-log it. No ledger row at
+      // all when there's no userId to attach one to (a true guest with no
+      // account) — the order's own creditApplied field is the record of
+      // what happened there.
+      if (data.contact.email) {
+        const email = data.contact.email.trim().toLowerCase()
+        const pending = await tx
+          .select()
+          .from(pendingStoreCredits)
+          .where(and(sql`lower(${pendingStoreCredits.email}) = ${email}`, isNull(pendingStoreCredits.claimedAt), isNull(pendingStoreCredits.canceledAt)))
+        for (const row of pending) {
+          const [claimed] = await tx
+            .update(pendingStoreCredits)
+            .set({ claimedAt: new Date(), claimedUserId: userId ?? null })
+            .where(and(eq(pendingStoreCredits.id, row.id), isNull(pendingStoreCredits.claimedAt), isNull(pendingStoreCredits.canceledAt)))
+            .returning()
+          if (!claimed) continue
+          creditApplied += Math.min(row.amount, Math.max(0, total - creditApplied))
+        }
       }
       const amountDue = Math.max(0, Math.round((total - creditApplied) * 100) / 100)
 

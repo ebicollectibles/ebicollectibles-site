@@ -3,8 +3,9 @@ import { createFileRoute, Link, useNavigate, useRouter } from '@tanstack/react-r
 import { AdminNav } from '~/components/AdminNav'
 import { requireAdmin } from '~/server/admin-auth'
 import { adminListCustomers } from '~/server/admin'
-import { adminCancelPendingStoreCredit, adminListPendingStoreCredits } from '~/server/store-credit'
+import { adminCancelPendingStoreCredit, adminIssueStoreCreditByEmail, adminListPendingStoreCredits } from '~/server/store-credit'
 import { formatMoney } from '~/lib/products'
+import { STORE_CREDIT_REASONS } from '~/lib/store-credit'
 
 const CUSTOMERS_PER_PAGE = 20
 
@@ -17,11 +18,142 @@ export const Route = createFileRoute('/admin/customers/')({
   component: AdminCustomersPage,
 })
 
+function GrantPendingCreditForm() {
+  const router = useRouter()
+  const [open, setOpen] = React.useState(false)
+  const [email, setEmail] = React.useState('')
+  const [amount, setAmount] = React.useState('')
+  const [reason, setReason] = React.useState('')
+  const [otherDetail, setOtherDetail] = React.useState('')
+  const [note, setNote] = React.useState('')
+  const [busy, setBusy] = React.useState(false)
+  const [error, setError] = React.useState<string | null>(null)
+  const [result, setResult] = React.useState<{ claimed: boolean; emailStatus: string } | null>(null)
+
+  const submit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    const parsed = Number(amount)
+    if (!email.trim()) return setError('Enter an email address.')
+    if (!Number.isFinite(parsed) || parsed <= 0) return setError('Enter a dollar amount greater than 0.')
+    if (!reason) return setError('Select a reason.')
+    if (reason === 'Other' && !otherDetail.trim()) return setError('Describe the reason for "Other".')
+    const finalReason = reason === 'Other' ? `Other — ${otherDetail.trim()}` : reason
+    setBusy(true)
+    setError(null)
+    try {
+      const res = await adminIssueStoreCreditByEmail({ data: { email: email.trim(), amount: parsed, reason: finalReason, note: note.trim() || undefined } })
+      setResult(res)
+      await router.invalidate()
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Could not issue credit.')
+    } finally {
+      setBusy(false)
+    }
+  }
+
+  if (result) {
+    return (
+      <p style={{ fontSize: 12.5, color: '#3f7a63', marginTop: 10 }}>
+        {result.claimed
+          ? `${formatMoney(Number(amount))} added to ${email.trim()}'s account.`
+          : `${formatMoney(Number(amount))} set aside for ${email.trim()} — claimed automatically once they sign up with that email.`}
+        {result.emailStatus === 'sent' && ' An email went out just now.'}{' '}
+        <button
+          onClick={() => {
+            setResult(null)
+            setEmail('')
+            setAmount('')
+            setReason('')
+            setOtherDetail('')
+            setNote('')
+            setOpen(false)
+          }}
+          style={{ background: 'none', border: 'none', color: '#3f7a63', textDecoration: 'underline', fontSize: 12.5, cursor: 'pointer', padding: 0 }}
+        >
+          Grant another
+        </button>
+      </p>
+    )
+  }
+
+  if (!open) {
+    return (
+      <button
+        onClick={() => setOpen(true)}
+        style={{ marginTop: 10, background: 'none', border: '1px solid #cfd4da', borderRadius: 2, padding: '8px 14px', fontSize: 12.5, cursor: 'pointer', color: '#131b28' }}
+      >
+        + Grant credit by email
+      </button>
+    )
+  }
+
+  return (
+    <form onSubmit={submit} style={{ marginTop: 10, border: '1px solid #e3e6ea', borderRadius: 4, padding: 14, display: 'flex', gap: 8, flexWrap: 'wrap', alignItems: 'flex-start' }}>
+      <p style={{ flex: '1 1 100%', fontSize: 12, color: '#5a6875', margin: 0 }}>
+        For an email with no order to attach this to (e.g. every attempt failed) — same as the "Issue store credit" panel on an order page, just
+        without needing an order.
+      </p>
+      <input
+        type="email"
+        placeholder="Email address"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+        style={{ flex: '2 1 220px', padding: '8px 10px', border: '1px solid #cfd4da', borderRadius: 2, fontSize: 13 }}
+      />
+      <input
+        type="number"
+        step="0.01"
+        placeholder="Amount, e.g. 5"
+        value={amount}
+        onChange={(e) => setAmount(e.target.value)}
+        style={{ flex: '1 1 140px', padding: '8px 10px', border: '1px solid #cfd4da', borderRadius: 2, fontSize: 13 }}
+      />
+      <select
+        value={reason}
+        onChange={(e) => setReason(e.target.value)}
+        style={{ flex: '2 1 200px', padding: '8px 10px', border: '1px solid #cfd4da', borderRadius: 2, fontSize: 13, color: reason ? '#131b28' : '#5a6875' }}
+      >
+        <option value="">Select a reason…</option>
+        {STORE_CREDIT_REASONS.map((r) => (
+          <option key={r} value={r}>
+            {r}
+          </option>
+        ))}
+      </select>
+      {reason === 'Other' && (
+        <input
+          type="text"
+          placeholder="Describe the reason"
+          value={otherDetail}
+          onChange={(e) => setOtherDetail(e.target.value)}
+          style={{ flex: '2 1 200px', padding: '8px 10px', border: '1px solid #cfd4da', borderRadius: 2, fontSize: 13 }}
+        />
+      )}
+      <textarea
+        placeholder="Internal note (optional) — never shown to the customer"
+        value={note}
+        onChange={(e) => setNote(e.target.value)}
+        rows={2}
+        style={{ flex: '1 1 100%', padding: '8px 10px', border: '1px solid #cfd4da', borderRadius: 2, fontSize: 13, fontFamily: 'inherit', resize: 'vertical' }}
+      />
+      <button
+        type="submit"
+        disabled={busy}
+        style={{ background: '#131b28', color: '#fff', border: 0, borderRadius: 2, padding: '8px 16px', fontSize: 13, fontWeight: 600, cursor: busy ? 'default' : 'pointer', opacity: busy ? 0.6 : 1 }}
+      >
+        {busy ? 'Saving…' : 'Grant credit'}
+      </button>
+      <button type="button" onClick={() => setOpen(false)} style={{ background: 'none', border: 'none', color: '#5a6875', fontSize: 12.5, cursor: 'pointer', padding: '8px 10px' }}>
+        Cancel
+      </button>
+      {error && <p style={{ flex: '1 1 100%', fontSize: 12.5, color: '#b4622f', margin: 0 }}>{error}</p>}
+    </form>
+  )
+}
+
 function PendingCreditsSection({ pendingCredits }: { pendingCredits: Awaited<ReturnType<typeof adminListPendingStoreCredits>> }) {
   const router = useRouter()
   const [busyId, setBusyId] = React.useState<string | null>(null)
-
-  if (pendingCredits.length === 0) return null
 
   const cancel = async (id: string) => {
     if (!confirm('Cancel this pending credit? It was never claimed, so nothing to reverse — this just removes it.')) return
@@ -38,8 +170,13 @@ function PendingCreditsSection({ pendingCredits }: { pendingCredits: Awaited<Ret
     <div style={{ marginTop: 28 }}>
       <h2 style={{ fontSize: 15, fontWeight: 700, margin: 0 }}>Pending credits — no account yet</h2>
       <p style={{ fontSize: 12.5, color: '#5a6875', margin: '6px 0 0' }}>
-        Set aside for an email with no account. Claimed automatically into real store credit the moment they sign up with that email.
+        Set aside for an email with no account. Claimed automatically into real store credit the moment they sign up with that email, or
+        complete any order under it (guest checkout included).
       </p>
+      <GrantPendingCreditForm />
+      {pendingCredits.length === 0 ? (
+        <p style={{ fontSize: 12.5, color: '#5a6875', marginTop: 14 }}>None outstanding.</p>
+      ) : (
       <div style={{ display: 'flex', flexDirection: 'column', gap: 10, marginTop: 14 }}>
         {pendingCredits.map((p) => (
           <div key={p.id} style={{ display: 'flex', justifyContent: 'space-between', gap: 12, fontSize: 13, border: '1px solid #e3e6ea', borderRadius: 4, padding: '10px 14px', flexWrap: 'wrap' }}>
@@ -71,6 +208,7 @@ function PendingCreditsSection({ pendingCredits }: { pendingCredits: Awaited<Ret
           </div>
         ))}
       </div>
+      )}
     </div>
   )
 }
