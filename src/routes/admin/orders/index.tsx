@@ -3,6 +3,7 @@ import { createFileRoute, Link, useNavigate } from '@tanstack/react-router'
 import { AdminNav } from '~/components/AdminNav'
 import { requireAdmin } from '~/server/admin-auth'
 import {
+  adminListCheckoutIssueFollowups,
   adminListOrders,
   adminListPaymentFailures,
   adminSendCheckoutIssueNotice,
@@ -16,7 +17,11 @@ const ORDERS_PER_PAGE = 20
 
 export const Route = createFileRoute('/admin/orders/')({
   beforeLoad: () => requireAdmin(),
-  loader: async () => ({ orders: await adminListOrders(), paymentFailures: await adminListPaymentFailures() }),
+  loader: async () => ({
+    orders: await adminListOrders(),
+    paymentFailures: await adminListPaymentFailures(),
+    checkoutIssueFollowups: await adminListCheckoutIssueFollowups(),
+  }),
   component: AdminOrdersPage,
 })
 
@@ -176,7 +181,7 @@ function NotifyFailureRow({ email }: { email: string }) {
 
 function AdminOrdersPage() {
   const navigate = useNavigate()
-  const { orders, paymentFailures } = Route.useLoaderData()
+  const { orders, paymentFailures, checkoutIssueFollowups } = Route.useLoaderData()
   const [page, setPage] = React.useState(1)
   const [itemFilter, setItemFilter] = React.useState('')
   const [statusFilter, setStatusFilter] = React.useState<'not_shipped' | 'pending' | 'partially_shipped' | 'all'>('not_shipped')
@@ -283,6 +288,41 @@ function AdminOrdersPage() {
                   <div style={{ marginTop: 6 }}>
                     <NotifyFailureRow email={f.email} />
                   </div>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {checkoutIssueFollowups.length > 0 && (
+        <div style={{ marginTop: 20, border: '1px solid #cfd4da', background: '#f6f7f8', borderRadius: 4, padding: 16 }}>
+          <h2 style={{ fontSize: 13, fontWeight: 700, margin: 0, color: '#131b28' }}>Notified — did they come back?</h2>
+          <p style={{ fontSize: 11.5, color: '#5a6875', margin: '4px 0 0' }}>
+            Everyone who got the "checkout issue resolved" email, and whether they've shown up again since.
+          </p>
+          <div style={{ marginTop: 10, display: 'flex', flexDirection: 'column', gap: 10 }}>
+            {checkoutIssueFollowups.map((c, i) => (
+              <div key={i} style={{ fontSize: 12.5, color: '#131b28' }}>
+                <div>
+                  <span style={{ fontWeight: 600 }}>{c.email}</span>
+                  <span style={{ color: '#5a6875' }}> — notified {new Date(c.notifiedAt).toLocaleString()}</span>
+                </div>
+                {c.laterOrder ? (
+                  <div style={{ color: '#3f7a63', marginTop: 2 }}>
+                    ✓ Placed{' '}
+                    <Link to="/admin/orders/$id" params={{ id: c.laterOrder.id }} style={{ color: '#3f7a63', fontWeight: 600, textDecoration: 'none' }}>
+                      #EBI-{c.laterOrder.orderNo}
+                    </Link>{' '}
+                    ({formatMoney(c.laterOrder.total)}, {c.laterOrder.paymentStatus}) at {new Date(c.laterOrder.createdAt).toLocaleString()}
+                  </div>
+                ) : c.laterFailure ? (
+                  <div style={{ color: '#b4622f', marginTop: 2 }}>
+                    ⚠ Tried again and failed — {formatMoney(c.laterFailure.amount ?? 0)}, {c.laterFailure.errorMessage}, at{' '}
+                    {new Date(c.laterFailure.createdAt).toLocaleString()}
+                  </div>
+                ) : (
+                  <div style={{ color: '#5a6875', marginTop: 2 }}>No attempt since.</div>
                 )}
               </div>
             ))}

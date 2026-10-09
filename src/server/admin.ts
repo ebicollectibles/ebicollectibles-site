@@ -653,6 +653,50 @@ export const adminSendCheckoutIssueNoticeTest = createServerFn({ method: 'POST' 
     return { result: sendResult }
   })
 
+// For each real (non-test) checkout-issue notice actually sent, checks
+// whether that email shows up again afterward — a new failed attempt
+// (payment_attempts) or, better, a real order (orders). Answers "did they
+// come back after I told them it was fixed" directly from what's already
+// logged, rather than admin having to cross-reference two separate lists
+// by hand. One extra pair of queries per notice sent — cheap at this
+// volume (a handful of one-off notices, not a bulk campaign).
+export const adminListCheckoutIssueFollowups = createServerFn({ method: 'GET' }).handler(async () => {
+  await assertAdmin()
+  const db = getDb()
+
+  const notices = await db
+    .select({ email: emailEvents.email, notifiedAt: emailEvents.createdAt })
+    .from(emailEvents)
+    .where(and(eq(emailEvents.type, 'checkout_issue_resolved'), eq(emailEvents.status, 'sent'), isNotNull(emailEvents.email)))
+    .orderBy(desc(emailEvents.createdAt))
+
+  const results: {
+    email: string
+    notifiedAt: Date
+    laterFailure: { createdAt: Date; amount: number | null; errorMessage: string | null } | null
+    laterOrder: { id: string; orderNo: number; total: number; paymentStatus: string; createdAt: Date } | null
+  }[] = []
+
+  for (const n of notices) {
+    const email = n.email!
+    const [laterFailure] = await db
+      .select({ createdAt: paymentAttempts.createdAt, amount: paymentAttempts.amount, errorMessage: paymentAttempts.errorMessage })
+      .from(paymentAttempts)
+      .where(and(eq(paymentAttempts.email, email), sql`${paymentAttempts.createdAt} > ${n.notifiedAt}`))
+      .orderBy(desc(paymentAttempts.createdAt))
+      .limit(1)
+    const [laterOrder] = await db
+      .select({ id: orders.id, orderNo: orders.orderNo, total: orders.total, paymentStatus: orders.paymentStatus, createdAt: orders.createdAt })
+      .from(orders)
+      .where(and(sql`lower(${orders.email}) = ${email.toLowerCase()}`, sql`${orders.createdAt} > ${n.notifiedAt}`))
+      .orderBy(desc(orders.createdAt))
+      .limit(1)
+    results.push({ email, notifiedAt: n.notifiedAt, laterFailure: laterFailure ?? null, laterOrder: laterOrder ?? null })
+  }
+
+  return results
+})
+
 export const adminListSecurityEvents = createServerFn({ method: 'GET' }).handler(async () => {
   await assertAdmin()
   const db = getDb()
