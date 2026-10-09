@@ -3,6 +3,18 @@
 
 const SQUARE_VERSION = '2025-01-23'
 
+// Square hard-caps idempotency_key at 45 characters ("Field must not be
+// greater than 45 length" on the request) — a limit a previous fix here
+// didn't account for (`ebi-order-${orderNo}-${crypto.randomUUID()}` runs
+// ~49 chars), which is what broke checkout again right after fixing the
+// original key-collision bug. Builds a short, still-per-attempt-unique
+// key (prefix + orderNo + a de-hyphenated UUID), then hard-truncates to
+// 45 as a backstop so this exact mistake can't recur even if the prefix
+// changes later without someone re-checking the arithmetic.
+function freshIdempotencyKey(prefix: string, id: string | number): string {
+  return `${prefix}${id}-${crypto.randomUUID().replace(/-/g, '')}`.slice(0, 45)
+}
+
 interface ChargeResult {
   status: 'paid' | 'test' | 'failed'
   squarePaymentId?: string
@@ -135,7 +147,7 @@ export async function createSquareOrder(opts: {
         // the same transaction a failed charge rolls back, so a bare
         // `-create` key can collide across unrelated retries just like the
         // payment key did.
-        idempotency_key: `ebi-order-${opts.orderNo}-create-${crypto.randomUUID()}`,
+        idempotency_key: freshIdempotencyKey('ord', opts.orderNo),
         order: {
           location_id: locationId,
           line_items: lineItems,
@@ -214,7 +226,11 @@ export async function completeSquareOrderFulfillment(opts: {
       method: 'PUT',
       headers: squareHeaders(accessToken),
       body: JSON.stringify({
-        idempotency_key: `ebi-order-${opts.squareOrderId}-ship`,
+        // Square order/catalog ids run ~20-30 chars on their own, so a bare
+        // `-ship` suffix was already close to the 45-char cap (see
+        // freshIdempotencyKey's comment) — same fix, applied before it
+        // actually broke here too.
+        idempotency_key: freshIdempotencyKey('shp', opts.squareOrderId),
         order: {
           location_id: locationId,
           version,
@@ -285,7 +301,7 @@ export async function chargeSquarePayment(opts: {
       // every retry after one decline was doomed to fail this way until
       // the stuck order number finally succeeded. orderNo stays in the key
       // purely for readability in Square's dashboard/logs.
-      idempotency_key: `ebi-order-${opts.orderNo}-${crypto.randomUUID()}`,
+      idempotency_key: freshIdempotencyKey('pay', opts.orderNo),
       amount_money: {
         amount: Math.round(opts.amount * 100),
         currency: 'USD',
@@ -399,7 +415,11 @@ export async function recordSquareInventorySale(variationId: string, quantity: n
     method: 'POST',
     headers: squareHeaders(accessToken),
     body: JSON.stringify({
-      idempotency_key: `ebi-order-${orderNo}-sale-${variationId}`,
+      // Same 45-char-cap fix as the other idempotency keys in this file —
+      // variationId alone can run ~26 chars, which was already pushing the
+      // old `ebi-order-<orderNo>-sale-<variationId>` format toward the
+      // limit for larger order numbers.
+      idempotency_key: freshIdempotencyKey('sal', `${orderNo}-${variationId}`),
       changes: [
         {
           type: 'ADJUSTMENT',
