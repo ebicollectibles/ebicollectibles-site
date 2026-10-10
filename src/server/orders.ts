@@ -247,20 +247,31 @@ export const placeOrder = createServerFn({ method: 'POST' })
       // all when there's no userId to attach one to (a true guest with no
       // account) — the order's own creditApplied field is the record of
       // what happened there.
+      // A bonus discount is never allowed to be the reason a checkout fails
+      // outright — if this query/update has a problem for any reason
+      // (table doesn't exist yet in some environment, transient DB hiccup),
+      // swallow it and place the order with no pending credit applied
+      // rather than letting an unrelated-to-payment table abort the whole
+      // transaction. Same defensive reasoning as claimPendingStoreCredit's
+      // try/catch in store-credit.ts.
       if (data.contact.email) {
-        const email = data.contact.email.trim().toLowerCase()
-        const pending = await tx
-          .select()
-          .from(pendingStoreCredits)
-          .where(and(sql`lower(${pendingStoreCredits.email}) = ${email}`, isNull(pendingStoreCredits.claimedAt), isNull(pendingStoreCredits.canceledAt)))
-        for (const row of pending) {
-          const [claimed] = await tx
-            .update(pendingStoreCredits)
-            .set({ claimedAt: new Date(), claimedUserId: userId ?? null })
-            .where(and(eq(pendingStoreCredits.id, row.id), isNull(pendingStoreCredits.claimedAt), isNull(pendingStoreCredits.canceledAt)))
-            .returning()
-          if (!claimed) continue
-          creditApplied += Math.min(row.amount, Math.max(0, total - creditApplied))
+        try {
+          const email = data.contact.email.trim().toLowerCase()
+          const pending = await tx
+            .select()
+            .from(pendingStoreCredits)
+            .where(and(sql`lower(${pendingStoreCredits.email}) = ${email}`, isNull(pendingStoreCredits.claimedAt), isNull(pendingStoreCredits.canceledAt)))
+          for (const row of pending) {
+            const [claimed] = await tx
+              .update(pendingStoreCredits)
+              .set({ claimedAt: new Date(), claimedUserId: userId ?? null })
+              .where(and(eq(pendingStoreCredits.id, row.id), isNull(pendingStoreCredits.claimedAt), isNull(pendingStoreCredits.canceledAt)))
+              .returning()
+            if (!claimed) continue
+            creditApplied += Math.min(row.amount, Math.max(0, total - creditApplied))
+          }
+        } catch (err) {
+          console.error(`Failed to check/claim pending store credit for ${data.contact.email}:`, err)
         }
       }
       const amountDue = Math.max(0, Math.round((total - creditApplied) * 100) / 100)
