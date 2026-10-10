@@ -11,7 +11,7 @@ const SQUARE_VERSION = '2025-01-23'
 // key (prefix + orderNo + a de-hyphenated UUID), then hard-truncates to
 // 45 as a backstop so this exact mistake can't recur even if the prefix
 // changes later without someone re-checking the arithmetic.
-function freshIdempotencyKey(prefix: string, id: string | number): string {
+export function freshIdempotencyKey(prefix: string, id: string | number): string {
   return `${prefix}${id}-${crypto.randomUUID().replace(/-/g, '')}`.slice(0, 45)
 }
 
