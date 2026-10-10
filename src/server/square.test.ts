@@ -1,5 +1,5 @@
-import { describe, expect, it } from 'vitest'
-import { freshIdempotencyKey } from './square'
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
+import { chargeSquarePayment, freshIdempotencyKey } from './square'
 
 describe('freshIdempotencyKey', () => {
   it('never exceeds Square\'s 45-character idempotency_key limit', () => {
@@ -34,5 +34,76 @@ describe('freshIdempotencyKey', () => {
     const key = freshIdempotencyKey('sal', '999999-RVCPDD2WIBZ5KMJCWX4SXUVEEXTRA')
     expect(key.length).toBeLessThanOrEqual(45)
     expect(key.startsWith('sal999999-RVCPDD2WIBZ5KMJCWX4SXUVEEXTRA-')).toBe(true)
+  })
+})
+
+// Square's own idempotency docs recommend retrying a transient failure
+// (network error, 429, 5xx) with the SAME idempotency key — the opposite
+// mistake from the one that broke checkout (a key that's reused when it
+// shouldn't be). These cover the other direction: a genuine decline or
+// validation error (4xx other than 429) must never be retried, since it
+// would just fail again identically and only slow down a real decline.
+describe('chargeSquarePayment retry behavior', () => {
+  const originalFetch = global.fetch
+
+  beforeEach(() => {
+    process.env.SQUARE_ACCESS_TOKEN = 'test-token'
+    process.env.SQUARE_LOCATION_ID = 'test-location'
+  })
+
+  afterEach(() => {
+    global.fetch = originalFetch
+    delete process.env.SQUARE_ACCESS_TOKEN
+    delete process.env.SQUARE_LOCATION_ID
+    vi.restoreAllMocks()
+  })
+
+  const chargeOpts = { sourceId: 'cnon:test', amount: 10, orderNo: 1 }
+
+  it('succeeds immediately with no retry when the first attempt works', async () => {
+    const fetchMock = vi.fn().mockResolvedValue({ ok: true, status: 200, json: async () => ({ payment: { id: 'pay_1' } }) })
+    global.fetch = fetchMock as any
+    const result = await chargeSquarePayment(chargeOpts)
+    expect(result.status).toBe('paid')
+    expect(fetchMock).toHaveBeenCalledTimes(1)
+  })
+
+  it('retries a 429 and succeeds on the second attempt, reusing the same idempotency key', async () => {
+    const fetchMock = vi
+      .fn()
+      .mockResolvedValueOnce({ ok: false, status: 429, json: async () => ({ errors: [{ detail: 'Rate limited' }] }) })
+      .mockResolvedValueOnce({ ok: true, status: 200, json: async () => ({ payment: { id: 'pay_2' } }) })
+    global.fetch = fetchMock as any
+    const result = await chargeSquarePayment(chargeOpts)
+    expect(result.status).toBe('paid')
+    expect(fetchMock).toHaveBeenCalledTimes(2)
+    const key1 = JSON.parse((fetchMock.mock.calls[0] as any)[1].body).idempotency_key
+    const key2 = JSON.parse((fetchMock.mock.calls[1] as any)[1].body).idempotency_key
+    expect(key1).toBe(key2)
+  })
+
+  it('retries a 500 up to 3 total attempts, then fails', async () => {
+    const fetchMock = vi.fn().mockResolvedValue({ ok: false, status: 500, json: async () => ({ errors: [{ detail: 'Internal error' }] }) })
+    global.fetch = fetchMock as any
+    const result = await chargeSquarePayment(chargeOpts)
+    expect(result.status).toBe('failed')
+    expect(fetchMock).toHaveBeenCalledTimes(3)
+  })
+
+  it('never retries a genuine decline (4xx other than 429)', async () => {
+    const fetchMock = vi.fn().mockResolvedValue({ ok: false, status: 402, json: async () => ({ errors: [{ detail: 'Card declined' }] }) })
+    global.fetch = fetchMock as any
+    const result = await chargeSquarePayment(chargeOpts)
+    expect(result.status).toBe('failed')
+    expect(result.error).toBe('Card declined')
+    expect(fetchMock).toHaveBeenCalledTimes(1)
+  })
+
+  it('retries a network-level throw, then succeeds', async () => {
+    const fetchMock = vi.fn().mockRejectedValueOnce(new Error('network blip')).mockResolvedValueOnce({ ok: true, status: 200, json: async () => ({ payment: { id: 'pay_3' } }) })
+    global.fetch = fetchMock as any
+    const result = await chargeSquarePayment(chargeOpts)
+    expect(result.status).toBe('paid')
+    expect(fetchMock).toHaveBeenCalledTimes(2)
   })
 })

@@ -282,62 +282,79 @@ export async function chargeSquarePayment(opts: {
     return { status: 'failed', error: 'Missing payment token from Square Web Payments SDK.' }
   }
 
-  const res = await fetch(`${baseUrl}/v2/payments`, {
-    method: 'POST',
-    headers: squareHeaders(accessToken),
-    body: JSON.stringify({
-      source_id: opts.sourceId,
-      // A fresh key per call, not a bare `ebi-order-${orderNo}` — orderNo
-      // comes from a counter incremented inside the same DB transaction as
-      // this charge (see placeOrder in orders.ts), and a failed charge
-      // throws, rolling that increment back. The next attempt — a retry by
-      // the same shopper after a decline, or an unrelated checkout by
-      // someone else racing in — then gets the *same* orderNo and would
-      // send Square the *same* idempotency key with different params
-      // (a new card nonce every time at minimum), which Square correctly
-      // rejects as "Different request parameters used for the same
-      // idempotency_key." That's exactly what started happening in
-      // production (see the Oct 2026 payment-failures investigation) —
-      // every retry after one decline was doomed to fail this way until
-      // the stuck order number finally succeeded. orderNo stays in the key
-      // purely for readability in Square's dashboard/logs.
-      idempotency_key: freshIdempotencyKey('pay', opts.orderNo),
-      amount_money: {
-        amount: Math.round(opts.amount * 100),
-        currency: 'USD',
+  // Generated once, outside the retry loop below — reusing the SAME key
+  // across retries of this one logical attempt is exactly what Square's
+  // own idempotency docs recommend for a transient failure (network
+  // error, 429, 5xx): it's how a retry is guaranteed to either land the
+  // original charge or safely no-op, never double-charge the card. A
+  // fresh key per call still only ever happens once per actual checkout
+  // attempt (see freshIdempotencyKey's own comment) — this loop is all
+  // one attempt, just retried.
+  const idempotencyKey = freshIdempotencyKey('pay', opts.orderNo)
+  const body = JSON.stringify({
+    source_id: opts.sourceId,
+    idempotency_key: idempotencyKey,
+    amount_money: {
+      amount: Math.round(opts.amount * 100),
+      currency: 'USD',
+    },
+    location_id: locationId,
+    ...(opts.squareOrderId && { order_id: opts.squareOrderId }),
+    // Full billing address strengthens Square's AVS fraud check beyond
+    // the postal-code-only check baked into the card widget itself.
+    ...(opts.billingAddress && {
+      billing_address: {
+        address_line_1: opts.billingAddress.addressLine1,
+        address_line_2: opts.billingAddress.addressLine2 || undefined,
+        locality: opts.billingAddress.locality,
+        administrative_district_level_1: opts.billingAddress.administrativeDistrictLevel1,
+        postal_code: opts.billingAddress.postalCode,
+        country: 'US',
       },
-      location_id: locationId,
-      ...(opts.squareOrderId && { order_id: opts.squareOrderId }),
-      // Full billing address strengthens Square's AVS fraud check beyond
-      // the postal-code-only check baked into the card widget itself.
-      ...(opts.billingAddress && {
-        billing_address: {
-          address_line_1: opts.billingAddress.addressLine1,
-          address_line_2: opts.billingAddress.addressLine2 || undefined,
-          locality: opts.billingAddress.locality,
-          administrative_district_level_1: opts.billingAddress.administrativeDistrictLevel1,
-          postal_code: opts.billingAddress.postalCode,
-          country: 'US',
-        },
-      }),
     }),
   })
 
-  const json = await res.json().catch(() => null)
+  // Up to 3 attempts total. Only ever retries a TRANSIENT failure — a
+  // network error, a 429 (rate limited), or a 5xx (Square's own server
+  // trouble) — never a real decline or validation error (4xx other than
+  // 429), which would just fail again identically. Square documents 429
+  // and 5xx as the cases worth retrying; everything else is final.
+  let lastMessage = 'Payment failed — please check your card details and try again.'
+  for (let attempt = 1; attempt <= 3; attempt++) {
+    let res: Response
+    try {
+      res = await fetch(`${baseUrl}/v2/payments`, { method: 'POST', headers: squareHeaders(accessToken), body })
+    } catch (err) {
+      lastMessage = err instanceof Error ? err.message : 'Could not reach Square — please try again.'
+      if (attempt < 3) {
+        await new Promise((r) => setTimeout(r, attempt * 400))
+        continue
+      }
+      return { status: 'failed', error: lastMessage }
+    }
 
-  if (!res.ok) {
-    const message = json?.errors?.[0]?.detail || `Square API error (${res.status})`
-    return { status: 'failed', error: message }
+    const json = await res.json().catch(() => null)
+
+    if (res.ok) {
+      return {
+        status: 'paid',
+        squarePaymentId: json?.payment?.id,
+        paymentMethodSummary: describeSquarePaymentMethod(json?.payment),
+        riskLevel: json?.payment?.risk_evaluation?.risk_level,
+        avsStatus: json?.payment?.card_details?.avs_status,
+        cvvStatus: json?.payment?.card_details?.cvv_status,
+      }
+    }
+
+    lastMessage = json?.errors?.[0]?.detail || `Square API error (${res.status})`
+    const transient = res.status === 429 || res.status >= 500
+    if (!transient || attempt === 3) {
+      return { status: 'failed', error: lastMessage }
+    }
+    await new Promise((r) => setTimeout(r, attempt * 400))
   }
 
-  return {
-    status: 'paid',
-    squarePaymentId: json?.payment?.id,
-    paymentMethodSummary: describeSquarePaymentMethod(json?.payment),
-    riskLevel: json?.payment?.risk_evaluation?.risk_level,
-    avsStatus: json?.payment?.card_details?.avs_status,
-    cvvStatus: json?.payment?.card_details?.cvv_status,
-  }
+  return { status: 'failed', error: lastMessage }
 }
 
 export interface SquareCatalogOption {
