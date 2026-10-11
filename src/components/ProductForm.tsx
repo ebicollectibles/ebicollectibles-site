@@ -456,9 +456,7 @@ function ImagePicker({ onSelect, onClose }: { onSelect: (url: string) => void; o
                   fontSize: 11,
                   fontWeight: 600,
                   color: '#131b28',
-                  overflow: 'hidden',
-                  textOverflow: 'ellipsis',
-                  whiteSpace: 'nowrap',
+                  wordBreak: 'break-word',
                 }}
               >
                 {folder.name}
@@ -496,9 +494,7 @@ function ImagePicker({ onSelect, onClose }: { onSelect: (url: string) => void; o
                   marginTop: 5,
                   fontSize: 11,
                   color: '#3d4753',
-                  overflow: 'hidden',
-                  textOverflow: 'ellipsis',
-                  whiteSpace: 'nowrap',
+                  wordBreak: 'break-word',
                 }}
               >
                 {img.name}
