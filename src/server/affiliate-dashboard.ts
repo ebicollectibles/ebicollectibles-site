@@ -43,6 +43,7 @@ export async function buildAffiliateDashboard(affiliateId: string): Promise<Affi
       createdAt: orders.createdAt,
       subtotal: orders.subtotal,
       affiliateCommission: orders.affiliateCommission,
+      affiliateCommissionRate: orders.affiliateCommissionRate,
       affiliateCommissionPaidAt: orders.affiliateCommissionPaidAt,
     })
     .from(orders)
@@ -70,7 +71,7 @@ export async function buildAffiliateDashboard(affiliateId: string): Promise<Affi
     totalCommission += commission
     if (paid) paidCommission += commission
     else if (!refunded) owedCommission += commission
-    return { orderNo: o.orderNo, createdAt: o.createdAt, subtotal: o.subtotal, commission, paid, refunded }
+    return { orderNo: o.orderNo, createdAt: o.createdAt, subtotal: o.subtotal, commission, commissionRate: o.affiliateCommissionRate, paid, refunded }
   })
 
   return {

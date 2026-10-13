@@ -369,6 +369,10 @@ export const placeOrder = createServerFn({ method: 'POST' })
               affiliateAttribution.productRates,
             )
           : null
+      // Blended effective rate this order actually earned at, snapshotted
+      // alongside the dollar amount for the same reason — see the
+      // affiliateCommissionRate column's comment in schema.ts.
+      const affiliateCommissionRate = affiliateCommission !== null && subtotal > 0 ? Math.round((affiliateCommission / subtotal) * 10000) / 100 : affiliateCommission !== null ? 0 : null
 
       const [order] = await tx
         .insert(orders)
@@ -408,6 +412,7 @@ export const placeOrder = createServerFn({ method: 'POST' })
           cvvStatus: charge.cvvStatus ?? null,
           affiliateId: affiliateCommission !== null ? affiliateAttribution!.affiliateId : null,
           affiliateCommission,
+          affiliateCommissionRate,
         })
         .returning()
 

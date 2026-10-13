@@ -298,6 +298,17 @@ export const orders = pgTable('orders', {
   // retroactively change what a past order owes, same reasoning as
   // order_items.unitPrice snapshotting the product's price at purchase.
   affiliateCommission: numeric('affiliate_commission', { precision: 10, scale: 2, mode: 'number' }),
+  // The effective commission rate (a percent, e.g. 10 for 10%) that
+  // actually produced affiliateCommission above — snapshotted alongside
+  // it for the same reason: a later change to the affiliate's own rate,
+  // or to a per-product override, must never make a past order's own
+  // numbers look inconsistent with what was actually paid out. This is
+  // affiliateCommission / subtotal * 100 — exact for the common case
+  // (an unrestricted affiliate, or every line in this order already in
+  // scope); for a *restricted* affiliate with a mix of in- and
+  // out-of-scope lines in the same order, it's the blended rate across
+  // the whole order's subtotal, not any single line's own rate.
+  affiliateCommissionRate: numeric('affiliate_commission_rate', { precision: 5, scale: 2, mode: 'number' }),
   // Set once admin has actually paid the affiliate for this order (outside
   // the app — Venmo/PayPal/etc.) — null means owed-but-unpaid.
   affiliateCommissionPaidAt: timestamp('affiliate_commission_paid_at', { withTimezone: true }),

@@ -22,7 +22,11 @@ export type AffiliateDashboardData = {
   totalCommission: number
   paidCommission: number
   owedCommission: number
-  orders: Array<{ orderNo: number; createdAt: Date | string; subtotal: number; commission: number; paid: boolean; refunded: boolean }>
+  // commissionRate here is the blended rate THIS order actually earned
+  // at (null for an order placed before this was tracked) — can differ
+  // from the affiliate's current default/productRates above, which only
+  // ever show what's in effect right now, not what applied historically.
+  orders: Array<{ orderNo: number; createdAt: Date | string; subtotal: number; commission: number; commissionRate: number | null; paid: boolean; refunded: boolean }>
 }
 
 const monoLabel: React.CSSProperties = {
@@ -205,12 +209,13 @@ export function AffiliateDashboardView({ affiliate, heading = 'Affiliate' }: { a
         <p style={{ fontSize: 13.5, color: '#5a6875', marginTop: 12 }}>No orders attributed to this link yet.</p>
       ) : (
         <div style={{ overflowX: 'auto' }}>
-          <table style={{ width: '100%', borderCollapse: 'collapse', marginTop: 14, minWidth: 480 }}>
+          <table style={{ width: '100%', borderCollapse: 'collapse', marginTop: 14, minWidth: 560 }}>
             <thead>
               <tr>
                 <th style={th}>Order</th>
                 <th style={th}>Date</th>
                 <th style={th}>Subtotal</th>
+                <th style={th}>Rate</th>
                 <th style={th}>Commission</th>
                 <th style={th}>Status</th>
               </tr>
@@ -221,6 +226,9 @@ export function AffiliateDashboardView({ affiliate, heading = 'Affiliate' }: { a
                   <td style={{ ...td, fontFamily: "'IBM Plex Mono', monospace", fontWeight: 600 }}>#EBI-{o.orderNo}</td>
                   <td style={{ ...td, color: '#5a6875' }}>{new Date(o.createdAt).toLocaleDateString()}</td>
                   <td style={td}>{formatMoney(o.subtotal)}</td>
+                  <td style={{ ...td, fontFamily: "'IBM Plex Mono', monospace", color: '#5a6875' }}>
+                    {o.commissionRate != null ? `${o.commissionRate}%` : '—'}
+                  </td>
                   <td style={{ ...td, fontFamily: "'IBM Plex Mono', monospace" }}>{formatMoney(o.commission)}</td>
                   <td style={{ ...td, color: o.refunded ? '#5a6875' : o.paid ? '#3f7a63' : '#b4622f' }}>
                     {o.refunded ? 'Refunded' : o.paid ? 'Paid' : 'Owed'}

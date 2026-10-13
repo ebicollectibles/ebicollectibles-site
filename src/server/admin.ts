@@ -1668,6 +1668,7 @@ export const adminListAffiliateOrders = createServerFn({ method: 'GET' })
         createdAt: orders.createdAt,
         subtotal: orders.subtotal,
         affiliateCommission: orders.affiliateCommission,
+        affiliateCommissionRate: orders.affiliateCommissionRate,
         affiliateCommissionPaidAt: orders.affiliateCommissionPaidAt,
       })
       .from(orders)

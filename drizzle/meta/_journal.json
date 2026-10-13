@@ -435,6 +435,13 @@
       "when": 1791491828662,
       "tag": "0061_add_pending_store_credits",
       "breakpoints": true
+    },
+    {
+      "idx": 62,
+      "version": "7",
+      "when": 1791872403463,
+      "tag": "0062_add_affiliate_commission_rate",
+      "breakpoints": true
     }
   ]
 }

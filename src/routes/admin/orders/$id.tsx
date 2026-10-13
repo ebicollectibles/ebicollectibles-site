@@ -516,7 +516,13 @@ function AdminOrderDetailPage() {
             </div>
             <div style={{ marginTop: 6, fontSize: 13, color: '#131b28' }}>
               Referred by <strong>{order.affiliate.name}</strong> (?ref={order.affiliate.code})
-              {order.affiliateCommission != null && <> — ${order.affiliateCommission.toFixed(2)} commission</>}
+              {order.affiliateCommission != null && (
+                <>
+                  {' '}
+                  — ${order.affiliateCommission.toFixed(2)} commission
+                  {order.affiliateCommissionRate != null && ` (${order.affiliateCommissionRate}%)`}
+                </>
+              )}
               {order.affiliateCommission != null && (
                 <span style={{ marginLeft: 8, fontSize: 11.5, color: order.affiliateCommissionPaidAt ? '#3f7a63' : '#b4622f' }}>
                   {order.affiliateCommissionPaidAt ? 'Paid' : 'Owed'}

@@ -513,12 +513,13 @@ function AffiliateOrders({ affiliateId }: { affiliateId: string }) {
 
   return (
     <div style={{ background: '#f6f7f8', padding: '10px 16px 14px', overflowX: 'auto' }}>
-      <table style={{ width: '100%', borderCollapse: 'collapse', minWidth: 520 }}>
+      <table style={{ width: '100%', borderCollapse: 'collapse', minWidth: 600 }}>
         <thead>
           <tr>
             <th style={{ ...th, borderBottom: '1px solid #cfd4da' }}>Order</th>
             <th style={{ ...th, borderBottom: '1px solid #cfd4da' }}>Date</th>
             <th style={{ ...th, borderBottom: '1px solid #cfd4da' }}>Subtotal</th>
+            <th style={{ ...th, borderBottom: '1px solid #cfd4da' }}>Rate</th>
             <th style={{ ...th, borderBottom: '1px solid #cfd4da' }}>Commission</th>
             <th style={{ ...th, borderBottom: '1px solid #cfd4da' }}>Status</th>
           </tr>
@@ -533,6 +534,9 @@ function AffiliateOrders({ affiliateId }: { affiliateId: string }) {
               </td>
               <td style={{ ...td, borderBottom: '1px solid #e8eaec', color: '#5a6875' }}>{new Date(o.createdAt).toLocaleDateString()}</td>
               <td style={{ ...td, borderBottom: '1px solid #e8eaec', fontFamily: "'IBM Plex Mono', monospace" }}>{money(o.subtotal)}</td>
+              <td style={{ ...td, borderBottom: '1px solid #e8eaec', fontFamily: "'IBM Plex Mono', monospace", color: '#5a6875' }}>
+                {o.affiliateCommissionRate != null ? `${o.affiliateCommissionRate}%` : '—'}
+              </td>
               <td style={{ ...td, borderBottom: '1px solid #e8eaec', fontFamily: "'IBM Plex Mono', monospace" }}>{money(o.affiliateCommission ?? 0)}</td>
               <td style={{ ...td, borderBottom: '1px solid #e8eaec' }}>
                 {o.refunded ? (
