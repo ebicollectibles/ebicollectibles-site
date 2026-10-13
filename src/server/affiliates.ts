@@ -105,3 +105,26 @@ export function computeAffiliateCommission(
   }, 0)
   return Math.round(commission * 100) / 100
 }
+
+// Same rate-resolution rules as computeAffiliateCommission above, but
+// returns the per-line breakdown instead of just the order's total — for
+// snapshotting onto each order_items row (see orders.ts's placeOrder), so
+// an affiliate can see exactly which items earned what, not just one
+// blended number for the whole order. Deliberately a separate function
+// rather than having computeAffiliateCommission call this one and sum the
+// results: that would round each line before summing, which can land a
+// cent off from rounding the raw total once — computeAffiliateCommission's
+// existing (tested) behavior must stay exactly as it was.
+export function computeAffiliateLineCommissions(
+  lineDetails: Array<{ productId: string; unitPrice: number; qty: number }>,
+  defaultCommissionRate: number,
+  restrictToScopedProducts: boolean,
+  productRates: Array<{ productId: string; commissionRate: number | null }>,
+): Array<{ productId: string; rate: number | null; commission: number }> {
+  const rateByProduct = new Map(productRates.map((p) => [p.productId, p.commissionRate ?? defaultCommissionRate]))
+  return lineDetails.map((l) => {
+    const rate = rateByProduct.has(l.productId) ? rateByProduct.get(l.productId)! : restrictToScopedProducts ? null : defaultCommissionRate
+    const commission = rate == null ? 0 : Math.round(l.unitPrice * l.qty * (rate / 100) * 100) / 100
+    return { productId: l.productId, rate, commission }
+  })
+}

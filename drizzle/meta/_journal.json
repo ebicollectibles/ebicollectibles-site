@@ -442,6 +442,13 @@
       "when": 1791872403463,
       "tag": "0062_add_affiliate_commission_rate",
       "breakpoints": true
+    },
+    {
+      "idx": 63,
+      "version": "7",
+      "when": 1791873108111,
+      "tag": "0063_add_order_item_affiliate_commission",
+      "breakpoints": true
     }
   ]
 }

@@ -503,6 +503,14 @@ export const orderItems = pgTable('order_items', {
   img: text('img'),
   unitPrice: numeric('unit_price', { precision: 10, scale: 2, mode: 'number' }).notNull(),
   qty: integer('qty').notNull(),
+  // Per-line commission, snapshotted at order time for the same reason as
+  // orders.affiliateCommission/affiliateCommissionRate — null on every
+  // line whenever the order itself had no affiliate attribution. See
+  // computeAffiliateLineCommissions in server/affiliates.ts for how these
+  // are derived (same per-product-override/restrictToScopedProducts rules
+  // as the order-level total, just kept per line instead of only summed).
+  affiliateCommissionRate: numeric('affiliate_commission_rate', { precision: 5, scale: 2, mode: 'number' }),
+  affiliateCommission: numeric('affiliate_commission', { precision: 10, scale: 2, mode: 'number' }),
 }, (table) => [index('order_items_order_id_idx').on(table.orderId)])
 
 // An order can ship in more than one package (e.g. part USPS, part UPS

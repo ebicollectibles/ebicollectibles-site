@@ -26,7 +26,7 @@ import { getCurrentUserId } from './customer-auth'
 import { resolveSalesTaxRate } from './tax'
 import { resolveHiAkShippingRate } from './shippo'
 import { upsertSubscriber } from './subscribers'
-import { computeAffiliateCommission, resolveAffiliateAttribution } from './affiliates'
+import { computeAffiliateCommission, computeAffiliateLineCommissions, resolveAffiliateAttribution } from './affiliates'
 import { AFFILIATE_REF_COOKIE } from '~/lib/affiliate-ref'
 
 const placeOrderSchema = z.object({
@@ -373,6 +373,13 @@ export const placeOrder = createServerFn({ method: 'POST' })
       // alongside the dollar amount for the same reason — see the
       // affiliateCommissionRate column's comment in schema.ts.
       const affiliateCommissionRate = affiliateCommission !== null && subtotal > 0 ? Math.round((affiliateCommission / subtotal) * 10000) / 100 : affiliateCommission !== null ? 0 : null
+      // Per-line breakdown of the same computation, for order_items below
+      // — lets an affiliate see which specific items earned what, not
+      // just one blended number for the whole order.
+      const lineCommissions =
+        affiliateAttribution && charge.status === 'paid'
+          ? computeAffiliateLineCommissions(lineDetails, affiliateAttribution.commissionRate, affiliateAttribution.restrictToScopedProducts, affiliateAttribution.productRates)
+          : null
 
       const [order] = await tx
         .insert(orders)
@@ -417,13 +424,15 @@ export const placeOrder = createServerFn({ method: 'POST' })
         .returning()
 
       await tx.insert(orderItems).values(
-        lineDetails.map((l) => ({
+        lineDetails.map((l, i) => ({
           orderId: order.id,
           productId: l.productId,
           productName: l.name,
           img: l.img,
           unitPrice: l.unitPrice,
           qty: l.qty,
+          affiliateCommissionRate: lineCommissions?.[i]?.rate ?? null,
+          affiliateCommission: lineCommissions ? lineCommissions[i].commission : null,
         })),
       )
 

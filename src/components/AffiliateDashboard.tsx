@@ -26,7 +26,19 @@ export type AffiliateDashboardData = {
   // at (null for an order placed before this was tracked) — can differ
   // from the affiliate's current default/productRates above, which only
   // ever show what's in effect right now, not what applied historically.
-  orders: Array<{ orderNo: number; createdAt: Date | string; subtotal: number; commission: number; commissionRate: number | null; paid: boolean; refunded: boolean }>
+  // items breaks that same order down per line — a null rate there means
+  // that specific line earned nothing (out of scope for a restricted
+  // affiliate), not that it's untracked.
+  orders: Array<{
+    orderNo: number
+    createdAt: Date | string
+    subtotal: number
+    commission: number
+    commissionRate: number | null
+    paid: boolean
+    refunded: boolean
+    items: Array<{ productName: string; unitPrice: number; qty: number; commissionRate: number | null; commission: number }>
+  }>
 }
 
 const monoLabel: React.CSSProperties = {
@@ -70,6 +82,7 @@ function StatTile({ label, value, color }: { label: string; value: string; color
  */
 export function AffiliateDashboardView({ affiliate, heading = 'Affiliate' }: { affiliate: AffiliateDashboardData; heading?: string }) {
   const [copied, setCopied] = React.useState(false)
+  const [expandedOrderNo, setExpandedOrderNo] = React.useState<number | null>(null)
   const link = `${SITE_URL}/?ref=${affiliate.code}`
 
   const copyLink = async () => {
@@ -212,6 +225,7 @@ export function AffiliateDashboardView({ affiliate, heading = 'Affiliate' }: { a
           <table style={{ width: '100%', borderCollapse: 'collapse', marginTop: 14, minWidth: 560 }}>
             <thead>
               <tr>
+                <th style={th}></th>
                 <th style={th}>Order</th>
                 <th style={th}>Date</th>
                 <th style={th}>Subtotal</th>
@@ -221,20 +235,59 @@ export function AffiliateDashboardView({ affiliate, heading = 'Affiliate' }: { a
               </tr>
             </thead>
             <tbody>
-              {affiliate.orders.map((o) => (
-                <tr key={o.orderNo}>
-                  <td style={{ ...td, fontFamily: "'IBM Plex Mono', monospace", fontWeight: 600 }}>#EBI-{o.orderNo}</td>
-                  <td style={{ ...td, color: '#5a6875' }}>{new Date(o.createdAt).toLocaleDateString()}</td>
-                  <td style={td}>{formatMoney(o.subtotal)}</td>
-                  <td style={{ ...td, fontFamily: "'IBM Plex Mono', monospace", color: '#5a6875' }}>
-                    {o.commissionRate != null ? `${o.commissionRate}%` : '—'}
-                  </td>
-                  <td style={{ ...td, fontFamily: "'IBM Plex Mono', monospace" }}>{formatMoney(o.commission)}</td>
-                  <td style={{ ...td, color: o.refunded ? '#5a6875' : o.paid ? '#3f7a63' : '#b4622f' }}>
-                    {o.refunded ? 'Refunded' : o.paid ? 'Paid' : 'Owed'}
-                  </td>
-                </tr>
-              ))}
+              {affiliate.orders.map((o) => {
+                const expanded = expandedOrderNo === o.orderNo
+                return (
+                  <React.Fragment key={o.orderNo}>
+                    <tr
+                      onClick={() => setExpandedOrderNo(expanded ? null : o.orderNo)}
+                      style={{ cursor: o.items.length > 0 ? 'pointer' : 'default' }}
+                    >
+                      <td style={{ ...td, color: '#5a6875', width: 20 }}>{o.items.length > 0 ? (expanded ? '▲' : '▼') : ''}</td>
+                      <td style={{ ...td, fontFamily: "'IBM Plex Mono', monospace", fontWeight: 600 }}>#EBI-{o.orderNo}</td>
+                      <td style={{ ...td, color: '#5a6875' }}>{new Date(o.createdAt).toLocaleDateString()}</td>
+                      <td style={td}>{formatMoney(o.subtotal)}</td>
+                      <td style={{ ...td, fontFamily: "'IBM Plex Mono', monospace", color: '#5a6875' }}>
+                        {o.commissionRate != null ? `${o.commissionRate}%` : '—'}
+                      </td>
+                      <td style={{ ...td, fontFamily: "'IBM Plex Mono', monospace" }}>{formatMoney(o.commission)}</td>
+                      <td style={{ ...td, color: o.refunded ? '#5a6875' : o.paid ? '#3f7a63' : '#b4622f' }}>
+                        {o.refunded ? 'Refunded' : o.paid ? 'Paid' : 'Owed'}
+                      </td>
+                    </tr>
+                    {expanded && o.items.length > 0 && (
+                      <tr>
+                        <td colSpan={7} style={{ padding: '0 12px 14px 32px', borderBottom: '1px solid #e3e6ea' }}>
+                          <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+                            <thead>
+                              <tr>
+                                <th style={{ ...th, borderBottom: '1px solid #e3e6ea' }}>Item</th>
+                                <th style={{ ...th, borderBottom: '1px solid #e3e6ea', textAlign: 'right' }}>Qty</th>
+                                <th style={{ ...th, borderBottom: '1px solid #e3e6ea', textAlign: 'right' }}>Rate</th>
+                                <th style={{ ...th, borderBottom: '1px solid #e3e6ea', textAlign: 'right' }}>Commission</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              {o.items.map((item, i) => (
+                                <tr key={i}>
+                                  <td style={{ ...td, fontSize: 12.5 }}>{item.productName}</td>
+                                  <td style={{ ...td, fontSize: 12.5, textAlign: 'right' }}>{item.qty}</td>
+                                  <td style={{ ...td, fontSize: 12.5, textAlign: 'right', fontFamily: "'IBM Plex Mono', monospace", color: '#5a6875' }}>
+                                    {item.commissionRate != null ? `${item.commissionRate}%` : 'Not included'}
+                                  </td>
+                                  <td style={{ ...td, fontSize: 12.5, textAlign: 'right', fontFamily: "'IBM Plex Mono', monospace" }}>
+                                    {formatMoney(item.commission)}
+                                  </td>
+                                </tr>
+                              ))}
+                            </tbody>
+                          </table>
+                        </td>
+                      </tr>
+                    )}
+                  </React.Fragment>
+                )
+              })}
             </tbody>
           </table>
         </div>

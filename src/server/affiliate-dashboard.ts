@@ -1,7 +1,7 @@
 import { createServerFn } from '@tanstack/react-start'
 import { and, desc, eq, inArray } from 'drizzle-orm'
 import { getDb } from '~/lib/db/client'
-import { affiliateContacts, affiliateProducts, affiliates, orders, products, refundEvents } from '~/lib/db/schema'
+import { affiliateContacts, affiliateProducts, affiliates, orderItems, orders, products, refundEvents } from '~/lib/db/schema'
 import type { AffiliateDashboardData } from '~/components/AffiliateDashboard'
 import { getCurrentCustomer } from './customer-auth'
 
@@ -61,6 +61,33 @@ export async function buildAffiliateDashboard(affiliateId: string): Promise<Affi
           .where(and(eq(refundEvents.status, 'COMPLETED'), inArray(refundEvents.orderId, orderRows.map((o) => o.id))))
   const refundedSet = new Set(refundedIds.map((r) => r.orderId))
 
+  // Per-item breakdown for each of this affiliate's orders — lets the
+  // dashboard show which specific lines earned what, not just the one
+  // blended rate on the order itself (see computeAffiliateLineCommissions).
+  // A line with a null rate earned nothing (out of scope for a restricted
+  // affiliate), same meaning as the order-level null meaning "placed
+  // before this was tracked."
+  const itemRows =
+    orderRows.length === 0
+      ? []
+      : await db
+          .select({
+            orderId: orderItems.orderId,
+            productName: orderItems.productName,
+            unitPrice: orderItems.unitPrice,
+            qty: orderItems.qty,
+            affiliateCommissionRate: orderItems.affiliateCommissionRate,
+            affiliateCommission: orderItems.affiliateCommission,
+          })
+          .from(orderItems)
+          .where(inArray(orderItems.orderId, orderRows.map((o) => o.id)))
+  const itemsByOrderId = new Map<string, typeof itemRows>()
+  for (const item of itemRows) {
+    const list = itemsByOrderId.get(item.orderId)
+    if (list) list.push(item)
+    else itemsByOrderId.set(item.orderId, [item])
+  }
+
   let totalCommission = 0
   let paidCommission = 0
   let owedCommission = 0
@@ -71,7 +98,14 @@ export async function buildAffiliateDashboard(affiliateId: string): Promise<Affi
     totalCommission += commission
     if (paid) paidCommission += commission
     else if (!refunded) owedCommission += commission
-    return { orderNo: o.orderNo, createdAt: o.createdAt, subtotal: o.subtotal, commission, commissionRate: o.affiliateCommissionRate, paid, refunded }
+    const items = (itemsByOrderId.get(o.id) ?? []).map((i) => ({
+      productName: i.productName,
+      unitPrice: i.unitPrice,
+      qty: i.qty,
+      commissionRate: i.affiliateCommissionRate,
+      commission: Number(i.affiliateCommission ?? 0),
+    }))
+    return { orderNo: o.orderNo, createdAt: o.createdAt, subtotal: o.subtotal, commission, commissionRate: o.affiliateCommissionRate, paid, refunded, items }
   })
 
   return {
