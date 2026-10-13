@@ -70,7 +70,8 @@ export function AddToCartControl({
   // launch hasn't happened yet reads "Coming soon" rather than inviting a
   // pick that isn't actually available.
   const notSellable = product.notSellable === true
-  const soldOut = !notSellable && product.stock === 0
+  // <= 0, not === 0 — see ProductCard.tsx's identical fix for why.
+  const soldOut = !notSellable && product.stock <= 0
   const comingSoon = product.comingSoon === true
   const btnLabel = comingSoon ? 'Coming soon' : notSellable ? 'Choose an option below' : soldOut ? 'Sold out' : product.preorder ? 'Pre-order' : 'Add to cart'
   const atMaxStock = qtyInCart >= product.stock

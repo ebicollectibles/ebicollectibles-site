@@ -292,7 +292,8 @@ function ProductDetailPage() {
   // notSellable wins over soldOut but not comingSoon — see the comment in
   // AddToCartControl.tsx.
   const comingSoon = product.comingSoon === true
-  const soldOut = !notSellable && product.stock === 0
+  // <= 0, not === 0 — see AddToCartControl.tsx's identical fix for why.
+  const soldOut = !notSellable && product.stock <= 0
   const onSale = product.compareAtPrice != null && product.compareAtPrice > product.price
   // Price is "to be announced" when none has been set yet, or when admin
   // explicitly hid it (hidePrice overrides even a price synced live from a
@@ -457,8 +458,8 @@ function ProductDetailPage() {
             selectedVariant && (
               <div style={{ display: 'flex', alignItems: 'baseline', gap: 12, marginTop: 18, flexWrap: 'wrap' }}>
                 <span style={{ fontSize: 26, fontWeight: 700, color: '#131b28' }}>{formatMoney(selectedVariant.price)}</span>
-                <span style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 12, color: selectedVariant.stock === 0 ? '#5a6875' : '#3f7a63' }}>
-                  {selectedVariant.stock === 0 ? 'Out of stock' : `${selectedVariant.stock} in stock`}
+                <span style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 12, color: selectedVariant.stock <= 0 ? '#5a6875' : '#3f7a63' }}>
+                  {selectedVariant.stock <= 0 ? 'Out of stock' : `${selectedVariant.stock} in stock`}
                 </span>
               </div>
             )
@@ -524,7 +525,7 @@ function ProductDetailPage() {
                 {variants.map((v) => (
                   <option key={v.id} value={v.id}>
                     {v.variantLabel || v.name}
-                    {v.stock === 0 ? ' — Out of stock' : ''}
+                    {v.stock <= 0 ? ' — Out of stock' : ''}
                   </option>
                 ))}
               </select>
@@ -540,7 +541,7 @@ function ProductDetailPage() {
               {selectedVariant && (
                 <>
                   <AddToCartControl product={selectedVariant} padding={14} fontSize={13.5} qtyBtnWidth={48} maxWidth={320} marginTop={26} />
-                  {(selectedVariant.comingSoon || selectedVariant.stock === 0) && (
+                  {(selectedVariant.comingSoon || selectedVariant.stock <= 0) && (
                     <NotifyMeButton productId={selectedVariant.id} padding={14} fontSize={13.5} maxWidth={320} marginTop={12} />
                   )}
                 </>

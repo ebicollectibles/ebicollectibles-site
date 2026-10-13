@@ -11,7 +11,10 @@ export function ProductCard({ product, variant = 'full' }: { product: Product; v
   // own) but not comingSoon — see the comment in AddToCartControl.tsx.
   const notSellable = product.notSellable === true
   const comingSoon = product.comingSoon === true
-  const soldOut = !notSellable && product.stock === 0
+  // <= 0, not === 0 — a Square-linked item can report negative stock
+  // (oversold across another channel sharing the same Square inventory),
+  // and that still means sold out here, not "available."
+  const soldOut = !notSellable && product.stock <= 0
   const onSale = product.compareAtPrice != null && product.compareAtPrice > product.price
   // Price is "to be announced" when none has been set yet, or when admin
   // explicitly hid it (hidePrice overrides even a price synced live from a

@@ -79,7 +79,7 @@ function AdminDashboard() {
                 </td>
                 <td style={td}>{p.subcategory}</td>
                 <td style={{ ...td, fontFamily: "'IBM Plex Mono', monospace" }}>{formatMoney(p.price)}</td>
-                <td style={{ ...td, fontFamily: "'IBM Plex Mono', monospace", color: p.stock === 0 ? '#b4622f' : undefined }}>
+                <td style={{ ...td, fontFamily: "'IBM Plex Mono', monospace", color: p.stock <= 0 ? '#b4622f' : undefined }}>
                   {p.stock}
                   {p.squareVariationId && (
                     <span style={{ marginLeft: 6, fontFamily: 'Archivo, Helvetica, sans-serif', fontSize: 10, fontWeight: 700, color: '#3f7a63', border: '1px solid #3f7a63', borderRadius: 2, padding: '1px 4px' }}>

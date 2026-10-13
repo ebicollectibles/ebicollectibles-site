@@ -126,7 +126,8 @@ function ShopPage() {
         if (!SHOW_ACRYLICS && p.category === 'Acrylic Cases') return false
         if (query && !p.name.toLowerCase().includes(query)) return false
         if (subcategories.length && !subcategories.includes(p.subcategory)) return false
-        if (inStockOnly && p.stock === 0) return false
+        // <= 0, not === 0 — see ProductCard.tsx's identical fix for why.
+        if (inStockOnly && p.stock <= 0) return false
         if (p.price > maxPrice) return false
         return true
       })

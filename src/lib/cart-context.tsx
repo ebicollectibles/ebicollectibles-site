@@ -105,7 +105,11 @@ export function CartProvider({ children, products }: { children: React.ReactNode
   }, [state.cart])
 
   const addToCart = React.useCallback((product: Product) => {
-    if (product.stock === 0) return
+    // <= 0, not === 0 — a Square-linked item can report negative stock
+    // (oversold on another channel sharing the same Square inventory).
+    // Without this, Math.min(1, product.stock) below would set a NEGATIVE
+    // quantity into the cart instead of just refusing to add it.
+    if (product.stock <= 0) return
     setState((s) => {
       const next = { ...s.cart }
       next[product.id] = Math.min((next[product.id] || 0) + 1, product.stock)
@@ -125,7 +129,11 @@ export function CartProvider({ children, products }: { children: React.ReactNode
         const product = productById.get(id)
         if (!product) return s
         const qty = (next[id] || 0) + delta
-        if (qty <= 0) delete next[id]
+        // product.stock <= 0 here too — e.g. the item was in the cart at a
+        // positive stock, then went negative (oversold elsewhere) before
+        // the user tapped "+". Math.min(qty, product.stock) alone would set
+        // a NEGATIVE line quantity instead of dropping it.
+        if (qty <= 0 || product.stock <= 0) delete next[id]
         else next[id] = Math.min(qty, product.stock)
         return { ...s, cart: next }
       })
