@@ -315,7 +315,7 @@ function ProductDetailPage() {
       </div>
 
       <div className="ebi-product-detail-grid" style={{ marginTop: 24 }}>
-        <div>
+        <div className="ebi-product-detail-media">
           <div className="ebi-gallery">
             {galleryItems.length > 1 && (
               <div className="ebi-gallery-rail" style={{ maxHeight: railMaxHeight }}>
