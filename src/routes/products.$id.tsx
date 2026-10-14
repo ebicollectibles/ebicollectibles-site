@@ -345,7 +345,8 @@ function ProductDetailPage() {
 
             <div
               ref={mainPhotoRef}
-              style={{ position: 'relative', flex: 1, minWidth: 0, aspectRatio: '1 / 1', background: '#f6f7f8', overflow: 'hidden' }}
+              className="ebi-gallery-main"
+              style={{ position: 'relative', aspectRatio: '1 / 1', background: '#f6f7f8', overflow: 'hidden' }}
             >
               {currentPhoto ? (
                 currentPhoto.isHero ? (

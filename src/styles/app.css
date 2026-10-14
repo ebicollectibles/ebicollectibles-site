@@ -344,6 +344,17 @@ button {
   display: none;
 }
 
+/* flex-basis:0 (from flex:1) combined with aspect-ratio on a flex item is a
+   known cross-browser footgun — some engines size it from the collapsed
+   flex-basis before applying stretch, leaving the photo narrower than the
+   gallery and a gap where the rail used to sit above it. Kept in its own
+   class (not inline) so the mobile media query below can override `flex`
+   outright instead of fighting an inline style with !important. */
+.ebi-gallery-main {
+  flex: 1;
+  min-width: 0;
+}
+
 .ebi-cart-line-image {
   width: 130px;
   height: 130px;
@@ -467,6 +478,13 @@ button {
     max-height: none;
     overflow-x: auto;
     overflow-y: visible;
+  }
+
+  /* Stop relying on flex-grow to reach full width now that the rail sits
+     below instead of beside it — see the base rule's comment. */
+  .ebi-gallery-main {
+    flex: none;
+    width: 100%;
   }
 
   .ebi-checkout-layout {
