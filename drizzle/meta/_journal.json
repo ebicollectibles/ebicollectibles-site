@@ -449,6 +449,13 @@
       "when": 1791873108111,
       "tag": "0063_add_order_item_affiliate_commission",
       "breakpoints": true
+    },
+    {
+      "idx": 64,
+      "version": "7",
+      "when": 1792019031425,
+      "tag": "0064_add_product_restock_note",
+      "breakpoints": true
     }
   ]
 }

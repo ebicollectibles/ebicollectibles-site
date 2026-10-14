@@ -1,0 +1,1 @@
+ALTER TABLE "products" ADD COLUMN "restock_note" text;

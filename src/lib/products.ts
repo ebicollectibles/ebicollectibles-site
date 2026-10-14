@@ -59,6 +59,10 @@ export interface Product {
   // ordered alongside other items; the UI just warns the whole order will
   // ship together once this item is ready.
   shipsWithDelay?: boolean
+  // Free-form note shown on the product page regardless of stock level —
+  // e.g. "More arriving mid-November." Admin's own words; not tied to any
+  // of the other stock-related flags on this type.
+  restockNote?: string
   comingSoon?: boolean
   // Forces "Price to be announced" on a coming-soon item even if a real
   // price is set or synced live from a linked Square catalog item.

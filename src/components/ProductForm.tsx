@@ -36,6 +36,7 @@ export interface ProductFormValues {
   description: string
   preorder: boolean
   shipsWithDelay: boolean
+  restockNote: string
   comingSoon: boolean
   hidePrice: boolean
   notSellable: boolean
@@ -76,6 +77,7 @@ const emptyValues: ProductFormValues = {
   description: '',
   preorder: false,
   shipsWithDelay: false,
+  restockNote: '',
   comingSoon: false,
   hidePrice: false,
   notSellable: false,
@@ -1368,6 +1370,20 @@ export function ProductForm({
         Ships with delay — in stock and orderable now, but warns the buyer their whole order waits for this item
         (doesn&apos;t block combining it with other items, unlike pre-order)
       </label>
+      <div style={{ marginBottom: 16 }}>
+        <label htmlFor="pf-restock-note" style={label}>
+          Stock message (shown on the product page regardless of stock level — leave blank to show nothing)
+        </label>
+        <input
+          id="pf-restock-note"
+          type="text"
+          className="ebi-field"
+          style={field}
+          value={values.restockNote}
+          onChange={(e) => set('restockNote', e.target.value)}
+          placeholder="e.g. More arriving mid-November"
+        />
+      </div>
       <label style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: 13, marginBottom: 12 }}>
         <input type="checkbox" checked={values.comingSoon} onChange={(e) => set('comingSoon', e.target.checked)} />
         Coming soon — listed but not orderable yet (add-to-cart disabled)

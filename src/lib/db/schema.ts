@@ -109,6 +109,12 @@ export const products = pgTable('products', {
   // (see hasMixedPreorderCart) — it's a warning, not a hard rule, and is
   // meant to be a short-lived admin toggle, not a permanent product trait.
   shipsWithDelay: boolean('ships_with_delay').notNull().default(false),
+  // Free-form note shown on the product page regardless of stock level —
+  // e.g. "More arriving mid-November" on a sold-out item, or a heads-up on
+  // one that's still in stock. Admin's own words, not tied to any of the
+  // preorder/shipsWithDelay/comingSoon toggles above, which each carry
+  // their own fixed wording — this is for whatever doesn't fit those.
+  restockNote: text('restock_note'),
   // Listed and visible in the shop, but not yet purchasable — no price
   // shown, cart/checkout refuses it server-side too (see placeOrder), not
   // just a disabled button client-side. Distinct from `preorder` (which IS

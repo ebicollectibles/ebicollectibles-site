@@ -65,6 +65,7 @@ const productBaseSchema = z.object({
   description: z.string().optional(),
   preorder: z.boolean().optional().default(false),
   shipsWithDelay: z.boolean().optional().default(false),
+  restockNote: z.string().optional(),
   comingSoon: z.boolean().optional().default(false),
   hidePrice: z.boolean().optional().default(false),
   notSellable: z.boolean().optional().default(false),

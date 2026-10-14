@@ -490,6 +490,9 @@ function ProductDetailPage() {
               This item is still on its way to us — an order with it ships once it arrives.
             </p>
           )}
+          {product.restockNote && (
+            <p style={{ fontSize: 12.5, color: '#5a6875', margin: '8px 0 0', lineHeight: 1.5 }}>{product.restockNote}</p>
+          )}
 
           {(notSellable ? !comingSoon && variants.length >= 1 : variants.length > 1) && (
             <div style={{ marginTop: 22, maxWidth: 320 }}>
