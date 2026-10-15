@@ -21,6 +21,43 @@ export default defineNitroConfig({
         'content-disposition': 'attachment; filename="apple-developer-merchantid-domain-association"',
       },
     },
+    // Baseline security headers on every response. Deliberately NOT
+    // including Content-Security-Policy here — a wrong CSP can silently
+    // break Clerk's login iframe/scripts or Square's payment form, and
+    // that needs real testing against every third-party domain in use
+    // (Clerk, Square, Google Analytics/Fonts, Cloudflare), not a drive-by
+    // addition. These four are safe regardless of what scripts the page
+    // loads, since none of them restrict *what* can load — only clickjacking,
+    // MIME-sniffing, referrer leakage, and unused browser APIs.
+    '/**': {
+      headers: {
+        // Nothing on this site is meant to be framed by another origin —
+        // there's no embeddable widget use case, so DENY (not just
+        // SAMEORIGIN) is safe and closes off clickjacking attempts.
+        'x-frame-options': 'DENY',
+        // Stops a browser from re-interpreting a response as a different
+        // content type than what was declared (e.g. treating an uploaded
+        // "image" as HTML/JS) purely from sniffing its bytes.
+        'x-content-type-options': 'nosniff',
+        // Sends the full referrer on same-origin navigation (so internal
+        // analytics/links keep working) but only the origin — not the full
+        // path/query — cross-origin, so e.g. an order confirmation URL
+        // never leaks to a third-party link's destination via the Referer
+        // header.
+        'referrer-policy': 'strict-origin-when-cross-origin',
+        // Explicitly denies browser APIs this site has no use for.
+        // Deliberately NOT including payment=() even though it looks like
+        // it'd apply here — Square's Apple Pay button (ApplePayButton.tsx,
+        // ExpressApplePayButton.tsx) goes through Square's own SDK wrapper
+        // (`payments.applePay(...)`), and whether that's built on the W3C
+        // PaymentRequest API this directive actually gates isn't something
+        // to guess at from outside Square's (minified, externally hosted)
+        // SDK — getting it wrong would silently break Apple Pay checkout,
+        // not throw an obvious error. geolocation/camera/microphone are
+        // confirmed unused anywhere in this app, so those are safe to deny.
+        'permissions-policy': 'geolocation=(), camera=(), microphone=()',
+      },
+    },
   },
   cloudflare: {
     deployConfig: true,

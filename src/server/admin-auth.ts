@@ -46,6 +46,16 @@ export async function requireAdmin() {
  */
 export const verifyAdminAccess = createServerFn({ method: 'POST' }).handler(async () => {
   const { recordAuthEvent } = await import('./customer-auth')
+  // Clerk itself already rate-limits credential-stuffing against its own
+  // sign-in — this covers a different case: repeatedly running an
+  // *already-valid* (but non-admin) Clerk session through this check from
+  // the same IP, e.g. working through a list of compromised customer
+  // accounts to see if any happens to be an admin. isLoginRateLimited was
+  // built for this but never wired up anywhere until now.
+  const { isLoginRateLimited } = await import('./rate-limit')
+  if (await isLoginRateLimited({ type: 'admin_login_failed' })) {
+    throw new Error('Too many attempts — please try again later.')
+  }
   if (!(await checkIsAdmin())) {
     await recordAuthEvent({ type: 'admin_login_failed' })
     throw new Error('This account is not authorized for admin access.')
