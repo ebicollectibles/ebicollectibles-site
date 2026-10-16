@@ -13,7 +13,7 @@ export type AffiliateDashboardData = {
   // having its own override. excluded means this product earns nothing
   // (only possible when restrictToScopedProducts is true and this product
   // has no override — commissionRate is 0 in that case too).
-  productRates: Array<{ productName: string; commissionRate: number; isDefault: boolean; excluded: boolean }>
+  productRates: Array<{ productName: string; productImg?: string; commissionRate: number; isDefault: boolean; excluded: boolean }>
   // true: ONLY products with their own override earn anything, everything
   // else earns nothing. false: everything earns commissionRate by
   // default, and overridden products are just special-cased on top.
@@ -37,7 +37,7 @@ export type AffiliateDashboardData = {
     commissionRate: number | null
     paid: boolean
     refunded: boolean
-    items: Array<{ productName: string; unitPrice: number; qty: number; commissionRate: number | null; commission: number }>
+    items: Array<{ productName: string; productImg?: string; unitPrice: number; qty: number; commissionRate: number | null; commission: number }>
   }>
 }
 
@@ -63,6 +63,31 @@ const td: React.CSSProperties = {
   padding: '8px 12px',
   borderBottom: '1px solid #e3e6ea',
   fontSize: 13,
+}
+
+// Small inline thumbnail used next to a product's name in both the "Rate by
+// item" list and the per-order item breakdown — just enough to recognize
+// which item is which at a glance, not a full product shot. Renders a plain
+// gray placeholder box (no broken-image icon) when there's no image, same
+// idea as the striped placeholder elsewhere in the app.
+function ProductThumb({ src, alt }: { src?: string; alt: string }) {
+  return (
+    <span
+      style={{
+        display: 'inline-block',
+        width: 30,
+        height: 30,
+        flexShrink: 0,
+        background: '#f6f7f8',
+        border: '1px solid #e3e6ea',
+        borderRadius: 2,
+        overflow: 'hidden',
+        verticalAlign: 'middle',
+      }}
+    >
+      {src && <img src={src} alt={alt} loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />}
+    </span>
+  )
 }
 
 function StatTile({ label, value, color }: { label: string; value: string; color?: string }) {
@@ -125,7 +150,12 @@ export function AffiliateDashboardView({ affiliate, heading = 'Affiliate' }: { a
               <tbody>
                 {affiliate.productRates.map((p) => (
                   <tr key={p.productName}>
-                    <td style={{ ...td, color: p.isDefault ? '#5a6875' : '#131b28' }}>{p.productName}</td>
+                    <td style={{ ...td, color: p.isDefault ? '#5a6875' : '#131b28' }}>
+                      <span style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+                        <ProductThumb src={p.productImg} alt="" />
+                        {p.productName}
+                      </span>
+                    </td>
                     <td style={{ ...td, textAlign: 'right' }}>
                       {p.excluded ? (
                         <span
@@ -270,7 +300,12 @@ export function AffiliateDashboardView({ affiliate, heading = 'Affiliate' }: { a
                             <tbody>
                               {o.items.map((item, i) => (
                                 <tr key={i}>
-                                  <td style={{ ...td, fontSize: 12.5 }}>{item.productName}</td>
+                                  <td style={{ ...td, fontSize: 12.5 }}>
+                                    <span style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+                                      <ProductThumb src={item.productImg} alt="" />
+                                      {item.productName}
+                                    </span>
+                                  </td>
                                   <td style={{ ...td, fontSize: 12.5, textAlign: 'right' }}>{item.qty}</td>
                                   <td style={{ ...td, fontSize: 12.5, textAlign: 'right', fontFamily: "'IBM Plex Mono', monospace", color: '#5a6875' }}>
                                     {item.commissionRate != null ? `${item.commissionRate}%` : 'Not included'}

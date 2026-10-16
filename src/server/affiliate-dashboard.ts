@@ -28,12 +28,15 @@ export async function buildAffiliateDashboard(affiliateId: string): Promise<Affi
   // instead of making the viewer infer "everything else is the default."
   // Resolved here rather than on the client since this is already what
   // gets charged at checkout, no reason to make the UI re-derive it.
-  const allProducts = await db.select({ productId: products.id, productName: products.name }).from(products).where(eq(products.published, true))
+  const allProducts = await db
+    .select({ productId: products.id, productName: products.name, productImg: products.img })
+    .from(products)
+    .where(eq(products.published, true))
   const productRates = allProducts.map((p) => {
     const hasOverride = overrideByProduct.has(p.productId)
     const excluded = affiliate.restrictToScopedProducts && !hasOverride
     const commissionRate = excluded ? 0 : overrideByProduct.get(p.productId) ?? affiliate.commissionRate
-    return { productName: p.productName, commissionRate, isDefault: !hasOverride && !excluded, excluded }
+    return { productName: p.productName, productImg: p.productImg ?? undefined, commissionRate, isDefault: !hasOverride && !excluded, excluded }
   })
 
   const orderRows = await db
@@ -74,6 +77,7 @@ export async function buildAffiliateDashboard(affiliateId: string): Promise<Affi
           .select({
             orderId: orderItems.orderId,
             productName: orderItems.productName,
+            productImg: orderItems.img,
             unitPrice: orderItems.unitPrice,
             qty: orderItems.qty,
             affiliateCommissionRate: orderItems.affiliateCommissionRate,
@@ -100,6 +104,7 @@ export async function buildAffiliateDashboard(affiliateId: string): Promise<Affi
     else if (!refunded) owedCommission += commission
     const items = (itemsByOrderId.get(o.id) ?? []).map((i) => ({
       productName: i.productName,
+      productImg: i.productImg ?? undefined,
       unitPrice: i.unitPrice,
       qty: i.qty,
       commissionRate: i.affiliateCommissionRate,
