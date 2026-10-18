@@ -112,6 +112,15 @@ export async function createSquareOrder(opts: {
   lineItems: Array<{ name: string; quantity: number; unitPrice: number }>
   shippingCost: number
   tax: number
+  // Store credit applied at checkout (orders.ts's amountDue = total -
+  // creditApplied) — must be mirrored here as an order-level discount so
+  // Square's own computed total lands on amountDue, not the pre-credit
+  // total. Without this, the payment (charged at amountDue) and the Square
+  // Order it's linked to (totaling the full pre-credit amount) disagree,
+  // and Square's Payments API rejects the charge outright with "The
+  // payment total does not match the order total" — every time, for every
+  // customer who applies any store credit, not an occasional glitch.
+  creditApplied?: number
   recipient: {
     name: string
     phone: string | null
@@ -151,6 +160,20 @@ export async function createSquareOrder(opts: {
         order: {
           location_id: locationId,
           line_items: lineItems,
+          // Mirrors the credit already subtracted from the actual charge
+          // (see the comment on creditApplied above) — an order-level,
+          // fixed-amount discount so Square's own total comes out to
+          // amountDue, matching what chargeSquarePayment actually charges.
+          ...(opts.creditApplied &&
+            opts.creditApplied > 0 && {
+              discounts: [
+                {
+                  name: 'Store credit',
+                  amount_money: { amount: Math.round(opts.creditApplied * 100), currency: 'USD' },
+                  scope: 'ORDER',
+                },
+              ],
+            }),
           fulfillments: [
             {
               uid: SHIPMENT_FULFILLMENT_UID,

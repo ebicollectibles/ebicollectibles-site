@@ -285,16 +285,20 @@ export const placeOrder = createServerFn({ method: 'POST' })
 
       // Best-effort: itemizes the sale in the Square Dashboard by creating a
       // Square Order alongside the payment. Only linked to the payment below
-      // if Square's own computed total matches ours exactly — a mismatch
-      // (rare rounding edge case) just means this order won't show line
-      // items in Square, never a failed or overcharged payment. Either way,
-      // squareOrderLinkError below records exactly why so it's visible on
-      // the order itself instead of only in Worker logs.
+      // if Square's own computed total matches what we're actually charging
+      // (amountDue, i.e. total minus any store credit — see createSquareOrder's
+      // creditApplied comment for why the Square Order needs that same
+      // discount applied) — a mismatch (rare rounding edge case) just means
+      // this order won't show line items in Square, never a failed or
+      // overcharged payment. Either way, squareOrderLinkError below records
+      // exactly why so it's visible on the order itself instead of only in
+      // Worker logs.
       const squareOrder = await createSquareOrder({
         orderNo,
         lineItems: lineDetails.map((l) => ({ name: l.name, quantity: l.qty, unitPrice: l.unitPrice })),
         shippingCost,
         tax,
+        creditApplied,
         recipient: {
           name: `${data.contact.firstName} ${data.contact.lastName}`,
           phone: data.contact.phone || null,
@@ -309,8 +313,8 @@ export const placeOrder = createServerFn({ method: 'POST' })
       let squareOrderLinkError: string | null = null
       if ('error' in squareOrder) {
         squareOrderLinkError = squareOrder.error
-      } else if (squareOrder.totalCents !== Math.round(total * 100)) {
-        squareOrderLinkError = `Square computed a different total ($${(squareOrder.totalCents / 100).toFixed(2)}) than ours ($${total.toFixed(2)}) — order wasn't linked.`
+      } else if (squareOrder.totalCents !== Math.round(amountDue * 100)) {
+        squareOrderLinkError = `Square computed a different total ($${(squareOrder.totalCents / 100).toFixed(2)}) than ours ($${amountDue.toFixed(2)}) — order wasn't linked.`
       } else {
         squareOrderId = squareOrder.orderId
       }
