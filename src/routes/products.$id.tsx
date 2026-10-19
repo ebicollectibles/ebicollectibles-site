@@ -300,6 +300,15 @@ function ProductDetailPage() {
   // linked Square item) — a coming-soon item with a real, shown price
   // displays it like any other product.
   const priceKnown = product.price > 0 && !product.hidePrice
+  // A notSellable hub has no price of its own (product.price is always 0)
+  // — when it's also comingSoon, the top price area and each dropdown
+  // option below show the real price pulled from its variants instead,
+  // as a range if they differ. The hub's own hidePrice still blanket-hides
+  // all of it; a variant's own hidePrice excludes just that one variant,
+  // same as it does for its own dropdown option label.
+  const visibleVariantPrices = notSellable ? variants.filter((v) => v.price > 0 && !v.hidePrice).map((v) => v.price) : []
+  const minVariantPrice = visibleVariantPrices.length > 0 ? Math.min(...visibleVariantPrices) : null
+  const maxVariantPrice = visibleVariantPrices.length > 0 ? Math.max(...visibleVariantPrices) : null
   const badge = comingSoon ? 'Coming soon' : product.preorder ? 'Pre-order' : soldOut ? 'Sold out' : onSale ? 'Sale' : null
   const badgeBg = comingSoon || soldOut ? '#5a6875' : product.preorder ? '#3f7a63' : '#b4622f'
   const stockLabel = comingSoon ? 'Coming soon' : soldOut ? 'Out of stock' : product.preorder ? 'Ships after release' : `${product.stock} in stock`
@@ -464,6 +473,19 @@ function ProductDetailPage() {
                 </span>
               </div>
             )
+          ) : notSellable && comingSoon ? (
+            <div style={{ display: 'flex', alignItems: 'baseline', gap: 12, marginTop: 18, flexWrap: 'wrap' }}>
+              {product.hidePrice || minVariantPrice == null ? (
+                <span style={{ fontSize: 18, fontWeight: 500, color: '#5a6875' }}>Price to be announced</span>
+              ) : minVariantPrice === maxVariantPrice ? (
+                <span style={{ fontSize: 26, fontWeight: 700, color: '#5a6875' }}>{formatMoney(minVariantPrice)}</span>
+              ) : (
+                <span style={{ fontSize: 26, fontWeight: 700, color: '#5a6875' }}>
+                  {formatMoney(minVariantPrice)}–{formatMoney(maxVariantPrice!)}
+                </span>
+              )}
+              <span style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 12, color: stockColor }}>{stockLabel}</span>
+            </div>
           ) : (
             <div style={{ display: 'flex', alignItems: 'baseline', gap: 12, marginTop: 18, flexWrap: 'wrap' }}>
               {comingSoon && !priceKnown ? (
@@ -494,7 +516,7 @@ function ProductDetailPage() {
             <p style={{ fontSize: 12.5, color: '#5a6875', margin: '8px 0 0', lineHeight: 1.5 }}>{product.restockNote}</p>
           )}
 
-          {(notSellable ? !comingSoon && variants.length >= 1 : variants.length > 1) && (
+          {(notSellable ? variants.length >= 1 : variants.length > 1) && (
             <div style={{ marginTop: 22, maxWidth: 320 }}>
               <label htmlFor="product-variant-select" style={monoLabel}>
                 Options
@@ -528,7 +550,7 @@ function ProductDetailPage() {
                 )}
                 {variants.map((v) => (
                   <option key={v.id} value={v.id}>
-                    {v.variantLabel || v.name}
+                    {v.variantLabel || v.name} — {v.price > 0 && !v.hidePrice ? formatMoney(v.price) : 'Price TBD'}
                     {v.stock <= 0 ? ' — Out of stock' : ''}
                   </option>
                 ))}
@@ -550,6 +572,36 @@ function ProductDetailPage() {
                   )}
                 </>
               )}
+              {product.variantGroupId && (
+                <Link
+                  to="/shop"
+                  search={{ variantGroup: product.variantGroupId }}
+                  style={{
+                    display: 'block',
+                    width: '100%',
+                    maxWidth: 320,
+                    marginTop: 12,
+                    textAlign: 'center',
+                    background: '#ffffff',
+                    color: '#131b28',
+                    border: '1px solid #131b28',
+                    borderRadius: 2,
+                    padding: 14,
+                    fontSize: 13.5,
+                    fontWeight: 600,
+                    textDecoration: 'none',
+                  }}
+                >
+                  Browse full collection ({variants.length})
+                </Link>
+              )}
+            </>
+          ) : notSellable && comingSoon ? (
+            // Prices can show above (pulled from the variants) but nothing
+            // in this group is actually orderable yet — no AddToCartControl
+            // for the hub or any selected variant, whatever's picked above.
+            <>
+              <NotifyMeButton productId={product.id} padding={14} fontSize={13.5} maxWidth={320} marginTop={26} />
               {product.variantGroupId && (
                 <Link
                   to="/shop"
