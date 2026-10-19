@@ -7,7 +7,7 @@ import { ProductCard } from '~/components/ProductCard'
 import { ResponsiveImage } from '~/components/ResponsiveImage'
 import { trackEvent } from '~/lib/analytics'
 import { useCart } from '~/lib/cart-context'
-import { FLAT_SHIPPING_RATE, formatMoney, type Product } from '~/lib/products'
+import { FLAT_SHIPPING_RATE, formatMoney, getHubPriceRange, getHubVariants, type Product } from '~/lib/products'
 import { RETURN_POLICY_CATEGORY_URL, SHIPPING_HANDLING_MAX_DAYS, SHIPPING_HANDLING_MIN_DAYS, SHIPS_TO_COUNTRY } from '~/lib/policy'
 import { getProduct } from '~/server/products'
 
@@ -184,19 +184,10 @@ function ProductDetailPage() {
   // variant is a real product in its own right, including the ones with
   // hideFromShopGrid set.
   const variants = React.useMemo(() => {
-    if (!product?.variantGroupId) return []
-    return products
-      .filter((p) => p.variantGroupId === product.variantGroupId)
-      // The notSellable hub/collage listing itself is never a pickable
-      // option — there's nothing to buy about it — even on its own page.
-      .filter((p) => !p.notSellable)
-      // A sibling with no variantLabel set isn't offered as a pickable
-      // option (admin forgot to label it, or it's meant to only be reached
-      // directly/via admin) — except the one currently being viewed, which
-      // always stays in so the dropdown's selected value still matches the
-      // actual page instead of silently falling back to some other option.
-      .filter((p) => p.id === product.id || (p.variantLabel && p.variantLabel.trim()))
-      .sort((a, b) => (a.variantSortOrder ?? Infinity) - (b.variantSortOrder ?? Infinity) || a.name.localeCompare(b.name))
+    if (!product) return []
+    return getHubVariants(product, products).sort(
+      (a, b) => (a.variantSortOrder ?? Infinity) - (b.variantSortOrder ?? Infinity) || a.name.localeCompare(b.name),
+    )
   }, [products, product])
 
   // On a notSellable hub page, the "Options" dropdown picks which real
@@ -306,9 +297,7 @@ function ProductDetailPage() {
   // as a range if they differ. The hub's own hidePrice still blanket-hides
   // all of it; a variant's own hidePrice excludes just that one variant,
   // same as it does for its own dropdown option label.
-  const visibleVariantPrices = notSellable ? variants.filter((v) => v.price > 0 && !v.hidePrice).map((v) => v.price) : []
-  const minVariantPrice = visibleVariantPrices.length > 0 ? Math.min(...visibleVariantPrices) : null
-  const maxVariantPrice = visibleVariantPrices.length > 0 ? Math.max(...visibleVariantPrices) : null
+  const hubPriceRange = notSellable ? getHubPriceRange(variants) : null
   const badge = comingSoon ? 'Coming soon' : product.preorder ? 'Pre-order' : soldOut ? 'Sold out' : onSale ? 'Sale' : null
   const badgeBg = comingSoon || soldOut ? '#5a6875' : product.preorder ? '#3f7a63' : '#b4622f'
   const stockLabel = comingSoon ? 'Coming soon' : soldOut ? 'Out of stock' : product.preorder ? 'Ships after release' : `${product.stock} in stock`
@@ -475,13 +464,13 @@ function ProductDetailPage() {
             )
           ) : notSellable && comingSoon ? (
             <div style={{ display: 'flex', alignItems: 'baseline', gap: 12, marginTop: 18, flexWrap: 'wrap' }}>
-              {product.hidePrice || minVariantPrice == null ? (
+              {product.hidePrice || hubPriceRange == null ? (
                 <span style={{ fontSize: 18, fontWeight: 500, color: '#5a6875' }}>Price to be announced</span>
-              ) : minVariantPrice === maxVariantPrice ? (
-                <span style={{ fontSize: 26, fontWeight: 700, color: '#5a6875' }}>{formatMoney(minVariantPrice)}</span>
+              ) : hubPriceRange.min === hubPriceRange.max ? (
+                <span style={{ fontSize: 26, fontWeight: 700, color: '#5a6875' }}>{formatMoney(hubPriceRange.min)}</span>
               ) : (
                 <span style={{ fontSize: 26, fontWeight: 700, color: '#5a6875' }}>
-                  {formatMoney(minVariantPrice)}–{formatMoney(maxVariantPrice!)}
+                  {formatMoney(hubPriceRange.min)}–{formatMoney(hubPriceRange.max)}
                 </span>
               )}
               <span style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 12, color: stockColor }}>{stockLabel}</span>

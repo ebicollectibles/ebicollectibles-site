@@ -1,8 +1,9 @@
 import * as React from 'react'
 import { Link } from '@tanstack/react-router'
-import { formatMoney, type Product } from '~/lib/products'
+import { formatMoney, getHubPriceRange, getHubVariants, type Product } from '~/lib/products'
 import { ResponsiveImage } from '~/components/ResponsiveImage'
 import { AddToCartControl } from '~/components/AddToCartControl'
+import { useCart } from '~/lib/cart-context'
 
 const STRIPES = 'repeating-linear-gradient(45deg, #eef0f2 0px, #eef0f2 7px, #f6f7f8 7px, #f6f7f8 14px)'
 
@@ -21,6 +22,13 @@ export function ProductCard({ product, variant = 'full' }: { product: Product; v
   // linked Square item) — a coming-soon item with a real, shown price
   // displays it like any other product.
   const priceKnown = product.price > 0 && !product.hidePrice
+  // A notSellable hub has no price of its own — same reasoning as the
+  // product detail page's hubPriceRange (see products.$id.tsx), reusing
+  // the same shared helpers so a hub's card always agrees with its own
+  // page. Pulls the full catalog from CartProvider rather than a prop,
+  // since every page that renders a ProductCard already sits inside it.
+  const { products: allProducts } = useCart()
+  const hubPriceRange = notSellable && comingSoon ? getHubPriceRange(getHubVariants(product, allProducts)) : null
   const badge = comingSoon ? 'Coming soon' : product.preorder ? 'Pre-order' : soldOut ? 'Sold out' : onSale ? 'Sale' : null
   const badgeBg = comingSoon || soldOut ? '#5a6875' : product.preorder ? '#3f7a63' : '#b4622f'
 
@@ -111,7 +119,19 @@ export function ProductCard({ product, variant = 'full' }: { product: Product; v
       </h3>
       {(!notSellable || comingSoon) && (
         <div style={{ display: 'flex', alignItems: 'baseline', gap: 8, marginTop: 10 }}>
-          {comingSoon && !priceKnown ? (
+          {notSellable ? (
+            product.hidePrice || hubPriceRange == null ? (
+              <span style={{ fontSize: priceFontSize - 2, fontWeight: 500, color: '#5a6875' }}>
+                Price to be announced
+              </span>
+            ) : hubPriceRange.min === hubPriceRange.max ? (
+              <span style={{ fontSize: priceFontSize, fontWeight: 600, color: '#5a6875' }}>{formatMoney(hubPriceRange.min)}</span>
+            ) : (
+              <span style={{ fontSize: priceFontSize, fontWeight: 600, color: '#5a6875' }}>
+                {formatMoney(hubPriceRange.min)}–{formatMoney(hubPriceRange.max)}
+              </span>
+            )
+          ) : comingSoon && !priceKnown ? (
             <span style={{ fontSize: priceFontSize - 2, fontWeight: 500, color: '#5a6875' }}>
               Price to be announced
             </span>

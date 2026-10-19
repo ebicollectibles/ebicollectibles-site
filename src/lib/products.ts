@@ -119,6 +119,33 @@ export function formatMoney(n: number): string {
   return '$' + n.toFixed(2)
 }
 
+// Real, pickable variants of a notSellable hub/collage listing — every
+// other product sharing its variantGroupId that isn't itself notSellable
+// and has a variant label set (an unlabeled sibling is presumed not meant
+// to be offered as a pickable option — see the comment on this same filter
+// in products.$id.tsx, which also keeps the page's own id in when it's
+// viewing a variant directly rather than the hub). Shared by the product
+// page's Options dropdown and ProductCard's price-range display below, so
+// a hub card's range always agrees with what its own page would show.
+export function getHubVariants(product: Product, allProducts: Product[]): Product[] {
+  if (!product.variantGroupId) return []
+  return allProducts.filter(
+    (p) =>
+      p.variantGroupId === product.variantGroupId &&
+      !p.notSellable &&
+      (p.id === product.id || (p.variantLabel && p.variantLabel.trim())),
+  )
+}
+
+// Price range across a hub's variants — a single number when they all cost
+// the same, a {min,max} spread otherwise, null when none of them have a
+// visible price yet (new line, or every one has its own hidePrice set).
+export function getHubPriceRange(variants: Product[]): { min: number; max: number } | null {
+  const prices = variants.filter((v) => v.price > 0 && !v.hidePrice).map((v) => v.price)
+  if (prices.length === 0) return null
+  return { min: Math.min(...prices), max: Math.max(...prices) }
+}
+
 const HIDE_FIELD = {
   bestSellingRank: 'hideFromBestSelling',
   newAndUpcomingRank: 'hideFromNewAndUpcoming',
