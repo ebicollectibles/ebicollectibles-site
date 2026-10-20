@@ -548,6 +548,55 @@ export async function getSquareCatalogImages(variationIds: string[]): Promise<Re
   return images
 }
 
+// Item name + photo Square has on file for each variation, keyed by
+// variation id — lets admin's product list show what a squareVariationId
+// actually points to (name + a thumbnail) next to the product it's linked
+// on, so a wrong/stale link is obvious at a glance instead of only
+// surfacing as a price/stock mismatch after a customer's already bought
+// it (see the comment on orders.ts's live-price lookup for why a bad link
+// is a real-money problem, not just cosmetic). Same batch-retrieve shape
+// as getSquareCatalogImages, just also pulling the name out of the same
+// response instead of a second round trip — and the same variation/item
+// naming convention searchSquareCatalogItems uses, so the label here
+// matches what admin picked from that same dropdown when linking it.
+export async function getSquareCatalogDetails(variationIds: string[]): Promise<Record<string, { name: string; imageUrl?: string }>> {
+  const { accessToken, baseUrl } = squareConfig()
+  if (!accessToken) throw new Error('Square is not configured (SQUARE_ACCESS_TOKEN missing).')
+  if (variationIds.length === 0) return {}
+
+  const res = await fetch(`${baseUrl}/v2/catalog/batch-retrieve`, {
+    method: 'POST',
+    headers: squareHeaders(accessToken),
+    body: JSON.stringify({ object_ids: variationIds, include_related_objects: true }),
+  })
+  const json = await res.json().catch(() => null)
+  if (!res.ok) throw new Error(json?.errors?.[0]?.detail || `Square API error (${res.status})`)
+
+  const related = json?.related_objects ?? []
+  const imageUrlById = new Map<string, string>()
+  const itemImageId = new Map<string, string>()
+  const itemNameById = new Map<string, string>()
+  for (const obj of related) {
+    if (obj.type === 'IMAGE' && obj.image_data?.url) imageUrlById.set(obj.id, obj.image_data.url)
+    if (obj.type === 'ITEM') {
+      if (obj.item_data?.image_ids?.[0]) itemImageId.set(obj.id, obj.item_data.image_ids[0])
+      itemNameById.set(obj.id, obj.item_data?.name ?? 'Unnamed item')
+    }
+  }
+
+  const details: Record<string, { name: string; imageUrl?: string }> = {}
+  for (const obj of json?.objects ?? []) {
+    const itemId = obj?.item_variation_data?.item_id
+    const itemName = (itemId && itemNameById.get(itemId)) || 'Unnamed item'
+    const variationName = obj?.item_variation_data?.name
+    const name = variationName && variationName !== 'Regular' ? `${itemName} — ${variationName}` : itemName
+    const imageId = itemId ? itemImageId.get(itemId) : undefined
+    const imageUrl = imageId ? imageUrlById.get(imageId) : undefined
+    details[obj.id] = { name, imageUrl }
+  }
+  return details
+}
+
 // Replaces `stock` and `price` with live Square values for any item linked
 // via squareVariationId, leaving unmapped items untouched. Falls back to
 // whatever was already stored if Square can't be reached — a Square outage

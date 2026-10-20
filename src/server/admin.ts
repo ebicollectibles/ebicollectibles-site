@@ -36,7 +36,7 @@ import { buildShipmentsByOrder, computeFulfillmentStatus, groupBy, remainingQtyB
 import { assertAdmin } from './admin-auth'
 import { buildAffiliateDashboard } from './affiliate-dashboard'
 import { sendCheckoutIssueEmail, sendMarketplaceShipmentEmail, sendNotifyMeAlertEmail, sendShipmentEmail, sendShippingDelayEmail, type EmailSendResult } from './email'
-import { completeSquareOrderFulfillment, getSquareCatalogImages, overlaySquareData, searchMarketplaceOrders, searchSquareCatalogItems } from './square'
+import { completeSquareOrderFulfillment, getSquareCatalogDetails, getSquareCatalogImages, overlaySquareData, searchMarketplaceOrders, searchSquareCatalogItems } from './square'
 import { upsertSubscriber } from './subscribers'
 
 // Base object (not yet refined) so adminUpdateProduct can still .extend() it
@@ -100,7 +100,23 @@ export const adminListProducts = createServerFn({ method: 'GET' }).handler(async
   await assertAdmin()
   const db = getDb()
   const rows = await db.select().from(productsTable).orderBy(asc(productsTable.createdAt))
-  return overlaySquareData(rows)
+  const withLiveData = await overlaySquareData(rows)
+
+  // What the Square link actually points to, right next to the product
+  // it's attached on — so a wrong/stale squareVariationId (wrong item
+  // picked, or copy-pasted from a different product while duplicating) is
+  // obvious on sight instead of only surfacing later as a price or stock
+  // mismatch a customer hits first. Best-effort: Square being unreachable
+  // just means the list falls back to showing no linked-item details, same
+  // as overlaySquareData's own fallback above.
+  const catalogIds = withLiveData.map((p) => p.squareVariationId).filter((id): id is string => !!id)
+  const catalogDetails = catalogIds.length === 0 ? {} : await getSquareCatalogDetails(catalogIds).catch(() => ({}))
+
+  return withLiveData.map((p) => ({
+    ...p,
+    squareItemName: p.squareVariationId ? catalogDetails[p.squareVariationId]?.name : undefined,
+    squareItemImage: p.squareVariationId ? catalogDetails[p.squareVariationId]?.imageUrl : undefined,
+  }))
 })
 
 const RANK_COLUMNS = {

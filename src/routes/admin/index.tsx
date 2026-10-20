@@ -56,19 +56,26 @@ function AdminDashboard() {
         Swipe to see more →
       </div>
       <div style={{ overflowX: 'auto' }}>
-        <table style={{ width: '100%', borderCollapse: 'collapse', marginTop: 20, minWidth: 640 }}>
+        <table style={{ width: '100%', borderCollapse: 'collapse', marginTop: 20, minWidth: 820 }}>
           <thead>
             <tr>
+              <th style={th}></th>
               <th style={th}>Name</th>
               <th style={th}>Category</th>
               <th style={th}>Price</th>
               <th style={th}>Stock</th>
+              <th style={th}>Square link</th>
               <th style={th}></th>
             </tr>
           </thead>
           <tbody>
             {products.map((p) => (
               <tr key={p.id} style={p.published ? undefined : { opacity: 0.55 }}>
+                <td style={{ ...td, width: 40 }}>
+                  <div style={{ width: 36, height: 36, background: '#f6f7f8', border: '1px solid #e3e6ea', borderRadius: 2, overflow: 'hidden' }}>
+                    {p.img && <img src={p.img} alt="" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />}
+                  </div>
+                </td>
                 <td style={td}>
                   {p.name}
                   {!p.published && (
@@ -79,12 +86,19 @@ function AdminDashboard() {
                 </td>
                 <td style={td}>{p.subcategory}</td>
                 <td style={{ ...td, fontFamily: "'IBM Plex Mono', monospace" }}>{formatMoney(p.price)}</td>
-                <td style={{ ...td, fontFamily: "'IBM Plex Mono', monospace", color: p.stock <= 0 ? '#b4622f' : undefined }}>
-                  {p.stock}
-                  {p.squareVariationId && (
-                    <span style={{ marginLeft: 6, fontFamily: 'Archivo, Helvetica, sans-serif', fontSize: 10, fontWeight: 700, color: '#3f7a63', border: '1px solid #3f7a63', borderRadius: 2, padding: '1px 4px' }}>
-                      SQ
-                    </span>
+                <td style={{ ...td, fontFamily: "'IBM Plex Mono', monospace", color: p.stock <= 0 ? '#b4622f' : undefined }}>{p.stock}</td>
+                <td style={td}>
+                  {p.squareVariationId ? (
+                    <div style={{ display: 'flex', alignItems: 'center', gap: 8, maxWidth: 170 }}>
+                      <div style={{ width: 28, height: 28, flexShrink: 0, background: '#f6f7f8', border: '1px solid #e3e6ea', borderRadius: 2, overflow: 'hidden' }}>
+                        {p.squareItemImage && <img src={p.squareItemImage} alt="" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />}
+                      </div>
+                      <span style={{ fontSize: 12, color: p.squareItemName ? '#131b28' : '#b4622f', lineHeight: 1.3 }}>
+                        {p.squareItemName ?? 'Could not load'}
+                      </span>
+                    </div>
+                  ) : (
+                    <span style={{ fontSize: 12, color: '#a3adb8' }}>—</span>
                   )}
                 </td>
                 <td style={{ ...td, textAlign: 'right', whiteSpace: 'nowrap' }}>
