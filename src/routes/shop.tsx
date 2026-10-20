@@ -116,7 +116,14 @@ function ShopPage() {
   // listing itself (if any) is excluded — it's what linked here, not one
   // of the 30 things to actually buy.
   let visible = search.variantGroup
-    ? products.filter((p) => p.variantGroupId === search.variantGroup && !p.notSellable)
+    ? products
+        .filter((p) => p.variantGroupId === search.variantGroup && !p.notSellable)
+        // Admin's own list order for this group (same field the product
+        // page's Options dropdown sorts by) rather than createdAt — a
+        // collection view is browsing one deliberately curated set, not a
+        // slice of the catalog. Still overridden below if the shopper picks
+        // an explicit Low/High/Name sort.
+        .sort((a, b) => (a.variantSortOrder ?? Infinity) - (b.variantSortOrder ?? Infinity) || a.name.localeCompare(b.name))
     : products.filter((p) => {
         // A variant meant only to be reached via its sibling's selector (see
         // Product.hideFromShopGrid in lib/products.ts) doesn't get its own
