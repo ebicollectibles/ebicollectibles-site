@@ -232,6 +232,18 @@ export const adminBulkAssignVariants = createServerFn({ method: 'POST' })
     return { results }
   })
 
+// '23505' = Postgres unique_violation. Drizzle wraps the real driver error
+// (which has .code) inside its own DrizzleQueryError, whose own message is
+// just the raw "Failed query: ...\nparams: ..." dump and which has NO .code
+// of its own — the original error (and its .code) lands on .cause instead.
+// Checking err?.code alone silently never matches that wrapper, so the
+// friendly message below it never fires and the raw query dump surfaces to
+// the admin instead — checking both levels is what actually catches it.
+function isUniqueViolation(err: unknown): boolean {
+  const code = (err as { code?: unknown })?.code ?? (err as { cause?: { code?: unknown } })?.cause?.code
+  return code === '23505'
+}
+
 export const adminCreateProduct = createServerFn({ method: 'POST' })
   .validator(productSchema)
   .handler(async ({ data }) => {
@@ -240,12 +252,11 @@ export const adminCreateProduct = createServerFn({ method: 'POST' })
     try {
       await db.insert(productsTable).values(data)
     } catch (err: any) {
-      // '23505' = Postgres unique_violation — id is the product's slug and
-      // primary key, so this only ever means someone already used it
-      // (typically from cloning another product's form values and
-      // forgetting to change the id). Surface that plainly instead of the
-      // raw SQL error.
-      if (err?.code === '23505') {
+      // id is the product's slug and primary key, so a unique violation
+      // here only ever means someone already used it (typically from
+      // cloning another product's form values and forgetting to change the
+      // id). Surface that plainly instead of the raw SQL error.
+      if (isUniqueViolation(err)) {
         throw new Error(`"${data.id}" is already in use by another product — choose a different ID.`)
       }
       throw err
@@ -272,7 +283,7 @@ export const adminUpdateProduct = createServerFn({ method: 'POST' })
     } catch (err: any) {
       // Same failure mode as adminCreateProduct — here it means the id/slug
       // was changed to one another product already uses.
-      if (err?.code === '23505') {
+      if (isUniqueViolation(err)) {
         throw new Error(`"${rest.id}" is already in use by another product — choose a different ID.`)
       }
       throw err
@@ -1716,7 +1727,7 @@ async function replaceAffiliateContacts(db: ReturnType<typeof getDb>, affiliateI
     // affiliateContacts.email is the primary key — one email can only ever
     // see one affiliate's dashboard, so this means it's already registered
     // to a different affiliate.
-    if (err?.code === '23505') {
+    if (isUniqueViolation(err)) {
       throw new Error('One of those emails is already registered to a different affiliate.')
     }
     throw err
