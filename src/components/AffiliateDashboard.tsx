@@ -107,7 +107,15 @@ function StatTile({ label, value, color }: { label: string; value: string; color
  */
 export function AffiliateDashboardView({ affiliate, heading = 'Affiliate' }: { affiliate: AffiliateDashboardData; heading?: string }) {
   const [copied, setCopied] = React.useState(false)
-  const [expandedOrderNo, setExpandedOrderNo] = React.useState<number | null>(null)
+  const [expandedOrderNos, setExpandedOrderNos] = React.useState<Set<number>>(new Set())
+  const toggleOrderExpanded = (orderNo: number) => {
+    setExpandedOrderNos((current) => {
+      const next = new Set(current)
+      if (next.has(orderNo)) next.delete(orderNo)
+      else next.add(orderNo)
+      return next
+    })
+  }
   const link = `${SITE_URL}/?ref=${affiliate.code}`
 
   const copyLink = async () => {
@@ -266,11 +274,11 @@ export function AffiliateDashboardView({ affiliate, heading = 'Affiliate' }: { a
             </thead>
             <tbody>
               {affiliate.orders.map((o) => {
-                const expanded = expandedOrderNo === o.orderNo
+                const expanded = expandedOrderNos.has(o.orderNo)
                 return (
                   <React.Fragment key={o.orderNo}>
                     <tr
-                      onClick={() => setExpandedOrderNo(expanded ? null : o.orderNo)}
+                      onClick={() => toggleOrderExpanded(o.orderNo)}
                       style={{ cursor: o.items.length > 0 ? 'pointer' : 'default' }}
                     >
                       <td style={{ ...td, color: '#5a6875', width: 20 }}>{o.items.length > 0 ? (expanded ? '▲' : '▼') : ''}</td>
