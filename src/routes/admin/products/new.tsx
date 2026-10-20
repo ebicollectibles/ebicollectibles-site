@@ -9,14 +9,15 @@ import type { GoogleCondition, ProductCategory, ProductSubcategory } from '~/lib
 
 const searchSchema = z.object({
   // Prefills the form from an existing product — everything except id,
-  // squareVariationId, variantSortOrder and gtin, which must be unique per
-  // product and would silently cause real problems if carried over
-  // verbatim (a duplicate id errors on save; a duplicate squareVariationId
-  // links two products to the same Square catalog item; a duplicate
-  // variantSortOrder collides within the group). Set from the "Duplicate"
-  // button on the edit page — built for runs of near-identical variants
-  // (e.g. 30 keychains) where retyping category/price/variant group every
-  // time is most of the slowdown.
+  // squareVariationId, variantSortOrder, gtin, and every image field, none
+  // of which should carry over verbatim: a duplicate id errors on save, a
+  // duplicate squareVariationId links two products to the same Square
+  // catalog item, a duplicate variantSortOrder collides within the group,
+  // and a run of near-identical variants (the actual use case this is
+  // built for — e.g. 30 keychains) almost always means a different photo
+  // per one, not the same photo accidentally left in place. Set from the
+  // "Duplicate" button on the edit page — built so retyping category,
+  // price and variant group every time isn't most of the slowdown.
   duplicateFrom: z.string().optional(),
 })
 
@@ -50,11 +51,6 @@ function NewProductPage() {
         price: source.price,
         compareAtPrice: source.compareAtPrice ?? 0,
         stock: source.stock,
-        img: source.img ?? '',
-        imgTablet: source.imgTablet ?? '',
-        imgMobile: source.imgMobile ?? '',
-        imgAlt: source.imgAlt ?? '',
-        images: source.images ?? [],
         tags: source.tags ?? [],
         description: source.description ?? '',
         preorder: source.preorder,
