@@ -28,7 +28,8 @@ export function ProductCard({ product, variant = 'full' }: { product: Product; v
   // page. Pulls the full catalog from CartProvider rather than a prop,
   // since every page that renders a ProductCard already sits inside it.
   const { products: allProducts } = useCart()
-  const hubPriceRange = notSellable && comingSoon ? getHubPriceRange(getHubVariants(product, allProducts)) : null
+  const hubVariants = notSellable ? getHubVariants(product, allProducts) : []
+  const hubPriceRange = notSellable && comingSoon ? getHubPriceRange(hubVariants) : null
   const badge = comingSoon ? 'Coming soon' : product.preorder ? 'Pre-order' : soldOut ? 'Sold out' : onSale ? 'Sale' : null
   const badgeBg = comingSoon || soldOut ? '#5a6875' : product.preorder ? '#3f7a63' : '#b4622f'
 
@@ -150,7 +151,36 @@ export function ProductCard({ product, variant = 'full' }: { product: Product; v
         </div>
       )}
       </Link>
-      <AddToCartControl product={product} padding={buttonPadding} marginTop={buttonMarginTop} />
+      {notSellable && !comingSoon ? (
+        // A live hub has nothing of its own to add to cart — AddToCartControl
+        // would just render a dead "Choose an option below" button here,
+        // which is misleading on a card (there's no dropdown "below" it to
+        // choose from). This goes to the same place the photo/name already
+        // link to, so the card's CTA is honest about what clicking it does.
+        <Link
+          to="/products/$id"
+          params={{ id: product.id }}
+          style={{
+            marginTop: buttonMarginTop,
+            width: '100%',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            border: '1px solid #131b28',
+            background: '#131b28',
+            color: '#ffffff',
+            borderRadius: 2,
+            padding: buttonPadding,
+            fontSize: 12.5,
+            fontWeight: 600,
+            textDecoration: 'none',
+          }}
+        >
+          View options{hubVariants.length > 0 ? ` (${hubVariants.length})` : ''}
+        </Link>
+      ) : (
+        <AddToCartControl product={product} padding={buttonPadding} marginTop={buttonMarginTop} />
+      )}
     </article>
   )
 }
