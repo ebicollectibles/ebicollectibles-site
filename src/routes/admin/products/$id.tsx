@@ -83,7 +83,6 @@ function EditProductPage() {
           notSellable: product.notSellable,
           placeholder: product.placeholder ?? '',
           published: product.published,
-          dropnotifyAlert: product.dropnotifyAlert,
           gtin: product.gtin ?? '',
           brand: product.brand ?? '',
           condition: (product.condition as GoogleCondition) ?? 'new',

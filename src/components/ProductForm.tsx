@@ -42,9 +42,6 @@ export interface ProductFormValues {
   notSellable: boolean
   placeholder: string
   published: boolean
-  // Opt-in to a DropNotify Discord restock/launch alert (see
-  // server/discord-webhook.ts) — off by default per product.
-  dropnotifyAlert: boolean
   gtin: string
   brand: string
   condition: GoogleCondition
@@ -86,7 +83,6 @@ const emptyValues: ProductFormValues = {
   notSellable: false,
   placeholder: '',
   published: true,
-  dropnotifyAlert: false,
   gtin: '',
   brand: '',
   condition: 'new',
@@ -1403,11 +1399,6 @@ export function ProductForm({
         Not sellable — a hub/collage listing that only exists to show its variants (price and add-to-cart are hidden
         entirely; checkout refuses it server-side too). Pair this with a Variant group ID below so customers land
         here and pick a real variant to buy.
-      </label>
-      <label style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: 13, marginBottom: 20 }}>
-        <input type="checkbox" checked={values.dropnotifyAlert} onChange={(e) => set('dropnotifyAlert', e.target.checked)} />
-        Ping DropNotify Discord when this product restocks or goes live in stock (only fires on the transition into
-        in-stock, not on every edit)
       </label>
 
       {error && <p style={{ fontSize: 12.5, color: '#b4622f', marginBottom: 12 }}>{error}</p>}

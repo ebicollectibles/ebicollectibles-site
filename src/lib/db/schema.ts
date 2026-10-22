@@ -136,12 +136,6 @@ export const products = pgTable('products', {
   // Lets a product be linked to Square and fully set up while still hidden
   // from the public shop, e.g. staging a listing before its street date.
   published: boolean('published').notNull().default(true),
-  // Admin opt-in, per product, to post a restock/launch alert to the
-  // DropNotify Discord webhook (see server/discord-webhook.ts) — off by
-  // default so flipping this feature on doesn't suddenly blast every
-  // existing product's routine stock edits to a public channel. Only
-  // matters while published is also true.
-  dropnotifyAlert: boolean('dropnotify_alert').notNull().default(false),
   placeholder: text('placeholder'),
   createdAt: timestamp('created_at', { withTimezone: true }).notNull().defaultNow(),
   updatedAt: timestamp('updated_at', { withTimezone: true }).notNull().defaultNow(),
