@@ -71,6 +71,7 @@ const productBaseSchema = z.object({
   notSellable: z.boolean().optional().default(false),
   placeholder: z.string().optional(),
   published: z.boolean().optional().default(true),
+  dropnotifyAlert: z.boolean().optional().default(false),
   gtin: z
     .string()
     .trim()
@@ -260,6 +261,14 @@ function isUniqueViolation(err: unknown): boolean {
   return code === '23505'
 }
 
+// Whether a product currently qualifies for a DropNotify alert — opted in,
+// published, and actually in stock. Shared by create/update below so "did
+// this save just make it alert-worthy" is a single before/after comparison
+// rather than two separately-maintained conditions.
+function isDropnotifyAlertable(p: { dropnotifyAlert: boolean; published: boolean; stock: number }): boolean {
+  return p.dropnotifyAlert && p.published && p.stock > 0
+}
+
 export const adminCreateProduct = createServerFn({ method: 'POST' })
   .validator(productSchema)
   .handler(async ({ data }) => {
@@ -276,6 +285,13 @@ export const adminCreateProduct = createServerFn({ method: 'POST' })
         throw new Error(`"${data.id}" is already in use by another product — choose a different ID.`)
       }
       throw err
+    }
+    // A brand-new product can launch already in stock and opted in — same
+    // "just became alert-worthy" condition as a restock, just with no prior
+    // row to compare against.
+    if (isDropnotifyAlertable(data)) {
+      const { sendDropnotifyAlert } = await import('./discord-webhook')
+      await sendDropnotifyAlert({ id: data.id, name: data.name, price: data.price, stock: data.stock, img: data.img ?? null })
     }
     return { ok: true }
   })
@@ -314,6 +330,17 @@ export const adminUpdateProduct = createServerFn({ method: 'POST' })
         newValue: rest[field] == null ? null : String(rest[field]),
       }))
       if (edits.length > 0) await db.insert(productEditEvents).values(edits)
+
+      // Fires once per transition into "alert-worthy", not on every save of
+      // an already-in-stock opted-in product — e.g. a restock from 0,
+      // publishing an opted-in product that already has stock, or admin
+      // flipping dropnotifyAlert on for something already live and in
+      // stock. Never refires just because price changed on an item that
+      // was already alertable before this save.
+      if (!isDropnotifyAlertable(before) && isDropnotifyAlertable(rest)) {
+        const { sendDropnotifyAlert } = await import('./discord-webhook')
+        await sendDropnotifyAlert({ id: rest.id, name: rest.name, price: rest.price, stock: rest.stock, img: rest.img ?? null })
+      }
     }
 
     return { ok: true }
