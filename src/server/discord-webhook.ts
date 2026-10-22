@@ -5,6 +5,10 @@
 // Discord server, not our own customer email list) and fires automatically
 // from admin.ts rather than being admin-triggered like a notify-me blast.
 
+import { and, eq } from 'drizzle-orm'
+import { getDb } from '~/lib/db/client'
+import { products as productsTable } from '~/lib/db/schema'
+
 const SITE_URL = 'https://ebicollectibles.com'
 // The referral code DropNotify's own traffic should be attributed under —
 // see resolveAffiliateAttribution in affiliates.ts. Admin needs to have
@@ -87,5 +91,70 @@ export async function sendDropnotifyAlert(product: DropnotifyAlertProduct): Prom
     if (!res.ok) console.error(`DropNotify Discord webhook failed (${res.status}):`, await res.text().catch(() => ''))
   } catch (err) {
     console.error('DropNotify Discord webhook failed:', err)
+  }
+}
+
+// Whether a product currently qualifies for a DropNotify alert — opted in,
+// published, and actually in stock. Shared by every trigger path below
+// (admin.ts's product-form saves, and the Square inventory webhook).
+export function isDropnotifyAlertable(p: { dropnotifyAlert: boolean; published: boolean; stock: number }): boolean {
+  return p.dropnotifyAlert && p.published && p.stock > 0
+}
+
+// Atomically claims this product's DropNotify alert — only the caller that
+// flips dropnotifyArmed from true to false gets true back, so two
+// concurrent triggers that both land on the same restock (e.g. admin saves
+// the product form at the same moment Square's inventory webhook fires for
+// it) can't both send the alert. A plain read-then-write (fetch "armed",
+// decide, write) would race here; this single UPDATE...WHERE is still
+// atomic per-row without needing a transaction, which the neon-http driver
+// doesn't support anyway (see lib/db/client.ts). Caller is responsible for
+// only invoking this when isDropnotifyAlertable is already true.
+export async function claimDropnotifyAlert(db: ReturnType<typeof getDb>, productId: string): Promise<boolean> {
+  const claimed = await db
+    .update(productsTable)
+    .set({ dropnotifyArmed: false })
+    .where(and(eq(productsTable.id, productId), eq(productsTable.dropnotifyArmed, true)))
+    .returning({ id: productsTable.id })
+  return claimed.length > 0
+}
+
+// Re-arms the alert so the *next* restock fires again — called whenever a
+// trigger leaves the product not currently alertable (sold out,
+// unpublished, or opted out). Safe/idempotent to call repeatedly.
+export async function rearmDropnotifyAlert(db: ReturnType<typeof getDb>, productId: string): Promise<void> {
+  await db.update(productsTable).set({ dropnotifyArmed: true }).where(eq(productsTable.id, productId))
+}
+
+// Entry point for Square's inventory.count.updated webhook (see
+// server/square-webhook.ts) — the actual trigger path for sellers who
+// manage stock in Square rather than by editing the product form here.
+// admin.ts's claim/rearm calls only fire from a product-form save, which
+// never happens for a Square-managed restock (overlaySquareData reads
+// Square's live count at render time without ever writing it back to the
+// stock column — see square.ts), so without this, dropnotifyAlert would
+// silently never fire for any Square-linked, Square-managed product.
+// catalogObjectId is the item VARIATION id Square reports in the webhook
+// payload, matched against products.squareVariationId; quantity is the
+// IN_STOCK count Square reports for it at this location (already parsed
+// from the webhook's decimal-string quantity field by the caller). A
+// variation can in principle be linked from more than one product row
+// (nothing in the schema enforces uniqueness), so this updates every match.
+export async function handleSquareInventoryCountUpdate(catalogObjectId: string, quantity: number): Promise<void> {
+  const db = getDb()
+  const matches = await db
+    .select({ id: productsTable.id, name: productsTable.name, price: productsTable.price, img: productsTable.img, dropnotifyAlert: productsTable.dropnotifyAlert, published: productsTable.published })
+    .from(productsTable)
+    .where(eq(productsTable.squareVariationId, catalogObjectId))
+
+  for (const p of matches) {
+    if (!p.dropnotifyAlert) continue // not opted in — armed state doesn't matter, skip the extra write
+    if (isDropnotifyAlertable({ dropnotifyAlert: p.dropnotifyAlert, published: p.published, stock: quantity })) {
+      if (await claimDropnotifyAlert(db, p.id)) {
+        await sendDropnotifyAlert({ id: p.id, name: p.name, price: p.price, stock: quantity, img: p.img })
+      }
+    } else {
+      await rearmDropnotifyAlert(db, p.id)
+    }
   }
 }

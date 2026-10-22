@@ -113,6 +113,44 @@ export async function handleSquareWebhook(request: Request): Promise<Response> {
         }
       }
     }
+  } else if (type === 'inventory.count.updated') {
+    // The actual DropNotify restock trigger for sellers who manage stock in
+    // Square directly rather than by editing a product's stock field here —
+    // overlaySquareData (square.ts) only reads Square's live count at
+    // render time, it never writes it back to the DB, so admin.ts's
+    // claim/rearm calls (which only fire from a product-form save) would
+    // otherwise never see a Square-side restock at all. This event type has
+    // to be added to the webhook subscription's event list in the Square
+    // Developer Dashboard (Webhooks → the existing subscription → event
+    // types) before Square will actually start sending it — see the
+    // conversation this was built from.
+    //
+    // Square reports one or more counts per event, one per inventory
+    // *state* a variation can be in (IN_STOCK, COMMITTED, WASTE, custom
+    // states, etc.) — only IN_STOCK is "available to sell," so every other
+    // state is ignored here. quantity arrives as a decimal string per
+    // Square's convention, not a number.
+    const counts = event?.data?.object?.inventory_counts
+    if (Array.isArray(counts)) {
+      const { handleSquareInventoryCountUpdate } = await import('./discord-webhook')
+      const locationId = process.env.SQUARE_LOCATION_ID
+      for (const count of counts) {
+        if (count?.state !== 'IN_STOCK') continue
+        // Same single-location assumption the rest of this app makes
+        // everywhere else (searchMarketplaceOrders, overlaySquareData,
+        // etc.) — only relevant if the merchant account ever has more than
+        // one Square location.
+        if (locationId && count?.location_id && count.location_id !== locationId) continue
+        const catalogObjectId: string | undefined = count?.catalog_object_id
+        const quantity = Number(count?.quantity)
+        if (!catalogObjectId || !Number.isFinite(quantity)) continue
+        try {
+          await handleSquareInventoryCountUpdate(catalogObjectId, quantity)
+        } catch (err) {
+          console.error(`Failed to process inventory.count.updated for ${catalogObjectId}:`, err)
+        }
+      }
+    }
   }
 
   return new Response('ok', { status: 200 })
