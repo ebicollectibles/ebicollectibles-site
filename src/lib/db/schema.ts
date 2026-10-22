@@ -453,6 +453,22 @@ export const productEditEvents = pgTable('product_edit_events', {
   createdAt: timestamp('created_at', { withTimezone: true }).notNull().defaultNow(),
 }, (table) => [index('product_edit_events_product_id_idx').on(table.productId)])
 
+// Every attempted DropNotify Discord alert, success or failure — otherwise
+// a revoked/dead webhook URL, a Discord outage, or a rate limit just fails
+// silently (console.error on a Worker nobody is tailing), and admin would
+// only find out when a customer asks why they weren't pinged. productName
+// is snapshotted the same way productEditEvents does it, so history stays
+// readable after the product itself is deleted.
+export const dropnotifyAlertEvents = pgTable('dropnotify_alert_events', {
+  id: uuid('id').primaryKey().defaultRandom(),
+  productId: text('product_id').references(() => products.id, { onDelete: 'set null' }),
+  productName: text('product_name').notNull(),
+  trigger: text('trigger').notNull(), // admin_save | square_inventory
+  status: text('status').notNull(), // sent | failed | skipped (webhook not configured)
+  errorMessage: text('error_message'),
+  createdAt: timestamp('created_at', { withTimezone: true }).notNull().defaultNow(),
+}, (table) => [index('dropnotify_alert_events_product_id_idx').on(table.productId)])
+
 // Refunds reported by Square via webhook. Kept separate from
 // orders.paymentStatus (paid/test/failed/unpaid) rather than overloading
 // it, since a refund can be partial and the original charge outcome is

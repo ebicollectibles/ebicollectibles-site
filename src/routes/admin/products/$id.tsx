@@ -148,6 +148,33 @@ function EditProductPage() {
           ))}
         </div>
       )}
+
+      <h2 style={{ fontSize: 15, fontWeight: 700, marginTop: 36, marginBottom: 16 }}>DropNotify alert history</h2>
+      {product.dropnotifyHistory.length === 0 ? (
+        <p style={{ fontSize: 13.5, color: '#5a6875' }}>No alerts sent yet.</p>
+      ) : (
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+          {product.dropnotifyHistory.map((event, i) => (
+            <div
+              key={i}
+              style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', gap: 10, padding: '8px 0', borderBottom: '1px solid #f0f2f4', fontSize: 12.5 }}
+            >
+              <span>
+                <span style={{ fontWeight: 600, color: dropnotifyStatusColor[event.status] ?? '#131b28' }}>
+                  {dropnotifyStatusLabel[event.status] ?? event.status}
+                </span>{' '}
+                <span style={{ color: '#5a6875' }}>
+                  ({dropnotifyTriggerLabel[event.trigger] ?? event.trigger})
+                  {event.errorMessage ? ` — ${event.errorMessage}` : ''}
+                </span>
+              </span>
+              <span style={{ color: '#5a6875', fontFamily: "'IBM Plex Mono', monospace", fontSize: 11.5, whiteSpace: 'nowrap' }}>
+                {new Date(event.createdAt).toLocaleString()}
+              </span>
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   )
 }
@@ -156,4 +183,19 @@ const fieldLabel: Record<string, string> = {
   price: 'Price',
   compareAtPrice: 'Compare-at price',
   stock: 'Stock',
+}
+
+const dropnotifyStatusLabel: Record<string, string> = {
+  sent: 'Sent',
+  failed: 'Failed',
+  skipped: 'Skipped',
+}
+const dropnotifyStatusColor: Record<string, string> = {
+  sent: '#3f7a63',
+  failed: '#b4622f',
+  skipped: '#5a6875',
+}
+const dropnotifyTriggerLabel: Record<string, string> = {
+  admin_save: 'saved here',
+  square_inventory: 'Square restock',
 }

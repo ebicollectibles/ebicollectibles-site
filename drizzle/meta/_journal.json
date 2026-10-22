@@ -470,6 +470,13 @@
       "when": 1792691721900,
       "tag": "0066_bitter_captain_marvel",
       "breakpoints": true
+    },
+    {
+      "idx": 67,
+      "version": "7",
+      "when": 1792709304506,
+      "tag": "0067_special_night_thrasher",
+      "breakpoints": true
     }
   ]
 }

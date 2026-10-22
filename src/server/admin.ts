@@ -7,6 +7,7 @@ import {
   affiliateProducts,
   affiliates,
   authEvents,
+  dropnotifyAlertEvents,
   emailEvents,
   marketplaceOrderItems,
   marketplaceOrders,
@@ -176,7 +177,14 @@ export const adminGetProduct = createServerFn({ method: 'GET' })
       .orderBy(desc(productEditEvents.createdAt))
       .limit(50)
 
-    return { ...withLiveStock, editHistory }
+    const dropnotifyHistory = await db
+      .select({ trigger: dropnotifyAlertEvents.trigger, status: dropnotifyAlertEvents.status, errorMessage: dropnotifyAlertEvents.errorMessage, createdAt: dropnotifyAlertEvents.createdAt })
+      .from(dropnotifyAlertEvents)
+      .where(eq(dropnotifyAlertEvents.productId, data.id))
+      .orderBy(desc(dropnotifyAlertEvents.createdAt))
+      .limit(20)
+
+    return { ...withLiveStock, editHistory, dropnotifyHistory }
   })
 
 export const adminSearchSquareCatalog = createServerFn({ method: 'GET' })
@@ -285,7 +293,7 @@ export const adminCreateProduct = createServerFn({ method: 'POST' })
     // attempt, not a special case.
     const { isDropnotifyAlertable, claimDropnotifyAlert, sendDropnotifyAlert } = await import('./discord-webhook')
     if (isDropnotifyAlertable(data) && (await claimDropnotifyAlert(db, data.id))) {
-      await sendDropnotifyAlert({ id: data.id, name: data.name, price: data.price, stock: data.stock, img: data.img ?? null })
+      await sendDropnotifyAlert({ id: data.id, name: data.name, price: data.price, stock: data.stock, img: data.img ?? null }, 'admin_save')
     }
     return { ok: true }
   })
@@ -342,7 +350,7 @@ export const adminUpdateProduct = createServerFn({ method: 'POST' })
     const { isDropnotifyAlertable, claimDropnotifyAlert, rearmDropnotifyAlert, sendDropnotifyAlert } = await import('./discord-webhook')
     if (isDropnotifyAlertable(rest)) {
       if (await claimDropnotifyAlert(db, rest.id)) {
-        await sendDropnotifyAlert({ id: rest.id, name: rest.name, price: rest.price, stock: rest.stock, img: rest.img ?? null })
+        await sendDropnotifyAlert({ id: rest.id, name: rest.name, price: rest.price, stock: rest.stock, img: rest.img ?? null }, 'admin_save')
       }
     } else {
       await rearmDropnotifyAlert(db, rest.id)

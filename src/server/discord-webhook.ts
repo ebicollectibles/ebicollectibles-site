@@ -7,7 +7,9 @@
 
 import { and, eq } from 'drizzle-orm'
 import { getDb } from '~/lib/db/client'
-import { products as productsTable } from '~/lib/db/schema'
+import { dropnotifyAlertEvents, products as productsTable } from '~/lib/db/schema'
+
+export type DropnotifyAlertTrigger = 'admin_save' | 'square_inventory'
 
 const SITE_URL = 'https://ebicollectibles.com'
 // The referral code DropNotify's own traffic should be attributed under —
@@ -47,12 +49,25 @@ function truncate(s: string, max: number): string {
   return s.length > max ? s.slice(0, max - 1) + '…' : s
 }
 
-// Best-effort, fire-and-forget from the caller's point of view — a failed or
-// unconfigured webhook should never block or fail a product save. Returns
-// nothing; errors are logged, not thrown.
-export async function sendDropnotifyAlert(product: DropnotifyAlertProduct): Promise<void> {
+// Best-effort from the caller's point of view — a failed or unconfigured
+// webhook should never block or fail a product save, so this never throws.
+// Every attempt (sent, failed, or skipped for no configured webhook) is
+// logged to dropnotifyAlertEvents so a dead/revoked webhook or a Discord
+// outage shows up somewhere admin can actually see, instead of only in a
+// console nobody is tailing — see the conversation this was built from.
+export async function sendDropnotifyAlert(product: DropnotifyAlertProduct, trigger: DropnotifyAlertTrigger): Promise<void> {
+  const db = getDb()
+  const logAttempt = (status: 'sent' | 'failed' | 'skipped', errorMessage?: string) =>
+    db
+      .insert(dropnotifyAlertEvents)
+      .values({ productId: product.id, productName: product.name, trigger, status, errorMessage: errorMessage ?? null })
+      .catch((err) => console.error('Failed to record dropnotifyAlertEvents row:', err))
+
   const webhookUrl = process.env.DISCORD_DN_WEBHOOK_URL
-  if (!webhookUrl) return
+  if (!webhookUrl) {
+    await logAttempt('skipped', 'DISCORD_DN_WEBHOOK_URL is not set')
+    return
+  }
 
   const productUrl = `${SITE_URL}/products/${product.id}?ref=${DROPNOTIFY_REF_CODE}`
   const timestamp = new Date().toLocaleString('en-US', {
@@ -88,9 +103,16 @@ export async function sendDropnotifyAlert(product: DropnotifyAlertProduct): Prom
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ embeds: [embed] }),
     })
-    if (!res.ok) console.error(`DropNotify Discord webhook failed (${res.status}):`, await res.text().catch(() => ''))
+    if (res.ok) {
+      await logAttempt('sent')
+    } else {
+      const body = await res.text().catch(() => '')
+      console.error(`DropNotify Discord webhook failed (${res.status}):`, body)
+      await logAttempt('failed', `HTTP ${res.status}: ${truncate(body, 500)}`)
+    }
   } catch (err) {
     console.error('DropNotify Discord webhook failed:', err)
+    await logAttempt('failed', err instanceof Error ? err.message : 'Unknown error')
   }
 }
 
@@ -151,7 +173,7 @@ export async function handleSquareInventoryCountUpdate(catalogObjectId: string, 
     if (!p.dropnotifyAlert) continue // not opted in — armed state doesn't matter, skip the extra write
     if (isDropnotifyAlertable({ dropnotifyAlert: p.dropnotifyAlert, published: p.published, stock: quantity })) {
       if (await claimDropnotifyAlert(db, p.id)) {
-        await sendDropnotifyAlert({ id: p.id, name: p.name, price: p.price, stock: quantity, img: p.img })
+        await sendDropnotifyAlert({ id: p.id, name: p.name, price: p.price, stock: quantity, img: p.img }, 'square_inventory')
       }
     } else {
       await rearmDropnotifyAlert(db, p.id)
