@@ -142,6 +142,17 @@ export const products = pgTable('products', {
   // existing product's routine stock edits to a public channel. Only
   // matters while published is also true.
   dropnotifyAlert: boolean('dropnotify_alert').notNull().default(false),
+  // Whether this product is currently eligible to fire its next DropNotify
+  // alert — true until an alert fires (then false until the product goes
+  // back out of stock, which re-arms it). This is the sole source of truth
+  // for "should this save fire," claimed via an atomic conditional UPDATE
+  // in admin.ts rather than a separate before/after row read — the neon-http
+  // driver has no transaction support (see lib/db/client.ts), so a plain
+  // read-then-write from two concurrent saves could otherwise both decide
+  // to fire for the same restock. A single `UPDATE ... WHERE armed = true`
+  // is still atomic per-row even without a transaction, since Postgres
+  // takes a row lock for the statement's own duration either way.
+  dropnotifyArmed: boolean('dropnotify_armed').notNull().default(true),
   placeholder: text('placeholder'),
   createdAt: timestamp('created_at', { withTimezone: true }).notNull().defaultNow(),
   updatedAt: timestamp('updated_at', { withTimezone: true }).notNull().defaultNow(),

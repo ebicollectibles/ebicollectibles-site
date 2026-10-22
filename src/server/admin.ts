@@ -262,11 +262,34 @@ function isUniqueViolation(err: unknown): boolean {
 }
 
 // Whether a product currently qualifies for a DropNotify alert — opted in,
-// published, and actually in stock. Shared by create/update below so "did
-// this save just make it alert-worthy" is a single before/after comparison
-// rather than two separately-maintained conditions.
+// published, and actually in stock. Shared by create/update below.
 function isDropnotifyAlertable(p: { dropnotifyAlert: boolean; published: boolean; stock: number }): boolean {
   return p.dropnotifyAlert && p.published && p.stock > 0
+}
+
+// Atomically claims this product's DropNotify alert — only the caller that
+// flips dropnotifyArmed from true to false gets true back, so two
+// concurrent saves that both land on the same restock (e.g. a double-
+// submit, or two admin tabs) can't both send the alert. A plain read-then-
+// write (fetch "armed", decide, write) would race here; this single
+// UPDATE...WHERE is still atomic per-row without needing a transaction,
+// which the neon-http driver doesn't support anyway (see lib/db/client.ts).
+// Caller is responsible for only invoking this when isDropnotifyAlertable
+// is already true.
+async function claimDropnotifyAlert(db: ReturnType<typeof getDb>, productId: string): Promise<boolean> {
+  const claimed = await db
+    .update(productsTable)
+    .set({ dropnotifyArmed: false })
+    .where(and(eq(productsTable.id, productId), eq(productsTable.dropnotifyArmed, true)))
+    .returning({ id: productsTable.id })
+  return claimed.length > 0
+}
+
+// Re-arms the alert so the *next* restock fires again — called whenever a
+// save leaves the product not currently alertable (sold out, unpublished,
+// or opted out). Safe/idempotent to call repeatedly.
+async function rearmDropnotifyAlert(db: ReturnType<typeof getDb>, productId: string): Promise<void> {
+  await db.update(productsTable).set({ dropnotifyArmed: true }).where(eq(productsTable.id, productId))
 }
 
 export const adminCreateProduct = createServerFn({ method: 'POST' })
@@ -287,9 +310,11 @@ export const adminCreateProduct = createServerFn({ method: 'POST' })
       throw err
     }
     // A brand-new product can launch already in stock and opted in — same
-    // "just became alert-worthy" condition as a restock, just with no prior
-    // row to compare against.
-    if (isDropnotifyAlertable(data)) {
+    // claim-based gating as a restock (see claimDropnotifyAlert), just
+    // against a row that was only just inserted. dropnotifyArmed defaults
+    // to true on insert, so this is a normal claim attempt, not a special
+    // case.
+    if (isDropnotifyAlertable(data) && (await claimDropnotifyAlert(db, data.id))) {
       const { sendDropnotifyAlert } = await import('./discord-webhook')
       await sendDropnotifyAlert({ id: data.id, name: data.name, price: data.price, stock: data.stock, img: data.img ?? null })
     }
@@ -330,17 +355,24 @@ export const adminUpdateProduct = createServerFn({ method: 'POST' })
         newValue: rest[field] == null ? null : String(rest[field]),
       }))
       if (edits.length > 0) await db.insert(productEditEvents).values(edits)
+    }
 
-      // Fires once per transition into "alert-worthy", not on every save of
-      // an already-in-stock opted-in product — e.g. a restock from 0,
-      // publishing an opted-in product that already has stock, or admin
-      // flipping dropnotifyAlert on for something already live and in
-      // stock. Never refires just because price changed on an item that
-      // was already alertable before this save.
-      if (!isDropnotifyAlertable(before) && isDropnotifyAlertable(rest)) {
+    // Claim-gated rather than a before/after comparison — see
+    // claimDropnotifyAlert for why. Re-arms on every save that leaves the
+    // product not currently alertable, so the next real restock fires
+    // again; otherwise attempts to claim, and only sends if this request
+    // actually won the claim (not refired by a concurrent duplicate save,
+    // and not refired by price/etc. changing on an already-in-stock item).
+    // Targets rest.id, not originalId — the update above already renamed
+    // the row to rest.id if admin changed the product's slug, so by this
+    // point originalId no longer exists as a row to match against.
+    if (isDropnotifyAlertable(rest)) {
+      if (await claimDropnotifyAlert(db, rest.id)) {
         const { sendDropnotifyAlert } = await import('./discord-webhook')
         await sendDropnotifyAlert({ id: rest.id, name: rest.name, price: rest.price, stock: rest.stock, img: rest.img ?? null })
       }
+    } else {
+      await rearmDropnotifyAlert(db, rest.id)
     }
 
     return { ok: true }

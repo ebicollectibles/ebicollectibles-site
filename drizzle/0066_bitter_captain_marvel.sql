@@ -1,0 +1,1 @@
+ALTER TABLE "products" ADD COLUMN "dropnotify_armed" boolean DEFAULT true NOT NULL;

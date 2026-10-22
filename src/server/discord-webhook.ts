@@ -34,6 +34,15 @@ function absoluteImageUrl(img: string): string {
   return img.startsWith('http') ? img : `${SITE_URL}${img.startsWith('/') ? '' : '/'}${img}`
 }
 
+// Discord rejects the entire webhook call if any single field exceeds its
+// length limit (title 256, field value 1024, footer 2048) — admin-typed
+// product names are short today, but nothing upstream enforces that, so a
+// future long name would otherwise silently kill the whole alert instead of
+// just looking a little clipped.
+function truncate(s: string, max: number): string {
+  return s.length > max ? s.slice(0, max - 1) + '…' : s
+}
+
 // Best-effort, fire-and-forget from the caller's point of view — a failed or
 // unconfigured webhook should never block or fail a product save. Returns
 // nothing; errors are logged, not thrown.
@@ -49,7 +58,7 @@ export async function sendDropnotifyAlert(product: DropnotifyAlertProduct): Prom
   })
 
   const embed: DiscordEmbed = {
-    title: product.name,
+    title: truncate(product.name, 256),
     url: productUrl,
     // Green when in stock — matches the 🟢/🔴 availability field below.
     color: 0x2ecc71,
@@ -59,13 +68,13 @@ export async function sendDropnotifyAlert(product: DropnotifyAlertProduct): Prom
       { name: 'Total Stock', value: String(Math.max(0, product.stock)), inline: true },
       // No dedicated SKU column on products — the id slug is the closest
       // stable per-product identifier the site has.
-      { name: 'SKU', value: product.id, inline: true },
+      { name: 'SKU', value: truncate(product.id, 1024), inline: true },
       // No one-click "add to cart" URL exists (cart is client-side only) —
       // link to the product page itself rather than build something that
       // only half-works.
-      { name: '​', value: `[View Product](${productUrl})`, inline: false },
+      { name: '​', value: truncate(`[View Product](${productUrl})`, 1024), inline: false },
     ],
-    footer: { text: `DropNotify x EBI Collectibles • #ad • ${timestamp}` },
+    footer: { text: truncate(`DropNotify x EBI Collectibles • #ad • ${timestamp}`, 2048) },
   }
   if (product.img) embed.thumbnail = { url: absoluteImageUrl(product.img) }
 
