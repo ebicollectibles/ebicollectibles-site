@@ -168,7 +168,7 @@ function AdminLoginPage() {
             />
           </>
         )}
-        {error && <p style={{ fontSize: 12.5, color: '#b4622f', marginTop: 10 }}>{error}</p>}
+        {error && <p style={{ fontSize: 12.5, color: '#a85b2c', marginTop: 10 }}>{error}</p>}
         <button
           type="submit"
           disabled={submitting || !isLoaded}

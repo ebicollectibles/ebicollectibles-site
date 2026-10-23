@@ -17,8 +17,8 @@ export const Route = createFileRoute('/admin/orders/$id')({
 
 const paymentColor: Record<string, string> = {
   paid: '#3f7a63',
-  test: '#b4622f',
-  failed: '#b4622f',
+  test: '#a85b2c',
+  failed: '#a85b2c',
   unpaid: '#5a6875',
 }
 
@@ -26,7 +26,7 @@ const fulfillmentColor: Record<string, string> = {
   pending: '#5a6875',
   partially_shipped: '#3a6ea5',
   shipped: '#3f7a63',
-  cancelled: '#b4622f',
+  cancelled: '#a85b2c',
 }
 
 function IssueCreditPanel({ email, orderId, hasAccount }: { email: string; orderId: string; hasAccount: boolean }) {
@@ -167,7 +167,7 @@ function IssueCreditPanel({ email, orderId, hasAccount }: { email: string; order
       <button type="button" onClick={() => setOpen(false)} style={{ background: 'none', border: 'none', color: '#5a6875', fontSize: 12.5, cursor: 'pointer', padding: '8px 10px' }}>
         Cancel
       </button>
-      {error && <p style={{ flex: '1 1 100%', fontSize: 12.5, color: '#b4622f', margin: 0 }}>{error}</p>}
+      {error && <p style={{ flex: '1 1 100%', fontSize: 12.5, color: '#a85b2c', margin: 0 }}>{error}</p>}
 
       <div style={{ flex: '1 1 100%', display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap', marginTop: 4, paddingTop: 10, borderTop: '1px solid #f0f2f4' }}>
         <input
@@ -195,7 +195,7 @@ function IssueCreditPanel({ email, orderId, hasAccount }: { email: string; order
         </button>
       </div>
       {testMessage && (
-        <p style={{ flex: '1 1 100%', color: testMessage.startsWith('Sent') ? '#3f7a63' : '#b4622f', fontSize: 11, margin: 0 }}>{testMessage}</p>
+        <p style={{ flex: '1 1 100%', color: testMessage.startsWith('Sent') ? '#3f7a63' : '#a85b2c', fontSize: 11, margin: 0 }}>{testMessage}</p>
       )}
     </form>
   )
@@ -210,7 +210,7 @@ const fulfillmentLabel: Record<string, string> = {
 
 const riskColor: Record<string, string> = {
   NORMAL: '#3f7a63',
-  MODERATE: '#b4622f',
+  MODERATE: '#a85b2c',
   HIGH: '#a13a3a',
 }
 const riskLabel: Record<string, string> = {
@@ -238,7 +238,7 @@ const emailTypeLabel: Record<string, string> = {
 
 const emailStatusColor: Record<string, string> = {
   sent: '#3f7a63',
-  failed: '#b4622f',
+  failed: '#a85b2c',
   skipped: '#5a6875',
 }
 
@@ -502,7 +502,7 @@ function AdminOrderDetailPage() {
               </div>
             )}
             {order.squareOrderLinkError && (
-              <div style={{ marginTop: 10, fontSize: 12, color: '#b4622f', lineHeight: 1.5 }}>
+              <div style={{ marginTop: 10, fontSize: 12, color: '#a85b2c', lineHeight: 1.5 }}>
                 Didn't show up as an itemized order in Square (the charge itself was unaffected): {order.squareOrderLinkError}
               </div>
             )}
@@ -524,7 +524,7 @@ function AdminOrderDetailPage() {
                 </>
               )}
               {order.affiliateCommission != null && (
-                <span style={{ marginLeft: 8, fontSize: 11.5, color: order.affiliateCommissionPaidAt ? '#3f7a63' : '#b4622f' }}>
+                <span style={{ marginLeft: 8, fontSize: 11.5, color: order.affiliateCommissionPaidAt ? '#3f7a63' : '#a85b2c' }}>
                   {order.affiliateCommissionPaidAt ? 'Paid' : 'Owed'}
                 </span>
               )}
@@ -746,7 +746,7 @@ function AdminOrderDetailPage() {
               </button>
             </div>
             {testMessage && (
-              <div style={{ color: testMessage.startsWith('Sent') ? '#3f7a63' : '#b4622f', fontSize: 11, marginTop: 6 }}>{testMessage}</div>
+              <div style={{ color: testMessage.startsWith('Sent') ? '#3f7a63' : '#a85b2c', fontSize: 11, marginTop: 6 }}>{testMessage}</div>
             )}
           </div>
         )}

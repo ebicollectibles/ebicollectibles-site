@@ -308,7 +308,7 @@ function MarketplaceOrdersPage() {
                                       {s.items.map((i) => `${i.qty}× ${i.productName}`).join(', ')} · {new Date(s.createdAt).toLocaleDateString()}
                                     </div>
                                     {s.emailStatus && s.emailStatus !== 'sent' && (
-                                      <div style={{ color: '#b4622f', fontSize: 11 }}>
+                                      <div style={{ color: '#a85b2c', fontSize: 11 }}>
                                         Email {s.emailStatus}
                                         {s.emailError ? `: ${s.emailError}` : ''}
                                       </div>
@@ -326,7 +326,7 @@ function MarketplaceOrdersPage() {
                                   <div style={{ color: '#5a6875', fontSize: 11 }}>Marked shipped {new Date(order.shippedAt).toLocaleString()}</div>
                                 )}
                                 {order.emailStatus && order.emailStatus !== 'sent' && (
-                                  <div style={{ color: '#b4622f', fontSize: 11 }}>
+                                  <div style={{ color: '#a85b2c', fontSize: 11 }}>
                                     Email {order.emailStatus}
                                     {order.emailError ? `: ${order.emailError}` : ''}
                                   </div>
@@ -498,9 +498,9 @@ function MarketplaceOrdersPage() {
                               Cancel
                             </button>
                           </div>
-                          {rowError[order.id] && <div style={{ color: '#b4622f', fontSize: 11, marginTop: 6 }}>{rowError[order.id]}</div>}
+                          {rowError[order.id] && <div style={{ color: '#a85b2c', fontSize: 11, marginTop: 6 }}>{rowError[order.id]}</div>}
                           {testMessage[order.id] && (
-                            <div style={{ color: testMessage[order.id].startsWith('Sent') ? '#3f7a63' : '#b4622f', fontSize: 11, marginTop: 6 }}>
+                            <div style={{ color: testMessage[order.id].startsWith('Sent') ? '#3f7a63' : '#a85b2c', fontSize: 11, marginTop: 6 }}>
                               {testMessage[order.id]}
                             </div>
                           )}

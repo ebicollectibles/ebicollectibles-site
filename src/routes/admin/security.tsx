@@ -29,7 +29,7 @@ const eventColor: Record<string, string> = {
   admin_login: '#3f7a63',
   admin_login_failed: '#a13a3a',
   login: '#3f7a63',
-  login_failed: '#b4622f',
+  login_failed: '#a85b2c',
   signup: '#3f7a63',
 }
 

@@ -31,7 +31,7 @@ export function ProductCard({ product, variant = 'full' }: { product: Product; v
   const hubVariants = notSellable ? getHubVariants(product, allProducts) : []
   const hubPriceRange = notSellable && comingSoon ? getHubPriceRange(hubVariants) : null
   const badge = comingSoon ? 'Coming soon' : product.preorder ? 'Pre-order' : soldOut ? 'Sold out' : onSale ? 'Sale' : null
-  const badgeBg = comingSoon || soldOut ? '#5a6875' : product.preorder ? '#3f7a63' : '#b4622f'
+  const badgeBg = comingSoon || soldOut ? '#5a6875' : product.preorder ? '#3f7a63' : '#a85b2c'
 
   const compact = variant === 'compact'
   const padding = compact ? 18 : 20

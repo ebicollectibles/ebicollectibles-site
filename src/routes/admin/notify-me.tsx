@@ -31,7 +31,7 @@ const eventLabel: Record<string, string> = {
 
 const eventColor: Record<string, string> = {
   signed_up: '#3f7a63',
-  canceled: '#b4622f',
+  canceled: '#a85b2c',
   notified: '#5a6875',
 }
 
@@ -69,7 +69,7 @@ function NotifyMeSignupList({ productId }: { productId: string }) {
     }
   }, [productId])
 
-  if (error) return <p style={{ fontSize: 12.5, color: '#b4622f', padding: '12px 16px' }}>{error}</p>
+  if (error) return <p style={{ fontSize: 12.5, color: '#a85b2c', padding: '12px 16px' }}>{error}</p>
   if (!people) return <p style={{ fontSize: 12.5, color: '#5a6875', padding: '12px 16px' }}>Loading…</p>
   if (people.length === 0) return <p style={{ fontSize: 12.5, color: '#5a6875', padding: '12px 16px' }}>No one yet.</p>
 
@@ -128,7 +128,7 @@ function NotifyMeBlastRecipients({ blastId }: { blastId: string }) {
     }
   }, [blastId])
 
-  if (error) return <p style={{ fontSize: 11.5, color: '#b4622f', margin: '8px 0 0' }}>{error}</p>
+  if (error) return <p style={{ fontSize: 11.5, color: '#a85b2c', margin: '8px 0 0' }}>{error}</p>
   if (!recipients) return <p style={{ fontSize: 11.5, color: '#5a6875', margin: '8px 0 0' }}>Loading…</p>
   if (recipients.length === 0) return <p style={{ fontSize: 11.5, color: '#5a6875', margin: '8px 0 0' }}>Nobody was actually emailed in this batch.</p>
 
@@ -163,8 +163,8 @@ function deliveryStatus(r: { deliveredAt: Date | null; openedAt: Date | null; cl
   color: string
   at: Date | null
 } {
-  if (r.complainedAt) return { label: 'Complained', color: '#b4622f', at: r.complainedAt }
-  if (r.bouncedAt) return { label: 'Bounced', color: '#b4622f', at: r.bouncedAt }
+  if (r.complainedAt) return { label: 'Complained', color: '#a85b2c', at: r.complainedAt }
+  if (r.bouncedAt) return { label: 'Bounced', color: '#a85b2c', at: r.bouncedAt }
   if (r.clickedAt) return { label: 'Clicked', color: '#3f7a63', at: r.clickedAt }
   if (r.openedAt) return { label: 'Opened', color: '#3f7a63', at: r.openedAt }
   if (r.deliveredAt) return { label: 'Delivered', color: '#5a6875', at: r.deliveredAt }
@@ -193,7 +193,7 @@ function NotifyMeBlastHistory({ productId }: { productId: string }) {
     }
   }, [productId])
 
-  if (error) return <p style={{ fontSize: 12.5, color: '#b4622f', padding: '12px 16px' }}>{error}</p>
+  if (error) return <p style={{ fontSize: 12.5, color: '#a85b2c', padding: '12px 16px' }}>{error}</p>
   if (!blasts) return <p style={{ fontSize: 12.5, color: '#5a6875', padding: '12px 16px' }}>Loading…</p>
   if (blasts.length === 0) return <p style={{ fontSize: 12.5, color: '#5a6875', padding: '12px 16px' }}>No batches sent yet.</p>
 
@@ -216,7 +216,7 @@ function NotifyMeBlastHistory({ productId }: { productId: string }) {
           >
             <span>
               <span style={{ fontWeight: 600, color: '#3f7a63' }}>{b.sentCount} sent</span>
-              {b.failedCount > 0 && <span style={{ color: '#b4622f' }}> · {b.failedCount} failed</span>}
+              {b.failedCount > 0 && <span style={{ color: '#a85b2c' }}> · {b.failedCount} failed</span>}
               {b.skippedCount > 0 && <span style={{ color: '#5a6875' }}> · {b.skippedCount} skipped</span>}
             </span>
             <span style={{ color: '#5a6875', fontFamily: "'IBM Plex Mono', monospace", whiteSpace: 'nowrap' }}>

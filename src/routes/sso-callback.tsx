@@ -43,7 +43,7 @@ function SsoCallbackPage() {
 
   return (
     <section style={{ maxWidth: 400, margin: '0 auto', padding: '100px 24px', textAlign: 'center', fontFamily: 'Archivo, Helvetica, sans-serif' }}>
-      {error ? <p style={{ fontSize: 13.5, color: '#b4622f' }}>{error}</p> : <p style={{ fontSize: 13.5, color: '#5a6875' }}>Signing you in…</p>}
+      {error ? <p style={{ fontSize: 13.5, color: '#a85b2c' }}>{error}</p> : <p style={{ fontSize: 13.5, color: '#5a6875' }}>Signing you in…</p>}
     </section>
   )
 }

@@ -406,7 +406,7 @@ function ImagePicker({ onSelect, onClose }: { onSelect: (url: string) => void; o
             </React.Fragment>
           ))}
         </div>
-        {error && <p style={{ fontSize: 12.5, color: '#b4622f' }}>{error}</p>}
+        {error && <p style={{ fontSize: 12.5, color: '#a85b2c' }}>{error}</p>}
         {!listing && !error && <p style={{ fontSize: 13, color: '#5a6875' }}>Loading…</p>}
         {isEmpty && <p style={{ fontSize: 13, color: '#5a6875' }}>Nothing in this folder yet.</p>}
         {listing && listing.files.length > 0 && (
@@ -570,7 +570,7 @@ function VariantSiblingsHint({
 
   return (
     <div style={{ marginBottom: 12, padding: '8px 10px', background: '#f7f8f9', borderRadius: 3 }}>
-      <div style={{ fontSize: 11.5, color: collision ? '#b4622f' : '#5a6875', marginBottom: 6 }}>
+      <div style={{ fontSize: 11.5, color: collision ? '#a85b2c' : '#5a6875', marginBottom: 6 }}>
         Already in this group{collision ? ` — order ${currentOrder} is already taken` : ''}:
       </div>
       <div style={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
@@ -664,7 +664,7 @@ function SquarePicker({ onSelect, onClose }: { onSelect: (option: SquareCatalogO
           autoFocus
         />
         <div style={{ overflowY: 'auto' }}>
-          {error && <p style={{ fontSize: 12.5, color: '#b4622f' }}>{error}</p>}
+          {error && <p style={{ fontSize: 12.5, color: '#a85b2c' }}>{error}</p>}
           {!options && !error && <p style={{ fontSize: 13, color: '#5a6875' }}>Loading…</p>}
           {options && options.length === 0 && (
             <p style={{ fontSize: 13, color: '#5a6875' }}>No matching items found in Square.</p>
@@ -992,7 +992,7 @@ export function ProductForm({
                   set('squareVariationId', '')
                   set('stock', 0)
                 }}
-                style={{ background: 'none', border: '1px solid #cfd4da', borderRadius: 2, padding: '8px 14px', fontSize: 12, cursor: 'pointer', color: '#b4622f' }}
+                style={{ background: 'none', border: '1px solid #cfd4da', borderRadius: 2, padding: '8px 14px', fontSize: 12, cursor: 'pointer', color: '#a85b2c' }}
               >
                 Unlink
               </button>
@@ -1135,7 +1135,7 @@ export function ProductForm({
                 border: '1px solid #cfd4da',
                 borderRadius: 2,
                 cursor: 'pointer',
-                color: '#b4622f',
+                color: '#a85b2c',
                 fontSize: 16,
               }}
             >
@@ -1213,7 +1213,7 @@ export function ProductForm({
             inputMode="numeric"
           />
           {values.gtin.trim() && !isValidGtin13(values.gtin.trim()) && (
-            <p style={{ fontSize: 11.5, color: '#b4622f', margin: '6px 0 0' }}>
+            <p style={{ fontSize: 11.5, color: '#a85b2c', margin: '6px 0 0' }}>
               Not a valid 13-digit GTIN — check the digits (including the last, check digit).
             </p>
           )}
@@ -1410,7 +1410,7 @@ export function ProductForm({
         in-stock, not on every edit)
       </label>
 
-      {error && <p style={{ fontSize: 12.5, color: '#b4622f', marginBottom: 12 }}>{error}</p>}
+      {error && <p style={{ fontSize: 12.5, color: '#a85b2c', marginBottom: 12 }}>{error}</p>}
 
       <button
         type="submit"

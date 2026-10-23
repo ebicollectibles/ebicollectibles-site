@@ -86,14 +86,14 @@ function AdminDashboard() {
                 </td>
                 <td style={td}>{p.subcategory}</td>
                 <td style={{ ...td, fontFamily: "'IBM Plex Mono', monospace" }}>{formatMoney(p.price)}</td>
-                <td style={{ ...td, fontFamily: "'IBM Plex Mono', monospace", color: p.stock <= 0 ? '#b4622f' : undefined }}>{p.stock}</td>
+                <td style={{ ...td, fontFamily: "'IBM Plex Mono', monospace", color: p.stock <= 0 ? '#a85b2c' : undefined }}>{p.stock}</td>
                 <td style={td}>
                   {p.squareVariationId ? (
                     <div style={{ display: 'flex', alignItems: 'center', gap: 8, maxWidth: 170 }}>
                       <div style={{ width: 28, height: 28, flexShrink: 0, background: '#f6f7f8', border: '1px solid #e3e6ea', borderRadius: 2, overflow: 'hidden' }}>
                         {p.squareItemImage && <img src={p.squareItemImage} alt="" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />}
                       </div>
-                      <span style={{ fontSize: 12, color: p.squareItemName ? '#131b28' : '#b4622f', lineHeight: 1.3 }}>
+                      <span style={{ fontSize: 12, color: p.squareItemName ? '#131b28' : '#a85b2c', lineHeight: 1.3 }}>
                         {p.squareItemName ?? 'Could not load'}
                       </span>
                     </div>

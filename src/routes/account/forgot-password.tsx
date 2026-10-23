@@ -74,7 +74,7 @@ function ForgotPasswordPage() {
           style={field}
           autoFocus
         />
-        {error && <p style={{ fontSize: 12.5, color: '#b4622f', marginTop: 12 }}>{error}</p>}
+        {error && <p style={{ fontSize: 12.5, color: '#a85b2c', marginTop: 12 }}>{error}</p>}
         <button type="submit" disabled={submitting || !isLoaded} style={{ ...submitBtn, marginTop: 16, opacity: submitting ? 0.6 : 1 }}>
           {submitting ? 'Sending…' : 'Send reset code'}
         </button>

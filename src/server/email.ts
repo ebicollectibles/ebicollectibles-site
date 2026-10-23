@@ -226,7 +226,7 @@ interface StoreCreditEmailData {
 
 const LOGIN_URL = 'https://ebicollectibles.com/account/login'
 const SITE_URL = 'https://ebicollectibles.com'
-const AMBER = '#b4622f'
+const AMBER = '#a85b2c'
 
 export async function sendStoreCreditEmail(data: StoreCreditEmailData): Promise<EmailSendResult> {
   const apiKey = process.env.RESEND_API_KEY

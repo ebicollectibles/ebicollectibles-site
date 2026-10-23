@@ -355,7 +355,7 @@ function AdminAffiliatesPage() {
               Cancel
             </button>
           </div>
-          {error && <p style={{ fontSize: 12.5, color: '#b4622f', marginTop: 8 }}>{error}</p>}
+          {error && <p style={{ fontSize: 12.5, color: '#a85b2c', marginTop: 8 }}>{error}</p>}
         </div>
       )}
 
@@ -418,7 +418,7 @@ function AdminAffiliatesPage() {
                       a.orderCount
                     )}
                   </td>
-                  <td style={{ ...td, fontFamily: "'IBM Plex Mono', monospace", fontWeight: a.owedCommission > 0 ? 700 : 400, color: a.owedCommission > 0 ? '#b4622f' : '#131b28' }}>
+                  <td style={{ ...td, fontFamily: "'IBM Plex Mono', monospace", fontWeight: a.owedCommission > 0 ? 700 : 400, color: a.owedCommission > 0 ? '#a85b2c' : '#131b28' }}>
                     {money(a.owedCommission)}
                   </td>
                   <td style={{ ...td, fontFamily: "'IBM Plex Mono', monospace", color: '#5a6875' }}>{money(a.paidCommission)}</td>
@@ -507,7 +507,7 @@ function AffiliateOrders({ affiliateId }: { affiliateId: string }) {
     }
   }, [affiliateId])
 
-  if (error) return <p style={{ fontSize: 12.5, color: '#b4622f', padding: '12px 16px' }}>{error}</p>
+  if (error) return <p style={{ fontSize: 12.5, color: '#a85b2c', padding: '12px 16px' }}>{error}</p>
   if (!orders) return <p style={{ fontSize: 12.5, color: '#5a6875', padding: '12px 16px' }}>Loading…</p>
   if (orders.length === 0) return <p style={{ fontSize: 12.5, color: '#5a6875', padding: '12px 16px' }}>No orders yet.</p>
 
@@ -540,7 +540,7 @@ function AffiliateOrders({ affiliateId }: { affiliateId: string }) {
               <td style={{ ...td, borderBottom: '1px solid #e8eaec', fontFamily: "'IBM Plex Mono', monospace" }}>{money(o.affiliateCommission ?? 0)}</td>
               <td style={{ ...td, borderBottom: '1px solid #e8eaec' }}>
                 {o.refunded ? (
-                  <span style={{ fontSize: 11.5, color: '#b4622f' }}>Refunded — excluded</span>
+                  <span style={{ fontSize: 11.5, color: '#a85b2c' }}>Refunded — excluded</span>
                 ) : o.affiliateCommissionPaidAt ? (
                   <span style={{ fontSize: 11.5, color: '#3f7a63' }}>Paid</span>
                 ) : (

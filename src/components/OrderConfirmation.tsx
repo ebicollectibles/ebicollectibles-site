@@ -44,7 +44,7 @@ export function OrderConfirmation({
         get a confirmation email shortly.
       </p>
       {paymentStatus === 'test' && (
-        <p style={{ fontSize: 12.5, color: '#b4622f', margin: '10px 0 0' }}>
+        <p style={{ fontSize: 12.5, color: '#a85b2c', margin: '10px 0 0' }}>
           (Test mode — no card was charged. Configure Square to accept real payments.)
         </p>
       )}

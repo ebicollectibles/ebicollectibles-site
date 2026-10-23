@@ -1014,10 +1014,10 @@ function CheckoutPage() {
             <p style={{ fontSize: 13.5, color: '#131b28', margin: '4px 0 0' }}>Your cart is empty — add a box to check out.</p>
           )}
           {mixedPreorder && (
-            <p style={{ fontSize: 12.5, color: '#b4622f', margin: '12px 0 0', lineHeight: 1.5 }}>{MIXED_PREORDER_ERROR}</p>
+            <p style={{ fontSize: 12.5, color: '#a85b2c', margin: '12px 0 0', lineHeight: 1.5 }}>{MIXED_PREORDER_ERROR}</p>
           )}
           {!mixedPreorder && delayedShipment && (
-            <p style={{ fontSize: 12.5, color: '#b4622f', margin: '12px 0 0', lineHeight: 1.5 }}>{DELAYED_SHIPMENT_WARNING}</p>
+            <p style={{ fontSize: 12.5, color: '#a85b2c', margin: '12px 0 0', lineHeight: 1.5 }}>{DELAYED_SHIPMENT_WARNING}</p>
           )}
           <div style={{ marginTop: 22, paddingTop: 18, borderTop: '1px solid #e3e6ea', display: 'flex', flexDirection: 'column', gap: 9, fontSize: 13.5 }}>
             <div style={{ display: 'flex', justifyContent: 'space-between' }}>
@@ -1068,7 +1068,7 @@ function CheckoutPage() {
           </div>
           {checkoutAs !== null && (
             <>
-              {error && <p style={{ fontSize: 12.5, color: '#b4622f', marginTop: 14 }}>{error}</p>}
+              {error && <p style={{ fontSize: 12.5, color: '#a85b2c', marginTop: 14 }}>{error}</p>}
               <label style={{ display: 'flex', alignItems: 'center', gap: 8, marginTop: 16, fontSize: 12.5, color: '#131b28', cursor: 'pointer' }}>
                 <input type="checkbox" checked={emailOptIn} onChange={(e) => setEmailOptIn(e.target.checked)} />
                 Email me about restocks and new drops
@@ -1176,7 +1176,7 @@ function ChoicePanel({
               className="ebi-field"
               style={{ ...fieldStyle, width: '100%' }}
             />
-            {signinError && <p style={{ fontSize: 12.5, color: '#b4622f', marginTop: 14 }}>{signinError}</p>}
+            {signinError && <p style={{ fontSize: 12.5, color: '#a85b2c', marginTop: 14 }}>{signinError}</p>}
             <button
               type="submit"
               disabled={signinSubmitting}
@@ -1258,7 +1258,7 @@ function ChoicePanel({
                 className="ebi-field"
                 style={{ ...fieldStyle, width: '100%', marginTop: 6 }}
               />
-              {signinError && <p style={{ fontSize: 12.5, color: '#b4622f', marginTop: 14 }}>{signinError}</p>}
+              {signinError && <p style={{ fontSize: 12.5, color: '#a85b2c', marginTop: 14 }}>{signinError}</p>}
               <button
                 type="submit"
                 disabled={signinSubmitting}

@@ -56,7 +56,7 @@ export const SquareCardField = React.forwardRef<SquareCardFieldHandle>(function 
     <div>
       <div ref={containerRef} style={{ minHeight: 90 }} />
       {status === 'error' && (
-        <p style={{ fontSize: 12, color: '#b4622f', marginTop: 8 }}>
+        <p style={{ fontSize: 12, color: '#a85b2c', marginTop: 8 }}>
           Couldn't load the card form. Refresh and try again.
         </p>
       )}

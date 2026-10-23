@@ -27,8 +27,8 @@ export const Route = createFileRoute('/admin/orders/')({
 
 const paymentColor: Record<string, string> = {
   paid: '#3f7a63',
-  test: '#b4622f',
-  failed: '#b4622f',
+  test: '#a85b2c',
+  failed: '#a85b2c',
   unpaid: '#5a6875',
 }
 
@@ -36,12 +36,12 @@ const fulfillmentColor: Record<string, string> = {
   pending: '#5a6875',
   partially_shipped: '#3a6ea5',
   shipped: '#3f7a63',
-  cancelled: '#b4622f',
+  cancelled: '#a85b2c',
 }
 
 const riskColor: Record<string, string> = {
   NORMAL: '#3f7a63',
-  MODERATE: '#b4622f',
+  MODERATE: '#a85b2c',
   HIGH: '#a13a3a',
 }
 const riskLabel: Record<string, string> = {
@@ -157,7 +157,7 @@ function NotifyFailureRow({ email }: { email: string }) {
           Cancel
         </button>
       </div>
-      {error && <p style={{ fontSize: 12, color: '#b4622f', margin: '6px 0 0' }}>{error}</p>}
+      {error && <p style={{ fontSize: 12, color: '#a85b2c', margin: '6px 0 0' }}>{error}</p>}
 
       <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap', marginTop: 8, paddingTop: 8, borderTop: '1px solid #f0f2f4' }}>
         <input
@@ -174,7 +174,7 @@ function NotifyFailureRow({ email }: { email: string }) {
           {testing ? 'Sending test…' : 'Send test to me'}
         </button>
       </div>
-      {testMessage && <p style={{ color: testMessage.startsWith('Sent') ? '#3f7a63' : '#b4622f', fontSize: 11, margin: '6px 0 0' }}>{testMessage}</p>}
+      {testMessage && <p style={{ color: testMessage.startsWith('Sent') ? '#3f7a63' : '#a85b2c', fontSize: 11, margin: '6px 0 0' }}>{testMessage}</p>}
     </div>
   )
 }
@@ -317,7 +317,7 @@ function AdminOrdersPage() {
                     ({formatMoney(c.laterOrder.total)}, {c.laterOrder.paymentStatus}) at {new Date(c.laterOrder.createdAt).toLocaleString()}
                   </div>
                 ) : c.laterFailure ? (
-                  <div style={{ color: '#b4622f', marginTop: 2 }}>
+                  <div style={{ color: '#a85b2c', marginTop: 2 }}>
                     ⚠ Tried again and failed — {formatMoney(c.laterFailure.amount ?? 0)}, {c.laterFailure.errorMessage}, at{' '}
                     {new Date(c.laterFailure.createdAt).toLocaleString()}
                   </div>
@@ -445,7 +445,7 @@ function AdminOrdersPage() {
                       Cancel
                     </button>
                   </div>
-                  {sendError && <p style={{ fontSize: 12.5, color: '#b4622f', marginTop: 8 }}>{sendError}</p>}
+                  {sendError && <p style={{ fontSize: 12.5, color: '#a85b2c', marginTop: 8 }}>{sendError}</p>}
                 </div>
               )}
             </div>

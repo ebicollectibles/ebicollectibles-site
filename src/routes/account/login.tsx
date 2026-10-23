@@ -202,7 +202,7 @@ function LoginPage() {
             className="ebi-field"
             style={field}
           />
-          {error && <p style={{ fontSize: 12.5, color: '#b4622f', marginTop: 14 }}>{error}</p>}
+          {error && <p style={{ fontSize: 12.5, color: '#a85b2c', marginTop: 14 }}>{error}</p>}
           <button type="submit" disabled={submitting || !isLoaded} style={{ ...submitBtn, marginTop: 20, opacity: submitting ? 0.6 : 1 }}>
             {submitting ? 'Verifying…' : 'Verify code'}
           </button>
@@ -266,7 +266,7 @@ function LoginPage() {
               className="ebi-field"
               style={{ ...field, marginTop: 6 }}
             />
-            {error && <p style={{ fontSize: 12.5, color: '#b4622f', marginTop: 14 }}>{error}</p>}
+            {error && <p style={{ fontSize: 12.5, color: '#a85b2c', marginTop: 14 }}>{error}</p>}
             <button type="submit" disabled={submitting || !isLoaded} style={{ ...submitBtn, marginTop: 20, opacity: submitting ? 0.6 : 1 }}>
               {submitting ? 'Logging in…' : 'Log in'}
             </button>

@@ -240,7 +240,7 @@ function AdminLinksPage() {
               Cancel
             </button>
           </div>
-          {error && <p style={{ fontSize: 12.5, color: '#b4622f', marginTop: 8 }}>{error}</p>}
+          {error && <p style={{ fontSize: 12.5, color: '#a85b2c', marginTop: 8 }}>{error}</p>}
         </div>
       )}
 
@@ -303,7 +303,7 @@ function AdminLinksPage() {
                     <button onClick={() => startEdit(link)} style={{ background: 'none', border: 'none', color: '#3f7a63', fontSize: 12.5, cursor: 'pointer', marginRight: 12, padding: '6px 4px' }}>
                       Edit
                     </button>
-                    <button onClick={() => remove(link.id, link.slug)} style={{ background: 'none', border: 'none', color: '#b4622f', fontSize: 12.5, cursor: 'pointer', padding: '6px 4px' }}>
+                    <button onClick={() => remove(link.id, link.slug)} style={{ background: 'none', border: 'none', color: '#a85b2c', fontSize: 12.5, cursor: 'pointer', padding: '6px 4px' }}>
                       Delete
                     </button>
                   </td>

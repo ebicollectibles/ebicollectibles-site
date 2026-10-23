@@ -14,7 +14,7 @@ const fulfillmentColor: Record<string, string> = {
   pending: '#5a6875',
   partially_shipped: '#3a6ea5',
   shipped: '#3f7a63',
-  cancelled: '#b4622f',
+  cancelled: '#a85b2c',
 }
 
 const fulfillmentLabel: Record<string, string> = {

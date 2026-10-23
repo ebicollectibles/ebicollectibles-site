@@ -146,7 +146,7 @@ function GrantPendingCreditForm() {
       <button type="button" onClick={() => setOpen(false)} style={{ background: 'none', border: 'none', color: '#5a6875', fontSize: 12.5, cursor: 'pointer', padding: '8px 10px' }}>
         Cancel
       </button>
-      {error && <p style={{ flex: '1 1 100%', fontSize: 12.5, color: '#b4622f', margin: 0 }}>{error}</p>}
+      {error && <p style={{ flex: '1 1 100%', fontSize: 12.5, color: '#a85b2c', margin: 0 }}>{error}</p>}
     </form>
   )
 }
@@ -200,7 +200,7 @@ function PendingCreditsSection({ pendingCredits }: { pendingCredits: Awaited<Ret
               <button
                 onClick={() => cancel(p.id)}
                 disabled={busyId === p.id}
-                style={{ background: 'none', border: 'none', color: '#b4622f', fontSize: 12, cursor: busyId === p.id ? 'default' : 'pointer', padding: '6px 4px' }}
+                style={{ background: 'none', border: 'none', color: '#a85b2c', fontSize: 12, cursor: busyId === p.id ? 'default' : 'pointer', padding: '6px 4px' }}
               >
                 Cancel
               </button>

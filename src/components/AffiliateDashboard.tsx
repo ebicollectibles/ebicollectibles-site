@@ -252,7 +252,7 @@ export function AffiliateDashboardView({ affiliate, heading = 'Affiliate' }: { a
         <StatTile label="Orders" value={String(affiliate.orderCount)} />
         <StatTile label="Total commission" value={formatMoney(affiliate.totalCommission)} />
         <StatTile label="Paid" value={formatMoney(affiliate.paidCommission)} color="#3f7a63" />
-        <StatTile label="Owed" value={formatMoney(affiliate.owedCommission)} color="#b4622f" />
+        <StatTile label="Owed" value={formatMoney(affiliate.owedCommission)} color="#a85b2c" />
       </div>
 
       <h2 style={{ fontSize: 16, fontWeight: 700, marginTop: 36, marginBottom: 0 }}>Orders</h2>
@@ -289,7 +289,7 @@ export function AffiliateDashboardView({ affiliate, heading = 'Affiliate' }: { a
                         {o.commissionRate != null ? `${o.commissionRate}%` : '—'}
                       </td>
                       <td style={{ ...td, fontFamily: "'IBM Plex Mono', monospace" }}>{formatMoney(o.commission)}</td>
-                      <td style={{ ...td, color: o.refunded ? '#5a6875' : o.paid ? '#3f7a63' : '#b4622f' }}>
+                      <td style={{ ...td, color: o.refunded ? '#5a6875' : o.paid ? '#3f7a63' : '#a85b2c' }}>
                         {o.refunded ? 'Refunded' : o.paid ? 'Paid' : 'Owed'}
                       </td>
                     </tr>

@@ -146,7 +146,7 @@ function BulkVariantsPage() {
         {applying ? 'Applying…' : `Apply to ${rows.length || ''} product${rows.length === 1 ? '' : 's'}`}
       </button>
 
-      {error && <p style={{ fontSize: 12.5, color: '#b4622f', marginTop: 10 }}>{error}</p>}
+      {error && <p style={{ fontSize: 12.5, color: '#a85b2c', marginTop: 10 }}>{error}</p>}
 
       {results && (
         <div style={{ marginTop: 24 }}>
@@ -166,7 +166,7 @@ function BulkVariantsPage() {
                 {results.map((r) => (
                   <tr key={r.id}>
                     <td style={{ ...td, fontFamily: "'IBM Plex Mono', monospace" }}>{r.id}</td>
-                    <td style={{ ...td, color: r.ok ? '#3f7a63' : '#b4622f' }}>{r.ok ? 'Updated' : r.error}</td>
+                    <td style={{ ...td, color: r.ok ? '#3f7a63' : '#a85b2c' }}>{r.ok ? 'Updated' : r.error}</td>
                   </tr>
                 ))}
               </tbody>

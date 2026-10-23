@@ -138,7 +138,7 @@ function StoreCreditPanel({
           {busy ? 'Saving…' : 'Apply'}
         </button>
       </form>
-      {formError && <p style={{ fontSize: 12.5, color: '#b4622f', marginTop: 8 }}>{formError}</p>}
+      {formError && <p style={{ fontSize: 12.5, color: '#a85b2c', marginTop: 8 }}>{formError}</p>}
 
       {credit.history.length > 0 && (
         <div style={{ marginTop: 18, paddingTop: 14, borderTop: '1px solid #f0f2f4', display: 'flex', flexDirection: 'column', gap: 8 }}>
@@ -164,7 +164,7 @@ function StoreCreditPanel({
                   {new Date(event.createdAt).toLocaleString()}
                 </div>
               </div>
-              <span style={{ fontFamily: "'IBM Plex Mono', monospace", fontWeight: 600, color: event.amount >= 0 ? '#3f7a63' : '#b4622f', whiteSpace: 'nowrap' }}>
+              <span style={{ fontFamily: "'IBM Plex Mono', monospace", fontWeight: 600, color: event.amount >= 0 ? '#3f7a63' : '#a85b2c', whiteSpace: 'nowrap' }}>
                 {event.amount >= 0 ? '+' : ''}
                 {formatMoney(event.amount)}
               </span>
@@ -178,8 +178,8 @@ function StoreCreditPanel({
 
 const paymentColor: Record<string, string> = {
   paid: '#3f7a63',
-  test: '#b4622f',
-  failed: '#b4622f',
+  test: '#a85b2c',
+  failed: '#a85b2c',
   unpaid: '#5a6875',
 }
 
@@ -187,7 +187,7 @@ const fulfillmentColor: Record<string, string> = {
   pending: '#5a6875',
   partially_shipped: '#3a6ea5',
   shipped: '#3f7a63',
-  cancelled: '#b4622f',
+  cancelled: '#a85b2c',
 }
 
 const fulfillmentLabel: Record<string, string> = {
@@ -375,8 +375,8 @@ const eventLabel: Record<string, string> = {
 }
 
 const eventColor: Record<string, string> = {
-  login_failed: '#b4622f',
+  login_failed: '#a85b2c',
   signup: '#3f7a63',
-  payment_failed: '#b4622f',
+  payment_failed: '#a85b2c',
   email_verified: '#3f7a63',
 }

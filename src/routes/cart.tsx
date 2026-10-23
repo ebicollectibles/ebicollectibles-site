@@ -176,10 +176,10 @@ function CartPage() {
               </div>
               <div style={{ fontSize: 11.5, color: '#5a6875', marginTop: 8 }}>Shipping and tax are calculated at checkout.</div>
               {mixedPreorder && (
-                <div style={{ fontSize: 12.5, color: '#b4622f', marginTop: 12, lineHeight: 1.5 }}>{MIXED_PREORDER_ERROR}</div>
+                <div style={{ fontSize: 12.5, color: '#a85b2c', marginTop: 12, lineHeight: 1.5 }}>{MIXED_PREORDER_ERROR}</div>
               )}
               {!mixedPreorder && delayedShipment && (
-                <div style={{ fontSize: 12.5, color: '#b4622f', marginTop: 12, lineHeight: 1.5 }}>{DELAYED_SHIPMENT_WARNING}</div>
+                <div style={{ fontSize: 12.5, color: '#a85b2c', marginTop: 12, lineHeight: 1.5 }}>{DELAYED_SHIPMENT_WARNING}</div>
               )}
               <div style={{ display: 'flex', gap: 10, marginTop: 20 }}>
                 <Link
@@ -227,7 +227,7 @@ function CartPage() {
                 />
               </div>
               {expressError && (
-                <p style={{ fontSize: 12.5, color: '#b4622f', marginTop: 10, lineHeight: 1.5 }}>{expressError}</p>
+                <p style={{ fontSize: 12.5, color: '#a85b2c', marginTop: 10, lineHeight: 1.5 }}>{expressError}</p>
               )}
             </div>
           </div>

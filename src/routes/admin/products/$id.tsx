@@ -42,7 +42,7 @@ function EditProductPage() {
               await adminDeleteProduct({ data: { id } })
               navigate({ to: '/admin' })
             }}
-            style={{ background: 'none', border: '1px solid #cfd4da', color: '#b4622f', borderRadius: 2, padding: '9px 14px', fontSize: 12.5, cursor: 'pointer' }}
+            style={{ background: 'none', border: '1px solid #cfd4da', color: '#a85b2c', borderRadius: 2, padding: '9px 14px', fontSize: 12.5, cursor: 'pointer' }}
           >
             Delete product
           </button>
@@ -192,7 +192,7 @@ const dropnotifyStatusLabel: Record<string, string> = {
 }
 const dropnotifyStatusColor: Record<string, string> = {
   sent: '#3f7a63',
-  failed: '#b4622f',
+  failed: '#a85b2c',
   skipped: '#5a6875',
 }
 const dropnotifyTriggerLabel: Record<string, string> = {

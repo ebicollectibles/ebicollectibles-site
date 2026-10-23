@@ -7,13 +7,34 @@
   --surface: #f6f7f8;
   --green: #3f7a63;
   --green-border: #cfdcd6;
-  --amber: #b4622f;
+  --amber: #a85b2c;
 }
 
 *,
 *::before,
 *::after {
   box-sizing: border-box;
+}
+
+/* Off-screen until keyboard-focused, then jumps on-screen above everything
+   else — lets a keyboard/screen-reader user skip the header/nav entirely
+   instead of tabbing through it on every single page load (WCAG 2.4.1). */
+.ebi-skip-link {
+  position: absolute;
+  top: -1000px;
+  left: 0;
+  z-index: 1000;
+  padding: 12px 18px;
+  background: var(--ink);
+  color: #ffffff;
+  font-family: Archivo, Helvetica, sans-serif;
+  font-size: 13.5px;
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: 0 0 2px 0;
+}
+.ebi-skip-link:focus {
+  top: 0;
 }
 
 html,

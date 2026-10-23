@@ -21,7 +21,7 @@ const fulfillmentColor: Record<string, string> = {
   pending: '#5a6875',
   partially_shipped: '#3a6ea5',
   shipped: '#3f7a63',
-  cancelled: '#b4622f',
+  cancelled: '#a85b2c',
 }
 
 const fulfillmentLabel: Record<string, string> = {
@@ -74,7 +74,7 @@ function AdminOrderCustomerViewPage() {
           fontSize: 10.5,
           letterSpacing: '0.1em',
           textTransform: 'uppercase',
-          color: '#b4622f',
+          color: '#a85b2c',
         }}
       >
         Viewing as the customer sees it

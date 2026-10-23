@@ -45,7 +45,7 @@ const eventLabel: Record<string, string> = {
 
 const eventColor: Record<string, string> = {
   subscribed: '#3f7a63',
-  unsubscribed: '#b4622f',
+  unsubscribed: '#a85b2c',
 }
 
 function AdminSubscribersPage() {

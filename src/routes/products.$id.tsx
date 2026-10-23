@@ -299,7 +299,7 @@ function ProductDetailPage() {
   // same as it does for its own dropdown option label.
   const hubPriceRange = notSellable ? getHubPriceRange(variants) : null
   const badge = comingSoon ? 'Coming soon' : product.preorder ? 'Pre-order' : soldOut ? 'Sold out' : onSale ? 'Sale' : null
-  const badgeBg = comingSoon || soldOut ? '#5a6875' : product.preorder ? '#3f7a63' : '#b4622f'
+  const badgeBg = comingSoon || soldOut ? '#5a6875' : product.preorder ? '#3f7a63' : '#a85b2c'
   const stockLabel = comingSoon ? 'Coming soon' : soldOut ? 'Out of stock' : product.preorder ? 'Ships after release' : `${product.stock} in stock`
   const stockColor = comingSoon || soldOut ? '#5a6875' : '#3f7a63'
 
@@ -497,7 +497,7 @@ function ProductDetailPage() {
             </div>
           )}
           {!comingSoon && !soldOut && !notSellable && product.shipsWithDelay && (
-            <p style={{ fontSize: 12.5, color: '#b4622f', margin: '8px 0 0', lineHeight: 1.5 }}>
+            <p style={{ fontSize: 12.5, color: '#a85b2c', margin: '8px 0 0', lineHeight: 1.5 }}>
               This item is still on its way to us — an order with it ships once it arrives.
             </p>
           )}

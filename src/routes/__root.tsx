@@ -134,17 +134,24 @@ function RootDocument({ children }: { children: React.ReactNode }) {
         )}
       </head>
       <body>
+        <a href="#main-content" className="ebi-skip-link">
+          Skip to main content
+        </a>
         <ClerkProvider>
           <CartProvider products={products}>
             {showMaintenance ? (
               <MaintenancePage />
             ) : isAdmin ? (
-              <main>{children}</main>
+              <main id="main-content" tabIndex={-1}>
+                {children}
+              </main>
             ) : (
               <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', background: '#ffffff' }}>
                 <AnnouncementBar />
                 <Header customer={customer} isAdminUser={isAdminUser} isAffiliateUser={isAffiliateUser} />
-                <main style={{ flex: 1 }}>{children}</main>
+                <main id="main-content" tabIndex={-1} style={{ flex: 1 }}>
+                  {children}
+                </main>
                 <Footer />
               </div>
             )}

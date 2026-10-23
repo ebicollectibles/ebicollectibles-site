@@ -223,7 +223,7 @@ function SignupPage() {
           style={field}
         />
         <p style={{ fontSize: 11, color: '#5a6875', marginTop: 6 }}>At least 8 characters.</p>
-        {error && <p style={{ fontSize: 12.5, color: '#b4622f', marginTop: 8 }}>{error}</p>}
+        {error && <p style={{ fontSize: 12.5, color: '#a85b2c', marginTop: 8 }}>{error}</p>}
         <button type="submit" disabled={submitting || !isLoaded} style={{ ...submitBtn, marginTop: 16, opacity: submitting ? 0.6 : 1 }}>
           {submitting ? 'Creating account…' : 'Create account'}
         </button>
