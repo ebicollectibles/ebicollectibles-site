@@ -1,6 +1,6 @@
 import { createServerFn } from '@tanstack/react-start'
 import { z } from 'zod'
-import { and, asc, desc, eq, inArray, isNotNull, isNull, notInArray, or, sql } from 'drizzle-orm'
+import { and, asc, desc, eq, gte, inArray, isNotNull, isNull, notInArray, or, sql } from 'drizzle-orm'
 import { getDb } from '~/lib/db/client'
 import {
   affiliateContacts,
@@ -677,12 +677,21 @@ export const adminSendShipmentTest = createServerFn({ method: 'POST' })
     return { ok: true }
   })
 
+// "Recent" means recent — the old limit(30) alone let this show arbitrarily
+// stale failures (anything up to the 30 most recent ever, regardless of
+// age) whenever failure volume was low, permanently cluttering the top of
+// the orders page. 14 days keeps it meaningful without admin needing to
+// manually dismiss anything.
+const PAYMENT_FAILURE_RECENT_DAYS = 14
+
 export const adminListPaymentFailures = createServerFn({ method: 'GET' }).handler(async () => {
   await assertAdmin()
   const db = getDb()
+  const since = new Date(Date.now() - PAYMENT_FAILURE_RECENT_DAYS * 24 * 60 * 60 * 1000)
   return db
     .select({ id: paymentAttempts.id, email: paymentAttempts.email, amount: paymentAttempts.amount, errorMessage: paymentAttempts.errorMessage, createdAt: paymentAttempts.createdAt })
     .from(paymentAttempts)
+    .where(gte(paymentAttempts.createdAt, since))
     .orderBy(desc(paymentAttempts.createdAt))
     .limit(30)
 })
@@ -728,6 +737,15 @@ export const adminSendCheckoutIssueNoticeTest = createServerFn({ method: 'POST' 
 // logged, rather than admin having to cross-reference two separate lists
 // by hand. One extra pair of queries per notice sent — cheap at this
 // volume (a handful of one-off notices, not a bulk campaign).
+// "Did they come back?" only has anything useful to say about someone who
+// HASN'T come back yet — once laterOrder is set below, that's a resolved
+// case with nothing left to follow up on, so it's dropped from the
+// returned list rather than piling up on the orders page forever (this had
+// no cap at all before, so after enough checkout-issue emails sent over
+// time, it had grown into a permanently-expanding block pushing the actual
+// orders table further down the page every time admin visits).
+// notifiedAt desc + a cap on the source query bounds the per-notice
+// follow-up lookups below, even if the email volume grows a lot.
 export const adminListCheckoutIssueFollowups = createServerFn({ method: 'GET' }).handler(async () => {
   await assertAdmin()
   const db = getDb()
@@ -737,29 +755,31 @@ export const adminListCheckoutIssueFollowups = createServerFn({ method: 'GET' })
     .from(emailEvents)
     .where(and(eq(emailEvents.type, 'checkout_issue_resolved'), eq(emailEvents.status, 'sent'), isNotNull(emailEvents.email)))
     .orderBy(desc(emailEvents.createdAt))
+    .limit(50)
 
   const results: {
     email: string
     notifiedAt: Date
     laterFailure: { createdAt: Date; amount: number | null; errorMessage: string | null } | null
-    laterOrder: { id: string; orderNo: number; total: number; paymentStatus: string; createdAt: Date } | null
   }[] = []
 
   for (const n of notices) {
     const email = n.email!
+    const [laterOrder] = await db
+      .select({ id: orders.id })
+      .from(orders)
+      .where(and(sql`lower(${orders.email}) = ${email.toLowerCase()}`, sql`${orders.createdAt} > ${n.notifiedAt}`))
+      .orderBy(desc(orders.createdAt))
+      .limit(1)
+    if (laterOrder) continue // resolved — they came back, nothing left to follow up on
+
     const [laterFailure] = await db
       .select({ createdAt: paymentAttempts.createdAt, amount: paymentAttempts.amount, errorMessage: paymentAttempts.errorMessage })
       .from(paymentAttempts)
       .where(and(eq(paymentAttempts.email, email), sql`${paymentAttempts.createdAt} > ${n.notifiedAt}`))
       .orderBy(desc(paymentAttempts.createdAt))
       .limit(1)
-    const [laterOrder] = await db
-      .select({ id: orders.id, orderNo: orders.orderNo, total: orders.total, paymentStatus: orders.paymentStatus, createdAt: orders.createdAt })
-      .from(orders)
-      .where(and(sql`lower(${orders.email}) = ${email.toLowerCase()}`, sql`${orders.createdAt} > ${n.notifiedAt}`))
-      .orderBy(desc(orders.createdAt))
-      .limit(1)
-    results.push({ email, notifiedAt: n.notifiedAt, laterFailure: laterFailure ?? null, laterOrder: laterOrder ?? null })
+    results.push({ email, notifiedAt: n.notifiedAt, laterFailure: laterFailure ?? null })
   }
 
   return results

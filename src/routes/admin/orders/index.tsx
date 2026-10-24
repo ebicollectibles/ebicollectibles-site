@@ -308,15 +308,7 @@ function AdminOrdersPage() {
                   <span style={{ fontWeight: 600 }}>{c.email}</span>
                   <span style={{ color: '#5a6875' }}> — notified {new Date(c.notifiedAt).toLocaleString()}</span>
                 </div>
-                {c.laterOrder ? (
-                  <div style={{ color: '#3f7a63', marginTop: 2 }}>
-                    ✓ Placed{' '}
-                    <Link to="/admin/orders/$id" params={{ id: c.laterOrder.id }} style={{ color: '#3f7a63', fontWeight: 600, textDecoration: 'none' }}>
-                      #EBI-{c.laterOrder.orderNo}
-                    </Link>{' '}
-                    ({formatMoney(c.laterOrder.total)}, {c.laterOrder.paymentStatus}) at {new Date(c.laterOrder.createdAt).toLocaleString()}
-                  </div>
-                ) : c.laterFailure ? (
+                {c.laterFailure ? (
                   <div style={{ color: '#a85b2c', marginTop: 2 }}>
                     ⚠ Tried again and failed — {formatMoney(c.laterFailure.amount ?? 0)}, {c.laterFailure.errorMessage}, at{' '}
                     {new Date(c.laterFailure.createdAt).toLocaleString()}
