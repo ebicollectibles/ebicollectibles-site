@@ -1,4 +1,4 @@
-import type * as React from 'react'
+import * as React from 'react'
 import { createFileRoute, Link, useNavigate, useRouter } from '@tanstack/react-router'
 import { AdminNav } from '~/components/AdminNav'
 import { requireAdmin } from '~/server/admin-auth'
@@ -28,9 +28,12 @@ const td: React.CSSProperties = {
 }
 
 function AdminDashboard() {
-  const products = Route.useLoaderData()
+  const allProducts = Route.useLoaderData()
   const router = useRouter()
   const navigate = useNavigate()
+  const [dropnotifyOnly, setDropnotifyOnly] = React.useState(false)
+  const dropnotifyCount = allProducts.filter((p) => p.dropnotifyAlert).length
+  const products = dropnotifyOnly ? allProducts.filter((p) => p.dropnotifyAlert) : allProducts
 
   const remove = async (id: string) => {
     if (!confirm('Delete this product? This cannot be undone.')) return
@@ -51,6 +54,11 @@ function AdminDashboard() {
           + New product
         </Link>
       </div>
+
+      <label style={{ display: 'flex', alignItems: 'center', gap: 7, marginTop: 16, fontSize: 12.5, color: '#131b28', cursor: 'pointer' }}>
+        <input type="checkbox" checked={dropnotifyOnly} onChange={(e) => setDropnotifyOnly(e.target.checked)} />
+        Show only DropNotify-enabled ({dropnotifyCount})
+      </label>
 
       <div className="ebi-admin-scroll-hint" style={{ fontSize: 11.5, color: '#5a6875', marginTop: 14 }}>
         Swipe to see more →
@@ -81,6 +89,14 @@ function AdminDashboard() {
                   {!p.published && (
                     <span style={{ marginLeft: 6, fontFamily: 'Archivo, Helvetica, sans-serif', fontSize: 10, fontWeight: 700, color: '#5a6875', border: '1px solid #5a6875', borderRadius: 2, padding: '1px 4px' }}>
                       HIDDEN
+                    </span>
+                  )}
+                  {p.dropnotifyAlert && (
+                    <span
+                      title="Pings DropNotify's Discord on restock"
+                      style={{ marginLeft: 6, fontFamily: 'Archivo, Helvetica, sans-serif', fontSize: 10, fontWeight: 700, color: '#3f7a63', border: '1px solid #3f7a63', borderRadius: 2, padding: '1px 4px' }}
+                    >
+                      DN
                     </span>
                   )}
                 </td>
