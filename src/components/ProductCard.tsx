@@ -118,38 +118,46 @@ export function ProductCard({ product, variant = 'full' }: { product: Product; v
       >
         {product.name}
       </h3>
-      {(!notSellable || comingSoon) && (
-        <div style={{ display: 'flex', alignItems: 'baseline', gap: 8, marginTop: 10 }}>
-          {notSellable ? (
-            product.hidePrice || hubPriceRange == null ? (
-              <span style={{ fontSize: priceFontSize - 2, fontWeight: 500, color: '#5a6875' }}>
-                Price to be announced
-              </span>
-            ) : hubPriceRange.min === hubPriceRange.max ? (
-              <span style={{ fontSize: priceFontSize, fontWeight: 600, color: '#5a6875' }}>{formatMoney(hubPriceRange.min)}</span>
-            ) : (
-              <span style={{ fontSize: priceFontSize, fontWeight: 600, color: '#5a6875' }}>
-                {formatMoney(hubPriceRange.min)}–{formatMoney(hubPriceRange.max)}
-              </span>
-            )
-          ) : comingSoon && !priceKnown ? (
+      {/* Always rendered (even when a plain notSellable hub has nothing to
+          show here) rather than conditionally omitted — a card missing this
+          whole row sits shorter than its neighbors, and since the grid
+          stretches every card to the row's tallest, that left the Add to
+          cart / View options buttons misaligned across a row whenever one
+          card had a price line and the one next to it didn't.
+          visibility:hidden keeps the same layout height without showing
+          anything. */}
+      <div style={{ display: 'flex', alignItems: 'baseline', gap: 8, marginTop: 10, visibility: notSellable && !comingSoon ? 'hidden' : 'visible' }}>
+        {notSellable && !comingSoon ? (
+          <span style={{ fontSize: priceFontSize, fontWeight: 600 }}>&nbsp;</span>
+        ) : notSellable ? (
+          product.hidePrice || hubPriceRange == null ? (
             <span style={{ fontSize: priceFontSize - 2, fontWeight: 500, color: '#5a6875' }}>
               Price to be announced
             </span>
+          ) : hubPriceRange.min === hubPriceRange.max ? (
+            <span style={{ fontSize: priceFontSize, fontWeight: 600, color: '#5a6875' }}>{formatMoney(hubPriceRange.min)}</span>
           ) : (
-            <>
-              {onSale && (
-                <span style={{ fontSize: priceFontSize - 3, color: '#5a6875', textDecoration: 'line-through' }}>
-                  {formatMoney(product.compareAtPrice!)}
-                </span>
-              )}
-              <span style={{ fontSize: priceFontSize, fontWeight: 600, color: comingSoon ? '#5a6875' : '#131b28' }}>
-                {formatMoney(product.price)}
+            <span style={{ fontSize: priceFontSize, fontWeight: 600, color: '#5a6875' }}>
+              {formatMoney(hubPriceRange.min)}–{formatMoney(hubPriceRange.max)}
+            </span>
+          )
+        ) : comingSoon && !priceKnown ? (
+          <span style={{ fontSize: priceFontSize - 2, fontWeight: 500, color: '#5a6875' }}>
+            Price to be announced
+          </span>
+        ) : (
+          <>
+            {onSale && (
+              <span style={{ fontSize: priceFontSize - 3, color: '#5a6875', textDecoration: 'line-through' }}>
+                {formatMoney(product.compareAtPrice!)}
               </span>
-            </>
-          )}
-        </div>
-      )}
+            )}
+            <span style={{ fontSize: priceFontSize, fontWeight: 600, color: comingSoon ? '#5a6875' : '#131b28' }}>
+              {formatMoney(product.price)}
+            </span>
+          </>
+        )}
+      </div>
       </Link>
       {notSellable && !comingSoon ? (
         // A live hub has nothing of its own to add to cart — AddToCartControl
