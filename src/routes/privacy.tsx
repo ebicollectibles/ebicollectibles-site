@@ -72,17 +72,25 @@ function PrivacyPolicyPage() {
           </p>
           <ul style={ul}>
             <li>
-              <strong>Square</strong> — processes payments and card data directly
+              <strong>Payment processor</strong> — processes payments and card data directly
             </li>
             <li>
-              <strong>Resend</strong> — delivers our transactional and opt-in marketing emails
+              <strong>Email delivery provider</strong> — delivers our transactional and opt-in marketing emails
             </li>
             <li>
-              <strong>Google</strong> — provides "Sign in with Google" (if you use it) and Google Analytics (if
-              enabled)
+              <strong>Sign-in and account-security provider</strong> — handles your login, sessions, and the identity
+              verification used during checkout and account sign-in
             </li>
             <li>
-              <strong>Cloudflare</strong> — hosts the site
+              <strong>Social sign-in and analytics provider</strong> — lets you sign in with an existing account, if
+              you choose to, and provides anonymized web analytics (if enabled)
+            </li>
+            <li>
+              <strong>Hosting provider</strong> — hosts the site
+            </li>
+            <li>
+              <strong>Shipping-rate provider</strong> — for Alaska/Hawaii orders only, calculates a real shipping
+              cost from your address
             </li>
             <li>
               <strong>Washington State Department of Revenue</strong> — for WA orders only, just the street, city,
