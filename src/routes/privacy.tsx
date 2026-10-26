@@ -96,7 +96,11 @@ function PrivacyPolicyPage() {
           <h2 style={h2}>Your choices</h2>
           <p style={p}>
             Unsubscribe from marketing email anytime via the link in any such email. To update, get a copy of, or
-            delete your personal information, email us below.
+            delete your personal information, email{' '}
+            <a href="mailto:eastblueinternational@gmail.com" style={{ color: '#3f7a63' }}>
+              eastblueinternational@gmail.com
+            </a>
+            .
           </p>
         </div>
 
