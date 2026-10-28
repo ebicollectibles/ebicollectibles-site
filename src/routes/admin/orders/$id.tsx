@@ -376,6 +376,11 @@ function AdminOrderDetailPage() {
         <h1 style={{ fontSize: 24, fontWeight: 700, margin: 0, fontFamily: "'IBM Plex Mono', monospace" }}>#EBI-{order.orderNo}</h1>
         <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
           <span style={tagStyle}>{order.checkoutMode === 'account' ? 'Account' : 'Guest'}</span>
+          {order.hasPreorder && (
+            <span style={{ ...tagStyle, color: '#8a4a26', border: '1px solid #e3c7b4' }} title="Charged in full, final sale — see refund policy">
+              Pre-order
+            </span>
+          )}
           {totalRefunded > 0 && (
             <span style={{ ...tagStyle, color: '#8a4a26', border: '1px solid #e3c7b4' }}>Refunded {formatMoney(totalRefunded)}</span>
           )}

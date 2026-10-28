@@ -124,6 +124,12 @@ interface OrderEmailData {
   total: number
   paymentMethodSummary: string | null
   items: OrderEmailItem[]
+  // Mirrors the on-page notice in OrderConfirmation.tsx — that page is seen
+  // once, right after checkout, and never again unless the customer
+  // happens to screenshot it. This is the lasting written record of the
+  // pre-order final-sale terms, which matters most if a chargeback dispute
+  // ever needs to show the customer was actually told.
+  hasPreorder?: boolean
 }
 
 // resendId is the Resend-assigned email id from a real send — kept so a
@@ -158,6 +164,13 @@ export async function sendOrderConfirmationEmail(order: OrderEmailData): Promise
     </table>
     ${address ? labelValueBlock('Ship to', address) : ''}
     ${order.paymentMethodSummary ? labelValueBlock('Payment method', escapeHtml(order.paymentMethodSummary)) : ''}
+    ${
+      order.hasPreorder
+        ? `<div style="margin-top:4px;padding:12px 16px;background:#fdf3ec;border:1px solid #e6c4a8;border-radius:2px;">
+             <p style="font-size:13px;line-height:1.6;color:${INK};margin:0;">This order includes a pre-order item. Pre-orders are charged in full and are final, with no cancellations once placed. See our <a href="${SITE_URL}/refund-policy" style="color:${INK};font-weight:600;">Refund Policy</a> for details.</p>
+           </div>`
+        : ''
+    }
   `
 
   const html = emailShell({
@@ -181,6 +194,9 @@ export async function sendOrderConfirmationEmail(order: OrderEmailData): Promise
     '',
     address ? `Ship to:\n${address.replace(/<br>/g, '\n')}` : null,
     order.paymentMethodSummary ? `Payment method: ${order.paymentMethodSummary}` : null,
+    order.hasPreorder
+      ? `\nThis order includes a pre-order item. Pre-orders are charged in full and are final, with no cancellations once placed. See our Refund Policy for details: ${SITE_URL}/refund-policy`
+      : null,
   ]
     .filter((line) => line !== null)
     .join('\n')

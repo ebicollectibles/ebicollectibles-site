@@ -136,6 +136,9 @@ export const placeOrder = createServerFn({ method: 'POST' })
     if (hasMixedPreorderCart(productRows.map((p) => ({ preorder: p.preorder })))) {
       throw new Error(MIXED_PREORDER_ERROR)
     }
+    // Safe to use .some rather than checking every line — the mixed-cart
+    // reject just above guarantees every line agrees on this.
+    const hasPreorder = productRows.some((p) => p.preorder)
 
     const squareLines = data.lines.filter((l) => productById.get(l.productId)?.squareVariationId)
 
@@ -424,6 +427,7 @@ export const placeOrder = createServerFn({ method: 'POST' })
           affiliateId: affiliateCommission !== null ? affiliateAttribution!.affiliateId : null,
           affiliateCommission,
           affiliateCommissionRate,
+          hasPreorder,
         })
         .returning()
 
@@ -504,6 +508,7 @@ export const placeOrder = createServerFn({ method: 'POST' })
         total: result.total,
         paymentMethodSummary: result.paymentMethodSummary,
         items: result.lineDetails.map((l) => ({ productName: l.name, qty: l.qty, unitPrice: l.unitPrice, img: l.img })),
+        hasPreorder,
       })
       await db.insert(emailEvents).values({
         orderId: result.orderId,

@@ -312,6 +312,17 @@ export const orders = pgTable('orders', {
   // whenever a shipment is recorded — only "cancelled" and reverting to
   // "pending" are ever set directly by an admin action.
   fulfillmentStatus: text('fulfillment_status').notNull().default('pending'),
+  // Snapshotted at order time from each line's product.preorder (a mixed
+  // cart is blocked at checkout — see hasMixedPreorderCart — so an order is
+  // always either all pre-order or none, no per-line flag needed). Never
+  // re-derived from the current product row: admin un-checking Pre-order
+  // once a product is back in regular stock must not silently make a past
+  // preorder order look like a regular one, same reasoning as
+  // affiliateCommission above. This is what lets admin see, and the
+  // confirmation email state, that a given order falls under the
+  // pre-order final-sale terms — see OrderConfirmation.tsx and the refund
+  // policy's "Pre-orders are final" section.
+  hasPreorder: boolean('has_preorder').notNull().default(false),
   // Set at checkout (see resolveAffiliateAttribution in server/affiliates.ts)
   // when the ebi_ref cookie matched an active affiliate and the order
   // actually got charged — never retroactively assigned after the fact.

@@ -1365,10 +1365,23 @@ export function ProductForm({
           product's page (still has its own working product page, and syncs with Square normally)
         </label>
       </div>
-      <label style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: 13, marginBottom: 12 }}>
+      <label style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: 13, marginBottom: values.preorder && (values.comingSoon || values.squareVariationId) ? 6 : 12 }}>
         <input type="checkbox" checked={values.preorder} onChange={(e) => set('preorder', e.target.checked)} />
-        Pre-order item
+        Pre-order item — still requires Stock above to be a real number (acts as how many you're willing to sell,
+        not on-hand inventory); 0 shows as sold out even with this checked
       </label>
+      {values.preorder && values.comingSoon && (
+        <p style={{ fontSize: 11.5, color: '#a85b2c', margin: '0 0 10px 24px' }}>
+          Coming soon is also checked — that blocks ordering entirely, so this won&apos;t actually be purchasable as
+          a pre-order until Coming soon is turned off.
+        </p>
+      )}
+      {values.preorder && values.squareVariationId && (
+        <p style={{ fontSize: 11.5, color: '#5a6875', margin: '0 0 10px 24px' }}>
+          This is linked to Square, so the sell cap at checkout comes from Square&apos;s live inventory count, not
+          the Stock field above — set the cap there instead.
+        </p>
+      )}
       <label style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: 13, marginBottom: 12 }}>
         <input type="checkbox" checked={values.shipsWithDelay} onChange={(e) => set('shipsWithDelay', e.target.checked)} />
         Ships with delay — in stock and orderable now, but warns the buyer their whole order waits for this item

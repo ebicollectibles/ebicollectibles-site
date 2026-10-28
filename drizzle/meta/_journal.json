@@ -477,6 +477,13 @@
       "when": 1792709304506,
       "tag": "0067_special_night_thrasher",
       "breakpoints": true
+    },
+    {
+      "idx": 68,
+      "version": "7",
+      "when": 1793170167809,
+      "tag": "0068_hot_malice",
+      "breakpoints": true
     }
   ]
 }

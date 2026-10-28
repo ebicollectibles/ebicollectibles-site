@@ -483,7 +483,17 @@ function AdminOrdersPage() {
                   <td style={td}>
                     <input type="checkbox" checked={selectedIds.has(order.id)} onChange={() => toggleSelected(order.id)} aria-label={`Select order #EBI-${order.orderNo}`} />
                   </td>
-                  <td style={{ ...td, fontFamily: "'IBM Plex Mono', monospace", fontWeight: 600 }}>#EBI-{order.orderNo}</td>
+                  <td style={{ ...td, fontFamily: "'IBM Plex Mono', monospace", fontWeight: 600 }}>
+                    #EBI-{order.orderNo}
+                    {order.hasPreorder && (
+                      <span
+                        title="Pre-order — charged in full, final sale"
+                        style={{ marginLeft: 6, fontFamily: 'Archivo, Helvetica, sans-serif', fontSize: 9.5, fontWeight: 700, color: '#8a4a26', border: '1px solid #e3c7b4', borderRadius: 2, padding: '1px 4px', textTransform: 'uppercase' }}
+                      >
+                        Pre
+                      </span>
+                    )}
+                  </td>
                   <td style={td}>
                     <div>
                       {order.firstName} {order.lastName}
