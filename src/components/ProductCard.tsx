@@ -159,6 +159,40 @@ export function ProductCard({ product, variant = 'full' }: { product: Product; v
         )}
       </div>
       </Link>
+      {soldOut && (
+        // One line, truncated — never lets a long admin-typed note grow the
+        // card taller than its neighbors in the row. Falls back to a
+        // generic line when no restockNote is set, so every sold-out card
+        // says something rather than only the ones admin remembered to
+        // write a custom note for.
+        <div
+          style={{
+            marginTop: 9,
+            display: 'flex',
+            alignItems: 'center',
+            gap: 6,
+            background: '#fdf3ec',
+            border: '1px solid #e6c4a8',
+            borderRadius: 2,
+            padding: '5px 8px',
+          }}
+        >
+          <span style={{ width: 5, height: 5, borderRadius: '50%', background: '#a85b2c', flexShrink: 0 }} />
+          <span
+            style={{
+              fontSize: 10.5,
+              fontWeight: 500,
+              color: '#a85b2c',
+              lineHeight: 1.3,
+              whiteSpace: 'nowrap',
+              overflow: 'hidden',
+              textOverflow: 'ellipsis',
+            }}
+          >
+            {product.restockNote || 'Restocking soon'}
+          </span>
+        </div>
+      )}
       {notSellable && !comingSoon ? (
         // A live hub has nothing of its own to add to cart — AddToCartControl
         // would just render a dead "Choose an option below" button here,
