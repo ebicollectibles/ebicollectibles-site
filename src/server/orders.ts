@@ -502,6 +502,7 @@ export const placeOrder = createServerFn({ method: 'POST' })
     // admin instead of only living in Cloudflare's worker logs.
     try {
       const sendResult = await sendOrderConfirmationEmail({
+        orderId: result.orderId,
         orderNo: result.orderNo,
         email: data.contact.email || null,
         firstName: data.contact.firstName || null,

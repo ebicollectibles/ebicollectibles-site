@@ -69,6 +69,26 @@ function OrderDetailPage() {
       </div>
       <div style={{ marginTop: 4, fontSize: 12, color: '#5a6875' }}>{new Date(order.createdAt).toLocaleString()}</div>
 
+      {order.hasPreorder && (
+        <div
+          style={{
+            marginTop: 16,
+            padding: '12px 16px',
+            background: '#fdf3ec',
+            border: '1px solid #e6c4a8',
+            borderRadius: 2,
+          }}
+        >
+          <p style={{ fontSize: 13, lineHeight: 1.6, color: '#131b28', margin: 0 }}>
+            This order included a pre-order item, charged in full and final — no cancellations. See our{' '}
+            <Link to="/refund-policy" style={{ color: '#131b28', fontWeight: 600 }}>
+              Refund Policy
+            </Link>{' '}
+            for details.
+          </p>
+        </div>
+      )}
+
       {order.shipments.length > 0 && (
         <div style={{ marginTop: 20, paddingTop: 16, borderTop: '1px solid #e3e6ea' }}>
           <div style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 10.5, letterSpacing: '0.1em', textTransform: 'uppercase', color: '#5a6875' }}>
@@ -207,6 +227,14 @@ function OrderDetailPage() {
             )}
           </div>
         </div>
+      </div>
+
+      <div style={{ marginTop: 16, paddingTop: 16, borderTop: '1px solid #e3e6ea', fontSize: 12.5, color: '#5a6875' }}>
+        Questions about this order? Email us at{' '}
+        <a href="mailto:eastblueinternational@gmail.com" style={{ color: '#5a6875' }}>
+          eastblueinternational@gmail.com
+        </a>
+        .
       </div>
     </section>
   )

@@ -25,6 +25,10 @@ function CartPage() {
   const navigate = useNavigate()
   const mixedPreorder = hasMixedPreorderCart(lines.map((l) => ({ preorder: !!l.product.preorder })))
   const delayedShipment = hasDelayedShipment(lines.map((l) => ({ shipsWithDelay: !!l.product.shipsWithDelay })))
+  // Express Apple Pay has no surrounding form to put the pre-order consent
+  // checkbox in (see checkout.tsx), so a pre-order item routes through the
+  // full checkout page instead of this button rather than skipping consent.
+  const cartHasPreorder = lines.some((l) => !!l.product.preorder)
   const [confirmed, setConfirmed] = React.useState<{
     orderNo: number
     paymentStatus: string
@@ -219,13 +223,21 @@ function CartPage() {
                   Checkout
                 </button>
               </div>
-              <div style={{ marginTop: 10 }}>
-                <ExpressApplePayButton
-                  disabled={mixedPreorder}
-                  onOrderPlaced={setConfirmed}
-                  onError={setExpressError}
-                />
-              </div>
+              {!cartHasPreorder && (
+                <div style={{ marginTop: 10 }}>
+                  <ExpressApplePayButton
+                    disabled={mixedPreorder}
+                    onOrderPlaced={setConfirmed}
+                    onError={setExpressError}
+                  />
+                </div>
+              )}
+              {cartHasPreorder && !mixedPreorder && (
+                <div style={{ fontSize: 12, color: '#5a6875', marginTop: 10, lineHeight: 1.5 }}>
+                  Express Apple Pay isn't available for pre-order items — use Checkout above to confirm the pre-order
+                  terms.
+                </div>
+              )}
               {expressError && (
                 <p style={{ fontSize: 12.5, color: '#a85b2c', marginTop: 10, lineHeight: 1.5 }}>{expressError}</p>
               )}

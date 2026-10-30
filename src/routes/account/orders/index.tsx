@@ -150,6 +150,23 @@ function OrdersPage() {
                   <div style={{ marginTop: 4, fontSize: 12, color: '#5a6875' }}>
                     {new Date(order.createdAt).toLocaleDateString()} · {itemCount} item{itemCount === 1 ? '' : 's'} ·{' '}
                     {fulfillmentLabel[order.fulfillmentStatus] ?? order.fulfillmentStatus}
+                    {order.hasPreorder && (
+                      <span
+                        style={{
+                          marginLeft: 8,
+                          fontFamily: "'IBM Plex Mono', monospace",
+                          fontSize: 9.5,
+                          letterSpacing: '0.06em',
+                          textTransform: 'uppercase',
+                          color: '#8a4a26',
+                          border: '1px solid #e3c7b4',
+                          borderRadius: 2,
+                          padding: '2px 6px',
+                        }}
+                      >
+                        Pre-order
+                      </span>
+                    )}
                   </div>
                 </div>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 14 }}>

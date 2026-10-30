@@ -86,6 +86,13 @@ export function OrderConfirmation({
           </p>
         </div>
       )}
+      <p style={{ fontSize: 12.5, color: '#5a6875', margin: '20px 0 0' }}>
+        Questions about your order? Email us at{' '}
+        <a href="mailto:eastblueinternational@gmail.com" style={{ color: '#5a6875' }}>
+          eastblueinternational@gmail.com
+        </a>
+        .
+      </p>
       <Link
         to="/shop"
         className="ebi-btn-dark"

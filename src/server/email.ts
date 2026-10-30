@@ -109,6 +109,7 @@ interface OrderEmailItem {
 }
 
 interface OrderEmailData {
+  orderId: string
   orderNo: number
   email: string | null
   firstName: string | null
@@ -153,6 +154,7 @@ export async function sendOrderConfirmationEmail(order: OrderEmailData): Promise
     </tr>`
 
   const address = formatAddress(order)
+  const orderUrl = `${SITE_URL}/account/orders/${order.orderId}`
 
   const bodyHtml = `
     ${itemsTableHtml(order.items)}
@@ -166,11 +168,13 @@ export async function sendOrderConfirmationEmail(order: OrderEmailData): Promise
     ${order.paymentMethodSummary ? labelValueBlock('Payment method', escapeHtml(order.paymentMethodSummary)) : ''}
     ${
       order.hasPreorder
-        ? `<div style="margin-top:4px;padding:12px 16px;background:#fdf3ec;border:1px solid #e6c4a8;border-radius:2px;">
+        ? `<div style="margin-top:4px;margin-bottom:20px;padding:12px 16px;background:#fdf3ec;border:1px solid #e6c4a8;border-radius:2px;">
              <p style="font-size:13px;line-height:1.6;color:${INK};margin:0;">This order includes a pre-order item. Pre-orders are charged in full and are final, with no cancellations once placed. See our <a href="${SITE_URL}/refund-policy" style="color:${INK};font-weight:600;">Refund Policy</a> for details.</p>
            </div>`
         : ''
     }
+    <a href="${orderUrl}" style="display:inline-block;background:${INK};color:#ffffff;font-size:13px;font-weight:700;text-decoration:none;padding:12px 22px;border-radius:3px;">View your order</a>
+    <p style="font-size:12.5px;color:${MUTED};margin:20px 0 0;">Questions about this order? Email us at <a href="mailto:eastblueinternational@gmail.com" style="color:${MUTED};">eastblueinternational@gmail.com</a>.</p>
   `
 
   const html = emailShell({
@@ -197,6 +201,9 @@ export async function sendOrderConfirmationEmail(order: OrderEmailData): Promise
     order.hasPreorder
       ? `\nThis order includes a pre-order item. Pre-orders are charged in full and are final, with no cancellations once placed. See our Refund Policy for details: ${SITE_URL}/refund-policy`
       : null,
+    '',
+    `View your order: ${orderUrl}`,
+    'Questions about this order? Email us at eastblueinternational@gmail.com.',
   ]
     .filter((line) => line !== null)
     .join('\n')

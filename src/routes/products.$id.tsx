@@ -496,7 +496,12 @@ function ProductDetailPage() {
               )}
             </div>
           )}
-          {!comingSoon && !soldOut && !notSellable && product.shipsWithDelay && (
+          {!comingSoon && !soldOut && !notSellable && product.preorder && (
+            <p style={{ fontSize: 12.5, color: '#a85b2c', margin: '8px 0 0', lineHeight: 1.5 }}>
+              This is a pre-order — charged in full today and final, with no cancellations once placed.
+            </p>
+          )}
+          {!comingSoon && !soldOut && !notSellable && !product.preorder && product.shipsWithDelay && (
             <p style={{ fontSize: 12.5, color: '#a85b2c', margin: '8px 0 0', lineHeight: 1.5 }}>
               This item is still on its way to us — an order with it ships once it arrives.
             </p>
