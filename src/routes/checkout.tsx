@@ -1114,12 +1114,21 @@ function CheckoutPage() {
                     style={{ marginTop: 2, flexShrink: 0 }}
                   />
                   <span>
-                    I understand this order includes a pre-order item, charged in full today, and final — no
-                    cancellations once placed. See the{' '}
+                    By checking this box, I confirm I have read and agree to the{' '}
+                    <Link to="/terms-of-service" style={{ color: '#131b28', fontWeight: 600 }}>
+                      Terms of Service
+                    </Link>
+                    ,{' '}
                     <Link to="/refund-policy" style={{ color: '#131b28', fontWeight: 600 }}>
                       Refund Policy
                     </Link>
-                    .
+                    , and{' '}
+                    <Link to="/shipping-policy" style={{ color: '#131b28', fontWeight: 600 }}>
+                      Shipping Policy
+                    </Link>
+                    . I understand this order includes a pre-order item, charged in full today, and that
+                    pre-orders are <strong>final sale</strong> and <strong>cannot be canceled</strong> once
+                    placed.
                   </span>
                 </label>
               )}
