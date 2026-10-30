@@ -58,6 +58,11 @@ const placeOrderSchema = z.object({
   // trusted as-is. Silently ignored for guest checkout (credit only exists
   // for signed-in accounts — see server/store-credit.ts).
   creditApplied: z.number().min(0).optional().default(0),
+  // Required when the cart contains a pre-order item — see
+  // preorderAcknowledgedAt in schema.ts for why this needs to be a real,
+  // server-enforced checkbox rather than just disabling the button
+  // client-side. Harmless/ignored for a cart with no pre-order item.
+  preorderAcknowledged: z.boolean().optional().default(false),
 })
 
 export const placeOrder = createServerFn({ method: 'POST' })
@@ -139,6 +144,9 @@ export const placeOrder = createServerFn({ method: 'POST' })
     // Safe to use .some rather than checking every line — the mixed-cart
     // reject just above guarantees every line agrees on this.
     const hasPreorder = productRows.some((p) => p.preorder)
+    if (hasPreorder && !data.preorderAcknowledged) {
+      throw new Error('Please check the box confirming you understand the pre-order terms before placing this order.')
+    }
 
     const squareLines = data.lines.filter((l) => productById.get(l.productId)?.squareVariationId)
 
@@ -428,6 +436,7 @@ export const placeOrder = createServerFn({ method: 'POST' })
           affiliateCommission,
           affiliateCommissionRate,
           hasPreorder,
+          preorderAcknowledgedAt: hasPreorder ? new Date() : null,
         })
         .returning()
 

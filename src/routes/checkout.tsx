@@ -190,7 +190,13 @@ function InfoTooltip({ text }: { text: string }) {
 function CheckoutPage() {
   const cart = useCart()
   const mixedPreorder = hasMixedPreorderCart(cart.lines.map((l) => ({ preorder: !!l.product.preorder })))
+  const cartHasPreorder = cart.lines.some((l) => !!l.product.preorder)
   const delayedShipment = hasDelayedShipment(cart.lines.map((l) => ({ shipsWithDelay: !!l.product.shipsWithDelay })))
+  // Explicit, timestamped consent (see preorderAcknowledgedAt in schema.ts)
+  // rather than relying on the passive "by placing this order you agree to
+  // our policies" fine print below the button — that's weak evidence of
+  // informed consent to an unusual restriction like "no refunds, ever."
+  const [preorderAgreed, setPreorderAgreed] = React.useState(false)
   const initialAccount = Route.useLoaderData()
   const router = useRouter()
   const { signOut } = useAuth()
@@ -452,6 +458,10 @@ function CheckoutPage() {
       setError(MIXED_PREORDER_ERROR)
       return
     }
+    if (cartHasPreorder && !preorderAgreed) {
+      setError('Please check the box confirming you understand the pre-order terms before placing this order.')
+      return
+    }
     setSubmitting(true)
     try {
       const effectiveBilling: BillingAddress = sameAsShipping
@@ -465,7 +475,7 @@ function CheckoutPage() {
             zip: contact.zip,
           }
         : billing
-      const result = await cart.placeOrder({ contact, billing: effectiveBilling, sourceId, emailOptIn, creditApplied })
+      const result = await cart.placeOrder({ contact, billing: effectiveBilling, sourceId, emailOptIn, creditApplied, preorderAcknowledged: preorderAgreed })
       trackEvent('purchase', {
         transaction_id: String(result.orderNo),
         currency: 'USD',
@@ -939,7 +949,14 @@ function CheckoutPage() {
                               // amountDue <= 0 means credit alone covers the order — nothing
                               // for Apple Pay to charge, so it's disabled; "Place order"
                               // handles that case directly (see submit()).
-                              disabled={submitting || !contactComplete || !billingComplete || mixedPreorder || amountDue <= 0}
+                              disabled={
+                                submitting ||
+                                !contactComplete ||
+                                !billingComplete ||
+                                mixedPreorder ||
+                                amountDue <= 0 ||
+                                (cartHasPreorder && !preorderAgreed)
+                              }
                               onTokenize={(sourceId) => finishOrder(sourceId)}
                               onError={setError}
                               onAvailabilityChange={setApplePayAvailable}
@@ -1073,10 +1090,43 @@ function CheckoutPage() {
                 <input type="checkbox" checked={emailOptIn} onChange={(e) => setEmailOptIn(e.target.checked)} />
                 Email me about restocks and new drops
               </label>
+              {cartHasPreorder && !mixedPreorder && (
+                <label
+                  style={{
+                    display: 'flex',
+                    alignItems: 'flex-start',
+                    gap: 8,
+                    marginTop: 14,
+                    padding: '10px 12px',
+                    background: '#fdf3ec',
+                    border: '1px solid #e6c4a8',
+                    borderRadius: 2,
+                    fontSize: 12.5,
+                    color: '#131b28',
+                    lineHeight: 1.5,
+                    cursor: 'pointer',
+                  }}
+                >
+                  <input
+                    type="checkbox"
+                    checked={preorderAgreed}
+                    onChange={(e) => setPreorderAgreed(e.target.checked)}
+                    style={{ marginTop: 2, flexShrink: 0 }}
+                  />
+                  <span>
+                    I understand this order includes a pre-order item, charged in full today, and final — no
+                    cancellations once placed. See the{' '}
+                    <Link to="/refund-policy" style={{ color: '#131b28', fontWeight: 600 }}>
+                      Refund Policy
+                    </Link>
+                    .
+                  </span>
+                </label>
+              )}
               <button
                 type="submit"
                 form="checkout-form"
-                disabled={cart.cartEmpty || mixedPreorder || submitting || hiAkBlocked}
+                disabled={cart.cartEmpty || mixedPreorder || submitting || hiAkBlocked || (cartHasPreorder && !preorderAgreed)}
                 className="ebi-btn-dark"
                 style={{
                   marginTop: 14,
@@ -1088,8 +1138,8 @@ function CheckoutPage() {
                   padding: 15,
                   fontSize: 14,
                   fontWeight: 600,
-                  cursor: cart.cartEmpty || mixedPreorder || submitting || hiAkBlocked ? 'not-allowed' : 'pointer',
-                  opacity: cart.cartEmpty || mixedPreorder || submitting || hiAkBlocked ? 0.45 : 1,
+                  cursor: cart.cartEmpty || mixedPreorder || submitting || hiAkBlocked || (cartHasPreorder && !preorderAgreed) ? 'not-allowed' : 'pointer',
+                  opacity: cart.cartEmpty || mixedPreorder || submitting || hiAkBlocked || (cartHasPreorder && !preorderAgreed) ? 0.45 : 1,
                 }}
               >
                 {submitting ? 'Placing order…' : 'Place order'}

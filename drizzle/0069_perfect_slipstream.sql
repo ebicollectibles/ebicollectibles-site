@@ -1,0 +1,1 @@
+ALTER TABLE "orders" ADD COLUMN "preorder_acknowledged_at" timestamp with time zone;

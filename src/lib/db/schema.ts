@@ -323,6 +323,17 @@ export const orders = pgTable('orders', {
   // pre-order final-sale terms — see OrderConfirmation.tsx and the refund
   // policy's "Pre-orders are final" section.
   hasPreorder: boolean('has_preorder').notNull().default(false),
+  // When the shopper explicitly checked the "I understand this is a
+  // pre-order, charged in full and final" box at checkout — null for every
+  // non-pre-order order. This exists specifically because the passive
+  // "by placing this order you agree to our policies" fine print under the
+  // Place order button is weak evidence of informed consent to an unusual
+  // restriction like "no refunds, ever" — a real, timestamped, affirmative
+  // checkbox is what actually holds up if a customer disputes the charge
+  // with their bank. Enforced server-side in placeOrder (see
+  // MIXED_PREORDER_ERROR's sibling check there), not just a disabled
+  // button client-side, so a direct API call can't skip it either.
+  preorderAcknowledgedAt: timestamp('preorder_acknowledged_at', { withTimezone: true }),
   // Set at checkout (see resolveAffiliateAttribution in server/affiliates.ts)
   // when the ebi_ref cookie matched an active affiliate and the order
   // actually got charged — never retroactively assigned after the fact.
