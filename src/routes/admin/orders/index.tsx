@@ -487,7 +487,7 @@ function AdminOrdersPage() {
                     #EBI-{order.orderNo}
                     {order.hasPreorder && (
                       <span
-                        title="Pre-order — charged in full, final sale"
+                        title="Pre-order — charged in full, 5% cancellation fee before shipment"
                         style={{ marginLeft: 6, fontFamily: 'Archivo, Helvetica, sans-serif', fontSize: 9.5, fontWeight: 700, color: '#8a4a26', border: '1px solid #e3c7b4', borderRadius: 2, padding: '1px 4px', textTransform: 'uppercase' }}
                       >
                         Pre

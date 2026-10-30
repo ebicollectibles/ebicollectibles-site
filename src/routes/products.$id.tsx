@@ -498,7 +498,7 @@ function ProductDetailPage() {
           )}
           {!comingSoon && !soldOut && !notSellable && product.preorder && (
             <p style={{ fontSize: 12.5, color: '#a85b2c', margin: '8px 0 0', lineHeight: 1.5 }}>
-              This is a pre-order — charged in full today and final, with no cancellations once placed.
+              This is a pre-order — charged in full today. Cancellations before shipment are subject to a 5% fee.
             </p>
           )}
           {!comingSoon && !soldOut && !notSellable && !product.preorder && product.shipsWithDelay && (

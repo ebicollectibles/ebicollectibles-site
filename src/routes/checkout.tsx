@@ -1127,8 +1127,7 @@ function CheckoutPage() {
                       Shipping Policy
                     </Link>
                     . I understand this order includes a pre-order item, charged in full today, and that
-                    pre-orders are <strong>final sale</strong> and <strong>cannot be canceled</strong> once
-                    placed.
+                    cancellations before shipment are subject to a <strong>5% cancellation fee</strong>.
                   </span>
                 </label>
               )}

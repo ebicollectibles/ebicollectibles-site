@@ -377,7 +377,7 @@ function AdminOrderDetailPage() {
         <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
           <span style={tagStyle}>{order.checkoutMode === 'account' ? 'Account' : 'Guest'}</span>
           {order.hasPreorder && (
-            <span style={{ ...tagStyle, color: '#8a4a26', border: '1px solid #e3c7b4' }} title="Charged in full, final sale — see refund policy">
+            <span style={{ ...tagStyle, color: '#8a4a26', border: '1px solid #e3c7b4' }} title="Charged in full — cancellations before shipment subject to a 5% fee, see refund policy">
               Pre-order
             </span>
           )}

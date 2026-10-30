@@ -169,7 +169,7 @@ export async function sendOrderConfirmationEmail(order: OrderEmailData): Promise
     ${
       order.hasPreorder
         ? `<div style="margin-top:4px;margin-bottom:20px;padding:12px 16px;background:#fdf3ec;border:1px solid #e6c4a8;border-radius:2px;">
-             <p style="font-size:13px;line-height:1.6;color:${INK};margin:0;">This order includes a pre-order item. Pre-orders are charged in full and are final, with no cancellations once placed. See our <a href="${SITE_URL}/refund-policy" style="color:${INK};font-weight:600;">Refund Policy</a> for details.</p>
+             <p style="font-size:13px;line-height:1.6;color:${INK};margin:0;">This order includes a pre-order item, charged in full today. Cancellations before shipment are subject to a 5% fee. See our <a href="${SITE_URL}/refund-policy" style="color:${INK};font-weight:600;">Refund Policy</a> for details.</p>
            </div>`
         : ''
     }
@@ -199,7 +199,7 @@ export async function sendOrderConfirmationEmail(order: OrderEmailData): Promise
     address ? `Ship to:\n${address.replace(/<br>/g, '\n')}` : null,
     order.paymentMethodSummary ? `Payment method: ${order.paymentMethodSummary}` : null,
     order.hasPreorder
-      ? `\nThis order includes a pre-order item. Pre-orders are charged in full and are final, with no cancellations once placed. See our Refund Policy for details: ${SITE_URL}/refund-policy`
+      ? `\nThis order includes a pre-order item, charged in full today. Cancellations before shipment are subject to a 5% fee. See our Refund Policy for details: ${SITE_URL}/refund-policy`
       : null,
     '',
     `View your order: ${orderUrl}`,

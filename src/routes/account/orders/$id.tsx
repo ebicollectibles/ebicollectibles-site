@@ -80,7 +80,8 @@ function OrderDetailPage() {
           }}
         >
           <p style={{ fontSize: 13, lineHeight: 1.6, color: '#131b28', margin: 0 }}>
-            This order included a pre-order item, charged in full and final — no cancellations. See our{' '}
+            This order included a pre-order item, charged in full today. Cancellations before shipment are
+            subject to a 5% fee. See our{' '}
             <Link to="/refund-policy" style={{ color: '#131b28', fontWeight: 600 }}>
               Refund Policy
             </Link>{' '}

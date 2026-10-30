@@ -13,7 +13,7 @@ export function OrderConfirmation({
   paymentStatus: string
   // A mixed cart is blocked at checkout, so an order is either all
   // pre-order or none — no need to say which items, just whether this
-  // order falls under the pre-order (final sale) terms.
+  // order falls under the pre-order (charged-in-full, 5% cancellation fee) terms.
   hasPreorder?: boolean
   // Unlike hasPreorder, this can appear alongside regular items in the same
   // order (see hasDelayedShipment in lib/order-math.ts) — it's a shipping
@@ -60,8 +60,8 @@ export function OrderConfirmation({
           }}
         >
           <p style={{ fontSize: 13, lineHeight: 1.6, color: '#131b28', margin: 0 }}>
-            This order includes a pre-order item. Pre-orders are charged in full and are final, with no
-            cancellations once placed. See our{' '}
+            This order includes a pre-order item, charged in full today. Cancellations before shipment are
+            subject to a 5% fee. See our{' '}
             <Link to="/refund-policy" style={{ color: '#131b28', fontWeight: 600 }}>
               Refund Policy
             </Link>{' '}

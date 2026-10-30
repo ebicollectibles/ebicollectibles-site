@@ -22,16 +22,17 @@ function RefundPolicyPage() {
 
       <div style={{ marginTop: 40, display: 'flex', flexDirection: 'column', gap: 32 }}>
         <div>
-          <h2 style={{ fontSize: 18, fontWeight: 700, margin: '0 0 10px' }}>Pre-orders are final</h2>
+          <h2 style={{ fontSize: 18, fontWeight: 700, margin: '0 0 10px' }}>Pre-orders</h2>
           <p style={{ fontSize: 14.5, lineHeight: 1.65, color: '#131b28', margin: 0, maxWidth: '65ch' }}>
-            Pre-orders are final. Once placed, a pre-order can't be canceled or refunded for a change of mind.
+            Pre-orders are charged in full at checkout, ahead of the item becoming available to ship. Like any
+            other order, a pre-order can be canceled prior to shipment under the cancellation policy below.
           </p>
         </div>
 
         <div>
           <h2 style={{ fontSize: 18, fontWeight: 700, margin: '0 0 10px' }}>Cancellations</h2>
           <p style={{ fontSize: 14.5, lineHeight: 1.65, color: '#131b28', margin: 0, maxWidth: '65ch' }}>
-            Cancellation requests may be submitted prior to shipment. Approved cancellations are subject to a 3%
+            Cancellation requests may be submitted prior to shipment. Approved cancellations are subject to a 5%
             cancellation fee, unless otherwise stated on the product listing. The fee is deducted from your
             refund and covers the non-refundable payment processing fees incurred when your original transaction
             was processed.
@@ -43,8 +44,7 @@ function RefundPolicyPage() {
           </p>
           <p style={{ fontSize: 14.5, lineHeight: 1.65, color: '#131b28', margin: '16px 0 0', maxWidth: '65ch' }}>
             Submitting a cancellation request does not guarantee that an order can be canceled. Orders that have
-            already been processed for shipment or shipped can't be canceled, and pre-orders can't be canceled at
-            all once placed (see above).
+            already been processed for shipment or shipped can't be canceled.
           </p>
         </div>
 
