@@ -8,6 +8,7 @@ import {
   adminCreateAffiliate,
   adminUpdateAffiliate,
   adminMarkAffiliateCommissionPaid,
+  adminMarkAffiliateCommissionPaidForMonth,
   adminListProducts,
 } from '~/server/admin'
 
@@ -475,7 +476,7 @@ function AdminAffiliatesPage() {
                 {expandedId === a.id && (
                   <tr>
                     <td colSpan={7} style={{ padding: 0, borderBottom: '1px solid #e3e6ea' }}>
-                      <AffiliateOrders affiliateId={a.id} />
+                      <AffiliateOrders affiliate={a} onPaid={() => router.invalidate()} />
                     </td>
                   </tr>
                 )}
@@ -489,13 +490,85 @@ function AdminAffiliatesPage() {
   )
 }
 
-function AffiliateOrders({ affiliateId }: { affiliateId: string }) {
+// Previous calendar month, as 'YYYY-MM' — the typical "settle up last
+// month's commission" starting point. Admin can pick any other month from
+// the native <input type="month"> next to it.
+function previousMonth(): string {
+  const d = new Date()
+  d.setDate(1)
+  d.setMonth(d.getMonth() - 1)
+  return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}`
+}
+
+function monthLabel(month: string): string {
+  const [year, m] = month.split('-').map(Number)
+  return new Date(year, m - 1, 1).toLocaleDateString('en-US', { month: 'long', year: 'numeric' })
+}
+
+// jsPDF (and its autoTable plugin) touch browser globals (document/canvas)
+// at import time, not just when called — importing it at module scope would
+// pull it into the server bundle too and crash Workers' SSR, which has no
+// `document`. Dynamic import keeps it entirely client-side, loaded only
+// when this button is actually clicked.
+async function downloadAffiliateStatementPdf(
+  affiliate: { name: string; code: string },
+  month: string,
+  orders: Array<{ orderNo: number; createdAt: Date | string; subtotal: number; affiliateCommissionRate: number | null; affiliateCommission: number | null; refunded: boolean }>,
+) {
+  const [{ default: jsPDF }, { default: autoTable }] = await Promise.all([import('jspdf'), import('jspdf-autotable')])
+  const doc = new jsPDF()
+  doc.setFontSize(16)
+  doc.text('EBI Collectibles — Affiliate Statement', 14, 18)
+  doc.setFontSize(11)
+  doc.text(`Affiliate: ${affiliate.name} (?ref=${affiliate.code})`, 14, 28)
+  doc.text(`Period: ${monthLabel(month)}`, 14, 35)
+
+  autoTable(doc, {
+    startY: 42,
+    head: [['Order', 'Date', 'Subtotal', 'Rate', 'Commission']],
+    body: orders.map((o) => [
+      `#${o.orderNo}`,
+      new Date(o.createdAt).toLocaleDateString(),
+      money(o.subtotal),
+      o.affiliateCommissionRate != null ? `${o.affiliateCommissionRate}%` : '—',
+      o.refunded ? 'Refunded — excluded' : money(o.affiliateCommission ?? 0),
+    ]),
+  })
+
+  const total = orders.filter((o) => !o.refunded).reduce((t, o) => t + Number(o.affiliateCommission ?? 0), 0)
+  const finalY = (doc as any).lastAutoTable?.finalY ?? 42
+  doc.setFontSize(12)
+  doc.text(`Total commission: ${money(total)}`, 14, finalY + 10)
+  doc.setFontSize(9)
+  doc.setTextColor(120)
+  doc.text(`Generated ${new Date().toLocaleDateString()}`, 14, finalY + 18)
+
+  doc.save(`${affiliate.code}-statement-${month}.pdf`)
+}
+
+function AffiliateOrders({
+  affiliate,
+  onPaid,
+}: {
+  affiliate: { id: string; name: string; code: string }
+  onPaid: () => void
+}) {
   const [orders, setOrders] = React.useState<Awaited<ReturnType<typeof adminListAffiliateOrders>> | null>(null)
   const [error, setError] = React.useState<string | null>(null)
+  const [month, setMonth] = React.useState(previousMonth)
+  const [paying, setPaying] = React.useState(false)
+  const [payMessage, setPayMessage] = React.useState<string | null>(null)
+  const [pdfLoading, setPdfLoading] = React.useState(false)
+
+  const load = React.useCallback(() => {
+    return adminListAffiliateOrders({ data: { affiliateId: affiliate.id } })
+      .then((rows) => setOrders(rows))
+      .catch((err) => setError(err instanceof Error ? err.message : 'Failed to load orders.'))
+  }, [affiliate.id])
 
   React.useEffect(() => {
     let cancelled = false
-    adminListAffiliateOrders({ data: { affiliateId } })
+    adminListAffiliateOrders({ data: { affiliateId: affiliate.id } })
       .then((rows) => {
         if (!cancelled) setOrders(rows)
       })
@@ -505,14 +578,95 @@ function AffiliateOrders({ affiliateId }: { affiliateId: string }) {
     return () => {
       cancelled = true
     }
-  }, [affiliateId])
+  }, [affiliate.id])
 
   if (error) return <p style={{ fontSize: 12.5, color: '#a85b2c', padding: '12px 16px' }}>{error}</p>
   if (!orders) return <p style={{ fontSize: 12.5, color: '#5a6875', padding: '12px 16px' }}>Loading…</p>
   if (orders.length === 0) return <p style={{ fontSize: 12.5, color: '#5a6875', padding: '12px 16px' }}>No orders yet.</p>
 
+  const monthOrders = orders.filter((o) => {
+    const d = new Date(o.createdAt)
+    const key = `${d.getUTCFullYear()}-${String(d.getUTCMonth() + 1).padStart(2, '0')}`
+    return key === month
+  })
+  const monthOwed = monthOrders.filter((o) => !o.refunded && !o.affiliateCommissionPaidAt).reduce((t, o) => t + Number(o.affiliateCommission ?? 0), 0)
+  const monthPaid = monthOrders.filter((o) => o.affiliateCommissionPaidAt).reduce((t, o) => t + Number(o.affiliateCommission ?? 0), 0)
+
+  const markPaidForMonth = async () => {
+    setPaying(true)
+    setPayMessage(null)
+    try {
+      const { markedCount } = await adminMarkAffiliateCommissionPaidForMonth({ data: { affiliateId: affiliate.id, month } })
+      setPayMessage(markedCount > 0 ? `Marked ${markedCount} order${markedCount === 1 ? '' : 's'} paid for ${monthLabel(month)}.` : 'Nothing owed for that month.')
+      await load()
+      onPaid()
+    } catch (err) {
+      setPayMessage(err instanceof Error ? err.message : 'Failed to mark paid.')
+    } finally {
+      setPaying(false)
+    }
+  }
+
   return (
-    <div style={{ background: '#f6f7f8', padding: '10px 16px 14px', overflowX: 'auto' }}>
+    <div style={{ background: '#f6f7f8', padding: '10px 16px 14px' }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: 12, flexWrap: 'wrap', padding: '6px 0 10px' }}>
+        <label style={{ display: 'flex', alignItems: 'center', gap: 6, fontSize: 12 }}>
+          <span style={{ color: '#5a6875' }}>Month</span>
+          <input type="month" value={month} onChange={(e) => setMonth(e.target.value)} style={{ padding: '4px 6px', fontSize: 12, border: '1px solid #cfd4da', borderRadius: 2, fontFamily: 'inherit' }} />
+        </label>
+        <span style={{ fontSize: 12, color: '#5a6875' }}>
+          Owed for {monthLabel(month)}: <strong style={{ color: monthOwed > 0 ? '#a85b2c' : '#131b28' }}>{money(monthOwed)}</strong>
+          {monthPaid > 0 && <> · Already paid: {money(monthPaid)}</>}
+        </span>
+        <button
+          onClick={markPaidForMonth}
+          disabled={paying || monthOwed <= 0}
+          style={{
+            background: 'none',
+            border: '1px solid #3f7a63',
+            color: '#3f7a63',
+            borderRadius: 2,
+            padding: '5px 10px',
+            fontSize: 12,
+            cursor: paying || monthOwed <= 0 ? 'default' : 'pointer',
+            opacity: paying || monthOwed <= 0 ? 0.5 : 1,
+          }}
+        >
+          {paying ? 'Marking…' : `Mark ${monthLabel(month)} paid`}
+        </button>
+        <button
+          onClick={async () => {
+            setPdfLoading(true)
+            try {
+              await downloadAffiliateStatementPdf(affiliate, month, monthOrders)
+            } finally {
+              setPdfLoading(false)
+            }
+          }}
+          disabled={monthOrders.length === 0 || pdfLoading}
+          style={{
+            background: 'none',
+            border: '1px solid #cfd4da',
+            color: '#131b28',
+            borderRadius: 2,
+            padding: '5px 10px',
+            fontSize: 12,
+            cursor: monthOrders.length === 0 || pdfLoading ? 'default' : 'pointer',
+            opacity: monthOrders.length === 0 || pdfLoading ? 0.5 : 1,
+          }}
+        >
+          {pdfLoading ? 'Preparing…' : 'Download statement (PDF)'}
+        </button>
+        {payMessage && <span style={{ fontSize: 12, color: '#5a6875' }}>{payMessage}</span>}
+      </div>
+      <AffiliateOrdersTable orders={orders} />
+    </div>
+  )
+}
+
+function AffiliateOrdersTable({ orders }: { orders: Awaited<ReturnType<typeof adminListAffiliateOrders>> }) {
+  return (
+    <div style={{ overflowX: 'auto' }}>
       <table style={{ width: '100%', borderCollapse: 'collapse', minWidth: 600 }}>
         <thead>
           <tr>

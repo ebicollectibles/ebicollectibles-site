@@ -1,6 +1,6 @@
 import { createServerFn } from '@tanstack/react-start'
 import { z } from 'zod'
-import { and, asc, desc, eq, gte, inArray, isNotNull, isNull, notInArray, or, sql } from 'drizzle-orm'
+import { and, asc, desc, eq, gte, inArray, isNotNull, isNull, lt, notInArray, or, sql } from 'drizzle-orm'
 import { getDb } from '~/lib/db/client'
 import {
   affiliateContacts,
@@ -1872,6 +1872,52 @@ export const adminMarkAffiliateCommissionPaid = createServerFn({ method: 'POST' 
     // never counted as owed, so it must never be swept up into "paid" here
     // either (that would make owed go negative and silently hide that this
     // order shouldn't have been part of the payout in the first place).
+    const refundedIds = await db
+      .select({ orderId: refundEvents.orderId })
+      .from(refundEvents)
+      .where(and(eq(refundEvents.status, 'COMPLETED'), inArray(refundEvents.orderId, candidates.map((o) => o.id))))
+    const refundedSet = new Set(refundedIds.map((r) => r.orderId))
+    const payableIds = candidates.map((o) => o.id).filter((id) => !refundedSet.has(id))
+    if (payableIds.length === 0) return { markedCount: 0 }
+
+    const updated = await db
+      .update(orders)
+      .set({ affiliateCommissionPaidAt: sql`now()` })
+      .where(inArray(orders.id, payableIds))
+      .returning({ id: orders.id })
+    return { markedCount: updated.length }
+  })
+
+// Same payout mechanics as adminMarkAffiliateCommissionPaid above, scoped to
+// one calendar month — lets admin settle up a single month (e.g. paying out
+// October) without sweeping in commission from orders placed after that
+// payout was already sent. Month boundaries are computed in UTC from the
+// 'YYYY-MM' string; a day's worth of orders near midnight could land in the
+// adjacent month if the admin is far from UTC, same tradeoff the rest of
+// this app's date handling already makes.
+export const adminMarkAffiliateCommissionPaidForMonth = createServerFn({ method: 'POST' })
+  .validator(z.object({ affiliateId: z.string(), month: z.string().regex(/^\d{4}-\d{2}$/) }))
+  .handler(async ({ data }) => {
+    await assertAdmin()
+    const db = getDb()
+    const [year, month] = data.month.split('-').map(Number)
+    const monthStart = new Date(Date.UTC(year, month - 1, 1))
+    const monthEnd = new Date(Date.UTC(year, month, 1))
+
+    const candidates = await db
+      .select({ id: orders.id })
+      .from(orders)
+      .where(
+        and(
+          eq(orders.affiliateId, data.affiliateId),
+          isNotNull(orders.affiliateCommission),
+          isNull(orders.affiliateCommissionPaidAt),
+          gte(orders.createdAt, monthStart),
+          lt(orders.createdAt, monthEnd),
+        ),
+      )
+    if (candidates.length === 0) return { markedCount: 0 }
+
     const refundedIds = await db
       .select({ orderId: refundEvents.orderId })
       .from(refundEvents)
