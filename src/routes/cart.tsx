@@ -33,10 +33,11 @@ function CartPage() {
   const mixedPreorder = hasMixedPreorderCart(lines.map((l) => ({ preorder: !!l.product.preorder })))
   const delayedShipment = hasDelayedShipment(lines.map((l) => ({ shipsWithDelay: !!l.product.shipsWithDelay })))
   const mixedDelayedShipment = hasMixedDelayedShipment(lines.map((l) => ({ shipsWithDelay: !!l.product.shipsWithDelay })))
-  // Express Apple Pay has no surrounding form to put the pre-order consent
-  // checkbox in (see checkout.tsx), so a pre-order item routes through the
-  // full checkout page instead of this button rather than skipping consent.
   const cartHasPreorder = lines.some((l) => !!l.product.preorder)
+  // Same explicit, timestamped consent as checkout.tsx's checkbox — Express
+  // Apple Pay skips the full checkout form, so this is its own copy of the
+  // same gate rather than relying on the one on that page.
+  const [preorderAgreed, setPreorderAgreed] = React.useState(false)
   const [confirmed, setConfirmed] = React.useState<{
     orderNo: number
     paymentStatus: string
@@ -235,21 +236,55 @@ function CartPage() {
                   Checkout
                 </button>
               </div>
-              {!cartHasPreorder && (
-                <div style={{ marginTop: 10 }}>
-                  <ExpressApplePayButton
-                    disabled={mixedPreorder}
-                    onOrderPlaced={setConfirmed}
-                    onError={setExpressError}
-                  />
-                </div>
-              )}
               {cartHasPreorder && !mixedPreorder && (
-                <div style={{ fontSize: 12, color: '#5a6875', marginTop: 10, lineHeight: 1.5 }}>
-                  Express Apple Pay isn't available for pre-order items — use Checkout above to confirm the pre-order
-                  terms.
-                </div>
+                <label
+                  style={{
+                    display: 'flex',
+                    alignItems: 'flex-start',
+                    gap: 8,
+                    marginTop: 14,
+                    padding: '10px 12px',
+                    background: '#fdf3ec',
+                    border: '1px solid #e6c4a8',
+                    borderRadius: 2,
+                    fontSize: 12.5,
+                    color: '#131b28',
+                    lineHeight: 1.5,
+                    cursor: 'pointer',
+                  }}
+                >
+                  <input
+                    type="checkbox"
+                    checked={preorderAgreed}
+                    onChange={(e) => setPreorderAgreed(e.target.checked)}
+                    style={{ marginTop: 2, flexShrink: 0 }}
+                  />
+                  <span>
+                    By checking this box, I confirm I have read and agree to the{' '}
+                    <Link to="/terms-of-service" style={{ color: '#131b28', fontWeight: 600 }}>
+                      Terms of Service
+                    </Link>
+                    ,{' '}
+                    <Link to="/refund-policy" style={{ color: '#131b28', fontWeight: 600 }}>
+                      Refund Policy
+                    </Link>
+                    , and{' '}
+                    <Link to="/shipping-policy" style={{ color: '#131b28', fontWeight: 600 }}>
+                      Shipping Policy
+                    </Link>
+                    . I understand this order includes a pre-order item, charged in full today, and that
+                    cancellations before shipment are subject to a <strong>5% cancellation fee</strong>.
+                  </span>
+                </label>
               )}
+              <div style={{ marginTop: 10 }}>
+                <ExpressApplePayButton
+                  disabled={mixedPreorder || (cartHasPreorder && !preorderAgreed)}
+                  preorderAcknowledged={preorderAgreed}
+                  onOrderPlaced={setConfirmed}
+                  onError={setExpressError}
+                />
+              </div>
               {expressError && (
                 <p style={{ fontSize: 12.5, color: '#a85b2c', marginTop: 10, lineHeight: 1.5 }}>{expressError}</p>
               )}

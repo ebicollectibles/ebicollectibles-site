@@ -15,10 +15,16 @@ import { BLOCK_HI_AK_CHECKOUT } from '~/lib/feature-flags'
 // form and never asks Apple Pay for it again — see the comment there.
 export function ExpressApplePayButton({
   disabled,
+  preorderAcknowledged,
   onOrderPlaced,
   onError,
 }: {
   disabled?: boolean
+  // See preorderAcknowledged in server/orders.ts — required (and enforced
+  // server-side) whenever the cart has a pre-order item. The caller is
+  // responsible for also disabling this button until it's true; this
+  // component just forwards it to placeOrder.
+  preorderAcknowledged?: boolean
   onOrderPlaced: (result: {
     orderNo: number
     paymentStatus: string
@@ -221,7 +227,14 @@ export function ExpressApplePayButton({
           }
         : { ...contact }
 
-      const orderResult = await cart.placeOrder({ contact, billing, sourceId: result.token, emailOptIn: false, creditApplied: creditAppliedRef.current })
+      const orderResult = await cart.placeOrder({
+        contact,
+        billing,
+        sourceId: result.token,
+        emailOptIn: false,
+        creditApplied: creditAppliedRef.current,
+        preorderAcknowledged,
+      })
       trackEvent('purchase', {
         transaction_id: String(orderResult.orderNo),
         currency: 'USD',
