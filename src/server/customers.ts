@@ -79,6 +79,32 @@ export const hasPendingOrder = createServerFn({ method: 'GET' })
     return rows.length > 0
   })
 
+// Same check as hasPendingOrder, but by typed email instead of a signed-in
+// session — used only to softly prompt a guest checkout shopper to log in
+// ("you have a pending order, sign in to combine shipping"), never to
+// actually waive anything (placeOrder's server-side recompute only ever
+// trusts sessionUserId, same as before — see resolveFreeShippingOverride in
+// server/orders.ts). This is a narrower version of a lookup the app already
+// does silently at order-placement time (a guest checking out under an
+// email with an existing account gets linked to it without being told) —
+// surfacing it as a prompt here doesn't expose anything that wasn't already
+// implicitly true of how guest checkout works.
+export const hasPendingOrderForEmail = createServerFn({ method: 'GET' })
+  .validator(z.object({ email: z.string().trim().email(), hasPreorder: z.boolean() }))
+  .handler(async ({ data }) => {
+    const { getDb } = await import('~/lib/db/client')
+    const { orders, users } = await import('~/lib/db/schema')
+    const { and, eq, sql } = await import('drizzle-orm')
+    const db = getDb()
+    const [row] = await db
+      .select({ id: orders.id })
+      .from(users)
+      .innerJoin(orders, eq(orders.userId, users.id))
+      .where(and(sql`lower(${users.email}) = ${data.email.trim().toLowerCase()}`, eq(orders.fulfillmentStatus, 'pending'), eq(orders.hasPreorder, data.hasPreorder)))
+      .limit(1)
+    return !!row
+  })
+
 export const getMyOrder = createServerFn({ method: 'GET' })
   .validator(z.object({ id: z.string() }))
   .handler(async ({ data }) => {

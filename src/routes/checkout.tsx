@@ -29,7 +29,7 @@ import { attemptClientTrustCode, challengeClientTrustIfNeeded } from '~/lib/cler
 import { getSalesTaxRate } from '~/server/tax'
 import { getHiAkShippingEstimate } from '~/server/shippo'
 import { getMyStoreCredit } from '~/server/store-credit'
-import { hasPendingOrder } from '~/server/customers'
+import { hasPendingOrder, hasPendingOrderForEmail } from '~/server/customers'
 
 export const Route = createFileRoute('/checkout')({
   loader: () => getCurrentCustomer(),
@@ -386,6 +386,36 @@ function CheckoutPage() {
   const shippingLabel = cart.cartEmpty ? '—' : formatMoney(shippingCost)
   const total = cart.subtotal + shippingCost + tax
 
+  // Soft nudge for guest checkout: the typed email matches an account with
+  // a compatible pending order, so logging in (rather than continuing as
+  // guest) would waive shipping via pendingOrderWaivesShipping above. This
+  // never waives anything itself — just tells the shopper logging in would.
+  // A guest typing the SAME email they already have an account under isn't
+  // learning anything new about someone else's order; see the comment on
+  // hasPendingOrderForEmail for why this doesn't expose more than the app
+  // already implicitly does by silently linking guest orders to accounts.
+  const [guestPendingOrderMatch, setGuestPendingOrderMatch] = React.useState(false)
+  React.useEffect(() => {
+    if (checkoutAs !== 'guest' || !/^\S+@\S+\.\S+$/.test(contact.email)) {
+      setGuestPendingOrderMatch(false)
+      return
+    }
+    let cancelled = false
+    const timer = setTimeout(() => {
+      hasPendingOrderForEmail({ data: { email: contact.email, hasPreorder: cartHasPreorder } })
+        .then((result) => {
+          if (!cancelled) setGuestPendingOrderMatch(result)
+        })
+        .catch(() => {
+          if (!cancelled) setGuestPendingOrderMatch(false)
+        })
+    }, 500)
+    return () => {
+      cancelled = true
+      clearTimeout(timer)
+    }
+  }, [checkoutAs, contact.email, cartHasPreorder])
+
   // Store credit only exists for signed-in accounts (see
   // server/store-credit.ts) — fetched once on sign-in, not re-fetched as
   // the form changes. Defaults to applying automatically when available,
@@ -726,6 +756,22 @@ function CheckoutPage() {
                     typeMismatch: 'That email address doesn’t look right — double-check it.',
                   })}
                 />
+                {guestPendingOrderMatch && (
+                  <div style={{ fontSize: 12, color: '#3f7a63', marginTop: 8, lineHeight: 1.5 }}>
+                    You have an order on this email that hasn't shipped yet —{' '}
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setSigninEmail(contact.email)
+                        switchToSignin()
+                      }}
+                      style={{ background: 'none', border: 0, padding: 0, color: '#3f7a63', fontWeight: 600, textDecoration: 'underline', cursor: 'pointer', font: 'inherit' }}
+                    >
+                      sign in
+                    </button>{' '}
+                    to combine shipping and skip the $10 charge.
+                  </div>
+                )}
                 <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginTop: 14, marginBottom: 6 }}>
                   <label htmlFor="checkout-phone" style={{ ...label, marginBottom: 0 }}>
                     Phone (optional)
