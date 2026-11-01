@@ -61,8 +61,19 @@ export function hasDelayedShipment(items: Array<{ shipsWithDelay: boolean }>): b
   return items.some((i) => i.shipsWithDelay)
 }
 
+// Whether the delayed item shares the cart/order with something else —
+// decides which warning copy to show. "Everything in this order ships
+// together" only makes sense when there's another item being held up by the
+// delay; an order that's entirely the delayed item (even at qty > 1) reads
+// as if other stuff is in there too, which isn't true.
+export function hasMixedDelayedShipment(items: Array<{ shipsWithDelay: boolean }>): boolean {
+  return items.some((i) => i.shipsWithDelay) && items.some((i) => !i.shipsWithDelay)
+}
+
 export const DELAYED_SHIPMENT_WARNING =
   "This order includes an item that's still on its way to us — everything in this order ships together once it arrives."
+
+export const ALL_DELAYED_SHIPMENT_WARNING = "This item is still on its way to us and will ship as soon as it arrives."
 
 // Shared by checkout.tsx (early "we can't ship there yet" messaging) and
 // server/orders.ts + server/shippo.ts (the real cost lookup and, while

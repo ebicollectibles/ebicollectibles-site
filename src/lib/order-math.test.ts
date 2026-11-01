@@ -1,5 +1,12 @@
 import { describe, expect, it } from 'vitest'
-import { computeOrderTotals, findUnorderableLine, hasDelayedShipment, hasMixedPreorderCart, isHiOrAk } from './order-math'
+import {
+  computeOrderTotals,
+  findUnorderableLine,
+  hasDelayedShipment,
+  hasMixedDelayedShipment,
+  hasMixedPreorderCart,
+  isHiOrAk,
+} from './order-math'
 
 describe('computeOrderTotals', () => {
   it('computes subtotal, flat shipping, tax, and total', () => {
@@ -133,6 +140,25 @@ describe('hasDelayedShipment', () => {
 
   it('allows an empty cart', () => {
     expect(hasDelayedShipment([])).toBe(false)
+  })
+})
+
+describe('hasMixedDelayedShipment', () => {
+  it('is false when every line is the same delayed item, even at qty > 1', () => {
+    expect(hasMixedDelayedShipment([{ shipsWithDelay: true }])).toBe(false)
+    expect(hasMixedDelayedShipment([{ shipsWithDelay: true }, { shipsWithDelay: true }])).toBe(false)
+  })
+
+  it('is false when nothing is delayed', () => {
+    expect(hasMixedDelayedShipment([{ shipsWithDelay: false }, { shipsWithDelay: false }])).toBe(false)
+  })
+
+  it('is true only when a delayed item shares the cart with a ready-to-ship one', () => {
+    expect(hasMixedDelayedShipment([{ shipsWithDelay: true }, { shipsWithDelay: false }])).toBe(true)
+  })
+
+  it('allows an empty cart', () => {
+    expect(hasMixedDelayedShipment([])).toBe(false)
   })
 })
 

@@ -5,7 +5,7 @@ import { US_STATE_CODES } from '~/lib/us-states'
 import { trackEvent } from '~/lib/analytics'
 import { getSalesTaxRate } from '~/server/tax'
 import { getMyStoreCredit } from '~/server/store-credit'
-import { isHiOrAk } from '~/lib/order-math'
+import { hasMixedDelayedShipment, isHiOrAk } from '~/lib/order-math'
 import { BLOCK_HI_AK_CHECKOUT } from '~/lib/feature-flags'
 
 // Lets someone pay straight from the cart page with Apple Pay, skipping the
@@ -19,7 +19,13 @@ export function ExpressApplePayButton({
   onError,
 }: {
   disabled?: boolean
-  onOrderPlaced: (result: { orderNo: number; paymentStatus: string; hasPreorder: boolean; hasDelayedShipment: boolean }) => void
+  onOrderPlaced: (result: {
+    orderNo: number
+    paymentStatus: string
+    hasPreorder: boolean
+    hasDelayedShipment: boolean
+    mixedDelayedShipment: boolean
+  }) => void
   onError: (message: string) => void
 }) {
   const cart = useCart()
@@ -227,6 +233,7 @@ export function ExpressApplePayButton({
         paymentStatus: orderResult.paymentStatus,
         hasPreorder: cart.lines.some((l) => l.product.preorder),
         hasDelayedShipment: cart.lines.some((l) => l.product.shipsWithDelay),
+        mixedDelayedShipment: hasMixedDelayedShipment(cart.lines.map((l) => ({ shipsWithDelay: !!l.product.shipsWithDelay }))),
       })
     } catch (err) {
       onError(err instanceof Error ? err.message : 'Apple Pay could not be completed.')

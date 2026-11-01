@@ -9,7 +9,15 @@ import { DiscordIcon } from '~/components/DiscordIcon'
 import { GoogleIcon } from '~/components/GoogleIcon'
 import { trackEvent } from '~/lib/analytics'
 import { useCart, type BillingAddress, type CheckoutContact } from '~/lib/cart-context'
-import { DELAYED_SHIPMENT_WARNING, hasDelayedShipment, hasMixedPreorderCart, isHiOrAk, MIXED_PREORDER_ERROR } from '~/lib/order-math'
+import {
+  ALL_DELAYED_SHIPMENT_WARNING,
+  DELAYED_SHIPMENT_WARNING,
+  hasDelayedShipment,
+  hasMixedDelayedShipment,
+  hasMixedPreorderCart,
+  isHiOrAk,
+  MIXED_PREORDER_ERROR,
+} from '~/lib/order-math'
 import { BLOCK_HI_AK_CHECKOUT } from '~/lib/feature-flags'
 import { formatMoney } from '~/lib/products'
 import { US_STATES } from '~/lib/us-states'
@@ -192,6 +200,7 @@ function CheckoutPage() {
   const mixedPreorder = hasMixedPreorderCart(cart.lines.map((l) => ({ preorder: !!l.product.preorder })))
   const cartHasPreorder = cart.lines.some((l) => !!l.product.preorder)
   const delayedShipment = hasDelayedShipment(cart.lines.map((l) => ({ shipsWithDelay: !!l.product.shipsWithDelay })))
+  const mixedDelayedShipment = hasMixedDelayedShipment(cart.lines.map((l) => ({ shipsWithDelay: !!l.product.shipsWithDelay })))
   // Explicit, timestamped consent (see preorderAcknowledgedAt in schema.ts)
   // rather than relying on the passive "by placing this order you agree to
   // our policies" fine print below the button — that's weak evidence of
@@ -271,6 +280,7 @@ function CheckoutPage() {
     paymentStatus: string
     hasPreorder: boolean
     hasDelayedShipment: boolean
+    mixedDelayedShipment: boolean
   } | null>(null)
   const [submitting, setSubmitting] = React.useState(false)
   const [error, setError] = React.useState<string | null>(null)
@@ -409,6 +419,7 @@ function CheckoutPage() {
         paymentStatus={confirmed.paymentStatus}
         hasPreorder={confirmed.hasPreorder}
         hasDelayedShipment={confirmed.hasDelayedShipment}
+        mixedDelayedShipment={confirmed.mixedDelayedShipment}
       />
     )
   }
@@ -489,6 +500,7 @@ function CheckoutPage() {
         paymentStatus: result.paymentStatus,
         hasPreorder: cart.lines.some((l) => l.product.preorder),
         hasDelayedShipment: cart.lines.some((l) => l.product.shipsWithDelay),
+        mixedDelayedShipment,
       })
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Something went wrong placing your order.')
@@ -1034,7 +1046,9 @@ function CheckoutPage() {
             <p style={{ fontSize: 12.5, color: '#a85b2c', margin: '12px 0 0', lineHeight: 1.5 }}>{MIXED_PREORDER_ERROR}</p>
           )}
           {!mixedPreorder && delayedShipment && (
-            <p style={{ fontSize: 12.5, color: '#a85b2c', margin: '12px 0 0', lineHeight: 1.5 }}>{DELAYED_SHIPMENT_WARNING}</p>
+            <p style={{ fontSize: 12.5, color: '#a85b2c', margin: '12px 0 0', lineHeight: 1.5 }}>
+              {mixedDelayedShipment ? DELAYED_SHIPMENT_WARNING : ALL_DELAYED_SHIPMENT_WARNING}
+            </p>
           )}
           <div style={{ marginTop: 22, paddingTop: 18, borderTop: '1px solid #e3e6ea', display: 'flex', flexDirection: 'column', gap: 9, fontSize: 13.5 }}>
             <div style={{ display: 'flex', justifyContent: 'space-between' }}>

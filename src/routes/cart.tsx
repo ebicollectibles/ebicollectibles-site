@@ -3,7 +3,14 @@ import { createFileRoute, Link, useNavigate } from '@tanstack/react-router'
 import { ExpressApplePayButton } from '~/components/ExpressApplePayButton'
 import { OrderConfirmation } from '~/components/OrderConfirmation'
 import { useCart } from '~/lib/cart-context'
-import { DELAYED_SHIPMENT_WARNING, hasDelayedShipment, hasMixedPreorderCart, MIXED_PREORDER_ERROR } from '~/lib/order-math'
+import {
+  ALL_DELAYED_SHIPMENT_WARNING,
+  DELAYED_SHIPMENT_WARNING,
+  hasDelayedShipment,
+  hasMixedDelayedShipment,
+  hasMixedPreorderCart,
+  MIXED_PREORDER_ERROR,
+} from '~/lib/order-math'
 import { formatMoney } from '~/lib/products'
 
 export const Route = createFileRoute('/cart')({
@@ -25,6 +32,7 @@ function CartPage() {
   const navigate = useNavigate()
   const mixedPreorder = hasMixedPreorderCart(lines.map((l) => ({ preorder: !!l.product.preorder })))
   const delayedShipment = hasDelayedShipment(lines.map((l) => ({ shipsWithDelay: !!l.product.shipsWithDelay })))
+  const mixedDelayedShipment = hasMixedDelayedShipment(lines.map((l) => ({ shipsWithDelay: !!l.product.shipsWithDelay })))
   // Express Apple Pay has no surrounding form to put the pre-order consent
   // checkbox in (see checkout.tsx), so a pre-order item routes through the
   // full checkout page instead of this button rather than skipping consent.
@@ -34,6 +42,7 @@ function CartPage() {
     paymentStatus: string
     hasPreorder: boolean
     hasDelayedShipment: boolean
+    mixedDelayedShipment: boolean
   } | null>(null)
   const [expressError, setExpressError] = React.useState<string | null>(null)
 
@@ -44,6 +53,7 @@ function CartPage() {
         paymentStatus={confirmed.paymentStatus}
         hasPreorder={confirmed.hasPreorder}
         hasDelayedShipment={confirmed.hasDelayedShipment}
+        mixedDelayedShipment={confirmed.mixedDelayedShipment}
       />
     )
   }
@@ -183,7 +193,9 @@ function CartPage() {
                 <div style={{ fontSize: 12.5, color: '#a85b2c', marginTop: 12, lineHeight: 1.5 }}>{MIXED_PREORDER_ERROR}</div>
               )}
               {!mixedPreorder && delayedShipment && (
-                <div style={{ fontSize: 12.5, color: '#a85b2c', marginTop: 12, lineHeight: 1.5 }}>{DELAYED_SHIPMENT_WARNING}</div>
+                <div style={{ fontSize: 12.5, color: '#a85b2c', marginTop: 12, lineHeight: 1.5 }}>
+                  {mixedDelayedShipment ? DELAYED_SHIPMENT_WARNING : ALL_DELAYED_SHIPMENT_WARNING}
+                </div>
               )}
               <div style={{ display: 'flex', gap: 10, marginTop: 20 }}>
                 <Link

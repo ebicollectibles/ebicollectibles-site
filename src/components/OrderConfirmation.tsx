@@ -1,4 +1,5 @@
 import { Link } from '@tanstack/react-router'
+import { ALL_DELAYED_SHIPMENT_WARNING, DELAYED_SHIPMENT_WARNING } from '~/lib/order-math'
 
 // Shared by the regular checkout form and express Apple Pay checkout (from
 // the cart page) — same order, same confirmation, regardless of how it was
@@ -8,6 +9,7 @@ export function OrderConfirmation({
   paymentStatus,
   hasPreorder,
   hasDelayedShipment,
+  mixedDelayedShipment,
 }: {
   orderNo: number
   paymentStatus: string
@@ -19,6 +21,10 @@ export function OrderConfirmation({
   // order (see hasDelayedShipment in lib/order-math.ts) — it's a shipping
   // timing heads-up, not a final-sale policy.
   hasDelayedShipment?: boolean
+  // Whether the delayed item shares the order with something else — see
+  // hasMixedDelayedShipment in lib/order-math.ts. Without this, an order
+  // that's entirely the delayed item reads as if other stuff is in there too.
+  mixedDelayedShipment?: boolean
 }) {
   return (
     <section style={{ maxWidth: 640, margin: '0 auto', padding: '110px 28px 140px', textAlign: 'center' }}>
@@ -81,8 +87,7 @@ export function OrderConfirmation({
           }}
         >
           <p style={{ fontSize: 13, lineHeight: 1.6, color: '#131b28', margin: 0 }}>
-            This order includes an item that's still on its way to us — everything in this order ships together
-            once it arrives.
+            {mixedDelayedShipment ? DELAYED_SHIPMENT_WARNING : ALL_DELAYED_SHIPMENT_WARNING}
           </p>
         </div>
       )}
