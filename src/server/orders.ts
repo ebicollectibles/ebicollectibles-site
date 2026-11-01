@@ -65,6 +65,26 @@ const placeOrderSchema = z.object({
   preorderAcknowledged: z.boolean().optional().default(false),
 })
 
+// Waives the flat shipping rate when this signed-in account already has an
+// order nothing has shipped on yet — it can go in the same box, so a second
+// flat rate would just double-charge for one shipment. Account-scoped only
+// (sessionUserId, not the later guest-email-matched userId) — email alone
+// isn't a reliable enough identity check for waiving a real charge. Mirrors
+// hasPendingOrder in server/customers.ts, which checkout.tsx calls to show
+// the same thing before the order is even placed; this is the independent
+// server-side recompute so a stale client can't skip paying for shipping
+// it's not actually entitled to waive.
+async function resolveFreeShippingOverride(sessionUserId: string | null): Promise<number | undefined> {
+  if (!sessionUserId) return undefined
+  const db = getDb()
+  const [pending] = await db
+    .select({ id: orders.id })
+    .from(orders)
+    .where(and(eq(orders.userId, sessionUserId), eq(orders.fulfillmentStatus, 'pending')))
+    .limit(1)
+  return pending ? 0 : undefined
+}
+
 export const placeOrder = createServerFn({ method: 'POST' })
   .validator(placeOrderSchema)
   .handler(async ({ data }) => {
@@ -125,7 +145,7 @@ export const placeOrder = createServerFn({ method: 'POST' })
               zip: data.contact.zip,
             },
           }).then((rate) => rate ?? undefined)
-        : Promise.resolve(undefined),
+        : resolveFreeShippingOverride(sessionUserId),
     ])
 
     // Defense-in-depth beyond the disabled add-to-cart button — a coming-soon

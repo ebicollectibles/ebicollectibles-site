@@ -52,6 +52,26 @@ export const getMyOrders = createServerFn({ method: 'GET' }).handler(async () =>
   return orders.map((order) => ({ ...order, items: itemsByOrder.get(order.id) ?? [] }))
 })
 
+// Used by checkout.tsx to waive the flat shipping rate when this account
+// already has an order nothing has shipped on yet — it can go in the same
+// box, so charging a second flat rate would just be double-charging for
+// one shipment. 'pending' specifically (not 'partially_shipped') — once
+// anything has gone out the door, the rest of that order may ship
+// separately anyway, so there's no guaranteed box left to combine into.
+// False for a guest/signed-out shopper — this is account-scoped only; a
+// guest typing the same email as a past order doesn't get it, since email
+// alone isn't a reliable enough identity check for waiving a real charge.
+export const hasPendingOrder = createServerFn({ method: 'GET' }).handler(async () => {
+  const userId = await getCurrentUserId()
+  if (!userId) return false
+
+  const { getCustomerScopedRows } = await import('~/lib/db/client')
+  const [rows] = await getCustomerScopedRows(userId, (sql) => [
+    sql`select id from orders where user_id = ${userId} and fulfillment_status = 'pending' limit 1`,
+  ])
+  return rows.length > 0
+})
+
 export const getMyOrder = createServerFn({ method: 'GET' })
   .validator(z.object({ id: z.string() }))
   .handler(async ({ data }) => {

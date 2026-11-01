@@ -29,6 +29,7 @@ import { attemptClientTrustCode, challengeClientTrustIfNeeded } from '~/lib/cler
 import { getSalesTaxRate } from '~/server/tax'
 import { getHiAkShippingEstimate } from '~/server/shippo'
 import { getMyStoreCredit } from '~/server/store-credit'
+import { hasPendingOrder } from '~/server/customers'
 
 export const Route = createFileRoute('/checkout')({
   loader: () => getCurrentCustomer(),
@@ -354,7 +355,34 @@ function CheckoutPage() {
       clearTimeout(timer)
     }
   }, [hiAkBlocked, contact.state, contact.street, contact.apartment, contact.city, contact.zip, contact.firstName, contact.lastName, cart.lines])
-  const shippingCost = hiAkShippingCost ?? cart.shippingCost
+  // Waives the flat rate when this signed-in account already has an order
+  // nothing has shipped on yet (see hasPendingOrder in server/customers.ts)
+  // — it can go in the same box as this one, so a second flat rate would
+  // just double-charge for one shipment. Re-checked whenever the signed-in
+  // account changes (initial load, or logging in partway through checkout),
+  // not just once — a guest who signs in mid-checkout should still see it.
+  // Account-scoped only, same as the server-side recompute in placeOrder
+  // that actually enforces this (never trust this client value for pricing).
+  const [pendingOrderWaivesShipping, setPendingOrderWaivesShipping] = React.useState(false)
+  React.useEffect(() => {
+    if (!account) {
+      setPendingOrderWaivesShipping(false)
+      return
+    }
+    let cancelled = false
+    hasPendingOrder()
+      .then((result) => {
+        if (!cancelled) setPendingOrderWaivesShipping(result)
+      })
+      .catch(() => {
+        if (!cancelled) setPendingOrderWaivesShipping(false)
+      })
+    return () => {
+      cancelled = true
+    }
+  }, [account?.id])
+
+  const shippingCost = hiAkShippingCost ?? (pendingOrderWaivesShipping ? 0 : cart.shippingCost)
   const shippingLabel = cart.cartEmpty ? '—' : formatMoney(shippingCost)
   const total = cart.subtotal + shippingCost + tax
 
@@ -1059,6 +1087,11 @@ function CheckoutPage() {
               <span style={{ color: '#131b28' }}>Shipping</span>
               <span style={{ fontFamily: "'IBM Plex Mono', monospace" }}>{shippingLabel}</span>
             </div>
+            {pendingOrderWaivesShipping && !hiAkShippingCost && (
+              <div style={{ fontSize: 11.5, color: '#3f7a63', marginTop: -4 }}>
+                Free — you have an order that hasn't shipped yet, so this one ships together with it.
+              </div>
+            )}
             {contact.state === 'WA' && (
               <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                 <span style={{ color: '#131b28' }}>Estimated tax</span>
