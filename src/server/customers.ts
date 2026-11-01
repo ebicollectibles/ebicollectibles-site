@@ -58,19 +58,26 @@ export const getMyOrders = createServerFn({ method: 'GET' }).handler(async () =>
 // one shipment. 'pending' specifically (not 'partially_shipped') — once
 // anything has gone out the door, the rest of that order may ship
 // separately anyway, so there's no guaranteed box left to combine into.
+// hasPreorder must match the pending order's own snapshot — a pre-order
+// ships whenever its release date arrives, which is nothing like an
+// in-stock order's near-immediate ship time, so the two can never
+// meaningfully combine into one box (same reasoning as MIXED_PREORDER_ERROR
+// blocking them from sharing a cart in the first place).
 // False for a guest/signed-out shopper — this is account-scoped only; a
 // guest typing the same email as a past order doesn't get it, since email
 // alone isn't a reliable enough identity check for waiving a real charge.
-export const hasPendingOrder = createServerFn({ method: 'GET' }).handler(async () => {
-  const userId = await getCurrentUserId()
-  if (!userId) return false
+export const hasPendingOrder = createServerFn({ method: 'GET' })
+  .validator(z.object({ hasPreorder: z.boolean() }))
+  .handler(async ({ data }) => {
+    const userId = await getCurrentUserId()
+    if (!userId) return false
 
-  const { getCustomerScopedRows } = await import('~/lib/db/client')
-  const [rows] = await getCustomerScopedRows(userId, (sql) => [
-    sql`select id from orders where user_id = ${userId} and fulfillment_status = 'pending' limit 1`,
-  ])
-  return rows.length > 0
-})
+    const { getCustomerScopedRows } = await import('~/lib/db/client')
+    const [rows] = await getCustomerScopedRows(userId, (sql) => [
+      sql`select id from orders where user_id = ${userId} and fulfillment_status = 'pending' and has_preorder = ${data.hasPreorder} limit 1`,
+    ])
+    return rows.length > 0
+  })
 
 export const getMyOrder = createServerFn({ method: 'GET' })
   .validator(z.object({ id: z.string() }))

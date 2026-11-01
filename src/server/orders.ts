@@ -74,13 +74,16 @@ const placeOrderSchema = z.object({
 // the same thing before the order is even placed; this is the independent
 // server-side recompute so a stale client can't skip paying for shipping
 // it's not actually entitled to waive.
-async function resolveFreeShippingOverride(sessionUserId: string | null): Promise<number | undefined> {
+// hasPreorder must match the pending order's own snapshot — see the comment
+// on hasPendingOrder for why a pre-order and an in-stock order can never
+// meaningfully combine into one box.
+async function resolveFreeShippingOverride(sessionUserId: string | null, hasPreorder: boolean): Promise<number | undefined> {
   if (!sessionUserId) return undefined
   const db = getDb()
   const [pending] = await db
     .select({ id: orders.id })
     .from(orders)
-    .where(and(eq(orders.userId, sessionUserId), eq(orders.fulfillmentStatus, 'pending')))
+    .where(and(eq(orders.userId, sessionUserId), eq(orders.fulfillmentStatus, 'pending'), eq(orders.hasPreorder, hasPreorder)))
     .limit(1)
   return pending ? 0 : undefined
 }
@@ -124,6 +127,11 @@ export const placeOrder = createServerFn({ method: 'POST' })
       .from(productsTable)
       .where(inArray(productsTable.id, data.lines.map((l) => l.productId)))
     const productById = new Map(productRows.map((p) => [p.id, p]))
+    // Computed ahead of the mixed-cart validation below — just "does any
+    // line have preorder=true", needed now for resolveFreeShippingOverride.
+    // Harmless to compute before that validation runs; a mixed cart gets
+    // rejected regardless of what this boolean says.
+    const hasPreorder = productRows.some((p) => p.preorder)
 
     // Resolved outside the transaction below — both are external HTTP calls
     // (WA Dept. of Revenue; Shippo), and a DB transaction holding row locks
@@ -145,7 +153,7 @@ export const placeOrder = createServerFn({ method: 'POST' })
               zip: data.contact.zip,
             },
           }).then((rate) => rate ?? undefined)
-        : resolveFreeShippingOverride(sessionUserId),
+        : resolveFreeShippingOverride(sessionUserId, hasPreorder),
     ])
 
     // Defense-in-depth beyond the disabled add-to-cart button — a coming-soon
@@ -161,9 +169,6 @@ export const placeOrder = createServerFn({ method: 'POST' })
     if (hasMixedPreorderCart(productRows.map((p) => ({ preorder: p.preorder })))) {
       throw new Error(MIXED_PREORDER_ERROR)
     }
-    // Safe to use .some rather than checking every line — the mixed-cart
-    // reject just above guarantees every line agrees on this.
-    const hasPreorder = productRows.some((p) => p.preorder)
     if (hasPreorder && !data.preorderAcknowledged) {
       throw new Error('Please check the box confirming you understand the pre-order terms before placing this order.')
     }

@@ -36,6 +36,7 @@ export function ExpressApplePayButton({
   onError: (message: string) => void
 }) {
   const cart = useCart()
+  const cartHasPreorder = cart.lines.some((l) => l.product.preorder)
   const [available, setAvailable] = React.useState(false)
   const applePayRef = React.useRef<any>(null)
   const [busy, setBusy] = React.useState(false)
@@ -77,7 +78,7 @@ export function ExpressApplePayButton({
   const [pendingOrderWaivesShipping, setPendingOrderWaivesShipping] = React.useState(false)
   React.useEffect(() => {
     let cancelled = false
-    hasPendingOrder()
+    hasPendingOrder({ data: { hasPreorder: cartHasPreorder } })
       .then((result) => {
         if (!cancelled) setPendingOrderWaivesShipping(result)
       })
@@ -87,7 +88,7 @@ export function ExpressApplePayButton({
     return () => {
       cancelled = true
     }
-  }, [])
+  }, [cartHasPreorder])
 
   React.useEffect(() => {
     if (!SQUARE_APP_ID || !SQUARE_LOCATION_ID || cart.cartEmpty) return
@@ -269,7 +270,7 @@ export function ExpressApplePayButton({
       onOrderPlaced({
         orderNo: orderResult.orderNo,
         paymentStatus: orderResult.paymentStatus,
-        hasPreorder: cart.lines.some((l) => l.product.preorder),
+        hasPreorder: cartHasPreorder,
         hasDelayedShipment: cart.lines.some((l) => l.product.shipsWithDelay),
         mixedDelayedShipment: hasMixedDelayedShipment(cart.lines.map((l) => ({ shipsWithDelay: !!l.product.shipsWithDelay }))),
       })

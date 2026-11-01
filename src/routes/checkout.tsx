@@ -370,7 +370,7 @@ function CheckoutPage() {
       return
     }
     let cancelled = false
-    hasPendingOrder()
+    hasPendingOrder({ data: { hasPreorder: cartHasPreorder } })
       .then((result) => {
         if (!cancelled) setPendingOrderWaivesShipping(result)
       })
@@ -380,7 +380,7 @@ function CheckoutPage() {
     return () => {
       cancelled = true
     }
-  }, [account?.id])
+  }, [account?.id, cartHasPreorder])
 
   const shippingCost = hiAkShippingCost ?? (pendingOrderWaivesShipping ? 0 : cart.shippingCost)
   const shippingLabel = cart.cartEmpty ? '—' : formatMoney(shippingCost)
