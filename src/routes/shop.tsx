@@ -28,8 +28,16 @@ const shopSearchSchema = z.object({
   variantGroup: z.string().optional(),
   // Show only pre-order items, across every category — combinable with the
   // category/subcategory filters below (unlike variantGroup, which is its
-  // own self-contained view).
-  preorder: z.boolean().optional(),
+  // own self-contained view). Accepts a real boolean (how the nav Link
+  // passes it) or the string "true"/"false" (how it actually arrives when
+  // someone types, pastes, bookmarks, or a crawler fetches the raw URL —
+  // a query string is always text) — a bare z.boolean() rejects that string
+  // with a validateSearch error instead of just treating it as the filter
+  // being off.
+  preorder: z
+    .union([z.boolean(), z.string()])
+    .optional()
+    .transform((v) => v === true || v === 'true'),
 })
 
 export const Route = createFileRoute('/shop')({
