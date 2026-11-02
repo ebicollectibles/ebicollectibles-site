@@ -193,7 +193,7 @@ function CartPage() {
               {mixedPreorder && (
                 <div style={{ fontSize: 12.5, color: '#a85b2c', marginTop: 12, lineHeight: 1.5 }}>{MIXED_PREORDER_ERROR}</div>
               )}
-              {!mixedPreorder && delayedShipment && (
+              {!mixedPreorder && !cartHasPreorder && delayedShipment && (
                 <div style={{ fontSize: 12.5, color: '#a85b2c', marginTop: 12, lineHeight: 1.5 }}>
                   {mixedDelayedShipment ? DELAYED_SHIPMENT_WARNING : ALL_DELAYED_SHIPMENT_WARNING}
                 </div>

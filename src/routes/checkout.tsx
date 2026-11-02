@@ -1129,7 +1129,7 @@ function CheckoutPage() {
           {mixedPreorder && (
             <p style={{ fontSize: 12.5, color: '#a85b2c', margin: '12px 0 0', lineHeight: 1.5 }}>{MIXED_PREORDER_ERROR}</p>
           )}
-          {!mixedPreorder && delayedShipment && (
+          {!mixedPreorder && !cartHasPreorder && delayedShipment && (
             <p style={{ fontSize: 12.5, color: '#a85b2c', margin: '12px 0 0', lineHeight: 1.5 }}>
               {mixedDelayedShipment ? DELAYED_SHIPMENT_WARNING : ALL_DELAYED_SHIPMENT_WARNING}
             </p>
