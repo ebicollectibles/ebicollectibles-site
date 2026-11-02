@@ -36,7 +36,15 @@ import { PRODUCT_CATEGORIES, SUBCATEGORIES_BY_CATEGORY, ALL_SUBCATEGORIES, isVal
 import { buildShipmentsByOrder, computeFulfillmentStatus, groupBy, remainingQtyByItem } from '~/lib/shipments'
 import { assertAdmin } from './admin-auth'
 import { buildAffiliateDashboard } from './affiliate-dashboard'
-import { sendCheckoutIssueEmail, sendMarketplaceShipmentEmail, sendNotifyMeAlertEmail, sendShipmentEmail, sendShippingDelayEmail, type EmailSendResult } from './email'
+import {
+  sendCheckoutIssueEmail,
+  sendMarketplaceShipmentEmail,
+  sendNotifyMeAlertEmail,
+  sendOrderCancellationEmail,
+  sendShipmentEmail,
+  sendShippingDelayEmail,
+  type EmailSendResult,
+} from './email'
 import {
   completeSquareOrderFulfillment,
   getSquareCatalogDetails,
@@ -576,6 +584,36 @@ export const adminCancelAndRefundOrder = createServerFn({ method: 'POST' })
 
     await db.update(orders).set({ fulfillmentStatus: 'cancelled' }).where(eq(orders.id, data.orderId))
     await db.insert(orderStatusEvents).values({ orderId: data.orderId, status: 'cancelled' })
+
+    // Best-effort, same contract as the shipment email above — a failed/
+    // skipped send shouldn't undo the cancellation or the refund that
+    // already went through.
+    try {
+      const allItems = await db.select().from(orderItems).where(eq(orderItems.orderId, data.orderId))
+      const sendResult = await sendOrderCancellationEmail({
+        orderId: order.id,
+        orderNo: order.orderNo,
+        email: order.email,
+        firstName: order.firstName,
+        subtotal: order.subtotal,
+        shippingCost: order.shippingCost,
+        tax: order.tax,
+        total: order.total,
+        refundedAmount: amountCharged,
+        paymentMethodSummary: order.paymentMethodSummary,
+        items: allItems.map((i) => ({ productName: i.productName, qty: i.qty, unitPrice: i.unitPrice, img: i.img })),
+      })
+      await db.insert(emailEvents).values({
+        orderId: order.id,
+        email: order.email,
+        type: 'order_cancellation',
+        status: sendResult.status,
+        errorMessage: sendResult.error ?? null,
+        resendId: sendResult.resendId ?? null,
+      })
+    } catch (err) {
+      console.error(`Failed to send cancellation email for order ${order.orderNo}:`, err)
+    }
 
     return { ok: true, refunded, amount: amountCharged }
   })

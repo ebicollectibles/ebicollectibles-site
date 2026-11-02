@@ -234,6 +234,113 @@ export async function sendOrderConfirmationEmail(order: OrderEmailData): Promise
   return { status: 'sent', resendId: sentJson?.id }
 }
 
+interface OrderCancellationEmailData {
+  orderId: string
+  orderNo: number
+  email: string | null
+  firstName: string | null
+  subtotal: number
+  shippingCost: number
+  tax: number
+  total: number
+  // What was actually returned to the customer — the admin cancel-and-refund
+  // action only ever does a full refund today (see adminCancelAndRefundOrder
+  // in server/admin.ts), but this is kept distinct from `total` rather than
+  // assumed equal, so a future partial-refund path doesn't silently claim a
+  // bigger refund than actually happened.
+  refundedAmount: number
+  paymentMethodSummary: string | null
+  items: OrderEmailItem[]
+}
+
+// Same best-effort, return-a-result contract as sendOrderConfirmationEmail —
+// called right after admin cancels and refunds an order (see
+// adminCancelAndRefundOrder in server/admin.ts). Mirrors that email's exact
+// visual structure (same shell, same items table, same summary rows) so the
+// two read as one consistent system rather than a mismatched pair.
+export async function sendOrderCancellationEmail(order: OrderCancellationEmailData): Promise<EmailSendResult> {
+  const apiKey = process.env.RESEND_API_KEY
+  const from = process.env.ORDER_FROM_EMAIL
+
+  if (!apiKey || !from || !order.email) return { status: 'skipped' }
+
+  const summaryRow = (label: string, value: string, strong = false) => `
+    <tr>
+      <td style="padding:4px 0;font-size:${strong ? '14px' : '12.5px'};font-weight:${strong ? '700' : '400'};color:${strong ? INK : MUTED};${strong ? `border-top:1px solid ${INK};padding-top:10px;` : ''}">${label}</td>
+      <td style="padding:4px 0;font-size:${strong ? '14px' : '12.5px'};font-weight:${strong ? '700' : '400'};color:${strong ? INK : MUTED};text-align:right;${strong ? `border-top:1px solid ${INK};padding-top:10px;` : ''}">${value}</td>
+    </tr>`
+
+  const orderUrl = `${SITE_URL}/account/orders/${order.orderId}`
+
+  const bodyHtml = `
+    ${itemsTableHtml(order.items)}
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:24px;">
+      ${summaryRow('Subtotal', formatMoney(order.subtotal))}
+      ${summaryRow('Shipping', formatMoney(order.shippingCost))}
+      ${order.tax > 0 ? summaryRow('Tax', formatMoney(order.tax)) : ''}
+      ${summaryRow('Order total', formatMoney(order.total), true)}
+    </table>
+    <div style="margin-top:4px;margin-bottom:20px;padding:12px 16px;background:#eaf2ee;border:1px solid #c7ddd1;border-radius:2px;">
+      <p style="font-size:13px;line-height:1.6;color:${INK};margin:0;"><strong>${formatMoney(order.refundedAmount)} has been refunded</strong> to your original payment method. Refunds typically take 5–10 business days to appear on your statement, depending on your bank.</p>
+    </div>
+    ${order.paymentMethodSummary ? labelValueBlock('Refunded to', escapeHtml(order.paymentMethodSummary)) : ''}
+    <a href="${orderUrl}" style="display:inline-block;background:${INK};color:#ffffff;font-size:13px;font-weight:700;text-decoration:none;padding:12px 22px;border-radius:3px;">View your order</a>
+    <p style="font-size:12.5px;color:${MUTED};margin:20px 0 0;">Questions about this cancellation? Email us at <a href="mailto:eastblueinternational@gmail.com" style="color:${MUTED};">eastblueinternational@gmail.com</a>.</p>
+  `
+
+  const html = emailShell({
+    badgeLabel: 'Order cancelled',
+    badgeColor: AMBER,
+    heading: `Order #EBI-${order.orderNo} has been cancelled`,
+    intro: `${order.firstName ? `Hi ${escapeHtml(order.firstName)} — ` : ''}here's a summary of what was cancelled and refunded.`,
+    bodyHtml,
+  })
+
+  const text = [
+    `Order #EBI-${order.orderNo} has been cancelled${order.firstName ? `, ${order.firstName}` : ''}.`,
+    '',
+    ...order.items.map((item) => `${item.qty}x ${item.productName} — ${formatMoney(item.unitPrice * item.qty)}`),
+    '',
+    `Subtotal: ${formatMoney(order.subtotal)}`,
+    `Shipping: ${formatMoney(order.shippingCost)}`,
+    order.tax > 0 ? `Tax: ${formatMoney(order.tax)}` : null,
+    `Order total: ${formatMoney(order.total)}`,
+    '',
+    `${formatMoney(order.refundedAmount)} has been refunded to your original payment method. Refunds typically take 5-10 business days to appear on your statement, depending on your bank.`,
+    order.paymentMethodSummary ? `Refunded to: ${order.paymentMethodSummary}` : null,
+    '',
+    `View your order: ${orderUrl}`,
+    'Questions about this cancellation? Email us at eastblueinternational@gmail.com.',
+  ]
+    .filter((line) => line !== null)
+    .join('\n')
+
+  const res = await fetch('https://api.resend.com/emails', {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${apiKey}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      from,
+      to: order.email,
+      subject: `Order cancelled — #EBI-${order.orderNo}`,
+      html,
+      text,
+    }),
+  })
+
+  if (!res.ok) {
+    const json = await res.json().catch(() => null)
+    const error = json?.message || `HTTP ${res.status}`
+    console.error(`Failed to send cancellation email for order ${order.orderNo}:`, error)
+    return { status: 'failed', error }
+  }
+
+  const sentJson = await res.json().catch(() => null)
+  return { status: 'sent', resendId: sentJson?.id }
+}
+
 // Same best-effort, return-a-result contract as sendOrderConfirmationEmail —
 // called right after admin issues store credit (see server/store-credit.ts).
 // Only for a fresh grant, never for a deduction/correction or an automatic
