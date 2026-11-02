@@ -177,6 +177,12 @@ function OrderDetailPage() {
           <span>{order.creditApplied > 0 ? 'Amount charged' : 'Total'}</span>
           <span style={{ fontFamily: "'IBM Plex Mono', monospace" }}>{formatMoney(order.total - order.creditApplied)}</span>
         </div>
+        {order.totalRefunded > 0 && (
+          <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 12.5, color: '#8a4a26', fontWeight: 600 }}>
+            <span>Refunded</span>
+            <span style={{ fontFamily: "'IBM Plex Mono', monospace" }}>-{formatMoney(order.totalRefunded)}</span>
+          </div>
+        )}
       </div>
 
       {order.paymentMethodSummary && (

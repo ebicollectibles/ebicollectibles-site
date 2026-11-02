@@ -30,18 +30,21 @@ type OrderRow = typeof import('~/lib/db/schema').orders.$inferSelect
 type OrderItemRow = typeof import('~/lib/db/schema').orderItems.$inferSelect
 type ShipmentRow = typeof import('~/lib/db/schema').shipments.$inferSelect
 type ShipmentItemRow = typeof import('~/lib/db/schema').shipmentItems.$inferSelect
+type RefundEventRow = typeof import('~/lib/db/schema').refundEvents.$inferSelect
 
 export const getMyOrders = createServerFn({ method: 'GET' }).handler(async () => {
   const userId = await getCurrentUserId()
   if (!userId) throw new Error('Not logged in.')
 
   const { getCustomerScopedRows } = await import('~/lib/db/client')
-  const [orderRows, itemRows] = await getCustomerScopedRows(userId, (sql) => [
+  const [orderRows, itemRows, refundRows] = await getCustomerScopedRows(userId, (sql) => [
     sql`select * from orders where user_id = ${userId} order by created_at desc`,
     sql`select oi.* from order_items oi join orders o on o.id = oi.order_id where o.user_id = ${userId}`,
+    sql`select re.* from refund_events re join orders o on o.id = re.order_id where o.user_id = ${userId}`,
   ])
   const orders = orderRows as OrderRow[]
   const items = itemRows as OrderItemRow[]
+  const refunds = refundRows as RefundEventRow[]
 
   const itemsByOrder = new Map<string, OrderItemRow[]>()
   for (const item of items) {
@@ -49,7 +52,19 @@ export const getMyOrders = createServerFn({ method: 'GET' }).handler(async () =>
     list.push(item)
     itemsByOrder.set(item.orderId, list)
   }
-  return orders.map((order) => ({ ...order, items: itemsByOrder.get(order.id) ?? [] }))
+  // Same rule as admin's totalRefunded — only a COMPLETED refund counts
+  // toward what's shown as actually refunded; a PENDING/REJECTED/FAILED one
+  // isn't money back yet.
+  const refundedByOrder = new Map<string, number>()
+  for (const r of refunds) {
+    if (r.status !== 'COMPLETED' || r.orderId == null) continue
+    refundedByOrder.set(r.orderId, (refundedByOrder.get(r.orderId) ?? 0) + (r.amount ?? 0))
+  }
+  return orders.map((order) => ({
+    ...order,
+    items: itemsByOrder.get(order.id) ?? [],
+    totalRefunded: refundedByOrder.get(order.id) ?? 0,
+  }))
 })
 
 // Used by checkout.tsx to waive the flat shipping rate when this account
@@ -120,11 +135,12 @@ export const getMyOrder = createServerFn({ method: 'GET' })
     if (!userId) throw new Error('Not logged in.')
 
     const { getCustomerScopedRows } = await import('~/lib/db/client')
-    const [orderRows, itemRows, shipmentRows, shipmentItemRows] = await getCustomerScopedRows(userId, (sql) => [
+    const [orderRows, itemRows, shipmentRows, shipmentItemRows, refundRows] = await getCustomerScopedRows(userId, (sql) => [
       sql`select * from orders where id = ${data.id} and user_id = ${userId} limit 1`,
       sql`select * from order_items where order_id = ${data.id}`,
       sql`select * from shipments where order_id = ${data.id}`,
       sql`select si.* from shipment_items si join shipments s on s.id = si.shipment_id where s.order_id = ${data.id}`,
+      sql`select * from refund_events where order_id = ${data.id} order by created_at desc`,
     ])
     const order = (orderRows as OrderRow[])[0]
     if (!order) return null
@@ -132,8 +148,10 @@ export const getMyOrder = createServerFn({ method: 'GET' })
     const items = itemRows as OrderItemRow[]
     const shipments = shipmentRows as ShipmentRow[]
     const shipmentItems = shipmentItemRows as ShipmentItemRow[]
+    const refunds = refundRows as RefundEventRow[]
     const itemById = new Map(items.map((i) => [i.id, i]))
     const orderShipments = buildShipmentsByOrder(shipments, shipmentItems, itemById).get(data.id) ?? []
+    const totalRefunded = refunds.filter((r) => r.status === 'COMPLETED').reduce((t, r) => t + (r.amount ?? 0), 0)
 
-    return { ...order, items, shipments: orderShipments }
+    return { ...order, items, shipments: orderShipments, totalRefunded }
   })

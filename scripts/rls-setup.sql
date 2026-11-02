@@ -14,13 +14,14 @@
 CREATE ROLE app_customer LOGIN PASSWORD 'REPLACE_WITH_STRONG_PASSWORD';
 
 GRANT USAGE ON SCHEMA public TO app_customer;
-GRANT SELECT ON users, orders, order_items, shipments, shipment_items TO app_customer;
+GRANT SELECT ON users, orders, order_items, shipments, shipment_items, refund_events TO app_customer;
 
 ALTER TABLE users ENABLE ROW LEVEL SECURITY;
 ALTER TABLE orders ENABLE ROW LEVEL SECURITY;
 ALTER TABLE order_items ENABLE ROW LEVEL SECURITY;
 ALTER TABLE shipments ENABLE ROW LEVEL SECURITY;
 ALTER TABLE shipment_items ENABLE ROW LEVEL SECURITY;
+ALTER TABLE refund_events ENABLE ROW LEVEL SECURITY;
 
 -- The app sets this per-request (via set_config, scoped to one transaction)
 -- to the Clerk-resolved users.id right before running a customer's own
@@ -55,5 +56,13 @@ CREATE POLICY customer_select_own_shipment_items ON shipment_items
     SELECT 1 FROM shipments
     JOIN orders ON orders.id = shipments.order_id
     WHERE shipments.id = shipment_items.shipment_id
+      AND orders.user_id = current_setting('app.user_id', true)::uuid
+  ));
+
+CREATE POLICY customer_select_own_refund_events ON refund_events
+  FOR SELECT TO app_customer
+  USING (EXISTS (
+    SELECT 1 FROM orders
+    WHERE orders.id = refund_events.order_id
       AND orders.user_id = current_setting('app.user_id', true)::uuid
   ));
