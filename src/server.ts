@@ -36,8 +36,28 @@ function withSecurityHeaders(response: Response): Response {
 // signed JSON body directly to a fixed URL — neither can go through
 // TanStack's createServerFn RPC mechanism, so they're intercepted here,
 // ahead of the normal router-driven request handling.
+// A second literal `?` in a URL (e.g. appending "?ref=code" by hand to a
+// link that already has its own query string, like "/shop?preorder=true")
+// isn't a separate parameter — everything after the first `?` is one query
+// string, so the browser hands it through as part of the first param's
+// value instead of a second param. The affiliate ref never gets read at
+// all in that case, and any param expecting a real type (shop.tsx's
+// preorder boolean) sees garbled text instead. Normalizing every `?` after
+// the first into `&` and redirecting fixes it for any link built this way,
+// on any page, rather than only the one case someone happens to report.
+function withNormalizedQueryString(request: Request): Response | null {
+  if (request.method !== 'GET') return null
+  const rawUrl = request.url
+  const firstQ = rawUrl.indexOf('?')
+  if (firstQ === -1 || rawUrl.indexOf('?', firstQ + 1) === -1) return null
+  const fixedUrl = rawUrl.slice(0, firstQ + 1) + rawUrl.slice(firstQ + 1).replaceAll('?', '&')
+  return Response.redirect(fixedUrl, 301)
+}
+
 const entry: ServerEntry = {
   async fetch(request, opts) {
+    const normalized = withNormalizedQueryString(request)
+    if (normalized) return normalized
     const url = new URL(request.url)
     if (request.method === 'POST' && url.pathname === '/api/webhooks/square') {
       return handleSquareWebhook(request)
