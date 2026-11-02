@@ -512,7 +512,7 @@ function ProductDetailPage() {
             </p>
           )}
           {product.restockNote && (
-            <p style={{ fontSize: 12.5, color: '#5a6875', margin: '8px 0 0', lineHeight: 1.5 }}>{product.restockNote}</p>
+            <p style={{ fontSize: 13.5, fontWeight: 600, color: '#a85b2c', margin: '8px 0 0', lineHeight: 1.5 }}>{product.restockNote}</p>
           )}
 
           {(notSellable ? variants.length >= 1 : variants.length > 1) && (
