@@ -364,18 +364,28 @@ function CheckoutPage() {
   // Account-scoped only, same as the server-side recompute in placeOrder
   // that actually enforces this (never trust this client value for pricing).
   const [pendingOrderWaivesShipping, setPendingOrderWaivesShipping] = React.useState(false)
+  // A pending order of the OPPOSITE type exists — shipping isn't waived, but
+  // say so explicitly rather than leaving the shopper to assume "I have a
+  // pending order" should have been enough on its own (see the comment on
+  // hasPendingOrder in server/customers.ts).
+  const [mismatchedPendingOrder, setMismatchedPendingOrder] = React.useState(false)
   React.useEffect(() => {
     if (!account) {
       setPendingOrderWaivesShipping(false)
+      setMismatchedPendingOrder(false)
       return
     }
     let cancelled = false
     hasPendingOrder({ data: { hasPreorder: cartHasPreorder } })
       .then((result) => {
-        if (!cancelled) setPendingOrderWaivesShipping(result)
+        if (cancelled) return
+        setPendingOrderWaivesShipping(result.waived)
+        setMismatchedPendingOrder(result.mismatchedPending)
       })
       .catch(() => {
-        if (!cancelled) setPendingOrderWaivesShipping(false)
+        if (cancelled) return
+        setPendingOrderWaivesShipping(false)
+        setMismatchedPendingOrder(false)
       })
     return () => {
       cancelled = true
@@ -1136,6 +1146,13 @@ function CheckoutPage() {
             {pendingOrderWaivesShipping && !hiAkShippingCost && (
               <div style={{ fontSize: 11.5, color: '#3f7a63', marginTop: -4 }}>
                 Free — you have an order that hasn't shipped yet, so this one ships together with it.
+              </div>
+            )}
+            {!pendingOrderWaivesShipping && mismatchedPendingOrder && !hiAkShippingCost && (
+              <div style={{ fontSize: 11.5, color: '#5a6875', marginTop: -4 }}>
+                {cartHasPreorder
+                  ? "You have a pending in-stock order, but this is a pre-order — they ship separately, so standard shipping applies."
+                  : 'You have a pending pre-order, but this is an in-stock item — they ship separately, so standard shipping applies.'}
               </div>
             )}
             {contact.state === 'WA' && (

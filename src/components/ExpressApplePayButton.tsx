@@ -80,7 +80,7 @@ export function ExpressApplePayButton({
     let cancelled = false
     hasPendingOrder({ data: { hasPreorder: cartHasPreorder } })
       .then((result) => {
-        if (!cancelled) setPendingOrderWaivesShipping(result)
+        if (!cancelled) setPendingOrderWaivesShipping(result.waived)
       })
       .catch(() => {
         if (!cancelled) setPendingOrderWaivesShipping(false)

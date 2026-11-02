@@ -66,17 +66,25 @@ export const getMyOrders = createServerFn({ method: 'GET' }).handler(async () =>
 // False for a guest/signed-out shopper — this is account-scoped only; a
 // guest typing the same email as a past order doesn't get it, since email
 // alone isn't a reliable enough identity check for waiving a real charge.
+//
+// mismatchedPending (a pending order of the OPPOSITE type) is reported
+// alongside waived so checkout.tsx can explain itself when shipping *isn't*
+// waived — a customer who got free shipping once on a matching order could
+// otherwise reasonably assume "I have a pending order" is enough on its own
+// and not understand why a mismatched one didn't also get it. Both checks
+// share one round trip rather than two separate calls.
 export const hasPendingOrder = createServerFn({ method: 'GET' })
   .validator(z.object({ hasPreorder: z.boolean() }))
   .handler(async ({ data }) => {
     const userId = await getCurrentUserId()
-    if (!userId) return false
+    if (!userId) return { waived: false, mismatchedPending: false }
 
     const { getCustomerScopedRows } = await import('~/lib/db/client')
-    const [rows] = await getCustomerScopedRows(userId, (sql) => [
+    const [matchingRows, mismatchedRows] = await getCustomerScopedRows(userId, (sql) => [
       sql`select id from orders where user_id = ${userId} and fulfillment_status = 'pending' and has_preorder = ${data.hasPreorder} limit 1`,
+      sql`select id from orders where user_id = ${userId} and fulfillment_status = 'pending' and has_preorder = ${!data.hasPreorder} limit 1`,
     ])
-    return rows.length > 0
+    return { waived: matchingRows.length > 0, mismatchedPending: mismatchedRows.length > 0 }
   })
 
 // Same check as hasPendingOrder, but by typed email instead of a signed-in
