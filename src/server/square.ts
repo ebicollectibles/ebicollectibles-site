@@ -25,8 +25,32 @@ interface ChargeResult {
   riskLevel?: string
   avsStatus?: string
   cvvStatus?: string
+  // Customer-facing — see DECLINE_MESSAGES below. Never Square's raw
+  // errors[0].detail text (things like "Authorization error:
+  // 'GENERIC_DECLINE'" read as a broken site to a shopper, not a declined
+  // card).
   error?: string
+  // Square's own error code/detail, unfiltered — logged to
+  // paymentAttempts.errorMessage in orders.ts for admin to actually
+  // diagnose a pattern of declines, never shown to the customer.
+  errorDetail?: string
 }
+
+// Square's own reference for payments.errors[].code — only the card-decline
+// codes a shopper can personally act on get a specific message; anything
+// else (and anything not in this map) falls back to the generic one below
+// rather than ever surfacing Square's raw error text to a customer.
+const DECLINE_MESSAGES: Record<string, string> = {
+  CVV_FAILURE: "The security code (CVV) didn't match your card. Please check it and try again.",
+  ADDRESS_VERIFICATION_FAILURE: "The billing address didn't match your card. Please check it and try again.",
+  INVALID_EXPIRATION: 'Please check your card\'s expiration date and try again.',
+  CARD_EXPIRED: 'That card has expired. Please use a different card.',
+  INSUFFICIENT_FUNDS: 'Your card was declined for insufficient funds.',
+  CARD_NOT_SUPPORTED: "This card type isn't supported. Please try a different card.",
+  TRANSACTION_LIMIT: 'This purchase exceeds a limit your bank has set on the card. Please contact your bank or try a different card.',
+  PAYMENT_LIMIT_EXCEEDED: 'This purchase exceeds a limit on your account. Please contact your bank or try a smaller order.',
+}
+const GENERIC_DECLINE_MESSAGE = 'Your card was declined. Please try a different card, contact your bank, or try again in a moment.'
 
 const CARD_BRAND_LABEL: Record<string, string> = {
   VISA: 'Visa',
@@ -342,18 +366,20 @@ export async function chargeSquarePayment(opts: {
   // trouble) — never a real decline or validation error (4xx other than
   // 429), which would just fail again identically. Square documents 429
   // and 5xx as the cases worth retrying; everything else is final.
-  let lastMessage = 'Payment failed — please check your card details and try again.'
+  let lastError = 'Payment failed — please check your card details and try again.'
+  let lastErrorDetail = lastError
   for (let attempt = 1; attempt <= 3; attempt++) {
     let res: Response
     try {
       res = await fetch(`${baseUrl}/v2/payments`, { method: 'POST', headers: squareHeaders(accessToken), body })
     } catch (err) {
-      lastMessage = err instanceof Error ? err.message : 'Could not reach Square — please try again.'
+      lastErrorDetail = err instanceof Error ? err.message : 'Could not reach Square — please try again.'
+      lastError = 'Could not reach Square — please try again.'
       if (attempt < 3) {
         await new Promise((r) => setTimeout(r, attempt * 400))
         continue
       }
-      return { status: 'failed', error: lastMessage }
+      return { status: 'failed', error: lastError, errorDetail: lastErrorDetail }
     }
 
     const json = await res.json().catch(() => null)
@@ -369,15 +395,25 @@ export async function chargeSquarePayment(opts: {
       }
     }
 
-    lastMessage = json?.errors?.[0]?.detail || `Square API error (${res.status})`
+    // PAYMENT_METHOD_ERROR is Square's own category for an actual card
+    // decline — map its code to a message the shopper can act on. Anything
+    // else (validation, rate limit, Square's own server trouble) keeps the
+    // generic fallback rather than guessing at a decline reason that isn't
+    // one.
+    const squareError = json?.errors?.[0]
+    lastErrorDetail = squareError?.detail || `Square API error (${res.status})`
+    lastError =
+      squareError?.category === 'PAYMENT_METHOD_ERROR'
+        ? (DECLINE_MESSAGES[squareError?.code] ?? GENERIC_DECLINE_MESSAGE)
+        : 'Payment failed — please check your card details and try again.'
     const transient = res.status === 429 || res.status >= 500
     if (!transient || attempt === 3) {
-      return { status: 'failed', error: lastMessage }
+      return { status: 'failed', error: lastError, errorDetail: lastErrorDetail }
     }
     await new Promise((r) => setTimeout(r, attempt * 400))
   }
 
-  return { status: 'failed', error: lastMessage }
+  return { status: 'failed', error: lastError, errorDetail: lastErrorDetail }
 }
 
 export interface SquareCatalogOption {

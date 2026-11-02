@@ -380,11 +380,14 @@ export const placeOrder = createServerFn({ method: 'POST' })
         // this transaction's rollback — no order row exists for a failed
         // charge, so this is the only record it leaves behind.
         try {
+          // Square's raw error (e.g. "Authorization error: 'GENERIC_DECLINE'")
+          // goes here for admin to actually diagnose a pattern of declines —
+          // the thrown Error below is the friendly, customer-facing version.
           await db.insert(paymentAttempts).values({
             userId,
             email: data.contact.email || null,
             amount: amountDue,
-            errorMessage: charge.error || 'Payment failed',
+            errorMessage: charge.errorDetail || charge.error || 'Payment failed',
           })
         } catch (err) {
           console.error('Failed to record payment attempt:', err)

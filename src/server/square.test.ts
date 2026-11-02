@@ -91,12 +91,31 @@ describe('chargeSquarePayment retry behavior', () => {
   })
 
   it('never retries a genuine decline (4xx other than 429)', async () => {
-    const fetchMock = vi.fn().mockResolvedValue({ ok: false, status: 402, json: async () => ({ errors: [{ detail: 'Card declined' }] }) })
+    const fetchMock = vi.fn().mockResolvedValue({
+      ok: false,
+      status: 402,
+      json: async () => ({ errors: [{ category: 'PAYMENT_METHOD_ERROR', code: 'GENERIC_DECLINE', detail: "Authorization error: 'GENERIC_DECLINE'" }] }),
+    })
     global.fetch = fetchMock as any
     const result = await chargeSquarePayment(chargeOpts)
     expect(result.status).toBe('failed')
-    expect(result.error).toBe('Card declined')
     expect(fetchMock).toHaveBeenCalledTimes(1)
+    // Customer-facing message never shows Square's raw decline text.
+    expect(result.error).toBe('Your card was declined. Please try a different card, contact your bank, or try again in a moment.')
+    // Raw detail still captured for admin to diagnose (see paymentAttempts in orders.ts).
+    expect(result.errorDetail).toBe("Authorization error: 'GENERIC_DECLINE'")
+  })
+
+  it('maps a known decline code to its specific message, not just the generic one', async () => {
+    const fetchMock = vi.fn().mockResolvedValue({
+      ok: false,
+      status: 402,
+      json: async () => ({ errors: [{ category: 'PAYMENT_METHOD_ERROR', code: 'CVV_FAILURE', detail: 'CVV check failed.' }] }),
+    })
+    global.fetch = fetchMock as any
+    const result = await chargeSquarePayment(chargeOpts)
+    expect(result.error).toBe("The security code (CVV) didn't match your card. Please check it and try again.")
+    expect(result.errorDetail).toBe('CVV check failed.')
   })
 
   it('retries a network-level throw, then succeeds', async () => {
