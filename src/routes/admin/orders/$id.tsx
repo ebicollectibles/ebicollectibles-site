@@ -234,6 +234,7 @@ const cvvLabel: Record<string, string> = {
 const emailTypeLabel: Record<string, string> = {
   order_confirmation: 'Confirmation',
   shipment_notice: 'Shipped email',
+  order_cancellation: 'Cancellation email',
 }
 
 const emailStatusColor: Record<string, string> = {
