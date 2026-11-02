@@ -37,7 +37,15 @@ import { buildShipmentsByOrder, computeFulfillmentStatus, groupBy, remainingQtyB
 import { assertAdmin } from './admin-auth'
 import { buildAffiliateDashboard } from './affiliate-dashboard'
 import { sendCheckoutIssueEmail, sendMarketplaceShipmentEmail, sendNotifyMeAlertEmail, sendShipmentEmail, sendShippingDelayEmail, type EmailSendResult } from './email'
-import { completeSquareOrderFulfillment, getSquareCatalogDetails, getSquareCatalogImages, overlaySquareData, searchMarketplaceOrders, searchSquareCatalogItems } from './square'
+import {
+  completeSquareOrderFulfillment,
+  getSquareCatalogDetails,
+  getSquareCatalogImages,
+  overlaySquareData,
+  refundSquarePayment,
+  searchMarketplaceOrders,
+  searchSquareCatalogItems,
+} from './square'
 import { upsertSubscriber } from './subscribers'
 
 // Base object (not yet refined) so adminUpdateProduct can still .extend() it
@@ -523,6 +531,53 @@ export const adminUpdateOrderStatus = createServerFn({ method: 'POST' })
     await db.update(orders).set({ fulfillmentStatus: data.status }).where(eq(orders.id, data.orderId))
     await db.insert(orderStatusEvents).values({ orderId: data.orderId, status: data.status })
     return { ok: true }
+  })
+
+// Refunds the full amount actually charged to the card (total minus any
+// store credit applied — same amountCharged the refund webhook itself
+// computes for its own store-credit-restore check in square-webhook.ts),
+// then cancels the order. Only a full refund — a partial one is rare enough,
+// and risky enough to get wrong, that it stays a manual Square-dashboard
+// action rather than something this button guesses an amount for.
+//
+// Deliberately does NOT write orders.paymentStatus or refundEvents itself —
+// the refund webhook is the single source of truth for that (see
+// refundSquarePayment's own comment); this just makes the request and
+// reports whether Square accepted it. The order page's "Refunded $X" badge
+// lags a few seconds behind, same as a refund issued from Square's own
+// dashboard always has.
+export const adminCancelAndRefundOrder = createServerFn({ method: 'POST' })
+  .validator(z.object({ orderId: z.string() }))
+  .handler(async ({ data }) => {
+    await assertAdmin()
+    const db = getDb()
+    const [order] = await db.select().from(orders).where(eq(orders.id, data.orderId)).limit(1)
+    if (!order) throw new Error('Order not found.')
+    if (order.fulfillmentStatus === 'cancelled') throw new Error('This order is already cancelled.')
+
+    const amountCharged = Math.round((order.total - order.creditApplied) * 100) / 100
+    let refunded = false
+
+    // No Square payment to reverse — a test-mode order (SQUARE_ACCESS_TOKEN
+    // unset when it was placed) or one fully covered by store credit.
+    // Nothing to refund; still proceed with cancelling it below.
+    if (order.squarePaymentId && amountCharged > 0) {
+      const result = await refundSquarePayment({
+        squarePaymentId: order.squarePaymentId,
+        amount: amountCharged,
+        orderNo: order.orderNo,
+        reason: `Order #EBI-${order.orderNo} cancelled by admin`,
+      })
+      if (result.status === 'failed') {
+        throw new Error(`${result.error || 'Refund failed.'} Order was NOT cancelled — fix the payment issue and try again.`)
+      }
+      refunded = true
+    }
+
+    await db.update(orders).set({ fulfillmentStatus: 'cancelled' }).where(eq(orders.id, data.orderId))
+    await db.insert(orderStatusEvents).values({ orderId: data.orderId, status: 'cancelled' })
+
+    return { ok: true, refunded, amount: amountCharged }
   })
 
 export const adminCreateShipment = createServerFn({ method: 'POST' })

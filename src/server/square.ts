@@ -416,6 +416,79 @@ export async function chargeSquarePayment(opts: {
   return { status: 'failed', error: lastError, errorDetail: lastErrorDetail }
 }
 
+interface RefundResult {
+  status: 'refunded' | 'failed'
+  squareRefundId?: string
+  // Square's own refund status — PENDING | COMPLETED | REJECTED | FAILED.
+  // A 'refunded' result with status PENDING means Square accepted the
+  // request but hasn't settled it yet; the refund webhook (see
+  // server/square-webhook.ts) updates refundEvents as it progresses to
+  // COMPLETED, same as a refund issued directly from Square's dashboard.
+  refundStatus?: string
+  error?: string
+}
+
+// Admin-facing (called from adminCancelAndRefundOrder, never from customer
+// checkout), so unlike chargeSquarePayment's decline-message mapping, the
+// error here is Square's own raw detail — admin wants the technical reason,
+// not a softened one. Deliberately does NOT write to refundEvents itself:
+// the webhook is the single source of truth for refund status (PENDING ->
+// COMPLETED, and whatever Square considers this refund's final state), so
+// writing here too would just be a second, possibly-stale copy to keep in
+// sync. The order page's "Refunded $X" simply lags a few seconds behind
+// this call succeeding, same lag a dashboard-initiated refund already has.
+export async function refundSquarePayment(opts: {
+  squarePaymentId: string
+  amount: number
+  orderNo: number
+  reason?: string
+}): Promise<RefundResult> {
+  const { accessToken, baseUrl } = squareConfig()
+  if (!accessToken) throw new Error('Square is not configured (SQUARE_ACCESS_TOKEN missing).')
+
+  const idempotencyKey = freshIdempotencyKey('rfnd', opts.orderNo)
+  const body = JSON.stringify({
+    idempotency_key: idempotencyKey,
+    amount_money: { amount: Math.round(opts.amount * 100), currency: 'USD' },
+    payment_id: opts.squarePaymentId,
+    ...(opts.reason ? { reason: opts.reason } : {}),
+  })
+
+  // Same retry shape as chargeSquarePayment — only a transient failure
+  // (network, 429, 5xx) is worth retrying with the same idempotency key;
+  // a real rejection (payment already refunded, invalid amount, etc.)
+  // would just fail again identically.
+  let lastError = 'Refund request failed — please try again or refund directly in Square.'
+  for (let attempt = 1; attempt <= 3; attempt++) {
+    let res: Response
+    try {
+      res = await fetch(`${baseUrl}/v2/refunds`, { method: 'POST', headers: squareHeaders(accessToken), body })
+    } catch (err) {
+      lastError = err instanceof Error ? err.message : 'Could not reach Square — please try again.'
+      if (attempt < 3) {
+        await new Promise((r) => setTimeout(r, attempt * 400))
+        continue
+      }
+      return { status: 'failed', error: lastError }
+    }
+
+    const json = await res.json().catch(() => null)
+
+    if (res.ok) {
+      return { status: 'refunded', squareRefundId: json?.refund?.id, refundStatus: json?.refund?.status }
+    }
+
+    lastError = json?.errors?.[0]?.detail || `Square API error (${res.status})`
+    const transient = res.status === 429 || res.status >= 500
+    if (!transient || attempt === 3) {
+      return { status: 'failed', error: lastError }
+    }
+    await new Promise((r) => setTimeout(r, attempt * 400))
+  }
+
+  return { status: 'failed', error: lastError }
+}
+
 export interface SquareCatalogOption {
   variationId: string
   label: string

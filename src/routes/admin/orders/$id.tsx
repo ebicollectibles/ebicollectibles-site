@@ -2,7 +2,7 @@ import * as React from 'react'
 import { createFileRoute, Link, useNavigate, useRouter } from '@tanstack/react-router'
 import { AdminNav } from '~/components/AdminNav'
 import { requireAdmin } from '~/server/admin-auth'
-import { adminCreateShipment, adminGetOrder, adminSendShipmentTest, adminUpdateOrderStatus } from '~/server/admin'
+import { adminCancelAndRefundOrder, adminCreateShipment, adminGetOrder, adminSendShipmentTest, adminUpdateOrderStatus } from '~/server/admin'
 import { adminIssueStoreCreditByEmail, adminSendStoreCreditEmailTest } from '~/server/store-credit'
 import { formatMoney } from '~/lib/products'
 import { CARRIERS, carrierTrackingUrl } from '~/lib/carriers'
@@ -257,6 +257,7 @@ function AdminOrderDetailPage() {
   const router = useRouter()
   const order = Route.useLoaderData()
   const [updating, setUpdating] = React.useState(false)
+  const [refundMessage, setRefundMessage] = React.useState<string | null>(null)
   const [shipFormOpen, setShipFormOpen] = React.useState(false)
   const [carrierInput, setCarrierInput] = React.useState('')
   const [trackingInput, setTrackingInput] = React.useState('')
@@ -297,6 +298,25 @@ function AdminOrderDetailPage() {
     try {
       await adminUpdateOrderStatus({ data: { orderId: order.id, status } })
       await router.invalidate()
+    } finally {
+      setUpdating(false)
+    }
+  }
+
+  const amountCharged = Math.round((order.total - order.creditApplied) * 100) / 100
+  const canRefund = !!order.squarePaymentId && amountCharged > 0 && order.fulfillmentStatus !== 'cancelled'
+
+  const cancelAndRefund = async () => {
+    const message = `Cancel order #EBI-${order.orderNo} AND refund ${formatMoney(amountCharged)} to the customer's card via Square? This charges a real refund immediately — it can't be undone from here.`
+    if (!confirm(message)) return
+    setUpdating(true)
+    setRefundMessage(null)
+    try {
+      const result = await adminCancelAndRefundOrder({ data: { orderId: order.id } })
+      setRefundMessage(`Cancelled and refunded ${formatMoney(result.amount)}. It may take a moment to show as "Refunded" below.`)
+      await router.invalidate()
+    } catch (err) {
+      setRefundMessage(err instanceof Error ? err.message : 'Failed to cancel and refund.')
     } finally {
       setUpdating(false)
     }
@@ -615,6 +635,25 @@ function AdminOrderDetailPage() {
                 Mark {s}
               </button>
             ))}
+          {canRefund && (
+            <button
+              disabled={updating}
+              onClick={cancelAndRefund}
+              style={{
+                background: 'none',
+                border: '1px solid #a85b2c',
+                borderRadius: 2,
+                padding: '7px 12px',
+                fontSize: 11,
+                color: '#a85b2c',
+                fontWeight: 600,
+                cursor: updating ? 'default' : 'pointer',
+                opacity: updating ? 0.5 : 1,
+              }}
+            >
+              Cancel &amp; refund {formatMoney(amountCharged)}
+            </button>
+          )}
           {hasRemaining && (
             <button
               disabled={updating}
@@ -634,6 +673,7 @@ function AdminOrderDetailPage() {
             </button>
           )}
         </div>
+        {refundMessage && <p style={{ fontSize: 11.5, color: '#5a6875', marginTop: 8 }}>{refundMessage}</p>}
 
         {order.statusHistory.length > 1 && (
           <div style={{ marginTop: 8, display: 'flex', flexDirection: 'column', gap: 3 }}>
