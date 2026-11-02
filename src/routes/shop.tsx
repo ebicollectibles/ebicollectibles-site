@@ -26,6 +26,10 @@ const shopSearchSchema = z.object({
   // Category/subcategory/search filters are ignored in this mode (a
   // collection is its own self-contained browse, not a slice of the catalog).
   variantGroup: z.string().optional(),
+  // Show only pre-order items, across every category — combinable with the
+  // category/subcategory filters below (unlike variantGroup, which is its
+  // own self-contained view).
+  preorder: z.boolean().optional(),
 })
 
 export const Route = createFileRoute('/shop')({
@@ -35,7 +39,8 @@ export const Route = createFileRoute('/shop')({
       match.search.subcategories?.join(' & ') ||
       match.search.subcategory ||
       (match.search.category ? categoryLabel(match.search.category) : undefined) ||
-      (match.search.variantGroup ? 'Full Collection' : undefined)
+      (match.search.variantGroup ? 'Full Collection' : undefined) ||
+      (match.search.preorder ? 'Pre-orders' : undefined)
     if (!label) return {}
     const title = `${label} — EBI Collectibles`
     const description = `Shop ${label} — Simplified Chinese Pokémon, verified before it ships.`
@@ -131,6 +136,7 @@ function ShopPage() {
         // homepage sections.
         if (p.hideFromShopGrid) return false
         if (!SHOW_ACRYLICS && p.category === 'Acrylic Cases') return false
+        if (search.preorder && !p.preorder) return false
         if (query && !p.name.toLowerCase().includes(query)) return false
         if (subcategories.length && !subcategories.includes(p.subcategory)) return false
         // <= 0, not === 0 — see ProductCard.tsx's identical fix for why.
@@ -160,9 +166,11 @@ function ShopPage() {
       : 'Full Collection'
     : search.q
       ? `Results for "${search.q}"`
-      : matchedCategory
-        ? categoryLabel(matchedCategory)
-        : subcategories.length === 1
+      : search.preorder && subcategories.length === 0
+        ? 'Pre-orders'
+        : matchedCategory
+          ? categoryLabel(matchedCategory)
+          : subcategories.length === 1
           ? subcategories[0]
           : subcategories.length > 1
             ? subcategories.join(' & ')

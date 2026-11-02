@@ -185,6 +185,9 @@ export function Header({
                 <Link to="/shop" search={{ category: 'Chinese Pokémon Products' }} style={{ display: 'block', padding: '9px 14px', fontSize: 13, color: '#3d4753', whiteSpace: 'nowrap' }}>
                   All Pokemon (Chinese)
                 </Link>
+                <Link to="/shop" search={{ preorder: true }} style={{ display: 'block', padding: '9px 14px', fontSize: 13, color: '#3d4753', whiteSpace: 'nowrap' }}>
+                  Preorders
+                </Link>
                 <Link to="/shop" search={{ subcategory: 'Booster Box' }} style={{ display: 'block', padding: '9px 14px', fontSize: 13, color: '#3d4753', whiteSpace: 'nowrap' }}>
                   Booster Boxes
                 </Link>
@@ -342,6 +345,9 @@ export function Header({
           </Link>
           <Link to="/shop" search={{ category: 'Chinese Pokémon Products' }} style={{ color: navColor(pathname === '/shop'), padding: '10px 0', borderBottom: '1px solid #f0f2f4' }}>
             All Pokemon (Chinese)
+          </Link>
+          <Link to="/shop" search={{ preorder: true }} style={{ color: '#5a6875', padding: '10px 0', borderBottom: '1px solid #f0f2f4' }}>
+            Preorders
           </Link>
           <Link to="/shop" search={{ subcategory: 'Booster Box' }} style={{ color: '#5a6875', padding: '10px 0', borderBottom: '1px solid #f0f2f4' }}>
             Booster Boxes
