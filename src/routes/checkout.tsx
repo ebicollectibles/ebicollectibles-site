@@ -1045,13 +1045,11 @@ function CheckoutPage() {
                               // amountDue <= 0 means credit alone covers the order — nothing
                               // for Apple Pay to charge, so it's disabled; "Place order"
                               // handles that case directly (see submit()).
-                              disabled={
-                                submitting ||
-                                !contactComplete ||
-                                !billingComplete ||
-                                mixedPreorder ||
-                                amountDue <= 0 ||
-                                (cartHasPreorder && !preorderAgreed)
+                              disabled={submitting || !contactComplete || !billingComplete || mixedPreorder || amountDue <= 0}
+                              blockedMessage={
+                                cartHasPreorder && !preorderAgreed
+                                  ? 'Please check the box confirming you understand the pre-order terms before placing this order.'
+                                  : undefined
                               }
                               onTokenize={(sourceId) => finishOrder(sourceId)}
                               onError={setError}
@@ -1244,7 +1242,14 @@ function CheckoutPage() {
               <button
                 type="submit"
                 form="checkout-form"
-                disabled={cart.cartEmpty || mixedPreorder || submitting || hiAkBlocked || (cartHasPreorder && !preorderAgreed)}
+                // Deliberately NOT disabled for (cartHasPreorder && !preorderAgreed)
+                // — a disabled button fires no click/submit event at all, so
+                // tapping it would give zero feedback and look like a dead
+                // page (an actual customer confusion this caused). Still
+                // styled as disabled below (cursor/opacity) so it reads as
+                // "not ready yet"; finishOrder's own guard shows the real
+                // "check the box" message when this fires instead.
+                disabled={cart.cartEmpty || mixedPreorder || submitting || hiAkBlocked}
                 className="ebi-btn-dark"
                 style={{
                   marginTop: 14,

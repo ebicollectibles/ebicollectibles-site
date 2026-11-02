@@ -14,6 +14,7 @@ export function ApplePayButton({
   onError,
   onAvailabilityChange,
   disabled,
+  blockedMessage,
 }: {
   amount: number
   // Shown above the total in the Apple Pay sheet — e.g. Subtotal/Shipping/
@@ -29,6 +30,15 @@ export function ApplePayButton({
   // at all) find out without duplicating the check.
   onAvailabilityChange?: (available: boolean) => void
   disabled?: boolean
+  // For a condition the shopper can still fix right here (e.g. "check the
+  // pre-order box above") — kept clickable rather than folded into
+  // `disabled`, since a disabled button fires no click event at all and
+  // gives zero feedback when tapped (a real reported customer confusion:
+  // "where do I put my address?" from tapping a silently-dead button). A
+  // tap while this is set reports the message via onError instead of
+  // opening the Apple Pay sheet. Use `disabled` for a condition they can't
+  // immediately fix (form incomplete, already submitting).
+  blockedMessage?: string
 }) {
   const [available, setAvailable] = React.useState(false)
   const applePayRef = React.useRef<any>(null)
@@ -77,6 +87,10 @@ export function ApplePayButton({
   }, [amount, lineItemsKey])
 
   const handleClick = async () => {
+    if (blockedMessage) {
+      onError(blockedMessage)
+      return
+    }
     if (!applePayRef.current) return
     try {
       const result = await applePayRef.current.tokenize()

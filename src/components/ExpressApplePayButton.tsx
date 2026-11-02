@@ -16,11 +16,22 @@ import { BLOCK_HI_AK_CHECKOUT } from '~/lib/feature-flags'
 // form and never asks Apple Pay for it again — see the comment there.
 export function ExpressApplePayButton({
   disabled,
+  blockedMessage,
   preorderAcknowledged,
   onOrderPlaced,
   onError,
 }: {
   disabled?: boolean
+  // For a condition the shopper can still fix right here (e.g. "check the
+  // pre-order box above") — kept clickable rather than folded into
+  // `disabled`, since a disabled button fires no click event at all and
+  // gives zero feedback when tapped (a real reported customer confusion:
+  // "where do I put my address?" from tapping a silently-dead button). A
+  // tap while this is set reports the message via onError instead of
+  // opening the Apple Pay sheet. Use `disabled` for a condition they can't
+  // immediately fix (a mixed cart already has its own persistent error
+  // message elsewhere on the page).
+  blockedMessage?: string
   // See preorderAcknowledged in server/orders.ts — required (and enforced
   // server-side) whenever the cart has a pre-order item. The caller is
   // responsible for also disabling this button until it's true; this
@@ -199,6 +210,10 @@ export function ExpressApplePayButton({
   }, [cart.cartEmpty, cart.subtotal, cart.shippingCost, creditBalance, pendingOrderWaivesShipping])
 
   const handleClick = async () => {
+    if (blockedMessage) {
+      onError(blockedMessage)
+      return
+    }
     if (!applePayRef.current || busy) return
     setBusy(true)
     try {

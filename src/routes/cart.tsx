@@ -279,7 +279,12 @@ function CartPage() {
               )}
               <div style={{ marginTop: 10 }}>
                 <ExpressApplePayButton
-                  disabled={mixedPreorder || (cartHasPreorder && !preorderAgreed)}
+                  disabled={mixedPreorder}
+                  blockedMessage={
+                    cartHasPreorder && !preorderAgreed
+                      ? 'Please check the box confirming you understand the pre-order terms before using Express Apple Pay.'
+                      : undefined
+                  }
                   preorderAcknowledged={preorderAgreed}
                   onOrderPlaced={setConfirmed}
                   onError={setExpressError}
