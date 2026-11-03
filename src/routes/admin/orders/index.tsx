@@ -185,6 +185,7 @@ function AdminOrdersPage() {
   const [page, setPage] = React.useState(1)
   const [itemFilter, setItemFilter] = React.useState('')
   const [statusFilter, setStatusFilter] = React.useState<'not_shipped' | 'pending' | 'partially_shipped' | 'all'>('not_shipped')
+  const [orderTypeFilter, setOrderTypeFilter] = React.useState<'all' | 'normal' | 'preorder'>('all')
   const [selectedIds, setSelectedIds] = React.useState<Set<string>>(new Set())
   const [composing, setComposing] = React.useState(false)
   const [message, setMessage] = React.useState(DEFAULT_MESSAGE)
@@ -201,18 +202,21 @@ function AdminOrdersPage() {
       if (statusFilter === 'not_shipped' && !NOT_SHIPPED_STATUSES.has(order.fulfillmentStatus)) return false
       if (statusFilter === 'pending' && order.fulfillmentStatus !== 'pending') return false
       if (statusFilter === 'partially_shipped' && order.fulfillmentStatus !== 'partially_shipped') return false
+      if (orderTypeFilter === 'normal' && order.hasPreorder) return false
+      if (orderTypeFilter === 'preorder' && !order.hasPreorder) return false
       if (query && !order.itemNames.some((name) => name.toLowerCase().includes(query))) return false
       return true
     })
-  }, [orders, itemFilter, statusFilter])
+  }, [orders, itemFilter, statusFilter, orderTypeFilter])
 
   const totalPages = Math.max(1, Math.ceil(filteredOrders.length / ORDERS_PER_PAGE))
   const currentPage = Math.min(page, totalPages)
   const pageOrders = filteredOrders.slice((currentPage - 1) * ORDERS_PER_PAGE, currentPage * ORDERS_PER_PAGE)
 
-  const resetFilters = (next: Partial<{ itemFilter: string; statusFilter: typeof statusFilter }>) => {
+  const resetFilters = (next: Partial<{ itemFilter: string; statusFilter: typeof statusFilter; orderTypeFilter: typeof orderTypeFilter }>) => {
     if (next.itemFilter !== undefined) setItemFilter(next.itemFilter)
     if (next.statusFilter !== undefined) setStatusFilter(next.statusFilter)
+    if (next.orderTypeFilter !== undefined) setOrderTypeFilter(next.orderTypeFilter)
     setPage(1)
   }
 
@@ -351,6 +355,20 @@ function AdminOrdersPage() {
                 <option value="pending">Pending only</option>
                 <option value="partially_shipped">Partially shipped only</option>
                 <option value="all">All</option>
+              </select>
+            </div>
+            <div>
+              <label style={{ display: 'block', fontFamily: "'IBM Plex Mono', monospace", fontSize: 10.5, letterSpacing: '0.08em', textTransform: 'uppercase', color: '#5a6875', marginBottom: 6 }}>
+                Order type
+              </label>
+              <select
+                value={orderTypeFilter}
+                onChange={(e) => resetFilters({ orderTypeFilter: e.target.value as typeof orderTypeFilter })}
+                style={{ padding: '8px 10px', fontSize: 13, border: '1px solid #cfd4da', borderRadius: 2, background: '#fff' }}
+              >
+                <option value="all">All</option>
+                <option value="normal">Normal orders only</option>
+                <option value="preorder">Pre-orders only</option>
               </select>
             </div>
             <div style={{ fontSize: 12.5, color: '#5a6875', paddingBottom: 9 }}>
