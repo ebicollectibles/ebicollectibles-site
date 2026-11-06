@@ -37,6 +37,31 @@
   top: 0;
 }
 
+@keyframes ebiCookieBannerIn {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+.ebi-cookie-banner {
+  animation: ebiCookieBannerIn 0.25s ease-out;
+}
+@media (prefers-reduced-motion: reduce) {
+  .ebi-cookie-banner {
+    animation: none;
+  }
+}
+/* Without this, the action-button group keeps its unwrapped, max-content
+   width as a flex item and overflows past the right edge on narrow screens
+   instead of actually wrapping its buttons onto a second line. */
+@media (max-width: 640px) {
+  .ebi-cookie-banner-actions {
+    width: 100%;
+  }
+}
+
 html,
 body {
   margin: 0;

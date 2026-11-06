@@ -1,7 +1,10 @@
 import { Link } from '@tanstack/react-router'
 import { SHOW_ACRYLICS } from '~/lib/feature-flags'
+import { useCookiePreferencesUI } from '~/components/CookieConsent'
 
 export function Footer() {
+  const { openPreferences } = useCookiePreferencesUI()
+
   return (
     <footer style={{ borderTop: '1px solid #e3e6ea', background: '#f6f7f8' }}>
       <div
@@ -77,6 +80,7 @@ export function Footer() {
             <Link to="/shipping-policy">Shipping policy</Link>
             <Link to="/refund-policy">Refund policy</Link>
             <Link to="/privacy">Privacy policy</Link>
+            <Link to="/cookie-policy">Cookie policy</Link>
             <Link to="/terms-of-service">Terms of service</Link>
           </div>
         </div>
@@ -115,6 +119,13 @@ export function Footer() {
           }}
         >
           <span>© 2026 EBI Collectibles</span>
+          <button
+            type="button"
+            onClick={openPreferences}
+            style={{ background: 'none', border: 'none', color: '#5a6875', fontFamily: 'inherit', fontSize: 11, textDecoration: 'underline', cursor: 'pointer', padding: 0 }}
+          >
+            Cookie preferences
+          </button>
           <span>Not affiliated with, or endorsed by, any card publisher.</span>
         </div>
       </div>

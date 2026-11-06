@@ -1,5 +1,5 @@
 import type * as React from 'react'
-import { createFileRoute } from '@tanstack/react-router'
+import { createFileRoute, Link } from '@tanstack/react-router'
 import { SHOW_CONTACT_EMAIL } from '~/lib/feature-flags'
 
 export const Route = createFileRoute('/privacy')({
@@ -44,7 +44,13 @@ function PrivacyPolicyPage() {
             <li>Account information — email and a password (stored as a salted, one-way hash, never the password itself), or your Google account email/name if you sign in with Google</li>
             <li>Order history — what you bought, when, and its status</li>
             <li>IP address, recorded on login/signup for account security — not used to track browsing</li>
-            <li>Standard web analytics (pages viewed, general device/browser type) via Google Analytics, if enabled</li>
+            <li>
+              Standard web analytics (pages viewed, general device/browser type) via Google Analytics, only if you
+              opt in — see our{' '}
+              <Link to="/cookie-policy" style={{ color: '#3f7a63' }}>
+                Cookie Policy
+              </Link>
+            </li>
           </ul>
           <p style={p}>
             We never see your full card number, CVV, or bank details — card payments are handled entirely by Square,

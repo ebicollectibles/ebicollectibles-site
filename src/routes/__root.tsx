@@ -7,6 +7,8 @@ import { NotFound } from '~/components/NotFound'
 import { AnnouncementBar } from '~/components/AnnouncementBar'
 import { Header } from '~/components/Header'
 import { Footer } from '~/components/Footer'
+import { CookieConsentProvider } from '~/components/CookieConsent'
+import { useCookieConsent } from '~/lib/cookie-consent'
 import { CartProvider } from '~/lib/cart-context'
 import { getProducts } from '~/server/products'
 import { getCurrentCustomer } from '~/server/customer-auth'
@@ -90,6 +92,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
   const pathname = useRouterState({ select: (s) => s.location.pathname })
   const href = useRouterState({ select: (s) => s.location.href })
   const isAdmin = pathname.startsWith('/admin')
+  const cookieConsent = useCookieConsent()
 
   // Captures `?ref=<code>` into a 14-day cookie on any page (a specific
   // product, the shop, anywhere) — re-runs on every navigation (href
@@ -99,12 +102,20 @@ function RootDocument({ children }: { children: React.ReactNode }) {
   // older one. Validating the code against real affiliates happens later,
   // at checkout (resolveAffiliateAttribution) — nothing here needs to be
   // trusted, an unknown code just never matches anything.
+  //
+  // Gated on marketing consent (see CookieConsent.tsx) — a visitor who
+  // hasn't opted in yet, or declined, never gets this cookie set, even if
+  // they arrived via a real referral link. If they consent later this
+  // session the effect re-runs (cookieConsent?.marketing in the deps), but
+  // only against whatever ?ref= is in the URL *at that moment* — we don't
+  // retroactively remember a ref param from a page they've already left.
   React.useEffect(() => {
+    if (!cookieConsent?.marketing) return
     const ref = new URLSearchParams(window.location.search).get('ref')
     const code = ref?.trim().toLowerCase()
     if (!code) return
     document.cookie = `${AFFILIATE_REF_COOKIE}=${encodeURIComponent(code)}; path=/; max-age=${14 * 24 * 60 * 60}; samesite=lax`
-  }, [href])
+  }, [href, cookieConsent?.marketing])
   // /admin is never gated — the operator needs it working precisely during
   // a maintenance window (running the migration, checking things over)
   // even while the customer-facing site shows "back soon".
@@ -121,8 +132,12 @@ function RootDocument({ children }: { children: React.ReactNode }) {
       <head>
         <HeadContent />
         <link rel="canonical" href={canonicalUrl} />
-        {/* Skipped on /admin — that's the operator's own traffic, not a visitor to track. */}
-        {GA_MEASUREMENT_ID && !isAdmin && (
+        {/* Skipped on /admin — that's the operator's own traffic, not a visitor to track.
+            Also gated on analytics cookie consent (see CookieConsent.tsx) — nothing here
+            even reaches the browser until the visitor opts in. cookieConsent is always
+            null on the server, so this never renders during SSR; it appears client-side
+            right after hydration if a prior visit already consented. */}
+        {GA_MEASUREMENT_ID && !isAdmin && cookieConsent?.analytics && (
           <>
             <script async src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`} />
             <script
@@ -146,14 +161,18 @@ function RootDocument({ children }: { children: React.ReactNode }) {
                 {children}
               </main>
             ) : (
-              <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', background: '#ffffff' }}>
-                <AnnouncementBar />
-                <Header customer={customer} isAdminUser={isAdminUser} isAffiliateUser={isAffiliateUser} />
-                <main id="main-content" tabIndex={-1} style={{ flex: 1 }}>
-                  {children}
-                </main>
-                <Footer />
-              </div>
+              // Cookie banner/preferences only mounted for real visitor traffic — /admin
+              // is the operator's own session, not someone who needs a consent prompt.
+              <CookieConsentProvider>
+                <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', background: '#ffffff' }}>
+                  <AnnouncementBar />
+                  <Header customer={customer} isAdminUser={isAdminUser} isAffiliateUser={isAffiliateUser} />
+                  <main id="main-content" tabIndex={-1} style={{ flex: 1 }}>
+                    {children}
+                  </main>
+                  <Footer />
+                </div>
+              </CookieConsentProvider>
             )}
           </CartProvider>
         </ClerkProvider>

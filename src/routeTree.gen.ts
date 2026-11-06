@@ -13,6 +13,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as BestSellingRouteImport } from './routes/best-selling'
 import { Route as CartRouteImport } from './routes/cart'
 import { Route as CheckoutRouteImport } from './routes/checkout'
+import { Route as CookiePolicyRouteImport } from './routes/cookie-policy'
 import { Route as NewAndUpcomingRouteImport } from './routes/new-and-upcoming'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as RefundPolicyRouteImport } from './routes/refund-policy'
@@ -71,6 +72,11 @@ const CartRoute = CartRouteImport.update({
 const CheckoutRoute = CheckoutRouteImport.update({
   id: '/checkout',
   path: '/checkout',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CookiePolicyRoute = CookiePolicyRouteImport.update({
+  id: '/cookie-policy',
+  path: '/cookie-policy',
   getParentRoute: () => rootRouteImport,
 } as any)
 const NewAndUpcomingRoute = NewAndUpcomingRouteImport.update({
@@ -276,6 +282,7 @@ export interface FileRoutesByFullPath {
   '/best-selling': typeof BestSellingRoute
   '/cart': typeof CartRoute
   '/checkout': typeof CheckoutRoute
+  '/cookie-policy': typeof CookiePolicyRoute
   '/new-and-upcoming': typeof NewAndUpcomingRoute
   '/privacy': typeof PrivacyRoute
   '/refund-policy': typeof RefundPolicyRoute
@@ -321,6 +328,7 @@ export interface FileRoutesByTo {
   '/best-selling': typeof BestSellingRoute
   '/cart': typeof CartRoute
   '/checkout': typeof CheckoutRoute
+  '/cookie-policy': typeof CookiePolicyRoute
   '/new-and-upcoming': typeof NewAndUpcomingRoute
   '/privacy': typeof PrivacyRoute
   '/refund-policy': typeof RefundPolicyRoute
@@ -367,6 +375,7 @@ export interface FileRoutesById {
   '/best-selling': typeof BestSellingRoute
   '/cart': typeof CartRoute
   '/checkout': typeof CheckoutRoute
+  '/cookie-policy': typeof CookiePolicyRoute
   '/new-and-upcoming': typeof NewAndUpcomingRoute
   '/privacy': typeof PrivacyRoute
   '/refund-policy': typeof RefundPolicyRoute
@@ -414,6 +423,7 @@ export interface FileRouteTypes {
     | '/best-selling'
     | '/cart'
     | '/checkout'
+    | '/cookie-policy'
     | '/new-and-upcoming'
     | '/privacy'
     | '/refund-policy'
@@ -459,6 +469,7 @@ export interface FileRouteTypes {
     | '/best-selling'
     | '/cart'
     | '/checkout'
+    | '/cookie-policy'
     | '/new-and-upcoming'
     | '/privacy'
     | '/refund-policy'
@@ -504,6 +515,7 @@ export interface FileRouteTypes {
     | '/best-selling'
     | '/cart'
     | '/checkout'
+    | '/cookie-policy'
     | '/new-and-upcoming'
     | '/privacy'
     | '/refund-policy'
@@ -550,6 +562,7 @@ export interface RootRouteChildren {
   BestSellingRoute: typeof BestSellingRoute
   CartRoute: typeof CartRoute
   CheckoutRoute: typeof CheckoutRoute
+  CookiePolicyRoute: typeof CookiePolicyRoute
   NewAndUpcomingRoute: typeof NewAndUpcomingRoute
   PrivacyRoute: typeof PrivacyRoute
   RefundPolicyRoute: typeof RefundPolicyRoute
@@ -619,6 +632,13 @@ declare module '@tanstack/react-router' {
       path: '/checkout'
       fullPath: '/checkout'
       preLoaderRoute: typeof CheckoutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/cookie-policy': {
+      id: '/cookie-policy'
+      path: '/cookie-policy'
+      fullPath: '/cookie-policy'
+      preLoaderRoute: typeof CookiePolicyRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/new-and-upcoming': {
@@ -902,6 +922,7 @@ const rootRouteChildren: RootRouteChildren = {
   BestSellingRoute: BestSellingRoute,
   CartRoute: CartRoute,
   CheckoutRoute: CheckoutRoute,
+  CookiePolicyRoute: CookiePolicyRoute,
   NewAndUpcomingRoute: NewAndUpcomingRoute,
   PrivacyRoute: PrivacyRoute,
   RefundPolicyRoute: RefundPolicyRoute,
