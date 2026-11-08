@@ -562,6 +562,13 @@ export const adminUpdateOrderStatus = createServerFn({ method: 'POST' })
 // charge it per-order instead of waiving it.
 const CANCELLATION_FEE_RATE = 0.05
 
+function computeCancellationAmounts(order: { total: number; creditApplied: number }, waiveFee: boolean) {
+  const fullAmount = Math.round((order.total - order.creditApplied) * 100) / 100
+  const cancellationFee = waiveFee ? 0 : Math.round(fullAmount * CANCELLATION_FEE_RATE * 100) / 100
+  const amountCharged = Math.round((fullAmount - cancellationFee) * 100) / 100
+  return { fullAmount, cancellationFee, amountCharged }
+}
+
 export const adminCancelAndRefundOrder = createServerFn({ method: 'POST' })
   .validator(z.object({ orderId: z.string(), waiveFee: z.boolean() }))
   .handler(async ({ data }) => {
@@ -571,9 +578,7 @@ export const adminCancelAndRefundOrder = createServerFn({ method: 'POST' })
     if (!order) throw new Error('Order not found.')
     if (order.fulfillmentStatus === 'cancelled') throw new Error('This order is already cancelled.')
 
-    const fullAmount = Math.round((order.total - order.creditApplied) * 100) / 100
-    const cancellationFee = data.waiveFee ? 0 : Math.round(fullAmount * CANCELLATION_FEE_RATE * 100) / 100
-    const amountCharged = Math.round((fullAmount - cancellationFee) * 100) / 100
+    const { cancellationFee, amountCharged } = computeCancellationAmounts(order, data.waiveFee)
     let refunded = false
 
     // No Square payment to reverse — a test-mode order (SQUARE_ACCESS_TOKEN
@@ -627,6 +632,43 @@ export const adminCancelAndRefundOrder = createServerFn({ method: 'POST' })
     }
 
     return { ok: true, refunded, amount: amountCharged, cancellationFee }
+  })
+
+// Same "never writes anything, never charges anything" contract as
+// adminSendShipmentTest — sends the real cancellation email through the
+// real pipeline (real items, real amounts, real fee math) to an address
+// admin picks, without touching the order's status, issuing any Square
+// refund, or logging an emailEvents row. Lets admin preview exactly what
+// the customer would see for either the fee-waived or fee-charged version
+// before actually committing to one with adminCancelAndRefundOrder.
+export const adminSendCancellationEmailTest = createServerFn({ method: 'POST' })
+  .validator(z.object({ orderId: z.string(), waiveFee: z.boolean(), testEmail: z.string().email() }))
+  .handler(async ({ data }) => {
+    await assertAdmin()
+    const db = getDb()
+    const [order] = await db.select().from(orders).where(eq(orders.id, data.orderId)).limit(1)
+    if (!order) throw new Error('Order not found.')
+
+    const { cancellationFee, amountCharged } = computeCancellationAmounts(order, data.waiveFee)
+    const allItems = await db.select().from(orderItems).where(eq(orderItems.orderId, data.orderId))
+
+    const sendResult = await sendOrderCancellationEmail({
+      orderId: order.id,
+      orderNo: order.orderNo,
+      email: data.testEmail,
+      firstName: order.firstName,
+      subtotal: order.subtotal,
+      shippingCost: order.shippingCost,
+      tax: order.tax,
+      total: order.total,
+      refundedAmount: amountCharged,
+      cancellationFee,
+      paymentMethodSummary: order.paymentMethodSummary,
+      items: allItems.map((i) => ({ productName: i.productName, qty: i.qty, unitPrice: i.unitPrice, img: i.img })),
+    })
+
+    if (sendResult.status !== 'sent') throw new Error(sendResult.error || `Test send ${sendResult.status}.`)
+    return { ok: true }
   })
 
 export const adminCreateShipment = createServerFn({ method: 'POST' })

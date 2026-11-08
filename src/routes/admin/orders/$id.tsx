@@ -2,7 +2,7 @@ import * as React from 'react'
 import { createFileRoute, Link, useNavigate, useRouter } from '@tanstack/react-router'
 import { AdminNav } from '~/components/AdminNav'
 import { requireAdmin } from '~/server/admin-auth'
-import { adminCancelAndRefundOrder, adminCreateShipment, adminGetOrder, adminSendShipmentTest, adminUpdateOrderStatus } from '~/server/admin'
+import { adminCancelAndRefundOrder, adminCreateShipment, adminGetOrder, adminSendCancellationEmailTest, adminSendShipmentTest, adminUpdateOrderStatus } from '~/server/admin'
 import { adminIssueStoreCreditByEmail, adminSendStoreCreditEmailTest } from '~/server/store-credit'
 import { formatMoney } from '~/lib/products'
 import { CARRIERS, carrierTrackingUrl } from '~/lib/carriers'
@@ -260,6 +260,9 @@ function AdminOrderDetailPage() {
   const [updating, setUpdating] = React.useState(false)
   const [refundMessage, setRefundMessage] = React.useState<string | null>(null)
   const [waiveFee, setWaiveFee] = React.useState(true)
+  const [cancelTestEmail, setCancelTestEmail] = React.useState('eastblueinternational@gmail.com')
+  const [cancelTesting, setCancelTesting] = React.useState(false)
+  const [cancelTestMessage, setCancelTestMessage] = React.useState<string | null>(null)
   const [shipFormOpen, setShipFormOpen] = React.useState(false)
   const [carrierInput, setCarrierInput] = React.useState('')
   const [trackingInput, setTrackingInput] = React.useState('')
@@ -331,6 +334,20 @@ function AdminOrderDetailPage() {
       setRefundMessage(err instanceof Error ? err.message : 'Failed to cancel and refund.')
     } finally {
       setUpdating(false)
+    }
+  }
+
+  const sendCancellationTest = async () => {
+    if (!cancelTestEmail.trim()) return
+    setCancelTesting(true)
+    setCancelTestMessage(null)
+    try {
+      await adminSendCancellationEmailTest({ data: { orderId: order.id, waiveFee, testEmail: cancelTestEmail.trim() } })
+      setCancelTestMessage(`Sent to ${cancelTestEmail.trim()} — previewing the ${waiveFee ? 'full refund' : 'fee-charged'} version. Nothing was cancelled or refunded.`)
+    } catch (err) {
+      setCancelTestMessage(err instanceof Error ? err.message : 'Failed to send test.')
+    } finally {
+      setCancelTesting(false)
     }
   }
 
@@ -693,6 +710,37 @@ function AdminOrderDetailPage() {
           )}
         </div>
         {refundMessage && <p style={{ fontSize: 11.5, color: '#5a6875', marginTop: 8 }}>{refundMessage}</p>}
+
+        {canRefund && (
+          <div style={{ marginTop: 10, display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap' }}>
+            <input
+              type="email"
+              value={cancelTestEmail}
+              onChange={(e) => setCancelTestEmail(e.target.value)}
+              placeholder="Test email address"
+              style={{ padding: '7px 9px', fontSize: 11.5, border: '1px solid #cfd4da', borderRadius: 2, width: 220 }}
+            />
+            <button
+              disabled={cancelTesting}
+              onClick={sendCancellationTest}
+              style={{
+                background: 'none',
+                color: '#131b28',
+                border: '1px solid #cfd4da',
+                borderRadius: 2,
+                padding: '7px 12px',
+                fontSize: 11,
+                cursor: cancelTesting ? 'default' : 'pointer',
+                opacity: cancelTesting ? 0.5 : 1,
+              }}
+            >
+              {cancelTesting ? 'Sending test…' : 'Send cancellation-email test to me'}
+            </button>
+          </div>
+        )}
+        {cancelTestMessage && (
+          <p style={{ fontSize: 11, color: cancelTestMessage.startsWith('Sent') ? '#3f7a63' : '#a85b2c', marginTop: 6 }}>{cancelTestMessage}</p>
+        )}
 
         {order.statusHistory.length > 1 && (
           <div style={{ marginTop: 8, display: 'flex', flexDirection: 'column', gap: 3 }}>
