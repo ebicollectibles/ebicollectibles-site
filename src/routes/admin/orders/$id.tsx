@@ -259,6 +259,7 @@ function AdminOrderDetailPage() {
   const order = Route.useLoaderData()
   const [updating, setUpdating] = React.useState(false)
   const [refundMessage, setRefundMessage] = React.useState<string | null>(null)
+  const [waiveFee, setWaiveFee] = React.useState(true)
   const [shipFormOpen, setShipFormOpen] = React.useState(false)
   const [carrierInput, setCarrierInput] = React.useState('')
   const [trackingInput, setTrackingInput] = React.useState('')
@@ -306,15 +307,25 @@ function AdminOrderDetailPage() {
 
   const amountCharged = Math.round((order.total - order.creditApplied) * 100) / 100
   const canRefund = !!order.squarePaymentId && amountCharged > 0 && order.fulfillmentStatus !== 'cancelled'
+  // Matches CANCELLATION_FEE_RATE in server/admin.ts — just for display here;
+  // the server recomputes this itself rather than trusting a client-sent number.
+  const cancellationFee = waiveFee ? 0 : Math.round(amountCharged * 0.05 * 100) / 100
+  const refundAmount = Math.round((amountCharged - cancellationFee) * 100) / 100
 
   const cancelAndRefund = async () => {
-    const message = `Cancel order #EBI-${order.orderNo} AND refund ${formatMoney(amountCharged)} to the customer's card via Square? This charges a real refund immediately — it can't be undone from here.`
+    const message = waiveFee
+      ? `Cancel order #EBI-${order.orderNo} AND refund ${formatMoney(refundAmount)} to the customer's card via Square? This charges a real refund immediately — it can't be undone from here.`
+      : `Cancel order #EBI-${order.orderNo} AND refund ${formatMoney(refundAmount)} to the customer's card via Square, withholding a ${formatMoney(cancellationFee)} (5%) cancellation fee? This charges a real refund immediately — it can't be undone from here.`
     if (!confirm(message)) return
     setUpdating(true)
     setRefundMessage(null)
     try {
-      const result = await adminCancelAndRefundOrder({ data: { orderId: order.id } })
-      setRefundMessage(`Cancelled and refunded ${formatMoney(result.amount)}. It may take a moment to show as "Refunded" below.`)
+      const result = await adminCancelAndRefundOrder({ data: { orderId: order.id, waiveFee } })
+      setRefundMessage(
+        result.cancellationFee > 0
+          ? `Cancelled and refunded ${formatMoney(result.amount)} (after a ${formatMoney(result.cancellationFee)} cancellation fee). It may take a moment to show as "Refunded" below.`
+          : `Cancelled and refunded ${formatMoney(result.amount)}. It may take a moment to show as "Refunded" below.`,
+      )
       await router.invalidate()
     } catch (err) {
       setRefundMessage(err instanceof Error ? err.message : 'Failed to cancel and refund.')
@@ -637,23 +648,30 @@ function AdminOrderDetailPage() {
               </button>
             ))}
           {canRefund && (
-            <button
-              disabled={updating}
-              onClick={cancelAndRefund}
-              style={{
-                background: 'none',
-                border: '1px solid #a85b2c',
-                borderRadius: 2,
-                padding: '7px 12px',
-                fontSize: 11,
-                color: '#a85b2c',
-                fontWeight: 600,
-                cursor: updating ? 'default' : 'pointer',
-                opacity: updating ? 0.5 : 1,
-              }}
-            >
-              Cancel &amp; refund {formatMoney(amountCharged)}
-            </button>
+            <>
+              <label style={{ display: 'flex', alignItems: 'center', gap: 6, fontSize: 11, color: '#5a6875', cursor: 'pointer' }}>
+                <input type="checkbox" checked={waiveFee} onChange={(e) => setWaiveFee(e.target.checked)} />
+                Waive 5% cancellation fee
+              </label>
+              <button
+                disabled={updating}
+                onClick={cancelAndRefund}
+                style={{
+                  background: 'none',
+                  border: '1px solid #a85b2c',
+                  borderRadius: 2,
+                  padding: '7px 12px',
+                  fontSize: 11,
+                  color: '#a85b2c',
+                  fontWeight: 600,
+                  cursor: updating ? 'default' : 'pointer',
+                  opacity: updating ? 0.5 : 1,
+                }}
+              >
+                Cancel &amp; refund {formatMoney(refundAmount)}
+                {cancellationFee > 0 ? ` (fee: ${formatMoney(cancellationFee)})` : ''}
+              </button>
+            </>
           )}
           {hasRemaining && (
             <button

@@ -243,12 +243,15 @@ interface OrderCancellationEmailData {
   shippingCost: number
   tax: number
   total: number
-  // What was actually returned to the customer — the admin cancel-and-refund
-  // action only ever does a full refund today (see adminCancelAndRefundOrder
-  // in server/admin.ts), but this is kept distinct from `total` rather than
-  // assumed equal, so a future partial-refund path doesn't silently claim a
-  // bigger refund than actually happened.
+  // What was actually returned to the customer — kept distinct from `total`
+  // rather than assumed equal, so this can never silently claim a bigger
+  // refund than actually happened when a cancellation fee was withheld.
   refundedAmount: number
+  // >0 when admin charged the standard cancellation fee instead of waiving
+  // it (see adminCancelAndRefundOrder in server/admin.ts) — shown as its own
+  // line so the customer can see exactly why refundedAmount is less than
+  // total, instead of being left to guess.
+  cancellationFee: number
   paymentMethodSummary: string | null
   items: OrderEmailItem[]
 }
@@ -279,9 +282,12 @@ export async function sendOrderCancellationEmail(order: OrderCancellationEmailDa
       ${summaryRow('Shipping', formatMoney(order.shippingCost))}
       ${order.tax > 0 ? summaryRow('Tax', formatMoney(order.tax)) : ''}
       ${summaryRow('Order total', formatMoney(order.total), true)}
+      ${order.cancellationFee > 0 ? summaryRow('Cancellation fee', `-${formatMoney(order.cancellationFee)}`) : ''}
     </table>
     <div style="margin-top:4px;margin-bottom:20px;padding:12px 16px;background:#eaf2ee;border:1px solid #c7ddd1;border-radius:2px;">
-      <p style="font-size:13px;line-height:1.6;color:${INK};margin:0;"><strong>${formatMoney(order.refundedAmount)} has been refunded</strong> to your original payment method. Refunds typically take 5–10 business days to appear on your statement, depending on your bank.</p>
+      <p style="font-size:13px;line-height:1.6;color:${INK};margin:0;"><strong>${formatMoney(order.refundedAmount)} has been refunded</strong> to your original payment method${
+        order.cancellationFee > 0 ? ', after the cancellation fee shown above' : ''
+      }. Refunds typically take 5–10 business days to appear on your statement, depending on your bank.</p>
     </div>
     ${order.paymentMethodSummary ? labelValueBlock('Refunded to', escapeHtml(order.paymentMethodSummary)) : ''}
     <a href="${orderUrl}" style="display:inline-block;background:${INK};color:#ffffff;font-size:13px;font-weight:700;text-decoration:none;padding:12px 22px;border-radius:3px;">View your order</a>
@@ -305,8 +311,9 @@ export async function sendOrderCancellationEmail(order: OrderCancellationEmailDa
     `Shipping: ${formatMoney(order.shippingCost)}`,
     order.tax > 0 ? `Tax: ${formatMoney(order.tax)}` : null,
     `Order total: ${formatMoney(order.total)}`,
+    order.cancellationFee > 0 ? `Cancellation fee: -${formatMoney(order.cancellationFee)}` : null,
     '',
-    `${formatMoney(order.refundedAmount)} has been refunded to your original payment method. Refunds typically take 5-10 business days to appear on your statement, depending on your bank.`,
+    `${formatMoney(order.refundedAmount)} has been refunded to your original payment method${order.cancellationFee > 0 ? ', after the cancellation fee shown above' : ''}. Refunds typically take 5-10 business days to appear on your statement, depending on your bank.`,
     order.paymentMethodSummary ? `Refunded to: ${order.paymentMethodSummary}` : null,
     '',
     `View your order: ${orderUrl}`,

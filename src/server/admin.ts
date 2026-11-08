@@ -554,8 +554,16 @@ export const adminUpdateOrderStatus = createServerFn({ method: 'POST' })
 // reports whether Square accepted it. The order page's "Refunded $X" badge
 // lags a few seconds behind, same as a refund issued from Square's own
 // dashboard always has.
+// 5% per refund-policy.tsx's "Cancellations" section — deducted from the
+// refund to cover the non-refundable payment processing fee already
+// incurred on the original charge. Waiving it has been the norm so far
+// (every past cancellation through this tool was a full refund), but it's
+// a real option on the policy page, not just a hypothetical — admin can
+// charge it per-order instead of waiving it.
+const CANCELLATION_FEE_RATE = 0.05
+
 export const adminCancelAndRefundOrder = createServerFn({ method: 'POST' })
-  .validator(z.object({ orderId: z.string() }))
+  .validator(z.object({ orderId: z.string(), waiveFee: z.boolean() }))
   .handler(async ({ data }) => {
     await assertAdmin()
     const db = getDb()
@@ -563,7 +571,9 @@ export const adminCancelAndRefundOrder = createServerFn({ method: 'POST' })
     if (!order) throw new Error('Order not found.')
     if (order.fulfillmentStatus === 'cancelled') throw new Error('This order is already cancelled.')
 
-    const amountCharged = Math.round((order.total - order.creditApplied) * 100) / 100
+    const fullAmount = Math.round((order.total - order.creditApplied) * 100) / 100
+    const cancellationFee = data.waiveFee ? 0 : Math.round(fullAmount * CANCELLATION_FEE_RATE * 100) / 100
+    const amountCharged = Math.round((fullAmount - cancellationFee) * 100) / 100
     let refunded = false
 
     // No Square payment to reverse — a test-mode order (SQUARE_ACCESS_TOKEN
@@ -574,7 +584,7 @@ export const adminCancelAndRefundOrder = createServerFn({ method: 'POST' })
         squarePaymentId: order.squarePaymentId,
         amount: amountCharged,
         orderNo: order.orderNo,
-        reason: `Order #EBI-${order.orderNo} cancelled by admin`,
+        reason: cancellationFee > 0 ? `Order #EBI-${order.orderNo} cancelled by admin, 5% cancellation fee withheld` : `Order #EBI-${order.orderNo} cancelled by admin`,
       })
       if (result.status === 'failed') {
         throw new Error(`${result.error || 'Refund failed.'} Order was NOT cancelled — fix the payment issue and try again.`)
@@ -600,6 +610,7 @@ export const adminCancelAndRefundOrder = createServerFn({ method: 'POST' })
         tax: order.tax,
         total: order.total,
         refundedAmount: amountCharged,
+        cancellationFee,
         paymentMethodSummary: order.paymentMethodSummary,
         items: allItems.map((i) => ({ productName: i.productName, qty: i.qty, unitPrice: i.unitPrice, img: i.img })),
       })
@@ -615,7 +626,7 @@ export const adminCancelAndRefundOrder = createServerFn({ method: 'POST' })
       console.error(`Failed to send cancellation email for order ${order.orderNo}:`, err)
     }
 
-    return { ok: true, refunded, amount: amountCharged }
+    return { ok: true, refunded, amount: amountCharged, cancellationFee }
   })
 
 export const adminCreateShipment = createServerFn({ method: 'POST' })
