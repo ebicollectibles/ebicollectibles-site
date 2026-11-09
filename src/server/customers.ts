@@ -92,14 +92,21 @@ export const hasPendingOrder = createServerFn({ method: 'GET' })
   .validator(z.object({ hasPreorder: z.boolean() }))
   .handler(async ({ data }) => {
     const userId = await getCurrentUserId()
-    if (!userId) return { waived: false, mismatchedPending: false }
+    if (!userId) return { waived: false, mismatchedPending: false, combineCandidate: null }
 
     const { getCustomerScopedRows } = await import('~/lib/db/client')
     const [matchingRows, mismatchedRows] = await getCustomerScopedRows(userId, (sql) => [
       sql`select id from orders where user_id = ${userId} and fulfillment_status = 'pending' and has_preorder = ${data.hasPreorder} limit 1`,
-      sql`select id from orders where user_id = ${userId} and fulfillment_status = 'pending' and has_preorder = ${!data.hasPreorder} limit 1`,
+      sql`select id, order_no from orders where user_id = ${userId} and fulfillment_status = 'pending' and has_preorder = ${!data.hasPreorder} limit 1`,
     ])
-    return { waived: matchingRows.length > 0, mismatchedPending: mismatchedRows.length > 0 }
+    const mismatched = mismatchedRows[0] as { id: string; orderNo: number } | undefined
+    // Only surfaced in one direction — see resolveCombineWithOrder in
+    // server/orders.ts for why only an existing pending pre-order can be
+    // waited on (mismatched here is a pre-order exactly when the current
+    // cart, hasPreorder, is not — i.e. data.hasPreorder is false), never
+    // the reverse.
+    const combineCandidate = !data.hasPreorder && mismatched ? { id: mismatched.id, orderNo: mismatched.orderNo } : null
+    return { waived: matchingRows.length > 0, mismatchedPending: mismatchedRows.length > 0, combineCandidate }
   })
 
 // Same check as hasPendingOrder, but by typed email instead of a signed-in

@@ -1,5 +1,5 @@
 import { sql } from 'drizzle-orm'
-import { boolean, index, integer, numeric, pgTable, primaryKey, text, timestamp, uniqueIndex, uuid } from 'drizzle-orm/pg-core'
+import { type AnyPgColumn, boolean, index, integer, numeric, pgTable, primaryKey, text, timestamp, uniqueIndex, uuid } from 'drizzle-orm/pg-core'
 
 export const products = pgTable('products', {
   id: text('id').primaryKey(),
@@ -334,6 +334,15 @@ export const orders = pgTable('orders', {
   // MIXED_PREORDER_ERROR's sibling check there), not just a disabled
   // button client-side, so a direct API call can't skip it either.
   preorderAcknowledgedAt: timestamp('preorder_acknowledged_at', { withTimezone: true }),
+  // Set at checkout when the shopper had a pending pre-order and chose to
+  // wait and ship this (always non-pre-order) order together with it,
+  // instead of paying standard shipping for an immediate, separate
+  // shipment — see resolveCombineWithOrder in server/orders.ts and the
+  // checkout UI in routes/checkout.tsx. Only ever points at a pre-order;
+  // never the reverse (see that same comment for why). Purely advisory —
+  // nothing blocks admin from shipping this order independently at any
+  // time regardless of whether the order pointed to here has shipped yet.
+  combineWithOrderId: uuid('combine_with_order_id').references((): AnyPgColumn => orders.id, { onDelete: 'set null' }),
   // Set at checkout (see resolveAffiliateAttribution in server/affiliates.ts)
   // when the ebi_ref cookie matched an active affiliate and the order
   // actually got charged — never retroactively assigned after the fact.

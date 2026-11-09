@@ -525,7 +525,37 @@ export const adminGetOrder = createServerFn({ method: 'GET' })
       affiliate = row ?? null
     }
 
-    return { ...order, items, statusHistory, refunds, emails, shipments: orderShipments, affiliate }
+    // If the shopper chose "wait and ship together" at checkout (see
+    // combineWithOrderId in schema.ts), surface which order this one is
+    // waiting on...
+    let combineWithOrder: { id: string; orderNo: number; fulfillmentStatus: string } | null = null
+    if (order.combineWithOrderId) {
+      const [anchor] = await db
+        .select({ id: orders.id, orderNo: orders.orderNo, fulfillmentStatus: orders.fulfillmentStatus })
+        .from(orders)
+        .where(eq(orders.id, order.combineWithOrderId))
+        .limit(1)
+      combineWithOrder = anchor ?? null
+    }
+
+    // ...and the reverse: any order(s) waiting on THIS one, with enough
+    // (items + their own shipments) for the ship form to let admin include
+    // them in the same shipment action — see adminCreateShipment's
+    // combinedOrderId param.
+    const waitingRows = await db.select().from(orders).where(eq(orders.combineWithOrderId, data.id))
+    const waitingOnThis = await Promise.all(
+      waitingRows.map(async (w) => {
+        const wItems = await db.select().from(orderItems).where(eq(orderItems.orderId, w.id))
+        const wShipmentRows = await db.select().from(shipments).where(eq(shipments.orderId, w.id)).orderBy(asc(shipments.createdAt))
+        const wShipmentIds = wShipmentRows.map((s) => s.id)
+        const wShipmentItemRows = wShipmentIds.length === 0 ? [] : await db.select().from(shipmentItems).where(inArray(shipmentItems.shipmentId, wShipmentIds))
+        const wItemById = new Map(wItems.map((i) => [i.id, i]))
+        const wShipments = buildShipmentsByOrder(wShipmentRows, wShipmentItemRows, wItemById).get(w.id) ?? []
+        return { id: w.id, orderNo: w.orderNo, fulfillmentStatus: w.fulfillmentStatus, items: wItems, shipments: wShipments }
+      }),
+    )
+
+    return { ...order, items, statusHistory, refunds, emails, shipments: orderShipments, affiliate, combineWithOrder, waitingOnThis }
   })
 
 // "shipped" and "partially_shipped" are never set directly — they're always
@@ -671,6 +701,97 @@ export const adminSendCancellationEmailTest = createServerFn({ method: 'POST' })
     return { ok: true }
   })
 
+// Factored out of adminCreateShipment so the same per-order sequence (record
+// the shipment, recompute fulfillment status, email the customer, sync
+// Square) can run for a "combined" held order too, without duplicating any
+// of it — see combinedOrderId below.
+async function shipOneOrder(
+  db: ReturnType<typeof getDb>,
+  orderId: string,
+  carrier: string | null,
+  trackingNumber: string | null,
+  items: Array<{ orderItemId: string; qty: number }>,
+) {
+  const [order] = await db.select().from(orders).where(eq(orders.id, orderId)).limit(1)
+  if (!order) throw new Error('Order not found.')
+
+  const allItems = await db.select().from(orderItems).where(eq(orderItems.orderId, orderId))
+  const itemById = new Map(allItems.map((i) => [i.id, i]))
+
+  const priorShipments = await db.select({ id: shipments.id }).from(shipments).where(eq(shipments.orderId, orderId))
+  const priorShipmentIds = priorShipments.map((s) => s.id)
+  const priorShipmentItemRows =
+    priorShipmentIds.length === 0 ? [] : await db.select().from(shipmentItems).where(inArray(shipmentItems.shipmentId, priorShipmentIds))
+  const priorShippedItems = priorShipmentItemRows.map((si) => ({ orderItemId: si.orderItemId, qty: si.qty }))
+
+  const remaining = remainingQtyByItem(allItems, priorShippedItems)
+  for (const line of items) {
+    const item = itemById.get(line.orderItemId)
+    if (!item) throw new Error('One of the selected items does not belong to this order.')
+    const available = remaining.get(line.orderItemId) ?? 0
+    if (line.qty > available) throw new Error(`Only ${available} of "${item.productName}" remain to be shipped.`)
+  }
+
+  const [shipment] = await db.insert(shipments).values({ orderId, carrier, trackingNumber }).returning()
+  await db.insert(shipmentItems).values(items.map((line) => ({ shipmentId: shipment.id, orderItemId: line.orderItemId, qty: line.qty })))
+
+  const newStatus = computeFulfillmentStatus(allItems, [...priorShippedItems, ...items])
+  await db.update(orders).set({ fulfillmentStatus: newStatus }).where(eq(orders.id, orderId))
+  await db.insert(orderStatusEvents).values({ orderId, status: newStatus })
+
+  // Best-effort: email the customer about this specific shipment — only
+  // the items/quantities actually in it, not the whole order — since a
+  // failed/skipped send shouldn't block the shipment record itself.
+  try {
+    const shippedLines = items.map((line) => {
+      const item = itemById.get(line.orderItemId)!
+      return { productName: item.productName, qty: line.qty, unitPrice: item.unitPrice, img: item.img }
+    })
+    const sendResult = await sendShipmentEmail({
+      orderNo: order.orderNo,
+      email: order.email,
+      firstName: order.firstName,
+      lastName: order.lastName,
+      street: order.street,
+      apartment: order.apartment,
+      city: order.city,
+      state: order.state,
+      zip: order.zip,
+      carrier,
+      trackingNumber,
+      isFinalShipment: newStatus === 'shipped',
+      items: shippedLines,
+    })
+    await db.insert(emailEvents).values({
+      orderId: order.id,
+      email: order.email,
+      type: 'shipment_notice',
+      status: sendResult.status,
+      errorMessage: sendResult.error ?? null,
+      resendId: sendResult.resendId ?? null,
+    })
+  } catch (err) {
+    console.error(`Failed to send shipment email for order ${order.orderNo}:`, err)
+  }
+
+  // Best-effort: tell Square this order actually shipped, so its
+  // dashboard doesn't just sit at whatever state checkout left it in.
+  // Only once the order is fully shipped (not on a partial shipment) —
+  // the one fulfillment attached at checkout covers the whole order, not
+  // per-line-item, so completing it early would misrepresent an order
+  // that still has items left to go out.
+  if (newStatus === 'shipped' && order.squareOrderId) {
+    try {
+      const result = await completeSquareOrderFulfillment({ squareOrderId: order.squareOrderId, trackingNumber, carrier })
+      if ('error' in result) console.error(`Failed to sync shipped status to Square for order ${order.orderNo}:`, result.error)
+    } catch (err) {
+      console.error(`Failed to sync shipped status to Square for order ${order.orderNo}:`, err)
+    }
+  }
+
+  return newStatus
+}
+
 export const adminCreateShipment = createServerFn({ method: 'POST' })
   .validator(
     z.object({
@@ -678,93 +799,30 @@ export const adminCreateShipment = createServerFn({ method: 'POST' })
       carrier: z.enum(CARRIERS).nullable().optional(),
       trackingNumber: z.string().trim().nullable().optional(),
       items: z.array(z.object({ orderItemId: z.string(), qty: z.number().int().positive() })).min(1),
+      // A held "wait and ship together" order (see combineWithOrderId in
+      // schema.ts) to ship in this same action, same carrier/tracking — so
+      // admin doesn't have to open its ship form separately the moment its
+      // anchor order actually ships. A completely independent shipment
+      // record under the hood (orders have their own shipments table rows
+      // regardless), just created together in one submit.
+      combinedOrderId: z.string().optional(),
+      combinedItems: z.array(z.object({ orderItemId: z.string(), qty: z.number().int().positive() })).optional(),
     }),
   )
   .handler(async ({ data }) => {
     await assertAdmin()
     const db = getDb()
-
-    const [order] = await db.select().from(orders).where(eq(orders.id, data.orderId)).limit(1)
-    if (!order) throw new Error('Order not found.')
-
-    const allItems = await db.select().from(orderItems).where(eq(orderItems.orderId, data.orderId))
-    const itemById = new Map(allItems.map((i) => [i.id, i]))
-
-    const priorShipments = await db.select({ id: shipments.id }).from(shipments).where(eq(shipments.orderId, data.orderId))
-    const priorShipmentIds = priorShipments.map((s) => s.id)
-    const priorShipmentItemRows =
-      priorShipmentIds.length === 0 ? [] : await db.select().from(shipmentItems).where(inArray(shipmentItems.shipmentId, priorShipmentIds))
-    const priorShippedItems = priorShipmentItemRows.map((si) => ({ orderItemId: si.orderItemId, qty: si.qty }))
-
-    const remaining = remainingQtyByItem(allItems, priorShippedItems)
-    for (const line of data.items) {
-      const item = itemById.get(line.orderItemId)
-      if (!item) throw new Error('One of the selected items does not belong to this order.')
-      const available = remaining.get(line.orderItemId) ?? 0
-      if (line.qty > available) throw new Error(`Only ${available} of "${item.productName}" remain to be shipped.`)
-    }
-
     const carrier = data.carrier || null
     const trackingNumber = data.trackingNumber || null
 
-    const [shipment] = await db.insert(shipments).values({ orderId: data.orderId, carrier, trackingNumber }).returning()
-    await db.insert(shipmentItems).values(data.items.map((line) => ({ shipmentId: shipment.id, orderItemId: line.orderItemId, qty: line.qty })))
+    const newStatus = await shipOneOrder(db, data.orderId, carrier, trackingNumber, data.items)
 
-    const newStatus = computeFulfillmentStatus(allItems, [...priorShippedItems, ...data.items])
-    await db.update(orders).set({ fulfillmentStatus: newStatus }).where(eq(orders.id, data.orderId))
-    await db.insert(orderStatusEvents).values({ orderId: data.orderId, status: newStatus })
-
-    // Best-effort: email the customer about this specific shipment — only
-    // the items/quantities actually in it, not the whole order — since a
-    // failed/skipped send shouldn't block the shipment record itself.
-    try {
-      const shippedLines = data.items.map((line) => {
-        const item = itemById.get(line.orderItemId)!
-        return { productName: item.productName, qty: line.qty, unitPrice: item.unitPrice, img: item.img }
-      })
-      const sendResult = await sendShipmentEmail({
-        orderNo: order.orderNo,
-        email: order.email,
-        firstName: order.firstName,
-        lastName: order.lastName,
-        street: order.street,
-        apartment: order.apartment,
-        city: order.city,
-        state: order.state,
-        zip: order.zip,
-        carrier,
-        trackingNumber,
-        isFinalShipment: newStatus === 'shipped',
-        items: shippedLines,
-      })
-      await db.insert(emailEvents).values({
-        orderId: order.id,
-        email: order.email,
-        type: 'shipment_notice',
-        status: sendResult.status,
-        errorMessage: sendResult.error ?? null,
-        resendId: sendResult.resendId ?? null,
-      })
-    } catch (err) {
-      console.error(`Failed to send shipment email for order ${order.orderNo}:`, err)
+    let combinedStatus: 'pending' | 'partially_shipped' | 'shipped' | undefined
+    if (data.combinedOrderId && data.combinedItems && data.combinedItems.length > 0) {
+      combinedStatus = await shipOneOrder(db, data.combinedOrderId, carrier, trackingNumber, data.combinedItems)
     }
 
-    // Best-effort: tell Square this order actually shipped, so its
-    // dashboard doesn't just sit at whatever state checkout left it in.
-    // Only once the order is fully shipped (not on a partial shipment) —
-    // the one fulfillment attached at checkout covers the whole order, not
-    // per-line-item, so completing it early would misrepresent an order
-    // that still has items left to go out.
-    if (newStatus === 'shipped' && order.squareOrderId) {
-      try {
-        const result = await completeSquareOrderFulfillment({ squareOrderId: order.squareOrderId, trackingNumber, carrier })
-        if ('error' in result) console.error(`Failed to sync shipped status to Square for order ${order.orderNo}:`, result.error)
-      } catch (err) {
-        console.error(`Failed to sync shipped status to Square for order ${order.orderNo}:`, err)
-      }
-    }
-
-    return { ok: true, status: newStatus }
+    return { ok: true, status: newStatus, combinedStatus }
   })
 
 // Same idea as adminSendMarketplaceShipmentTest — sends the real email

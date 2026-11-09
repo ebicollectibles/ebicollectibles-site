@@ -63,6 +63,11 @@ const placeOrderSchema = z.object({
   // server-enforced checkbox rather than just disabling the button
   // client-side. Harmless/ignored for a cart with no pre-order item.
   preorderAcknowledged: z.boolean().optional().default(false),
+  // Set when the shopper chose "wait and ship together" for a pending
+  // pre-order at checkout (see resolveCombineWithOrder below) — always
+  // revalidated server-side, never trusted as-is, same reasoning as
+  // creditApplied above.
+  combineWithOrderId: z.string().optional(),
 })
 
 // Waives the flat shipping rate when this signed-in account already has an
@@ -86,6 +91,29 @@ async function resolveFreeShippingOverride(sessionUserId: string | null, hasPreo
     .where(and(eq(orders.userId, sessionUserId), eq(orders.fulfillmentStatus, 'pending'), eq(orders.hasPreorder, hasPreorder)))
     .limit(1)
   return pending ? 0 : undefined
+}
+
+// The explicit, customer-chosen counterpart to resolveFreeShippingOverride
+// above — that one auto-waives shipping for a SAME-type pending order; this
+// one only fires when the shopper actively opted in to wait for a
+// DIFFERENT-type one. One direction only: the pending order being waited on
+// must be a pre-order, and the order being placed now must not be — see
+// combineWithOrderId in schema.ts for why the reverse (holding an
+// already-fast regular order hostage to a brand-new pre-order) isn't
+// offered. Re-validates everything the client claims (ownership, that it's
+// actually still pending, that it's actually a pre-order) rather than
+// trusting requestedOrderId as-is — a stale or tampered id just silently
+// gets no discount, never an error, so a direct API call can't use this to
+// force a free-shipping order with no real anchor behind it.
+async function resolveCombineWithOrder(sessionUserId: string | null, requestedOrderId: string | undefined): Promise<string | undefined> {
+  if (!sessionUserId || !requestedOrderId) return undefined
+  const db = getDb()
+  const [anchor] = await db
+    .select({ id: orders.id })
+    .from(orders)
+    .where(and(eq(orders.id, requestedOrderId), eq(orders.userId, sessionUserId), eq(orders.fulfillmentStatus, 'pending'), eq(orders.hasPreorder, true)))
+    .limit(1)
+  return anchor?.id
 }
 
 export const placeOrder = createServerFn({ method: 'POST' })
@@ -139,9 +167,16 @@ export const placeOrder = createServerFn({ method: 'POST' })
     // undefined outside AK/HI (computeOrderTotals then uses the flat rate)
     // and also falls back to it if the Shippo lookup fails for any reason —
     // never blocks checkout on a shipping-API hiccup.
-    const [taxRate, shippingCostOverride] = await Promise.all([
+    // combineWithOrderId only makes sense for a non-pre-order placed against
+    // the flat rate — never in the AK/HI live-rate branch (that's a real,
+    // address-specific cost, not the flat fee this waives) and never for a
+    // pre-order order itself (see resolveCombineWithOrder's one-direction
+    // comment). Resolved in the same Promise.all as the other two since it's
+    // just another quick DB lookup, not an external call.
+    const isHiAk = isHiOrAk(data.contact.state)
+    const [taxRate, shippingCostOverride, combineWithOrderId] = await Promise.all([
       resolveSalesTaxRate(data.contact),
-      isHiOrAk(data.contact.state)
+      isHiAk
         ? resolveHiAkShippingRate({
             items: data.lines.map((l) => ({ weightLb: productById.get(l.productId)?.weightLb, qty: l.qty })),
             toAddress: {
@@ -154,7 +189,11 @@ export const placeOrder = createServerFn({ method: 'POST' })
             },
           }).then((rate) => rate ?? undefined)
         : resolveFreeShippingOverride(sessionUserId, hasPreorder),
+      hasPreorder || isHiAk ? Promise.resolve(undefined) : resolveCombineWithOrder(sessionUserId, data.combineWithOrderId),
     ])
+    // Matching-type waiver (above) wins if both somehow apply; otherwise a
+    // valid combine target also means free shipping on this order.
+    const effectiveShippingOverride = shippingCostOverride ?? (combineWithOrderId ? 0 : undefined)
 
     // Defense-in-depth beyond the disabled add-to-cart button — a coming-soon
     // or unpublished product is listed (or was, before being hidden) but
@@ -246,7 +285,7 @@ export const placeOrder = createServerFn({ method: 'POST' })
         })
       }
 
-      const { subtotal, shippingCost, tax, total } = computeOrderTotals(lineDetails, taxRate, shippingCostOverride)
+      const { subtotal, shippingCost, tax, total } = computeOrderTotals(lineDetails, taxRate, effectiveShippingOverride)
 
       // Store credit: clamp the requested amount to what's actually
       // possible (signed-in only, never more than this order costs), then
@@ -465,6 +504,7 @@ export const placeOrder = createServerFn({ method: 'POST' })
           affiliateCommissionRate,
           hasPreorder,
           preorderAcknowledgedAt: hasPreorder ? new Date() : null,
+          combineWithOrderId: combineWithOrderId ?? null,
         })
         .returning()
 

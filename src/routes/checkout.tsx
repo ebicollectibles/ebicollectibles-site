@@ -369,10 +369,20 @@ function CheckoutPage() {
   // pending order" should have been enough on its own (see the comment on
   // hasPendingOrder in server/customers.ts).
   const [mismatchedPendingOrder, setMismatchedPendingOrder] = React.useState(false)
+  // A pending pre-order exists and this cart is a regular (non-pre-order)
+  // order — the one direction this can go (see resolveCombineWithOrder in
+  // server/orders.ts). Lets the shopper choose to wait and ship with it
+  // instead of paying standard shipping for an immediate, separate
+  // shipment. null when there's no such pending order to offer.
+  const [combineCandidate, setCombineCandidate] = React.useState<{ id: string; orderNo: number } | null>(null)
+  // The shopper's choice, not an automatic waiver — defaults to "ship now"
+  // (today's behavior) so nothing changes unless they actively opt in.
+  const [shipTogetherChoice, setShipTogetherChoice] = React.useState(false)
   React.useEffect(() => {
     if (!account) {
       setPendingOrderWaivesShipping(false)
       setMismatchedPendingOrder(false)
+      setCombineCandidate(null)
       return
     }
     let cancelled = false
@@ -381,18 +391,24 @@ function CheckoutPage() {
         if (cancelled) return
         setPendingOrderWaivesShipping(result.waived)
         setMismatchedPendingOrder(result.mismatchedPending)
+        setCombineCandidate(result.combineCandidate)
       })
       .catch(() => {
         if (cancelled) return
         setPendingOrderWaivesShipping(false)
         setMismatchedPendingOrder(false)
+        setCombineCandidate(null)
       })
     return () => {
       cancelled = true
     }
   }, [account?.id, cartHasPreorder])
 
-  const shippingCost = hiAkShippingCost ?? (pendingOrderWaivesShipping ? 0 : cart.shippingCost)
+  // Only offered against the flat rate — never in the AK/HI live-rate
+  // branch, same reasoning as the server-side guard in orders.ts.
+  const combineOfferable = !hiAkShippingCost && combineCandidate !== null
+  const shipTogether = combineOfferable && shipTogetherChoice
+  const shippingCost = hiAkShippingCost ?? (pendingOrderWaivesShipping || shipTogether ? 0 : cart.shippingCost)
   const shippingLabel = cart.cartEmpty ? '—' : formatMoney(shippingCost)
   const total = cart.subtotal + shippingCost + tax
 
@@ -554,7 +570,15 @@ function CheckoutPage() {
             zip: contact.zip,
           }
         : billing
-      const result = await cart.placeOrder({ contact, billing: effectiveBilling, sourceId, emailOptIn, creditApplied, preorderAcknowledged: preorderAgreed })
+      const result = await cart.placeOrder({
+        contact,
+        billing: effectiveBilling,
+        sourceId,
+        emailOptIn,
+        creditApplied,
+        preorderAcknowledged: preorderAgreed,
+        combineWithOrderId: shipTogether ? (combineCandidate?.id ?? undefined) : undefined,
+      })
       trackEvent('purchase', {
         transaction_id: String(result.orderNo),
         currency: 'USD',
@@ -1146,7 +1170,34 @@ function CheckoutPage() {
                 Free — you have an order that hasn't shipped yet, so this one ships together with it.
               </div>
             )}
-            {!pendingOrderWaivesShipping && mismatchedPendingOrder && !hiAkShippingCost && (
+            {!pendingOrderWaivesShipping && combineOfferable && (
+              <div style={{ marginTop: -2, display: 'flex', flexDirection: 'column', gap: 7 }}>
+                <label style={{ display: 'flex', alignItems: 'flex-start', gap: 7, fontSize: 11.5, color: '#131b28', cursor: 'pointer', lineHeight: 1.5 }}>
+                  <input
+                    type="radio"
+                    name="combine-shipping"
+                    checked={!shipTogetherChoice}
+                    onChange={() => setShipTogetherChoice(false)}
+                    style={{ marginTop: 3, flexShrink: 0 }}
+                  />
+                  <span>Ship this now — standard shipping applies</span>
+                </label>
+                <label style={{ display: 'flex', alignItems: 'flex-start', gap: 7, fontSize: 11.5, color: '#131b28', cursor: 'pointer', lineHeight: 1.5 }}>
+                  <input
+                    type="radio"
+                    name="combine-shipping"
+                    checked={shipTogetherChoice}
+                    onChange={() => setShipTogetherChoice(true)}
+                    style={{ marginTop: 3, flexShrink: 0 }}
+                  />
+                  <span>
+                    Wait and ship with my pending pre-order <strong>#EBI-{combineCandidate?.orderNo}</strong> — free shipping, but
+                    this won't ship until that order does
+                  </span>
+                </label>
+              </div>
+            )}
+            {!pendingOrderWaivesShipping && !combineOfferable && mismatchedPendingOrder && !hiAkShippingCost && (
               <div style={{ fontSize: 11.5, color: '#5a6875', marginTop: -4 }}>
                 {cartHasPreorder
                   ? "You have a pending in-stock order, but this is a pre-order — they ship separately, so standard shipping applies."

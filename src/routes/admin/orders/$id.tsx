@@ -267,6 +267,13 @@ function AdminOrderDetailPage() {
   const [carrierInput, setCarrierInput] = React.useState('')
   const [trackingInput, setTrackingInput] = React.useState('')
   const [shipQtyByItem, setShipQtyByItem] = React.useState<Record<string, number>>({})
+  // Which order waiting on this one (see combineWithOrderId in schema.ts),
+  // if any, admin has chosen to also ship in this same action — null means
+  // none. At most one at a time, since adminCreateShipment's combinedOrderId
+  // only takes one; multiple waiting orders on the same anchor ship one at a
+  // time across separate ship actions.
+  const [combinedOrderId, setCombinedOrderId] = React.useState<string | null>(null)
+  const [combinedQtyByItem, setCombinedQtyByItem] = React.useState<Record<string, number>>({})
   const [testEmail, setTestEmail] = React.useState('eastblueinternational@gmail.com')
   const [testing, setTesting] = React.useState(false)
   const [testMessage, setTestMessage] = React.useState<string | null>(null)
@@ -356,6 +363,8 @@ function AdminOrderDetailPage() {
     setCarrierInput('')
     setTrackingInput('')
     setTestMessage(null)
+    setCombinedOrderId(null)
+    setCombinedQtyByItem({})
     const initial: Record<string, number> = {}
     for (const item of order.items) {
       const left = remaining.get(item.id) ?? 0
@@ -364,11 +373,30 @@ function AdminOrderDetailPage() {
     setShipQtyByItem(initial)
   }
 
+  const toggleCombined = (waiting: (typeof order.waitingOnThis)[number]) => {
+    if (combinedOrderId === waiting.id) {
+      setCombinedOrderId(null)
+      setCombinedQtyByItem({})
+      return
+    }
+    const waitingRemaining = remainingQtyByItem(waiting.items, waiting.shipments.flatMap((s) => s.items))
+    const initial: Record<string, number> = {}
+    for (const item of waiting.items) {
+      const left = waitingRemaining.get(item.id) ?? 0
+      if (left > 0) initial[item.id] = left
+    }
+    setCombinedOrderId(waiting.id)
+    setCombinedQtyByItem(initial)
+  }
+
   const confirmShipment = async () => {
     const items = Object.entries(shipQtyByItem)
       .filter(([, qty]) => qty > 0)
       .map(([orderItemId, qty]) => ({ orderItemId, qty }))
     if (items.length === 0) return
+    const combinedItems = Object.entries(combinedQtyByItem)
+      .filter(([, qty]) => qty > 0)
+      .map(([orderItemId, qty]) => ({ orderItemId, qty }))
     setUpdating(true)
     try {
       await adminCreateShipment({
@@ -377,6 +405,8 @@ function AdminOrderDetailPage() {
           carrier: (carrierInput || null) as (typeof CARRIERS)[number] | null,
           trackingNumber: trackingInput.trim() || null,
           items,
+          combinedOrderId: combinedOrderId && combinedItems.length > 0 ? combinedOrderId : undefined,
+          combinedItems: combinedOrderId && combinedItems.length > 0 ? combinedItems : undefined,
         },
       })
       setShipFormOpen(false)
@@ -632,6 +662,32 @@ function AdminOrderDetailPage() {
           {order.shipMethod} · placed {new Date(order.createdAt).toLocaleString()}
         </div>
 
+        {order.combineWithOrder && (
+          <div style={{ marginTop: 10, fontSize: 11.5, color: '#8a4a26' }}>
+            ⏳ Waiting to ship with{' '}
+            <Link to="/admin/orders/$id" params={{ id: order.combineWithOrder.id }} style={{ color: '#8a4a26', fontWeight: 600 }}>
+              #EBI-{order.combineWithOrder.orderNo}
+            </Link>{' '}
+            ({fulfillmentLabel[order.combineWithOrder.fulfillmentStatus] ?? order.combineWithOrder.fulfillmentStatus}) — chose free
+            shipping instead of shipping separately now. Ship this independently any time from the button below if needed.
+          </div>
+        )}
+        {order.waitingOnThis.length > 0 && (
+          <div style={{ marginTop: 10, fontSize: 11.5, color: '#8a4a26' }}>
+            ⏳{' '}
+            {order.waitingOnThis.map((w, i) => (
+              <React.Fragment key={w.id}>
+                {i > 0 && ', '}
+                <Link to="/admin/orders/$id" params={{ id: w.id }} style={{ color: '#8a4a26', fontWeight: 600 }}>
+                  #EBI-{w.orderNo}
+                </Link>
+              </React.Fragment>
+            ))}{' '}
+            {order.waitingOnThis.length === 1 ? 'is' : 'are'} waiting to ship together with this order — use "Ship items" below to
+            include {order.waitingOnThis.length === 1 ? 'it' : 'them'}.
+          </div>
+        )}
+
         <div style={{ marginTop: 16, paddingTop: 16, borderTop: '1px solid #f0f2f4', display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap' }}>
           <span
             style={{
@@ -789,6 +845,46 @@ function AdminOrderDetailPage() {
                 )
               })}
             </div>
+
+            {order.waitingOnThis.length > 0 && (
+              <div style={{ marginBottom: 10, paddingTop: 10, borderTop: '1px solid #e3e6ea', display: 'flex', flexDirection: 'column', gap: 8 }}>
+                {order.waitingOnThis.map((waiting) => (
+                  <div key={waiting.id}>
+                    <label style={{ display: 'flex', alignItems: 'center', gap: 7, fontSize: 12, color: '#131b28', cursor: 'pointer' }}>
+                      <input type="checkbox" checked={combinedOrderId === waiting.id} onChange={() => toggleCombined(waiting)} />
+                      Also ship order #EBI-{waiting.orderNo} now — it's waiting to ship together with this one
+                    </label>
+                    {combinedOrderId === waiting.id && (
+                      <div style={{ marginTop: 6, marginLeft: 22, display: 'flex', flexDirection: 'column', gap: 6 }}>
+                        {waiting.items.map((item) => {
+                          const waitingRemaining = remainingQtyByItem(waiting.items, waiting.shipments.flatMap((s) => s.items))
+                          const left = waitingRemaining.get(item.id) ?? 0
+                          if (left <= 0) return null
+                          return (
+                            <div key={item.id} style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: 12 }}>
+                              <span style={{ flex: 1, color: '#131b28' }}>{item.productName}</span>
+                              <input
+                                type="number"
+                                min={0}
+                                max={left}
+                                value={combinedQtyByItem[item.id] ?? 0}
+                                onChange={(e) => {
+                                  const n = Math.max(0, Math.min(left, Math.floor(Number(e.target.value)) || 0))
+                                  setCombinedQtyByItem((q) => ({ ...q, [item.id]: n }))
+                                }}
+                                style={{ width: 56, border: '1px solid #cfd4da', borderRadius: 2, padding: '4px 6px', fontSize: 12 }}
+                              />
+                              <span style={{ color: '#5a6875', fontSize: 11, minWidth: 62 }}>of {left} left</span>
+                            </div>
+                          )
+                        })}
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
+            )}
+
             <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap' }}>
               <select
                 value={carrierInput}

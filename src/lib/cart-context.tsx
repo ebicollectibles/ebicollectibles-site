@@ -54,6 +54,7 @@ interface CartContextValue {
     emailOptIn: boolean
     creditApplied?: number
     preorderAcknowledged?: boolean
+    combineWithOrderId?: string
   }) => Promise<{ orderNo: number; total: number; creditApplied: number; amountDue: number; paymentStatus: string }>
 }
 
@@ -158,6 +159,7 @@ export function CartProvider({ children, products }: { children: React.ReactNode
       emailOptIn: boolean
       creditApplied?: number
       preorderAcknowledged?: boolean
+      combineWithOrderId?: string
     }) => {
       const lines = Object.entries(state.cart).map(([productId, qty]) => ({ productId, qty }))
       const result = await placeOrderFn({
@@ -169,6 +171,7 @@ export function CartProvider({ children, products }: { children: React.ReactNode
           emailOptIn: opts.emailOptIn,
           creditApplied: opts.creditApplied ?? 0,
           preorderAcknowledged: opts.preorderAcknowledged ?? false,
+          combineWithOrderId: opts.combineWithOrderId,
         },
       })
       setState((s) => ({ ...s, cart: {} }))
