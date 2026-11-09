@@ -331,10 +331,12 @@ function AdminOrderDetailPage() {
     setRefundMessage(null)
     try {
       const result = await adminCancelAndRefundOrder({ data: { orderId: order.id, waiveFee } })
-      setRefundMessage(
+      const base =
         result.cancellationFee > 0
-          ? `Cancelled and refunded ${formatMoney(result.amount)} (after a ${formatMoney(result.cancellationFee)} cancellation fee). It may take a moment to show as "Refunded" below.`
-          : `Cancelled and refunded ${formatMoney(result.amount)}. It may take a moment to show as "Refunded" below.`,
+          ? `Cancelled and refunded ${formatMoney(result.amount)} (after a ${formatMoney(result.cancellationFee)} cancellation fee).`
+          : `Cancelled and refunded ${formatMoney(result.amount)}.`
+      setRefundMessage(
+        `${base}${result.creditRestored > 0 ? ` ${formatMoney(result.creditRestored)} store credit was restored to the customer's account.` : ''} It may take a moment to show as "Refunded" below.`,
       )
       await router.invalidate()
     } catch (err) {

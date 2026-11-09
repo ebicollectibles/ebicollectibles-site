@@ -27,6 +27,7 @@ import {
   shipments,
   shortLinks,
   storeCreditBalances,
+  storeCreditEvents,
   subscriberEvents,
   subscribers,
   users,
@@ -637,6 +638,35 @@ export const adminCancelAndRefundOrder = createServerFn({ method: 'POST' })
     await db.update(orders).set({ fulfillmentStatus: 'cancelled' }).where(eq(orders.id, data.orderId))
     await db.insert(orderStatusEvents).values({ orderId: data.orderId, status: 'cancelled' })
 
+    // The Square refund webhook (square-webhook.ts) auto-restores store
+    // credit on its own, but only for what it considers a FULL refund of
+    // order.total - order.creditApplied — true exactly when refunded is
+    // true and no cancellation fee was withheld. A fee-withheld refund
+    // sends Square less than that, so the webhook's check never fires; and
+    // an order with no Square payment to reverse at all (test-mode, or
+    // fully covered by store credit) never triggers the webhook in the
+    // first place. Both cases are handled here instead — this condition and
+    // the webhook's are complementary by construction, so there's no risk
+    // of restoring the same credit twice.
+    let creditRestored = 0
+    if (order.userId && order.creditApplied > 0 && !(refunded && cancellationFee === 0)) {
+      creditRestored = order.creditApplied
+      await db
+        .insert(storeCreditBalances)
+        .values({ userId: order.userId, balance: creditRestored })
+        .onConflictDoUpdate({
+          target: storeCreditBalances.userId,
+          set: { balance: sql`${storeCreditBalances.balance} + ${creditRestored}`, updatedAt: new Date() },
+        })
+      await db.insert(storeCreditEvents).values({
+        userId: order.userId,
+        type: 'reversed',
+        amount: creditRestored,
+        orderId: order.id,
+        reason: 'Order cancelled',
+      })
+    }
+
     // Best-effort, same contract as the shipment email above — a failed/
     // skipped send shouldn't undo the cancellation or the refund that
     // already went through.
@@ -653,6 +683,7 @@ export const adminCancelAndRefundOrder = createServerFn({ method: 'POST' })
         total: order.total,
         refundedAmount: amountCharged,
         cancellationFee,
+        creditRestored,
         paymentMethodSummary: order.paymentMethodSummary,
         items: allItems.map((i) => ({ productName: i.productName, qty: i.qty, unitPrice: i.unitPrice, img: i.img })),
       })
@@ -668,7 +699,7 @@ export const adminCancelAndRefundOrder = createServerFn({ method: 'POST' })
       console.error(`Failed to send cancellation email for order ${order.orderNo}:`, err)
     }
 
-    return { ok: true, refunded, amount: amountCharged, cancellationFee }
+    return { ok: true, refunded, amount: amountCharged, cancellationFee, creditRestored }
   })
 
 // Same "never writes anything, never charges anything" contract as
@@ -689,6 +720,12 @@ export const adminSendCancellationEmailTest = createServerFn({ method: 'POST' })
     const { cancellationFee, amountCharged } = computeCancellationAmounts(order, data.waiveFee)
     const allItems = await db.select().from(orderItems).where(eq(orderItems.orderId, data.orderId))
 
+    // Mirrors adminCancelAndRefundOrder's `refunded` and creditRestored
+    // logic without actually calling Square — just predicting what the real
+    // cancellation would do, for this preview.
+    const wouldRefund = !!order.squarePaymentId && amountCharged > 0
+    const creditRestored = order.creditApplied > 0 && !(wouldRefund && cancellationFee === 0) ? order.creditApplied : 0
+
     const sendResult = await sendOrderCancellationEmail({
       orderId: order.id,
       orderNo: order.orderNo,
@@ -699,6 +736,7 @@ export const adminSendCancellationEmailTest = createServerFn({ method: 'POST' })
       tax: order.tax,
       total: order.total,
       refundedAmount: amountCharged,
+      creditRestored,
       cancellationFee,
       paymentMethodSummary: order.paymentMethodSummary,
       items: allItems.map((i) => ({ productName: i.productName, qty: i.qty, unitPrice: i.unitPrice, img: i.img })),

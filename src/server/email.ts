@@ -252,6 +252,13 @@ interface OrderCancellationEmailData {
   // line so the customer can see exactly why refundedAmount is less than
   // total, instead of being left to guess.
   cancellationFee: number
+  // >0 when this order had store credit applied at checkout — that credit
+  // goes back to the customer's account balance on cancellation (either via
+  // the Square refund webhook's own auto-restore, or explicitly in
+  // adminCancelAndRefundOrder when the webhook won't fire — see the
+  // comment there), separate from and in addition to whatever cash refund
+  // is shown above.
+  creditRestored: number
   paymentMethodSummary: string | null
   items: OrderEmailItem[]
 }
@@ -289,6 +296,13 @@ export async function sendOrderCancellationEmail(order: OrderCancellationEmailDa
         order.cancellationFee > 0 ? ', after the cancellation fee shown above' : ''
       }. Refunds typically take 5–10 business days to appear on your statement, depending on your bank.</p>
     </div>
+    ${
+      order.creditRestored > 0
+        ? `<div style="margin-top:4px;margin-bottom:20px;padding:12px 16px;background:#eaf2ee;border:1px solid #c7ddd1;border-radius:2px;">
+      <p style="font-size:13px;line-height:1.6;color:${INK};margin:0;"><strong>${formatMoney(order.creditRestored)} in store credit has been restored</strong> to your account and is ready to use on a future order.</p>
+    </div>`
+        : ''
+    }
     ${order.paymentMethodSummary ? labelValueBlock('Refunded to', escapeHtml(order.paymentMethodSummary)) : ''}
     <a href="${orderUrl}" style="display:inline-block;background:${INK};color:#ffffff;font-size:13px;font-weight:700;text-decoration:none;padding:12px 22px;border-radius:3px;">View your order</a>
     <p style="font-size:12.5px;color:${MUTED};margin:20px 0 0;">Questions about this cancellation? Email us at <a href="mailto:eastblueinternational@gmail.com" style="color:${MUTED};">eastblueinternational@gmail.com</a>.</p>
@@ -314,6 +328,7 @@ export async function sendOrderCancellationEmail(order: OrderCancellationEmailDa
     order.cancellationFee > 0 ? `Cancellation fee: -${formatMoney(order.cancellationFee)}` : null,
     '',
     `${formatMoney(order.refundedAmount)} has been refunded to your original payment method${order.cancellationFee > 0 ? ', after the cancellation fee shown above' : ''}. Refunds typically take 5-10 business days to appear on your statement, depending on your bank.`,
+    order.creditRestored > 0 ? `${formatMoney(order.creditRestored)} in store credit has been restored to your account and is ready to use on a future order.` : null,
     order.paymentMethodSummary ? `Refunded to: ${order.paymentMethodSummary}` : null,
     '',
     `View your order: ${orderUrl}`,
