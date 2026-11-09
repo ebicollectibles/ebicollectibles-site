@@ -1295,8 +1295,14 @@ function CheckoutPage() {
                   padding: 15,
                   fontSize: 14,
                   fontWeight: 600,
-                  cursor: cart.cartEmpty || mixedPreorder || submitting || hiAkBlocked || (cartHasPreorder && !preorderAgreed) ? 'not-allowed' : 'pointer',
-                  opacity: cart.cartEmpty || mixedPreorder || submitting || hiAkBlocked || (cartHasPreorder && !preorderAgreed) ? 0.45 : 1,
+                  // mixedPreorder is intentionally NOT its own term here — it
+                  // implies cartHasPreorder, so (cartHasPreorder &&
+                  // !preorderAgreed) already covers it. A bare `mixedPreorder`
+                  // term would keep this looking disabled forever on a mixed
+                  // cart even after the customer checks the consent box below,
+                  // since mixedPreorder itself never becomes false.
+                  cursor: cart.cartEmpty || submitting || hiAkBlocked || (cartHasPreorder && !preorderAgreed) ? 'not-allowed' : 'pointer',
+                  opacity: cart.cartEmpty || submitting || hiAkBlocked || (cartHasPreorder && !preorderAgreed) ? 0.45 : 1,
                 }}
               >
                 {submitting ? 'Placing order…' : 'Place order'}
