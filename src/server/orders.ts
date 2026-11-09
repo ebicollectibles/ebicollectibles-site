@@ -202,10 +202,15 @@ export const placeOrder = createServerFn({ method: 'POST' })
     const unorderableError = findUnorderableLine(data.lines, productById)
     if (unorderableError) throw new Error(unorderableError)
 
-    // Pre-order items ship separately from in-stock ones — reject a mixed
-    // cart here too, beyond the disabled checkout button, for the same
-    // stale-cart/direct-API-call reasons as above.
-    if (hasMixedPreorderCart(productRows.map((p) => ({ preorder: p.preorder })))) {
+    // Pre-order items ship separately from in-stock ones by default — but a
+    // shopper can explicitly choose to keep a mixed cart as one order and
+    // wait for everything to ship together once the pre-order item
+    // arrives, same checkbox/consent as any other pre-order (see
+    // preorderAcknowledged just below and MIXED_PREORDER_INFO in
+    // order-math.ts for what they're actually agreeing to). Without that
+    // consent, reject the mixed cart here too, beyond the client-side
+    // guard, for the same stale-cart/direct-API-call reasons as above.
+    if (hasMixedPreorderCart(productRows.map((p) => ({ preorder: p.preorder }))) && !data.preorderAcknowledged) {
       throw new Error(MIXED_PREORDER_ERROR)
     }
     if (hasPreorder && !data.preorderAcknowledged) {

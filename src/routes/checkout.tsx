@@ -17,6 +17,7 @@ import {
   hasMixedPreorderCart,
   isHiOrAk,
   MIXED_PREORDER_ERROR,
+  MIXED_PREORDER_INFO,
 } from '~/lib/order-math'
 import { BLOCK_HI_AK_CHECKOUT } from '~/lib/feature-flags'
 import { formatMoney } from '~/lib/products'
@@ -523,7 +524,7 @@ function CheckoutPage() {
 
   const finishOrder = async (sourceId: string | null) => {
     setError(null)
-    if (mixedPreorder) {
+    if (mixedPreorder && !preorderAgreed) {
       setError(MIXED_PREORDER_ERROR)
       return
     }
@@ -1048,7 +1049,7 @@ function CheckoutPage() {
                               // amountDue <= 0 means credit alone covers the order — nothing
                               // for Apple Pay to charge, so it's disabled; "Place order"
                               // handles that case directly (see submit()).
-                              disabled={submitting || !contactComplete || !billingComplete || mixedPreorder || amountDue <= 0}
+                              disabled={submitting || !contactComplete || !billingComplete || amountDue <= 0}
                               blockedMessage={
                                 cartHasPreorder && !preorderAgreed
                                   ? 'Please check the box confirming you understand the pre-order terms before placing this order.'
@@ -1133,7 +1134,7 @@ function CheckoutPage() {
             <p style={{ fontSize: 13.5, color: '#131b28', margin: '4px 0 0' }}>Your cart is empty — add a box to check out.</p>
           )}
           {mixedPreorder && (
-            <p style={{ fontSize: 12.5, color: '#a85b2c', margin: '12px 0 0', lineHeight: 1.5 }}>{MIXED_PREORDER_ERROR}</p>
+            <p style={{ fontSize: 12.5, color: '#a85b2c', margin: '12px 0 0', lineHeight: 1.5 }}>{MIXED_PREORDER_INFO}</p>
           )}
           {!mixedPreorder && !cartHasPreorder && delayedShipment && (
             <p style={{ fontSize: 12.5, color: '#a85b2c', margin: '12px 0 0', lineHeight: 1.5 }}>
@@ -1227,7 +1228,7 @@ function CheckoutPage() {
                 <input type="checkbox" checked={emailOptIn} onChange={(e) => setEmailOptIn(e.target.checked)} />
                 Email me about restocks and new drops
               </label>
-              {cartHasPreorder && !mixedPreorder && (
+              {cartHasPreorder && (
                 <label
                   style={{
                     display: 'flex',
@@ -1263,8 +1264,11 @@ function CheckoutPage() {
                     <Link to="/shipping-policy" style={{ color: '#131b28', fontWeight: 600 }}>
                       Shipping Policy
                     </Link>
-                    . I understand this order includes a pre-order item, charged in full today, and that
-                    cancellations before shipment are subject to a <strong>5% cancellation fee</strong>.
+                    .{' '}
+                    {mixedPreorder
+                      ? "I understand this order includes a pre-order item, charged in full today, and that the entire order — including the in-stock item(s) — will ship together once the pre-order item becomes available."
+                      : 'I understand this order includes a pre-order item, charged in full today.'}{' '}
+                    Cancellations before shipment are subject to a <strong>5% cancellation fee</strong>.
                   </span>
                 </label>
               )}
@@ -1272,13 +1276,14 @@ function CheckoutPage() {
                 type="submit"
                 form="checkout-form"
                 // Deliberately NOT disabled for (cartHasPreorder && !preorderAgreed)
-                // — a disabled button fires no click/submit event at all, so
-                // tapping it would give zero feedback and look like a dead
-                // page (an actual customer confusion this caused). Still
-                // styled as disabled below (cursor/opacity) so it reads as
-                // "not ready yet"; finishOrder's own guard shows the real
-                // "check the box" message when this fires instead.
-                disabled={cart.cartEmpty || mixedPreorder || submitting || hiAkBlocked}
+                // or a mixed cart awaiting that same consent — a disabled
+                // button fires no click/submit event at all, so tapping it
+                // would give zero feedback and look like a dead page (an
+                // actual customer confusion this caused). Still styled as
+                // disabled below (cursor/opacity) so it reads as "not ready
+                // yet"; finishOrder's own guard shows the real message when
+                // this fires instead.
+                disabled={cart.cartEmpty || submitting || hiAkBlocked}
                 className="ebi-btn-dark"
                 style={{
                   marginTop: 14,

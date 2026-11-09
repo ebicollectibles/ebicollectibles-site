@@ -41,15 +41,29 @@ export function findUnorderableLine(
   return null
 }
 
+// Thrown/shown only when a mixed cart is actually submitted without the
+// preorder-agreement checkbox checked — see MIXED_PREORDER_INFO for the
+// always-visible explanation of the (now non-blocking) alternative.
 export const MIXED_PREORDER_ERROR =
-  'Your cart mixes pre-order and in-stock items — pre-order items ship separately, so please check out in two orders.'
+  'Your cart mixes pre-order and in-stock items — check the box below to keep it as one order, or check out in two orders instead.'
+
+// Shown as soon as the cart is mixed, regardless of whether the checkbox is
+// checked yet — explains both paths rather than presenting the mix as a
+// dead end. A pre-order product ships on its own later date, separate from
+// anything in stock now; by default that still means two orders, but a
+// shopper can instead explicitly choose to keep it as one order and wait
+// for the whole thing to ship together once the pre-order item arrives
+// (see preorderAcknowledged in server/orders.ts, which now gates this
+// instead of unconditionally rejecting it).
+export const MIXED_PREORDER_INFO =
+  'Your cart mixes a pre-order item with in-stock item(s). By default these ship separately — check out in two orders to get the in-stock item(s) sooner. Or check the box below to keep it as one order instead; everything will ship together once the pre-order item arrives.'
 
 // A pre-order product ships on its own later date, separate from anything
-// in stock now — mixing the two in one order would either hold the in-stock
-// items hostage to the pre-order's release date or need to be split into
-// two shipments after the fact. Blocking it at checkout is simpler and
-// matches what "ships separately" means. Same minimal shape works for both
-// client-side cart lines and server-side product rows.
+// in stock now — mixing the two in one order means either checking out in
+// two orders (the in-stock item ships right away) or explicitly choosing
+// to keep it as one order and wait for all of it to ship together (see
+// MIXED_PREORDER_INFO). Same minimal shape works for both client-side cart
+// lines and server-side product rows.
 export function hasMixedPreorderCart(items: Array<{ preorder: boolean }>): boolean {
   return items.some((i) => i.preorder) && items.some((i) => !i.preorder)
 }

@@ -11,7 +11,7 @@ import {
   hasDelayedShipment,
   hasMixedDelayedShipment,
   hasMixedPreorderCart,
-  MIXED_PREORDER_ERROR,
+  MIXED_PREORDER_INFO,
 } from '~/lib/order-math'
 import { formatMoney } from '~/lib/products'
 
@@ -211,7 +211,7 @@ function CartPage() {
               </div>
               <div style={{ fontSize: 11.5, color: '#5a6875', marginTop: 8 }}>Shipping and tax are calculated at checkout.</div>
               {mixedPreorder && (
-                <div style={{ fontSize: 12.5, color: '#a85b2c', marginTop: 12, lineHeight: 1.5 }}>{MIXED_PREORDER_ERROR}</div>
+                <div style={{ fontSize: 12.5, color: '#a85b2c', marginTop: 12, lineHeight: 1.5 }}>{MIXED_PREORDER_INFO}</div>
               )}
               {!mixedPreorder && !cartHasPreorder && delayedShipment && (
                 <div style={{ fontSize: 12.5, color: '#a85b2c', marginTop: 12, lineHeight: 1.5 }}>
@@ -238,7 +238,6 @@ function CartPage() {
                 </Link>
                 <button
                   onClick={() => navigate({ to: '/checkout' })}
-                  disabled={mixedPreorder}
                   className="ebi-btn-dark"
                   style={{
                     flex: 1,
@@ -249,14 +248,13 @@ function CartPage() {
                     padding: 13,
                     fontSize: 13,
                     fontWeight: 600,
-                    cursor: mixedPreorder ? 'not-allowed' : 'pointer',
-                    opacity: mixedPreorder ? 0.45 : 1,
+                    cursor: 'pointer',
                   }}
                 >
                   Checkout
                 </button>
               </div>
-              {cartHasPreorder && !mixedPreorder && (
+              {cartHasPreorder && (
                 <label
                   style={{
                     display: 'flex',
@@ -292,8 +290,11 @@ function CartPage() {
                     <Link to="/shipping-policy" style={{ color: '#131b28', fontWeight: 600 }}>
                       Shipping Policy
                     </Link>
-                    . I understand this order includes a pre-order item, charged in full today, and that
-                    cancellations before shipment are subject to a <strong>5% cancellation fee</strong>.
+                    .{' '}
+                    {mixedPreorder
+                      ? "I understand this order includes a pre-order item, charged in full today, and that the entire order — including the in-stock item(s) — will ship together once the pre-order item becomes available."
+                      : 'I understand this order includes a pre-order item, charged in full today.'}{' '}
+                    Cancellations before shipment are subject to a <strong>5% cancellation fee</strong>.
                   </span>
                 </label>
               )}
@@ -316,7 +317,7 @@ function CartPage() {
               )}
               <div style={{ marginTop: 10 }}>
                 <ExpressApplePayButton
-                  disabled={mixedPreorder}
+                  disabled={mixedPreorder && !preorderAgreed}
                   blockedMessage={
                     cartHasPreorder && !preorderAgreed
                       ? 'Please check the box confirming you understand the pre-order terms before using Express Apple Pay.'
