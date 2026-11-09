@@ -375,14 +375,21 @@ function CheckoutPage() {
   // instead of paying standard shipping for an immediate, separate
   // shipment. null when there's no such pending order to offer.
   const [combineCandidate, setCombineCandidate] = React.useState<{ id: string; orderNo: number } | null>(null)
-  // The shopper's choice, not an automatic waiver — defaults to "ship now"
-  // (today's behavior) so nothing changes unless they actively opt in.
-  const [shipTogetherChoice, setShipTogetherChoice] = React.useState(false)
+  // The shopper's choice — null means "hasn't picked yet". Starts
+  // unselected on purpose (not defaulted to "ship now") so they have to
+  // actively decide rather than a silent default deciding for them; see
+  // shipChoiceMissing below for what happens if they try to submit before
+  // picking.
+  const [shipTogetherChoice, setShipTogetherChoice] = React.useState<boolean | null>(null)
+  // Set only when they tried to place the order without picking — cleared
+  // the moment they do. Drives an inline highlight, never a popup/alert().
+  const [shipChoiceMissing, setShipChoiceMissing] = React.useState(false)
   React.useEffect(() => {
     if (!account) {
       setPendingOrderWaivesShipping(false)
       setMismatchedPendingOrder(false)
       setCombineCandidate(null)
+      setShipTogetherChoice(null)
       return
     }
     let cancelled = false
@@ -392,12 +399,14 @@ function CheckoutPage() {
         setPendingOrderWaivesShipping(result.waived)
         setMismatchedPendingOrder(result.mismatchedPending)
         setCombineCandidate(result.combineCandidate)
+        setShipTogetherChoice(null)
       })
       .catch(() => {
         if (cancelled) return
         setPendingOrderWaivesShipping(false)
         setMismatchedPendingOrder(false)
         setCombineCandidate(null)
+        setShipTogetherChoice(null)
       })
     return () => {
       cancelled = true
@@ -407,7 +416,8 @@ function CheckoutPage() {
   // Only offered against the flat rate — never in the AK/HI live-rate
   // branch, same reasoning as the server-side guard in orders.ts.
   const combineOfferable = !hiAkShippingCost && combineCandidate !== null
-  const shipTogether = combineOfferable && shipTogetherChoice
+  const shipTogether = combineOfferable && shipTogetherChoice === true
+  const shipChoicePending = combineOfferable && shipTogetherChoice === null
   const shippingCost = hiAkShippingCost ?? (pendingOrderWaivesShipping || shipTogether ? 0 : cart.shippingCost)
   const shippingLabel = cart.cartEmpty ? '—' : formatMoney(shippingCost)
   const total = cart.subtotal + shippingCost + tax
@@ -555,6 +565,11 @@ function CheckoutPage() {
     }
     if (cartHasPreorder && !preorderAgreed) {
       setError('Please check the box confirming you understand the pre-order terms before placing this order.')
+      return
+    }
+    if (shipChoicePending) {
+      setShipChoiceMissing(true)
+      setError('Please choose whether to ship now or wait and ship with your pending pre-order, above.')
       return
     }
     setSubmitting(true)
@@ -1073,10 +1088,15 @@ function CheckoutPage() {
                               blockedMessage={
                                 cartHasPreorder && !preorderAgreed
                                   ? 'Please check the box confirming you understand the pre-order terms before placing this order.'
-                                  : undefined
+                                  : shipChoicePending
+                                    ? 'Please choose whether to ship now or wait and ship with your pending pre-order, above.'
+                                    : undefined
                               }
                               onTokenize={(sourceId) => finishOrder(sourceId)}
-                              onError={setError}
+                              onError={(msg) => {
+                                setError(msg)
+                                if (shipChoicePending) setShipChoiceMissing(true)
+                              }}
                               onAvailabilityChange={setApplePayAvailable}
                             />
                           </div>
@@ -1171,30 +1191,77 @@ function CheckoutPage() {
               </div>
             )}
             {!pendingOrderWaivesShipping && combineOfferable && (
-              <div style={{ marginTop: -2, display: 'flex', flexDirection: 'column', gap: 7 }}>
-                <label style={{ display: 'flex', alignItems: 'flex-start', gap: 7, fontSize: 11.5, color: '#131b28', cursor: 'pointer', lineHeight: 1.5 }}>
-                  <input
-                    type="radio"
-                    name="combine-shipping"
-                    checked={!shipTogetherChoice}
-                    onChange={() => setShipTogetherChoice(false)}
-                    style={{ marginTop: 3, flexShrink: 0 }}
-                  />
-                  <span>Ship this now — standard shipping applies</span>
-                </label>
-                <label style={{ display: 'flex', alignItems: 'flex-start', gap: 7, fontSize: 11.5, color: '#131b28', cursor: 'pointer', lineHeight: 1.5 }}>
-                  <input
-                    type="radio"
-                    name="combine-shipping"
-                    checked={shipTogetherChoice}
-                    onChange={() => setShipTogetherChoice(true)}
-                    style={{ marginTop: 3, flexShrink: 0 }}
-                  />
-                  <span>
-                    Wait and ship with my pending pre-order <strong>#EBI-{combineCandidate?.orderNo}</strong> — free shipping, but
-                    this won't ship until that order does
-                  </span>
-                </label>
+              <div style={{ marginTop: -2 }}>
+                <div
+                  style={{
+                    border: `1px solid ${shipChoiceMissing ? '#a85b2c' : '#e3e6ea'}`,
+                    borderRadius: 4,
+                    overflow: 'hidden',
+                  }}
+                >
+                  <label
+                    style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: 10,
+                      padding: '11px 12px',
+                      cursor: 'pointer',
+                      background: shipTogetherChoice === false ? '#f6f7f8' : '#ffffff',
+                      borderBottom: '1px solid #e3e6ea',
+                    }}
+                  >
+                    <input
+                      type="radio"
+                      name="combine-shipping"
+                      checked={shipTogetherChoice === false}
+                      onChange={() => {
+                        setShipTogetherChoice(false)
+                        setShipChoiceMissing(false)
+                      }}
+                      style={{ flexShrink: 0 }}
+                    />
+                    <span style={{ flex: '1 1 auto', fontSize: 12.5, color: '#131b28', lineHeight: 1.4 }}>Ship this now</span>
+                    <span style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 12.5, fontWeight: 600, color: '#131b28', whiteSpace: 'nowrap' }}>
+                      {formatMoney(cart.shippingCost)}
+                    </span>
+                  </label>
+                  <label
+                    style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: 10,
+                      padding: '11px 12px',
+                      cursor: 'pointer',
+                      background: shipTogetherChoice === true ? '#eaf2ee' : '#ffffff',
+                    }}
+                  >
+                    <input
+                      type="radio"
+                      name="combine-shipping"
+                      checked={shipTogetherChoice === true}
+                      onChange={() => {
+                        setShipTogetherChoice(true)
+                        setShipChoiceMissing(false)
+                      }}
+                      style={{ flexShrink: 0 }}
+                    />
+                    <span style={{ flex: '1 1 auto', fontSize: 12.5, color: '#131b28', lineHeight: 1.4 }}>
+                      Wait and ship with <strong>#EBI-{combineCandidate?.orderNo}</strong>
+                    </span>
+                    <span style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 12.5, fontWeight: 600, color: '#3f7a63', whiteSpace: 'nowrap' }}>
+                      Free
+                    </span>
+                  </label>
+                </div>
+                <p style={{ fontSize: 11, color: shipChoiceMissing ? '#a85b2c' : '#5a6875', margin: '6px 0 0', lineHeight: 1.5 }}>
+                  {shipChoiceMissing
+                    ? '⚠ Please choose one of the options above before placing your order.'
+                    : shipTogetherChoice === true
+                      ? "This order won't ship until your pending pre-order does."
+                      : shipTogetherChoice === false
+                        ? 'This ships on its own, independent of your pending pre-order.'
+                        : "Your pending pre-order hasn't shipped yet — choose how this one should ship."}
+                </p>
               </div>
             )}
             {!pendingOrderWaivesShipping && !combineOfferable && mismatchedPendingOrder && !hiAkShippingCost && (
