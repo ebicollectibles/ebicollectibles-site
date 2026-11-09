@@ -259,7 +259,7 @@ function AdminOrderDetailPage() {
   const order = Route.useLoaderData()
   const [updating, setUpdating] = React.useState(false)
   const [refundMessage, setRefundMessage] = React.useState<string | null>(null)
-  const [waiveFee, setWaiveFee] = React.useState(true)
+  const [waiveFee, setWaiveFee] = React.useState(false)
   const [cancelTestEmail, setCancelTestEmail] = React.useState('eastblueinternational@gmail.com')
   const [cancelTesting, setCancelTesting] = React.useState(false)
   const [cancelTestMessage, setCancelTestMessage] = React.useState<string | null>(null)
