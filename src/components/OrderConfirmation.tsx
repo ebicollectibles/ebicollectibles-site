@@ -13,9 +13,13 @@ export function OrderConfirmation({
 }: {
   orderNo: number
   paymentStatus: string
-  // A mixed cart is blocked at checkout, so an order is either all
-  // pre-order or none — no need to say which items, just whether this
-  // order falls under the pre-order (charged-in-full, 5% cancellation fee) terms.
+  // True if ANY line was a pre-order at order time (see hasPreorder in
+  // schema.ts) — a mixed cart is blocked by default, but a shopper can
+  // explicitly keep one as a single order instead of splitting it, so this
+  // flag alone doesn't mean every item is a pre-order. The message below
+  // is deliberately worded to stay accurate either way: it says the order
+  // "includes" a pre-order item and explains the charged-in-full/5%-fee
+  // terms, never that everything in it is one.
   hasPreorder?: boolean
   // Unlike hasPreorder, this can appear alongside regular items in the same
   // order (see hasDelayedShipment in lib/order-math.ts) — it's a shipping
