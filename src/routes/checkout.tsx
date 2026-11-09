@@ -1147,7 +1147,11 @@ function CheckoutPage() {
             </div>
             <div style={{ display: 'flex', justifyContent: 'space-between' }}>
               <span style={{ color: '#131b28' }}>Shipping</span>
-              <span style={{ fontFamily: "'IBM Plex Mono', monospace" }}>{shippingLabel}</span>
+              {shipChoicePending ? (
+                <span style={{ color: '#5a6875', fontStyle: 'italic' }}>Choose below ↓</span>
+              ) : (
+                <span style={{ fontFamily: "'IBM Plex Mono', monospace" }}>{shippingLabel}</span>
+              )}
             </div>
             {pendingOrderWaivesShipping && !hiAkShippingCost && (
               <div style={{ fontSize: 11.5, color: '#3f7a63', marginTop: -4 }}>
@@ -1182,7 +1186,7 @@ function CheckoutPage() {
                 <span style={{ fontFamily: "'IBM Plex Mono', monospace" }}>{formatMoney(tax)}</span>
               </div>
             )}
-            {creditApplied > 0 && (
+            {creditApplied > 0 && !shipChoicePending && (
               <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                 <span style={{ color: '#3f7a63' }}>Store credit</span>
                 <span style={{ fontFamily: "'IBM Plex Mono', monospace", color: '#3f7a63' }}>-{formatMoney(creditApplied)}</span>
@@ -1212,7 +1216,9 @@ function CheckoutPage() {
           )}
           <div style={{ marginTop: 16, paddingTop: 16, borderTop: '1px solid #131b28', display: 'flex', justifyContent: 'space-between', alignItems: 'baseline' }}>
             <span style={{ fontSize: 15, fontWeight: 700 }}>Total</span>
-            <span style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 21, fontWeight: 500 }}>{formatMoney(amountDue)}</span>
+            <span style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 21, fontWeight: 500 }}>
+              {shipChoicePending ? '—' : formatMoney(amountDue)}
+            </span>
           </div>
           {checkoutAs !== null && (
             <>
