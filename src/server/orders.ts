@@ -256,6 +256,7 @@ export const placeOrder = createServerFn({ method: 'POST' })
         img: string | null
         unitPrice: number
         qty: number
+        preorder: boolean
       }> = []
 
       for (const line of data.lines) {
@@ -267,7 +268,7 @@ export const placeOrder = createServerFn({ method: 'POST' })
           // squareLivePrices) — fall back to the stored price rather than
           // treat them as free, same as the product page's own fallback.
           const unitPrice = squareLivePrices[product.squareVariationId] ?? product.price
-          lineDetails.push({ productId: product.id, name: product.name, img: product.img, unitPrice, qty: line.qty })
+          lineDetails.push({ productId: product.id, name: product.name, img: product.img, unitPrice, qty: line.qty, preorder: !!product.preorder })
           continue
         }
 
@@ -287,6 +288,7 @@ export const placeOrder = createServerFn({ method: 'POST' })
           img: updated.img,
           unitPrice: updated.price,
           qty: line.qty,
+          preorder: !!updated.preorder,
         })
       }
 
@@ -521,6 +523,7 @@ export const placeOrder = createServerFn({ method: 'POST' })
           img: l.img,
           unitPrice: l.unitPrice,
           qty: l.qty,
+          isPreorder: l.preorder,
           affiliateCommissionRate: lineCommissions?.[i]?.rate ?? null,
           affiliateCommission: lineCommissions ? lineCommissions[i].commission : null,
         })),

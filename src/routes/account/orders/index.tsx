@@ -164,7 +164,7 @@ function OrdersPage() {
                           padding: '2px 6px',
                         }}
                       >
-                        Pre-order
+                        {order.mixedPreorder ? 'Mixed' : 'Pre-order'}
                       </span>
                     )}
                   </div>

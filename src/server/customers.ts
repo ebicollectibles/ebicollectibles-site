@@ -69,13 +69,27 @@ export const getMyOrders = createServerFn({ method: 'GET' }).handler(async () =>
   // order that's never going to ship.
   const orderNoById = new Map(orders.map((o) => [o.id, o.orderNo]))
   const orderStatusById = new Map(orders.map((o) => [o.id, o.fulfillmentStatus]))
-  return orders.map((order) => ({
-    ...order,
-    items: itemsByOrder.get(order.id) ?? [],
-    totalRefunded: refundedByOrder.get(order.id) ?? 0,
-    combineWithOrderNo: order.combineWithOrderId ? (orderNoById.get(order.combineWithOrderId) ?? null) : null,
-    combineWithOrderStatus: order.combineWithOrderId ? (orderStatusById.get(order.combineWithOrderId) ?? null) : null,
-  }))
+  return orders.map((order) => {
+    const items = itemsByOrder.get(order.id) ?? []
+    return {
+      ...order,
+      items,
+      totalRefunded: refundedByOrder.get(order.id) ?? 0,
+      combineWithOrderNo: order.combineWithOrderId ? (orderNoById.get(order.combineWithOrderId) ?? null) : null,
+      combineWithOrderStatus: order.combineWithOrderId ? (orderStatusById.get(order.combineWithOrderId) ?? null) : null,
+      // true only when at least one line is flagged as a pre-order AND at
+      // least one isn't (see orderItems.isPreorder) — lets order history
+      // show "Mixed" instead of a flat "Pre-order" tag for a cart that
+      // combined a pre-order with an in-stock item, rather than implying
+      // the whole order was pre-order. Checking for at least one
+      // isPreorder: true line (not just order.hasPreorder) is what keeps
+      // this false on every order placed before this column existed —
+      // their item snapshots all default to isPreorder: false, so this
+      // never fires for them and they just keep showing the plain
+      // "Pre-order" tag they always have.
+      mixedPreorder: items.some((i) => i.isPreorder) && items.some((i) => !i.isPreorder),
+    }
+  })
 })
 
 // Used by checkout.tsx to waive the flat shipping rate when this account

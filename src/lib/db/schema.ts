@@ -577,6 +577,18 @@ export const orderItems = pgTable('order_items', {
   img: text('img'),
   unitPrice: numeric('unit_price', { precision: 10, scale: 2, mode: 'number' }).notNull(),
   qty: integer('qty').notNull(),
+  // Snapshot of whether THIS line was a pre-order at the time this order
+  // was placed — same reasoning as productName/unitPrice above: products
+  // can flip in and out of pre-order later, so orders.hasPreorder alone
+  // can't tell a customer's order-history row "every item here was a
+  // pre-order" from "only some were" (a mixed cart, see hasMixedPreorderCart
+  // in lib/order-math.ts). Defaults to false so every pre-existing row
+  // reads as "not a pre-order line" — that just makes an old mixed/
+  // pre-order order display exactly as it already did (a plain "Pre-order"
+  // tag from orders.hasPreorder, no "Mixed" distinction) rather than
+  // mislabeling it; only orders placed after this column exists get the
+  // precise split.
+  isPreorder: boolean('is_preorder').notNull().default(false),
   // Per-line commission, snapshotted at order time for the same reason as
   // orders.affiliateCommission/affiliateCommissionRate — null on every
   // line whenever the order itself had no affiliate attribution. See
