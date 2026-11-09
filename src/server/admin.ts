@@ -541,8 +541,15 @@ export const adminGetOrder = createServerFn({ method: 'GET' })
     // ...and the reverse: any order(s) waiting on THIS one, with enough
     // (items + their own shipments) for the ship form to let admin include
     // them in the same shipment action — see adminCreateShipment's
-    // combinedOrderId param.
-    const waitingRows = await db.select().from(orders).where(eq(orders.combineWithOrderId, data.id))
+    // combinedOrderId param. Excludes anything already fully shipped or
+    // cancelled independently of this flow — nothing left there worth
+    // offering to combine. combineWithOrderId itself is left untouched in
+    // that case (it's a historical record of why shipping was waived, not
+    // a live pointer that needs clearing).
+    const waitingRows = await db
+      .select()
+      .from(orders)
+      .where(and(eq(orders.combineWithOrderId, data.id), notInArray(orders.fulfillmentStatus, ['shipped', 'cancelled'])))
     const waitingOnThis = await Promise.all(
       waitingRows.map(async (w) => {
         const wItems = await db.select().from(orderItems).where(eq(orderItems.orderId, w.id))

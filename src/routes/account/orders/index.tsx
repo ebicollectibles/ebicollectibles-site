@@ -171,6 +171,9 @@ function OrdersPage() {
                   {order.totalRefunded > 0 && (
                     <div style={{ marginTop: 2, fontSize: 11.5, color: '#8a4a26', fontWeight: 600 }}>Refunded {formatMoney(order.totalRefunded)}</div>
                   )}
+                  {order.combineWithOrderNo && order.fulfillmentStatus !== 'shipped' && order.fulfillmentStatus !== 'cancelled' && (
+                    <div style={{ marginTop: 2, fontSize: 11.5, color: '#3f7a63' }}>Waiting to ship with #EBI-{order.combineWithOrderNo}</div>
+                  )}
                 </div>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
                   <span style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 14, fontWeight: 600 }}>

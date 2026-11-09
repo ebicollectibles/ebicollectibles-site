@@ -48,6 +48,18 @@ describe('computeOrderTotals', () => {
     expect(result.shippingCost).toBe(0)
   })
 
+  // A shippingCostOverride of exactly 0 (the free-shipping case — see
+  // resolveFreeShippingOverride and resolveCombineWithOrder in
+  // server/orders.ts) must NOT be treated the same as "no override given".
+  // Both are falsy, but only `undefined` should fall back to the flat
+  // rate — `??` (not `||`) is what makes that distinction, and this test
+  // exists specifically to catch a regression if that ever changed to `||`.
+  it('treats an override of exactly 0 as free shipping, not "no override"', () => {
+    const result = computeOrderTotals([{ unitPrice: 40, qty: 1 }], 0, 0)
+    expect(result.shippingCost).toBe(0)
+    expect(result.total).toBe(40)
+  })
+
   it('defaults amountDue to the full total when no credit is applied', () => {
     const result = computeOrderTotals([{ unitPrice: 40, qty: 1 }], 0)
     expect(result.creditApplied).toBe(0)

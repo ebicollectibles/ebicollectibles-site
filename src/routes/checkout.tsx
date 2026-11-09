@@ -1216,7 +1216,10 @@ function CheckoutPage() {
                       checked={shipTogetherChoice === false}
                       onChange={() => {
                         setShipTogetherChoice(false)
-                        setShipChoiceMissing(false)
+                        if (shipChoiceMissing) {
+                          setShipChoiceMissing(false)
+                          setError(null)
+                        }
                       }}
                       style={{ flexShrink: 0 }}
                     />
@@ -1241,7 +1244,10 @@ function CheckoutPage() {
                       checked={shipTogetherChoice === true}
                       onChange={() => {
                         setShipTogetherChoice(true)
-                        setShipChoiceMissing(false)
+                        if (shipChoiceMissing) {
+                          setShipChoiceMissing(false)
+                          setError(null)
+                        }
                       }}
                       style={{ flexShrink: 0 }}
                     />

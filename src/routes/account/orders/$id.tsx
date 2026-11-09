@@ -90,6 +90,26 @@ function OrderDetailPage() {
         </div>
       )}
 
+      {order.combineWithOrderNo && order.fulfillmentStatus !== 'shipped' && order.fulfillmentStatus !== 'cancelled' && (
+        <div
+          style={{
+            marginTop: 16,
+            padding: '12px 16px',
+            background: '#eaf2ee',
+            border: '1px solid #c7ddd1',
+            borderRadius: 2,
+          }}
+        >
+          <p style={{ fontSize: 13, lineHeight: 1.6, color: '#131b28', margin: 0 }}>
+            You chose free shipping on this order by waiting for it to ship together with order{' '}
+            <Link to="/account/orders/$id" params={{ id: order.combineWithOrderId! }} style={{ color: '#131b28', fontWeight: 600 }}>
+              #EBI-{order.combineWithOrderNo}
+            </Link>
+            . It'll ship once that one does.
+          </p>
+        </div>
+      )}
+
       {order.shipments.length > 0 && (
         <div style={{ marginTop: 20, paddingTop: 16, borderTop: '1px solid #e3e6ea' }}>
           <div style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 10.5, letterSpacing: '0.1em', textTransform: 'uppercase', color: '#5a6875' }}>

@@ -60,10 +60,15 @@ export const getMyOrders = createServerFn({ method: 'GET' }).handler(async () =>
     if (r.status !== 'COMPLETED' || r.orderId == null) continue
     refundedByOrder.set(r.orderId, (refundedByOrder.get(r.orderId) ?? 0) + (r.amount ?? 0))
   }
+  // The anchor order (see combineWithOrderId in schema.ts) is always one of
+  // this customer's own orders too, so it's already in `orders` above —
+  // no extra query needed to label it by order number.
+  const orderNoById = new Map(orders.map((o) => [o.id, o.orderNo]))
   return orders.map((order) => ({
     ...order,
     items: itemsByOrder.get(order.id) ?? [],
     totalRefunded: refundedByOrder.get(order.id) ?? 0,
+    combineWithOrderNo: order.combineWithOrderId ? (orderNoById.get(order.combineWithOrderId) ?? null) : null,
   }))
 })
 
@@ -160,5 +165,17 @@ export const getMyOrder = createServerFn({ method: 'GET' })
     const orderShipments = buildShipmentsByOrder(shipments, shipmentItems, itemById).get(data.id) ?? []
     const totalRefunded = refunds.filter((r) => r.status === 'COMPLETED').reduce((t, r) => t + (r.amount ?? 0), 0)
 
-    return { ...order, items, shipments: orderShipments, totalRefunded }
+    // Looked up separately since this order's own id is needed first to
+    // know whether there's an anchor to look up at all — the anchor (see
+    // combineWithOrderId in schema.ts) is always this same customer's own
+    // order too, so the RLS policy on orders already permits reading it.
+    let combineWithOrderNo: number | null = null
+    if (order.combineWithOrderId) {
+      const [[anchorRow]] = await getCustomerScopedRows(userId, (sql) => [
+        sql`select order_no from orders where id = ${order.combineWithOrderId} and user_id = ${userId} limit 1`,
+      ])
+      combineWithOrderNo = (anchorRow as { orderNo: number } | undefined)?.orderNo ?? null
+    }
+
+    return { ...order, items, shipments: orderShipments, totalRefunded, combineWithOrderNo }
   })
