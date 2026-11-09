@@ -2,6 +2,8 @@ import * as React from 'react'
 import { createFileRoute, Link, useNavigate } from '@tanstack/react-router'
 import { ExpressApplePayButton } from '~/components/ExpressApplePayButton'
 import { OrderConfirmation } from '~/components/OrderConfirmation'
+import { ShipTogetherChoice } from '~/components/ShipTogetherChoice'
+import { useCombineShippingChoice } from '~/lib/use-combine-shipping'
 import { useCart } from '~/lib/cart-context'
 import {
   ALL_DELAYED_SHIPMENT_WARNING,
@@ -28,7 +30,7 @@ const monoLabel: React.CSSProperties = {
 }
 
 function CartPage() {
-  const { lines, cartCount, cartEmpty, subtotal, bump, removeFromCart } = useCart()
+  const { lines, cartCount, cartEmpty, subtotal, shippingCost, bump, removeFromCart } = useCart()
   const navigate = useNavigate()
   const mixedPreorder = hasMixedPreorderCart(lines.map((l) => ({ preorder: !!l.product.preorder })))
   const delayedShipment = hasDelayedShipment(lines.map((l) => ({ shipsWithDelay: !!l.product.shipsWithDelay })))
@@ -38,6 +40,24 @@ function CartPage() {
   // Apple Pay skips the full checkout form, so this is its own copy of the
   // same gate rather than relying on the one on that page.
   const [preorderAgreed, setPreorderAgreed] = React.useState(false)
+  // Shared with checkout.tsx — see useCombineShippingChoice. No accountKey
+  // here: unlike checkout.tsx, nothing on this page can sign someone in
+  // mid-flow, so there's no login event that would need a re-check.
+  const {
+    pendingOrderWaivesShipping,
+    combineCandidate,
+    shipTogetherChoice,
+    setShipTogetherChoice,
+    shipChoiceMissing,
+    setShipChoiceMissing,
+  } = useCombineShippingChoice(cartHasPreorder)
+  // No AK/HI guard needed here (unlike checkout.tsx's combineOfferable) —
+  // Express Apple Pay already refuses AK/HI addresses outright (see
+  // BLOCK_HI_AK_CHECKOUT below in ExpressApplePayButton), so there's no
+  // live-rate branch this could ever conflict with.
+  const combineOfferable = combineCandidate !== null
+  const shipTogether = combineOfferable && shipTogetherChoice === true
+  const shipChoicePending = combineOfferable && shipTogetherChoice === null
   const [confirmed, setConfirmed] = React.useState<{
     orderNo: number
     paymentStatus: string
@@ -277,17 +297,42 @@ function CartPage() {
                   </span>
                 </label>
               )}
+              {!pendingOrderWaivesShipping && combineOfferable && combineCandidate && (
+                <div style={{ marginTop: 14 }}>
+                  <ShipTogetherChoice
+                    combineCandidate={combineCandidate}
+                    shipTogetherChoice={shipTogetherChoice}
+                    missing={shipChoiceMissing}
+                    standardShippingCost={shippingCost}
+                    onChange={(value) => {
+                      setShipTogetherChoice(value)
+                      if (shipChoiceMissing) {
+                        setShipChoiceMissing(false)
+                        setExpressError(null)
+                      }
+                    }}
+                  />
+                </div>
+              )}
               <div style={{ marginTop: 10 }}>
                 <ExpressApplePayButton
                   disabled={mixedPreorder}
                   blockedMessage={
                     cartHasPreorder && !preorderAgreed
                       ? 'Please check the box confirming you understand the pre-order terms before using Express Apple Pay.'
-                      : undefined
+                      : shipChoicePending
+                        ? 'Please choose whether to ship now or wait and ship with your pending pre-order, above.'
+                        : undefined
                   }
                   preorderAcknowledged={preorderAgreed}
+                  pendingOrderWaivesShipping={pendingOrderWaivesShipping}
+                  combineCandidate={combineCandidate}
+                  shipTogether={shipTogether}
                   onOrderPlaced={setConfirmed}
-                  onError={setExpressError}
+                  onError={(msg) => {
+                    setExpressError(msg)
+                    if (shipChoicePending) setShipChoiceMissing(true)
+                  }}
                 />
               </div>
               {expressError && (

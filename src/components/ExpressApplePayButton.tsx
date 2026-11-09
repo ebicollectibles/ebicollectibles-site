@@ -6,7 +6,7 @@ import { trackEvent } from '~/lib/analytics'
 import { getSalesTaxRate } from '~/server/tax'
 import { getMyStoreCredit } from '~/server/store-credit'
 import { hasMixedDelayedShipment, isHiOrAk } from '~/lib/order-math'
-import { hasPendingOrder } from '~/server/customers'
+import type { CombineCandidate } from '~/lib/use-combine-shipping'
 import { BLOCK_HI_AK_CHECKOUT } from '~/lib/feature-flags'
 
 // Lets someone pay straight from the cart page with Apple Pay, skipping the
@@ -18,6 +18,9 @@ export function ExpressApplePayButton({
   disabled,
   blockedMessage,
   preorderAcknowledged,
+  pendingOrderWaivesShipping,
+  combineCandidate,
+  shipTogether,
   onOrderPlaced,
   onError,
 }: {
@@ -37,6 +40,17 @@ export function ExpressApplePayButton({
   // responsible for also disabling this button until it's true; this
   // component just forwards it to placeOrder.
   preorderAcknowledged?: boolean
+  // Lifted up to the cart page (see useCombineShippingChoice) rather than
+  // fetched in here a second time — the same lookup drives both this
+  // button's Apple Pay sheet and the ShipTogetherChoice card the cart page
+  // renders above it.
+  pendingOrderWaivesShipping: boolean
+  // The pending pre-order the shopper chose to wait for (see
+  // combineWithOrderId in schema.ts), and whether they actually picked
+  // that option — both null/false unless the cart page's ShipTogetherChoice
+  // card is showing and they picked it.
+  combineCandidate: CombineCandidate | null
+  shipTogether: boolean
   onOrderPlaced: (result: {
     orderNo: number
     paymentStatus: string
@@ -78,29 +92,6 @@ export function ExpressApplePayButton({
   // (shippingcontactchanged), not from a React render.
   const creditAppliedRef = React.useRef(0)
 
-  // Same waiver as checkout.tsx's pendingOrderWaivesShipping — this account
-  // already has an order nothing has shipped on yet, so this one can go in
-  // the same box. Fetched once (cart.tsx has no mid-flow sign-in the way
-  // checkout.tsx does, so there's no account change to re-check for here).
-  // placeOrder independently recomputes this server-side regardless of what
-  // the Apple Pay sheet showed, so this is purely about not showing the
-  // buyer a $10 shipping line in the sheet when they're about to be charged
-  // $0 for it.
-  const [pendingOrderWaivesShipping, setPendingOrderWaivesShipping] = React.useState(false)
-  React.useEffect(() => {
-    let cancelled = false
-    hasPendingOrder({ data: { hasPreorder: cartHasPreorder } })
-      .then((result) => {
-        if (!cancelled) setPendingOrderWaivesShipping(result.waived)
-      })
-      .catch(() => {
-        if (!cancelled) setPendingOrderWaivesShipping(false)
-      })
-    return () => {
-      cancelled = true
-    }
-  }, [cartHasPreorder])
-
   React.useEffect(() => {
     if (!SQUARE_APP_ID || !SQUARE_LOCATION_ID || cart.cartEmpty) return
     let cancelled = false
@@ -111,7 +102,7 @@ export function ExpressApplePayButton({
       try {
         const payments = window.Square.payments(SQUARE_APP_ID, SQUARE_LOCATION_ID)
 
-        const effectiveShippingCost = pendingOrderWaivesShipping ? 0 : cart.shippingCost
+        const effectiveShippingCost = pendingOrderWaivesShipping || shipTogether ? 0 : cart.shippingCost
         const initialTotal = cart.subtotal + effectiveShippingCost
         const initialCreditApplied = Math.min(creditBalance, initialTotal)
         const initialAmountDue = Math.max(0, Math.round((initialTotal - initialCreditApplied) * 100) / 100)
@@ -147,7 +138,16 @@ export function ExpressApplePayButton({
           // Only one rate exists, but showing it as a "Shipping Method" row
           // (rather than just a line in the total) is what buyers expect
           // from Apple Pay — every other flat-rate checkout still shows it.
-          shippingOptions: [{ id: 'flat', label: pendingOrderWaivesShipping ? 'Standard Shipping (free — combined order)' : 'Standard Shipping', amount: effectiveShippingCost.toFixed(2) }],
+          shippingOptions: [
+            {
+              id: 'flat',
+              label:
+                pendingOrderWaivesShipping || shipTogether
+                  ? 'Standard Shipping (free — combined order)'
+                  : 'Standard Shipping',
+              amount: effectiveShippingCost.toFixed(2),
+            },
+          ],
           total: {
             amount: initialAmountDue.toFixed(2),
             label: 'EBI Collectibles',
@@ -207,7 +207,7 @@ export function ExpressApplePayButton({
       cancelled = true
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [cart.cartEmpty, cart.subtotal, cart.shippingCost, creditBalance, pendingOrderWaivesShipping])
+  }, [cart.cartEmpty, cart.subtotal, cart.shippingCost, creditBalance, pendingOrderWaivesShipping, shipTogether])
 
   const handleClick = async () => {
     if (blockedMessage) {
@@ -275,6 +275,7 @@ export function ExpressApplePayButton({
         emailOptIn: false,
         creditApplied: creditAppliedRef.current,
         preorderAcknowledged,
+        combineWithOrderId: shipTogether ? (combineCandidate?.id ?? undefined) : undefined,
       })
       trackEvent('purchase', {
         transaction_id: String(orderResult.orderNo),
