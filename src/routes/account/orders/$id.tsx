@@ -90,7 +90,10 @@ function OrderDetailPage() {
         </div>
       )}
 
-      {order.combineWithOrderNo && order.fulfillmentStatus !== 'shipped' && order.fulfillmentStatus !== 'cancelled' && (
+      {order.combineWithOrderNo &&
+        order.fulfillmentStatus !== 'shipped' &&
+        order.fulfillmentStatus !== 'cancelled' &&
+        order.combineWithOrderStatus !== 'cancelled' && (
         <div
           style={{
             marginTop: 16,

@@ -62,13 +62,19 @@ export const getMyOrders = createServerFn({ method: 'GET' }).handler(async () =>
   }
   // The anchor order (see combineWithOrderId in schema.ts) is always one of
   // this customer's own orders too, so it's already in `orders` above —
-  // no extra query needed to label it by order number.
+  // no extra query needed to label it by order number. Carrying its status
+  // too, not just its number, so the UI can hide the "waiting to ship
+  // together" note if that order was cancelled out from under this one —
+  // without it, a customer would see a stale promise to combine with an
+  // order that's never going to ship.
   const orderNoById = new Map(orders.map((o) => [o.id, o.orderNo]))
+  const orderStatusById = new Map(orders.map((o) => [o.id, o.fulfillmentStatus]))
   return orders.map((order) => ({
     ...order,
     items: itemsByOrder.get(order.id) ?? [],
     totalRefunded: refundedByOrder.get(order.id) ?? 0,
     combineWithOrderNo: order.combineWithOrderId ? (orderNoById.get(order.combineWithOrderId) ?? null) : null,
+    combineWithOrderStatus: order.combineWithOrderId ? (orderStatusById.get(order.combineWithOrderId) ?? null) : null,
   }))
 })
 
@@ -169,13 +175,19 @@ export const getMyOrder = createServerFn({ method: 'GET' })
     // know whether there's an anchor to look up at all — the anchor (see
     // combineWithOrderId in schema.ts) is always this same customer's own
     // order too, so the RLS policy on orders already permits reading it.
+    // Carrying its status too, not just its number, so the UI can hide the
+    // "waiting to ship together" note if that order was cancelled out from
+    // under this one.
     let combineWithOrderNo: number | null = null
+    let combineWithOrderStatus: string | null = null
     if (order.combineWithOrderId) {
       const [[anchorRow]] = await getCustomerScopedRows(userId, (sql) => [
-        sql`select order_no from orders where id = ${order.combineWithOrderId} and user_id = ${userId} limit 1`,
+        sql`select order_no, fulfillment_status from orders where id = ${order.combineWithOrderId} and user_id = ${userId} limit 1`,
       ])
-      combineWithOrderNo = (anchorRow as { orderNo: number } | undefined)?.orderNo ?? null
+      const anchor = anchorRow as { orderNo: number; fulfillmentStatus: string } | undefined
+      combineWithOrderNo = anchor?.orderNo ?? null
+      combineWithOrderStatus = anchor?.fulfillmentStatus ?? null
     }
 
-    return { ...order, items, shipments: orderShipments, totalRefunded, combineWithOrderNo }
+    return { ...order, items, shipments: orderShipments, totalRefunded, combineWithOrderNo, combineWithOrderStatus }
   })
