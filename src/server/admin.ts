@@ -1,6 +1,6 @@
 import { createServerFn } from '@tanstack/react-start'
 import { z } from 'zod'
-import { and, asc, desc, eq, gte, inArray, isNotNull, isNull, lt, notInArray, or, sql } from 'drizzle-orm'
+import { and, asc, desc, eq, gte, inArray, isNotNull, isNull, lt, ne, notInArray, or, sql } from 'drizzle-orm'
 import { getDb } from '~/lib/db/client'
 import {
   affiliateContacts,
@@ -616,6 +616,23 @@ export const adminCancelAndRefundOrder = createServerFn({ method: 'POST' })
     if (!order) throw new Error('Order not found.')
     if (order.fulfillmentStatus === 'cancelled') throw new Error('This order is already cancelled.')
 
+    // Atomically claims the cancellation before touching Square — the WHERE
+    // clause only matches a row that isn't already 'cancelled', and Postgres
+    // serializes concurrent UPDATEs on the same row, so if two cancel
+    // requests land for this order at once (an admin double-click, or two
+    // tabs), only one of them actually flips the status and the other gets
+    // zero rows back here and bails out instead of issuing a second refund.
+    // The plain read above is just an early, friendlier error for the
+    // common case; this is the real guard. If the refund below then fails,
+    // the status is reverted so the claim doesn't leave the order stuck
+    // "cancelled" without ever having been refunded.
+    const [claimed] = await db
+      .update(orders)
+      .set({ fulfillmentStatus: 'cancelled' })
+      .where(and(eq(orders.id, data.orderId), ne(orders.fulfillmentStatus, 'cancelled')))
+      .returning({ id: orders.id })
+    if (!claimed) throw new Error('This order is already cancelled.')
+
     const { cancellationFee, amountCharged } = computeCancellationAmounts(order, data.waiveFee)
     let refunded = false
 
@@ -630,12 +647,12 @@ export const adminCancelAndRefundOrder = createServerFn({ method: 'POST' })
         reason: cancellationFee > 0 ? `Order #EBI-${order.orderNo} cancelled by admin, 5% cancellation fee withheld` : `Order #EBI-${order.orderNo} cancelled by admin`,
       })
       if (result.status === 'failed') {
+        await db.update(orders).set({ fulfillmentStatus: order.fulfillmentStatus }).where(eq(orders.id, data.orderId))
         throw new Error(`${result.error || 'Refund failed.'} Order was NOT cancelled — fix the payment issue and try again.`)
       }
       refunded = true
     }
 
-    await db.update(orders).set({ fulfillmentStatus: 'cancelled' }).where(eq(orders.id, data.orderId))
     await db.insert(orderStatusEvents).values({ orderId: data.orderId, status: 'cancelled' })
 
     // The Square refund webhook (square-webhook.ts) auto-restores store
