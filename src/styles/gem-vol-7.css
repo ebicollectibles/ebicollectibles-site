@@ -132,7 +132,14 @@
     button:nth-child(4) { transform: translate(-50%, -50%) translateX(100px) rotate(7deg) translateY(6px); z-index: 2; }
     button:nth-child(5) { transform: translate(-50%, -50%) translateX(200px) rotate(14deg) translateY(26px); z-index: 1; }
     button:nth-child(1), button:nth-child(2) { z-index: 1; }
-    button:hover { z-index: 5; filter: drop-shadow(0 24px 40px rgb(0 0 0 / .6)) brightness(1.05); }
+    /* Real mouse hover only — on a touchscreen, :hover fires (and sticks)
+       on tap in several mobile browsers, which looked like "holding a
+       card brings it to the front" with no way to back out of it. Below
+       900px wide this whole fan becomes a swipe carousel instead (see
+       that media query), where this rule plays no part at all anyway. */
+    @media (hover: hover) and (pointer: fine) {
+      button:hover { z-index: 5; filter: drop-shadow(0 24px 40px rgb(0 0 0 / .6)) brightness(1.05); }
+    }
   }
   .fan-cap { position: absolute; bottom: 0; left: 0; right: 0; text-align: center; font-size: 12px; color: var(--hero-dim); }
 
@@ -298,12 +305,42 @@
 
   @media (max-width: 900px) {
     .hero .wrap { grid-template-columns: minmax(0, 1fr); }
-    .fan { height: 300px; }
-    .fan button { width: 150px; }
-    .fan button:nth-child(1) { transform: translate(-50%, -50%) translateX(-146px) rotate(-14deg) translateY(22px); }
-    .fan button:nth-child(2) { transform: translate(-50%, -50%) translateX(-73px) rotate(-7deg) translateY(5px); }
-    .fan button:nth-child(4) { transform: translate(-50%, -50%) translateX(73px) rotate(7deg) translateY(5px); }
-    .fan button:nth-child(5) { transform: translate(-50%, -50%) translateX(146px) rotate(14deg) translateY(22px); }
+    /* Below 900px, the overlapping rotated fan becomes a swipeable
+       carousel instead — there's no mouse hover to bring a card forward
+       on a touchscreen, so the fan's whole interaction model doesn't
+       carry over; a horizontal snap-scroll with each card easing to full
+       size as it reaches center reads as a natural swipe/swoosh instead. */
+    .fan {
+      height: auto;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 10px calc(50% - 36vw) 34px;
+      overflow-x: auto;
+      overflow-y: visible;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+    .fan::-webkit-scrollbar { display: none; }
+    .fan button {
+      position: static;
+      flex: 0 0 72vw;
+      max-width: 230px;
+      width: auto;
+      scroll-snap-align: center;
+      transform-origin: 50%;
+      transition: transform .25s ease, opacity .25s ease, filter .25s ease;
+      /* !important because the desktop fan's per-card :nth-child rules
+         (rotate/translateX for the specific fan positions) are more
+         specific than this plain selector and would otherwise still
+         win here — media queries narrow the viewport, they don't lower
+         any other rule's specificity. --gv7-scale/--gv7-opacity are set
+         from JS as the carousel scrolls, based on each card's distance
+         from center. */
+      transform: scale(var(--gv7-scale, 1)) !important;
+      opacity: var(--gv7-opacity, 1);
+    }
     .ladder { grid-template-columns: minmax(0, 1fr); gap: 10px; }
     .lhead { flex-direction: row; flex-wrap: wrap; align-items: baseline; gap: 4px 12px; }
     .lmeta { margin-top: 0; }

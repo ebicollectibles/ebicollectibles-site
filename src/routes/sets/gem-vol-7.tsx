@@ -189,6 +189,8 @@ function GemVol7Page() {
   const [have, setHave] = React.useState<Set<string>>(() => new Set())
   const [headerH, setHeaderH] = React.useState(73)
   const haveLoadedRef = React.useRef(false)
+  const fanRef = React.useRef<HTMLDivElement>(null)
+  const fanRafRef = React.useRef<number | null>(null)
 
   // Loads whatever the viewer already marked "have" on an earlier visit.
   // Guarded (localStorage can throw in a private window) and client-only —
@@ -224,6 +226,39 @@ function GemVol7Page() {
     window.addEventListener('resize', update)
     return () => window.removeEventListener('resize', update)
   }, [])
+
+  // Drives the mobile carousel's "swoosh": as the fan scrolls, each card's
+  // scale/opacity eases based on its distance from the carousel's center,
+  // via the --gv7-scale/--gv7-opacity custom properties gem-vol-7.css
+  // reads (only under its own max-width: 900px breakpoint — on desktop
+  // these are set but never read, so this is a no-op there). rAF-throttled
+  // since scroll fires far more often than a frame.
+  const updateFanScale = React.useCallback(() => {
+    const el = fanRef.current
+    if (!el) return
+    const rect = el.getBoundingClientRect()
+    const center = rect.left + rect.width / 2
+    for (const child of Array.from(el.children)) {
+      if (!(child instanceof HTMLElement) || child.tagName !== 'BUTTON') continue
+      const cr = child.getBoundingClientRect()
+      const dist = Math.abs(cr.left + cr.width / 2 - center)
+      const norm = Math.min(1, dist / (rect.width / 2))
+      child.style.setProperty('--gv7-scale', (1 - norm * 0.22).toFixed(3))
+      child.style.setProperty('--gv7-opacity', (1 - norm * 0.55).toFixed(3))
+    }
+  }, [])
+  const onFanScroll = React.useCallback(() => {
+    if (fanRafRef.current != null) return
+    fanRafRef.current = requestAnimationFrame(() => {
+      fanRafRef.current = null
+      updateFanScale()
+    })
+  }, [updateFanScale])
+  React.useEffect(() => {
+    updateFanScale()
+    window.addEventListener('resize', updateFanScale)
+    return () => window.removeEventListener('resize', updateFanScale)
+  }, [updateFanScale])
 
   const q = query.trim().toLowerCase()
   const match = React.useCallback(
@@ -344,7 +379,7 @@ function GemVol7Page() {
               </a>
             </div>
           </div>
-          <div className="fan" aria-label="Featured full-art cards">
+          <div className="fan" ref={fanRef} onScroll={onFanScroll} aria-label="Featured full-art cards">
             {FAN_IDS.map((id) => {
               const c = cardById.get(id)!
               return (
