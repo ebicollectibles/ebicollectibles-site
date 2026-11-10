@@ -1,0 +1,1590 @@
+{
+  "name": "Gem Vol 7",
+  "slug": "gem-vol-7",
+  "code": "CBB7C",
+  "series": "Gem Set",
+  "language": "Simplified Chinese",
+  "releaseDate": "2026-11-06",
+  "cardCount": 196,
+  "rarityOrder": [
+    "Common",
+    "Uncommon",
+    "Rare",
+    "Double Rare",
+    "Triple Rare"
+  ],
+  "exclusiveCardNumbers": [
+    "0307/07"
+  ],
+  "source": "Chen Cards (chencards.com/sets/gem_vol_7), used with permission",
+  "cards": [
+    {
+      "number": "0101/07",
+      "pokemonIndex": 1,
+      "version": 1,
+      "name": "Team Rocket's Raticate",
+      "rarity": "Common",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/0101.webp"
+    },
+    {
+      "number": "0102/07",
+      "pokemonIndex": 1,
+      "version": 2,
+      "name": "Team Rocket's Raticate",
+      "rarity": "Common",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/0102.webp"
+    },
+    {
+      "number": "0103/07",
+      "pokemonIndex": 1,
+      "version": 3,
+      "name": "Team Rocket's Raticate",
+      "rarity": "Uncommon",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/0103.webp"
+    },
+    {
+      "number": "0104/07",
+      "pokemonIndex": 1,
+      "version": 4,
+      "name": "Team Rocket's Raticate",
+      "rarity": "Uncommon",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/0104.webp"
+    },
+    {
+      "number": "0105/07",
+      "pokemonIndex": 1,
+      "version": 5,
+      "name": "Team Rocket's Raticate",
+      "rarity": "Rare",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/0105.webp"
+    },
+    {
+      "number": "0106/07",
+      "pokemonIndex": 1,
+      "version": 6,
+      "name": "Team Rocket's Raticate",
+      "rarity": "Double Rare",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/0106.webp"
+    },
+    {
+      "number": "0107/07",
+      "pokemonIndex": 1,
+      "version": 7,
+      "name": "Team Rocket's Raticate",
+      "rarity": "Triple Rare",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/0107.webp"
+    },
+    {
+      "number": "0201/07",
+      "pokemonIndex": 2,
+      "version": 1,
+      "name": "Team Rocket's Meowth",
+      "rarity": "Common",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/0201.webp"
+    },
+    {
+      "number": "0202/07",
+      "pokemonIndex": 2,
+      "version": 2,
+      "name": "Team Rocket's Meowth",
+      "rarity": "Common",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/0202.webp"
+    },
+    {
+      "number": "0203/07",
+      "pokemonIndex": 2,
+      "version": 3,
+      "name": "Team Rocket's Meowth",
+      "rarity": "Uncommon",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/0203.webp"
+    },
+    {
+      "number": "0204/07",
+      "pokemonIndex": 2,
+      "version": 4,
+      "name": "Team Rocket's Meowth",
+      "rarity": "Uncommon",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/0204.webp"
+    },
+    {
+      "number": "0205/07",
+      "pokemonIndex": 2,
+      "version": 5,
+      "name": "Team Rocket's Meowth",
+      "rarity": "Rare",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/0205.webp"
+    },
+    {
+      "number": "0206/07",
+      "pokemonIndex": 2,
+      "version": 6,
+      "name": "Team Rocket's Meowth",
+      "rarity": "Double Rare",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/0206.webp"
+    },
+    {
+      "number": "0207/07",
+      "pokemonIndex": 2,
+      "version": 7,
+      "name": "Team Rocket's Meowth",
+      "rarity": "Triple Rare",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/0207.webp"
+    },
+    {
+      "number": "0301/07",
+      "pokemonIndex": 3,
+      "version": 1,
+      "name": "Misty's Psyduck",
+      "rarity": "Common",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/0301.webp"
+    },
+    {
+      "number": "0302/07",
+      "pokemonIndex": 3,
+      "version": 2,
+      "name": "Misty's Psyduck",
+      "rarity": "Common",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/0302.webp"
+    },
+    {
+      "number": "0303/07",
+      "pokemonIndex": 3,
+      "version": 3,
+      "name": "Misty's Psyduck",
+      "rarity": "Uncommon",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/0303.webp"
+    },
+    {
+      "number": "0304/07",
+      "pokemonIndex": 3,
+      "version": 4,
+      "name": "Misty's Psyduck",
+      "rarity": "Uncommon",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/0304.webp"
+    },
+    {
+      "number": "0305/07",
+      "pokemonIndex": 3,
+      "version": 5,
+      "name": "Misty's Psyduck",
+      "rarity": "Rare",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/0305.webp"
+    },
+    {
+      "number": "0306/07",
+      "pokemonIndex": 3,
+      "version": 6,
+      "name": "Misty's Psyduck",
+      "rarity": "Double Rare",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/0306.webp"
+    },
+    {
+      "number": "0307/07",
+      "pokemonIndex": 3,
+      "version": 7,
+      "name": "Misty's Psyduck",
+      "rarity": "Triple Rare",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/0307.webp"
+    },
+    {
+      "number": "0401/07",
+      "pokemonIndex": 4,
+      "version": 1,
+      "name": "Rapidash",
+      "rarity": "Common",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/0401.webp"
+    },
+    {
+      "number": "0402/07",
+      "pokemonIndex": 4,
+      "version": 2,
+      "name": "Rapidash",
+      "rarity": "Common",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/0402.webp"
+    },
+    {
+      "number": "0403/07",
+      "pokemonIndex": 4,
+      "version": 3,
+      "name": "Rapidash",
+      "rarity": "Uncommon",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/0403.webp"
+    },
+    {
+      "number": "0404/07",
+      "pokemonIndex": 4,
+      "version": 4,
+      "name": "Rapidash",
+      "rarity": "Uncommon",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/0404.webp"
+    },
+    {
+      "number": "0405/07",
+      "pokemonIndex": 4,
+      "version": 5,
+      "name": "Rapidash",
+      "rarity": "Rare",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/0405.webp"
+    },
+    {
+      "number": "0406/07",
+      "pokemonIndex": 4,
+      "version": 6,
+      "name": "Rapidash",
+      "rarity": "Double Rare",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/0406.webp"
+    },
+    {
+      "number": "0407/07",
+      "pokemonIndex": 4,
+      "version": 7,
+      "name": "Rapidash",
+      "rarity": "Triple Rare",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/0407.webp"
+    },
+    {
+      "number": "0501/07",
+      "pokemonIndex": 5,
+      "version": 1,
+      "name": "Team Rocket's Weezing",
+      "rarity": "Common",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/0501.webp"
+    },
+    {
+      "number": "0502/07",
+      "pokemonIndex": 5,
+      "version": 2,
+      "name": "Team Rocket's Weezing",
+      "rarity": "Common",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/0502.webp"
+    },
+    {
+      "number": "0503/07",
+      "pokemonIndex": 5,
+      "version": 3,
+      "name": "Team Rocket's Weezing",
+      "rarity": "Uncommon",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/0503.webp"
+    },
+    {
+      "number": "0504/07",
+      "pokemonIndex": 5,
+      "version": 4,
+      "name": "Team Rocket's Weezing",
+      "rarity": "Uncommon",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/0504.webp"
+    },
+    {
+      "number": "0505/07",
+      "pokemonIndex": 5,
+      "version": 5,
+      "name": "Team Rocket's Weezing",
+      "rarity": "Rare",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/0505.webp"
+    },
+    {
+      "number": "0506/07",
+      "pokemonIndex": 5,
+      "version": 6,
+      "name": "Team Rocket's Weezing",
+      "rarity": "Double Rare",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/0506.webp"
+    },
+    {
+      "number": "0507/07",
+      "pokemonIndex": 5,
+      "version": 7,
+      "name": "Team Rocket's Weezing",
+      "rarity": "Triple Rare",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/0507.webp"
+    },
+    {
+      "number": "0601/07",
+      "pokemonIndex": 6,
+      "version": 1,
+      "name": "Misty's Lapras",
+      "rarity": "Common",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/0601.webp"
+    },
+    {
+      "number": "0602/07",
+      "pokemonIndex": 6,
+      "version": 2,
+      "name": "Misty's Lapras",
+      "rarity": "Common",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/0602.webp"
+    },
+    {
+      "number": "0603/07",
+      "pokemonIndex": 6,
+      "version": 3,
+      "name": "Misty's Lapras",
+      "rarity": "Uncommon",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/0603.webp"
+    },
+    {
+      "number": "0604/07",
+      "pokemonIndex": 6,
+      "version": 4,
+      "name": "Misty's Lapras",
+      "rarity": "Uncommon",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/0604.webp"
+    },
+    {
+      "number": "0605/07",
+      "pokemonIndex": 6,
+      "version": 5,
+      "name": "Misty's Lapras",
+      "rarity": "Rare",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/0605.webp"
+    },
+    {
+      "number": "0606/07",
+      "pokemonIndex": 6,
+      "version": 6,
+      "name": "Misty's Lapras",
+      "rarity": "Double Rare",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/0606.webp"
+    },
+    {
+      "number": "0607/07",
+      "pokemonIndex": 6,
+      "version": 7,
+      "name": "Misty's Lapras",
+      "rarity": "Triple Rare",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/0607.webp"
+    },
+    {
+      "number": "0701/07",
+      "pokemonIndex": 7,
+      "version": 1,
+      "name": "Ethan's Typhlosion",
+      "rarity": "Common",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/0701.webp"
+    },
+    {
+      "number": "0702/07",
+      "pokemonIndex": 7,
+      "version": 2,
+      "name": "Ethan's Typhlosion",
+      "rarity": "Common",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/0702.webp"
+    },
+    {
+      "number": "0703/07",
+      "pokemonIndex": 7,
+      "version": 3,
+      "name": "Ethan's Typhlosion",
+      "rarity": "Uncommon",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/0703.webp"
+    },
+    {
+      "number": "0704/07",
+      "pokemonIndex": 7,
+      "version": 4,
+      "name": "Ethan's Typhlosion",
+      "rarity": "Uncommon",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/0704.webp"
+    },
+    {
+      "number": "0705/07",
+      "pokemonIndex": 7,
+      "version": 5,
+      "name": "Ethan's Typhlosion",
+      "rarity": "Rare",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/0705.webp"
+    },
+    {
+      "number": "0706/07",
+      "pokemonIndex": 7,
+      "version": 6,
+      "name": "Ethan's Typhlosion",
+      "rarity": "Double Rare",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/0706.webp"
+    },
+    {
+      "number": "0707/07",
+      "pokemonIndex": 7,
+      "version": 7,
+      "name": "Ethan's Typhlosion",
+      "rarity": "Triple Rare",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/0707.webp"
+    },
+    {
+      "number": "0801/07",
+      "pokemonIndex": 8,
+      "version": 1,
+      "name": "Furret",
+      "rarity": "Common",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/0801.webp"
+    },
+    {
+      "number": "0802/07",
+      "pokemonIndex": 8,
+      "version": 2,
+      "name": "Furret",
+      "rarity": "Common",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/0802.webp"
+    },
+    {
+      "number": "0803/07",
+      "pokemonIndex": 8,
+      "version": 3,
+      "name": "Furret",
+      "rarity": "Uncommon",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/0803.webp"
+    },
+    {
+      "number": "0804/07",
+      "pokemonIndex": 8,
+      "version": 4,
+      "name": "Furret",
+      "rarity": "Uncommon",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/0804.webp"
+    },
+    {
+      "number": "0805/07",
+      "pokemonIndex": 8,
+      "version": 5,
+      "name": "Furret",
+      "rarity": "Rare",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/0805.webp"
+    },
+    {
+      "number": "0806/07",
+      "pokemonIndex": 8,
+      "version": 6,
+      "name": "Furret",
+      "rarity": "Double Rare",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/0806.webp"
+    },
+    {
+      "number": "0807/07",
+      "pokemonIndex": 8,
+      "version": 7,
+      "name": "Furret",
+      "rarity": "Triple Rare",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/0807.webp"
+    },
+    {
+      "number": "0901/07",
+      "pokemonIndex": 9,
+      "version": 1,
+      "name": "Team Rocket's Murkrow",
+      "rarity": "Common",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/0901.webp"
+    },
+    {
+      "number": "0902/07",
+      "pokemonIndex": 9,
+      "version": 2,
+      "name": "Team Rocket's Murkrow",
+      "rarity": "Common",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/0902.webp"
+    },
+    {
+      "number": "0903/07",
+      "pokemonIndex": 9,
+      "version": 3,
+      "name": "Team Rocket's Murkrow",
+      "rarity": "Uncommon",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/0903.webp"
+    },
+    {
+      "number": "0904/07",
+      "pokemonIndex": 9,
+      "version": 4,
+      "name": "Team Rocket's Murkrow",
+      "rarity": "Uncommon",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/0904.webp"
+    },
+    {
+      "number": "0905/07",
+      "pokemonIndex": 9,
+      "version": 5,
+      "name": "Team Rocket's Murkrow",
+      "rarity": "Rare",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/0905.webp"
+    },
+    {
+      "number": "0906/07",
+      "pokemonIndex": 9,
+      "version": 6,
+      "name": "Team Rocket's Murkrow",
+      "rarity": "Double Rare",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/0906.webp"
+    },
+    {
+      "number": "0907/07",
+      "pokemonIndex": 9,
+      "version": 7,
+      "name": "Team Rocket's Murkrow",
+      "rarity": "Triple Rare",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/0907.webp"
+    },
+    {
+      "number": "1001/07",
+      "pokemonIndex": 10,
+      "version": 1,
+      "name": "Team Rocket's Wobbuffet",
+      "rarity": "Common",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/1001.webp"
+    },
+    {
+      "number": "1002/07",
+      "pokemonIndex": 10,
+      "version": 2,
+      "name": "Team Rocket's Wobbuffet",
+      "rarity": "Common",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/1002.webp"
+    },
+    {
+      "number": "1003/07",
+      "pokemonIndex": 10,
+      "version": 3,
+      "name": "Team Rocket's Wobbuffet",
+      "rarity": "Uncommon",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/1003.webp"
+    },
+    {
+      "number": "1004/07",
+      "pokemonIndex": 10,
+      "version": 4,
+      "name": "Team Rocket's Wobbuffet",
+      "rarity": "Uncommon",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/1004.webp"
+    },
+    {
+      "number": "1005/07",
+      "pokemonIndex": 10,
+      "version": 5,
+      "name": "Team Rocket's Wobbuffet",
+      "rarity": "Rare",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/1005.webp"
+    },
+    {
+      "number": "1006/07",
+      "pokemonIndex": 10,
+      "version": 6,
+      "name": "Team Rocket's Wobbuffet",
+      "rarity": "Double Rare",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/1006.webp"
+    },
+    {
+      "number": "1007/07",
+      "pokemonIndex": 10,
+      "version": 7,
+      "name": "Team Rocket's Wobbuffet",
+      "rarity": "Triple Rare",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/1007.webp"
+    },
+    {
+      "number": "1101/07",
+      "pokemonIndex": 11,
+      "version": 1,
+      "name": "Swinub",
+      "rarity": "Common",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/1101.webp"
+    },
+    {
+      "number": "1102/07",
+      "pokemonIndex": 11,
+      "version": 2,
+      "name": "Swinub",
+      "rarity": "Common",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/1102.webp"
+    },
+    {
+      "number": "1103/07",
+      "pokemonIndex": 11,
+      "version": 3,
+      "name": "Swinub",
+      "rarity": "Uncommon",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/1103.webp"
+    },
+    {
+      "number": "1104/07",
+      "pokemonIndex": 11,
+      "version": 4,
+      "name": "Swinub",
+      "rarity": "Uncommon",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/1104.webp"
+    },
+    {
+      "number": "1105/07",
+      "pokemonIndex": 11,
+      "version": 5,
+      "name": "Swinub",
+      "rarity": "Rare",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/1105.webp"
+    },
+    {
+      "number": "1106/07",
+      "pokemonIndex": 11,
+      "version": 6,
+      "name": "Swinub",
+      "rarity": "Double Rare",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/1106.webp"
+    },
+    {
+      "number": "1107/07",
+      "pokemonIndex": 11,
+      "version": 7,
+      "name": "Swinub",
+      "rarity": "Triple Rare",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/1107.webp"
+    },
+    {
+      "number": "1201/07",
+      "pokemonIndex": 12,
+      "version": 1,
+      "name": "Team Rocket's Houndoom",
+      "rarity": "Common",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/1201.webp"
+    },
+    {
+      "number": "1202/07",
+      "pokemonIndex": 12,
+      "version": 2,
+      "name": "Team Rocket's Houndoom",
+      "rarity": "Common",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/1202.webp"
+    },
+    {
+      "number": "1203/07",
+      "pokemonIndex": 12,
+      "version": 3,
+      "name": "Team Rocket's Houndoom",
+      "rarity": "Uncommon",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/1203.webp"
+    },
+    {
+      "number": "1204/07",
+      "pokemonIndex": 12,
+      "version": 4,
+      "name": "Team Rocket's Houndoom",
+      "rarity": "Uncommon",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/1204.webp"
+    },
+    {
+      "number": "1205/07",
+      "pokemonIndex": 12,
+      "version": 5,
+      "name": "Team Rocket's Houndoom",
+      "rarity": "Rare",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/1205.webp"
+    },
+    {
+      "number": "1206/07",
+      "pokemonIndex": 12,
+      "version": 6,
+      "name": "Team Rocket's Houndoom",
+      "rarity": "Double Rare",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/1206.webp"
+    },
+    {
+      "number": "1207/07",
+      "pokemonIndex": 12,
+      "version": 7,
+      "name": "Team Rocket's Houndoom",
+      "rarity": "Triple Rare",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/1207.webp"
+    },
+    {
+      "number": "1301/07",
+      "pokemonIndex": 13,
+      "version": 1,
+      "name": "Blaziken",
+      "rarity": "Common",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/1301.webp"
+    },
+    {
+      "number": "1302/07",
+      "pokemonIndex": 13,
+      "version": 2,
+      "name": "Blaziken",
+      "rarity": "Common",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/1302.webp"
+    },
+    {
+      "number": "1303/07",
+      "pokemonIndex": 13,
+      "version": 3,
+      "name": "Blaziken",
+      "rarity": "Uncommon",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/1303.webp"
+    },
+    {
+      "number": "1304/07",
+      "pokemonIndex": 13,
+      "version": 4,
+      "name": "Blaziken",
+      "rarity": "Uncommon",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/1304.webp"
+    },
+    {
+      "number": "1305/07",
+      "pokemonIndex": 13,
+      "version": 5,
+      "name": "Blaziken",
+      "rarity": "Rare",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/1305.webp"
+    },
+    {
+      "number": "1306/07",
+      "pokemonIndex": 13,
+      "version": 6,
+      "name": "Blaziken",
+      "rarity": "Double Rare",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/1306.webp"
+    },
+    {
+      "number": "1307/07",
+      "pokemonIndex": 13,
+      "version": 7,
+      "name": "Blaziken",
+      "rarity": "Triple Rare",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/1307.webp"
+    },
+    {
+      "number": "1401/07",
+      "pokemonIndex": 14,
+      "version": 1,
+      "name": "Clamperl",
+      "rarity": "Common",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/1401.webp"
+    },
+    {
+      "number": "1402/07",
+      "pokemonIndex": 14,
+      "version": 2,
+      "name": "Clamperl",
+      "rarity": "Common",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/1402.webp"
+    },
+    {
+      "number": "1403/07",
+      "pokemonIndex": 14,
+      "version": 3,
+      "name": "Clamperl",
+      "rarity": "Uncommon",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/1403.webp"
+    },
+    {
+      "number": "1404/07",
+      "pokemonIndex": 14,
+      "version": 4,
+      "name": "Clamperl",
+      "rarity": "Uncommon",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/1404.webp"
+    },
+    {
+      "number": "1405/07",
+      "pokemonIndex": 14,
+      "version": 5,
+      "name": "Clamperl",
+      "rarity": "Rare",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/1405.webp"
+    },
+    {
+      "number": "1406/07",
+      "pokemonIndex": 14,
+      "version": 6,
+      "name": "Clamperl",
+      "rarity": "Double Rare",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/1406.webp"
+    },
+    {
+      "number": "1407/07",
+      "pokemonIndex": 14,
+      "version": 7,
+      "name": "Clamperl",
+      "rarity": "Triple Rare",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/1407.webp"
+    },
+    {
+      "number": "1501/07",
+      "pokemonIndex": 15,
+      "version": 1,
+      "name": "Steven's Beldum",
+      "rarity": "Common",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/1501.webp"
+    },
+    {
+      "number": "1502/07",
+      "pokemonIndex": 15,
+      "version": 2,
+      "name": "Steven's Beldum",
+      "rarity": "Common",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/1502.webp"
+    },
+    {
+      "number": "1503/07",
+      "pokemonIndex": 15,
+      "version": 3,
+      "name": "Steven's Beldum",
+      "rarity": "Uncommon",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/1503.webp"
+    },
+    {
+      "number": "1504/07",
+      "pokemonIndex": 15,
+      "version": 4,
+      "name": "Steven's Beldum",
+      "rarity": "Uncommon",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/1504.webp"
+    },
+    {
+      "number": "1505/07",
+      "pokemonIndex": 15,
+      "version": 5,
+      "name": "Steven's Beldum",
+      "rarity": "Rare",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/1505.webp"
+    },
+    {
+      "number": "1506/07",
+      "pokemonIndex": 15,
+      "version": 6,
+      "name": "Steven's Beldum",
+      "rarity": "Double Rare",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/1506.webp"
+    },
+    {
+      "number": "1507/07",
+      "pokemonIndex": 15,
+      "version": 7,
+      "name": "Steven's Beldum",
+      "rarity": "Triple Rare",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/1507.webp"
+    },
+    {
+      "number": "1601/07",
+      "pokemonIndex": 16,
+      "version": 1,
+      "name": "Cynthia's Roserade",
+      "rarity": "Common",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/1601.webp"
+    },
+    {
+      "number": "1602/07",
+      "pokemonIndex": 16,
+      "version": 2,
+      "name": "Cynthia's Roserade",
+      "rarity": "Common",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/1602.webp"
+    },
+    {
+      "number": "1603/07",
+      "pokemonIndex": 16,
+      "version": 3,
+      "name": "Cynthia's Roserade",
+      "rarity": "Uncommon",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/1603.webp"
+    },
+    {
+      "number": "1604/07",
+      "pokemonIndex": 16,
+      "version": 4,
+      "name": "Cynthia's Roserade",
+      "rarity": "Uncommon",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/1604.webp"
+    },
+    {
+      "number": "1605/07",
+      "pokemonIndex": 16,
+      "version": 5,
+      "name": "Cynthia's Roserade",
+      "rarity": "Rare",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/1605.webp"
+    },
+    {
+      "number": "1606/07",
+      "pokemonIndex": 16,
+      "version": 6,
+      "name": "Cynthia's Roserade",
+      "rarity": "Double Rare",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/1606.webp"
+    },
+    {
+      "number": "1607/07",
+      "pokemonIndex": 16,
+      "version": 7,
+      "name": "Cynthia's Roserade",
+      "rarity": "Triple Rare",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/1607.webp"
+    },
+    {
+      "number": "1701/07",
+      "pokemonIndex": 17,
+      "version": 1,
+      "name": "Shaymin",
+      "rarity": "Common",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/1701.webp"
+    },
+    {
+      "number": "1702/07",
+      "pokemonIndex": 17,
+      "version": 2,
+      "name": "Shaymin",
+      "rarity": "Common",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/1702.webp"
+    },
+    {
+      "number": "1703/07",
+      "pokemonIndex": 17,
+      "version": 3,
+      "name": "Shaymin",
+      "rarity": "Uncommon",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/1703.webp"
+    },
+    {
+      "number": "1704/07",
+      "pokemonIndex": 17,
+      "version": 4,
+      "name": "Shaymin",
+      "rarity": "Uncommon",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/1704.webp"
+    },
+    {
+      "number": "1705/07",
+      "pokemonIndex": 17,
+      "version": 5,
+      "name": "Shaymin",
+      "rarity": "Rare",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/1705.webp"
+    },
+    {
+      "number": "1706/07",
+      "pokemonIndex": 17,
+      "version": 6,
+      "name": "Shaymin",
+      "rarity": "Double Rare",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/1706.webp"
+    },
+    {
+      "number": "1707/07",
+      "pokemonIndex": 17,
+      "version": 7,
+      "name": "Shaymin",
+      "rarity": "Triple Rare",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/1707.webp"
+    },
+    {
+      "number": "1801/07",
+      "pokemonIndex": 18,
+      "version": 1,
+      "name": "Crustle",
+      "rarity": "Common",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/1801.webp"
+    },
+    {
+      "number": "1802/07",
+      "pokemonIndex": 18,
+      "version": 2,
+      "name": "Crustle",
+      "rarity": "Common",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/1802.webp"
+    },
+    {
+      "number": "1803/07",
+      "pokemonIndex": 18,
+      "version": 3,
+      "name": "Crustle",
+      "rarity": "Uncommon",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/1803.webp"
+    },
+    {
+      "number": "1804/07",
+      "pokemonIndex": 18,
+      "version": 4,
+      "name": "Crustle",
+      "rarity": "Uncommon",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/1804.webp"
+    },
+    {
+      "number": "1805/07",
+      "pokemonIndex": 18,
+      "version": 5,
+      "name": "Crustle",
+      "rarity": "Rare",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/1805.webp"
+    },
+    {
+      "number": "1806/07",
+      "pokemonIndex": 18,
+      "version": 6,
+      "name": "Crustle",
+      "rarity": "Double Rare",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/1806.webp"
+    },
+    {
+      "number": "1807/07",
+      "pokemonIndex": 18,
+      "version": 7,
+      "name": "Crustle",
+      "rarity": "Triple Rare",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/1807.webp"
+    },
+    {
+      "number": "1901/07",
+      "pokemonIndex": 19,
+      "version": 1,
+      "name": "N's Zorua",
+      "rarity": "Common",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/1901.webp"
+    },
+    {
+      "number": "1902/07",
+      "pokemonIndex": 19,
+      "version": 2,
+      "name": "N's Zorua",
+      "rarity": "Common",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/1902.webp"
+    },
+    {
+      "number": "1903/07",
+      "pokemonIndex": 19,
+      "version": 3,
+      "name": "N's Zorua",
+      "rarity": "Uncommon",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/1903.webp"
+    },
+    {
+      "number": "1904/07",
+      "pokemonIndex": 19,
+      "version": 4,
+      "name": "N's Zorua",
+      "rarity": "Uncommon",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/1904.webp"
+    },
+    {
+      "number": "1905/07",
+      "pokemonIndex": 19,
+      "version": 5,
+      "name": "N's Zorua",
+      "rarity": "Rare",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/1905.webp"
+    },
+    {
+      "number": "1906/07",
+      "pokemonIndex": 19,
+      "version": 6,
+      "name": "N's Zorua",
+      "rarity": "Double Rare",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/1906.webp"
+    },
+    {
+      "number": "1907/07",
+      "pokemonIndex": 19,
+      "version": 7,
+      "name": "N's Zorua",
+      "rarity": "Triple Rare",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/1907.webp"
+    },
+    {
+      "number": "2001/07",
+      "pokemonIndex": 20,
+      "version": 1,
+      "name": "Lillie's Ribombee",
+      "rarity": "Common",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/2001.webp"
+    },
+    {
+      "number": "2002/07",
+      "pokemonIndex": 20,
+      "version": 2,
+      "name": "Lillie's Ribombee",
+      "rarity": "Common",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/2002.webp"
+    },
+    {
+      "number": "2003/07",
+      "pokemonIndex": 20,
+      "version": 3,
+      "name": "Lillie's Ribombee",
+      "rarity": "Uncommon",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/2003.webp"
+    },
+    {
+      "number": "2004/07",
+      "pokemonIndex": 20,
+      "version": 4,
+      "name": "Lillie's Ribombee",
+      "rarity": "Uncommon",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/2004.webp"
+    },
+    {
+      "number": "2005/07",
+      "pokemonIndex": 20,
+      "version": 5,
+      "name": "Lillie's Ribombee",
+      "rarity": "Rare",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/2005.webp"
+    },
+    {
+      "number": "2006/07",
+      "pokemonIndex": 20,
+      "version": 6,
+      "name": "Lillie's Ribombee",
+      "rarity": "Double Rare",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/2006.webp"
+    },
+    {
+      "number": "2007/07",
+      "pokemonIndex": 20,
+      "version": 7,
+      "name": "Lillie's Ribombee",
+      "rarity": "Triple Rare",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/2007.webp"
+    },
+    {
+      "number": "2101/07",
+      "pokemonIndex": 21,
+      "version": 1,
+      "name": "Lycanroc",
+      "rarity": "Common",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/2101.webp"
+    },
+    {
+      "number": "2102/07",
+      "pokemonIndex": 21,
+      "version": 2,
+      "name": "Lycanroc",
+      "rarity": "Common",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/2102.webp"
+    },
+    {
+      "number": "2103/07",
+      "pokemonIndex": 21,
+      "version": 3,
+      "name": "Lycanroc",
+      "rarity": "Uncommon",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/2103.webp"
+    },
+    {
+      "number": "2104/07",
+      "pokemonIndex": 21,
+      "version": 4,
+      "name": "Lycanroc",
+      "rarity": "Uncommon",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/2104.webp"
+    },
+    {
+      "number": "2105/07",
+      "pokemonIndex": 21,
+      "version": 5,
+      "name": "Lycanroc",
+      "rarity": "Rare",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/2105.webp"
+    },
+    {
+      "number": "2106/07",
+      "pokemonIndex": 21,
+      "version": 6,
+      "name": "Lycanroc",
+      "rarity": "Double Rare",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/2106.webp"
+    },
+    {
+      "number": "2107/07",
+      "pokemonIndex": 21,
+      "version": 7,
+      "name": "Lycanroc",
+      "rarity": "Triple Rare",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/2107.webp"
+    },
+    {
+      "number": "2201/07",
+      "pokemonIndex": 22,
+      "version": 1,
+      "name": "Arven's Greedent",
+      "rarity": "Common",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/2201.webp"
+    },
+    {
+      "number": "2202/07",
+      "pokemonIndex": 22,
+      "version": 2,
+      "name": "Arven's Greedent",
+      "rarity": "Common",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/2202.webp"
+    },
+    {
+      "number": "2203/07",
+      "pokemonIndex": 22,
+      "version": 3,
+      "name": "Arven's Greedent",
+      "rarity": "Uncommon",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/2203.webp"
+    },
+    {
+      "number": "2204/07",
+      "pokemonIndex": 22,
+      "version": 4,
+      "name": "Arven's Greedent",
+      "rarity": "Uncommon",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/2204.webp"
+    },
+    {
+      "number": "2205/07",
+      "pokemonIndex": 22,
+      "version": 5,
+      "name": "Arven's Greedent",
+      "rarity": "Rare",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/2205.webp"
+    },
+    {
+      "number": "2206/07",
+      "pokemonIndex": 22,
+      "version": 6,
+      "name": "Arven's Greedent",
+      "rarity": "Double Rare",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/2206.webp"
+    },
+    {
+      "number": "2207/07",
+      "pokemonIndex": 22,
+      "version": 7,
+      "name": "Arven's Greedent",
+      "rarity": "Triple Rare",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/2207.webp"
+    },
+    {
+      "number": "2301/07",
+      "pokemonIndex": 23,
+      "version": 1,
+      "name": "Team Rocket's Orbeetle",
+      "rarity": "Common",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/2301.webp"
+    },
+    {
+      "number": "2302/07",
+      "pokemonIndex": 23,
+      "version": 2,
+      "name": "Team Rocket's Orbeetle",
+      "rarity": "Common",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/2302.webp"
+    },
+    {
+      "number": "2303/07",
+      "pokemonIndex": 23,
+      "version": 3,
+      "name": "Team Rocket's Orbeetle",
+      "rarity": "Uncommon",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/2303.webp"
+    },
+    {
+      "number": "2304/07",
+      "pokemonIndex": 23,
+      "version": 4,
+      "name": "Team Rocket's Orbeetle",
+      "rarity": "Uncommon",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/2304.webp"
+    },
+    {
+      "number": "2305/07",
+      "pokemonIndex": 23,
+      "version": 5,
+      "name": "Team Rocket's Orbeetle",
+      "rarity": "Rare",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/2305.webp"
+    },
+    {
+      "number": "2306/07",
+      "pokemonIndex": 23,
+      "version": 6,
+      "name": "Team Rocket's Orbeetle",
+      "rarity": "Double Rare",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/2306.webp"
+    },
+    {
+      "number": "2307/07",
+      "pokemonIndex": 23,
+      "version": 7,
+      "name": "Team Rocket's Orbeetle",
+      "rarity": "Triple Rare",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/2307.webp"
+    },
+    {
+      "number": "2401/07",
+      "pokemonIndex": 24,
+      "version": 1,
+      "name": "Hop's Wooloo",
+      "rarity": "Common",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/2401.webp"
+    },
+    {
+      "number": "2402/07",
+      "pokemonIndex": 24,
+      "version": 2,
+      "name": "Hop's Wooloo",
+      "rarity": "Common",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/2402.webp"
+    },
+    {
+      "number": "2403/07",
+      "pokemonIndex": 24,
+      "version": 3,
+      "name": "Hop's Wooloo",
+      "rarity": "Uncommon",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/2403.webp"
+    },
+    {
+      "number": "2404/07",
+      "pokemonIndex": 24,
+      "version": 4,
+      "name": "Hop's Wooloo",
+      "rarity": "Uncommon",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/2404.webp"
+    },
+    {
+      "number": "2405/07",
+      "pokemonIndex": 24,
+      "version": 5,
+      "name": "Hop's Wooloo",
+      "rarity": "Rare",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/2405.webp"
+    },
+    {
+      "number": "2406/07",
+      "pokemonIndex": 24,
+      "version": 6,
+      "name": "Hop's Wooloo",
+      "rarity": "Double Rare",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/2406.webp"
+    },
+    {
+      "number": "2407/07",
+      "pokemonIndex": 24,
+      "version": 7,
+      "name": "Hop's Wooloo",
+      "rarity": "Triple Rare",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/2407.webp"
+    },
+    {
+      "number": "2501/07",
+      "pokemonIndex": 25,
+      "version": 1,
+      "name": "Marnie's Morpeko",
+      "rarity": "Common",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/2501.webp"
+    },
+    {
+      "number": "2502/07",
+      "pokemonIndex": 25,
+      "version": 2,
+      "name": "Marnie's Morpeko",
+      "rarity": "Common",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/2502.webp"
+    },
+    {
+      "number": "2503/07",
+      "pokemonIndex": 25,
+      "version": 3,
+      "name": "Marnie's Morpeko",
+      "rarity": "Uncommon",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/2503.webp"
+    },
+    {
+      "number": "2504/07",
+      "pokemonIndex": 25,
+      "version": 4,
+      "name": "Marnie's Morpeko",
+      "rarity": "Uncommon",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/2504.webp"
+    },
+    {
+      "number": "2505/07",
+      "pokemonIndex": 25,
+      "version": 5,
+      "name": "Marnie's Morpeko",
+      "rarity": "Rare",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/2505.webp"
+    },
+    {
+      "number": "2506/07",
+      "pokemonIndex": 25,
+      "version": 6,
+      "name": "Marnie's Morpeko",
+      "rarity": "Double Rare",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/2506.webp"
+    },
+    {
+      "number": "2507/07",
+      "pokemonIndex": 25,
+      "version": 7,
+      "name": "Marnie's Morpeko",
+      "rarity": "Triple Rare",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/2507.webp"
+    },
+    {
+      "number": "2601/07",
+      "pokemonIndex": 26,
+      "version": 1,
+      "name": "Team Rocket's Spidops",
+      "rarity": "Common",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/2601.webp"
+    },
+    {
+      "number": "2602/07",
+      "pokemonIndex": 26,
+      "version": 2,
+      "name": "Team Rocket's Spidops",
+      "rarity": "Common",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/2602.webp"
+    },
+    {
+      "number": "2603/07",
+      "pokemonIndex": 26,
+      "version": 3,
+      "name": "Team Rocket's Spidops",
+      "rarity": "Uncommon",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/2603.webp"
+    },
+    {
+      "number": "2604/07",
+      "pokemonIndex": 26,
+      "version": 4,
+      "name": "Team Rocket's Spidops",
+      "rarity": "Uncommon",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/2604.webp"
+    },
+    {
+      "number": "2605/07",
+      "pokemonIndex": 26,
+      "version": 5,
+      "name": "Team Rocket's Spidops",
+      "rarity": "Rare",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/2605.webp"
+    },
+    {
+      "number": "2606/07",
+      "pokemonIndex": 26,
+      "version": 6,
+      "name": "Team Rocket's Spidops",
+      "rarity": "Double Rare",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/2606.webp"
+    },
+    {
+      "number": "2607/07",
+      "pokemonIndex": 26,
+      "version": 7,
+      "name": "Team Rocket's Spidops",
+      "rarity": "Triple Rare",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/2607.webp"
+    },
+    {
+      "number": "2701/07",
+      "pokemonIndex": 27,
+      "version": 1,
+      "name": "Iono's Kilowattrel",
+      "rarity": "Common",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/2701.webp"
+    },
+    {
+      "number": "2702/07",
+      "pokemonIndex": 27,
+      "version": 2,
+      "name": "Iono's Kilowattrel",
+      "rarity": "Common",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/2702.webp"
+    },
+    {
+      "number": "2703/07",
+      "pokemonIndex": 27,
+      "version": 3,
+      "name": "Iono's Kilowattrel",
+      "rarity": "Uncommon",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/2703.webp"
+    },
+    {
+      "number": "2704/07",
+      "pokemonIndex": 27,
+      "version": 4,
+      "name": "Iono's Kilowattrel",
+      "rarity": "Uncommon",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/2704.webp"
+    },
+    {
+      "number": "2705/07",
+      "pokemonIndex": 27,
+      "version": 5,
+      "name": "Iono's Kilowattrel",
+      "rarity": "Rare",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/2705.webp"
+    },
+    {
+      "number": "2706/07",
+      "pokemonIndex": 27,
+      "version": 6,
+      "name": "Iono's Kilowattrel",
+      "rarity": "Double Rare",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/2706.webp"
+    },
+    {
+      "number": "2707/07",
+      "pokemonIndex": 27,
+      "version": 7,
+      "name": "Iono's Kilowattrel",
+      "rarity": "Triple Rare",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/2707.webp"
+    },
+    {
+      "number": "2801/07",
+      "pokemonIndex": 28,
+      "version": 1,
+      "name": "Hydrapple",
+      "rarity": "Common",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/2801.webp"
+    },
+    {
+      "number": "2802/07",
+      "pokemonIndex": 28,
+      "version": 2,
+      "name": "Hydrapple",
+      "rarity": "Common",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/2802.webp"
+    },
+    {
+      "number": "2803/07",
+      "pokemonIndex": 28,
+      "version": 3,
+      "name": "Hydrapple",
+      "rarity": "Uncommon",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/2803.webp"
+    },
+    {
+      "number": "2804/07",
+      "pokemonIndex": 28,
+      "version": 4,
+      "name": "Hydrapple",
+      "rarity": "Uncommon",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/2804.webp"
+    },
+    {
+      "number": "2805/07",
+      "pokemonIndex": 28,
+      "version": 5,
+      "name": "Hydrapple",
+      "rarity": "Rare",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/2805.webp"
+    },
+    {
+      "number": "2806/07",
+      "pokemonIndex": 28,
+      "version": 6,
+      "name": "Hydrapple",
+      "rarity": "Double Rare",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/2806.webp"
+    },
+    {
+      "number": "2807/07",
+      "pokemonIndex": 28,
+      "version": 7,
+      "name": "Hydrapple",
+      "rarity": "Triple Rare",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%207/Cards/2807.webp"
+    }
+  ]
+}
