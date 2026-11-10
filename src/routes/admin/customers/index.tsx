@@ -233,10 +233,17 @@ function AdminCustomersPage() {
   const navigate = useNavigate()
   const { customers, pendingCredits } = Route.useLoaderData()
   const [page, setPage] = React.useState(1)
+  const [query, setQuery] = React.useState('')
 
-  const totalPages = Math.max(1, Math.ceil(customers.length / CUSTOMERS_PER_PAGE))
+  const filteredCustomers = React.useMemo(() => {
+    const q = query.trim().toLowerCase()
+    if (!q) return customers
+    return customers.filter((c) => (c.name ?? '').toLowerCase().includes(q) || c.email.toLowerCase().includes(q))
+  }, [customers, query])
+
+  const totalPages = Math.max(1, Math.ceil(filteredCustomers.length / CUSTOMERS_PER_PAGE))
   const currentPage = Math.min(page, totalPages)
-  const pageCustomers = customers.slice((currentPage - 1) * CUSTOMERS_PER_PAGE, currentPage * CUSTOMERS_PER_PAGE)
+  const pageCustomers = filteredCustomers.slice((currentPage - 1) * CUSTOMERS_PER_PAGE, currentPage * CUSTOMERS_PER_PAGE)
 
   return (
     <div style={{ maxWidth: 1000, margin: '0 auto', padding: '32px 28px 80px', fontFamily: 'Archivo, Helvetica, sans-serif' }}>
@@ -246,9 +253,31 @@ function AdminCustomersPage() {
       {customers.length === 0 && <p style={{ fontSize: 13.5, color: '#131b28', marginTop: 16 }}>No customer accounts yet.</p>}
 
       {customers.length > 0 && (
-        <div className="ebi-admin-scroll-hint" style={{ fontSize: 11.5, color: '#5a6875', marginTop: 14 }}>
-          Swipe to see more →
-        </div>
+        <>
+          <div style={{ display: 'flex', gap: 12, marginTop: 20, flexWrap: 'wrap', alignItems: 'flex-end' }}>
+            <div>
+              <label style={{ display: 'block', fontFamily: "'IBM Plex Mono', monospace", fontSize: 10.5, letterSpacing: '0.08em', textTransform: 'uppercase', color: '#5a6875', marginBottom: 6 }}>
+                Name or email
+              </label>
+              <input
+                value={query}
+                onChange={(e) => {
+                  setQuery(e.target.value)
+                  setPage(1)
+                }}
+                placeholder="e.g. Dylan or dylan@..."
+                autoFocus
+                style={{ padding: '8px 10px', fontSize: 13, border: '1px solid #cfd4da', borderRadius: 2, width: 260 }}
+              />
+            </div>
+            <div style={{ fontSize: 12.5, color: '#5a6875', paddingBottom: 9 }}>
+              {filteredCustomers.length} customer{filteredCustomers.length === 1 ? '' : 's'} match
+            </div>
+          </div>
+          <div className="ebi-admin-scroll-hint" style={{ fontSize: 11.5, color: '#5a6875', marginTop: 14 }}>
+            Swipe to see more →
+          </div>
+        </>
       )}
       <div style={{ overflowX: 'auto' }}>
         <table style={{ width: '100%', borderCollapse: 'collapse', marginTop: 20, minWidth: 640 }}>
@@ -287,6 +316,13 @@ function AdminCustomersPage() {
                 </td>
               </tr>
             ))}
+            {pageCustomers.length === 0 && (
+              <tr>
+                <td colSpan={8} style={{ ...td, textAlign: 'center', color: '#5a6875' }}>
+                  No customers match "{query}".
+                </td>
+              </tr>
+            )}
           </tbody>
         </table>
       </div>
