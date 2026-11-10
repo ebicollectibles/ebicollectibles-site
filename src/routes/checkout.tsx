@@ -285,6 +285,7 @@ function CheckoutPage() {
     hasPreorder: boolean
     hasDelayedShipment: boolean
     mixedDelayedShipment: boolean
+    combineWithOrderNo?: number
   } | null>(null)
   const [submitting, setSubmitting] = React.useState(false)
   const [error, setError] = React.useState<string | null>(null)
@@ -479,6 +480,7 @@ function CheckoutPage() {
         hasPreorder={confirmed.hasPreorder}
         hasDelayedShipment={confirmed.hasDelayedShipment}
         mixedDelayedShipment={confirmed.mixedDelayedShipment}
+        combineWithOrderNo={confirmed.combineWithOrderNo}
       />
     )
   }
@@ -573,6 +575,7 @@ function CheckoutPage() {
         hasPreorder: cart.lines.some((l) => l.product.preorder),
         hasDelayedShipment: cart.lines.some((l) => l.product.shipsWithDelay),
         mixedDelayedShipment,
+        combineWithOrderNo: shipTogether ? combineCandidate?.orderNo : undefined,
       })
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Something went wrong placing your order.')
@@ -1301,8 +1304,14 @@ function CheckoutPage() {
                   // term would keep this looking disabled forever on a mixed
                   // cart even after the customer checks the consent box below,
                   // since mixedPreorder itself never becomes false.
-                  cursor: cart.cartEmpty || submitting || hiAkBlocked || (cartHasPreorder && !preorderAgreed) ? 'not-allowed' : 'pointer',
-                  opacity: cart.cartEmpty || submitting || hiAkBlocked || (cartHasPreorder && !preorderAgreed) ? 0.45 : 1,
+                  // shipChoicePending (an account with a pending pre-order,
+                  // buying something else, hasn't picked ship-now-vs-wait yet)
+                  // was missing here entirely — the button looked fully ready
+                  // right up until a click surfaced finishOrder's error, which
+                  // reads as the button lying about being ready. Dims the same
+                  // as the other two gates, same not-ready signal, consistent.
+                  cursor: cart.cartEmpty || submitting || hiAkBlocked || (cartHasPreorder && !preorderAgreed) || shipChoicePending ? 'not-allowed' : 'pointer',
+                  opacity: cart.cartEmpty || submitting || hiAkBlocked || (cartHasPreorder && !preorderAgreed) || shipChoicePending ? 0.45 : 1,
                 }}
               >
                 {submitting ? 'Placing order…' : 'Place order'}

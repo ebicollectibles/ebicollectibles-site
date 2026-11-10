@@ -10,6 +10,7 @@ export function OrderConfirmation({
   hasPreorder,
   hasDelayedShipment,
   mixedDelayedShipment,
+  combineWithOrderNo,
 }: {
   orderNo: number
   paymentStatus: string
@@ -29,6 +30,12 @@ export function OrderConfirmation({
   // hasMixedDelayedShipment in lib/order-math.ts. Without this, an order
   // that's entirely the delayed item reads as if other stuff is in there too.
   mixedDelayedShipment?: boolean
+  // Set when this order's free shipping came from explicitly choosing to
+  // wait for a pending order (see combineWithOrderId in schema.ts and
+  // ShipTogetherChoice) — confirms right here, immediately, that the
+  // choice registered, rather than making the shopper wait for the
+  // confirmation email to find out.
+  combineWithOrderNo?: number
 }) {
   return (
     <section style={{ maxWidth: 640, margin: '0 auto', padding: '110px 28px 140px', textAlign: 'center' }}>
@@ -76,6 +83,23 @@ export function OrderConfirmation({
               Refund Policy
             </Link>{' '}
             for details.
+          </p>
+        </div>
+      )}
+      {combineWithOrderNo != null && (
+        <div
+          style={{
+            marginTop: 20,
+            padding: '12px 16px',
+            background: '#eaf2ee',
+            border: '1px solid #c7ddd1',
+            borderRadius: 2,
+            textAlign: 'left',
+          }}
+        >
+          <p style={{ fontSize: 13, lineHeight: 1.6, color: '#131b28', margin: 0 }}>
+            You chose free shipping on this order by waiting for it to ship together with order{' '}
+            <span style={{ fontWeight: 600 }}>#EBI-{combineWithOrderNo}</span>. It'll ship once that one does.
           </p>
         </div>
       )}

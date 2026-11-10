@@ -131,6 +131,13 @@ interface OrderEmailData {
   // pre-order final-sale terms, which matters most if a chargeback dispute
   // ever needs to show the customer was actually told.
   hasPreorder?: boolean
+  // Set when this order's free shipping came from explicitly choosing to
+  // wait and ship with a pending order (see combineWithOrderId in
+  // schema.ts) — without this, the email just shows "Shipping: $0.00"
+  // with no explanation, right after the customer made that choice at
+  // checkout, which reads like a pricing mistake rather than the free
+  // shipping they just picked.
+  combineWithOrderNo?: number
 }
 
 // resendId is the Resend-assigned email id from a real send — kept so a
@@ -164,6 +171,13 @@ export async function sendOrderConfirmationEmail(order: OrderEmailData): Promise
       ${order.tax > 0 ? summaryRow('Tax', formatMoney(order.tax)) : ''}
       ${summaryRow('Total', formatMoney(order.total), true)}
     </table>
+    ${
+      order.combineWithOrderNo != null
+        ? `<div style="margin-top:4px;margin-bottom:20px;padding:12px 16px;background:#eaf2ee;border:1px solid #c7ddd1;border-radius:2px;">
+             <p style="font-size:13px;line-height:1.6;color:${INK};margin:0;">You chose free shipping on this order by waiting for it to ship together with order <strong>#EBI-${order.combineWithOrderNo}</strong>. It'll ship once that one does.</p>
+           </div>`
+        : ''
+    }
     ${address ? labelValueBlock('Ship to', address) : ''}
     ${order.paymentMethodSummary ? labelValueBlock('Payment method', escapeHtml(order.paymentMethodSummary)) : ''}
     ${
@@ -196,6 +210,9 @@ export async function sendOrderConfirmationEmail(order: OrderEmailData): Promise
     order.tax > 0 ? `Tax: ${formatMoney(order.tax)}` : null,
     `Total: ${formatMoney(order.total)}`,
     '',
+    order.combineWithOrderNo != null
+      ? `You chose free shipping on this order by waiting for it to ship together with order #EBI-${order.combineWithOrderNo}. It'll ship once that one does.\n`
+      : null,
     address ? `Ship to:\n${address.replace(/<br>/g, '\n')}` : null,
     order.paymentMethodSummary ? `Payment method: ${order.paymentMethodSummary}` : null,
     order.hasPreorder

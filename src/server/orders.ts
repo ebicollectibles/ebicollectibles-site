@@ -571,6 +571,17 @@ export const placeOrder = createServerFn({ method: 'POST' })
       }
     }
 
+    // Looked up here (not just passed through) because the email needs the
+    // anchor's human-facing order NUMBER, not the id resolveCombineWithOrder
+    // already validated — same reasoning as the equivalent lookup in
+    // customers.ts/admin.ts for the order detail pages' own "waiting to
+    // ship together" banner.
+    let combineWithOrderNo: number | undefined
+    if (combineWithOrderId) {
+      const [anchor] = await db.select({ orderNo: orders.orderNo }).from(orders).where(eq(orders.id, combineWithOrderId)).limit(1)
+      combineWithOrderNo = anchor?.orderNo
+    }
+
     // Best-effort: email the customer a confirmation with what they bought.
     // Also runs after the order is already placed and paid for — a failed
     // send should never undo or block a successful, already-charged order.
@@ -595,6 +606,7 @@ export const placeOrder = createServerFn({ method: 'POST' })
         paymentMethodSummary: result.paymentMethodSummary,
         items: result.lineDetails.map((l) => ({ productName: l.name, qty: l.qty, unitPrice: l.unitPrice, img: l.img })),
         hasPreorder,
+        combineWithOrderNo,
       })
       await db.insert(emailEvents).values({
         orderId: result.orderId,

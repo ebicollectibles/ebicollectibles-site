@@ -122,7 +122,13 @@ export const hasPendingOrder = createServerFn({ method: 'GET' })
     const { getCustomerScopedRows } = await import('~/lib/db/client')
     const [matchingRows, mismatchedRows] = await getCustomerScopedRows(userId, (sql) => [
       sql`select id from orders where user_id = ${userId} and fulfillment_status = 'pending' and has_preorder = ${data.hasPreorder} limit 1`,
-      sql`select id, order_no from orders where user_id = ${userId} and fulfillment_status = 'pending' and has_preorder = ${!data.hasPreorder} limit 1`,
+      // Ordered — an account with more than one pending pre-order (rare but
+      // real: a customer can place a second one before the first ships)
+      // would otherwise get whichever row an unordered `limit 1` happened
+      // to return, which isn't guaranteed stable across requests. Oldest
+      // first: that's the one closest to actually shipping, so it's the
+      // shorter wait to offer.
+      sql`select id, order_no from orders where user_id = ${userId} and fulfillment_status = 'pending' and has_preorder = ${!data.hasPreorder} order by created_at asc limit 1`,
     ])
     const mismatched = mismatchedRows[0] as { id: string; orderNo: number } | undefined
     // Only surfaced in one direction — see resolveCombineWithOrder in

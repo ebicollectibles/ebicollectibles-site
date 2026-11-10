@@ -64,6 +64,7 @@ function CartPage() {
     hasPreorder: boolean
     hasDelayedShipment: boolean
     mixedDelayedShipment: boolean
+    combineWithOrderNo?: number
   } | null>(null)
   const [expressError, setExpressError] = React.useState<string | null>(null)
 
@@ -75,6 +76,7 @@ function CartPage() {
         hasPreorder={confirmed.hasPreorder}
         hasDelayedShipment={confirmed.hasDelayedShipment}
         mixedDelayedShipment={confirmed.mixedDelayedShipment}
+        combineWithOrderNo={confirmed.combineWithOrderNo}
       />
     )
   }

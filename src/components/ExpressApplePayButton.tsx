@@ -57,6 +57,7 @@ export function ExpressApplePayButton({
     hasPreorder: boolean
     hasDelayedShipment: boolean
     mixedDelayedShipment: boolean
+    combineWithOrderNo?: number
   }) => void
   onError: (message: string) => void
 }) {
@@ -289,6 +290,7 @@ export function ExpressApplePayButton({
         hasPreorder: cartHasPreorder,
         hasDelayedShipment: cart.lines.some((l) => l.product.shipsWithDelay),
         mixedDelayedShipment: hasMixedDelayedShipment(cart.lines.map((l) => ({ shipsWithDelay: !!l.product.shipsWithDelay }))),
+        combineWithOrderNo: shipTogether ? combineCandidate?.orderNo : undefined,
       })
     } catch (err) {
       onError(err instanceof Error ? err.message : 'Apple Pay could not be completed.')
