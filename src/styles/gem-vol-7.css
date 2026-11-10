@@ -111,14 +111,27 @@
 
     button {
       position: absolute; top: 50%; left: 50%; width: 190px; aspect-ratio: 300/419; border: 0; padding: 0; background: none; border-radius: 9px;
-      transform-origin: 50% 120%; transition: transform .45s cubic-bezier(.2,.8,.2,1), filter .3s; filter: drop-shadow(0 18px 30px rgb(0 0 0 / .5));
+      transform-origin: 50% 120%;
+      /* z-index's own transition does nothing to how it looks (it's a
+         discrete jump, not an interpolated value) — what the delay does
+         is make the browser wait 120ms of sustained hover before actually
+         applying the jump, in both directions. Without it, grazing the
+         mouse across where two fanned cards overlap flipped which one
+         was "on top" instantly and repeatedly, reading as the cards
+         bleeding into each other. */
+      transition: transform .45s cubic-bezier(.2,.8,.2,1), filter .3s, z-index 0s .12s;
+      filter: drop-shadow(0 18px 30px rgb(0 0 0 / .5));
     }
     img { width: 100%; height: 100%; border-radius: 9px; display: block; }
-    button:nth-child(1) { transform: translate(-50%, -50%) translateX(-150px) rotate(-14deg) translateY(26px); }
-    button:nth-child(2) { transform: translate(-50%, -50%) translateX(-75px) rotate(-7deg) translateY(6px); }
+    /* Wider spacing than the original preview — less overlap between
+       neighbors means a bigger, more stable area to actually hover each
+       card, not just a narrow sliver before the one on top changes. */
+    button:nth-child(1) { transform: translate(-50%, -50%) translateX(-200px) rotate(-14deg) translateY(26px); }
+    button:nth-child(2) { transform: translate(-50%, -50%) translateX(-100px) rotate(-7deg) translateY(6px); }
     button:nth-child(3) { transform: translate(-50%, -50%) rotate(0deg); z-index: 3; }
-    button:nth-child(4) { transform: translate(-50%, -50%) translateX(75px) rotate(7deg) translateY(6px); z-index: 2; }
-    button:nth-child(5) { transform: translate(-50%, -50%) translateX(150px) rotate(14deg) translateY(26px); z-index: 1; }
+    button:nth-child(4) { transform: translate(-50%, -50%) translateX(100px) rotate(7deg) translateY(6px); z-index: 2; }
+    button:nth-child(5) { transform: translate(-50%, -50%) translateX(200px) rotate(14deg) translateY(26px); z-index: 1; }
+    button:nth-child(1), button:nth-child(2) { z-index: 1; }
     button:hover { z-index: 5; filter: drop-shadow(0 24px 40px rgb(0 0 0 / .6)) brightness(1.05); }
   }
   .fan-cap { position: absolute; bottom: 0; left: 0; right: 0; text-align: center; font-size: 12px; color: var(--hero-dim); }
@@ -287,10 +300,10 @@
     .hero .wrap { grid-template-columns: minmax(0, 1fr); }
     .fan { height: 300px; }
     .fan button { width: 150px; }
-    .fan button:nth-child(1) { transform: translate(-50%, -50%) translateX(-110px) rotate(-14deg) translateY(22px); }
-    .fan button:nth-child(2) { transform: translate(-50%, -50%) translateX(-56px) rotate(-7deg) translateY(5px); }
-    .fan button:nth-child(4) { transform: translate(-50%, -50%) translateX(56px) rotate(7deg) translateY(5px); }
-    .fan button:nth-child(5) { transform: translate(-50%, -50%) translateX(110px) rotate(14deg) translateY(22px); }
+    .fan button:nth-child(1) { transform: translate(-50%, -50%) translateX(-146px) rotate(-14deg) translateY(22px); }
+    .fan button:nth-child(2) { transform: translate(-50%, -50%) translateX(-73px) rotate(-7deg) translateY(5px); }
+    .fan button:nth-child(4) { transform: translate(-50%, -50%) translateX(73px) rotate(7deg) translateY(5px); }
+    .fan button:nth-child(5) { transform: translate(-50%, -50%) translateX(146px) rotate(14deg) translateY(22px); }
     .ladder { grid-template-columns: minmax(0, 1fr); gap: 10px; }
     .lhead { flex-direction: row; flex-wrap: wrap; align-items: baseline; gap: 4px 12px; }
     .lmeta { margin-top: 0; }
