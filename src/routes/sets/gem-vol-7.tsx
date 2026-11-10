@@ -227,12 +227,16 @@ function GemVol7Page() {
     return () => window.removeEventListener('resize', update)
   }, [])
 
-  // Drives the mobile carousel's "swoosh": as the fan scrolls, each card's
-  // scale/opacity eases based on its distance from the carousel's center,
-  // via the --gv7-scale/--gv7-opacity custom properties gem-vol-7.css
-  // reads (only under its own max-width: 900px breakpoint — on desktop
-  // these are set but never read, so this is a no-op there). rAF-throttled
-  // since scroll fires far more often than a frame.
+  // Drives the mobile fan's "swoosh": as it scrolls, each card's
+  // rotation/lift/scale/stacking continuously eases based on its signed
+  // distance from the carousel's center, via the --gv7-rot/--gv7-ty/
+  // --gv7-scale/--gv7-z custom properties gem-vol-7.css reads (only under
+  // its own max-width: 900px breakpoint — on desktop these are set but
+  // never read, so this is a no-op there). Mirrors the desktop fan's own
+  // fixed per-card values (±14deg rotate, up to 26px lift, center on top)
+  // as a continuous curve instead of 5 fixed positions, so the same fan
+  // shape holds together as whichever card is centered changes.
+  // rAF-throttled since scroll fires far more often than a frame.
   const updateFanScale = React.useCallback(() => {
     const el = fanRef.current
     if (!el) return
@@ -241,10 +245,13 @@ function GemVol7Page() {
     for (const child of Array.from(el.children)) {
       if (!(child instanceof HTMLElement) || child.tagName !== 'BUTTON') continue
       const cr = child.getBoundingClientRect()
-      const dist = Math.abs(cr.left + cr.width / 2 - center)
-      const norm = Math.min(1, dist / (rect.width / 2))
-      child.style.setProperty('--gv7-scale', (1 - norm * 0.22).toFixed(3))
-      child.style.setProperty('--gv7-opacity', (1 - norm * 0.55).toFixed(3))
+      const dx = cr.left + cr.width / 2 - center
+      const norm = Math.max(-1, Math.min(1, dx / (rect.width / 2)))
+      const absNorm = Math.abs(norm)
+      child.style.setProperty('--gv7-scale', (1 - absNorm * 0.18).toFixed(3))
+      child.style.setProperty('--gv7-rot', `${(norm * 14).toFixed(2)}deg`)
+      child.style.setProperty('--gv7-ty', `${(absNorm * absNorm * 26).toFixed(1)}px`)
+      child.style.setProperty('--gv7-z', String(Math.round((1 - absNorm) * 4)))
     }
   }, [])
   const onFanScroll = React.useCallback(() => {
@@ -255,7 +262,13 @@ function GemVol7Page() {
     })
   }, [updateFanScale])
   React.useEffect(() => {
-    updateFanScale()
+    // Starts centered on the middle card (Misty's Psyduck, 0307 — same
+    // one the desktop fan centers) rather than wherever scrollLeft: 0
+    // happens to land given the overlap margins.
+    const el = fanRef.current
+    const mid = el?.children[2]
+    if (mid instanceof HTMLElement) mid.scrollIntoView({ inline: 'center', block: 'nearest' })
+    requestAnimationFrame(updateFanScale)
     window.addEventListener('resize', updateFanScale)
     return () => window.removeEventListener('resize', updateFanScale)
   }, [updateFanScale])

@@ -305,17 +305,19 @@
 
   @media (max-width: 900px) {
     .hero .wrap { grid-template-columns: minmax(0, 1fr); }
-    /* Below 900px, the overlapping rotated fan becomes a swipeable
-       carousel instead — there's no mouse hover to bring a card forward
-       on a touchscreen, so the fan's whole interaction model doesn't
-       carry over; a horizontal snap-scroll with each card easing to full
-       size as it reaches center reads as a natural swipe/swoosh instead. */
+    /* Below 900px the fan keeps its shape — overlapping, rotated,
+       centered card upright and on top — but it's now a horizontal
+       snap-scroll track instead of 5 fixed absolute positions, so it's
+       swipeable. Rotation/lift/scale/z-index are recomputed per card as
+       it scrolls (--gv7-rot/--gv7-ty/--gv7-scale/--gv7-z, set from JS
+       based on each card's live distance from center), so the arc holds
+       together continuously as the centered card changes, the same way
+       the desktop fan's discrete per-card values describe one. */
     .fan {
       height: auto;
       display: flex;
       align-items: center;
-      gap: 14px;
-      padding: 10px calc(50% - 36vw) 34px;
+      padding: 20px calc(50% - 75px) 34px;
       overflow-x: auto;
       overflow-y: visible;
       scroll-snap-type: x mandatory;
@@ -325,21 +327,19 @@
     .fan::-webkit-scrollbar { display: none; }
     .fan button {
       position: static;
-      flex: 0 0 72vw;
-      max-width: 230px;
-      width: auto;
+      flex: 0 0 150px;
+      width: 150px;
+      margin: 0 -35px;
       scroll-snap-align: center;
-      transform-origin: 50%;
-      transition: transform .25s ease, opacity .25s ease, filter .25s ease;
+      transform-origin: 50% 120%;
+      transition: transform .25s ease;
       /* !important because the desktop fan's per-card :nth-child rules
-         (rotate/translateX for the specific fan positions) are more
+         (rotate/translateX for the fixed fan positions) are more
          specific than this plain selector and would otherwise still
          win here — media queries narrow the viewport, they don't lower
-         any other rule's specificity. --gv7-scale/--gv7-opacity are set
-         from JS as the carousel scrolls, based on each card's distance
-         from center. */
-      transform: scale(var(--gv7-scale, 1)) !important;
-      opacity: var(--gv7-opacity, 1);
+         any other rule's specificity. */
+      transform: rotate(var(--gv7-rot, 0deg)) translateY(var(--gv7-ty, 0px)) scale(var(--gv7-scale, 1)) !important;
+      z-index: var(--gv7-z, 1);
     }
     .ladder { grid-template-columns: minmax(0, 1fr); gap: 10px; }
     .lhead { flex-direction: row; flex-wrap: wrap; align-items: baseline; gap: 4px 12px; }
