@@ -305,42 +305,17 @@
 
   @media (max-width: 900px) {
     .hero .wrap { grid-template-columns: minmax(0, 1fr); }
-    /* Below 900px the fan keeps its shape — overlapping, rotated,
-       centered card upright and on top — but it's now a horizontal
-       snap-scroll track instead of 5 fixed absolute positions, so it's
-       swipeable. Rotation/lift/scale/z-index are recomputed per card as
-       it scrolls (--gv7-rot/--gv7-ty/--gv7-scale/--gv7-z, set from JS
-       based on each card's live distance from center), so the arc holds
-       together continuously as the centered card changes, the same way
-       the desktop fan's discrete per-card values describe one. */
-    .fan {
-      height: auto;
-      display: flex;
-      align-items: center;
-      padding: 20px calc(50% - 75px) 34px;
-      overflow-x: auto;
-      overflow-y: visible;
-      scroll-snap-type: x mandatory;
-      -webkit-overflow-scrolling: touch;
-      scrollbar-width: none;
-    }
-    .fan::-webkit-scrollbar { display: none; }
-    .fan button {
-      position: static;
-      flex: 0 0 150px;
-      width: 150px;
-      margin: 0 -35px;
-      scroll-snap-align: center;
-      transform-origin: 50% 120%;
-      transition: transform .25s ease;
-      /* !important because the desktop fan's per-card :nth-child rules
-         (rotate/translateX for the fixed fan positions) are more
-         specific than this plain selector and would otherwise still
-         win here — media queries narrow the viewport, they don't lower
-         any other rule's specificity. */
-      transform: rotate(var(--gv7-rot, 0deg)) translateY(var(--gv7-ty, 0px)) scale(var(--gv7-scale, 1)) !important;
-      z-index: var(--gv7-z, 1);
-    }
+    /* Below 900px the fan is driven by a swipe gesture instead of
+       mouse hover — see the touch handlers on .fan in the component.
+       It's still the same 5 fixed, absolutely-positioned slots as
+       desktop (gem-vol-7.tsx sets each card's transform/z-index inline
+       once it detects it's in this mode); a swipe advances which card
+       sits in which slot by exactly one step, like a revolver cylinder
+       — there's nothing to drag or scroll, so the whole thing can't be
+       grabbed and moved around. This block only resizes the fan itself
+       for a narrower screen. */
+    .fan { height: 300px; touch-action: pan-y; }
+    .fan button { width: 150px; }
     .ladder { grid-template-columns: minmax(0, 1fr); gap: 10px; }
     .lhead { flex-direction: row; flex-wrap: wrap; align-items: baseline; gap: 4px 12px; }
     .lmeta { margin-top: 0; }

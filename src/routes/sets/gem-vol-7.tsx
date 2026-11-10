@@ -190,7 +190,58 @@ function GemVol7Page() {
   const [headerH, setHeaderH] = React.useState(73)
   const haveLoadedRef = React.useRef(false)
   const fanRef = React.useRef<HTMLDivElement>(null)
-  const fanRafRef = React.useRef<number | null>(null)
+  // Which of the 5 FAN_IDS sits in the center slot. The others fall into
+  // the 4 remaining fixed slots around it, wrapping cyclically — a swipe
+  // moves this by exactly one step, like a revolver cylinder, rather than
+  // letting the fan be dragged by any amount.
+  const [fanIndex, setFanIndex] = React.useState(2) // starts on Misty's Psyduck (0307)
+  const [fanTouch, setFanTouch] = React.useState(false)
+  const touchStartXRef = React.useRef<number | null>(null)
+  const touchMovedRef = React.useRef(false)
+  const justSwipedRef = React.useRef(false)
+
+  React.useEffect(() => {
+    const mq = window.matchMedia('(max-width: 900px)')
+    const update = () => setFanTouch(mq.matches)
+    update()
+    mq.addEventListener('change', update)
+    return () => mq.removeEventListener('change', update)
+  }, [])
+
+  const onFanTouchStart = (e: React.TouchEvent) => {
+    touchStartXRef.current = e.touches[0]?.clientX ?? null
+    touchMovedRef.current = false
+  }
+  const onFanTouchMove = (e: React.TouchEvent) => {
+    if (touchStartXRef.current == null) return
+    if (Math.abs((e.touches[0]?.clientX ?? touchStartXRef.current) - touchStartXRef.current) > 10) touchMovedRef.current = true
+  }
+  const onFanTouchEnd = (e: React.TouchEvent) => {
+    const startX = touchStartXRef.current
+    touchStartXRef.current = null
+    if (startX == null) return
+    const dx = (e.changedTouches[0]?.clientX ?? startX) - startX
+    if (Math.abs(dx) > 40) {
+      setFanIndex((i) => (i + (dx < 0 ? 1 : -1) + FAN_IDS.length) % FAN_IDS.length)
+      justSwipedRef.current = true
+      e.preventDefault()
+    }
+  }
+  // One fixed slot per card — same rotate/offset/lift desktop's own
+  // :nth-child rules use, just computed from fanIndex instead of a static
+  // position in the markup. rel runs -2..2 (5 slots), wrapping around
+  // FAN_IDS.length either side so advancing past an end cycles to the
+  // other, same as a revolver.
+  const fanSlotStyle = (originalIndex: number): React.CSSProperties => {
+    let rel = originalIndex - fanIndex
+    if (rel > 2) rel -= FAN_IDS.length
+    if (rel < -2) rel += FAN_IDS.length
+    const abs = Math.abs(rel)
+    return {
+      transform: `translate(-50%, -50%) translateX(${rel * 100}px) rotate(${rel * 7}deg) translateY(${abs === 2 ? 26 : abs === 1 ? 6 : 0}px)`,
+      zIndex: 3 - abs,
+    }
+  }
 
   // Loads whatever the viewer already marked "have" on an earlier visit.
   // Guarded (localStorage can throw in a private window) and client-only —
@@ -226,52 +277,6 @@ function GemVol7Page() {
     window.addEventListener('resize', update)
     return () => window.removeEventListener('resize', update)
   }, [])
-
-  // Drives the mobile fan's "swoosh": as it scrolls, each card's
-  // rotation/lift/scale/stacking continuously eases based on its signed
-  // distance from the carousel's center, via the --gv7-rot/--gv7-ty/
-  // --gv7-scale/--gv7-z custom properties gem-vol-7.css reads (only under
-  // its own max-width: 900px breakpoint — on desktop these are set but
-  // never read, so this is a no-op there). Mirrors the desktop fan's own
-  // fixed per-card values (±14deg rotate, up to 26px lift, center on top)
-  // as a continuous curve instead of 5 fixed positions, so the same fan
-  // shape holds together as whichever card is centered changes.
-  // rAF-throttled since scroll fires far more often than a frame.
-  const updateFanScale = React.useCallback(() => {
-    const el = fanRef.current
-    if (!el) return
-    const rect = el.getBoundingClientRect()
-    const center = rect.left + rect.width / 2
-    for (const child of Array.from(el.children)) {
-      if (!(child instanceof HTMLElement) || child.tagName !== 'BUTTON') continue
-      const cr = child.getBoundingClientRect()
-      const dx = cr.left + cr.width / 2 - center
-      const norm = Math.max(-1, Math.min(1, dx / (rect.width / 2)))
-      const absNorm = Math.abs(norm)
-      child.style.setProperty('--gv7-scale', (1 - absNorm * 0.18).toFixed(3))
-      child.style.setProperty('--gv7-rot', `${(norm * 14).toFixed(2)}deg`)
-      child.style.setProperty('--gv7-ty', `${(absNorm * absNorm * 26).toFixed(1)}px`)
-      child.style.setProperty('--gv7-z', String(Math.round((1 - absNorm) * 4)))
-    }
-  }, [])
-  const onFanScroll = React.useCallback(() => {
-    if (fanRafRef.current != null) return
-    fanRafRef.current = requestAnimationFrame(() => {
-      fanRafRef.current = null
-      updateFanScale()
-    })
-  }, [updateFanScale])
-  React.useEffect(() => {
-    // Starts centered on the middle card (Misty's Psyduck, 0307 — same
-    // one the desktop fan centers) rather than wherever scrollLeft: 0
-    // happens to land given the overlap margins.
-    const el = fanRef.current
-    const mid = el?.children[2]
-    if (mid instanceof HTMLElement) mid.scrollIntoView({ inline: 'center', block: 'nearest' })
-    requestAnimationFrame(updateFanScale)
-    window.addEventListener('resize', updateFanScale)
-    return () => window.removeEventListener('resize', updateFanScale)
-  }, [updateFanScale])
 
   const q = query.trim().toLowerCase()
   const match = React.useCallback(
@@ -392,11 +397,30 @@ function GemVol7Page() {
               </a>
             </div>
           </div>
-          <div className="fan" ref={fanRef} onScroll={onFanScroll} aria-label="Featured full-art cards">
-            {FAN_IDS.map((id) => {
+          <div
+            className="fan"
+            ref={fanRef}
+            onTouchStart={onFanTouchStart}
+            onTouchMove={onFanTouchMove}
+            onTouchEnd={onFanTouchEnd}
+            aria-label="Featured full-art cards"
+          >
+            {FAN_IDS.map((id, i) => {
               const c = cardById.get(id)!
               return (
-                <button key={id} type="button" onClick={() => open(id)} aria-label={`${c.name} ${id}/07`}>
+                <button
+                  key={id}
+                  type="button"
+                  style={fanTouch ? fanSlotStyle(i) : undefined}
+                  onClick={() => {
+                    if (justSwipedRef.current) {
+                      justSwipedRef.current = false
+                      return
+                    }
+                    open(id)
+                  }}
+                  aria-label={`${c.name} ${id}/07`}
+                >
                   <img src={c.image} alt={`${c.name} full art, Gem Vol 7 ${id}/07`} />
                 </button>
               )
