@@ -278,14 +278,30 @@ function GemVol7Page() {
   // The real site Header is sticky too — this keeps our own sticky
   // toolbar sitting directly under it instead of overlapping, at
   // whatever height the header actually renders at (it varies by
-  // breakpoint).
+  // breakpoint). Scrolling on mobile Safari shows/hides the address bar,
+  // which fires its own resize event — reading layout synchronously
+  // inside that handler forced a reflow at the exact moment a scroll
+  // gesture started, which is what read as a sudden jump right as
+  // scrolling began. Deferred to the next frame instead, and skips the
+  // state update entirely when the height hasn't actually changed.
   React.useEffect(() => {
     const header = document.querySelector('header')
     if (!header) return
-    const update = () => setHeaderH(header.getBoundingClientRect().height)
+    let rafId: number | null = null
+    const update = () => {
+      if (rafId != null) return
+      rafId = requestAnimationFrame(() => {
+        rafId = null
+        const next = header.getBoundingClientRect().height
+        setHeaderH((prev) => (prev === next ? prev : next))
+      })
+    }
     update()
     window.addEventListener('resize', update)
-    return () => window.removeEventListener('resize', update)
+    return () => {
+      window.removeEventListener('resize', update)
+      if (rafId != null) cancelAnimationFrame(rafId)
+    }
   }, [])
 
   const q = query.trim().toLowerCase()
