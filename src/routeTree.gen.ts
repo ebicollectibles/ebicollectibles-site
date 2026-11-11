@@ -44,6 +44,7 @@ import { Route as GoSlugRouteImport } from './routes/go.$slug'
 import { Route as LinksSlugRouteImport } from './routes/links.$slug'
 import { Route as ProductsIdRouteImport } from './routes/products.$id'
 import { Route as SetsIndexRouteImport } from './routes/sets/index'
+import { Route as SetsBlackBoltRouteImport } from './routes/sets/black-bolt'
 import { Route as SetsGemVol1RouteImport } from './routes/sets/gem-vol-1'
 import { Route as SetsGemVol2RouteImport } from './routes/sets/gem-vol-2'
 import { Route as SetsGemVol3RouteImport } from './routes/sets/gem-vol-3'
@@ -51,6 +52,7 @@ import { Route as SetsGemVol4RouteImport } from './routes/sets/gem-vol-4'
 import { Route as SetsGemVol5RouteImport } from './routes/sets/gem-vol-5'
 import { Route as SetsGemVol6RouteImport } from './routes/sets/gem-vol-6'
 import { Route as SetsGemVol7RouteImport } from './routes/sets/gem-vol-7'
+import { Route as SetsWhiteFlareRouteImport } from './routes/sets/white-flare'
 import { Route as AccountOrdersIndexRouteImport } from './routes/account/orders/index'
 import { Route as AccountOrdersIdRouteImport } from './routes/account/orders/$id'
 import { Route as AdminCustomersIndexRouteImport } from './routes/admin/customers/index'
@@ -237,6 +239,11 @@ const SetsIndexRoute = SetsIndexRouteImport.update({
   path: '/sets/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SetsBlackBoltRoute = SetsBlackBoltRouteImport.update({
+  id: '/sets/black-bolt',
+  path: '/sets/black-bolt',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const SetsGemVol1Route = SetsGemVol1RouteImport.update({
   id: '/sets/gem-vol-1',
   path: '/sets/gem-vol-1',
@@ -270,6 +277,11 @@ const SetsGemVol6Route = SetsGemVol6RouteImport.update({
 const SetsGemVol7Route = SetsGemVol7RouteImport.update({
   id: '/sets/gem-vol-7',
   path: '/sets/gem-vol-7',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SetsWhiteFlareRoute = SetsWhiteFlareRouteImport.update({
+  id: '/sets/white-flare',
+  path: '/sets/white-flare',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AccountOrdersIndexRoute = AccountOrdersIndexRouteImport.update({
@@ -358,6 +370,7 @@ export interface FileRoutesByFullPath {
   '/go/$slug': typeof GoSlugRoute
   '/links/$slug': typeof LinksSlugRoute
   '/products/$id': typeof ProductsIdRoute
+  '/sets/black-bolt': typeof SetsBlackBoltRoute
   '/sets/gem-vol-1': typeof SetsGemVol1Route
   '/sets/gem-vol-2': typeof SetsGemVol2Route
   '/sets/gem-vol-3': typeof SetsGemVol3Route
@@ -365,6 +378,7 @@ export interface FileRoutesByFullPath {
   '/sets/gem-vol-5': typeof SetsGemVol5Route
   '/sets/gem-vol-6': typeof SetsGemVol6Route
   '/sets/gem-vol-7': typeof SetsGemVol7Route
+  '/sets/white-flare': typeof SetsWhiteFlareRoute
   '/account/': typeof AccountIndexRoute
   '/admin/': typeof AdminIndexRoute
   '/sets/': typeof SetsIndexRoute
@@ -412,6 +426,7 @@ export interface FileRoutesByTo {
   '/go/$slug': typeof GoSlugRoute
   '/links/$slug': typeof LinksSlugRoute
   '/products/$id': typeof ProductsIdRoute
+  '/sets/black-bolt': typeof SetsBlackBoltRoute
   '/sets/gem-vol-1': typeof SetsGemVol1Route
   '/sets/gem-vol-2': typeof SetsGemVol2Route
   '/sets/gem-vol-3': typeof SetsGemVol3Route
@@ -419,6 +434,7 @@ export interface FileRoutesByTo {
   '/sets/gem-vol-5': typeof SetsGemVol5Route
   '/sets/gem-vol-6': typeof SetsGemVol6Route
   '/sets/gem-vol-7': typeof SetsGemVol7Route
+  '/sets/white-flare': typeof SetsWhiteFlareRoute
   '/account': typeof AccountIndexRoute
   '/admin': typeof AdminIndexRoute
   '/sets': typeof SetsIndexRoute
@@ -467,6 +483,7 @@ export interface FileRoutesById {
   '/go/$slug': typeof GoSlugRoute
   '/links/$slug': typeof LinksSlugRoute
   '/products/$id': typeof ProductsIdRoute
+  '/sets/black-bolt': typeof SetsBlackBoltRoute
   '/sets/gem-vol-1': typeof SetsGemVol1Route
   '/sets/gem-vol-2': typeof SetsGemVol2Route
   '/sets/gem-vol-3': typeof SetsGemVol3Route
@@ -474,6 +491,7 @@ export interface FileRoutesById {
   '/sets/gem-vol-5': typeof SetsGemVol5Route
   '/sets/gem-vol-6': typeof SetsGemVol6Route
   '/sets/gem-vol-7': typeof SetsGemVol7Route
+  '/sets/white-flare': typeof SetsWhiteFlareRoute
   '/account/': typeof AccountIndexRoute
   '/admin/': typeof AdminIndexRoute
   '/sets/': typeof SetsIndexRoute
@@ -523,6 +541,7 @@ export interface FileRouteTypes {
     | '/go/$slug'
     | '/links/$slug'
     | '/products/$id'
+    | '/sets/black-bolt'
     | '/sets/gem-vol-1'
     | '/sets/gem-vol-2'
     | '/sets/gem-vol-3'
@@ -530,6 +549,7 @@ export interface FileRouteTypes {
     | '/sets/gem-vol-5'
     | '/sets/gem-vol-6'
     | '/sets/gem-vol-7'
+    | '/sets/white-flare'
     | '/account/'
     | '/admin/'
     | '/sets/'
@@ -577,6 +597,7 @@ export interface FileRouteTypes {
     | '/go/$slug'
     | '/links/$slug'
     | '/products/$id'
+    | '/sets/black-bolt'
     | '/sets/gem-vol-1'
     | '/sets/gem-vol-2'
     | '/sets/gem-vol-3'
@@ -584,6 +605,7 @@ export interface FileRouteTypes {
     | '/sets/gem-vol-5'
     | '/sets/gem-vol-6'
     | '/sets/gem-vol-7'
+    | '/sets/white-flare'
     | '/account'
     | '/admin'
     | '/sets'
@@ -631,6 +653,7 @@ export interface FileRouteTypes {
     | '/go/$slug'
     | '/links/$slug'
     | '/products/$id'
+    | '/sets/black-bolt'
     | '/sets/gem-vol-1'
     | '/sets/gem-vol-2'
     | '/sets/gem-vol-3'
@@ -638,6 +661,7 @@ export interface FileRouteTypes {
     | '/sets/gem-vol-5'
     | '/sets/gem-vol-6'
     | '/sets/gem-vol-7'
+    | '/sets/white-flare'
     | '/account/'
     | '/admin/'
     | '/sets/'
@@ -686,6 +710,7 @@ export interface RootRouteChildren {
   GoSlugRoute: typeof GoSlugRoute
   LinksSlugRoute: typeof LinksSlugRoute
   ProductsIdRoute: typeof ProductsIdRoute
+  SetsBlackBoltRoute: typeof SetsBlackBoltRoute
   SetsGemVol1Route: typeof SetsGemVol1Route
   SetsGemVol2Route: typeof SetsGemVol2Route
   SetsGemVol3Route: typeof SetsGemVol3Route
@@ -693,6 +718,7 @@ export interface RootRouteChildren {
   SetsGemVol5Route: typeof SetsGemVol5Route
   SetsGemVol6Route: typeof SetsGemVol6Route
   SetsGemVol7Route: typeof SetsGemVol7Route
+  SetsWhiteFlareRoute: typeof SetsWhiteFlareRoute
   AccountIndexRoute: typeof AccountIndexRoute
   AdminIndexRoute: typeof AdminIndexRoute
   SetsIndexRoute: typeof SetsIndexRoute
@@ -955,6 +981,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SetsIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/sets/black-bolt': {
+      id: '/sets/black-bolt'
+      path: '/sets/black-bolt'
+      fullPath: '/sets/black-bolt'
+      preLoaderRoute: typeof SetsBlackBoltRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/sets/gem-vol-1': {
       id: '/sets/gem-vol-1'
       path: '/sets/gem-vol-1'
@@ -1002,6 +1035,13 @@ declare module '@tanstack/react-router' {
       path: '/sets/gem-vol-7'
       fullPath: '/sets/gem-vol-7'
       preLoaderRoute: typeof SetsGemVol7RouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sets/white-flare': {
+      id: '/sets/white-flare'
+      path: '/sets/white-flare'
+      fullPath: '/sets/white-flare'
+      preLoaderRoute: typeof SetsWhiteFlareRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/account/orders/': {
@@ -1110,6 +1150,7 @@ const rootRouteChildren: RootRouteChildren = {
   GoSlugRoute: GoSlugRoute,
   LinksSlugRoute: LinksSlugRoute,
   ProductsIdRoute: ProductsIdRoute,
+  SetsBlackBoltRoute: SetsBlackBoltRoute,
   SetsGemVol1Route: SetsGemVol1Route,
   SetsGemVol2Route: SetsGemVol2Route,
   SetsGemVol3Route: SetsGemVol3Route,
@@ -1117,6 +1158,7 @@ const rootRouteChildren: RootRouteChildren = {
   SetsGemVol5Route: SetsGemVol5Route,
   SetsGemVol6Route: SetsGemVol6Route,
   SetsGemVol7Route: SetsGemVol7Route,
+  SetsWhiteFlareRoute: SetsWhiteFlareRoute,
   AccountIndexRoute: AccountIndexRoute,
   AdminIndexRoute: AdminIndexRoute,
   SetsIndexRoute: SetsIndexRoute,

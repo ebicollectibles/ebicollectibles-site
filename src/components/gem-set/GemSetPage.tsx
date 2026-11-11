@@ -372,7 +372,7 @@ export function GemSetPage({
                 </button>
               )
             })}
-            <div className="fan-cap">{topRarity} full arts</div>
+            <div className="fan-cap">{config.fanCaption ?? `${topRarity} full arts`}</div>
           </div>
         </div>
       </section>

@@ -97,6 +97,11 @@ export interface GemSetConfig {
   heroLede?: string
   pokemonFact?: string // the hero's "Pokémon" fact tile value, e.g. "18 × 7"
   rarityVersionLabelsOverride?: Record<string, string>
+  // The hero fan's caption under the cards. Defaults to "{top rarity}
+  // full arts", accurate when a set's fan only ever shows its single top
+  // tier — not true for a set like Black Bolt, whose fan mixes Special
+  // Art Rares with its one Black White Rare.
+  fanCaption?: string
 }
 
 export interface BuiltGemSetData {
