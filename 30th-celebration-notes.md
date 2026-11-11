@@ -60,7 +60,7 @@ Irregularities beyond Black Bolt and White Flare:
 
 - **Three numbering systems on one page:** `NNN/103`, Chen's `No. NNN` for the Energy, and `NNN/30th-P` for the promos. **Promo numbers collide with set numbers** (`001/30th-P` Bulbasaur vs `001/103` Exeggcute), so any lookup needs the full string.
 - **Heavy name duplication:** **"Pikachu" appears 31 times** (the 30 Pikachu Rares + 136 classic Pikachu), **"Pikachu ex" 6 times** (047, 048, 126, 127, promos 030 and 031), Lugia twice (097 R, 142 classic), Gengar ex/Gengar, and so on. Matching "other versions" by name will produce big groups; Pikachu would need special handling.
-- **One card split over two numbers:** **151 and 152 are both "Darkrai & Cresselia LEGEND"**, the top and bottom halves of one LEGEND card. A page should show them side by side, not as duplicates.
+- **One card split over two numbers:** **151 and 152 are both "Darkrai & Cresselia LEGEND"**, the two halves of one LEGEND card. A page should show them side by side, not as duplicates.
 - **The two Pikachu ex pairs:** 047 and 048 are **two different** Pikachu ex cards (different attacks). From the attack text, SAR **126 reprints 047** and **127 reprints 048**.
 
 ### Will the existing Gem Set engine render it as-is? **No.**
