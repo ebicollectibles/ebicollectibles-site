@@ -14,9 +14,7 @@ Source: https://www.chencards.com/sets/30th_celebration (Chen Cards, used with p
   - **8 basic Energy cards** that Chen labels `No. 166`–`No. 173`. The cards themselves don't seem to print a collector number; the footer shows only the set mark, the "GRA" mark and the illustrator. So 166–173 is Chen's numbering, not printed.
   - **33 promos** numbered `001/30th-P`–`033/30th-P` (a separate **PROMO** series; Chen hosts them in a separate "30th-celebration-promos" image folder)
 - **No pack-odds chart** and no cards-per-pack figure on Chen.
-- **4 cards had no image on Chen**: 119/103 Kommo-o (Art Rare (AR)), 128/103 Mewtwo ex (Special Art Rare (SAR)), 129/103 Mew ex (Special Art Rare (SAR)), 131/103 Gengar ex (Special Art Rare (SAR)).
-  - **119 is now filled in** from the official Pokémon China 30th campaign page (https://campaign-30th.pokemon.cn/products/30th-celebration/), resized to 300×419 to match the rest of the folder. That's the only image added; every other image is still Chen's original.
-  - **128, 129 and 131 are still `null`** with no file. Pokémon China's official card list left exactly these three out when it was published (52Poke notes the same: they were revealed only at launch), and Chen, the official campaign page and 52Poke all have no image for them. Render a placeholder until a real scan is available.
+- **4 cards have no image on Chen**: 119/103 Kommo-o (Art Rare (AR)), 128/103 Mewtwo ex (Special Art Rare (SAR)), 129/103 Mew ex (Special Art Rare (SAR)), 131/103 Gengar ex (Special Art Rare (SAR)). Their JSON `image` is **`null`** and there's no file in `30th-celebration-images/cards/`. Source these elsewhere before the page goes live, or render a placeholder.
 
 ## Rarity tiers, most common to rarest
 
@@ -71,7 +69,7 @@ For the same reasons as Black Bolt and White Flare, plus more:
 
 - `buildGemSetData` takes `id = number.slice(0, 4)` and `groupId = id.slice(0, 2)`. `"001/103"` gives id `"001/"` and dumps 001–009 into one group; `"001/30th-P"` gives the **same id `"001/"`** as the set card, so `cardById` would overwrite one with the other; and `"No. 166"` gives id `"No. "` for all 8 Energy, collapsing them into one entry.
 - The per-Pokémon ladder rows, derived rarity-version labels, hero copy and odds table all assume the Gem shape.
-- `rarity: null` (71 cards) and `image: null` (3 cards) aren't expected by the Gem types.
+- `rarity: null` (71 cards) and `image: null` (4 cards) aren't expected by the Gem types.
 - **What it needs:** the same flat-catalog page that Black Bolt and White Flare need (numbered checklist, rarity filter, "other versions" by name), plus display labels for the unrated blocks, a promo tab or section, and a placeholder for missing images. If that page gets built for Black Bolt and White Flare first, 30th Celebration can reuse it.
 
 ### How the JSON maps onto the Black Bolt / White Flare schema
@@ -113,7 +111,7 @@ Alternatives: 127/103 (the other Pikachu ex SAR), 141 Shining Celebi or 160 Pika
 ## Files
 
 - `src/data/30th-celebration.json`: 206 cards, schema as above.
-- `30th-celebration-images/cards/`: 203 images (`0001`–`0173`, `P001`–`P033`); 128, 129 and 131 are missing.
+- `30th-celebration-images/cards/`: 202 images (`0001`–`0173`, `P001`–`P033`); the 4 listed above are missing.
 
 ## Appendix: full card list
 
@@ -237,7 +235,7 @@ Alternatives: 127/103 (the other Pikachu ex SAR), 141 Shining Celebi or 160 Pika
 | 116/103 | Scraggy | Art Rare (AR) | Scraggy 078/103 |  |
 | 117/103 | Galarian Meowth | Art Rare (AR) | Galarian Meowth 080/103 |  |
 | 118/103 | Gholdengo | Art Rare (AR) | Gholdengo 087/103 |  |
-| 119/103 | Kommo-o | Art Rare (AR) | Kommo-o 091/103 | image from the official Pokémon China campaign page (none on Chen) |
+| 119/103 | Kommo-o | Art Rare (AR) | Kommo-o 091/103 | **no image on Chen** |
 | 120/103 | Meowth | Art Rare (AR) | Meowth 092/103 |  |
 | 121/103 | Ditto | Art Rare (AR) | Ditto 093/103 | **flagged by Chen** (promo-only in English) |
 | 122/103 | Hisuian Zorua | Art Rare (AR) | Hisuian Zorua 098/103 |  |
