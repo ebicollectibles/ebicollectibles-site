@@ -16,6 +16,7 @@ export type GemSetRoutePath =
   | '/sets/gem-vol-7'
   | '/sets/black-bolt'
   | '/sets/white-flare'
+  | '/sets/30th-celebration'
 
 export interface GemSetSummary {
   slug: string
@@ -35,6 +36,21 @@ export interface GemSetSummary {
 }
 
 export const GEM_SETS: GemSetSummary[] = [
+  {
+    slug: '30th-celebration',
+    path: '/sets/30th-celebration',
+    name: '30th Celebration',
+    series: '30th Anniversary Special Set',
+    code: '30thC',
+    cardCount: 206,
+    releaseDate: '2026-09-16',
+    exclusiveCount: 1,
+    tagline: '100 Pokémon, 30 classic reprints and the Pikachu Rare tier',
+    heroImage: 'https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/30th%20Celebration/Cards/0126.webp',
+    heroAlt: 'Pikachu ex Special Art Rare',
+    glow1: 'rgb(222 185 97 / .30)',
+    glow2: 'rgb(90 45 5 / .25)',
+  },
   {
     slug: 'black-bolt',
     path: '/sets/black-bolt',

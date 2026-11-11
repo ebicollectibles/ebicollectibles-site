@@ -8,7 +8,7 @@ export interface RawCard {
   version: number
   name: string
   rarity: string
-  image: string
+  image: string | null // null when the source has no image yet for this card (render a placeholder)
 }
 
 export interface GemSetData {
@@ -56,7 +56,7 @@ export interface Card {
   version: number
   suffix: string // this card's own version denominator, e.g. "07" or, for a
   // catalog card in a differently-sized block (Trainers, Energy), "04"/"06"
-  image: string
+  image: string | null // null when the source has no image yet for this card (render a placeholder)
   exclusive: boolean
 }
 

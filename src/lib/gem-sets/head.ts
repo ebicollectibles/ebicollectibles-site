@@ -32,7 +32,7 @@ export function buildGemSetJsonLd(raw: GemSetData, data: BuiltGemSetData, config
       position: i + 1,
       name: `${c.name} ${c.id}/${data.versionSuffix}`,
       url: `${SITE_URL}${config.routePath}?card=${c.id}`,
-      image: c.image,
+      image: c.image ?? undefined,
     })),
   }
   const faqJsonLd = {

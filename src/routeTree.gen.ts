@@ -44,6 +44,7 @@ import { Route as GoSlugRouteImport } from './routes/go.$slug'
 import { Route as LinksSlugRouteImport } from './routes/links.$slug'
 import { Route as ProductsIdRouteImport } from './routes/products.$id'
 import { Route as SetsIndexRouteImport } from './routes/sets/index'
+import { Route as Sets30thCelebrationRouteImport } from './routes/sets/30th-celebration'
 import { Route as SetsBlackBoltRouteImport } from './routes/sets/black-bolt'
 import { Route as SetsGemVol1RouteImport } from './routes/sets/gem-vol-1'
 import { Route as SetsGemVol2RouteImport } from './routes/sets/gem-vol-2'
@@ -239,6 +240,11 @@ const SetsIndexRoute = SetsIndexRouteImport.update({
   path: '/sets/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const Sets30thCelebrationRoute = Sets30thCelebrationRouteImport.update({
+  id: '/sets/30th-celebration',
+  path: '/sets/30th-celebration',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const SetsBlackBoltRoute = SetsBlackBoltRouteImport.update({
   id: '/sets/black-bolt',
   path: '/sets/black-bolt',
@@ -370,6 +376,7 @@ export interface FileRoutesByFullPath {
   '/go/$slug': typeof GoSlugRoute
   '/links/$slug': typeof LinksSlugRoute
   '/products/$id': typeof ProductsIdRoute
+  '/sets/30th-celebration': typeof Sets30thCelebrationRoute
   '/sets/black-bolt': typeof SetsBlackBoltRoute
   '/sets/gem-vol-1': typeof SetsGemVol1Route
   '/sets/gem-vol-2': typeof SetsGemVol2Route
@@ -426,6 +433,7 @@ export interface FileRoutesByTo {
   '/go/$slug': typeof GoSlugRoute
   '/links/$slug': typeof LinksSlugRoute
   '/products/$id': typeof ProductsIdRoute
+  '/sets/30th-celebration': typeof Sets30thCelebrationRoute
   '/sets/black-bolt': typeof SetsBlackBoltRoute
   '/sets/gem-vol-1': typeof SetsGemVol1Route
   '/sets/gem-vol-2': typeof SetsGemVol2Route
@@ -483,6 +491,7 @@ export interface FileRoutesById {
   '/go/$slug': typeof GoSlugRoute
   '/links/$slug': typeof LinksSlugRoute
   '/products/$id': typeof ProductsIdRoute
+  '/sets/30th-celebration': typeof Sets30thCelebrationRoute
   '/sets/black-bolt': typeof SetsBlackBoltRoute
   '/sets/gem-vol-1': typeof SetsGemVol1Route
   '/sets/gem-vol-2': typeof SetsGemVol2Route
@@ -541,6 +550,7 @@ export interface FileRouteTypes {
     | '/go/$slug'
     | '/links/$slug'
     | '/products/$id'
+    | '/sets/30th-celebration'
     | '/sets/black-bolt'
     | '/sets/gem-vol-1'
     | '/sets/gem-vol-2'
@@ -597,6 +607,7 @@ export interface FileRouteTypes {
     | '/go/$slug'
     | '/links/$slug'
     | '/products/$id'
+    | '/sets/30th-celebration'
     | '/sets/black-bolt'
     | '/sets/gem-vol-1'
     | '/sets/gem-vol-2'
@@ -653,6 +664,7 @@ export interface FileRouteTypes {
     | '/go/$slug'
     | '/links/$slug'
     | '/products/$id'
+    | '/sets/30th-celebration'
     | '/sets/black-bolt'
     | '/sets/gem-vol-1'
     | '/sets/gem-vol-2'
@@ -710,6 +722,7 @@ export interface RootRouteChildren {
   GoSlugRoute: typeof GoSlugRoute
   LinksSlugRoute: typeof LinksSlugRoute
   ProductsIdRoute: typeof ProductsIdRoute
+  Sets30thCelebrationRoute: typeof Sets30thCelebrationRoute
   SetsBlackBoltRoute: typeof SetsBlackBoltRoute
   SetsGemVol1Route: typeof SetsGemVol1Route
   SetsGemVol2Route: typeof SetsGemVol2Route
@@ -981,6 +994,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SetsIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/sets/30th-celebration': {
+      id: '/sets/30th-celebration'
+      path: '/sets/30th-celebration'
+      fullPath: '/sets/30th-celebration'
+      preLoaderRoute: typeof Sets30thCelebrationRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/sets/black-bolt': {
       id: '/sets/black-bolt'
       path: '/sets/black-bolt'
@@ -1150,6 +1170,7 @@ const rootRouteChildren: RootRouteChildren = {
   GoSlugRoute: GoSlugRoute,
   LinksSlugRoute: LinksSlugRoute,
   ProductsIdRoute: ProductsIdRoute,
+  Sets30thCelebrationRoute: Sets30thCelebrationRoute,
   SetsBlackBoltRoute: SetsBlackBoltRoute,
   SetsGemVol1Route: SetsGemVol1Route,
   SetsGemVol2Route: SetsGemVol2Route,

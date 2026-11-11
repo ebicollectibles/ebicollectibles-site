@@ -32,7 +32,11 @@ export function CardThumb({
   return (
     <button type="button" className={`card${dimmed ? ' dim' : ''}`} onClick={() => onOpen(card.id)}>
       <span className="img">
-        <img loading="lazy" src={card.image} alt={`${card.name} ${card.id}/${card.suffix}, ${card.rarity}`} />
+        {card.image ? (
+          <img loading="lazy" src={card.image} alt={`${card.name} ${card.id}/${card.suffix}, ${card.rarity}`} />
+        ) : (
+          <span className="img-ph">Image coming soon</span>
+        )}
         {have && (
           <span className="own" aria-label="In your collection">
             ✓

@@ -22,6 +22,16 @@ export const RARITY_CODE: Record<string, string> = {
   'Super Rare (SR)': 'SR',
   'Special Art Rare (SAR)': 'SAR',
   'Black White Rare (BWR)': 'BWR',
+  // 30th Celebration's own set-specific tiers, plus its three unrated
+  // blocks (classic reprints, basic Energy, promos — Chen gives them no
+  // rarity at all). The unrated three intentionally reuse Common's
+  // code/color: they aren't a real rarity, just a neutral display bucket,
+  // and the card's own rarity STRING is still shown as the tag text.
+  'Pikachu Rare': 'SR',
+  'Futuristic Rare (FUR)': 'RRR',
+  'Classic Reprint': 'C',
+  'Basic Energy': 'C',
+  Promo: 'C',
 }
 export const RARITY_SYMBOL: Record<string, string> = {
   Common: '●',
@@ -37,4 +47,9 @@ export const RARITY_SYMBOL: Record<string, string> = {
   'Super Rare (SR)': '✦✦',
   'Special Art Rare (SAR)': '✦✦✦',
   'Black White Rare (BWR)': '✧',
+  'Pikachu Rare': '✪',
+  'Futuristic Rare (FUR)': '✦✦✦✦',
+  'Classic Reprint': '✺',
+  'Basic Energy': '◉',
+  Promo: '◇',
 }

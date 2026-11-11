@@ -367,7 +367,7 @@ export function GemSetPage({
                   }}
                   aria-label={`${c.name} ${id}/${c.suffix}`}
                 >
-                  <img src={c.image} alt={`${c.name} full art, ${raw.name} ${id}/${c.suffix}`} />
+                  <img src={c.image ?? undefined} alt={`${c.name} full art, ${raw.name} ${id}/${c.suffix}`} />
                   {c.exclusive && <span className="fan-excl">Exclusive</span>}
                 </button>
               )
@@ -525,7 +525,11 @@ export function GemSetPage({
               ×
             </button>
             <div className="lb-art">
-              <img src={openCard.image} alt={`${openCard.name} ${openCard.id}/${openCard.suffix}, ${openCard.rarity}, ${raw.name}`} />
+              {openCard.image ? (
+                <img src={openCard.image} alt={`${openCard.name} ${openCard.id}/${openCard.suffix}, ${openCard.rarity}, ${raw.name}`} />
+              ) : (
+                <div className="lb-art-ph">Image coming soon</div>
+              )}
             </div>
             <div className="lb-info">
               <div className="lb-nav">
@@ -564,7 +568,7 @@ export function GemSetPage({
               <div className="sibs">
                 {(openGroup?.cards ?? []).map((sib, i) => (
                   <button key={sib.id} type="button" aria-current={sib.id === openCard.id} aria-label={`Version ${i + 1}, ${sib.rarity}`} onClick={() => open(sib.id)}>
-                    <img src={sib.image} alt="" />
+                    {sib.image ? <img src={sib.image} alt="" /> : <span className="sib-ph" aria-hidden="true" />}
                   </button>
                 ))}
               </div>
