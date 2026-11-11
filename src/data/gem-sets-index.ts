@@ -22,6 +22,7 @@ export interface GemSetSummary {
   path: GemSetRoutePath
   name: string
   series: string // shown as a small tag, since this list now mixes Chen's own "Gem Set" releases with real officially-licensed sets
+  code: string // the set's own code, e.g. "CSV10.5C", matching each set's own data file
   cardCount: number
   releaseDate: string
   exclusiveCount: number
@@ -39,6 +40,7 @@ export const GEM_SETS: GemSetSummary[] = [
     path: '/sets/black-bolt',
     name: 'Black Bolt',
     series: 'Chinese Scarlet & Violet',
+    code: 'CSV10.5C',
     cardCount: 174,
     releaseDate: '2026-11-06',
     exclusiveCount: 1,
@@ -53,6 +55,7 @@ export const GEM_SETS: GemSetSummary[] = [
     path: '/sets/white-flare',
     name: 'White Flare',
     series: 'Chinese Scarlet & Violet',
+    code: 'CSV10.6C',
     cardCount: 174,
     releaseDate: '2026-11-06',
     exclusiveCount: 1,
@@ -67,6 +70,7 @@ export const GEM_SETS: GemSetSummary[] = [
     path: '/sets/gem-vol-7',
     name: 'Gem Vol 7',
     series: 'Gem Set',
+    code: 'CBB7C',
     cardCount: 196,
     releaseDate: '2026-11-06',
     exclusiveCount: 1,
@@ -82,6 +86,7 @@ export const GEM_SETS: GemSetSummary[] = [
     path: '/sets/gem-vol-6',
     name: 'Gem Vol 6',
     series: 'Gem Set',
+    code: 'CBB6C',
     cardCount: 196,
     releaseDate: '2026-08-07',
     exclusiveCount: 1,
@@ -96,6 +101,7 @@ export const GEM_SETS: GemSetSummary[] = [
     path: '/sets/gem-vol-5',
     name: 'Gem Vol 5',
     series: 'Gem Set',
+    code: 'CBB5C',
     cardCount: 196,
     releaseDate: '2026-04-24',
     exclusiveCount: 4,
@@ -110,6 +116,7 @@ export const GEM_SETS: GemSetSummary[] = [
     path: '/sets/gem-vol-4',
     name: 'Gem Vol 4',
     series: 'Gem Set',
+    code: 'CBB4C',
     cardCount: 196,
     releaseDate: '2026-02-06',
     exclusiveCount: 1,
@@ -124,6 +131,7 @@ export const GEM_SETS: GemSetSummary[] = [
     path: '/sets/gem-vol-3',
     name: 'Gem Vol 3',
     series: 'Gem Set',
+    code: 'CBB3C',
     cardCount: 136,
     releaseDate: '2025-09-26',
     exclusiveCount: 5,
@@ -138,6 +146,7 @@ export const GEM_SETS: GemSetSummary[] = [
     path: '/sets/gem-vol-2',
     name: 'Gem Vol 2',
     series: 'Gem Set',
+    code: 'CBB2C',
     cardCount: 140,
     releaseDate: '2025-05-16',
     exclusiveCount: 4,
@@ -152,6 +161,7 @@ export const GEM_SETS: GemSetSummary[] = [
     path: '/sets/gem-vol-1',
     name: 'Gem Vol 1',
     series: 'Gem Set',
+    code: 'CBB1C',
     cardCount: 115,
     releaseDate: '2025-01-17',
     exclusiveCount: 4,
