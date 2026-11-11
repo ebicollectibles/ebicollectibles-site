@@ -31,10 +31,10 @@ const config: GemSetConfig = {
   routePath: '/sets/gem-vol-2',
   storageKey: 'gem2-have',
   productId: 'pokemon-chinese-gem-volume-2-booster-box',
-  // This set's 4 exclusives — the version-15 full-art illustrations for
-  // Eevee (centered), Umbreon, Leafeon and Sylveon — plus Umbreon VMAX
-  // for a 5th highlight.
-  fanIds: ['0615', '0715', '0115', '0915', '0614'],
+  // Just this set's 4 real exclusives — the version-15 full-art
+  // illustrations for Eevee, Umbreon, Leafeon and Sylveon — no filler
+  // card added to pad it out to 5; the fan lays out 4 just as well.
+  fanIds: ['0615', '0715', '0115', '0915'],
   // Gem Vol 2's Gem Pack branding is the same magenta family as Vol 3-6,
   // paired here with a soft forest teal echoing the 4 exclusives' sunlit
   // style — distinct from Vol 3 (lantern peach), Vol 4 (coral), Vol 5

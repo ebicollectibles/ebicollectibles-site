@@ -137,23 +137,19 @@
       color: #fff; background: rgb(0 0 0 / .55); backdrop-filter: blur(2px);
       padding: 2px 7px; border-radius: 999px; pointer-events: none;
     }
-    /* Wider spacing than the original preview — less overlap between
-       neighbors means a bigger, more stable area to actually hover each
-       card, not just a narrow sliver before the one on top changes. */
-    button:nth-child(1) { transform: translate(-50%, -50%) translateX(-200px) rotate(-14deg) translateY(26px); }
-    button:nth-child(2) { transform: translate(-50%, -50%) translateX(-100px) rotate(-7deg) translateY(6px); }
-    button:nth-child(3) { transform: translate(-50%, -50%) rotate(0deg); z-index: 3; }
-    button:nth-child(4) { transform: translate(-50%, -50%) translateX(100px) rotate(7deg) translateY(6px); z-index: 2; }
-    button:nth-child(5) { transform: translate(-50%, -50%) translateX(200px) rotate(14deg) translateY(26px); z-index: 1; }
-    button:nth-child(1), button:nth-child(2) { z-index: 1; }
-    /* Real mouse hover only — on a touchscreen, :hover fires (and sticks)
-       on tap in several mobile browsers, which looked like "holding a
-       card brings it to the front" with no way to back out of it. Below
-       900px wide the fan is swipe-driven instead (see that media query
-       and the component's touch handlers), where neither of these rules
-       plays any part — z-index there changes the instant a swipe lands,
-       with no delay, so the newly-centered card comes to the front right
-       away instead of lagging behind its own position change. */
+    /* Position and z-index are both set inline (GemSetPage's
+       fanSlotStyle, from FAN_LAYOUTS) rather than fixed here, so the fan
+       works for however many cards a set actually has (5 normally, 4
+       when a set has exactly 4 real exclusives and no filler was added
+       to pad it out) instead of assuming exactly 5 fixed DOM slots.
+       Real mouse hover only — on a touchscreen, :hover fires (and
+       sticks) on tap in several mobile browsers, which looked like
+       "holding a card brings it to the front" with no way to back out
+       of it. Below 900px wide the fan is swipe-driven instead (see that
+       media query and the component's touch handlers), where this rule
+       plays no part — z-index there changes the instant a swipe lands,
+       with no delay, so the newly-centered card comes to the front
+       right away instead of lagging behind its own position change. */
     @media (hover: hover) and (pointer: fine) {
       button {
         /* z-index's own transition does nothing to how it looks (it's a
@@ -167,7 +163,11 @@
            lag on mobile when it lived on the shared base rule instead. */
         transition: transform .45s cubic-bezier(.2,.8,.2,1), filter .3s, z-index 0s .12s;
       }
-      button:hover { z-index: 5; box-shadow: 0 24px 40px rgb(0 0 0 / .6); filter: brightness(1.05); }
+      /* !important: z-index is also set inline per-card (see above), which
+         always outranks a plain CSS rule on specificity alone — without
+         this, hovering would never actually raise a card above its
+         neighbors. */
+      button:hover { z-index: 5 !important; box-shadow: 0 24px 40px rgb(0 0 0 / .6); filter: brightness(1.05); }
     }
   }
   .fan-cap { position: absolute; bottom: 0; left: 0; right: 0; text-align: center; font-size: 12px; color: var(--hero-dim); }

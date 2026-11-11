@@ -15,6 +15,30 @@ import { CardThumb, RarityTag } from './parts'
 // accent colors). Everything else — filtering, views, the hero fan
 // carousel, the "have" checklist, the lightbox — lives here once, so a fix
 // made here reaches every set's page.
+// Fixed left-to-right slot positions for the hero fan, keyed by how many
+// cards it holds. Every set so far uses 5 (its own picks plus however
+// many are genuinely exclusive); a set with a different number of real
+// exclusives — Gem Vol 2 has exactly 4 — can just pass that many fanIds
+// instead of padding to 5 with a non-exclusive filler. Add an entry here
+// if a future set needs a size besides 4 or 5; anything else falls back
+// to the 5-slot layout (an extra/missing card will just double up on or
+// skip the last slot rather than crash).
+const FAN_LAYOUTS: Record<number, Array<{ x: number; rot: number; y: number; z: number }>> = {
+  5: [
+    { x: -200, rot: -14, y: 26, z: 1 },
+    { x: -100, rot: -7, y: 6, z: 2 },
+    { x: 0, rot: 0, y: 0, z: 3 },
+    { x: 100, rot: 7, y: 6, z: 2 },
+    { x: 200, rot: 14, y: 26, z: 1 },
+  ],
+  4: [
+    { x: -150, rot: -10, y: 16, z: 1 },
+    { x: -50, rot: -4, y: 4, z: 2 },
+    { x: 50, rot: 4, y: 4, z: 2 },
+    { x: 150, rot: 10, y: 16, z: 1 },
+  ],
+}
+
 export function GemSetPage({
   raw,
   data,
@@ -42,20 +66,11 @@ export function GemSetPage({
   // moves this by exactly one step, like a revolver cylinder, rather than
   // letting the fan be dragged by any amount.
   const [fanIndex, setFanIndex] = React.useState(Math.floor(config.fanIds.length / 2))
-  const [fanTouch, setFanTouch] = React.useState(false)
   const touchStartXRef = React.useRef<number | null>(null)
   const touchMovedRef = React.useRef(false)
   const justSwipedRef = React.useRef(false)
 
   const { itemListJsonLd, faqJsonLd } = React.useMemo(() => buildGemSetJsonLd(raw, data, config), [raw, data, config])
-
-  React.useEffect(() => {
-    const mq = window.matchMedia('(max-width: 900px)')
-    const update = () => setFanTouch(mq.matches)
-    update()
-    mq.addEventListener('change', update)
-    return () => mq.removeEventListener('change', update)
-  }, [])
 
   const onFanTouchStart = (e: React.TouchEvent) => {
     touchStartXRef.current = e.touches[0]?.clientX ?? null
@@ -86,19 +101,25 @@ export function GemSetPage({
       }, 400)
     }
   }
-  // One fixed slot per card — same rotate/offset/lift desktop's own
-  // :nth-child rules use, just computed from fanIndex instead of a static
-  // position in the markup. rel runs -2..2 (5 slots), wrapping around
-  // fanIds.length either side so advancing past an end cycles to the
-  // other, same as a revolver.
+  // One fixed slot per card, applied on every viewport (desktop included
+  // — a swipe only happens on touch, but a static assignment still needs
+  // to land each card somewhere). The slot a card sits in is "how many
+  // steps clockwise it is from whichever card is currently front" mapped
+  // onto FAN_LAYOUTS' fixed positions, with the front card itself placed
+  // at the layout's own natural center slot (floor((n-1)/2) — plain
+  // middle index for an odd count like 5, the left-of-center of the two
+  // middle slots for an even count like 4, since an even number of slots
+  // has no true center to put it in). A swipe advances fanIndex by
+  // exactly one step, like a revolver cylinder, wrapping cyclically.
+  const n = config.fanIds.length
+  const fanLayout = FAN_LAYOUTS[n] ?? FAN_LAYOUTS[5]
+  const fanFrontSlot = Math.floor((n - 1) / 2)
   const fanSlotStyle = (originalIndex: number): React.CSSProperties => {
-    let rel = originalIndex - fanIndex
-    if (rel > 2) rel -= config.fanIds.length
-    if (rel < -2) rel += config.fanIds.length
-    const abs = Math.abs(rel)
+    const stepsFromFront = ((originalIndex - fanIndex) % n + n) % n
+    const slot = fanLayout[(fanFrontSlot + stepsFromFront) % fanLayout.length] ?? fanLayout[0]
     return {
-      transform: `translate(-50%, -50%) translateX(${rel * 100}px) rotate(${rel * 7}deg) translateY(${abs === 2 ? 26 : abs === 1 ? 6 : 0}px)`,
-      zIndex: 3 - abs,
+      transform: `translate(-50%, -50%) translateX(${slot.x}px) rotate(${slot.rot}deg) translateY(${slot.y}px)`,
+      zIndex: slot.z,
     }
   }
 
@@ -322,7 +343,7 @@ export function GemSetPage({
                 <button
                   key={id}
                   type="button"
-                  style={fanTouch ? fanSlotStyle(i) : undefined}
+                  style={fanSlotStyle(i)}
                   onClick={() => {
                     if (justSwipedRef.current) {
                       justSwipedRef.current = false
