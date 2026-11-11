@@ -320,9 +320,15 @@ export function GemSetPage({
               </div>
             </dl>
             <div className="hero-cta">
-              <Link className="btn btn-light" to="/products/$id" params={{ id: config.productId }}>
-                Shop {raw.name} →
-              </Link>
+              {config.productId ? (
+                <Link className="btn btn-light" to="/products/$id" params={{ id: config.productId }}>
+                  Shop {raw.name} →
+                </Link>
+              ) : (
+                <Link className="btn btn-light" to="/shop">
+                  Shop all Pokémon →
+                </Link>
+              )}
               <a
                 className="btn btn-ghost"
                 href="#list"
@@ -614,9 +620,15 @@ export function GemSetPage({
                 I have this card
               </label>
               <div className="lb-actions">
-                <Link className="btn btn-dark" to="/products/$id" params={{ id: config.productId }}>
-                  Shop {raw.name}
-                </Link>
+                {config.productId ? (
+                  <Link className="btn btn-dark" to="/products/$id" params={{ id: config.productId }}>
+                    Shop {raw.name}
+                  </Link>
+                ) : (
+                  <Link className="btn btn-dark" to="/shop">
+                    Shop all Pokémon
+                  </Link>
+                )}
                 <button className="btn btn-line" type="button" onClick={copyLink}>
                   Copy link to card
                 </button>
