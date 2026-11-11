@@ -83,7 +83,7 @@ for (const c of cards) {
 
 const FAQ: Array<{ q: string; a: string }> = [
   { q: 'How many cards are in Gem Vol 7?', a: '196 cards: 28 Pokémon with 7 versions each. That breaks down to 56 Common, 56 Uncommon, 28 Rare, 28 Double Rare and 28 Triple Rare.' },
-  { q: 'What are the chase cards?', a: 'The 28 Triple Rares (version 07 of each Pokémon) are full-art cards. Misty’s Psyduck 0307/07 is exclusive to this set — it doesn’t appear in any other release.' },
+  { q: 'What are the chase cards?', a: 'The 28 Triple Rares (version 07 of each Pokémon) are full-art cards. Misty’s Psyduck 0307/07 is a Chinese exclusive — this full art only appears in the Simplified Chinese Gem Vol 7 release.' },
   { q: 'When did Gem Vol 7 release?', a: 'November 6, 2026.' },
   { q: 'What language are the cards in?', a: 'Simplified Chinese.' },
   { q: 'Where can I buy Gem Vol 7?', a: 'EBI Collectibles carries Gem Vol 7 packs and boxes.' },
@@ -555,7 +555,7 @@ function GemVol7Page() {
                     <span className="lmeta">
                       7 versions · {ownedInGroup} owned
                     </span>
-                    {hasExclusive && <span className="excl">Exclusive to this set</span>}
+                    {hasExclusive && <span className="excl">Chinese Exclusive</span>}
                   </div>
                   <div className="rail">
                     {g.cards.map((c) => (
@@ -692,7 +692,7 @@ function GemVol7Page() {
                 <dt>Version</dt>
                 <dd>
                   {openCard.version} of 7{openCard.version === 7 ? ' · full art' : ''}
-                  {openCard.exclusive ? ' · exclusive to this set' : ''}
+                  {openCard.exclusive ? ' · Chinese exclusive' : ''}
                 </dd>
                 <dt>Set</dt>
                 <dd>Gem Vol 7 · {data.code}</dd>
