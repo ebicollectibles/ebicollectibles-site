@@ -1,0 +1,2098 @@
+{
+  "name": "Terastal Gathering",
+  "slug": "csv9-5",
+  "code": "CSV9.5C",
+  "series": "Chinese Scarlet & Violet",
+  "language": "Simplified Chinese",
+  "releaseDate": "2026-06-12",
+  "cardCount": 259,
+  "rarityOrder": [
+    "Common (C)",
+    "Uncommon (U)",
+    "Rare (R)",
+    "Double Rare (RR)",
+    "ACE SPEC Rare (ACE)",
+    "Super Rare (SR)",
+    "Special Art Rare (SAR)",
+    "Ultra Rare (UR)"
+  ],
+  "exclusiveCardNumbers": [
+    "234/208"
+  ],
+  "source": "Chen Cards (chencards.com/sets/crystal_gathering), used with permission",
+  "cards": [
+    {
+      "number": "001/208",
+      "pokemonIndex": 1,
+      "version": 1,
+      "name": "Exeggcute",
+      "rarity": "Common (C)",
+      "image": "Chinese/Crystal Gathering/Cards/0001.webp"
+    },
+    {
+      "number": "002/208",
+      "pokemonIndex": 2,
+      "version": 1,
+      "name": "Exeggutor",
+      "rarity": "Uncommon (U)",
+      "image": "Chinese/Crystal Gathering/Cards/0002.webp"
+    },
+    {
+      "number": "003/208",
+      "pokemonIndex": 3,
+      "version": 1,
+      "name": "Pinsir",
+      "rarity": "Common (C)",
+      "image": "Chinese/Crystal Gathering/Cards/0003.webp"
+    },
+    {
+      "number": "004/208",
+      "pokemonIndex": 4,
+      "version": 1,
+      "name": "Budew",
+      "rarity": "Common (C)",
+      "image": "Chinese/Crystal Gathering/Cards/0004.webp"
+    },
+    {
+      "number": "005/208",
+      "pokemonIndex": 5,
+      "version": 1,
+      "name": "Leafeon",
+      "rarity": "Uncommon (U)",
+      "image": "Chinese/Crystal Gathering/Cards/0005.webp"
+    },
+    {
+      "number": "006/208",
+      "pokemonIndex": 6,
+      "version": 1,
+      "name": "Leafeon ex",
+      "rarity": "Double Rare (RR)",
+      "image": "Chinese/Crystal Gathering/Cards/0006.webp"
+    },
+    {
+      "number": "007/208",
+      "pokemonIndex": 7,
+      "version": 1,
+      "name": "Cottonee",
+      "rarity": "Common (C)",
+      "image": "Chinese/Crystal Gathering/Cards/0007.webp"
+    },
+    {
+      "number": "008/208",
+      "pokemonIndex": 8,
+      "version": 1,
+      "name": "Whimsicott",
+      "rarity": "Rare (R)",
+      "image": "Chinese/Crystal Gathering/Cards/0008.webp"
+    },
+    {
+      "number": "009/208",
+      "pokemonIndex": 9,
+      "version": 1,
+      "name": "Grookey",
+      "rarity": "Common (C)",
+      "image": "Chinese/Crystal Gathering/Cards/0009.webp"
+    },
+    {
+      "number": "010/208",
+      "pokemonIndex": 10,
+      "version": 1,
+      "name": "Thwackey",
+      "rarity": "Common (C)",
+      "image": "Chinese/Crystal Gathering/Cards/0010.webp"
+    },
+    {
+      "number": "011/208",
+      "pokemonIndex": 11,
+      "version": 1,
+      "name": "Applin",
+      "rarity": "Common (C)",
+      "image": "Chinese/Crystal Gathering/Cards/0011.webp"
+    },
+    {
+      "number": "012/208",
+      "pokemonIndex": 12,
+      "version": 1,
+      "name": "Dipplin",
+      "rarity": "Common (C)",
+      "image": "Chinese/Crystal Gathering/Cards/0012.webp"
+    },
+    {
+      "number": "013/208",
+      "pokemonIndex": 13,
+      "version": 1,
+      "name": "Bramblin",
+      "rarity": "Common (C)",
+      "image": "Chinese/Crystal Gathering/Cards/0013.webp"
+    },
+    {
+      "number": "014/208",
+      "pokemonIndex": 14,
+      "version": 1,
+      "name": "Brambleghast",
+      "rarity": "Rare (R)",
+      "image": "Chinese/Crystal Gathering/Cards/0014.webp"
+    },
+    {
+      "number": "015/208",
+      "pokemonIndex": 15,
+      "version": 1,
+      "name": "Rellor",
+      "rarity": "Common (C)",
+      "image": "Chinese/Crystal Gathering/Cards/0015.webp"
+    },
+    {
+      "number": "016/208",
+      "pokemonIndex": 16,
+      "version": 1,
+      "name": "Rabsca",
+      "rarity": "Uncommon (U)",
+      "image": "Chinese/Crystal Gathering/Cards/0016.webp"
+    },
+    {
+      "number": "017/208",
+      "pokemonIndex": 17,
+      "version": 1,
+      "name": "Wo-Chien",
+      "rarity": "Rare (R)",
+      "image": "Chinese/Crystal Gathering/Cards/0017.webp"
+    },
+    {
+      "number": "018/208",
+      "pokemonIndex": 18,
+      "version": 1,
+      "name": "Iron Leaves ex",
+      "rarity": "Double Rare (RR)",
+      "image": "Chinese/Crystal Gathering/Cards/0018.webp"
+    },
+    {
+      "number": "019/208",
+      "pokemonIndex": 19,
+      "version": 1,
+      "name": "Poltchageist",
+      "rarity": "Common (C)",
+      "image": "Chinese/Crystal Gathering/Cards/0019.webp"
+    },
+    {
+      "number": "020/208",
+      "pokemonIndex": 20,
+      "version": 1,
+      "name": "Sinistcha",
+      "rarity": "Rare (R)",
+      "image": "Chinese/Crystal Gathering/Cards/0020.webp"
+    },
+    {
+      "number": "021/208",
+      "pokemonIndex": 21,
+      "version": 1,
+      "name": "Teal Mask Ogerpon ex",
+      "rarity": "Double Rare (RR)",
+      "image": "Chinese/Crystal Gathering/Cards/0021.webp"
+    },
+    {
+      "number": "022/208",
+      "pokemonIndex": 22,
+      "version": 1,
+      "name": "Flareon",
+      "rarity": "Rare (R)",
+      "image": "Chinese/Crystal Gathering/Cards/0022.webp"
+    },
+    {
+      "number": "023/208",
+      "pokemonIndex": 23,
+      "version": 1,
+      "name": "Flareon ex",
+      "rarity": "Double Rare (RR)",
+      "image": "Chinese/Crystal Gathering/Cards/0023.webp"
+    },
+    {
+      "number": "024/208",
+      "pokemonIndex": 24,
+      "version": 1,
+      "name": "Litleo",
+      "rarity": "Common (C)",
+      "image": "Chinese/Crystal Gathering/Cards/0024.webp"
+    },
+    {
+      "number": "025/208",
+      "pokemonIndex": 25,
+      "version": 1,
+      "name": "Pyroar",
+      "rarity": "Uncommon (U)",
+      "image": "Chinese/Crystal Gathering/Cards/0025.webp"
+    },
+    {
+      "number": "026/208",
+      "pokemonIndex": 26,
+      "version": 1,
+      "name": "Charcadet",
+      "rarity": "Common (C)",
+      "image": "Chinese/Crystal Gathering/Cards/0026.webp"
+    },
+    {
+      "number": "027/208",
+      "pokemonIndex": 27,
+      "version": 1,
+      "name": "Iron Moth",
+      "rarity": "Rare (R)",
+      "image": "Chinese/Crystal Gathering/Cards/0027.webp"
+    },
+    {
+      "number": "028/208",
+      "pokemonIndex": 28,
+      "version": 1,
+      "name": "Chi-Yu",
+      "rarity": "Rare (R)",
+      "image": "Chinese/Crystal Gathering/Cards/0028.webp"
+    },
+    {
+      "number": "029/208",
+      "pokemonIndex": 29,
+      "version": 1,
+      "name": "Hearthflame Mask Ogerpon ex",
+      "rarity": "Double Rare (RR)",
+      "image": "Chinese/Crystal Gathering/Cards/0029.webp"
+    },
+    {
+      "number": "030/208",
+      "pokemonIndex": 30,
+      "version": 1,
+      "name": "Gouging Fire ex",
+      "rarity": "Double Rare (RR)",
+      "image": "Chinese/Crystal Gathering/Cards/0030.webp"
+    },
+    {
+      "number": "031/208",
+      "pokemonIndex": 31,
+      "version": 1,
+      "name": "Slowpoke",
+      "rarity": "Common (C)",
+      "image": "Chinese/Crystal Gathering/Cards/0031.webp"
+    },
+    {
+      "number": "032/208",
+      "pokemonIndex": 32,
+      "version": 1,
+      "name": "Slowking",
+      "rarity": "Uncommon (U)",
+      "image": "Chinese/Crystal Gathering/Cards/0032.webp"
+    },
+    {
+      "number": "033/208",
+      "pokemonIndex": 33,
+      "version": 1,
+      "name": "Goldeen",
+      "rarity": "Common (C)",
+      "image": "Chinese/Crystal Gathering/Cards/0033.webp"
+    },
+    {
+      "number": "034/208",
+      "pokemonIndex": 34,
+      "version": 1,
+      "name": "Seaking",
+      "rarity": "Uncommon (U)",
+      "image": "Chinese/Crystal Gathering/Cards/0034.webp"
+    },
+    {
+      "number": "035/208",
+      "pokemonIndex": 35,
+      "version": 1,
+      "name": "Vaporeon",
+      "rarity": "Rare (R)",
+      "image": "Chinese/Crystal Gathering/Cards/0035.webp"
+    },
+    {
+      "number": "036/208",
+      "pokemonIndex": 36,
+      "version": 1,
+      "name": "Vaporeon ex",
+      "rarity": "Double Rare (RR)",
+      "image": "Chinese/Crystal Gathering/Cards/0036.webp"
+    },
+    {
+      "number": "037/208",
+      "pokemonIndex": 37,
+      "version": 1,
+      "name": "Totodile",
+      "rarity": "Common (C)",
+      "image": "Chinese/Crystal Gathering/Cards/0037.webp"
+    },
+    {
+      "number": "038/208",
+      "pokemonIndex": 38,
+      "version": 1,
+      "name": "Croconaw",
+      "rarity": "Common (C)",
+      "image": "Chinese/Crystal Gathering/Cards/0038.webp"
+    },
+    {
+      "number": "039/208",
+      "pokemonIndex": 39,
+      "version": 1,
+      "name": "Feraligatr",
+      "rarity": "Rare (R)",
+      "image": "Chinese/Crystal Gathering/Cards/0039.webp"
+    },
+    {
+      "number": "040/208",
+      "pokemonIndex": 40,
+      "version": 1,
+      "name": "Suicune",
+      "rarity": "Rare (R)",
+      "image": "Chinese/Crystal Gathering/Cards/0040.webp"
+    },
+    {
+      "number": "041/208",
+      "pokemonIndex": 41,
+      "version": 1,
+      "name": "Feebas",
+      "rarity": "Common (C)",
+      "image": "Chinese/Crystal Gathering/Cards/0041.webp"
+    },
+    {
+      "number": "042/208",
+      "pokemonIndex": 42,
+      "version": 1,
+      "name": "Milotic",
+      "rarity": "Uncommon (U)",
+      "image": "Chinese/Crystal Gathering/Cards/0042.webp"
+    },
+    {
+      "number": "043/208",
+      "pokemonIndex": 43,
+      "version": 1,
+      "name": "Snorunt",
+      "rarity": "Common (C)",
+      "image": "Chinese/Crystal Gathering/Cards/0043.webp"
+    },
+    {
+      "number": "044/208",
+      "pokemonIndex": 44,
+      "version": 1,
+      "name": "Froslass",
+      "rarity": "Rare (R)",
+      "image": "Chinese/Crystal Gathering/Cards/0044.webp"
+    },
+    {
+      "number": "045/208",
+      "pokemonIndex": 45,
+      "version": 1,
+      "name": "Garchomp ex",
+      "rarity": "Double Rare (RR)",
+      "image": "Chinese/Crystal Gathering/Cards/0045.webp"
+    },
+    {
+      "number": "046/208",
+      "pokemonIndex": 46,
+      "version": 1,
+      "name": "Glaceon",
+      "rarity": "Uncommon (U)",
+      "image": "Chinese/Crystal Gathering/Cards/0046.webp"
+    },
+    {
+      "number": "047/208",
+      "pokemonIndex": 47,
+      "version": 1,
+      "name": "Glaceon ex",
+      "rarity": "Double Rare (RR)",
+      "image": "Chinese/Crystal Gathering/Cards/0047.webp"
+    },
+    {
+      "number": "048/208",
+      "pokemonIndex": 48,
+      "version": 1,
+      "name": "Wiglett",
+      "rarity": "Common (C)",
+      "image": "Chinese/Crystal Gathering/Cards/0048.webp"
+    },
+    {
+      "number": "049/208",
+      "pokemonIndex": 49,
+      "version": 1,
+      "name": "Wugtrio",
+      "rarity": "Uncommon (U)",
+      "image": "Chinese/Crystal Gathering/Cards/0049.webp"
+    },
+    {
+      "number": "050/208",
+      "pokemonIndex": 50,
+      "version": 1,
+      "name": "Finizen",
+      "rarity": "Common (C)",
+      "image": "Chinese/Crystal Gathering/Cards/0050.webp"
+    },
+    {
+      "number": "051/208",
+      "pokemonIndex": 51,
+      "version": 1,
+      "name": "Palafin",
+      "rarity": "Common (C)",
+      "image": "Chinese/Crystal Gathering/Cards/0051.webp"
+    },
+    {
+      "number": "052/208",
+      "pokemonIndex": 52,
+      "version": 1,
+      "name": "Palafin ex",
+      "rarity": "Double Rare (RR)",
+      "image": "Chinese/Crystal Gathering/Cards/0052.webp"
+    },
+    {
+      "number": "053/208",
+      "pokemonIndex": 53,
+      "version": 1,
+      "name": "Iron Bundle",
+      "rarity": "Uncommon (U)",
+      "image": "Chinese/Crystal Gathering/Cards/0053.webp"
+    },
+    {
+      "number": "054/208",
+      "pokemonIndex": 54,
+      "version": 1,
+      "name": "Chien-Pao",
+      "rarity": "Rare (R)",
+      "image": "Chinese/Crystal Gathering/Cards/0054.webp"
+    },
+    {
+      "number": "055/208",
+      "pokemonIndex": 55,
+      "version": 1,
+      "name": "Walking Wake ex",
+      "rarity": "Double Rare (RR)",
+      "image": "Chinese/Crystal Gathering/Cards/0055.webp"
+    },
+    {
+      "number": "056/208",
+      "pokemonIndex": 56,
+      "version": 1,
+      "name": "Wellspring Mask Ogerpon ex",
+      "rarity": "Double Rare (RR)",
+      "image": "Chinese/Crystal Gathering/Cards/0056.webp"
+    },
+    {
+      "number": "057/208",
+      "pokemonIndex": 57,
+      "version": 1,
+      "name": "Jolteon",
+      "rarity": "Rare (R)",
+      "image": "Chinese/Crystal Gathering/Cards/0057.webp"
+    },
+    {
+      "number": "058/208",
+      "pokemonIndex": 58,
+      "version": 1,
+      "name": "Jolteon ex",
+      "rarity": "Double Rare (RR)",
+      "image": "Chinese/Crystal Gathering/Cards/0058.webp"
+    },
+    {
+      "number": "059/208",
+      "pokemonIndex": 59,
+      "version": 1,
+      "name": "Zeraora",
+      "rarity": "Rare (R)",
+      "image": "Chinese/Crystal Gathering/Cards/0059.webp"
+    },
+    {
+      "number": "060/208",
+      "pokemonIndex": 60,
+      "version": 1,
+      "name": "Iron Hands ex",
+      "rarity": "Double Rare (RR)",
+      "image": "Chinese/Crystal Gathering/Cards/0060.webp"
+    },
+    {
+      "number": "061/208",
+      "pokemonIndex": 61,
+      "version": 1,
+      "name": "Iron Thorns",
+      "rarity": "Rare (R)",
+      "image": "Chinese/Crystal Gathering/Cards/0061.webp"
+    },
+    {
+      "number": "062/208",
+      "pokemonIndex": 62,
+      "version": 1,
+      "name": "Abra",
+      "rarity": "Common (C)",
+      "image": "Chinese/Crystal Gathering/Cards/0062.webp"
+    },
+    {
+      "number": "063/208",
+      "pokemonIndex": 63,
+      "version": 1,
+      "name": "Kadabra",
+      "rarity": "Common (C)",
+      "image": "Chinese/Crystal Gathering/Cards/0063.webp"
+    },
+    {
+      "number": "064/208",
+      "pokemonIndex": 64,
+      "version": 1,
+      "name": "Alakazam",
+      "rarity": "Rare (R)",
+      "image": "Chinese/Crystal Gathering/Cards/0064.webp"
+    },
+    {
+      "number": "065/208",
+      "pokemonIndex": 65,
+      "version": 1,
+      "name": "Natu",
+      "rarity": "Common (C)",
+      "image": "Chinese/Crystal Gathering/Cards/0065.webp"
+    },
+    {
+      "number": "066/208",
+      "pokemonIndex": 66,
+      "version": 1,
+      "name": "Xatu",
+      "rarity": "Uncommon (U)",
+      "image": "Chinese/Crystal Gathering/Cards/0066.webp"
+    },
+    {
+      "number": "067/208",
+      "pokemonIndex": 67,
+      "version": 1,
+      "name": "Espeon",
+      "rarity": "Uncommon (U)",
+      "image": "Chinese/Crystal Gathering/Cards/0067.webp"
+    },
+    {
+      "number": "068/208",
+      "pokemonIndex": 68,
+      "version": 1,
+      "name": "Espeon ex",
+      "rarity": "Double Rare (RR)",
+      "image": "Chinese/Crystal Gathering/Cards/0068.webp"
+    },
+    {
+      "number": "069/208",
+      "pokemonIndex": 69,
+      "version": 1,
+      "name": "Duskull",
+      "rarity": "Common (C)",
+      "image": "Chinese/Crystal Gathering/Cards/0069.webp"
+    },
+    {
+      "number": "070/208",
+      "pokemonIndex": 70,
+      "version": 1,
+      "name": "Dusclops",
+      "rarity": "Common (C)",
+      "image": "Chinese/Crystal Gathering/Cards/0070.webp"
+    },
+    {
+      "number": "071/208",
+      "pokemonIndex": 71,
+      "version": 1,
+      "name": "Dusknoir",
+      "rarity": "Rare (R)",
+      "image": "Chinese/Crystal Gathering/Cards/0071.webp"
+    },
+    {
+      "number": "072/208",
+      "pokemonIndex": 72,
+      "version": 1,
+      "name": "Spritzee",
+      "rarity": "Common (C)",
+      "image": "Chinese/Crystal Gathering/Cards/0072.webp"
+    },
+    {
+      "number": "073/208",
+      "pokemonIndex": 73,
+      "version": 1,
+      "name": "Aromatisse",
+      "rarity": "Rare (R)",
+      "image": "Chinese/Crystal Gathering/Cards/0073.webp"
+    },
+    {
+      "number": "074/208",
+      "pokemonIndex": 74,
+      "version": 1,
+      "name": "Swirlix",
+      "rarity": "Common (C)",
+      "image": "Chinese/Crystal Gathering/Cards/0074.webp"
+    },
+    {
+      "number": "075/208",
+      "pokemonIndex": 75,
+      "version": 1,
+      "name": "Sylveon",
+      "rarity": "Uncommon (U)",
+      "image": "Chinese/Crystal Gathering/Cards/0075.webp"
+    },
+    {
+      "number": "076/208",
+      "pokemonIndex": 76,
+      "version": 1,
+      "name": "Sylveon ex",
+      "rarity": "Double Rare (RR)",
+      "image": "Chinese/Crystal Gathering/Cards/0076.webp"
+    },
+    {
+      "number": "077/208",
+      "pokemonIndex": 77,
+      "version": 1,
+      "name": "Ceruledge",
+      "rarity": "Rare (R)",
+      "image": "Chinese/Crystal Gathering/Cards/0077.webp"
+    },
+    {
+      "number": "078/208",
+      "pokemonIndex": 78,
+      "version": 1,
+      "name": "Scream Tail",
+      "rarity": "Uncommon (U)",
+      "image": "Chinese/Crystal Gathering/Cards/0078.webp"
+    },
+    {
+      "number": "079/208",
+      "pokemonIndex": 79,
+      "version": 1,
+      "name": "Flutter Mane",
+      "rarity": "Rare (R)",
+      "image": "Chinese/Crystal Gathering/Cards/0079.webp"
+    },
+    {
+      "number": "080/208",
+      "pokemonIndex": 80,
+      "version": 1,
+      "name": "Gimmighoul",
+      "rarity": "Common (C)",
+      "image": "Chinese/Crystal Gathering/Cards/0080.webp"
+    },
+    {
+      "number": "081/208",
+      "pokemonIndex": 81,
+      "version": 1,
+      "name": "Iron Valiant ex",
+      "rarity": "Double Rare (RR)",
+      "image": "Chinese/Crystal Gathering/Cards/0081.webp"
+    },
+    {
+      "number": "082/208",
+      "pokemonIndex": 82,
+      "version": 1,
+      "name": "Munkidori",
+      "rarity": "Rare (R)",
+      "image": "Chinese/Crystal Gathering/Cards/0082.webp"
+    },
+    {
+      "number": "083/208",
+      "pokemonIndex": 83,
+      "version": 1,
+      "name": "Fezandipiti",
+      "rarity": "Rare (R)",
+      "image": "Chinese/Crystal Gathering/Cards/0083.webp"
+    },
+    {
+      "number": "084/208",
+      "pokemonIndex": 84,
+      "version": 1,
+      "name": "Iron Boulder",
+      "rarity": "Rare (R)",
+      "image": "Chinese/Crystal Gathering/Cards/0084.webp"
+    },
+    {
+      "number": "085/208",
+      "pokemonIndex": 85,
+      "version": 1,
+      "name": "Iron Crown ex",
+      "rarity": "Double Rare (RR)",
+      "image": "Chinese/Crystal Gathering/Cards/0085.webp"
+    },
+    {
+      "number": "086/208",
+      "pokemonIndex": 86,
+      "version": 1,
+      "name": "Larvitar",
+      "rarity": "Common (C)",
+      "image": "Chinese/Crystal Gathering/Cards/0086.webp"
+    },
+    {
+      "number": "087/208",
+      "pokemonIndex": 87,
+      "version": 1,
+      "name": "Pupitar",
+      "rarity": "Common (C)",
+      "image": "Chinese/Crystal Gathering/Cards/0087.webp"
+    },
+    {
+      "number": "088/208",
+      "pokemonIndex": 88,
+      "version": 1,
+      "name": "Relicanth",
+      "rarity": "Rare (R)",
+      "image": "Chinese/Crystal Gathering/Cards/0088.webp"
+    },
+    {
+      "number": "089/208",
+      "pokemonIndex": 89,
+      "version": 1,
+      "name": "Groudon",
+      "rarity": "Rare (R)",
+      "image": "Chinese/Crystal Gathering/Cards/0089.webp"
+    },
+    {
+      "number": "090/208",
+      "pokemonIndex": 90,
+      "version": 1,
+      "name": "Gible",
+      "rarity": "Common (C)",
+      "image": "Chinese/Crystal Gathering/Cards/0090.webp"
+    },
+    {
+      "number": "091/208",
+      "pokemonIndex": 91,
+      "version": 1,
+      "name": "Gabite",
+      "rarity": "Common (C)",
+      "image": "Chinese/Crystal Gathering/Cards/0091.webp"
+    },
+    {
+      "number": "092/208",
+      "pokemonIndex": 92,
+      "version": 1,
+      "name": "Hippopotas",
+      "rarity": "Common (C)",
+      "image": "Chinese/Crystal Gathering/Cards/0092.webp"
+    },
+    {
+      "number": "093/208",
+      "pokemonIndex": 93,
+      "version": 1,
+      "name": "Hippowdon",
+      "rarity": "Common (C)",
+      "image": "Chinese/Crystal Gathering/Cards/0093.webp"
+    },
+    {
+      "number": "094/208",
+      "pokemonIndex": 94,
+      "version": 1,
+      "name": "Drilbur",
+      "rarity": "Common (C)",
+      "image": "Chinese/Crystal Gathering/Cards/0094.webp"
+    },
+    {
+      "number": "095/208",
+      "pokemonIndex": 95,
+      "version": 1,
+      "name": "Hawlucha",
+      "rarity": "Rare (R)",
+      "image": "Chinese/Crystal Gathering/Cards/0095.webp"
+    },
+    {
+      "number": "096/208",
+      "pokemonIndex": 96,
+      "version": 1,
+      "name": "Bloodmoon Ursaluna",
+      "rarity": "Rare (R)",
+      "image": "Chinese/Crystal Gathering/Cards/0096.webp"
+    },
+    {
+      "number": "097/208",
+      "pokemonIndex": 97,
+      "version": 1,
+      "name": "Great Tusk",
+      "rarity": "Uncommon (U)",
+      "image": "Chinese/Crystal Gathering/Cards/0097.webp"
+    },
+    {
+      "number": "098/208",
+      "pokemonIndex": 98,
+      "version": 1,
+      "name": "Slither Wing",
+      "rarity": "Uncommon (U)",
+      "image": "Chinese/Crystal Gathering/Cards/0098.webp"
+    },
+    {
+      "number": "099/208",
+      "pokemonIndex": 99,
+      "version": 1,
+      "name": "Sandy Shocks ex",
+      "rarity": "Double Rare (RR)",
+      "image": "Chinese/Crystal Gathering/Cards/0099.webp"
+    },
+    {
+      "number": "100/208",
+      "pokemonIndex": 100,
+      "version": 1,
+      "name": "Ting-Lu",
+      "rarity": "Rare (R)",
+      "image": "Chinese/Crystal Gathering/Cards/0100.webp"
+    },
+    {
+      "number": "101/208",
+      "pokemonIndex": 101,
+      "version": 1,
+      "name": "Okidogi",
+      "rarity": "Rare (R)",
+      "image": "Chinese/Crystal Gathering/Cards/0101.webp"
+    },
+    {
+      "number": "102/208",
+      "pokemonIndex": 102,
+      "version": 1,
+      "name": "Cornerstone Mask Ogerpon ex",
+      "rarity": "Double Rare (RR)",
+      "image": "Chinese/Crystal Gathering/Cards/0102.webp"
+    },
+    {
+      "number": "103/208",
+      "pokemonIndex": 103,
+      "version": 1,
+      "name": "Umbreon",
+      "rarity": "Uncommon (U)",
+      "image": "Chinese/Crystal Gathering/Cards/0103.webp"
+    },
+    {
+      "number": "104/208",
+      "pokemonIndex": 104,
+      "version": 1,
+      "name": "Umbreon ex",
+      "rarity": "Double Rare (RR)",
+      "image": "Chinese/Crystal Gathering/Cards/0104.webp"
+    },
+    {
+      "number": "105/208",
+      "pokemonIndex": 105,
+      "version": 1,
+      "name": "Sneasel",
+      "rarity": "Common (C)",
+      "image": "Chinese/Crystal Gathering/Cards/0105.webp"
+    },
+    {
+      "number": "106/208",
+      "pokemonIndex": 106,
+      "version": 1,
+      "name": "Houndour",
+      "rarity": "Common (C)",
+      "image": "Chinese/Crystal Gathering/Cards/0106.webp"
+    },
+    {
+      "number": "107/208",
+      "pokemonIndex": 107,
+      "version": 1,
+      "name": "Houndoom",
+      "rarity": "Uncommon (U)",
+      "image": "Chinese/Crystal Gathering/Cards/0107.webp"
+    },
+    {
+      "number": "108/208",
+      "pokemonIndex": 108,
+      "version": 1,
+      "name": "Trubbish",
+      "rarity": "Common (C)",
+      "image": "Chinese/Crystal Gathering/Cards/0108.webp"
+    },
+    {
+      "number": "109/208",
+      "pokemonIndex": 109,
+      "version": 1,
+      "name": "Garbodor",
+      "rarity": "Uncommon (U)",
+      "image": "Chinese/Crystal Gathering/Cards/0109.webp"
+    },
+    {
+      "number": "110/208",
+      "pokemonIndex": 110,
+      "version": 1,
+      "name": "Zorua",
+      "rarity": "Common (C)",
+      "image": "Chinese/Crystal Gathering/Cards/0110.webp"
+    },
+    {
+      "number": "111/208",
+      "pokemonIndex": 111,
+      "version": 1,
+      "name": "Zoroark",
+      "rarity": "Rare (R)",
+      "image": "Chinese/Crystal Gathering/Cards/0111.webp"
+    },
+    {
+      "number": "112/208",
+      "pokemonIndex": 112,
+      "version": 1,
+      "name": "Morpeko",
+      "rarity": "Rare (R)",
+      "image": "Chinese/Crystal Gathering/Cards/0112.webp"
+    },
+    {
+      "number": "113/208",
+      "pokemonIndex": 113,
+      "version": 1,
+      "name": "Brute Bonnet",
+      "rarity": "Rare (R)",
+      "image": "Chinese/Crystal Gathering/Cards/0113.webp"
+    },
+    {
+      "number": "114/208",
+      "pokemonIndex": 114,
+      "version": 1,
+      "name": "Roaring Moon",
+      "rarity": "Rare (R)",
+      "image": "Chinese/Crystal Gathering/Cards/0114.webp"
+    },
+    {
+      "number": "115/208",
+      "pokemonIndex": 115,
+      "version": 1,
+      "name": "Roaring Moon ex",
+      "rarity": "Double Rare (RR)",
+      "image": "Chinese/Crystal Gathering/Cards/0115.webp"
+    },
+    {
+      "number": "116/208",
+      "pokemonIndex": 116,
+      "version": 1,
+      "name": "Pecharunt ex",
+      "rarity": "Double Rare (RR)",
+      "image": "Chinese/Crystal Gathering/Cards/0116.webp"
+    },
+    {
+      "number": "117/208",
+      "pokemonIndex": 117,
+      "version": 1,
+      "name": "Beldum",
+      "rarity": "Common (C)",
+      "image": "Chinese/Crystal Gathering/Cards/0117.webp"
+    },
+    {
+      "number": "118/208",
+      "pokemonIndex": 118,
+      "version": 1,
+      "name": "Metang",
+      "rarity": "Common (C)",
+      "image": "Chinese/Crystal Gathering/Cards/0118.webp"
+    },
+    {
+      "number": "119/208",
+      "pokemonIndex": 119,
+      "version": 1,
+      "name": "Jirachi",
+      "rarity": "Common (C)",
+      "image": "Chinese/Crystal Gathering/Cards/0119.webp"
+    },
+    {
+      "number": "120/208",
+      "pokemonIndex": 120,
+      "version": 1,
+      "name": "Bronzor",
+      "rarity": "Common (C)",
+      "image": "Chinese/Crystal Gathering/Cards/0120.webp"
+    },
+    {
+      "number": "121/208",
+      "pokemonIndex": 121,
+      "version": 1,
+      "name": "Bronzong",
+      "rarity": "Common (C)",
+      "image": "Chinese/Crystal Gathering/Cards/0121.webp"
+    },
+    {
+      "number": "122/208",
+      "pokemonIndex": 122,
+      "version": 1,
+      "name": "Heatran",
+      "rarity": "Rare (R)",
+      "image": "Chinese/Crystal Gathering/Cards/0122.webp"
+    },
+    {
+      "number": "123/208",
+      "pokemonIndex": 123,
+      "version": 1,
+      "name": "Honedge",
+      "rarity": "Common (C)",
+      "image": "Chinese/Crystal Gathering/Cards/0123.webp"
+    },
+    {
+      "number": "124/208",
+      "pokemonIndex": 124,
+      "version": 1,
+      "name": "Doublade",
+      "rarity": "Common (C)",
+      "image": "Chinese/Crystal Gathering/Cards/0124.webp"
+    },
+    {
+      "number": "125/208",
+      "pokemonIndex": 125,
+      "version": 1,
+      "name": "Aegislash",
+      "rarity": "Rare (R)",
+      "image": "Chinese/Crystal Gathering/Cards/0125.webp"
+    },
+    {
+      "number": "126/208",
+      "pokemonIndex": 126,
+      "version": 1,
+      "name": "Duraludon",
+      "rarity": "Common (C)",
+      "image": "Chinese/Crystal Gathering/Cards/0126.webp"
+    },
+    {
+      "number": "127/208",
+      "pokemonIndex": 127,
+      "version": 1,
+      "name": "Archaludon",
+      "rarity": "Rare (R)",
+      "image": "Chinese/Crystal Gathering/Cards/0127.webp"
+    },
+    {
+      "number": "128/208",
+      "pokemonIndex": 128,
+      "version": 1,
+      "name": "Varoom",
+      "rarity": "Common (C)",
+      "image": "Chinese/Crystal Gathering/Cards/0128.webp"
+    },
+    {
+      "number": "129/208",
+      "pokemonIndex": 129,
+      "version": 1,
+      "name": "Revavroom",
+      "rarity": "Rare (R)",
+      "image": "Chinese/Crystal Gathering/Cards/0129.webp"
+    },
+    {
+      "number": "130/208",
+      "pokemonIndex": 130,
+      "version": 1,
+      "name": "Iron Treads",
+      "rarity": "Uncommon (U)",
+      "image": "Chinese/Crystal Gathering/Cards/0130.webp"
+    },
+    {
+      "number": "131/208",
+      "pokemonIndex": 131,
+      "version": 1,
+      "name": "Gholdengo ex",
+      "rarity": "Double Rare (RR)",
+      "image": "Chinese/Crystal Gathering/Cards/0131.webp"
+    },
+    {
+      "number": "132/208",
+      "pokemonIndex": 132,
+      "version": 1,
+      "name": "Dreepy",
+      "rarity": "Common (C)",
+      "image": "Chinese/Crystal Gathering/Cards/0132.webp"
+    },
+    {
+      "number": "133/208",
+      "pokemonIndex": 133,
+      "version": 1,
+      "name": "Drakloak",
+      "rarity": "Common (C)",
+      "image": "Chinese/Crystal Gathering/Cards/0133.webp"
+    },
+    {
+      "number": "134/208",
+      "pokemonIndex": 134,
+      "version": 1,
+      "name": "Dragapult ex",
+      "rarity": "Double Rare (RR)",
+      "image": "Chinese/Crystal Gathering/Cards/0134.webp"
+    },
+    {
+      "number": "135/208",
+      "pokemonIndex": 135,
+      "version": 1,
+      "name": "Tatsugiri",
+      "rarity": "Uncommon (U)",
+      "image": "Chinese/Crystal Gathering/Cards/0135.webp"
+    },
+    {
+      "number": "136/208",
+      "pokemonIndex": 136,
+      "version": 1,
+      "name": "Koraidon",
+      "rarity": "Rare (R)",
+      "image": "Chinese/Crystal Gathering/Cards/0136.webp"
+    },
+    {
+      "number": "137/208",
+      "pokemonIndex": 137,
+      "version": 1,
+      "name": "Miraidon",
+      "rarity": "Rare (R)",
+      "image": "Chinese/Crystal Gathering/Cards/0137.webp"
+    },
+    {
+      "number": "138/208",
+      "pokemonIndex": 138,
+      "version": 1,
+      "name": "Raging Bolt ex",
+      "rarity": "Double Rare (RR)",
+      "image": "Chinese/Crystal Gathering/Cards/0138.webp"
+    },
+    {
+      "number": "139/208",
+      "pokemonIndex": 139,
+      "version": 1,
+      "name": "Eevee",
+      "rarity": "Common (C)",
+      "image": "Chinese/Crystal Gathering/Cards/0139.webp"
+    },
+    {
+      "number": "140/208",
+      "pokemonIndex": 140,
+      "version": 1,
+      "name": "Eevee ex",
+      "rarity": "Double Rare (RR)",
+      "image": "Chinese/Crystal Gathering/Cards/0140.webp"
+    },
+    {
+      "number": "141/208",
+      "pokemonIndex": 141,
+      "version": 1,
+      "name": "Hoothoot",
+      "rarity": "Common (C)",
+      "image": "Chinese/Crystal Gathering/Cards/0141.webp"
+    },
+    {
+      "number": "142/208",
+      "pokemonIndex": 142,
+      "version": 1,
+      "name": "Noctowl",
+      "rarity": "Rare (R)",
+      "image": "Chinese/Crystal Gathering/Cards/0142.webp"
+    },
+    {
+      "number": "143/208",
+      "pokemonIndex": 143,
+      "version": 1,
+      "name": "Dunsparce",
+      "rarity": "Common (C)",
+      "image": "Chinese/Crystal Gathering/Cards/0143.webp"
+    },
+    {
+      "number": "144/208",
+      "pokemonIndex": 144,
+      "version": 1,
+      "name": "Dudunsparce",
+      "rarity": "Rare (R)",
+      "image": "Chinese/Crystal Gathering/Cards/0144.webp"
+    },
+    {
+      "number": "145/208",
+      "pokemonIndex": 145,
+      "version": 1,
+      "name": "Miltank",
+      "rarity": "Rare (R)",
+      "image": "Chinese/Crystal Gathering/Cards/0145.webp"
+    },
+    {
+      "number": "146/208",
+      "pokemonIndex": 146,
+      "version": 1,
+      "name": "Buneary",
+      "rarity": "Common (C)",
+      "image": "Chinese/Crystal Gathering/Cards/0146.webp"
+    },
+    {
+      "number": "147/208",
+      "pokemonIndex": 147,
+      "version": 1,
+      "name": "Lopunny",
+      "rarity": "Common (C)",
+      "image": "Chinese/Crystal Gathering/Cards/0147.webp"
+    },
+    {
+      "number": "148/208",
+      "pokemonIndex": 148,
+      "version": 1,
+      "name": "Fan Rotom",
+      "rarity": "Common (C)",
+      "image": "Chinese/Crystal Gathering/Cards/0148.webp"
+    },
+    {
+      "number": "149/208",
+      "pokemonIndex": 149,
+      "version": 1,
+      "name": "Regigigas",
+      "rarity": "Uncommon (U)",
+      "image": "Chinese/Crystal Gathering/Cards/0149.webp"
+    },
+    {
+      "number": "150/208",
+      "pokemonIndex": 150,
+      "version": 1,
+      "name": "Shaymin",
+      "rarity": "Common (C)",
+      "image": "Chinese/Crystal Gathering/Cards/0150.webp"
+    },
+    {
+      "number": "151/208",
+      "pokemonIndex": 151,
+      "version": 1,
+      "name": "Bouffalant",
+      "rarity": "Uncommon (U)",
+      "image": "Chinese/Crystal Gathering/Cards/0151.webp"
+    },
+    {
+      "number": "152/208",
+      "pokemonIndex": 152,
+      "version": 1,
+      "name": "Furfrou",
+      "rarity": "Common (C)",
+      "image": "Chinese/Crystal Gathering/Cards/0152.webp"
+    },
+    {
+      "number": "153/208",
+      "pokemonIndex": 153,
+      "version": 1,
+      "name": "Hawlucha",
+      "rarity": "Common (C)",
+      "image": "Chinese/Crystal Gathering/Cards/0153.webp"
+    },
+    {
+      "number": "154/208",
+      "pokemonIndex": 154,
+      "version": 1,
+      "name": "Bloodmoon Ursaluna ex",
+      "rarity": "Double Rare (RR)",
+      "image": "Chinese/Crystal Gathering/Cards/0154.webp"
+    },
+    {
+      "number": "155/208",
+      "pokemonIndex": 155,
+      "version": 1,
+      "name": "Iron Jugulis",
+      "rarity": "Rare (R)",
+      "image": "Chinese/Crystal Gathering/Cards/0155.webp"
+    },
+    {
+      "number": "156/208",
+      "pokemonIndex": 156,
+      "version": 1,
+      "name": "Terapagos ex",
+      "rarity": "Double Rare (RR)",
+      "image": "Chinese/Crystal Gathering/Cards/0156.webp"
+    },
+    {
+      "number": "157/208",
+      "pokemonIndex": 157,
+      "version": 1,
+      "name": "Ogre's Mask",
+      "rarity": "Uncommon (U)",
+      "image": "Chinese/Crystal Gathering/Cards/0157.webp"
+    },
+    {
+      "number": "158/208",
+      "pokemonIndex": 158,
+      "version": 1,
+      "name": "Enhanced Hammer",
+      "rarity": "Uncommon (U)",
+      "image": "Chinese/Crystal Gathering/Cards/0158.webp"
+    },
+    {
+      "number": "159/208",
+      "pokemonIndex": 159,
+      "version": 1,
+      "name": "Counter Catcher",
+      "rarity": "Uncommon (U)",
+      "image": "Chinese/Crystal Gathering/Cards/0159.webp"
+    },
+    {
+      "number": "160/208",
+      "pokemonIndex": 160,
+      "version": 1,
+      "name": "Glass Trumpet",
+      "rarity": "Uncommon (U)",
+      "image": "Chinese/Crystal Gathering/Cards/0160.webp"
+    },
+    {
+      "number": "161/208",
+      "pokemonIndex": 161,
+      "version": 1,
+      "name": "Superior Energy Retrieval",
+      "rarity": "Uncommon (U)",
+      "image": "Chinese/Crystal Gathering/Cards/0161.webp"
+    },
+    {
+      "number": "162/208",
+      "pokemonIndex": 162,
+      "version": 1,
+      "name": "Earthen Vessel",
+      "rarity": "Uncommon (U)",
+      "image": "Chinese/Crystal Gathering/Cards/0162.webp"
+    },
+    {
+      "number": "163/208",
+      "pokemonIndex": 163,
+      "version": 1,
+      "name": "Max Rod",
+      "rarity": "ACE SPEC Rare (ACE)",
+      "image": "Chinese/Crystal Gathering/Cards/0163.webp"
+    },
+    {
+      "number": "164/208",
+      "pokemonIndex": 164,
+      "version": 1,
+      "name": "Techno Radar",
+      "rarity": "Uncommon (U)",
+      "image": "Chinese/Crystal Gathering/Cards/0164.webp"
+    },
+    {
+      "number": "165/208",
+      "pokemonIndex": 165,
+      "version": 1,
+      "name": "Tera Orb",
+      "rarity": "Uncommon (U)",
+      "image": "Chinese/Crystal Gathering/Cards/0165.webp"
+    },
+    {
+      "number": "166/208",
+      "pokemonIndex": 166,
+      "version": 1,
+      "name": "Treasure Tracker",
+      "rarity": "ACE SPEC Rare (ACE)",
+      "image": "Chinese/Crystal Gathering/Cards/0166.webp"
+    },
+    {
+      "number": "167/208",
+      "pokemonIndex": 167,
+      "version": 1,
+      "name": "Buddy-Buddy Poffin",
+      "rarity": "Uncommon (U)",
+      "image": "Chinese/Crystal Gathering/Cards/0167.webp"
+    },
+    {
+      "number": "168/208",
+      "pokemonIndex": 168,
+      "version": 1,
+      "name": "Prime Catcher",
+      "rarity": "ACE SPEC Rare (ACE)",
+      "image": "Chinese/Crystal Gathering/Cards/0168.webp"
+    },
+    {
+      "number": "169/208",
+      "pokemonIndex": 169,
+      "version": 1,
+      "name": "Scoop Up Cyclone",
+      "rarity": "ACE SPEC Rare (ACE)",
+      "image": "Chinese/Crystal Gathering/Cards/0169.webp"
+    },
+    {
+      "number": "170/208",
+      "pokemonIndex": 170,
+      "version": 1,
+      "name": "Bug Catching Set",
+      "rarity": "Uncommon (U)",
+      "image": "Chinese/Crystal Gathering/Cards/0170.webp"
+    },
+    {
+      "number": "171/208",
+      "pokemonIndex": 171,
+      "version": 1,
+      "name": "Night Stretcher",
+      "rarity": "Uncommon (U)",
+      "image": "Chinese/Crystal Gathering/Cards/0171.webp"
+    },
+    {
+      "number": "172/208",
+      "pokemonIndex": 172,
+      "version": 1,
+      "name": "Sparkling Crystal",
+      "rarity": "ACE SPEC Rare (ACE)",
+      "image": "Chinese/Crystal Gathering/Cards/0172.webp"
+    },
+    {
+      "number": "173/208",
+      "pokemonIndex": 173,
+      "version": 1,
+      "name": "Rescue Board",
+      "rarity": "Uncommon (U)",
+      "image": "Chinese/Crystal Gathering/Cards/0173.webp"
+    },
+    {
+      "number": "174/208",
+      "pokemonIndex": 174,
+      "version": 1,
+      "name": "Binding Mochi",
+      "rarity": "Uncommon (U)",
+      "image": "Chinese/Crystal Gathering/Cards/0174.webp"
+    },
+    {
+      "number": "175/208",
+      "pokemonIndex": 175,
+      "version": 1,
+      "name": "Luxurious Cape",
+      "rarity": "Uncommon (U)",
+      "image": "Chinese/Crystal Gathering/Cards/0175.webp"
+    },
+    {
+      "number": "176/208",
+      "pokemonIndex": 176,
+      "version": 1,
+      "name": "Haban Berry",
+      "rarity": "Uncommon (U)",
+      "image": "Chinese/Crystal Gathering/Cards/0176.webp"
+    },
+    {
+      "number": "177/208",
+      "pokemonIndex": 177,
+      "version": 1,
+      "name": "Ancient Booster Energy Capsule",
+      "rarity": "Uncommon (U)",
+      "image": "Chinese/Crystal Gathering/Cards/0177.webp"
+    },
+    {
+      "number": "178/208",
+      "pokemonIndex": 178,
+      "version": 1,
+      "name": "Future Booster Energy Capsule",
+      "rarity": "Uncommon (U)",
+      "image": "Chinese/Crystal Gathering/Cards/0178.webp"
+    },
+    {
+      "number": "179/208",
+      "pokemonIndex": 179,
+      "version": 1,
+      "name": "Maximum Belt",
+      "rarity": "ACE SPEC Rare (ACE)",
+      "image": "Chinese/Crystal Gathering/Cards/0179.webp"
+    },
+    {
+      "number": "180/208",
+      "pokemonIndex": 180,
+      "version": 1,
+      "name": "Technical Machine: Evolution",
+      "rarity": "Uncommon (U)",
+      "image": "Chinese/Crystal Gathering/Cards/0180.webp"
+    },
+    {
+      "number": "181/208",
+      "pokemonIndex": 181,
+      "version": 1,
+      "name": "Technical Machine: Devolution",
+      "rarity": "Uncommon (U)",
+      "image": "Chinese/Crystal Gathering/Cards/0181.webp"
+    },
+    {
+      "number": "182/208",
+      "pokemonIndex": 182,
+      "version": 1,
+      "name": "Larry's Skill",
+      "rarity": "Uncommon (U)",
+      "image": "Chinese/Crystal Gathering/Cards/0182.webp"
+    },
+    {
+      "number": "183/208",
+      "pokemonIndex": 183,
+      "version": 1,
+      "name": "Crispin",
+      "rarity": "Uncommon (U)",
+      "image": "Chinese/Crystal Gathering/Cards/0183.webp"
+    },
+    {
+      "number": "184/208",
+      "pokemonIndex": 184,
+      "version": 1,
+      "name": "Colress's Tenacity",
+      "rarity": "Uncommon (U)",
+      "image": "Chinese/Crystal Gathering/Cards/0184.webp"
+    },
+    {
+      "number": "185/208",
+      "pokemonIndex": 185,
+      "version": 1,
+      "name": "Ciphermaniac's Codebreaking",
+      "rarity": "Uncommon (U)",
+      "image": "Chinese/Crystal Gathering/Cards/0185.webp"
+    },
+    {
+      "number": "186/208",
+      "pokemonIndex": 186,
+      "version": 1,
+      "name": "Janine's Secret Art",
+      "rarity": "Uncommon (U)",
+      "image": "Chinese/Crystal Gathering/Cards/0186.webp"
+    },
+    {
+      "number": "187/208",
+      "pokemonIndex": 187,
+      "version": 1,
+      "name": "Professor Sada's Vitality",
+      "rarity": "Uncommon (U)",
+      "image": "Chinese/Crystal Gathering/Cards/0187.webp"
+    },
+    {
+      "number": "188/208",
+      "pokemonIndex": 188,
+      "version": 1,
+      "name": "Black Belt's Training",
+      "rarity": "Rare (R)",
+      "image": "Chinese/Crystal Gathering/Cards/0188.webp"
+    },
+    {
+      "number": "189/208",
+      "pokemonIndex": 189,
+      "version": 1,
+      "name": "Lana's Aid",
+      "rarity": "Uncommon (U)",
+      "image": "Chinese/Crystal Gathering/Cards/0189.webp"
+    },
+    {
+      "number": "190/208",
+      "pokemonIndex": 190,
+      "version": 1,
+      "name": "Kieran",
+      "rarity": "Uncommon (U)",
+      "image": "Chinese/Crystal Gathering/Cards/0190.webp"
+    },
+    {
+      "number": "191/208",
+      "pokemonIndex": 191,
+      "version": 1,
+      "name": "Carmine",
+      "rarity": "Uncommon (U)",
+      "image": "Chinese/Crystal Gathering/Cards/0191.webp"
+    },
+    {
+      "number": "192/208",
+      "pokemonIndex": 192,
+      "version": 1,
+      "name": "Lacey",
+      "rarity": "Uncommon (U)",
+      "image": "Chinese/Crystal Gathering/Cards/0192.webp"
+    },
+    {
+      "number": "193/208",
+      "pokemonIndex": 193,
+      "version": 1,
+      "name": "Explorer's Guidance",
+      "rarity": "Uncommon (U)",
+      "image": "Chinese/Crystal Gathering/Cards/0193.webp"
+    },
+    {
+      "number": "194/208",
+      "pokemonIndex": 194,
+      "version": 1,
+      "name": "Amarys",
+      "rarity": "Uncommon (U)",
+      "image": "Chinese/Crystal Gathering/Cards/0194.webp"
+    },
+    {
+      "number": "195/208",
+      "pokemonIndex": 195,
+      "version": 1,
+      "name": "Friends in Paldea",
+      "rarity": "Uncommon (U)",
+      "image": "Chinese/Crystal Gathering/Cards/0195.webp"
+    },
+    {
+      "number": "196/208",
+      "pokemonIndex": 196,
+      "version": 1,
+      "name": "Professor Turo's Scenario",
+      "rarity": "Uncommon (U)",
+      "image": "Chinese/Crystal Gathering/Cards/0196.webp"
+    },
+    {
+      "number": "197/208",
+      "pokemonIndex": 197,
+      "version": 1,
+      "name": "Briar",
+      "rarity": "Uncommon (U)",
+      "image": "Chinese/Crystal Gathering/Cards/0197.webp"
+    },
+    {
+      "number": "198/208",
+      "pokemonIndex": 198,
+      "version": 1,
+      "name": "Bianca's Devotion",
+      "rarity": "Uncommon (U)",
+      "image": "Chinese/Crystal Gathering/Cards/0198.webp"
+    },
+    {
+      "number": "199/208",
+      "pokemonIndex": 199,
+      "version": 1,
+      "name": "Morty's Conviction",
+      "rarity": "Uncommon (U)",
+      "image": "Chinese/Crystal Gathering/Cards/0199.webp"
+    },
+    {
+      "number": "200/208",
+      "pokemonIndex": 200,
+      "version": 1,
+      "name": "Mela",
+      "rarity": "Uncommon (U)",
+      "image": "Chinese/Crystal Gathering/Cards/0200.webp"
+    },
+    {
+      "number": "201/208",
+      "pokemonIndex": 201,
+      "version": 1,
+      "name": "Festival Grounds",
+      "rarity": "Uncommon (U)",
+      "image": "Chinese/Crystal Gathering/Cards/0201.webp"
+    },
+    {
+      "number": "202/208",
+      "pokemonIndex": 202,
+      "version": 1,
+      "name": "Jamming Tower",
+      "rarity": "Uncommon (U)",
+      "image": "Chinese/Crystal Gathering/Cards/0202.webp"
+    },
+    {
+      "number": "203/208",
+      "pokemonIndex": 203,
+      "version": 1,
+      "name": "Area Zero Underdepths",
+      "rarity": "Uncommon (U)",
+      "image": "Chinese/Crystal Gathering/Cards/0203.webp"
+    },
+    {
+      "number": "204/208",
+      "pokemonIndex": 204,
+      "version": 1,
+      "name": "Moonlit Hill",
+      "rarity": "Uncommon (U)",
+      "image": "Chinese/Crystal Gathering/Cards/0204.webp"
+    },
+    {
+      "number": "205/208",
+      "pokemonIndex": 205,
+      "version": 1,
+      "name": "Neutralization Zone",
+      "rarity": "ACE SPEC Rare (ACE)",
+      "image": "Chinese/Crystal Gathering/Cards/0205.webp"
+    },
+    {
+      "number": "206/208",
+      "pokemonIndex": 206,
+      "version": 1,
+      "name": "Jet Energy",
+      "rarity": "Uncommon (U)",
+      "image": "Chinese/Crystal Gathering/Cards/0206.webp"
+    },
+    {
+      "number": "207/208",
+      "pokemonIndex": 207,
+      "version": 1,
+      "name": "Mist Energy",
+      "rarity": "Uncommon (U)",
+      "image": "Chinese/Crystal Gathering/Cards/0207.webp"
+    },
+    {
+      "number": "208/208",
+      "pokemonIndex": 208,
+      "version": 1,
+      "name": "Legacy Energy",
+      "rarity": "ACE SPEC Rare (ACE)",
+      "image": "Chinese/Crystal Gathering/Cards/0208.webp"
+    },
+    {
+      "number": "209/208",
+      "pokemonIndex": 209,
+      "version": 1,
+      "name": "Larry's Skill",
+      "rarity": "Super Rare (SR)",
+      "image": "Chinese/Crystal Gathering/Cards/0209.webp"
+    },
+    {
+      "number": "210/208",
+      "pokemonIndex": 210,
+      "version": 1,
+      "name": "Ortega",
+      "rarity": "Super Rare (SR)",
+      "image": "Chinese/Crystal Gathering/Cards/0210.webp"
+    },
+    {
+      "number": "211/208",
+      "pokemonIndex": 211,
+      "version": 1,
+      "name": "Brassius",
+      "rarity": "Super Rare (SR)",
+      "image": "Chinese/Crystal Gathering/Cards/0211.webp"
+    },
+    {
+      "number": "212/208",
+      "pokemonIndex": 212,
+      "version": 1,
+      "name": "Atticus",
+      "rarity": "Super Rare (SR)",
+      "image": "Chinese/Crystal Gathering/Cards/0212.webp"
+    },
+    {
+      "number": "213/208",
+      "pokemonIndex": 213,
+      "version": 1,
+      "name": "Atticus",
+      "rarity": "Super Rare (SR)",
+      "image": "Chinese/Crystal Gathering/Cards/0213.webp"
+    },
+    {
+      "number": "214/208",
+      "pokemonIndex": 214,
+      "version": 1,
+      "name": "Tyme",
+      "rarity": "Super Rare (SR)",
+      "image": "Chinese/Crystal Gathering/Cards/0214.webp"
+    },
+    {
+      "number": "215/208",
+      "pokemonIndex": 215,
+      "version": 1,
+      "name": "Amarys",
+      "rarity": "Super Rare (SR)",
+      "image": "Chinese/Crystal Gathering/Cards/0215.webp"
+    },
+    {
+      "number": "216/208",
+      "pokemonIndex": 216,
+      "version": 1,
+      "name": "Friends in Paldea",
+      "rarity": "Super Rare (SR)",
+      "image": "Chinese/Crystal Gathering/Cards/0216.webp"
+    },
+    {
+      "number": "217/208",
+      "pokemonIndex": 217,
+      "version": 1,
+      "name": "Giacomo",
+      "rarity": "Super Rare (SR)",
+      "image": "Chinese/Crystal Gathering/Cards/0217.webp"
+    },
+    {
+      "number": "218/208",
+      "pokemonIndex": 218,
+      "version": 1,
+      "name": "Eri",
+      "rarity": "Super Rare (SR)",
+      "image": "Chinese/Crystal Gathering/Cards/0218.webp"
+    },
+    {
+      "number": "219/208",
+      "pokemonIndex": 219,
+      "version": 1,
+      "name": "Mela",
+      "rarity": "Super Rare (SR)",
+      "image": "Chinese/Crystal Gathering/Cards/0219.webp"
+    },
+    {
+      "number": "220/208",
+      "pokemonIndex": 220,
+      "version": 1,
+      "name": "Raifort",
+      "rarity": "Super Rare (SR)",
+      "image": "Chinese/Crystal Gathering/Cards/0220.webp"
+    },
+    {
+      "number": "221/208",
+      "pokemonIndex": 221,
+      "version": 1,
+      "name": "Leafeon ex",
+      "rarity": "Special Art Rare (SAR)",
+      "image": "Chinese/Crystal Gathering/Cards/0221.webp"
+    },
+    {
+      "number": "222/208",
+      "pokemonIndex": 222,
+      "version": 1,
+      "name": "Teal Mask Ogerpon ex",
+      "rarity": "Special Art Rare (SAR)",
+      "image": "Chinese/Crystal Gathering/Cards/0222.webp"
+    },
+    {
+      "number": "223/208",
+      "pokemonIndex": 223,
+      "version": 1,
+      "name": "Flareon ex",
+      "rarity": "Special Art Rare (SAR)",
+      "image": "Chinese/Crystal Gathering/Cards/0223.webp"
+    },
+    {
+      "number": "224/208",
+      "pokemonIndex": 224,
+      "version": 1,
+      "name": "Ceruledge ex",
+      "rarity": "Special Art Rare (SAR)",
+      "image": "Chinese/Crystal Gathering/Cards/0224.webp"
+    },
+    {
+      "number": "225/208",
+      "pokemonIndex": 225,
+      "version": 1,
+      "name": "Hearthflame Mask Ogerpon ex",
+      "rarity": "Special Art Rare (SAR)",
+      "image": "Chinese/Crystal Gathering/Cards/0225.webp"
+    },
+    {
+      "number": "226/208",
+      "pokemonIndex": 226,
+      "version": 1,
+      "name": "Vaporeon ex",
+      "rarity": "Special Art Rare (SAR)",
+      "image": "Chinese/Crystal Gathering/Cards/0226.webp"
+    },
+    {
+      "number": "227/208",
+      "pokemonIndex": 227,
+      "version": 1,
+      "name": "Glaceon ex",
+      "rarity": "Special Art Rare (SAR)",
+      "image": "Chinese/Crystal Gathering/Cards/0227.webp"
+    },
+    {
+      "number": "228/208",
+      "pokemonIndex": 228,
+      "version": 1,
+      "name": "Palafin ex",
+      "rarity": "Special Art Rare (SAR)",
+      "image": "Chinese/Crystal Gathering/Cards/0228.webp"
+    },
+    {
+      "number": "229/208",
+      "pokemonIndex": 229,
+      "version": 1,
+      "name": "Wellspring Mask Ogerpon ex",
+      "rarity": "Special Art Rare (SAR)",
+      "image": "Chinese/Crystal Gathering/Cards/0229.webp"
+    },
+    {
+      "number": "230/208",
+      "pokemonIndex": 230,
+      "version": 1,
+      "name": "Jolteon ex",
+      "rarity": "Special Art Rare (SAR)",
+      "image": "Chinese/Crystal Gathering/Cards/0230.webp"
+    },
+    {
+      "number": "231/208",
+      "pokemonIndex": 231,
+      "version": 1,
+      "name": "Iron Hands ex",
+      "rarity": "Special Art Rare (SAR)",
+      "image": "Chinese/Crystal Gathering/Cards/0231.webp"
+    },
+    {
+      "number": "232/208",
+      "pokemonIndex": 232,
+      "version": 1,
+      "name": "Espeon ex",
+      "rarity": "Special Art Rare (SAR)",
+      "image": "Chinese/Crystal Gathering/Cards/0232.webp"
+    },
+    {
+      "number": "233/208",
+      "pokemonIndex": 233,
+      "version": 1,
+      "name": "Sylveon ex",
+      "rarity": "Special Art Rare (SAR)",
+      "image": "Chinese/Crystal Gathering/Cards/0233.webp"
+    },
+    {
+      "number": "234/208",
+      "pokemonIndex": 234,
+      "version": 1,
+      "name": "Sylveon ex",
+      "rarity": "Special Art Rare (SAR)",
+      "image": "Chinese/Crystal Gathering/Cards/0234.webp"
+    },
+    {
+      "number": "235/208",
+      "pokemonIndex": 235,
+      "version": 1,
+      "name": "Iron Valiant ex",
+      "rarity": "Special Art Rare (SAR)",
+      "image": "Chinese/Crystal Gathering/Cards/0235.webp"
+    },
+    {
+      "number": "236/208",
+      "pokemonIndex": 236,
+      "version": 1,
+      "name": "Iron Crown ex",
+      "rarity": "Special Art Rare (SAR)",
+      "image": "Chinese/Crystal Gathering/Cards/0236.webp"
+    },
+    {
+      "number": "237/208",
+      "pokemonIndex": 237,
+      "version": 1,
+      "name": "Sandy Shocks ex",
+      "rarity": "Special Art Rare (SAR)",
+      "image": "Chinese/Crystal Gathering/Cards/0237.webp"
+    },
+    {
+      "number": "238/208",
+      "pokemonIndex": 238,
+      "version": 1,
+      "name": "Cornerstone Mask Ogerpon ex",
+      "rarity": "Special Art Rare (SAR)",
+      "image": "Chinese/Crystal Gathering/Cards/0238.webp"
+    },
+    {
+      "number": "239/208",
+      "pokemonIndex": 239,
+      "version": 1,
+      "name": "Umbreon ex",
+      "rarity": "Special Art Rare (SAR)",
+      "image": "Chinese/Crystal Gathering/Cards/0239.webp"
+    },
+    {
+      "number": "240/208",
+      "pokemonIndex": 240,
+      "version": 1,
+      "name": "Roaring Moon ex",
+      "rarity": "Special Art Rare (SAR)",
+      "image": "Chinese/Crystal Gathering/Cards/0240.webp"
+    },
+    {
+      "number": "241/208",
+      "pokemonIndex": 241,
+      "version": 1,
+      "name": "Pecharunt ex",
+      "rarity": "Special Art Rare (SAR)",
+      "image": "Chinese/Crystal Gathering/Cards/0241.webp"
+    },
+    {
+      "number": "242/208",
+      "pokemonIndex": 242,
+      "version": 1,
+      "name": "Gholdengo ex",
+      "rarity": "Special Art Rare (SAR)",
+      "image": "Chinese/Crystal Gathering/Cards/0242.webp"
+    },
+    {
+      "number": "243/208",
+      "pokemonIndex": 243,
+      "version": 1,
+      "name": "Dragapult ex",
+      "rarity": "Special Art Rare (SAR)",
+      "image": "Chinese/Crystal Gathering/Cards/0243.webp"
+    },
+    {
+      "number": "244/208",
+      "pokemonIndex": 244,
+      "version": 1,
+      "name": "Raging Bolt ex",
+      "rarity": "Special Art Rare (SAR)",
+      "image": "Chinese/Crystal Gathering/Cards/0244.webp"
+    },
+    {
+      "number": "245/208",
+      "pokemonIndex": 245,
+      "version": 1,
+      "name": "Eevee ex",
+      "rarity": "Special Art Rare (SAR)",
+      "image": "Chinese/Crystal Gathering/Cards/0245.webp"
+    },
+    {
+      "number": "246/208",
+      "pokemonIndex": 246,
+      "version": 1,
+      "name": "Eevee ex",
+      "rarity": "Special Art Rare (SAR)",
+      "image": "Chinese/Crystal Gathering/Cards/0246.webp"
+    },
+    {
+      "number": "247/208",
+      "pokemonIndex": 247,
+      "version": 1,
+      "name": "Bloodmoon Ursaluna ex",
+      "rarity": "Special Art Rare (SAR)",
+      "image": "Chinese/Crystal Gathering/Cards/0247.webp"
+    },
+    {
+      "number": "248/208",
+      "pokemonIndex": 248,
+      "version": 1,
+      "name": "Terapagos ex",
+      "rarity": "Special Art Rare (SAR)",
+      "image": "Chinese/Crystal Gathering/Cards/0248.webp"
+    },
+    {
+      "number": "249/208",
+      "pokemonIndex": 249,
+      "version": 1,
+      "name": "Crispin",
+      "rarity": "Special Art Rare (SAR)",
+      "image": "Chinese/Crystal Gathering/Cards/0249.webp"
+    },
+    {
+      "number": "250/208",
+      "pokemonIndex": 250,
+      "version": 1,
+      "name": "Janine's Secret Art",
+      "rarity": "Special Art Rare (SAR)",
+      "image": "Chinese/Crystal Gathering/Cards/0250.webp"
+    },
+    {
+      "number": "251/208",
+      "pokemonIndex": 251,
+      "version": 1,
+      "name": "Drayton",
+      "rarity": "Special Art Rare (SAR)",
+      "image": "Chinese/Crystal Gathering/Cards/0251.webp"
+    },
+    {
+      "number": "252/208",
+      "pokemonIndex": 252,
+      "version": 1,
+      "name": "Kieran",
+      "rarity": "Special Art Rare (SAR)",
+      "image": "Chinese/Crystal Gathering/Cards/0252.webp"
+    },
+    {
+      "number": "253/208",
+      "pokemonIndex": 253,
+      "version": 1,
+      "name": "Lacey",
+      "rarity": "Special Art Rare (SAR)",
+      "image": "Chinese/Crystal Gathering/Cards/0253.webp"
+    },
+    {
+      "number": "254/208",
+      "pokemonIndex": 254,
+      "version": 1,
+      "name": "Amarys",
+      "rarity": "Special Art Rare (SAR)",
+      "image": "Chinese/Crystal Gathering/Cards/0254.webp"
+    },
+    {
+      "number": "255/208",
+      "pokemonIndex": 255,
+      "version": 1,
+      "name": "Iron Leaves ex",
+      "rarity": "Ultra Rare (UR)",
+      "image": "Chinese/Crystal Gathering/Cards/0255.webp"
+    },
+    {
+      "number": "256/208",
+      "pokemonIndex": 256,
+      "version": 1,
+      "name": "Teal Mask Ogerpon ex",
+      "rarity": "Ultra Rare (UR)",
+      "image": "Chinese/Crystal Gathering/Cards/0256.webp"
+    },
+    {
+      "number": "257/208",
+      "pokemonIndex": 257,
+      "version": 1,
+      "name": "Walking Wake ex",
+      "rarity": "Ultra Rare (UR)",
+      "image": "Chinese/Crystal Gathering/Cards/0257.webp"
+    },
+    {
+      "number": "258/208",
+      "pokemonIndex": 258,
+      "version": 1,
+      "name": "Pikachu ex",
+      "rarity": "Ultra Rare (UR)",
+      "image": "Chinese/Crystal Gathering/Cards/0258.webp"
+    },
+    {
+      "number": "259/208",
+      "pokemonIndex": 259,
+      "version": 1,
+      "name": "Terapagos ex",
+      "rarity": "Ultra Rare (UR)",
+      "image": "Chinese/Crystal Gathering/Cards/0259.webp"
+    }
+  ],
+  "groupByName": true
+}
