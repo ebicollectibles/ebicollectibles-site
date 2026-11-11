@@ -43,6 +43,7 @@ import { Route as AdminSubscribersRouteImport } from './routes/admin/subscribers
 import { Route as GoSlugRouteImport } from './routes/go.$slug'
 import { Route as LinksSlugRouteImport } from './routes/links.$slug'
 import { Route as ProductsIdRouteImport } from './routes/products.$id'
+import { Route as SetsIndexRouteImport } from './routes/sets/index'
 import { Route as SetsGemVol1RouteImport } from './routes/sets/gem-vol-1'
 import { Route as SetsGemVol2RouteImport } from './routes/sets/gem-vol-2'
 import { Route as SetsGemVol3RouteImport } from './routes/sets/gem-vol-3'
@@ -231,6 +232,11 @@ const ProductsIdRoute = ProductsIdRouteImport.update({
   path: '/products/$id',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SetsIndexRoute = SetsIndexRouteImport.update({
+  id: '/sets/',
+  path: '/sets/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const SetsGemVol1Route = SetsGemVol1RouteImport.update({
   id: '/sets/gem-vol-1',
   path: '/sets/gem-vol-1',
@@ -361,6 +367,7 @@ export interface FileRoutesByFullPath {
   '/sets/gem-vol-7': typeof SetsGemVol7Route
   '/account/': typeof AccountIndexRoute
   '/admin/': typeof AdminIndexRoute
+  '/sets/': typeof SetsIndexRoute
   '/account/orders/$id': typeof AccountOrdersIdRoute
   '/admin/customers/$id': typeof AdminCustomersIdRoute
   '/admin/order-customer-view/$id': typeof AdminOrderCustomerViewIdRoute
@@ -414,6 +421,7 @@ export interface FileRoutesByTo {
   '/sets/gem-vol-7': typeof SetsGemVol7Route
   '/account': typeof AccountIndexRoute
   '/admin': typeof AdminIndexRoute
+  '/sets': typeof SetsIndexRoute
   '/account/orders/$id': typeof AccountOrdersIdRoute
   '/admin/customers/$id': typeof AdminCustomersIdRoute
   '/admin/order-customer-view/$id': typeof AdminOrderCustomerViewIdRoute
@@ -468,6 +476,7 @@ export interface FileRoutesById {
   '/sets/gem-vol-7': typeof SetsGemVol7Route
   '/account/': typeof AccountIndexRoute
   '/admin/': typeof AdminIndexRoute
+  '/sets/': typeof SetsIndexRoute
   '/account/orders/$id': typeof AccountOrdersIdRoute
   '/admin/customers/$id': typeof AdminCustomersIdRoute
   '/admin/order-customer-view/$id': typeof AdminOrderCustomerViewIdRoute
@@ -523,6 +532,7 @@ export interface FileRouteTypes {
     | '/sets/gem-vol-7'
     | '/account/'
     | '/admin/'
+    | '/sets/'
     | '/account/orders/$id'
     | '/admin/customers/$id'
     | '/admin/order-customer-view/$id'
@@ -576,6 +586,7 @@ export interface FileRouteTypes {
     | '/sets/gem-vol-7'
     | '/account'
     | '/admin'
+    | '/sets'
     | '/account/orders/$id'
     | '/admin/customers/$id'
     | '/admin/order-customer-view/$id'
@@ -629,6 +640,7 @@ export interface FileRouteTypes {
     | '/sets/gem-vol-7'
     | '/account/'
     | '/admin/'
+    | '/sets/'
     | '/account/orders/$id'
     | '/admin/customers/$id'
     | '/admin/order-customer-view/$id'
@@ -683,6 +695,7 @@ export interface RootRouteChildren {
   SetsGemVol7Route: typeof SetsGemVol7Route
   AccountIndexRoute: typeof AccountIndexRoute
   AdminIndexRoute: typeof AdminIndexRoute
+  SetsIndexRoute: typeof SetsIndexRoute
   AccountOrdersIdRoute: typeof AccountOrdersIdRoute
   AdminCustomersIdRoute: typeof AdminCustomersIdRoute
   AdminOrderCustomerViewIdRoute: typeof AdminOrderCustomerViewIdRoute
@@ -935,6 +948,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProductsIdRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/sets/': {
+      id: '/sets/'
+      path: '/sets'
+      fullPath: '/sets/'
+      preLoaderRoute: typeof SetsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/sets/gem-vol-1': {
       id: '/sets/gem-vol-1'
       path: '/sets/gem-vol-1'
@@ -1099,6 +1119,7 @@ const rootRouteChildren: RootRouteChildren = {
   SetsGemVol7Route: SetsGemVol7Route,
   AccountIndexRoute: AccountIndexRoute,
   AdminIndexRoute: AdminIndexRoute,
+  SetsIndexRoute: SetsIndexRoute,
   AccountOrdersIdRoute: AccountOrdersIdRoute,
   AdminCustomersIdRoute: AdminCustomersIdRoute,
   AdminOrderCustomerViewIdRoute: AdminOrderCustomerViewIdRoute,

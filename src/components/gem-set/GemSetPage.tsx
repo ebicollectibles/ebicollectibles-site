@@ -291,6 +291,8 @@ export function GemSetPage({
             <div className="crumbs">
               <Link to="/shop">Shop</Link>
               <span>/</span>
+              <Link to="/sets">Gem Sets</Link>
+              <span>/</span>
               <span>{raw.name}</span>
             </div>
             <div className="eyebrow">
