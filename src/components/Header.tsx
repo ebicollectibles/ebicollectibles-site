@@ -201,7 +201,7 @@ export function Header({
                   Special Products
                 </Link>
                 <Link to="/sets" style={{ display: 'block', padding: '9px 14px', fontSize: 13, color: '#3d4753', whiteSpace: 'nowrap', borderTop: '1px solid #f0f2f4' }}>
-                  Gem Set Card Lists
+                  Card Lists
                 </Link>
               </div>
             )}
@@ -365,7 +365,7 @@ export function Header({
             Special Products
           </Link>
           <Link to="/sets" style={{ color: navColor(pathname.startsWith('/sets')), padding: '10px 0', borderBottom: '1px solid #f0f2f4' }}>
-            Gem Set Card Lists
+            Card Lists
           </Link>
           {SHOW_ACRYLICS && (
             <Link

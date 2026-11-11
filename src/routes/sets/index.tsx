@@ -7,7 +7,7 @@ const SITE_URL = 'https://ebicollectibles.com'
 const itemListJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'ItemList',
-  name: 'Gem Set Card Lists',
+  name: 'Pokémon Card Lists',
   numberOfItems: GEM_SETS.length,
   itemListElement: GEM_SETS.map((s, i) => ({
     '@type': 'ListItem',
@@ -27,13 +27,13 @@ function formatReleaseDate(iso: string): string {
 export const Route = createFileRoute('/sets/')({
   head: () => ({
     meta: [
-      { title: 'Gem Set Card Lists | EBI Collectibles' },
+      { title: 'Pokémon Card Lists | EBI Collectibles' },
       {
         name: 'description',
-        content: 'Browse every Simplified Chinese Gem Set release from EBI Collectibles — full card lists, rarities and checklists for Gem Vol 1 through 7.',
+        content: 'Browse every Simplified Chinese Pokémon TCG release from EBI Collectibles — full card lists, rarities and checklists for every Gem Set and officially-licensed set we carry.',
       },
-      { property: 'og:title', content: 'Gem Set Card Lists' },
-      { property: 'og:description', content: 'Every card in every Simplified Chinese Gem Set release — browse, filter and track what you own.' },
+      { property: 'og:title', content: 'Pokémon Card Lists' },
+      { property: 'og:description', content: 'Every card in every Simplified Chinese set we carry — browse, filter and track what you own.' },
       { property: 'og:image', content: GEM_SETS[0].heroImage },
       { property: 'og:url', content: `${SITE_URL}/sets` },
       { property: 'og:type', content: 'website' },
@@ -56,12 +56,12 @@ function SetsIndexPage() {
           <div className="crumbs">
             <Link to="/shop">Shop</Link>
             <span>/</span>
-            <span>Gem Sets</span>
+            <span>Card Lists</span>
           </div>
-          <div className="eyebrow">Simplified Chinese · Gem Set series</div>
-          <h1>Gem Set card lists</h1>
+          <div className="eyebrow">Simplified Chinese · Pokémon TCG</div>
+          <h1>Pokémon card lists</h1>
           <p className="lede">
-            Every Gem Set release, every card. Browse by Pokémon, filter by rarity, and track your own collection — pick a set below to dive in.
+            Every set we carry, every card. Browse by Pokémon, filter by rarity, and track your own collection — pick a set below to dive in.
           </p>
         </div>
       </section>
