@@ -1,0 +1,1149 @@
+{
+  "name": "Gem Vol 2",
+  "slug": "gem-vol-2",
+  "code": "CBB2C",
+  "series": "Gem Set",
+  "language": "Simplified Chinese",
+  "releaseDate": "2025-05-16",
+  "cardCount": 140,
+  "rarityOrder": [
+    "Common",
+    "Uncommon",
+    "Rare",
+    "Double Rare",
+    "Triple Rare"
+  ],
+  "exclusiveCardNumbers": [
+    "0115/15",
+    "0615/15",
+    "0715/15",
+    "0915/15"
+  ],
+  "catalogGroups": [
+    10,
+    11
+  ],
+  "source": "Chen Cards (chencards.com/sets/gem_vol_2), used with permission",
+  "cards": [
+    {
+      "number": "0101/15",
+      "pokemonIndex": 1,
+      "version": 1,
+      "name": "Eevee",
+      "rarity": "Common",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%202/Cards/0101.webp"
+    },
+    {
+      "number": "0102/15",
+      "pokemonIndex": 1,
+      "version": 2,
+      "name": "Eevee",
+      "rarity": "Common",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%202/Cards/0102.webp"
+    },
+    {
+      "number": "0103/15",
+      "pokemonIndex": 1,
+      "version": 3,
+      "name": "Eevee",
+      "rarity": "Common",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%202/Cards/0103.webp"
+    },
+    {
+      "number": "0104/15",
+      "pokemonIndex": 1,
+      "version": 4,
+      "name": "Eevee",
+      "rarity": "Common",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%202/Cards/0104.webp"
+    },
+    {
+      "number": "0105/15",
+      "pokemonIndex": 1,
+      "version": 5,
+      "name": "Eevee",
+      "rarity": "Uncommon",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%202/Cards/0105.webp"
+    },
+    {
+      "number": "0106/15",
+      "pokemonIndex": 1,
+      "version": 6,
+      "name": "Eevee",
+      "rarity": "Uncommon",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%202/Cards/0106.webp"
+    },
+    {
+      "number": "0107/15",
+      "pokemonIndex": 1,
+      "version": 7,
+      "name": "Eevee",
+      "rarity": "Uncommon",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%202/Cards/0107.webp"
+    },
+    {
+      "number": "0108/15",
+      "pokemonIndex": 1,
+      "version": 8,
+      "name": "Eevee",
+      "rarity": "Uncommon",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%202/Cards/0108.webp"
+    },
+    {
+      "number": "0109/15",
+      "pokemonIndex": 1,
+      "version": 9,
+      "name": "Eevee",
+      "rarity": "Rare",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%202/Cards/0109.webp"
+    },
+    {
+      "number": "0110/15",
+      "pokemonIndex": 1,
+      "version": 10,
+      "name": "Eevee",
+      "rarity": "Rare",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%202/Cards/0110.webp"
+    },
+    {
+      "number": "0111/15",
+      "pokemonIndex": 1,
+      "version": 11,
+      "name": "Eevee",
+      "rarity": "Double Rare",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%202/Cards/0111.webp"
+    },
+    {
+      "number": "0112/15",
+      "pokemonIndex": 1,
+      "version": 12,
+      "name": "Eevee",
+      "rarity": "Double Rare",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%202/Cards/0112.webp"
+    },
+    {
+      "number": "0113/15",
+      "pokemonIndex": 1,
+      "version": 13,
+      "name": "Eevee V",
+      "rarity": "Rare",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%202/Cards/0113.webp"
+    },
+    {
+      "number": "0114/15",
+      "pokemonIndex": 1,
+      "version": 14,
+      "name": "Eevee VMAX",
+      "rarity": "Triple Rare",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%202/Cards/0114.webp"
+    },
+    {
+      "number": "0115/15",
+      "pokemonIndex": 1,
+      "version": 15,
+      "name": "Eevee",
+      "rarity": "Triple Rare",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%202/Cards/0115.webp"
+    },
+    {
+      "number": "0201/14",
+      "pokemonIndex": 2,
+      "version": 1,
+      "name": "Vaporeon",
+      "rarity": "Common",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%202/Cards/0201.webp"
+    },
+    {
+      "number": "0202/14",
+      "pokemonIndex": 2,
+      "version": 2,
+      "name": "Vaporeon",
+      "rarity": "Common",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%202/Cards/0202.webp"
+    },
+    {
+      "number": "0203/14",
+      "pokemonIndex": 2,
+      "version": 3,
+      "name": "Vaporeon",
+      "rarity": "Common",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%202/Cards/0203.webp"
+    },
+    {
+      "number": "0204/14",
+      "pokemonIndex": 2,
+      "version": 4,
+      "name": "Vaporeon",
+      "rarity": "Common",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%202/Cards/0204.webp"
+    },
+    {
+      "number": "0205/14",
+      "pokemonIndex": 2,
+      "version": 5,
+      "name": "Vaporeon",
+      "rarity": "Uncommon",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%202/Cards/0205.webp"
+    },
+    {
+      "number": "0206/14",
+      "pokemonIndex": 2,
+      "version": 6,
+      "name": "Vaporeon",
+      "rarity": "Uncommon",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%202/Cards/0206.webp"
+    },
+    {
+      "number": "0207/14",
+      "pokemonIndex": 2,
+      "version": 7,
+      "name": "Vaporeon",
+      "rarity": "Uncommon",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%202/Cards/0207.webp"
+    },
+    {
+      "number": "0208/14",
+      "pokemonIndex": 2,
+      "version": 8,
+      "name": "Vaporeon",
+      "rarity": "Uncommon",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%202/Cards/0208.webp"
+    },
+    {
+      "number": "0209/14",
+      "pokemonIndex": 2,
+      "version": 9,
+      "name": "Vaporeon",
+      "rarity": "Rare",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%202/Cards/0209.webp"
+    },
+    {
+      "number": "0210/14",
+      "pokemonIndex": 2,
+      "version": 10,
+      "name": "Vaporeon",
+      "rarity": "Rare",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%202/Cards/0210.webp"
+    },
+    {
+      "number": "0211/14",
+      "pokemonIndex": 2,
+      "version": 11,
+      "name": "Vaporeon",
+      "rarity": "Double Rare",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%202/Cards/0211.webp"
+    },
+    {
+      "number": "0212/14",
+      "pokemonIndex": 2,
+      "version": 12,
+      "name": "Vaporeon",
+      "rarity": "Double Rare",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%202/Cards/0212.webp"
+    },
+    {
+      "number": "0213/14",
+      "pokemonIndex": 2,
+      "version": 13,
+      "name": "Vaporeon V",
+      "rarity": "Rare",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%202/Cards/0213.webp"
+    },
+    {
+      "number": "0214/14",
+      "pokemonIndex": 2,
+      "version": 14,
+      "name": "Vaporeon VMAX",
+      "rarity": "Triple Rare",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%202/Cards/0214.webp"
+    },
+    {
+      "number": "0301/14",
+      "pokemonIndex": 3,
+      "version": 1,
+      "name": "Jolteon",
+      "rarity": "Common",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%202/Cards/0301.webp"
+    },
+    {
+      "number": "0302/14",
+      "pokemonIndex": 3,
+      "version": 2,
+      "name": "Jolteon",
+      "rarity": "Common",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%202/Cards/0302.webp"
+    },
+    {
+      "number": "0303/14",
+      "pokemonIndex": 3,
+      "version": 3,
+      "name": "Jolteon",
+      "rarity": "Common",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%202/Cards/0303.webp"
+    },
+    {
+      "number": "0304/14",
+      "pokemonIndex": 3,
+      "version": 4,
+      "name": "Jolteon",
+      "rarity": "Common",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%202/Cards/0304.webp"
+    },
+    {
+      "number": "0305/14",
+      "pokemonIndex": 3,
+      "version": 5,
+      "name": "Jolteon",
+      "rarity": "Uncommon",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%202/Cards/0305.webp"
+    },
+    {
+      "number": "0306/14",
+      "pokemonIndex": 3,
+      "version": 6,
+      "name": "Jolteon",
+      "rarity": "Uncommon",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%202/Cards/0306.webp"
+    },
+    {
+      "number": "0307/14",
+      "pokemonIndex": 3,
+      "version": 7,
+      "name": "Jolteon",
+      "rarity": "Uncommon",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%202/Cards/0307.webp"
+    },
+    {
+      "number": "0308/14",
+      "pokemonIndex": 3,
+      "version": 8,
+      "name": "Jolteon",
+      "rarity": "Uncommon",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%202/Cards/0308.webp"
+    },
+    {
+      "number": "0309/14",
+      "pokemonIndex": 3,
+      "version": 9,
+      "name": "Jolteon",
+      "rarity": "Rare",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%202/Cards/0309.webp"
+    },
+    {
+      "number": "0310/14",
+      "pokemonIndex": 3,
+      "version": 10,
+      "name": "Jolteon",
+      "rarity": "Rare",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%202/Cards/0310.webp"
+    },
+    {
+      "number": "0311/14",
+      "pokemonIndex": 3,
+      "version": 11,
+      "name": "Jolteon",
+      "rarity": "Double Rare",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%202/Cards/0311.webp"
+    },
+    {
+      "number": "0312/14",
+      "pokemonIndex": 3,
+      "version": 12,
+      "name": "Jolteon",
+      "rarity": "Double Rare",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%202/Cards/0312.webp"
+    },
+    {
+      "number": "0313/14",
+      "pokemonIndex": 3,
+      "version": 13,
+      "name": "Jolteon V",
+      "rarity": "Rare",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%202/Cards/0313.webp"
+    },
+    {
+      "number": "0314/14",
+      "pokemonIndex": 3,
+      "version": 14,
+      "name": "Jolteon VMAX",
+      "rarity": "Triple Rare",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%202/Cards/0314.webp"
+    },
+    {
+      "number": "0401/14",
+      "pokemonIndex": 4,
+      "version": 1,
+      "name": "Flareon",
+      "rarity": "Common",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%202/Cards/0401.webp"
+    },
+    {
+      "number": "0402/14",
+      "pokemonIndex": 4,
+      "version": 2,
+      "name": "Flareon",
+      "rarity": "Common",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%202/Cards/0402.webp"
+    },
+    {
+      "number": "0403/14",
+      "pokemonIndex": 4,
+      "version": 3,
+      "name": "Flareon",
+      "rarity": "Common",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%202/Cards/0403.webp"
+    },
+    {
+      "number": "0404/14",
+      "pokemonIndex": 4,
+      "version": 4,
+      "name": "Flareon",
+      "rarity": "Common",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%202/Cards/0404.webp"
+    },
+    {
+      "number": "0405/14",
+      "pokemonIndex": 4,
+      "version": 5,
+      "name": "Flareon",
+      "rarity": "Uncommon",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%202/Cards/0405.webp"
+    },
+    {
+      "number": "0406/14",
+      "pokemonIndex": 4,
+      "version": 6,
+      "name": "Flareon",
+      "rarity": "Uncommon",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%202/Cards/0406.webp"
+    },
+    {
+      "number": "0407/14",
+      "pokemonIndex": 4,
+      "version": 7,
+      "name": "Flareon",
+      "rarity": "Uncommon",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%202/Cards/0407.webp"
+    },
+    {
+      "number": "0408/14",
+      "pokemonIndex": 4,
+      "version": 8,
+      "name": "Flareon",
+      "rarity": "Uncommon",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%202/Cards/0408.webp"
+    },
+    {
+      "number": "0409/14",
+      "pokemonIndex": 4,
+      "version": 9,
+      "name": "Flareon",
+      "rarity": "Rare",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%202/Cards/0409.webp"
+    },
+    {
+      "number": "0410/14",
+      "pokemonIndex": 4,
+      "version": 10,
+      "name": "Flareon",
+      "rarity": "Rare",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%202/Cards/0410.webp"
+    },
+    {
+      "number": "0411/14",
+      "pokemonIndex": 4,
+      "version": 11,
+      "name": "Flareon",
+      "rarity": "Double Rare",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%202/Cards/0411.webp"
+    },
+    {
+      "number": "0412/14",
+      "pokemonIndex": 4,
+      "version": 12,
+      "name": "Flareon",
+      "rarity": "Double Rare",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%202/Cards/0412.webp"
+    },
+    {
+      "number": "0413/14",
+      "pokemonIndex": 4,
+      "version": 13,
+      "name": "Flareon V",
+      "rarity": "Rare",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%202/Cards/0413.webp"
+    },
+    {
+      "number": "0414/14",
+      "pokemonIndex": 4,
+      "version": 14,
+      "name": "Flareon VMAX",
+      "rarity": "Triple Rare",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%202/Cards/0414.webp"
+    },
+    {
+      "number": "0501/14",
+      "pokemonIndex": 5,
+      "version": 1,
+      "name": "Espeon",
+      "rarity": "Common",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%202/Cards/0501.webp"
+    },
+    {
+      "number": "0502/14",
+      "pokemonIndex": 5,
+      "version": 2,
+      "name": "Espeon",
+      "rarity": "Common",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%202/Cards/0502.webp"
+    },
+    {
+      "number": "0503/14",
+      "pokemonIndex": 5,
+      "version": 3,
+      "name": "Espeon",
+      "rarity": "Common",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%202/Cards/0503.webp"
+    },
+    {
+      "number": "0504/14",
+      "pokemonIndex": 5,
+      "version": 4,
+      "name": "Espeon",
+      "rarity": "Common",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%202/Cards/0504.webp"
+    },
+    {
+      "number": "0505/14",
+      "pokemonIndex": 5,
+      "version": 5,
+      "name": "Espeon",
+      "rarity": "Uncommon",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%202/Cards/0505.webp"
+    },
+    {
+      "number": "0506/14",
+      "pokemonIndex": 5,
+      "version": 6,
+      "name": "Espeon",
+      "rarity": "Uncommon",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%202/Cards/0506.webp"
+    },
+    {
+      "number": "0507/14",
+      "pokemonIndex": 5,
+      "version": 7,
+      "name": "Espeon",
+      "rarity": "Uncommon",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%202/Cards/0507.webp"
+    },
+    {
+      "number": "0508/14",
+      "pokemonIndex": 5,
+      "version": 8,
+      "name": "Espeon",
+      "rarity": "Uncommon",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%202/Cards/0508.webp"
+    },
+    {
+      "number": "0509/14",
+      "pokemonIndex": 5,
+      "version": 9,
+      "name": "Espeon",
+      "rarity": "Rare",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%202/Cards/0509.webp"
+    },
+    {
+      "number": "0510/14",
+      "pokemonIndex": 5,
+      "version": 10,
+      "name": "Espeon",
+      "rarity": "Rare",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%202/Cards/0510.webp"
+    },
+    {
+      "number": "0511/14",
+      "pokemonIndex": 5,
+      "version": 11,
+      "name": "Espeon",
+      "rarity": "Double Rare",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%202/Cards/0511.webp"
+    },
+    {
+      "number": "0512/14",
+      "pokemonIndex": 5,
+      "version": 12,
+      "name": "Espeon",
+      "rarity": "Double Rare",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%202/Cards/0512.webp"
+    },
+    {
+      "number": "0513/14",
+      "pokemonIndex": 5,
+      "version": 13,
+      "name": "Espeon V",
+      "rarity": "Rare",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%202/Cards/0513.webp"
+    },
+    {
+      "number": "0514/14",
+      "pokemonIndex": 5,
+      "version": 14,
+      "name": "Espeon VMAX",
+      "rarity": "Triple Rare",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%202/Cards/0514.webp"
+    },
+    {
+      "number": "0601/15",
+      "pokemonIndex": 6,
+      "version": 1,
+      "name": "Umbreon",
+      "rarity": "Common",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%202/Cards/0601.webp"
+    },
+    {
+      "number": "0602/15",
+      "pokemonIndex": 6,
+      "version": 2,
+      "name": "Umbreon",
+      "rarity": "Common",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%202/Cards/0602.webp"
+    },
+    {
+      "number": "0603/15",
+      "pokemonIndex": 6,
+      "version": 3,
+      "name": "Umbreon",
+      "rarity": "Common",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%202/Cards/0603.webp"
+    },
+    {
+      "number": "0604/15",
+      "pokemonIndex": 6,
+      "version": 4,
+      "name": "Umbreon",
+      "rarity": "Common",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%202/Cards/0604.webp"
+    },
+    {
+      "number": "0605/15",
+      "pokemonIndex": 6,
+      "version": 5,
+      "name": "Umbreon",
+      "rarity": "Uncommon",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%202/Cards/0605.webp"
+    },
+    {
+      "number": "0606/15",
+      "pokemonIndex": 6,
+      "version": 6,
+      "name": "Umbreon",
+      "rarity": "Uncommon",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%202/Cards/0606.webp"
+    },
+    {
+      "number": "0607/15",
+      "pokemonIndex": 6,
+      "version": 7,
+      "name": "Umbreon",
+      "rarity": "Uncommon",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%202/Cards/0607.webp"
+    },
+    {
+      "number": "0608/15",
+      "pokemonIndex": 6,
+      "version": 8,
+      "name": "Umbreon",
+      "rarity": "Uncommon",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%202/Cards/0608.webp"
+    },
+    {
+      "number": "0609/15",
+      "pokemonIndex": 6,
+      "version": 9,
+      "name": "Umbreon",
+      "rarity": "Rare",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%202/Cards/0609.webp"
+    },
+    {
+      "number": "0610/15",
+      "pokemonIndex": 6,
+      "version": 10,
+      "name": "Umbreon",
+      "rarity": "Rare",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%202/Cards/0610.webp"
+    },
+    {
+      "number": "0611/15",
+      "pokemonIndex": 6,
+      "version": 11,
+      "name": "Umbreon",
+      "rarity": "Double Rare",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%202/Cards/0611.webp"
+    },
+    {
+      "number": "0612/15",
+      "pokemonIndex": 6,
+      "version": 12,
+      "name": "Umbreon",
+      "rarity": "Double Rare",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%202/Cards/0612.webp"
+    },
+    {
+      "number": "0613/15",
+      "pokemonIndex": 6,
+      "version": 13,
+      "name": "Umbreon V",
+      "rarity": "Rare",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%202/Cards/0613.webp"
+    },
+    {
+      "number": "0614/15",
+      "pokemonIndex": 6,
+      "version": 14,
+      "name": "Umbreon VMAX",
+      "rarity": "Triple Rare",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%202/Cards/0614.webp"
+    },
+    {
+      "number": "0615/15",
+      "pokemonIndex": 6,
+      "version": 15,
+      "name": "Umbreon",
+      "rarity": "Triple Rare",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%202/Cards/0615.webp"
+    },
+    {
+      "number": "0701/15",
+      "pokemonIndex": 7,
+      "version": 1,
+      "name": "Leafeon",
+      "rarity": "Common",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%202/Cards/0701.webp"
+    },
+    {
+      "number": "0702/15",
+      "pokemonIndex": 7,
+      "version": 2,
+      "name": "Leafeon",
+      "rarity": "Common",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%202/Cards/0702.webp"
+    },
+    {
+      "number": "0703/15",
+      "pokemonIndex": 7,
+      "version": 3,
+      "name": "Leafeon",
+      "rarity": "Common",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%202/Cards/0703.webp"
+    },
+    {
+      "number": "0704/15",
+      "pokemonIndex": 7,
+      "version": 4,
+      "name": "Leafeon",
+      "rarity": "Common",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%202/Cards/0704.webp"
+    },
+    {
+      "number": "0705/15",
+      "pokemonIndex": 7,
+      "version": 5,
+      "name": "Leafeon",
+      "rarity": "Uncommon",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%202/Cards/0705.webp"
+    },
+    {
+      "number": "0706/15",
+      "pokemonIndex": 7,
+      "version": 6,
+      "name": "Leafeon",
+      "rarity": "Uncommon",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%202/Cards/0706.webp"
+    },
+    {
+      "number": "0707/15",
+      "pokemonIndex": 7,
+      "version": 7,
+      "name": "Leafeon",
+      "rarity": "Uncommon",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%202/Cards/0707.webp"
+    },
+    {
+      "number": "0708/15",
+      "pokemonIndex": 7,
+      "version": 8,
+      "name": "Leafeon",
+      "rarity": "Uncommon",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%202/Cards/0708.webp"
+    },
+    {
+      "number": "0709/15",
+      "pokemonIndex": 7,
+      "version": 9,
+      "name": "Leafeon",
+      "rarity": "Rare",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%202/Cards/0709.webp"
+    },
+    {
+      "number": "0710/15",
+      "pokemonIndex": 7,
+      "version": 10,
+      "name": "Leafeon",
+      "rarity": "Rare",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%202/Cards/0710.webp"
+    },
+    {
+      "number": "0711/15",
+      "pokemonIndex": 7,
+      "version": 11,
+      "name": "Leafeon",
+      "rarity": "Double Rare",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%202/Cards/0711.webp"
+    },
+    {
+      "number": "0712/15",
+      "pokemonIndex": 7,
+      "version": 12,
+      "name": "Leafeon",
+      "rarity": "Double Rare",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%202/Cards/0712.webp"
+    },
+    {
+      "number": "0713/15",
+      "pokemonIndex": 7,
+      "version": 13,
+      "name": "Leafeon V",
+      "rarity": "Rare",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%202/Cards/0713.webp"
+    },
+    {
+      "number": "0714/15",
+      "pokemonIndex": 7,
+      "version": 14,
+      "name": "Leafeon VMAX",
+      "rarity": "Triple Rare",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%202/Cards/0714.webp"
+    },
+    {
+      "number": "0715/15",
+      "pokemonIndex": 7,
+      "version": 15,
+      "name": "Leafeon",
+      "rarity": "Triple Rare",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%202/Cards/0715.webp"
+    },
+    {
+      "number": "0801/14",
+      "pokemonIndex": 8,
+      "version": 1,
+      "name": "Glaceon",
+      "rarity": "Common",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%202/Cards/0801.webp"
+    },
+    {
+      "number": "0802/14",
+      "pokemonIndex": 8,
+      "version": 2,
+      "name": "Glaceon",
+      "rarity": "Common",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%202/Cards/0802.webp"
+    },
+    {
+      "number": "0803/14",
+      "pokemonIndex": 8,
+      "version": 3,
+      "name": "Glaceon",
+      "rarity": "Common",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%202/Cards/0803.webp"
+    },
+    {
+      "number": "0804/14",
+      "pokemonIndex": 8,
+      "version": 4,
+      "name": "Glaceon",
+      "rarity": "Common",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%202/Cards/0804.webp"
+    },
+    {
+      "number": "0805/14",
+      "pokemonIndex": 8,
+      "version": 5,
+      "name": "Glaceon",
+      "rarity": "Uncommon",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%202/Cards/0805.webp"
+    },
+    {
+      "number": "0806/14",
+      "pokemonIndex": 8,
+      "version": 6,
+      "name": "Glaceon",
+      "rarity": "Uncommon",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%202/Cards/0806.webp"
+    },
+    {
+      "number": "0807/14",
+      "pokemonIndex": 8,
+      "version": 7,
+      "name": "Glaceon",
+      "rarity": "Uncommon",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%202/Cards/0807.webp"
+    },
+    {
+      "number": "0808/14",
+      "pokemonIndex": 8,
+      "version": 8,
+      "name": "Glaceon",
+      "rarity": "Uncommon",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%202/Cards/0808.webp"
+    },
+    {
+      "number": "0809/14",
+      "pokemonIndex": 8,
+      "version": 9,
+      "name": "Glaceon",
+      "rarity": "Rare",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%202/Cards/0809.webp"
+    },
+    {
+      "number": "0810/14",
+      "pokemonIndex": 8,
+      "version": 10,
+      "name": "Glaceon",
+      "rarity": "Rare",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%202/Cards/0810.webp"
+    },
+    {
+      "number": "0811/14",
+      "pokemonIndex": 8,
+      "version": 11,
+      "name": "Glaceon",
+      "rarity": "Double Rare",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%202/Cards/0811.webp"
+    },
+    {
+      "number": "0812/14",
+      "pokemonIndex": 8,
+      "version": 12,
+      "name": "Glaceon",
+      "rarity": "Double Rare",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%202/Cards/0812.webp"
+    },
+    {
+      "number": "0813/14",
+      "pokemonIndex": 8,
+      "version": 13,
+      "name": "Glaceon V",
+      "rarity": "Rare",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%202/Cards/0813.webp"
+    },
+    {
+      "number": "0814/14",
+      "pokemonIndex": 8,
+      "version": 14,
+      "name": "Glaceon VMAX",
+      "rarity": "Triple Rare",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%202/Cards/0814.webp"
+    },
+    {
+      "number": "0901/15",
+      "pokemonIndex": 9,
+      "version": 1,
+      "name": "Sylveon",
+      "rarity": "Common",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%202/Cards/0901.webp"
+    },
+    {
+      "number": "0902/15",
+      "pokemonIndex": 9,
+      "version": 2,
+      "name": "Sylveon",
+      "rarity": "Common",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%202/Cards/0902.webp"
+    },
+    {
+      "number": "0903/15",
+      "pokemonIndex": 9,
+      "version": 3,
+      "name": "Sylveon",
+      "rarity": "Common",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%202/Cards/0903.webp"
+    },
+    {
+      "number": "0904/15",
+      "pokemonIndex": 9,
+      "version": 4,
+      "name": "Sylveon",
+      "rarity": "Common",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%202/Cards/0904.webp"
+    },
+    {
+      "number": "0905/15",
+      "pokemonIndex": 9,
+      "version": 5,
+      "name": "Sylveon",
+      "rarity": "Uncommon",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%202/Cards/0905.webp"
+    },
+    {
+      "number": "0906/15",
+      "pokemonIndex": 9,
+      "version": 6,
+      "name": "Sylveon",
+      "rarity": "Uncommon",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%202/Cards/0906.webp"
+    },
+    {
+      "number": "0907/15",
+      "pokemonIndex": 9,
+      "version": 7,
+      "name": "Sylveon",
+      "rarity": "Uncommon",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%202/Cards/0907.webp"
+    },
+    {
+      "number": "0908/15",
+      "pokemonIndex": 9,
+      "version": 8,
+      "name": "Sylveon",
+      "rarity": "Uncommon",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%202/Cards/0908.webp"
+    },
+    {
+      "number": "0909/15",
+      "pokemonIndex": 9,
+      "version": 9,
+      "name": "Sylveon",
+      "rarity": "Rare",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%202/Cards/0909.webp"
+    },
+    {
+      "number": "0910/15",
+      "pokemonIndex": 9,
+      "version": 10,
+      "name": "Sylveon",
+      "rarity": "Rare",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%202/Cards/0910.webp"
+    },
+    {
+      "number": "0911/15",
+      "pokemonIndex": 9,
+      "version": 11,
+      "name": "Sylveon",
+      "rarity": "Double Rare",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%202/Cards/0911.webp"
+    },
+    {
+      "number": "0912/15",
+      "pokemonIndex": 9,
+      "version": 12,
+      "name": "Sylveon",
+      "rarity": "Double Rare",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%202/Cards/0912.webp"
+    },
+    {
+      "number": "0913/15",
+      "pokemonIndex": 9,
+      "version": 13,
+      "name": "Sylveon V",
+      "rarity": "Rare",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%202/Cards/0913.webp"
+    },
+    {
+      "number": "0914/15",
+      "pokemonIndex": 9,
+      "version": 14,
+      "name": "Sylveon VMAX",
+      "rarity": "Triple Rare",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%202/Cards/0914.webp"
+    },
+    {
+      "number": "0915/15",
+      "pokemonIndex": 9,
+      "version": 15,
+      "name": "Sylveon",
+      "rarity": "Triple Rare",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%202/Cards/0915.webp"
+    },
+    {
+      "number": "1001/04",
+      "pokemonIndex": 10,
+      "version": 1,
+      "name": "Poké Ball",
+      "rarity": "Double Rare",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%202/Cards/1001.webp"
+    },
+    {
+      "number": "1002/04",
+      "pokemonIndex": 10,
+      "version": 2,
+      "name": "Level Ball",
+      "rarity": "Double Rare",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%202/Cards/1002.webp"
+    },
+    {
+      "number": "1003/04",
+      "pokemonIndex": 10,
+      "version": 3,
+      "name": "Quick Ball",
+      "rarity": "Double Rare",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%202/Cards/1003.webp"
+    },
+    {
+      "number": "1004/04",
+      "pokemonIndex": 10,
+      "version": 4,
+      "name": "Penny",
+      "rarity": "Triple Rare",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%202/Cards/1004.webp"
+    },
+    {
+      "number": "1101/06",
+      "pokemonIndex": 11,
+      "version": 1,
+      "name": "Basic Lightning Energy",
+      "rarity": "Triple Rare",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%202/Cards/1101.webp"
+    },
+    {
+      "number": "1102/06",
+      "pokemonIndex": 11,
+      "version": 2,
+      "name": "Basic Psychic Energy",
+      "rarity": "Triple Rare",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%202/Cards/1102.webp"
+    },
+    {
+      "number": "1103/06",
+      "pokemonIndex": 11,
+      "version": 3,
+      "name": "Basic Darkness Energy",
+      "rarity": "Triple Rare",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%202/Cards/1103.webp"
+    },
+    {
+      "number": "1104/06",
+      "pokemonIndex": 11,
+      "version": 4,
+      "name": "Basic Lightning Energy",
+      "rarity": "Triple Rare",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%202/Cards/1104.webp"
+    },
+    {
+      "number": "1105/06",
+      "pokemonIndex": 11,
+      "version": 5,
+      "name": "Basic Psychic Energy",
+      "rarity": "Triple Rare",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%202/Cards/1105.webp"
+    },
+    {
+      "number": "1106/06",
+      "pokemonIndex": 11,
+      "version": 6,
+      "name": "Basic Darkness Energy",
+      "rarity": "Triple Rare",
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Gem%202/Cards/1106.webp"
+    }
+  ]
+}
