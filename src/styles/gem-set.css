@@ -241,7 +241,13 @@
 
     .img { position: relative; aspect-ratio: 300/419; border-radius: 6px; overflow: hidden; background: var(--surface); box-shadow: var(--shadow); transition: transform .2s ease, box-shadow .2s ease; }
     img { width: 100%; height: 100%; object-fit: cover; display: block; }
-    .meta { display: flex; justify-content: space-between; align-items: baseline; gap: 6px; }
+    /* flex-wrap so a wider rarity label ("Double Rare", "Triple Rare") drops
+       to its own line on a narrow rail card instead of overflowing sideways
+       onto the next card — .rtag below is white-space: nowrap on purpose
+       (it shouldn't break mid-label), so without this the label simply
+       spilled past the card's own width when it didn't fit next to the
+       card number. */
+    .meta { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 2px 6px; }
     .no { font-family: var(--f-mono); font-size: 11.5px; color: var(--slate); }
     .nm { font-size: 13px; font-weight: 600; line-height: 1.25; }
     .own { position: absolute; top: 6px; right: 6px; width: 22px; height: 22px; border-radius: 50%; background: var(--r-r); color: #fff; display: grid; place-items: center; font-size: 12px; box-shadow: 0 1px 4px rgb(0 0 0 / .3); }
