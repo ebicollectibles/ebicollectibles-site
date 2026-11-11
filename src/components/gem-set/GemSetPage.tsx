@@ -30,7 +30,7 @@ export function GemSetPage({
 }) {
   const { cards, cardById, groups, versionSuffix, versionsPerMon, monCount, rarityVersionLabels } = data
 
-  const [view, setView] = React.useState<'ladder' | 'grid' | 'list'>('ladder')
+  const [view, setView] = React.useState<'ladder' | 'grid' | 'exclusives' | 'list'>('ladder')
   const [query, setQuery] = React.useState('')
   const [rarities, setRarities] = React.useState<Set<string>>(() => new Set())
   const [have, setHave] = React.useState<Set<string>>(() => new Set())
@@ -161,6 +161,7 @@ export function GemSetPage({
     [rarities, q, versionSuffix],
   )
   const shown = React.useMemo(() => cards.filter(match), [cards, match])
+  const exclusiveShown = React.useMemo(() => shown.filter((c) => c.exclusive), [shown])
 
   const openCard = cardById.get(openCardId ?? '') ?? null
   // The router's scrollRestoration is keyed to the exact URL, search
@@ -365,6 +366,7 @@ export function GemSetPage({
               [
                 ['ladder', 'By Pokémon'],
                 ['grid', 'All cards'],
+                ['exclusives', 'Exclusives'],
                 ['list', 'Checklist'],
               ] as const
             ).map(([v, label]) => (
@@ -426,6 +428,16 @@ export function GemSetPage({
               <CardThumb key={c.id} card={c} dimmed={false} showName={true} have={have.has(c.id)} versionSuffix={versionSuffix} onOpen={open} />
             ))}
           </div>
+        ) : view === 'exclusives' ? (
+          exclusiveShown.length === 0 ? (
+            <div className="empty">No exclusive cards match. Try another name or clear the rarity filter.</div>
+          ) : (
+            <div className="grid">
+              {exclusiveShown.map((c) => (
+                <CardThumb key={c.id} card={c} dimmed={false} showName={true} have={have.has(c.id)} versionSuffix={versionSuffix} onOpen={open} />
+              ))}
+            </div>
+          )
         ) : (
           <div className="tablewrap">
             <table>
