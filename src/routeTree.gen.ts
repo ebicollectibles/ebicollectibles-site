@@ -43,6 +43,7 @@ import { Route as AdminSubscribersRouteImport } from './routes/admin/subscribers
 import { Route as GoSlugRouteImport } from './routes/go.$slug'
 import { Route as LinksSlugRouteImport } from './routes/links.$slug'
 import { Route as ProductsIdRouteImport } from './routes/products.$id'
+import { Route as SetsGemVol5RouteImport } from './routes/sets/gem-vol-5'
 import { Route as SetsGemVol6RouteImport } from './routes/sets/gem-vol-6'
 import { Route as SetsGemVol7RouteImport } from './routes/sets/gem-vol-7'
 import { Route as AccountOrdersIndexRouteImport } from './routes/account/orders/index'
@@ -226,6 +227,11 @@ const ProductsIdRoute = ProductsIdRouteImport.update({
   path: '/products/$id',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SetsGemVol5Route = SetsGemVol5RouteImport.update({
+  id: '/sets/gem-vol-5',
+  path: '/sets/gem-vol-5',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const SetsGemVol6Route = SetsGemVol6RouteImport.update({
   id: '/sets/gem-vol-6',
   path: '/sets/gem-vol-6',
@@ -322,6 +328,7 @@ export interface FileRoutesByFullPath {
   '/go/$slug': typeof GoSlugRoute
   '/links/$slug': typeof LinksSlugRoute
   '/products/$id': typeof ProductsIdRoute
+  '/sets/gem-vol-5': typeof SetsGemVol5Route
   '/sets/gem-vol-6': typeof SetsGemVol6Route
   '/sets/gem-vol-7': typeof SetsGemVol7Route
   '/account/': typeof AccountIndexRoute
@@ -370,6 +377,7 @@ export interface FileRoutesByTo {
   '/go/$slug': typeof GoSlugRoute
   '/links/$slug': typeof LinksSlugRoute
   '/products/$id': typeof ProductsIdRoute
+  '/sets/gem-vol-5': typeof SetsGemVol5Route
   '/sets/gem-vol-6': typeof SetsGemVol6Route
   '/sets/gem-vol-7': typeof SetsGemVol7Route
   '/account': typeof AccountIndexRoute
@@ -419,6 +427,7 @@ export interface FileRoutesById {
   '/go/$slug': typeof GoSlugRoute
   '/links/$slug': typeof LinksSlugRoute
   '/products/$id': typeof ProductsIdRoute
+  '/sets/gem-vol-5': typeof SetsGemVol5Route
   '/sets/gem-vol-6': typeof SetsGemVol6Route
   '/sets/gem-vol-7': typeof SetsGemVol7Route
   '/account/': typeof AccountIndexRoute
@@ -469,6 +478,7 @@ export interface FileRouteTypes {
     | '/go/$slug'
     | '/links/$slug'
     | '/products/$id'
+    | '/sets/gem-vol-5'
     | '/sets/gem-vol-6'
     | '/sets/gem-vol-7'
     | '/account/'
@@ -517,6 +527,7 @@ export interface FileRouteTypes {
     | '/go/$slug'
     | '/links/$slug'
     | '/products/$id'
+    | '/sets/gem-vol-5'
     | '/sets/gem-vol-6'
     | '/sets/gem-vol-7'
     | '/account'
@@ -565,6 +576,7 @@ export interface FileRouteTypes {
     | '/go/$slug'
     | '/links/$slug'
     | '/products/$id'
+    | '/sets/gem-vol-5'
     | '/sets/gem-vol-6'
     | '/sets/gem-vol-7'
     | '/account/'
@@ -614,6 +626,7 @@ export interface RootRouteChildren {
   GoSlugRoute: typeof GoSlugRoute
   LinksSlugRoute: typeof LinksSlugRoute
   ProductsIdRoute: typeof ProductsIdRoute
+  SetsGemVol5Route: typeof SetsGemVol5Route
   SetsGemVol6Route: typeof SetsGemVol6Route
   SetsGemVol7Route: typeof SetsGemVol7Route
   AccountIndexRoute: typeof AccountIndexRoute
@@ -870,6 +883,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProductsIdRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/sets/gem-vol-5': {
+      id: '/sets/gem-vol-5'
+      path: '/sets/gem-vol-5'
+      fullPath: '/sets/gem-vol-5'
+      preLoaderRoute: typeof SetsGemVol5RouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/sets/gem-vol-6': {
       id: '/sets/gem-vol-6'
       path: '/sets/gem-vol-6'
@@ -990,6 +1010,7 @@ const rootRouteChildren: RootRouteChildren = {
   GoSlugRoute: GoSlugRoute,
   LinksSlugRoute: LinksSlugRoute,
   ProductsIdRoute: ProductsIdRoute,
+  SetsGemVol5Route: SetsGemVol5Route,
   SetsGemVol6Route: SetsGemVol6Route,
   SetsGemVol7Route: SetsGemVol7Route,
   AccountIndexRoute: AccountIndexRoute,
