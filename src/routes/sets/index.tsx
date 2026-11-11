@@ -24,6 +24,33 @@ function formatReleaseDate(iso: string): string {
   return d.toLocaleDateString('en-US', { month: 'short', year: 'numeric' })
 }
 
+// Display order for the series sections below — officially-licensed lines
+// first, Chen's own Gem Set branding last. A series not listed here (a
+// future one-off) still renders, just after all of these.
+const SERIES_ORDER = ['Chinese Scarlet & Violet', '30th Anniversary Special Set', 'Gem Set']
+const SERIES_LABEL: Record<string, string> = {
+  'Chinese Scarlet & Violet': 'Chinese Scarlet & Violet',
+  '30th Anniversary Special Set': '30th Anniversary',
+  'Gem Set': 'Gem Set',
+}
+
+function groupBySeries() {
+  const groups = new Map<string, typeof GEM_SETS>()
+  for (const s of GEM_SETS) {
+    const list = groups.get(s.series) ?? []
+    list.push(s)
+    groups.set(s.series, list)
+  }
+  return [...groups.entries()].sort(([a], [b]) => {
+    const ia = SERIES_ORDER.indexOf(a)
+    const ib = SERIES_ORDER.indexOf(b)
+    if (ia === -1 && ib === -1) return a.localeCompare(b)
+    if (ia === -1) return 1
+    if (ib === -1) return -1
+    return ia - ib
+  })
+}
+
 export const Route = createFileRoute('/sets/')({
   head: () => ({
     meta: [
@@ -67,30 +94,35 @@ function SetsIndexPage() {
       </section>
 
       <main className="wrap">
-        <div className="grid">
-          {GEM_SETS.map((s) => (
-            <Link key={s.slug} className="card" to={s.path}>
-              <div className="card-art" style={{ '--glow-1': s.glow1, '--glow-2': s.glow2 } as React.CSSProperties}>
-                {s.preorder && <span className="card-preorder">Preorder</span>}
-                <img src={s.heroImage} alt={s.heroAlt} loading="lazy" />
-              </div>
-              <div className="card-body">
-                <span className="card-series">{s.series} · {s.code}</span>
-                <h2 className="card-name">{s.name}</h2>
-                <p className="card-tagline">{s.tagline}</p>
-                <div className="card-meta">
-                  <span>
-                    <b>{s.cardCount}</b> cards
-                  </span>
-                  <span>{formatReleaseDate(s.releaseDate)}</span>
-                  <span className="card-excl">
-                    {s.exclusiveCount}× excl.
-                  </span>
-                </div>
-              </div>
-            </Link>
-          ))}
-        </div>
+        {groupBySeries().map(([series, sets]) => (
+          <section key={series} className="series">
+            <h2 className="series-h">{SERIES_LABEL[series] ?? series}</h2>
+            <div className="grid">
+              {sets.map((s) => (
+                <Link key={s.slug} className="card" to={s.path}>
+                  <div className="card-art" style={{ '--glow-1': s.glow1, '--glow-2': s.glow2 } as React.CSSProperties}>
+                    {s.preorder && <span className="card-preorder">Preorder</span>}
+                    <img src={s.heroImage} alt={s.heroAlt} loading="lazy" />
+                  </div>
+                  <div className="card-body">
+                    <span className="card-series">{s.code}</span>
+                    <h3 className="card-name">{s.name}</h3>
+                    <p className="card-tagline">{s.tagline}</p>
+                    <div className="card-meta">
+                      <span>
+                        <b>{s.cardCount}</b> cards
+                      </span>
+                      <span>{formatReleaseDate(s.releaseDate)}</span>
+                      <span className="card-excl">
+                        {s.exclusiveCount}× excl.
+                      </span>
+                    </div>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </section>
+        ))}
       </main>
     </div>
   )

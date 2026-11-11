@@ -60,7 +60,7 @@ export function GemSetPage({
 }) {
   const { cards, cardById, groups, versionsPerMon, monCount, rarityVersionLabels } = data
 
-  const [view, setView] = React.useState<'ladder' | 'grid' | 'exclusives' | 'list'>('ladder')
+  const [view, setView] = React.useState<'ladder' | 'grid' | 'exclusives' | 'list'>('grid')
   const [query, setQuery] = React.useState('')
   const [rarities, setRarities] = React.useState<Set<string>>(() => new Set())
   const [have, setHave] = React.useState<Set<string>>(() => new Set())
@@ -407,8 +407,8 @@ export function GemSetPage({
           <div className="views" role="group" aria-label="View">
             {(
               [
-                ['ladder', 'By Pokémon'],
                 ['grid', 'All cards'],
+                ['ladder', 'By Pokémon'],
                 ['exclusives', 'Exclusives'],
                 ['list', 'Checklist'],
               ] as const
@@ -458,11 +458,27 @@ export function GemSetPage({
               )
             })
         ) : view === 'grid' ? (
-          <div className="grid">
-            {shown.map((c) => (
-              <CardThumb key={c.id} card={c} dimmed={false} showName={true} have={have.has(c.id)} onOpen={open} />
-            ))}
-          </div>
+          <>
+            {exclusiveShown.length > 0 && (
+              <section className="spotlight">
+                <div className="spotlight-head">
+                  <span className="spotlight-tag">{exclusiveShown.length > 1 ? 'Chinese Exclusives' : 'Chinese Exclusive'}</span>
+                  <p className="spotlight-sub">Only in the Simplified Chinese release.</p>
+                </div>
+                <div className="grid">
+                  {exclusiveShown.map((c) => (
+                    <CardThumb key={c.id} card={c} dimmed={false} showName={true} have={have.has(c.id)} onOpen={open} />
+                  ))}
+                </div>
+              </section>
+            )}
+            {exclusiveShown.length > 0 && <div className="grid-head">All cards</div>}
+            <div className="grid">
+              {shown.map((c) => (
+                <CardThumb key={c.id} card={c} dimmed={false} showName={true} have={have.has(c.id)} onOpen={open} />
+              ))}
+            </div>
+          </>
         ) : view === 'exclusives' ? (
           exclusiveShown.length === 0 ? (
             <div className="empty">No exclusive cards match. Try another name or clear the rarity filter.</div>

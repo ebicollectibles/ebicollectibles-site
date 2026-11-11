@@ -61,6 +61,12 @@
   p.lede { max-width: 62ch; color: #c8d0db; margin: 0; font-size: 16px; }
 
   main { padding-block: 40px 64px; }
+  .series { margin-bottom: 40px; }
+  .series:last-child { margin-bottom: 0; }
+  .series-h {
+    font-family: var(--f-display); font-weight: 800; font-size: 20px; letter-spacing: -.01em; margin: 0 0 18px;
+    padding-bottom: 10px; border-bottom: 1px solid var(--line);
+  }
   .grid {
     display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 24px;
   }
