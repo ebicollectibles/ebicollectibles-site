@@ -17,6 +17,7 @@ export type GemSetRoutePath =
   | '/sets/black-bolt'
   | '/sets/white-flare'
   | '/sets/30th-celebration'
+  | '/sets/csv10'
 
 export interface GemSetSummary {
   slug: string
@@ -50,6 +51,21 @@ export const GEM_SETS: GemSetSummary[] = [
     heroAlt: 'Pikachu ex Special Art Rare',
     glow1: 'rgb(222 185 97 / .30)',
     glow2: 'rgb(90 45 5 / .25)',
+  },
+  {
+    slug: 'csv10',
+    path: '/sets/csv10',
+    name: 'Chasing Glory',
+    series: 'Chinese Scarlet & Violet',
+    code: 'CSV10C',
+    cardCount: 287,
+    releaseDate: '2026-07-16',
+    exclusiveCount: 1,
+    tagline: "188 Pokémon led by Team Rocket, the main CSV10 set",
+    heroImage: 'https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0268.webp',
+    heroAlt: "Team Rocket's Mewtwo ex Special Art Rare",
+    glow1: 'rgb(232 129 61 / .30)',
+    glow2: 'rgb(29 16 19 / .25)',
   },
   {
     slug: 'black-bolt',

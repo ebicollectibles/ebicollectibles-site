@@ -32,6 +32,9 @@ export const RARITY_CODE: Record<string, string> = {
   'Classic Reprint': 'C',
   'Basic Energy': 'C',
   Promo: 'C',
+  // CSV10's own top tier (the gold cards) — reuses BWR's color hook since
+  // CSV10 has no Black White Rare of its own.
+  'Ultra Rare (UR)': 'BWR',
 }
 export const RARITY_SYMBOL: Record<string, string> = {
   Common: '●',
@@ -52,4 +55,5 @@ export const RARITY_SYMBOL: Record<string, string> = {
   'Classic Reprint': '✺',
   'Basic Energy': '◉',
   Promo: '◇',
+  'Ultra Rare (UR)': '✧',
 }

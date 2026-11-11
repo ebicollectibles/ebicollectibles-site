@@ -2,7 +2,7 @@
   "name": "Chasing Glory",
   "slug": "csv10",
   "code": "CSV10C",
-  "series": "Chinese Scarlet & Violet Series",
+  "series": "Chinese Scarlet & Violet",
   "language": "Simplified Chinese",
   "releaseDate": "2026-07-16",
   "cardCount": 287,
@@ -27,7 +27,7 @@
       "version": 1,
       "name": "Ethan's Pinsir",
       "rarity": "Uncommon (U)",
-      "image": "Chinese/Chasing Glory/Cards/0001.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0001.webp"
     },
     {
       "number": "002/222",
@@ -35,7 +35,7 @@
       "version": 1,
       "name": "Yanma",
       "rarity": "Common (C)",
-      "image": "Chinese/Chasing Glory/Cards/0002.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0002.webp"
     },
     {
       "number": "003/222",
@@ -43,7 +43,7 @@
       "version": 1,
       "name": "Yanmega ex",
       "rarity": "Double Rare (RR)",
-      "image": "Chinese/Chasing Glory/Cards/0003.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0003.webp"
     },
     {
       "number": "004/222",
@@ -51,7 +51,7 @@
       "version": 1,
       "name": "Cynthia's Roselia",
       "rarity": "Common (C)",
-      "image": "Chinese/Chasing Glory/Cards/0004.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0004.webp"
     },
     {
       "number": "005/222",
@@ -59,7 +59,7 @@
       "version": 1,
       "name": "Cynthia's Roserade",
       "rarity": "Rare (R)",
-      "image": "Chinese/Chasing Glory/Cards/0005.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0005.webp"
     },
     {
       "number": "006/222",
@@ -67,7 +67,7 @@
       "version": 1,
       "name": "Mow Rotom",
       "rarity": "Common (C)",
-      "image": "Chinese/Chasing Glory/Cards/0006.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0006.webp"
     },
     {
       "number": "007/222",
@@ -75,7 +75,7 @@
       "version": 1,
       "name": "Shaymin",
       "rarity": "Uncommon (U)",
-      "image": "Chinese/Chasing Glory/Cards/0007.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0007.webp"
     },
     {
       "number": "008/222",
@@ -83,7 +83,7 @@
       "version": 1,
       "name": "Maractus",
       "rarity": "Uncommon (U)",
-      "image": "Chinese/Chasing Glory/Cards/0008.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0008.webp"
     },
     {
       "number": "009/222",
@@ -91,7 +91,7 @@
       "version": 1,
       "name": "Dwebble",
       "rarity": "Common (C)",
-      "image": "Chinese/Chasing Glory/Cards/0009.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0009.webp"
     },
     {
       "number": "010/222",
@@ -99,7 +99,7 @@
       "version": 1,
       "name": "Crustle",
       "rarity": "Rare (R)",
-      "image": "Chinese/Chasing Glory/Cards/0010.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0010.webp"
     },
     {
       "number": "011/222",
@@ -107,7 +107,7 @@
       "version": 1,
       "name": "Team Rocket's Blipbug",
       "rarity": "Common (C)",
-      "image": "Chinese/Chasing Glory/Cards/0011.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0011.webp"
     },
     {
       "number": "012/222",
@@ -115,7 +115,7 @@
       "version": 1,
       "name": "Applin",
       "rarity": "Common (C)",
-      "image": "Chinese/Chasing Glory/Cards/0012.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0012.webp"
     },
     {
       "number": "013/222",
@@ -123,7 +123,7 @@
       "version": 1,
       "name": "Dipplin",
       "rarity": "Common (C)",
-      "image": "Chinese/Chasing Glory/Cards/0013.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0013.webp"
     },
     {
       "number": "014/222",
@@ -131,7 +131,7 @@
       "version": 1,
       "name": "Hydrapple",
       "rarity": "Rare (R)",
-      "image": "Chinese/Chasing Glory/Cards/0014.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0014.webp"
     },
     {
       "number": "015/222",
@@ -139,7 +139,7 @@
       "version": 1,
       "name": "Sprigatito",
       "rarity": "Common (C)",
-      "image": "Chinese/Chasing Glory/Cards/0015.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0015.webp"
     },
     {
       "number": "016/222",
@@ -147,7 +147,7 @@
       "version": 1,
       "name": "Floragato",
       "rarity": "Common (C)",
-      "image": "Chinese/Chasing Glory/Cards/0016.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0016.webp"
     },
     {
       "number": "017/222",
@@ -155,7 +155,7 @@
       "version": 1,
       "name": "Meowscarada",
       "rarity": "Rare (R)",
-      "image": "Chinese/Chasing Glory/Cards/0017.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0017.webp"
     },
     {
       "number": "018/222",
@@ -163,7 +163,7 @@
       "version": 1,
       "name": "Team Rocket's Tarountula",
       "rarity": "Common (C)",
-      "image": "Chinese/Chasing Glory/Cards/0018.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0018.webp"
     },
     {
       "number": "019/222",
@@ -171,7 +171,7 @@
       "version": 1,
       "name": "Team Rocket's Spidops",
       "rarity": "Rare (R)",
-      "image": "Chinese/Chasing Glory/Cards/0019.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0019.webp"
     },
     {
       "number": "020/222",
@@ -179,7 +179,7 @@
       "version": 1,
       "name": "Smoliv",
       "rarity": "Common (C)",
-      "image": "Chinese/Chasing Glory/Cards/0020.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0020.webp"
     },
     {
       "number": "021/222",
@@ -187,7 +187,7 @@
       "version": 1,
       "name": "Dolliv",
       "rarity": "Common (C)",
-      "image": "Chinese/Chasing Glory/Cards/0021.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0021.webp"
     },
     {
       "number": "022/222",
@@ -195,7 +195,7 @@
       "version": 1,
       "name": "Arboliva ex",
       "rarity": "Double Rare (RR)",
-      "image": "Chinese/Chasing Glory/Cards/0022.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0022.webp"
     },
     {
       "number": "023/222",
@@ -203,7 +203,7 @@
       "version": 1,
       "name": "Ponyta",
       "rarity": "Common (C)",
-      "image": "Chinese/Chasing Glory/Cards/0023.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0023.webp"
     },
     {
       "number": "024/222",
@@ -211,7 +211,7 @@
       "version": 1,
       "name": "Rapidash",
       "rarity": "Uncommon (U)",
-      "image": "Chinese/Chasing Glory/Cards/0024.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0024.webp"
     },
     {
       "number": "025/222",
@@ -219,7 +219,7 @@
       "version": 1,
       "name": "Magmar",
       "rarity": "Common (C)",
-      "image": "Chinese/Chasing Glory/Cards/0025.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0025.webp"
     },
     {
       "number": "026/222",
@@ -227,7 +227,7 @@
       "version": 1,
       "name": "Magmortar",
       "rarity": "Rare (R)",
-      "image": "Chinese/Chasing Glory/Cards/0026.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0026.webp"
     },
     {
       "number": "027/222",
@@ -235,7 +235,7 @@
       "version": 1,
       "name": "Team Rocket's Moltres ex",
       "rarity": "Double Rare (RR)",
-      "image": "Chinese/Chasing Glory/Cards/0027.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0027.webp"
     },
     {
       "number": "028/222",
@@ -243,7 +243,7 @@
       "version": 1,
       "name": "Ethan's Cyndaquil",
       "rarity": "Common (C)",
-      "image": "Chinese/Chasing Glory/Cards/0028.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0028.webp"
     },
     {
       "number": "029/222",
@@ -251,7 +251,7 @@
       "version": 1,
       "name": "Ethan's Quilava",
       "rarity": "Common (C)",
-      "image": "Chinese/Chasing Glory/Cards/0029.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0029.webp"
     },
     {
       "number": "030/222",
@@ -259,7 +259,7 @@
       "version": 1,
       "name": "Ethan's Typhlosion",
       "rarity": "Rare (R)",
-      "image": "Chinese/Chasing Glory/Cards/0030.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0030.webp"
     },
     {
       "number": "031/222",
@@ -267,7 +267,7 @@
       "version": 1,
       "name": "Ethan's Slugma",
       "rarity": "Common (C)",
-      "image": "Chinese/Chasing Glory/Cards/0031.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0031.webp"
     },
     {
       "number": "032/222",
@@ -275,7 +275,7 @@
       "version": 1,
       "name": "Ethan's Magcargo",
       "rarity": "Rare (R)",
-      "image": "Chinese/Chasing Glory/Cards/0032.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0032.webp"
     },
     {
       "number": "033/222",
@@ -283,7 +283,7 @@
       "version": 1,
       "name": "Team Rocket's Houndour",
       "rarity": "Common (C)",
-      "image": "Chinese/Chasing Glory/Cards/0033.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0033.webp"
     },
     {
       "number": "034/222",
@@ -291,7 +291,7 @@
       "version": 1,
       "name": "Team Rocket's Houndoom",
       "rarity": "Uncommon (U)",
-      "image": "Chinese/Chasing Glory/Cards/0034.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0034.webp"
     },
     {
       "number": "035/222",
@@ -299,7 +299,7 @@
       "version": 1,
       "name": "Ethan's Ho-Oh ex",
       "rarity": "Double Rare (RR)",
-      "image": "Chinese/Chasing Glory/Cards/0035.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0035.webp"
     },
     {
       "number": "036/222",
@@ -307,7 +307,7 @@
       "version": 1,
       "name": "Torchic",
       "rarity": "Common (C)",
-      "image": "Chinese/Chasing Glory/Cards/0036.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0036.webp"
     },
     {
       "number": "037/222",
@@ -315,7 +315,7 @@
       "version": 1,
       "name": "Combusken",
       "rarity": "Common (C)",
-      "image": "Chinese/Chasing Glory/Cards/0037.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0037.webp"
     },
     {
       "number": "038/222",
@@ -323,7 +323,7 @@
       "version": 1,
       "name": "Blaziken",
       "rarity": "Rare (R)",
-      "image": "Chinese/Chasing Glory/Cards/0038.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0038.webp"
     },
     {
       "number": "039/222",
@@ -331,7 +331,7 @@
       "version": 1,
       "name": "Heat Rotom",
       "rarity": "Common (C)",
-      "image": "Chinese/Chasing Glory/Cards/0039.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0039.webp"
     },
     {
       "number": "040/222",
@@ -339,7 +339,7 @@
       "version": 1,
       "name": "N's Darumaka",
       "rarity": "Common (C)",
-      "image": "Chinese/Chasing Glory/Cards/0040.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0040.webp"
     },
     {
       "number": "041/222",
@@ -347,7 +347,7 @@
       "version": 1,
       "name": "N's Darmanitan",
       "rarity": "Uncommon (U)",
-      "image": "Chinese/Chasing Glory/Cards/0041.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0041.webp"
     },
     {
       "number": "042/222",
@@ -355,7 +355,7 @@
       "version": 1,
       "name": "Volcanion ex",
       "rarity": "Double Rare (RR)",
-      "image": "Chinese/Chasing Glory/Cards/0042.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0042.webp"
     },
     {
       "number": "043/222",
@@ -363,7 +363,7 @@
       "version": 1,
       "name": "Psyduck",
       "rarity": "Common (C)",
-      "image": "Chinese/Chasing Glory/Cards/0043.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0043.webp"
     },
     {
       "number": "044/222",
@@ -371,7 +371,7 @@
       "version": 1,
       "name": "Golduck",
       "rarity": "Uncommon (U)",
-      "image": "Chinese/Chasing Glory/Cards/0044.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0044.webp"
     },
     {
       "number": "045/222",
@@ -379,7 +379,7 @@
       "version": 1,
       "name": "Misty's Psyduck",
       "rarity": "Uncommon (U)",
-      "image": "Chinese/Chasing Glory/Cards/0045.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0045.webp"
     },
     {
       "number": "046/222",
@@ -387,7 +387,7 @@
       "version": 1,
       "name": "Misty's Staryu",
       "rarity": "Common (C)",
-      "image": "Chinese/Chasing Glory/Cards/0046.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0046.webp"
     },
     {
       "number": "047/222",
@@ -395,7 +395,7 @@
       "version": 1,
       "name": "Misty's Starmie",
       "rarity": "Uncommon (U)",
-      "image": "Chinese/Chasing Glory/Cards/0047.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0047.webp"
     },
     {
       "number": "048/222",
@@ -403,7 +403,7 @@
       "version": 1,
       "name": "Misty's Magikarp",
       "rarity": "Common (C)",
-      "image": "Chinese/Chasing Glory/Cards/0048.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0048.webp"
     },
     {
       "number": "049/222",
@@ -411,7 +411,7 @@
       "version": 1,
       "name": "Misty's Gyarados",
       "rarity": "Rare (R)",
-      "image": "Chinese/Chasing Glory/Cards/0049.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0049.webp"
     },
     {
       "number": "050/222",
@@ -419,7 +419,7 @@
       "version": 1,
       "name": "Misty's Lapras",
       "rarity": "Common (C)",
-      "image": "Chinese/Chasing Glory/Cards/0050.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0050.webp"
     },
     {
       "number": "051/222",
@@ -427,7 +427,7 @@
       "version": 1,
       "name": "Articuno",
       "rarity": "Uncommon (U)",
-      "image": "Chinese/Chasing Glory/Cards/0051.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0051.webp"
     },
     {
       "number": "052/222",
@@ -435,7 +435,7 @@
       "version": 1,
       "name": "Team Rocket's Articuno",
       "rarity": "Rare (R)",
-      "image": "Chinese/Chasing Glory/Cards/0052.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0052.webp"
     },
     {
       "number": "053/222",
@@ -443,7 +443,7 @@
       "version": 1,
       "name": "Wailmer",
       "rarity": "Common (C)",
-      "image": "Chinese/Chasing Glory/Cards/0053.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0053.webp"
     },
     {
       "number": "054/222",
@@ -451,7 +451,7 @@
       "version": 1,
       "name": "Wailord",
       "rarity": "Rare (R)",
-      "image": "Chinese/Chasing Glory/Cards/0054.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0054.webp"
     },
     {
       "number": "055/222",
@@ -459,7 +459,7 @@
       "version": 1,
       "name": "Cynthia's Feebas",
       "rarity": "Common (C)",
-      "image": "Chinese/Chasing Glory/Cards/0055.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0055.webp"
     },
     {
       "number": "056/222",
@@ -467,7 +467,7 @@
       "version": 1,
       "name": "Cynthia's Milotic",
       "rarity": "Uncommon (U)",
-      "image": "Chinese/Chasing Glory/Cards/0056.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0056.webp"
     },
     {
       "number": "057/222",
@@ -475,7 +475,7 @@
       "version": 1,
       "name": "Clamperl",
       "rarity": "Common (C)",
-      "image": "Chinese/Chasing Glory/Cards/0057.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0057.webp"
     },
     {
       "number": "058/222",
@@ -483,7 +483,7 @@
       "version": 1,
       "name": "Huntail",
       "rarity": "Uncommon (U)",
-      "image": "Chinese/Chasing Glory/Cards/0058.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0058.webp"
     },
     {
       "number": "059/222",
@@ -491,7 +491,7 @@
       "version": 1,
       "name": "Gorebyss",
       "rarity": "Rare (R)",
-      "image": "Chinese/Chasing Glory/Cards/0059.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0059.webp"
     },
     {
       "number": "060/222",
@@ -499,7 +499,7 @@
       "version": 1,
       "name": "Wash Rotom",
       "rarity": "Common (C)",
-      "image": "Chinese/Chasing Glory/Cards/0060.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0060.webp"
     },
     {
       "number": "061/222",
@@ -507,7 +507,7 @@
       "version": 1,
       "name": "Cetoddle",
       "rarity": "Common (C)",
-      "image": "Chinese/Chasing Glory/Cards/0061.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0061.webp"
     },
     {
       "number": "062/222",
@@ -515,7 +515,7 @@
       "version": 1,
       "name": "Cetitan ex",
       "rarity": "Double Rare (RR)",
-      "image": "Chinese/Chasing Glory/Cards/0062.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0062.webp"
     },
     {
       "number": "063/222",
@@ -523,7 +523,7 @@
       "version": 1,
       "name": "Dondozo ex",
       "rarity": "Double Rare (RR)",
-      "image": "Chinese/Chasing Glory/Cards/0063.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0063.webp"
     },
     {
       "number": "064/222",
@@ -531,7 +531,7 @@
       "version": 1,
       "name": "Iono's Voltorb",
       "rarity": "Common (C)",
-      "image": "Chinese/Chasing Glory/Cards/0064.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0064.webp"
     },
     {
       "number": "065/222",
@@ -539,7 +539,7 @@
       "version": 1,
       "name": "Iono's Electrode",
       "rarity": "Uncommon (U)",
-      "image": "Chinese/Chasing Glory/Cards/0065.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0065.webp"
     },
     {
       "number": "066/222",
@@ -547,7 +547,7 @@
       "version": 1,
       "name": "Electabuzz",
       "rarity": "Common (C)",
-      "image": "Chinese/Chasing Glory/Cards/0066.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0066.webp"
     },
     {
       "number": "067/222",
@@ -555,7 +555,7 @@
       "version": 1,
       "name": "Electivire ex",
       "rarity": "Double Rare (RR)",
-      "image": "Chinese/Chasing Glory/Cards/0067.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0067.webp"
     },
     {
       "number": "068/222",
@@ -563,7 +563,7 @@
       "version": 1,
       "name": "Team Rocket's Zapdos",
       "rarity": "Rare (R)",
-      "image": "Chinese/Chasing Glory/Cards/0068.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0068.webp"
     },
     {
       "number": "069/222",
@@ -571,7 +571,7 @@
       "version": 1,
       "name": "Ethan's Pichu",
       "rarity": "Common (C)",
-      "image": "Chinese/Chasing Glory/Cards/0069.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0069.webp"
     },
     {
       "number": "070/222",
@@ -579,7 +579,7 @@
       "version": 1,
       "name": "Team Rocket's Mareep",
       "rarity": "Common (C)",
-      "image": "Chinese/Chasing Glory/Cards/0070.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0070.webp"
     },
     {
       "number": "071/222",
@@ -587,7 +587,7 @@
       "version": 1,
       "name": "Team Rocket's Flaaffy",
       "rarity": "Common (C)",
-      "image": "Chinese/Chasing Glory/Cards/0071.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0071.webp"
     },
     {
       "number": "072/222",
@@ -595,7 +595,7 @@
       "version": 1,
       "name": "Team Rocket's Ampharos",
       "rarity": "Uncommon (U)",
-      "image": "Chinese/Chasing Glory/Cards/0072.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0072.webp"
     },
     {
       "number": "073/222",
@@ -603,7 +603,7 @@
       "version": 1,
       "name": "Electrike",
       "rarity": "Common (C)",
-      "image": "Chinese/Chasing Glory/Cards/0073.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0073.webp"
     },
     {
       "number": "074/222",
@@ -611,7 +611,7 @@
       "version": 1,
       "name": "Manectric",
       "rarity": "Common (C)",
-      "image": "Chinese/Chasing Glory/Cards/0074.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0074.webp"
     },
     {
       "number": "075/222",
@@ -619,7 +619,7 @@
       "version": 1,
       "name": "Rotom",
       "rarity": "Common (C)",
-      "image": "Chinese/Chasing Glory/Cards/0075.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0075.webp"
     },
     {
       "number": "076/222",
@@ -627,7 +627,7 @@
       "version": 1,
       "name": "N's Joltik",
       "rarity": "Common (C)",
-      "image": "Chinese/Chasing Glory/Cards/0076.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0076.webp"
     },
     {
       "number": "077/222",
@@ -635,7 +635,7 @@
       "version": 1,
       "name": "Zeraora",
       "rarity": "Rare (R)",
-      "image": "Chinese/Chasing Glory/Cards/0077.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0077.webp"
     },
     {
       "number": "078/222",
@@ -643,7 +643,7 @@
       "version": 1,
       "name": "Iono's Tadbulb",
       "rarity": "Common (C)",
-      "image": "Chinese/Chasing Glory/Cards/0078.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0078.webp"
     },
     {
       "number": "079/222",
@@ -651,7 +651,7 @@
       "version": 1,
       "name": "Iono's Bellibolt ex",
       "rarity": "Double Rare (RR)",
-      "image": "Chinese/Chasing Glory/Cards/0079.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0079.webp"
     },
     {
       "number": "080/222",
@@ -659,7 +659,7 @@
       "version": 1,
       "name": "Iono's Wattrel",
       "rarity": "Common (C)",
-      "image": "Chinese/Chasing Glory/Cards/0080.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0080.webp"
     },
     {
       "number": "081/222",
@@ -667,7 +667,7 @@
       "version": 1,
       "name": "Iono's Kilowattrel",
       "rarity": "Rare (R)",
-      "image": "Chinese/Chasing Glory/Cards/0081.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0081.webp"
     },
     {
       "number": "082/222",
@@ -675,7 +675,7 @@
       "version": 1,
       "name": "Lillie's Clefairy ex",
       "rarity": "Double Rare (RR)",
-      "image": "Chinese/Chasing Glory/Cards/0082.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0082.webp"
     },
     {
       "number": "083/222",
@@ -683,7 +683,7 @@
       "version": 1,
       "name": "Team Rocket's Drowzee",
       "rarity": "Common (C)",
-      "image": "Chinese/Chasing Glory/Cards/0083.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0083.webp"
     },
     {
       "number": "084/222",
@@ -691,7 +691,7 @@
       "version": 1,
       "name": "Team Rocket's Hypno",
       "rarity": "Uncommon (U)",
-      "image": "Chinese/Chasing Glory/Cards/0084.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0084.webp"
     },
     {
       "number": "085/222",
@@ -699,7 +699,7 @@
       "version": 1,
       "name": "Team Rocket's Mewtwo ex",
       "rarity": "Double Rare (RR)",
-      "image": "Chinese/Chasing Glory/Cards/0085.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0085.webp"
     },
     {
       "number": "086/222",
@@ -707,7 +707,7 @@
       "version": 1,
       "name": "Team Rocket's Wobbuffet",
       "rarity": "Rare (R)",
-      "image": "Chinese/Chasing Glory/Cards/0086.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0086.webp"
     },
     {
       "number": "087/222",
@@ -715,7 +715,7 @@
       "version": 1,
       "name": "Steven's Baltoy",
       "rarity": "Common (C)",
-      "image": "Chinese/Chasing Glory/Cards/0087.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0087.webp"
     },
     {
       "number": "088/222",
@@ -723,7 +723,7 @@
       "version": 1,
       "name": "Steven's Claydol",
       "rarity": "Uncommon (U)",
-      "image": "Chinese/Chasing Glory/Cards/0088.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0088.webp"
     },
     {
       "number": "089/222",
@@ -731,7 +731,7 @@
       "version": 1,
       "name": "Team Rocket's Chingling",
       "rarity": "Common (C)",
-      "image": "Chinese/Chasing Glory/Cards/0089.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0089.webp"
     },
     {
       "number": "090/222",
@@ -739,7 +739,7 @@
       "version": 1,
       "name": "N's Sigilyph",
       "rarity": "Common (C)",
-      "image": "Chinese/Chasing Glory/Cards/0090.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0090.webp"
     },
     {
       "number": "091/222",
@@ -747,7 +747,7 @@
       "version": 1,
       "name": "Steven's Carbink",
       "rarity": "Common (C)",
-      "image": "Chinese/Chasing Glory/Cards/0091.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0091.webp"
     },
     {
       "number": "092/222",
@@ -755,7 +755,7 @@
       "version": 1,
       "name": "Lillie's Cutiefly",
       "rarity": "Common (C)",
-      "image": "Chinese/Chasing Glory/Cards/0092.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0092.webp"
     },
     {
       "number": "093/222",
@@ -763,7 +763,7 @@
       "version": 1,
       "name": "Lillie's Ribombee",
       "rarity": "Uncommon (U)",
-      "image": "Chinese/Chasing Glory/Cards/0093.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0093.webp"
     },
     {
       "number": "094/222",
@@ -771,7 +771,7 @@
       "version": 1,
       "name": "Lillie's Comfey",
       "rarity": "Common (C)",
-      "image": "Chinese/Chasing Glory/Cards/0094.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0094.webp"
     },
     {
       "number": "095/222",
@@ -779,7 +779,7 @@
       "version": 1,
       "name": "Team Rocket's Mimikyu",
       "rarity": "Uncommon (U)",
-      "image": "Chinese/Chasing Glory/Cards/0095.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0095.webp"
     },
     {
       "number": "096/222",
@@ -787,7 +787,7 @@
       "version": 1,
       "name": "Team Rocket's Dottler",
       "rarity": "Common (C)",
-      "image": "Chinese/Chasing Glory/Cards/0096.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0096.webp"
     },
     {
       "number": "097/222",
@@ -795,7 +795,7 @@
       "version": 1,
       "name": "Team Rocket's Orbeetle",
       "rarity": "Uncommon (U)",
-      "image": "Chinese/Chasing Glory/Cards/0097.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0097.webp"
     },
     {
       "number": "098/222",
@@ -803,7 +803,7 @@
       "version": 1,
       "name": "Mankey",
       "rarity": "Common (C)",
-      "image": "Chinese/Chasing Glory/Cards/0098.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0098.webp"
     },
     {
       "number": "099/222",
@@ -811,7 +811,7 @@
       "version": 1,
       "name": "Primeape",
       "rarity": "Common (C)",
-      "image": "Chinese/Chasing Glory/Cards/0099.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0099.webp"
     },
     {
       "number": "100/222",
@@ -819,7 +819,7 @@
       "version": 1,
       "name": "Annihilape",
       "rarity": "Rare (R)",
-      "image": "Chinese/Chasing Glory/Cards/0100.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0100.webp"
     },
     {
       "number": "101/222",
@@ -827,7 +827,7 @@
       "version": 1,
       "name": "Ethan's Sudowoodo",
       "rarity": "Common (C)",
-      "image": "Chinese/Chasing Glory/Cards/0101.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0101.webp"
     },
     {
       "number": "102/222",
@@ -835,7 +835,7 @@
       "version": 1,
       "name": "Swinub",
       "rarity": "Common (C)",
-      "image": "Chinese/Chasing Glory/Cards/0102.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0102.webp"
     },
     {
       "number": "103/222",
@@ -843,7 +843,7 @@
       "version": 1,
       "name": "Piloswine",
       "rarity": "Common (C)",
-      "image": "Chinese/Chasing Glory/Cards/0103.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0103.webp"
     },
     {
       "number": "104/222",
@@ -851,7 +851,7 @@
       "version": 1,
       "name": "Mamoswine ex",
       "rarity": "Double Rare (RR)",
-      "image": "Chinese/Chasing Glory/Cards/0104.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0104.webp"
     },
     {
       "number": "105/222",
@@ -859,7 +859,7 @@
       "version": 1,
       "name": "Larvitar",
       "rarity": "Common (C)",
-      "image": "Chinese/Chasing Glory/Cards/0105.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0105.webp"
     },
     {
       "number": "106/222",
@@ -867,7 +867,7 @@
       "version": 1,
       "name": "Pupitar",
       "rarity": "Common (C)",
-      "image": "Chinese/Chasing Glory/Cards/0106.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0106.webp"
     },
     {
       "number": "107/222",
@@ -875,7 +875,7 @@
       "version": 1,
       "name": "Team Rocket's Larvitar",
       "rarity": "Common (C)",
-      "image": "Chinese/Chasing Glory/Cards/0107.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0107.webp"
     },
     {
       "number": "108/222",
@@ -883,7 +883,7 @@
       "version": 1,
       "name": "Team Rocket's Pupitar",
       "rarity": "Uncommon (U)",
-      "image": "Chinese/Chasing Glory/Cards/0108.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0108.webp"
     },
     {
       "number": "109/222",
@@ -891,7 +891,7 @@
       "version": 1,
       "name": "Team Rocket's Tyranitar",
       "rarity": "Rare (R)",
-      "image": "Chinese/Chasing Glory/Cards/0109.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0109.webp"
     },
     {
       "number": "110/222",
@@ -899,7 +899,7 @@
       "version": 1,
       "name": "Regirock ex",
       "rarity": "Double Rare (RR)",
-      "image": "Chinese/Chasing Glory/Cards/0110.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0110.webp"
     },
     {
       "number": "111/222",
@@ -907,7 +907,7 @@
       "version": 1,
       "name": "Cynthia's Gible",
       "rarity": "Common (C)",
-      "image": "Chinese/Chasing Glory/Cards/0111.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0111.webp"
     },
     {
       "number": "112/222",
@@ -915,7 +915,7 @@
       "version": 1,
       "name": "Cynthia's Gabite",
       "rarity": "Common (C)",
-      "image": "Chinese/Chasing Glory/Cards/0112.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0112.webp"
     },
     {
       "number": "113/222",
@@ -923,7 +923,7 @@
       "version": 1,
       "name": "Cynthia's Garchomp ex",
       "rarity": "Double Rare (RR)",
-      "image": "Chinese/Chasing Glory/Cards/0113.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0113.webp"
     },
     {
       "number": "114/222",
@@ -931,7 +931,7 @@
       "version": 1,
       "name": "Rockruff",
       "rarity": "Common (C)",
-      "image": "Chinese/Chasing Glory/Cards/0114.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0114.webp"
     },
     {
       "number": "115/222",
@@ -939,7 +939,7 @@
       "version": 1,
       "name": "Lycanroc",
       "rarity": "Rare (R)",
-      "image": "Chinese/Chasing Glory/Cards/0115.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0115.webp"
     },
     {
       "number": "116/222",
@@ -947,7 +947,7 @@
       "version": 1,
       "name": "Hop's Silicobra",
       "rarity": "Common (C)",
-      "image": "Chinese/Chasing Glory/Cards/0116.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0116.webp"
     },
     {
       "number": "117/222",
@@ -955,7 +955,7 @@
       "version": 1,
       "name": "Hop's Sandaconda",
       "rarity": "Uncommon (U)",
-      "image": "Chinese/Chasing Glory/Cards/0117.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0117.webp"
     },
     {
       "number": "118/222",
@@ -963,7 +963,7 @@
       "version": 1,
       "name": "Arven's Toedscool",
       "rarity": "Common (C)",
-      "image": "Chinese/Chasing Glory/Cards/0118.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0118.webp"
     },
     {
       "number": "119/222",
@@ -971,7 +971,7 @@
       "version": 1,
       "name": "Arven's Toedscruel",
       "rarity": "Uncommon (U)",
-      "image": "Chinese/Chasing Glory/Cards/0119.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0119.webp"
     },
     {
       "number": "120/222",
@@ -979,7 +979,7 @@
       "version": 1,
       "name": "Team Rocket's Ekans",
       "rarity": "Common (C)",
-      "image": "Chinese/Chasing Glory/Cards/0120.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0120.webp"
     },
     {
       "number": "121/222",
@@ -987,7 +987,7 @@
       "version": 1,
       "name": "Team Rocket's Arbok",
       "rarity": "Uncommon (U)",
-      "image": "Chinese/Chasing Glory/Cards/0121.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0121.webp"
     },
     {
       "number": "122/222",
@@ -995,7 +995,7 @@
       "version": 1,
       "name": "Team Rocket's Nidoran ♀",
       "rarity": "Common (C)",
-      "image": "Chinese/Chasing Glory/Cards/0122.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0122.webp"
     },
     {
       "number": "123/222",
@@ -1003,7 +1003,7 @@
       "version": 1,
       "name": "Team Rocket's Nidorina",
       "rarity": "Common (C)",
-      "image": "Chinese/Chasing Glory/Cards/0123.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0123.webp"
     },
     {
       "number": "124/222",
@@ -1011,7 +1011,7 @@
       "version": 1,
       "name": "Team Rocket's Nidoqueen",
       "rarity": "Uncommon (U)",
-      "image": "Chinese/Chasing Glory/Cards/0124.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0124.webp"
     },
     {
       "number": "125/222",
@@ -1019,7 +1019,7 @@
       "version": 1,
       "name": "Team Rocket's Nidoran ♂",
       "rarity": "Common (C)",
-      "image": "Chinese/Chasing Glory/Cards/0125.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0125.webp"
     },
     {
       "number": "126/222",
@@ -1027,7 +1027,7 @@
       "version": 1,
       "name": "Team Rocket's Nidorino",
       "rarity": "Common (C)",
-      "image": "Chinese/Chasing Glory/Cards/0126.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0126.webp"
     },
     {
       "number": "127/222",
@@ -1035,7 +1035,7 @@
       "version": 1,
       "name": "Team Rocket's Nidoking ex",
       "rarity": "Double Rare (RR)",
-      "image": "Chinese/Chasing Glory/Cards/0127.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0127.webp"
     },
     {
       "number": "128/222",
@@ -1043,7 +1043,7 @@
       "version": 1,
       "name": "Team Rocket's Zubat",
       "rarity": "Common (C)",
-      "image": "Chinese/Chasing Glory/Cards/0128.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0128.webp"
     },
     {
       "number": "129/222",
@@ -1051,7 +1051,7 @@
       "version": 1,
       "name": "Team Rocket's Golbat",
       "rarity": "Uncommon (U)",
-      "image": "Chinese/Chasing Glory/Cards/0129.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0129.webp"
     },
     {
       "number": "130/222",
@@ -1059,7 +1059,7 @@
       "version": 1,
       "name": "Team Rocket's Crobat ex",
       "rarity": "Double Rare (RR)",
-      "image": "Chinese/Chasing Glory/Cards/0130.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0130.webp"
     },
     {
       "number": "131/222",
@@ -1067,7 +1067,7 @@
       "version": 1,
       "name": "Team Rocket's Grimer",
       "rarity": "Common (C)",
-      "image": "Chinese/Chasing Glory/Cards/0131.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0131.webp"
     },
     {
       "number": "132/222",
@@ -1075,7 +1075,7 @@
       "version": 1,
       "name": "Team Rocket's Muk",
       "rarity": "Uncommon (U)",
-      "image": "Chinese/Chasing Glory/Cards/0132.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0132.webp"
     },
     {
       "number": "133/222",
@@ -1083,7 +1083,7 @@
       "version": 1,
       "name": "Team Rocket's Koffing",
       "rarity": "Common (C)",
-      "image": "Chinese/Chasing Glory/Cards/0133.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0133.webp"
     },
     {
       "number": "134/222",
@@ -1091,7 +1091,7 @@
       "version": 1,
       "name": "Team Rocket's Weezing",
       "rarity": "Uncommon (U)",
-      "image": "Chinese/Chasing Glory/Cards/0134.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0134.webp"
     },
     {
       "number": "135/222",
@@ -1099,7 +1099,7 @@
       "version": 1,
       "name": "Team Rocket's Murkrow",
       "rarity": "Uncommon (U)",
-      "image": "Chinese/Chasing Glory/Cards/0135.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0135.webp"
     },
     {
       "number": "136/222",
@@ -1107,7 +1107,7 @@
       "version": 1,
       "name": "Team Rocket's Sneasel",
       "rarity": "Rare (R)",
-      "image": "Chinese/Chasing Glory/Cards/0136.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0136.webp"
     },
     {
       "number": "137/222",
@@ -1115,7 +1115,7 @@
       "version": 1,
       "name": "Tyranitar",
       "rarity": "Rare (R)",
-      "image": "Chinese/Chasing Glory/Cards/0137.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0137.webp"
     },
     {
       "number": "138/222",
@@ -1123,7 +1123,7 @@
       "version": 1,
       "name": "Cynthia's Spiritomb",
       "rarity": "Uncommon (U)",
-      "image": "Chinese/Chasing Glory/Cards/0138.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0138.webp"
     },
     {
       "number": "139/222",
@@ -1131,7 +1131,7 @@
       "version": 1,
       "name": "N's Purrloin",
       "rarity": "Common (C)",
-      "image": "Chinese/Chasing Glory/Cards/0139.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0139.webp"
     },
     {
       "number": "140/222",
@@ -1139,7 +1139,7 @@
       "version": 1,
       "name": "Marnie's Purrloin",
       "rarity": "Common (C)",
-      "image": "Chinese/Chasing Glory/Cards/0140.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0140.webp"
     },
     {
       "number": "141/222",
@@ -1147,7 +1147,7 @@
       "version": 1,
       "name": "Marnie's Liepard",
       "rarity": "Uncommon (U)",
-      "image": "Chinese/Chasing Glory/Cards/0141.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0141.webp"
     },
     {
       "number": "142/222",
@@ -1155,7 +1155,7 @@
       "version": 1,
       "name": "Marnie's Scraggy",
       "rarity": "Common (C)",
-      "image": "Chinese/Chasing Glory/Cards/0142.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0142.webp"
     },
     {
       "number": "143/222",
@@ -1163,7 +1163,7 @@
       "version": 1,
       "name": "Marnie's Scrafty",
       "rarity": "Uncommon (U)",
-      "image": "Chinese/Chasing Glory/Cards/0143.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0143.webp"
     },
     {
       "number": "144/222",
@@ -1171,7 +1171,7 @@
       "version": 1,
       "name": "N's Zorua",
       "rarity": "Common (C)",
-      "image": "Chinese/Chasing Glory/Cards/0144.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0144.webp"
     },
     {
       "number": "145/222",
@@ -1179,7 +1179,7 @@
       "version": 1,
       "name": "N's Zoroark ex",
       "rarity": "Double Rare (RR)",
-      "image": "Chinese/Chasing Glory/Cards/0145.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0145.webp"
     },
     {
       "number": "146/222",
@@ -1187,7 +1187,7 @@
       "version": 1,
       "name": "Marnie's Impidimp",
       "rarity": "Common (C)",
-      "image": "Chinese/Chasing Glory/Cards/0146.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0146.webp"
     },
     {
       "number": "147/222",
@@ -1195,7 +1195,7 @@
       "version": 1,
       "name": "Marnie's Morgrem",
       "rarity": "Uncommon (U)",
-      "image": "Chinese/Chasing Glory/Cards/0147.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0147.webp"
     },
     {
       "number": "148/222",
@@ -1203,7 +1203,7 @@
       "version": 1,
       "name": "Marnie's Grimmsnarl ex",
       "rarity": "Double Rare (RR)",
-      "image": "Chinese/Chasing Glory/Cards/0148.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0148.webp"
     },
     {
       "number": "149/222",
@@ -1211,7 +1211,7 @@
       "version": 1,
       "name": "Marnie's Morpeko",
       "rarity": "Rare (R)",
-      "image": "Chinese/Chasing Glory/Cards/0149.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0149.webp"
     },
     {
       "number": "150/222",
@@ -1219,7 +1219,7 @@
       "version": 1,
       "name": "Arven's Maschiff",
       "rarity": "Common (C)",
-      "image": "Chinese/Chasing Glory/Cards/0150.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0150.webp"
     },
     {
       "number": "151/222",
@@ -1227,7 +1227,7 @@
       "version": 1,
       "name": "Arven's Mabosstiff ex",
       "rarity": "Double Rare (RR)",
-      "image": "Chinese/Chasing Glory/Cards/0151.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0151.webp"
     },
     {
       "number": "152/222",
@@ -1235,7 +1235,7 @@
       "version": 1,
       "name": "Steven's Skarmory",
       "rarity": "Common (C)",
-      "image": "Chinese/Chasing Glory/Cards/0152.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0152.webp"
     },
     {
       "number": "153/222",
@@ -1243,7 +1243,7 @@
       "version": 1,
       "name": "Steven's Beldum",
       "rarity": "Common (C)",
-      "image": "Chinese/Chasing Glory/Cards/0153.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0153.webp"
     },
     {
       "number": "154/222",
@@ -1251,7 +1251,7 @@
       "version": 1,
       "name": "Steven's Metang",
       "rarity": "Uncommon (U)",
-      "image": "Chinese/Chasing Glory/Cards/0154.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0154.webp"
     },
     {
       "number": "155/222",
@@ -1259,7 +1259,7 @@
       "version": 1,
       "name": "Steven's Metagross ex",
       "rarity": "Double Rare (RR)",
-      "image": "Chinese/Chasing Glory/Cards/0155.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0155.webp"
     },
     {
       "number": "156/222",
@@ -1267,7 +1267,7 @@
       "version": 1,
       "name": "N's Klink",
       "rarity": "Common (C)",
-      "image": "Chinese/Chasing Glory/Cards/0156.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0156.webp"
     },
     {
       "number": "157/222",
@@ -1275,7 +1275,7 @@
       "version": 1,
       "name": "N's Klang",
       "rarity": "Common (C)",
-      "image": "Chinese/Chasing Glory/Cards/0157.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0157.webp"
     },
     {
       "number": "158/222",
@@ -1283,7 +1283,7 @@
       "version": 1,
       "name": "N's Klinklang",
       "rarity": "Uncommon (U)",
-      "image": "Chinese/Chasing Glory/Cards/0158.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0158.webp"
     },
     {
       "number": "159/222",
@@ -1291,7 +1291,7 @@
       "version": 1,
       "name": "Magearna",
       "rarity": "Rare (R)",
-      "image": "Chinese/Chasing Glory/Cards/0159.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0159.webp"
     },
     {
       "number": "160/222",
@@ -1299,7 +1299,7 @@
       "version": 1,
       "name": "Hop's Corviknight",
       "rarity": "Uncommon (U)",
-      "image": "Chinese/Chasing Glory/Cards/0160.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0160.webp"
     },
     {
       "number": "161/222",
@@ -1307,7 +1307,7 @@
       "version": 1,
       "name": "Hop's Zacian ex",
       "rarity": "Double Rare (RR)",
-      "image": "Chinese/Chasing Glory/Cards/0161.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0161.webp"
     },
     {
       "number": "162/222",
@@ -1315,7 +1315,7 @@
       "version": 1,
       "name": "Zamazenta",
       "rarity": "Rare (R)",
-      "image": "Chinese/Chasing Glory/Cards/0162.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0162.webp"
     },
     {
       "number": "163/222",
@@ -1323,7 +1323,7 @@
       "version": 1,
       "name": "Bagon",
       "rarity": "Common (C)",
-      "image": "Chinese/Chasing Glory/Cards/0163.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0163.webp"
     },
     {
       "number": "164/222",
@@ -1331,7 +1331,7 @@
       "version": 1,
       "name": "Shelgon",
       "rarity": "Common (C)",
-      "image": "Chinese/Chasing Glory/Cards/0164.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0164.webp"
     },
     {
       "number": "165/222",
@@ -1339,7 +1339,7 @@
       "version": 1,
       "name": "Salamence ex",
       "rarity": "Double Rare (RR)",
-      "image": "Chinese/Chasing Glory/Cards/0165.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0165.webp"
     },
     {
       "number": "166/222",
@@ -1347,7 +1347,7 @@
       "version": 1,
       "name": "N's Reshiram",
       "rarity": "Rare (R)",
-      "image": "Chinese/Chasing Glory/Cards/0166.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0166.webp"
     },
     {
       "number": "167/222",
@@ -1355,7 +1355,7 @@
       "version": 1,
       "name": "Team Rocket's Rattata",
       "rarity": "Common (C)",
-      "image": "Chinese/Chasing Glory/Cards/0167.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0167.webp"
     },
     {
       "number": "168/222",
@@ -1363,7 +1363,7 @@
       "version": 1,
       "name": "Team Rocket's Raticate",
       "rarity": "Common (C)",
-      "image": "Chinese/Chasing Glory/Cards/0168.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0168.webp"
     },
     {
       "number": "169/222",
@@ -1371,7 +1371,7 @@
       "version": 1,
       "name": "Team Rocket's Meowth",
       "rarity": "Common (C)",
-      "image": "Chinese/Chasing Glory/Cards/0169.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0169.webp"
     },
     {
       "number": "170/222",
@@ -1379,7 +1379,7 @@
       "version": 1,
       "name": "Team Rocket's Persian ex",
       "rarity": "Double Rare (RR)",
-      "image": "Chinese/Chasing Glory/Cards/0170.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0170.webp"
     },
     {
       "number": "171/222",
@@ -1387,7 +1387,7 @@
       "version": 1,
       "name": "Kangaskhan",
       "rarity": "Common (C)",
-      "image": "Chinese/Chasing Glory/Cards/0171.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0171.webp"
     },
     {
       "number": "172/222",
@@ -1395,7 +1395,7 @@
       "version": 1,
       "name": "Team Rocket's Porygon",
       "rarity": "Common (C)",
-      "image": "Chinese/Chasing Glory/Cards/0172.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0172.webp"
     },
     {
       "number": "173/222",
@@ -1403,7 +1403,7 @@
       "version": 1,
       "name": "Team Rocket's Porygon2",
       "rarity": "Common (C)",
-      "image": "Chinese/Chasing Glory/Cards/0173.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0173.webp"
     },
     {
       "number": "174/222",
@@ -1411,7 +1411,7 @@
       "version": 1,
       "name": "Team Rocket's Porygon-Z",
       "rarity": "Uncommon (U)",
-      "image": "Chinese/Chasing Glory/Cards/0174.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0174.webp"
     },
     {
       "number": "175/222",
@@ -1419,7 +1419,7 @@
       "version": 1,
       "name": "Hop's Snorlax",
       "rarity": "Rare (R)",
-      "image": "Chinese/Chasing Glory/Cards/0175.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0175.webp"
     },
     {
       "number": "176/222",
@@ -1427,7 +1427,7 @@
       "version": 1,
       "name": "Sentret",
       "rarity": "Common (C)",
-      "image": "Chinese/Chasing Glory/Cards/0176.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0176.webp"
     },
     {
       "number": "177/222",
@@ -1435,7 +1435,7 @@
       "version": 1,
       "name": "Furret",
       "rarity": "Common (C)",
-      "image": "Chinese/Chasing Glory/Cards/0177.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0177.webp"
     },
     {
       "number": "178/222",
@@ -1443,7 +1443,7 @@
       "version": 1,
       "name": "Dunsparce",
       "rarity": "Common (C)",
-      "image": "Chinese/Chasing Glory/Cards/0178.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0178.webp"
     },
     {
       "number": "179/222",
@@ -1451,7 +1451,7 @@
       "version": 1,
       "name": "Dudunsparce ex",
       "rarity": "Double Rare (RR)",
-      "image": "Chinese/Chasing Glory/Cards/0179.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0179.webp"
     },
     {
       "number": "180/222",
@@ -1459,7 +1459,7 @@
       "version": 1,
       "name": "Noibat",
       "rarity": "Common (C)",
-      "image": "Chinese/Chasing Glory/Cards/0180.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0180.webp"
     },
     {
       "number": "181/222",
@@ -1467,7 +1467,7 @@
       "version": 1,
       "name": "Noivern",
       "rarity": "Uncommon (U)",
-      "image": "Chinese/Chasing Glory/Cards/0181.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0181.webp"
     },
     {
       "number": "182/222",
@@ -1475,7 +1475,7 @@
       "version": 1,
       "name": "Arven's Skwovet",
       "rarity": "Common (C)",
-      "image": "Chinese/Chasing Glory/Cards/0182.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0182.webp"
     },
     {
       "number": "183/222",
@@ -1483,7 +1483,7 @@
       "version": 1,
       "name": "Arven's Greedent",
       "rarity": "Rare (R)",
-      "image": "Chinese/Chasing Glory/Cards/0183.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0183.webp"
     },
     {
       "number": "184/222",
@@ -1491,7 +1491,7 @@
       "version": 1,
       "name": "Hop's Rookidee",
       "rarity": "Common (C)",
-      "image": "Chinese/Chasing Glory/Cards/0184.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0184.webp"
     },
     {
       "number": "185/222",
@@ -1499,7 +1499,7 @@
       "version": 1,
       "name": "Hop's Corvisquire",
       "rarity": "Common (C)",
-      "image": "Chinese/Chasing Glory/Cards/0185.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0185.webp"
     },
     {
       "number": "186/222",
@@ -1507,7 +1507,7 @@
       "version": 1,
       "name": "Hop's Wooloo",
       "rarity": "Common (C)",
-      "image": "Chinese/Chasing Glory/Cards/0186.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0186.webp"
     },
     {
       "number": "187/222",
@@ -1515,7 +1515,7 @@
       "version": 1,
       "name": "Hop's Dubwool",
       "rarity": "Rare (R)",
-      "image": "Chinese/Chasing Glory/Cards/0187.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0187.webp"
     },
     {
       "number": "188/222",
@@ -1523,7 +1523,7 @@
       "version": 1,
       "name": "Hop's Cramorant",
       "rarity": "Uncommon (U)",
-      "image": "Chinese/Chasing Glory/Cards/0188.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0188.webp"
     },
     {
       "number": "189/222",
@@ -1531,7 +1531,7 @@
       "version": 1,
       "name": "Super Potion",
       "rarity": "Uncommon (U)",
-      "image": "Chinese/Chasing Glory/Cards/0189.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0189.webp"
     },
     {
       "number": "190/222",
@@ -1539,7 +1539,7 @@
       "version": 1,
       "name": "N's PP Up",
       "rarity": "Uncommon (U)",
-      "image": "Chinese/Chasing Glory/Cards/0190.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0190.webp"
     },
     {
       "number": "191/222",
@@ -1547,7 +1547,7 @@
       "version": 1,
       "name": "Energy Recycler",
       "rarity": "Uncommon (U)",
-      "image": "Chinese/Chasing Glory/Cards/0191.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0191.webp"
     },
     {
       "number": "192/222",
@@ -1555,7 +1555,7 @@
       "version": 1,
       "name": "Sacred Ash",
       "rarity": "Uncommon (U)",
-      "image": "Chinese/Chasing Glory/Cards/0192.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0192.webp"
     },
     {
       "number": "193/222",
@@ -1563,7 +1563,7 @@
       "version": 1,
       "name": "Redeemable Ticket",
       "rarity": "Uncommon (U)",
-      "image": "Chinese/Chasing Glory/Cards/0193.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0193.webp"
     },
     {
       "number": "194/222",
@@ -1571,7 +1571,7 @@
       "version": 1,
       "name": "Arven's Sandwich",
       "rarity": "Uncommon (U)",
-      "image": "Chinese/Chasing Glory/Cards/0194.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0194.webp"
     },
     {
       "number": "195/222",
@@ -1579,7 +1579,7 @@
       "version": 1,
       "name": "Hop's Bag",
       "rarity": "Uncommon (U)",
-      "image": "Chinese/Chasing Glory/Cards/0195.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0195.webp"
     },
     {
       "number": "196/222",
@@ -1587,7 +1587,7 @@
       "version": 1,
       "name": "Team Rocket's Bother-Bot",
       "rarity": "Uncommon (U)",
-      "image": "Chinese/Chasing Glory/Cards/0196.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0196.webp"
     },
     {
       "number": "197/222",
@@ -1595,7 +1595,7 @@
       "version": 1,
       "name": "Team Rocket's Great Ball",
       "rarity": "Uncommon (U)",
-      "image": "Chinese/Chasing Glory/Cards/0197.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0197.webp"
     },
     {
       "number": "198/222",
@@ -1603,7 +1603,7 @@
       "version": 1,
       "name": "Team Rocket's Venture Bomb",
       "rarity": "Uncommon (U)",
-      "image": "Chinese/Chasing Glory/Cards/0198.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0198.webp"
     },
     {
       "number": "199/222",
@@ -1611,7 +1611,7 @@
       "version": 1,
       "name": "Team Rocket's Transceiver",
       "rarity": "Uncommon (U)",
-      "image": "Chinese/Chasing Glory/Cards/0199.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0199.webp"
     },
     {
       "number": "200/222",
@@ -1619,7 +1619,7 @@
       "version": 1,
       "name": "Cynthia's Power Weight",
       "rarity": "Uncommon (U)",
-      "image": "Chinese/Chasing Glory/Cards/0200.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0200.webp"
     },
     {
       "number": "201/222",
@@ -1627,7 +1627,7 @@
       "version": 1,
       "name": "Hop's Choice Band",
       "rarity": "Uncommon (U)",
-      "image": "Chinese/Chasing Glory/Cards/0201.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0201.webp"
     },
     {
       "number": "202/222",
@@ -1635,7 +1635,7 @@
       "version": 1,
       "name": "Lillie's Pearl",
       "rarity": "Uncommon (U)",
-      "image": "Chinese/Chasing Glory/Cards/0202.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0202.webp"
     },
     {
       "number": "203/222",
@@ -1643,7 +1643,7 @@
       "version": 1,
       "name": "Iris's Fighting Spirit",
       "rarity": "Uncommon (U)",
-      "image": "Chinese/Chasing Glory/Cards/0203.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0203.webp"
     },
     {
       "number": "204/222",
@@ -1651,7 +1651,7 @@
       "version": 1,
       "name": "Emcee's Hype",
       "rarity": "Common (C)",
-      "image": "Chinese/Chasing Glory/Cards/0204.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0204.webp"
     },
     {
       "number": "205/222",
@@ -1659,7 +1659,7 @@
       "version": 1,
       "name": "Ruffian",
       "rarity": "Uncommon (U)",
-      "image": "Chinese/Chasing Glory/Cards/0205.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0205.webp"
     },
     {
       "number": "206/222",
@@ -1667,7 +1667,7 @@
       "version": 1,
       "name": "Judge",
       "rarity": "Uncommon (U)",
-      "image": "Chinese/Chasing Glory/Cards/0206.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0206.webp"
     },
     {
       "number": "207/222",
@@ -1675,7 +1675,7 @@
       "version": 1,
       "name": "Brock's Scouting",
       "rarity": "Uncommon (U)",
-      "image": "Chinese/Chasing Glory/Cards/0207.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0207.webp"
     },
     {
       "number": "208/222",
@@ -1683,7 +1683,7 @@
       "version": 1,
       "name": "Ethan's Adventure",
       "rarity": "Uncommon (U)",
-      "image": "Chinese/Chasing Glory/Cards/0208.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0208.webp"
     },
     {
       "number": "209/222",
@@ -1691,7 +1691,7 @@
       "version": 1,
       "name": "Team Rocket's Ariana",
       "rarity": "Uncommon (U)",
-      "image": "Chinese/Chasing Glory/Cards/0209.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0209.webp"
     },
     {
       "number": "210/222",
@@ -1699,7 +1699,7 @@
       "version": 1,
       "name": "Team Rocket's Archer",
       "rarity": "Uncommon (U)",
-      "image": "Chinese/Chasing Glory/Cards/0210.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0210.webp"
     },
     {
       "number": "211/222",
@@ -1707,7 +1707,7 @@
       "version": 1,
       "name": "Team Rocket's Giovanni",
       "rarity": "Uncommon (U)",
-      "image": "Chinese/Chasing Glory/Cards/0211.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0211.webp"
     },
     {
       "number": "212/222",
@@ -1715,7 +1715,7 @@
       "version": 1,
       "name": "Team Rocket's Petrel",
       "rarity": "Uncommon (U)",
-      "image": "Chinese/Chasing Glory/Cards/0212.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0212.webp"
     },
     {
       "number": "213/222",
@@ -1723,7 +1723,7 @@
       "version": 1,
       "name": "Team Rocket's Proton",
       "rarity": "Uncommon (U)",
-      "image": "Chinese/Chasing Glory/Cards/0213.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0213.webp"
     },
     {
       "number": "214/222",
@@ -1731,7 +1731,7 @@
       "version": 1,
       "name": "Granite Cave",
       "rarity": "Uncommon (U)",
-      "image": "Chinese/Chasing Glory/Cards/0214.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0214.webp"
     },
     {
       "number": "215/222",
@@ -1739,7 +1739,7 @@
       "version": 1,
       "name": "N's Castle",
       "rarity": "Uncommon (U)",
-      "image": "Chinese/Chasing Glory/Cards/0215.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0215.webp"
     },
     {
       "number": "216/222",
@@ -1747,7 +1747,7 @@
       "version": 1,
       "name": "Spikemuth Gym",
       "rarity": "Uncommon (U)",
-      "image": "Chinese/Chasing Glory/Cards/0216.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0216.webp"
     },
     {
       "number": "217/222",
@@ -1755,7 +1755,7 @@
       "version": 1,
       "name": "Levincia",
       "rarity": "Uncommon (U)",
-      "image": "Chinese/Chasing Glory/Cards/0217.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0217.webp"
     },
     {
       "number": "218/222",
@@ -1763,7 +1763,7 @@
       "version": 1,
       "name": "Postwick",
       "rarity": "Uncommon (U)",
-      "image": "Chinese/Chasing Glory/Cards/0218.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0218.webp"
     },
     {
       "number": "219/222",
@@ -1771,7 +1771,7 @@
       "version": 1,
       "name": "Team Rocket's Watchtower",
       "rarity": "Uncommon (U)",
-      "image": "Chinese/Chasing Glory/Cards/0219.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0219.webp"
     },
     {
       "number": "220/222",
@@ -1779,7 +1779,7 @@
       "version": 1,
       "name": "Team Rocket's Factory",
       "rarity": "Uncommon (U)",
-      "image": "Chinese/Chasing Glory/Cards/0220.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0220.webp"
     },
     {
       "number": "221/222",
@@ -1787,7 +1787,7 @@
       "version": 1,
       "name": "Spiky Energy",
       "rarity": "Uncommon (U)",
-      "image": "Chinese/Chasing Glory/Cards/0221.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0221.webp"
     },
     {
       "number": "222/222",
@@ -1795,7 +1795,7 @@
       "version": 1,
       "name": "Team Rocket's Energy",
       "rarity": "Uncommon (U)",
-      "image": "Chinese/Chasing Glory/Cards/0222.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0222.webp"
     },
     {
       "number": "223/222",
@@ -1803,7 +1803,7 @@
       "version": 1,
       "name": "Yanma",
       "rarity": "Art Rare (AR)",
-      "image": "Chinese/Chasing Glory/Cards/0223.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0223.webp"
     },
     {
       "number": "224/222",
@@ -1811,7 +1811,7 @@
       "version": 1,
       "name": "Maractus",
       "rarity": "Art Rare (AR)",
-      "image": "Chinese/Chasing Glory/Cards/0224.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0224.webp"
     },
     {
       "number": "225/222",
@@ -1819,7 +1819,7 @@
       "version": 1,
       "name": "Misty's Psyduck",
       "rarity": "Art Rare (AR)",
-      "image": "Chinese/Chasing Glory/Cards/0225.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0225.webp"
     },
     {
       "number": "226/222",
@@ -1827,7 +1827,7 @@
       "version": 1,
       "name": "Rotom",
       "rarity": "Art Rare (AR)",
-      "image": "Chinese/Chasing Glory/Cards/0226.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0226.webp"
     },
     {
       "number": "227/222",
@@ -1835,7 +1835,7 @@
       "version": 1,
       "name": "Zamazenta",
       "rarity": "Art Rare (AR)",
-      "image": "Chinese/Chasing Glory/Cards/0227.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0227.webp"
     },
     {
       "number": "228/222",
@@ -1843,7 +1843,7 @@
       "version": 1,
       "name": "N's Reshiram",
       "rarity": "Art Rare (AR)",
-      "image": "Chinese/Chasing Glory/Cards/0228.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0228.webp"
     },
     {
       "number": "229/222",
@@ -1851,7 +1851,7 @@
       "version": 1,
       "name": "Yanmega ex",
       "rarity": "Super Rare (SR)",
-      "image": "Chinese/Chasing Glory/Cards/0229.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0229.webp"
     },
     {
       "number": "230/222",
@@ -1859,7 +1859,7 @@
       "version": 1,
       "name": "Arboliva ex",
       "rarity": "Super Rare (SR)",
-      "image": "Chinese/Chasing Glory/Cards/0230.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0230.webp"
     },
     {
       "number": "231/222",
@@ -1867,7 +1867,7 @@
       "version": 1,
       "name": "Team Rocket's Moltres ex",
       "rarity": "Super Rare (SR)",
-      "image": "Chinese/Chasing Glory/Cards/0231.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0231.webp"
     },
     {
       "number": "232/222",
@@ -1875,7 +1875,7 @@
       "version": 1,
       "name": "Ethan's Ho-Oh ex",
       "rarity": "Super Rare (SR)",
-      "image": "Chinese/Chasing Glory/Cards/0232.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0232.webp"
     },
     {
       "number": "233/222",
@@ -1883,7 +1883,7 @@
       "version": 1,
       "name": "Volcanion ex",
       "rarity": "Super Rare (SR)",
-      "image": "Chinese/Chasing Glory/Cards/0233.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0233.webp"
     },
     {
       "number": "234/222",
@@ -1891,7 +1891,7 @@
       "version": 1,
       "name": "Cetitan ex",
       "rarity": "Super Rare (SR)",
-      "image": "Chinese/Chasing Glory/Cards/0234.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0234.webp"
     },
     {
       "number": "235/222",
@@ -1899,7 +1899,7 @@
       "version": 1,
       "name": "Dondozo ex",
       "rarity": "Super Rare (SR)",
-      "image": "Chinese/Chasing Glory/Cards/0235.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0235.webp"
     },
     {
       "number": "236/222",
@@ -1907,7 +1907,7 @@
       "version": 1,
       "name": "Electivire ex",
       "rarity": "Super Rare (SR)",
-      "image": "Chinese/Chasing Glory/Cards/0236.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0236.webp"
     },
     {
       "number": "237/222",
@@ -1915,7 +1915,7 @@
       "version": 1,
       "name": "Iono's Bellibolt ex",
       "rarity": "Super Rare (SR)",
-      "image": "Chinese/Chasing Glory/Cards/0237.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0237.webp"
     },
     {
       "number": "238/222",
@@ -1923,7 +1923,7 @@
       "version": 1,
       "name": "Lillie's Clefairy ex",
       "rarity": "Super Rare (SR)",
-      "image": "Chinese/Chasing Glory/Cards/0238.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0238.webp"
     },
     {
       "number": "239/222",
@@ -1931,7 +1931,7 @@
       "version": 1,
       "name": "Team Rocket's Mewtwo ex",
       "rarity": "Super Rare (SR)",
-      "image": "Chinese/Chasing Glory/Cards/0239.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0239.webp"
     },
     {
       "number": "240/222",
@@ -1939,7 +1939,7 @@
       "version": 1,
       "name": "Regirock ex",
       "rarity": "Super Rare (SR)",
-      "image": "Chinese/Chasing Glory/Cards/0240.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0240.webp"
     },
     {
       "number": "241/222",
@@ -1947,7 +1947,7 @@
       "version": 1,
       "name": "Cynthia's Garchomp ex",
       "rarity": "Super Rare (SR)",
-      "image": "Chinese/Chasing Glory/Cards/0241.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0241.webp"
     },
     {
       "number": "242/222",
@@ -1955,7 +1955,7 @@
       "version": 1,
       "name": "Mamoswine ex",
       "rarity": "Super Rare (SR)",
-      "image": "Chinese/Chasing Glory/Cards/0242.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0242.webp"
     },
     {
       "number": "243/222",
@@ -1963,7 +1963,7 @@
       "version": 1,
       "name": "Team Rocket's Nidoking ex",
       "rarity": "Super Rare (SR)",
-      "image": "Chinese/Chasing Glory/Cards/0243.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0243.webp"
     },
     {
       "number": "244/222",
@@ -1971,7 +1971,7 @@
       "version": 1,
       "name": "Team Rocket's Crobat ex",
       "rarity": "Super Rare (SR)",
-      "image": "Chinese/Chasing Glory/Cards/0244.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0244.webp"
     },
     {
       "number": "245/222",
@@ -1979,7 +1979,7 @@
       "version": 1,
       "name": "N's Zoroark ex",
       "rarity": "Super Rare (SR)",
-      "image": "Chinese/Chasing Glory/Cards/0245.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0245.webp"
     },
     {
       "number": "246/222",
@@ -1987,7 +1987,7 @@
       "version": 1,
       "name": "Arven's Mabosstiff ex",
       "rarity": "Super Rare (SR)",
-      "image": "Chinese/Chasing Glory/Cards/0246.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0246.webp"
     },
     {
       "number": "247/222",
@@ -1995,7 +1995,7 @@
       "version": 1,
       "name": "Hop's Zacian ex",
       "rarity": "Super Rare (SR)",
-      "image": "Chinese/Chasing Glory/Cards/0247.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0247.webp"
     },
     {
       "number": "248/222",
@@ -2003,7 +2003,7 @@
       "version": 1,
       "name": "Salamence ex",
       "rarity": "Super Rare (SR)",
-      "image": "Chinese/Chasing Glory/Cards/0248.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0248.webp"
     },
     {
       "number": "249/222",
@@ -2011,7 +2011,7 @@
       "version": 1,
       "name": "Team Rocket's Persian ex",
       "rarity": "Super Rare (SR)",
-      "image": "Chinese/Chasing Glory/Cards/0249.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0249.webp"
     },
     {
       "number": "250/222",
@@ -2019,7 +2019,7 @@
       "version": 1,
       "name": "Dudunsparce ex",
       "rarity": "Super Rare (SR)",
-      "image": "Chinese/Chasing Glory/Cards/0250.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0250.webp"
     },
     {
       "number": "251/222",
@@ -2027,7 +2027,7 @@
       "version": 1,
       "name": "Iris's Fighting Spirit",
       "rarity": "Super Rare (SR)",
-      "image": "Chinese/Chasing Glory/Cards/0251.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0251.webp"
     },
     {
       "number": "252/222",
@@ -2035,7 +2035,7 @@
       "version": 1,
       "name": "Emcee's Hype",
       "rarity": "Super Rare (SR)",
-      "image": "Chinese/Chasing Glory/Cards/0252.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0252.webp"
     },
     {
       "number": "253/222",
@@ -2043,7 +2043,7 @@
       "version": 1,
       "name": "Ruffian",
       "rarity": "Super Rare (SR)",
-      "image": "Chinese/Chasing Glory/Cards/0253.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0253.webp"
     },
     {
       "number": "254/222",
@@ -2051,7 +2051,7 @@
       "version": 1,
       "name": "Judge",
       "rarity": "Super Rare (SR)",
-      "image": "Chinese/Chasing Glory/Cards/0254.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0254.webp"
     },
     {
       "number": "255/222",
@@ -2059,7 +2059,7 @@
       "version": 1,
       "name": "Brock's Scouting",
       "rarity": "Super Rare (SR)",
-      "image": "Chinese/Chasing Glory/Cards/0255.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0255.webp"
     },
     {
       "number": "256/222",
@@ -2067,7 +2067,7 @@
       "version": 1,
       "name": "Ethan's Adventure",
       "rarity": "Super Rare (SR)",
-      "image": "Chinese/Chasing Glory/Cards/0256.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0256.webp"
     },
     {
       "number": "257/222",
@@ -2075,7 +2075,7 @@
       "version": 1,
       "name": "Team Rocket's Ariana",
       "rarity": "Super Rare (SR)",
-      "image": "Chinese/Chasing Glory/Cards/0257.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0257.webp"
     },
     {
       "number": "258/222",
@@ -2083,7 +2083,7 @@
       "version": 1,
       "name": "Team Rocket's Archer",
       "rarity": "Super Rare (SR)",
-      "image": "Chinese/Chasing Glory/Cards/0258.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0258.webp"
     },
     {
       "number": "259/222",
@@ -2091,7 +2091,7 @@
       "version": 1,
       "name": "Team Rocket's Giovanni",
       "rarity": "Super Rare (SR)",
-      "image": "Chinese/Chasing Glory/Cards/0259.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0259.webp"
     },
     {
       "number": "260/222",
@@ -2099,7 +2099,7 @@
       "version": 1,
       "name": "Team Rocket's Petrel",
       "rarity": "Super Rare (SR)",
-      "image": "Chinese/Chasing Glory/Cards/0260.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0260.webp"
     },
     {
       "number": "261/222",
@@ -2107,7 +2107,7 @@
       "version": 1,
       "name": "Team Rocket's Proton",
       "rarity": "Super Rare (SR)",
-      "image": "Chinese/Chasing Glory/Cards/0261.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0261.webp"
     },
     {
       "number": "262/222",
@@ -2115,7 +2115,7 @@
       "version": 1,
       "name": "Yanmega ex",
       "rarity": "Special Art Rare (SAR)",
-      "image": "Chinese/Chasing Glory/Cards/0262.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0262.webp"
     },
     {
       "number": "263/222",
@@ -2123,7 +2123,7 @@
       "version": 1,
       "name": "Team Rocket's Moltres ex",
       "rarity": "Special Art Rare (SAR)",
-      "image": "Chinese/Chasing Glory/Cards/0263.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0263.webp"
     },
     {
       "number": "264/222",
@@ -2131,7 +2131,7 @@
       "version": 1,
       "name": "Ethan's Ho-Oh ex",
       "rarity": "Special Art Rare (SAR)",
-      "image": "Chinese/Chasing Glory/Cards/0264.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0264.webp"
     },
     {
       "number": "265/222",
@@ -2139,7 +2139,7 @@
       "version": 1,
       "name": "Volcanion ex",
       "rarity": "Special Art Rare (SAR)",
-      "image": "Chinese/Chasing Glory/Cards/0265.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0265.webp"
     },
     {
       "number": "266/222",
@@ -2147,7 +2147,7 @@
       "version": 1,
       "name": "Iono's Bellibolt ex",
       "rarity": "Special Art Rare (SAR)",
-      "image": "Chinese/Chasing Glory/Cards/0266.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0266.webp"
     },
     {
       "number": "267/222",
@@ -2155,7 +2155,7 @@
       "version": 1,
       "name": "Lillie's Clefairy ex",
       "rarity": "Special Art Rare (SAR)",
-      "image": "Chinese/Chasing Glory/Cards/0267.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0267.webp"
     },
     {
       "number": "268/222",
@@ -2163,7 +2163,7 @@
       "version": 1,
       "name": "Team Rocket's Mewtwo ex",
       "rarity": "Special Art Rare (SAR)",
-      "image": "Chinese/Chasing Glory/Cards/0268.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0268.webp"
     },
     {
       "number": "269/222",
@@ -2171,7 +2171,7 @@
       "version": 1,
       "name": "Cynthia's Garchomp ex",
       "rarity": "Special Art Rare (SAR)",
-      "image": "Chinese/Chasing Glory/Cards/0269.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0269.webp"
     },
     {
       "number": "270/222",
@@ -2179,7 +2179,7 @@
       "version": 1,
       "name": "Team Rocket's Nidoking ex",
       "rarity": "Special Art Rare (SAR)",
-      "image": "Chinese/Chasing Glory/Cards/0270.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0270.webp"
     },
     {
       "number": "271/222",
@@ -2187,7 +2187,7 @@
       "version": 1,
       "name": "Team Rocket's Crobat ex",
       "rarity": "Special Art Rare (SAR)",
-      "image": "Chinese/Chasing Glory/Cards/0271.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0271.webp"
     },
     {
       "number": "272/222",
@@ -2195,7 +2195,7 @@
       "version": 1,
       "name": "N's Zoroark ex",
       "rarity": "Special Art Rare (SAR)",
-      "image": "Chinese/Chasing Glory/Cards/0272.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0272.webp"
     },
     {
       "number": "273/222",
@@ -2203,7 +2203,7 @@
       "version": 1,
       "name": "Arven's Mabosstiff ex",
       "rarity": "Special Art Rare (SAR)",
-      "image": "Chinese/Chasing Glory/Cards/0273.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0273.webp"
     },
     {
       "number": "274/222",
@@ -2211,7 +2211,7 @@
       "version": 1,
       "name": "Hop's Zacian ex",
       "rarity": "Special Art Rare (SAR)",
-      "image": "Chinese/Chasing Glory/Cards/0274.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0274.webp"
     },
     {
       "number": "275/222",
@@ -2219,7 +2219,7 @@
       "version": 1,
       "name": "Salamence ex",
       "rarity": "Special Art Rare (SAR)",
-      "image": "Chinese/Chasing Glory/Cards/0275.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0275.webp"
     },
     {
       "number": "276/222",
@@ -2227,7 +2227,7 @@
       "version": 1,
       "name": "Brock's Scouting",
       "rarity": "Special Art Rare (SAR)",
-      "image": "Chinese/Chasing Glory/Cards/0276.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0276.webp"
     },
     {
       "number": "277/222",
@@ -2235,7 +2235,7 @@
       "version": 1,
       "name": "Ethan's Adventure",
       "rarity": "Special Art Rare (SAR)",
-      "image": "Chinese/Chasing Glory/Cards/0277.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0277.webp"
     },
     {
       "number": "278/222",
@@ -2243,7 +2243,7 @@
       "version": 1,
       "name": "Team Rocket's Ariana",
       "rarity": "Special Art Rare (SAR)",
-      "image": "Chinese/Chasing Glory/Cards/0278.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0278.webp"
     },
     {
       "number": "279/222",
@@ -2251,7 +2251,7 @@
       "version": 1,
       "name": "Team Rocket's Giovanni",
       "rarity": "Special Art Rare (SAR)",
-      "image": "Chinese/Chasing Glory/Cards/0279.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0279.webp"
     },
     {
       "number": "280/222",
@@ -2259,7 +2259,7 @@
       "version": 1,
       "name": "Ethan's Ho-Oh ex",
       "rarity": "Ultra Rare (UR)",
-      "image": "Chinese/Chasing Glory/Cards/0280.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0280.webp"
     },
     {
       "number": "281/222",
@@ -2267,7 +2267,7 @@
       "version": 1,
       "name": "Iono's Bellibolt ex",
       "rarity": "Ultra Rare (UR)",
-      "image": "Chinese/Chasing Glory/Cards/0281.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0281.webp"
     },
     {
       "number": "282/222",
@@ -2275,7 +2275,7 @@
       "version": 1,
       "name": "Team Rocket's Mewtwo ex",
       "rarity": "Ultra Rare (UR)",
-      "image": "Chinese/Chasing Glory/Cards/0282.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0282.webp"
     },
     {
       "number": "283/222",
@@ -2283,7 +2283,7 @@
       "version": 1,
       "name": "Cynthia's Garchomp ex",
       "rarity": "Ultra Rare (UR)",
-      "image": "Chinese/Chasing Glory/Cards/0283.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0283.webp"
     },
     {
       "number": "284/222",
@@ -2291,7 +2291,7 @@
       "version": 1,
       "name": "Team Rocket's Crobat ex",
       "rarity": "Ultra Rare (UR)",
-      "image": "Chinese/Chasing Glory/Cards/0284.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0284.webp"
     },
     {
       "number": "285/222",
@@ -2299,7 +2299,7 @@
       "version": 1,
       "name": "N's Zoroark ex",
       "rarity": "Ultra Rare (UR)",
-      "image": "Chinese/Chasing Glory/Cards/0285.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0285.webp"
     },
     {
       "number": "286/222",
@@ -2307,7 +2307,7 @@
       "version": 1,
       "name": "Levincia",
       "rarity": "Ultra Rare (UR)",
-      "image": "Chinese/Chasing Glory/Cards/0286.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0286.webp"
     },
     {
       "number": "287/222",
@@ -2315,7 +2315,8 @@
       "version": 1,
       "name": "Spiky Energy",
       "rarity": "Ultra Rare (UR)",
-      "image": "Chinese/Chasing Glory/Cards/0287.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Chasing%20Glory/Cards/0287.webp"
     }
-  ]
+  ],
+  "groupByName": true
 }
