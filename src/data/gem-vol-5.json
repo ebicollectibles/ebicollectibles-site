@@ -1,0 +1,1593 @@
+{
+  "name": "Gem Vol 5",
+  "slug": "gem-vol-5",
+  "code": "CBB5C",
+  "series": "Gem Set",
+  "language": "Simplified Chinese",
+  "releaseDate": "2026-04-24",
+  "cardCount": 196,
+  "rarityOrder": [
+    "Common",
+    "Uncommon",
+    "Rare",
+    "Double Rare",
+    "Triple Rare"
+  ],
+  "exclusiveCardNumbers": [
+    "0107/07",
+    "2207/07",
+    "2307/07",
+    "2407/07"
+  ],
+  "source": "Chen Cards (chencards.com/sets/gem_vol_5), used with permission",
+  "cards": [
+    {
+      "number": "0101/07",
+      "pokemonIndex": 1,
+      "version": 1,
+      "name": "Captain Pikachu",
+      "rarity": "Common",
+      "image": "Chinese/Gem 5/Cards/0101.webp"
+    },
+    {
+      "number": "0102/07",
+      "pokemonIndex": 1,
+      "version": 2,
+      "name": "Captain Pikachu",
+      "rarity": "Common",
+      "image": "Chinese/Gem 5/Cards/0102.webp"
+    },
+    {
+      "number": "0103/07",
+      "pokemonIndex": 1,
+      "version": 3,
+      "name": "Captain Pikachu",
+      "rarity": "Uncommon",
+      "image": "Chinese/Gem 5/Cards/0103.webp"
+    },
+    {
+      "number": "0104/07",
+      "pokemonIndex": 1,
+      "version": 4,
+      "name": "Captain Pikachu",
+      "rarity": "Uncommon",
+      "image": "Chinese/Gem 5/Cards/0104.webp"
+    },
+    {
+      "number": "0105/07",
+      "pokemonIndex": 1,
+      "version": 5,
+      "name": "Captain Pikachu",
+      "rarity": "Rare",
+      "image": "Chinese/Gem 5/Cards/0105.webp"
+    },
+    {
+      "number": "0106/07",
+      "pokemonIndex": 1,
+      "version": 6,
+      "name": "Captain Pikachu",
+      "rarity": "Double Rare",
+      "image": "Chinese/Gem 5/Cards/0106.webp"
+    },
+    {
+      "number": "0107/07",
+      "pokemonIndex": 1,
+      "version": 7,
+      "name": "Captain Pikachu",
+      "rarity": "Triple Rare",
+      "image": "Chinese/Gem 5/Cards/0107.webp"
+    },
+    {
+      "number": "0201/07",
+      "pokemonIndex": 2,
+      "version": 1,
+      "name": "Hisuian Growlithe",
+      "rarity": "Common",
+      "image": "Chinese/Gem 5/Cards/0201.webp"
+    },
+    {
+      "number": "0202/07",
+      "pokemonIndex": 2,
+      "version": 2,
+      "name": "Hisuian Growlithe",
+      "rarity": "Common",
+      "image": "Chinese/Gem 5/Cards/0202.webp"
+    },
+    {
+      "number": "0203/07",
+      "pokemonIndex": 2,
+      "version": 3,
+      "name": "Hisuian Growlithe",
+      "rarity": "Uncommon",
+      "image": "Chinese/Gem 5/Cards/0203.webp"
+    },
+    {
+      "number": "0204/07",
+      "pokemonIndex": 2,
+      "version": 4,
+      "name": "Hisuian Growlithe",
+      "rarity": "Uncommon",
+      "image": "Chinese/Gem 5/Cards/0204.webp"
+    },
+    {
+      "number": "0205/07",
+      "pokemonIndex": 2,
+      "version": 5,
+      "name": "Hisuian Growlithe",
+      "rarity": "Rare",
+      "image": "Chinese/Gem 5/Cards/0205.webp"
+    },
+    {
+      "number": "0206/07",
+      "pokemonIndex": 2,
+      "version": 6,
+      "name": "Hisuian Growlithe",
+      "rarity": "Double Rare",
+      "image": "Chinese/Gem 5/Cards/0206.webp"
+    },
+    {
+      "number": "0207/07",
+      "pokemonIndex": 2,
+      "version": 7,
+      "name": "Hisuian Growlithe",
+      "rarity": "Triple Rare",
+      "image": "Chinese/Gem 5/Cards/0207.webp"
+    },
+    {
+      "number": "0301/07",
+      "pokemonIndex": 3,
+      "version": 1,
+      "name": "Magneton",
+      "rarity": "Common",
+      "image": "Chinese/Gem 5/Cards/0301.webp"
+    },
+    {
+      "number": "0302/07",
+      "pokemonIndex": 3,
+      "version": 2,
+      "name": "Magneton",
+      "rarity": "Common",
+      "image": "Chinese/Gem 5/Cards/0302.webp"
+    },
+    {
+      "number": "0303/07",
+      "pokemonIndex": 3,
+      "version": 3,
+      "name": "Magneton",
+      "rarity": "Uncommon",
+      "image": "Chinese/Gem 5/Cards/0303.webp"
+    },
+    {
+      "number": "0304/07",
+      "pokemonIndex": 3,
+      "version": 4,
+      "name": "Magneton",
+      "rarity": "Uncommon",
+      "image": "Chinese/Gem 5/Cards/0304.webp"
+    },
+    {
+      "number": "0305/07",
+      "pokemonIndex": 3,
+      "version": 5,
+      "name": "Magneton",
+      "rarity": "Rare",
+      "image": "Chinese/Gem 5/Cards/0305.webp"
+    },
+    {
+      "number": "0306/07",
+      "pokemonIndex": 3,
+      "version": 6,
+      "name": "Magneton",
+      "rarity": "Double Rare",
+      "image": "Chinese/Gem 5/Cards/0306.webp"
+    },
+    {
+      "number": "0307/07",
+      "pokemonIndex": 3,
+      "version": 7,
+      "name": "Magneton",
+      "rarity": "Triple Rare",
+      "image": "Chinese/Gem 5/Cards/0307.webp"
+    },
+    {
+      "number": "0401/07",
+      "pokemonIndex": 4,
+      "version": 1,
+      "name": "Chansey",
+      "rarity": "Common",
+      "image": "Chinese/Gem 5/Cards/0401.webp"
+    },
+    {
+      "number": "0402/07",
+      "pokemonIndex": 4,
+      "version": 2,
+      "name": "Chansey",
+      "rarity": "Common",
+      "image": "Chinese/Gem 5/Cards/0402.webp"
+    },
+    {
+      "number": "0403/07",
+      "pokemonIndex": 4,
+      "version": 3,
+      "name": "Chansey",
+      "rarity": "Uncommon",
+      "image": "Chinese/Gem 5/Cards/0403.webp"
+    },
+    {
+      "number": "0404/07",
+      "pokemonIndex": 4,
+      "version": 4,
+      "name": "Chansey",
+      "rarity": "Uncommon",
+      "image": "Chinese/Gem 5/Cards/0404.webp"
+    },
+    {
+      "number": "0405/07",
+      "pokemonIndex": 4,
+      "version": 5,
+      "name": "Chansey",
+      "rarity": "Rare",
+      "image": "Chinese/Gem 5/Cards/0405.webp"
+    },
+    {
+      "number": "0406/07",
+      "pokemonIndex": 4,
+      "version": 6,
+      "name": "Chansey",
+      "rarity": "Double Rare",
+      "image": "Chinese/Gem 5/Cards/0406.webp"
+    },
+    {
+      "number": "0407/07",
+      "pokemonIndex": 4,
+      "version": 7,
+      "name": "Chansey",
+      "rarity": "Triple Rare",
+      "image": "Chinese/Gem 5/Cards/0407.webp"
+    },
+    {
+      "number": "0501/07",
+      "pokemonIndex": 5,
+      "version": 1,
+      "name": "Horsea",
+      "rarity": "Common",
+      "image": "Chinese/Gem 5/Cards/0501.webp"
+    },
+    {
+      "number": "0502/07",
+      "pokemonIndex": 5,
+      "version": 2,
+      "name": "Horsea",
+      "rarity": "Common",
+      "image": "Chinese/Gem 5/Cards/0502.webp"
+    },
+    {
+      "number": "0503/07",
+      "pokemonIndex": 5,
+      "version": 3,
+      "name": "Horsea",
+      "rarity": "Uncommon",
+      "image": "Chinese/Gem 5/Cards/0503.webp"
+    },
+    {
+      "number": "0504/07",
+      "pokemonIndex": 5,
+      "version": 4,
+      "name": "Horsea",
+      "rarity": "Uncommon",
+      "image": "Chinese/Gem 5/Cards/0504.webp"
+    },
+    {
+      "number": "0505/07",
+      "pokemonIndex": 5,
+      "version": 5,
+      "name": "Horsea",
+      "rarity": "Rare",
+      "image": "Chinese/Gem 5/Cards/0505.webp"
+    },
+    {
+      "number": "0506/07",
+      "pokemonIndex": 5,
+      "version": 6,
+      "name": "Horsea",
+      "rarity": "Double Rare",
+      "image": "Chinese/Gem 5/Cards/0506.webp"
+    },
+    {
+      "number": "0507/07",
+      "pokemonIndex": 5,
+      "version": 7,
+      "name": "Horsea",
+      "rarity": "Triple Rare",
+      "image": "Chinese/Gem 5/Cards/0507.webp"
+    },
+    {
+      "number": "0601/07",
+      "pokemonIndex": 6,
+      "version": 1,
+      "name": "Sunflora",
+      "rarity": "Common",
+      "image": "Chinese/Gem 5/Cards/0601.webp"
+    },
+    {
+      "number": "0602/07",
+      "pokemonIndex": 6,
+      "version": 2,
+      "name": "Sunflora",
+      "rarity": "Common",
+      "image": "Chinese/Gem 5/Cards/0602.webp"
+    },
+    {
+      "number": "0603/07",
+      "pokemonIndex": 6,
+      "version": 3,
+      "name": "Sunflora",
+      "rarity": "Uncommon",
+      "image": "Chinese/Gem 5/Cards/0603.webp"
+    },
+    {
+      "number": "0604/07",
+      "pokemonIndex": 6,
+      "version": 4,
+      "name": "Sunflora",
+      "rarity": "Uncommon",
+      "image": "Chinese/Gem 5/Cards/0604.webp"
+    },
+    {
+      "number": "0605/07",
+      "pokemonIndex": 6,
+      "version": 5,
+      "name": "Sunflora",
+      "rarity": "Rare",
+      "image": "Chinese/Gem 5/Cards/0605.webp"
+    },
+    {
+      "number": "0606/07",
+      "pokemonIndex": 6,
+      "version": 6,
+      "name": "Sunflora",
+      "rarity": "Double Rare",
+      "image": "Chinese/Gem 5/Cards/0606.webp"
+    },
+    {
+      "number": "0607/07",
+      "pokemonIndex": 6,
+      "version": 7,
+      "name": "Sunflora",
+      "rarity": "Triple Rare",
+      "image": "Chinese/Gem 5/Cards/0607.webp"
+    },
+    {
+      "number": "0701/07",
+      "pokemonIndex": 7,
+      "version": 1,
+      "name": "Skarmory",
+      "rarity": "Common",
+      "image": "Chinese/Gem 5/Cards/0701.webp"
+    },
+    {
+      "number": "0702/07",
+      "pokemonIndex": 7,
+      "version": 2,
+      "name": "Skarmory",
+      "rarity": "Common",
+      "image": "Chinese/Gem 5/Cards/0702.webp"
+    },
+    {
+      "number": "0703/07",
+      "pokemonIndex": 7,
+      "version": 3,
+      "name": "Skarmory",
+      "rarity": "Uncommon",
+      "image": "Chinese/Gem 5/Cards/0703.webp"
+    },
+    {
+      "number": "0704/07",
+      "pokemonIndex": 7,
+      "version": 4,
+      "name": "Skarmory",
+      "rarity": "Uncommon",
+      "image": "Chinese/Gem 5/Cards/0704.webp"
+    },
+    {
+      "number": "0705/07",
+      "pokemonIndex": 7,
+      "version": 5,
+      "name": "Skarmory",
+      "rarity": "Rare",
+      "image": "Chinese/Gem 5/Cards/0705.webp"
+    },
+    {
+      "number": "0706/07",
+      "pokemonIndex": 7,
+      "version": 6,
+      "name": "Skarmory",
+      "rarity": "Double Rare",
+      "image": "Chinese/Gem 5/Cards/0706.webp"
+    },
+    {
+      "number": "0707/07",
+      "pokemonIndex": 7,
+      "version": 7,
+      "name": "Skarmory",
+      "rarity": "Triple Rare",
+      "image": "Chinese/Gem 5/Cards/0707.webp"
+    },
+    {
+      "number": "0801/07",
+      "pokemonIndex": 8,
+      "version": 1,
+      "name": "Houndoom",
+      "rarity": "Common",
+      "image": "Chinese/Gem 5/Cards/0801.webp"
+    },
+    {
+      "number": "0802/07",
+      "pokemonIndex": 8,
+      "version": 2,
+      "name": "Houndoom",
+      "rarity": "Common",
+      "image": "Chinese/Gem 5/Cards/0802.webp"
+    },
+    {
+      "number": "0803/07",
+      "pokemonIndex": 8,
+      "version": 3,
+      "name": "Houndoom",
+      "rarity": "Uncommon",
+      "image": "Chinese/Gem 5/Cards/0803.webp"
+    },
+    {
+      "number": "0804/07",
+      "pokemonIndex": 8,
+      "version": 4,
+      "name": "Houndoom",
+      "rarity": "Uncommon",
+      "image": "Chinese/Gem 5/Cards/0804.webp"
+    },
+    {
+      "number": "0805/07",
+      "pokemonIndex": 8,
+      "version": 5,
+      "name": "Houndoom",
+      "rarity": "Rare",
+      "image": "Chinese/Gem 5/Cards/0805.webp"
+    },
+    {
+      "number": "0806/07",
+      "pokemonIndex": 8,
+      "version": 6,
+      "name": "Houndoom",
+      "rarity": "Double Rare",
+      "image": "Chinese/Gem 5/Cards/0806.webp"
+    },
+    {
+      "number": "0807/07",
+      "pokemonIndex": 8,
+      "version": 7,
+      "name": "Houndoom",
+      "rarity": "Triple Rare",
+      "image": "Chinese/Gem 5/Cards/0807.webp"
+    },
+    {
+      "number": "0901/07",
+      "pokemonIndex": 9,
+      "version": 1,
+      "name": "Phanpy",
+      "rarity": "Common",
+      "image": "Chinese/Gem 5/Cards/0901.webp"
+    },
+    {
+      "number": "0902/07",
+      "pokemonIndex": 9,
+      "version": 2,
+      "name": "Phanpy",
+      "rarity": "Common",
+      "image": "Chinese/Gem 5/Cards/0902.webp"
+    },
+    {
+      "number": "0903/07",
+      "pokemonIndex": 9,
+      "version": 3,
+      "name": "Phanpy",
+      "rarity": "Uncommon",
+      "image": "Chinese/Gem 5/Cards/0903.webp"
+    },
+    {
+      "number": "0904/07",
+      "pokemonIndex": 9,
+      "version": 4,
+      "name": "Phanpy",
+      "rarity": "Uncommon",
+      "image": "Chinese/Gem 5/Cards/0904.webp"
+    },
+    {
+      "number": "0905/07",
+      "pokemonIndex": 9,
+      "version": 5,
+      "name": "Phanpy",
+      "rarity": "Rare",
+      "image": "Chinese/Gem 5/Cards/0905.webp"
+    },
+    {
+      "number": "0906/07",
+      "pokemonIndex": 9,
+      "version": 6,
+      "name": "Phanpy",
+      "rarity": "Double Rare",
+      "image": "Chinese/Gem 5/Cards/0906.webp"
+    },
+    {
+      "number": "0907/07",
+      "pokemonIndex": 9,
+      "version": 7,
+      "name": "Phanpy",
+      "rarity": "Triple Rare",
+      "image": "Chinese/Gem 5/Cards/0907.webp"
+    },
+    {
+      "number": "1001/07",
+      "pokemonIndex": 10,
+      "version": 1,
+      "name": "Vibrava",
+      "rarity": "Common",
+      "image": "Chinese/Gem 5/Cards/1001.webp"
+    },
+    {
+      "number": "1002/07",
+      "pokemonIndex": 10,
+      "version": 2,
+      "name": "Vibrava",
+      "rarity": "Common",
+      "image": "Chinese/Gem 5/Cards/1002.webp"
+    },
+    {
+      "number": "1003/07",
+      "pokemonIndex": 10,
+      "version": 3,
+      "name": "Vibrava",
+      "rarity": "Uncommon",
+      "image": "Chinese/Gem 5/Cards/1003.webp"
+    },
+    {
+      "number": "1004/07",
+      "pokemonIndex": 10,
+      "version": 4,
+      "name": "Vibrava",
+      "rarity": "Uncommon",
+      "image": "Chinese/Gem 5/Cards/1004.webp"
+    },
+    {
+      "number": "1005/07",
+      "pokemonIndex": 10,
+      "version": 5,
+      "name": "Vibrava",
+      "rarity": "Rare",
+      "image": "Chinese/Gem 5/Cards/1005.webp"
+    },
+    {
+      "number": "1006/07",
+      "pokemonIndex": 10,
+      "version": 6,
+      "name": "Vibrava",
+      "rarity": "Double Rare",
+      "image": "Chinese/Gem 5/Cards/1006.webp"
+    },
+    {
+      "number": "1007/07",
+      "pokemonIndex": 10,
+      "version": 7,
+      "name": "Vibrava",
+      "rarity": "Triple Rare",
+      "image": "Chinese/Gem 5/Cards/1007.webp"
+    },
+    {
+      "number": "1101/07",
+      "pokemonIndex": 11,
+      "version": 1,
+      "name": "Chimecho",
+      "rarity": "Common",
+      "image": "Chinese/Gem 5/Cards/1101.webp"
+    },
+    {
+      "number": "1102/07",
+      "pokemonIndex": 11,
+      "version": 2,
+      "name": "Chimecho",
+      "rarity": "Common",
+      "image": "Chinese/Gem 5/Cards/1102.webp"
+    },
+    {
+      "number": "1103/07",
+      "pokemonIndex": 11,
+      "version": 3,
+      "name": "Chimecho",
+      "rarity": "Uncommon",
+      "image": "Chinese/Gem 5/Cards/1103.webp"
+    },
+    {
+      "number": "1104/07",
+      "pokemonIndex": 11,
+      "version": 4,
+      "name": "Chimecho",
+      "rarity": "Uncommon",
+      "image": "Chinese/Gem 5/Cards/1104.webp"
+    },
+    {
+      "number": "1105/07",
+      "pokemonIndex": 11,
+      "version": 5,
+      "name": "Chimecho",
+      "rarity": "Rare",
+      "image": "Chinese/Gem 5/Cards/1105.webp"
+    },
+    {
+      "number": "1106/07",
+      "pokemonIndex": 11,
+      "version": 6,
+      "name": "Chimecho",
+      "rarity": "Double Rare",
+      "image": "Chinese/Gem 5/Cards/1106.webp"
+    },
+    {
+      "number": "1107/07",
+      "pokemonIndex": 11,
+      "version": 7,
+      "name": "Chimecho",
+      "rarity": "Triple Rare",
+      "image": "Chinese/Gem 5/Cards/1107.webp"
+    },
+    {
+      "number": "1201/07",
+      "pokemonIndex": 12,
+      "version": 1,
+      "name": "Spheal",
+      "rarity": "Common",
+      "image": "Chinese/Gem 5/Cards/1201.webp"
+    },
+    {
+      "number": "1202/07",
+      "pokemonIndex": 12,
+      "version": 2,
+      "name": "Spheal",
+      "rarity": "Common",
+      "image": "Chinese/Gem 5/Cards/1202.webp"
+    },
+    {
+      "number": "1203/07",
+      "pokemonIndex": 12,
+      "version": 3,
+      "name": "Spheal",
+      "rarity": "Uncommon",
+      "image": "Chinese/Gem 5/Cards/1203.webp"
+    },
+    {
+      "number": "1204/07",
+      "pokemonIndex": 12,
+      "version": 4,
+      "name": "Spheal",
+      "rarity": "Uncommon",
+      "image": "Chinese/Gem 5/Cards/1204.webp"
+    },
+    {
+      "number": "1205/07",
+      "pokemonIndex": 12,
+      "version": 5,
+      "name": "Spheal",
+      "rarity": "Rare",
+      "image": "Chinese/Gem 5/Cards/1205.webp"
+    },
+    {
+      "number": "1206/07",
+      "pokemonIndex": 12,
+      "version": 6,
+      "name": "Spheal",
+      "rarity": "Double Rare",
+      "image": "Chinese/Gem 5/Cards/1206.webp"
+    },
+    {
+      "number": "1207/07",
+      "pokemonIndex": 12,
+      "version": 7,
+      "name": "Spheal",
+      "rarity": "Triple Rare",
+      "image": "Chinese/Gem 5/Cards/1207.webp"
+    },
+    {
+      "number": "1301/07",
+      "pokemonIndex": 13,
+      "version": 1,
+      "name": "Latios",
+      "rarity": "Common",
+      "image": "Chinese/Gem 5/Cards/1301.webp"
+    },
+    {
+      "number": "1302/07",
+      "pokemonIndex": 13,
+      "version": 2,
+      "name": "Latios",
+      "rarity": "Common",
+      "image": "Chinese/Gem 5/Cards/1302.webp"
+    },
+    {
+      "number": "1303/07",
+      "pokemonIndex": 13,
+      "version": 3,
+      "name": "Latios",
+      "rarity": "Uncommon",
+      "image": "Chinese/Gem 5/Cards/1303.webp"
+    },
+    {
+      "number": "1304/07",
+      "pokemonIndex": 13,
+      "version": 4,
+      "name": "Latios",
+      "rarity": "Uncommon",
+      "image": "Chinese/Gem 5/Cards/1304.webp"
+    },
+    {
+      "number": "1305/07",
+      "pokemonIndex": 13,
+      "version": 5,
+      "name": "Latios",
+      "rarity": "Rare",
+      "image": "Chinese/Gem 5/Cards/1305.webp"
+    },
+    {
+      "number": "1306/07",
+      "pokemonIndex": 13,
+      "version": 6,
+      "name": "Latios",
+      "rarity": "Double Rare",
+      "image": "Chinese/Gem 5/Cards/1306.webp"
+    },
+    {
+      "number": "1307/07",
+      "pokemonIndex": 13,
+      "version": 7,
+      "name": "Latios",
+      "rarity": "Triple Rare",
+      "image": "Chinese/Gem 5/Cards/1307.webp"
+    },
+    {
+      "number": "1401/07",
+      "pokemonIndex": 14,
+      "version": 1,
+      "name": "Timburr",
+      "rarity": "Common",
+      "image": "Chinese/Gem 5/Cards/1401.webp"
+    },
+    {
+      "number": "1402/07",
+      "pokemonIndex": 14,
+      "version": 2,
+      "name": "Timburr",
+      "rarity": "Common",
+      "image": "Chinese/Gem 5/Cards/1402.webp"
+    },
+    {
+      "number": "1403/07",
+      "pokemonIndex": 14,
+      "version": 3,
+      "name": "Timburr",
+      "rarity": "Uncommon",
+      "image": "Chinese/Gem 5/Cards/1403.webp"
+    },
+    {
+      "number": "1404/07",
+      "pokemonIndex": 14,
+      "version": 4,
+      "name": "Timburr",
+      "rarity": "Uncommon",
+      "image": "Chinese/Gem 5/Cards/1404.webp"
+    },
+    {
+      "number": "1405/07",
+      "pokemonIndex": 14,
+      "version": 5,
+      "name": "Timburr",
+      "rarity": "Rare",
+      "image": "Chinese/Gem 5/Cards/1405.webp"
+    },
+    {
+      "number": "1406/07",
+      "pokemonIndex": 14,
+      "version": 6,
+      "name": "Timburr",
+      "rarity": "Double Rare",
+      "image": "Chinese/Gem 5/Cards/1406.webp"
+    },
+    {
+      "number": "1407/07",
+      "pokemonIndex": 14,
+      "version": 7,
+      "name": "Timburr",
+      "rarity": "Triple Rare",
+      "image": "Chinese/Gem 5/Cards/1407.webp"
+    },
+    {
+      "number": "1501/07",
+      "pokemonIndex": 15,
+      "version": 1,
+      "name": "Joltik",
+      "rarity": "Common",
+      "image": "Chinese/Gem 5/Cards/1501.webp"
+    },
+    {
+      "number": "1502/07",
+      "pokemonIndex": 15,
+      "version": 2,
+      "name": "Joltik",
+      "rarity": "Common",
+      "image": "Chinese/Gem 5/Cards/1502.webp"
+    },
+    {
+      "number": "1503/07",
+      "pokemonIndex": 15,
+      "version": 3,
+      "name": "Joltik",
+      "rarity": "Uncommon",
+      "image": "Chinese/Gem 5/Cards/1503.webp"
+    },
+    {
+      "number": "1504/07",
+      "pokemonIndex": 15,
+      "version": 4,
+      "name": "Joltik",
+      "rarity": "Uncommon",
+      "image": "Chinese/Gem 5/Cards/1504.webp"
+    },
+    {
+      "number": "1505/07",
+      "pokemonIndex": 15,
+      "version": 5,
+      "name": "Joltik",
+      "rarity": "Rare",
+      "image": "Chinese/Gem 5/Cards/1505.webp"
+    },
+    {
+      "number": "1506/07",
+      "pokemonIndex": 15,
+      "version": 6,
+      "name": "Joltik",
+      "rarity": "Double Rare",
+      "image": "Chinese/Gem 5/Cards/1506.webp"
+    },
+    {
+      "number": "1507/07",
+      "pokemonIndex": 15,
+      "version": 7,
+      "name": "Joltik",
+      "rarity": "Triple Rare",
+      "image": "Chinese/Gem 5/Cards/1507.webp"
+    },
+    {
+      "number": "1601/07",
+      "pokemonIndex": 16,
+      "version": 1,
+      "name": "Stunfisk",
+      "rarity": "Common",
+      "image": "Chinese/Gem 5/Cards/1601.webp"
+    },
+    {
+      "number": "1602/07",
+      "pokemonIndex": 16,
+      "version": 2,
+      "name": "Stunfisk",
+      "rarity": "Common",
+      "image": "Chinese/Gem 5/Cards/1602.webp"
+    },
+    {
+      "number": "1603/07",
+      "pokemonIndex": 16,
+      "version": 3,
+      "name": "Stunfisk",
+      "rarity": "Uncommon",
+      "image": "Chinese/Gem 5/Cards/1603.webp"
+    },
+    {
+      "number": "1604/07",
+      "pokemonIndex": 16,
+      "version": 4,
+      "name": "Stunfisk",
+      "rarity": "Uncommon",
+      "image": "Chinese/Gem 5/Cards/1604.webp"
+    },
+    {
+      "number": "1605/07",
+      "pokemonIndex": 16,
+      "version": 5,
+      "name": "Stunfisk",
+      "rarity": "Rare",
+      "image": "Chinese/Gem 5/Cards/1605.webp"
+    },
+    {
+      "number": "1606/07",
+      "pokemonIndex": 16,
+      "version": 6,
+      "name": "Stunfisk",
+      "rarity": "Double Rare",
+      "image": "Chinese/Gem 5/Cards/1606.webp"
+    },
+    {
+      "number": "1607/07",
+      "pokemonIndex": 16,
+      "version": 7,
+      "name": "Stunfisk",
+      "rarity": "Triple Rare",
+      "image": "Chinese/Gem 5/Cards/1607.webp"
+    },
+    {
+      "number": "1701/07",
+      "pokemonIndex": 17,
+      "version": 1,
+      "name": "Braviary",
+      "rarity": "Common",
+      "image": "Chinese/Gem 5/Cards/1701.webp"
+    },
+    {
+      "number": "1702/07",
+      "pokemonIndex": 17,
+      "version": 2,
+      "name": "Braviary",
+      "rarity": "Common",
+      "image": "Chinese/Gem 5/Cards/1702.webp"
+    },
+    {
+      "number": "1703/07",
+      "pokemonIndex": 17,
+      "version": 3,
+      "name": "Braviary",
+      "rarity": "Uncommon",
+      "image": "Chinese/Gem 5/Cards/1703.webp"
+    },
+    {
+      "number": "1704/07",
+      "pokemonIndex": 17,
+      "version": 4,
+      "name": "Braviary",
+      "rarity": "Uncommon",
+      "image": "Chinese/Gem 5/Cards/1704.webp"
+    },
+    {
+      "number": "1705/07",
+      "pokemonIndex": 17,
+      "version": 5,
+      "name": "Braviary",
+      "rarity": "Rare",
+      "image": "Chinese/Gem 5/Cards/1705.webp"
+    },
+    {
+      "number": "1706/07",
+      "pokemonIndex": 17,
+      "version": 6,
+      "name": "Braviary",
+      "rarity": "Double Rare",
+      "image": "Chinese/Gem 5/Cards/1706.webp"
+    },
+    {
+      "number": "1707/07",
+      "pokemonIndex": 17,
+      "version": 7,
+      "name": "Braviary",
+      "rarity": "Triple Rare",
+      "image": "Chinese/Gem 5/Cards/1707.webp"
+    },
+    {
+      "number": "1801/07",
+      "pokemonIndex": 18,
+      "version": 1,
+      "name": "Vivillon",
+      "rarity": "Common",
+      "image": "Chinese/Gem 5/Cards/1801.webp"
+    },
+    {
+      "number": "1802/07",
+      "pokemonIndex": 18,
+      "version": 2,
+      "name": "Vivillon",
+      "rarity": "Common",
+      "image": "Chinese/Gem 5/Cards/1802.webp"
+    },
+    {
+      "number": "1803/07",
+      "pokemonIndex": 18,
+      "version": 3,
+      "name": "Vivillon",
+      "rarity": "Uncommon",
+      "image": "Chinese/Gem 5/Cards/1803.webp"
+    },
+    {
+      "number": "1804/07",
+      "pokemonIndex": 18,
+      "version": 4,
+      "name": "Vivillon",
+      "rarity": "Uncommon",
+      "image": "Chinese/Gem 5/Cards/1804.webp"
+    },
+    {
+      "number": "1805/07",
+      "pokemonIndex": 18,
+      "version": 5,
+      "name": "Vivillon",
+      "rarity": "Rare",
+      "image": "Chinese/Gem 5/Cards/1805.webp"
+    },
+    {
+      "number": "1806/07",
+      "pokemonIndex": 18,
+      "version": 6,
+      "name": "Vivillon",
+      "rarity": "Double Rare",
+      "image": "Chinese/Gem 5/Cards/1806.webp"
+    },
+    {
+      "number": "1807/07",
+      "pokemonIndex": 18,
+      "version": 7,
+      "name": "Vivillon",
+      "rarity": "Triple Rare",
+      "image": "Chinese/Gem 5/Cards/1807.webp"
+    },
+    {
+      "number": "1901/07",
+      "pokemonIndex": 19,
+      "version": 1,
+      "name": "Raboot",
+      "rarity": "Common",
+      "image": "Chinese/Gem 5/Cards/1901.webp"
+    },
+    {
+      "number": "1902/07",
+      "pokemonIndex": 19,
+      "version": 2,
+      "name": "Raboot",
+      "rarity": "Common",
+      "image": "Chinese/Gem 5/Cards/1902.webp"
+    },
+    {
+      "number": "1903/07",
+      "pokemonIndex": 19,
+      "version": 3,
+      "name": "Raboot",
+      "rarity": "Uncommon",
+      "image": "Chinese/Gem 5/Cards/1903.webp"
+    },
+    {
+      "number": "1904/07",
+      "pokemonIndex": 19,
+      "version": 4,
+      "name": "Raboot",
+      "rarity": "Uncommon",
+      "image": "Chinese/Gem 5/Cards/1904.webp"
+    },
+    {
+      "number": "1905/07",
+      "pokemonIndex": 19,
+      "version": 5,
+      "name": "Raboot",
+      "rarity": "Rare",
+      "image": "Chinese/Gem 5/Cards/1905.webp"
+    },
+    {
+      "number": "1906/07",
+      "pokemonIndex": 19,
+      "version": 6,
+      "name": "Raboot",
+      "rarity": "Double Rare",
+      "image": "Chinese/Gem 5/Cards/1906.webp"
+    },
+    {
+      "number": "1907/07",
+      "pokemonIndex": 19,
+      "version": 7,
+      "name": "Raboot",
+      "rarity": "Triple Rare",
+      "image": "Chinese/Gem 5/Cards/1907.webp"
+    },
+    {
+      "number": "2001/07",
+      "pokemonIndex": 20,
+      "version": 1,
+      "name": "Applin",
+      "rarity": "Common",
+      "image": "Chinese/Gem 5/Cards/2001.webp"
+    },
+    {
+      "number": "2002/07",
+      "pokemonIndex": 20,
+      "version": 2,
+      "name": "Applin",
+      "rarity": "Common",
+      "image": "Chinese/Gem 5/Cards/2002.webp"
+    },
+    {
+      "number": "2003/07",
+      "pokemonIndex": 20,
+      "version": 3,
+      "name": "Applin",
+      "rarity": "Uncommon",
+      "image": "Chinese/Gem 5/Cards/2003.webp"
+    },
+    {
+      "number": "2004/07",
+      "pokemonIndex": 20,
+      "version": 4,
+      "name": "Applin",
+      "rarity": "Uncommon",
+      "image": "Chinese/Gem 5/Cards/2004.webp"
+    },
+    {
+      "number": "2005/07",
+      "pokemonIndex": 20,
+      "version": 5,
+      "name": "Applin",
+      "rarity": "Rare",
+      "image": "Chinese/Gem 5/Cards/2005.webp"
+    },
+    {
+      "number": "2006/07",
+      "pokemonIndex": 20,
+      "version": 6,
+      "name": "Applin",
+      "rarity": "Double Rare",
+      "image": "Chinese/Gem 5/Cards/2006.webp"
+    },
+    {
+      "number": "2007/07",
+      "pokemonIndex": 20,
+      "version": 7,
+      "name": "Applin",
+      "rarity": "Triple Rare",
+      "image": "Chinese/Gem 5/Cards/2007.webp"
+    },
+    {
+      "number": "2101/07",
+      "pokemonIndex": 21,
+      "version": 1,
+      "name": "Milcery",
+      "rarity": "Common",
+      "image": "Chinese/Gem 5/Cards/2101.webp"
+    },
+    {
+      "number": "2102/07",
+      "pokemonIndex": 21,
+      "version": 2,
+      "name": "Milcery",
+      "rarity": "Common",
+      "image": "Chinese/Gem 5/Cards/2102.webp"
+    },
+    {
+      "number": "2103/07",
+      "pokemonIndex": 21,
+      "version": 3,
+      "name": "Milcery",
+      "rarity": "Uncommon",
+      "image": "Chinese/Gem 5/Cards/2103.webp"
+    },
+    {
+      "number": "2104/07",
+      "pokemonIndex": 21,
+      "version": 4,
+      "name": "Milcery",
+      "rarity": "Uncommon",
+      "image": "Chinese/Gem 5/Cards/2104.webp"
+    },
+    {
+      "number": "2105/07",
+      "pokemonIndex": 21,
+      "version": 5,
+      "name": "Milcery",
+      "rarity": "Rare",
+      "image": "Chinese/Gem 5/Cards/2105.webp"
+    },
+    {
+      "number": "2106/07",
+      "pokemonIndex": 21,
+      "version": 6,
+      "name": "Milcery",
+      "rarity": "Double Rare",
+      "image": "Chinese/Gem 5/Cards/2106.webp"
+    },
+    {
+      "number": "2107/07",
+      "pokemonIndex": 21,
+      "version": 7,
+      "name": "Milcery",
+      "rarity": "Triple Rare",
+      "image": "Chinese/Gem 5/Cards/2107.webp"
+    },
+    {
+      "number": "2201/07",
+      "pokemonIndex": 22,
+      "version": 1,
+      "name": "Floragato",
+      "rarity": "Common",
+      "image": "Chinese/Gem 5/Cards/2201.webp"
+    },
+    {
+      "number": "2202/07",
+      "pokemonIndex": 22,
+      "version": 2,
+      "name": "Floragato",
+      "rarity": "Common",
+      "image": "Chinese/Gem 5/Cards/2202.webp"
+    },
+    {
+      "number": "2203/07",
+      "pokemonIndex": 22,
+      "version": 3,
+      "name": "Floragato",
+      "rarity": "Uncommon",
+      "image": "Chinese/Gem 5/Cards/2203.webp"
+    },
+    {
+      "number": "2204/07",
+      "pokemonIndex": 22,
+      "version": 4,
+      "name": "Floragato",
+      "rarity": "Uncommon",
+      "image": "Chinese/Gem 5/Cards/2204.webp"
+    },
+    {
+      "number": "2205/07",
+      "pokemonIndex": 22,
+      "version": 5,
+      "name": "Floragato",
+      "rarity": "Rare",
+      "image": "Chinese/Gem 5/Cards/2205.webp"
+    },
+    {
+      "number": "2206/07",
+      "pokemonIndex": 22,
+      "version": 6,
+      "name": "Floragato",
+      "rarity": "Double Rare",
+      "image": "Chinese/Gem 5/Cards/2206.webp"
+    },
+    {
+      "number": "2207/07",
+      "pokemonIndex": 22,
+      "version": 7,
+      "name": "Floragato",
+      "rarity": "Triple Rare",
+      "image": "Chinese/Gem 5/Cards/2207.webp"
+    },
+    {
+      "number": "2301/07",
+      "pokemonIndex": 23,
+      "version": 1,
+      "name": "Crocalor",
+      "rarity": "Common",
+      "image": "Chinese/Gem 5/Cards/2301.webp"
+    },
+    {
+      "number": "2302/07",
+      "pokemonIndex": 23,
+      "version": 2,
+      "name": "Crocalor",
+      "rarity": "Common",
+      "image": "Chinese/Gem 5/Cards/2302.webp"
+    },
+    {
+      "number": "2303/07",
+      "pokemonIndex": 23,
+      "version": 3,
+      "name": "Crocalor",
+      "rarity": "Uncommon",
+      "image": "Chinese/Gem 5/Cards/2303.webp"
+    },
+    {
+      "number": "2304/07",
+      "pokemonIndex": 23,
+      "version": 4,
+      "name": "Crocalor",
+      "rarity": "Uncommon",
+      "image": "Chinese/Gem 5/Cards/2304.webp"
+    },
+    {
+      "number": "2305/07",
+      "pokemonIndex": 23,
+      "version": 5,
+      "name": "Crocalor",
+      "rarity": "Rare",
+      "image": "Chinese/Gem 5/Cards/2305.webp"
+    },
+    {
+      "number": "2306/07",
+      "pokemonIndex": 23,
+      "version": 6,
+      "name": "Crocalor",
+      "rarity": "Double Rare",
+      "image": "Chinese/Gem 5/Cards/2306.webp"
+    },
+    {
+      "number": "2307/07",
+      "pokemonIndex": 23,
+      "version": 7,
+      "name": "Crocalor",
+      "rarity": "Triple Rare",
+      "image": "Chinese/Gem 5/Cards/2307.webp"
+    },
+    {
+      "number": "2401/07",
+      "pokemonIndex": 24,
+      "version": 1,
+      "name": "Quaxwell",
+      "rarity": "Common",
+      "image": "Chinese/Gem 5/Cards/2401.webp"
+    },
+    {
+      "number": "2402/07",
+      "pokemonIndex": 24,
+      "version": 2,
+      "name": "Quaxwell",
+      "rarity": "Common",
+      "image": "Chinese/Gem 5/Cards/2402.webp"
+    },
+    {
+      "number": "2403/07",
+      "pokemonIndex": 24,
+      "version": 3,
+      "name": "Quaxwell",
+      "rarity": "Uncommon",
+      "image": "Chinese/Gem 5/Cards/2403.webp"
+    },
+    {
+      "number": "2404/07",
+      "pokemonIndex": 24,
+      "version": 4,
+      "name": "Quaxwell",
+      "rarity": "Uncommon",
+      "image": "Chinese/Gem 5/Cards/2404.webp"
+    },
+    {
+      "number": "2405/07",
+      "pokemonIndex": 24,
+      "version": 5,
+      "name": "Quaxwell",
+      "rarity": "Rare",
+      "image": "Chinese/Gem 5/Cards/2405.webp"
+    },
+    {
+      "number": "2406/07",
+      "pokemonIndex": 24,
+      "version": 6,
+      "name": "Quaxwell",
+      "rarity": "Double Rare",
+      "image": "Chinese/Gem 5/Cards/2406.webp"
+    },
+    {
+      "number": "2407/07",
+      "pokemonIndex": 24,
+      "version": 7,
+      "name": "Quaxwell",
+      "rarity": "Triple Rare",
+      "image": "Chinese/Gem 5/Cards/2407.webp"
+    },
+    {
+      "number": "2501/07",
+      "pokemonIndex": 25,
+      "version": 1,
+      "name": "Ceruledge",
+      "rarity": "Common",
+      "image": "Chinese/Gem 5/Cards/2501.webp"
+    },
+    {
+      "number": "2502/07",
+      "pokemonIndex": 25,
+      "version": 2,
+      "name": "Ceruledge",
+      "rarity": "Common",
+      "image": "Chinese/Gem 5/Cards/2502.webp"
+    },
+    {
+      "number": "2503/07",
+      "pokemonIndex": 25,
+      "version": 3,
+      "name": "Ceruledge",
+      "rarity": "Uncommon",
+      "image": "Chinese/Gem 5/Cards/2503.webp"
+    },
+    {
+      "number": "2504/07",
+      "pokemonIndex": 25,
+      "version": 4,
+      "name": "Ceruledge",
+      "rarity": "Uncommon",
+      "image": "Chinese/Gem 5/Cards/2504.webp"
+    },
+    {
+      "number": "2505/07",
+      "pokemonIndex": 25,
+      "version": 5,
+      "name": "Ceruledge",
+      "rarity": "Rare",
+      "image": "Chinese/Gem 5/Cards/2505.webp"
+    },
+    {
+      "number": "2506/07",
+      "pokemonIndex": 25,
+      "version": 6,
+      "name": "Ceruledge",
+      "rarity": "Double Rare",
+      "image": "Chinese/Gem 5/Cards/2506.webp"
+    },
+    {
+      "number": "2507/07",
+      "pokemonIndex": 25,
+      "version": 7,
+      "name": "Ceruledge",
+      "rarity": "Triple Rare",
+      "image": "Chinese/Gem 5/Cards/2507.webp"
+    },
+    {
+      "number": "2601/07",
+      "pokemonIndex": 26,
+      "version": 1,
+      "name": "Wattrel",
+      "rarity": "Common",
+      "image": "Chinese/Gem 5/Cards/2601.webp"
+    },
+    {
+      "number": "2602/07",
+      "pokemonIndex": 26,
+      "version": 2,
+      "name": "Wattrel",
+      "rarity": "Common",
+      "image": "Chinese/Gem 5/Cards/2602.webp"
+    },
+    {
+      "number": "2603/07",
+      "pokemonIndex": 26,
+      "version": 3,
+      "name": "Wattrel",
+      "rarity": "Uncommon",
+      "image": "Chinese/Gem 5/Cards/2603.webp"
+    },
+    {
+      "number": "2604/07",
+      "pokemonIndex": 26,
+      "version": 4,
+      "name": "Wattrel",
+      "rarity": "Uncommon",
+      "image": "Chinese/Gem 5/Cards/2604.webp"
+    },
+    {
+      "number": "2605/07",
+      "pokemonIndex": 26,
+      "version": 5,
+      "name": "Wattrel",
+      "rarity": "Rare",
+      "image": "Chinese/Gem 5/Cards/2605.webp"
+    },
+    {
+      "number": "2606/07",
+      "pokemonIndex": 26,
+      "version": 6,
+      "name": "Wattrel",
+      "rarity": "Double Rare",
+      "image": "Chinese/Gem 5/Cards/2606.webp"
+    },
+    {
+      "number": "2607/07",
+      "pokemonIndex": 26,
+      "version": 7,
+      "name": "Wattrel",
+      "rarity": "Triple Rare",
+      "image": "Chinese/Gem 5/Cards/2607.webp"
+    },
+    {
+      "number": "2701/07",
+      "pokemonIndex": 27,
+      "version": 1,
+      "name": "Cetitan",
+      "rarity": "Common",
+      "image": "Chinese/Gem 5/Cards/2701.webp"
+    },
+    {
+      "number": "2702/07",
+      "pokemonIndex": 27,
+      "version": 2,
+      "name": "Cetitan",
+      "rarity": "Common",
+      "image": "Chinese/Gem 5/Cards/2702.webp"
+    },
+    {
+      "number": "2703/07",
+      "pokemonIndex": 27,
+      "version": 3,
+      "name": "Cetitan",
+      "rarity": "Uncommon",
+      "image": "Chinese/Gem 5/Cards/2703.webp"
+    },
+    {
+      "number": "2704/07",
+      "pokemonIndex": 27,
+      "version": 4,
+      "name": "Cetitan",
+      "rarity": "Uncommon",
+      "image": "Chinese/Gem 5/Cards/2704.webp"
+    },
+    {
+      "number": "2705/07",
+      "pokemonIndex": 27,
+      "version": 5,
+      "name": "Cetitan",
+      "rarity": "Rare",
+      "image": "Chinese/Gem 5/Cards/2705.webp"
+    },
+    {
+      "number": "2706/07",
+      "pokemonIndex": 27,
+      "version": 6,
+      "name": "Cetitan",
+      "rarity": "Double Rare",
+      "image": "Chinese/Gem 5/Cards/2706.webp"
+    },
+    {
+      "number": "2707/07",
+      "pokemonIndex": 27,
+      "version": 7,
+      "name": "Cetitan",
+      "rarity": "Triple Rare",
+      "image": "Chinese/Gem 5/Cards/2707.webp"
+    },
+    {
+      "number": "2801/07",
+      "pokemonIndex": 28,
+      "version": 1,
+      "name": "Tatsugiri",
+      "rarity": "Common",
+      "image": "Chinese/Gem 5/Cards/2801.webp"
+    },
+    {
+      "number": "2802/07",
+      "pokemonIndex": 28,
+      "version": 2,
+      "name": "Tatsugiri",
+      "rarity": "Common",
+      "image": "Chinese/Gem 5/Cards/2802.webp"
+    },
+    {
+      "number": "2803/07",
+      "pokemonIndex": 28,
+      "version": 3,
+      "name": "Tatsugiri",
+      "rarity": "Uncommon",
+      "image": "Chinese/Gem 5/Cards/2803.webp"
+    },
+    {
+      "number": "2804/07",
+      "pokemonIndex": 28,
+      "version": 4,
+      "name": "Tatsugiri",
+      "rarity": "Uncommon",
+      "image": "Chinese/Gem 5/Cards/2804.webp"
+    },
+    {
+      "number": "2805/07",
+      "pokemonIndex": 28,
+      "version": 5,
+      "name": "Tatsugiri",
+      "rarity": "Rare",
+      "image": "Chinese/Gem 5/Cards/2805.webp"
+    },
+    {
+      "number": "2806/07",
+      "pokemonIndex": 28,
+      "version": 6,
+      "name": "Tatsugiri",
+      "rarity": "Double Rare",
+      "image": "Chinese/Gem 5/Cards/2806.webp"
+    },
+    {
+      "number": "2807/07",
+      "pokemonIndex": 28,
+      "version": 7,
+      "name": "Tatsugiri",
+      "rarity": "Triple Rare",
+      "image": "Chinese/Gem 5/Cards/2807.webp"
+    }
+  ]
+}
