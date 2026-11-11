@@ -112,8 +112,15 @@
     button {
       position: absolute; top: 50%; left: 50%; width: 190px; aspect-ratio: 300/419; border: 0; padding: 0; background: none; border-radius: 9px;
       transform-origin: 50% 120%;
-      transition: transform .45s cubic-bezier(.2,.8,.2,1), filter .3s;
-      filter: drop-shadow(0 18px 30px rgb(0 0 0 / .5));
+      transition: transform .45s cubic-bezier(.2,.8,.2,1), box-shadow .3s, filter .3s;
+      /* box-shadow instead of filter: drop-shadow — same look on a plain
+         rounded-rect image, much cheaper for the browser to composite
+         across 5 overlapping, constantly-transformed cards. will-change
+         gives each its own layer up front rather than promoting it
+         mid-swipe/hover, which is where a lot of the jank was coming
+         from. */
+      box-shadow: 0 18px 30px rgb(0 0 0 / .5);
+      will-change: transform;
     }
     img { width: 100%; height: 100%; border-radius: 9px; display: block; }
     /* Wider spacing than the original preview — less overlap between
@@ -146,7 +153,7 @@
            lag on mobile when it lived on the shared base rule instead. */
         transition: transform .45s cubic-bezier(.2,.8,.2,1), filter .3s, z-index 0s .12s;
       }
-      button:hover { z-index: 5; filter: drop-shadow(0 24px 40px rgb(0 0 0 / .6)) brightness(1.05); }
+      button:hover { z-index: 5; box-shadow: 0 24px 40px rgb(0 0 0 / .6); filter: brightness(1.05); }
     }
   }
   .fan-cap { position: absolute; bottom: 0; left: 0; right: 0; text-align: center; font-size: 12px; color: var(--hero-dim); }
@@ -155,8 +162,12 @@
     position: sticky;
     top: var(--header-h);
     z-index: 20;
-    background: color-mix(in srgb, var(--bg) 92%, transparent);
-    backdrop-filter: blur(10px);
+    /* Solid instead of blurred — this sits directly under the real
+       site's own sticky header, which also blurs. Two live
+       backdrop-filters recalculating every scroll frame, stacked on top
+       of each other, is one of the more common causes of scroll jank;
+       a plain opaque background costs the browser nothing per frame. */
+    background: var(--bg);
     border-bottom: 1px solid var(--line);
 
     .wrap { display: flex; flex-wrap: wrap; gap: 10px 14px; align-items: center; padding-block: 12px; }
