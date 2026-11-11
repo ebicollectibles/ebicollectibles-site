@@ -13,26 +13,26 @@ export function RarityTag({ rarity }: { rarity: string }) {
 // One thumbnail, shared by the "By Pokémon" rail and the "All cards" grid.
 // Renders exactly one rarity tag (symbol + name) in the meta row — the
 // Pokémon's own name is only shown here in the grid view, since in the
-// ladder it's already the row's own heading.
+// ladder it's already the row's own heading. Uses the card's own suffix
+// (not a page-wide one) since a catalog block — Trainers, Energy — can
+// use a different version denominator than the rest of the set.
 export function CardThumb({
   card,
   dimmed,
   showName,
   have,
-  versionSuffix,
   onOpen,
 }: {
   card: Card
   dimmed: boolean
   showName: boolean
   have: boolean
-  versionSuffix: string
   onOpen: (id: string) => void
 }) {
   return (
     <button type="button" className={`card${dimmed ? ' dim' : ''}`} onClick={() => onOpen(card.id)}>
       <span className="img">
-        <img loading="lazy" src={card.image} alt={`${card.name} ${card.id}/${versionSuffix}, ${card.rarity}`} />
+        <img loading="lazy" src={card.image} alt={`${card.name} ${card.id}/${card.suffix}, ${card.rarity}`} />
         {have && (
           <span className="own" aria-label="In your collection">
             ✓
@@ -40,7 +40,7 @@ export function CardThumb({
         )}
       </span>
       <span className="meta">
-        <span className="no">{card.id}/{versionSuffix}</span>
+        <span className="no">{card.id}/{card.suffix}</span>
         <RarityTag rarity={card.rarity} />
       </span>
       {showName && <span className="nm">{card.name}</span>}

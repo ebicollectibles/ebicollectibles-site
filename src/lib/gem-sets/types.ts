@@ -23,15 +23,28 @@ export interface GemSetData {
   exclusiveCardNumbers: string[]
   source: string
   cards: RawCard[]
+  // pokemonIndex values whose cards are a CATALOG of distinct items sharing
+  // a numbering prefix (Trainer cards, Energy cards) rather than one
+  // creature's rarity ladder — e.g. Gem Vol 3's Trainer block (prefix 19:
+  // Super Rod, Nest Ball, Switch, Arven — four different cards, not four
+  // versions of one) and Energy block (prefix 20: three energy types,
+  // each printed twice, interleaved rather than adjacent). Within one of
+  // these indexes, cards are grouped by matching `name` instead of by
+  // being adjacent in the list. Omit entirely for a normal set — every
+  // pokemonIndex is grouped the original way (by prefix, adjacency only).
+  catalogGroups?: number[]
 }
 
 export interface Card {
   id: string // 4-digit "pokemon index + version", e.g. "0307"
+  pokemonIndex: number
   name: string
   owner: string | null // "Team Rocket", "Misty", etc. — null when the card has no trainer prefix
   mon: string // the Pokémon's own name, with any "X's " prefix stripped
   rarity: string
   version: number
+  suffix: string // this card's own version denominator, e.g. "07" or, for a
+  // catalog card in a differently-sized block (Trainers, Energy), "04"/"06"
   image: string
   exclusive: boolean
 }
@@ -62,6 +75,15 @@ export interface GemSetConfig {
   metaDescription: string
   ogTitle: string
   ogDescription: string
+  // Overrides for copy/data the normal auto-derivation can't state
+  // accurately for a structurally irregular set (e.g. Gem Vol 3, whose
+  // Pokémon aren't a uniform 28×7, and whose "ex" cards repeat a rarity
+  // at two non-adjacent version numbers). Omit all three for a normal
+  // set — the auto-derived hero sentence, fact tile and odds table are
+  // used exactly as before.
+  heroLede?: string
+  pokemonFact?: string // the hero's "Pokémon" fact tile value, e.g. "18 × 7"
+  rarityVersionLabelsOverride?: Record<string, string>
 }
 
 export interface BuiltGemSetData {

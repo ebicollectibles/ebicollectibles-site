@@ -28,7 +28,7 @@ export function GemSetPage({
   openCardId: string | null
   navigateToCard: (id: string | undefined) => Promise<void>
 }) {
-  const { cards, cardById, groups, versionSuffix, versionsPerMon, monCount, rarityVersionLabels } = data
+  const { cards, cardById, groups, versionsPerMon, monCount, rarityVersionLabels } = data
 
   const [view, setView] = React.useState<'ladder' | 'grid' | 'exclusives' | 'list'>('ladder')
   const [query, setQuery] = React.useState('')
@@ -157,8 +157,8 @@ export function GemSetPage({
 
   const q = query.trim().toLowerCase()
   const match = React.useCallback(
-    (c: Card) => (rarities.size === 0 || rarities.has(c.rarity)) && (!q || `${c.name} ${c.id} ${c.id}/${versionSuffix}`.toLowerCase().includes(q)),
-    [rarities, q, versionSuffix],
+    (c: Card) => (rarities.size === 0 || rarities.has(c.rarity)) && (!q || `${c.name} ${c.id} ${c.id}/${c.suffix}`.toLowerCase().includes(q)),
+    [rarities, q],
   )
   const shown = React.useMemo(() => cards.filter(match), [cards, match])
   const exclusiveShown = React.useMemo(() => shown.filter((c) => c.exclusive), [shown])
@@ -237,6 +237,18 @@ export function GemSetPage({
   const ownedCount = have.size
   const topRarity = raw.rarityOrder[raw.rarityOrder.length - 1]
   const releasedLabel = formatReleaseDate(raw.releaseDate)
+  const heroLede =
+    config.heroLede ??
+    `All ${raw.cardCount} cards in ${raw.name}: ${monCount} Pokémon, each printed in ${versionsPerMon} versions from ${raw.rarityOrder[0]} up to a full-art ${topRarity}. Tap any card for a closer look and every version beside it.`
+  const pokemonFact = config.pokemonFact ?? `${monCount} × ${versionsPerMon}`
+  const oddsLabels = config.rarityVersionLabelsOverride ?? rarityVersionLabels
+  // The group openCard actually belongs to — found by containment, not by
+  // matching groupId alone, since a catalog block (Trainers, Energy) can
+  // split one numbering prefix into several same-groupId groups (e.g. two
+  // printings of "Basic Metal Energy" share prefix "20" with two other
+  // energy types' groups).
+  const openGroup = openCard ? groups.find((g) => g.cards.some((c) => c.id === openCard.id)) ?? null : null
+  const openLocalVersion = openGroup && openCard ? openGroup.cards.findIndex((c) => c.id === openCard.id) + 1 : 0
 
   return (
     <div
@@ -261,10 +273,7 @@ export function GemSetPage({
               {raw.name}
               <span>Complete card list &amp; checklist</span>
             </h1>
-            <p className="lede">
-              All {raw.cardCount} cards in {raw.name}: {monCount} Pokémon, each printed in {versionsPerMon} versions from {raw.rarityOrder[0]} up
-              to a full-art {topRarity}. Tap any card for a closer look and every version beside it.
-            </p>
+            <p className="lede">{heroLede}</p>
             <dl className="facts">
               <div>
                 <dt>Set code</dt>
@@ -280,9 +289,7 @@ export function GemSetPage({
               </div>
               <div>
                 <dt>Pokémon</dt>
-                <dd>
-                  {monCount} × {versionsPerMon}
-                </dd>
+                <dd>{pokemonFact}</dd>
               </div>
             </dl>
             <div className="hero-cta">
@@ -323,9 +330,9 @@ export function GemSetPage({
                     }
                     open(id)
                   }}
-                  aria-label={`${c.name} ${id}/${versionSuffix}`}
+                  aria-label={`${c.name} ${id}/${c.suffix}`}
                 >
-                  <img src={c.image} alt={`${c.name} full art, ${raw.name} ${id}/${versionSuffix}`} />
+                  <img src={c.image} alt={`${c.name} full art, ${raw.name} ${id}/${c.suffix}`} />
                   {c.exclusive && <span className="fan-excl">Exclusive</span>}
                 </button>
               )
@@ -403,7 +410,7 @@ export function GemSetPage({
               const ownedInGroup = g.cards.filter((c) => have.has(c.id)).length
               const hasExclusive = g.cards.some((c) => c.exclusive)
               return (
-                <section className="ladder" key={g.groupId} aria-label={c0.mon}>
+                <section className="ladder" key={c0.id} aria-label={c0.mon}>
                   <div className="lhead">
                     <span className="lno">#{g.groupId}</span>
                     <h2 className="lname">
@@ -411,13 +418,13 @@ export function GemSetPage({
                       {c0.mon}
                     </h2>
                     <span className="lmeta">
-                      {versionsPerMon} versions · {ownedInGroup} owned
+                      {g.cards.length} versions · {ownedInGroup} owned
                     </span>
                     {hasExclusive && <span className="excl">Chinese Exclusive</span>}
                   </div>
                   <div className="rail">
                     {g.cards.map((c) => (
-                      <CardThumb key={c.id} card={c} dimmed={!match(c)} showName={false} have={have.has(c.id)} versionSuffix={versionSuffix} onOpen={open} />
+                      <CardThumb key={c.id} card={c} dimmed={!match(c)} showName={false} have={have.has(c.id)} onOpen={open} />
                     ))}
                   </div>
                 </section>
@@ -426,7 +433,7 @@ export function GemSetPage({
         ) : view === 'grid' ? (
           <div className="grid">
             {shown.map((c) => (
-              <CardThumb key={c.id} card={c} dimmed={false} showName={true} have={have.has(c.id)} versionSuffix={versionSuffix} onOpen={open} />
+              <CardThumb key={c.id} card={c} dimmed={false} showName={true} have={have.has(c.id)} onOpen={open} />
             ))}
           </div>
         ) : view === 'exclusives' ? (
@@ -435,7 +442,7 @@ export function GemSetPage({
           ) : (
             <div className="grid">
               {exclusiveShown.map((c) => (
-                <CardThumb key={c.id} card={c} dimmed={false} showName={true} have={have.has(c.id)} versionSuffix={versionSuffix} onOpen={open} />
+                <CardThumb key={c.id} card={c} dimmed={false} showName={true} have={have.has(c.id)} onOpen={open} />
               ))}
             </div>
           )
@@ -460,14 +467,14 @@ export function GemSetPage({
                         className="have"
                         checked={have.has(c.id)}
                         onChange={() => toggleHave(c.id)}
-                        aria-label={`Have ${c.name} ${c.id}/${versionSuffix}`}
+                        aria-label={`Have ${c.name} ${c.id}/${c.suffix}`}
                       />
                     </td>
                     <td className="thumb">
                       <img loading="lazy" src={c.image} alt="" />
                     </td>
                     <td className="mono">
-                      {c.id}/{versionSuffix}
+                      {c.id}/{c.suffix}
                     </td>
                     <td>
                       <button type="button" className="lnk" onClick={() => open(c.id)}>
@@ -506,7 +513,7 @@ export function GemSetPage({
                     <td>
                       <RarityTag rarity={rarity} />
                     </td>
-                    <td className="mono">{rarityVersionLabels[rarity]}</td>
+                    <td className="mono">{oddsLabels[rarity]}</td>
                     <td className="mono">{cards.filter((c) => c.rarity === rarity).length}</td>
                   </tr>
                 ))}
@@ -532,7 +539,7 @@ export function GemSetPage({
               ×
             </button>
             <div className="lb-art">
-              <img src={openCard.image} alt={`${openCard.name} ${openCard.id}/${versionSuffix}, ${openCard.rarity}, ${raw.name}`} />
+              <img src={openCard.image} alt={`${openCard.name} ${openCard.id}/${openCard.suffix}, ${openCard.rarity}, ${raw.name}`} />
             </div>
             <div className="lb-info">
               <div className="lb-nav">
@@ -550,7 +557,7 @@ export function GemSetPage({
               <dl className="lb-dl">
                 <dt>Number</dt>
                 <dd className="mono">
-                  {openCard.id}/{versionSuffix}
+                  {openCard.id}/{openCard.suffix}
                 </dd>
                 <dt>Rarity</dt>
                 <dd>
@@ -558,8 +565,8 @@ export function GemSetPage({
                 </dd>
                 <dt>Version</dt>
                 <dd>
-                  {openCard.version} of {versionsPerMon}
-                  {openCard.version === versionsPerMon ? ' · full art' : ''}
+                  {openLocalVersion} of {openGroup?.cards.length ?? 1}
+                  {openCard.rarity === topRarity ? ' · full art' : ''}
                   {openCard.exclusive ? ' · Chinese exclusive' : ''}
                 </dd>
                 <dt>Set</dt>
@@ -567,15 +574,13 @@ export function GemSetPage({
                   {raw.name} · {raw.code}
                 </dd>
               </dl>
-              <div className="sib-h">All {versionsPerMon} versions</div>
+              <div className="sib-h">All {openGroup?.cards.length ?? 1} versions</div>
               <div className="sibs">
-                {groups
-                  .find((g) => g.groupId === openCard.id.slice(0, 2))!
-                  .cards.map((sib) => (
-                    <button key={sib.id} type="button" aria-current={sib.id === openCard.id} aria-label={`Version ${sib.version}, ${sib.rarity}`} onClick={() => open(sib.id)}>
-                      <img src={sib.image} alt="" />
-                    </button>
-                  ))}
+                {(openGroup?.cards ?? []).map((sib, i) => (
+                  <button key={sib.id} type="button" aria-current={sib.id === openCard.id} aria-label={`Version ${i + 1}, ${sib.rarity}`} onClick={() => open(sib.id)}>
+                    <img src={sib.image} alt="" />
+                  </button>
+                ))}
               </div>
               <label style={{ display: 'flex', gap: 8, alignItems: 'center', fontSize: 14 }}>
                 <input type="checkbox" className="have" checked={have.has(openCard.id)} onChange={() => toggleHave(openCard.id)} />
