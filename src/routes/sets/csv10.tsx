@@ -39,10 +39,10 @@ const config: GemSetConfig = {
   routePath: '/sets/csv10',
   storageKey: 'csv10-have',
   productId: 'pokemon-chinese-chasing-glory-slim-booster-box',
-  // Team Rocket's Mewtwo ex's SAR (the set's headline Pokémon — Team
-  // Rocket is the main theme) centered, flanked by two more Special Art
-  // Rares and this set's Chinese exclusive, Brock's Scouting.
-  fanIds: ['268', '264', '279', '269', '276'],
+  // This set's Chinese exclusive, Brock's Scouting, centered — flanked
+  // by Team Rocket's Mewtwo ex (the set's headline Pokémon, Team Rocket
+  // is the main theme) and two more Special Art Rares.
+  fanIds: ['268', '264', '276', '269', '279'],
   fanCaption: "The set's top chase cards",
   // Blaze orange and ember-black, from the set's own "Chasing Glory"
   // logo gradient — warmer than White Flare's flame red, and distinct
