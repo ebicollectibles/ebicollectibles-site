@@ -296,8 +296,24 @@ function GemVol7Page() {
   const shown = React.useMemo(() => cards.filter(match), [match])
 
   const openCard = cardById.get(search.card ?? '') ?? null
-  const open = (id: string) => navigate({ to: '/sets/gem-vol-7', search: (prev) => ({ ...prev, card: id }), replace: true })
-  const close = () => navigate({ to: '/sets/gem-vol-7', search: (prev) => ({ ...prev, card: undefined }), replace: true })
+  // The router's scrollRestoration is keyed to the exact URL, search
+  // params included — so going from ?card=X back to no ?card lands on
+  // wherever that bare URL last scrolled to (usually nowhere, i.e. the
+  // top), not back to where the page was before the card opened. Saved
+  // here instead, and reapplied after the navigation settles, so closing
+  // (or stepping between sibling cards, which also goes through open())
+  // leaves the page exactly where the user left it.
+  const scrollYRef = React.useRef(0)
+  const open = (id: string) => {
+    if (!openCard) scrollYRef.current = window.scrollY
+    navigate({ to: '/sets/gem-vol-7', search: (prev) => ({ ...prev, card: id }), replace: true }).then(() => {
+      window.scrollTo(0, scrollYRef.current)
+    })
+  }
+  const close = () =>
+    navigate({ to: '/sets/gem-vol-7', search: (prev) => ({ ...prev, card: undefined }), replace: true }).then(() => {
+      window.scrollTo(0, scrollYRef.current)
+    })
   const step = (dir: 1 | -1) => {
     if (!openCard) return
     const list = shown.length > 0 ? shown : cards
