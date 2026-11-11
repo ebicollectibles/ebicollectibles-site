@@ -204,7 +204,7 @@ export function Header({
             )}
           </div>
           <Link to="/sets" style={{ color: navColor(pathname.startsWith('/sets')), padding: '4px 0' }}>
-            Card Lists
+            Sets
           </Link>
           {SHOW_ACRYLICS && (
             <Link
@@ -347,7 +347,7 @@ export function Header({
             Home
           </Link>
           <Link to="/sets" style={{ color: navColor(pathname.startsWith('/sets')), padding: '10px 0', borderBottom: '1px solid #f0f2f4' }}>
-            Card Lists
+            Sets
           </Link>
           <Link to="/shop" search={{ category: 'Chinese Pokémon Products' }} style={{ color: navColor(pathname === '/shop'), padding: '10px 0', borderBottom: '1px solid #f0f2f4' }}>
             All Pokemon (Chinese)

@@ -7,7 +7,7 @@ const SITE_URL = 'https://ebicollectibles.com'
 const itemListJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'ItemList',
-  name: 'Pokémon Card Lists',
+  name: 'Pokémon Sets',
   numberOfItems: GEM_SETS.length,
   itemListElement: GEM_SETS.map((s, i) => ({
     '@type': 'ListItem',
@@ -27,12 +27,12 @@ function formatReleaseDate(iso: string): string {
 export const Route = createFileRoute('/sets/')({
   head: () => ({
     meta: [
-      { title: 'Pokémon Card Lists | EBI Collectibles' },
+      { title: 'Pokémon Sets | EBI Collectibles' },
       {
         name: 'description',
         content: 'Browse every Simplified Chinese Pokémon TCG release from EBI Collectibles — full card lists, rarities and checklists for every Gem Set and officially-licensed set we carry.',
       },
-      { property: 'og:title', content: 'Pokémon Card Lists' },
+      { property: 'og:title', content: 'Pokémon Sets' },
       { property: 'og:description', content: 'Every card in every Simplified Chinese set we carry — browse, filter and track what you own.' },
       { property: 'og:image', content: GEM_SETS[0].heroImage },
       { property: 'og:url', content: `${SITE_URL}/sets` },
@@ -56,10 +56,10 @@ function SetsIndexPage() {
           <div className="crumbs">
             <Link to="/shop">Shop</Link>
             <span>/</span>
-            <span>Card Lists</span>
+            <span>Sets</span>
           </div>
           <div className="eyebrow">Simplified Chinese · Pokémon TCG</div>
-          <h1>Pokémon card lists</h1>
+          <h1>Pokémon sets</h1>
           <p className="lede">
             Every set we carry, every card. Browse by Pokémon, filter by rarity, and track your own collection — pick a set below to dive in.
           </p>
@@ -72,10 +72,11 @@ function SetsIndexPage() {
             <Link key={s.slug} className="card" to={s.path}>
               <div className="card-art" style={{ '--glow-1': s.glow1, '--glow-2': s.glow2 } as React.CSSProperties}>
                 {s.preorder && <span className="card-preorder">Preorder</span>}
+                <span className="card-code">{s.code}</span>
                 <img src={s.heroImage} alt={s.heroAlt} loading="lazy" />
               </div>
               <div className="card-body">
-                <span className="card-series">{s.series} · {s.code}</span>
+                <span className="card-series">{s.series}</span>
                 <h2 className="card-name">{s.name}</h2>
                 <p className="card-tagline">{s.tagline}</p>
                 <div className="card-meta">
