@@ -79,7 +79,6 @@ export const GEM_SETS: GemSetSummary[] = [
     heroAlt: "Misty's Psyduck full art",
     glow1: 'rgb(138 61 120 / .30)',
     glow2: 'rgb(58 110 165 / .25)',
-    preorder: true,
   },
   {
     slug: 'gem-vol-6',

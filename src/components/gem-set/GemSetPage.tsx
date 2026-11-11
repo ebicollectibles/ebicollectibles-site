@@ -422,14 +422,6 @@ export function GemSetPage({
             <span>
               <b>{shown.length}</b> of {raw.cardCount} cards
             </span>
-            <span className="progress">
-              <span>
-                You have {ownedCount} / {raw.cardCount}
-              </span>
-              <i>
-                <s style={{ width: `${(ownedCount / raw.cardCount) * 100}%` }} />
-              </i>
-            </span>
           </div>
         </div>
       </div>
@@ -576,10 +568,6 @@ export function GemSetPage({
                   </button>
                 ))}
               </div>
-              <label style={{ display: 'flex', gap: 8, alignItems: 'center', fontSize: 14 }}>
-                <input type="checkbox" className="have" checked={have.has(openCard.id)} onChange={() => toggleHave(openCard.id)} />
-                I have this card
-              </label>
               <div className="lb-actions">
                 {config.productId ? (
                   <Link className="btn btn-dark" to="/products/$id" params={{ id: config.productId }}>
