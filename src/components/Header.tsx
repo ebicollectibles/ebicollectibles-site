@@ -200,12 +200,12 @@ export function Header({
                 <Link to="/shop" search={{ subcategory: 'Special Products' }} style={{ display: 'block', padding: '9px 14px', fontSize: 13, color: '#3d4753', whiteSpace: 'nowrap' }}>
                   Special Products
                 </Link>
-                <Link to="/sets" style={{ display: 'block', padding: '9px 14px', fontSize: 13, color: '#3d4753', whiteSpace: 'nowrap', borderTop: '1px solid #f0f2f4' }}>
-                  Card Lists
-                </Link>
               </div>
             )}
           </div>
+          <Link to="/sets" style={{ color: navColor(pathname.startsWith('/sets')), padding: '4px 0' }}>
+            Card Lists
+          </Link>
           {SHOW_ACRYLICS && (
             <Link
               to="/shop"
@@ -346,6 +346,9 @@ export function Header({
           <Link to="/" style={{ color: navColor(pathname === '/'), padding: '10px 0', borderBottom: '1px solid #f0f2f4' }}>
             Home
           </Link>
+          <Link to="/sets" style={{ color: navColor(pathname.startsWith('/sets')), padding: '10px 0', borderBottom: '1px solid #f0f2f4' }}>
+            Card Lists
+          </Link>
           <Link to="/shop" search={{ category: 'Chinese Pokémon Products' }} style={{ color: navColor(pathname === '/shop'), padding: '10px 0', borderBottom: '1px solid #f0f2f4' }}>
             All Pokemon (Chinese)
           </Link>
@@ -363,9 +366,6 @@ export function Header({
           </Link>
           <Link to="/shop" search={{ subcategory: 'Special Products' }} style={{ color: '#5a6875', padding: '10px 0', borderBottom: '1px solid #f0f2f4' }}>
             Special Products
-          </Link>
-          <Link to="/sets" style={{ color: navColor(pathname.startsWith('/sets')), padding: '10px 0', borderBottom: '1px solid #f0f2f4' }}>
-            Card Lists
           </Link>
           {SHOW_ACRYLICS && (
             <Link
