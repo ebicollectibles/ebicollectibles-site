@@ -225,6 +225,16 @@ function GemVol7Page() {
       setFanIndex((i) => (i + (dx < 0 ? 1 : -1) + FAN_IDS.length) % FAN_IDS.length)
       justSwipedRef.current = true
       e.preventDefault()
+      // preventDefault() here also suppresses the synthetic click browsers
+      // fire after a touch, which is the point — but that click was the
+      // only thing resetting this flag, so without its own timeout it
+      // stayed stuck true forever after the first swipe, silently
+      // swallowing every tap after that (not just the one right after
+      // the swipe). This clears it independently of whether any click
+      // ever fires.
+      window.setTimeout(() => {
+        justSwipedRef.current = false
+      }, 400)
     }
   }
   // One fixed slot per card — same rotate/offset/lift desktop's own
