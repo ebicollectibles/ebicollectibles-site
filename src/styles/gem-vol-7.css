@@ -329,20 +329,9 @@
     .lmeta { margin-top: 0; }
     .rail { grid-template-columns: repeat(7, 118px); }
     .about .wrap { grid-template-columns: minmax(0, 1fr); gap: 32px; }
-    /* Stacking the art above the info (rather than side by side) made the
-       popup taller than one screen on a modern phone, needing an internal
-       scroll to see everything below the image — shrinking the image and
-       tightening the info column's own spacing gets the whole thing back
-       to fitting in one view on something like an iPhone 17 Pro, without
-       losing any of the content. */
     .lb-panel { grid-template-columns: minmax(0, 1fr); }
-    .lb-art { padding: 14px; }
-    .lb-art img { max-width: 150px; }
-    .lb-info { padding: 16px 18px 14px; gap: 9px; }
-    .lb-info h2 { font-size: 21px; }
-    .lb-dl { gap: 4px 14px; font-size: 13px; }
-    .sibs { gap: 5px; }
-    .lb-actions { padding-top: 2px; }
+    .lb-art { padding: 20px; }
+    .lb-art img { max-width: 230px; }
   }
   @media (max-width: 560px) {
     .facts { grid-template-columns: repeat(2, auto); }
