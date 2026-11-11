@@ -33,10 +33,21 @@ export interface GemSetData {
   // being adjacent in the list. Omit entirely for a normal set — every
   // pokemonIndex is grouped the original way (by prefix, adjacency only).
   catalogGroups?: number[]
+  // True for a standard officially-numbered set (Black Bolt, White Flare)
+  // rather than a Gem-style per-Pokémon ladder: every card has its own
+  // unique collector number, and the same Pokémon's rarer treatments
+  // (Art Rare, Super Rare, ...) sit at unrelated numbers far from its
+  // main-set card, not adjacent to it the way a Gem ladder's versions
+  // are. Cards are grouped by matching `name` across the ENTIRE set
+  // (ignoring number adjacency and catalogGroups) instead. Mutually
+  // exclusive with catalogGroups — a set is either Gem-shaped or not.
+  groupByName?: boolean
 }
 
 export interface Card {
-  id: string // 4-digit "pokemon index + version", e.g. "0307"
+  id: string // the part of `number` before the slash — 4-digit "pokemon
+  // index + version" for a Gem set (e.g. "0307"), or a 3-digit collector
+  // number for a standard numbered set (e.g. "087")
   pokemonIndex: number
   name: string
   owner: string | null // "Team Rocket", "Misty", etc. — null when the card has no trainer prefix
@@ -50,7 +61,9 @@ export interface Card {
 }
 
 export interface CardGroup {
-  groupId: string // first 2 digits of the card ids in it, e.g. "03"
+  groupId: string // first 2 digits of the card ids in it for a Gem set
+  // (e.g. "03"), or the group's first card's own id in groupByName mode
+  // (e.g. "001") — in both cases, what the ladder's "#" label shows
   cards: Card[]
 }
 

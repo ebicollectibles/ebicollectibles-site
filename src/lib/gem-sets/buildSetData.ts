@@ -5,7 +5,7 @@ import type { BuiltGemSetData, Card, CardGroup, GemSetData } from './types'
 // client, same as the raw JSON import it derives from).
 export function buildGemSetData(data: GemSetData): BuiltGemSetData {
   const cards: Card[] = data.cards.map((c) => {
-    const id = c.number.slice(0, 4)
+    const id = c.number.split('/')[0]
     const i = c.name.indexOf("'s ")
     return {
       id,
@@ -25,6 +25,17 @@ export function buildGemSetData(data: GemSetData): BuiltGemSetData {
   const catalogIndexes = new Set(data.catalogGroups ?? [])
   const groups: CardGroup[] = []
   for (const c of cards) {
+    if (data.groupByName) {
+      // A standard numbered set (Black Bolt, White Flare): no ladder, no
+      // adjacency — a Pokémon's rarer treatments (Art Rare, Super Rare,
+      // ...) sit at unrelated numbers far from its main-set card. Match
+      // purely by name across the whole set; the group's label is its
+      // first (lowest-numbered) card's own id.
+      const existing = groups.find((g) => g.cards[0].name === c.name)
+      if (existing) existing.cards.push(c)
+      else groups.push({ groupId: c.id, cards: [c] })
+      continue
+    }
     const groupId = c.id.slice(0, 2)
     if (catalogIndexes.has(c.pokemonIndex)) {
       // A catalog block (Trainers, Energy): group by matching name
