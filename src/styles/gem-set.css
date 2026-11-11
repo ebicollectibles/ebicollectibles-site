@@ -1,13 +1,14 @@
-/* Scoped to .gv7 so nothing here leaks into the rest of the site, and
-   nothing from the rest of the site's styles leaks in either — every
-   rule below is nested under .gv7. Ported from the approved preview
-   (https://claude.ai/artifact/4KCMsj8H8knHr12zLUMpPH): same layout,
-   same tokens, same behavior, minus the preview's own mock header/
-   ribbon (the real site's Header/Footer wrap this page already) and
-   with the two known preview bugs fixed (search placeholder no longer
-   clipped; each card's rarity badge shown once, not twice). */
+/* Scoped to .gem-set so nothing here leaks into the rest of the site, and
+   nothing from the rest of the site's styles leaks in either — every rule
+   below is nested under .gem-set. Shared by every Gem Set card-list page
+   (Gem Vol 7, Gem Vol 6, ...); each page passes its own --glow-1/--glow-2
+   as inline styles for a subtle, set-specific accent in the hero, while
+   everything else — the EBI ink/surface/rarity palette, layout, type —
+   stays identical across every set on purpose. Originally ported from the
+   approved Gem Vol 7 preview (https://claude.ai/artifact/4KCMsj8H8knHr12zLUMpPH)
+   and generalized from there. */
 
-.gv7 {
+.gem-set {
   --ink: #131b28;
   --ink-2: #24314a;
   --slate: #5a6875;
@@ -30,6 +31,10 @@
   --f-body: 'Archivo', Helvetica, Arial, sans-serif;
   --f-mono: 'IBM Plex Mono', ui-monospace, Menlo, monospace;
   --header-h: 73px;
+  /* Per-set hero glow — defaults are Gem Vol 7's own purple/blue so a page
+     that doesn't pass these looks exactly as before. */
+  --glow-1: rgb(138 61 120 / .30);
+  --glow-2: rgb(58 110 165 / .25);
 
   background: var(--bg);
   color: var(--ink);
@@ -57,8 +62,8 @@
       inset: 0;
       pointer-events: none;
       background:
-        radial-gradient(60% 90% at 85% 40%, rgb(138 61 120 / .30), transparent 60%),
-        radial-gradient(40% 70% at 70% 100%, rgb(58 110 165 / .25), transparent 70%);
+        radial-gradient(60% 90% at 85% 40%, var(--glow-1), transparent 60%),
+        radial-gradient(40% 70% at 70% 100%, var(--glow-2), transparent 70%);
     }
     .wrap {
       position: relative;
@@ -172,9 +177,6 @@
 
     .wrap { display: flex; flex-wrap: wrap; gap: 10px 14px; align-items: center; padding-block: 12px; }
   }
-  /* Bug fix (preview): "Search Pokémon, trainer or number" clipped at the
-     220px flex-basis the preview used. Shorter copy + a wider basis so it
-     reads in full down to phone width. */
   .search {
     position: relative;
     flex: 1 1 260px;
@@ -327,7 +329,7 @@
     /* Below 900px the fan is driven by a swipe gesture instead of
        mouse hover — see the touch handlers on .fan in the component.
        It's still the same 5 fixed, absolutely-positioned slots as
-       desktop (gem-vol-7.tsx sets each card's transform/z-index inline
+       desktop (GemSetPage.tsx sets each card's transform/z-index inline
        once it detects it's in this mode); a swipe advances which card
        sits in which slot by exactly one step, like a revolver cylinder
        — there's nothing to drag or scroll, so the whole thing can't be
