@@ -326,6 +326,7 @@ export function GemSetPage({
                   aria-label={`${c.name} ${id}/${versionSuffix}`}
                 >
                   <img src={c.image} alt={`${c.name} full art, ${raw.name} ${id}/${versionSuffix}`} />
+                  {c.exclusive && <span className="fan-excl">Chinese Exclusive</span>}
                 </button>
               )
             })}

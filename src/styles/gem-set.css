@@ -128,6 +128,15 @@
       will-change: transform;
     }
     img { width: 100%; height: 100%; border-radius: 9px; display: block; }
+    /* Calls out whichever fanned card is this set's exclusive, right on
+       its own art, so it reads immediately on landing instead of only
+       showing up once a viewer scrolls to the ladder or opens the card. */
+    .fan-excl {
+      position: absolute; top: 10px; left: 50%; transform: translateX(-50%);
+      font-size: 10px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; white-space: nowrap;
+      color: #fff; background: rgb(0 0 0 / .55); backdrop-filter: blur(2px);
+      padding: 3px 9px; border-radius: 999px; pointer-events: none;
+    }
     /* Wider spacing than the original preview — less overlap between
        neighbors means a bigger, more stable area to actually hover each
        card, not just a narrow sliver before the one on top changes. */
