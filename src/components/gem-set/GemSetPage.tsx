@@ -24,14 +24,11 @@ import { CardThumb, RarityTag } from './parts'
 // to the 5-slot layout (an extra/missing card will just double up on or
 // skip the last slot rather than crash).
 //
-// The 4-card layout reuses 4 of the 5-card layout's own slots (every
-// value below also appears above) rather than spacing 4 cards evenly
-// around center: an even count split symmetrically has no slot AT
-// center (two cards straddle it instead), which read as nothing being
-// centered. Dropping the far-left slot instead keeps a true center card
-// — lopsided (1 card left of center, 2 right) rather than symmetric,
-// but a fan of cards isn't expected to be perfectly symmetric the way a
-// grid would be.
+// The 4-card layout keeps the 5-card layout's own near-left/center/near-
+// right slots (an even split with no slot AT center reads as nothing
+// being centered), and tucks the 4th card directly behind the center
+// one — same x, lower z, nudged down and tilted so its edges peek out
+// — rather than stranding it further out to one side.
 const FAN_LAYOUTS: Record<number, Array<{ x: number; rot: number; y: number; z: number }>> = {
   5: [
     { x: -200, rot: -14, y: 26, z: 1 },
@@ -44,7 +41,7 @@ const FAN_LAYOUTS: Record<number, Array<{ x: number; rot: number; y: number; z: 
     { x: -100, rot: -7, y: 6, z: 2 },
     { x: 0, rot: 0, y: 0, z: 3 },
     { x: 100, rot: 7, y: 6, z: 2 },
-    { x: 200, rot: 14, y: 26, z: 1 },
+    { x: 0, rot: -8, y: 26, z: 1 },
   ],
 }
 
