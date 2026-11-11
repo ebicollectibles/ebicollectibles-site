@@ -75,6 +75,7 @@ function SetsIndexPage() {
                 <img src={s.heroImage} alt={s.heroAlt} loading="lazy" />
               </div>
               <div className="card-body">
+                <span className="card-series">{s.series}</span>
                 <h2 className="card-name">{s.name}</h2>
                 <p className="card-tagline">{s.tagline}</p>
                 <div className="card-meta">

@@ -6,12 +6,22 @@
 // pages (src/routes/sets/gem-vol-N.tsx) — typed this way, rather than
 // built from `slug` at render time, so <Link to={...}> stays type-safe
 // without a cast.
-export type GemSetRoutePath = '/sets/gem-vol-1' | '/sets/gem-vol-2' | '/sets/gem-vol-3' | '/sets/gem-vol-4' | '/sets/gem-vol-5' | '/sets/gem-vol-6' | '/sets/gem-vol-7'
+export type GemSetRoutePath =
+  | '/sets/gem-vol-1'
+  | '/sets/gem-vol-2'
+  | '/sets/gem-vol-3'
+  | '/sets/gem-vol-4'
+  | '/sets/gem-vol-5'
+  | '/sets/gem-vol-6'
+  | '/sets/gem-vol-7'
+  | '/sets/black-bolt'
+  | '/sets/white-flare'
 
 export interface GemSetSummary {
   slug: string
   path: GemSetRoutePath
   name: string
+  series: string // shown as a small tag, since this list now mixes Chen's own "Gem Set" releases with real officially-licensed sets
   cardCount: number
   releaseDate: string
   exclusiveCount: number
@@ -25,9 +35,38 @@ export interface GemSetSummary {
 
 export const GEM_SETS: GemSetSummary[] = [
   {
+    slug: 'black-bolt',
+    path: '/sets/black-bolt',
+    name: 'Black Bolt',
+    series: 'Chinese Scarlet & Violet',
+    cardCount: 174,
+    releaseDate: '2026-11-06',
+    exclusiveCount: 1,
+    tagline: "Zekrom ex and half the Unova Pokédex",
+    heroImage: 'https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Black%20Bolt/Cards/0174.webp',
+    heroAlt: 'Zekrom ex Black White Rare',
+    glow1: 'rgb(119 167 201 / .30)',
+    glow2: 'rgb(72 121 119 / .25)',
+  },
+  {
+    slug: 'white-flare',
+    path: '/sets/white-flare',
+    name: 'White Flare',
+    series: 'Chinese Scarlet & Violet',
+    cardCount: 174,
+    releaseDate: '2026-11-06',
+    exclusiveCount: 1,
+    tagline: "Reshiram ex and the other half of Unova",
+    heroImage: 'https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/White%20Flare/Cards/0174.webp',
+    heroAlt: 'Reshiram ex Black White Rare',
+    glow1: 'rgb(171 49 42 / .30)',
+    glow2: 'rgb(219 172 132 / .22)',
+  },
+  {
     slug: 'gem-vol-7',
     path: '/sets/gem-vol-7',
     name: 'Gem Vol 7',
+    series: 'Gem Set',
     cardCount: 196,
     releaseDate: '2026-11-06',
     exclusiveCount: 1,
@@ -42,6 +81,7 @@ export const GEM_SETS: GemSetSummary[] = [
     slug: 'gem-vol-6',
     path: '/sets/gem-vol-6',
     name: 'Gem Vol 6',
+    series: 'Gem Set',
     cardCount: 196,
     releaseDate: '2026-08-07',
     exclusiveCount: 1,
@@ -55,6 +95,7 @@ export const GEM_SETS: GemSetSummary[] = [
     slug: 'gem-vol-5',
     path: '/sets/gem-vol-5',
     name: 'Gem Vol 5',
+    series: 'Gem Set',
     cardCount: 196,
     releaseDate: '2026-04-24',
     exclusiveCount: 4,
@@ -68,6 +109,7 @@ export const GEM_SETS: GemSetSummary[] = [
     slug: 'gem-vol-4',
     path: '/sets/gem-vol-4',
     name: 'Gem Vol 4',
+    series: 'Gem Set',
     cardCount: 196,
     releaseDate: '2026-02-06',
     exclusiveCount: 1,
@@ -81,6 +123,7 @@ export const GEM_SETS: GemSetSummary[] = [
     slug: 'gem-vol-3',
     path: '/sets/gem-vol-3',
     name: 'Gem Vol 3',
+    series: 'Gem Set',
     cardCount: 136,
     releaseDate: '2025-09-26',
     exclusiveCount: 5,
@@ -94,6 +137,7 @@ export const GEM_SETS: GemSetSummary[] = [
     slug: 'gem-vol-2',
     path: '/sets/gem-vol-2',
     name: 'Gem Vol 2',
+    series: 'Gem Set',
     cardCount: 140,
     releaseDate: '2025-05-16',
     exclusiveCount: 4,
@@ -107,6 +151,7 @@ export const GEM_SETS: GemSetSummary[] = [
     slug: 'gem-vol-1',
     path: '/sets/gem-vol-1',
     name: 'Gem Vol 1',
+    series: 'Gem Set',
     cardCount: 115,
     releaseDate: '2025-01-17',
     exclusiveCount: 4,
