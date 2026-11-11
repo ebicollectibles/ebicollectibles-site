@@ -72,11 +72,10 @@ function SetsIndexPage() {
             <Link key={s.slug} className="card" to={s.path}>
               <div className="card-art" style={{ '--glow-1': s.glow1, '--glow-2': s.glow2 } as React.CSSProperties}>
                 {s.preorder && <span className="card-preorder">Preorder</span>}
-                <span className="card-code">{s.code}</span>
                 <img src={s.heroImage} alt={s.heroAlt} loading="lazy" />
               </div>
               <div className="card-body">
-                <span className="card-series">{s.series}</span>
+                <span className="card-series">{s.series} · {s.code}</span>
                 <h2 className="card-name">{s.name}</h2>
                 <p className="card-tagline">{s.tagline}</p>
                 <div className="card-meta">

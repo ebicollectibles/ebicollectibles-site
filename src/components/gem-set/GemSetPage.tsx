@@ -482,48 +482,7 @@ export function GemSetPage({
             </div>
           )
         ) : (
-          <div className="tablewrap">
-            <table>
-              <thead>
-                <tr>
-                  <th>Have</th>
-                  <th></th>
-                  <th>No.</th>
-                  <th>Card</th>
-                  <th>Rarity</th>
-                </tr>
-              </thead>
-              <tbody>
-                {shown.map((c) => (
-                  <tr key={c.id}>
-                    <td>
-                      <input
-                        type="checkbox"
-                        className="have"
-                        checked={have.has(c.id)}
-                        onChange={() => toggleHave(c.id)}
-                        aria-label={`Have ${c.name} ${c.id}/${c.suffix}`}
-                      />
-                    </td>
-                    <td className="thumb">
-                      <img loading="lazy" src={c.image} alt="" />
-                    </td>
-                    <td className="mono">
-                      {c.id}/{c.suffix}
-                    </td>
-                    <td>
-                      <button type="button" className="lnk" onClick={() => open(c.id)}>
-                        {c.name}
-                      </button>
-                    </td>
-                    <td>
-                      <RarityTag rarity={c.rarity} />
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+          <div className="empty">Checklist tracking is coming soon.</div>
         )}
       </main>
 
