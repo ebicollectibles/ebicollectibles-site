@@ -20,6 +20,7 @@ export type GemSetRoutePath =
   | '/sets/csv10'
   | '/sets/csv9-5'
   | '/sets/csv4'
+  | '/sets/csv5'
 
 export interface GemSetSummary {
   slug: string
@@ -68,6 +69,21 @@ export const GEM_SETS: GemSetSummary[] = [
     heroAlt: 'Gholdengo ex Special Art Rare',
     glow1: 'rgb(46 123 134 / .30)',
     glow2: 'rgb(179 130 68 / .25)',
+  },
+  {
+    slug: 'csv5',
+    path: '/sets/csv5',
+    name: 'Black Crystal Blaze',
+    series: 'Chinese Scarlet & Violet',
+    code: 'CSV5C',
+    cardCount: 164,
+    releaseDate: '2025-09-12',
+    exclusiveCount: 1,
+    tagline: '113 Pokémon led by a gold Charizard ex',
+    heroImage: 'https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Dark%20Crystal%20Blaze%20CSV5/Cards/0155.webp',
+    heroAlt: 'Charizard ex Special Art Rare',
+    glow1: 'rgb(161 23 57 / .30)',
+    glow2: 'rgb(44 35 47 / .25)',
   },
   {
     slug: 'csv9-5',
