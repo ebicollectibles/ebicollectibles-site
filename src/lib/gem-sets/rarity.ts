@@ -38,6 +38,15 @@ export const RARITY_CODE: Record<string, string> = {
   // CSV9.5's own tier (pink-framed ACE SPEC Trainers/Energy, one per deck)
   // — reuses Triple Rare's color hook since this set has none of its own.
   'ACE SPEC Rare (ACE)': 'RRR',
+  // Collect 151's own tiers — a shiny-colored main-set Pokémon (152–169)
+  // and its full-art ex counterpart (186–188), both exclusive to this
+  // set's rarity scheme. "Shiny Super Rare" reuses Triple Rare's color
+  // hook (this set has no ACE SPEC or Futuristic Rare to collide with);
+  // "Shiny" gets its own teal-cyan color (--r-s), a genuinely new tier
+  // this set needs since every other page-unused code is already spoken
+  // for by this same set's own other tiers.
+  'Shiny (S)': 'S',
+  'Shiny Super Rare (SSR)': 'RRR',
 }
 export const RARITY_SYMBOL: Record<string, string> = {
   Common: '●',
@@ -60,4 +69,6 @@ export const RARITY_SYMBOL: Record<string, string> = {
   Promo: '◇',
   'Ultra Rare (UR)': '✧',
   'ACE SPEC Rare (ACE)': '❖',
+  'Shiny (S)': '✶',
+  'Shiny Super Rare (SSR)': '✶✶',
 }

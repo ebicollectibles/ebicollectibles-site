@@ -25,6 +25,10 @@ export type GemSetRoutePath =
   | '/sets/csv6'
   | '/sets/csv7'
   | '/sets/csv9'
+  | '/sets/collect-151-journey'
+  | '/sets/collect-151-hope'
+  | '/sets/collect-151-surprise'
+  | '/sets/collect-151-gathering'
 
 export interface GemSetSummary {
   slug: string
@@ -313,5 +317,65 @@ export const GEM_SETS: GemSetSummary[] = [
     heroAlt: 'Captain Pikachu full art',
     glow1: 'rgb(194 26 118 / .30)',
     glow2: 'rgb(151 202 224 / .22)',
+  },
+  {
+    slug: 'collect-151-journey',
+    path: '/sets/collect-151-journey',
+    name: 'Collect 151: Journey',
+    series: 'Collect 151',
+    code: '151C',
+    cardCount: 192,
+    releaseDate: '2025-01-17',
+    exclusiveCount: 1,
+    tagline: 'The 151 Kanto Pokémon, with an exclusive Pikachu Art Rare',
+    heroImage: 'https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0170.webp',
+    heroAlt: 'Pikachu Art Rare',
+    glow1: 'rgb(86 147 90 / .30)',
+    glow2: 'rgb(34 20 16 / .25)',
+  },
+  {
+    slug: 'collect-151-hope',
+    path: '/sets/collect-151-hope',
+    name: 'Collect 151: Hope',
+    series: 'Collect 151',
+    code: '151C',
+    cardCount: 192,
+    releaseDate: '2025-04-18',
+    exclusiveCount: 1,
+    tagline: 'The 151 Kanto Pokémon, with an exclusive Pikachu Art Rare',
+    heroImage: 'https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0171.webp',
+    heroAlt: 'Pikachu Art Rare',
+    glow1: 'rgb(86 147 90 / .30)',
+    glow2: 'rgb(34 20 16 / .25)',
+  },
+  {
+    slug: 'collect-151-surprise',
+    path: '/sets/collect-151-surprise',
+    name: 'Collect 151: Surprise',
+    series: 'Collect 151',
+    code: '151C',
+    cardCount: 192,
+    releaseDate: '2025-07-18',
+    exclusiveCount: 3,
+    tagline: 'The 151 Kanto Pokémon, with 3 exclusive cards of its own',
+    heroImage: 'https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0191.webp',
+    heroAlt: 'Mew ex Special Art Rare',
+    glow1: 'rgb(86 147 90 / .30)',
+    glow2: 'rgb(34 20 16 / .25)',
+  },
+  {
+    slug: 'collect-151-gathering',
+    path: '/sets/collect-151-gathering',
+    name: 'Collect 151: Gathering',
+    series: 'Collect 151',
+    code: '151C',
+    cardCount: 192,
+    releaseDate: '2025-10-17',
+    exclusiveCount: 2,
+    tagline: 'The 151 Kanto Pokémon, with an exclusive Zapdos ex',
+    heroImage: 'https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0190.webp',
+    heroAlt: 'Zapdos ex Special Art Rare',
+    glow1: 'rgb(86 147 90 / .30)',
+    glow2: 'rgb(34 20 16 / .25)',
   },
 ]

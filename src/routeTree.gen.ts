@@ -46,6 +46,10 @@ import { Route as ProductsIdRouteImport } from './routes/products.$id'
 import { Route as SetsIndexRouteImport } from './routes/sets/index'
 import { Route as Sets30thCelebrationRouteImport } from './routes/sets/30th-celebration'
 import { Route as SetsBlackBoltRouteImport } from './routes/sets/black-bolt'
+import { Route as SetsCollect151GatheringRouteImport } from './routes/sets/collect-151-gathering'
+import { Route as SetsCollect151HopeRouteImport } from './routes/sets/collect-151-hope'
+import { Route as SetsCollect151JourneyRouteImport } from './routes/sets/collect-151-journey'
+import { Route as SetsCollect151SurpriseRouteImport } from './routes/sets/collect-151-surprise'
 import { Route as SetsCsv10RouteImport } from './routes/sets/csv10'
 import { Route as SetsCsv4RouteImport } from './routes/sets/csv4'
 import { Route as SetsCsv5RouteImport } from './routes/sets/csv5'
@@ -258,6 +262,26 @@ const SetsBlackBoltRoute = SetsBlackBoltRouteImport.update({
   path: '/sets/black-bolt',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SetsCollect151GatheringRoute = SetsCollect151GatheringRouteImport.update({
+  id: '/sets/collect-151-gathering',
+  path: '/sets/collect-151-gathering',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SetsCollect151HopeRoute = SetsCollect151HopeRouteImport.update({
+  id: '/sets/collect-151-hope',
+  path: '/sets/collect-151-hope',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SetsCollect151JourneyRoute = SetsCollect151JourneyRouteImport.update({
+  id: '/sets/collect-151-journey',
+  path: '/sets/collect-151-journey',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SetsCollect151SurpriseRoute = SetsCollect151SurpriseRouteImport.update({
+  id: '/sets/collect-151-surprise',
+  path: '/sets/collect-151-surprise',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const SetsCsv10Route = SetsCsv10RouteImport.update({
   id: '/sets/csv10',
   path: '/sets/csv10',
@@ -426,6 +450,10 @@ export interface FileRoutesByFullPath {
   '/products/$id': typeof ProductsIdRoute
   '/sets/30th-celebration': typeof Sets30thCelebrationRoute
   '/sets/black-bolt': typeof SetsBlackBoltRoute
+  '/sets/collect-151-gathering': typeof SetsCollect151GatheringRoute
+  '/sets/collect-151-hope': typeof SetsCollect151HopeRoute
+  '/sets/collect-151-journey': typeof SetsCollect151JourneyRoute
+  '/sets/collect-151-surprise': typeof SetsCollect151SurpriseRoute
   '/sets/csv10': typeof SetsCsv10Route
   '/sets/csv4': typeof SetsCsv4Route
   '/sets/csv5': typeof SetsCsv5Route
@@ -491,6 +519,10 @@ export interface FileRoutesByTo {
   '/products/$id': typeof ProductsIdRoute
   '/sets/30th-celebration': typeof Sets30thCelebrationRoute
   '/sets/black-bolt': typeof SetsBlackBoltRoute
+  '/sets/collect-151-gathering': typeof SetsCollect151GatheringRoute
+  '/sets/collect-151-hope': typeof SetsCollect151HopeRoute
+  '/sets/collect-151-journey': typeof SetsCollect151JourneyRoute
+  '/sets/collect-151-surprise': typeof SetsCollect151SurpriseRoute
   '/sets/csv10': typeof SetsCsv10Route
   '/sets/csv4': typeof SetsCsv4Route
   '/sets/csv5': typeof SetsCsv5Route
@@ -557,6 +589,10 @@ export interface FileRoutesById {
   '/products/$id': typeof ProductsIdRoute
   '/sets/30th-celebration': typeof Sets30thCelebrationRoute
   '/sets/black-bolt': typeof SetsBlackBoltRoute
+  '/sets/collect-151-gathering': typeof SetsCollect151GatheringRoute
+  '/sets/collect-151-hope': typeof SetsCollect151HopeRoute
+  '/sets/collect-151-journey': typeof SetsCollect151JourneyRoute
+  '/sets/collect-151-surprise': typeof SetsCollect151SurpriseRoute
   '/sets/csv10': typeof SetsCsv10Route
   '/sets/csv4': typeof SetsCsv4Route
   '/sets/csv5': typeof SetsCsv5Route
@@ -624,6 +660,10 @@ export interface FileRouteTypes {
     | '/products/$id'
     | '/sets/30th-celebration'
     | '/sets/black-bolt'
+    | '/sets/collect-151-gathering'
+    | '/sets/collect-151-hope'
+    | '/sets/collect-151-journey'
+    | '/sets/collect-151-surprise'
     | '/sets/csv10'
     | '/sets/csv4'
     | '/sets/csv5'
@@ -689,6 +729,10 @@ export interface FileRouteTypes {
     | '/products/$id'
     | '/sets/30th-celebration'
     | '/sets/black-bolt'
+    | '/sets/collect-151-gathering'
+    | '/sets/collect-151-hope'
+    | '/sets/collect-151-journey'
+    | '/sets/collect-151-surprise'
     | '/sets/csv10'
     | '/sets/csv4'
     | '/sets/csv5'
@@ -754,6 +798,10 @@ export interface FileRouteTypes {
     | '/products/$id'
     | '/sets/30th-celebration'
     | '/sets/black-bolt'
+    | '/sets/collect-151-gathering'
+    | '/sets/collect-151-hope'
+    | '/sets/collect-151-journey'
+    | '/sets/collect-151-surprise'
     | '/sets/csv10'
     | '/sets/csv4'
     | '/sets/csv5'
@@ -820,6 +868,10 @@ export interface RootRouteChildren {
   ProductsIdRoute: typeof ProductsIdRoute
   Sets30thCelebrationRoute: typeof Sets30thCelebrationRoute
   SetsBlackBoltRoute: typeof SetsBlackBoltRoute
+  SetsCollect151GatheringRoute: typeof SetsCollect151GatheringRoute
+  SetsCollect151HopeRoute: typeof SetsCollect151HopeRoute
+  SetsCollect151JourneyRoute: typeof SetsCollect151JourneyRoute
+  SetsCollect151SurpriseRoute: typeof SetsCollect151SurpriseRoute
   SetsCsv10Route: typeof SetsCsv10Route
   SetsCsv4Route: typeof SetsCsv4Route
   SetsCsv5Route: typeof SetsCsv5Route
@@ -1112,6 +1164,34 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SetsBlackBoltRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/sets/collect-151-gathering': {
+      id: '/sets/collect-151-gathering'
+      path: '/sets/collect-151-gathering'
+      fullPath: '/sets/collect-151-gathering'
+      preLoaderRoute: typeof SetsCollect151GatheringRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sets/collect-151-hope': {
+      id: '/sets/collect-151-hope'
+      path: '/sets/collect-151-hope'
+      fullPath: '/sets/collect-151-hope'
+      preLoaderRoute: typeof SetsCollect151HopeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sets/collect-151-journey': {
+      id: '/sets/collect-151-journey'
+      path: '/sets/collect-151-journey'
+      fullPath: '/sets/collect-151-journey'
+      preLoaderRoute: typeof SetsCollect151JourneyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sets/collect-151-surprise': {
+      id: '/sets/collect-151-surprise'
+      path: '/sets/collect-151-surprise'
+      fullPath: '/sets/collect-151-surprise'
+      preLoaderRoute: typeof SetsCollect151SurpriseRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/sets/csv10': {
       id: '/sets/csv10'
       path: '/sets/csv10'
@@ -1332,6 +1412,10 @@ const rootRouteChildren: RootRouteChildren = {
   ProductsIdRoute: ProductsIdRoute,
   Sets30thCelebrationRoute: Sets30thCelebrationRoute,
   SetsBlackBoltRoute: SetsBlackBoltRoute,
+  SetsCollect151GatheringRoute: SetsCollect151GatheringRoute,
+  SetsCollect151HopeRoute: SetsCollect151HopeRoute,
+  SetsCollect151JourneyRoute: SetsCollect151JourneyRoute,
+  SetsCollect151SurpriseRoute: SetsCollect151SurpriseRoute,
   SetsCsv10Route: SetsCsv10Route,
   SetsCsv4Route: SetsCsv4Route,
   SetsCsv5Route: SetsCsv5Route,

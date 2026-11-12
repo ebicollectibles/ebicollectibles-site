@@ -31,6 +31,9 @@
   --r-sr: #b8860b;
   --r-sar: #c0315f;
   --r-bwr: #1f2430;
+  /* Collect 151's own "Shiny" tier — teal-cyan, distinct from every
+     other tier's color on that page. */
+  --r-s: #1c8fa0;
   --focus: #3a6ea5;
   --shadow: 0 1px 2px rgb(19 27 40 / .08), 0 6px 18px rgb(19 27 40 / .10);
   --f-display: 'Archivo', Helvetica, Arial, sans-serif;
@@ -238,6 +241,7 @@
   [data-r='SR'] { --rc: var(--r-sr); }
   [data-r='SAR'] { --rc: var(--r-sar); }
   [data-r='BWR'] { --rc: var(--r-bwr); }
+  [data-r='S'] { --rc: var(--r-s); }
   .rtag { display: inline-flex; align-items: center; gap: 5px; font-size: 12px; font-weight: 600; color: var(--rc); white-space: nowrap; }
   .rtag .sym { font-size: 10px; letter-spacing: -1px; }
 
@@ -363,7 +367,7 @@
       --ink: #e9edf3; --ink-2: #c9d1dc; --slate: #96a2b2; --line: #263142; --line-2: #34415a;
       --bg: #0d131d; --surface: #131b28; --raise: #18212f; --hero: #0a0f17; --hero-fg: #f3f5f8; --hero-dim: #8d99aa;
       --r-c: #9aa5b3; --r-u: #77a6d8; --r-r: #6fb093; --r-rr: #d98c5a; --r-rrr: #c97cb5; --focus: #77a6d8;
-      --r-ar: #5bbdae; --r-sr: #e0b23d; --r-sar: #e06a90; --r-bwr: #aab0c2;
+      --r-ar: #5bbdae; --r-sr: #e0b23d; --r-sar: #e06a90; --r-bwr: #aab0c2; --r-s: #4fc3d6;
       --shadow: 0 1px 2px rgb(0 0 0 / .4), 0 8px 22px rgb(0 0 0 / .45);
       color-scheme: dark;
     }
@@ -372,7 +376,7 @@
     --ink: #e9edf3; --ink-2: #c9d1dc; --slate: #96a2b2; --line: #263142; --line-2: #34415a;
     --bg: #0d131d; --surface: #131b28; --raise: #18212f; --hero: #0a0f17; --hero-fg: #f3f5f8; --hero-dim: #8d99aa;
     --r-c: #9aa5b3; --r-u: #77a6d8; --r-r: #6fb093; --r-rr: #d98c5a; --r-rrr: #c97cb5; --focus: #77a6d8;
-    --r-ar: #5bbdae; --r-sr: #e0b23d; --r-sar: #e06a90; --r-bwr: #aab0c2;
+    --r-ar: #5bbdae; --r-sr: #e0b23d; --r-sar: #e06a90; --r-bwr: #aab0c2; --r-s: #4fc3d6;
     --shadow: 0 1px 2px rgb(0 0 0 / .4), 0 8px 22px rgb(0 0 0 / .45);
     color-scheme: dark;
   }
