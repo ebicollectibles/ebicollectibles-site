@@ -23,6 +23,7 @@ export type GemSetRoutePath =
   | '/sets/csv5'
   | '/sets/csv6'
   | '/sets/csv7'
+  | '/sets/csv9'
 
 export interface GemSetSummary {
   slug: string
@@ -116,6 +117,21 @@ export const GEM_SETS: GemSetSummary[] = [
     heroAlt: 'Greninja ex Special Art Rare',
     glow1: 'rgb(208 105 57 / .30)',
     glow2: 'rgb(13 13 18 / .25)',
+  },
+  {
+    slug: 'csv9',
+    path: '/sets/csv9',
+    name: 'Stellar Crystal',
+    series: 'Chinese Scarlet & Violet',
+    code: 'CSV9C',
+    cardCount: 266,
+    releaseDate: '2026-05-15',
+    exclusiveCount: 1,
+    tagline: '175 Pokémon led by Terapagos ex',
+    heroImage: 'https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Stellar%20Crystal/Cards/0251.webp',
+    heroAlt: 'Terapagos ex Special Art Rare',
+    glow1: 'rgb(210 110 123 / .30)',
+    glow2: 'rgb(92 103 134 / .25)',
   },
   {
     slug: 'csv9-5',

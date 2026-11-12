@@ -1,0 +1,2155 @@
+{
+  "name": "Stellar Crystal",
+  "slug": "csv9",
+  "code": "CSV9C",
+  "series": "Chinese Scarlet & Violet",
+  "language": "Simplified Chinese",
+  "releaseDate": "2026-05-15",
+  "cardCount": 266,
+  "rarityOrder": [
+    "Common (C)",
+    "Uncommon (U)",
+    "Rare (R)",
+    "Double Rare (RR)",
+    "Art Rare (AR)",
+    "ACE SPEC Rare (ACE)",
+    "Super Rare (SR)",
+    "Special Art Rare (SAR)",
+    "Ultra Rare (UR)"
+  ],
+  "exclusiveCardNumbers": [
+    "257/208"
+  ],
+  "source": "Chen Cards (chencards.com/sets/stellar_crystal), used with permission",
+  "cards": [
+    {
+      "number": "001/208",
+      "pokemonIndex": 1,
+      "version": 1,
+      "name": "Exeggcute",
+      "rarity": "Common (C)",
+      "image": "Chinese/Stellar Crystal/Cards/0001.webp"
+    },
+    {
+      "number": "002/208",
+      "pokemonIndex": 2,
+      "version": 1,
+      "name": "Lileep",
+      "rarity": "Common (C)",
+      "image": "Chinese/Stellar Crystal/Cards/0002.webp"
+    },
+    {
+      "number": "003/208",
+      "pokemonIndex": 3,
+      "version": 1,
+      "name": "Cradily",
+      "rarity": "Uncommon (U)",
+      "image": "Chinese/Stellar Crystal/Cards/0003.webp"
+    },
+    {
+      "number": "004/208",
+      "pokemonIndex": 4,
+      "version": 1,
+      "name": "Carnivine",
+      "rarity": "Common (C)",
+      "image": "Chinese/Stellar Crystal/Cards/0004.webp"
+    },
+    {
+      "number": "005/208",
+      "pokemonIndex": 5,
+      "version": 1,
+      "name": "Mow Rotom",
+      "rarity": "Common (C)",
+      "image": "Chinese/Stellar Crystal/Cards/0005.webp"
+    },
+    {
+      "number": "006/208",
+      "pokemonIndex": 6,
+      "version": 1,
+      "name": "Durant ex",
+      "rarity": "Double Rare (RR)",
+      "image": "Chinese/Stellar Crystal/Cards/0006.webp"
+    },
+    {
+      "number": "007/208",
+      "pokemonIndex": 7,
+      "version": 1,
+      "name": "Grubbin",
+      "rarity": "Common (C)",
+      "image": "Chinese/Stellar Crystal/Cards/0007.webp"
+    },
+    {
+      "number": "008/208",
+      "pokemonIndex": 8,
+      "version": 1,
+      "name": "Dhelmise",
+      "rarity": "Common (C)",
+      "image": "Chinese/Stellar Crystal/Cards/0008.webp"
+    },
+    {
+      "number": "009/208",
+      "pokemonIndex": 9,
+      "version": 1,
+      "name": "Gossifleur",
+      "rarity": "Common (C)",
+      "image": "Chinese/Stellar Crystal/Cards/0009.webp"
+    },
+    {
+      "number": "010/208",
+      "pokemonIndex": 10,
+      "version": 1,
+      "name": "Eldegoss",
+      "rarity": "Uncommon (U)",
+      "image": "Chinese/Stellar Crystal/Cards/0010.webp"
+    },
+    {
+      "number": "011/208",
+      "pokemonIndex": 11,
+      "version": 1,
+      "name": "Applin",
+      "rarity": "Common (C)",
+      "image": "Chinese/Stellar Crystal/Cards/0011.webp"
+    },
+    {
+      "number": "012/208",
+      "pokemonIndex": 12,
+      "version": 1,
+      "name": "Dipplin",
+      "rarity": "Common (C)",
+      "image": "Chinese/Stellar Crystal/Cards/0012.webp"
+    },
+    {
+      "number": "013/208",
+      "pokemonIndex": 13,
+      "version": 1,
+      "name": "Hydrapple ex",
+      "rarity": "Double Rare (RR)",
+      "image": "Chinese/Stellar Crystal/Cards/0013.webp"
+    },
+    {
+      "number": "014/208",
+      "pokemonIndex": 14,
+      "version": 1,
+      "name": "Zarude",
+      "rarity": "Rare (R)",
+      "image": "Chinese/Stellar Crystal/Cards/0014.webp"
+    },
+    {
+      "number": "015/208",
+      "pokemonIndex": 15,
+      "version": 1,
+      "name": "Capsakid",
+      "rarity": "Common (C)",
+      "image": "Chinese/Stellar Crystal/Cards/0015.webp"
+    },
+    {
+      "number": "016/208",
+      "pokemonIndex": 16,
+      "version": 1,
+      "name": "Rellor",
+      "rarity": "Common (C)",
+      "image": "Chinese/Stellar Crystal/Cards/0016.webp"
+    },
+    {
+      "number": "017/208",
+      "pokemonIndex": 17,
+      "version": 1,
+      "name": "Rabsca",
+      "rarity": "Rare (R)",
+      "image": "Chinese/Stellar Crystal/Cards/0017.webp"
+    },
+    {
+      "number": "018/208",
+      "pokemonIndex": 18,
+      "version": 1,
+      "name": "Wo-Chien",
+      "rarity": "Uncommon (U)",
+      "image": "Chinese/Stellar Crystal/Cards/0018.webp"
+    },
+    {
+      "number": "019/208",
+      "pokemonIndex": 19,
+      "version": 1,
+      "name": "Poltchageist",
+      "rarity": "Common (C)",
+      "image": "Chinese/Stellar Crystal/Cards/0019.webp"
+    },
+    {
+      "number": "020/208",
+      "pokemonIndex": 20,
+      "version": 1,
+      "name": "Sinistcha ex",
+      "rarity": "Double Rare (RR)",
+      "image": "Chinese/Stellar Crystal/Cards/0020.webp"
+    },
+    {
+      "number": "021/208",
+      "pokemonIndex": 21,
+      "version": 1,
+      "name": "Ho-Oh",
+      "rarity": "Common (C)",
+      "image": "Chinese/Stellar Crystal/Cards/0021.webp"
+    },
+    {
+      "number": "022/208",
+      "pokemonIndex": 22,
+      "version": 1,
+      "name": "Castform Sunny Form",
+      "rarity": "Common (C)",
+      "image": "Chinese/Stellar Crystal/Cards/0022.webp"
+    },
+    {
+      "number": "023/208",
+      "pokemonIndex": 23,
+      "version": 1,
+      "name": "Victini",
+      "rarity": "Uncommon (U)",
+      "image": "Chinese/Stellar Crystal/Cards/0023.webp"
+    },
+    {
+      "number": "024/208",
+      "pokemonIndex": 24,
+      "version": 1,
+      "name": "Salandit",
+      "rarity": "Common (C)",
+      "image": "Chinese/Stellar Crystal/Cards/0024.webp"
+    },
+    {
+      "number": "025/208",
+      "pokemonIndex": 25,
+      "version": 1,
+      "name": "Salazzle",
+      "rarity": "Uncommon (U)",
+      "image": "Chinese/Stellar Crystal/Cards/0025.webp"
+    },
+    {
+      "number": "026/208",
+      "pokemonIndex": 26,
+      "version": 1,
+      "name": "Turtonator",
+      "rarity": "Common (C)",
+      "image": "Chinese/Stellar Crystal/Cards/0026.webp"
+    },
+    {
+      "number": "027/208",
+      "pokemonIndex": 27,
+      "version": 1,
+      "name": "Scorbunny",
+      "rarity": "Common (C)",
+      "image": "Chinese/Stellar Crystal/Cards/0027.webp"
+    },
+    {
+      "number": "028/208",
+      "pokemonIndex": 28,
+      "version": 1,
+      "name": "Raboot",
+      "rarity": "Common (C)",
+      "image": "Chinese/Stellar Crystal/Cards/0028.webp"
+    },
+    {
+      "number": "029/208",
+      "pokemonIndex": 29,
+      "version": 1,
+      "name": "Cinderace ex",
+      "rarity": "Double Rare (RR)",
+      "image": "Chinese/Stellar Crystal/Cards/0029.webp"
+    },
+    {
+      "number": "030/208",
+      "pokemonIndex": 30,
+      "version": 1,
+      "name": "Fuecoco",
+      "rarity": "Common (C)",
+      "image": "Chinese/Stellar Crystal/Cards/0030.webp"
+    },
+    {
+      "number": "031/208",
+      "pokemonIndex": 31,
+      "version": 1,
+      "name": "Crocalor",
+      "rarity": "Common (C)",
+      "image": "Chinese/Stellar Crystal/Cards/0031.webp"
+    },
+    {
+      "number": "032/208",
+      "pokemonIndex": 32,
+      "version": 1,
+      "name": "Skeledirge",
+      "rarity": "Rare (R)",
+      "image": "Chinese/Stellar Crystal/Cards/0032.webp"
+    },
+    {
+      "number": "033/208",
+      "pokemonIndex": 33,
+      "version": 1,
+      "name": "Charcadet",
+      "rarity": "Common (C)",
+      "image": "Chinese/Stellar Crystal/Cards/0033.webp"
+    },
+    {
+      "number": "034/208",
+      "pokemonIndex": 34,
+      "version": 1,
+      "name": "Ceruledge ex",
+      "rarity": "Double Rare (RR)",
+      "image": "Chinese/Stellar Crystal/Cards/0034.webp"
+    },
+    {
+      "number": "035/208",
+      "pokemonIndex": 35,
+      "version": 1,
+      "name": "Scovillain ex",
+      "rarity": "Double Rare (RR)",
+      "image": "Chinese/Stellar Crystal/Cards/0035.webp"
+    },
+    {
+      "number": "036/208",
+      "pokemonIndex": 36,
+      "version": 1,
+      "name": "Gouging Fire",
+      "rarity": "Rare (R)",
+      "image": "Chinese/Stellar Crystal/Cards/0036.webp"
+    },
+    {
+      "number": "037/208",
+      "pokemonIndex": 37,
+      "version": 1,
+      "name": "Lapras ex",
+      "rarity": "Double Rare (RR)",
+      "image": "Chinese/Stellar Crystal/Cards/0037.webp"
+    },
+    {
+      "number": "038/208",
+      "pokemonIndex": 38,
+      "version": 1,
+      "name": "Feebas",
+      "rarity": "Common (C)",
+      "image": "Chinese/Stellar Crystal/Cards/0038.webp"
+    },
+    {
+      "number": "039/208",
+      "pokemonIndex": 39,
+      "version": 1,
+      "name": "Milotic",
+      "rarity": "Uncommon (U)",
+      "image": "Chinese/Stellar Crystal/Cards/0039.webp"
+    },
+    {
+      "number": "040/208",
+      "pokemonIndex": 40,
+      "version": 1,
+      "name": "Spheal",
+      "rarity": "Common (C)",
+      "image": "Chinese/Stellar Crystal/Cards/0040.webp"
+    },
+    {
+      "number": "041/208",
+      "pokemonIndex": 41,
+      "version": 1,
+      "name": "Sealeo",
+      "rarity": "Common (C)",
+      "image": "Chinese/Stellar Crystal/Cards/0041.webp"
+    },
+    {
+      "number": "042/208",
+      "pokemonIndex": 42,
+      "version": 1,
+      "name": "Walrein",
+      "rarity": "Uncommon (U)",
+      "image": "Chinese/Stellar Crystal/Cards/0042.webp"
+    },
+    {
+      "number": "043/208",
+      "pokemonIndex": 43,
+      "version": 1,
+      "name": "Shellos",
+      "rarity": "Common (C)",
+      "image": "Chinese/Stellar Crystal/Cards/0043.webp"
+    },
+    {
+      "number": "044/208",
+      "pokemonIndex": 44,
+      "version": 1,
+      "name": "Tirtouga",
+      "rarity": "Common (C)",
+      "image": "Chinese/Stellar Crystal/Cards/0044.webp"
+    },
+    {
+      "number": "045/208",
+      "pokemonIndex": 45,
+      "version": 1,
+      "name": "Carracosta",
+      "rarity": "Uncommon (U)",
+      "image": "Chinese/Stellar Crystal/Cards/0045.webp"
+    },
+    {
+      "number": "046/208",
+      "pokemonIndex": 46,
+      "version": 1,
+      "name": "Cryogonal",
+      "rarity": "Common (C)",
+      "image": "Chinese/Stellar Crystal/Cards/0046.webp"
+    },
+    {
+      "number": "047/208",
+      "pokemonIndex": 47,
+      "version": 1,
+      "name": "Bruxish",
+      "rarity": "Uncommon (U)",
+      "image": "Chinese/Stellar Crystal/Cards/0047.webp"
+    },
+    {
+      "number": "048/208",
+      "pokemonIndex": 48,
+      "version": 1,
+      "name": "Quaxly",
+      "rarity": "Common (C)",
+      "image": "Chinese/Stellar Crystal/Cards/0048.webp"
+    },
+    {
+      "number": "049/208",
+      "pokemonIndex": 49,
+      "version": 1,
+      "name": "Quaxwell",
+      "rarity": "Common (C)",
+      "image": "Chinese/Stellar Crystal/Cards/0049.webp"
+    },
+    {
+      "number": "050/208",
+      "pokemonIndex": 50,
+      "version": 1,
+      "name": "Quaquaval",
+      "rarity": "Uncommon (U)",
+      "image": "Chinese/Stellar Crystal/Cards/0050.webp"
+    },
+    {
+      "number": "051/208",
+      "pokemonIndex": 51,
+      "version": 1,
+      "name": "Veluza",
+      "rarity": "Uncommon (U)",
+      "image": "Chinese/Stellar Crystal/Cards/0051.webp"
+    },
+    {
+      "number": "052/208",
+      "pokemonIndex": 52,
+      "version": 1,
+      "name": "Iron Bundle",
+      "rarity": "Uncommon (U)",
+      "image": "Chinese/Stellar Crystal/Cards/0052.webp"
+    },
+    {
+      "number": "053/208",
+      "pokemonIndex": 53,
+      "version": 1,
+      "name": "Chien-Pao",
+      "rarity": "Rare (R)",
+      "image": "Chinese/Stellar Crystal/Cards/0053.webp"
+    },
+    {
+      "number": "054/208",
+      "pokemonIndex": 54,
+      "version": 1,
+      "name": "Pikachu ex",
+      "rarity": "Double Rare (RR)",
+      "image": "Chinese/Stellar Crystal/Cards/0054.webp"
+    },
+    {
+      "number": "055/208",
+      "pokemonIndex": 55,
+      "version": 1,
+      "name": "Magnemite",
+      "rarity": "Common (C)",
+      "image": "Chinese/Stellar Crystal/Cards/0055.webp"
+    },
+    {
+      "number": "056/208",
+      "pokemonIndex": 56,
+      "version": 1,
+      "name": "Magneton",
+      "rarity": "Uncommon (U)",
+      "image": "Chinese/Stellar Crystal/Cards/0056.webp"
+    },
+    {
+      "number": "057/208",
+      "pokemonIndex": 57,
+      "version": 1,
+      "name": "Magnezone",
+      "rarity": "Uncommon (U)",
+      "image": "Chinese/Stellar Crystal/Cards/0057.webp"
+    },
+    {
+      "number": "058/208",
+      "pokemonIndex": 58,
+      "version": 1,
+      "name": "Electabuzz",
+      "rarity": "Common (C)",
+      "image": "Chinese/Stellar Crystal/Cards/0058.webp"
+    },
+    {
+      "number": "059/208",
+      "pokemonIndex": 59,
+      "version": 1,
+      "name": "Electivire",
+      "rarity": "Uncommon (U)",
+      "image": "Chinese/Stellar Crystal/Cards/0059.webp"
+    },
+    {
+      "number": "060/208",
+      "pokemonIndex": 60,
+      "version": 1,
+      "name": "Chinchou",
+      "rarity": "Common (C)",
+      "image": "Chinese/Stellar Crystal/Cards/0060.webp"
+    },
+    {
+      "number": "061/208",
+      "pokemonIndex": 61,
+      "version": 1,
+      "name": "Lanturn",
+      "rarity": "Uncommon (U)",
+      "image": "Chinese/Stellar Crystal/Cards/0061.webp"
+    },
+    {
+      "number": "062/208",
+      "pokemonIndex": 62,
+      "version": 1,
+      "name": "Rotom",
+      "rarity": "Common (C)",
+      "image": "Chinese/Stellar Crystal/Cards/0062.webp"
+    },
+    {
+      "number": "063/208",
+      "pokemonIndex": 63,
+      "version": 1,
+      "name": "Joltik",
+      "rarity": "Common (C)",
+      "image": "Chinese/Stellar Crystal/Cards/0063.webp"
+    },
+    {
+      "number": "064/208",
+      "pokemonIndex": 64,
+      "version": 1,
+      "name": "Galvantula ex",
+      "rarity": "Double Rare (RR)",
+      "image": "Chinese/Stellar Crystal/Cards/0064.webp"
+    },
+    {
+      "number": "065/208",
+      "pokemonIndex": 65,
+      "version": 1,
+      "name": "Stunfisk",
+      "rarity": "Common (C)",
+      "image": "Chinese/Stellar Crystal/Cards/0065.webp"
+    },
+    {
+      "number": "066/208",
+      "pokemonIndex": 66,
+      "version": 1,
+      "name": "Charjabug",
+      "rarity": "Common (C)",
+      "image": "Chinese/Stellar Crystal/Cards/0066.webp"
+    },
+    {
+      "number": "067/208",
+      "pokemonIndex": 67,
+      "version": 1,
+      "name": "Vikavolt",
+      "rarity": "Uncommon (U)",
+      "image": "Chinese/Stellar Crystal/Cards/0067.webp"
+    },
+    {
+      "number": "068/208",
+      "pokemonIndex": 68,
+      "version": 1,
+      "name": "Tapu Koko",
+      "rarity": "Rare (R)",
+      "image": "Chinese/Stellar Crystal/Cards/0068.webp"
+    },
+    {
+      "number": "069/208",
+      "pokemonIndex": 69,
+      "version": 1,
+      "name": "Zeraora",
+      "rarity": "Rare (R)",
+      "image": "Chinese/Stellar Crystal/Cards/0069.webp"
+    },
+    {
+      "number": "070/208",
+      "pokemonIndex": 70,
+      "version": 1,
+      "name": "Miraidon",
+      "rarity": "Uncommon (U)",
+      "image": "Chinese/Stellar Crystal/Cards/0070.webp"
+    },
+    {
+      "number": "071/208",
+      "pokemonIndex": 71,
+      "version": 1,
+      "name": "Slowpoke",
+      "rarity": "Common (C)",
+      "image": "Chinese/Stellar Crystal/Cards/0071.webp"
+    },
+    {
+      "number": "072/208",
+      "pokemonIndex": 72,
+      "version": 1,
+      "name": "Slowking",
+      "rarity": "Uncommon (U)",
+      "image": "Chinese/Stellar Crystal/Cards/0072.webp"
+    },
+    {
+      "number": "073/208",
+      "pokemonIndex": 73,
+      "version": 1,
+      "name": "Togepi",
+      "rarity": "Common (C)",
+      "image": "Chinese/Stellar Crystal/Cards/0073.webp"
+    },
+    {
+      "number": "074/208",
+      "pokemonIndex": 74,
+      "version": 1,
+      "name": "Togetic",
+      "rarity": "Common (C)",
+      "image": "Chinese/Stellar Crystal/Cards/0074.webp"
+    },
+    {
+      "number": "075/208",
+      "pokemonIndex": 75,
+      "version": 1,
+      "name": "Togekiss",
+      "rarity": "Rare (R)",
+      "image": "Chinese/Stellar Crystal/Cards/0075.webp"
+    },
+    {
+      "number": "076/208",
+      "pokemonIndex": 76,
+      "version": 1,
+      "name": "Marill",
+      "rarity": "Common (C)",
+      "image": "Chinese/Stellar Crystal/Cards/0076.webp"
+    },
+    {
+      "number": "077/208",
+      "pokemonIndex": 77,
+      "version": 1,
+      "name": "Azumarill",
+      "rarity": "Common (C)",
+      "image": "Chinese/Stellar Crystal/Cards/0077.webp"
+    },
+    {
+      "number": "078/208",
+      "pokemonIndex": 78,
+      "version": 1,
+      "name": "Latias ex",
+      "rarity": "Double Rare (RR)",
+      "image": "Chinese/Stellar Crystal/Cards/0078.webp"
+    },
+    {
+      "number": "079/208",
+      "pokemonIndex": 79,
+      "version": 1,
+      "name": "Latios",
+      "rarity": "Uncommon (U)",
+      "image": "Chinese/Stellar Crystal/Cards/0079.webp"
+    },
+    {
+      "number": "080/208",
+      "pokemonIndex": 80,
+      "version": 1,
+      "name": "Drifloon",
+      "rarity": "Common (C)",
+      "image": "Chinese/Stellar Crystal/Cards/0080.webp"
+    },
+    {
+      "number": "081/208",
+      "pokemonIndex": 81,
+      "version": 1,
+      "name": "Drifblim",
+      "rarity": "Uncommon (U)",
+      "image": "Chinese/Stellar Crystal/Cards/0081.webp"
+    },
+    {
+      "number": "082/208",
+      "pokemonIndex": 82,
+      "version": 1,
+      "name": "Uxie",
+      "rarity": "Common (C)",
+      "image": "Chinese/Stellar Crystal/Cards/0082.webp"
+    },
+    {
+      "number": "083/208",
+      "pokemonIndex": 83,
+      "version": 1,
+      "name": "Mesprit",
+      "rarity": "Common (C)",
+      "image": "Chinese/Stellar Crystal/Cards/0083.webp"
+    },
+    {
+      "number": "084/208",
+      "pokemonIndex": 84,
+      "version": 1,
+      "name": "Azelf",
+      "rarity": "Common (C)",
+      "image": "Chinese/Stellar Crystal/Cards/0084.webp"
+    },
+    {
+      "number": "085/208",
+      "pokemonIndex": 85,
+      "version": 1,
+      "name": "Cresselia",
+      "rarity": "Rare (R)",
+      "image": "Chinese/Stellar Crystal/Cards/0085.webp"
+    },
+    {
+      "number": "086/208",
+      "pokemonIndex": 86,
+      "version": 1,
+      "name": "Yamask",
+      "rarity": "Common (C)",
+      "image": "Chinese/Stellar Crystal/Cards/0086.webp"
+    },
+    {
+      "number": "087/208",
+      "pokemonIndex": 87,
+      "version": 1,
+      "name": "Cofagrigus",
+      "rarity": "Rare (R)",
+      "image": "Chinese/Stellar Crystal/Cards/0087.webp"
+    },
+    {
+      "number": "088/208",
+      "pokemonIndex": 88,
+      "version": 1,
+      "name": "Espurr",
+      "rarity": "Common (C)",
+      "image": "Chinese/Stellar Crystal/Cards/0088.webp"
+    },
+    {
+      "number": "089/208",
+      "pokemonIndex": 89,
+      "version": 1,
+      "name": "Meowstic",
+      "rarity": "Uncommon (U)",
+      "image": "Chinese/Stellar Crystal/Cards/0089.webp"
+    },
+    {
+      "number": "090/208",
+      "pokemonIndex": 90,
+      "version": 1,
+      "name": "Sylveon ex",
+      "rarity": "Double Rare (RR)",
+      "image": "Chinese/Stellar Crystal/Cards/0090.webp"
+    },
+    {
+      "number": "091/208",
+      "pokemonIndex": 91,
+      "version": 1,
+      "name": "Dedenne",
+      "rarity": "Common (C)",
+      "image": "Chinese/Stellar Crystal/Cards/0091.webp"
+    },
+    {
+      "number": "092/208",
+      "pokemonIndex": 92,
+      "version": 1,
+      "name": "Oricorio",
+      "rarity": "Common (C)",
+      "image": "Chinese/Stellar Crystal/Cards/0092.webp"
+    },
+    {
+      "number": "093/208",
+      "pokemonIndex": 93,
+      "version": 1,
+      "name": "Sandygast",
+      "rarity": "Common (C)",
+      "image": "Chinese/Stellar Crystal/Cards/0093.webp"
+    },
+    {
+      "number": "094/208",
+      "pokemonIndex": 94,
+      "version": 1,
+      "name": "Palossand ex",
+      "rarity": "Double Rare (RR)",
+      "image": "Chinese/Stellar Crystal/Cards/0094.webp"
+    },
+    {
+      "number": "095/208",
+      "pokemonIndex": 95,
+      "version": 1,
+      "name": "Flutter Mane",
+      "rarity": "Uncommon (U)",
+      "image": "Chinese/Stellar Crystal/Cards/0095.webp"
+    },
+    {
+      "number": "096/208",
+      "pokemonIndex": 96,
+      "version": 1,
+      "name": "Gimmighoul",
+      "rarity": "Common (C)",
+      "image": "Chinese/Stellar Crystal/Cards/0096.webp"
+    },
+    {
+      "number": "097/208",
+      "pokemonIndex": 97,
+      "version": 1,
+      "name": "Mankey",
+      "rarity": "Common (C)",
+      "image": "Chinese/Stellar Crystal/Cards/0097.webp"
+    },
+    {
+      "number": "098/208",
+      "pokemonIndex": 98,
+      "version": 1,
+      "name": "Primeape",
+      "rarity": "Common (C)",
+      "image": "Chinese/Stellar Crystal/Cards/0098.webp"
+    },
+    {
+      "number": "099/208",
+      "pokemonIndex": 99,
+      "version": 1,
+      "name": "Annihilape",
+      "rarity": "Uncommon (U)",
+      "image": "Chinese/Stellar Crystal/Cards/0099.webp"
+    },
+    {
+      "number": "100/208",
+      "pokemonIndex": 100,
+      "version": 1,
+      "name": "Trapinch",
+      "rarity": "Common (C)",
+      "image": "Chinese/Stellar Crystal/Cards/0100.webp"
+    },
+    {
+      "number": "101/208",
+      "pokemonIndex": 101,
+      "version": 1,
+      "name": "Vibrava",
+      "rarity": "Common (C)",
+      "image": "Chinese/Stellar Crystal/Cards/0101.webp"
+    },
+    {
+      "number": "102/208",
+      "pokemonIndex": 102,
+      "version": 1,
+      "name": "Flygon ex",
+      "rarity": "Double Rare (RR)",
+      "image": "Chinese/Stellar Crystal/Cards/0102.webp"
+    },
+    {
+      "number": "103/208",
+      "pokemonIndex": 103,
+      "version": 1,
+      "name": "Gastrodon",
+      "rarity": "Rare (R)",
+      "image": "Chinese/Stellar Crystal/Cards/0103.webp"
+    },
+    {
+      "number": "104/208",
+      "pokemonIndex": 104,
+      "version": 1,
+      "name": "Landorus",
+      "rarity": "Rare (R)",
+      "image": "Chinese/Stellar Crystal/Cards/0104.webp"
+    },
+    {
+      "number": "105/208",
+      "pokemonIndex": 105,
+      "version": 1,
+      "name": "Pancham",
+      "rarity": "Common (C)",
+      "image": "Chinese/Stellar Crystal/Cards/0105.webp"
+    },
+    {
+      "number": "106/208",
+      "pokemonIndex": 106,
+      "version": 1,
+      "name": "Diancie",
+      "rarity": "Uncommon (U)",
+      "image": "Chinese/Stellar Crystal/Cards/0106.webp"
+    },
+    {
+      "number": "107/208",
+      "pokemonIndex": 107,
+      "version": 1,
+      "name": "Clobbopus",
+      "rarity": "Common (C)",
+      "image": "Chinese/Stellar Crystal/Cards/0107.webp"
+    },
+    {
+      "number": "108/208",
+      "pokemonIndex": 108,
+      "version": 1,
+      "name": "Grapploct",
+      "rarity": "Common (C)",
+      "image": "Chinese/Stellar Crystal/Cards/0108.webp"
+    },
+    {
+      "number": "109/208",
+      "pokemonIndex": 109,
+      "version": 1,
+      "name": "Falinks",
+      "rarity": "Common (C)",
+      "image": "Chinese/Stellar Crystal/Cards/0109.webp"
+    },
+    {
+      "number": "110/208",
+      "pokemonIndex": 110,
+      "version": 1,
+      "name": "Glimmet",
+      "rarity": "Common (C)",
+      "image": "Chinese/Stellar Crystal/Cards/0110.webp"
+    },
+    {
+      "number": "111/208",
+      "pokemonIndex": 111,
+      "version": 1,
+      "name": "Glimmora",
+      "rarity": "Common (C)",
+      "image": "Chinese/Stellar Crystal/Cards/0111.webp"
+    },
+    {
+      "number": "112/208",
+      "pokemonIndex": 112,
+      "version": 1,
+      "name": "Koraidon",
+      "rarity": "Uncommon (U)",
+      "image": "Chinese/Stellar Crystal/Cards/0112.webp"
+    },
+    {
+      "number": "113/208",
+      "pokemonIndex": 113,
+      "version": 1,
+      "name": "Gulpin",
+      "rarity": "Common (C)",
+      "image": "Chinese/Stellar Crystal/Cards/0113.webp"
+    },
+    {
+      "number": "114/208",
+      "pokemonIndex": 114,
+      "version": 1,
+      "name": "Swalot",
+      "rarity": "Uncommon (U)",
+      "image": "Chinese/Stellar Crystal/Cards/0114.webp"
+    },
+    {
+      "number": "115/208",
+      "pokemonIndex": 115,
+      "version": 1,
+      "name": "Zorua",
+      "rarity": "Common (C)",
+      "image": "Chinese/Stellar Crystal/Cards/0115.webp"
+    },
+    {
+      "number": "116/208",
+      "pokemonIndex": 116,
+      "version": 1,
+      "name": "Zoroark",
+      "rarity": "Rare (R)",
+      "image": "Chinese/Stellar Crystal/Cards/0116.webp"
+    },
+    {
+      "number": "117/208",
+      "pokemonIndex": 117,
+      "version": 1,
+      "name": "Deino",
+      "rarity": "Common (C)",
+      "image": "Chinese/Stellar Crystal/Cards/0117.webp"
+    },
+    {
+      "number": "118/208",
+      "pokemonIndex": 118,
+      "version": 1,
+      "name": "Zweilous",
+      "rarity": "Common (C)",
+      "image": "Chinese/Stellar Crystal/Cards/0118.webp"
+    },
+    {
+      "number": "119/208",
+      "pokemonIndex": 119,
+      "version": 1,
+      "name": "Hydreigon ex",
+      "rarity": "Double Rare (RR)",
+      "image": "Chinese/Stellar Crystal/Cards/0119.webp"
+    },
+    {
+      "number": "120/208",
+      "pokemonIndex": 120,
+      "version": 1,
+      "name": "Pangoro",
+      "rarity": "Uncommon (U)",
+      "image": "Chinese/Stellar Crystal/Cards/0120.webp"
+    },
+    {
+      "number": "121/208",
+      "pokemonIndex": 121,
+      "version": 1,
+      "name": "Yveltal",
+      "rarity": "Uncommon (U)",
+      "image": "Chinese/Stellar Crystal/Cards/0121.webp"
+    },
+    {
+      "number": "122/208",
+      "pokemonIndex": 122,
+      "version": 1,
+      "name": "Impidimp",
+      "rarity": "Common (C)",
+      "image": "Chinese/Stellar Crystal/Cards/0122.webp"
+    },
+    {
+      "number": "123/208",
+      "pokemonIndex": 123,
+      "version": 1,
+      "name": "Morgrem",
+      "rarity": "Common (C)",
+      "image": "Chinese/Stellar Crystal/Cards/0123.webp"
+    },
+    {
+      "number": "124/208",
+      "pokemonIndex": 124,
+      "version": 1,
+      "name": "Grimmsnarl",
+      "rarity": "Uncommon (U)",
+      "image": "Chinese/Stellar Crystal/Cards/0124.webp"
+    },
+    {
+      "number": "125/208",
+      "pokemonIndex": 125,
+      "version": 1,
+      "name": "Shroodle",
+      "rarity": "Common (C)",
+      "image": "Chinese/Stellar Crystal/Cards/0125.webp"
+    },
+    {
+      "number": "126/208",
+      "pokemonIndex": 126,
+      "version": 1,
+      "name": "Grafaiai",
+      "rarity": "Uncommon (U)",
+      "image": "Chinese/Stellar Crystal/Cards/0126.webp"
+    },
+    {
+      "number": "127/208",
+      "pokemonIndex": 127,
+      "version": 1,
+      "name": "Pecharunt",
+      "rarity": "Uncommon (U)",
+      "image": "Chinese/Stellar Crystal/Cards/0127.webp"
+    },
+    {
+      "number": "128/208",
+      "pokemonIndex": 128,
+      "version": 1,
+      "name": "Alolan Diglett",
+      "rarity": "Common (C)",
+      "image": "Chinese/Stellar Crystal/Cards/0128.webp"
+    },
+    {
+      "number": "129/208",
+      "pokemonIndex": 129,
+      "version": 1,
+      "name": "Alolan Dugtrio",
+      "rarity": "Uncommon (U)",
+      "image": "Chinese/Stellar Crystal/Cards/0129.webp"
+    },
+    {
+      "number": "130/208",
+      "pokemonIndex": 130,
+      "version": 1,
+      "name": "Skarmory",
+      "rarity": "Common (C)",
+      "image": "Chinese/Stellar Crystal/Cards/0130.webp"
+    },
+    {
+      "number": "131/208",
+      "pokemonIndex": 131,
+      "version": 1,
+      "name": "Bronzor",
+      "rarity": "Common (C)",
+      "image": "Chinese/Stellar Crystal/Cards/0131.webp"
+    },
+    {
+      "number": "132/208",
+      "pokemonIndex": 132,
+      "version": 1,
+      "name": "Bronzong",
+      "rarity": "Common (C)",
+      "image": "Chinese/Stellar Crystal/Cards/0132.webp"
+    },
+    {
+      "number": "133/208",
+      "pokemonIndex": 133,
+      "version": 1,
+      "name": "Genesect",
+      "rarity": "Uncommon (U)",
+      "image": "Chinese/Stellar Crystal/Cards/0133.webp"
+    },
+    {
+      "number": "134/208",
+      "pokemonIndex": 134,
+      "version": 1,
+      "name": "Meltan",
+      "rarity": "Common (C)",
+      "image": "Chinese/Stellar Crystal/Cards/0134.webp"
+    },
+    {
+      "number": "135/208",
+      "pokemonIndex": 135,
+      "version": 1,
+      "name": "Melmetal",
+      "rarity": "Uncommon (U)",
+      "image": "Chinese/Stellar Crystal/Cards/0135.webp"
+    },
+    {
+      "number": "136/208",
+      "pokemonIndex": 136,
+      "version": 1,
+      "name": "Duraludon",
+      "rarity": "Common (C)",
+      "image": "Chinese/Stellar Crystal/Cards/0136.webp"
+    },
+    {
+      "number": "137/208",
+      "pokemonIndex": 137,
+      "version": 1,
+      "name": "Archaludon",
+      "rarity": "Rare (R)",
+      "image": "Chinese/Stellar Crystal/Cards/0137.webp"
+    },
+    {
+      "number": "138/208",
+      "pokemonIndex": 138,
+      "version": 1,
+      "name": "Archaludon ex",
+      "rarity": "Double Rare (RR)",
+      "image": "Chinese/Stellar Crystal/Cards/0138.webp"
+    },
+    {
+      "number": "139/208",
+      "pokemonIndex": 139,
+      "version": 1,
+      "name": "Zacian ex",
+      "rarity": "Double Rare (RR)",
+      "image": "Chinese/Stellar Crystal/Cards/0139.webp"
+    },
+    {
+      "number": "140/208",
+      "pokemonIndex": 140,
+      "version": 1,
+      "name": "Varoom",
+      "rarity": "Common (C)",
+      "image": "Chinese/Stellar Crystal/Cards/0140.webp"
+    },
+    {
+      "number": "141/208",
+      "pokemonIndex": 141,
+      "version": 1,
+      "name": "Revavroom",
+      "rarity": "Uncommon (U)",
+      "image": "Chinese/Stellar Crystal/Cards/0141.webp"
+    },
+    {
+      "number": "142/208",
+      "pokemonIndex": 142,
+      "version": 1,
+      "name": "Gholdengo",
+      "rarity": "Uncommon (U)",
+      "image": "Chinese/Stellar Crystal/Cards/0142.webp"
+    },
+    {
+      "number": "143/208",
+      "pokemonIndex": 143,
+      "version": 1,
+      "name": "Iron Crown",
+      "rarity": "Rare (R)",
+      "image": "Chinese/Stellar Crystal/Cards/0143.webp"
+    },
+    {
+      "number": "144/208",
+      "pokemonIndex": 144,
+      "version": 1,
+      "name": "Alolan Exeggutor ex",
+      "rarity": "Double Rare (RR)",
+      "image": "Chinese/Stellar Crystal/Cards/0144.webp"
+    },
+    {
+      "number": "145/208",
+      "pokemonIndex": 145,
+      "version": 1,
+      "name": "Dialga",
+      "rarity": "Rare (R)",
+      "image": "Chinese/Stellar Crystal/Cards/0145.webp"
+    },
+    {
+      "number": "146/208",
+      "pokemonIndex": 146,
+      "version": 1,
+      "name": "Palkia",
+      "rarity": "Rare (R)",
+      "image": "Chinese/Stellar Crystal/Cards/0146.webp"
+    },
+    {
+      "number": "147/208",
+      "pokemonIndex": 147,
+      "version": 1,
+      "name": "Kyurem",
+      "rarity": "Uncommon (U)",
+      "image": "Chinese/Stellar Crystal/Cards/0147.webp"
+    },
+    {
+      "number": "148/208",
+      "pokemonIndex": 148,
+      "version": 1,
+      "name": "Applin",
+      "rarity": "Common (C)",
+      "image": "Chinese/Stellar Crystal/Cards/0148.webp"
+    },
+    {
+      "number": "149/208",
+      "pokemonIndex": 149,
+      "version": 1,
+      "name": "Flapple",
+      "rarity": "Uncommon (U)",
+      "image": "Chinese/Stellar Crystal/Cards/0149.webp"
+    },
+    {
+      "number": "150/208",
+      "pokemonIndex": 150,
+      "version": 1,
+      "name": "Appletun",
+      "rarity": "Uncommon (U)",
+      "image": "Chinese/Stellar Crystal/Cards/0150.webp"
+    },
+    {
+      "number": "151/208",
+      "pokemonIndex": 151,
+      "version": 1,
+      "name": "Eternatus",
+      "rarity": "Rare (R)",
+      "image": "Chinese/Stellar Crystal/Cards/0151.webp"
+    },
+    {
+      "number": "152/208",
+      "pokemonIndex": 152,
+      "version": 1,
+      "name": "Tatsugiri ex",
+      "rarity": "Double Rare (RR)",
+      "image": "Chinese/Stellar Crystal/Cards/0152.webp"
+    },
+    {
+      "number": "153/208",
+      "pokemonIndex": 153,
+      "version": 1,
+      "name": "Eevee",
+      "rarity": "Common (C)",
+      "image": "Chinese/Stellar Crystal/Cards/0153.webp"
+    },
+    {
+      "number": "154/208",
+      "pokemonIndex": 154,
+      "version": 1,
+      "name": "Hoothoot",
+      "rarity": "Common (C)",
+      "image": "Chinese/Stellar Crystal/Cards/0154.webp"
+    },
+    {
+      "number": "155/208",
+      "pokemonIndex": 155,
+      "version": 1,
+      "name": "Noctowl",
+      "rarity": "Rare (R)",
+      "image": "Chinese/Stellar Crystal/Cards/0155.webp"
+    },
+    {
+      "number": "156/208",
+      "pokemonIndex": 156,
+      "version": 1,
+      "name": "Slakoth",
+      "rarity": "Common (C)",
+      "image": "Chinese/Stellar Crystal/Cards/0156.webp"
+    },
+    {
+      "number": "157/208",
+      "pokemonIndex": 157,
+      "version": 1,
+      "name": "Vigoroth",
+      "rarity": "Common (C)",
+      "image": "Chinese/Stellar Crystal/Cards/0157.webp"
+    },
+    {
+      "number": "158/208",
+      "pokemonIndex": 158,
+      "version": 1,
+      "name": "Slaking ex",
+      "rarity": "Double Rare (RR)",
+      "image": "Chinese/Stellar Crystal/Cards/0158.webp"
+    },
+    {
+      "number": "159/208",
+      "pokemonIndex": 159,
+      "version": 1,
+      "name": "Zangoose",
+      "rarity": "Common (C)",
+      "image": "Chinese/Stellar Crystal/Cards/0159.webp"
+    },
+    {
+      "number": "160/208",
+      "pokemonIndex": 160,
+      "version": 1,
+      "name": "Kecleon",
+      "rarity": "Common (C)",
+      "image": "Chinese/Stellar Crystal/Cards/0160.webp"
+    },
+    {
+      "number": "161/208",
+      "pokemonIndex": 161,
+      "version": 1,
+      "name": "Fan Rotom",
+      "rarity": "Common (C)",
+      "image": "Chinese/Stellar Crystal/Cards/0161.webp"
+    },
+    {
+      "number": "162/208",
+      "pokemonIndex": 162,
+      "version": 1,
+      "name": "Bouffalant",
+      "rarity": "Uncommon (U)",
+      "image": "Chinese/Stellar Crystal/Cards/0162.webp"
+    },
+    {
+      "number": "163/208",
+      "pokemonIndex": 163,
+      "version": 1,
+      "name": "Rufflet",
+      "rarity": "Common (C)",
+      "image": "Chinese/Stellar Crystal/Cards/0163.webp"
+    },
+    {
+      "number": "164/208",
+      "pokemonIndex": 164,
+      "version": 1,
+      "name": "Braviary",
+      "rarity": "Uncommon (U)",
+      "image": "Chinese/Stellar Crystal/Cards/0164.webp"
+    },
+    {
+      "number": "165/208",
+      "pokemonIndex": 165,
+      "version": 1,
+      "name": "Fletchling",
+      "rarity": "Common (C)",
+      "image": "Chinese/Stellar Crystal/Cards/0165.webp"
+    },
+    {
+      "number": "166/208",
+      "pokemonIndex": 166,
+      "version": 1,
+      "name": "Fletchinder",
+      "rarity": "Common (C)",
+      "image": "Chinese/Stellar Crystal/Cards/0166.webp"
+    },
+    {
+      "number": "167/208",
+      "pokemonIndex": 167,
+      "version": 1,
+      "name": "Talonflame",
+      "rarity": "Uncommon (U)",
+      "image": "Chinese/Stellar Crystal/Cards/0167.webp"
+    },
+    {
+      "number": "168/208",
+      "pokemonIndex": 168,
+      "version": 1,
+      "name": "Noibat",
+      "rarity": "Common (C)",
+      "image": "Chinese/Stellar Crystal/Cards/0168.webp"
+    },
+    {
+      "number": "169/208",
+      "pokemonIndex": 169,
+      "version": 1,
+      "name": "Noivern ex",
+      "rarity": "Double Rare (RR)",
+      "image": "Chinese/Stellar Crystal/Cards/0169.webp"
+    },
+    {
+      "number": "170/208",
+      "pokemonIndex": 170,
+      "version": 1,
+      "name": "Oranguru",
+      "rarity": "Common (C)",
+      "image": "Chinese/Stellar Crystal/Cards/0170.webp"
+    },
+    {
+      "number": "171/208",
+      "pokemonIndex": 171,
+      "version": 1,
+      "name": "Tandemaus",
+      "rarity": "Common (C)",
+      "image": "Chinese/Stellar Crystal/Cards/0171.webp"
+    },
+    {
+      "number": "172/208",
+      "pokemonIndex": 172,
+      "version": 1,
+      "name": "Maushold",
+      "rarity": "Uncommon (U)",
+      "image": "Chinese/Stellar Crystal/Cards/0172.webp"
+    },
+    {
+      "number": "173/208",
+      "pokemonIndex": 173,
+      "version": 1,
+      "name": "Cyclizar ex",
+      "rarity": "Double Rare (RR)",
+      "image": "Chinese/Stellar Crystal/Cards/0173.webp"
+    },
+    {
+      "number": "174/208",
+      "pokemonIndex": 174,
+      "version": 1,
+      "name": "Terapagos",
+      "rarity": "Rare (R)",
+      "image": "Chinese/Stellar Crystal/Cards/0174.webp"
+    },
+    {
+      "number": "175/208",
+      "pokemonIndex": 175,
+      "version": 1,
+      "name": "Terapagos ex",
+      "rarity": "Double Rare (RR)",
+      "image": "Chinese/Stellar Crystal/Cards/0175.webp"
+    },
+    {
+      "number": "176/208",
+      "pokemonIndex": 176,
+      "version": 1,
+      "name": "Energy Search Pro",
+      "rarity": "ACE SPEC Rare (ACE)",
+      "image": "Chinese/Stellar Crystal/Cards/0176.webp"
+    },
+    {
+      "number": "177/208",
+      "pokemonIndex": 177,
+      "version": 1,
+      "name": "Call Bell",
+      "rarity": "Uncommon (U)",
+      "image": "Chinese/Stellar Crystal/Cards/0177.webp"
+    },
+    {
+      "number": "178/208",
+      "pokemonIndex": 178,
+      "version": 1,
+      "name": "Glass Trumpet",
+      "rarity": "Uncommon (U)",
+      "image": "Chinese/Stellar Crystal/Cards/0178.webp"
+    },
+    {
+      "number": "179/208",
+      "pokemonIndex": 179,
+      "version": 1,
+      "name": "Deduction Kit",
+      "rarity": "Uncommon (U)",
+      "image": "Chinese/Stellar Crystal/Cards/0179.webp"
+    },
+    {
+      "number": "180/208",
+      "pokemonIndex": 180,
+      "version": 1,
+      "name": "Scramble Switch",
+      "rarity": "ACE SPEC Rare (ACE)",
+      "image": "Chinese/Stellar Crystal/Cards/0180.webp"
+    },
+    {
+      "number": "181/208",
+      "pokemonIndex": 181,
+      "version": 1,
+      "name": "Tera Orb",
+      "rarity": "Uncommon (U)",
+      "image": "Chinese/Stellar Crystal/Cards/0181.webp"
+    },
+    {
+      "number": "182/208",
+      "pokemonIndex": 182,
+      "version": 1,
+      "name": "Chill Teaser Toy",
+      "rarity": "Uncommon (U)",
+      "image": "Chinese/Stellar Crystal/Cards/0182.webp"
+    },
+    {
+      "number": "183/208",
+      "pokemonIndex": 183,
+      "version": 1,
+      "name": "Brilliant Blender",
+      "rarity": "ACE SPEC Rare (ACE)",
+      "image": "Chinese/Stellar Crystal/Cards/0183.webp"
+    },
+    {
+      "number": "184/208",
+      "pokemonIndex": 184,
+      "version": 1,
+      "name": "Antique Root Fossil",
+      "rarity": "Common (C)",
+      "image": "Chinese/Stellar Crystal/Cards/0184.webp"
+    },
+    {
+      "number": "185/208",
+      "pokemonIndex": 185,
+      "version": 1,
+      "name": "Antique Cover Fossil",
+      "rarity": "Common (C)",
+      "image": "Chinese/Stellar Crystal/Cards/0185.webp"
+    },
+    {
+      "number": "186/208",
+      "pokemonIndex": 186,
+      "version": 1,
+      "name": "Precious Trolley",
+      "rarity": "ACE SPEC Rare (ACE)",
+      "image": "Chinese/Stellar Crystal/Cards/0186.webp"
+    },
+    {
+      "number": "187/208",
+      "pokemonIndex": 187,
+      "version": 1,
+      "name": "Miracle Headset",
+      "rarity": "ACE SPEC Rare (ACE)",
+      "image": "Chinese/Stellar Crystal/Cards/0187.webp"
+    },
+    {
+      "number": "188/208",
+      "pokemonIndex": 188,
+      "version": 1,
+      "name": "Megaton Blower",
+      "rarity": "ACE SPEC Rare (ACE)",
+      "image": "Chinese/Stellar Crystal/Cards/0188.webp"
+    },
+    {
+      "number": "189/208",
+      "pokemonIndex": 189,
+      "version": 1,
+      "name": "Dragon Elixir",
+      "rarity": "Uncommon (U)",
+      "image": "Chinese/Stellar Crystal/Cards/0189.webp"
+    },
+    {
+      "number": "190/208",
+      "pokemonIndex": 190,
+      "version": 1,
+      "name": "Counter Gain",
+      "rarity": "Uncommon (U)",
+      "image": "Chinese/Stellar Crystal/Cards/0190.webp"
+    },
+    {
+      "number": "191/208",
+      "pokemonIndex": 191,
+      "version": 1,
+      "name": "Amulet of Hope",
+      "rarity": "ACE SPEC Rare (ACE)",
+      "image": "Chinese/Stellar Crystal/Cards/0191.webp"
+    },
+    {
+      "number": "192/208",
+      "pokemonIndex": 192,
+      "version": 1,
+      "name": "Gravity Gemstone",
+      "rarity": "Uncommon (U)",
+      "image": "Chinese/Stellar Crystal/Cards/0192.webp"
+    },
+    {
+      "number": "193/208",
+      "pokemonIndex": 193,
+      "version": 1,
+      "name": "Colbur Berry",
+      "rarity": "Uncommon (U)",
+      "image": "Chinese/Stellar Crystal/Cards/0193.webp"
+    },
+    {
+      "number": "194/208",
+      "pokemonIndex": 194,
+      "version": 1,
+      "name": "Babiri Berry",
+      "rarity": "Uncommon (U)",
+      "image": "Chinese/Stellar Crystal/Cards/0194.webp"
+    },
+    {
+      "number": "195/208",
+      "pokemonIndex": 195,
+      "version": 1,
+      "name": "Technical Machine: Fluorite",
+      "rarity": "Uncommon (U)",
+      "image": "Chinese/Stellar Crystal/Cards/0195.webp"
+    },
+    {
+      "number": "196/208",
+      "pokemonIndex": 196,
+      "version": 1,
+      "name": "Crispin",
+      "rarity": "Uncommon (U)",
+      "image": "Chinese/Stellar Crystal/Cards/0196.webp"
+    },
+    {
+      "number": "197/208",
+      "pokemonIndex": 197,
+      "version": 1,
+      "name": "Drayton",
+      "rarity": "Uncommon (U)",
+      "image": "Chinese/Stellar Crystal/Cards/0197.webp"
+    },
+    {
+      "number": "198/208",
+      "pokemonIndex": 198,
+      "version": 1,
+      "name": "Cyrano",
+      "rarity": "Uncommon (U)",
+      "image": "Chinese/Stellar Crystal/Cards/0198.webp"
+    },
+    {
+      "number": "199/208",
+      "pokemonIndex": 199,
+      "version": 1,
+      "name": "Clemont's Quick Wit",
+      "rarity": "Uncommon (U)",
+      "image": "Chinese/Stellar Crystal/Cards/0199.webp"
+    },
+    {
+      "number": "200/208",
+      "pokemonIndex": 200,
+      "version": 1,
+      "name": "Lacey",
+      "rarity": "Uncommon (U)",
+      "image": "Chinese/Stellar Crystal/Cards/0200.webp"
+    },
+    {
+      "number": "201/208",
+      "pokemonIndex": 201,
+      "version": 1,
+      "name": "Drasna",
+      "rarity": "Common (C)",
+      "image": "Chinese/Stellar Crystal/Cards/0201.webp"
+    },
+    {
+      "number": "202/208",
+      "pokemonIndex": 202,
+      "version": 1,
+      "name": "Briar",
+      "rarity": "Uncommon (U)",
+      "image": "Chinese/Stellar Crystal/Cards/0202.webp"
+    },
+    {
+      "number": "203/208",
+      "pokemonIndex": 203,
+      "version": 1,
+      "name": "Jasmine's Gaze",
+      "rarity": "Uncommon (U)",
+      "image": "Chinese/Stellar Crystal/Cards/0203.webp"
+    },
+    {
+      "number": "204/208",
+      "pokemonIndex": 204,
+      "version": 1,
+      "name": "Lisia's Appeal",
+      "rarity": "Uncommon (U)",
+      "image": "Chinese/Stellar Crystal/Cards/0204.webp"
+    },
+    {
+      "number": "205/208",
+      "pokemonIndex": 205,
+      "version": 1,
+      "name": "Grand Tree",
+      "rarity": "ACE SPEC Rare (ACE)",
+      "image": "Chinese/Stellar Crystal/Cards/0205.webp"
+    },
+    {
+      "number": "206/208",
+      "pokemonIndex": 206,
+      "version": 1,
+      "name": "Lively Stadium",
+      "rarity": "Uncommon (U)",
+      "image": "Chinese/Stellar Crystal/Cards/0206.webp"
+    },
+    {
+      "number": "207/208",
+      "pokemonIndex": 207,
+      "version": 1,
+      "name": "Area Zero Underdepths",
+      "rarity": "Uncommon (U)",
+      "image": "Chinese/Stellar Crystal/Cards/0207.webp"
+    },
+    {
+      "number": "208/208",
+      "pokemonIndex": 208,
+      "version": 1,
+      "name": "Enriching Energy",
+      "rarity": "ACE SPEC Rare (ACE)",
+      "image": "Chinese/Stellar Crystal/Cards/0208.webp"
+    },
+    {
+      "number": "209/208",
+      "pokemonIndex": 209,
+      "version": 1,
+      "name": "Turtonator",
+      "rarity": "Art Rare (AR)",
+      "image": "Chinese/Stellar Crystal/Cards/0209.webp"
+    },
+    {
+      "number": "210/208",
+      "pokemonIndex": 210,
+      "version": 1,
+      "name": "Zeraora",
+      "rarity": "Art Rare (AR)",
+      "image": "Chinese/Stellar Crystal/Cards/0210.webp"
+    },
+    {
+      "number": "211/208",
+      "pokemonIndex": 211,
+      "version": 1,
+      "name": "Cresselia",
+      "rarity": "Art Rare (AR)",
+      "image": "Chinese/Stellar Crystal/Cards/0211.webp"
+    },
+    {
+      "number": "212/208",
+      "pokemonIndex": 212,
+      "version": 1,
+      "name": "Zorua",
+      "rarity": "Art Rare (AR)",
+      "image": "Chinese/Stellar Crystal/Cards/0212.webp"
+    },
+    {
+      "number": "213/208",
+      "pokemonIndex": 213,
+      "version": 1,
+      "name": "Archaludon",
+      "rarity": "Art Rare (AR)",
+      "image": "Chinese/Stellar Crystal/Cards/0213.webp"
+    },
+    {
+      "number": "214/208",
+      "pokemonIndex": 214,
+      "version": 1,
+      "name": "Noctowl",
+      "rarity": "Art Rare (AR)",
+      "image": "Chinese/Stellar Crystal/Cards/0214.webp"
+    },
+    {
+      "number": "215/208",
+      "pokemonIndex": 215,
+      "version": 1,
+      "name": "Durant ex",
+      "rarity": "Super Rare (SR)",
+      "image": "Chinese/Stellar Crystal/Cards/0215.webp"
+    },
+    {
+      "number": "216/208",
+      "pokemonIndex": 216,
+      "version": 1,
+      "name": "Sinistcha ex",
+      "rarity": "Super Rare (SR)",
+      "image": "Chinese/Stellar Crystal/Cards/0216.webp"
+    },
+    {
+      "number": "217/208",
+      "pokemonIndex": 217,
+      "version": 1,
+      "name": "Hydrapple ex",
+      "rarity": "Super Rare (SR)",
+      "image": "Chinese/Stellar Crystal/Cards/0217.webp"
+    },
+    {
+      "number": "218/208",
+      "pokemonIndex": 218,
+      "version": 1,
+      "name": "Cinderace ex",
+      "rarity": "Super Rare (SR)",
+      "image": "Chinese/Stellar Crystal/Cards/0218.webp"
+    },
+    {
+      "number": "219/208",
+      "pokemonIndex": 219,
+      "version": 1,
+      "name": "Scovillain ex",
+      "rarity": "Super Rare (SR)",
+      "image": "Chinese/Stellar Crystal/Cards/0219.webp"
+    },
+    {
+      "number": "220/208",
+      "pokemonIndex": 220,
+      "version": 1,
+      "name": "Lapras ex",
+      "rarity": "Super Rare (SR)",
+      "image": "Chinese/Stellar Crystal/Cards/0220.webp"
+    },
+    {
+      "number": "221/208",
+      "pokemonIndex": 221,
+      "version": 1,
+      "name": "Pikachu ex",
+      "rarity": "Super Rare (SR)",
+      "image": "Chinese/Stellar Crystal/Cards/0221.webp"
+    },
+    {
+      "number": "222/208",
+      "pokemonIndex": 222,
+      "version": 1,
+      "name": "Galvantula ex",
+      "rarity": "Super Rare (SR)",
+      "image": "Chinese/Stellar Crystal/Cards/0222.webp"
+    },
+    {
+      "number": "223/208",
+      "pokemonIndex": 223,
+      "version": 1,
+      "name": "Latias ex",
+      "rarity": "Super Rare (SR)",
+      "image": "Chinese/Stellar Crystal/Cards/0223.webp"
+    },
+    {
+      "number": "224/208",
+      "pokemonIndex": 224,
+      "version": 1,
+      "name": "Palossand ex",
+      "rarity": "Super Rare (SR)",
+      "image": "Chinese/Stellar Crystal/Cards/0224.webp"
+    },
+    {
+      "number": "225/208",
+      "pokemonIndex": 225,
+      "version": 1,
+      "name": "Flygon ex",
+      "rarity": "Super Rare (SR)",
+      "image": "Chinese/Stellar Crystal/Cards/0225.webp"
+    },
+    {
+      "number": "226/208",
+      "pokemonIndex": 226,
+      "version": 1,
+      "name": "Hydreigon ex",
+      "rarity": "Super Rare (SR)",
+      "image": "Chinese/Stellar Crystal/Cards/0226.webp"
+    },
+    {
+      "number": "227/208",
+      "pokemonIndex": 227,
+      "version": 1,
+      "name": "Archaludon ex",
+      "rarity": "Super Rare (SR)",
+      "image": "Chinese/Stellar Crystal/Cards/0227.webp"
+    },
+    {
+      "number": "228/208",
+      "pokemonIndex": 228,
+      "version": 1,
+      "name": "Alolan Exeggutor ex",
+      "rarity": "Super Rare (SR)",
+      "image": "Chinese/Stellar Crystal/Cards/0228.webp"
+    },
+    {
+      "number": "229/208",
+      "pokemonIndex": 229,
+      "version": 1,
+      "name": "Tatsugiri ex",
+      "rarity": "Super Rare (SR)",
+      "image": "Chinese/Stellar Crystal/Cards/0229.webp"
+    },
+    {
+      "number": "230/208",
+      "pokemonIndex": 230,
+      "version": 1,
+      "name": "Slaking ex",
+      "rarity": "Super Rare (SR)",
+      "image": "Chinese/Stellar Crystal/Cards/0230.webp"
+    },
+    {
+      "number": "231/208",
+      "pokemonIndex": 231,
+      "version": 1,
+      "name": "Cyclizar ex",
+      "rarity": "Super Rare (SR)",
+      "image": "Chinese/Stellar Crystal/Cards/0231.webp"
+    },
+    {
+      "number": "232/208",
+      "pokemonIndex": 232,
+      "version": 1,
+      "name": "Terapagos ex",
+      "rarity": "Super Rare (SR)",
+      "image": "Chinese/Stellar Crystal/Cards/0232.webp"
+    },
+    {
+      "number": "233/208",
+      "pokemonIndex": 233,
+      "version": 1,
+      "name": "Crispin",
+      "rarity": "Super Rare (SR)",
+      "image": "Chinese/Stellar Crystal/Cards/0233.webp"
+    },
+    {
+      "number": "234/208",
+      "pokemonIndex": 234,
+      "version": 1,
+      "name": "Drayton",
+      "rarity": "Super Rare (SR)",
+      "image": "Chinese/Stellar Crystal/Cards/0234.webp"
+    },
+    {
+      "number": "235/208",
+      "pokemonIndex": 235,
+      "version": 1,
+      "name": "Cyrano",
+      "rarity": "Super Rare (SR)",
+      "image": "Chinese/Stellar Crystal/Cards/0235.webp"
+    },
+    {
+      "number": "236/208",
+      "pokemonIndex": 236,
+      "version": 1,
+      "name": "Clemont's Quick Wit",
+      "rarity": "Super Rare (SR)",
+      "image": "Chinese/Stellar Crystal/Cards/0236.webp"
+    },
+    {
+      "number": "237/208",
+      "pokemonIndex": 237,
+      "version": 1,
+      "name": "Lacey",
+      "rarity": "Super Rare (SR)",
+      "image": "Chinese/Stellar Crystal/Cards/0237.webp"
+    },
+    {
+      "number": "238/208",
+      "pokemonIndex": 238,
+      "version": 1,
+      "name": "Drasna",
+      "rarity": "Super Rare (SR)",
+      "image": "Chinese/Stellar Crystal/Cards/0238.webp"
+    },
+    {
+      "number": "239/208",
+      "pokemonIndex": 239,
+      "version": 1,
+      "name": "Briar",
+      "rarity": "Super Rare (SR)",
+      "image": "Chinese/Stellar Crystal/Cards/0239.webp"
+    },
+    {
+      "number": "240/208",
+      "pokemonIndex": 240,
+      "version": 1,
+      "name": "Jasmine's Gaze",
+      "rarity": "Super Rare (SR)",
+      "image": "Chinese/Stellar Crystal/Cards/0240.webp"
+    },
+    {
+      "number": "241/208",
+      "pokemonIndex": 241,
+      "version": 1,
+      "name": "Lisia's Appeal",
+      "rarity": "Super Rare (SR)",
+      "image": "Chinese/Stellar Crystal/Cards/0241.webp"
+    },
+    {
+      "number": "242/208",
+      "pokemonIndex": 242,
+      "version": 1,
+      "name": "Durant ex",
+      "rarity": "Special Art Rare (SAR)",
+      "image": "Chinese/Stellar Crystal/Cards/0242.webp"
+    },
+    {
+      "number": "243/208",
+      "pokemonIndex": 243,
+      "version": 1,
+      "name": "Sinistcha ex",
+      "rarity": "Special Art Rare (SAR)",
+      "image": "Chinese/Stellar Crystal/Cards/0243.webp"
+    },
+    {
+      "number": "244/208",
+      "pokemonIndex": 244,
+      "version": 1,
+      "name": "Hydrapple ex",
+      "rarity": "Special Art Rare (SAR)",
+      "image": "Chinese/Stellar Crystal/Cards/0244.webp"
+    },
+    {
+      "number": "245/208",
+      "pokemonIndex": 245,
+      "version": 1,
+      "name": "Pikachu ex",
+      "rarity": "Special Art Rare (SAR)",
+      "image": "Chinese/Stellar Crystal/Cards/0245.webp"
+    },
+    {
+      "number": "246/208",
+      "pokemonIndex": 246,
+      "version": 1,
+      "name": "Galvantula ex",
+      "rarity": "Special Art Rare (SAR)",
+      "image": "Chinese/Stellar Crystal/Cards/0246.webp"
+    },
+    {
+      "number": "247/208",
+      "pokemonIndex": 247,
+      "version": 1,
+      "name": "Latias ex",
+      "rarity": "Special Art Rare (SAR)",
+      "image": "Chinese/Stellar Crystal/Cards/0247.webp"
+    },
+    {
+      "number": "248/208",
+      "pokemonIndex": 248,
+      "version": 1,
+      "name": "Hydreigon ex",
+      "rarity": "Special Art Rare (SAR)",
+      "image": "Chinese/Stellar Crystal/Cards/0248.webp"
+    },
+    {
+      "number": "249/208",
+      "pokemonIndex": 249,
+      "version": 1,
+      "name": "Archaludon ex",
+      "rarity": "Special Art Rare (SAR)",
+      "image": "Chinese/Stellar Crystal/Cards/0249.webp"
+    },
+    {
+      "number": "250/208",
+      "pokemonIndex": 250,
+      "version": 1,
+      "name": "Alolan Exeggutor ex",
+      "rarity": "Special Art Rare (SAR)",
+      "image": "Chinese/Stellar Crystal/Cards/0250.webp"
+    },
+    {
+      "number": "251/208",
+      "pokemonIndex": 251,
+      "version": 1,
+      "name": "Terapagos ex",
+      "rarity": "Special Art Rare (SAR)",
+      "image": "Chinese/Stellar Crystal/Cards/0251.webp"
+    },
+    {
+      "number": "252/208",
+      "pokemonIndex": 252,
+      "version": 1,
+      "name": "Drayton",
+      "rarity": "Special Art Rare (SAR)",
+      "image": "Chinese/Stellar Crystal/Cards/0252.webp"
+    },
+    {
+      "number": "253/208",
+      "pokemonIndex": 253,
+      "version": 1,
+      "name": "Clemont's Quick Wit",
+      "rarity": "Special Art Rare (SAR)",
+      "image": "Chinese/Stellar Crystal/Cards/0253.webp"
+    },
+    {
+      "number": "254/208",
+      "pokemonIndex": 254,
+      "version": 1,
+      "name": "Lacey",
+      "rarity": "Special Art Rare (SAR)",
+      "image": "Chinese/Stellar Crystal/Cards/0254.webp"
+    },
+    {
+      "number": "255/208",
+      "pokemonIndex": 255,
+      "version": 1,
+      "name": "Briar",
+      "rarity": "Special Art Rare (SAR)",
+      "image": "Chinese/Stellar Crystal/Cards/0255.webp"
+    },
+    {
+      "number": "256/208",
+      "pokemonIndex": 256,
+      "version": 1,
+      "name": "Jasmine's Gaze",
+      "rarity": "Special Art Rare (SAR)",
+      "image": "Chinese/Stellar Crystal/Cards/0256.webp"
+    },
+    {
+      "number": "257/208",
+      "pokemonIndex": 257,
+      "version": 1,
+      "name": "Lisia's Appeal",
+      "rarity": "Special Art Rare (SAR)",
+      "image": "Chinese/Stellar Crystal/Cards/0257.webp"
+    },
+    {
+      "number": "258/208",
+      "pokemonIndex": 258,
+      "version": 1,
+      "name": "Cinderace ex",
+      "rarity": "Ultra Rare (UR)",
+      "image": "Chinese/Stellar Crystal/Cards/0258.webp"
+    },
+    {
+      "number": "259/208",
+      "pokemonIndex": 259,
+      "version": 1,
+      "name": "Lapras ex",
+      "rarity": "Ultra Rare (UR)",
+      "image": "Chinese/Stellar Crystal/Cards/0259.webp"
+    },
+    {
+      "number": "260/208",
+      "pokemonIndex": 260,
+      "version": 1,
+      "name": "Pikachu ex",
+      "rarity": "Ultra Rare (UR)",
+      "image": "Chinese/Stellar Crystal/Cards/0260.webp"
+    },
+    {
+      "number": "261/208",
+      "pokemonIndex": 261,
+      "version": 1,
+      "name": "Alolan Exeggutor ex",
+      "rarity": "Ultra Rare (UR)",
+      "image": "Chinese/Stellar Crystal/Cards/0261.webp"
+    },
+    {
+      "number": "262/208",
+      "pokemonIndex": 262,
+      "version": 1,
+      "name": "Terapagos ex",
+      "rarity": "Ultra Rare (UR)",
+      "image": "Chinese/Stellar Crystal/Cards/0262.webp"
+    },
+    {
+      "number": "263/208",
+      "pokemonIndex": 263,
+      "version": 1,
+      "name": "Night Stretcher",
+      "rarity": "Ultra Rare (UR)",
+      "image": "Chinese/Stellar Crystal/Cards/0263.webp"
+    },
+    {
+      "number": "264/208",
+      "pokemonIndex": 264,
+      "version": 1,
+      "name": "Counter Gain",
+      "rarity": "Ultra Rare (UR)",
+      "image": "Chinese/Stellar Crystal/Cards/0264.webp"
+    },
+    {
+      "number": "265/208",
+      "pokemonIndex": 265,
+      "version": 1,
+      "name": "Powerglass",
+      "rarity": "Ultra Rare (UR)",
+      "image": "Chinese/Stellar Crystal/Cards/0265.webp"
+    },
+    {
+      "number": "266/208",
+      "pokemonIndex": 266,
+      "version": 1,
+      "name": "Area Zero Underdepths",
+      "rarity": "Ultra Rare (UR)",
+      "image": "Chinese/Stellar Crystal/Cards/0266.webp"
+    }
+  ],
+  "groupByName": true
+}
