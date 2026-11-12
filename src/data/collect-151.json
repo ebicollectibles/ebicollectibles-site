@@ -35,7 +35,7 @@
       "version": 1,
       "name": "Bulbasaur",
       "rarity": "Common (C)",
-      "image": "Chinese/Collect 151/Cards/0001.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0001.webp"
     },
     {
       "number": "002/151",
@@ -43,7 +43,7 @@
       "version": 1,
       "name": "Ivysaur",
       "rarity": "Uncommon (U)",
-      "image": "Chinese/Collect 151/Cards/0002.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0002.webp"
     },
     {
       "number": "003/151",
@@ -51,7 +51,7 @@
       "version": 1,
       "name": "Venusaur ex",
       "rarity": "Double Rare (RR)",
-      "image": "Chinese/Collect 151/Cards/0003.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0003.webp"
     },
     {
       "number": "004/151",
@@ -59,7 +59,7 @@
       "version": 1,
       "name": "Charmander",
       "rarity": "Common (C)",
-      "image": "Chinese/Collect 151/Cards/0004.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0004.webp"
     },
     {
       "number": "005/151",
@@ -67,7 +67,7 @@
       "version": 1,
       "name": "Charmeleon",
       "rarity": "Uncommon (U)",
-      "image": "Chinese/Collect 151/Cards/0005.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0005.webp"
     },
     {
       "number": "006/151",
@@ -75,7 +75,7 @@
       "version": 1,
       "name": "Charizard ex",
       "rarity": "Double Rare (RR)",
-      "image": "Chinese/Collect 151/Cards/0006.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0006.webp"
     },
     {
       "number": "007/151",
@@ -83,7 +83,7 @@
       "version": 1,
       "name": "Squirtle",
       "rarity": "Common (C)",
-      "image": "Chinese/Collect 151/Cards/0007.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0007.webp"
     },
     {
       "number": "008/151",
@@ -91,7 +91,7 @@
       "version": 1,
       "name": "Wartortle",
       "rarity": "Uncommon (U)",
-      "image": "Chinese/Collect 151/Cards/0008.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0008.webp"
     },
     {
       "number": "009/151",
@@ -99,7 +99,7 @@
       "version": 1,
       "name": "Blastoise ex",
       "rarity": "Double Rare (RR)",
-      "image": "Chinese/Collect 151/Cards/0009.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0009.webp"
     },
     {
       "number": "010/151",
@@ -107,7 +107,7 @@
       "version": 1,
       "name": "Caterpie",
       "rarity": "Common (C)",
-      "image": "Chinese/Collect 151/Cards/0010.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0010.webp"
     },
     {
       "number": "011/151",
@@ -115,7 +115,7 @@
       "version": 1,
       "name": "Metapod",
       "rarity": "Common (C)",
-      "image": "Chinese/Collect 151/Cards/0011.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0011.webp"
     },
     {
       "number": "012/151",
@@ -123,7 +123,7 @@
       "version": 1,
       "name": "Butterfree",
       "rarity": "Uncommon (U)",
-      "image": "Chinese/Collect 151/Cards/0012.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0012.webp"
     },
     {
       "number": "013/151",
@@ -131,7 +131,7 @@
       "version": 1,
       "name": "Weedle",
       "rarity": "Common (C)",
-      "image": "Chinese/Collect 151/Cards/0013.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0013.webp"
     },
     {
       "number": "014/151",
@@ -139,7 +139,7 @@
       "version": 1,
       "name": "Kakuna",
       "rarity": "Common (C)",
-      "image": "Chinese/Collect 151/Cards/0014.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0014.webp"
     },
     {
       "number": "015/151",
@@ -147,7 +147,7 @@
       "version": 1,
       "name": "Beedrill",
       "rarity": "Rare (R)",
-      "image": "Chinese/Collect 151/Cards/0015.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0015.webp"
     },
     {
       "number": "016/151",
@@ -155,7 +155,7 @@
       "version": 1,
       "name": "Pidgey",
       "rarity": "Common (C)",
-      "image": "Chinese/Collect 151/Cards/0016.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0016.webp"
     },
     {
       "number": "017/151",
@@ -163,7 +163,7 @@
       "version": 1,
       "name": "Pidgeotto",
       "rarity": "Common (C)",
-      "image": "Chinese/Collect 151/Cards/0017.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0017.webp"
     },
     {
       "number": "018/151",
@@ -171,7 +171,7 @@
       "version": 1,
       "name": "Pidgeot",
       "rarity": "Uncommon (U)",
-      "image": "Chinese/Collect 151/Cards/0018.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0018.webp"
     },
     {
       "number": "019/151",
@@ -179,7 +179,7 @@
       "version": 1,
       "name": "Rattata",
       "rarity": "Common (C)",
-      "image": "Chinese/Collect 151/Cards/0019.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0019.webp"
     },
     {
       "number": "020/151",
@@ -187,7 +187,7 @@
       "version": 1,
       "name": "Raticate",
       "rarity": "Uncommon (U)",
-      "image": "Chinese/Collect 151/Cards/0020.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0020.webp"
     },
     {
       "number": "021/151",
@@ -195,7 +195,7 @@
       "version": 1,
       "name": "Spearow",
       "rarity": "Common (C)",
-      "image": "Chinese/Collect 151/Cards/0021.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0021.webp"
     },
     {
       "number": "022/151",
@@ -203,7 +203,7 @@
       "version": 1,
       "name": "Fearow",
       "rarity": "Uncommon (U)",
-      "image": "Chinese/Collect 151/Cards/0022.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0022.webp"
     },
     {
       "number": "023/151",
@@ -211,7 +211,7 @@
       "version": 1,
       "name": "Ekans",
       "rarity": "Common (C)",
-      "image": "Chinese/Collect 151/Cards/0023.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0023.webp"
     },
     {
       "number": "024/151",
@@ -219,7 +219,7 @@
       "version": 1,
       "name": "Arbok ex",
       "rarity": "Double Rare (RR)",
-      "image": "Chinese/Collect 151/Cards/0024.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0024.webp"
     },
     {
       "number": "025/151",
@@ -227,7 +227,7 @@
       "version": 1,
       "name": "Pikachu",
       "rarity": "Common (C)",
-      "image": "Chinese/Collect 151/Cards/0025.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0025.webp"
     },
     {
       "number": "026/151",
@@ -235,7 +235,7 @@
       "version": 1,
       "name": "Raichu",
       "rarity": "Rare (R)",
-      "image": "Chinese/Collect 151/Cards/0026.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0026.webp"
     },
     {
       "number": "027/151",
@@ -243,7 +243,7 @@
       "version": 1,
       "name": "Sandshrew",
       "rarity": "Common (C)",
-      "image": "Chinese/Collect 151/Cards/0027.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0027.webp"
     },
     {
       "number": "028/151",
@@ -251,7 +251,7 @@
       "version": 1,
       "name": "Sandslash",
       "rarity": "Uncommon (U)",
-      "image": "Chinese/Collect 151/Cards/0028.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0028.webp"
     },
     {
       "number": "029/151",
@@ -259,7 +259,7 @@
       "version": 1,
       "name": "Nidoran ♀",
       "rarity": "Common (C)",
-      "image": "Chinese/Collect 151/Cards/0029.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0029.webp"
     },
     {
       "number": "030/151",
@@ -267,7 +267,7 @@
       "version": 1,
       "name": "Nidorina",
       "rarity": "Uncommon (U)",
-      "image": "Chinese/Collect 151/Cards/0030.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0030.webp"
     },
     {
       "number": "031/151",
@@ -275,7 +275,7 @@
       "version": 1,
       "name": "Nidoqueen",
       "rarity": "Uncommon (U)",
-      "image": "Chinese/Collect 151/Cards/0031.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0031.webp"
     },
     {
       "number": "032/151",
@@ -283,7 +283,7 @@
       "version": 1,
       "name": "Nidoran ♂",
       "rarity": "Common (C)",
-      "image": "Chinese/Collect 151/Cards/0032.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0032.webp"
     },
     {
       "number": "033/151",
@@ -291,7 +291,7 @@
       "version": 1,
       "name": "Nidorino",
       "rarity": "Uncommon (U)",
-      "image": "Chinese/Collect 151/Cards/0033.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0033.webp"
     },
     {
       "number": "034/151",
@@ -299,7 +299,7 @@
       "version": 1,
       "name": "Nidoking",
       "rarity": "Rare (R)",
-      "image": "Chinese/Collect 151/Cards/0034.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0034.webp"
     },
     {
       "number": "035/151",
@@ -307,7 +307,7 @@
       "version": 1,
       "name": "Clefairy",
       "rarity": "Common (C)",
-      "image": "Chinese/Collect 151/Cards/0035.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0035.webp"
     },
     {
       "number": "036/151",
@@ -315,7 +315,7 @@
       "version": 1,
       "name": "Clefable",
       "rarity": "Uncommon (U)",
-      "image": "Chinese/Collect 151/Cards/0036.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0036.webp"
     },
     {
       "number": "037/151",
@@ -323,7 +323,7 @@
       "version": 1,
       "name": "Vulpix",
       "rarity": "Common (C)",
-      "image": "Chinese/Collect 151/Cards/0037.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0037.webp"
     },
     {
       "number": "038/151",
@@ -331,7 +331,7 @@
       "version": 1,
       "name": "Ninetales ex",
       "rarity": "Double Rare (RR)",
-      "image": "Chinese/Collect 151/Cards/0038.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0038.webp"
     },
     {
       "number": "039/151",
@@ -339,7 +339,7 @@
       "version": 1,
       "name": "Jigglypuff",
       "rarity": "Common (C)",
-      "image": "Chinese/Collect 151/Cards/0039.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0039.webp"
     },
     {
       "number": "040/151",
@@ -347,7 +347,7 @@
       "version": 1,
       "name": "Wigglytuff ex",
       "rarity": "Double Rare (RR)",
-      "image": "Chinese/Collect 151/Cards/0040.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0040.webp"
     },
     {
       "number": "041/151",
@@ -355,7 +355,7 @@
       "version": 1,
       "name": "Zubat",
       "rarity": "Common (C)",
-      "image": "Chinese/Collect 151/Cards/0041.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0041.webp"
     },
     {
       "number": "042/151",
@@ -363,7 +363,7 @@
       "version": 1,
       "name": "Golbat",
       "rarity": "Uncommon (U)",
-      "image": "Chinese/Collect 151/Cards/0042.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0042.webp"
     },
     {
       "number": "043/151",
@@ -371,7 +371,7 @@
       "version": 1,
       "name": "Oddish",
       "rarity": "Common (C)",
-      "image": "Chinese/Collect 151/Cards/0043.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0043.webp"
     },
     {
       "number": "044/151",
@@ -379,7 +379,7 @@
       "version": 1,
       "name": "Gloom",
       "rarity": "Uncommon (U)",
-      "image": "Chinese/Collect 151/Cards/0044.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0044.webp"
     },
     {
       "number": "045/151",
@@ -387,7 +387,7 @@
       "version": 1,
       "name": "Vileplume",
       "rarity": "Rare (R)",
-      "image": "Chinese/Collect 151/Cards/0045.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0045.webp"
     },
     {
       "number": "046/151",
@@ -395,7 +395,7 @@
       "version": 1,
       "name": "Paras",
       "rarity": "Common (C)",
-      "image": "Chinese/Collect 151/Cards/0046.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0046.webp"
     },
     {
       "number": "047/151",
@@ -403,7 +403,7 @@
       "version": 1,
       "name": "Parasect",
       "rarity": "Uncommon (U)",
-      "image": "Chinese/Collect 151/Cards/0047.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0047.webp"
     },
     {
       "number": "048/151",
@@ -411,7 +411,7 @@
       "version": 1,
       "name": "Venonat",
       "rarity": "Common (C)",
-      "image": "Chinese/Collect 151/Cards/0048.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0048.webp"
     },
     {
       "number": "049/151",
@@ -419,7 +419,7 @@
       "version": 1,
       "name": "Venomoth",
       "rarity": "Uncommon (U)",
-      "image": "Chinese/Collect 151/Cards/0049.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0049.webp"
     },
     {
       "number": "050/151",
@@ -427,7 +427,7 @@
       "version": 1,
       "name": "Diglett",
       "rarity": "Common (C)",
-      "image": "Chinese/Collect 151/Cards/0050.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0050.webp"
     },
     {
       "number": "051/151",
@@ -435,7 +435,7 @@
       "version": 1,
       "name": "Dugtrio",
       "rarity": "Uncommon (U)",
-      "image": "Chinese/Collect 151/Cards/0051.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0051.webp"
     },
     {
       "number": "052/151",
@@ -443,7 +443,7 @@
       "version": 1,
       "name": "Meowth",
       "rarity": "Common (C)",
-      "image": "Chinese/Collect 151/Cards/0052.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0052.webp"
     },
     {
       "number": "053/151",
@@ -451,7 +451,7 @@
       "version": 1,
       "name": "Persian",
       "rarity": "Uncommon (U)",
-      "image": "Chinese/Collect 151/Cards/0053.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0053.webp"
     },
     {
       "number": "054/151",
@@ -459,7 +459,7 @@
       "version": 1,
       "name": "Psyduck",
       "rarity": "Common (C)",
-      "image": "Chinese/Collect 151/Cards/0054.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0054.webp"
     },
     {
       "number": "055/151",
@@ -467,7 +467,7 @@
       "version": 1,
       "name": "Golduck",
       "rarity": "Uncommon (U)",
-      "image": "Chinese/Collect 151/Cards/0055.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0055.webp"
     },
     {
       "number": "056/151",
@@ -475,7 +475,7 @@
       "version": 1,
       "name": "Mankey",
       "rarity": "Common (C)",
-      "image": "Chinese/Collect 151/Cards/0056.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0056.webp"
     },
     {
       "number": "057/151",
@@ -483,7 +483,7 @@
       "version": 1,
       "name": "Primeape",
       "rarity": "Uncommon (U)",
-      "image": "Chinese/Collect 151/Cards/0057.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0057.webp"
     },
     {
       "number": "058/151",
@@ -491,7 +491,7 @@
       "version": 1,
       "name": "Growlithe",
       "rarity": "Common (C)",
-      "image": "Chinese/Collect 151/Cards/0058.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0058.webp"
     },
     {
       "number": "059/151",
@@ -499,7 +499,7 @@
       "version": 1,
       "name": "Arcanine",
       "rarity": "Uncommon (U)",
-      "image": "Chinese/Collect 151/Cards/0059.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0059.webp"
     },
     {
       "number": "060/151",
@@ -507,7 +507,7 @@
       "version": 1,
       "name": "Poliwag",
       "rarity": "Common (C)",
-      "image": "Chinese/Collect 151/Cards/0060.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0060.webp"
     },
     {
       "number": "061/151",
@@ -515,7 +515,7 @@
       "version": 1,
       "name": "Poliwhirl",
       "rarity": "Common (C)",
-      "image": "Chinese/Collect 151/Cards/0061.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0061.webp"
     },
     {
       "number": "062/151",
@@ -523,7 +523,7 @@
       "version": 1,
       "name": "Poliwrath",
       "rarity": "Uncommon (U)",
-      "image": "Chinese/Collect 151/Cards/0062.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0062.webp"
     },
     {
       "number": "063/151",
@@ -531,7 +531,7 @@
       "version": 1,
       "name": "Abra",
       "rarity": "Common (C)",
-      "image": "Chinese/Collect 151/Cards/0063.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0063.webp"
     },
     {
       "number": "064/151",
@@ -539,7 +539,7 @@
       "version": 1,
       "name": "Kadabra",
       "rarity": "Uncommon (U)",
-      "image": "Chinese/Collect 151/Cards/0064.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0064.webp"
     },
     {
       "number": "065/151",
@@ -547,7 +547,7 @@
       "version": 1,
       "name": "Alakazam ex",
       "rarity": "Double Rare (RR)",
-      "image": "Chinese/Collect 151/Cards/0065.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0065.webp"
     },
     {
       "number": "066/151",
@@ -555,7 +555,7 @@
       "version": 1,
       "name": "Machop",
       "rarity": "Common (C)",
-      "image": "Chinese/Collect 151/Cards/0066.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0066.webp"
     },
     {
       "number": "067/151",
@@ -563,7 +563,7 @@
       "version": 1,
       "name": "Machoke",
       "rarity": "Uncommon (U)",
-      "image": "Chinese/Collect 151/Cards/0067.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0067.webp"
     },
     {
       "number": "068/151",
@@ -571,7 +571,7 @@
       "version": 1,
       "name": "Machamp",
       "rarity": "Rare (R)",
-      "image": "Chinese/Collect 151/Cards/0068.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0068.webp"
     },
     {
       "number": "069/151",
@@ -579,7 +579,7 @@
       "version": 1,
       "name": "Bellsprout",
       "rarity": "Common (C)",
-      "image": "Chinese/Collect 151/Cards/0069.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0069.webp"
     },
     {
       "number": "070/151",
@@ -587,7 +587,7 @@
       "version": 1,
       "name": "Weepinbell",
       "rarity": "Common (C)",
-      "image": "Chinese/Collect 151/Cards/0070.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0070.webp"
     },
     {
       "number": "071/151",
@@ -595,7 +595,7 @@
       "version": 1,
       "name": "Victreebel",
       "rarity": "Uncommon (U)",
-      "image": "Chinese/Collect 151/Cards/0071.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0071.webp"
     },
     {
       "number": "072/151",
@@ -603,7 +603,7 @@
       "version": 1,
       "name": "Tentacool",
       "rarity": "Common (C)",
-      "image": "Chinese/Collect 151/Cards/0072.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0072.webp"
     },
     {
       "number": "073/151",
@@ -611,7 +611,7 @@
       "version": 1,
       "name": "Tentacruel",
       "rarity": "Uncommon (U)",
-      "image": "Chinese/Collect 151/Cards/0073.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0073.webp"
     },
     {
       "number": "074/151",
@@ -619,7 +619,7 @@
       "version": 1,
       "name": "Geodude",
       "rarity": "Common (C)",
-      "image": "Chinese/Collect 151/Cards/0074.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0074.webp"
     },
     {
       "number": "075/151",
@@ -627,7 +627,7 @@
       "version": 1,
       "name": "Graveler",
       "rarity": "Uncommon (U)",
-      "image": "Chinese/Collect 151/Cards/0075.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0075.webp"
     },
     {
       "number": "076/151",
@@ -635,7 +635,7 @@
       "version": 1,
       "name": "Golem ex",
       "rarity": "Double Rare (RR)",
-      "image": "Chinese/Collect 151/Cards/0076.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0076.webp"
     },
     {
       "number": "077/151",
@@ -643,7 +643,7 @@
       "version": 1,
       "name": "Ponyta",
       "rarity": "Common (C)",
-      "image": "Chinese/Collect 151/Cards/0077.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0077.webp"
     },
     {
       "number": "078/151",
@@ -651,7 +651,7 @@
       "version": 1,
       "name": "Rapidash",
       "rarity": "Uncommon (U)",
-      "image": "Chinese/Collect 151/Cards/0078.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0078.webp"
     },
     {
       "number": "079/151",
@@ -659,7 +659,7 @@
       "version": 1,
       "name": "Slowpoke",
       "rarity": "Common (C)",
-      "image": "Chinese/Collect 151/Cards/0079.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0079.webp"
     },
     {
       "number": "080/151",
@@ -667,7 +667,7 @@
       "version": 1,
       "name": "Slowbro",
       "rarity": "Uncommon (U)",
-      "image": "Chinese/Collect 151/Cards/0080.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0080.webp"
     },
     {
       "number": "081/151",
@@ -675,7 +675,7 @@
       "version": 1,
       "name": "Magnemite",
       "rarity": "Common (C)",
-      "image": "Chinese/Collect 151/Cards/0081.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0081.webp"
     },
     {
       "number": "082/151",
@@ -683,7 +683,7 @@
       "version": 1,
       "name": "Magneton",
       "rarity": "Uncommon (U)",
-      "image": "Chinese/Collect 151/Cards/0082.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0082.webp"
     },
     {
       "number": "083/151",
@@ -691,7 +691,7 @@
       "version": 1,
       "name": "Farfetch'd",
       "rarity": "Common (C)",
-      "image": "Chinese/Collect 151/Cards/0083.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0083.webp"
     },
     {
       "number": "084/151",
@@ -699,7 +699,7 @@
       "version": 1,
       "name": "Doduo",
       "rarity": "Common (C)",
-      "image": "Chinese/Collect 151/Cards/0084.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0084.webp"
     },
     {
       "number": "085/151",
@@ -707,7 +707,7 @@
       "version": 1,
       "name": "Dodrio",
       "rarity": "Rare (R)",
-      "image": "Chinese/Collect 151/Cards/0085.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0085.webp"
     },
     {
       "number": "086/151",
@@ -715,7 +715,7 @@
       "version": 1,
       "name": "Seel",
       "rarity": "Common (C)",
-      "image": "Chinese/Collect 151/Cards/0086.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0086.webp"
     },
     {
       "number": "087/151",
@@ -723,7 +723,7 @@
       "version": 1,
       "name": "Dewgong",
       "rarity": "Uncommon (U)",
-      "image": "Chinese/Collect 151/Cards/0087.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0087.webp"
     },
     {
       "number": "088/151",
@@ -731,7 +731,7 @@
       "version": 1,
       "name": "Grimer",
       "rarity": "Common (C)",
-      "image": "Chinese/Collect 151/Cards/0088.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0088.webp"
     },
     {
       "number": "089/151",
@@ -739,7 +739,7 @@
       "version": 1,
       "name": "Muk",
       "rarity": "Uncommon (U)",
-      "image": "Chinese/Collect 151/Cards/0089.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0089.webp"
     },
     {
       "number": "090/151",
@@ -747,7 +747,7 @@
       "version": 1,
       "name": "Shellder",
       "rarity": "Common (C)",
-      "image": "Chinese/Collect 151/Cards/0090.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0090.webp"
     },
     {
       "number": "091/151",
@@ -755,7 +755,7 @@
       "version": 1,
       "name": "Cloyster",
       "rarity": "Uncommon (U)",
-      "image": "Chinese/Collect 151/Cards/0091.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0091.webp"
     },
     {
       "number": "092/151",
@@ -763,7 +763,7 @@
       "version": 1,
       "name": "Gastly",
       "rarity": "Common (C)",
-      "image": "Chinese/Collect 151/Cards/0092.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0092.webp"
     },
     {
       "number": "093/151",
@@ -771,7 +771,7 @@
       "version": 1,
       "name": "Haunter",
       "rarity": "Uncommon (U)",
-      "image": "Chinese/Collect 151/Cards/0093.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0093.webp"
     },
     {
       "number": "094/151",
@@ -779,7 +779,7 @@
       "version": 1,
       "name": "Gengar",
       "rarity": "Rare (R)",
-      "image": "Chinese/Collect 151/Cards/0094.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0094.webp"
     },
     {
       "number": "095/151",
@@ -787,7 +787,7 @@
       "version": 1,
       "name": "Onix",
       "rarity": "Uncommon (U)",
-      "image": "Chinese/Collect 151/Cards/0095.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0095.webp"
     },
     {
       "number": "096/151",
@@ -795,7 +795,7 @@
       "version": 1,
       "name": "Drowzee",
       "rarity": "Common (C)",
-      "image": "Chinese/Collect 151/Cards/0096.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0096.webp"
     },
     {
       "number": "097/151",
@@ -803,7 +803,7 @@
       "version": 1,
       "name": "Hypno",
       "rarity": "Uncommon (U)",
-      "image": "Chinese/Collect 151/Cards/0097.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0097.webp"
     },
     {
       "number": "098/151",
@@ -811,7 +811,7 @@
       "version": 1,
       "name": "Krabby",
       "rarity": "Common (C)",
-      "image": "Chinese/Collect 151/Cards/0098.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0098.webp"
     },
     {
       "number": "099/151",
@@ -819,7 +819,7 @@
       "version": 1,
       "name": "Kingler",
       "rarity": "Uncommon (U)",
-      "image": "Chinese/Collect 151/Cards/0099.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0099.webp"
     },
     {
       "number": "100/151",
@@ -827,7 +827,7 @@
       "version": 1,
       "name": "Voltorb",
       "rarity": "Common (C)",
-      "image": "Chinese/Collect 151/Cards/0100.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0100.webp"
     },
     {
       "number": "101/151",
@@ -835,7 +835,7 @@
       "version": 1,
       "name": "Electrode",
       "rarity": "Rare (R)",
-      "image": "Chinese/Collect 151/Cards/0101.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0101.webp"
     },
     {
       "number": "102/151",
@@ -843,7 +843,7 @@
       "version": 1,
       "name": "Exeggcute",
       "rarity": "Common (C)",
-      "image": "Chinese/Collect 151/Cards/0102.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0102.webp"
     },
     {
       "number": "103/151",
@@ -851,7 +851,7 @@
       "version": 1,
       "name": "Exeggutor",
       "rarity": "Uncommon (U)",
-      "image": "Chinese/Collect 151/Cards/0103.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0103.webp"
     },
     {
       "number": "104/151",
@@ -859,7 +859,7 @@
       "version": 1,
       "name": "Cubone",
       "rarity": "Common (C)",
-      "image": "Chinese/Collect 151/Cards/0104.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0104.webp"
     },
     {
       "number": "105/151",
@@ -867,7 +867,7 @@
       "version": 1,
       "name": "Marowak",
       "rarity": "Rare (R)",
-      "image": "Chinese/Collect 151/Cards/0105.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0105.webp"
     },
     {
       "number": "106/151",
@@ -875,7 +875,7 @@
       "version": 1,
       "name": "Hitmonlee",
       "rarity": "Uncommon (U)",
-      "image": "Chinese/Collect 151/Cards/0106.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0106.webp"
     },
     {
       "number": "107/151",
@@ -883,7 +883,7 @@
       "version": 1,
       "name": "Hitmonchan",
       "rarity": "Uncommon (U)",
-      "image": "Chinese/Collect 151/Cards/0107.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0107.webp"
     },
     {
       "number": "108/151",
@@ -891,7 +891,7 @@
       "version": 1,
       "name": "Lickitung",
       "rarity": "Common (C)",
-      "image": "Chinese/Collect 151/Cards/0108.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0108.webp"
     },
     {
       "number": "109/151",
@@ -899,7 +899,7 @@
       "version": 1,
       "name": "Koffing",
       "rarity": "Common (C)",
-      "image": "Chinese/Collect 151/Cards/0109.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0109.webp"
     },
     {
       "number": "110/151",
@@ -907,7 +907,7 @@
       "version": 1,
       "name": "Weezing",
       "rarity": "Rare (R)",
-      "image": "Chinese/Collect 151/Cards/0110.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0110.webp"
     },
     {
       "number": "111/151",
@@ -915,7 +915,7 @@
       "version": 1,
       "name": "Rhyhorn",
       "rarity": "Common (C)",
-      "image": "Chinese/Collect 151/Cards/0111.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0111.webp"
     },
     {
       "number": "112/151",
@@ -923,7 +923,7 @@
       "version": 1,
       "name": "Rhydon",
       "rarity": "Uncommon (U)",
-      "image": "Chinese/Collect 151/Cards/0112.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0112.webp"
     },
     {
       "number": "113/151",
@@ -931,7 +931,7 @@
       "version": 1,
       "name": "Chansey",
       "rarity": "Rare (R)",
-      "image": "Chinese/Collect 151/Cards/0113.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0113.webp"
     },
     {
       "number": "114/151",
@@ -939,7 +939,7 @@
       "version": 1,
       "name": "Tangela",
       "rarity": "Common (C)",
-      "image": "Chinese/Collect 151/Cards/0114.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0114.webp"
     },
     {
       "number": "115/151",
@@ -947,7 +947,7 @@
       "version": 1,
       "name": "Kangaskhan ex",
       "rarity": "Double Rare (RR)",
-      "image": "Chinese/Collect 151/Cards/0115.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0115.webp"
     },
     {
       "number": "116/151",
@@ -955,7 +955,7 @@
       "version": 1,
       "name": "Horsea",
       "rarity": "Common (C)",
-      "image": "Chinese/Collect 151/Cards/0116.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0116.webp"
     },
     {
       "number": "117/151",
@@ -963,7 +963,7 @@
       "version": 1,
       "name": "Seadra",
       "rarity": "Uncommon (U)",
-      "image": "Chinese/Collect 151/Cards/0117.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0117.webp"
     },
     {
       "number": "118/151",
@@ -971,7 +971,7 @@
       "version": 1,
       "name": "Goldeen",
       "rarity": "Common (C)",
-      "image": "Chinese/Collect 151/Cards/0118.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0118.webp"
     },
     {
       "number": "119/151",
@@ -979,7 +979,7 @@
       "version": 1,
       "name": "Seaking",
       "rarity": "Uncommon (U)",
-      "image": "Chinese/Collect 151/Cards/0119.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0119.webp"
     },
     {
       "number": "120/151",
@@ -987,7 +987,7 @@
       "version": 1,
       "name": "Staryu",
       "rarity": "Common (C)",
-      "image": "Chinese/Collect 151/Cards/0120.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0120.webp"
     },
     {
       "number": "121/151",
@@ -995,7 +995,7 @@
       "version": 1,
       "name": "Starmie",
       "rarity": "Rare (R)",
-      "image": "Chinese/Collect 151/Cards/0121.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0121.webp"
     },
     {
       "number": "122/151",
@@ -1003,7 +1003,7 @@
       "version": 1,
       "name": "Mr. Mime",
       "rarity": "Rare (R)",
-      "image": "Chinese/Collect 151/Cards/0122.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0122.webp"
     },
     {
       "number": "123/151",
@@ -1011,7 +1011,7 @@
       "version": 1,
       "name": "Scyther",
       "rarity": "Uncommon (U)",
-      "image": "Chinese/Collect 151/Cards/0123.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0123.webp"
     },
     {
       "number": "124/151",
@@ -1019,7 +1019,7 @@
       "version": 1,
       "name": "Jynx ex",
       "rarity": "Double Rare (RR)",
-      "image": "Chinese/Collect 151/Cards/0124.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0124.webp"
     },
     {
       "number": "125/151",
@@ -1027,7 +1027,7 @@
       "version": 1,
       "name": "Electabuzz",
       "rarity": "Common (C)",
-      "image": "Chinese/Collect 151/Cards/0125.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0125.webp"
     },
     {
       "number": "126/151",
@@ -1035,7 +1035,7 @@
       "version": 1,
       "name": "Magmar",
       "rarity": "Common (C)",
-      "image": "Chinese/Collect 151/Cards/0126.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0126.webp"
     },
     {
       "number": "127/151",
@@ -1043,7 +1043,7 @@
       "version": 1,
       "name": "Pinsir",
       "rarity": "Uncommon (U)",
-      "image": "Chinese/Collect 151/Cards/0127.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0127.webp"
     },
     {
       "number": "128/151",
@@ -1051,7 +1051,7 @@
       "version": 1,
       "name": "Tauros",
       "rarity": "Uncommon (U)",
-      "image": "Chinese/Collect 151/Cards/0128.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0128.webp"
     },
     {
       "number": "129/151",
@@ -1059,7 +1059,7 @@
       "version": 1,
       "name": "Magikarp",
       "rarity": "Common (C)",
-      "image": "Chinese/Collect 151/Cards/0129.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0129.webp"
     },
     {
       "number": "130/151",
@@ -1067,7 +1067,7 @@
       "version": 1,
       "name": "Gyarados",
       "rarity": "Rare (R)",
-      "image": "Chinese/Collect 151/Cards/0130.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0130.webp"
     },
     {
       "number": "131/151",
@@ -1075,7 +1075,7 @@
       "version": 1,
       "name": "Lapras",
       "rarity": "Uncommon (U)",
-      "image": "Chinese/Collect 151/Cards/0131.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0131.webp"
     },
     {
       "number": "132/151",
@@ -1083,7 +1083,7 @@
       "version": 1,
       "name": "Ditto",
       "rarity": "Rare (R)",
-      "image": "Chinese/Collect 151/Cards/0132.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0132.webp"
     },
     {
       "number": "133/151",
@@ -1091,7 +1091,7 @@
       "version": 1,
       "name": "Eevee",
       "rarity": "Common (C)",
-      "image": "Chinese/Collect 151/Cards/0133.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0133.webp"
     },
     {
       "number": "134/151",
@@ -1099,7 +1099,7 @@
       "version": 1,
       "name": "Vaporeon",
       "rarity": "Rare (R)",
-      "image": "Chinese/Collect 151/Cards/0134.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0134.webp"
     },
     {
       "number": "135/151",
@@ -1107,7 +1107,7 @@
       "version": 1,
       "name": "Jolteon",
       "rarity": "Rare (R)",
-      "image": "Chinese/Collect 151/Cards/0135.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0135.webp"
     },
     {
       "number": "136/151",
@@ -1115,7 +1115,7 @@
       "version": 1,
       "name": "Flareon",
       "rarity": "Rare (R)",
-      "image": "Chinese/Collect 151/Cards/0136.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0136.webp"
     },
     {
       "number": "137/151",
@@ -1123,7 +1123,7 @@
       "version": 1,
       "name": "Porygon",
       "rarity": "Common (C)",
-      "image": "Chinese/Collect 151/Cards/0137.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0137.webp"
     },
     {
       "number": "138/151",
@@ -1131,7 +1131,7 @@
       "version": 1,
       "name": "Omanyte",
       "rarity": "Uncommon (U)",
-      "image": "Chinese/Collect 151/Cards/0138.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0138.webp"
     },
     {
       "number": "139/151",
@@ -1139,7 +1139,7 @@
       "version": 1,
       "name": "Omastar",
       "rarity": "Rare (R)",
-      "image": "Chinese/Collect 151/Cards/0139.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0139.webp"
     },
     {
       "number": "140/151",
@@ -1147,7 +1147,7 @@
       "version": 1,
       "name": "Kabuto",
       "rarity": "Uncommon (U)",
-      "image": "Chinese/Collect 151/Cards/0140.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0140.webp"
     },
     {
       "number": "141/151",
@@ -1155,7 +1155,7 @@
       "version": 1,
       "name": "Kabutops",
       "rarity": "Rare (R)",
-      "image": "Chinese/Collect 151/Cards/0141.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0141.webp"
     },
     {
       "number": "142/151",
@@ -1163,7 +1163,7 @@
       "version": 1,
       "name": "Aerodactyl",
       "rarity": "Rare (R)",
-      "image": "Chinese/Collect 151/Cards/0142.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0142.webp"
     },
     {
       "number": "143/151",
@@ -1171,7 +1171,7 @@
       "version": 1,
       "name": "Snorlax",
       "rarity": "Uncommon (U)",
-      "image": "Chinese/Collect 151/Cards/0143.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0143.webp"
     },
     {
       "number": "144/151",
@@ -1179,7 +1179,7 @@
       "version": 1,
       "name": "Articuno",
       "rarity": "Rare (R)",
-      "image": "Chinese/Collect 151/Cards/0144.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0144.webp"
     },
     {
       "number": "145/151",
@@ -1187,7 +1187,7 @@
       "version": 1,
       "name": "Zapdos ex",
       "rarity": "Double Rare (RR)",
-      "image": "Chinese/Collect 151/Cards/0145.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0145.webp"
     },
     {
       "number": "146/151",
@@ -1195,7 +1195,7 @@
       "version": 1,
       "name": "Moltres",
       "rarity": "Rare (R)",
-      "image": "Chinese/Collect 151/Cards/0146.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0146.webp"
     },
     {
       "number": "147/151",
@@ -1203,7 +1203,7 @@
       "version": 1,
       "name": "Dratini",
       "rarity": "Common (C)",
-      "image": "Chinese/Collect 151/Cards/0147.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0147.webp"
     },
     {
       "number": "148/151",
@@ -1211,7 +1211,7 @@
       "version": 1,
       "name": "Dragonair",
       "rarity": "Uncommon (U)",
-      "image": "Chinese/Collect 151/Cards/0148.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0148.webp"
     },
     {
       "number": "149/151",
@@ -1219,7 +1219,7 @@
       "version": 1,
       "name": "Dragonite",
       "rarity": "Rare (R)",
-      "image": "Chinese/Collect 151/Cards/0149.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0149.webp"
     },
     {
       "number": "150/151",
@@ -1227,7 +1227,7 @@
       "version": 1,
       "name": "Mewtwo",
       "rarity": "Rare (R)",
-      "image": "Chinese/Collect 151/Cards/0150.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0150.webp"
     },
     {
       "number": "151/151",
@@ -1235,7 +1235,7 @@
       "version": 1,
       "name": "Mew ex",
       "rarity": "Double Rare (RR)",
-      "image": "Chinese/Collect 151/Cards/0151.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0151.webp"
     },
     {
       "number": "152/151",
@@ -1243,7 +1243,7 @@
       "version": 1,
       "name": "Charmander",
       "rarity": "Shiny (S)",
-      "image": "Chinese/Collect 151/Cards/0152.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0152.webp"
     },
     {
       "number": "153/151",
@@ -1251,7 +1251,7 @@
       "version": 1,
       "name": "Pidgey",
       "rarity": "Shiny (S)",
-      "image": "Chinese/Collect 151/Cards/0153.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0153.webp"
     },
     {
       "number": "154/151",
@@ -1259,7 +1259,7 @@
       "version": 1,
       "name": "Pidgeotto",
       "rarity": "Shiny (S)",
-      "image": "Chinese/Collect 151/Cards/0154.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0154.webp"
     },
     {
       "number": "155/151",
@@ -1267,7 +1267,7 @@
       "version": 1,
       "name": "Raichu",
       "rarity": "Shiny (S)",
-      "image": "Chinese/Collect 151/Cards/0155.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0155.webp"
     },
     {
       "number": "156/151",
@@ -1275,7 +1275,7 @@
       "version": 1,
       "name": "Jigglypuff",
       "rarity": "Shiny (S)",
-      "image": "Chinese/Collect 151/Cards/0156.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0156.webp"
     },
     {
       "number": "157/151",
@@ -1283,7 +1283,7 @@
       "version": 1,
       "name": "Oddish",
       "rarity": "Shiny (S)",
-      "image": "Chinese/Collect 151/Cards/0157.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0157.webp"
     },
     {
       "number": "158/151",
@@ -1291,7 +1291,7 @@
       "version": 1,
       "name": "Gloom",
       "rarity": "Shiny (S)",
-      "image": "Chinese/Collect 151/Cards/0158.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0158.webp"
     },
     {
       "number": "159/151",
@@ -1299,7 +1299,7 @@
       "version": 1,
       "name": "Vileplume",
       "rarity": "Shiny (S)",
-      "image": "Chinese/Collect 151/Cards/0159.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0159.webp"
     },
     {
       "number": "160/151",
@@ -1307,7 +1307,7 @@
       "version": 1,
       "name": "Abra",
       "rarity": "Shiny (S)",
-      "image": "Chinese/Collect 151/Cards/0160.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0160.webp"
     },
     {
       "number": "161/151",
@@ -1315,7 +1315,7 @@
       "version": 1,
       "name": "Kadabra",
       "rarity": "Shiny (S)",
-      "image": "Chinese/Collect 151/Cards/0161.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0161.webp"
     },
     {
       "number": "162/151",
@@ -1323,7 +1323,7 @@
       "version": 1,
       "name": "Doduo",
       "rarity": "Shiny (S)",
-      "image": "Chinese/Collect 151/Cards/0162.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0162.webp"
     },
     {
       "number": "163/151",
@@ -1331,7 +1331,7 @@
       "version": 1,
       "name": "Dodrio",
       "rarity": "Shiny (S)",
-      "image": "Chinese/Collect 151/Cards/0163.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0163.webp"
     },
     {
       "number": "164/151",
@@ -1339,7 +1339,7 @@
       "version": 1,
       "name": "Voltorb",
       "rarity": "Shiny (S)",
-      "image": "Chinese/Collect 151/Cards/0164.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0164.webp"
     },
     {
       "number": "165/151",
@@ -1347,7 +1347,7 @@
       "version": 1,
       "name": "Electrode",
       "rarity": "Shiny (S)",
-      "image": "Chinese/Collect 151/Cards/0165.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0165.webp"
     },
     {
       "number": "166/151",
@@ -1355,7 +1355,7 @@
       "version": 1,
       "name": "Staryu",
       "rarity": "Shiny (S)",
-      "image": "Chinese/Collect 151/Cards/0166.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0166.webp"
     },
     {
       "number": "167/151",
@@ -1363,7 +1363,7 @@
       "version": 1,
       "name": "Starmie",
       "rarity": "Shiny (S)",
-      "image": "Chinese/Collect 151/Cards/0167.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0167.webp"
     },
     {
       "number": "168/151",
@@ -1371,7 +1371,7 @@
       "version": 1,
       "name": "Ditto",
       "rarity": "Shiny (S)",
-      "image": "Chinese/Collect 151/Cards/0168.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0168.webp"
     },
     {
       "number": "169/151",
@@ -1379,7 +1379,7 @@
       "version": 1,
       "name": "Snorlax",
       "rarity": "Shiny (S)",
-      "image": "Chinese/Collect 151/Cards/0169.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0169.webp"
     },
     {
       "number": "170/151",
@@ -1387,7 +1387,7 @@
       "version": 1,
       "name": "Pikachu",
       "rarity": "Art Rare (AR)",
-      "image": "Chinese/Collect 151/Cards/0170.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0170.webp"
     },
     {
       "number": "171/151",
@@ -1395,7 +1395,7 @@
       "version": 1,
       "name": "Pikachu",
       "rarity": "Art Rare (AR)",
-      "image": "Chinese/Collect 151/Cards/0171.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0171.webp"
     },
     {
       "number": "172/151",
@@ -1403,7 +1403,7 @@
       "version": 1,
       "name": "Pikachu",
       "rarity": "Art Rare (AR)",
-      "image": "Chinese/Collect 151/Cards/0172.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0172.webp"
     },
     {
       "number": "173/151",
@@ -1411,7 +1411,7 @@
       "version": 1,
       "name": "Pikachu",
       "rarity": "Art Rare (AR)",
-      "image": "Chinese/Collect 151/Cards/0173.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0173.webp"
     },
     {
       "number": "174/151",
@@ -1419,7 +1419,7 @@
       "version": 1,
       "name": "Venusaur ex",
       "rarity": "Super Rare (SR)",
-      "image": "Chinese/Collect 151/Cards/0174.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0174.webp"
     },
     {
       "number": "175/151",
@@ -1427,7 +1427,7 @@
       "version": 1,
       "name": "Charizard ex",
       "rarity": "Super Rare (SR)",
-      "image": "Chinese/Collect 151/Cards/0175.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0175.webp"
     },
     {
       "number": "176/151",
@@ -1435,7 +1435,7 @@
       "version": 1,
       "name": "Blastoise ex",
       "rarity": "Super Rare (SR)",
-      "image": "Chinese/Collect 151/Cards/0176.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0176.webp"
     },
     {
       "number": "177/151",
@@ -1443,7 +1443,7 @@
       "version": 1,
       "name": "Arbok ex",
       "rarity": "Super Rare (SR)",
-      "image": "Chinese/Collect 151/Cards/0177.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0177.webp"
     },
     {
       "number": "178/151",
@@ -1451,7 +1451,7 @@
       "version": 1,
       "name": "Ninetales ex",
       "rarity": "Super Rare (SR)",
-      "image": "Chinese/Collect 151/Cards/0178.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0178.webp"
     },
     {
       "number": "179/151",
@@ -1459,7 +1459,7 @@
       "version": 1,
       "name": "Wigglytuff ex",
       "rarity": "Super Rare (SR)",
-      "image": "Chinese/Collect 151/Cards/0179.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0179.webp"
     },
     {
       "number": "180/151",
@@ -1467,7 +1467,7 @@
       "version": 1,
       "name": "Alakazam ex",
       "rarity": "Super Rare (SR)",
-      "image": "Chinese/Collect 151/Cards/0180.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0180.webp"
     },
     {
       "number": "181/151",
@@ -1475,7 +1475,7 @@
       "version": 1,
       "name": "Golem ex",
       "rarity": "Super Rare (SR)",
-      "image": "Chinese/Collect 151/Cards/0181.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0181.webp"
     },
     {
       "number": "182/151",
@@ -1483,7 +1483,7 @@
       "version": 1,
       "name": "Kangaskhan ex",
       "rarity": "Super Rare (SR)",
-      "image": "Chinese/Collect 151/Cards/0182.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0182.webp"
     },
     {
       "number": "183/151",
@@ -1491,7 +1491,7 @@
       "version": 1,
       "name": "Jynx ex",
       "rarity": "Super Rare (SR)",
-      "image": "Chinese/Collect 151/Cards/0183.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0183.webp"
     },
     {
       "number": "184/151",
@@ -1499,7 +1499,7 @@
       "version": 1,
       "name": "Zapdos ex",
       "rarity": "Super Rare (SR)",
-      "image": "Chinese/Collect 151/Cards/0184.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0184.webp"
     },
     {
       "number": "185/151",
@@ -1507,7 +1507,7 @@
       "version": 1,
       "name": "Mew ex",
       "rarity": "Super Rare (SR)",
-      "image": "Chinese/Collect 151/Cards/0185.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0185.webp"
     },
     {
       "number": "186/151",
@@ -1515,7 +1515,7 @@
       "version": 1,
       "name": "Wigglytuff ex",
       "rarity": "Shiny Super Rare (SSR)",
-      "image": "Chinese/Collect 151/Cards/0186.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0186.webp"
     },
     {
       "number": "187/151",
@@ -1523,7 +1523,7 @@
       "version": 1,
       "name": "Alakazam ex",
       "rarity": "Shiny Super Rare (SSR)",
-      "image": "Chinese/Collect 151/Cards/0187.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0187.webp"
     },
     {
       "number": "188/151",
@@ -1531,7 +1531,7 @@
       "version": 1,
       "name": "Mew ex",
       "rarity": "Shiny Super Rare (SSR)",
-      "image": "Chinese/Collect 151/Cards/0188.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0188.webp"
     },
     {
       "number": "189/151",
@@ -1539,7 +1539,7 @@
       "version": 1,
       "name": "Alakazam ex",
       "rarity": "Special Art Rare (SAR)",
-      "image": "Chinese/Collect 151/Cards/0189.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0189.webp"
     },
     {
       "number": "190/151",
@@ -1547,7 +1547,7 @@
       "version": 1,
       "name": "Zapdos ex",
       "rarity": "Special Art Rare (SAR)",
-      "image": "Chinese/Collect 151/Cards/0190.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0190.webp"
     },
     {
       "number": "191/151",
@@ -1555,7 +1555,7 @@
       "version": 1,
       "name": "Mew ex",
       "rarity": "Special Art Rare (SAR)",
-      "image": "Chinese/Collect 151/Cards/0191.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0191.webp"
     },
     {
       "number": "192/151",
@@ -1563,7 +1563,7 @@
       "version": 1,
       "name": "Mew ex",
       "rarity": "Ultra Rare (UR)",
-      "image": "Chinese/Collect 151/Cards/0192.webp"
+      "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Collect%20151/Cards/0192.webp"
     }
   ],
   "groupByName": true
