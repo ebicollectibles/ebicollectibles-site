@@ -19,6 +19,7 @@ export type GemSetRoutePath =
   | '/sets/30th-celebration'
   | '/sets/csv10'
   | '/sets/csv9-5'
+  | '/sets/csv8'
   | '/sets/csv4'
   | '/sets/csv5'
   | '/sets/csv6'
@@ -117,6 +118,21 @@ export const GEM_SETS: GemSetSummary[] = [
     heroAlt: 'Greninja ex Special Art Rare',
     glow1: 'rgb(208 105 57 / .30)',
     glow2: 'rgb(13 13 18 / .25)',
+  },
+  {
+    slug: 'csv8',
+    path: '/sets/csv8',
+    name: 'Brilliant Fantasy',
+    series: 'Chinese Scarlet & Violet',
+    code: 'CSV8C',
+    cardCount: 264,
+    releaseDate: '2026-03-13',
+    exclusiveCount: 1,
+    tagline: '172 Pokémon led by the mythical Pecharunt ex',
+    heroImage: 'https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Brilliant%20Fantasy/Cards/0250.webp',
+    heroAlt: 'Pecharunt ex Special Art Rare',
+    glow1: 'rgb(56 13 40 / .30)',
+    glow2: 'rgb(64 155 148 / .25)',
   },
   {
     slug: 'csv9',
