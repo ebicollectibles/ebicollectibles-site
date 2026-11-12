@@ -1,8 +1,8 @@
 import { createFileRoute, Link } from '@tanstack/react-router'
 import setsIndexCssUrl from '~/styles/sets-index.css?url'
 import { GEM_SETS } from '~/data/gem-sets-index'
-
-const SITE_URL = 'https://ebicollectibles.com'
+import { R2_IMAGE_HOST, SITE_URL } from '~/lib/gem-sets/constants'
+import { safeJsonLd } from '~/lib/gem-sets/head'
 
 const itemListJsonLd = {
   '@context': 'https://schema.org',
@@ -16,6 +16,15 @@ const itemListJsonLd = {
     url: `${SITE_URL}/sets/${s.slug}`,
     image: s.heroImage,
   })),
+}
+
+const breadcrumbJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Shop', item: `${SITE_URL}/shop` },
+    { '@type': 'ListItem', position: 2, name: 'Sets', item: `${SITE_URL}/sets` },
+  ],
 }
 
 function formatReleaseDate(iso: string): string {
@@ -62,12 +71,19 @@ export const Route = createFileRoute('/sets/')({
       { property: 'og:title', content: 'Pokémon Sets' },
       { property: 'og:description', content: 'Every card in every Simplified Chinese set we carry — browse, filter and track what you own.' },
       { property: 'og:image', content: GEM_SETS[0].heroImage },
+      { property: 'og:image:width', content: '300' },
+      { property: 'og:image:height', content: '419' },
       { property: 'og:url', content: `${SITE_URL}/sets` },
       { property: 'og:type', content: 'website' },
+      { name: 'twitter:card', content: 'summary_large_image' },
+      { name: 'twitter:title', content: 'Pokémon Sets' },
+      { name: 'twitter:description', content: 'Every card in every Simplified Chinese set we carry — browse, filter and track what you own.' },
+      { name: 'twitter:image', content: GEM_SETS[0].heroImage },
     ],
     links: [
       { rel: 'stylesheet', href: setsIndexCssUrl },
       { rel: 'canonical', href: `${SITE_URL}/sets` },
+      { rel: 'preconnect', href: R2_IMAGE_HOST },
     ],
   }),
   component: SetsIndexPage,
@@ -76,7 +92,8 @@ export const Route = createFileRoute('/sets/')({
 function SetsIndexPage() {
   return (
     <div className="gem-sets-index">
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListJsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(itemListJsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(breadcrumbJsonLd) }} />
 
       <section className="hero">
         <div className="wrap">
@@ -102,7 +119,7 @@ function SetsIndexPage() {
                 <Link key={s.slug} className="card" to={s.path}>
                   <div className="card-art" style={{ '--glow-1': s.glow1, '--glow-2': s.glow2 } as React.CSSProperties}>
                     {s.preorder && <span className="card-preorder">Preorder</span>}
-                    <img src={s.heroImage} alt={s.heroAlt} loading="lazy" />
+                    <img src={s.heroImage} alt={s.heroAlt} loading="lazy" width={300} height={419} />
                   </div>
                   <div className="card-body">
                     <span className="card-series">{s.code}</span>

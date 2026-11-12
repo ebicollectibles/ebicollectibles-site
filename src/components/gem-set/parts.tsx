@@ -33,7 +33,7 @@ export function CardThumb({
     <button type="button" className={`card${dimmed ? ' dim' : ''}`} onClick={() => onOpen(card.id)}>
       <span className="img">
         {card.image ? (
-          <img loading="lazy" src={card.image} alt={`${card.name} ${card.id}/${card.suffix}, ${card.rarity}`} />
+          <img loading="lazy" src={card.image} alt={`${card.name} ${card.id}/${card.suffix}, ${card.rarity}`} width={300} height={419} />
         ) : (
           <span className="img-ph">Image coming soon</span>
         )}

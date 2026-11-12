@@ -5,7 +5,7 @@
 
 const SITE_URL = 'https://ebicollectibles.com'
 
-const STATIC_PATHS = ['', '/shop', '/shipping-policy', '/refund-policy', '/privacy', '/cookie-policy', '/terms-of-service']
+const STATIC_PATHS = ['', '/shop', '/sets', '/shipping-policy', '/refund-policy', '/privacy', '/cookie-policy', '/terms-of-service']
 
 function xmlEscape(s: string): string {
   return s.replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]!)
@@ -15,6 +15,7 @@ export async function handleSitemapRequest(): Promise<Response> {
   const { getDb } = await import('~/lib/db/client')
   const { products } = await import('~/lib/db/schema')
   const { eq } = await import('drizzle-orm')
+  const { GEM_SETS } = await import('~/data/gem-sets-index')
   const db = getDb()
 
   const rows = await db
@@ -28,6 +29,10 @@ export async function handleSitemapRequest(): Promise<Response> {
       (r) =>
         `<url><loc>${xmlEscape(`${SITE_URL}/products/${r.id}`)}</loc><lastmod>${r.updatedAt.toISOString().slice(0, 10)}</lastmod></url>`,
     ),
+    // Every set's own card-list page — these were missing from the
+    // sitemap entirely despite being full, content-rich, indexable pages
+    // (reachable from /sets, just never previously declared here).
+    ...GEM_SETS.map((s) => `<url><loc>${xmlEscape(`${SITE_URL}${s.path}`)}</loc></url>`),
   ].join('')
 
   const xml = `<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${urls}</urlset>`

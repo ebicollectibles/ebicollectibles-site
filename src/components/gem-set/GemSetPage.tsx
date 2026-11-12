@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { Link } from '@tanstack/react-router'
 import { SITE_URL } from '~/lib/gem-sets/constants'
-import { buildGemSetJsonLd } from '~/lib/gem-sets/head'
+import { buildGemSetJsonLd, safeJsonLd } from '~/lib/gem-sets/head'
 import { RARITY_CODE, RARITY_SYMBOL } from '~/lib/gem-sets/rarity'
 import type { BuiltGemSetData, Card, GemSetConfig, GemSetData } from '~/lib/gem-sets/types'
 import { CardThumb, RarityTag } from './parts'
@@ -76,7 +76,7 @@ export function GemSetPage({
   const touchMovedRef = React.useRef(false)
   const justSwipedRef = React.useRef(false)
 
-  const { itemListJsonLd, faqJsonLd } = React.useMemo(() => buildGemSetJsonLd(raw, data, config), [raw, data, config])
+  const { itemListJsonLd, faqJsonLd, breadcrumbJsonLd } = React.useMemo(() => buildGemSetJsonLd(raw, data, config), [raw, data, config])
 
   const onFanTouchStart = (e: React.TouchEvent) => {
     touchStartXRef.current = e.touches[0]?.clientX ?? null
@@ -200,8 +200,19 @@ export function GemSetPage({
   // (or stepping between sibling cards, which also goes through open())
   // leaves the page exactly where the user left it.
   const scrollYRef = React.useRef(0)
+  // Where to send keyboard/screen-reader focus back to on close — the
+  // element that had focus right before the dialog opened (a card thumb,
+  // a fan card, ...), captured only on the FIRST open of a session, never
+  // overwritten by stepping between siblings (document.activeElement by
+  // then is something inside the dialog itself).
+  const previousFocusRef = React.useRef<HTMLElement | null>(null)
+  const lbPanelRef = React.useRef<HTMLDivElement>(null)
+  const lbCloseRef = React.useRef<HTMLButtonElement>(null)
   const open = (id: string) => {
-    if (!openCard) scrollYRef.current = window.scrollY
+    if (!openCard) {
+      scrollYRef.current = window.scrollY
+      previousFocusRef.current = (document.activeElement as HTMLElement) ?? null
+    }
     navigateToCard(id).then(() => {
       window.scrollTo(0, scrollYRef.current)
     })
@@ -209,6 +220,8 @@ export function GemSetPage({
   const close = () =>
     navigateToCard(undefined).then(() => {
       window.scrollTo(0, scrollYRef.current)
+      previousFocusRef.current?.focus()
+      previousFocusRef.current = null
     })
   const step = (dir: 1 | -1) => {
     if (!openCard) return
@@ -218,12 +231,38 @@ export function GemSetPage({
     open(list[(i + dir + list.length) % list.length].id)
   }
 
+  // Moves focus into the dialog on open (and again on each step, so a
+  // screen reader lands somewhere predictable rather than wherever focus
+  // happened to be left) — paired with previousFocusRef/close() above,
+  // which sends it back out to whatever opened the dialog.
+  React.useEffect(() => {
+    if (openCard) lbCloseRef.current?.focus()
+  }, [openCard?.id])
+
   React.useEffect(() => {
     if (!openCard) return
     const onKey = (e: KeyboardEvent) => {
       if (e.key === 'Escape') close()
       else if (e.key === 'ArrowRight') step(1)
       else if (e.key === 'ArrowLeft') step(-1)
+      else if (e.key === 'Tab') {
+        // Keeps Tab/Shift+Tab cycling within the dialog instead of
+        // escaping into the page underneath, which the backdrop can't
+        // otherwise prevent since it isn't a native <dialog>.
+        const panel = lbPanelRef.current
+        if (!panel) return
+        const focusables = Array.from(panel.querySelectorAll<HTMLElement>('button, a[href], input, [tabindex]:not([tabindex="-1"])'))
+        if (focusables.length === 0) return
+        const first = focusables[0]
+        const last = focusables[focusables.length - 1]
+        if (e.shiftKey && document.activeElement === first) {
+          e.preventDefault()
+          last.focus()
+        } else if (!e.shiftKey && document.activeElement === last) {
+          e.preventDefault()
+          first.focus()
+        }
+      }
     }
     document.addEventListener('keydown', onKey)
     return () => document.removeEventListener('keydown', onKey)
@@ -283,8 +322,9 @@ export function GemSetPage({
       className="gem-set"
       style={{ '--header-h': `${headerH}px`, '--glow-1': config.glow1, '--glow-2': config.glow2 } as React.CSSProperties}
     >
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListJsonLd) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(itemListJsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(faqJsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(breadcrumbJsonLd) }} />
 
       <section className="hero" id="top">
         <div className="wrap">
@@ -347,13 +387,18 @@ export function GemSetPage({
           <div
             className="fan"
             ref={fanRef}
+            role="region"
             onTouchStart={onFanTouchStart}
             onTouchMove={onFanTouchMove}
             onTouchEnd={onFanTouchEnd}
             aria-label="Featured full-art cards"
           >
             {config.fanIds.map((id, i) => {
-              const c = cardById.get(id)!
+              // Defensive: a typo'd fanId (easy to introduce by hand across
+              // 15+ route files) would otherwise throw and take down the
+              // whole page instead of just skipping its one slot.
+              const c = cardById.get(id)
+              if (!c) return null
               return (
                 <button
                   key={id}
@@ -368,7 +413,13 @@ export function GemSetPage({
                   }}
                   aria-label={`${c.name} ${id}/${c.suffix}`}
                 >
-                  <img src={c.image ?? undefined} alt={`${c.name} full art, ${raw.name} ${id}/${c.suffix}`} />
+                  <img
+                    src={c.image ?? undefined}
+                    alt={`${c.name} full art, ${raw.name} ${id}/${c.suffix}`}
+                    width={300}
+                    height={419}
+                    fetchPriority="high"
+                  />
                   {c.exclusive && <span className="fan-excl">Exclusive</span>}
                 </button>
               )
@@ -420,7 +471,7 @@ export function GemSetPage({
             ))}
           </div>
           <div className="count">
-            <span>
+            <span aria-live="polite">
               <b>{shown.length}</b> of {raw.cardCount} cards
             </span>
           </div>
@@ -537,13 +588,13 @@ export function GemSetPage({
 
       {openCard && (
         <div className="lb" role="dialog" aria-modal="true" aria-labelledby="gem-set-lb-title" onClick={(e) => e.target === e.currentTarget && close()}>
-          <div className="lb-panel">
-            <button className="lb-close" type="button" aria-label="Close" onClick={close}>
+          <div className="lb-panel" ref={lbPanelRef}>
+            <button className="lb-close" type="button" aria-label="Close" ref={lbCloseRef} onClick={close}>
               ×
             </button>
             <div className="lb-art">
               {openCard.image ? (
-                <img src={openCard.image} alt={`${openCard.name} ${openCard.id}/${openCard.suffix}, ${openCard.rarity}, ${raw.name}`} />
+                <img src={openCard.image} alt={`${openCard.name} ${openCard.id}/${openCard.suffix}, ${openCard.rarity}, ${raw.name}`} width={300} height={419} />
               ) : (
                 <div className="lb-art-ph">Image coming soon</div>
               )}
@@ -585,7 +636,7 @@ export function GemSetPage({
               <div className="sibs">
                 {(openGroup?.cards ?? []).map((sib, i) => (
                   <button key={sib.id} type="button" aria-current={sib.id === openCard.id} aria-label={`Version ${i + 1}, ${sib.rarity}`} onClick={() => open(sib.id)}>
-                    {sib.image ? <img src={sib.image} alt="" /> : <span className="sib-ph" aria-hidden="true" />}
+                    {sib.image ? <img src={sib.image} alt="" width={300} height={419} /> : <span className="sib-ph" aria-hidden="true" />}
                   </button>
                 ))}
               </div>
