@@ -1,0 +1,24 @@
+name: Upload CSV5 images to R2
+
+on:
+  workflow_dispatch: {}
+
+jobs:
+  upload:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: csv5-data
+
+      - name: Upload CSV5 card images to R2
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: |
+          set -euo pipefail
+          for f in csv5-images/cards/*.webp; do
+            name=$(basename "$f")
+            echo "Uploading CSV5 $name"
+            npx --yes wrangler@4 r2 object put "ebicollectibles-product-images/Chinese/Dark Crystal Blaze CSV5/Cards/$name" --file="$f" --content-type=image/webp --remote
+          done
