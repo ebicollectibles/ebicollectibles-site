@@ -111,33 +111,44 @@ function SetsIndexPage() {
       </section>
 
       <main className="wrap">
-        {groupBySeries().map(([series, sets]) => (
-          <section key={series} className="series">
-            <h2 className="series-h">{SERIES_LABEL[series] ?? series}</h2>
-            <div className="grid">
-              {sets.map((s) => (
-                <Link key={s.slug} className="card" to={s.path}>
-                  <div className="card-art" style={{ '--glow-1': s.glow1, '--glow-2': s.glow2 } as React.CSSProperties}>
-                    {s.preorder && <span className="card-preorder">Preorder</span>}
-                    <img src={s.heroImage} alt={s.heroAlt} loading="lazy" width={300} height={419} />
-                  </div>
-                  <div className="card-body">
-                    <span className="card-series">{s.code}</span>
-                    <h3 className="card-name">{s.name}</h3>
-                    <p className="card-tagline">{s.tagline}</p>
-                    <div className="card-meta">
-                      <span>
-                        <b>{s.cardCount}</b> cards
-                      </span>
-                      <span>{formatReleaseDate(s.releaseDate)}</span>
-                      {s.exclusiveCount > 0 && <span className="card-excl">{s.exclusiveCount}× excl.</span>}
-                    </div>
-                  </div>
-                </Link>
-              ))}
-            </div>
-          </section>
-        ))}
+        {(() => {
+          // Only the first series section's first several cards are
+          // reliably above the fold — a running count across all of them
+          // (not reset per section) so later sections stay lazy. Blanket
+          // loading="lazy" on every card, including the first row, was
+          // delaying a fetch the browser could have started immediately.
+          let cardIndex = 0
+          return groupBySeries().map(([series, sets]) => (
+            <section key={series} className="series">
+              <h2 className="series-h">{SERIES_LABEL[series] ?? series}</h2>
+              <div className="grid">
+                {sets.map((s) => {
+                  const priority = cardIndex++ < 8
+                  return (
+                    <Link key={s.slug} className="card" to={s.path}>
+                      <div className="card-art" style={{ '--glow-1': s.glow1, '--glow-2': s.glow2 } as React.CSSProperties}>
+                        {s.preorder && <span className="card-preorder">Preorder</span>}
+                        <img src={s.heroImage} alt={s.heroAlt} loading={priority ? undefined : 'lazy'} width={300} height={419} />
+                      </div>
+                      <div className="card-body">
+                        <span className="card-series">{s.code}</span>
+                        <h3 className="card-name">{s.name}</h3>
+                        <p className="card-tagline">{s.tagline}</p>
+                        <div className="card-meta">
+                          <span>
+                            <b>{s.cardCount}</b> cards
+                          </span>
+                          <span>{formatReleaseDate(s.releaseDate)}</span>
+                          {s.exclusiveCount > 0 && <span className="card-excl">{s.exclusiveCount}× excl.</span>}
+                        </div>
+                      </div>
+                    </Link>
+                  )
+                })}
+              </div>
+            </section>
+          ))
+        })()}
       </main>
     </div>
   )

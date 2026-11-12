@@ -16,24 +16,39 @@ export function RarityTag({ rarity }: { rarity: string }) {
 // ladder it's already the row's own heading. Uses the card's own suffix
 // (not a page-wide one) since a catalog block — Trainers, Energy — can
 // use a different version denominator than the rest of the set.
+//
+// `priority`: true for the first handful of cards in whichever grid this
+// sits in (the caller knows its own index) — those are reliably above
+// the fold at normal viewport widths, so lazy-loading them only delays a
+// fetch the browser could have started immediately. Blanket loading=lazy
+// on every single card, including the first row, was actively hurting
+// this page's LCP.
 export function CardThumb({
   card,
   dimmed,
   showName,
   have,
+  priority,
   onOpen,
 }: {
   card: Card
   dimmed: boolean
   showName: boolean
   have: boolean
+  priority?: boolean
   onOpen: (id: string) => void
 }) {
   return (
     <button type="button" className={`card${dimmed ? ' dim' : ''}`} onClick={() => onOpen(card.id)}>
       <span className="img">
         {card.image ? (
-          <img loading="lazy" src={card.image} alt={`${card.name} ${card.id}/${card.suffix}, ${card.rarity}`} width={300} height={419} />
+          <img
+            loading={priority ? undefined : 'lazy'}
+            src={card.image}
+            alt={`${card.name} ${card.id}/${card.suffix}, ${card.rarity}`}
+            width={300}
+            height={419}
+          />
         ) : (
           <span className="img-ph">Image coming soon</span>
         )}

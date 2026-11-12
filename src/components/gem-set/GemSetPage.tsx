@@ -518,16 +518,16 @@ export function GemSetPage({
                   <p className="spotlight-sub">Only in the Simplified Chinese release.</p>
                 </div>
                 <div className="grid">
-                  {exclusiveShown.map((c) => (
-                    <CardThumb key={c.id} card={c} dimmed={false} showName={true} have={have.has(c.id)} onOpen={open} />
+                  {exclusiveShown.map((c, i) => (
+                    <CardThumb key={c.id} card={c} dimmed={false} showName={true} have={have.has(c.id)} priority={i < 8} onOpen={open} />
                   ))}
                 </div>
               </section>
             )}
             {exclusiveShown.length > 0 && <div className="grid-head">All cards</div>}
             <div className="grid">
-              {shown.map((c) => (
-                <CardThumb key={c.id} card={c} dimmed={false} showName={true} have={have.has(c.id)} onOpen={open} />
+              {shown.map((c, i) => (
+                <CardThumb key={c.id} card={c} dimmed={false} showName={true} have={have.has(c.id)} priority={exclusiveShown.length === 0 && i < 8} onOpen={open} />
               ))}
             </div>
           </>

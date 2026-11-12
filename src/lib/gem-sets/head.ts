@@ -42,6 +42,11 @@ export function buildGemSetHead(data: BuiltGemSetData, config: GemSetConfig) {
       // than waiting for the first <img> to be discovered, shaves real
       // time off the hero fan's own image load (likely this page's LCP).
       { rel: 'preconnect', href: R2_IMAGE_HOST },
+      // The hero fan's own front/center card — almost always this page's
+      // actual LCP element. Without this the browser only discovers it
+      // once it parses deep enough into the hero section's JSX output;
+      // preloading starts that fetch the instant <head> is parsed.
+      ...(heroImage ? [{ rel: 'preload', as: 'image', href: heroImage, fetchpriority: 'high' }] : []),
     ],
   }
 }
