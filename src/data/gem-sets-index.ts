@@ -18,6 +18,7 @@ export type GemSetRoutePath =
   | '/sets/white-flare'
   | '/sets/30th-celebration'
   | '/sets/csv10'
+  | '/sets/csv9-5'
 
 export interface GemSetSummary {
   slug: string
@@ -51,6 +52,21 @@ export const GEM_SETS: GemSetSummary[] = [
     heroAlt: 'Pikachu ex Special Art Rare',
     glow1: 'rgb(222 185 97 / .30)',
     glow2: 'rgb(90 45 5 / .25)',
+  },
+  {
+    slug: 'csv9-5',
+    path: '/sets/csv9-5',
+    name: 'Terastal Gathering',
+    series: 'Chinese Scarlet & Violet',
+    code: 'CSV9.5C',
+    cardCount: 259,
+    releaseDate: '2026-06-12',
+    exclusiveCount: 1,
+    tagline: '156 Pokémon in an Eeveelution-heavy special set',
+    heroImage: 'https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Crystal%20Gathering/Cards/0239.webp',
+    heroAlt: 'Umbreon ex Special Art Rare',
+    glow1: 'rgb(71 118 121 / .30)',
+    glow2: 'rgb(216 123 115 / .25)',
   },
   {
     slug: 'csv10',

@@ -35,6 +35,9 @@ export const RARITY_CODE: Record<string, string> = {
   // CSV10's own top tier (the gold cards) — reuses BWR's color hook since
   // CSV10 has no Black White Rare of its own.
   'Ultra Rare (UR)': 'BWR',
+  // CSV9.5's own tier (pink-framed ACE SPEC Trainers/Energy, one per deck)
+  // — reuses Triple Rare's color hook since this set has none of its own.
+  'ACE SPEC Rare (ACE)': 'RRR',
 }
 export const RARITY_SYMBOL: Record<string, string> = {
   Common: '●',
@@ -56,4 +59,5 @@ export const RARITY_SYMBOL: Record<string, string> = {
   'Basic Energy': '◉',
   Promo: '◇',
   'Ultra Rare (UR)': '✧',
+  'ACE SPEC Rare (ACE)': '❖',
 }
