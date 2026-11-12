@@ -1,0 +1,1330 @@
+{
+  "name": "True Mystery",
+  "slug": "csv6",
+  "code": "CSV6C",
+  "series": "Chinese Scarlet & Violet",
+  "language": "Simplified Chinese",
+  "releaseDate": "2025-11-07",
+  "cardCount": 163,
+  "rarityOrder": [
+    "Common (C)",
+    "Uncommon (U)",
+    "Rare (R)",
+    "Double Rare (RR)",
+    "Art Rare (AR)",
+    "Super Rare (SR)",
+    "Special Art Rare (SAR)",
+    "Ultra Rare (UR)"
+  ],
+  "exclusiveCardNumbers": [
+    "152/128"
+  ],
+  "source": "Chen Cards (chencards.com/sets/true_mystic), used with permission",
+  "cards": [
+    {
+      "number": "001/128",
+      "pokemonIndex": 1,
+      "version": 1,
+      "name": "Surskit",
+      "rarity": "Common (C)",
+      "image": "Chinese/True Mystic/Cards/0001.webp"
+    },
+    {
+      "number": "002/128",
+      "pokemonIndex": 2,
+      "version": 1,
+      "name": "Masquerain",
+      "rarity": "Uncommon (U)",
+      "image": "Chinese/True Mystic/Cards/0002.webp"
+    },
+    {
+      "number": "003/128",
+      "pokemonIndex": 3,
+      "version": 1,
+      "name": "Froslass ex",
+      "rarity": "Double Rare (RR)",
+      "image": "Chinese/True Mystic/Cards/0003.webp"
+    },
+    {
+      "number": "004/128",
+      "pokemonIndex": 4,
+      "version": 1,
+      "name": "Pansage",
+      "rarity": "Common (C)",
+      "image": "Chinese/True Mystic/Cards/0004.webp"
+    },
+    {
+      "number": "005/128",
+      "pokemonIndex": 5,
+      "version": 1,
+      "name": "Simisage",
+      "rarity": "Uncommon (U)",
+      "image": "Chinese/True Mystic/Cards/0005.webp"
+    },
+    {
+      "number": "006/128",
+      "pokemonIndex": 6,
+      "version": 1,
+      "name": "Maractus",
+      "rarity": "Common (C)",
+      "image": "Chinese/True Mystic/Cards/0006.webp"
+    },
+    {
+      "number": "007/128",
+      "pokemonIndex": 7,
+      "version": 1,
+      "name": "Dwebble",
+      "rarity": "Common (C)",
+      "image": "Chinese/True Mystic/Cards/0007.webp"
+    },
+    {
+      "number": "008/128",
+      "pokemonIndex": 8,
+      "version": 1,
+      "name": "Crustle",
+      "rarity": "Common (C)",
+      "image": "Chinese/True Mystic/Cards/0008.webp"
+    },
+    {
+      "number": "009/128",
+      "pokemonIndex": 9,
+      "version": 1,
+      "name": "Bounsweet",
+      "rarity": "Common (C)",
+      "image": "Chinese/True Mystic/Cards/0009.webp"
+    },
+    {
+      "number": "010/128",
+      "pokemonIndex": 10,
+      "version": 1,
+      "name": "Steenee",
+      "rarity": "Uncommon (U)",
+      "image": "Chinese/True Mystic/Cards/0010.webp"
+    },
+    {
+      "number": "011/128",
+      "pokemonIndex": 11,
+      "version": 1,
+      "name": "Blipbug",
+      "rarity": "Common (C)",
+      "image": "Chinese/True Mystic/Cards/0011.webp"
+    },
+    {
+      "number": "012/128",
+      "pokemonIndex": 12,
+      "version": 1,
+      "name": "Dottler",
+      "rarity": "Common (C)",
+      "image": "Chinese/True Mystic/Cards/0012.webp"
+    },
+    {
+      "number": "013/128",
+      "pokemonIndex": 13,
+      "version": 1,
+      "name": "Orbeetle",
+      "rarity": "Uncommon (U)",
+      "image": "Chinese/True Mystic/Cards/0013.webp"
+    },
+    {
+      "number": "014/128",
+      "pokemonIndex": 14,
+      "version": 1,
+      "name": "Nymble",
+      "rarity": "Common (C)",
+      "image": "Chinese/True Mystic/Cards/0014.webp"
+    },
+    {
+      "number": "015/128",
+      "pokemonIndex": 15,
+      "version": 1,
+      "name": "Espathra ex",
+      "rarity": "Double Rare (RR)",
+      "image": "Chinese/True Mystic/Cards/0015.webp"
+    },
+    {
+      "number": "016/128",
+      "pokemonIndex": 16,
+      "version": 1,
+      "name": "Magby",
+      "rarity": "Common (C)",
+      "image": "Chinese/True Mystic/Cards/0016.webp"
+    },
+    {
+      "number": "017/128",
+      "pokemonIndex": 17,
+      "version": 1,
+      "name": "Magmar",
+      "rarity": "Common (C)",
+      "image": "Chinese/True Mystic/Cards/0017.webp"
+    },
+    {
+      "number": "018/128",
+      "pokemonIndex": 18,
+      "version": 1,
+      "name": "Magmortar",
+      "rarity": "Uncommon (U)",
+      "image": "Chinese/True Mystic/Cards/0018.webp"
+    },
+    {
+      "number": "019/128",
+      "pokemonIndex": 19,
+      "version": 1,
+      "name": "Heat Rotom",
+      "rarity": "Common (C)",
+      "image": "Chinese/True Mystic/Cards/0019.webp"
+    },
+    {
+      "number": "020/128",
+      "pokemonIndex": 20,
+      "version": 1,
+      "name": "Pansear",
+      "rarity": "Common (C)",
+      "image": "Chinese/True Mystic/Cards/0020.webp"
+    },
+    {
+      "number": "021/128",
+      "pokemonIndex": 21,
+      "version": 1,
+      "name": "Simisear",
+      "rarity": "Uncommon (U)",
+      "image": "Chinese/True Mystic/Cards/0021.webp"
+    },
+    {
+      "number": "022/128",
+      "pokemonIndex": 22,
+      "version": 1,
+      "name": "Volcanion",
+      "rarity": "Common (C)",
+      "image": "Chinese/True Mystic/Cards/0022.webp"
+    },
+    {
+      "number": "023/128",
+      "pokemonIndex": 23,
+      "version": 1,
+      "name": "Fuecoco",
+      "rarity": "Common (C)",
+      "image": "Chinese/True Mystic/Cards/0023.webp"
+    },
+    {
+      "number": "024/128",
+      "pokemonIndex": 24,
+      "version": 1,
+      "name": "Crocalor",
+      "rarity": "Common (C)",
+      "image": "Chinese/True Mystic/Cards/0024.webp"
+    },
+    {
+      "number": "025/128",
+      "pokemonIndex": 25,
+      "version": 1,
+      "name": "Iron Moth",
+      "rarity": "Rare (R)",
+      "image": "Chinese/True Mystic/Cards/0025.webp"
+    },
+    {
+      "number": "026/128",
+      "pokemonIndex": 26,
+      "version": 1,
+      "name": "Horsea",
+      "rarity": "Common (C)",
+      "image": "Chinese/True Mystic/Cards/0026.webp"
+    },
+    {
+      "number": "027/128",
+      "pokemonIndex": 27,
+      "version": 1,
+      "name": "Seadra",
+      "rarity": "Common (C)",
+      "image": "Chinese/True Mystic/Cards/0027.webp"
+    },
+    {
+      "number": "028/128",
+      "pokemonIndex": 28,
+      "version": 1,
+      "name": "Kingdra",
+      "rarity": "Rare (R)",
+      "image": "Chinese/True Mystic/Cards/0028.webp"
+    },
+    {
+      "number": "029/128",
+      "pokemonIndex": 29,
+      "version": 1,
+      "name": "Lapras",
+      "rarity": "Common (C)",
+      "image": "Chinese/True Mystic/Cards/0029.webp"
+    },
+    {
+      "number": "030/128",
+      "pokemonIndex": 30,
+      "version": 1,
+      "name": "Feebas",
+      "rarity": "Common (C)",
+      "image": "Chinese/True Mystic/Cards/0030.webp"
+    },
+    {
+      "number": "031/128",
+      "pokemonIndex": 31,
+      "version": 1,
+      "name": "Milotic",
+      "rarity": "Rare (R)",
+      "image": "Chinese/True Mystic/Cards/0031.webp"
+    },
+    {
+      "number": "032/128",
+      "pokemonIndex": 32,
+      "version": 1,
+      "name": "Snorunt",
+      "rarity": "Common (C)",
+      "image": "Chinese/True Mystic/Cards/0032.webp"
+    },
+    {
+      "number": "033/128",
+      "pokemonIndex": 33,
+      "version": 1,
+      "name": "Panpour",
+      "rarity": "Common (C)",
+      "image": "Chinese/True Mystic/Cards/0033.webp"
+    },
+    {
+      "number": "034/128",
+      "pokemonIndex": 34,
+      "version": 1,
+      "name": "Simipour",
+      "rarity": "Uncommon (U)",
+      "image": "Chinese/True Mystic/Cards/0034.webp"
+    },
+    {
+      "number": "035/128",
+      "pokemonIndex": 35,
+      "version": 1,
+      "name": "Vanillite",
+      "rarity": "Common (C)",
+      "image": "Chinese/True Mystic/Cards/0035.webp"
+    },
+    {
+      "number": "036/128",
+      "pokemonIndex": 36,
+      "version": 1,
+      "name": "Vanillish",
+      "rarity": "Common (C)",
+      "image": "Chinese/True Mystic/Cards/0036.webp"
+    },
+    {
+      "number": "037/128",
+      "pokemonIndex": 37,
+      "version": 1,
+      "name": "Vanilluxe",
+      "rarity": "Uncommon (U)",
+      "image": "Chinese/True Mystic/Cards/0037.webp"
+    },
+    {
+      "number": "038/128",
+      "pokemonIndex": 38,
+      "version": 1,
+      "name": "Tsareena ex",
+      "rarity": "Double Rare (RR)",
+      "image": "Chinese/True Mystic/Cards/0038.webp"
+    },
+    {
+      "number": "039/128",
+      "pokemonIndex": 39,
+      "version": 1,
+      "name": "Wiglett",
+      "rarity": "Common (C)",
+      "image": "Chinese/True Mystic/Cards/0039.webp"
+    },
+    {
+      "number": "040/128",
+      "pokemonIndex": 40,
+      "version": 1,
+      "name": "Wugtrio",
+      "rarity": "Uncommon (U)",
+      "image": "Chinese/True Mystic/Cards/0040.webp"
+    },
+    {
+      "number": "041/128",
+      "pokemonIndex": 41,
+      "version": 1,
+      "name": "Veluza",
+      "rarity": "Uncommon (U)",
+      "image": "Chinese/True Mystic/Cards/0041.webp"
+    },
+    {
+      "number": "042/128",
+      "pokemonIndex": 42,
+      "version": 1,
+      "name": "Iron Bundle",
+      "rarity": "Uncommon (U)",
+      "image": "Chinese/True Mystic/Cards/0042.webp"
+    },
+    {
+      "number": "043/128",
+      "pokemonIndex": 43,
+      "version": 1,
+      "name": "Chien-Pao",
+      "rarity": "Rare (R)",
+      "image": "Chinese/True Mystic/Cards/0043.webp"
+    },
+    {
+      "number": "044/128",
+      "pokemonIndex": 44,
+      "version": 1,
+      "name": "Elekid",
+      "rarity": "Common (C)",
+      "image": "Chinese/True Mystic/Cards/0044.webp"
+    },
+    {
+      "number": "045/128",
+      "pokemonIndex": 45,
+      "version": 1,
+      "name": "Tyranitar ex",
+      "rarity": "Double Rare (RR)",
+      "image": "Chinese/True Mystic/Cards/0045.webp"
+    },
+    {
+      "number": "046/128",
+      "pokemonIndex": 46,
+      "version": 1,
+      "name": "Blitzle",
+      "rarity": "Common (C)",
+      "image": "Chinese/True Mystic/Cards/0046.webp"
+    },
+    {
+      "number": "047/128",
+      "pokemonIndex": 47,
+      "version": 1,
+      "name": "Zebstrika",
+      "rarity": "Uncommon (U)",
+      "image": "Chinese/True Mystic/Cards/0047.webp"
+    },
+    {
+      "number": "048/128",
+      "pokemonIndex": 48,
+      "version": 1,
+      "name": "Oricorio",
+      "rarity": "Common (C)",
+      "image": "Chinese/True Mystic/Cards/0048.webp"
+    },
+    {
+      "number": "049/128",
+      "pokemonIndex": 49,
+      "version": 1,
+      "name": "Tadbulb",
+      "rarity": "Common (C)",
+      "image": "Chinese/True Mystic/Cards/0049.webp"
+    },
+    {
+      "number": "050/128",
+      "pokemonIndex": 50,
+      "version": 1,
+      "name": "Bellibolt",
+      "rarity": "Common (C)",
+      "image": "Chinese/True Mystic/Cards/0050.webp"
+    },
+    {
+      "number": "051/128",
+      "pokemonIndex": 51,
+      "version": 1,
+      "name": "Iron Hands ex",
+      "rarity": "Double Rare (RR)",
+      "image": "Chinese/True Mystic/Cards/0051.webp"
+    },
+    {
+      "number": "052/128",
+      "pokemonIndex": 52,
+      "version": 1,
+      "name": "Chimecho",
+      "rarity": "Common (C)",
+      "image": "Chinese/True Mystic/Cards/0052.webp"
+    },
+    {
+      "number": "053/128",
+      "pokemonIndex": 53,
+      "version": 1,
+      "name": "Mime Jr.",
+      "rarity": "Common (C)",
+      "image": "Chinese/True Mystic/Cards/0053.webp"
+    },
+    {
+      "number": "054/128",
+      "pokemonIndex": 54,
+      "version": 1,
+      "name": "Woobat",
+      "rarity": "Common (C)",
+      "image": "Chinese/True Mystic/Cards/0054.webp"
+    },
+    {
+      "number": "055/128",
+      "pokemonIndex": 55,
+      "version": 1,
+      "name": "Swoobat",
+      "rarity": "Uncommon (U)",
+      "image": "Chinese/True Mystic/Cards/0055.webp"
+    },
+    {
+      "number": "056/128",
+      "pokemonIndex": 56,
+      "version": 1,
+      "name": "Yamask",
+      "rarity": "Common (C)",
+      "image": "Chinese/True Mystic/Cards/0056.webp"
+    },
+    {
+      "number": "057/128",
+      "pokemonIndex": 57,
+      "version": 1,
+      "name": "Cofagrigus ex",
+      "rarity": "Double Rare (RR)",
+      "image": "Chinese/True Mystic/Cards/0057.webp"
+    },
+    {
+      "number": "058/128",
+      "pokemonIndex": 58,
+      "version": 1,
+      "name": "Pumpkaboo",
+      "rarity": "Common (C)",
+      "image": "Chinese/True Mystic/Cards/0058.webp"
+    },
+    {
+      "number": "059/128",
+      "pokemonIndex": 59,
+      "version": 1,
+      "name": "Gourgeist",
+      "rarity": "Uncommon (U)",
+      "image": "Chinese/True Mystic/Cards/0059.webp"
+    },
+    {
+      "number": "060/128",
+      "pokemonIndex": 60,
+      "version": 1,
+      "name": "Flittle",
+      "rarity": "Common (C)",
+      "image": "Chinese/True Mystic/Cards/0060.webp"
+    },
+    {
+      "number": "061/128",
+      "pokemonIndex": 61,
+      "version": 1,
+      "name": "Espathra",
+      "rarity": "Rare (R)",
+      "image": "Chinese/True Mystic/Cards/0061.webp"
+    },
+    {
+      "number": "062/128",
+      "pokemonIndex": 62,
+      "version": 1,
+      "name": "Tinkatink",
+      "rarity": "Common (C)",
+      "image": "Chinese/True Mystic/Cards/0062.webp"
+    },
+    {
+      "number": "063/128",
+      "pokemonIndex": 63,
+      "version": 1,
+      "name": "Tinkatuff",
+      "rarity": "Common (C)",
+      "image": "Chinese/True Mystic/Cards/0063.webp"
+    },
+    {
+      "number": "064/128",
+      "pokemonIndex": 64,
+      "version": 1,
+      "name": "Tinkaton",
+      "rarity": "Uncommon (U)",
+      "image": "Chinese/True Mystic/Cards/0064.webp"
+    },
+    {
+      "number": "065/128",
+      "pokemonIndex": 65,
+      "version": 1,
+      "name": "Scream Tail",
+      "rarity": "Uncommon (U)",
+      "image": "Chinese/True Mystic/Cards/0065.webp"
+    },
+    {
+      "number": "066/128",
+      "pokemonIndex": 66,
+      "version": 1,
+      "name": "Iron Valiant ex",
+      "rarity": "Double Rare (RR)",
+      "image": "Chinese/True Mystic/Cards/0066.webp"
+    },
+    {
+      "number": "067/128",
+      "pokemonIndex": 67,
+      "version": 1,
+      "name": "Onix",
+      "rarity": "Common (C)",
+      "image": "Chinese/True Mystic/Cards/0067.webp"
+    },
+    {
+      "number": "068/128",
+      "pokemonIndex": 68,
+      "version": 1,
+      "name": "Larvitar",
+      "rarity": "Common (C)",
+      "image": "Chinese/True Mystic/Cards/0068.webp"
+    },
+    {
+      "number": "069/128",
+      "pokemonIndex": 69,
+      "version": 1,
+      "name": "Pupitar",
+      "rarity": "Common (C)",
+      "image": "Chinese/True Mystic/Cards/0069.webp"
+    },
+    {
+      "number": "070/128",
+      "pokemonIndex": 70,
+      "version": 1,
+      "name": "Mienfoo",
+      "rarity": "Common (C)",
+      "image": "Chinese/True Mystic/Cards/0070.webp"
+    },
+    {
+      "number": "071/128",
+      "pokemonIndex": 71,
+      "version": 1,
+      "name": "Mienshao",
+      "rarity": "Uncommon (U)",
+      "image": "Chinese/True Mystic/Cards/0071.webp"
+    },
+    {
+      "number": "072/128",
+      "pokemonIndex": 72,
+      "version": 1,
+      "name": "Diggersby",
+      "rarity": "Common (C)",
+      "image": "Chinese/True Mystic/Cards/0072.webp"
+    },
+    {
+      "number": "073/128",
+      "pokemonIndex": 73,
+      "version": 1,
+      "name": "Clobbopus",
+      "rarity": "Common (C)",
+      "image": "Chinese/True Mystic/Cards/0073.webp"
+    },
+    {
+      "number": "074/128",
+      "pokemonIndex": 74,
+      "version": 1,
+      "name": "Grapploct",
+      "rarity": "Uncommon (U)",
+      "image": "Chinese/True Mystic/Cards/0074.webp"
+    },
+    {
+      "number": "075/128",
+      "pokemonIndex": 75,
+      "version": 1,
+      "name": "Nacli",
+      "rarity": "Common (C)",
+      "image": "Chinese/True Mystic/Cards/0075.webp"
+    },
+    {
+      "number": "076/128",
+      "pokemonIndex": 76,
+      "version": 1,
+      "name": "Naclstack",
+      "rarity": "Common (C)",
+      "image": "Chinese/True Mystic/Cards/0076.webp"
+    },
+    {
+      "number": "077/128",
+      "pokemonIndex": 77,
+      "version": 1,
+      "name": "Garganacl",
+      "rarity": "Rare (R)",
+      "image": "Chinese/True Mystic/Cards/0077.webp"
+    },
+    {
+      "number": "078/128",
+      "pokemonIndex": 78,
+      "version": 1,
+      "name": "Toedscool",
+      "rarity": "Common (C)",
+      "image": "Chinese/True Mystic/Cards/0078.webp"
+    },
+    {
+      "number": "079/128",
+      "pokemonIndex": 79,
+      "version": 1,
+      "name": "Toedscruel",
+      "rarity": "Uncommon (U)",
+      "image": "Chinese/True Mystic/Cards/0079.webp"
+    },
+    {
+      "number": "080/128",
+      "pokemonIndex": 80,
+      "version": 1,
+      "name": "Klawf",
+      "rarity": "Uncommon (U)",
+      "image": "Chinese/True Mystic/Cards/0080.webp"
+    },
+    {
+      "number": "081/128",
+      "pokemonIndex": 81,
+      "version": 1,
+      "name": "Great Tusk ex",
+      "rarity": "Double Rare (RR)",
+      "image": "Chinese/True Mystic/Cards/0081.webp"
+    },
+    {
+      "number": "082/128",
+      "pokemonIndex": 82,
+      "version": 1,
+      "name": "Slither Wing",
+      "rarity": "Uncommon (U)",
+      "image": "Chinese/True Mystic/Cards/0082.webp"
+    },
+    {
+      "number": "083/128",
+      "pokemonIndex": 83,
+      "version": 1,
+      "name": "Sandy Shocks ex",
+      "rarity": "Double Rare (RR)",
+      "image": "Chinese/True Mystic/Cards/0083.webp"
+    },
+    {
+      "number": "084/128",
+      "pokemonIndex": 84,
+      "version": 1,
+      "name": "Ting-Lu",
+      "rarity": "Rare (R)",
+      "image": "Chinese/True Mystic/Cards/0084.webp"
+    },
+    {
+      "number": "085/128",
+      "pokemonIndex": 85,
+      "version": 1,
+      "name": "Zubat",
+      "rarity": "Common (C)",
+      "image": "Chinese/True Mystic/Cards/0085.webp"
+    },
+    {
+      "number": "086/128",
+      "pokemonIndex": 86,
+      "version": 1,
+      "name": "Golbat",
+      "rarity": "Common (C)",
+      "image": "Chinese/True Mystic/Cards/0086.webp"
+    },
+    {
+      "number": "087/128",
+      "pokemonIndex": 87,
+      "version": 1,
+      "name": "Crobat",
+      "rarity": "Uncommon (U)",
+      "image": "Chinese/True Mystic/Cards/0087.webp"
+    },
+    {
+      "number": "088/128",
+      "pokemonIndex": 88,
+      "version": 1,
+      "name": "Paldean Wooper",
+      "rarity": "Common (C)",
+      "image": "Chinese/True Mystic/Cards/0088.webp"
+    },
+    {
+      "number": "089/128",
+      "pokemonIndex": 89,
+      "version": 1,
+      "name": "Paldean Clodsire",
+      "rarity": "Uncommon (U)",
+      "image": "Chinese/True Mystic/Cards/0089.webp"
+    },
+    {
+      "number": "090/128",
+      "pokemonIndex": 90,
+      "version": 1,
+      "name": "Purrloin",
+      "rarity": "Common (C)",
+      "image": "Chinese/True Mystic/Cards/0090.webp"
+    },
+    {
+      "number": "091/128",
+      "pokemonIndex": 91,
+      "version": 1,
+      "name": "Liepard",
+      "rarity": "Common (C)",
+      "image": "Chinese/True Mystic/Cards/0091.webp"
+    },
+    {
+      "number": "092/128",
+      "pokemonIndex": 92,
+      "version": 1,
+      "name": "Trubbish",
+      "rarity": "Common (C)",
+      "image": "Chinese/True Mystic/Cards/0092.webp"
+    },
+    {
+      "number": "093/128",
+      "pokemonIndex": 93,
+      "version": 1,
+      "name": "Garbodor",
+      "rarity": "Uncommon (U)",
+      "image": "Chinese/True Mystic/Cards/0093.webp"
+    },
+    {
+      "number": "094/128",
+      "pokemonIndex": 94,
+      "version": 1,
+      "name": "Lokix",
+      "rarity": "Rare (R)",
+      "image": "Chinese/True Mystic/Cards/0094.webp"
+    },
+    {
+      "number": "095/128",
+      "pokemonIndex": 95,
+      "version": 1,
+      "name": "Brute Bonnet",
+      "rarity": "Rare (R)",
+      "image": "Chinese/True Mystic/Cards/0095.webp"
+    },
+    {
+      "number": "096/128",
+      "pokemonIndex": 96,
+      "version": 1,
+      "name": "Roaring Moon ex",
+      "rarity": "Double Rare (RR)",
+      "image": "Chinese/True Mystic/Cards/0096.webp"
+    },
+    {
+      "number": "097/128",
+      "pokemonIndex": 97,
+      "version": 1,
+      "name": "Steelix",
+      "rarity": "Rare (R)",
+      "image": "Chinese/True Mystic/Cards/0097.webp"
+    },
+    {
+      "number": "098/128",
+      "pokemonIndex": 98,
+      "version": 1,
+      "name": "Durant",
+      "rarity": "Uncommon (U)",
+      "image": "Chinese/True Mystic/Cards/0098.webp"
+    },
+    {
+      "number": "099/128",
+      "pokemonIndex": 99,
+      "version": 1,
+      "name": "Skeledirge ex",
+      "rarity": "Double Rare (RR)",
+      "image": "Chinese/True Mystic/Cards/0099.webp"
+    },
+    {
+      "number": "100/128",
+      "pokemonIndex": 100,
+      "version": 1,
+      "name": "Iron Treads ex",
+      "rarity": "Double Rare (RR)",
+      "image": "Chinese/True Mystic/Cards/0100.webp"
+    },
+    {
+      "number": "101/128",
+      "pokemonIndex": 101,
+      "version": 1,
+      "name": "Porygon",
+      "rarity": "Common (C)",
+      "image": "Chinese/True Mystic/Cards/0101.webp"
+    },
+    {
+      "number": "102/128",
+      "pokemonIndex": 102,
+      "version": 1,
+      "name": "Porygon2",
+      "rarity": "Common (C)",
+      "image": "Chinese/True Mystic/Cards/0102.webp"
+    },
+    {
+      "number": "103/128",
+      "pokemonIndex": 103,
+      "version": 1,
+      "name": "Porygon-Z",
+      "rarity": "Rare (R)",
+      "image": "Chinese/True Mystic/Cards/0103.webp"
+    },
+    {
+      "number": "104/128",
+      "pokemonIndex": 104,
+      "version": 1,
+      "name": "Aipom",
+      "rarity": "Common (C)",
+      "image": "Chinese/True Mystic/Cards/0104.webp"
+    },
+    {
+      "number": "105/128",
+      "pokemonIndex": 105,
+      "version": 1,
+      "name": "Ambipom",
+      "rarity": "Uncommon (U)",
+      "image": "Chinese/True Mystic/Cards/0105.webp"
+    },
+    {
+      "number": "106/128",
+      "pokemonIndex": 106,
+      "version": 1,
+      "name": "Miltank",
+      "rarity": "Common (C)",
+      "image": "Chinese/True Mystic/Cards/0106.webp"
+    },
+    {
+      "number": "107/128",
+      "pokemonIndex": 107,
+      "version": 1,
+      "name": "Whismur",
+      "rarity": "Common (C)",
+      "image": "Chinese/True Mystic/Cards/0107.webp"
+    },
+    {
+      "number": "108/128",
+      "pokemonIndex": 108,
+      "version": 1,
+      "name": "Loudred",
+      "rarity": "Common (C)",
+      "image": "Chinese/True Mystic/Cards/0108.webp"
+    },
+    {
+      "number": "109/128",
+      "pokemonIndex": 109,
+      "version": 1,
+      "name": "Exploud",
+      "rarity": "Uncommon (U)",
+      "image": "Chinese/True Mystic/Cards/0109.webp"
+    },
+    {
+      "number": "110/128",
+      "pokemonIndex": 110,
+      "version": 1,
+      "name": "Spinda",
+      "rarity": "Common (C)",
+      "image": "Chinese/True Mystic/Cards/0110.webp"
+    },
+    {
+      "number": "111/128",
+      "pokemonIndex": 111,
+      "version": 1,
+      "name": "Bunnelby",
+      "rarity": "Common (C)",
+      "image": "Chinese/True Mystic/Cards/0111.webp"
+    },
+    {
+      "number": "112/128",
+      "pokemonIndex": 112,
+      "version": 1,
+      "name": "Bombirdier ex",
+      "rarity": "Double Rare (RR)",
+      "image": "Chinese/True Mystic/Cards/0112.webp"
+    },
+    {
+      "number": "113/128",
+      "pokemonIndex": 113,
+      "version": 1,
+      "name": "Iron Jugulis",
+      "rarity": "Rare (R)",
+      "image": "Chinese/True Mystic/Cards/0113.webp"
+    },
+    {
+      "number": "114/128",
+      "pokemonIndex": 114,
+      "version": 1,
+      "name": "Counter Catcher",
+      "rarity": "Uncommon (U)",
+      "image": "Chinese/True Mystic/Cards/0114.webp"
+    },
+    {
+      "number": "115/128",
+      "pokemonIndex": 115,
+      "version": 1,
+      "name": "Earthen Vessel",
+      "rarity": "Uncommon (U)",
+      "image": "Chinese/True Mystic/Cards/0115.webp"
+    },
+    {
+      "number": "116/128",
+      "pokemonIndex": 116,
+      "version": 1,
+      "name": "Techno Radar",
+      "rarity": "Uncommon (U)",
+      "image": "Chinese/True Mystic/Cards/0116.webp"
+    },
+    {
+      "number": "117/128",
+      "pokemonIndex": 117,
+      "version": 1,
+      "name": "Nemona's Backpack",
+      "rarity": "Uncommon (U)",
+      "image": "Chinese/True Mystic/Cards/0117.webp"
+    },
+    {
+      "number": "118/128",
+      "pokemonIndex": 118,
+      "version": 1,
+      "name": "Ancient Booster Energy Capsule",
+      "rarity": "Uncommon (U)",
+      "image": "Chinese/True Mystic/Cards/0118.webp"
+    },
+    {
+      "number": "119/128",
+      "pokemonIndex": 119,
+      "version": 1,
+      "name": "Future Booster Energy Capsule",
+      "rarity": "Uncommon (U)",
+      "image": "Chinese/True Mystic/Cards/0119.webp"
+    },
+    {
+      "number": "120/128",
+      "pokemonIndex": 120,
+      "version": 1,
+      "name": "Technical Machine: Crisis Punch",
+      "rarity": "Uncommon (U)",
+      "image": "Chinese/True Mystic/Cards/0120.webp"
+    },
+    {
+      "number": "121/128",
+      "pokemonIndex": 121,
+      "version": 1,
+      "name": "Professor Sada's Vitality",
+      "rarity": "Uncommon (U)",
+      "image": "Chinese/True Mystic/Cards/0121.webp"
+    },
+    {
+      "number": "122/128",
+      "pokemonIndex": 122,
+      "version": 1,
+      "name": "Geeta",
+      "rarity": "Rare (R)",
+      "image": "Chinese/True Mystic/Cards/0122.webp"
+    },
+    {
+      "number": "123/128",
+      "pokemonIndex": 123,
+      "version": 1,
+      "name": "Norman",
+      "rarity": "Uncommon (U)",
+      "image": "Chinese/True Mystic/Cards/0123.webp"
+    },
+    {
+      "number": "124/128",
+      "pokemonIndex": 124,
+      "version": 1,
+      "name": "Roark",
+      "rarity": "Uncommon (U)",
+      "image": "Chinese/True Mystic/Cards/0124.webp"
+    },
+    {
+      "number": "125/128",
+      "pokemonIndex": 125,
+      "version": 1,
+      "name": "Professor Turo's Scenario",
+      "rarity": "Uncommon (U)",
+      "image": "Chinese/True Mystic/Cards/0125.webp"
+    },
+    {
+      "number": "126/128",
+      "pokemonIndex": 126,
+      "version": 1,
+      "name": "Tulip",
+      "rarity": "Uncommon (U)",
+      "image": "Chinese/True Mystic/Cards/0126.webp"
+    },
+    {
+      "number": "127/128",
+      "pokemonIndex": 127,
+      "version": 1,
+      "name": "Cycling Road",
+      "rarity": "Uncommon (U)",
+      "image": "Chinese/True Mystic/Cards/0127.webp"
+    },
+    {
+      "number": "128/128",
+      "pokemonIndex": 128,
+      "version": 1,
+      "name": "Pokémon League Headquarters",
+      "rarity": "Uncommon (U)",
+      "image": "Chinese/True Mystic/Cards/0128.webp"
+    },
+    {
+      "number": "129/128",
+      "pokemonIndex": 129,
+      "version": 1,
+      "name": "Iron Moth",
+      "rarity": "Art Rare (AR)",
+      "image": "Chinese/True Mystic/Cards/0129.webp"
+    },
+    {
+      "number": "130/128",
+      "pokemonIndex": 130,
+      "version": 1,
+      "name": "Veluza",
+      "rarity": "Art Rare (AR)",
+      "image": "Chinese/True Mystic/Cards/0130.webp"
+    },
+    {
+      "number": "131/128",
+      "pokemonIndex": 131,
+      "version": 1,
+      "name": "Espathra",
+      "rarity": "Art Rare (AR)",
+      "image": "Chinese/True Mystic/Cards/0131.webp"
+    },
+    {
+      "number": "132/128",
+      "pokemonIndex": 132,
+      "version": 1,
+      "name": "Garganacl",
+      "rarity": "Art Rare (AR)",
+      "image": "Chinese/True Mystic/Cards/0132.webp"
+    },
+    {
+      "number": "133/128",
+      "pokemonIndex": 133,
+      "version": 1,
+      "name": "Slither Wing",
+      "rarity": "Art Rare (AR)",
+      "image": "Chinese/True Mystic/Cards/0133.webp"
+    },
+    {
+      "number": "134/128",
+      "pokemonIndex": 134,
+      "version": 1,
+      "name": "Garbodor",
+      "rarity": "Art Rare (AR)",
+      "image": "Chinese/True Mystic/Cards/0134.webp"
+    },
+    {
+      "number": "135/128",
+      "pokemonIndex": 135,
+      "version": 1,
+      "name": "Brute Bonnet",
+      "rarity": "Art Rare (AR)",
+      "image": "Chinese/True Mystic/Cards/0135.webp"
+    },
+    {
+      "number": "136/128",
+      "pokemonIndex": 136,
+      "version": 1,
+      "name": "Iron Jugulis",
+      "rarity": "Art Rare (AR)",
+      "image": "Chinese/True Mystic/Cards/0136.webp"
+    },
+    {
+      "number": "137/128",
+      "pokemonIndex": 137,
+      "version": 1,
+      "name": "Froslass ex",
+      "rarity": "Super Rare (SR)",
+      "image": "Chinese/True Mystic/Cards/0137.webp"
+    },
+    {
+      "number": "138/128",
+      "pokemonIndex": 138,
+      "version": 1,
+      "name": "Tsareena ex",
+      "rarity": "Super Rare (SR)",
+      "image": "Chinese/True Mystic/Cards/0138.webp"
+    },
+    {
+      "number": "139/128",
+      "pokemonIndex": 139,
+      "version": 1,
+      "name": "Tyranitar ex",
+      "rarity": "Super Rare (SR)",
+      "image": "Chinese/True Mystic/Cards/0139.webp"
+    },
+    {
+      "number": "140/128",
+      "pokemonIndex": 140,
+      "version": 1,
+      "name": "Iron Hands ex",
+      "rarity": "Super Rare (SR)",
+      "image": "Chinese/True Mystic/Cards/0140.webp"
+    },
+    {
+      "number": "141/128",
+      "pokemonIndex": 141,
+      "version": 1,
+      "name": "Cofagrigus ex",
+      "rarity": "Super Rare (SR)",
+      "image": "Chinese/True Mystic/Cards/0141.webp"
+    },
+    {
+      "number": "142/128",
+      "pokemonIndex": 142,
+      "version": 1,
+      "name": "Iron Valiant ex",
+      "rarity": "Super Rare (SR)",
+      "image": "Chinese/True Mystic/Cards/0142.webp"
+    },
+    {
+      "number": "143/128",
+      "pokemonIndex": 143,
+      "version": 1,
+      "name": "Sandy Shocks ex",
+      "rarity": "Super Rare (SR)",
+      "image": "Chinese/True Mystic/Cards/0143.webp"
+    },
+    {
+      "number": "144/128",
+      "pokemonIndex": 144,
+      "version": 1,
+      "name": "Roaring Moon ex",
+      "rarity": "Super Rare (SR)",
+      "image": "Chinese/True Mystic/Cards/0144.webp"
+    },
+    {
+      "number": "145/128",
+      "pokemonIndex": 145,
+      "version": 1,
+      "name": "Bombirdier ex",
+      "rarity": "Super Rare (SR)",
+      "image": "Chinese/True Mystic/Cards/0145.webp"
+    },
+    {
+      "number": "146/128",
+      "pokemonIndex": 146,
+      "version": 1,
+      "name": "Professor Sada's Vitality",
+      "rarity": "Super Rare (SR)",
+      "image": "Chinese/True Mystic/Cards/0146.webp"
+    },
+    {
+      "number": "147/128",
+      "pokemonIndex": 147,
+      "version": 1,
+      "name": "Geeta",
+      "rarity": "Super Rare (SR)",
+      "image": "Chinese/True Mystic/Cards/0147.webp"
+    },
+    {
+      "number": "148/128",
+      "pokemonIndex": 148,
+      "version": 1,
+      "name": "Norman",
+      "rarity": "Super Rare (SR)",
+      "image": "Chinese/True Mystic/Cards/0148.webp"
+    },
+    {
+      "number": "149/128",
+      "pokemonIndex": 149,
+      "version": 1,
+      "name": "Roark",
+      "rarity": "Super Rare (SR)",
+      "image": "Chinese/True Mystic/Cards/0149.webp"
+    },
+    {
+      "number": "150/128",
+      "pokemonIndex": 150,
+      "version": 1,
+      "name": "Professor Turo's Scenario",
+      "rarity": "Super Rare (SR)",
+      "image": "Chinese/True Mystic/Cards/0150.webp"
+    },
+    {
+      "number": "151/128",
+      "pokemonIndex": 151,
+      "version": 1,
+      "name": "Tulip",
+      "rarity": "Super Rare (SR)",
+      "image": "Chinese/True Mystic/Cards/0151.webp"
+    },
+    {
+      "number": "152/128",
+      "pokemonIndex": 152,
+      "version": 1,
+      "name": "Iron Hands ex",
+      "rarity": "Special Art Rare (SAR)",
+      "image": "Chinese/True Mystic/Cards/0152.webp"
+    },
+    {
+      "number": "153/128",
+      "pokemonIndex": 153,
+      "version": 1,
+      "name": "Iron Valiant ex",
+      "rarity": "Special Art Rare (SAR)",
+      "image": "Chinese/True Mystic/Cards/0153.webp"
+    },
+    {
+      "number": "154/128",
+      "pokemonIndex": 154,
+      "version": 1,
+      "name": "Sandy Shocks ex",
+      "rarity": "Special Art Rare (SAR)",
+      "image": "Chinese/True Mystic/Cards/0154.webp"
+    },
+    {
+      "number": "155/128",
+      "pokemonIndex": 155,
+      "version": 1,
+      "name": "Roaring Moon ex",
+      "rarity": "Special Art Rare (SAR)",
+      "image": "Chinese/True Mystic/Cards/0155.webp"
+    },
+    {
+      "number": "156/128",
+      "pokemonIndex": 156,
+      "version": 1,
+      "name": "Professor Sada's Vitality",
+      "rarity": "Special Art Rare (SAR)",
+      "image": "Chinese/True Mystic/Cards/0156.webp"
+    },
+    {
+      "number": "157/128",
+      "pokemonIndex": 157,
+      "version": 1,
+      "name": "Geeta",
+      "rarity": "Special Art Rare (SAR)",
+      "image": "Chinese/True Mystic/Cards/0157.webp"
+    },
+    {
+      "number": "158/128",
+      "pokemonIndex": 158,
+      "version": 1,
+      "name": "Professor Turo's Scenario",
+      "rarity": "Special Art Rare (SAR)",
+      "image": "Chinese/True Mystic/Cards/0158.webp"
+    },
+    {
+      "number": "159/128",
+      "pokemonIndex": 159,
+      "version": 1,
+      "name": "Tulip",
+      "rarity": "Special Art Rare (SAR)",
+      "image": "Chinese/True Mystic/Cards/0159.webp"
+    },
+    {
+      "number": "160/128",
+      "pokemonIndex": 160,
+      "version": 1,
+      "name": "Iron Valiant ex",
+      "rarity": "Ultra Rare (UR)",
+      "image": "Chinese/True Mystic/Cards/0160.webp"
+    },
+    {
+      "number": "161/128",
+      "pokemonIndex": 161,
+      "version": 1,
+      "name": "Roaring Moon ex",
+      "rarity": "Ultra Rare (UR)",
+      "image": "Chinese/True Mystic/Cards/0161.webp"
+    },
+    {
+      "number": "162/128",
+      "pokemonIndex": 162,
+      "version": 1,
+      "name": "Counter Catcher",
+      "rarity": "Ultra Rare (UR)",
+      "image": "Chinese/True Mystic/Cards/0162.webp"
+    },
+    {
+      "number": "163/128",
+      "pokemonIndex": 163,
+      "version": 1,
+      "name": "Pal Pad",
+      "rarity": "Ultra Rare (UR)",
+      "image": "Chinese/True Mystic/Cards/0163.webp"
+    }
+  ],
+  "groupByName": true
+}

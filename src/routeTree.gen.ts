@@ -49,6 +49,7 @@ import { Route as SetsBlackBoltRouteImport } from './routes/sets/black-bolt'
 import { Route as SetsCsv10RouteImport } from './routes/sets/csv10'
 import { Route as SetsCsv4RouteImport } from './routes/sets/csv4'
 import { Route as SetsCsv5RouteImport } from './routes/sets/csv5'
+import { Route as SetsCsv6RouteImport } from './routes/sets/csv6'
 import { Route as SetsCsv95RouteImport } from './routes/sets/csv9-5'
 import { Route as SetsGemVol1RouteImport } from './routes/sets/gem-vol-1'
 import { Route as SetsGemVol2RouteImport } from './routes/sets/gem-vol-2'
@@ -269,6 +270,11 @@ const SetsCsv5Route = SetsCsv5RouteImport.update({
   path: '/sets/csv5',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SetsCsv6Route = SetsCsv6RouteImport.update({
+  id: '/sets/csv6',
+  path: '/sets/csv6',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const SetsCsv95Route = SetsCsv95RouteImport.update({
   id: '/sets/csv9-5',
   path: '/sets/csv9-5',
@@ -405,6 +411,7 @@ export interface FileRoutesByFullPath {
   '/sets/csv10': typeof SetsCsv10Route
   '/sets/csv4': typeof SetsCsv4Route
   '/sets/csv5': typeof SetsCsv5Route
+  '/sets/csv6': typeof SetsCsv6Route
   '/sets/csv9-5': typeof SetsCsv95Route
   '/sets/gem-vol-1': typeof SetsGemVol1Route
   '/sets/gem-vol-2': typeof SetsGemVol2Route
@@ -466,6 +473,7 @@ export interface FileRoutesByTo {
   '/sets/csv10': typeof SetsCsv10Route
   '/sets/csv4': typeof SetsCsv4Route
   '/sets/csv5': typeof SetsCsv5Route
+  '/sets/csv6': typeof SetsCsv6Route
   '/sets/csv9-5': typeof SetsCsv95Route
   '/sets/gem-vol-1': typeof SetsGemVol1Route
   '/sets/gem-vol-2': typeof SetsGemVol2Route
@@ -528,6 +536,7 @@ export interface FileRoutesById {
   '/sets/csv10': typeof SetsCsv10Route
   '/sets/csv4': typeof SetsCsv4Route
   '/sets/csv5': typeof SetsCsv5Route
+  '/sets/csv6': typeof SetsCsv6Route
   '/sets/csv9-5': typeof SetsCsv95Route
   '/sets/gem-vol-1': typeof SetsGemVol1Route
   '/sets/gem-vol-2': typeof SetsGemVol2Route
@@ -591,6 +600,7 @@ export interface FileRouteTypes {
     | '/sets/csv10'
     | '/sets/csv4'
     | '/sets/csv5'
+    | '/sets/csv6'
     | '/sets/csv9-5'
     | '/sets/gem-vol-1'
     | '/sets/gem-vol-2'
@@ -652,6 +662,7 @@ export interface FileRouteTypes {
     | '/sets/csv10'
     | '/sets/csv4'
     | '/sets/csv5'
+    | '/sets/csv6'
     | '/sets/csv9-5'
     | '/sets/gem-vol-1'
     | '/sets/gem-vol-2'
@@ -713,6 +724,7 @@ export interface FileRouteTypes {
     | '/sets/csv10'
     | '/sets/csv4'
     | '/sets/csv5'
+    | '/sets/csv6'
     | '/sets/csv9-5'
     | '/sets/gem-vol-1'
     | '/sets/gem-vol-2'
@@ -775,6 +787,7 @@ export interface RootRouteChildren {
   SetsCsv10Route: typeof SetsCsv10Route
   SetsCsv4Route: typeof SetsCsv4Route
   SetsCsv5Route: typeof SetsCsv5Route
+  SetsCsv6Route: typeof SetsCsv6Route
   SetsCsv95Route: typeof SetsCsv95Route
   SetsGemVol1Route: typeof SetsGemVol1Route
   SetsGemVol2Route: typeof SetsGemVol2Route
@@ -1081,6 +1094,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SetsCsv5RouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/sets/csv6': {
+      id: '/sets/csv6'
+      path: '/sets/csv6'
+      fullPath: '/sets/csv6'
+      preLoaderRoute: typeof SetsCsv6RouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/sets/csv9-5': {
       id: '/sets/csv9-5'
       path: '/sets/csv9-5'
@@ -1255,6 +1275,7 @@ const rootRouteChildren: RootRouteChildren = {
   SetsCsv10Route: SetsCsv10Route,
   SetsCsv4Route: SetsCsv4Route,
   SetsCsv5Route: SetsCsv5Route,
+  SetsCsv6Route: SetsCsv6Route,
   SetsCsv95Route: SetsCsv95Route,
   SetsGemVol1Route: SetsGemVol1Route,
   SetsGemVol2Route: SetsGemVol2Route,

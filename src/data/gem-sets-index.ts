@@ -21,6 +21,7 @@ export type GemSetRoutePath =
   | '/sets/csv9-5'
   | '/sets/csv4'
   | '/sets/csv5'
+  | '/sets/csv6'
 
 export interface GemSetSummary {
   slug: string
@@ -84,6 +85,21 @@ export const GEM_SETS: GemSetSummary[] = [
     heroAlt: 'Charizard ex Special Art Rare',
     glow1: 'rgb(161 23 57 / .30)',
     glow2: 'rgb(44 35 47 / .25)',
+  },
+  {
+    slug: 'csv6',
+    path: '/sets/csv6',
+    name: 'True Mystery',
+    series: 'Chinese Scarlet & Violet',
+    code: 'CSV6C',
+    cardCount: 163,
+    releaseDate: '2025-11-07',
+    exclusiveCount: 1,
+    tagline: '113 Pokémon led by a gold Roaring Moon ex',
+    heroImage: 'https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/True%20Mystic/Cards/0155.webp',
+    heroAlt: 'Roaring Moon ex Special Art Rare',
+    glow1: 'rgb(64 58 113 / .30)',
+    glow2: 'rgb(40 133 151 / .25)',
   },
   {
     slug: 'csv9-5',
