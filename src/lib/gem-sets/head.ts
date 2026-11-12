@@ -20,13 +20,13 @@ export function buildGemSetHead(data: BuiltGemSetData, config: GemSetConfig) {
       { name: 'description', content: config.metaDescription },
       { property: 'og:title', content: config.ogTitle },
       { property: 'og:description', content: config.ogDescription },
-      ...(heroImage
-        ? [
-            { property: 'og:image', content: heroImage },
-            { property: 'og:image:width', content: '300' },
-            { property: 'og:image:height', content: '419' },
-          ]
-        : []),
+      // No declared og:image:width/height: most card images are 300×419,
+      // but a few sets (CSV8's 0208/0209/0212/0239/0244/0255/0256) are
+      // genuinely 320×445–448 — asserting a size that's wrong for
+      // whichever card a page's own fan happens to center is worse than
+      // leaving it undeclared, since platforms fetch and measure the
+      // image themselves when it's omitted.
+      ...(heroImage ? [{ property: 'og:image', content: heroImage }] : []),
       { property: 'og:url', content: `${SITE_URL}${config.routePath}` },
       { property: 'og:type', content: 'website' },
       { name: 'twitter:card', content: 'summary_large_image' },

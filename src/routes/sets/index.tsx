@@ -70,9 +70,11 @@ export const Route = createFileRoute('/sets/')({
       },
       { property: 'og:title', content: 'Pokémon Sets' },
       { property: 'og:description', content: 'Every card in every Simplified Chinese set we carry — browse, filter and track what you own.' },
+      // No declared og:image:width/height — most card images are
+      // 300×419, but not all (see the same note in buildGemSetHead), so
+      // an undeclared size (platforms measure it themselves) beats a
+      // wrong one.
       { property: 'og:image', content: GEM_SETS[0].heroImage },
-      { property: 'og:image:width', content: '300' },
-      { property: 'og:image:height', content: '419' },
       { property: 'og:url', content: `${SITE_URL}/sets` },
       { property: 'og:type', content: 'website' },
       { name: 'twitter:card', content: 'summary_large_image' },
