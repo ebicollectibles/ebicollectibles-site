@@ -46,7 +46,7 @@ export const GEM_SETS: GemSetSummary[] = [
     code: '30thC',
     cardCount: 206,
     releaseDate: '2026-09-16',
-    exclusiveCount: 1,
+    exclusiveCount: 0,
     tagline: '100 Pokémon, 30 classic reprints and the Pikachu Rare tier',
     heroImage: 'https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/30th%20Celebration/Cards/0126.webp',
     heroAlt: 'Pikachu ex Special Art Rare',

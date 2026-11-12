@@ -189,6 +189,7 @@ export function GemSetPage({
   )
   const shown = React.useMemo(() => cards.filter(match), [cards, match])
   const exclusiveShown = React.useMemo(() => shown.filter((c) => c.exclusive), [shown])
+  const hasAnyExclusive = React.useMemo(() => cards.some((c) => c.exclusive), [cards])
 
   const openCard = cardById.get(openCardId ?? '') ?? null
   // The router's scrollRestoration is keyed to the exact URL, search
@@ -409,7 +410,7 @@ export function GemSetPage({
               [
                 ['grid', 'All cards'],
                 ['ladder', 'By Pokémon'],
-                ['exclusives', 'Exclusives'],
+                ...(hasAnyExclusive ? ([['exclusives', 'Exclusives']] as const) : []),
                 ['list', 'Checklist'],
               ] as const
             ).map(([v, label]) => (

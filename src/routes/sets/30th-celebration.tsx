@@ -72,7 +72,11 @@ const config: GemSetConfig = {
   productId: 'pokemon-chinese-30th-celebration-booster-box',
   // Pikachu ex SAR (the anniversary mascot, main named-tier chase card),
   // flanked by the set's two Futuristic Rares, with classic Charizard
-  // and the Chinese-exclusive Ditto AR on the outside.
+  // and the Ditto AR on the outside — Ditto is pullable here, where
+  // English only ever released it as a separate promo, but the card
+  // itself isn't exclusive to this release, so it carries no "Chinese
+  // exclusive" tag (exclusiveCardNumbers in src/data/30th-celebration.json
+  // is empty; this set has none).
   fanIds: ['126', '134', '135', '137', '121'],
   fanCaption: '30th-anniversary chase cards',
   // Anniversary gold and deep cocoa, lifted from the set's own logo —
@@ -101,7 +105,7 @@ const config: GemSetConfig = {
   ],
   faq: [
     { q: 'How many cards are in 30th Celebration?', a: "206 cards: 165 numbered set cards (100 Pokémon plus 3 Trainers in the main 103-card set, plus Art Rares, Special Art Rares, Futuristic Rares and 30 classic reprints as secret rares), 8 basic Energy and 33 promos." },
-    { q: 'What are the chase cards?', a: 'Mewtwo ex and Mew ex (134/103, 135/103) are the set\'s only Futuristic Rares, its highest named tier. Ditto 121/103, an Art Rare, is this set\'s pullable Chinese exclusive — English only released it as a separate promo.' },
+    { q: 'What are the chase cards?', a: 'Mewtwo ex and Mew ex (134/103, 135/103) are the set\'s only Futuristic Rares, its highest named tier. Ditto 121/103, an Art Rare, is pullable straight from packs here — English only ever released it as a separate promo.' },
     { q: "What's 30th Celebration's rarity scheme?", a: 'Common, Rare, a set-specific Pikachu Rare tier (30 different Pikachu), Double Rare, Art Rare, Special Art Rare and Futuristic Rare, plus unrated classic reprints, Energy and promos — different from every other EBI card list.' },
     { q: 'What is the Pikachu Rare tier?', a: "A 30-card run (017–046) of different Pikachu, each with its own art and a Pikachu-face holo pattern — unique to this set, with no official odds chart confirming its exact rank." },
     { q: 'When did 30th Celebration release?', a: 'September 16, 2026.' },

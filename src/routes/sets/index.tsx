@@ -113,9 +113,7 @@ function SetsIndexPage() {
                         <b>{s.cardCount}</b> cards
                       </span>
                       <span>{formatReleaseDate(s.releaseDate)}</span>
-                      <span className="card-excl">
-                        {s.exclusiveCount}× excl.
-                      </span>
+                      {s.exclusiveCount > 0 && <span className="card-excl">{s.exclusiveCount}× excl.</span>}
                     </div>
                   </div>
                 </Link>
