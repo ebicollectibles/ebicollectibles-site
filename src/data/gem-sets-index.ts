@@ -19,6 +19,7 @@ export type GemSetRoutePath =
   | '/sets/30th-celebration'
   | '/sets/csv10'
   | '/sets/csv9-5'
+  | '/sets/csv4'
 
 export interface GemSetSummary {
   slug: string
@@ -52,6 +53,21 @@ export const GEM_SETS: GemSetSummary[] = [
     heroAlt: 'Pikachu ex Special Art Rare',
     glow1: 'rgb(222 185 97 / .30)',
     glow2: 'rgb(90 45 5 / .25)',
+  },
+  {
+    slug: 'csv4',
+    path: '/sets/csv4',
+    name: 'Reward Round',
+    series: 'Chinese Scarlet & Violet',
+    code: 'CSV4C',
+    cardCount: 165,
+    releaseDate: '2025-07-18',
+    exclusiveCount: 2,
+    tagline: '114 Pokémon led by a gold Gholdengo ex',
+    heroImage: 'https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Reward%20Round%20CSV4/Cards/0156.webp',
+    heroAlt: 'Gholdengo ex Special Art Rare',
+    glow1: 'rgb(46 123 134 / .30)',
+    glow2: 'rgb(179 130 68 / .25)',
   },
   {
     slug: 'csv9-5',
