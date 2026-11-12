@@ -887,11 +887,62 @@ export const adminCreateShipment = createServerFn({ method: 'POST' })
     return { ok: true, status: newStatus, combinedStatus }
   })
 
+// Shared by adminSendShipmentTest for both the primary order and, when
+// staged, its combined "ship together" order (see combineWithOrderId in
+// schema.ts) — same preview-only behavior either way: nothing written,
+// just the real email through the real pipeline.
+async function sendTestShipmentEmailForOrder(
+  db: ReturnType<typeof getDb>,
+  orderId: string,
+  testEmail: string,
+  carrier: string | null,
+  trackingNumber: string | null,
+  items: Array<{ orderItemId: string; qty: number }>,
+) {
+  const [order] = await db.select().from(orders).where(eq(orders.id, orderId)).limit(1)
+  if (!order) throw new Error('Order not found.')
+
+  const allItems = await db.select().from(orderItems).where(eq(orderItems.orderId, orderId))
+  const itemById = new Map(allItems.map((i) => [i.id, i]))
+
+  const priorShipments = await db.select({ id: shipments.id }).from(shipments).where(eq(shipments.orderId, orderId))
+  const priorShipmentIds = priorShipments.map((s) => s.id)
+  const priorShipmentItemRows =
+    priorShipmentIds.length === 0 ? [] : await db.select().from(shipmentItems).where(inArray(shipmentItems.shipmentId, priorShipmentIds))
+  const priorShippedItems = priorShipmentItemRows.map((si) => ({ orderItemId: si.orderItemId, qty: si.qty }))
+  const isFinalShipment = computeFulfillmentStatus(allItems, [...priorShippedItems, ...items]) === 'shipped'
+
+  const sendResult = await sendShipmentEmail({
+    orderNo: order.orderNo,
+    email: testEmail,
+    firstName: order.firstName,
+    lastName: order.lastName,
+    street: order.street,
+    apartment: order.apartment,
+    city: order.city,
+    state: order.state,
+    zip: order.zip,
+    carrier,
+    trackingNumber,
+    isFinalShipment,
+    items: items.map((line) => {
+      const item = itemById.get(line.orderItemId)
+      if (!item) throw new Error('One of the selected items does not belong to this order.')
+      return { productName: item.productName, qty: line.qty, unitPrice: item.unitPrice, img: item.img }
+    }),
+  })
+
+  if (sendResult.status !== 'sent') throw new Error(sendResult.error || `Test send ${sendResult.status}.`)
+}
+
 // Same idea as adminSendMarketplaceShipmentTest — sends the real email
 // through the real pipeline (images, formatting, and all) to an address
 // admin picks, previewing whichever items/qty are currently staged in the
 // ship form, but never writes anything (no shipment record, no order row
-// change, no email_events row, doesn't count as "sent").
+// change, no email_events row, doesn't count as "sent"). When a combined
+// "ship together" order is staged too (see adminCreateShipment's
+// combinedOrderId), sends its preview as well — same carrier/tracking,
+// same as the real combined shipment would.
 export const adminSendShipmentTest = createServerFn({ method: 'POST' })
   .validator(
     z.object({
@@ -900,46 +951,22 @@ export const adminSendShipmentTest = createServerFn({ method: 'POST' })
       carrier: z.enum(CARRIERS).nullable().optional(),
       trackingNumber: z.string().trim().nullable().optional(),
       items: z.array(z.object({ orderItemId: z.string(), qty: z.number().int().positive() })).min(1),
+      combinedOrderId: z.string().optional(),
+      combinedItems: z.array(z.object({ orderItemId: z.string(), qty: z.number().int().positive() })).optional(),
     }),
   )
   .handler(async ({ data }) => {
     await assertAdmin()
     const db = getDb()
+    const carrier = data.carrier || null
+    const trackingNumber = data.trackingNumber?.trim() || null
 
-    const [order] = await db.select().from(orders).where(eq(orders.id, data.orderId)).limit(1)
-    if (!order) throw new Error('Order not found.')
+    await sendTestShipmentEmailForOrder(db, data.orderId, data.testEmail, carrier, trackingNumber, data.items)
 
-    const allItems = await db.select().from(orderItems).where(eq(orderItems.orderId, data.orderId))
-    const itemById = new Map(allItems.map((i) => [i.id, i]))
+    if (data.combinedOrderId && data.combinedItems && data.combinedItems.length > 0) {
+      await sendTestShipmentEmailForOrder(db, data.combinedOrderId, data.testEmail, carrier, trackingNumber, data.combinedItems)
+    }
 
-    const priorShipments = await db.select({ id: shipments.id }).from(shipments).where(eq(shipments.orderId, data.orderId))
-    const priorShipmentIds = priorShipments.map((s) => s.id)
-    const priorShipmentItemRows =
-      priorShipmentIds.length === 0 ? [] : await db.select().from(shipmentItems).where(inArray(shipmentItems.shipmentId, priorShipmentIds))
-    const priorShippedItems = priorShipmentItemRows.map((si) => ({ orderItemId: si.orderItemId, qty: si.qty }))
-    const isFinalShipment = computeFulfillmentStatus(allItems, [...priorShippedItems, ...data.items]) === 'shipped'
-
-    const sendResult = await sendShipmentEmail({
-      orderNo: order.orderNo,
-      email: data.testEmail,
-      firstName: order.firstName,
-      lastName: order.lastName,
-      street: order.street,
-      apartment: order.apartment,
-      city: order.city,
-      state: order.state,
-      zip: order.zip,
-      carrier: data.carrier || null,
-      trackingNumber: data.trackingNumber?.trim() || null,
-      isFinalShipment,
-      items: data.items.map((line) => {
-        const item = itemById.get(line.orderItemId)
-        if (!item) throw new Error('One of the selected items does not belong to this order.')
-        return { productName: item.productName, qty: line.qty, unitPrice: item.unitPrice, img: item.img }
-      }),
-    })
-
-    if (sendResult.status !== 'sent') throw new Error(sendResult.error || `Test send ${sendResult.status}.`)
     return { ok: true }
   })
 

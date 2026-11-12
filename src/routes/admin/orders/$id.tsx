@@ -420,11 +420,16 @@ function AdminOrderDetailPage() {
 
   // Previews whatever items/qty are currently staged in the ship form —
   // doesn't write anything, doesn't require the shipment to exist yet.
+  // Mirrors confirmShipment's combined-order handling, so checking "also
+  // ship order #EBI-XXX" previews that order's own email too.
   const sendTest = async () => {
     const items = Object.entries(shipQtyByItem)
       .filter(([, qty]) => qty > 0)
       .map(([orderItemId, qty]) => ({ orderItemId, qty }))
     if (items.length === 0) return
+    const combinedItems = Object.entries(combinedQtyByItem)
+      .filter(([, qty]) => qty > 0)
+      .map(([orderItemId, qty]) => ({ orderItemId, qty }))
     setTesting(true)
     setTestMessage(null)
     try {
@@ -435,9 +440,15 @@ function AdminOrderDetailPage() {
           carrier: (carrierInput || null) as (typeof CARRIERS)[number] | null,
           trackingNumber: trackingInput.trim() || null,
           items,
+          combinedOrderId: combinedOrderId && combinedItems.length > 0 ? combinedOrderId : undefined,
+          combinedItems: combinedOrderId && combinedItems.length > 0 ? combinedItems : undefined,
         },
       })
-      setTestMessage(`Sent to ${testEmail}.`)
+      setTestMessage(
+        combinedOrderId && combinedItems.length > 0
+          ? `Sent to ${testEmail} — previewing both orders' shipment emails.`
+          : `Sent to ${testEmail}.`,
+      )
     } catch (err) {
       setTestMessage(err instanceof Error ? err.message : 'Test send failed.')
     } finally {
