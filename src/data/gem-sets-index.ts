@@ -22,6 +22,7 @@ export type GemSetRoutePath =
   | '/sets/csv4'
   | '/sets/csv5'
   | '/sets/csv6'
+  | '/sets/csv7'
 
 export interface GemSetSummary {
   slug: string
@@ -100,6 +101,21 @@ export const GEM_SETS: GemSetSummary[] = [
     heroAlt: 'Roaring Moon ex Special Art Rare',
     glow1: 'rgb(64 58 113 / .30)',
     glow2: 'rgb(40 133 151 / .25)',
+  },
+  {
+    slug: 'csv7',
+    path: '/sets/csv7',
+    name: 'Blade Awakening',
+    series: 'Chinese Scarlet & Violet',
+    code: 'CSV7C',
+    cardCount: 259,
+    releaseDate: '2026-01-16',
+    exclusiveCount: 1,
+    tagline: '173 Pokémon led by a gold Greninja ex',
+    heroImage: 'https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Blade%20Awakening/Cards/0242.webp',
+    heroAlt: 'Greninja ex Special Art Rare',
+    glow1: 'rgb(208 105 57 / .30)',
+    glow2: 'rgb(13 13 18 / .25)',
   },
   {
     slug: 'csv9-5',
