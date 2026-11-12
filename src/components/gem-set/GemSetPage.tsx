@@ -418,7 +418,11 @@ export function GemSetPage({
                     alt={`${c.name} full art, ${raw.name} ${id}/${c.suffix}`}
                     width={300}
                     height={419}
-                    fetchPriority="high"
+                    // Only the card actually centered on first paint is
+                    // this page's real LCP candidate — fetchPriority
+                    // "high" on all 5 would dilute itself by putting 4
+                    // cards that aren't it into the same top queue.
+                    fetchPriority={i === fanIndex ? 'high' : undefined}
                   />
                   {c.exclusive && <span className="fan-excl">Exclusive</span>}
                 </button>
