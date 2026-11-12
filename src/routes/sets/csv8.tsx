@@ -32,10 +32,10 @@ const config: GemSetConfig = {
   routePath: '/sets/csv8',
   storageKey: 'csv8-have',
   productId: 'pokemon-chinese-brilliant-fantasy-slim-booster-box',
-  // Pecharunt ex SAR (the set's mythical) centered, flanked by Teal Mask
-  // Ogerpon ex SAR and Bloodmoon Ursaluna ex SAR, with Kieran SAR and
-  // the Chinese-exclusive Carmine SAR on the outside.
-  fanIds: ['254', '242', '250', '251', '255'],
+  // The Chinese-exclusive Carmine SAR centered, flanked by Pecharunt ex
+  // SAR (the set's mythical) and Bloodmoon Ursaluna ex SAR, with Kieran
+  // SAR and Teal Mask Ogerpon ex SAR on the outside.
+  fanIds: ['254', '242', '255', '251', '250'],
   fanCaption: "The set's top chase cards",
   // Deep plum and jade teal, from the set's own "璀璨诡幻" logo gradient
   // — distinct from every other CSV set's colors.
