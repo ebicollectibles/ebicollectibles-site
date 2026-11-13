@@ -1,7 +1,7 @@
 import { createServerFn } from '@tanstack/react-start'
 import { getCookie } from '@tanstack/react-start/server'
 import { z } from 'zod'
-import { and, eq, inArray, isNull, sql } from 'drizzle-orm'
+import { and, desc, eq, inArray, isNull, sql } from 'drizzle-orm'
 import { getDb } from '~/lib/db/client'
 import { withTransaction } from '~/lib/db/transactional-client'
 import {
@@ -64,9 +64,11 @@ const placeOrderSchema = z.object({
   // client-side. Harmless/ignored for a cart with no pre-order item.
   preorderAcknowledged: z.boolean().optional().default(false),
   // Set when the shopper chose "wait and ship together" for a pending
-  // pre-order at checkout (see resolveCombineWithOrder below) — always
-  // revalidated server-side, never trusted as-is, same reasoning as
-  // creditApplied above.
+  // pre-order at checkout (see resolveMismatchedTypeShippingWaiver below)
+  // — always revalidated server-side, never trusted as-is, same reasoning
+  // as creditApplied above. Only ever grants the shipping waiver, not the
+  // combineWithOrderId link itself — see resolveAutoCombineLink, which
+  // sets that automatically regardless of this field.
   combineWithOrderId: z.string().optional(),
 })
 
@@ -95,17 +97,20 @@ async function resolveFreeShippingOverride(sessionUserId: string | null, hasPreo
 
 // The explicit, customer-chosen counterpart to resolveFreeShippingOverride
 // above — that one auto-waives shipping for a SAME-type pending order; this
-// one only fires when the shopper actively opted in to wait for a
-// DIFFERENT-type one. One direction only: the pending order being waited on
-// must be a pre-order, and the order being placed now must not be — see
-// combineWithOrderId in schema.ts for why the reverse (holding an
-// already-fast regular order hostage to a brand-new pre-order) isn't
-// offered. Re-validates everything the client claims (ownership, that it's
-// actually still pending, that it's actually a pre-order) rather than
-// trusting requestedOrderId as-is — a stale or tampered id just silently
-// gets no discount, never an error, so a direct API call can't use this to
-// force a free-shipping order with no real anchor behind it.
-async function resolveCombineWithOrder(sessionUserId: string | null, requestedOrderId: string | undefined): Promise<string | undefined> {
+// one only grants the waiver when the shopper actively opted in to wait for
+// a DIFFERENT-type one. Only ever grants the shipping waiver, never the
+// combineWithOrderId link itself — see resolveAutoCombineLink below, which
+// sets that unconditionally regardless of this function's result. One
+// direction only: the pending order being waited on must be a pre-order,
+// and the order being placed now must not be — see combineWithOrderId in
+// schema.ts for why the reverse (holding an already-fast regular order
+// hostage to a brand-new pre-order) isn't offered. Re-validates everything
+// the client claims (ownership, that it's actually still pending, that
+// it's actually a pre-order) rather than trusting requestedOrderId as-is —
+// a stale or tampered id just silently gets no discount, never an error,
+// so a direct API call can't use this to force a free-shipping order with
+// no real anchor behind it.
+async function resolveMismatchedTypeShippingWaiver(sessionUserId: string | null, requestedOrderId: string | undefined): Promise<string | undefined> {
   if (!sessionUserId || !requestedOrderId) return undefined
   const db = getDb()
   const [anchor] = await db
@@ -114,6 +119,32 @@ async function resolveCombineWithOrder(sessionUserId: string | null, requestedOr
     .where(and(eq(orders.id, requestedOrderId), eq(orders.userId, sessionUserId), eq(orders.fulfillmentStatus, 'pending'), eq(orders.hasPreorder, true)))
     .limit(1)
   return anchor?.id
+}
+
+// Sets combineWithOrderId (see schema.ts) on every new order placed by a
+// signed-in account that already has ANY order nothing has shipped on yet
+// — regardless of whether the two are the same pre-order/in-stock type.
+// Entirely automatic: no checkbox, no admin action, and no dependency on
+// whether shipping actually ends up waived by either function above. Safe
+// to run unconditionally because the field is purely advisory (see
+// schema.ts) — it never forces admin's hand on when either order actually
+// ships, so there's no downside to always recording it when there's
+// something to point at, even for a mismatched-type pair the shopper chose
+// not to combine shipping on, or an AK/HI order on the live Shippo rate.
+// Account-scoped only, same identity reasoning as the functions above.
+// Picks whichever pending order was created most recently when more than
+// one exists on the account — harmless either way, since this is advisory
+// only.
+async function resolveAutoCombineLink(sessionUserId: string | null): Promise<string | undefined> {
+  if (!sessionUserId) return undefined
+  const db = getDb()
+  const [pending] = await db
+    .select({ id: orders.id })
+    .from(orders)
+    .where(and(eq(orders.userId, sessionUserId), eq(orders.fulfillmentStatus, 'pending')))
+    .orderBy(desc(orders.createdAt))
+    .limit(1)
+  return pending?.id
 }
 
 export const placeOrder = createServerFn({ method: 'POST' })
@@ -161,20 +192,22 @@ export const placeOrder = createServerFn({ method: 'POST' })
     // rejected regardless of what this boolean says.
     const hasPreorder = productRows.some((p) => p.preorder)
 
-    // Resolved outside the transaction below — both are external HTTP calls
-    // (WA Dept. of Revenue; Shippo), and a DB transaction holding row locks
-    // is the wrong place to be waiting on either. shippingCostOverride stays
-    // undefined outside AK/HI (computeOrderTotals then uses the flat rate)
-    // and also falls back to it if the Shippo lookup fails for any reason —
-    // never blocks checkout on a shipping-API hiccup.
-    // combineWithOrderId only makes sense for a non-pre-order placed against
-    // the flat rate — never in the AK/HI live-rate branch (that's a real,
-    // address-specific cost, not the flat fee this waives) and never for a
-    // pre-order order itself (see resolveCombineWithOrder's one-direction
-    // comment). Resolved in the same Promise.all as the other two since it's
-    // just another quick DB lookup, not an external call.
+    // Resolved outside the transaction below — these are external HTTP
+    // calls (WA Dept. of Revenue; Shippo), and a DB transaction holding row
+    // locks is the wrong place to be waiting on either. shippingCostOverride
+    // stays undefined outside AK/HI (computeOrderTotals then uses the flat
+    // rate) and also falls back to it if the Shippo lookup fails for any
+    // reason — never blocks checkout on a shipping-API hiccup. The
+    // mismatched-type shipping waiver only makes sense for a non-pre-order
+    // placed against the flat rate — never in the AK/HI live-rate branch
+    // (that's a real, address-specific cost, not the flat fee this waives)
+    // and never for a pre-order order itself (see
+    // resolveMismatchedTypeShippingWaiver's one-direction comment).
+    // resolveAutoCombineLink has no such restriction — see its own comment
+    // for why it always runs. All resolved in the same Promise.all since
+    // none of this is the external HTTP calls above.
     const isHiAk = isHiOrAk(data.contact.state)
-    const [taxRate, shippingCostOverride, combineWithOrderId] = await Promise.all([
+    const [taxRate, shippingCostOverride, mismatchedTypeWaiverAnchorId, autoCombineLinkId] = await Promise.all([
       resolveSalesTaxRate(data.contact),
       isHiAk
         ? resolveHiAkShippingRate({
@@ -189,11 +222,19 @@ export const placeOrder = createServerFn({ method: 'POST' })
             },
           }).then((rate) => rate ?? undefined)
         : resolveFreeShippingOverride(sessionUserId, hasPreorder),
-      hasPreorder || isHiAk ? Promise.resolve(undefined) : resolveCombineWithOrder(sessionUserId, data.combineWithOrderId),
+      hasPreorder || isHiAk ? Promise.resolve(undefined) : resolveMismatchedTypeShippingWaiver(sessionUserId, data.combineWithOrderId),
+      resolveAutoCombineLink(sessionUserId),
     ])
-    // Matching-type waiver (above) wins if both somehow apply; otherwise a
-    // valid combine target also means free shipping on this order.
-    const effectiveShippingOverride = shippingCostOverride ?? (combineWithOrderId ? 0 : undefined)
+    // The link itself is always whatever resolveAutoCombineLink found —
+    // except an explicitly-consented mismatched-type anchor wins over it,
+    // in case the account somehow has more than one pending order and the
+    // shopper specifically chose a particular one at checkout.
+    const combineWithOrderId = mismatchedTypeWaiverAnchorId ?? autoCombineLinkId
+    // Matching-type waiver (above) wins if both somehow apply; otherwise an
+    // explicitly-consented combine target also means free shipping on this
+    // order. autoCombineLinkId alone never waives shipping — see its own
+    // comment for why that's deliberate.
+    const effectiveShippingOverride = shippingCostOverride ?? (mismatchedTypeWaiverAnchorId ? 0 : undefined)
 
     // Defense-in-depth beyond the disabled add-to-cart button — a coming-soon
     // or unpublished product is listed (or was, before being hidden) but
@@ -572,8 +613,8 @@ export const placeOrder = createServerFn({ method: 'POST' })
     }
 
     // Looked up here (not just passed through) because the email needs the
-    // anchor's human-facing order NUMBER, not the id resolveCombineWithOrder
-    // already validated — same reasoning as the equivalent lookup in
+    // anchor's human-facing order NUMBER, not the id resolved above —
+    // same reasoning as the equivalent lookup in
     // customers.ts/admin.ts for the order detail pages' own "waiting to
     // ship together" banner.
     let combineWithOrderNo: number | undefined

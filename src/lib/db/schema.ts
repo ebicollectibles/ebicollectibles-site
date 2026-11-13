@@ -338,13 +338,19 @@ export const orders = pgTable('orders', {
   // MIXED_PREORDER_ERROR's sibling check there), not just a disabled
   // button client-side, so a direct API call can't skip it either.
   preorderAcknowledgedAt: timestamp('preorder_acknowledged_at', { withTimezone: true }),
-  // Set at checkout when the shopper had a pending pre-order and chose to
-  // wait and ship this (always non-pre-order) order together with it,
-  // instead of paying standard shipping for an immediate, separate
-  // shipment — see resolveCombineWithOrder in server/orders.ts and the
-  // checkout UI in routes/checkout.tsx. Only ever points at a pre-order;
-  // never the reverse (see that same comment for why). Purely advisory —
-  // nothing blocks admin from shipping this order independently at any
+  // Set automatically at checkout whenever this signed-in account already
+  // had another order nothing had shipped on yet — it can go in the same
+  // box, so the admin order page offers a "ship together" action for the
+  // two. Set unconditionally, regardless of whether the two orders are
+  // both pre-orders, both in-stock, or a mismatched pair, and regardless
+  // of whether shipping actually got waived on this order — see
+  // resolveAutoCombineLink in server/orders.ts. (A mismatched pre-order/
+  // in-stock pair can additionally waive this order's shipping cost, but
+  // only when the shopper explicitly opts in at checkout — see
+  // resolveMismatchedTypeShippingWaiver and the checkout UI in
+  // routes/checkout.tsx — since that one case genuinely holds an
+  // already-ready order back from shipping immediately.) Purely advisory
+  // — nothing blocks admin from shipping this order independently at any
   // time regardless of whether the order pointed to here has shipped yet.
   combineWithOrderId: uuid('combine_with_order_id').references((): AnyPgColumn => orders.id, { onDelete: 'set null' }),
   // Set at checkout (see resolveAffiliateAttribution in server/affiliates.ts)

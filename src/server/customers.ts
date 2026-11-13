@@ -131,11 +131,14 @@ export const hasPendingOrder = createServerFn({ method: 'GET' })
       sql`select id, order_no from orders where user_id = ${userId} and fulfillment_status = 'pending' and has_preorder = ${!data.hasPreorder} order by created_at asc limit 1`,
     ])
     const mismatched = mismatchedRows[0] as { id: string; orderNo: number } | undefined
-    // Only surfaced in one direction — see resolveCombineWithOrder in
-    // server/orders.ts for why only an existing pending pre-order can be
+    // Only surfaced in one direction — see resolveMismatchedTypeShippingWaiver
+    // in server/orders.ts for why only an existing pending pre-order can be
     // waited on (mismatched here is a pre-order exactly when the current
     // cart, hasPreorder, is not — i.e. data.hasPreorder is false), never
-    // the reverse.
+    // the reverse. This is just the preview for the shipping-waiver choice
+    // — the combineWithOrderId link itself now gets set automatically
+    // regardless (see resolveAutoCombineLink in server/orders.ts), with or
+    // without this opt-in.
     const combineCandidate = !data.hasPreorder && mismatched ? { id: mismatched.id, orderNo: mismatched.orderNo } : null
     return { waived: matchingRows.length > 0, mismatchedPending: mismatchedRows.length > 0, combineCandidate }
   })

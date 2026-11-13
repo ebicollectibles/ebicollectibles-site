@@ -49,7 +49,7 @@ describe('computeOrderTotals', () => {
   })
 
   // A shippingCostOverride of exactly 0 (the free-shipping case — see
-  // resolveFreeShippingOverride and resolveCombineWithOrder in
+  // resolveFreeShippingOverride and resolveMismatchedTypeShippingWaiver in
   // server/orders.ts) must NOT be treated the same as "no override given".
   // Both are falsy, but only `undefined` should fall back to the flat
   // rate — `??` (not `||`) is what makes that distinction, and this test
