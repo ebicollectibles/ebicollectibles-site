@@ -541,8 +541,8 @@ export const adminGetOrder = createServerFn({ method: 'GET' })
 
     // ...and the reverse: any order(s) waiting on THIS one, with enough
     // (items + their own shipments) for the ship form to let admin include
-    // them in the same shipment action — see adminCreateShipment's
-    // combinedOrderId param. Excludes anything already fully shipped or
+    // any or all of them in the same shipment action — see
+    // adminCreateShipment's combined param. Excludes anything already fully shipped or
     // cancelled independently of this flow — nothing left there worth
     // offering to combine. combineWithOrderId itself is left untouched in
     // that case (it's a historical record of why shipping was waived, not
@@ -902,14 +902,24 @@ export const adminCreateShipment = createServerFn({ method: 'POST' })
       carrier: z.enum(CARRIERS).nullable().optional(),
       trackingNumber: z.string().trim().nullable().optional(),
       items: z.array(z.object({ orderItemId: z.string(), qty: z.number().int().positive() })).min(1),
-      // A held "wait and ship together" order (see combineWithOrderId in
-      // schema.ts) to ship in this same action, same carrier/tracking — so
-      // admin doesn't have to open its ship form separately the moment its
-      // anchor order actually ships. A completely independent shipment
-      // record under the hood (orders have their own shipments table rows
-      // regardless), just created together in one submit.
-      combinedOrderId: z.string().optional(),
-      combinedItems: z.array(z.object({ orderItemId: z.string(), qty: z.number().int().positive() })).optional(),
+      // Any number of held "wait and ship together" orders (see
+      // combineWithOrderId in schema.ts) to ship in this same action, same
+      // carrier/tracking — so admin doesn't have to open each one's ship
+      // form separately the moment their anchor order actually ships. An
+      // anchor can have more than one order waiting on it at once (e.g. two
+      // separate later orders both held for the same pre-order), so this is
+      // a list, not a single id — each entry still becomes a completely
+      // independent shipment record under the hood (orders have their own
+      // shipments table rows regardless), just created together in one
+      // submit.
+      combined: z
+        .array(
+          z.object({
+            orderId: z.string(),
+            items: z.array(z.object({ orderItemId: z.string(), qty: z.number().int().positive() })).min(1),
+          }),
+        )
+        .optional(),
     }),
   )
   .handler(async ({ data }) => {
@@ -920,12 +930,13 @@ export const adminCreateShipment = createServerFn({ method: 'POST' })
 
     const newStatus = await shipOneOrder(db, data.orderId, carrier, trackingNumber, data.items)
 
-    let combinedStatus: 'pending' | 'partially_shipped' | 'shipped' | undefined
-    if (data.combinedOrderId && data.combinedItems && data.combinedItems.length > 0) {
-      combinedStatus = await shipOneOrder(db, data.combinedOrderId, carrier, trackingNumber, data.combinedItems)
+    const combinedStatuses: Array<{ orderId: string; status: 'pending' | 'partially_shipped' | 'shipped' }> = []
+    for (const c of data.combined ?? []) {
+      const status = await shipOneOrder(db, c.orderId, carrier, trackingNumber, c.items)
+      combinedStatuses.push({ orderId: c.orderId, status })
     }
 
-    return { ok: true, status: newStatus, combinedStatus }
+    return { ok: true, status: newStatus, combinedStatuses }
   })
 
 // Shared by adminSendShipmentTest for both the primary order and, when
@@ -980,9 +991,9 @@ async function sendTestShipmentEmailForOrder(
 // through the real pipeline (images, formatting, and all) to an address
 // admin picks, previewing whichever items/qty are currently staged in the
 // ship form, but never writes anything (no shipment record, no order row
-// change, no email_events row, doesn't count as "sent"). When a combined
-// "ship together" order is staged too (see adminCreateShipment's
-// combinedOrderId), sends its preview as well — same carrier/tracking,
+// change, no email_events row, doesn't count as "sent"). When one or more
+// combined "ship together" orders are staged too (see adminCreateShipment's
+// combined), sends each of their previews as well — same carrier/tracking,
 // same as the real combined shipment would.
 export const adminSendShipmentTest = createServerFn({ method: 'POST' })
   .validator(
@@ -992,8 +1003,14 @@ export const adminSendShipmentTest = createServerFn({ method: 'POST' })
       carrier: z.enum(CARRIERS).nullable().optional(),
       trackingNumber: z.string().trim().nullable().optional(),
       items: z.array(z.object({ orderItemId: z.string(), qty: z.number().int().positive() })).min(1),
-      combinedOrderId: z.string().optional(),
-      combinedItems: z.array(z.object({ orderItemId: z.string(), qty: z.number().int().positive() })).optional(),
+      combined: z
+        .array(
+          z.object({
+            orderId: z.string(),
+            items: z.array(z.object({ orderItemId: z.string(), qty: z.number().int().positive() })).min(1),
+          }),
+        )
+        .optional(),
     }),
   )
   .handler(async ({ data }) => {
@@ -1004,8 +1021,8 @@ export const adminSendShipmentTest = createServerFn({ method: 'POST' })
 
     await sendTestShipmentEmailForOrder(db, data.orderId, data.testEmail, carrier, trackingNumber, data.items)
 
-    if (data.combinedOrderId && data.combinedItems && data.combinedItems.length > 0) {
-      await sendTestShipmentEmailForOrder(db, data.combinedOrderId, data.testEmail, carrier, trackingNumber, data.combinedItems)
+    for (const c of data.combined ?? []) {
+      await sendTestShipmentEmailForOrder(db, c.orderId, data.testEmail, carrier, trackingNumber, c.items)
     }
 
     return { ok: true }

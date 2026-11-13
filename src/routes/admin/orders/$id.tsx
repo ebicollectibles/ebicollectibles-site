@@ -276,13 +276,13 @@ function AdminOrderDetailPage() {
   const [carrierInput, setCarrierInput] = React.useState('')
   const [trackingInput, setTrackingInput] = React.useState('')
   const [shipQtyByItem, setShipQtyByItem] = React.useState<Record<string, number>>({})
-  // Which order waiting on this one (see combineWithOrderId in schema.ts),
-  // if any, admin has chosen to also ship in this same action — null means
-  // none. At most one at a time, since adminCreateShipment's combinedOrderId
-  // only takes one; multiple waiting orders on the same anchor ship one at a
-  // time across separate ship actions.
-  const [combinedOrderId, setCombinedOrderId] = React.useState<string | null>(null)
-  const [combinedQtyByItem, setCombinedQtyByItem] = React.useState<Record<string, number>>({})
+  // Orders waiting on this one (see combineWithOrderId in schema.ts) that
+  // admin has chosen to also ship in this same action — keyed by that
+  // order's id, each value its own itemId -> qty map (same shape as
+  // shipQtyByItem, just per combined order). Presence of a key means that
+  // order is staged; any number of an anchor's waiting orders can be staged
+  // at once, each with its own partial/full item selection.
+  const [combinedQtyByOrder, setCombinedQtyByOrder] = React.useState<Record<string, Record<string, number>>>({})
   const [testEmail, setTestEmail] = React.useState('eastblueinternational@gmail.com')
   const [testing, setTesting] = React.useState(false)
   const [testMessage, setTestMessage] = React.useState<string | null>(null)
@@ -377,8 +377,7 @@ function AdminOrderDetailPage() {
     setCarrierInput('')
     setTrackingInput('')
     setTestMessage(null)
-    setCombinedOrderId(null)
-    setCombinedQtyByItem({})
+    setCombinedQtyByOrder({})
     const initial: Record<string, number> = {}
     for (const item of order.items) {
       const left = remaining.get(item.id) ?? 0
@@ -388,29 +387,46 @@ function AdminOrderDetailPage() {
   }
 
   const toggleCombined = (waiting: (typeof order.waitingOnThis)[number]) => {
-    if (combinedOrderId === waiting.id) {
-      setCombinedOrderId(null)
-      setCombinedQtyByItem({})
-      return
-    }
-    const waitingRemaining = remainingQtyByItem(waiting.items, waiting.shipments.flatMap((s) => s.items))
-    const initial: Record<string, number> = {}
-    for (const item of waiting.items) {
-      const left = waitingRemaining.get(item.id) ?? 0
-      if (left > 0) initial[item.id] = left
-    }
-    setCombinedOrderId(waiting.id)
-    setCombinedQtyByItem(initial)
+    setCombinedQtyByOrder((prev) => {
+      if (waiting.id in prev) {
+        const next = { ...prev }
+        delete next[waiting.id]
+        return next
+      }
+      const waitingRemaining = remainingQtyByItem(waiting.items, waiting.shipments.flatMap((s) => s.items))
+      const initial: Record<string, number> = {}
+      for (const item of waiting.items) {
+        const left = waitingRemaining.get(item.id) ?? 0
+        if (left > 0) initial[item.id] = left
+      }
+      return { ...prev, [waiting.id]: initial }
+    })
   }
+
+  const setCombinedItemQty = (orderId: string, itemId: string, qty: number) => {
+    setCombinedQtyByOrder((prev) => ({ ...prev, [orderId]: { ...prev[orderId], [itemId]: qty } }))
+  }
+
+  // Shared by confirmShipment and sendTest — any staged combined orders,
+  // each only including the line items actually given a qty > 0 (so a
+  // checked-but-not-yet-touched order, or one left at 0 for every item,
+  // drops out rather than being sent as an empty shipment).
+  const stagedCombined = () =>
+    Object.entries(combinedQtyByOrder)
+      .map(([orderId, qtyByItem]) => ({
+        orderId,
+        items: Object.entries(qtyByItem)
+          .filter(([, qty]) => qty > 0)
+          .map(([orderItemId, qty]) => ({ orderItemId, qty })),
+      }))
+      .filter((c) => c.items.length > 0)
 
   const confirmShipment = async () => {
     const items = Object.entries(shipQtyByItem)
       .filter(([, qty]) => qty > 0)
       .map(([orderItemId, qty]) => ({ orderItemId, qty }))
     if (items.length === 0) return
-    const combinedItems = Object.entries(combinedQtyByItem)
-      .filter(([, qty]) => qty > 0)
-      .map(([orderItemId, qty]) => ({ orderItemId, qty }))
+    const combined = stagedCombined()
     setUpdating(true)
     try {
       await adminCreateShipment({
@@ -419,8 +435,7 @@ function AdminOrderDetailPage() {
           carrier: (carrierInput || null) as (typeof CARRIERS)[number] | null,
           trackingNumber: trackingInput.trim() || null,
           items,
-          combinedOrderId: combinedOrderId && combinedItems.length > 0 ? combinedOrderId : undefined,
-          combinedItems: combinedOrderId && combinedItems.length > 0 ? combinedItems : undefined,
+          combined: combined.length > 0 ? combined : undefined,
         },
       })
       setShipFormOpen(false)
@@ -439,9 +454,7 @@ function AdminOrderDetailPage() {
       .filter(([, qty]) => qty > 0)
       .map(([orderItemId, qty]) => ({ orderItemId, qty }))
     if (items.length === 0) return
-    const combinedItems = Object.entries(combinedQtyByItem)
-      .filter(([, qty]) => qty > 0)
-      .map(([orderItemId, qty]) => ({ orderItemId, qty }))
+    const combined = stagedCombined()
     setTesting(true)
     setTestMessage(null)
     try {
@@ -452,13 +465,12 @@ function AdminOrderDetailPage() {
           carrier: (carrierInput || null) as (typeof CARRIERS)[number] | null,
           trackingNumber: trackingInput.trim() || null,
           items,
-          combinedOrderId: combinedOrderId && combinedItems.length > 0 ? combinedOrderId : undefined,
-          combinedItems: combinedOrderId && combinedItems.length > 0 ? combinedItems : undefined,
+          combined: combined.length > 0 ? combined : undefined,
         },
       })
       setTestMessage(
-        combinedOrderId && combinedItems.length > 0
-          ? `Sent to ${testEmail} — previewing both orders' shipment emails.`
+        combined.length > 0
+          ? `Sent to ${testEmail} — previewing all ${combined.length + 1} orders' shipment emails.`
           : `Sent to ${testEmail}.`,
       )
     } catch (err) {
@@ -941,40 +953,43 @@ function AdminOrderDetailPage() {
 
             {order.waitingOnThis.length > 0 && (
               <div style={{ marginBottom: 10, paddingTop: 10, borderTop: '1px solid #e3e6ea', display: 'flex', flexDirection: 'column', gap: 8 }}>
-                {order.waitingOnThis.map((waiting) => (
-                  <div key={waiting.id}>
-                    <label style={{ display: 'flex', alignItems: 'center', gap: 7, fontSize: 12, color: '#131b28', cursor: 'pointer' }}>
-                      <input type="checkbox" checked={combinedOrderId === waiting.id} onChange={() => toggleCombined(waiting)} />
-                      Also ship order #EBI-{waiting.orderNo} now — it's waiting to ship together with this one
-                    </label>
-                    {combinedOrderId === waiting.id && (
-                      <div style={{ marginTop: 6, marginLeft: 22, display: 'flex', flexDirection: 'column', gap: 6 }}>
-                        {waiting.items.map((item) => {
-                          const waitingRemaining = remainingQtyByItem(waiting.items, waiting.shipments.flatMap((s) => s.items))
-                          const left = waitingRemaining.get(item.id) ?? 0
-                          if (left <= 0) return null
-                          return (
-                            <div key={item.id} style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: 12 }}>
-                              <span style={{ flex: 1, color: '#131b28' }}>{item.productName}</span>
-                              <input
-                                type="number"
-                                min={0}
-                                max={left}
-                                value={combinedQtyByItem[item.id] ?? 0}
-                                onChange={(e) => {
-                                  const n = Math.max(0, Math.min(left, Math.floor(Number(e.target.value)) || 0))
-                                  setCombinedQtyByItem((q) => ({ ...q, [item.id]: n }))
-                                }}
-                                style={{ width: 56, border: '1px solid #cfd4da', borderRadius: 2, padding: '4px 6px', fontSize: 12 }}
-                              />
-                              <span style={{ color: '#5a6875', fontSize: 11, minWidth: 62 }}>of {left} left</span>
-                            </div>
-                          )
-                        })}
-                      </div>
-                    )}
-                  </div>
-                ))}
+                {order.waitingOnThis.map((waiting) => {
+                  const isStaged = waiting.id in combinedQtyByOrder
+                  return (
+                    <div key={waiting.id}>
+                      <label style={{ display: 'flex', alignItems: 'center', gap: 7, fontSize: 12, color: '#131b28', cursor: 'pointer' }}>
+                        <input type="checkbox" checked={isStaged} onChange={() => toggleCombined(waiting)} />
+                        Also ship order #EBI-{waiting.orderNo} now — it's waiting to ship together with this one
+                      </label>
+                      {isStaged && (
+                        <div style={{ marginTop: 6, marginLeft: 22, display: 'flex', flexDirection: 'column', gap: 6 }}>
+                          {waiting.items.map((item) => {
+                            const waitingRemaining = remainingQtyByItem(waiting.items, waiting.shipments.flatMap((s) => s.items))
+                            const left = waitingRemaining.get(item.id) ?? 0
+                            if (left <= 0) return null
+                            return (
+                              <div key={item.id} style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: 12 }}>
+                                <span style={{ flex: 1, color: '#131b28' }}>{item.productName}</span>
+                                <input
+                                  type="number"
+                                  min={0}
+                                  max={left}
+                                  value={combinedQtyByOrder[waiting.id]?.[item.id] ?? 0}
+                                  onChange={(e) => {
+                                    const n = Math.max(0, Math.min(left, Math.floor(Number(e.target.value)) || 0))
+                                    setCombinedItemQty(waiting.id, item.id, n)
+                                  }}
+                                  style={{ width: 56, border: '1px solid #cfd4da', borderRadius: 2, padding: '4px 6px', fontSize: 12 }}
+                                />
+                                <span style={{ color: '#5a6875', fontSize: 11, minWidth: 62 }}>of {left} left</span>
+                              </div>
+                            )
+                          })}
+                        </div>
+                      )}
+                    </div>
+                  )
+                })}
               </div>
             )}
 
