@@ -566,6 +566,47 @@ export const adminGetOrder = createServerFn({ method: 'GET' })
     return { ...order, items, statusHistory, refunds, emails, shipments: orderShipments, affiliate, combineWithOrder, waitingOnThis }
   })
 
+// Manually sets combineWithOrderId (see schema.ts) for any case the
+// checkout-time flow doesn't cover — e.g. two pending orders where
+// neither is a mismatched preorder/non-preorder pair, or shipping was
+// waived through a path (two same-type pending preorders) that never
+// recorded the link in the first place. Works in either direction
+// regardless of which side is the "preorder" — the ship form only
+// cares that a link exists, not why.
+export const adminLinkCombineOrder = createServerFn({ method: 'POST' })
+  .validator(z.object({ id: z.string(), targetOrderNo: z.number().int().positive() }))
+  .handler(async ({ data }) => {
+    await assertAdmin()
+    const db = getDb()
+    const [target] = await db
+      .select({ id: orders.id, orderNo: orders.orderNo, fulfillmentStatus: orders.fulfillmentStatus, combineWithOrderId: orders.combineWithOrderId })
+      .from(orders)
+      .where(eq(orders.orderNo, data.targetOrderNo))
+      .limit(1)
+    if (!target) throw new Error(`No order #EBI-${data.targetOrderNo} found.`)
+    if (target.id === data.id) throw new Error("An order can't be linked to itself.")
+    if (target.fulfillmentStatus === 'shipped' || target.fulfillmentStatus === 'cancelled') {
+      throw new Error(`#EBI-${data.targetOrderNo} is already ${target.fulfillmentStatus} — nothing left to combine.`)
+    }
+    if (target.combineWithOrderId === data.id) {
+      throw new Error(`#EBI-${data.targetOrderNo} already waits on this order — link it from that order's own page instead, not both ways.`)
+    }
+    await db.update(orders).set({ combineWithOrderId: target.id }).where(eq(orders.id, data.id))
+    return { ok: true, orderNo: target.orderNo }
+  })
+
+// Clears a link made either by checkout (the shopper's own "wait and
+// ship together" choice) or by adminLinkCombineOrder above — same
+// field, same undo either way.
+export const adminUnlinkCombineOrder = createServerFn({ method: 'POST' })
+  .validator(z.object({ id: z.string() }))
+  .handler(async ({ data }) => {
+    await assertAdmin()
+    const db = getDb()
+    await db.update(orders).set({ combineWithOrderId: null }).where(eq(orders.id, data.id))
+    return { ok: true }
+  })
+
 // "shipped" and "partially_shipped" are never set directly — they're always
 // derived from recorded shipments (see adminCreateShipment). Admin can only
 // force a cancel or revert to pending here.

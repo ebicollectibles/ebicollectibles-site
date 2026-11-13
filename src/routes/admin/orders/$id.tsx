@@ -2,7 +2,16 @@ import * as React from 'react'
 import { createFileRoute, Link, useNavigate, useRouter } from '@tanstack/react-router'
 import { AdminNav } from '~/components/AdminNav'
 import { requireAdmin } from '~/server/admin-auth'
-import { adminCancelAndRefundOrder, adminCreateShipment, adminGetOrder, adminSendCancellationEmailTest, adminSendShipmentTest, adminUpdateOrderStatus } from '~/server/admin'
+import {
+  adminCancelAndRefundOrder,
+  adminCreateShipment,
+  adminGetOrder,
+  adminLinkCombineOrder,
+  adminSendCancellationEmailTest,
+  adminSendShipmentTest,
+  adminUnlinkCombineOrder,
+  adminUpdateOrderStatus,
+} from '~/server/admin'
 import { adminIssueStoreCreditByEmail, adminSendStoreCreditEmailTest } from '~/server/store-credit'
 import { formatMoney } from '~/lib/products'
 import { CARRIERS, carrierTrackingUrl } from '~/lib/carriers'
@@ -277,6 +286,9 @@ function AdminOrderDetailPage() {
   const [testEmail, setTestEmail] = React.useState('eastblueinternational@gmail.com')
   const [testing, setTesting] = React.useState(false)
   const [testMessage, setTestMessage] = React.useState<string | null>(null)
+  const [linkOrderNoInput, setLinkOrderNoInput] = React.useState('')
+  const [linkBusy, setLinkBusy] = React.useState(false)
+  const [linkError, setLinkError] = React.useState<string | null>(null)
 
   if (!order) {
     return (
@@ -453,6 +465,42 @@ function AdminOrderDetailPage() {
       setTestMessage(err instanceof Error ? err.message : 'Test send failed.')
     } finally {
       setTesting(false)
+    }
+  }
+
+  // Manual escape hatch for any "ship these together" case the checkout
+  // flow doesn't cover on its own (see adminLinkCombineOrder) — parses
+  // whatever digits admin typed (with or without "#EBI-") into an order
+  // number.
+  const linkCombineOrder = async () => {
+    const targetOrderNo = Number.parseInt(linkOrderNoInput.replace(/\D/g, ''), 10)
+    if (!Number.isFinite(targetOrderNo) || targetOrderNo <= 0) {
+      setLinkError('Enter a valid order number.')
+      return
+    }
+    setLinkBusy(true)
+    setLinkError(null)
+    try {
+      await adminLinkCombineOrder({ data: { id: order.id, targetOrderNo } })
+      setLinkOrderNoInput('')
+      await router.invalidate()
+    } catch (err) {
+      setLinkError(err instanceof Error ? err.message : 'Could not link that order.')
+    } finally {
+      setLinkBusy(false)
+    }
+  }
+
+  const unlinkCombineOrder = async () => {
+    setLinkBusy(true)
+    setLinkError(null)
+    try {
+      await adminUnlinkCombineOrder({ data: { id: order.id } })
+      await router.invalidate()
+    } catch (err) {
+      setLinkError(err instanceof Error ? err.message : 'Could not unlink.')
+    } finally {
+      setLinkBusy(false)
     }
   }
 
@@ -676,13 +724,23 @@ function AdminOrderDetailPage() {
         </div>
 
         {order.combineWithOrder && (
-          <div style={{ marginTop: 10, fontSize: 11.5, color: '#8a4a26' }}>
-            ⏳ Waiting to ship with{' '}
-            <Link to="/admin/orders/$id" params={{ id: order.combineWithOrder.id }} style={{ color: '#8a4a26', fontWeight: 600 }}>
-              #EBI-{order.combineWithOrder.orderNo}
-            </Link>{' '}
-            ({fulfillmentLabel[order.combineWithOrder.fulfillmentStatus] ?? order.combineWithOrder.fulfillmentStatus}) — chose free
-            shipping instead of shipping separately now. Ship this independently any time from the button below if needed.
+          <div style={{ marginTop: 10, fontSize: 11.5, color: '#8a4a26', display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap' }}>
+            <span>
+              ⏳ Waiting to ship with{' '}
+              <Link to="/admin/orders/$id" params={{ id: order.combineWithOrder.id }} style={{ color: '#8a4a26', fontWeight: 600 }}>
+                #EBI-{order.combineWithOrder.orderNo}
+              </Link>{' '}
+              ({fulfillmentLabel[order.combineWithOrder.fulfillmentStatus] ?? order.combineWithOrder.fulfillmentStatus}) — chose free
+              shipping instead of shipping separately now. Ship this independently any time from the button below if needed.
+            </span>
+            <button
+              type="button"
+              onClick={unlinkCombineOrder}
+              disabled={linkBusy}
+              style={{ fontSize: 11, color: '#8a4a26', background: 'none', border: '1px solid currentColor', borderRadius: 2, padding: '2px 8px', cursor: 'pointer' }}
+            >
+              Unlink
+            </button>
           </div>
         )}
         {order.waitingOnThis.length > 0 && (
@@ -698,6 +756,28 @@ function AdminOrderDetailPage() {
             ))}{' '}
             {order.waitingOnThis.length === 1 ? 'is' : 'are'} waiting to ship together with this order — use "Ship items" below to
             include {order.waitingOnThis.length === 1 ? 'it' : 'them'}.
+          </div>
+        )}
+        {!order.combineWithOrder && (
+          <div style={{ marginTop: 10, display: 'flex', alignItems: 'center', gap: 6, flexWrap: 'wrap' }}>
+            <input
+              type="text"
+              inputMode="numeric"
+              placeholder="Link to order # for combined shipping"
+              value={linkOrderNoInput}
+              onChange={(e) => setLinkOrderNoInput(e.target.value)}
+              onKeyDown={(e) => e.key === 'Enter' && linkCombineOrder()}
+              style={{ border: '1px solid #cfd4da', borderRadius: 2, padding: '5px 8px', fontSize: 12, width: 220 }}
+            />
+            <button
+              type="button"
+              onClick={linkCombineOrder}
+              disabled={linkBusy || !linkOrderNoInput.trim()}
+              style={{ fontSize: 12, padding: '5px 10px', border: '1px solid #cfd4da', borderRadius: 2, background: '#fff', cursor: 'pointer' }}
+            >
+              {linkBusy ? 'Linking…' : 'Link'}
+            </button>
+            {linkError && <span style={{ fontSize: 11.5, color: '#b4232c' }}>{linkError}</span>}
           </div>
         )}
 
