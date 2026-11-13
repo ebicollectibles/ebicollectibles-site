@@ -1,15 +1,16 @@
 # EBI Collectibles
 
 > EBI Collectibles sells officially-licensed Simplified Chinese Pokémon
-> Trading Card Game products — booster boxes, packs, and related
-> collectibles — shipped from the United States.
+> merchandise — Trading Card Game booster boxes and blind boxes, plush,
+> figures, and related collectibles — shipped from the United States.
 
 EBI Collectibles carries Simplified Chinese Pokémon TCG sets across the
 Gem Set line and the officially-licensed Chinese Scarlet & Violet series,
 plus Collect 151 and the 30th Celebration special set. Each set has its
 own complete, browsable card list at /sets, with every card's collector
 number, rarity, and (where applicable) which cards are exclusive to the
-Chinese release versus the English one.
+Chinese release versus the English one. Beyond trading cards, the catalog
+also includes Pokémon plush, figures, blind boxes, and display cases.
 
 ## Card lists
 
@@ -18,8 +19,17 @@ breakdowns, Chinese-exclusive cards, and release dates: /sets
 
 ## Shop
 
-Live inventory and pricing for booster boxes, packs, and other sealed
-product: /shop
+Live inventory and pricing for booster boxes, blind boxes, plush,
+figures, and other sealed product: /shop
+
+Best-selling products: /best-selling
+Newest and upcoming releases, including open pre-orders: /new-and-upcoming
+
+## Shipping & returns
+
+Ships within the United States only, at a flat rate. Pre-order items are
+charged in full at checkout and ship separately once released. Full
+policies: /shipping-policy and /refund-policy
 
 ## Sitemap
 
