@@ -16,6 +16,13 @@ const SHOW_HERO = false
 
 export const Route = createFileRoute('/')({
   loader: () => getMySubscriptionStatus(),
+  // Title/description/og:url all come from __root.tsx's defaults, which are
+  // already written for the homepage — only the canonical link (which root
+  // doesn't set, so every other page can declare its own) is this page's
+  // own to add.
+  head: () => ({
+    links: [{ rel: 'canonical', href: 'https://ebicollectibles.com' }],
+  }),
   component: HomePage,
 })
 

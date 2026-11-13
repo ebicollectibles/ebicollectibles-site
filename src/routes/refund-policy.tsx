@@ -1,6 +1,18 @@
 import { createFileRoute, Link } from '@tanstack/react-router'
 
+const SITE_URL = 'https://ebicollectibles.com'
+
 export const Route = createFileRoute('/refund-policy')({
+  head: () => ({
+    meta: [
+      { title: 'Refund Policy — EBI Collectibles' },
+      { name: 'description', content: 'EBI Collectibles’ cancellation and refund policy, including pre-orders.' },
+      { property: 'og:title', content: 'Refund Policy — EBI Collectibles' },
+      { property: 'og:description', content: 'EBI Collectibles’ cancellation and refund policy, including pre-orders.' },
+      { property: 'og:url', content: `${SITE_URL}/refund-policy` },
+    ],
+    links: [{ rel: 'canonical', href: `${SITE_URL}/refund-policy` }],
+  }),
   component: RefundPolicyPage,
 })
 

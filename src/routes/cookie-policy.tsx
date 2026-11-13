@@ -3,7 +3,19 @@ import { createFileRoute } from '@tanstack/react-router'
 import { useCookiePreferencesUI } from '~/components/CookieConsent'
 import { COOKIE_CATEGORIES } from '~/lib/cookie-consent'
 
+const SITE_URL = 'https://ebicollectibles.com'
+
 export const Route = createFileRoute('/cookie-policy')({
+  head: () => ({
+    meta: [
+      { title: 'Cookie Policy — EBI Collectibles' },
+      { name: 'description', content: 'What cookies EBI Collectibles uses and how to manage your preferences.' },
+      { property: 'og:title', content: 'Cookie Policy — EBI Collectibles' },
+      { property: 'og:description', content: 'What cookies EBI Collectibles uses and how to manage your preferences.' },
+      { property: 'og:url', content: `${SITE_URL}/cookie-policy` },
+    ],
+    links: [{ rel: 'canonical', href: `${SITE_URL}/cookie-policy` }],
+  }),
   component: CookiePolicyPage,
 })
 

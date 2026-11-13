@@ -1,7 +1,19 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { SHIPPING_HANDLING_MAX_DAYS, SHIPPING_HANDLING_MIN_DAYS } from '~/lib/policy'
 
+const SITE_URL = 'https://ebicollectibles.com'
+
 export const Route = createFileRoute('/shipping-policy')({
+  head: () => ({
+    meta: [
+      { title: 'Shipping Policy — EBI Collectibles' },
+      { name: 'description', content: 'How EBI Collectibles ships orders, including pre-order and handling timelines.' },
+      { property: 'og:title', content: 'Shipping Policy — EBI Collectibles' },
+      { property: 'og:description', content: 'How EBI Collectibles ships orders, including pre-order and handling timelines.' },
+      { property: 'og:url', content: `${SITE_URL}/shipping-policy` },
+    ],
+    links: [{ rel: 'canonical', href: `${SITE_URL}/shipping-policy` }],
+  }),
   component: ShippingPolicyPage,
 })
 

@@ -40,6 +40,8 @@ const shopSearchSchema = z.object({
     .transform((v) => v === true || v === 'true'),
 })
 
+const SITE_URL = 'https://ebicollectibles.com'
+
 export const Route = createFileRoute('/shop')({
   validateSearch: shopSearchSchema,
   head: ({ match }) => {
@@ -49,16 +51,24 @@ export const Route = createFileRoute('/shop')({
       (match.search.category ? categoryLabel(match.search.category) : undefined) ||
       (match.search.variantGroup ? 'Full Collection' : undefined) ||
       (match.search.preorder ? 'Pre-orders' : undefined)
-    if (!label) return {}
-    const title = `${label} — EBI Collectibles`
-    const description = `Shop ${label} — Simplified Chinese Pokémon, verified before it ships.`
+    const title = label ? `${label} — EBI Collectibles` : 'Shop — EBI Collectibles'
+    const description = label
+      ? `Shop ${label} — Simplified Chinese Pokémon, verified before it ships.`
+      : 'Shop the full EBI Collectibles catalog — Simplified Chinese Pokémon booster boxes, blind boxes, plush, figures, and more, verified before it ships.'
+    // Every category/subcategory/price/search filter is just client-side UX
+    // on top of the same underlying catalog, not distinct content — so,
+    // same as faceted navigation on any storefront, they all canonicalize
+    // back to the one plain /shop URL rather than each filtered query
+    // string competing with it (or each other) as a near-duplicate page.
     return {
       meta: [
         { title },
         { name: 'description', content: description },
         { property: 'og:title', content: title },
         { property: 'og:description', content: description },
+        { property: 'og:url', content: `${SITE_URL}/shop` },
       ],
+      links: [{ rel: 'canonical', href: `${SITE_URL}/shop` }],
     }
   },
   component: ShopPage,

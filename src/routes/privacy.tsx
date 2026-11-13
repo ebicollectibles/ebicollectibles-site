@@ -2,7 +2,19 @@ import type * as React from 'react'
 import { createFileRoute, Link } from '@tanstack/react-router'
 import { SHOW_CONTACT_EMAIL } from '~/lib/feature-flags'
 
+const SITE_URL = 'https://ebicollectibles.com'
+
 export const Route = createFileRoute('/privacy')({
+  head: () => ({
+    meta: [
+      { title: 'Privacy Policy — EBI Collectibles' },
+      { name: 'description', content: 'How EBI Collectibles collects, uses, and protects your personal information.' },
+      { property: 'og:title', content: 'Privacy Policy — EBI Collectibles' },
+      { property: 'og:description', content: 'How EBI Collectibles collects, uses, and protects your personal information.' },
+      { property: 'og:url', content: `${SITE_URL}/privacy` },
+    ],
+    links: [{ rel: 'canonical', href: `${SITE_URL}/privacy` }],
+  }),
   component: PrivacyPolicyPage,
 })
 

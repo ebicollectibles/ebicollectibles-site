@@ -112,6 +112,7 @@ export const Route = createFileRoute('/products/$id')({
           },
         },
       ],
+      links: [{ rel: 'canonical', href: url }],
     }
   },
   component: ProductDetailPage,

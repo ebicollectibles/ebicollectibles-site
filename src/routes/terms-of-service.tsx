@@ -2,7 +2,19 @@ import type * as React from 'react'
 import { createFileRoute, Link } from '@tanstack/react-router'
 import { SHOW_CONTACT_EMAIL } from '~/lib/feature-flags'
 
+const SITE_URL = 'https://ebicollectibles.com'
+
 export const Route = createFileRoute('/terms-of-service')({
+  head: () => ({
+    meta: [
+      { title: 'Terms of Service — EBI Collectibles' },
+      { name: 'description', content: 'The terms that govern using the EBI Collectibles website and placing an order.' },
+      { property: 'og:title', content: 'Terms of Service — EBI Collectibles' },
+      { property: 'og:description', content: 'The terms that govern using the EBI Collectibles website and placing an order.' },
+      { property: 'og:url', content: `${SITE_URL}/terms-of-service` },
+    ],
+    links: [{ rel: 'canonical', href: `${SITE_URL}/terms-of-service` }],
+  }),
   component: TermsOfServicePage,
 })
 
