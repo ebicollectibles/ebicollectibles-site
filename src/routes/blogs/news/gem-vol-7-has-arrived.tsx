@@ -11,6 +11,7 @@ export const Route = createFileRoute('/blogs/news/gem-vol-7-has-arrived')({
   head: () => ({
     meta: [
       { title: `${post.title} — EBI Collectibles` },
+      { name: 'robots', content: 'noindex, nofollow' },
       { name: 'description', content: post.excerpt },
       { property: 'og:title', content: post.title },
       { property: 'og:description', content: post.excerpt },

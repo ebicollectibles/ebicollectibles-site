@@ -7,6 +7,9 @@ export const Route = createFileRoute('/blogs/news/')({
   head: () => ({
     meta: [
       { title: 'News — EBI Collectibles' },
+      // Unlisted for now — reachable only by direct link, not linked from
+      // nav/footer/sitemap, and excluded from indexing until launched properly.
+      { name: 'robots', content: 'noindex, nofollow' },
       {
         name: 'description',
         content: 'Release coverage and collecting guides for Simplified Chinese Pokémon TCG sets — new Gem Pack and Scarlet & Violet releases, explained.',
