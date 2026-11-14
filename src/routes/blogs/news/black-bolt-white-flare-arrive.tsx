@@ -118,14 +118,40 @@ function BlackBoltWhiteFlarePost() {
           carries noticeably better odds at every rarity tier above Common/Uncommon, so it's the better per-card value if you're
           chasing secret rares specifically.
         </p>
-        <img
-          src={`${R2_IMAGE_HOST}/Chinese/Blog/black-bolt-white-flare/black-bolt-white-flare-release-poster.webp`}
-          alt="Official Black Bolt and White Flare release poster showing both pack sizes for each set"
-          loading="lazy"
-          width={1080}
-          height={2374}
-          style={{ display: 'block', maxWidth: 320, width: '100%', margin: '0 auto 28px', borderRadius: 12, boxShadow: 'var(--shadow)' }}
-        />
+        <div style={{ display: 'flex', gap: 24, justifyContent: 'center', alignItems: 'flex-start', flexWrap: 'wrap', margin: '0 0 28px' }}>
+          <img
+            src={`${R2_IMAGE_HOST}/Chinese/Blog/black-bolt-white-flare/black-bolt-white-flare-release-poster.webp`}
+            alt="Official Black Bolt and White Flare release poster showing both pack sizes for each set"
+            loading="lazy"
+            width={1080}
+            height={2374}
+            style={{ display: 'block', maxWidth: 320, width: '100%', borderRadius: 12, boxShadow: 'var(--shadow)' }}
+          />
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 14, maxWidth: 220, width: '100%' }}>
+            <div>
+              <img
+                src={`${R2_IMAGE_HOST}/Chinese/Blog/black-bolt-white-flare/black-bolt-booster-packs-5-and-20-card.webp`}
+                alt="Black Bolt booster packs in 5-card and 20-card sizes, Zekrom on the front"
+                loading="lazy"
+                width={470}
+                height={430}
+                style={{ display: 'block', width: '100%', borderRadius: 12, boxShadow: 'var(--shadow)' }}
+              />
+              <p style={{ fontSize: 12.5, color: 'var(--slate)', textAlign: 'center', margin: '6px 0 0' }}>Black Bolt packs</p>
+            </div>
+            <div>
+              <img
+                src={`${R2_IMAGE_HOST}/Chinese/Blog/black-bolt-white-flare/white-flare-booster-packs-5-and-20-card.webp`}
+                alt="White Flare booster packs in 5-card and 20-card sizes, Reshiram on the front"
+                loading="lazy"
+                width={465}
+                height={435}
+                style={{ display: 'block', width: '100%', borderRadius: 12, boxShadow: 'var(--shadow)' }}
+              />
+              <p style={{ fontSize: 12.5, color: 'var(--slate)', textAlign: 'center', margin: '6px 0 0' }}>White Flare packs</p>
+            </div>
+          </div>
+        </div>
 
         <h2>The chase cards</h2>
         <p>
