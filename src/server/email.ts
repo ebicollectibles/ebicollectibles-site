@@ -16,6 +16,33 @@ const BORDER = '#e3e6ea'
 const SURFACE = '#f6f7f8'
 const GREEN = '#3f7a63'
 
+// Kept deliberately short compared to a bigger storefront's email footer —
+// no unsubscribe line (every email through this shell is transactional,
+// triggered by something the recipient did, not a marketing list they
+// opted into) and no physical mailing address (not published anywhere
+// else on the site either). Just the policy links and the one real social
+// presence that exists, matching Footer.tsx's own "Elsewhere"/"Help"
+// sections rather than inventing anything not already true of the site.
+function emailFooterHtml(): string {
+  const year = new Date().getFullYear()
+  return `
+      <tr>
+        <td style="padding:20px 32px 28px;border-top:1px solid ${BORDER};text-align:center;">
+          <p style="font-size:11.5px;color:${MUTED};margin:0 0 10px;">
+            <a href="${SITE_URL}/shipping-policy" style="color:${MUTED};text-decoration:underline;">Shipping Policy</a>
+            &nbsp;&middot;&nbsp;
+            <a href="${SITE_URL}/refund-policy" style="color:${MUTED};text-decoration:underline;">Refund Policy</a>
+            &nbsp;&middot;&nbsp;
+            <a href="${SITE_URL}/privacy" style="color:${MUTED};text-decoration:underline;">Privacy Policy</a>
+          </p>
+          <p style="font-size:11.5px;color:${MUTED};margin:0 0 10px;">
+            <a href="https://www.instagram.com/ebicollectibles" style="color:${MUTED};text-decoration:underline;">Instagram</a>
+          </p>
+          <p style="font-size:10.5px;color:${MUTED};margin:0;">&copy; ${year} EBI Collectibles &middot; Not affiliated with, or endorsed by, any card publisher.</p>
+        </td>
+      </tr>`
+}
+
 function emailShell(opts: { badgeLabel: string; badgeColor: string; heading: string; intro: string; bodyHtml: string }): string {
   return `
   <div style="background:${SURFACE};padding:32px 16px;font-family:Helvetica,Arial,sans-serif;">
@@ -33,6 +60,7 @@ function emailShell(opts: { badgeLabel: string; badgeColor: string; heading: str
           ${opts.bodyHtml}
         </td>
       </tr>
+      ${emailFooterHtml()}
     </table>
   </div>`
 }
