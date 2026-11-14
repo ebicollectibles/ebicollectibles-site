@@ -93,9 +93,9 @@ function GemVol7OriginsPost() {
       >
         <p>
           If you've opened Journey Together or Destined Rivals in English this year and the art in Gem Vol 7 looks familiar, that's
-          not a coincidence — it's the whole point of a Gem Pack. Chen Cards' Gem Pack series is a Simplified Chinese-exclusive
-          compilation line: rather than commissioning new illustrations, each volume reprints existing Pokémon TCG artwork under its
-          own numbering and its own 7-tier rarity ladder (plus, usually, one genuinely new exclusive card).
+          not a coincidence — it's the whole point of a Gem Pack. The officially-licensed Gem Pack series is a Simplified
+          Chinese-exclusive compilation line: rather than commissioning new illustrations, each volume reprints existing Pokémon TCG
+          artwork under its own numbering and its own 7-tier rarity ladder (plus, usually, one genuinely new exclusive card).
         </p>
         <p>
           That makes "which set is this card actually from?" one of the most common questions about any Gem Pack release — especially
