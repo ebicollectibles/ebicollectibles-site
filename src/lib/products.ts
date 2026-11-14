@@ -49,6 +49,10 @@ export interface Product {
   // lib/db/schema.ts. Undefined/null means unranked.
   bestSellingRank?: number
   newAndUpcomingRank?: number
+  // Pins this product to a fixed position in the main /shop grid's default
+  // "Featured" sort — see the comment in lib/db/schema.ts. Undefined/null
+  // means unranked (falls back to the grid's normal createdAt order).
+  shopSortOrder?: number
   // Absolute opt-out of a section — see the comment in lib/db/schema.ts.
   hideFromBestSelling?: boolean
   hideFromNewAndUpcoming?: boolean

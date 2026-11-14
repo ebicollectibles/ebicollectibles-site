@@ -67,6 +67,16 @@ export const products = pgTable('products', {
   // product's position in one has nothing to do with the other.
   bestSellingRank: integer('best_selling_rank'),
   newAndUpcomingRank: integer('new_and_upcoming_rank'),
+  // Pins a product to a fixed position in the main /shop grid's default
+  // "Featured" sort — lower shows first, null means unranked. Unranked
+  // products fill in after the pinned ones in the grid's normal order
+  // (createdAt ascending, same as always) rather than being pushed to the
+  // very end, so pinning one or two products doesn't reshuffle the rest of
+  // the catalog. Deliberately separate from bestSellingRank/
+  // newAndUpcomingRank above — this is about the default shop browse order,
+  // not either of those two curated homepage sections, and a product's
+  // position in one has nothing to do with the others.
+  shopSortOrder: integer('shop_sort_order'),
   // Product variants (e.g. a sealed blind box + each specific opened figure
   // it can contain) — each variant is a FULL product row with its own
   // price/stock/Square link (not a lightweight sub-record), since each one

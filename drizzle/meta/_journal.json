@@ -505,6 +505,13 @@
       "when": 1794220443373,
       "tag": "0071_order_items_is_preorder",
       "breakpoints": true
+    },
+    {
+      "idx": 72,
+      "version": "7",
+      "when": 1794629796962,
+      "tag": "0072_add_product_shop_sort_order",
+      "breakpoints": true
     }
   ]
 }

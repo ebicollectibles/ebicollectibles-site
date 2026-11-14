@@ -41,6 +41,9 @@ export function AdminNav() {
       <Link to="/admin/new-and-upcoming" style={navLinkStyle}>
         New &amp; Upcoming
       </Link>
+      <Link to="/admin/shop-order" style={navLinkStyle}>
+        Shop Order
+      </Link>
       <Link to="/admin/marketplace-orders" style={navLinkStyle}>
         Marketplace
       </Link>

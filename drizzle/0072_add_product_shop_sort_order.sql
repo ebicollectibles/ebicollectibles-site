@@ -1,0 +1,1 @@
+ALTER TABLE "products" ADD COLUMN "shop_sort_order" integer;

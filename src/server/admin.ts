@@ -78,6 +78,7 @@ const productBaseSchema = z.object({
   tags: z.array(z.string()).optional().default([]),
   bestSellingRank: z.number().int().nullable().optional(),
   newAndUpcomingRank: z.number().int().nullable().optional(),
+  shopSortOrder: z.number().int().nullable().optional(),
   hideFromBestSelling: z.boolean().optional().default(false),
   hideFromNewAndUpcoming: z.boolean().optional().default(false),
   description: z.string().optional(),
@@ -141,6 +142,7 @@ export const adminListProducts = createServerFn({ method: 'GET' }).handler(async
 const RANK_COLUMNS = {
   bestSellingRank: productsTable.bestSellingRank,
   newAndUpcomingRank: productsTable.newAndUpcomingRank,
+  shopSortOrder: productsTable.shopSortOrder,
 } as const
 
 // Saves the admin's curated Best Selling / New & Upcoming list: orderedIds
@@ -154,7 +156,7 @@ const RANK_COLUMNS = {
 export const adminSetProductRanks = createServerFn({ method: 'POST' })
   .validator(
     z.object({
-      field: z.enum(['bestSellingRank', 'newAndUpcomingRank']),
+      field: z.enum(['bestSellingRank', 'newAndUpcomingRank', 'shopSortOrder']),
       orderedIds: z.array(z.string()),
     }),
   )

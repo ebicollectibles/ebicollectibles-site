@@ -162,6 +162,17 @@ function ShopPage() {
         if (p.price > maxPrice) return false
         return true
       })
+  // Featured (the default) pins anything with a shopSortOrder to the front,
+  // lowest first, ahead of the grid's normal createdAt order — same
+  // ranked-then-everything-else shape as rankProducts, but admin opts a
+  // product into this one explicitly rather than every product
+  // participating by default. Still fully overridden by an explicit
+  // Low/High/Name sort below, same as the variantGroup view's own order is.
+  if (sort === 'featured' && !search.variantGroup) {
+    const pinned = visible.filter((p) => p.shopSortOrder != null).sort((a, b) => a.shopSortOrder! - b.shopSortOrder!)
+    const rest = visible.filter((p) => p.shopSortOrder == null)
+    visible = [...pinned, ...rest]
+  }
   if (sort === 'low') visible = [...visible].sort((a, b) => a.price - b.price)
   if (sort === 'high') visible = [...visible].sort((a, b) => b.price - a.price)
   if (sort === 'name') visible = [...visible].sort((a, b) => a.name.localeCompare(b.name))

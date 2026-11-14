@@ -2,19 +2,32 @@ import * as React from 'react'
 import { adminListProducts, adminSetProductRanks } from '~/server/admin'
 
 type AdminProduct = Awaited<ReturnType<typeof adminListProducts>>[number]
-type RankField = 'bestSellingRank' | 'newAndUpcomingRank'
+type RankField = 'bestSellingRank' | 'newAndUpcomingRank' | 'shopSortOrder'
 
-const HIDE_FIELD = {
+// Only the homepage sections have a dedicated opt-out checkbox — shopSortOrder
+// has no equivalent (every product is already eligible for /shop; this just
+// pins a few to the front), so it's absent here rather than pointing at a
+// field that doesn't exist.
+const HIDE_FIELD: Partial<Record<RankField, 'hideFromBestSelling' | 'hideFromNewAndUpcoming'>> = {
   bestSellingRank: 'hideFromBestSelling',
   newAndUpcomingRank: 'hideFromNewAndUpcoming',
-} as const
+}
 
 // Shopify-style manual collection: admin explicitly adds products to a
 // small curated, ordered list here (not the whole catalog) — everything
-// else still shows up on the public "View All" page after this set,
-// newest first (see rankProducts in lib/products.ts), it just isn't
-// managed from this screen.
-export function DraggableRankList({ products, field }: { products: AdminProduct[]; field: RankField }) {
+// else still shows up after this set (see emptyHint/addedHint below for
+// exactly where, which differs by field).
+export function DraggableRankList({
+  products,
+  field,
+  emptyHint = 'Nothing added yet — search above to feature a product here. Everything else still shows up on the "View All" page after whatever you add, newest first.',
+  addedHint = 'Drag a row (or use the arrows) to reorder — everything between its old and new spot shifts to make room. Only the top 8 show on the homepage; the rest are still visible on the full "View All" page, in this order, followed by every product not added here.',
+}: {
+  products: AdminProduct[]
+  field: RankField
+  emptyHint?: string
+  addedHint?: string
+}) {
   const initialAdded = React.useMemo(
     () =>
       products
@@ -33,7 +46,10 @@ export function DraggableRankList({ products, field }: { products: AdminProduct[
   const trimmedQuery = query.trim().toLowerCase()
   const matches = trimmedQuery
     ? products
-        .filter((p) => !addedIds.has(p.id) && !p[HIDE_FIELD[field]] && p.name.toLowerCase().includes(trimmedQuery))
+        .filter((p) => {
+          const hideField = HIDE_FIELD[field]
+          return !addedIds.has(p.id) && !(hideField && p[hideField]) && p.name.toLowerCase().includes(trimmedQuery)
+        })
         .slice(0, 8)
     : []
 
@@ -154,17 +170,10 @@ export function DraggableRankList({ products, field }: { products: AdminProduct[
       </div>
 
       {added.length === 0 ? (
-        <p style={{ fontSize: 13.5, color: '#5a6875' }}>
-          Nothing added yet — search above to feature a product here. Everything else still shows up on the "View
-          All" page after whatever you add, newest first.
-        </p>
+        <p style={{ fontSize: 13.5, color: '#5a6875' }}>{emptyHint}</p>
       ) : (
         <>
-          <p style={{ fontSize: 12.5, color: '#5a6875', margin: '0 0 16px', maxWidth: '60ch' }}>
-            Drag a row (or use the arrows) to reorder — everything between its old and new spot shifts to make room.
-            Only the top 8 show on the homepage; the rest are still visible on the full "View All" page, in this
-            order, followed by every product not added here.
-          </p>
+          <p style={{ fontSize: 12.5, color: '#5a6875', margin: '0 0 16px', maxWidth: '60ch' }}>{addedHint}</p>
           <div style={{ border: '1px solid #e3e6ea', borderRadius: 2 }}>
             {added.map((p, i) => (
               <div

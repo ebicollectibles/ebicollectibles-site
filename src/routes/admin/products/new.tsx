@@ -104,6 +104,7 @@ function NewProductPage() {
               compareAtPrice: values.compareAtPrice || null,
               bestSellingRank: values.bestSellingRank || null,
               newAndUpcomingRank: values.newAndUpcomingRank || null,
+              shopSortOrder: values.shopSortOrder || null,
               squareVariationId: values.squareVariationId || null,
               img: values.img || undefined,
               imgTablet: values.imgTablet || undefined,

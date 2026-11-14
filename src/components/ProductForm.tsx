@@ -31,6 +31,10 @@ export interface ProductFormValues {
   // compareAtPrice below.
   bestSellingRank: number
   newAndUpcomingRank: number
+  // Not editable here either — same reasoning as bestSellingRank/
+  // newAndUpcomingRank above, managed via the "Shop Order" drag list
+  // instead. 0 means unranked (converted to null on submit).
+  shopSortOrder: number
   hideFromBestSelling: boolean
   hideFromNewAndUpcoming: boolean
   description: string
@@ -75,6 +79,7 @@ const emptyValues: ProductFormValues = {
   tags: [],
   bestSellingRank: 0,
   newAndUpcomingRank: 0,
+  shopSortOrder: 0,
   hideFromBestSelling: false,
   hideFromNewAndUpcoming: false,
   description: '',

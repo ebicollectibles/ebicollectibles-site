@@ -39,6 +39,7 @@ import { Route as AdminMarketplaceOrdersRouteImport } from './routes/admin/marke
 import { Route as AdminNewAndUpcomingRouteImport } from './routes/admin/new-and-upcoming'
 import { Route as AdminNotifyMeRouteImport } from './routes/admin/notify-me'
 import { Route as AdminSecurityRouteImport } from './routes/admin/security'
+import { Route as AdminShopOrderRouteImport } from './routes/admin/shop-order'
 import { Route as AdminSubscribersRouteImport } from './routes/admin/subscribers'
 import { Route as GoSlugRouteImport } from './routes/go.$slug'
 import { Route as LinksSlugRouteImport } from './routes/links.$slug'
@@ -225,6 +226,11 @@ const AdminNotifyMeRoute = AdminNotifyMeRouteImport.update({
 const AdminSecurityRoute = AdminSecurityRouteImport.update({
   id: '/admin/security',
   path: '/admin/security',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminShopOrderRoute = AdminShopOrderRouteImport.update({
+  id: '/admin/shop-order',
+  path: '/admin/shop-order',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AdminSubscribersRoute = AdminSubscribersRouteImport.update({
@@ -444,6 +450,7 @@ export interface FileRoutesByFullPath {
   '/admin/new-and-upcoming': typeof AdminNewAndUpcomingRoute
   '/admin/notify-me': typeof AdminNotifyMeRoute
   '/admin/security': typeof AdminSecurityRoute
+  '/admin/shop-order': typeof AdminShopOrderRoute
   '/admin/subscribers': typeof AdminSubscribersRoute
   '/go/$slug': typeof GoSlugRoute
   '/links/$slug': typeof LinksSlugRoute
@@ -513,6 +520,7 @@ export interface FileRoutesByTo {
   '/admin/new-and-upcoming': typeof AdminNewAndUpcomingRoute
   '/admin/notify-me': typeof AdminNotifyMeRoute
   '/admin/security': typeof AdminSecurityRoute
+  '/admin/shop-order': typeof AdminShopOrderRoute
   '/admin/subscribers': typeof AdminSubscribersRoute
   '/go/$slug': typeof GoSlugRoute
   '/links/$slug': typeof LinksSlugRoute
@@ -583,6 +591,7 @@ export interface FileRoutesById {
   '/admin/new-and-upcoming': typeof AdminNewAndUpcomingRoute
   '/admin/notify-me': typeof AdminNotifyMeRoute
   '/admin/security': typeof AdminSecurityRoute
+  '/admin/shop-order': typeof AdminShopOrderRoute
   '/admin/subscribers': typeof AdminSubscribersRoute
   '/go/$slug': typeof GoSlugRoute
   '/links/$slug': typeof LinksSlugRoute
@@ -654,6 +663,7 @@ export interface FileRouteTypes {
     | '/admin/new-and-upcoming'
     | '/admin/notify-me'
     | '/admin/security'
+    | '/admin/shop-order'
     | '/admin/subscribers'
     | '/go/$slug'
     | '/links/$slug'
@@ -723,6 +733,7 @@ export interface FileRouteTypes {
     | '/admin/new-and-upcoming'
     | '/admin/notify-me'
     | '/admin/security'
+    | '/admin/shop-order'
     | '/admin/subscribers'
     | '/go/$slug'
     | '/links/$slug'
@@ -792,6 +803,7 @@ export interface FileRouteTypes {
     | '/admin/new-and-upcoming'
     | '/admin/notify-me'
     | '/admin/security'
+    | '/admin/shop-order'
     | '/admin/subscribers'
     | '/go/$slug'
     | '/links/$slug'
@@ -862,6 +874,7 @@ export interface RootRouteChildren {
   AdminNewAndUpcomingRoute: typeof AdminNewAndUpcomingRoute
   AdminNotifyMeRoute: typeof AdminNotifyMeRoute
   AdminSecurityRoute: typeof AdminSecurityRoute
+  AdminShopOrderRoute: typeof AdminShopOrderRoute
   AdminSubscribersRoute: typeof AdminSubscribersRoute
   GoSlugRoute: typeof GoSlugRoute
   LinksSlugRoute: typeof LinksSlugRoute
@@ -1113,6 +1126,13 @@ declare module '@tanstack/react-router' {
       path: '/admin/security'
       fullPath: '/admin/security'
       preLoaderRoute: typeof AdminSecurityRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/shop-order': {
+      id: '/admin/shop-order'
+      path: '/admin/shop-order'
+      fullPath: '/admin/shop-order'
+      preLoaderRoute: typeof AdminShopOrderRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/admin/subscribers': {
@@ -1406,6 +1426,7 @@ const rootRouteChildren: RootRouteChildren = {
   AdminNewAndUpcomingRoute: AdminNewAndUpcomingRoute,
   AdminNotifyMeRoute: AdminNotifyMeRoute,
   AdminSecurityRoute: AdminSecurityRoute,
+  AdminShopOrderRoute: AdminShopOrderRoute,
   AdminSubscribersRoute: AdminSubscribersRoute,
   GoSlugRoute: GoSlugRoute,
   LinksSlugRoute: LinksSlugRoute,
