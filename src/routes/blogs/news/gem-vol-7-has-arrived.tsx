@@ -59,6 +59,15 @@ function GemVol7Post() {
           biggest roster yet at 28 Pokémon. Every pack holds 4 holo cards at a suggested retail price of ¥10 per pack.
         </p>
 
+        <img
+          src={`${R2_IMAGE_HOST}/Chinese/Blog/gem-vol-7/gem-vol-7-booster-pack.webp`}
+          alt="Gem Pack Vol. 7 booster pack with Psyduck on the front"
+          loading="lazy"
+          width={1200}
+          height={2130}
+          style={{ display: 'block', maxWidth: 220, width: '100%', margin: '0 auto 28px', borderRadius: 12, boxShadow: 'var(--shadow)' }}
+        />
+
         <div className="stat-row">
           <div className="stat">
             <div className="stat-num">196</div>
@@ -122,6 +131,18 @@ function GemVol7Post() {
           way to get it.
         </p>
 
+        <img
+          src={`${R2_IMAGE_HOST}/Chinese/Blog/gem-vol-7/gem-vol-7-psyduck-holo-treatments.webp`}
+          alt="Six holo versions of Psyduck from Gem Pack Vol. 7, including the type-pattern, Master Ball, and Gem Pack logo finishes"
+          loading="lazy"
+          width={1600}
+          height={1487}
+          style={{ display: 'block', width: '100%', borderRadius: 12, boxShadow: 'var(--shadow)', marginBottom: 10 }}
+        />
+        <p style={{ fontSize: 13, color: 'var(--slate)', marginTop: 0 }}>
+          All 7 Psyduck versions, including the Master Ball and Gem Pack logo parallel finishes.
+        </p>
+
         <div className="card-strip">
           {[
             { id: '0307', name: "Misty's Psyduck" },
@@ -147,6 +168,20 @@ function GemVol7Post() {
           Crustle, Lycanroc, and Hydrapple — all pulled from the same two source sets, just printed under their plain species names
           rather than a trainer pairing.
         </p>
+
+        <h2>A companion collectible</h2>
+        <p>
+          Alongside the booster packs, a 30-pocket Psyduck binder released the same day for ¥15 — a nice option if you're building
+          out a Trainer's Pokémon display rather than just chasing the full art.
+        </p>
+        <img
+          src={`${R2_IMAGE_HOST}/Chinese/Blog/gem-vol-7/gem-vol-7-psyduck-collector-binder.webp`}
+          alt="Official Gem Pack Vol. 7 Psyduck card binder, 30 pockets"
+          loading="lazy"
+          width={2000}
+          height={1333}
+          style={{ display: 'block', width: '100%', borderRadius: 12, boxShadow: 'var(--shadow)', marginBottom: 28 }}
+        />
 
         <h2>Our take</h2>
         <p>

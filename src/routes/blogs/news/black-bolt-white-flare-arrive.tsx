@@ -81,6 +81,24 @@ function BlackBoltWhiteFlarePost() {
         </div>
 
         <h2>One Pokédex, two mascots</h2>
+        <div style={{ display: 'flex', gap: 16, justifyContent: 'center', alignItems: 'center', margin: '4px 0 24px', flexWrap: 'wrap' }}>
+          <img
+            src={`${R2_IMAGE_HOST}/Chinese/Blog/black-bolt-white-flare/black-bolt-logo.webp`}
+            alt="Black Bolt set logo (黑雷奔流)"
+            loading="lazy"
+            width={588}
+            height={180}
+            style={{ width: 220, height: 'auto' }}
+          />
+          <img
+            src={`${R2_IMAGE_HOST}/Chinese/Blog/black-bolt-white-flare/white-flare-logo.webp`}
+            alt="White Flare set logo (白焰迸涌)"
+            loading="lazy"
+            width={588}
+            height={180}
+            style={{ width: 220, height: 'auto' }}
+          />
+        </div>
         <p>
           Black Bolt and White Flare divide Unova's 156 featured Pokémon (6 of them ex) between two 174-card sets, 78 Pokémon each. Each half gets its
           own legendary mascot: Black Bolt is built around <strong>Zekrom ex</strong>, White Flare around <strong>Reshiram ex</strong> —
@@ -93,6 +111,21 @@ function BlackBoltWhiteFlarePost() {
           Art Rare for every non-ex Pokémon, then a Super Rare and Special Art Rare for each ex Pokémon and two Supporters, capped by
           a single Black White Rare in each set.
         </p>
+
+        <h2>Pack sizes and pricing</h2>
+        <p>
+          Both sets ship in two pack sizes: a ¥10 pack with 5 cards (1 holo) and a ¥50 pack with 20 cards (7 holos). The larger pack
+          carries noticeably better odds at every rarity tier above Common/Uncommon, so it's the better per-card value if you're
+          chasing secret rares specifically.
+        </p>
+        <img
+          src={`${R2_IMAGE_HOST}/Chinese/Blog/black-bolt-white-flare/black-bolt-white-flare-release-poster.webp`}
+          alt="Official Black Bolt and White Flare release poster showing both pack sizes for each set"
+          loading="lazy"
+          width={1080}
+          height={2374}
+          style={{ display: 'block', maxWidth: 320, width: '100%', margin: '0 auto 28px', borderRadius: 12, boxShadow: 'var(--shadow)' }}
+        />
 
         <h2>The chase cards</h2>
         <p>
