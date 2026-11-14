@@ -56,8 +56,7 @@ function GemVol7Post() {
       >
         <p>
           Gem Vol 7 (set code CBB7C) released November 6, 2026 — the seventh entry in the Simplified Chinese Gem Pack series, and the
-          biggest roster yet at 28 Pokémon. Every pack holds 4 holo cards, 18 packs to a box, printed in Japan for the mainland
-          Chinese market.
+          biggest roster yet at 28 Pokémon. Every pack holds 4 holo cards at a suggested retail price of ¥10 per pack.
         </p>
 
         <div className="stat-row">
@@ -100,6 +99,18 @@ function GemVol7Post() {
           English earlier in 2025, reprinted here under new Chinese Gem Pack numbers. We've broken down exactly which Pokémon came
           from which set in a <Link to="/blogs/news/gem-vol-7-card-origins">separate full guide</Link> — short version: the whole Team
           Rocket half of the set traces to Destined Rivals, while N, Hop, Iono, and Lillie's cards trace to Journey Together.
+        </p>
+
+        <img
+          src={`${R2_IMAGE_HOST}/Chinese/Blog/gem-vol-7/gem-vol-7-illustration-rare-lineup.webp`}
+          alt="Six Gem Pack Vol. 7 illustration rares, including Team Rocket's Meowth, Steven's Beldum, and Cynthia's Roserade"
+          loading="lazy"
+          width={1600}
+          height={1487}
+          style={{ display: 'block', width: '100%', borderRadius: 12, boxShadow: 'var(--shadow)', marginBottom: 10 }}
+        />
+        <p style={{ fontSize: 13, color: 'var(--slate)', marginTop: 0 }}>
+          A sample of Gem Vol 7's illustration rares — the trainer-pairing theme runs through most of the set.
         </p>
 
         <h2>

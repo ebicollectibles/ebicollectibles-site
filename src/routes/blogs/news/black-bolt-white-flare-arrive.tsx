@@ -67,8 +67,8 @@ function BlackBoltWhiteFlarePost() {
             <div className="stat-label">Cards in each set</div>
           </div>
           <div className="stat">
-            <div className="stat-num">78</div>
-            <div className="stat-label">Pokémon split across both (6 ex)</div>
+            <div className="stat-num">156</div>
+            <div className="stat-label">Pokémon split across both, 78 each (6 ex)</div>
           </div>
           <div className="stat">
             <div className="stat-num">8</div>
@@ -76,13 +76,13 @@ function BlackBoltWhiteFlarePost() {
           </div>
           <div className="stat">
             <div className="stat-num">2</div>
-            <div className="stat-label">Chinese-exclusive Special Art Rares</div>
+            <div className="stat-label">Special Art Rares, one per set</div>
           </div>
         </div>
 
         <h2>One Pokédex, two mascots</h2>
         <p>
-          Black Bolt and White Flare divide Unova's 78 featured Pokémon (6 of them ex) between two 174-card sets. Each half gets its
+          Black Bolt and White Flare divide Unova's 156 featured Pokémon (6 of them ex) between two 174-card sets, 78 Pokémon each. Each half gets its
           own legendary mascot: Black Bolt is built around <strong>Zekrom ex</strong>, White Flare around <strong>Reshiram ex</strong> —
           the same split used for the English and Japanese printings this spring.
         </p>
@@ -97,16 +97,25 @@ function BlackBoltWhiteFlarePost() {
         <h2>The chase cards</h2>
         <p>
           Each set's Black White Rare is its single rarest pull — Zekrom ex in Black Bolt, Reshiram ex in White Flare, both drawn in
-          the monochrome illustration style unique to this rarity tier. One tier down, each set carries its own Chinese-exclusive
-          Special Art Rare: <strong>N's Plan</strong> in Black Bolt, <strong>Hilda</strong> in White Flare.
+          the monochrome illustration style unique to this rarity tier. One tier down, each set carries its own Special Art Rare:
+          <strong> N's Plan</strong> in Black Bolt, <strong>Hilda</strong> in White Flare.
         </p>
+
+        <img
+          src={`${R2_IMAGE_HOST}/Chinese/Blog/black-bolt-white-flare/zekrom-reshiram-black-white-rare-promo.webp`}
+          alt="Zekrom ex and Reshiram ex Black White Rare cards side by side"
+          loading="lazy"
+          width={1080}
+          height={1509}
+          style={{ display: 'block', maxWidth: 420, width: '100%', margin: '0 auto 28px', borderRadius: 12, boxShadow: 'var(--shadow)' }}
+        />
 
         <div className="card-strip">
           {[
             { set: 'Black Bolt', id: '0174', name: 'Zekrom ex (BWR)' },
             { set: 'White Flare', id: '0174', name: 'Reshiram ex (BWR)' },
-            { set: 'Black Bolt', id: '0173', name: "N's Plan (SAR, exclusive)" },
-            { set: 'White Flare', id: '0173', name: 'Hilda (SAR, exclusive)' },
+            { set: 'Black Bolt', id: '0173', name: "N's Plan (SAR)" },
+            { set: 'White Flare', id: '0173', name: 'Hilda (SAR)' },
             { set: 'Black Bolt', id: '0172', name: 'Genesect ex (SAR)' },
           ].map((c, i) => (
             <div key={i} className="card-strip-item">
@@ -124,7 +133,7 @@ function BlackBoltWhiteFlarePost() {
           ))}
         </div>
 
-        <blockquote className="pull-quote">Two sets, one Pokédex — and only one place to pull N's Plan or Hilda.</blockquote>
+        <blockquote className="pull-quote">Two sets, one Pokédex — anchored by a Black White Rare on each side.</blockquote>
 
         <h2>Why collectors are splitting their budget between both</h2>
         <p>
@@ -137,7 +146,7 @@ function BlackBoltWhiteFlarePost() {
         <p>
           If you collected the English or Japanese versions earlier this year, the card list here will be familiar — this is the
           same set, officially localized, not a new compilation. What's actually new for collectors in the Simplified Chinese market
-          is getting it at all, plus the two region-exclusive Special Art Rares that only exist in this printing.
+          is getting it at all, plus the two Special Art Rares headlining each set's chase list.
         </p>
       </BlogPostLayout>
     </>
