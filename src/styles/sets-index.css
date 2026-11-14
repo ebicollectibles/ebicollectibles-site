@@ -84,7 +84,16 @@
       radial-gradient(120% 100% at 50% 100%, var(--glow-2), transparent 65%),
       var(--hero);
   }
-  .card-art img { width: 64%; max-width: 160px; border-radius: 10px; box-shadow: 0 14px 30px rgb(0 0 0 / .4); display: block; }
+  /* The img's width/height HTML attributes (300x419, added so the browser
+     can reserve this box's space before the image loads, avoiding layout
+     shift) don't match every card's real file — a few sets' images are
+     genuinely a different ratio (e.g. some CSV8 cards are ~320x445-448,
+     not 300x419). Without an explicit height here, the box's height was
+     implicitly driven by that attribute ratio rather than each image's own
+     real one, so object-fit's default ("fill") stretched the picture to
+     match — height: auto plus object-fit: contain makes every image keep
+     its own real proportions no matter which ratio its source file is. */
+  .card-art img { width: 64%; max-width: 160px; height: auto; object-fit: contain; border-radius: 10px; box-shadow: 0 14px 30px rgb(0 0 0 / .4); display: block; }
   .card-preorder {
     position: absolute; top: 10px; left: 10px; font-size: 10px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase;
     color: #fff; background: rgb(0 0 0 / .55); backdrop-filter: blur(2px); padding: 3px 8px; border-radius: 999px;
