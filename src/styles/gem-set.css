@@ -355,16 +355,29 @@
   .lb-dl { display: grid; grid-template-columns: auto 1fr; gap: 6px 18px; margin: 0; font-size: 14px; dt { color: var(--slate); } dd { margin: 0; font-weight: 500; } }
   .sib-h { font-size: 11.5px; letter-spacing: .08em; text-transform: uppercase; color: var(--slate); font-weight: 600; }
   .sibs {
-    display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 6px;
-    button { border: 0; padding: 0; background: none; border-radius: 4px; overflow: hidden; outline-offset: 2px; opacity: .55; transition: opacity .15s; }
+    /* auto-fit, not a flat repeat(7, ...) — a card with only 1-3 other
+       versions (the common case) was getting squeezed into 1/7th of the
+       width regardless, with the rest of the row sitting empty, making
+       the thumbnails tiny. auto-fit collapses the unused tracks instead,
+       so fewer versions means bigger thumbnails, and a set with many
+       versions still packs in tightly the same as before. */
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(60px, 1fr)); gap: 6px;
+    /* aspect-ratio on the BUTTON itself (the actual grid item), not just
+       on the img inside it — a percentage-width img's contribution to an
+       auto-sized grid row can fall back to its own natural file size
+       (not every card's image is the same resolution), which blew some
+       rows up far taller than the others. Fixing the button's own box to
+       this ratio makes every thumbnail the same height regardless of
+       what resolution its particular source file happens to be. */
+    button { aspect-ratio: 300/419; min-width: 0; border: 0; padding: 0; background: none; border-radius: 4px; overflow: hidden; outline-offset: 2px; opacity: .55; transition: opacity .15s; }
     button:hover { opacity: .9; }
     button[aria-current='true'] { opacity: 1; outline: 2px solid var(--ink); }
     /* object-fit: contain, not the default "fill" — not every card's real
        image file is exactly 300x419 (a few sets' cards are a different
-       ratio), and without this the box's fixed aspect-ratio below
-       stretched those into visible distortion instead of just showing
-       them at their own real proportions. */
-    img, .sib-ph { display: block; width: 100%; aspect-ratio: 300/419; object-fit: contain; }
+       ratio), and without this the fixed box above stretched those into
+       visible distortion instead of just showing them at their own real
+       proportions. */
+    img, .sib-ph { display: block; width: 100%; height: 100%; object-fit: contain; }
     .sib-ph { background: var(--surface); }
   }
   .lb-actions { display: flex; gap: 8px; flex-wrap: wrap; margin-top: auto; padding-top: 6px; }
