@@ -76,6 +76,10 @@ import { Route as AdminOrdersIndexRouteImport } from './routes/admin/orders/inde
 import { Route as AdminOrdersIdRouteImport } from './routes/admin/orders/$id'
 import { Route as AdminProductsIdRouteImport } from './routes/admin/products/$id'
 import { Route as AdminProductsNewRouteImport } from './routes/admin/products/new'
+import { Route as BlogsNewsIndexRouteImport } from './routes/blogs/news/index'
+import { Route as BlogsNewsBlackBoltWhiteFlareArriveRouteImport } from './routes/blogs/news/black-bolt-white-flare-arrive'
+import { Route as BlogsNewsGemVol7CardOriginsRouteImport } from './routes/blogs/news/gem-vol-7-card-origins'
+import { Route as BlogsNewsGemVol7HasArrivedRouteImport } from './routes/blogs/news/gem-vol-7-has-arrived'
 import { Route as AdminAffiliatesIdDashboardRouteImport } from './routes/admin/affiliates_.$id.dashboard'
 
 const IndexRoute = IndexRouteImport.update({
@@ -414,6 +418,29 @@ const AdminProductsNewRoute = AdminProductsNewRouteImport.update({
   path: '/admin/products/new',
   getParentRoute: () => rootRouteImport,
 } as any)
+const BlogsNewsIndexRoute = BlogsNewsIndexRouteImport.update({
+  id: '/blogs/news/',
+  path: '/blogs/news/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BlogsNewsBlackBoltWhiteFlareArriveRoute =
+  BlogsNewsBlackBoltWhiteFlareArriveRouteImport.update({
+    id: '/blogs/news/black-bolt-white-flare-arrive',
+    path: '/blogs/news/black-bolt-white-flare-arrive',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const BlogsNewsGemVol7CardOriginsRoute =
+  BlogsNewsGemVol7CardOriginsRouteImport.update({
+    id: '/blogs/news/gem-vol-7-card-origins',
+    path: '/blogs/news/gem-vol-7-card-origins',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const BlogsNewsGemVol7HasArrivedRoute =
+  BlogsNewsGemVol7HasArrivedRouteImport.update({
+    id: '/blogs/news/gem-vol-7-has-arrived',
+    path: '/blogs/news/gem-vol-7-has-arrived',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const AdminAffiliatesIdDashboardRoute =
   AdminAffiliatesIdDashboardRouteImport.update({
     id: '/admin/affiliates_/$id/dashboard',
@@ -486,9 +513,13 @@ export interface FileRoutesByFullPath {
   '/admin/orders/$id': typeof AdminOrdersIdRoute
   '/admin/products/$id': typeof AdminProductsIdRoute
   '/admin/products/new': typeof AdminProductsNewRoute
+  '/blogs/news/black-bolt-white-flare-arrive': typeof BlogsNewsBlackBoltWhiteFlareArriveRoute
+  '/blogs/news/gem-vol-7-card-origins': typeof BlogsNewsGemVol7CardOriginsRoute
+  '/blogs/news/gem-vol-7-has-arrived': typeof BlogsNewsGemVol7HasArrivedRoute
   '/account/orders/': typeof AccountOrdersIndexRoute
   '/admin/customers/': typeof AdminCustomersIndexRoute
   '/admin/orders/': typeof AdminOrdersIndexRoute
+  '/blogs/news/': typeof BlogsNewsIndexRoute
   '/admin/affiliates/$id/dashboard': typeof AdminAffiliatesIdDashboardRoute
 }
 export interface FileRoutesByTo {
@@ -556,9 +587,13 @@ export interface FileRoutesByTo {
   '/admin/orders/$id': typeof AdminOrdersIdRoute
   '/admin/products/$id': typeof AdminProductsIdRoute
   '/admin/products/new': typeof AdminProductsNewRoute
+  '/blogs/news/black-bolt-white-flare-arrive': typeof BlogsNewsBlackBoltWhiteFlareArriveRoute
+  '/blogs/news/gem-vol-7-card-origins': typeof BlogsNewsGemVol7CardOriginsRoute
+  '/blogs/news/gem-vol-7-has-arrived': typeof BlogsNewsGemVol7HasArrivedRoute
   '/account/orders': typeof AccountOrdersIndexRoute
   '/admin/customers': typeof AdminCustomersIndexRoute
   '/admin/orders': typeof AdminOrdersIndexRoute
+  '/blogs/news': typeof BlogsNewsIndexRoute
   '/admin/affiliates/$id/dashboard': typeof AdminAffiliatesIdDashboardRoute
 }
 export interface FileRoutesById {
@@ -627,9 +662,13 @@ export interface FileRoutesById {
   '/admin/orders/$id': typeof AdminOrdersIdRoute
   '/admin/products/$id': typeof AdminProductsIdRoute
   '/admin/products/new': typeof AdminProductsNewRoute
+  '/blogs/news/black-bolt-white-flare-arrive': typeof BlogsNewsBlackBoltWhiteFlareArriveRoute
+  '/blogs/news/gem-vol-7-card-origins': typeof BlogsNewsGemVol7CardOriginsRoute
+  '/blogs/news/gem-vol-7-has-arrived': typeof BlogsNewsGemVol7HasArrivedRoute
   '/account/orders/': typeof AccountOrdersIndexRoute
   '/admin/customers/': typeof AdminCustomersIndexRoute
   '/admin/orders/': typeof AdminOrdersIndexRoute
+  '/blogs/news/': typeof BlogsNewsIndexRoute
   '/admin/affiliates_/$id/dashboard': typeof AdminAffiliatesIdDashboardRoute
 }
 export interface FileRouteTypes {
@@ -699,9 +738,13 @@ export interface FileRouteTypes {
     | '/admin/orders/$id'
     | '/admin/products/$id'
     | '/admin/products/new'
+    | '/blogs/news/black-bolt-white-flare-arrive'
+    | '/blogs/news/gem-vol-7-card-origins'
+    | '/blogs/news/gem-vol-7-has-arrived'
     | '/account/orders/'
     | '/admin/customers/'
     | '/admin/orders/'
+    | '/blogs/news/'
     | '/admin/affiliates/$id/dashboard'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -769,9 +812,13 @@ export interface FileRouteTypes {
     | '/admin/orders/$id'
     | '/admin/products/$id'
     | '/admin/products/new'
+    | '/blogs/news/black-bolt-white-flare-arrive'
+    | '/blogs/news/gem-vol-7-card-origins'
+    | '/blogs/news/gem-vol-7-has-arrived'
     | '/account/orders'
     | '/admin/customers'
     | '/admin/orders'
+    | '/blogs/news'
     | '/admin/affiliates/$id/dashboard'
   id:
     | '__root__'
@@ -839,9 +886,13 @@ export interface FileRouteTypes {
     | '/admin/orders/$id'
     | '/admin/products/$id'
     | '/admin/products/new'
+    | '/blogs/news/black-bolt-white-flare-arrive'
+    | '/blogs/news/gem-vol-7-card-origins'
+    | '/blogs/news/gem-vol-7-has-arrived'
     | '/account/orders/'
     | '/admin/customers/'
     | '/admin/orders/'
+    | '/blogs/news/'
     | '/admin/affiliates_/$id/dashboard'
   fileRoutesById: FileRoutesById
 }
@@ -910,9 +961,13 @@ export interface RootRouteChildren {
   AdminOrdersIdRoute: typeof AdminOrdersIdRoute
   AdminProductsIdRoute: typeof AdminProductsIdRoute
   AdminProductsNewRoute: typeof AdminProductsNewRoute
+  BlogsNewsBlackBoltWhiteFlareArriveRoute: typeof BlogsNewsBlackBoltWhiteFlareArriveRoute
+  BlogsNewsGemVol7CardOriginsRoute: typeof BlogsNewsGemVol7CardOriginsRoute
+  BlogsNewsGemVol7HasArrivedRoute: typeof BlogsNewsGemVol7HasArrivedRoute
   AccountOrdersIndexRoute: typeof AccountOrdersIndexRoute
   AdminCustomersIndexRoute: typeof AdminCustomersIndexRoute
   AdminOrdersIndexRoute: typeof AdminOrdersIndexRoute
+  BlogsNewsIndexRoute: typeof BlogsNewsIndexRoute
   AdminAffiliatesIdDashboardRoute: typeof AdminAffiliatesIdDashboardRoute
 }
 
@@ -1387,6 +1442,34 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminProductsNewRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/blogs/news/': {
+      id: '/blogs/news/'
+      path: '/blogs/news'
+      fullPath: '/blogs/news/'
+      preLoaderRoute: typeof BlogsNewsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blogs/news/black-bolt-white-flare-arrive': {
+      id: '/blogs/news/black-bolt-white-flare-arrive'
+      path: '/blogs/news/black-bolt-white-flare-arrive'
+      fullPath: '/blogs/news/black-bolt-white-flare-arrive'
+      preLoaderRoute: typeof BlogsNewsBlackBoltWhiteFlareArriveRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blogs/news/gem-vol-7-card-origins': {
+      id: '/blogs/news/gem-vol-7-card-origins'
+      path: '/blogs/news/gem-vol-7-card-origins'
+      fullPath: '/blogs/news/gem-vol-7-card-origins'
+      preLoaderRoute: typeof BlogsNewsGemVol7CardOriginsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blogs/news/gem-vol-7-has-arrived': {
+      id: '/blogs/news/gem-vol-7-has-arrived'
+      path: '/blogs/news/gem-vol-7-has-arrived'
+      fullPath: '/blogs/news/gem-vol-7-has-arrived'
+      preLoaderRoute: typeof BlogsNewsGemVol7HasArrivedRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/admin/affiliates_/$id/dashboard': {
       id: '/admin/affiliates_/$id/dashboard'
       path: '/admin/affiliates/$id/dashboard'
@@ -1462,9 +1545,14 @@ const rootRouteChildren: RootRouteChildren = {
   AdminOrdersIdRoute: AdminOrdersIdRoute,
   AdminProductsIdRoute: AdminProductsIdRoute,
   AdminProductsNewRoute: AdminProductsNewRoute,
+  BlogsNewsBlackBoltWhiteFlareArriveRoute:
+    BlogsNewsBlackBoltWhiteFlareArriveRoute,
+  BlogsNewsGemVol7CardOriginsRoute: BlogsNewsGemVol7CardOriginsRoute,
+  BlogsNewsGemVol7HasArrivedRoute: BlogsNewsGemVol7HasArrivedRoute,
   AccountOrdersIndexRoute: AccountOrdersIndexRoute,
   AdminCustomersIndexRoute: AdminCustomersIndexRoute,
   AdminOrdersIndexRoute: AdminOrdersIndexRoute,
+  BlogsNewsIndexRoute: BlogsNewsIndexRoute,
   AdminAffiliatesIdDashboardRoute: AdminAffiliatesIdDashboardRoute,
 }
 export const routeTree = rootRouteImport

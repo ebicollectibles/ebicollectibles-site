@@ -77,6 +77,7 @@ export function Footer() {
             Help
           </div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 9, marginTop: 14, fontSize: 13 }}>
+            <Link to="/blogs/news">News</Link>
             <Link to="/shipping-policy">Shipping policy</Link>
             <Link to="/refund-policy">Refund policy</Link>
             <Link to="/privacy">Privacy policy</Link>
