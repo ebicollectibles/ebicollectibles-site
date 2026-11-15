@@ -209,7 +209,7 @@ function GemVol2OriginsPost() {
 
         <h2 id="full-map">The full card-by-card map</h2>
         <p>Every Gem Vol 2 Pokémon, with the English card behind each of its artworks and the illustrator credited on it.</p>
-        <div className="table-scroll">
+        <div className="table-scroll table-wide">
           <table className="data-table origins-table origins-wide">
             <thead>
               <tr>

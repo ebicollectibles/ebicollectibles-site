@@ -215,6 +215,7 @@
   .origins-table td { vertical-align: top; }
   .origins-table .cell-none { color: var(--slate); font-size: 13px; }
   .origins-wide { min-width: 760px; }
+  &.is-wide .prose > .table-wide { max-width: 980px; }
   .prose .table-note, &.is-wide .prose .table-note { font-size: 13px; color: var(--slate); margin-bottom: 8px; }
   .data-table tbody th { white-space: nowrap; }
   @media (max-width: 560px) {
