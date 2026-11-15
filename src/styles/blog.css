@@ -147,7 +147,7 @@
      run is visible at once on phones as well as desktop. */
   .card-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(132px, 1fr)); gap: 18px 14px; margin: 24px 0 30px; }
   .card-grid figure { margin: 0; }
-  .card-grid img { display: block; width: 100%; aspect-ratio: 300/419; object-fit: contain; border-radius: 6px; box-shadow: var(--shadow); background: var(--surface); }
+  .card-grid img { display: block; width: 100%; height: auto; aspect-ratio: 300/419; object-fit: contain; border-radius: 6px; box-shadow: var(--shadow); background: var(--surface); }
   .card-grid figcaption { margin-top: 8px; font-size: 12px; line-height: 1.35; color: var(--slate); text-align: center; }
   .card-grid figcaption strong { display: block; color: var(--ink); font-weight: 700; font-size: 12.5px; }
   .card-grid.cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
