@@ -5,7 +5,7 @@ import { BlogPostLayout } from '~/components/blog/BlogPostLayout'
 import { safeJsonLd } from '~/lib/gem-sets/head'
 import { R2_IMAGE_HOST, SITE_URL } from '~/lib/gem-sets/constants'
 
-const post = BLOG_POSTS.find((p) => p.slug === 'brilliant-fantasy-has-arrived')!
+const post = BLOG_POSTS.find((p) => p.slug === 'brilliant-fantasy-release-news')!
 
 const cardImg = (n: string) => `${R2_IMAGE_HOST}/Chinese/Brilliant%20Fantasy/Cards/0${n}.webp`
 
@@ -109,7 +109,7 @@ const FAQ = [
   },
 ]
 
-export const Route = createFileRoute('/blog/brilliant-fantasy-has-arrived')({
+export const Route = createFileRoute('/blog/brilliant-fantasy-release-news')({
   head: () => ({
     meta: [
       { title: `${post.title} | EBI Collectibles` },

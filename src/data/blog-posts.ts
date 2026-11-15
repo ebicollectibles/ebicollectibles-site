@@ -6,7 +6,7 @@
 // the post itself.
 import { SITE_URL, R2_IMAGE_HOST } from '~/lib/gem-sets/constants'
 
-export type BlogPostSlug = 'gem-vol-7-has-arrived' | 'black-bolt-white-flare-arrive' | 'gem-vol-7-card-origins' | 'gem-vol-6-has-arrived' | 'gem-vol-6-set-guide' | 'gem-vol-6-card-origins' | 'gem-vol-5-has-arrived' | 'gem-vol-5-set-guide' | 'gem-vol-5-card-origins' | 'gem-vol-4-has-arrived' | 'gem-vol-4-set-guide' | 'gem-vol-4-card-origins' | 'gem-vol-3-has-arrived' | 'gem-vol-3-set-guide' | 'gem-vol-3-card-origins' | 'gem-vol-2-has-arrived' | 'gem-vol-2-set-guide' | 'gem-vol-2-card-origins' | '30th-celebration-has-arrived' | '30th-celebration-set-guide' | '30th-celebration-card-origins' | 'chasing-glory-has-arrived' | 'chasing-glory-set-guide' | 'chasing-glory-card-origins' | 'terastal-gathering-has-arrived' | 'terastal-gathering-set-guide' | 'terastal-gathering-card-origins' | 'reward-round-has-arrived' | 'reward-round-set-guide' | 'reward-round-card-origins' | 'black-crystal-blaze-has-arrived' | 'black-crystal-blaze-set-guide' | 'black-crystal-blaze-card-origins' | 'black-bolt-set-guide' | 'black-bolt-card-origins' | 'white-flare-set-guide' | 'white-flare-card-origins' | 'true-mystery-has-arrived' | 'true-mystery-set-guide' | 'true-mystery-card-origins' | 'blade-awakening-has-arrived' | 'blade-awakening-set-guide' | 'blade-awakening-card-origins' | 'brilliant-fantasy-has-arrived' | 'brilliant-fantasy-set-guide' | 'brilliant-fantasy-card-origins' | 'stellar-crystal-has-arrived' | 'stellar-crystal-set-guide' | 'stellar-crystal-card-origins' | 'pikachu-dream-painting-figures-have-arrived' | 'funism-ditto-palm-size-wonders-has-arrived'
+export type BlogPostSlug = 'gem-vol-7-release-news' | 'black-bolt-white-flare-release-news' | 'gem-vol-7-card-origins' | 'gem-vol-6-release-news' | 'gem-vol-6-set-guide' | 'gem-vol-6-card-origins' | 'gem-vol-5-release-news' | 'gem-vol-5-set-guide' | 'gem-vol-5-card-origins' | 'gem-vol-4-release-news' | 'gem-vol-4-set-guide' | 'gem-vol-4-card-origins' | 'gem-vol-3-release-news' | 'gem-vol-3-set-guide' | 'gem-vol-3-card-origins' | 'gem-vol-2-release-news' | 'gem-vol-2-set-guide' | 'gem-vol-2-card-origins' | '30th-celebration-release-news' | '30th-celebration-set-guide' | '30th-celebration-card-origins' | 'chasing-glory-release-news' | 'chasing-glory-set-guide' | 'chasing-glory-card-origins' | 'terastal-gathering-release-news' | 'terastal-gathering-set-guide' | 'terastal-gathering-card-origins' | 'reward-round-release-news' | 'reward-round-set-guide' | 'reward-round-card-origins' | 'black-crystal-blaze-release-news' | 'black-crystal-blaze-set-guide' | 'black-crystal-blaze-card-origins' | 'black-bolt-set-guide' | 'black-bolt-card-origins' | 'white-flare-set-guide' | 'white-flare-card-origins' | 'true-mystery-release-news' | 'true-mystery-set-guide' | 'true-mystery-card-origins' | 'blade-awakening-release-news' | 'blade-awakening-set-guide' | 'blade-awakening-card-origins' | 'brilliant-fantasy-release-news' | 'brilliant-fantasy-set-guide' | 'brilliant-fantasy-card-origins' | 'stellar-crystal-release-news' | 'stellar-crystal-set-guide' | 'stellar-crystal-card-origins' | 'pikachu-dream-painting-figures-release-news' | 'funism-ditto-palm-size-wonders-release-news'
 
 export interface BlogPostSummary {
   slug: BlogPostSlug
@@ -23,8 +23,8 @@ export interface BlogPostSummary {
 
 export const BLOG_POSTS: BlogPostSummary[] = [
   {
-    slug: 'true-mystery-has-arrived',
-    path: '/blog/true-mystery-has-arrived',
+    slug: 'true-mystery-release-news',
+    path: '/blog/true-mystery-release-news',
     title: 'True Mystery Is Here: Iron Valiant, Roaring Moon and a Chinese-Only Iron Hands ex SAR',
     excerpt:
       'The CSV6C set brings the Paradox Pokémon to Simplified Chinese, with Iron Valiant on the pack, slim and jumbo boxes, and an Iron Hands ex Special Art Rare you can only pull in Chinese.',
@@ -62,8 +62,8 @@ export const BLOG_POSTS: BlogPostSummary[] = [
     glow2: 'rgb(110 60 150 / .35)',
   },
   {
-    slug: 'blade-awakening-has-arrived',
-    path: '/blog/blade-awakening-has-arrived',
+    slug: 'blade-awakening-release-news',
+    path: '/blog/blade-awakening-release-news',
     title: "Blade Awakening Is Here: Tera Greninja ex, ACE SPEC Cards and a Chinese-Only Ciphermaniac SAR",
     excerpt:
       "The CSV7C set puts Tera Greninja ex on the pack, adds nine ACE SPEC cards, and includes a Ciphermaniac's Codebreaking Special Art Rare made just for Simplified Chinese.",
@@ -101,8 +101,8 @@ export const BLOG_POSTS: BlogPostSummary[] = [
     glow2: 'rgb(30 80 160 / .35)',
   },
   {
-    slug: 'brilliant-fantasy-has-arrived',
-    path: '/blog/brilliant-fantasy-has-arrived',
+    slug: 'brilliant-fantasy-release-news',
+    path: '/blog/brilliant-fantasy-release-news',
     title: 'Brilliant Fantasy Is Here: Milotic, Every Ogerpon Mask and a Chinese-Only Carmine SAR',
     excerpt:
       'Milotic takes the pack of the Kitakami set, with all four Ogerpon ex, the Loyal Three and Pecharunt ex, and a Carmine Special Art Rare you can only pull in Simplified Chinese.',
@@ -140,8 +140,8 @@ export const BLOG_POSTS: BlogPostSummary[] = [
     glow2: 'rgb(64 155 148 / .25)',
   },
   {
-    slug: 'stellar-crystal-has-arrived',
-    path: '/blog/stellar-crystal-has-arrived',
+    slug: 'stellar-crystal-release-news',
+    path: '/blog/stellar-crystal-release-news',
     title: "Stellar Crystal Is Here: Stellar Tera Pikachu ex and a Chinese-Only Lisia's Appeal SAR",
     excerpt:
       "Stellar Tera Pikachu takes the pack of the Terapagos set, with Pikachu ex at four rarities and a Lisia's Appeal Special Art Rare you can only pull in Simplified Chinese.",
@@ -180,8 +180,8 @@ export const BLOG_POSTS: BlogPostSummary[] = [
   },
 
   {
-    slug: 'pikachu-dream-painting-figures-have-arrived',
-    path: '/blog/pikachu-dream-painting-figures-have-arrived',
+    slug: 'pikachu-dream-painting-figures-release-news',
+    path: '/blog/pikachu-dream-painting-figures-release-news',
     title: 'Dream Painting Pikachu Figures Are Here: 12 Cards Come to Life, Plus a Secret',
     excerpt:
       'Twelve 30th Celebration Pikachu cards turned into figures that step out of their own card, each with the card, a stand and a booster pack, and a secret classic Pikachu in 1 box out of 144.',
@@ -193,8 +193,8 @@ export const BLOG_POSTS: BlogPostSummary[] = [
     glow2: 'rgb(222 185 97 / .25)',
   },
   {
-    slug: 'funism-ditto-palm-size-wonders-has-arrived',
-    path: '/blog/funism-ditto-palm-size-wonders-has-arrived',
+    slug: 'funism-ditto-palm-size-wonders-release-news',
+    path: '/blog/funism-ditto-palm-size-wonders-release-news',
     title: 'Funism Happy Ditto Is Here: 12 Transformations, 3 Figures a Box',
     excerpt:
       'Funism’s Palm-Size Wonders Happy Ditto blind box: Ditto copies 12 Pokémon but keeps its own face, three figures to a Ditto-shaped box, and no secret announced.',
@@ -258,8 +258,8 @@ export const BLOG_POSTS: BlogPostSummary[] = [
     glow2: 'rgb(80 43 39 / .30)',
   },
   {
-    slug: 'black-crystal-blaze-has-arrived',
-    path: '/blog/black-crystal-blaze-has-arrived',
+    slug: 'black-crystal-blaze-release-news',
+    path: '/blog/black-crystal-blaze-release-news',
     title: 'Black Crystal Blaze Is Here: Darkness Tera Charizard ex and a Chinese-Only Larry SAR',
     excerpt:
       'The fifth Chinese Scarlet & Violet set puts Darkness Tera Charizard ex on the pack, with a Larry Special Art Rare and a gold Defiance Band you can only pull in Simplified Chinese.',
@@ -297,8 +297,8 @@ export const BLOG_POSTS: BlogPostSummary[] = [
     glow2: 'rgb(120 30 40 / .35)',
   },
   {
-    slug: 'reward-round-has-arrived',
-    path: '/blog/reward-round-has-arrived',
+    slug: 'reward-round-release-news',
+    path: '/blog/reward-round-release-news',
     title: 'Reward Round Is Here: Gold Gholdengo and Two Chinese-Only SARs',
     excerpt:
       'The fourth Chinese Scarlet & Violet set puts Gholdengo on the pack, with a gold Gholdengo ex, a Maushold ex SAR and a Rika SAR you can only pull in Simplified Chinese.',
@@ -336,8 +336,8 @@ export const BLOG_POSTS: BlogPostSummary[] = [
     glow2: 'rgb(179 130 68 / .30)',
   },
   {
-    slug: 'terastal-gathering-has-arrived',
-    path: '/blog/terastal-gathering-has-arrived',
+    slug: 'terastal-gathering-release-news',
+    path: '/blog/terastal-gathering-release-news',
     title: 'Terastal Gathering Is Here: Stellar Eeveelutions and a Second Sylveon ex SAR',
     excerpt:
       'China\'s take on Prismatic Evolutions: Eevee and all eight Eeveelutions as Stellar Tera ex, 259 cards in 10-card packs, and a Sylveon ex Special Art Rare you will not find in English.',
@@ -375,8 +375,8 @@ export const BLOG_POSTS: BlogPostSummary[] = [
     glow2: 'rgb(216 123 115 / .25)',
   },
   {
-    slug: 'chasing-glory-has-arrived',
-    path: '/blog/chasing-glory-has-arrived',
+    slug: 'chasing-glory-release-news',
+    path: '/blog/chasing-glory-release-news',
     title: 'Chasing Glory Is Here: Trainer\'s Pokémon in Slim and Jumbo Packs',
     excerpt:
       'The main CSV10 set brings Trainer\'s Pokémon to Simplified Chinese: 287 cards led by Team Rocket, a Chinese-exclusive Brock SAR, and two pack sizes with different odds.',
@@ -414,8 +414,8 @@ export const BLOG_POSTS: BlogPostSummary[] = [
     glow2: 'rgb(173 49 26 / .30)',
   },
   {
-    slug: '30th-celebration-has-arrived',
-    path: '/blog/30th-celebration-has-arrived',
+    slug: '30th-celebration-release-news',
+    path: '/blog/30th-celebration-release-news',
     title: '30th Celebration Is Here: 30 Pikachu, Futuristic Rares and 30 Classic Cards',
     excerpt:
       'The Pokémon TCG\'s 30th anniversary set: a Pikachu in every pack, the new Futuristic Rare, and 30 famous cards from 1999 to 2023 back in their original frames.',
@@ -453,8 +453,8 @@ export const BLOG_POSTS: BlogPostSummary[] = [
     glow2: 'rgb(90 45 5 / .40)',
   },
   {
-    slug: 'gem-vol-7-has-arrived',
-    path: '/blog/gem-vol-7-has-arrived',
+    slug: 'gem-vol-7-release-news',
+    path: '/blog/gem-vol-7-release-news',
     title: "Gem Vol 7 Is Here: Misty's Psyduck Leads a Trainer-Paired Lineup",
     excerpt:
       "The seventh Simplified Chinese Gem Pack: 196 all-holo cards, 28 Pokémon with seven versions each, and a brand-new Misty's Psyduck full art you can only pull here.",
@@ -466,8 +466,8 @@ export const BLOG_POSTS: BlogPostSummary[] = [
     glow2: 'rgb(58 110 165 / .25)',
   },
   {
-    slug: 'gem-vol-6-has-arrived',
-    path: '/blog/gem-vol-6-has-arrived',
+    slug: 'gem-vol-6-release-news',
+    path: '/blog/gem-vol-6-release-news',
     title: 'Gem Vol 6 Is Here: Applin Leads an Orchard of Holos',
     excerpt:
       'The sixth Simplified Chinese Gem Pack: 196 all-holo cards, 28 Pokémon with seven versions each, the whole apple family, and an Applin full art you can only pull here.',
@@ -505,8 +505,8 @@ export const BLOG_POSTS: BlogPostSummary[] = [
     glow2: 'rgb(199 22 116 / .22)',
   },
   {
-    slug: 'gem-vol-5-has-arrived',
-    path: '/blog/gem-vol-5-has-arrived',
+    slug: 'gem-vol-5-release-news',
+    path: '/blog/gem-vol-5-release-news',
     title: 'Gem Vol 5 Is Here: Pokémon Horizons Sets Sail in the Gem Pack',
     excerpt:
       'The fifth Simplified Chinese Gem Pack: 196 all-holo cards, 28 Pokémon with seven versions each, and four Pokémon Horizons full arts led by Captain Pikachu.',
@@ -544,8 +544,8 @@ export const BLOG_POSTS: BlogPostSummary[] = [
     glow2: 'rgb(199 22 116 / .26)',
   },
   {
-    slug: 'gem-vol-4-has-arrived',
-    path: '/blog/gem-vol-4-has-arrived',
+    slug: 'gem-vol-4-release-news',
+    path: '/blog/gem-vol-4-release-news',
     title: 'Gem Vol 4 Is Here: Ponyta Gallops In for the Year of the Horse',
     excerpt:
       'The fourth Simplified Chinese Gem Pack: 196 all-holo cards, 28 Pokémon with seven versions each, and a sunset meadow Ponyta full art you can only pull here.',
@@ -583,8 +583,8 @@ export const BLOG_POSTS: BlogPostSummary[] = [
     glow2: 'rgb(199 22 116 / .26)',
   },
   {
-    slug: 'gem-vol-3-has-arrived',
-    path: '/blog/gem-vol-3-has-arrived',
+    slug: 'gem-vol-3-release-news',
+    path: '/blog/gem-vol-3-release-news',
     title: 'Gem Vol 3 Is Here: Gengar Leads a Night Out in the Gem Pack',
     excerpt:
       'The third Simplified Chinese Gem Pack: 136 all-holo cards of night-time Pokémon, nine Pokémon ex, and five new lantern-lit full arts you can only pull here.',
@@ -622,8 +622,8 @@ export const BLOG_POSTS: BlogPostSummary[] = [
     glow2: 'rgb(102 63 90 / .32)',
   },
   {
-    slug: 'gem-vol-2-has-arrived',
-    path: '/blog/gem-vol-2-has-arrived',
+    slug: 'gem-vol-2-release-news',
+    path: '/blog/gem-vol-2-release-news',
     title: 'Gem Vol 2 Is Here: Eevee and Friends, With Four Full Arts That Form One Scene',
     excerpt:
       'The second Simplified Chinese Gem Pack: 140 all-holo cards across Eevee and all eight Eeveelutions, a V and VMAX for each, and four exclusive full arts that join into one forest scene.',
@@ -661,8 +661,8 @@ export const BLOG_POSTS: BlogPostSummary[] = [
     glow2: 'rgb(199 22 116 / .26)',
   },
   {
-    slug: 'black-bolt-white-flare-arrive',
-    path: '/blog/black-bolt-white-flare-arrive',
+    slug: 'black-bolt-white-flare-release-news',
+    path: '/blog/black-bolt-white-flare-release-news',
     title: 'Black Bolt and White Flare Arrive Together: Zekrom ex and Reshiram ex Split Unova',
     excerpt:
       'Two Simplified Chinese Scarlet & Violet sets out on the same day, with 174 cards each and a Black White Rare of Zekrom ex or Reshiram ex as the top pull.',

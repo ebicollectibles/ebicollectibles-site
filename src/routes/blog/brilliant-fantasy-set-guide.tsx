@@ -179,7 +179,7 @@ function BrilliantFantasySetGuide() {
       >
         <p>
           Brilliant Fantasy (CSV8C) is the Kitakami set: 264 cards with Milotic on the pack, every Ogerpon mask, and one Chinese
-          exclusive, sold in slim and jumbo packs. Our <Link to="/blog/brilliant-fantasy-has-arrived">release post</Link> covers
+          exclusive, sold in slim and jumbo packs. Our <Link to="/blog/brilliant-fantasy-release-news">release post</Link> covers
           what is new, and our <Link to="/blog/brilliant-fantasy-card-origins">card origins guide</Link> traces every card to its
           English printing. Use this one to pick a box, sort your pulls or plan a master set.
         </p>

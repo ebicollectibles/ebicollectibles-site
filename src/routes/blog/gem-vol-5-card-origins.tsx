@@ -251,7 +251,7 @@ function GemVol5OriginsPost() {
           English original by the illustrator printed on the card, and when two cards were close, we put them side by side.
         </p>
         <p>
-          For more on the set itself, see our <Link to="/blog/gem-vol-5-has-arrived">Gem Vol 5 release post</Link> and the{' '}
+          For more on the set itself, see our <Link to="/blog/gem-vol-5-release-news">Gem Vol 5 release post</Link> and the{' '}
           <Link to="/blog/gem-vol-5-set-guide">Gem Vol 5 set guide</Link>.
         </p>
 

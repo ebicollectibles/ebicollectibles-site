@@ -130,7 +130,7 @@ function GemVol5SetGuide() {
       >
         <p>
           Gem Pack Vol. 5 (CBB5C) is the Pokémon Horizons set: 196 holo cards, 28 Pokémon with seven versions each, and four full arts
-          starring the Rising Volt Tacklers. Our <Link to="/blog/gem-vol-5-has-arrived">release post</Link> covers what is new in the set, and our{' '}
+          starring the Rising Volt Tacklers. Our <Link to="/blog/gem-vol-5-release-news">release post</Link> covers what is new in the set, and our{' '}
           <Link to="/blog/gem-vol-5-card-origins">card origins guide</Link> traces every illustration back to its English card.
           Use this one to sort your pulls or plan a master set.
         </p>

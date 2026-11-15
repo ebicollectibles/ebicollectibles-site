@@ -295,7 +295,7 @@ function ThirtiethOriginsPost() {
           and put the two side by side to be sure.
         </p>
         <p>
-          For more on the set itself, see our <Link to="/blog/30th-celebration-has-arrived">30th Celebration release post</Link>{' '}
+          For more on the set itself, see our <Link to="/blog/30th-celebration-release-news">30th Celebration release post</Link>{' '}
           and the <Link to="/blog/30th-celebration-set-guide">30th Celebration set guide</Link>.
         </p>
 

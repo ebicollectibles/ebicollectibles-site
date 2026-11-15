@@ -255,7 +255,7 @@ function GemVol4OriginsPost() {
           English original by the illustrator printed on the card, and when two cards were close, we put them side by side.
         </p>
         <p>
-          For more on the set itself, see our <Link to="/blog/gem-vol-4-has-arrived">Gem Vol 4 release post</Link> and the{' '}
+          For more on the set itself, see our <Link to="/blog/gem-vol-4-release-news">Gem Vol 4 release post</Link> and the{' '}
           <Link to="/blog/gem-vol-4-set-guide">Gem Vol 4 set guide</Link>.
         </p>
 

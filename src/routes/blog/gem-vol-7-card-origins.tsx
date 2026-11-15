@@ -136,7 +136,7 @@ function GemVol7OriginsPost() {
           body: 'See every card in the set, or read our release post for the Psyduck full art and the Trainer lineup.',
           links: [
             { to: '/sets/gem-vol-7', label: 'Browse the card list' },
-            { to: '/blog/gem-vol-7-has-arrived', label: 'Read the release post', variant: 'ghost' },
+            { to: '/blog/gem-vol-7-release-news', label: 'Read the release post', variant: 'ghost' },
           ],
         }}
       >
@@ -265,7 +265,7 @@ function GemVol7OriginsPost() {
           English original by the illustrator printed on the card, and when two cards were close, we put them side by side.
         </p>
         <p>
-          For more on the set itself, see our <Link to="/blog/gem-vol-7-has-arrived">Gem Vol 7 release post</Link>. Collecting
+          For more on the set itself, see our <Link to="/blog/gem-vol-7-release-news">Gem Vol 7 release post</Link>. Collecting
           the previous volume too? Our <Link to="/blog/gem-vol-6-card-origins">Gem Vol 6 card origins guide</Link> does the
           same for the Applin set.
         </p>

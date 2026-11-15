@@ -182,7 +182,7 @@ function BladeAwakeningSetGuide() {
         <p>
           Blade Awakening (CSV7C) is the Tera Greninja ex set: 259 cards, nine ACE SPEC cards, a Ciphermaniac's Codebreaking Special
           Art Rare only in Chinese, and slim and jumbo boxes with their own odds. Our{' '}
-          <Link to="/blog/blade-awakening-has-arrived">release post</Link> covers what is new, and our{' '}
+          <Link to="/blog/blade-awakening-release-news">release post</Link> covers what is new, and our{' '}
           <Link to="/blog/blade-awakening-card-origins">card origins guide</Link> matches every card to English. Use this one to
           pick a box, sort your pulls or plan a master set.
         </p>

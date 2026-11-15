@@ -5,7 +5,7 @@ import { BlogPostLayout } from '~/components/blog/BlogPostLayout'
 import { safeJsonLd } from '~/lib/gem-sets/head'
 import { R2_IMAGE_HOST, SITE_URL } from '~/lib/gem-sets/constants'
 
-const post = BLOG_POSTS.find((p) => p.slug === 'gem-vol-2-has-arrived')!
+const post = BLOG_POSTS.find((p) => p.slug === 'gem-vol-2-release-news')!
 
 const cardImg = (id: string) => `${R2_IMAGE_HOST}/Chinese/Gem%202/Cards/${id}.webp`
 
@@ -89,7 +89,7 @@ const FAQ = [
   },
 ]
 
-export const Route = createFileRoute('/blog/gem-vol-2-has-arrived')({
+export const Route = createFileRoute('/blog/gem-vol-2-release-news')({
   head: () => ({
     meta: [
       { title: `${post.title} | EBI Collectibles` },

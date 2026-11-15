@@ -5,7 +5,7 @@ import { BlogPostLayout } from '~/components/blog/BlogPostLayout'
 import { safeJsonLd } from '~/lib/gem-sets/head'
 import { R2_IMAGE_HOST, SITE_URL } from '~/lib/gem-sets/constants'
 
-const post = BLOG_POSTS.find((p) => p.slug === 'funism-ditto-palm-size-wonders-has-arrived')!
+const post = BLOG_POSTS.find((p) => p.slug === 'funism-ditto-palm-size-wonders-release-news')!
 
 const PHOTO = `${R2_IMAGE_HOST}/Chinese/Funism%20Ditto%20Blind%20Box`
 const figImg = (slug: string) => `${SITE_URL}/assets/blog/ditto-figure-${slug}.webp`
@@ -57,7 +57,7 @@ const FAQ = [
   },
 ]
 
-export const Route = createFileRoute('/blog/funism-ditto-palm-size-wonders-has-arrived')({
+export const Route = createFileRoute('/blog/funism-ditto-palm-size-wonders-release-news')({
   head: () => ({
     meta: [
       { title: `${post.title} | EBI Collectibles` },

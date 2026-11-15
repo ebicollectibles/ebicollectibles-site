@@ -161,7 +161,7 @@ function ThirtiethSetGuide() {
       >
         <p>
           30th Celebration (30thC) is the Pokémon TCG's 30th anniversary set: 165 holo cards with a Pikachu in every pack. Our{' '}
-          <Link to="/blog/30th-celebration-has-arrived">release post</Link> covers what is new in the set, and our{' '}
+          <Link to="/blog/30th-celebration-release-news">release post</Link> covers what is new in the set, and our{' '}
           <Link to="/blog/30th-celebration-card-origins">card origins guide</Link> traces the 30 classic cards back to their
           originals. Use this one to sort your pulls or plan a master set.
         </p>

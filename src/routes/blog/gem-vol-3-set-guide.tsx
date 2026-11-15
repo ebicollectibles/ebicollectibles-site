@@ -168,7 +168,7 @@ function GemVol3SetGuide() {
       >
         <p>
           Gem Pack Vol. 3 (CBB3C) is the night-town set: 136 holo cards, 18 Pokémon with seven versions each, and a block of Trainer and
-          Energy cards. Our <Link to="/blog/gem-vol-3-has-arrived">release post</Link> covers what is new in the set, and our{' '}
+          Energy cards. Our <Link to="/blog/gem-vol-3-release-news">release post</Link> covers what is new in the set, and our{' '}
           <Link to="/blog/gem-vol-3-card-origins">card origins guide</Link> traces every artwork back to its English card. Use
           this one to sort your pulls or plan a master set.
         </p>

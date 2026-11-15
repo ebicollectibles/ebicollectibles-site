@@ -130,7 +130,7 @@ function GemVol4SetGuide() {
       >
         <p>
           Gem Pack Vol. 4 (CBB4C) is the Ponyta set: 196 holo cards, 28 Pokémon with seven versions each, and a Year of the Horse theme to
-          match. Our <Link to="/blog/gem-vol-4-has-arrived">release post</Link> covers what is new in the set, and our{' '}
+          match. Our <Link to="/blog/gem-vol-4-release-news">release post</Link> covers what is new in the set, and our{' '}
           <Link to="/blog/gem-vol-4-card-origins">card origins guide</Link> traces every illustration back to its English card.
           Use this one to sort your pulls or plan a master set.
         </p>

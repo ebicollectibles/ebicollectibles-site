@@ -186,7 +186,7 @@ function ChasingGlorySetGuide() {
       >
         <p>
           Chasing Glory (CSV10C) is the Trainer's Pokémon set: 287 cards led by Team Rocket, sold in slim and jumbo packs. Our{' '}
-          <Link to="/blog/chasing-glory-has-arrived">release post</Link> covers what is new, and our{' '}
+          <Link to="/blog/chasing-glory-release-news">release post</Link> covers what is new, and our{' '}
           <Link to="/blog/chasing-glory-card-origins">card origins guide</Link> traces every card to its English printing. Use
           this one to pick a box, sort your pulls or plan a master set.
         </p>

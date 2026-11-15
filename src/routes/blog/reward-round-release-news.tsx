@@ -5,7 +5,7 @@ import { BlogPostLayout } from '~/components/blog/BlogPostLayout'
 import { safeJsonLd } from '~/lib/gem-sets/head'
 import { R2_IMAGE_HOST, SITE_URL } from '~/lib/gem-sets/constants'
 
-const post = BLOG_POSTS.find((p) => p.slug === 'reward-round-has-arrived')!
+const post = BLOG_POSTS.find((p) => p.slug === 'reward-round-release-news')!
 
 const cardImg = (n: string) => `${R2_IMAGE_HOST}/Chinese/Reward%20Round%20CSV4/Cards/0${n}.webp`
 
@@ -99,7 +99,7 @@ const FAQ = [
   },
 ]
 
-export const Route = createFileRoute('/blog/reward-round-has-arrived')({
+export const Route = createFileRoute('/blog/reward-round-release-news')({
   head: () => ({
     meta: [
       { title: `${post.title} | EBI Collectibles` },

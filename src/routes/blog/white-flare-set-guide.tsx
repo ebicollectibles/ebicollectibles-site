@@ -160,7 +160,7 @@ function WhiteFlareSetGuide() {
       >
         <p>
           White Flare (CSV10.6C) is the Reshiram half of the Unova pair: 174 cards, a Chinese-exclusive Hilda Special Art Rare, and slim
-          and jumbo boxes with their own odds. Our <Link to="/blog/black-bolt-white-flare-arrive">release post</Link> covers both
+          and jumbo boxes with their own odds. Our <Link to="/blog/black-bolt-white-flare-release-news">release post</Link> covers both
           sets, and our <Link to="/blog/white-flare-card-origins">card origins guide</Link> matches every card to English. Use this
           one to pick a box, sort your pulls or plan a master set.
         </p>

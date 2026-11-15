@@ -5,9 +5,9 @@ import { BlogPostLayout } from '~/components/blog/BlogPostLayout'
 import { safeJsonLd } from '~/lib/gem-sets/head'
 import { R2_IMAGE_HOST } from '~/lib/gem-sets/constants'
 
-const post = BLOG_POSTS.find((p) => p.slug === 'black-bolt-white-flare-arrive')!
+const post = BLOG_POSTS.find((p) => p.slug === 'black-bolt-white-flare-release-news')!
 
-export const Route = createFileRoute('/blog/black-bolt-white-flare-arrive')({
+export const Route = createFileRoute('/blog/black-bolt-white-flare-release-news')({
   head: () => ({
     meta: [
       { title: `${post.title} | EBI Collectibles` },

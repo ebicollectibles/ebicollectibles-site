@@ -147,7 +147,7 @@ function TrueMysterySetGuide() {
       >
         <p>
           True Mystery (CSV6C) is the Paradox set: 163 cards, an Iron Hands ex Special Art Rare only in Chinese, and slim and jumbo
-          boxes. Our <Link to="/blog/true-mystery-has-arrived">release post</Link> covers what is new, and our{' '}
+          boxes. Our <Link to="/blog/true-mystery-release-news">release post</Link> covers what is new, and our{' '}
           <Link to="/blog/true-mystery-card-origins">card origins guide</Link> matches every card to English. Use this one to sort
           your pulls or plan the full set.
         </p>

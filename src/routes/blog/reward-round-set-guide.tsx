@@ -156,7 +156,7 @@ function RewardRoundSetGuide() {
       >
         <p>
           Reward Round (CSV4C) is the Gholdengo set: 165 cards, three Chinese exclusives, and slim and jumbo packs. Our{' '}
-          <Link to="/blog/reward-round-has-arrived">release post</Link> covers what is new, and our{' '}
+          <Link to="/blog/reward-round-release-news">release post</Link> covers what is new, and our{' '}
           <Link to="/blog/reward-round-card-origins">card origins guide</Link> matches every card to English. Use this one to sort
           your pulls or plan a master set.
         </p>

@@ -174,7 +174,7 @@ function StellarCrystalSetGuide() {
       >
         <p>
           Stellar Crystal (CSV9C) is the Stellar Tera set: 266 cards with Pikachu on the pack, Terapagos ex, and one Chinese exclusive,
-          sold in slim and jumbo packs. Our <Link to="/blog/stellar-crystal-has-arrived">release post</Link> covers what is new,
+          sold in slim and jumbo packs. Our <Link to="/blog/stellar-crystal-release-news">release post</Link> covers what is new,
           and our <Link to="/blog/stellar-crystal-card-origins">card origins guide</Link> traces every card to its English
           printing. Use this one to pick a pack size, sort your pulls or plan a master set.
         </p>

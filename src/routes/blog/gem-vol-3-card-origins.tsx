@@ -272,7 +272,7 @@ function GemVol3OriginsPost() {
           English original by the illustrator printed on the card, and when two cards were close, we put them side by side.
         </p>
         <p>
-          For more on the set itself, see our <Link to="/blog/gem-vol-3-has-arrived">Gem Vol 3 release post</Link> and the{' '}
+          For more on the set itself, see our <Link to="/blog/gem-vol-3-release-news">Gem Vol 3 release post</Link> and the{' '}
           <Link to="/blog/gem-vol-3-set-guide">Gem Vol 3 set guide</Link>.
         </p>
 

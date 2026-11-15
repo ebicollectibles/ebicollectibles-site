@@ -5,7 +5,7 @@ import { BlogPostLayout } from '~/components/blog/BlogPostLayout'
 import { safeJsonLd } from '~/lib/gem-sets/head'
 import { R2_IMAGE_HOST, SITE_URL } from '~/lib/gem-sets/constants'
 
-const post = BLOG_POSTS.find((p) => p.slug === 'pikachu-dream-painting-figures-have-arrived')!
+const post = BLOG_POSTS.find((p) => p.slug === 'pikachu-dream-painting-figures-release-news')!
 
 const figImg = (n: string) =>
   `${R2_IMAGE_HOST}/Chinese/30th%20Anniversary/Pikachu%20Figures/pokemon-chinese-pikachu-30th-celebration-figure-${n}-product-photo-badged.webp`
@@ -88,7 +88,7 @@ const FAQ = [
   },
 ]
 
-export const Route = createFileRoute('/blog/pikachu-dream-painting-figures-have-arrived')({
+export const Route = createFileRoute('/blog/pikachu-dream-painting-figures-release-news')({
   head: () => ({
     meta: [
       { title: `${post.title} | EBI Collectibles` },
@@ -149,7 +149,7 @@ function PikachuDreamPaintingReleasePost() {
         <p>
           Dream Painting (绘梦点睛) is Pokémon China's figure line built on card art: each figure recreates the Pokémon from one card
           illustration, and you stand the card behind it so the figure looks like it is stepping out of the picture. This release, the
-          30th Anniversary Pikachu Figure Set, takes 12 of the 30 Pikachu cards from <Link to="/blog/30th-celebration-has-arrived">30th
+          30th Anniversary Pikachu Figure Set, takes 12 of the 30 Pikachu cards from <Link to="/blog/30th-celebration-release-news">30th
           Celebration</Link>. Every box also has the matching card and a sealed 30th Celebration pack. The secret is the classic Base Set
           Pikachu.
         </p>

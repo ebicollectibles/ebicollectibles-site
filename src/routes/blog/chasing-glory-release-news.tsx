@@ -5,7 +5,7 @@ import { BlogPostLayout } from '~/components/blog/BlogPostLayout'
 import { safeJsonLd } from '~/lib/gem-sets/head'
 import { R2_IMAGE_HOST, SITE_URL } from '~/lib/gem-sets/constants'
 
-const post = BLOG_POSTS.find((p) => p.slug === 'chasing-glory-has-arrived')!
+const post = BLOG_POSTS.find((p) => p.slug === 'chasing-glory-release-news')!
 
 const cardImg = (n: string) => `${R2_IMAGE_HOST}/Chinese/Chasing%20Glory/Cards/0${n}.webp`
 
@@ -115,7 +115,7 @@ const FAQ = [
   },
 ]
 
-export const Route = createFileRoute('/blog/chasing-glory-has-arrived')({
+export const Route = createFileRoute('/blog/chasing-glory-release-news')({
   head: () => ({
     meta: [
       { title: `${post.title} | EBI Collectibles` },

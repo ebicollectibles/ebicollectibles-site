@@ -159,7 +159,7 @@ function TerastalGatheringSetGuide() {
       >
         <p>
           Terastal Gathering (CSV9.5C) is the Stellar Eeveelution set: 259 cards in 10-card packs, with 34 Special Art Rares. Our{' '}
-          <Link to="/blog/terastal-gathering-has-arrived">release post</Link> covers what is new, and our{' '}
+          <Link to="/blog/terastal-gathering-release-news">release post</Link> covers what is new, and our{' '}
           <Link to="/blog/terastal-gathering-card-origins">card origins guide</Link> matches every card to English. Use this one
           to sort your pulls or plan a master set.
         </p>

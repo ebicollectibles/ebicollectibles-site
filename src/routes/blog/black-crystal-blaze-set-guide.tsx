@@ -154,7 +154,7 @@ function BlackCrystalBlazeSetGuide() {
       >
         <p>
           Black Crystal Blaze (CSV5C) is the Tera Charizard set: 164 cards, two Chinese exclusives, and slim and jumbo boxes. Our{' '}
-          <Link to="/blog/black-crystal-blaze-has-arrived">release post</Link> covers what is new, and our{' '}
+          <Link to="/blog/black-crystal-blaze-release-news">release post</Link> covers what is new, and our{' '}
           <Link to="/blog/black-crystal-blaze-card-origins">card origins guide</Link> matches every card to English. Use this one to sort
           your pulls or plan a master set.
         </p>

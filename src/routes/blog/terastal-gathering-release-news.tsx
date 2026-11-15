@@ -5,7 +5,7 @@ import { BlogPostLayout } from '~/components/blog/BlogPostLayout'
 import { safeJsonLd } from '~/lib/gem-sets/head'
 import { R2_IMAGE_HOST, SITE_URL } from '~/lib/gem-sets/constants'
 
-const post = BLOG_POSTS.find((p) => p.slug === 'terastal-gathering-has-arrived')!
+const post = BLOG_POSTS.find((p) => p.slug === 'terastal-gathering-release-news')!
 
 const cardImg = (n: string) => `${R2_IMAGE_HOST}/Chinese/Crystal%20Gathering/Cards/0${n}.webp`
 
@@ -98,7 +98,7 @@ const FAQ = [
   },
 ]
 
-export const Route = createFileRoute('/blog/terastal-gathering-has-arrived')({
+export const Route = createFileRoute('/blog/terastal-gathering-release-news')({
   head: () => ({
     meta: [
       { title: `${post.title} | EBI Collectibles` },

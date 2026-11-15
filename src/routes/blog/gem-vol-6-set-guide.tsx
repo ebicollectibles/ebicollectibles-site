@@ -130,7 +130,7 @@ function GemVol6SetGuide() {
       >
         <p>
           Gem Pack Vol. 6 (CBB6C) is the Applin set: 196 holo cards, 28 Pokémon with seven versions each, and the whole apple family in
-          the lineup. Our <Link to="/blog/gem-vol-6-has-arrived">release post</Link> covers what is new in the set, and our{' '}
+          the lineup. Our <Link to="/blog/gem-vol-6-release-news">release post</Link> covers what is new in the set, and our{' '}
           <Link to="/blog/gem-vol-6-card-origins">card origins guide</Link> traces every illustration back to its English card.
           Use this one to sort your pulls or plan a master set.
         </p>
