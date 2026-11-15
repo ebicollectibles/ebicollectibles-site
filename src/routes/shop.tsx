@@ -301,8 +301,7 @@ function ShopPage() {
         <div style={{ border: '1px solid #e3e6ea', borderTop: 0, padding: '64px 24px', textAlign: 'center' }}>
           <div style={{ fontSize: 16, fontWeight: 600 }}>There are no active pre-orders at the moment.</div>
           <p style={{ fontSize: 13.5, color: '#5a6875', margin: '10px auto 0', maxWidth: 440, lineHeight: 1.6 }}>
-            New releases open for pre-order here as soon as they are announced. In the meantime, take a look at what is new or
-            browse everything in stock.
+            Take a look at what is new or browse everything in stock.
           </p>
           <div style={{ display: 'flex', gap: 10, justifyContent: 'center', flexWrap: 'wrap', marginTop: 18 }}>
             <Link
