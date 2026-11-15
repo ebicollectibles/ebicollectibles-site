@@ -254,8 +254,7 @@ function GemVol3Post() {
 
         <h2 id="pokemon-ex">Nine Pokémon ex</h2>
         <p>
-          Each Pokémon's seventh card, the 07 slot, is either a full art or a Pokémon ex. For the other nine Pokémon, it is the ex. In this set the ex cards are marked Rare (★), the same as version
-          05, so they turn up more often than the full arts. Gardevoir ex and Darkrai ex are the ones to watch.
+          Each Pokémon's seventh card, the 07 slot, is either a full art or a Pokémon ex. For the other nine Pokémon, it is the ex. In this set the ex cards are marked Rare (★), the same as the Master Ball pattern holos, so they turn up more often than the full arts. Gardevoir ex and Darkrai ex are the ones to watch.
         </p>
         <div className="card-grid cols-3">
           {EX_CARDS.map((c) => (

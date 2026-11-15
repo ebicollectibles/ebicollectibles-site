@@ -72,7 +72,7 @@ const FAQ = [
   },
   {
     q: 'Is any Gem Vol 4 artwork new?',
-    a: 'Yes, one: Ponyta\'s full art, 0107/07 by MINAMINAMI Take. It is not on any earlier English or Japanese card, which lines up with Pokémon China calling it new.',
+    a: 'Yes, one: Ponyta\'s full art, 0107/07 by MINAMINAMI Take. It is not on any earlier English card, which lines up with Pokémon China calling it new.',
   },
   {
     q: 'Which English set does most of Gem Vol 4 come from?',
@@ -80,7 +80,7 @@ const FAQ = [
   },
   {
     q: 'Why does Paldean Wooper\'s full art come from a newer set?',
-    a: 'Its art first came out in English in Phantasmal Flames rather than in a Scarlet & Violet set. In Japan it started out as a promo.',
+    a: 'Its art first came out in English in Phantasmal Flames rather than in a Scarlet & Violet set.',
   },
 ]
 
@@ -170,7 +170,7 @@ function GemVol4OriginsPost() {
         </p>
 
         <h2 id="by-set">Which sets it comes from</h2>
-        <p>Most of it comes from two English sets from early 2024, Temporal Forces and Twilight Masquerade, plus a few later cards:</p>
+        <p>Most of it comes from two English sets from the first half of 2024, Temporal Forces and Twilight Masquerade, plus a few later cards:</p>
         <div className="table-scroll">
           <table className="data-table">
             <thead>
@@ -196,7 +196,7 @@ function GemVol4OriginsPost() {
         <h2 id="patterns">Patterns worth knowing</h2>
         <ul>
           <li>
-            <strong>Ponyta stands out.</strong> Its regular art comes from Destined Rivals, the newest source in the set, and its full art is brand new.
+            <strong>Ponyta stands out.</strong> Its regular art comes from Destined Rivals, the newest source of any regular art in the set, and its full art is brand new.
           </li>
           <li>
             <strong>Temporal Forces supplies the most.</strong> It covers the regular art for 16 Pokémon and the full art for 15.

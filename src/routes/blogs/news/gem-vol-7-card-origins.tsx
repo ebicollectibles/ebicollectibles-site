@@ -70,7 +70,7 @@ const FAQ = [
   },
   {
     q: 'Is any Gem Vol 7 artwork new?',
-    a: "Yes, one: Misty's Psyduck's full art, 0307/07 by Cona Nitanda. It is not on any earlier English or Japanese card, which lines up with Pokémon China calling it new.",
+    a: "Yes, one: Misty's Psyduck's full art, 0307/07 by Cona Nitanda. It is not on any earlier English card, which lines up with Pokémon China calling it new.",
   },
   {
     q: 'Which English set does most of Gem Vol 7 come from?',
