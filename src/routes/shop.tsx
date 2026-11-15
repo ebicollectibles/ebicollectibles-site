@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { createFileRoute } from '@tanstack/react-router'
+import { createFileRoute, Link } from '@tanstack/react-router'
 import { z } from 'zod'
 import { ProductCard } from '~/components/ProductCard'
 import { useCart } from '~/lib/cart-context'
@@ -284,6 +284,11 @@ function ShopPage() {
     </aside>
   )
 
+  // On the pre-orders view, tell shoppers plainly when nothing is up for
+  // pre-order at all, rather than blaming their filters.
+  const noActivePreorders =
+    !!search.preorder && !search.variantGroup && !products.some((p) => p.preorder && !p.hideFromShopGrid && !p.notSellable)
+
   const productGrid = (
     <>
       <div className="ebi-shop-grid" style={{ background: '#e3e6ea', border: '1px solid #e3e6ea', marginTop: 16 }}>
@@ -292,7 +297,31 @@ function ShopPage() {
         ))}
       </div>
 
-      {visible.length === 0 && (
+      {visible.length === 0 && noActivePreorders && (
+        <div style={{ border: '1px solid #e3e6ea', borderTop: 0, padding: '64px 24px', textAlign: 'center' }}>
+          <div style={{ fontSize: 16, fontWeight: 600 }}>There are no active pre-orders at the moment.</div>
+          <p style={{ fontSize: 13.5, color: '#5a6875', margin: '10px auto 0', maxWidth: 440, lineHeight: 1.6 }}>
+            New releases open for pre-order here as soon as they are announced. In the meantime, take a look at what is new or
+            browse everything in stock.
+          </p>
+          <div style={{ display: 'flex', gap: 10, justifyContent: 'center', flexWrap: 'wrap', marginTop: 18 }}>
+            <Link
+              to="/new-and-upcoming"
+              style={{ background: '#131b28', color: '#ffffff', borderRadius: 2, padding: '11px 20px', fontSize: 12.5, fontWeight: 600, textDecoration: 'none' }}
+            >
+              New &amp; upcoming
+            </Link>
+            <Link
+              to="/shop"
+              style={{ background: '#ffffff', color: '#131b28', border: '1px solid #cfd4da', borderRadius: 2, padding: '10px 20px', fontSize: 12.5, fontWeight: 600, textDecoration: 'none' }}
+            >
+              Shop all products
+            </Link>
+          </div>
+        </div>
+      )}
+
+      {visible.length === 0 && !noActivePreorders && (
         <div style={{ border: '1px solid #e3e6ea', borderTop: 0, padding: '64px 24px', textAlign: 'center' }}>
           <div style={{ fontSize: 16, fontWeight: 600 }}>Nothing matches those filters.</div>
           <button
