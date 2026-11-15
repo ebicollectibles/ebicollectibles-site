@@ -68,7 +68,7 @@ const GEM_TIMELINE = [
 
 const FAQ = [
   {
-    q: 'Is Gem Pack Vol. 2 the same as "Gemstone Vol. 2"?',
+    q: 'Is Gem 2 the same as "Gemstone Vol. 2"?',
     a: 'Yes. The Chinese name, 宝石包, translates as both "gem pack" and "gemstone pack", so shops use either one. The set code on the cards is CBB2C.',
   },
   {
@@ -92,7 +92,7 @@ const FAQ = [
 export const Route = createFileRoute('/blog/gem-vol-2-release-news')({
   head: () => ({
     meta: [
-      { title: `${post.title} | EBI Collectibles` },
+      { title: `${post.title.replace('Gem Vol 2', 'Gem Vol 2 (Gem 2)')} | EBI Collectibles` },
       { name: 'robots', content: 'noindex, nofollow' },
       { name: 'description', content: post.excerpt },
       { property: 'og:title', content: post.title },
@@ -148,7 +148,7 @@ function GemVol2Post() {
         }}
       >
         <p>
-          Gem Pack Vol. 2 lands in mainland China on May 16, 2025. Like every Gem Pack, it is an official Simplified Chinese Pokémon TCG
+          Gem Pack Vol. 2 (Gem 2) lands in mainland China on May 16, 2025. Like every Gem Pack, it is an official Simplified Chinese Pokémon TCG
           product built for collecting, with small 4-card packs where every card is a holo. This one is an Eevee set from top to
           bottom: Eevee and all eight Eeveelutions, Sylveon on the pack, and four new full arts that line up into a single picture.
         </p>

@@ -49,7 +49,7 @@ const TOC = [
 
 const FAQ = [
   {
-    q: 'How many full arts are in Gem Vol 4?',
+    q: 'How many full arts are in Gem 4?',
     a: '28, one for every Pokémon in the set. Every full art is numbered 07, for example 0107/07 for Ponyta.',
   },
   {
@@ -73,7 +73,7 @@ const FAQ = [
 export const Route = createFileRoute('/blog/gem-vol-4-set-guide')({
   head: () => ({
     meta: [
-      { title: `${post.title} | EBI Collectibles` },
+      { title: `${post.title.replace('Gem Vol 4', 'Gem Vol 4 (Gem 4)')} | EBI Collectibles` },
       { name: 'robots', content: 'noindex, nofollow' },
       { name: 'description', content: post.excerpt },
       { property: 'og:title', content: post.title },
@@ -129,7 +129,7 @@ function GemVol4SetGuide() {
         }}
       >
         <p>
-          Gem Pack Vol. 4 (CBB4C) is the Ponyta set: 196 holo cards, 28 Pokémon with seven versions each, and a Year of the Horse theme to
+          Gem Pack Vol. 4 (Gem 4, CBB4C) is the Ponyta set: 196 holo cards, 28 Pokémon with seven versions each, and a Year of the Horse theme to
           match. Our <Link to="/blog/gem-vol-4-release-news">release post</Link> covers what is new in the set, and our{' '}
           <Link to="/blog/gem-vol-4-card-origins">card origins guide</Link> traces every illustration back to its English card.
           Use this one to sort your pulls or plan a master set.

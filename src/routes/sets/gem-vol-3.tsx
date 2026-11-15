@@ -42,7 +42,7 @@ const config: GemSetConfig = {
   glow1: 'rgb(196 26 118 / .30)',
   glow2: 'rgb(214 169 151 / .25)',
   heroLede:
-    'All 136 cards in Gem Vol 3: 18 Pokémon across 7 rarities each (nine as Triple Rare full arts, nine as Pokémon ex), plus 4 Trainer cards and 6 Energy cards. Tap any card for a closer look and every version beside it.',
+    'All 136 cards in Gem Vol 3 (Gem 3): 18 Pokémon across 7 rarities each (nine as Triple Rare full arts, nine as Pokémon ex), plus 4 Trainer cards and 6 Energy cards. Tap any card for a closer look and every version beside it.',
   pokemonFact: '18 × 7',
   rarityVersionLabelsOverride: {
     Common: '01–02',
@@ -56,7 +56,7 @@ const config: GemSetConfig = {
     'Each Pokémon comes in 7 numbered versions. Versions 01–02 are Common, 03–04 Uncommon, 05 Rare, and 06 Double Rare. Version 07 is either a Triple Rare full art (Meowth, Gengar, Cubone, Mismagius, Chandelure, Mimikyu, Morpeko, Ceruledge and Greavard) or a Rare-rarity Pokémon ex (Clefable, Houndoom, Gardevoir, Banette, Absol, Darkrai, Lycanroc, Houndstone and Annihilape). The Trainer block adds Super Rod, Nest Ball and Switch (Double Rare) plus a Triple Rare full-art Arven; the Energy block has Basic Fighting, Basic Metal and Luminous Energy, each printed twice, all Triple Rare.',
   ],
   faq: [
-    { q: 'How many cards are in Gem Vol 3?', a: '136 cards: 18 Pokémon with 7 versions each, plus 4 Trainer cards and 6 Energy cards.' },
+    { q: 'How many cards are in Gem 3?', a: '136 cards: 18 Pokémon with 7 versions each, plus 4 Trainer cards and 6 Energy cards.' },
     {
       q: 'What are the chase cards?',
       a: 'Five Triple Rare full arts (Meowth 0207/07, Gengar 0307/07, Cubone 0407/07, Chandelure 1107/07 and Ceruledge 1507/07) share one night-town look and are Chinese exclusives, only appearing in the Simplified Chinese Gem Vol 3 release.',
@@ -69,10 +69,10 @@ const config: GemSetConfig = {
     { q: 'What language are the cards in?', a: 'Simplified Chinese.' },
     { q: 'Where can I buy Gem Vol 3?', a: 'EBI Collectibles carries Gem Vol 3 packs and boxes.' },
   ],
-  metaTitle: 'Gem Vol 3 Card List: All 136 Cards | EBI Collectibles',
+  metaTitle: 'Gem Vol 3 (Gem 3) Card List: All 136 Cards | EBI Collectibles',
   metaDescription:
     'Browse every card in Pokémon TCG Gem Vol 3 (Simplified Chinese): 18 Pokémon, Trainer and Energy cards, with full-art Triple Rares, Pokémon ex and a printable checklist.',
-  ogTitle: 'Gem Vol 3 Card List: All 136 Cards',
+  ogTitle: 'Gem Vol 3 (Gem 3) Card List: All 136 Cards',
   ogDescription: 'All 136 cards in Pokémon TCG Gem Vol 3. Browse by Pokémon, filter by rarity, and track which ones you own.',
 }
 

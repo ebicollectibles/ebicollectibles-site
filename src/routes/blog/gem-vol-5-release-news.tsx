@@ -70,7 +70,7 @@ const GEM_TIMELINE = [
 
 const FAQ = [
   {
-    q: 'Is Gem Pack Vol. 5 the same as "Gemstone Vol. 5"?',
+    q: 'Is Gem 5 the same as "Gemstone Vol. 5"?',
     a: 'Yes. The Chinese name, 宝石包, translates as both "gem pack" and "gemstone pack", so shops use either one. The set code on the cards is CBB5C.',
   },
   {
@@ -94,7 +94,7 @@ const FAQ = [
 export const Route = createFileRoute('/blog/gem-vol-5-release-news')({
   head: () => ({
     meta: [
-      { title: `${post.title} | EBI Collectibles` },
+      { title: `${post.title.replace('Gem Vol 5', 'Gem Vol 5 (Gem 5)')} | EBI Collectibles` },
       { name: 'robots', content: 'noindex, nofollow' },
       { name: 'description', content: post.excerpt },
       { property: 'og:title', content: post.title },
@@ -150,7 +150,7 @@ function GemVol5Post() {
         }}
       >
         <p>
-          Gem Pack Vol. 5 lands in mainland China on April 24, 2026. Like every Gem Pack, it is an official Simplified Chinese Pokémon
+          Gem Pack Vol. 5 (Gem 5) lands in mainland China on April 24, 2026. Like every Gem Pack, it is an official Simplified Chinese Pokémon
           TCG product built for collecting: small 4-card packs where every card is a holo, and a set structure that gives each Pokémon
           its own run of seven cards. This volume sets sail with Pokémon Horizons, with Floragato on the pack and four new full arts of
           the Rising Volt Tacklers and their partners.

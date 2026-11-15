@@ -49,7 +49,7 @@ const TOC = [
 
 const FAQ = [
   {
-    q: 'How many full arts are in Gem Vol 6?',
+    q: 'How many full arts are in Gem 6?',
     a: '28, one for every Pokémon in the set. Every full art is numbered 07, for example 1907/07 for Applin.',
   },
   {
@@ -73,7 +73,7 @@ const FAQ = [
 export const Route = createFileRoute('/blog/gem-vol-6-set-guide')({
   head: () => ({
     meta: [
-      { title: `${post.title} | EBI Collectibles` },
+      { title: `${post.title.replace('Gem Vol 6', 'Gem Vol 6 (Gem 6)')} | EBI Collectibles` },
       { name: 'robots', content: 'noindex, nofollow' },
       { name: 'description', content: post.excerpt },
       { property: 'og:title', content: post.title },
@@ -129,7 +129,7 @@ function GemVol6SetGuide() {
         }}
       >
         <p>
-          Gem Pack Vol. 6 (CBB6C) is the Applin set: 196 holo cards, 28 Pokémon with seven versions each, and the whole apple family in
+          Gem Pack Vol. 6 (Gem 6, CBB6C) is the Applin set: 196 holo cards, 28 Pokémon with seven versions each, and the whole apple family in
           the lineup. Our <Link to="/blog/gem-vol-6-release-news">release post</Link> covers what is new in the set, and our{' '}
           <Link to="/blog/gem-vol-6-card-origins">card origins guide</Link> traces every illustration back to its English card.
           Use this one to sort your pulls or plan a master set.

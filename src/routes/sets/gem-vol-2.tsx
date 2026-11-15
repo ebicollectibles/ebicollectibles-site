@@ -42,7 +42,7 @@ const config: GemSetConfig = {
   glow1: 'rgb(194 23 116 / .30)',
   glow2: 'rgb(86 134 135 / .25)',
   heroLede:
-    'All 140 cards in Gem Vol 2: an Eevee-family set of Eevee and all 8 Eeveelutions, each across 14 or 15 versions culminating in a V, a VMAX and, for Eevee, Umbreon, Leafeon and Sylveon, an exclusive full-art illustration, plus 4 Trainer cards and 6 Energy cards. Tap any card for a closer look and every version beside it.',
+    'All 140 cards in Gem Vol 2 (Gem 2): an Eevee-family set of Eevee and all 8 Eeveelutions, each across 14 or 15 versions culminating in a V, a VMAX and, for Eevee, Umbreon, Leafeon and Sylveon, an exclusive full-art illustration, plus 4 Trainer cards and 6 Energy cards. Tap any card for a closer look and every version beside it.',
   pokemonFact: '9 × 14–15',
   rarityVersionLabelsOverride: {
     Common: '01–04',
@@ -56,7 +56,7 @@ const config: GemSetConfig = {
     'Each Pokémon has 14 versions (15 for Eevee, Umbreon, Leafeon and Sylveon): two alternating base-card treatments across Common, Uncommon, Rare and Double Rare, then a Rare-rarity V card and a Triple Rare VMAX. Eevee, Umbreon, Leafeon and Sylveon add a 15th version: a Triple Rare full-art illustration exclusive to this set. The Trainer block adds Poké Ball, Level Ball and Quick Ball (Double Rare) plus a Triple Rare full-art Penny; the Energy block has Basic Lightning, Basic Psychic and Basic Darkness Energy, each printed twice, all Triple Rare.',
   ],
   faq: [
-    { q: 'How many cards are in Gem Vol 2?', a: '140 cards: 9 Pokémon (Eevee and its 8 Eeveelutions) across 14 or 15 versions each, plus 4 Trainer cards and 6 Energy cards.' },
+    { q: 'How many cards are in Gem 2?', a: '140 cards: 9 Pokémon (Eevee and its 8 Eeveelutions) across 14 or 15 versions each, plus 4 Trainer cards and 6 Energy cards.' },
     {
       q: 'What are the chase cards?',
       a: 'Four Triple Rare full-art illustrations (Eevee 0115/15, Umbreon 0615/15, Leafeon 0715/15 and Sylveon 0915/15) are Chinese exclusives, only appearing in the Simplified Chinese Gem Vol 2 release.',
@@ -69,10 +69,10 @@ const config: GemSetConfig = {
     { q: 'What language are the cards in?', a: 'Simplified Chinese.' },
     { q: 'Where can I buy Gem Vol 2?', a: 'EBI Collectibles carries Gem Vol 2 packs and boxes.' },
   ],
-  metaTitle: 'Gem Vol 2 Card List: All 140 Cards | EBI Collectibles',
+  metaTitle: 'Gem Vol 2 (Gem 2) Card List: All 140 Cards | EBI Collectibles',
   metaDescription:
     'Browse every card in Pokémon TCG Gem Vol 2 (Simplified Chinese): Eevee and all 8 Eeveelutions with V, VMAX and exclusive full-art cards, plus a printable checklist.',
-  ogTitle: 'Gem Vol 2 Card List: All 140 Cards',
+  ogTitle: 'Gem Vol 2 (Gem 2) Card List: All 140 Cards',
   ogDescription: 'All 140 cards in Pokémon TCG Gem Vol 2. Browse by Pokémon, filter by rarity, and track which ones you own.',
 }
 

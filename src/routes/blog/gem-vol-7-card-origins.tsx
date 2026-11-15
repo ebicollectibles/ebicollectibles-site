@@ -65,7 +65,7 @@ const TOC = [
 
 const FAQ = [
   {
-    q: 'Are Gem Vol 7 cards reprints?',
+    q: 'Are Gem 7 cards reprints?',
     a: 'The art mostly is. 55 of the 56 artworks are the same art you will find on English Scarlet & Violet cards, mostly from Destined Rivals. The cards are still new: Simplified Chinese text, their own numbers, their own foils and the Gem Pack set code.',
   },
   {
@@ -85,7 +85,7 @@ const FAQ = [
 export const Route = createFileRoute('/blog/gem-vol-7-card-origins')({
   head: () => ({
     meta: [
-      { title: `${post.title} | EBI Collectibles` },
+      { title: `${post.title.replace('Gem Vol 7', 'Gem Vol 7 (Gem 7)')} | EBI Collectibles` },
       { name: 'robots', content: 'noindex, nofollow' },
       { name: 'description', content: post.excerpt },
       { property: 'og:title', content: post.title },
@@ -142,7 +142,7 @@ function GemVol7OriginsPost() {
       >
         <p>
           Gem Packs reuse artwork from existing Pokémon TCG cards, reprinted in Simplified Chinese with new numbers and new foils.
-          We matched every artwork in Gem Vol 7 to the English card it came from.
+          We matched every artwork in Gem Vol 7 (Gem 7) to the English card it came from.
         </p>
 
         <nav className="toc" aria-label="In this guide">

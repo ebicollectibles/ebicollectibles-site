@@ -64,7 +64,7 @@ const GEM_TIMELINE = [
 
 const FAQ = [
   {
-    q: 'Is Gem Pack Vol. 4 the same as "Gemstone Vol. 4"?',
+    q: 'Is Gem 4 the same as "Gemstone Vol. 4"?',
     a: 'Yes. The Chinese name, 宝石包, translates as both "gem pack" and "gemstone pack", so shops use either one. The set code on the cards is CBB4C.',
   },
   {
@@ -88,7 +88,7 @@ const FAQ = [
 export const Route = createFileRoute('/blog/gem-vol-4-release-news')({
   head: () => ({
     meta: [
-      { title: `${post.title} | EBI Collectibles` },
+      { title: `${post.title.replace('Gem Vol 4', 'Gem Vol 4 (Gem 4)')} | EBI Collectibles` },
       { name: 'robots', content: 'noindex, nofollow' },
       { name: 'description', content: post.excerpt },
       { property: 'og:title', content: post.title },
@@ -144,7 +144,7 @@ function GemVol4Post() {
         }}
       >
         <p>
-          Gem Pack Vol. 4 lands in mainland China on February 6, 2026, right in time for Lunar New Year. Like every Gem Pack, it is an
+          Gem Pack Vol. 4 (Gem 4) lands in mainland China on February 6, 2026, right in time for Lunar New Year. Like every Gem Pack, it is an
           official Simplified Chinese Pokémon TCG product built for collecting: small 4-card packs where every card is a holo, and a
           set structure that gives each Pokémon its own run of seven cards. This volume is all about Ponyta, a fitting pick for the
           Year of the Horse, with a brand-new Ponyta full art as the headline card.

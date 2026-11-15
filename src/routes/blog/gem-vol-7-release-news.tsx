@@ -66,7 +66,7 @@ const GEM_TIMELINE = [
 
 const FAQ = [
   {
-    q: 'Is Gem Pack Vol. 7 the same as "Gemstone Vol. 7"?',
+    q: 'Is Gem 7 the same as "Gemstone Vol. 7"?',
     a: 'Yes. The Chinese name, 宝石包, translates as both "gem pack" and "gemstone pack", so shops use either one. The set code on the cards is CBB7C.',
   },
   {
@@ -90,7 +90,7 @@ const FAQ = [
 export const Route = createFileRoute('/blog/gem-vol-7-release-news')({
   head: () => ({
     meta: [
-      { title: `${post.title} | EBI Collectibles` },
+      { title: `${post.title.replace('Gem Vol 7', 'Gem Vol 7 (Gem 7)')} | EBI Collectibles` },
       { name: 'robots', content: 'noindex, nofollow' },
       { name: 'description', content: post.excerpt },
       { property: 'og:title', content: post.title },
@@ -146,7 +146,7 @@ function GemVol7Post() {
         }}
       >
         <p>
-          Gem Pack Vol. 7 landed in mainland China on November 6, 2026. Like every Gem Pack, it is an official Simplified Chinese
+          Gem Pack Vol. 7 (Gem 7) landed in mainland China on November 6, 2026. Like every Gem Pack, it is an official Simplified Chinese
           Pokémon TCG product built for collecting: small 4-card packs where every card is a holo, and a set structure that gives each
           Pokémon its own run of seven cards. This volume leans into Trainers and their partner Pokémon, with Psyduck on the
           pack and a new full art you can only pull here.

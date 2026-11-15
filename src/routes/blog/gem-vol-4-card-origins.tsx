@@ -67,7 +67,7 @@ const TOC = [
 
 const FAQ = [
   {
-    q: 'Are Gem Vol 4 cards reprints?',
+    q: 'Are Gem 4 cards reprints?',
     a: 'The art mostly is. 55 of the 56 artworks are the same art you will find on English cards, mostly from Temporal Forces and Twilight Masquerade. The cards are still new: Simplified Chinese text, their own numbers, their own foils and the Gem Pack set code.',
   },
   {
@@ -87,7 +87,7 @@ const FAQ = [
 export const Route = createFileRoute('/blog/gem-vol-4-card-origins')({
   head: () => ({
     meta: [
-      { title: `${post.title} | EBI Collectibles` },
+      { title: `${post.title.replace('Gem Vol 4', 'Gem Vol 4 (Gem 4)')} | EBI Collectibles` },
       { name: 'robots', content: 'noindex, nofollow' },
       { name: 'description', content: post.excerpt },
       { property: 'og:title', content: post.title },
@@ -144,7 +144,7 @@ function GemVol4OriginsPost() {
       >
         <p>
           Gem Packs reuse artwork from existing Pokémon TCG cards, reprinted in Simplified Chinese with new numbers and new foils.
-          We matched every artwork in Gem Vol 4 to the English card it came from.
+          We matched every artwork in Gem Vol 4 (Gem 4) to the English card it came from.
         </p>
 
         <nav className="toc" aria-label="In this guide">

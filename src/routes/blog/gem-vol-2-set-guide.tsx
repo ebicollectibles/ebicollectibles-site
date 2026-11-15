@@ -65,7 +65,7 @@ const TOC = [
 
 const FAQ = [
   {
-    q: 'Why do some Gem Vol 2 cards end in /14 and others in /15?',
+    q: 'Why do some Gem 2 cards end in /14 and others in /15?',
     a: 'Eevee, Umbreon, Leafeon and Sylveon have a 15th card, the full art, so their cards are numbered out of 15. The other five Eeveelutions stop at the VMAX and are numbered out of 14.',
   },
   {
@@ -89,7 +89,7 @@ const FAQ = [
 export const Route = createFileRoute('/blog/gem-vol-2-set-guide')({
   head: () => ({
     meta: [
-      { title: `${post.title} | EBI Collectibles` },
+      { title: `${post.title.replace('Gem Vol 2', 'Gem Vol 2 (Gem 2)')} | EBI Collectibles` },
       { name: 'robots', content: 'noindex, nofollow' },
       { name: 'description', content: post.excerpt },
       { property: 'og:title', content: post.title },
@@ -173,7 +173,7 @@ function GemVol2SetGuide() {
         }}
       >
         <p>
-          Gem Pack Vol. 2 (CBB2C) is the Eevee set: 140 holo cards across Eevee and its eight evolutions, with a V and VMAX for each and
+          Gem Pack Vol. 2 (Gem 2, CBB2C) is the Eevee set: 140 holo cards across Eevee and its eight evolutions, with a V and VMAX for each and
           a block of Trainer and Energy cards. Our <Link to="/blog/gem-vol-2-release-news">release post</Link> covers what is new
           in the set, and our <Link to="/blog/gem-vol-2-card-origins">card origins guide</Link> traces every artwork back to its
           English card. Use this one to sort your pulls or plan a master set.

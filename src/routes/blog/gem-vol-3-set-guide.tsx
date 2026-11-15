@@ -59,7 +59,7 @@ const TOC = [
 
 const FAQ = [
   {
-    q: 'How many full arts are in Gem Vol 3?',
+    q: 'How many full arts are in Gem 3?',
     a: 'Nine. Five of them, Meowth, Gengar, Cubone, Chandelure and Ceruledge, are new art drawn for this set. The other four, Mismagius, Mimikyu, Morpeko and Greavard, reprint existing art.',
   },
   {
@@ -83,7 +83,7 @@ const FAQ = [
 export const Route = createFileRoute('/blog/gem-vol-3-set-guide')({
   head: () => ({
     meta: [
-      { title: `${post.title} | EBI Collectibles` },
+      { title: `${post.title.replace('Gem Vol 3', 'Gem Vol 3 (Gem 3)')} | EBI Collectibles` },
       { name: 'robots', content: 'noindex, nofollow' },
       { name: 'description', content: post.excerpt },
       { property: 'og:title', content: post.title },
@@ -167,7 +167,7 @@ function GemVol3SetGuide() {
         }}
       >
         <p>
-          Gem Pack Vol. 3 (CBB3C) is the night-town set: 136 holo cards, 18 Pokémon with seven versions each, and a block of Trainer and
+          Gem Pack Vol. 3 (Gem 3, CBB3C) is the night-town set: 136 holo cards, 18 Pokémon with seven versions each, and a block of Trainer and
           Energy cards. Our <Link to="/blog/gem-vol-3-release-news">release post</Link> covers what is new in the set, and our{' '}
           <Link to="/blog/gem-vol-3-card-origins">card origins guide</Link> traces every artwork back to its English card. Use
           this one to sort your pulls or plan a master set.
