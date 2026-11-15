@@ -359,7 +359,7 @@ const FAQ = [
   },
   {
     q: 'Does Chasing Glory have every card from Destined Rivals and Journey Together?',
-    a: 'No. It leaves out nine Pokémon ex, one gold card, 28 Illustration Rares and a number of Commons and Uncommons, mostly from Journey Together.',
+    a: 'No. It leaves out nine Pokémon ex, one gold card, 28 Illustration Rares and a number of Commons, Uncommons and Rares, mostly from Journey Together.',
   },
 ]
 
@@ -517,7 +517,7 @@ function ChasingGloryOrigins() {
         </p>
         <p>
           <strong>Psyduck and Golduck skip ahead.</strong> The plain Psyduck 043/222 and Golduck 044/222 by Jiro Sasumo are not in
-          either Scarlet & Violet set. In English that art arrived later, in Ascended Heroes ({psyduck.map((p) => p.en).join(' and ')}).
+          either Scarlet & Violet set. In English that art is in Ascended Heroes ({psyduck.map((p) => p.en).join(' and ')}).
           Misty's Psyduck 045/222 is a different card and comes from Destined Rivals.
         </p>
         <div className="card-grid cols-3">

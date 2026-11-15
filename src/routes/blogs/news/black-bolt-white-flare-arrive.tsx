@@ -182,7 +182,7 @@ function BlackBoltWhiteFlarePost() {
         <p>
           The two sets share out Unova's 156 featured Pokémon, 78 each, with 6 ex in each set. Black Bolt is built around{' '}
           <strong>Zekrom ex</strong> and White Flare around <strong>Reshiram ex</strong>, the same mascots as in English. The roster
-          split is not identical, though: five Pokémon lines sit in the other set compared with English.
+          split is not identical, though: ten Pokémon from four evolution lines (Litwick, Vullaby, Klink and Rufflet) sit in the other set compared with English.
         </p>
         <p>
           Each set is numbered 001 to 174. The first 86 cards are the main set: Pokémon, Trainers and a Special Energy, up to Double

@@ -292,7 +292,7 @@ function BlackBoltSetGuide() {
           Common, Uncommon and Rare cards, for 334 in total.
         </p>
         <p>
-          The Poké Ball holos come quickly, since they share the most common holo band. The Master Ball holos share a band with the 6 Double
+          The Poké Ball holos come fastest, since they share the most common holo band. The Master Ball holos share a band with the 6 Double
           Rares and 72 Art Rares, about 4.5 per slim box or 9 per jumbo box spread across 158 different cards, so they take a long time. The
           16 top-band cards are harder still. The practical route is to open boxes for the lower tiers, then pick up the big cards as singles.
           The <Link to="/sets/black-bolt">Black Bolt card list</Link> lets you tick off what you have. Its twin,{' '}

@@ -250,8 +250,9 @@ function TerastalGatheringReleasePost() {
 
         <h2 id="more-than-prismatic">More than Prismatic Evolutions</h2>
         <p>
-          Terastal Gathering has 259 cards against Prismatic Evolutions' 180. It adds Pokémon ex that Prismatic Evolutions does not
-          have, like Gholdengo ex, Pecharunt ex and Garchomp ex. Nine of them, including Roaring Moon ex, Raging Bolt ex, Walking Wake
+          Terastal Gathering has 259 cards against Prismatic Evolutions' 180. Its main set adds Double Rares that Prismatic Evolutions
+          only has as Special Art Rares or gold cards, like Gholdengo ex and Pecharunt ex, plus Garchomp ex and Gouging Fire ex, which
+          Prismatic Evolutions does not have at all. Nine of these Double Rares, including Roaring Moon ex, Raging Bolt ex, Walking Wake
           ex and Bloodmoon Ursaluna ex, use art that English only released as Black Star promos, not the art from their original sets.
           Garchomp ex has brand-new art. Our <Link to="/blogs/news/terastal-gathering-card-origins">card origins guide</Link>{' '}
           maps every card.
@@ -261,7 +262,7 @@ function TerastalGatheringReleasePost() {
         <p>
           Eight ACE SPEC cards sit inside the main set, each with a pink frame and a one-per-deck rule: Max Rod, Treasure Tracker, Prime
           Catcher, Scoop Up Cyclone, Sparkling Crystal, Maximum Belt, Neutralization Zone and Legacy Energy. They are a rarity of their
-          own, ranked just above Double Rare.
+          own, ranked above Double Rare and the Poké Ball pattern holos on Pokémon China's chart.
         </p>
         <Grid cards={ACE} cols={3} />
 

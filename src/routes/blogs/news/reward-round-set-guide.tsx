@@ -11,7 +11,7 @@ type Card = (typeof setData.cards)[number]
 const byRange = (from: number, to: number) => setData.cards.filter((c) => c.pokemonIndex >= from && c.pokemonIndex <= to)
 const EXCLUSIVE = new Set<string>(setData.exclusiveCardNumbers)
 const short = (r: string) => r.match(/\(([^)]+)\)/)?.[1] ?? r
-// The gold Gholdengo ex is also new for China, though the data source only flags the two SARs.
+// The data marks all three Chinese exclusives, including the gold Gholdengo ex 162.
 const isExclusive = (c: Card) => EXCLUSIVE.has(c.number) || c.number === '162/129'
 // Most wanted cards first (by number out of 129), then the rest in number order.
 const lead = (cards: Card[], first: string[]) => [
@@ -207,7 +207,7 @@ function RewardRoundSetGuide() {
         <Gallery cards={lead(byRange(138, 152), ['146', '144', '150', '149', '152', '151'])} cols={3} />
 
         <h2 id="ultra-rares">All 4 Ultra Rares</h2>
-        <p>The gold cards, 162 to 165. Gholdengo ex is new for China.</p>
+        <p>The gold cards, 162 to 165. Gholdengo ex 162 is the third Chinese exclusive.</p>
         <Gallery cards={byRange(162, 165)} cols={4} />
 
         <h2 id="art-rares">All 8 Art Rares</h2>
@@ -215,7 +215,7 @@ function RewardRoundSetGuide() {
         <Gallery cards={lead(byRange(130, 137), ['133', '136', '137', '132', '131'])} cols={4} />
 
         <h2 id="ladders">One Pokémon, several rarities</h2>
-        <p>The Pokémon ex that reach the secret block, and every number they print at:</p>
+        <p>The Pokémon ex with a Special Art Rare, and every number they print at:</p>
         <div className="table-scroll">
           <table className="data-table">
             <thead>

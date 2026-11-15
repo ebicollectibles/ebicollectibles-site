@@ -348,7 +348,7 @@ function RewardRoundOrigins() {
         }}
       >
         <p>
-          Unlike the later Chinese sets, Reward Round does not follow one English set. Its 165 cards pull mostly from Obsidian Flames,
+          Reward Round does not follow one English set. Its 165 cards pull mostly from Obsidian Flames,
           Paldea Evolved and Paradox Rift, with a handful from other Scarlet & Violet sets and promos, plus three new arts. For the chase
           cards and box odds, see our <Link to="/blogs/news/reward-round-set-guide">set guide</Link>.
         </p>
@@ -444,7 +444,7 @@ function RewardRoundOrigins() {
         </div>
         <p>
           <strong>Two promo arts.</strong> Spidops 005/129 and Annihilape ex 066/129 use art that English released as SV Black Star
-          Promos, and Garganacl ex 075/129 uses its Stellar Crown art rather than its Paldea Evolved one.
+          Promos. Garganacl ex 075/129 matches Stellar Crown 089/142, the only English Garganacl ex.
         </p>
 
         <h2 id="secret-rares">All 36 secret rares</h2>

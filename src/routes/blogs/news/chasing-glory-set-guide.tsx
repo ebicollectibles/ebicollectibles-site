@@ -336,7 +336,7 @@ function ChasingGlorySetGuide() {
           Common, Uncommon and Rare cards, for 683 in total.
         </p>
         <p>
-          The Poké Ball holos come quickly, since they share the most common holo band. The Master Ball holos share the Double Rare band,
+          The Poké Ball holos come fastest, since they share the most common holo band. The Master Ball holos share the Double Rare band,
           about 4 per slim box or 8 per jumbo box spread across 228 different cards in that band, so they take a long time. The 59 top-band
           cards are harder still. Like most sets, the practical route is to open boxes for fun and the lower tiers, then pick up the big
           cards as singles. The <Link to="/sets/csv10">Chasing Glory card list</Link> lets you tick off what you have.

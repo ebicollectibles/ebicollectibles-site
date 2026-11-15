@@ -399,7 +399,7 @@ function ChasingGloryReleasePost() {
 
         <h2 id="our-take">Our take</h2>
         <p>
-          Chasing Glory is the set for anyone who grew up with a favorite Trainer. Team Rocket fans get 46 cards and a Giovanni SAR,
+          Chasing Glory is the set for anyone who grew up with a favorite Trainer. Team Rocket fans get 46 Pokémon and a Giovanni SAR,
           and the gold Mewtwo ex is the card to beat. If you are opening for hits, the jumbo box is the better buy on the odds. Want to
           know where each card first appeared in English? See our{' '}
           <Link to="/blogs/news/chasing-glory-card-origins">card origins guide</Link>.
