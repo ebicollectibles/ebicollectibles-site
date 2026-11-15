@@ -59,7 +59,7 @@ const FAQ = [
   },
   {
     q: 'How many boxes do I need for all 12?',
-    a: 'A case of four boxes holds 12 figures, one for every design. Funism does not print a packing guarantee on the box, and if every figure were a fully random draw a full set would take about 12 to 13 boxes on average.',
+    a: 'A case of four boxes holds 12 figures, the same number as there are designs. Funism has not said a case is one of each and does not print a packing guarantee on the box, and if every figure were a fully random draw a full set would take about 12 to 13 boxes on average.',
   },
   {
     q: 'Can I get two of the same figure in one box?',
@@ -122,7 +122,7 @@ function FunismDittoGuide() {
         lede="All 12 Happy Ditto figures, what a full set takes, and how to tell the look-alikes apart."
         cta={{
           heading: 'Collect Happy Ditto',
-          body: 'The four-box case holds 12 figures, one per design. Or start with a single Ditto box.',
+          body: 'The four-box case holds 12 figures, as many as there are designs. Or start with a single Ditto box.',
           links: [
             { to: '/products/$id', params: { id: 'pokemon-chinese-funism-ditto-palmsize-wonders-blind-box-case' }, label: 'Shop the 4-box case' },
             { to: '/products/$id', params: { id: 'pokemon-chinese-funism-ditto-palmsize-wonders-blind-box' }, label: 'Shop a blind box', variant: 'ghost' },
@@ -210,7 +210,7 @@ function FunismDittoGuide() {
 
         <h2 id="case-or-box">Case or single boxes</h2>
         <p>
-          A case is one display box: four blind boxes, 12 figures, the same number as there are designs. That is the shortest route to
+          A case is one display box: four blind boxes, 12 figures, the same number as there are designs. That is the quickest start on
           the set and the only way to get the display box, which has the whole lineup printed on it. A single box is three figures and
           a Ditto to keep, a good way to try the line or to hunt one favorite.
         </p>

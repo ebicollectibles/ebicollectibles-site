@@ -223,7 +223,7 @@ function BladeAwakeningSetGuide() {
         <p className="table-note">Averages from the official print shares, not guarantees. Individual boxes vary.</p>
         <p>
           The top band is 0.73% of slim cards and 1.00% of jumbo cards. That is about one Super Rare, Special Art Rare or Ultra Rare
-          every 27 slim packs, against one every 5 jumbo packs, so most slim boxes will not have one and most jumbo boxes will. If you
+          every 27 slim packs, against one every 5 jumbo packs: about half of one per slim box on average, and more than one per jumbo box. If you
           are chasing the big hits, jumbo is the stronger box.
         </p>
 
@@ -322,7 +322,7 @@ function BladeAwakeningSetGuide() {
           and Rares, for 605 in total, the same figure Pokémon China's chart gives.
         </p>
         <p>
-          The 173 Master Ball holos and the 49 top-band cards take the longest. Most collectors open boxes for fun and the lower
+          The 173 Master Ball holos and the 49 top-band cards take the longest. Many collectors open boxes for fun and the lower
           rarities, then buy the big cards as singles. The <Link to="/sets/csv7">Blade Awakening card list</Link> lets you tick off what
           you have.
         </p>

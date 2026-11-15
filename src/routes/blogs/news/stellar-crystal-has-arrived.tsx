@@ -315,8 +315,8 @@ function StellarCrystalReleasePost() {
         </div>
         <p className="table-note">From Pokémon China's odds chart for each pack size.</p>
         <p>
-          Applied to a box, a 15-pack slim box (75 cards) averages about 0.55 top-band cards and about 4 from the Double Rare band. A
-          6-pack jumbo box (120 cards) averages about 1.2 and about 8.
+          Over 15 slim packs (75 cards) that averages about 0.55 top-band cards and about 4 from the Double Rare band. Over 6 jumbo
+          packs (120 cards) it averages about 1.2 and about 8.
         </p>
         <p>
           Every Common, Uncommon and Rare also comes as a Poké Ball pattern holo and a Master Ball pattern holo, 177 of each. The card is

@@ -337,7 +337,7 @@ function TrueMysteryOrigins() {
       <BlogPostLayout
         wide
         post={post}
-        lede="True Mystery is Paradox Rift at heart, with a few cards from three other English sources and two that English never printed. Here is where each of its 163 cards lines up."
+        lede="True Mystery is Paradox Rift at heart, with cards from four other English sources and two that English never printed. Here is where each of its 163 cards lines up."
         cta={{
           heading: 'Collect True Mystery',
           body: 'See every card on the full checklist, or pick up a box.',

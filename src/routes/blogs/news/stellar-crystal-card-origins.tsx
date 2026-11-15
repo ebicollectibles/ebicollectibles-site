@@ -522,8 +522,8 @@ function StellarCrystalOrigins() {
         </div>
         <p>
           <strong>Pikachu is all Surging Sparks.</strong> Pikachu ex matches Surging Sparks at all four rarities, as do Alolan Exeggutor
-          ex, and Latias ex and Hydreigon ex at three. Terapagos ex, Galvantula ex and Hydrapple ex mostly match Stellar Crown, as do the
-          Lacey and Briar Special Art Rares, and Sinistcha ex matches Twilight Masquerade at every rarity.
+          ex, and Latias ex and Hydreigon ex at three. Galvantula ex and Hydrapple ex match Stellar Crown at all three rarities and
+          Terapagos ex at three of its four, as do the Lacey and Briar Special Art Rares, and Sinistcha ex matches Twilight Masquerade at every rarity.
         </p>
         <p>
           <strong>Three chase cards are English promos.</strong> The gold Cinderace ex 258/208 and Lapras ex 259/208 and the Terapagos ex

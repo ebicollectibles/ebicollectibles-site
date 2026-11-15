@@ -71,7 +71,7 @@ const TOC = [
 const FAQ = [
   {
     q: 'Should I buy a slim or a jumbo True Mystery box?',
-    a: 'A jumbo box has 120 cards and 36 holos against 75 cards and 15 holos in a slim box. Pokémon China did not publish odds for True Mystery, so the jumbo box is the pick for more holos, and the slim box for more packs to open.',
+    a: 'A jumbo box has 120 cards and 36 holos against 75 cards and 15 holos in a slim box. On the odds Pokémon China published, the jumbo box also averages more big hits: about 1.2 Super Rares, Special Art Rares or Ultra Rares against about 0.55 in a slim box. The slim box gives you more packs to open.',
   },
   {
     q: 'Which True Mystery card is a Chinese exclusive?',
@@ -185,10 +185,12 @@ function TrueMysterySetGuide() {
             </tbody>
           </table>
         </div>
-        <p className="table-note">Pack contents from Pokémon China's product page.</p>
+        <p className="table-note">Cards and holos per pack from Pokémon China's product page.</p>
         <p>
-          Pokémon China did not publish an odds chart for True Mystery, so we do not give averages for the big hits. On holos alone, a
-          jumbo box has 36 against 15 in a slim box, 2.4 times as many. The slim box gives you more packs to open: 15 against 6.
+          Pokémon China's odds charts put Super Rares, Special Art Rares and Ultra Rares at 0.73% of slim-pack cards and 1.00% of
+          jumbo-pack cards. Over a box that averages about 0.55 in a slim box and 1.2 in a jumbo box. Art Rares and Master Ball pattern
+          holos share a band at 4.74% (slim) and 6.01% (jumbo), about 3.6 and 7.2 per box. On holos alone, a jumbo box has 36 against
+          15 in a slim box, 2.4 times as many. The slim box gives you more packs to open: 15 against 6.
         </p>
 
         <h2 id="special-art-rares">All 8 Special Art Rares</h2>
@@ -273,11 +275,12 @@ function TrueMysterySetGuide() {
 
         <h2 id="master-set">Completing the set</h2>
         <p>
-          The numbered set is 163 cards: 128 in the main set and 35 secret rares. Pokémon China did not publish a chart for True
-          Mystery listing pattern holo parallels, so we count the numbered cards only.
+          The numbered set is 163 cards: 128 in the main set and 35 secret rares. Pokémon China's odds chart also lists a Poké Ball
+          pattern holo and a Master Ball pattern holo of all 115 Commons, Uncommons and Rares, so a master set with both parallels is
+          393 cards.
         </p>
         <p>
-          The 35 secret rares are where the time goes. Most collectors open boxes for the main set and the fun of the rip, then buy the
+          The 35 secret rares are where the time goes. Many collectors open boxes for the main set and the fun of the rip, then buy the
           top Special Art Rares and gold cards as singles. The <Link to="/sets/csv6">True Mystery card list</Link> lets you tick off
           what you have.
         </p>

@@ -435,7 +435,7 @@ function BrilliantFantasyOrigins() {
       <BlogPostLayout
         wide
         post={post}
-        lede="Brilliant Fantasy draws on four English sets at once. Here is where each of its 264 cards lines up in English, and the one card English never printed."
+        lede="Brilliant Fantasy draws mostly on four English sets at once. Here is where each of its 264 cards lines up in English, and the one card English never printed."
         cta={{
           heading: 'Collect Brilliant Fantasy',
           body: 'See every card on the full checklist, or pick up a box.',

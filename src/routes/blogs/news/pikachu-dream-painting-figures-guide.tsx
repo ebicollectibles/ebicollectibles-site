@@ -33,7 +33,7 @@ const MATH = [
   { row: 'The secret classic Pikachu', avg: '1 box in 144' },
   { row: 'All 12 regulars from random boxes', avg: 'about 37.5 boxes on average' },
   { row: 'A 50% chance at the secret', avg: 'about 100 boxes' },
-  { row: 'Chance of a secret in one 12-box case', avg: 'about 8%' },
+  { row: 'Chance of a secret in 12 random boxes', avg: 'about 8%' },
 ]
 
 const LOOKALIKES = [
@@ -60,7 +60,7 @@ const FAQ = [
   },
   {
     q: 'How many boxes does it take to get all 12 regular figures?',
-    a: 'From random blind boxes, about 37.5 on average, because the last few designs take a long time to turn up. Buying the ones you are missing as singles is far cheaper than chasing them.',
+    a: 'From random blind boxes, about 37.5 on average, because the last few designs take a long time to turn up. Buying the ones you are missing as singles saves a lot of duplicate boxes.',
   },
   {
     q: 'How rare is the secret figure?',
@@ -301,7 +301,7 @@ function PikachuDreamPaintingGuide() {
 
         <h2 id="display">Displaying them</h2>
         <p>
-          Each box comes with its own display stand: a white base with a clear upright that holds the card behind the figure. Keep the
+          Each box comes with its own clear display stand that holds the card upright behind the figure. Keep the
           card in it, since the figure is posed to come out of that exact illustration and a few of them, like 026 and 046, reach past
           the card edge on purpose. Line them up in card order, 017 to 046, and the box side's checklist doubles as a shelf label.
         </p>

@@ -227,7 +227,7 @@ function PikachuDreamPaintingReleasePost() {
         <h2 id="secret">The secret: classic Pikachu</h2>
         <p>
           The 13th figure is hidden. It is the Pikachu from card 136/103, one of the 30 classic cards in 30th Celebration that reprint
-          famous English cards in their original frames. This one is the 1999 Base Set Pikachu by Mitsuhiro Arita: the chubby,
+          famous cards from the TCG's history in their original frames. This one is the 1999 Base Set Pikachu by Mitsuhiro Arita: the chubby,
           round-cheeked Pikachu from the very first set, now a figure with the same soft painted look. It comes with the 136/103 card.
         </p>
         <figure style={{ margin: '24px auto 30px', maxWidth: 720 }}>
@@ -250,7 +250,7 @@ function PikachuDreamPaintingReleasePost() {
           <li>1 sealed 30th Celebration booster pack of 6 cards, every one a holo</li>
         </ul>
         <p>
-          The box is a cube with all 12 regular figures and their card numbers printed on the side, plus a question mark for the secret.
+          The box has all 12 regular figures and their card numbers printed on the side, plus a silhouette for the secret.
         </p>
 
         <h2 id="odds">Odds and cases</h2>
@@ -318,7 +318,7 @@ function PikachuDreamPaintingReleasePost() {
 
         <h2 id="our-take">Our take</h2>
         <p>
-          This is the best thing to come out of the 30th Celebration launch that is not a card. The figures are faithful to very
+          Of everything around the 30th Celebration launch that is not a card, these are our favorite. The figures are faithful to very
           different art styles, the card-behind-figure display looks great on a shelf, and the secret is the right choice: the Pikachu
           that started it all. Pair a figure with the same card from your binder and you have a 30th anniversary display that costs
           you one shelf slot.

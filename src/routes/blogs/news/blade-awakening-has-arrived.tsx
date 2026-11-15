@@ -300,7 +300,7 @@ function BladeAwakeningReleasePost() {
         <h2 id="greninja">Tera Greninja ex</h2>
         <p>
           Greninja ex is the pack Pokémon, a Fighting-type Tera Pokémon with 310 HP. While it sits on your Bench it takes no damage from
-          attacks. It comes at three rarities, and the Special Art Rare by akagi is the set's most wanted card.
+          attacks. It comes at three rarities, and the Special Art Rare by akagi is the one most collectors will chase.
         </p>
         <Grid cards={GRENINJA} cols={3} />
 
@@ -331,7 +331,7 @@ function BladeAwakeningReleasePost() {
         <h2 id="ace-spec">ACE SPEC cards</h2>
         <p>
           Pokémon China makes the ACE SPEC cards a headline of Blade Awakening. These are Trainers and Energy with a pink frame and
-          game-changing effects, and a deck can only include one. All nine sit in the main set between 176 and 203, at their own ACE
+          strong effects, and a deck can only include one. All nine sit in the main set between 176 and 203, at their own ACE
           SPEC Rare rarity, which shares the Double Rare odds band.
         </p>
         <Grid cards={ACE} cols={3} />

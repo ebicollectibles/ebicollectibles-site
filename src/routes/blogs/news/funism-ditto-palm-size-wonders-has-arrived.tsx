@@ -132,7 +132,7 @@ function FunismDittoReleasePost() {
               <dt>Maker</dt>
               <dd>Funism (玩乐主义), officially licensed</dd>
               <dt>Designs</dt>
-              <dd>12, no secret</dd>
+              <dd>12 shown, no secret announced</dd>
               <dt>Per box</dt>
               <dd>3 random figures in a Ditto-shaped box</dd>
               <dt>Case</dt>
@@ -180,7 +180,7 @@ function FunismDittoReleasePost() {
         <h2 id="chase">Is there a secret?</h2>
         <p>
           Not that we know of. The display box prints the lineup along its front edge, 12 figures with no secret slot, and we have not
-          seen an official mention of a hidden figure. That makes this one of the easier blind box lines to finish: the chase is simply
+          seen an official mention of a hidden figure. If that holds, this is one of the easier blind box lines to finish: the chase is simply
           the Pokémon you like most. For most people that will be Pikachu or
           Gengar.
         </p>
@@ -231,7 +231,7 @@ function FunismDittoReleasePost() {
 
         <h2 id="our-take">Our take</h2>
         <p>
-          It is a one-joke line and the joke works twelve times. No secret, three figures a box and a box you will want to keep make
+          It is a one-joke line and the joke works twelve times. No announced secret, three figures a box and a box you will want to keep make
           it an easy, friendly blind box, and Ditto-as-Gengar is the one we would put on the desk first.
         </p>
       </BlogPostLayout>

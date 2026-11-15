@@ -89,7 +89,7 @@ const TOC = [
 const FAQ = [
   {
     q: 'What is the Chinese exclusive card in True Mystery?',
-    a: 'The Iron Hands ex Special Art Rare 152/128 by Tonji Matsuno. Pokémon China introduced it as a brand-new Special Art Rare for this set, and it has no English version.',
+    a: 'The Iron Hands ex Special Art Rare 152/128 by Tonji Matsuno. It is new art for this set, and it has no English version.',
   },
   {
     q: 'What is the difference between the slim and jumbo boxes?',
@@ -97,7 +97,7 @@ const FAQ = [
   },
   {
     q: 'What are the pull rates for True Mystery?',
-    a: 'Pokémon China did not publish an odds chart for True Mystery, so we do not quote pull rates for it.',
+    a: 'Pokémon China prints Super Rares, Special Art Rares and Ultra Rares together at 0.73% of slim-pack cards and 1.00% of jumbo-pack cards. That is about one every 27 slim packs or every 5 jumbo packs, or about 0.55 per slim box and 1.2 per jumbo box.',
   },
   {
     q: 'Who is on the True Mystery pack?',
@@ -235,13 +235,15 @@ function TrueMysteryReleasePost() {
           </figure>
         </div>
         <p>
-          Pokémon China did not publish an odds chart for True Mystery, so we cannot say how often the big hits turn up in either box.
-          What is certain is the holo count: 36 per jumbo box against 15 per slim box.
+          Pokémon China published an odds chart for each pack size. Super Rares, Special Art Rares and Ultra Rares together are 0.73% of
+          slim-pack cards and 1.00% of jumbo-pack cards: about one every 27 slim packs, against one every 5 jumbo packs. That averages
+          about 0.55 per slim box and 1.2 per jumbo box. Every Common, Uncommon and Rare also comes as a Poké Ball pattern holo and a
+          Master Ball pattern holo, 115 of each.
         </p>
 
         <h2 id="iron-hands">Iron Hands ex SAR, only in Chinese</h2>
         <p>
-          Pokémon China announced Iron Hands ex 152/128 as a brand-new Special Art Rare for True Mystery. Tonji Matsuno draws it in a
+          Iron Hands ex 152/128 is the set's Chinese exclusive, a Special Art Rare with no English version. Tonji Matsuno draws it in a
           burst of yellow and blue light, mid-punch. English has Iron Hands ex in Paradox Rift, including its own Special Illustration
           Rare, but not this art. The regular Double Rare by PLANETA Mochizuki is in the set too.
         </p>
@@ -316,8 +318,8 @@ function TrueMysteryReleasePost() {
         <h2 id="our-take">Our take</h2>
         <p>
           True Mystery is the Paradox set, and the Roaring Moon ex and Iron Valiant ex runs are the ones to chase, each from Double Rare
-          up to gold. The Iron Hands ex SAR gives Chinese collectors a card English never had. With no published odds, the jumbo box is
-          the simple pick for more holos per box.
+          up to gold. The Iron Hands ex SAR gives Chinese collectors a card English never had. On the published odds, the jumbo box is
+          the better pick for hits as well as holos.
         </p>
       </BlogPostLayout>
     </>

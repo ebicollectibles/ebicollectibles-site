@@ -210,7 +210,7 @@ export const BLOG_POSTS: BlogPostSummary[] = [
     path: '/blogs/news/funism-ditto-palm-size-wonders-has-arrived',
     title: 'Funism Happy Ditto Is Here: 12 Transformations, 3 Figures a Box',
     excerpt:
-      'Funism’s Palm-Size Wonders Happy Ditto blind box: Ditto copies 12 Pokémon but keeps its own face, three figures to a Ditto-shaped box, and no secret to chase.',
+      'Funism’s Palm-Size Wonders Happy Ditto blind box: Ditto copies 12 Pokémon but keeps its own face, three figures to a Ditto-shaped box, and no secret announced.',
     tag: 'New release',
     date: '2026-11-15',
     heroImage: `${SITE_URL}/assets/blog/funism-ditto-palm-size-wonders-release-hero-v3.webp`,

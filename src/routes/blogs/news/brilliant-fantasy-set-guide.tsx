@@ -224,7 +224,7 @@ function BrilliantFantasySetGuide() {
         <p>
           The jumbo box has 1.6 times the cards of a slim box but more than twice the top-band pulls, because its odds are better per
           card as well: 1.00% of jumbo cards are Super Rare or higher, against 0.73% of slim cards. That is about one top-band card every
-          5 jumbo packs, against one every 27 slim packs. Most slim boxes will not have one. Most jumbo boxes will.
+          5 jumbo packs, against one every 27 slim packs: about half of one per slim box on average, and more than one per jumbo box.
         </p>
 
         <h2 id="special-art-rares">All 14 Special Art Rares</h2>
@@ -318,7 +318,7 @@ function BrilliantFantasySetGuide() {
         </p>
         <p>
           The Poké Ball holos come quickly, since they share the most common holo band. The Master Ball holos share the Double Rare band,
-          about 4 per slim box or 8 per jumbo box spread across 213 different cards in that band, so they take a long time. The 51
+          which averages about 4 cards per slim box or 8 per jumbo box across 213 different cards, so they take a long time. The 51
           top-band cards are harder still. The practical route is to open boxes for fun and the lower tiers, then pick up the big cards as
           singles. The <Link to="/sets/csv8">Brilliant Fantasy card list</Link> lets you tick off what you have.
         </p>

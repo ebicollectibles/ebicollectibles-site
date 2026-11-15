@@ -12,7 +12,7 @@ export const Route = createFileRoute('/blogs/news/')({
       { name: 'robots', content: 'noindex, nofollow' },
       {
         name: 'description',
-        content: 'Release posts and collecting guides for Simplified Chinese Pokémon TCG, covering Gem Pack and Scarlet & Violet sets.',
+        content: 'Release posts and collecting guides for Simplified Chinese Pokémon TCG sets and Pokémon figures.',
       },
       { property: 'og:title', content: 'News | EBI Collectibles' },
       {
