@@ -3,85 +3,63 @@ import blogCssUrl from '~/styles/blog.css?url'
 import { BLOG_POSTS, BLOG_SITE_URL } from '~/data/blog-posts'
 import { BlogPostLayout } from '~/components/blog/BlogPostLayout'
 import { safeJsonLd } from '~/lib/gem-sets/head'
-import { R2_IMAGE_HOST, SITE_URL } from '~/lib/gem-sets/constants'
+import setData from '~/data/gem-vol-6.json'
 
 const post = BLOG_POSTS.find((p) => p.slug === 'gem-vol-6-set-guide')!
 
-const cardImg = (id: string) => `${R2_IMAGE_HOST}/Chinese/Gem%206/Cards/${id}.webp`
+const FULL_ARTS = setData.cards.filter((c) => c.version === 7)
+const EXCLUSIVE = new Set<string>(setData.exclusiveCardNumbers)
 
-// Applin's six holo versions, in collector-number order. All share one
-// illustration by Tetsu Kayama and differ only in rarity and foil finish.
-const APPLIN_RUN = [
-  { id: '1901', rarity: 'Common', finish: 'Grass-type pattern foil' },
-  { id: '1902', rarity: 'Common', finish: 'Poké Ball pattern foil' },
-  { id: '1903', rarity: 'Uncommon', finish: 'Glitter foil' },
-  { id: '1904', rarity: 'Uncommon', finish: 'Starburst foil' },
-  { id: '1905', rarity: 'Rare', finish: 'Master Ball pattern foil' },
-  { id: '1906', rarity: 'Double Rare', finish: 'Gem Pack logo stamp' },
+// How to tell the seven versions of any Pokémon apart. Finishes are as
+// printed on Applin's run (1901 to 1907) and match Pokémon China's list.
+const VERSIONS = [
+  { v: '01', symbol: '●', rarity: 'Common', look: "Energy-type pattern foil, matching the Pokémon's type" },
+  { v: '02', symbol: '●', rarity: 'Common', look: 'Poké Ball pattern foil' },
+  { v: '03', symbol: '◆', rarity: 'Uncommon', look: 'Glitter foil across the whole card' },
+  { v: '04', symbol: '◆', rarity: 'Uncommon', look: 'Starburst foil across the whole card' },
+  { v: '05', symbol: '★', rarity: 'Rare', look: 'Master Ball pattern foil' },
+  { v: '06', symbol: '★★', rarity: 'Double Rare', look: 'Pink Gem Pack logo stamped on the art' },
+  { v: '07', symbol: '★★★', rarity: 'Triple Rare', look: 'Full art with its own illustration' },
 ]
 
-// The six full arts Pokémon China showed alongside Applin in its
-// announcement, with the illustrator printed on each card.
-const REVEALED_FULL_ARTS = [
-  { id: '2007', name: 'Flapple', illus: 'Uninori' },
-  { id: '2107', name: 'Appletun', illus: 'MINAMINAMI Take' },
-  { id: '2407', name: 'Dipplin', illus: 'Akira Komayama' },
-  { id: '1007', name: 'Castform Sunny Form', illus: 'Narano' },
-  { id: '2507', name: 'Poltchageist', illus: 'Saboteri' },
-  { id: '2707', name: 'Munkidori', illus: 'Teeziro' },
-]
-
-// One row per rarity: how many cards of it are in the 196-card set, and
-// the share of the print run Pokémon China says it makes up.
-const RARITY = [
-  { symbol: '●', label: 'Common', versions: '01, 02', cards: 56, print: '50.00%' },
-  { symbol: '◆', label: 'Uncommon', versions: '03, 04', cards: 56, print: '25.00%' },
-  { symbol: '★', label: 'Rare', versions: '05', cards: 28, print: '17.39%' },
-  { symbol: '★★', label: 'Double Rare', versions: '06', cards: 28, print: '5.80%' },
-  { symbol: '★★★', label: 'Full art', versions: '07', cards: 28, print: '1.81%' },
+// Average contents of one 72-card box, from Pokémon China's print shares.
+const BOX_AVERAGE = [
+  { label: 'Common', share: '50.00%', perBox: '36' },
+  { label: 'Uncommon', share: '25.00%', perBox: '18' },
+  { label: 'Rare', share: '17.39%', perBox: 'about 12 to 13' },
+  { label: 'Double Rare', share: '5.80%', perBox: 'about 4' },
+  { label: 'Full art', share: '1.81%', perBox: 'about 1.3' },
 ]
 
 const TOC = [
-  { id: 'how-the-set-works', label: 'How the set is built' },
-  { id: 'applin', label: 'Applin, six holo versions' },
-  { id: 'applin-full-art', label: 'The chase: Applin full art' },
-  { id: 'lineup', label: 'Apples, tea and the Loyal Three' },
-  { id: 'booster-box', label: 'What is inside a booster box' },
-  { id: 'gem-pack-timeline', label: 'Gem Pack timeline' },
-  { id: 'applin-binder', label: 'The Applin binder' },
+  { id: 'reading-a-card', label: 'Reading a Gem Vol 6 card' },
+  { id: 'full-arts', label: 'All 28 full arts' },
+  { id: 'roster', label: 'The full roster' },
+  { id: 'box-average', label: 'What an average box holds' },
+  { id: 'master-set', label: 'Chasing a master set' },
   { id: 'faq', label: 'FAQ' },
-]
-
-const GEM_TIMELINE = [
-  { vol: 1, date: 'January 17, 2025', cards: 115 },
-  { vol: 2, date: 'May 16, 2025', cards: 140 },
-  { vol: 3, date: 'September 26, 2025', cards: 136 },
-  { vol: 4, date: 'February 6, 2026', cards: 196 },
-  { vol: 5, date: 'April 24, 2026', cards: 196 },
-  { vol: 6, date: 'August 7, 2026', cards: 196 },
-  { vol: 7, date: 'November 6, 2026', cards: 196 },
 ]
 
 const FAQ = [
   {
-    q: 'Is Gem Pack Vol. 6 the same as "Gemstone Vol. 6"?',
-    a: 'Yes. The Chinese name, 宝石包, translates as both "gem pack" and "gemstone pack", so shops use either one. The set code on the cards is CBB6C.',
+    q: 'How many full arts are in Gem Vol 6?',
+    a: '28, one for every Pokémon in the set. Every full art is numbered 07, for example 1907/07 for Applin.',
   },
   {
-    q: 'How many packs come in a booster box?',
-    a: '18 packs of 4 cards each, so 72 cards per box.',
+    q: 'What do the symbols next to the card number mean?',
+    a: 'They show rarity: ● Common, ◆ Uncommon, ★ Rare, ★★ Double Rare, and ★★★ for the full art (Triple Rare).',
   },
   {
-    q: 'Are all the cards foil?',
-    a: 'Yes. Every card in every pack is a holo. There are no plain non-foil cards in the set.',
+    q: 'Which card is exclusive to Gem Vol 6?',
+    a: 'Applin 1907/07, the kitchen full art by Jiro Sasumo. It was drawn for this set and does not appear in any other product.',
   },
   {
-    q: 'What is the main chase card?',
-    a: 'Applin 1907/07, the kitchen full art drawn for this set. Beyond that, collectors chase the 28 full arts (every card numbered 07).',
+    q: 'Does Gem Vol 6 have Trainer’s Pokémon?',
+    a: 'No. Unlike Gem Vol 7, every Pokémon in Gem Vol 6 is printed on its own, with no Trainer in the card name.',
   },
   {
-    q: 'Can I complete the set from one box?',
-    a: 'No. The set has 196 cards and a box holds 72, so even with zero duplicates you would need at least three boxes. In practice a full set takes several boxes or buying singles.',
+    q: 'How many boxes does a master set take?',
+    a: 'There is no fixed number. Commons fill in fast, but with about 1.3 full arts per box and 28 to find, landing every full art from boxes alone takes dozens of boxes, so most collectors finish with singles.',
   },
 ]
 
@@ -103,10 +81,10 @@ export const Route = createFileRoute('/blogs/news/gem-vol-6-set-guide')({
       { rel: 'canonical', href: `${BLOG_SITE_URL}${post.path}` },
     ],
   }),
-  component: GemVol6Post,
+  component: GemVol6SetGuide,
 })
 
-function GemVol6Post() {
+function GemVol6SetGuide() {
   const articleJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'BlogPosting',
@@ -133,51 +111,21 @@ function GemVol6Post() {
       <BlogPostLayout
         wide
         post={post}
-        lede="Applin fronts the sixth Simplified Chinese Gem Pack: 28 Pokémon, seven cards each, every card a foil, and a cozy kitchen full art of Applin you can only pull here."
+        lede="Everything you need to collect Gem Pack Vol. 6: how to spot each version, every full art in the set, the full roster, and honest box math for master set hunters."
         cta={{
-          heading: 'Shop Gem Vol 6',
-          body: 'Booster boxes in stock now, plus the full 196-card checklist with every version.',
+          heading: 'Collect Gem Vol 6',
+          body: 'Track every card on the full checklist, or pick up a booster box and start ripping.',
           links: [
-            { to: '/products/$id', params: { id: 'pokemon-chinese-gem-volume-6-booster-box' }, label: 'Shop the booster box' },
-            { to: '/sets/gem-vol-6', label: 'Browse the card list', variant: 'ghost' },
+            { to: '/sets/gem-vol-6', label: 'Browse the card list' },
+            { to: '/products/$id', params: { id: 'pokemon-chinese-gem-volume-6-booster-box' }, label: 'Shop the booster box', variant: 'ghost' },
           ],
         }}
       >
         <p>
-          Gem Pack Vol. 6 came out in mainland China on August 7, 2026. Like every Gem Pack, it is an official Simplified Chinese
-          Pokémon TCG product built for collecting: small 4-card packs where every card is a holo, and a set structure that gives each
-          Pokémon its own run of seven cards. This volume has an orchard feel, with Applin on the pack, the whole apple family in the
-          lineup, and a brand-new Applin full art as the headline card.
+          Gem Pack Vol. 6 (CBB6C) is the Applin set: 196 holo cards, 28 Pokémon with seven versions each, and the apple family front
+          and center. Our <Link to="/blogs/news/gem-vol-6-has-arrived">release post</Link> covers what is new in the set. This guide is
+          the reference you keep open while sorting pulls or planning a master set.
         </p>
-
-        <aside className="fact-box" aria-label="Gem Pack Vol. 6 key facts">
-          <img
-            src={`${SITE_URL}/assets/blog/gem-vol-6-booster-pack.webp`}
-            alt="Gem Pack Vol. 6 booster pack with Applin on the front"
-            loading="lazy"
-            width={600}
-            height={1092}
-          />
-          <div>
-            <p className="fact-box-title">Key facts</p>
-            <dl>
-              <dt>Set</dt>
-              <dd>Gem Pack Vol. 6 (宝石包 VOL.6), also called Gemstone Vol. 6</dd>
-              <dt>Set code</dt>
-              <dd>CBB6C</dd>
-              <dt>Released</dt>
-              <dd>August 7, 2026, mainland China</dd>
-              <dt>Pack</dt>
-              <dd>4 cards, all holo</dd>
-              <dt>Booster box</dt>
-              <dd>18 packs, 72 cards</dd>
-              <dt>Set size</dt>
-              <dd>196 cards: 28 Pokémon × 7 versions</dd>
-              <dt>Chase card</dt>
-              <dd>Applin full art, 1907/07</dd>
-            </dl>
-          </div>
-        </aside>
 
         <nav className="toc" aria-label="In this guide">
           <p className="toc-title">In this guide</p>
@@ -190,159 +138,130 @@ function GemVol6Post() {
           </ol>
         </nav>
 
-        <h2 id="how-the-set-works">How the set is built</h2>
+        <h2 id="reading-a-card">Reading a Gem Vol 6 card</h2>
         <p>
-          Every one of the 28 Pokémon gets seven numbered cards. The first six share a single illustration and step up in rarity and
-          foil finish. The seventh is a full art with its own illustration. Card numbers tell you exactly where you are: read 1907/07
-          as Pokémon 19, version 07 of 7, so it is the full art of the nineteenth Pokémon in the set, which is Applin.
+          Every card number has two parts. The first two digits are the Pokémon (01 to 28) and the next two are the version (01 to
+          07), so 1905/07 is Applin's version 05. The symbol printed after the number gives the rarity, and the foil tells you the
+          version at a glance:
+        </p>
+        <div className="table-scroll">
+          <table className="data-table">
+            <thead>
+              <tr>
+                <th scope="col">Version</th>
+                <th scope="col">Rarity</th>
+                <th scope="col">What to look for</th>
+              </tr>
+            </thead>
+            <tbody>
+              {VERSIONS.map((v) => (
+                <tr key={v.v}>
+                  <th scope="row">{v.v}</th>
+                  <td>
+                    <span className="sym" aria-hidden="true">
+                      {v.symbol}
+                    </span>{' '}
+                    {v.rarity}
+                  </td>
+                  <td>{v.look}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <p className="table-note">Finishes as printed on Applin's run, 1901/07 to 1907/07.</p>
+
+        <h2 id="full-arts">All 28 full arts</h2>
+        <p>
+          The full arts are the heart of the set: one per Pokémon, each with its own illustration. Applin's is the only one drawn just
+          for Gem Vol 6.
+        </p>
+        <div className="card-grid cols-4">
+          {FULL_ARTS.map((c) => (
+            <figure key={c.number}>
+              <img src={c.image} alt={`${c.name} full art ${c.number}, Gem Vol 6`} loading="lazy" width={300} height={419} />
+              <figcaption>
+                <strong>{c.name}</strong>
+                {c.number}
+                {EXCLUSIVE.has(c.number) ? ' · Exclusive' : ''}
+              </figcaption>
+            </figure>
+          ))}
+        </div>
+
+        <h2 id="roster">The full roster</h2>
+        <p>
+          All 28 Pokémon, in set order. Each one has seven cards, numbered from its first two digits plus 01 to 07. There are no
+          Trainer's Pokémon in this volume.
+        </p>
+        <div className="table-scroll">
+          <table className="data-table">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Pokémon</th>
+                <th scope="col">Cards</th>
+              </tr>
+            </thead>
+            <tbody>
+              {FULL_ARTS.map((c) => {
+                const pp = c.number.slice(0, 2)
+                return (
+                  <tr key={c.number} className={EXCLUSIVE.has(c.number) ? 'is-current' : undefined}>
+                    <th scope="row">{pp}</th>
+                    <td>{c.name}</td>
+                    <td>
+                      {pp}01 to {pp}07
+                    </td>
+                  </tr>
+                )
+              })}
+            </tbody>
+          </table>
+        </div>
+
+        <h2 id="box-average">What an average box holds</h2>
+        <p>
+          A booster box is 18 packs of 4, so 72 holo cards. Pokémon China publishes the share of the print run each rarity makes up.
+          Applied to one box, that works out to roughly this:
         </p>
         <div className="table-scroll">
           <table className="data-table">
             <thead>
               <tr>
                 <th scope="col">Rarity</th>
-                <th scope="col" className="col-versions">
-                  Versions
-                </th>
-                <th scope="col">In the set</th>
                 <th scope="col">Print share</th>
+                <th scope="col">Per 72-card box</th>
               </tr>
             </thead>
             <tbody>
-              {RARITY.map((r) => (
+              {BOX_AVERAGE.map((r) => (
                 <tr key={r.label}>
-                  <th scope="row">
-                    <span className="sym" aria-hidden="true">
-                      {r.symbol}
-                    </span>{' '}
-                    {r.label}
-                  </th>
-                  <td className="col-versions">{r.versions}</td>
-                  <td>{r.cards}</td>
-                  <td>{r.print}</td>
+                  <th scope="row">{r.label}</th>
+                  <td>{r.share}</td>
+                  <td>{r.perBox}</td>
                 </tr>
               ))}
             </tbody>
           </table>
         </div>
-        <p className="table-note">Print shares are published by Pokémon China.</p>
+        <p className="table-note">Averages, not guarantees. Individual boxes vary.</p>
 
-        <h2 id="applin">Applin, six holo versions</h2>
+        <h2 id="master-set">Chasing a master set</h2>
         <p>
-          Applin's run shows the ladder clearly. Versions 01 to 06 share the same orchard illustration by Tetsu Kayama, with Applin
-          tucked under a blossoming tree, and each one gets its own holo finish: Grass-type and Poké Ball patterns, glitter, starburst,
-          the Master Ball pattern, and the pink Gem Pack logo stamp.
-        </p>
-        <div className="card-grid cols-3">
-          {APPLIN_RUN.map((c) => (
-            <figure key={c.id}>
-              <img src={cardImg(c.id)} alt={`Applin ${c.id}/07, ${c.rarity}, ${c.finish}, Gem Vol 6`} loading="lazy" width={300} height={419} />
-              <figcaption>
-                <strong>{c.id}/07</strong>
-                {c.rarity} · {c.finish}
-              </figcaption>
-            </figure>
-          ))}
-        </div>
-
-        <h2 id="applin-full-art">The chase: Applin full art</h2>
-        <figure className="feature-card">
-          <img src={cardImg('1907')} alt="Applin 1907/07 full art, Triple Rare, Gem Vol 6" loading="lazy" width={320} height={447} />
-          <figcaption>
-            <strong>1907/07</strong>
-            Triple Rare · Full art · Illus. Jiro Sasumo
-          </figcaption>
-        </figure>
-        <p>
-          The full art is new artwork by Jiro Sasumo, drawn for this set. It is a sunny kitchen scene: jars of fruit drinks, a teapot,
-          oranges and a fresh fruit tart on the table, and Applin sitting among the fruit like it belongs there. It is a fun one to
-          study, because Applin blends right in.
+          A master set is all 196 cards. The commons and uncommons come quickly, since a box averages 54 of them and there are only
+          112 to find. The higher rarities are where it gets hard.
         </p>
         <p>
-          Because the illustration debuts here, Gem Vol 6 is the only place to pull it. It sits in the 07 slot, the rarest in every
-          run, so plan on opening plenty of packs or picking it up as a single.
-        </p>
-
-        <h2 id="lineup">Apples, tea and the Loyal Three</h2>
-        <p>
-          There are no Trainer's Pokémon this time. Instead the lineup has a garden-and-kitchen feel: Applin and its whole family,
-          Flapple, Appletun and Dipplin, plus Exeggcute, Castform in its Sunny Form, and Poltchageist the tea-cup Pokémon. The Loyal
-          Three from Kitakami, Okidogi, Munkidori and Fezandipiti, close out the set. Pokémon China pitches the set as a treasure hunt,
-          with each illustration telling a small story about its Pokémon, and revealed these six full arts alongside Applin:
-        </p>
-        <div className="card-grid cols-3">
-          {REVEALED_FULL_ARTS.map((c) => (
-            <figure key={c.id}>
-              <img src={cardImg(c.id)} alt={`${c.name} full art ${c.id}/07, Gem Vol 6`} loading="lazy" width={300} height={419} />
-              <figcaption>
-                <strong>{c.name}</strong>
-                {c.id}/07 · Illus. {c.illus}
-              </figcaption>
-            </figure>
-          ))}
-        </div>
-        <p>
-          The rest of the roster: Alolan Dugtrio, Persian, Ledian, Slakoth, Lairon, Meditite, Gulpin, Lileep, Kecleon, Mesprit,
-          Reuniclus, Crabominable, Shiinotic, Bewear, Bruxish, Tapu Bulu, Clobbopus and Cufant. The{' '}
-          <Link to="/sets/gem-vol-6">full card list</Link> shows all 196 cards.
-        </p>
-
-        <h2 id="booster-box">What is inside a booster box</h2>
-        <p>
-          A box holds 18 packs of 4 holo cards, 72 cards in total. Pulls are random, so duplicates are normal and no specific Pokémon or
-          finish is guaranteed.
+          Take the full arts. A box averages about 1.3, spread across 28 different cards. If each full art is equally likely, any one
+          specific full art shows up in roughly 1 box in 20, and pulling all 28 from boxes alone would take dozens of boxes. The
+          Double Rares are friendlier, at about 4 per box, but still take many boxes to complete.
         </p>
         <p>
-          Going by the print shares above, a box averages roughly one or two full arts. That is an estimate, not a promise, and some
-          boxes run hot or cold. With 196 cards in the set and 72 per box, finishing a master set takes several boxes or picking up
-          singles.
+          The practical route most collectors take: open a few boxes for the fun of it and to build up the lower rarities, then buy
+          the remaining full arts and Double Rares as singles. The <Link to="/sets/gem-vol-6">Gem Vol 6 card list</Link> makes it easy
+          to track what you still need.
         </p>
-
-        <h2 id="gem-pack-timeline">Where Vol. 6 fits in the Gem Pack line</h2>
-        <p>
-          Gem Packs have been a Simplified Chinese collector line since January 2025, with the same 4-holo pack the whole way. Since Vol.
-          4, every volume has used the same 196-card, 28 × 7 shape, and Vol. 7 followed three months after this one.
-        </p>
-        <div className="table-scroll">
-          <table className="data-table">
-            <thead>
-              <tr>
-                <th scope="col">Volume</th>
-                <th scope="col">Released</th>
-                <th scope="col">Cards</th>
-              </tr>
-            </thead>
-            <tbody>
-              {GEM_TIMELINE.map((g) => (
-                <tr key={g.vol} className={g.vol === 6 ? 'is-current' : undefined}>
-                  <th scope="row">
-                    <Link to={`/sets/gem-vol-${g.vol}` as never}>Gem Pack Vol. {g.vol}</Link>
-                  </th>
-                  <td>{g.date}</td>
-                  <td>{g.cards}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-        <p>
-          Picking up the newest volume too? Our <Link to="/blogs/news/gem-vol-7-has-arrived">Gem Vol 7 guide</Link> covers Misty's
-          Psyduck and the Trainer-paired lineup.
-        </p>
-
-        <h2 id="applin-binder">An Applin binder to go with it</h2>
-        <p>
-          Pokémon China also released a 30-pocket Gem Pack Vol. 6 binder the same day, pink with Applin on the cover. It holds one card
-          per pocket, which suits a single Applin run or a page of favorite full arts.
-        </p>
-        <img
-          className="inline-media"
-          src={`${SITE_URL}/assets/blog/gem-vol-6-applin-binder.webp`}
-          alt="Official Gem Pack Vol. 6 Applin card binder, 30 pockets, pink cover"
-          loading="lazy"
-          width={1600}
-          height={1067}
-        />
 
         <h2 id="faq">FAQ</h2>
         <div className="faq">
@@ -353,13 +272,6 @@ function GemVol6Post() {
             </details>
           ))}
         </div>
-
-        <h2 id="our-take">Our take</h2>
-        <p>
-          Gem Vol 6 is a warm, easygoing set. Every card is a holo, the packs are small enough to rip a few at a time, and the apple and
-          kitchen art gives it a look no other volume has. If you only chase one card, make it the Applin full art. If you like
-          completing runs, Applin's six holo versions are an easy place to start.
-        </p>
       </BlogPostLayout>
     </>
   )
