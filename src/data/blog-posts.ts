@@ -6,7 +6,7 @@
 // the post itself.
 import { SITE_URL, R2_IMAGE_HOST } from '~/lib/gem-sets/constants'
 
-export type BlogPostSlug = 'gem-vol-7-has-arrived' | 'black-bolt-white-flare-arrive' | 'gem-vol-7-card-origins' | 'gem-vol-6-has-arrived' | 'gem-vol-6-set-guide'
+export type BlogPostSlug = 'gem-vol-7-has-arrived' | 'black-bolt-white-flare-arrive' | 'gem-vol-7-card-origins' | 'gem-vol-6-has-arrived' | 'gem-vol-6-set-guide' | 'gem-vol-6-card-origins'
 
 export interface BlogPostSummary {
   slug: BlogPostSlug
@@ -59,6 +59,19 @@ export const BLOG_POSTS: BlogPostSummary[] = [
     heroImage: `${SITE_URL}/assets/blog/gem-vol-6-guide-hero.webp`,
     heroAlt: 'Eight Gem Pack Vol. 6 full arts, including Applin, Flapple and Appletun, in a display case beside the EBI Collectibles logo',
     glow1: 'rgb(78 119 104 / .30)',
+    glow2: 'rgb(199 22 116 / .22)',
+  },
+  {
+    slug: 'gem-vol-6-card-origins',
+    path: '/blogs/news/gem-vol-6-card-origins',
+    title: 'Where Every Gem Vol 6 Card Actually Comes From',
+    excerpt:
+      "55 of the 56 illustrations in Gem Vol 6 first appeared on English Scarlet & Violet cards, mostly from Surging Sparks. Here's the full card-by-card map.",
+    tag: 'Collecting guide',
+    date: '2026-11-15',
+    heroImage: `${SITE_URL}/assets/blog/gem-vol-6-origins-hero.webp`,
+    heroAlt: 'Eight Gem Pack Vol. 6 full arts in a display case beside the EBI Collectibles logo, with the title Gem Vol. 6 Card Origins',
+    glow1: 'rgb(78 119 104 / .28)',
     glow2: 'rgb(199 22 116 / .22)',
   },
   {
