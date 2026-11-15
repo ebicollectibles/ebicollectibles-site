@@ -217,14 +217,6 @@ function TerastalGatheringReleasePost() {
           28 Pokémon SARs and 6 Trainer SARs. All nine Stellar Eeveelutions are here, with two each for Eevee ex and Sylveon ex.
           They sit alongside favorites like Dragapult ex, Iron Hands ex and Terapagos ex.
         </p>
-        <img
-          className="inline-media"
-          src={`${SITE_URL}/assets/blog/terastal-gathering-eeveelution-sars.webp`}
-          alt="The nine Eeveelution ex Special Art Rares in Terastal Gathering"
-          loading="lazy"
-          width={800}
-          height={1118}
-        />
         <Grid cards={SAR} cols={3} />
 
         <h2 id="sylveon">A second Sylveon ex, only in Chinese</h2>
