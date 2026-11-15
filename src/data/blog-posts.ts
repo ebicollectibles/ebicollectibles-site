@@ -6,7 +6,7 @@
 // the post itself.
 import { SITE_URL, R2_IMAGE_HOST } from '~/lib/gem-sets/constants'
 
-export type BlogPostSlug = 'gem-vol-7-has-arrived' | 'black-bolt-white-flare-arrive' | 'gem-vol-7-card-origins' | 'gem-vol-6-has-arrived' | 'gem-vol-6-set-guide' | 'gem-vol-6-card-origins' | 'gem-vol-5-has-arrived' | 'gem-vol-5-set-guide' | 'gem-vol-5-card-origins' | 'gem-vol-4-has-arrived' | 'gem-vol-4-set-guide' | 'gem-vol-4-card-origins' | 'gem-vol-3-has-arrived' | 'gem-vol-3-set-guide' | 'gem-vol-3-card-origins' | 'gem-vol-2-has-arrived' | 'gem-vol-2-set-guide' | 'gem-vol-2-card-origins' | '30th-celebration-has-arrived' | '30th-celebration-set-guide' | '30th-celebration-card-origins' | 'chasing-glory-has-arrived' | 'chasing-glory-set-guide' | 'chasing-glory-card-origins' | 'terastal-gathering-has-arrived' | 'terastal-gathering-set-guide' | 'terastal-gathering-card-origins' | 'reward-round-has-arrived' | 'reward-round-set-guide' | 'reward-round-card-origins'
+export type BlogPostSlug = 'gem-vol-7-has-arrived' | 'black-bolt-white-flare-arrive' | 'gem-vol-7-card-origins' | 'gem-vol-6-has-arrived' | 'gem-vol-6-set-guide' | 'gem-vol-6-card-origins' | 'gem-vol-5-has-arrived' | 'gem-vol-5-set-guide' | 'gem-vol-5-card-origins' | 'gem-vol-4-has-arrived' | 'gem-vol-4-set-guide' | 'gem-vol-4-card-origins' | 'gem-vol-3-has-arrived' | 'gem-vol-3-set-guide' | 'gem-vol-3-card-origins' | 'gem-vol-2-has-arrived' | 'gem-vol-2-set-guide' | 'gem-vol-2-card-origins' | '30th-celebration-has-arrived' | '30th-celebration-set-guide' | '30th-celebration-card-origins' | 'chasing-glory-has-arrived' | 'chasing-glory-set-guide' | 'chasing-glory-card-origins' | 'terastal-gathering-has-arrived' | 'terastal-gathering-set-guide' | 'terastal-gathering-card-origins' | 'reward-round-has-arrived' | 'reward-round-set-guide' | 'reward-round-card-origins' | 'black-crystal-blaze-has-arrived' | 'black-crystal-blaze-set-guide' | 'black-crystal-blaze-card-origins'
 
 export interface BlogPostSummary {
   slug: BlogPostSlug
@@ -22,6 +22,45 @@ export interface BlogPostSummary {
 }
 
 export const BLOG_POSTS: BlogPostSummary[] = [
+  {
+    slug: 'black-crystal-blaze-has-arrived',
+    path: '/blogs/news/black-crystal-blaze-has-arrived',
+    title: 'Black Crystal Blaze Is Here: Darkness Tera Charizard ex and a Chinese-Only Larry SAR',
+    excerpt:
+      'The fifth Chinese Scarlet & Violet set puts Darkness Tera Charizard ex on the pack, with a Larry Special Art Rare and a gold Defiance Band you can only pull in Simplified Chinese.',
+    tag: 'New release',
+    date: '2025-09-12',
+    heroImage: `${SITE_URL}/assets/blog/black-crystal-blaze-release-hero-v3.webp`,
+    heroAlt: 'Black Crystal Blaze slim and jumbo booster packs with the Charizard ex Special Art Rare in front',
+    glow1: 'rgb(240 112 64 / .30)',
+    glow2: 'rgb(120 30 40 / .35)',
+  },
+  {
+    slug: 'black-crystal-blaze-set-guide',
+    path: '/blogs/news/black-crystal-blaze-set-guide',
+    title: 'Black Crystal Blaze Set Guide: Slim vs Jumbo, Every Chase Card and the Charizard Run',
+    excerpt:
+      'Slim box or jumbo box, every Ultra Rare, Special Art Rare, Super Rare and Art Rare, each Pokémon ex at every rarity, and what a master set takes.',
+    tag: 'Set guide',
+    date: '2026-11-15',
+    heroImage: `${SITE_URL}/assets/blog/black-crystal-blaze-guide-hero-v3.webp`,
+    heroAlt: 'The Charizard ex Special Art Rare in an EBI display case above six Black Crystal Blaze Special Art Rares',
+    glow1: 'rgb(240 112 64 / .30)',
+    glow2: 'rgb(120 30 40 / .35)',
+  },
+  {
+    slug: 'black-crystal-blaze-card-origins',
+    path: '/blogs/news/black-crystal-blaze-card-origins',
+    title: 'Where Every Black Crystal Blaze Card Comes From',
+    excerpt:
+      'All 164 cards matched to English: 73 from Paradox Rift, 61 from Obsidian Flames, 18 from Paldean Fates, 10 from five other sources and 2 new.',
+    tag: 'Collecting guide',
+    date: '2026-11-15',
+    heroImage: `${SITE_URL}/assets/blog/black-crystal-blaze-origins-hero-v3.webp`,
+    heroAlt: 'Black Crystal Blaze pack linked to tiles for Paradox Rift, Obsidian Flames, Paldean Fates, other sources and new art',
+    glow1: 'rgb(240 112 64 / .30)',
+    glow2: 'rgb(120 30 40 / .35)',
+  },
   {
     slug: 'reward-round-has-arrived',
     path: '/blogs/news/reward-round-has-arrived',

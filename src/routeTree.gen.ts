@@ -81,6 +81,9 @@ import { Route as BlogsNews30thCelebrationCardOriginsRouteImport } from './route
 import { Route as BlogsNews30thCelebrationHasArrivedRouteImport } from './routes/blogs/news/30th-celebration-has-arrived'
 import { Route as BlogsNews30thCelebrationSetGuideRouteImport } from './routes/blogs/news/30th-celebration-set-guide'
 import { Route as BlogsNewsBlackBoltWhiteFlareArriveRouteImport } from './routes/blogs/news/black-bolt-white-flare-arrive'
+import { Route as BlogsNewsBlackCrystalBlazeCardOriginsRouteImport } from './routes/blogs/news/black-crystal-blaze-card-origins'
+import { Route as BlogsNewsBlackCrystalBlazeHasArrivedRouteImport } from './routes/blogs/news/black-crystal-blaze-has-arrived'
+import { Route as BlogsNewsBlackCrystalBlazeSetGuideRouteImport } from './routes/blogs/news/black-crystal-blaze-set-guide'
 import { Route as BlogsNewsChasingGloryCardOriginsRouteImport } from './routes/blogs/news/chasing-glory-card-origins'
 import { Route as BlogsNewsChasingGloryHasArrivedRouteImport } from './routes/blogs/news/chasing-glory-has-arrived'
 import { Route as BlogsNewsChasingGlorySetGuideRouteImport } from './routes/blogs/news/chasing-glory-set-guide'
@@ -474,6 +477,24 @@ const BlogsNewsBlackBoltWhiteFlareArriveRoute =
     path: '/blogs/news/black-bolt-white-flare-arrive',
     getParentRoute: () => rootRouteImport,
   } as any)
+const BlogsNewsBlackCrystalBlazeCardOriginsRoute =
+  BlogsNewsBlackCrystalBlazeCardOriginsRouteImport.update({
+    id: '/blogs/news/black-crystal-blaze-card-origins',
+    path: '/blogs/news/black-crystal-blaze-card-origins',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const BlogsNewsBlackCrystalBlazeHasArrivedRoute =
+  BlogsNewsBlackCrystalBlazeHasArrivedRouteImport.update({
+    id: '/blogs/news/black-crystal-blaze-has-arrived',
+    path: '/blogs/news/black-crystal-blaze-has-arrived',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const BlogsNewsBlackCrystalBlazeSetGuideRoute =
+  BlogsNewsBlackCrystalBlazeSetGuideRouteImport.update({
+    id: '/blogs/news/black-crystal-blaze-set-guide',
+    path: '/blogs/news/black-crystal-blaze-set-guide',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const BlogsNewsChasingGloryCardOriginsRoute =
   BlogsNewsChasingGloryCardOriginsRouteImport.update({
     id: '/blogs/news/chasing-glory-card-origins',
@@ -706,6 +727,9 @@ export interface FileRoutesByFullPath {
   '/blogs/news/30th-celebration-has-arrived': typeof BlogsNews30thCelebrationHasArrivedRoute
   '/blogs/news/30th-celebration-set-guide': typeof BlogsNews30thCelebrationSetGuideRoute
   '/blogs/news/black-bolt-white-flare-arrive': typeof BlogsNewsBlackBoltWhiteFlareArriveRoute
+  '/blogs/news/black-crystal-blaze-card-origins': typeof BlogsNewsBlackCrystalBlazeCardOriginsRoute
+  '/blogs/news/black-crystal-blaze-has-arrived': typeof BlogsNewsBlackCrystalBlazeHasArrivedRoute
+  '/blogs/news/black-crystal-blaze-set-guide': typeof BlogsNewsBlackCrystalBlazeSetGuideRoute
   '/blogs/news/chasing-glory-card-origins': typeof BlogsNewsChasingGloryCardOriginsRoute
   '/blogs/news/chasing-glory-has-arrived': typeof BlogsNewsChasingGloryHasArrivedRoute
   '/blogs/news/chasing-glory-set-guide': typeof BlogsNewsChasingGlorySetGuideRoute
@@ -807,6 +831,9 @@ export interface FileRoutesByTo {
   '/blogs/news/30th-celebration-has-arrived': typeof BlogsNews30thCelebrationHasArrivedRoute
   '/blogs/news/30th-celebration-set-guide': typeof BlogsNews30thCelebrationSetGuideRoute
   '/blogs/news/black-bolt-white-flare-arrive': typeof BlogsNewsBlackBoltWhiteFlareArriveRoute
+  '/blogs/news/black-crystal-blaze-card-origins': typeof BlogsNewsBlackCrystalBlazeCardOriginsRoute
+  '/blogs/news/black-crystal-blaze-has-arrived': typeof BlogsNewsBlackCrystalBlazeHasArrivedRoute
+  '/blogs/news/black-crystal-blaze-set-guide': typeof BlogsNewsBlackCrystalBlazeSetGuideRoute
   '/blogs/news/chasing-glory-card-origins': typeof BlogsNewsChasingGloryCardOriginsRoute
   '/blogs/news/chasing-glory-has-arrived': typeof BlogsNewsChasingGloryHasArrivedRoute
   '/blogs/news/chasing-glory-set-guide': typeof BlogsNewsChasingGlorySetGuideRoute
@@ -909,6 +936,9 @@ export interface FileRoutesById {
   '/blogs/news/30th-celebration-has-arrived': typeof BlogsNews30thCelebrationHasArrivedRoute
   '/blogs/news/30th-celebration-set-guide': typeof BlogsNews30thCelebrationSetGuideRoute
   '/blogs/news/black-bolt-white-flare-arrive': typeof BlogsNewsBlackBoltWhiteFlareArriveRoute
+  '/blogs/news/black-crystal-blaze-card-origins': typeof BlogsNewsBlackCrystalBlazeCardOriginsRoute
+  '/blogs/news/black-crystal-blaze-has-arrived': typeof BlogsNewsBlackCrystalBlazeHasArrivedRoute
+  '/blogs/news/black-crystal-blaze-set-guide': typeof BlogsNewsBlackCrystalBlazeSetGuideRoute
   '/blogs/news/chasing-glory-card-origins': typeof BlogsNewsChasingGloryCardOriginsRoute
   '/blogs/news/chasing-glory-has-arrived': typeof BlogsNewsChasingGloryHasArrivedRoute
   '/blogs/news/chasing-glory-set-guide': typeof BlogsNewsChasingGlorySetGuideRoute
@@ -1012,6 +1042,9 @@ export interface FileRouteTypes {
     | '/blogs/news/30th-celebration-has-arrived'
     | '/blogs/news/30th-celebration-set-guide'
     | '/blogs/news/black-bolt-white-flare-arrive'
+    | '/blogs/news/black-crystal-blaze-card-origins'
+    | '/blogs/news/black-crystal-blaze-has-arrived'
+    | '/blogs/news/black-crystal-blaze-set-guide'
     | '/blogs/news/chasing-glory-card-origins'
     | '/blogs/news/chasing-glory-has-arrived'
     | '/blogs/news/chasing-glory-set-guide'
@@ -1113,6 +1146,9 @@ export interface FileRouteTypes {
     | '/blogs/news/30th-celebration-has-arrived'
     | '/blogs/news/30th-celebration-set-guide'
     | '/blogs/news/black-bolt-white-flare-arrive'
+    | '/blogs/news/black-crystal-blaze-card-origins'
+    | '/blogs/news/black-crystal-blaze-has-arrived'
+    | '/blogs/news/black-crystal-blaze-set-guide'
     | '/blogs/news/chasing-glory-card-origins'
     | '/blogs/news/chasing-glory-has-arrived'
     | '/blogs/news/chasing-glory-set-guide'
@@ -1214,6 +1250,9 @@ export interface FileRouteTypes {
     | '/blogs/news/30th-celebration-has-arrived'
     | '/blogs/news/30th-celebration-set-guide'
     | '/blogs/news/black-bolt-white-flare-arrive'
+    | '/blogs/news/black-crystal-blaze-card-origins'
+    | '/blogs/news/black-crystal-blaze-has-arrived'
+    | '/blogs/news/black-crystal-blaze-set-guide'
     | '/blogs/news/chasing-glory-card-origins'
     | '/blogs/news/chasing-glory-has-arrived'
     | '/blogs/news/chasing-glory-set-guide'
@@ -1316,6 +1355,9 @@ export interface RootRouteChildren {
   BlogsNews30thCelebrationHasArrivedRoute: typeof BlogsNews30thCelebrationHasArrivedRoute
   BlogsNews30thCelebrationSetGuideRoute: typeof BlogsNews30thCelebrationSetGuideRoute
   BlogsNewsBlackBoltWhiteFlareArriveRoute: typeof BlogsNewsBlackBoltWhiteFlareArriveRoute
+  BlogsNewsBlackCrystalBlazeCardOriginsRoute: typeof BlogsNewsBlackCrystalBlazeCardOriginsRoute
+  BlogsNewsBlackCrystalBlazeHasArrivedRoute: typeof BlogsNewsBlackCrystalBlazeHasArrivedRoute
+  BlogsNewsBlackCrystalBlazeSetGuideRoute: typeof BlogsNewsBlackCrystalBlazeSetGuideRoute
   BlogsNewsChasingGloryCardOriginsRoute: typeof BlogsNewsChasingGloryCardOriginsRoute
   BlogsNewsChasingGloryHasArrivedRoute: typeof BlogsNewsChasingGloryHasArrivedRoute
   BlogsNewsChasingGlorySetGuideRoute: typeof BlogsNewsChasingGlorySetGuideRoute
@@ -1855,6 +1897,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BlogsNewsBlackBoltWhiteFlareArriveRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/blogs/news/black-crystal-blaze-card-origins': {
+      id: '/blogs/news/black-crystal-blaze-card-origins'
+      path: '/blogs/news/black-crystal-blaze-card-origins'
+      fullPath: '/blogs/news/black-crystal-blaze-card-origins'
+      preLoaderRoute: typeof BlogsNewsBlackCrystalBlazeCardOriginsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blogs/news/black-crystal-blaze-has-arrived': {
+      id: '/blogs/news/black-crystal-blaze-has-arrived'
+      path: '/blogs/news/black-crystal-blaze-has-arrived'
+      fullPath: '/blogs/news/black-crystal-blaze-has-arrived'
+      preLoaderRoute: typeof BlogsNewsBlackCrystalBlazeHasArrivedRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blogs/news/black-crystal-blaze-set-guide': {
+      id: '/blogs/news/black-crystal-blaze-set-guide'
+      path: '/blogs/news/black-crystal-blaze-set-guide'
+      fullPath: '/blogs/news/black-crystal-blaze-set-guide'
+      preLoaderRoute: typeof BlogsNewsBlackCrystalBlazeSetGuideRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/blogs/news/chasing-glory-card-origins': {
       id: '/blogs/news/chasing-glory-card-origins'
       path: '/blogs/news/chasing-glory-card-origins'
@@ -2119,6 +2182,12 @@ const rootRouteChildren: RootRouteChildren = {
   BlogsNews30thCelebrationSetGuideRoute: BlogsNews30thCelebrationSetGuideRoute,
   BlogsNewsBlackBoltWhiteFlareArriveRoute:
     BlogsNewsBlackBoltWhiteFlareArriveRoute,
+  BlogsNewsBlackCrystalBlazeCardOriginsRoute:
+    BlogsNewsBlackCrystalBlazeCardOriginsRoute,
+  BlogsNewsBlackCrystalBlazeHasArrivedRoute:
+    BlogsNewsBlackCrystalBlazeHasArrivedRoute,
+  BlogsNewsBlackCrystalBlazeSetGuideRoute:
+    BlogsNewsBlackCrystalBlazeSetGuideRoute,
   BlogsNewsChasingGloryCardOriginsRoute: BlogsNewsChasingGloryCardOriginsRoute,
   BlogsNewsChasingGloryHasArrivedRoute: BlogsNewsChasingGloryHasArrivedRoute,
   BlogsNewsChasingGlorySetGuideRoute: BlogsNewsChasingGlorySetGuideRoute,
