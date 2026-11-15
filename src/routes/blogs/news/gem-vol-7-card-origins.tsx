@@ -262,10 +262,8 @@ function GemVol7OriginsPost() {
 
         <h2 id="how-we-checked">How we checked</h2>
         <p>
-          A Pokémon's name alone is not enough, since most Pokémon have several cards by different artists, and Trainer's Pokémon
-          like Team Rocket's cards appear across more than one set. For each Gem Vol 7 card we read the illustrator credit printed on
-          the card, then found the English card with the same Pokémon and the same illustrator in the Limitless TCG and TCGdex card
-          databases. Where two English cards were possible, we compared the artwork directly.
+          Lots of Pokémon have several cards by different artists, so a name match isn't enough. We matched each Gem card to its
+          English original by the illustrator printed on the card, and when two cards were close, we put them side by side.
         </p>
         <p>
           For more on the set itself, see our <Link to="/blogs/news/gem-vol-7-has-arrived">Gem Vol 7 release post</Link>. Collecting

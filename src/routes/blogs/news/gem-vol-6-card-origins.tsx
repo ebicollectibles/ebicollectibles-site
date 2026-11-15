@@ -262,10 +262,8 @@ function GemVol6OriginsPost() {
 
         <h2 id="how-we-checked">How we checked</h2>
         <p>
-          A Pokémon's name alone is not enough, since most Pokémon have several cards by different artists. For each Gem Vol 6 card
-          we read the illustrator credit printed on the card, then found the English card with the same Pokémon and the same
-          illustrator in the Limitless TCG and TCGdex card databases. The regulation mark on the Gem card (H for everything except
-          Applin's regular art, which is I) matched the source set every time.
+          Lots of Pokémon have several cards by different artists, so a name match isn't enough. We matched each Gem card to its
+          English original by the illustrator printed on the card, and when two cards were close, we put them side by side.
         </p>
         <p>
           For more on the set itself, see our <Link to="/blogs/news/gem-vol-6-has-arrived">Gem Vol 6 release post</Link> and the{' '}
