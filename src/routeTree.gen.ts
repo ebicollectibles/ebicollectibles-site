@@ -81,6 +81,9 @@ import { Route as BlogsNews30thCelebrationCardOriginsRouteImport } from './route
 import { Route as BlogsNews30thCelebrationHasArrivedRouteImport } from './routes/blogs/news/30th-celebration-has-arrived'
 import { Route as BlogsNews30thCelebrationSetGuideRouteImport } from './routes/blogs/news/30th-celebration-set-guide'
 import { Route as BlogsNewsBlackBoltWhiteFlareArriveRouteImport } from './routes/blogs/news/black-bolt-white-flare-arrive'
+import { Route as BlogsNewsChasingGloryCardOriginsRouteImport } from './routes/blogs/news/chasing-glory-card-origins'
+import { Route as BlogsNewsChasingGloryHasArrivedRouteImport } from './routes/blogs/news/chasing-glory-has-arrived'
+import { Route as BlogsNewsChasingGlorySetGuideRouteImport } from './routes/blogs/news/chasing-glory-set-guide'
 import { Route as BlogsNewsGemVol2CardOriginsRouteImport } from './routes/blogs/news/gem-vol-2-card-origins'
 import { Route as BlogsNewsGemVol2HasArrivedRouteImport } from './routes/blogs/news/gem-vol-2-has-arrived'
 import { Route as BlogsNewsGemVol2SetGuideRouteImport } from './routes/blogs/news/gem-vol-2-set-guide'
@@ -465,6 +468,24 @@ const BlogsNewsBlackBoltWhiteFlareArriveRoute =
     path: '/blogs/news/black-bolt-white-flare-arrive',
     getParentRoute: () => rootRouteImport,
   } as any)
+const BlogsNewsChasingGloryCardOriginsRoute =
+  BlogsNewsChasingGloryCardOriginsRouteImport.update({
+    id: '/blogs/news/chasing-glory-card-origins',
+    path: '/blogs/news/chasing-glory-card-origins',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const BlogsNewsChasingGloryHasArrivedRoute =
+  BlogsNewsChasingGloryHasArrivedRouteImport.update({
+    id: '/blogs/news/chasing-glory-has-arrived',
+    path: '/blogs/news/chasing-glory-has-arrived',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const BlogsNewsChasingGlorySetGuideRoute =
+  BlogsNewsChasingGlorySetGuideRouteImport.update({
+    id: '/blogs/news/chasing-glory-set-guide',
+    path: '/blogs/news/chasing-glory-set-guide',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const BlogsNewsGemVol2CardOriginsRoute =
   BlogsNewsGemVol2CardOriginsRouteImport.update({
     id: '/blogs/news/gem-vol-2-card-origins',
@@ -643,6 +664,9 @@ export interface FileRoutesByFullPath {
   '/blogs/news/30th-celebration-has-arrived': typeof BlogsNews30thCelebrationHasArrivedRoute
   '/blogs/news/30th-celebration-set-guide': typeof BlogsNews30thCelebrationSetGuideRoute
   '/blogs/news/black-bolt-white-flare-arrive': typeof BlogsNewsBlackBoltWhiteFlareArriveRoute
+  '/blogs/news/chasing-glory-card-origins': typeof BlogsNewsChasingGloryCardOriginsRoute
+  '/blogs/news/chasing-glory-has-arrived': typeof BlogsNewsChasingGloryHasArrivedRoute
+  '/blogs/news/chasing-glory-set-guide': typeof BlogsNewsChasingGlorySetGuideRoute
   '/blogs/news/gem-vol-2-card-origins': typeof BlogsNewsGemVol2CardOriginsRoute
   '/blogs/news/gem-vol-2-has-arrived': typeof BlogsNewsGemVol2HasArrivedRoute
   '/blogs/news/gem-vol-2-set-guide': typeof BlogsNewsGemVol2SetGuideRoute
@@ -735,6 +759,9 @@ export interface FileRoutesByTo {
   '/blogs/news/30th-celebration-has-arrived': typeof BlogsNews30thCelebrationHasArrivedRoute
   '/blogs/news/30th-celebration-set-guide': typeof BlogsNews30thCelebrationSetGuideRoute
   '/blogs/news/black-bolt-white-flare-arrive': typeof BlogsNewsBlackBoltWhiteFlareArriveRoute
+  '/blogs/news/chasing-glory-card-origins': typeof BlogsNewsChasingGloryCardOriginsRoute
+  '/blogs/news/chasing-glory-has-arrived': typeof BlogsNewsChasingGloryHasArrivedRoute
+  '/blogs/news/chasing-glory-set-guide': typeof BlogsNewsChasingGlorySetGuideRoute
   '/blogs/news/gem-vol-2-card-origins': typeof BlogsNewsGemVol2CardOriginsRoute
   '/blogs/news/gem-vol-2-has-arrived': typeof BlogsNewsGemVol2HasArrivedRoute
   '/blogs/news/gem-vol-2-set-guide': typeof BlogsNewsGemVol2SetGuideRoute
@@ -828,6 +855,9 @@ export interface FileRoutesById {
   '/blogs/news/30th-celebration-has-arrived': typeof BlogsNews30thCelebrationHasArrivedRoute
   '/blogs/news/30th-celebration-set-guide': typeof BlogsNews30thCelebrationSetGuideRoute
   '/blogs/news/black-bolt-white-flare-arrive': typeof BlogsNewsBlackBoltWhiteFlareArriveRoute
+  '/blogs/news/chasing-glory-card-origins': typeof BlogsNewsChasingGloryCardOriginsRoute
+  '/blogs/news/chasing-glory-has-arrived': typeof BlogsNewsChasingGloryHasArrivedRoute
+  '/blogs/news/chasing-glory-set-guide': typeof BlogsNewsChasingGlorySetGuideRoute
   '/blogs/news/gem-vol-2-card-origins': typeof BlogsNewsGemVol2CardOriginsRoute
   '/blogs/news/gem-vol-2-has-arrived': typeof BlogsNewsGemVol2HasArrivedRoute
   '/blogs/news/gem-vol-2-set-guide': typeof BlogsNewsGemVol2SetGuideRoute
@@ -922,6 +952,9 @@ export interface FileRouteTypes {
     | '/blogs/news/30th-celebration-has-arrived'
     | '/blogs/news/30th-celebration-set-guide'
     | '/blogs/news/black-bolt-white-flare-arrive'
+    | '/blogs/news/chasing-glory-card-origins'
+    | '/blogs/news/chasing-glory-has-arrived'
+    | '/blogs/news/chasing-glory-set-guide'
     | '/blogs/news/gem-vol-2-card-origins'
     | '/blogs/news/gem-vol-2-has-arrived'
     | '/blogs/news/gem-vol-2-set-guide'
@@ -1014,6 +1047,9 @@ export interface FileRouteTypes {
     | '/blogs/news/30th-celebration-has-arrived'
     | '/blogs/news/30th-celebration-set-guide'
     | '/blogs/news/black-bolt-white-flare-arrive'
+    | '/blogs/news/chasing-glory-card-origins'
+    | '/blogs/news/chasing-glory-has-arrived'
+    | '/blogs/news/chasing-glory-set-guide'
     | '/blogs/news/gem-vol-2-card-origins'
     | '/blogs/news/gem-vol-2-has-arrived'
     | '/blogs/news/gem-vol-2-set-guide'
@@ -1106,6 +1142,9 @@ export interface FileRouteTypes {
     | '/blogs/news/30th-celebration-has-arrived'
     | '/blogs/news/30th-celebration-set-guide'
     | '/blogs/news/black-bolt-white-flare-arrive'
+    | '/blogs/news/chasing-glory-card-origins'
+    | '/blogs/news/chasing-glory-has-arrived'
+    | '/blogs/news/chasing-glory-set-guide'
     | '/blogs/news/gem-vol-2-card-origins'
     | '/blogs/news/gem-vol-2-has-arrived'
     | '/blogs/news/gem-vol-2-set-guide'
@@ -1199,6 +1238,9 @@ export interface RootRouteChildren {
   BlogsNews30thCelebrationHasArrivedRoute: typeof BlogsNews30thCelebrationHasArrivedRoute
   BlogsNews30thCelebrationSetGuideRoute: typeof BlogsNews30thCelebrationSetGuideRoute
   BlogsNewsBlackBoltWhiteFlareArriveRoute: typeof BlogsNewsBlackBoltWhiteFlareArriveRoute
+  BlogsNewsChasingGloryCardOriginsRoute: typeof BlogsNewsChasingGloryCardOriginsRoute
+  BlogsNewsChasingGloryHasArrivedRoute: typeof BlogsNewsChasingGloryHasArrivedRoute
+  BlogsNewsChasingGlorySetGuideRoute: typeof BlogsNewsChasingGlorySetGuideRoute
   BlogsNewsGemVol2CardOriginsRoute: typeof BlogsNewsGemVol2CardOriginsRoute
   BlogsNewsGemVol2HasArrivedRoute: typeof BlogsNewsGemVol2HasArrivedRoute
   BlogsNewsGemVol2SetGuideRoute: typeof BlogsNewsGemVol2SetGuideRoute
@@ -1729,6 +1771,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BlogsNewsBlackBoltWhiteFlareArriveRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/blogs/news/chasing-glory-card-origins': {
+      id: '/blogs/news/chasing-glory-card-origins'
+      path: '/blogs/news/chasing-glory-card-origins'
+      fullPath: '/blogs/news/chasing-glory-card-origins'
+      preLoaderRoute: typeof BlogsNewsChasingGloryCardOriginsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blogs/news/chasing-glory-has-arrived': {
+      id: '/blogs/news/chasing-glory-has-arrived'
+      path: '/blogs/news/chasing-glory-has-arrived'
+      fullPath: '/blogs/news/chasing-glory-has-arrived'
+      preLoaderRoute: typeof BlogsNewsChasingGloryHasArrivedRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blogs/news/chasing-glory-set-guide': {
+      id: '/blogs/news/chasing-glory-set-guide'
+      path: '/blogs/news/chasing-glory-set-guide'
+      fullPath: '/blogs/news/chasing-glory-set-guide'
+      preLoaderRoute: typeof BlogsNewsChasingGlorySetGuideRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/blogs/news/gem-vol-2-card-origins': {
       id: '/blogs/news/gem-vol-2-card-origins'
       path: '/blogs/news/gem-vol-2-card-origins'
@@ -1930,6 +1993,9 @@ const rootRouteChildren: RootRouteChildren = {
   BlogsNews30thCelebrationSetGuideRoute: BlogsNews30thCelebrationSetGuideRoute,
   BlogsNewsBlackBoltWhiteFlareArriveRoute:
     BlogsNewsBlackBoltWhiteFlareArriveRoute,
+  BlogsNewsChasingGloryCardOriginsRoute: BlogsNewsChasingGloryCardOriginsRoute,
+  BlogsNewsChasingGloryHasArrivedRoute: BlogsNewsChasingGloryHasArrivedRoute,
+  BlogsNewsChasingGlorySetGuideRoute: BlogsNewsChasingGlorySetGuideRoute,
   BlogsNewsGemVol2CardOriginsRoute: BlogsNewsGemVol2CardOriginsRoute,
   BlogsNewsGemVol2HasArrivedRoute: BlogsNewsGemVol2HasArrivedRoute,
   BlogsNewsGemVol2SetGuideRoute: BlogsNewsGemVol2SetGuideRoute,

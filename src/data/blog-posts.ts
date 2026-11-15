@@ -6,7 +6,7 @@
 // the post itself.
 import { SITE_URL, R2_IMAGE_HOST } from '~/lib/gem-sets/constants'
 
-export type BlogPostSlug = 'gem-vol-7-has-arrived' | 'black-bolt-white-flare-arrive' | 'gem-vol-7-card-origins' | 'gem-vol-6-has-arrived' | 'gem-vol-6-set-guide' | 'gem-vol-6-card-origins' | 'gem-vol-5-has-arrived' | 'gem-vol-5-set-guide' | 'gem-vol-5-card-origins' | 'gem-vol-4-has-arrived' | 'gem-vol-4-set-guide' | 'gem-vol-4-card-origins' | 'gem-vol-3-has-arrived' | 'gem-vol-3-set-guide' | 'gem-vol-3-card-origins' | 'gem-vol-2-has-arrived' | 'gem-vol-2-set-guide' | 'gem-vol-2-card-origins' | '30th-celebration-has-arrived' | '30th-celebration-set-guide' | '30th-celebration-card-origins'
+export type BlogPostSlug = 'gem-vol-7-has-arrived' | 'black-bolt-white-flare-arrive' | 'gem-vol-7-card-origins' | 'gem-vol-6-has-arrived' | 'gem-vol-6-set-guide' | 'gem-vol-6-card-origins' | 'gem-vol-5-has-arrived' | 'gem-vol-5-set-guide' | 'gem-vol-5-card-origins' | 'gem-vol-4-has-arrived' | 'gem-vol-4-set-guide' | 'gem-vol-4-card-origins' | 'gem-vol-3-has-arrived' | 'gem-vol-3-set-guide' | 'gem-vol-3-card-origins' | 'gem-vol-2-has-arrived' | 'gem-vol-2-set-guide' | 'gem-vol-2-card-origins' | '30th-celebration-has-arrived' | '30th-celebration-set-guide' | '30th-celebration-card-origins' | 'chasing-glory-has-arrived' | 'chasing-glory-set-guide' | 'chasing-glory-card-origins'
 
 export interface BlogPostSummary {
   slug: BlogPostSlug
@@ -22,6 +22,45 @@ export interface BlogPostSummary {
 }
 
 export const BLOG_POSTS: BlogPostSummary[] = [
+  {
+    slug: 'chasing-glory-has-arrived',
+    path: '/blogs/news/chasing-glory-has-arrived',
+    title: 'Chasing Glory Is Here: Trainer\'s Pokémon in Slim and Jumbo Packs',
+    excerpt:
+      'The main CSV10 set brings Trainer\'s Pokémon to Simplified Chinese: 287 cards led by Team Rocket, a Chinese-exclusive Brock SAR, and two pack sizes with different odds.',
+    tag: 'New release',
+    date: '2026-07-16',
+    heroImage: `${SITE_URL}/assets/blog/chasing-glory-release-hero-v3.webp`,
+    heroAlt: 'Chasing Glory slim and jumbo booster packs with the Team Rocket\'s Mewtwo ex Special Art Rare in front',
+    glow1: 'rgb(232 129 61 / .30)',
+    glow2: 'rgb(29 16 19 / .30)',
+  },
+  {
+    slug: 'chasing-glory-set-guide',
+    path: '/blogs/news/chasing-glory-set-guide',
+    title: 'Chasing Glory Set Guide: Slim vs Jumbo Odds, Every Chase Card and the Trainer Roster',
+    excerpt:
+      'Slim or jumbo? What each box holds on average, every Ultra Rare and Special Art Rare, which Trainers own which Pokémon, and what a master set takes.',
+    tag: 'Set guide',
+    date: '2026-11-15',
+    heroImage: `${SITE_URL}/assets/blog/chasing-glory-guide-hero-v3.webp`,
+    heroAlt: 'Team Rocket\'s Mewtwo ex Special Art Rare in an EBI display case above the six gold Pokémon ex Ultra Rares',
+    glow1: 'rgb(232 129 61 / .30)',
+    glow2: 'rgb(218 189 94 / .25)',
+  },
+  {
+    slug: 'chasing-glory-card-origins',
+    path: '/blogs/news/chasing-glory-card-origins',
+    title: 'Where Every Chasing Glory Card Comes From',
+    excerpt:
+      'All 287 cards traced to their English printings: 190 from Destined Rivals, 94 from Journey Together, 2 from Ascended Heroes, and one card made only for China.',
+    tag: 'Collecting guide',
+    date: '2026-11-15',
+    heroImage: `${SITE_URL}/assets/blog/chasing-glory-origins-hero-v3.webp`,
+    heroAlt: 'Chasing Glory pack linked to tiles for Destined Rivals, Journey Together, Ascended Heroes and one new card',
+    glow1: 'rgb(232 129 61 / .30)',
+    glow2: 'rgb(173 49 26 / .30)',
+  },
   {
     slug: '30th-celebration-has-arrived',
     path: '/blogs/news/30th-celebration-has-arrived',
