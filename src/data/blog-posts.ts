@@ -6,7 +6,7 @@
 // the post itself.
 import { SITE_URL, R2_IMAGE_HOST } from '~/lib/gem-sets/constants'
 
-export type BlogPostSlug = 'gem-vol-7-has-arrived' | 'black-bolt-white-flare-arrive' | 'gem-vol-7-card-origins' | 'gem-vol-6-has-arrived' | 'gem-vol-6-set-guide' | 'gem-vol-6-card-origins' | 'gem-vol-5-has-arrived' | 'gem-vol-5-set-guide' | 'gem-vol-5-card-origins' | 'gem-vol-4-has-arrived' | 'gem-vol-4-set-guide' | 'gem-vol-4-card-origins' | 'gem-vol-3-has-arrived' | 'gem-vol-3-set-guide' | 'gem-vol-3-card-origins' | 'gem-vol-2-has-arrived' | 'gem-vol-2-set-guide' | 'gem-vol-2-card-origins' | '30th-celebration-has-arrived' | '30th-celebration-set-guide' | '30th-celebration-card-origins' | 'chasing-glory-has-arrived' | 'chasing-glory-set-guide' | 'chasing-glory-card-origins' | 'terastal-gathering-has-arrived' | 'terastal-gathering-set-guide' | 'terastal-gathering-card-origins'
+export type BlogPostSlug = 'gem-vol-7-has-arrived' | 'black-bolt-white-flare-arrive' | 'gem-vol-7-card-origins' | 'gem-vol-6-has-arrived' | 'gem-vol-6-set-guide' | 'gem-vol-6-card-origins' | 'gem-vol-5-has-arrived' | 'gem-vol-5-set-guide' | 'gem-vol-5-card-origins' | 'gem-vol-4-has-arrived' | 'gem-vol-4-set-guide' | 'gem-vol-4-card-origins' | 'gem-vol-3-has-arrived' | 'gem-vol-3-set-guide' | 'gem-vol-3-card-origins' | 'gem-vol-2-has-arrived' | 'gem-vol-2-set-guide' | 'gem-vol-2-card-origins' | '30th-celebration-has-arrived' | '30th-celebration-set-guide' | '30th-celebration-card-origins' | 'chasing-glory-has-arrived' | 'chasing-glory-set-guide' | 'chasing-glory-card-origins' | 'terastal-gathering-has-arrived' | 'terastal-gathering-set-guide' | 'terastal-gathering-card-origins' | 'reward-round-has-arrived' | 'reward-round-set-guide' | 'reward-round-card-origins'
 
 export interface BlogPostSummary {
   slug: BlogPostSlug
@@ -22,6 +22,45 @@ export interface BlogPostSummary {
 }
 
 export const BLOG_POSTS: BlogPostSummary[] = [
+  {
+    slug: 'reward-round-has-arrived',
+    path: '/blogs/news/reward-round-has-arrived',
+    title: 'Reward Round Is Here: Gold Gholdengo and Two Chinese-Only SARs',
+    excerpt:
+      'The fourth Chinese Scarlet & Violet set puts Gholdengo on the pack, with a gold Gholdengo ex, a Maushold ex SAR and a Rika SAR you can only pull in Simplified Chinese.',
+    tag: 'New release',
+    date: '2025-07-18',
+    heroImage: `${SITE_URL}/assets/blog/reward-round-release-hero-v3.webp`,
+    heroAlt: 'Reward Round slim and jumbo booster packs with the gold Gholdengo ex Ultra Rare in front',
+    glow1: 'rgb(46 123 134 / .30)',
+    glow2: 'rgb(251 213 114 / .25)',
+  },
+  {
+    slug: 'reward-round-set-guide',
+    path: '/blogs/news/reward-round-set-guide',
+    title: 'Reward Round Set Guide: Every Chase Card and What a Slim Box Holds',
+    excerpt:
+      'Every Ultra Rare, Special Art Rare, Super Rare and Art Rare in Reward Round, what a 15-pack slim box averages, and what a master set takes.',
+    tag: 'Set guide',
+    date: '2026-11-15',
+    heroImage: `${SITE_URL}/assets/blog/reward-round-guide-hero-v3.webp`,
+    heroAlt: 'The gold Gholdengo ex Ultra Rare in an EBI display case above six Reward Round Special Art Rares',
+    glow1: 'rgb(46 123 134 / .30)',
+    glow2: 'rgb(251 213 114 / .25)',
+  },
+  {
+    slug: 'reward-round-card-origins',
+    path: '/blogs/news/reward-round-card-origins',
+    title: 'Where Every Reward Round Card Comes From',
+    excerpt:
+      'All 165 cards matched to English: 69 from Obsidian Flames, 41 from Paldea Evolved, 31 from Paradox Rift, 21 from six other sources and 3 new.',
+    tag: 'Collecting guide',
+    date: '2026-11-15',
+    heroImage: `${SITE_URL}/assets/blog/reward-round-origins-hero-v3.webp`,
+    heroAlt: 'Reward Round pack linked to tiles for Obsidian Flames, Paldea Evolved, Paradox Rift, other sources and new art',
+    glow1: 'rgb(46 123 134 / .30)',
+    glow2: 'rgb(179 130 68 / .30)',
+  },
   {
     slug: 'terastal-gathering-has-arrived',
     path: '/blogs/news/terastal-gathering-has-arrived',

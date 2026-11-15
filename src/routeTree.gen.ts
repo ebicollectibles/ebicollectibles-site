@@ -101,6 +101,9 @@ import { Route as BlogsNewsGemVol6HasArrivedRouteImport } from './routes/blogs/n
 import { Route as BlogsNewsGemVol6SetGuideRouteImport } from './routes/blogs/news/gem-vol-6-set-guide'
 import { Route as BlogsNewsGemVol7CardOriginsRouteImport } from './routes/blogs/news/gem-vol-7-card-origins'
 import { Route as BlogsNewsGemVol7HasArrivedRouteImport } from './routes/blogs/news/gem-vol-7-has-arrived'
+import { Route as BlogsNewsRewardRoundCardOriginsRouteImport } from './routes/blogs/news/reward-round-card-origins'
+import { Route as BlogsNewsRewardRoundHasArrivedRouteImport } from './routes/blogs/news/reward-round-has-arrived'
+import { Route as BlogsNewsRewardRoundSetGuideRouteImport } from './routes/blogs/news/reward-round-set-guide'
 import { Route as BlogsNewsTerastalGatheringCardOriginsRouteImport } from './routes/blogs/news/terastal-gathering-card-origins'
 import { Route as BlogsNewsTerastalGatheringHasArrivedRouteImport } from './routes/blogs/news/terastal-gathering-has-arrived'
 import { Route as BlogsNewsTerastalGatheringSetGuideRouteImport } from './routes/blogs/news/terastal-gathering-set-guide'
@@ -591,6 +594,24 @@ const BlogsNewsGemVol7HasArrivedRoute =
     path: '/blogs/news/gem-vol-7-has-arrived',
     getParentRoute: () => rootRouteImport,
   } as any)
+const BlogsNewsRewardRoundCardOriginsRoute =
+  BlogsNewsRewardRoundCardOriginsRouteImport.update({
+    id: '/blogs/news/reward-round-card-origins',
+    path: '/blogs/news/reward-round-card-origins',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const BlogsNewsRewardRoundHasArrivedRoute =
+  BlogsNewsRewardRoundHasArrivedRouteImport.update({
+    id: '/blogs/news/reward-round-has-arrived',
+    path: '/blogs/news/reward-round-has-arrived',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const BlogsNewsRewardRoundSetGuideRoute =
+  BlogsNewsRewardRoundSetGuideRouteImport.update({
+    id: '/blogs/news/reward-round-set-guide',
+    path: '/blogs/news/reward-round-set-guide',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const BlogsNewsTerastalGatheringCardOriginsRoute =
   BlogsNewsTerastalGatheringCardOriginsRouteImport.update({
     id: '/blogs/news/terastal-gathering-card-origins',
@@ -705,6 +726,9 @@ export interface FileRoutesByFullPath {
   '/blogs/news/gem-vol-6-set-guide': typeof BlogsNewsGemVol6SetGuideRoute
   '/blogs/news/gem-vol-7-card-origins': typeof BlogsNewsGemVol7CardOriginsRoute
   '/blogs/news/gem-vol-7-has-arrived': typeof BlogsNewsGemVol7HasArrivedRoute
+  '/blogs/news/reward-round-card-origins': typeof BlogsNewsRewardRoundCardOriginsRoute
+  '/blogs/news/reward-round-has-arrived': typeof BlogsNewsRewardRoundHasArrivedRoute
+  '/blogs/news/reward-round-set-guide': typeof BlogsNewsRewardRoundSetGuideRoute
   '/blogs/news/terastal-gathering-card-origins': typeof BlogsNewsTerastalGatheringCardOriginsRoute
   '/blogs/news/terastal-gathering-has-arrived': typeof BlogsNewsTerastalGatheringHasArrivedRoute
   '/blogs/news/terastal-gathering-set-guide': typeof BlogsNewsTerastalGatheringSetGuideRoute
@@ -803,6 +827,9 @@ export interface FileRoutesByTo {
   '/blogs/news/gem-vol-6-set-guide': typeof BlogsNewsGemVol6SetGuideRoute
   '/blogs/news/gem-vol-7-card-origins': typeof BlogsNewsGemVol7CardOriginsRoute
   '/blogs/news/gem-vol-7-has-arrived': typeof BlogsNewsGemVol7HasArrivedRoute
+  '/blogs/news/reward-round-card-origins': typeof BlogsNewsRewardRoundCardOriginsRoute
+  '/blogs/news/reward-round-has-arrived': typeof BlogsNewsRewardRoundHasArrivedRoute
+  '/blogs/news/reward-round-set-guide': typeof BlogsNewsRewardRoundSetGuideRoute
   '/blogs/news/terastal-gathering-card-origins': typeof BlogsNewsTerastalGatheringCardOriginsRoute
   '/blogs/news/terastal-gathering-has-arrived': typeof BlogsNewsTerastalGatheringHasArrivedRoute
   '/blogs/news/terastal-gathering-set-guide': typeof BlogsNewsTerastalGatheringSetGuideRoute
@@ -902,6 +929,9 @@ export interface FileRoutesById {
   '/blogs/news/gem-vol-6-set-guide': typeof BlogsNewsGemVol6SetGuideRoute
   '/blogs/news/gem-vol-7-card-origins': typeof BlogsNewsGemVol7CardOriginsRoute
   '/blogs/news/gem-vol-7-has-arrived': typeof BlogsNewsGemVol7HasArrivedRoute
+  '/blogs/news/reward-round-card-origins': typeof BlogsNewsRewardRoundCardOriginsRoute
+  '/blogs/news/reward-round-has-arrived': typeof BlogsNewsRewardRoundHasArrivedRoute
+  '/blogs/news/reward-round-set-guide': typeof BlogsNewsRewardRoundSetGuideRoute
   '/blogs/news/terastal-gathering-card-origins': typeof BlogsNewsTerastalGatheringCardOriginsRoute
   '/blogs/news/terastal-gathering-has-arrived': typeof BlogsNewsTerastalGatheringHasArrivedRoute
   '/blogs/news/terastal-gathering-set-guide': typeof BlogsNewsTerastalGatheringSetGuideRoute
@@ -1002,6 +1032,9 @@ export interface FileRouteTypes {
     | '/blogs/news/gem-vol-6-set-guide'
     | '/blogs/news/gem-vol-7-card-origins'
     | '/blogs/news/gem-vol-7-has-arrived'
+    | '/blogs/news/reward-round-card-origins'
+    | '/blogs/news/reward-round-has-arrived'
+    | '/blogs/news/reward-round-set-guide'
     | '/blogs/news/terastal-gathering-card-origins'
     | '/blogs/news/terastal-gathering-has-arrived'
     | '/blogs/news/terastal-gathering-set-guide'
@@ -1100,6 +1133,9 @@ export interface FileRouteTypes {
     | '/blogs/news/gem-vol-6-set-guide'
     | '/blogs/news/gem-vol-7-card-origins'
     | '/blogs/news/gem-vol-7-has-arrived'
+    | '/blogs/news/reward-round-card-origins'
+    | '/blogs/news/reward-round-has-arrived'
+    | '/blogs/news/reward-round-set-guide'
     | '/blogs/news/terastal-gathering-card-origins'
     | '/blogs/news/terastal-gathering-has-arrived'
     | '/blogs/news/terastal-gathering-set-guide'
@@ -1198,6 +1234,9 @@ export interface FileRouteTypes {
     | '/blogs/news/gem-vol-6-set-guide'
     | '/blogs/news/gem-vol-7-card-origins'
     | '/blogs/news/gem-vol-7-has-arrived'
+    | '/blogs/news/reward-round-card-origins'
+    | '/blogs/news/reward-round-has-arrived'
+    | '/blogs/news/reward-round-set-guide'
     | '/blogs/news/terastal-gathering-card-origins'
     | '/blogs/news/terastal-gathering-has-arrived'
     | '/blogs/news/terastal-gathering-set-guide'
@@ -1297,6 +1336,9 @@ export interface RootRouteChildren {
   BlogsNewsGemVol6SetGuideRoute: typeof BlogsNewsGemVol6SetGuideRoute
   BlogsNewsGemVol7CardOriginsRoute: typeof BlogsNewsGemVol7CardOriginsRoute
   BlogsNewsGemVol7HasArrivedRoute: typeof BlogsNewsGemVol7HasArrivedRoute
+  BlogsNewsRewardRoundCardOriginsRoute: typeof BlogsNewsRewardRoundCardOriginsRoute
+  BlogsNewsRewardRoundHasArrivedRoute: typeof BlogsNewsRewardRoundHasArrivedRoute
+  BlogsNewsRewardRoundSetGuideRoute: typeof BlogsNewsRewardRoundSetGuideRoute
   BlogsNewsTerastalGatheringCardOriginsRoute: typeof BlogsNewsTerastalGatheringCardOriginsRoute
   BlogsNewsTerastalGatheringHasArrivedRoute: typeof BlogsNewsTerastalGatheringHasArrivedRoute
   BlogsNewsTerastalGatheringSetGuideRoute: typeof BlogsNewsTerastalGatheringSetGuideRoute
@@ -1953,6 +1995,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BlogsNewsGemVol7HasArrivedRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/blogs/news/reward-round-card-origins': {
+      id: '/blogs/news/reward-round-card-origins'
+      path: '/blogs/news/reward-round-card-origins'
+      fullPath: '/blogs/news/reward-round-card-origins'
+      preLoaderRoute: typeof BlogsNewsRewardRoundCardOriginsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blogs/news/reward-round-has-arrived': {
+      id: '/blogs/news/reward-round-has-arrived'
+      path: '/blogs/news/reward-round-has-arrived'
+      fullPath: '/blogs/news/reward-round-has-arrived'
+      preLoaderRoute: typeof BlogsNewsRewardRoundHasArrivedRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blogs/news/reward-round-set-guide': {
+      id: '/blogs/news/reward-round-set-guide'
+      path: '/blogs/news/reward-round-set-guide'
+      fullPath: '/blogs/news/reward-round-set-guide'
+      preLoaderRoute: typeof BlogsNewsRewardRoundSetGuideRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/blogs/news/terastal-gathering-card-origins': {
       id: '/blogs/news/terastal-gathering-card-origins'
       path: '/blogs/news/terastal-gathering-card-origins'
@@ -2076,6 +2139,9 @@ const rootRouteChildren: RootRouteChildren = {
   BlogsNewsGemVol6SetGuideRoute: BlogsNewsGemVol6SetGuideRoute,
   BlogsNewsGemVol7CardOriginsRoute: BlogsNewsGemVol7CardOriginsRoute,
   BlogsNewsGemVol7HasArrivedRoute: BlogsNewsGemVol7HasArrivedRoute,
+  BlogsNewsRewardRoundCardOriginsRoute: BlogsNewsRewardRoundCardOriginsRoute,
+  BlogsNewsRewardRoundHasArrivedRoute: BlogsNewsRewardRoundHasArrivedRoute,
+  BlogsNewsRewardRoundSetGuideRoute: BlogsNewsRewardRoundSetGuideRoute,
   BlogsNewsTerastalGatheringCardOriginsRoute:
     BlogsNewsTerastalGatheringCardOriginsRoute,
   BlogsNewsTerastalGatheringHasArrivedRoute:
