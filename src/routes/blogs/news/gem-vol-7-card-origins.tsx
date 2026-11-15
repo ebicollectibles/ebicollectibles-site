@@ -6,10 +6,86 @@ import { safeJsonLd } from '~/lib/gem-sets/head'
 
 const post = BLOG_POSTS.find((p) => p.slug === 'gem-vol-7-card-origins')!
 
+// English sources the Gem Vol 7 artwork comes from.
+const SETS = ['Journey Together', 'Destined Rivals', 'Black Star Promos'] as const
+type SetName = (typeof SETS)[number]
+
+type Source = { set: SetName; no: string; illus: string }
+
+// For each Gem Vol 7 Pokémon: the English card its regular art (versions
+// 01 to 06) reprints, and the English card its full art (version 07)
+// reprints. Each row was matched on Pokémon name plus the illustrator
+// printed on the Gem card, then checked against Limitless TCG and TCGdex.
+// Misty's Psyduck's full art (0307/07) is new to Gem Vol 7, so it has no source.
+const ORIGINS: Array<{ pp: string; name: string; regular: Source; full: Source | null }> = [
+  { pp: '01', name: "Team Rocket's Raticate", regular: { set: 'Destined Rivals', no: '148/182', illus: 'Uninori' }, full: { set: 'Destined Rivals', no: '202/182', illus: 'Mékayu' } },
+  { pp: '02', name: "Team Rocket's Meowth", regular: { set: 'Destined Rivals', no: '149/182', illus: 'Megumi Mizutani' }, full: { set: 'Destined Rivals', no: '203/182', illus: 'Shimaris Yukichi' } },
+  { pp: '03', name: "Misty's Psyduck", regular: { set: 'Destined Rivals', no: '045/182', illus: 'Yuu Nishida' }, full: null },
+  { pp: '04', name: 'Rapidash', regular: { set: 'Destined Rivals', no: '030/182', illus: 'SIE NANAHARA' }, full: { set: 'Destined Rivals', no: '189/182', illus: 'Rond' } },
+  { pp: '05', name: "Team Rocket's Weezing", regular: { set: 'Destined Rivals', no: '126/182', illus: 'matazo' }, full: { set: 'Destined Rivals', no: '199/182', illus: 'Yukihiro Tada' } },
+  { pp: '06', name: "Misty's Lapras", regular: { set: 'Destined Rivals', no: '050/182', illus: 'En Morikura' }, full: { set: 'Destined Rivals', no: '194/182', illus: 'Orca' } },
+  { pp: '07', name: "Ethan's Typhlosion", regular: { set: 'Destined Rivals', no: '034/182', illus: 'danciao' }, full: { set: 'Destined Rivals', no: '190/182', illus: 'GIDORA' } },
+  { pp: '08', name: 'Furret', regular: { set: 'Journey Together', no: '119/159', illus: 'Tomomi Ozaki' }, full: { set: 'Journey Together', no: '168/159', illus: 'REND' } },
+  { pp: '09', name: "Team Rocket's Murkrow", regular: { set: 'Destined Rivals', no: '127/182', illus: 'Mugi Hamada' }, full: { set: 'Destined Rivals', no: '200/182', illus: 'Akira Komayama' } },
+  { pp: '10', name: "Team Rocket's Wobbuffet", regular: { set: 'Destined Rivals', no: '082/182', illus: 'Kazumasa Yasukuni' }, full: { set: 'Black Star Promos', no: 'SVP 203', illus: 'Saboteri' } },
+  { pp: '11', name: 'Swinub', regular: { set: 'Journey Together', no: '077/159', illus: 'REND' }, full: { set: 'Journey Together', no: '165/159', illus: 'Nakamura Ippan' } },
+  { pp: '12', name: "Team Rocket's Houndoom", regular: { set: 'Destined Rivals', no: '038/182', illus: 'Anesaki Dynamic' }, full: { set: 'Destined Rivals', no: '191/182', illus: 'nagimiso' } },
+  { pp: '13', name: 'Blaziken', regular: { set: 'Destined Rivals', no: '042/182', illus: 'Kazumasa Yasukuni' }, full: { set: 'Destined Rivals', no: '192/182', illus: 'kodama' } },
+  { pp: '14', name: 'Clamperl', regular: { set: 'Destined Rivals', no: '054/182', illus: 'Miki Tanaka' }, full: { set: 'Destined Rivals', no: '195/182', illus: 'Mori Yuu' } },
+  { pp: '15', name: "Steven's Beldum", regular: { set: 'Destined Rivals', no: '143/182', illus: 'Takeshi Nakamura' }, full: { set: 'Black Star Promos', no: 'SVP 207', illus: 'hncl' } },
+  { pp: '16', name: "Cynthia's Roserade", regular: { set: 'Destined Rivals', no: '008/182', illus: 'En Morikura' }, full: { set: 'Destined Rivals', no: '184/182', illus: 'rika' } },
+  { pp: '17', name: 'Shaymin', regular: { set: 'Destined Rivals', no: '010/182', illus: 'tono' }, full: { set: 'Destined Rivals', no: '185/182', illus: 'Heisuke Kitazawa' } },
+  { pp: '18', name: 'Crustle', regular: { set: 'Destined Rivals', no: '012/182', illus: 'Po-Suzuki' }, full: { set: 'Destined Rivals', no: '186/182', illus: 'Takumi Wada' } },
+  { pp: '19', name: "N's Zorua", regular: { set: 'Journey Together', no: '097/159', illus: 'Jiro Sasumo' }, full: { set: 'Black Star Promos', no: 'SVP 189', illus: 'Megumi Mizutani' } },
+  { pp: '20', name: "Lillie's Ribombee", regular: { set: 'Journey Together', no: '067/159', illus: 'mashu' }, full: { set: 'Journey Together', no: '164/159', illus: 'saino misaki' } },
+  { pp: '21', name: 'Lycanroc', regular: { set: 'Journey Together', no: '085/159', illus: 'Shiburingaru' }, full: { set: 'Journey Together', no: '166/159', illus: 'GIDORA' } },
+  { pp: '22', name: "Arven's Greedent", regular: { set: 'Destined Rivals', no: '159/182', illus: 'Akira Komayama' }, full: { set: 'Destined Rivals', no: '205/182', illus: 'Natsumi Yoshida' } },
+  { pp: '23', name: "Team Rocket's Orbeetle", regular: { set: 'Destined Rivals', no: '089/182', illus: 'Shin Nagasawa' }, full: { set: 'Destined Rivals', no: '198/182', illus: 'HYOGONOSUKE' } },
+  { pp: '24', name: "Hop's Wooloo", regular: { set: 'Journey Together', no: '135/159', illus: 'Tomomi Ozaki' }, full: { set: 'Journey Together', no: '170/159', illus: 'MINAMINAMI Take' } },
+  { pp: '25', name: "Marnie's Morpeko", regular: { set: 'Destined Rivals', no: '137/182', illus: 'Mina Nakai' }, full: { set: 'Black Star Promos', no: 'SVP 206', illus: 'Susumu Maeya' } },
+  { pp: '26', name: "Team Rocket's Spidops", regular: { set: 'Destined Rivals', no: '020/182', illus: 'Taiga Kasai' }, full: { set: 'Destined Rivals', no: '187/182', illus: 'NC Empire' } },
+  { pp: '27', name: "Iono's Kilowattrel", regular: { set: 'Journey Together', no: '055/159', illus: 'chibi' }, full: { set: 'Journey Together', no: '163/159', illus: 'Terada Tera' } },
+  { pp: '28', name: 'Hydrapple', regular: { set: 'Destined Rivals', no: '018/182', illus: 'Anesaki Dynamic' }, full: { set: 'Destined Rivals', no: '188/182', illus: 'Jerky' } },
+]
+
+const SET_COUNTS = SETS.map((set) => ({
+  set,
+  regular: ORIGINS.filter((o) => o.regular.set === set).length,
+  full: ORIGINS.filter((o) => o.full?.set === set).length,
+}))
+
+const TOC = [
+  { id: 'how-it-works', label: 'How Gem Pack art works' },
+  { id: 'by-set', label: 'Which sets it comes from' },
+  { id: 'patterns', label: 'Patterns worth knowing' },
+  { id: 'full-map', label: 'The full card-by-card map' },
+  { id: 'how-we-checked', label: 'How we checked' },
+  { id: 'faq', label: 'FAQ' },
+]
+
+const FAQ = [
+  {
+    q: 'Are Gem Vol 7 cards reprints?',
+    a: 'The artwork is. 55 of the 56 illustrations in Gem Vol 7 were first printed on English Scarlet & Violet cards. The cards themselves are new Simplified Chinese printings with their own numbers, foils and Gem Pack set code.',
+  },
+  {
+    q: 'Is any Gem Vol 7 artwork new?',
+    a: "Yes, one: Misty's Psyduck's full art, 0307/07 by Cona Nitanda. We could not find it on any earlier English or Japanese card, which matches Pokémon China calling it new.",
+  },
+  {
+    q: 'Which English set does most of Gem Vol 7 come from?',
+    a: 'Destined Rivals. It supplies the regular art for 21 of the 28 Pokémon and 17 of the full arts. Journey Together covers the rest, along with four Black Star Promos.',
+  },
+  {
+    q: 'Why do some Gem Vol 7 full arts trace to promos?',
+    a: "Four of them, Team Rocket's Wobbuffet, Steven's Beldum, N's Zorua and Marnie's Morpeko, reprint art that was released in English as Black Star Promos rather than as set Illustration Rares.",
+  },
+]
+
 export const Route = createFileRoute('/blogs/news/gem-vol-7-card-origins')({
   head: () => ({
     meta: [
-      { title: `${post.title} — EBI Collectibles` },
+      { title: `${post.title} | EBI Collectibles` },
       { name: 'robots', content: 'noindex, nofollow' },
       { name: 'description', content: post.excerpt },
       { property: 'og:title', content: post.title },
@@ -27,163 +103,185 @@ export const Route = createFileRoute('/blogs/news/gem-vol-7-card-origins')({
   component: GemVol7OriginsPost,
 })
 
-// Pokémon index in src/data/gem-vol-7.json -> which English-language set
-// its artwork/card was first printed in. Researched against Bulbapedia,
-// Card Codex, and set checklists per Pokémon — see the article body for
-// which four Team Rocket entries are grouped by strong pattern (every
-// other "Team Rocket's X" card checked came back Destined Rivals) rather
-// than individually confirmed by collector number.
-const ORIGIN_ROWS: Array<{ gem: string; set: 'Journey Together' | 'Destined Rivals'; setCode: string; note?: string }> = [
-  { gem: "Team Rocket's Raticate", set: 'Destined Rivals', setCode: '148/182' },
-  { gem: "Team Rocket's Meowth", set: 'Destined Rivals', setCode: '—', note: 'Team Rocket subset' },
-  { gem: "Misty's Psyduck", set: 'Destined Rivals', setCode: '45/182' },
-  { gem: 'Rapidash', set: 'Destined Rivals', setCode: '30/182' },
-  { gem: "Team Rocket's Weezing", set: 'Destined Rivals', setCode: '126/182' },
-  { gem: "Misty's Lapras", set: 'Destined Rivals', setCode: '50/182' },
-  { gem: "Ethan's Typhlosion", set: 'Destined Rivals', setCode: '34/182' },
-  { gem: "Team Rocket's Murkrow", set: 'Destined Rivals', setCode: '—', note: 'Team Rocket subset' },
-  { gem: "Team Rocket's Wobbuffet", set: 'Destined Rivals', setCode: '—', note: 'Team Rocket subset' },
-  { gem: 'Swinub', set: 'Journey Together', setCode: '77/159' },
-  { gem: "Team Rocket's Houndoom", set: 'Destined Rivals', setCode: '38/182' },
-  { gem: 'Blaziken ex', set: 'Journey Together', setCode: '24/159' },
-  { gem: 'Clamperl', set: 'Destined Rivals', setCode: '—' },
-  { gem: "Steven's Beldum", set: 'Destined Rivals', setCode: '143/182' },
-  { gem: "Cynthia's Roserade", set: 'Destined Rivals', setCode: '8/182' },
-  { gem: 'Shaymin', set: 'Destined Rivals', setCode: '10/182' },
-  { gem: 'Crustle', set: 'Destined Rivals', setCode: '—' },
-  { gem: "N's Zorua", set: 'Journey Together', setCode: '97/159' },
-  { gem: "Lillie's Ribombee", set: 'Journey Together', setCode: '67/159' },
-  { gem: 'Lycanroc', set: 'Journey Together', setCode: '—' },
-  { gem: "Arven's Greedent", set: 'Destined Rivals', setCode: '159/182' },
-  { gem: "Team Rocket's Orbeetle", set: 'Destined Rivals', setCode: '89/182' },
-  { gem: "Hop's Wooloo", set: 'Journey Together', setCode: '135/159' },
-  { gem: "Marnie's Morpeko", set: 'Destined Rivals', setCode: '137/182' },
-  { gem: "Team Rocket's Spidops", set: 'Destined Rivals', setCode: '—', note: 'Team Rocket subset' },
-  { gem: "Iono's Kilowattrel", set: 'Journey Together', setCode: '55/159' },
-  { gem: 'Hydrapple', set: 'Destined Rivals', setCode: '—' },
-  { gem: 'Furret', set: 'Journey Together', setCode: '119/159' },
-]
-
-const JTG_COUNT = ORIGIN_ROWS.filter((r) => r.set === 'Journey Together').length
-const DRI_COUNT = ORIGIN_ROWS.filter((r) => r.set === 'Destined Rivals').length
-
 function GemVol7OriginsPost() {
   const articleJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'BlogPosting',
     headline: post.title,
+    description: post.excerpt,
     datePublished: post.date,
+    dateModified: post.date,
     image: post.heroImage,
     url: `${BLOG_SITE_URL}${post.path}`,
-    publisher: { '@type': 'Organization', name: 'EBI Collectibles' },
+    mainEntityOfPage: `${BLOG_SITE_URL}${post.path}`,
+    author: { '@type': 'Organization', name: 'EBI Collectibles', url: BLOG_SITE_URL },
+    publisher: { '@type': 'Organization', name: 'EBI Collectibles', url: BLOG_SITE_URL },
   }
-  const sorted = [...ORIGIN_ROWS].sort((a, b) => a.gem.localeCompare(b.gem))
+  const faqJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: FAQ.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
+  }
 
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(articleJsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(faqJsonLd) }} />
       <BlogPostLayout
+        wide
         post={post}
-        lede="Every Gem Pack reprints existing English-language illustrations under new Chinese-only numbers rather than commissioning new art — which means every card in Gem Vol 7 traces back to a real English set. Here's exactly which one, Pokémon by Pokémon."
+        lede="Almost every illustration in Gem Pack Vol. 7 first appeared on an English Scarlet & Violet card. Here is exactly where each one comes from, card by card."
         cta={{
-          heading: 'Browse the full Gem Vol 7 checklist',
-          body: 'See every card, rarity, and version number alongside this guide.',
-          links: [{ to: '/sets/gem-vol-7', label: 'Browse the card list' }],
+          heading: 'Explore Gem Vol 7',
+          body: 'See every card in the set, or read our release post for the Psyduck full art and the Trainer lineup.',
+          links: [
+            { to: '/sets/gem-vol-7', label: 'Browse the card list' },
+            { to: '/blogs/news/gem-vol-7-has-arrived', label: 'Read the release post', variant: 'ghost' },
+          ],
         }}
       >
         <p>
-          If you've opened Journey Together or Destined Rivals in English this year and the art in Gem Vol 7 looks familiar, that's
-          not a coincidence — it's the whole point of a Gem Pack. The officially-licensed Gem Pack series is a Simplified
-          Chinese-exclusive compilation line: rather than commissioning new illustrations, each volume reprints existing Pokémon TCG
-          artwork under its own numbering and its own 7-tier rarity ladder (plus, usually, one genuinely new exclusive card).
+          If a Gem Vol 7 card looks familiar, there is a good reason. Gem Packs reuse artwork from existing Pokémon TCG cards and
+          reprint it in Simplified Chinese with new numbers and new foils. We traced every illustration in the set back to the
+          English card it first appeared on.
+        </p>
+
+        <nav className="toc" aria-label="In this guide">
+          <p className="toc-title">In this guide</p>
+          <ol>
+            {TOC.map((t) => (
+              <li key={t.id}>
+                <a href={`#${t.id}`}>{t.label}</a>
+              </li>
+            ))}
+          </ol>
+        </nav>
+
+        <h2 id="how-it-works">How Gem Pack art works</h2>
+        <p>
+          Each of the 28 Pokémon in Gem Vol 7 has two illustrations. Versions 01 to 06 all use the art from that Pokémon's regular
+          card, and version 07, the full art, uses the art from its full-art English card. So one Gem Pokémon usually brings
+          together two English cards: the everyday one and the chase one.
         </p>
         <p>
-          That makes "which set is this card actually from?" one of the most common questions about any Gem Pack release — especially
-          for the "Trainer's Pokémon" cards, since that mechanic ran across more than one English set in 2025 and it's easy to assume
-          they're all from the same place. They aren't. We went through Gem Vol 7's full 28-Pokémon roster and traced every one back to
-          its source.
+          That adds up to 56 illustrations. 55 of them come from English cards. The 56th, Misty's Psyduck's beach full art
+          (0307/07), was drawn for Gem Vol 7 and has no earlier version.
         </p>
 
-        <h2>The short answer: two sets, both from 2025</h2>
-        <p>
-          Gem Vol 7 is built entirely from two English-language Scarlet & Violet expansions —{' '}
-          <strong>Scarlet & Violet: Journey Together</strong> (SV9, released March 28, 2025) and{' '}
-          <strong>Scarlet & Violet: Destined Rivals</strong> (SV10, released May 30, 2025). No other set contributes to this volume.
-        </p>
-
-        <div className="stat-row">
-          <div className="stat">
-            <div className="stat-num">{JTG_COUNT}</div>
-            <div className="stat-label">Pokémon from Journey Together (SV9)</div>
-          </div>
-          <div className="stat">
-            <div className="stat-num">{DRI_COUNT}</div>
-            <div className="stat-label">Pokémon from Destined Rivals (SV10)</div>
-          </div>
-        </div>
-
-        <h2>How to tell them apart without checking a list</h2>
-        <p>
-          There's a clean pattern once you see it: every <strong>Team Rocket's [Pokémon]</strong> card in Gem Vol 7 comes from
-          Destined Rivals — Team Rocket is that set's whole theme (its Japanese parent printing is actually titled Glory of Team
-          Rocket). Trainer pairings for Misty, Steven, Cynthia, Arven, Ethan, and Marnie are Destined Rivals too. Meanwhile N, Hop,
-          Iono, and Lillie's paired Pokémon all come from the earlier Journey Together — the set that introduced the "Trainer's
-          Pokémon" mechanic in the first place. The handful of plain, non-paired species (Furret, Swinub, Blaziken, Lycanroc from
-          Journey Together; Rapidash, Clamperl, Shaymin, Crustle, Hydrapple from Destined Rivals) just follow whichever set the rest
-          of that printing's wave came from.
-        </p>
-
-        <div className="origin-wrap">
-          <table className="origin-table">
+        <h2 id="by-set">Which sets it comes from</h2>
+        <p>Everything traces back to two English Scarlet & Violet sets from 2025, plus the Black Star Promos:</p>
+        <div className="table-scroll">
+          <table className="data-table">
             <thead>
               <tr>
-                <th>Gem Vol 7 card</th>
-                <th>Source set</th>
-                <th>Original number</th>
+                <th scope="col">English source</th>
+                <th scope="col">Regular art</th>
+                <th scope="col">Full arts</th>
               </tr>
             </thead>
             <tbody>
-              {sorted.map((r) => (
-                <tr key={r.gem}>
-                  <td>{r.gem}</td>
-                  <td className={r.set === 'Journey Together' ? 'src-jtg' : 'src-dri'}>{r.set}</td>
-                  <td>{r.note ?? r.setCode}</td>
+              {SET_COUNTS.map((s) => (
+                <tr key={s.set}>
+                  <th scope="row">{s.set}</th>
+                  <td>{s.regular}</td>
+                  <td>{s.full}</td>
                 </tr>
               ))}
             </tbody>
           </table>
         </div>
-        <p style={{ fontSize: 13, color: 'var(--slate)' }}>
-          Numbers are the original set's own English collector number (regular printing), for the Pokémon's non-full-art version —
-          Gem Vol 7 renumbers everything under its own 01–28 index regardless. Four Team Rocket entries are listed by subset rather
-          than an individually-confirmed number — every other "Team Rocket's [Pokémon]" card we checked came back Destined Rivals, so
-          we're confident in the set, just not quoting an exact number we didn't verify directly.
-        </p>
+        <p className="table-note">Counts are Gem Vol 7 Pokémon. Psyduck's full art is new, so the full-art column adds up to 27.</p>
 
-        <h2>What this means if you already collect the English sets</h2>
+        <h2 id="patterns">Patterns worth knowing</h2>
         <ul>
           <li>
-            <strong>You already own the art, not necessarily the card.</strong> Gem Vol 7's full-art Triple Rares are new printings of
-            existing illustrations — same art, different card number, different (usually simpler) border treatment than an English
-            Illustration Rare or Special Illustration Rare.
+            <strong>Destined Rivals does most of the work.</strong> It supplies the regular art for 21 Pokémon, including all eight
+            Team Rocket cards, and 17 of the full arts.
           </li>
           <li>
-            <strong>Misty's Psyduck is the one real exception.</strong> It's the set's single genuinely new illustration — it doesn't
-            exist in Journey Together, Destined Rivals, or any other printing. Everything else in Gem Vol 7 is a reprint.
+            <strong>Journey Together covers the rest of the regular art.</strong> Furret, Swinub, N's Zorua, Lillie's Ribombee,
+            Lycanroc, Hop's Wooloo and Iono's Kilowattrel all come from it.
           </li>
           <li>
-            <strong>Rarity doesn't carry over.</strong> A card that was a Common in Destined Rivals can be printed at any of Gem Vol
-            7's 7 rarity slots depending on its version number — the Gem Pack ladder is independent of the source set's own rarity.
+            <strong>Four full arts started life as promos.</strong> Team Rocket's Wobbuffet, Steven's Beldum, N's Zorua and Marnie's
+            Morpeko reprint English Black Star Promo art, so their Gem full arts pair a set card with a promo.
+          </li>
+          <li>
+            <strong>Misty's Psyduck is the one original.</strong> Its regular art comes from Destined Rivals like most of the set, but
+            its full art is brand new.
           </li>
         </ul>
 
-        <h2>Why this matters for value and completism</h2>
+        <h2 id="full-map">The full card-by-card map</h2>
         <p>
-          If you're building a "Trainer's Pokémon" collection across languages, knowing the real source set tells you which English
-          card to compare a Gem Vol 7 printing against for art, and which set's checklist to cross off once you've got it. If you're
-          just chasing full arts, it's a reminder that <Link to="/blogs/news/gem-vol-7-has-arrived">Gem Vol 7's own exclusive</Link> —
-          Misty's Psyduck — is the only card here you can't eventually track down in English.
+          Every Gem Vol 7 Pokémon, with the English card behind its regular art (versions 01 to 06) and behind its full art (version
+          07), plus the illustrator credited on both.
         </p>
+        <div className="table-scroll">
+          <table className="data-table origins-table">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Pokémon</th>
+                <th scope="col">Regular art (01 to 06)</th>
+                <th scope="col">Full art (07)</th>
+              </tr>
+            </thead>
+            <tbody>
+              {ORIGINS.map((o) => (
+                <tr key={o.pp} className={o.full ? undefined : 'is-current'}>
+                  <th scope="row">{o.pp}</th>
+                  <td>{o.name}</td>
+                  <td>
+                    {o.regular.set} {o.regular.no}
+                    <span className="cell-sub">Illus. {o.regular.illus}</span>
+                  </td>
+                  <td>
+                    {o.full ? (
+                      <>
+                        {o.full.set === 'Black Star Promos' ? o.full.no : `${o.full.set} ${o.full.no}`}
+                        <span className="cell-sub">Illus. {o.full.illus}</span>
+                      </>
+                    ) : (
+                      <>
+                        New for Gem Vol 7
+                        <span className="cell-sub">Illus. Cona Nitanda</span>
+                      </>
+                    )}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <p className="table-note">Card numbers are the first English printing. SVP numbers are Scarlet & Violet Black Star Promos.</p>
+        <p>
+          A few of these illustrations were reprinted again later in English, for example Team Rocket's Meowth, N's Zorua and Iono's
+          Kilowattrel in Ascended Heroes. The table lists where each one appeared first.
+        </p>
+
+        <h2 id="how-we-checked">How we checked</h2>
+        <p>
+          A Pokémon's name alone is not enough, since most Pokémon have several cards by different artists, and Trainer's Pokémon
+          like Team Rocket's cards appear across more than one set. For each Gem Vol 7 card we read the illustrator credit printed on
+          the card, then found the English card with the same Pokémon and the same illustrator in the Limitless TCG and TCGdex card
+          databases. Where two English cards were possible, we compared the artwork directly.
+        </p>
+        <p>
+          For more on the set itself, see our <Link to="/blogs/news/gem-vol-7-has-arrived">Gem Vol 7 release post</Link>. Collecting
+          the previous volume too? Our <Link to="/blogs/news/gem-vol-6-card-origins">Gem Vol 6 card origins guide</Link> does the
+          same for the Applin set.
+        </p>
+
+        <h2 id="faq">FAQ</h2>
+        <div className="faq">
+          {FAQ.map((f) => (
+            <details key={f.q}>
+              <summary>{f.q}</summary>
+              <p>{f.a}</p>
+            </details>
+          ))}
+        </div>
       </BlogPostLayout>
     </>
   )

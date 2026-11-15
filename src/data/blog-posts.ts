@@ -90,13 +90,13 @@ export const BLOG_POSTS: BlogPostSummary[] = [
   {
     slug: 'gem-vol-7-card-origins',
     path: '/blogs/news/gem-vol-7-card-origins',
-    title: "Where Every Gem Vol 7 Card Actually Comes From",
+    title: 'Where Every Gem Vol 7 Card Actually Comes From',
     excerpt:
-      "Gem Packs reprint existing English-language illustrations under new numbers, which means every card in Gem Vol 7 traces back to Journey Together or Destined Rivals. Here's the full map.",
+      "55 of the 56 illustrations in Gem Vol 7 first appeared on English cards, mostly from Destined Rivals and Journey Together. Here's the full card-by-card map.",
     tag: 'Collecting guide',
     date: '2026-11-14',
-    heroImage: `${R2_IMAGE_HOST}/Chinese/Gem%207/Cards/1907.webp`,
-    heroAlt: "Team Rocket's Raticate, Gem Vol 7",
+    heroImage: `${SITE_URL}/assets/blog/gem-vol-7-origins-hero.webp`,
+    heroAlt: 'Eight Gem Pack Vol. 7 full arts in a display case beside the EBI Collectibles logo, with the title Gem Vol. 7 Card Origins',
     glow1: 'rgb(58 110 165 / .28)',
     glow2: 'rgb(138 61 120 / .22)',
   },
