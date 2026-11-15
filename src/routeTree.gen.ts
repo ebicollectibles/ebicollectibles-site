@@ -93,6 +93,8 @@ import { Route as BlogTrueMysteryHasArrivedRouteImport } from './routes/blog/tru
 import { Route as BlogTrueMysterySetGuideRouteImport } from './routes/blog/true-mystery-set-guide'
 import { Route as BlogWhiteFlareCardOriginsRouteImport } from './routes/blog/white-flare-card-origins'
 import { Route as BlogWhiteFlareSetGuideRouteImport } from './routes/blog/white-flare-set-guide'
+import { Route as BlogsIndexRouteImport } from './routes/blogs/index'
+import { Route as BlogsSplatRouteImport } from './routes/blogs/$'
 import { Route as GoSlugRouteImport } from './routes/go.$slug'
 import { Route as LinksSlugRouteImport } from './routes/links.$slug'
 import { Route as ProductsIdRouteImport } from './routes/products.$id'
@@ -580,6 +582,16 @@ const BlogWhiteFlareSetGuideRoute = BlogWhiteFlareSetGuideRouteImport.update({
   path: '/blog/white-flare-set-guide',
   getParentRoute: () => rootRouteImport,
 } as any)
+const BlogsIndexRoute = BlogsIndexRouteImport.update({
+  id: '/blogs/',
+  path: '/blogs/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BlogsSplatRoute = BlogsSplatRouteImport.update({
+  id: '/blogs/$',
+  path: '/blogs/$',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const GoSlugRoute = GoSlugRouteImport.update({
   id: '/go/$slug',
   path: '/go/$slug',
@@ -848,6 +860,7 @@ export interface FileRoutesByFullPath {
   '/blog/true-mystery-set-guide': typeof BlogTrueMysterySetGuideRoute
   '/blog/white-flare-card-origins': typeof BlogWhiteFlareCardOriginsRoute
   '/blog/white-flare-set-guide': typeof BlogWhiteFlareSetGuideRoute
+  '/blogs/$': typeof BlogsSplatRoute
   '/go/$slug': typeof GoSlugRoute
   '/links/$slug': typeof LinksSlugRoute
   '/products/$id': typeof ProductsIdRoute
@@ -876,6 +889,7 @@ export interface FileRoutesByFullPath {
   '/account/': typeof AccountIndexRoute
   '/admin/': typeof AdminIndexRoute
   '/blog/': typeof BlogIndexRoute
+  '/blogs/': typeof BlogsIndexRoute
   '/sets/': typeof SetsIndexRoute
   '/account/orders/$id': typeof AccountOrdersIdRoute
   '/admin/customers/$id': typeof AdminCustomersIdRoute
@@ -970,6 +984,7 @@ export interface FileRoutesByTo {
   '/blog/true-mystery-set-guide': typeof BlogTrueMysterySetGuideRoute
   '/blog/white-flare-card-origins': typeof BlogWhiteFlareCardOriginsRoute
   '/blog/white-flare-set-guide': typeof BlogWhiteFlareSetGuideRoute
+  '/blogs/$': typeof BlogsSplatRoute
   '/go/$slug': typeof GoSlugRoute
   '/links/$slug': typeof LinksSlugRoute
   '/products/$id': typeof ProductsIdRoute
@@ -998,6 +1013,7 @@ export interface FileRoutesByTo {
   '/account': typeof AccountIndexRoute
   '/admin': typeof AdminIndexRoute
   '/blog': typeof BlogIndexRoute
+  '/blogs': typeof BlogsIndexRoute
   '/sets': typeof SetsIndexRoute
   '/account/orders/$id': typeof AccountOrdersIdRoute
   '/admin/customers/$id': typeof AdminCustomersIdRoute
@@ -1093,6 +1109,7 @@ export interface FileRoutesById {
   '/blog/true-mystery-set-guide': typeof BlogTrueMysterySetGuideRoute
   '/blog/white-flare-card-origins': typeof BlogWhiteFlareCardOriginsRoute
   '/blog/white-flare-set-guide': typeof BlogWhiteFlareSetGuideRoute
+  '/blogs/$': typeof BlogsSplatRoute
   '/go/$slug': typeof GoSlugRoute
   '/links/$slug': typeof LinksSlugRoute
   '/products/$id': typeof ProductsIdRoute
@@ -1121,6 +1138,7 @@ export interface FileRoutesById {
   '/account/': typeof AccountIndexRoute
   '/admin/': typeof AdminIndexRoute
   '/blog/': typeof BlogIndexRoute
+  '/blogs/': typeof BlogsIndexRoute
   '/sets/': typeof SetsIndexRoute
   '/account/orders/$id': typeof AccountOrdersIdRoute
   '/admin/customers/$id': typeof AdminCustomersIdRoute
@@ -1217,6 +1235,7 @@ export interface FileRouteTypes {
     | '/blog/true-mystery-set-guide'
     | '/blog/white-flare-card-origins'
     | '/blog/white-flare-set-guide'
+    | '/blogs/$'
     | '/go/$slug'
     | '/links/$slug'
     | '/products/$id'
@@ -1245,6 +1264,7 @@ export interface FileRouteTypes {
     | '/account/'
     | '/admin/'
     | '/blog/'
+    | '/blogs/'
     | '/sets/'
     | '/account/orders/$id'
     | '/admin/customers/$id'
@@ -1339,6 +1359,7 @@ export interface FileRouteTypes {
     | '/blog/true-mystery-set-guide'
     | '/blog/white-flare-card-origins'
     | '/blog/white-flare-set-guide'
+    | '/blogs/$'
     | '/go/$slug'
     | '/links/$slug'
     | '/products/$id'
@@ -1367,6 +1388,7 @@ export interface FileRouteTypes {
     | '/account'
     | '/admin'
     | '/blog'
+    | '/blogs'
     | '/sets'
     | '/account/orders/$id'
     | '/admin/customers/$id'
@@ -1461,6 +1483,7 @@ export interface FileRouteTypes {
     | '/blog/true-mystery-set-guide'
     | '/blog/white-flare-card-origins'
     | '/blog/white-flare-set-guide'
+    | '/blogs/$'
     | '/go/$slug'
     | '/links/$slug'
     | '/products/$id'
@@ -1489,6 +1512,7 @@ export interface FileRouteTypes {
     | '/account/'
     | '/admin/'
     | '/blog/'
+    | '/blogs/'
     | '/sets/'
     | '/account/orders/$id'
     | '/admin/customers/$id'
@@ -1584,6 +1608,7 @@ export interface RootRouteChildren {
   BlogTrueMysterySetGuideRoute: typeof BlogTrueMysterySetGuideRoute
   BlogWhiteFlareCardOriginsRoute: typeof BlogWhiteFlareCardOriginsRoute
   BlogWhiteFlareSetGuideRoute: typeof BlogWhiteFlareSetGuideRoute
+  BlogsSplatRoute: typeof BlogsSplatRoute
   GoSlugRoute: typeof GoSlugRoute
   LinksSlugRoute: typeof LinksSlugRoute
   ProductsIdRoute: typeof ProductsIdRoute
@@ -1612,6 +1637,7 @@ export interface RootRouteChildren {
   AccountIndexRoute: typeof AccountIndexRoute
   AdminIndexRoute: typeof AdminIndexRoute
   BlogIndexRoute: typeof BlogIndexRoute
+  BlogsIndexRoute: typeof BlogsIndexRoute
   SetsIndexRoute: typeof SetsIndexRoute
   AccountOrdersIdRoute: typeof AccountOrdersIdRoute
   AdminCustomersIdRoute: typeof AdminCustomersIdRoute
@@ -2215,6 +2241,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BlogWhiteFlareSetGuideRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/blogs/': {
+      id: '/blogs/'
+      path: '/blogs'
+      fullPath: '/blogs/'
+      preLoaderRoute: typeof BlogsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blogs/$': {
+      id: '/blogs/$'
+      path: '/blogs/$'
+      fullPath: '/blogs/$'
+      preLoaderRoute: typeof BlogsSplatRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/go/$slug': {
       id: '/go/$slug'
       path: '/go/$slug'
@@ -2554,6 +2594,7 @@ const rootRouteChildren: RootRouteChildren = {
   BlogTrueMysterySetGuideRoute: BlogTrueMysterySetGuideRoute,
   BlogWhiteFlareCardOriginsRoute: BlogWhiteFlareCardOriginsRoute,
   BlogWhiteFlareSetGuideRoute: BlogWhiteFlareSetGuideRoute,
+  BlogsSplatRoute: BlogsSplatRoute,
   GoSlugRoute: GoSlugRoute,
   LinksSlugRoute: LinksSlugRoute,
   ProductsIdRoute: ProductsIdRoute,
@@ -2582,6 +2623,7 @@ const rootRouteChildren: RootRouteChildren = {
   AccountIndexRoute: AccountIndexRoute,
   AdminIndexRoute: AdminIndexRoute,
   BlogIndexRoute: BlogIndexRoute,
+  BlogsIndexRoute: BlogsIndexRoute,
   SetsIndexRoute: SetsIndexRoute,
   AccountOrdersIdRoute: AccountOrdersIdRoute,
   AdminCustomersIdRoute: AdminCustomersIdRoute,
