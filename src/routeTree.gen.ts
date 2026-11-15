@@ -78,6 +78,12 @@ import { Route as AdminProductsIdRouteImport } from './routes/admin/products/$id
 import { Route as AdminProductsNewRouteImport } from './routes/admin/products/new'
 import { Route as BlogsNewsIndexRouteImport } from './routes/blogs/news/index'
 import { Route as BlogsNewsBlackBoltWhiteFlareArriveRouteImport } from './routes/blogs/news/black-bolt-white-flare-arrive'
+import { Route as BlogsNewsGemVol4CardOriginsRouteImport } from './routes/blogs/news/gem-vol-4-card-origins'
+import { Route as BlogsNewsGemVol4HasArrivedRouteImport } from './routes/blogs/news/gem-vol-4-has-arrived'
+import { Route as BlogsNewsGemVol4SetGuideRouteImport } from './routes/blogs/news/gem-vol-4-set-guide'
+import { Route as BlogsNewsGemVol5CardOriginsRouteImport } from './routes/blogs/news/gem-vol-5-card-origins'
+import { Route as BlogsNewsGemVol5HasArrivedRouteImport } from './routes/blogs/news/gem-vol-5-has-arrived'
+import { Route as BlogsNewsGemVol5SetGuideRouteImport } from './routes/blogs/news/gem-vol-5-set-guide'
 import { Route as BlogsNewsGemVol6CardOriginsRouteImport } from './routes/blogs/news/gem-vol-6-card-origins'
 import { Route as BlogsNewsGemVol6HasArrivedRouteImport } from './routes/blogs/news/gem-vol-6-has-arrived'
 import { Route as BlogsNewsGemVol6SetGuideRouteImport } from './routes/blogs/news/gem-vol-6-set-guide'
@@ -432,6 +438,42 @@ const BlogsNewsBlackBoltWhiteFlareArriveRoute =
     path: '/blogs/news/black-bolt-white-flare-arrive',
     getParentRoute: () => rootRouteImport,
   } as any)
+const BlogsNewsGemVol4CardOriginsRoute =
+  BlogsNewsGemVol4CardOriginsRouteImport.update({
+    id: '/blogs/news/gem-vol-4-card-origins',
+    path: '/blogs/news/gem-vol-4-card-origins',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const BlogsNewsGemVol4HasArrivedRoute =
+  BlogsNewsGemVol4HasArrivedRouteImport.update({
+    id: '/blogs/news/gem-vol-4-has-arrived',
+    path: '/blogs/news/gem-vol-4-has-arrived',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const BlogsNewsGemVol4SetGuideRoute =
+  BlogsNewsGemVol4SetGuideRouteImport.update({
+    id: '/blogs/news/gem-vol-4-set-guide',
+    path: '/blogs/news/gem-vol-4-set-guide',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const BlogsNewsGemVol5CardOriginsRoute =
+  BlogsNewsGemVol5CardOriginsRouteImport.update({
+    id: '/blogs/news/gem-vol-5-card-origins',
+    path: '/blogs/news/gem-vol-5-card-origins',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const BlogsNewsGemVol5HasArrivedRoute =
+  BlogsNewsGemVol5HasArrivedRouteImport.update({
+    id: '/blogs/news/gem-vol-5-has-arrived',
+    path: '/blogs/news/gem-vol-5-has-arrived',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const BlogsNewsGemVol5SetGuideRoute =
+  BlogsNewsGemVol5SetGuideRouteImport.update({
+    id: '/blogs/news/gem-vol-5-set-guide',
+    path: '/blogs/news/gem-vol-5-set-guide',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const BlogsNewsGemVol6CardOriginsRoute =
   BlogsNewsGemVol6CardOriginsRouteImport.update({
     id: '/blogs/news/gem-vol-6-card-origins',
@@ -535,6 +577,12 @@ export interface FileRoutesByFullPath {
   '/admin/products/$id': typeof AdminProductsIdRoute
   '/admin/products/new': typeof AdminProductsNewRoute
   '/blogs/news/black-bolt-white-flare-arrive': typeof BlogsNewsBlackBoltWhiteFlareArriveRoute
+  '/blogs/news/gem-vol-4-card-origins': typeof BlogsNewsGemVol4CardOriginsRoute
+  '/blogs/news/gem-vol-4-has-arrived': typeof BlogsNewsGemVol4HasArrivedRoute
+  '/blogs/news/gem-vol-4-set-guide': typeof BlogsNewsGemVol4SetGuideRoute
+  '/blogs/news/gem-vol-5-card-origins': typeof BlogsNewsGemVol5CardOriginsRoute
+  '/blogs/news/gem-vol-5-has-arrived': typeof BlogsNewsGemVol5HasArrivedRoute
+  '/blogs/news/gem-vol-5-set-guide': typeof BlogsNewsGemVol5SetGuideRoute
   '/blogs/news/gem-vol-6-card-origins': typeof BlogsNewsGemVol6CardOriginsRoute
   '/blogs/news/gem-vol-6-has-arrived': typeof BlogsNewsGemVol6HasArrivedRoute
   '/blogs/news/gem-vol-6-set-guide': typeof BlogsNewsGemVol6SetGuideRoute
@@ -612,6 +660,12 @@ export interface FileRoutesByTo {
   '/admin/products/$id': typeof AdminProductsIdRoute
   '/admin/products/new': typeof AdminProductsNewRoute
   '/blogs/news/black-bolt-white-flare-arrive': typeof BlogsNewsBlackBoltWhiteFlareArriveRoute
+  '/blogs/news/gem-vol-4-card-origins': typeof BlogsNewsGemVol4CardOriginsRoute
+  '/blogs/news/gem-vol-4-has-arrived': typeof BlogsNewsGemVol4HasArrivedRoute
+  '/blogs/news/gem-vol-4-set-guide': typeof BlogsNewsGemVol4SetGuideRoute
+  '/blogs/news/gem-vol-5-card-origins': typeof BlogsNewsGemVol5CardOriginsRoute
+  '/blogs/news/gem-vol-5-has-arrived': typeof BlogsNewsGemVol5HasArrivedRoute
+  '/blogs/news/gem-vol-5-set-guide': typeof BlogsNewsGemVol5SetGuideRoute
   '/blogs/news/gem-vol-6-card-origins': typeof BlogsNewsGemVol6CardOriginsRoute
   '/blogs/news/gem-vol-6-has-arrived': typeof BlogsNewsGemVol6HasArrivedRoute
   '/blogs/news/gem-vol-6-set-guide': typeof BlogsNewsGemVol6SetGuideRoute
@@ -690,6 +744,12 @@ export interface FileRoutesById {
   '/admin/products/$id': typeof AdminProductsIdRoute
   '/admin/products/new': typeof AdminProductsNewRoute
   '/blogs/news/black-bolt-white-flare-arrive': typeof BlogsNewsBlackBoltWhiteFlareArriveRoute
+  '/blogs/news/gem-vol-4-card-origins': typeof BlogsNewsGemVol4CardOriginsRoute
+  '/blogs/news/gem-vol-4-has-arrived': typeof BlogsNewsGemVol4HasArrivedRoute
+  '/blogs/news/gem-vol-4-set-guide': typeof BlogsNewsGemVol4SetGuideRoute
+  '/blogs/news/gem-vol-5-card-origins': typeof BlogsNewsGemVol5CardOriginsRoute
+  '/blogs/news/gem-vol-5-has-arrived': typeof BlogsNewsGemVol5HasArrivedRoute
+  '/blogs/news/gem-vol-5-set-guide': typeof BlogsNewsGemVol5SetGuideRoute
   '/blogs/news/gem-vol-6-card-origins': typeof BlogsNewsGemVol6CardOriginsRoute
   '/blogs/news/gem-vol-6-has-arrived': typeof BlogsNewsGemVol6HasArrivedRoute
   '/blogs/news/gem-vol-6-set-guide': typeof BlogsNewsGemVol6SetGuideRoute
@@ -769,6 +829,12 @@ export interface FileRouteTypes {
     | '/admin/products/$id'
     | '/admin/products/new'
     | '/blogs/news/black-bolt-white-flare-arrive'
+    | '/blogs/news/gem-vol-4-card-origins'
+    | '/blogs/news/gem-vol-4-has-arrived'
+    | '/blogs/news/gem-vol-4-set-guide'
+    | '/blogs/news/gem-vol-5-card-origins'
+    | '/blogs/news/gem-vol-5-has-arrived'
+    | '/blogs/news/gem-vol-5-set-guide'
     | '/blogs/news/gem-vol-6-card-origins'
     | '/blogs/news/gem-vol-6-has-arrived'
     | '/blogs/news/gem-vol-6-set-guide'
@@ -846,6 +912,12 @@ export interface FileRouteTypes {
     | '/admin/products/$id'
     | '/admin/products/new'
     | '/blogs/news/black-bolt-white-flare-arrive'
+    | '/blogs/news/gem-vol-4-card-origins'
+    | '/blogs/news/gem-vol-4-has-arrived'
+    | '/blogs/news/gem-vol-4-set-guide'
+    | '/blogs/news/gem-vol-5-card-origins'
+    | '/blogs/news/gem-vol-5-has-arrived'
+    | '/blogs/news/gem-vol-5-set-guide'
     | '/blogs/news/gem-vol-6-card-origins'
     | '/blogs/news/gem-vol-6-has-arrived'
     | '/blogs/news/gem-vol-6-set-guide'
@@ -923,6 +995,12 @@ export interface FileRouteTypes {
     | '/admin/products/$id'
     | '/admin/products/new'
     | '/blogs/news/black-bolt-white-flare-arrive'
+    | '/blogs/news/gem-vol-4-card-origins'
+    | '/blogs/news/gem-vol-4-has-arrived'
+    | '/blogs/news/gem-vol-4-set-guide'
+    | '/blogs/news/gem-vol-5-card-origins'
+    | '/blogs/news/gem-vol-5-has-arrived'
+    | '/blogs/news/gem-vol-5-set-guide'
     | '/blogs/news/gem-vol-6-card-origins'
     | '/blogs/news/gem-vol-6-has-arrived'
     | '/blogs/news/gem-vol-6-set-guide'
@@ -1001,6 +1079,12 @@ export interface RootRouteChildren {
   AdminProductsIdRoute: typeof AdminProductsIdRoute
   AdminProductsNewRoute: typeof AdminProductsNewRoute
   BlogsNewsBlackBoltWhiteFlareArriveRoute: typeof BlogsNewsBlackBoltWhiteFlareArriveRoute
+  BlogsNewsGemVol4CardOriginsRoute: typeof BlogsNewsGemVol4CardOriginsRoute
+  BlogsNewsGemVol4HasArrivedRoute: typeof BlogsNewsGemVol4HasArrivedRoute
+  BlogsNewsGemVol4SetGuideRoute: typeof BlogsNewsGemVol4SetGuideRoute
+  BlogsNewsGemVol5CardOriginsRoute: typeof BlogsNewsGemVol5CardOriginsRoute
+  BlogsNewsGemVol5HasArrivedRoute: typeof BlogsNewsGemVol5HasArrivedRoute
+  BlogsNewsGemVol5SetGuideRoute: typeof BlogsNewsGemVol5SetGuideRoute
   BlogsNewsGemVol6CardOriginsRoute: typeof BlogsNewsGemVol6CardOriginsRoute
   BlogsNewsGemVol6HasArrivedRoute: typeof BlogsNewsGemVol6HasArrivedRoute
   BlogsNewsGemVol6SetGuideRoute: typeof BlogsNewsGemVol6SetGuideRoute
@@ -1498,6 +1582,48 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BlogsNewsBlackBoltWhiteFlareArriveRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/blogs/news/gem-vol-4-card-origins': {
+      id: '/blogs/news/gem-vol-4-card-origins'
+      path: '/blogs/news/gem-vol-4-card-origins'
+      fullPath: '/blogs/news/gem-vol-4-card-origins'
+      preLoaderRoute: typeof BlogsNewsGemVol4CardOriginsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blogs/news/gem-vol-4-has-arrived': {
+      id: '/blogs/news/gem-vol-4-has-arrived'
+      path: '/blogs/news/gem-vol-4-has-arrived'
+      fullPath: '/blogs/news/gem-vol-4-has-arrived'
+      preLoaderRoute: typeof BlogsNewsGemVol4HasArrivedRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blogs/news/gem-vol-4-set-guide': {
+      id: '/blogs/news/gem-vol-4-set-guide'
+      path: '/blogs/news/gem-vol-4-set-guide'
+      fullPath: '/blogs/news/gem-vol-4-set-guide'
+      preLoaderRoute: typeof BlogsNewsGemVol4SetGuideRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blogs/news/gem-vol-5-card-origins': {
+      id: '/blogs/news/gem-vol-5-card-origins'
+      path: '/blogs/news/gem-vol-5-card-origins'
+      fullPath: '/blogs/news/gem-vol-5-card-origins'
+      preLoaderRoute: typeof BlogsNewsGemVol5CardOriginsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blogs/news/gem-vol-5-has-arrived': {
+      id: '/blogs/news/gem-vol-5-has-arrived'
+      path: '/blogs/news/gem-vol-5-has-arrived'
+      fullPath: '/blogs/news/gem-vol-5-has-arrived'
+      preLoaderRoute: typeof BlogsNewsGemVol5HasArrivedRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blogs/news/gem-vol-5-set-guide': {
+      id: '/blogs/news/gem-vol-5-set-guide'
+      path: '/blogs/news/gem-vol-5-set-guide'
+      fullPath: '/blogs/news/gem-vol-5-set-guide'
+      preLoaderRoute: typeof BlogsNewsGemVol5SetGuideRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/blogs/news/gem-vol-6-card-origins': {
       id: '/blogs/news/gem-vol-6-card-origins'
       path: '/blogs/news/gem-vol-6-card-origins'
@@ -1610,6 +1736,12 @@ const rootRouteChildren: RootRouteChildren = {
   AdminProductsNewRoute: AdminProductsNewRoute,
   BlogsNewsBlackBoltWhiteFlareArriveRoute:
     BlogsNewsBlackBoltWhiteFlareArriveRoute,
+  BlogsNewsGemVol4CardOriginsRoute: BlogsNewsGemVol4CardOriginsRoute,
+  BlogsNewsGemVol4HasArrivedRoute: BlogsNewsGemVol4HasArrivedRoute,
+  BlogsNewsGemVol4SetGuideRoute: BlogsNewsGemVol4SetGuideRoute,
+  BlogsNewsGemVol5CardOriginsRoute: BlogsNewsGemVol5CardOriginsRoute,
+  BlogsNewsGemVol5HasArrivedRoute: BlogsNewsGemVol5HasArrivedRoute,
+  BlogsNewsGemVol5SetGuideRoute: BlogsNewsGemVol5SetGuideRoute,
   BlogsNewsGemVol6CardOriginsRoute: BlogsNewsGemVol6CardOriginsRoute,
   BlogsNewsGemVol6HasArrivedRoute: BlogsNewsGemVol6HasArrivedRoute,
   BlogsNewsGemVol6SetGuideRoute: BlogsNewsGemVol6SetGuideRoute,

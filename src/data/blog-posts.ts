@@ -6,7 +6,7 @@
 // the post itself.
 import { SITE_URL, R2_IMAGE_HOST } from '~/lib/gem-sets/constants'
 
-export type BlogPostSlug = 'gem-vol-7-has-arrived' | 'black-bolt-white-flare-arrive' | 'gem-vol-7-card-origins' | 'gem-vol-6-has-arrived' | 'gem-vol-6-set-guide' | 'gem-vol-6-card-origins'
+export type BlogPostSlug = 'gem-vol-7-has-arrived' | 'black-bolt-white-flare-arrive' | 'gem-vol-7-card-origins' | 'gem-vol-6-has-arrived' | 'gem-vol-6-set-guide' | 'gem-vol-6-card-origins' | 'gem-vol-5-has-arrived' | 'gem-vol-5-set-guide' | 'gem-vol-5-card-origins' | 'gem-vol-4-has-arrived' | 'gem-vol-4-set-guide' | 'gem-vol-4-card-origins'
 
 export interface BlogPostSummary {
   slug: BlogPostSlug
@@ -73,6 +73,84 @@ export const BLOG_POSTS: BlogPostSummary[] = [
     heroAlt: 'Eight Gem Pack Vol. 6 full arts in a display case beside the EBI Collectibles logo, with the title Gem Vol. 6 Card Origins',
     glow1: 'rgb(78 119 104 / .28)',
     glow2: 'rgb(199 22 116 / .22)',
+  },
+  {
+    slug: 'gem-vol-5-has-arrived',
+    path: '/blogs/news/gem-vol-5-has-arrived',
+    title: 'Gem Vol 5 Is Here: Pokémon Horizons Sets Sail in the Gem Pack',
+    excerpt:
+      'The fifth Simplified Chinese Gem Pack: 196 all-holo cards, 28 Pokémon with seven versions each, and four Pokémon Horizons full arts led by Captain Pikachu.',
+    tag: 'New release',
+    date: '2026-04-24',
+    heroImage: `${SITE_URL}/assets/blog/gem-vol-5-release-hero.webp`,
+    heroAlt: 'Floragato and Liko full art from Gem Pack Vol. 5 in a display case, with the six holo Floragato versions beside the EBI Collectibles logo',
+    glow1: 'rgb(199 22 116 / .26)',
+    glow2: 'rgb(214 170 60 / .28)',
+  },
+  {
+    slug: 'gem-vol-5-set-guide',
+    path: '/blogs/news/gem-vol-5-set-guide',
+    title: 'Gem Vol 5 Set Guide: Every Full Art, the Full Roster and Box Math',
+    excerpt:
+      'How to tell every Gem Vol 5 version apart, all 28 full arts in one place including the four Horizons cards, the full roster, and what a master set really takes.',
+    tag: 'Set guide',
+    date: '2026-11-15',
+    heroImage: `${SITE_URL}/assets/blog/gem-vol-5-guide-hero.webp`,
+    heroAlt: 'Eight Gem Pack Vol. 5 full arts, including Captain Pikachu and the Horizons cards, in a display case beside the EBI Collectibles logo',
+    glow1: 'rgb(214 170 60 / .28)',
+    glow2: 'rgb(199 22 116 / .26)',
+  },
+  {
+    slug: 'gem-vol-5-card-origins',
+    path: '/blogs/news/gem-vol-5-card-origins',
+    title: 'Where Every Gem Vol 5 Card Actually Comes From',
+    excerpt:
+      '51 of the 56 artworks in Gem Vol 5 are reused from English cards, mostly Surging Sparks. The other five are new Pokémon Horizons art. Here\'s the full card-by-card map.',
+    tag: 'Collecting guide',
+    date: '2026-11-15',
+    heroImage: `${SITE_URL}/assets/blog/gem-vol-5-origins-hero.webp`,
+    heroAlt: 'Eight Gem Pack Vol. 5 full arts in a display case beside the EBI Collectibles logo, with the title Gem Vol. 5 Card Origins',
+    glow1: 'rgb(214 170 60 / .28)',
+    glow2: 'rgb(199 22 116 / .26)',
+  },
+  {
+    slug: 'gem-vol-4-has-arrived',
+    path: '/blogs/news/gem-vol-4-has-arrived',
+    title: 'Gem Vol 4 Is Here: Ponyta Gallops In for the Year of the Horse',
+    excerpt:
+      'The fourth Simplified Chinese Gem Pack: 196 all-holo cards, 28 Pokémon with seven versions each, and a sunset meadow Ponyta full art you can only pull here.',
+    tag: 'New release',
+    date: '2026-02-06',
+    heroImage: `${SITE_URL}/assets/blog/gem-vol-4-release-hero.webp`,
+    heroAlt: 'Ponyta full art from Gem Pack Vol. 4 in a display case, with the six holo Ponyta versions beside the EBI Collectibles logo',
+    glow1: 'rgb(199 22 116 / .26)',
+    glow2: 'rgb(208 129 105 / .30)',
+  },
+  {
+    slug: 'gem-vol-4-set-guide',
+    path: '/blogs/news/gem-vol-4-set-guide',
+    title: 'Gem Vol 4 Set Guide: Every Full Art, the Full Roster and Box Math',
+    excerpt:
+      'How to tell every Gem Vol 4 version apart, all 28 full arts in one place, the full roster, and what a master set really takes.',
+    tag: 'Set guide',
+    date: '2026-11-15',
+    heroImage: `${SITE_URL}/assets/blog/gem-vol-4-guide-hero.webp`,
+    heroAlt: 'Eight Gem Pack Vol. 4 full arts, including Ponyta, Eevee and Infernape, in a display case beside the EBI Collectibles logo',
+    glow1: 'rgb(208 129 105 / .30)',
+    glow2: 'rgb(199 22 116 / .26)',
+  },
+  {
+    slug: 'gem-vol-4-card-origins',
+    path: '/blogs/news/gem-vol-4-card-origins',
+    title: 'Where Every Gem Vol 4 Card Actually Comes From',
+    excerpt:
+      '55 of the 56 artworks in Gem Vol 4 are reused from English cards, mostly Temporal Forces and Twilight Masquerade. Here\'s the full card-by-card map.',
+    tag: 'Collecting guide',
+    date: '2026-11-15',
+    heroImage: `${SITE_URL}/assets/blog/gem-vol-4-origins-hero.webp`,
+    heroAlt: 'Eight Gem Pack Vol. 4 full arts in a display case beside the EBI Collectibles logo, with the title Gem Vol. 4 Card Origins',
+    glow1: 'rgb(208 129 105 / .30)',
+    glow2: 'rgb(199 22 116 / .26)',
   },
   {
     slug: 'black-bolt-white-flare-arrive',
