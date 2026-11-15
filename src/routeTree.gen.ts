@@ -86,9 +86,17 @@ import { Route as BlogsNewsBlackBoltWhiteFlareArriveRouteImport } from './routes
 import { Route as BlogsNewsBlackCrystalBlazeCardOriginsRouteImport } from './routes/blogs/news/black-crystal-blaze-card-origins'
 import { Route as BlogsNewsBlackCrystalBlazeHasArrivedRouteImport } from './routes/blogs/news/black-crystal-blaze-has-arrived'
 import { Route as BlogsNewsBlackCrystalBlazeSetGuideRouteImport } from './routes/blogs/news/black-crystal-blaze-set-guide'
+import { Route as BlogsNewsBladeAwakeningCardOriginsRouteImport } from './routes/blogs/news/blade-awakening-card-origins'
+import { Route as BlogsNewsBladeAwakeningHasArrivedRouteImport } from './routes/blogs/news/blade-awakening-has-arrived'
+import { Route as BlogsNewsBladeAwakeningSetGuideRouteImport } from './routes/blogs/news/blade-awakening-set-guide'
+import { Route as BlogsNewsBrilliantFantasyCardOriginsRouteImport } from './routes/blogs/news/brilliant-fantasy-card-origins'
+import { Route as BlogsNewsBrilliantFantasyHasArrivedRouteImport } from './routes/blogs/news/brilliant-fantasy-has-arrived'
+import { Route as BlogsNewsBrilliantFantasySetGuideRouteImport } from './routes/blogs/news/brilliant-fantasy-set-guide'
 import { Route as BlogsNewsChasingGloryCardOriginsRouteImport } from './routes/blogs/news/chasing-glory-card-origins'
 import { Route as BlogsNewsChasingGloryHasArrivedRouteImport } from './routes/blogs/news/chasing-glory-has-arrived'
 import { Route as BlogsNewsChasingGlorySetGuideRouteImport } from './routes/blogs/news/chasing-glory-set-guide'
+import { Route as BlogsNewsFunismDittoPalmSizeWondersGuideRouteImport } from './routes/blogs/news/funism-ditto-palm-size-wonders-guide'
+import { Route as BlogsNewsFunismDittoPalmSizeWondersHasArrivedRouteImport } from './routes/blogs/news/funism-ditto-palm-size-wonders-has-arrived'
 import { Route as BlogsNewsGemVol2CardOriginsRouteImport } from './routes/blogs/news/gem-vol-2-card-origins'
 import { Route as BlogsNewsGemVol2HasArrivedRouteImport } from './routes/blogs/news/gem-vol-2-has-arrived'
 import { Route as BlogsNewsGemVol2SetGuideRouteImport } from './routes/blogs/news/gem-vol-2-set-guide'
@@ -106,12 +114,20 @@ import { Route as BlogsNewsGemVol6HasArrivedRouteImport } from './routes/blogs/n
 import { Route as BlogsNewsGemVol6SetGuideRouteImport } from './routes/blogs/news/gem-vol-6-set-guide'
 import { Route as BlogsNewsGemVol7CardOriginsRouteImport } from './routes/blogs/news/gem-vol-7-card-origins'
 import { Route as BlogsNewsGemVol7HasArrivedRouteImport } from './routes/blogs/news/gem-vol-7-has-arrived'
+import { Route as BlogsNewsPikachuDreamPaintingFiguresGuideRouteImport } from './routes/blogs/news/pikachu-dream-painting-figures-guide'
+import { Route as BlogsNewsPikachuDreamPaintingFiguresHaveArrivedRouteImport } from './routes/blogs/news/pikachu-dream-painting-figures-have-arrived'
 import { Route as BlogsNewsRewardRoundCardOriginsRouteImport } from './routes/blogs/news/reward-round-card-origins'
 import { Route as BlogsNewsRewardRoundHasArrivedRouteImport } from './routes/blogs/news/reward-round-has-arrived'
 import { Route as BlogsNewsRewardRoundSetGuideRouteImport } from './routes/blogs/news/reward-round-set-guide'
+import { Route as BlogsNewsStellarCrystalCardOriginsRouteImport } from './routes/blogs/news/stellar-crystal-card-origins'
+import { Route as BlogsNewsStellarCrystalHasArrivedRouteImport } from './routes/blogs/news/stellar-crystal-has-arrived'
+import { Route as BlogsNewsStellarCrystalSetGuideRouteImport } from './routes/blogs/news/stellar-crystal-set-guide'
 import { Route as BlogsNewsTerastalGatheringCardOriginsRouteImport } from './routes/blogs/news/terastal-gathering-card-origins'
 import { Route as BlogsNewsTerastalGatheringHasArrivedRouteImport } from './routes/blogs/news/terastal-gathering-has-arrived'
 import { Route as BlogsNewsTerastalGatheringSetGuideRouteImport } from './routes/blogs/news/terastal-gathering-set-guide'
+import { Route as BlogsNewsTrueMysteryCardOriginsRouteImport } from './routes/blogs/news/true-mystery-card-origins'
+import { Route as BlogsNewsTrueMysteryHasArrivedRouteImport } from './routes/blogs/news/true-mystery-has-arrived'
+import { Route as BlogsNewsTrueMysterySetGuideRouteImport } from './routes/blogs/news/true-mystery-set-guide'
 import { Route as BlogsNewsWhiteFlareCardOriginsRouteImport } from './routes/blogs/news/white-flare-card-origins'
 import { Route as BlogsNewsWhiteFlareSetGuideRouteImport } from './routes/blogs/news/white-flare-set-guide'
 import { Route as AdminAffiliatesIdDashboardRouteImport } from './routes/admin/affiliates_.$id.dashboard'
@@ -511,6 +527,42 @@ const BlogsNewsBlackCrystalBlazeSetGuideRoute =
     path: '/blogs/news/black-crystal-blaze-set-guide',
     getParentRoute: () => rootRouteImport,
   } as any)
+const BlogsNewsBladeAwakeningCardOriginsRoute =
+  BlogsNewsBladeAwakeningCardOriginsRouteImport.update({
+    id: '/blogs/news/blade-awakening-card-origins',
+    path: '/blogs/news/blade-awakening-card-origins',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const BlogsNewsBladeAwakeningHasArrivedRoute =
+  BlogsNewsBladeAwakeningHasArrivedRouteImport.update({
+    id: '/blogs/news/blade-awakening-has-arrived',
+    path: '/blogs/news/blade-awakening-has-arrived',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const BlogsNewsBladeAwakeningSetGuideRoute =
+  BlogsNewsBladeAwakeningSetGuideRouteImport.update({
+    id: '/blogs/news/blade-awakening-set-guide',
+    path: '/blogs/news/blade-awakening-set-guide',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const BlogsNewsBrilliantFantasyCardOriginsRoute =
+  BlogsNewsBrilliantFantasyCardOriginsRouteImport.update({
+    id: '/blogs/news/brilliant-fantasy-card-origins',
+    path: '/blogs/news/brilliant-fantasy-card-origins',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const BlogsNewsBrilliantFantasyHasArrivedRoute =
+  BlogsNewsBrilliantFantasyHasArrivedRouteImport.update({
+    id: '/blogs/news/brilliant-fantasy-has-arrived',
+    path: '/blogs/news/brilliant-fantasy-has-arrived',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const BlogsNewsBrilliantFantasySetGuideRoute =
+  BlogsNewsBrilliantFantasySetGuideRouteImport.update({
+    id: '/blogs/news/brilliant-fantasy-set-guide',
+    path: '/blogs/news/brilliant-fantasy-set-guide',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const BlogsNewsChasingGloryCardOriginsRoute =
   BlogsNewsChasingGloryCardOriginsRouteImport.update({
     id: '/blogs/news/chasing-glory-card-origins',
@@ -527,6 +579,18 @@ const BlogsNewsChasingGlorySetGuideRoute =
   BlogsNewsChasingGlorySetGuideRouteImport.update({
     id: '/blogs/news/chasing-glory-set-guide',
     path: '/blogs/news/chasing-glory-set-guide',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const BlogsNewsFunismDittoPalmSizeWondersGuideRoute =
+  BlogsNewsFunismDittoPalmSizeWondersGuideRouteImport.update({
+    id: '/blogs/news/funism-ditto-palm-size-wonders-guide',
+    path: '/blogs/news/funism-ditto-palm-size-wonders-guide',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const BlogsNewsFunismDittoPalmSizeWondersHasArrivedRoute =
+  BlogsNewsFunismDittoPalmSizeWondersHasArrivedRouteImport.update({
+    id: '/blogs/news/funism-ditto-palm-size-wonders-has-arrived',
+    path: '/blogs/news/funism-ditto-palm-size-wonders-has-arrived',
     getParentRoute: () => rootRouteImport,
   } as any)
 const BlogsNewsGemVol2CardOriginsRoute =
@@ -631,6 +695,18 @@ const BlogsNewsGemVol7HasArrivedRoute =
     path: '/blogs/news/gem-vol-7-has-arrived',
     getParentRoute: () => rootRouteImport,
   } as any)
+const BlogsNewsPikachuDreamPaintingFiguresGuideRoute =
+  BlogsNewsPikachuDreamPaintingFiguresGuideRouteImport.update({
+    id: '/blogs/news/pikachu-dream-painting-figures-guide',
+    path: '/blogs/news/pikachu-dream-painting-figures-guide',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const BlogsNewsPikachuDreamPaintingFiguresHaveArrivedRoute =
+  BlogsNewsPikachuDreamPaintingFiguresHaveArrivedRouteImport.update({
+    id: '/blogs/news/pikachu-dream-painting-figures-have-arrived',
+    path: '/blogs/news/pikachu-dream-painting-figures-have-arrived',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const BlogsNewsRewardRoundCardOriginsRoute =
   BlogsNewsRewardRoundCardOriginsRouteImport.update({
     id: '/blogs/news/reward-round-card-origins',
@@ -649,6 +725,24 @@ const BlogsNewsRewardRoundSetGuideRoute =
     path: '/blogs/news/reward-round-set-guide',
     getParentRoute: () => rootRouteImport,
   } as any)
+const BlogsNewsStellarCrystalCardOriginsRoute =
+  BlogsNewsStellarCrystalCardOriginsRouteImport.update({
+    id: '/blogs/news/stellar-crystal-card-origins',
+    path: '/blogs/news/stellar-crystal-card-origins',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const BlogsNewsStellarCrystalHasArrivedRoute =
+  BlogsNewsStellarCrystalHasArrivedRouteImport.update({
+    id: '/blogs/news/stellar-crystal-has-arrived',
+    path: '/blogs/news/stellar-crystal-has-arrived',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const BlogsNewsStellarCrystalSetGuideRoute =
+  BlogsNewsStellarCrystalSetGuideRouteImport.update({
+    id: '/blogs/news/stellar-crystal-set-guide',
+    path: '/blogs/news/stellar-crystal-set-guide',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const BlogsNewsTerastalGatheringCardOriginsRoute =
   BlogsNewsTerastalGatheringCardOriginsRouteImport.update({
     id: '/blogs/news/terastal-gathering-card-origins',
@@ -665,6 +759,24 @@ const BlogsNewsTerastalGatheringSetGuideRoute =
   BlogsNewsTerastalGatheringSetGuideRouteImport.update({
     id: '/blogs/news/terastal-gathering-set-guide',
     path: '/blogs/news/terastal-gathering-set-guide',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const BlogsNewsTrueMysteryCardOriginsRoute =
+  BlogsNewsTrueMysteryCardOriginsRouteImport.update({
+    id: '/blogs/news/true-mystery-card-origins',
+    path: '/blogs/news/true-mystery-card-origins',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const BlogsNewsTrueMysteryHasArrivedRoute =
+  BlogsNewsTrueMysteryHasArrivedRouteImport.update({
+    id: '/blogs/news/true-mystery-has-arrived',
+    path: '/blogs/news/true-mystery-has-arrived',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const BlogsNewsTrueMysterySetGuideRoute =
+  BlogsNewsTrueMysterySetGuideRouteImport.update({
+    id: '/blogs/news/true-mystery-set-guide',
+    path: '/blogs/news/true-mystery-set-guide',
     getParentRoute: () => rootRouteImport,
   } as any)
 const BlogsNewsWhiteFlareCardOriginsRoute =
@@ -760,9 +872,17 @@ export interface FileRoutesByFullPath {
   '/blogs/news/black-crystal-blaze-card-origins': typeof BlogsNewsBlackCrystalBlazeCardOriginsRoute
   '/blogs/news/black-crystal-blaze-has-arrived': typeof BlogsNewsBlackCrystalBlazeHasArrivedRoute
   '/blogs/news/black-crystal-blaze-set-guide': typeof BlogsNewsBlackCrystalBlazeSetGuideRoute
+  '/blogs/news/blade-awakening-card-origins': typeof BlogsNewsBladeAwakeningCardOriginsRoute
+  '/blogs/news/blade-awakening-has-arrived': typeof BlogsNewsBladeAwakeningHasArrivedRoute
+  '/blogs/news/blade-awakening-set-guide': typeof BlogsNewsBladeAwakeningSetGuideRoute
+  '/blogs/news/brilliant-fantasy-card-origins': typeof BlogsNewsBrilliantFantasyCardOriginsRoute
+  '/blogs/news/brilliant-fantasy-has-arrived': typeof BlogsNewsBrilliantFantasyHasArrivedRoute
+  '/blogs/news/brilliant-fantasy-set-guide': typeof BlogsNewsBrilliantFantasySetGuideRoute
   '/blogs/news/chasing-glory-card-origins': typeof BlogsNewsChasingGloryCardOriginsRoute
   '/blogs/news/chasing-glory-has-arrived': typeof BlogsNewsChasingGloryHasArrivedRoute
   '/blogs/news/chasing-glory-set-guide': typeof BlogsNewsChasingGlorySetGuideRoute
+  '/blogs/news/funism-ditto-palm-size-wonders-guide': typeof BlogsNewsFunismDittoPalmSizeWondersGuideRoute
+  '/blogs/news/funism-ditto-palm-size-wonders-has-arrived': typeof BlogsNewsFunismDittoPalmSizeWondersHasArrivedRoute
   '/blogs/news/gem-vol-2-card-origins': typeof BlogsNewsGemVol2CardOriginsRoute
   '/blogs/news/gem-vol-2-has-arrived': typeof BlogsNewsGemVol2HasArrivedRoute
   '/blogs/news/gem-vol-2-set-guide': typeof BlogsNewsGemVol2SetGuideRoute
@@ -780,12 +900,20 @@ export interface FileRoutesByFullPath {
   '/blogs/news/gem-vol-6-set-guide': typeof BlogsNewsGemVol6SetGuideRoute
   '/blogs/news/gem-vol-7-card-origins': typeof BlogsNewsGemVol7CardOriginsRoute
   '/blogs/news/gem-vol-7-has-arrived': typeof BlogsNewsGemVol7HasArrivedRoute
+  '/blogs/news/pikachu-dream-painting-figures-guide': typeof BlogsNewsPikachuDreamPaintingFiguresGuideRoute
+  '/blogs/news/pikachu-dream-painting-figures-have-arrived': typeof BlogsNewsPikachuDreamPaintingFiguresHaveArrivedRoute
   '/blogs/news/reward-round-card-origins': typeof BlogsNewsRewardRoundCardOriginsRoute
   '/blogs/news/reward-round-has-arrived': typeof BlogsNewsRewardRoundHasArrivedRoute
   '/blogs/news/reward-round-set-guide': typeof BlogsNewsRewardRoundSetGuideRoute
+  '/blogs/news/stellar-crystal-card-origins': typeof BlogsNewsStellarCrystalCardOriginsRoute
+  '/blogs/news/stellar-crystal-has-arrived': typeof BlogsNewsStellarCrystalHasArrivedRoute
+  '/blogs/news/stellar-crystal-set-guide': typeof BlogsNewsStellarCrystalSetGuideRoute
   '/blogs/news/terastal-gathering-card-origins': typeof BlogsNewsTerastalGatheringCardOriginsRoute
   '/blogs/news/terastal-gathering-has-arrived': typeof BlogsNewsTerastalGatheringHasArrivedRoute
   '/blogs/news/terastal-gathering-set-guide': typeof BlogsNewsTerastalGatheringSetGuideRoute
+  '/blogs/news/true-mystery-card-origins': typeof BlogsNewsTrueMysteryCardOriginsRoute
+  '/blogs/news/true-mystery-has-arrived': typeof BlogsNewsTrueMysteryHasArrivedRoute
+  '/blogs/news/true-mystery-set-guide': typeof BlogsNewsTrueMysterySetGuideRoute
   '/blogs/news/white-flare-card-origins': typeof BlogsNewsWhiteFlareCardOriginsRoute
   '/blogs/news/white-flare-set-guide': typeof BlogsNewsWhiteFlareSetGuideRoute
   '/account/orders/': typeof AccountOrdersIndexRoute
@@ -868,9 +996,17 @@ export interface FileRoutesByTo {
   '/blogs/news/black-crystal-blaze-card-origins': typeof BlogsNewsBlackCrystalBlazeCardOriginsRoute
   '/blogs/news/black-crystal-blaze-has-arrived': typeof BlogsNewsBlackCrystalBlazeHasArrivedRoute
   '/blogs/news/black-crystal-blaze-set-guide': typeof BlogsNewsBlackCrystalBlazeSetGuideRoute
+  '/blogs/news/blade-awakening-card-origins': typeof BlogsNewsBladeAwakeningCardOriginsRoute
+  '/blogs/news/blade-awakening-has-arrived': typeof BlogsNewsBladeAwakeningHasArrivedRoute
+  '/blogs/news/blade-awakening-set-guide': typeof BlogsNewsBladeAwakeningSetGuideRoute
+  '/blogs/news/brilliant-fantasy-card-origins': typeof BlogsNewsBrilliantFantasyCardOriginsRoute
+  '/blogs/news/brilliant-fantasy-has-arrived': typeof BlogsNewsBrilliantFantasyHasArrivedRoute
+  '/blogs/news/brilliant-fantasy-set-guide': typeof BlogsNewsBrilliantFantasySetGuideRoute
   '/blogs/news/chasing-glory-card-origins': typeof BlogsNewsChasingGloryCardOriginsRoute
   '/blogs/news/chasing-glory-has-arrived': typeof BlogsNewsChasingGloryHasArrivedRoute
   '/blogs/news/chasing-glory-set-guide': typeof BlogsNewsChasingGlorySetGuideRoute
+  '/blogs/news/funism-ditto-palm-size-wonders-guide': typeof BlogsNewsFunismDittoPalmSizeWondersGuideRoute
+  '/blogs/news/funism-ditto-palm-size-wonders-has-arrived': typeof BlogsNewsFunismDittoPalmSizeWondersHasArrivedRoute
   '/blogs/news/gem-vol-2-card-origins': typeof BlogsNewsGemVol2CardOriginsRoute
   '/blogs/news/gem-vol-2-has-arrived': typeof BlogsNewsGemVol2HasArrivedRoute
   '/blogs/news/gem-vol-2-set-guide': typeof BlogsNewsGemVol2SetGuideRoute
@@ -888,12 +1024,20 @@ export interface FileRoutesByTo {
   '/blogs/news/gem-vol-6-set-guide': typeof BlogsNewsGemVol6SetGuideRoute
   '/blogs/news/gem-vol-7-card-origins': typeof BlogsNewsGemVol7CardOriginsRoute
   '/blogs/news/gem-vol-7-has-arrived': typeof BlogsNewsGemVol7HasArrivedRoute
+  '/blogs/news/pikachu-dream-painting-figures-guide': typeof BlogsNewsPikachuDreamPaintingFiguresGuideRoute
+  '/blogs/news/pikachu-dream-painting-figures-have-arrived': typeof BlogsNewsPikachuDreamPaintingFiguresHaveArrivedRoute
   '/blogs/news/reward-round-card-origins': typeof BlogsNewsRewardRoundCardOriginsRoute
   '/blogs/news/reward-round-has-arrived': typeof BlogsNewsRewardRoundHasArrivedRoute
   '/blogs/news/reward-round-set-guide': typeof BlogsNewsRewardRoundSetGuideRoute
+  '/blogs/news/stellar-crystal-card-origins': typeof BlogsNewsStellarCrystalCardOriginsRoute
+  '/blogs/news/stellar-crystal-has-arrived': typeof BlogsNewsStellarCrystalHasArrivedRoute
+  '/blogs/news/stellar-crystal-set-guide': typeof BlogsNewsStellarCrystalSetGuideRoute
   '/blogs/news/terastal-gathering-card-origins': typeof BlogsNewsTerastalGatheringCardOriginsRoute
   '/blogs/news/terastal-gathering-has-arrived': typeof BlogsNewsTerastalGatheringHasArrivedRoute
   '/blogs/news/terastal-gathering-set-guide': typeof BlogsNewsTerastalGatheringSetGuideRoute
+  '/blogs/news/true-mystery-card-origins': typeof BlogsNewsTrueMysteryCardOriginsRoute
+  '/blogs/news/true-mystery-has-arrived': typeof BlogsNewsTrueMysteryHasArrivedRoute
+  '/blogs/news/true-mystery-set-guide': typeof BlogsNewsTrueMysterySetGuideRoute
   '/blogs/news/white-flare-card-origins': typeof BlogsNewsWhiteFlareCardOriginsRoute
   '/blogs/news/white-flare-set-guide': typeof BlogsNewsWhiteFlareSetGuideRoute
   '/account/orders': typeof AccountOrdersIndexRoute
@@ -977,9 +1121,17 @@ export interface FileRoutesById {
   '/blogs/news/black-crystal-blaze-card-origins': typeof BlogsNewsBlackCrystalBlazeCardOriginsRoute
   '/blogs/news/black-crystal-blaze-has-arrived': typeof BlogsNewsBlackCrystalBlazeHasArrivedRoute
   '/blogs/news/black-crystal-blaze-set-guide': typeof BlogsNewsBlackCrystalBlazeSetGuideRoute
+  '/blogs/news/blade-awakening-card-origins': typeof BlogsNewsBladeAwakeningCardOriginsRoute
+  '/blogs/news/blade-awakening-has-arrived': typeof BlogsNewsBladeAwakeningHasArrivedRoute
+  '/blogs/news/blade-awakening-set-guide': typeof BlogsNewsBladeAwakeningSetGuideRoute
+  '/blogs/news/brilliant-fantasy-card-origins': typeof BlogsNewsBrilliantFantasyCardOriginsRoute
+  '/blogs/news/brilliant-fantasy-has-arrived': typeof BlogsNewsBrilliantFantasyHasArrivedRoute
+  '/blogs/news/brilliant-fantasy-set-guide': typeof BlogsNewsBrilliantFantasySetGuideRoute
   '/blogs/news/chasing-glory-card-origins': typeof BlogsNewsChasingGloryCardOriginsRoute
   '/blogs/news/chasing-glory-has-arrived': typeof BlogsNewsChasingGloryHasArrivedRoute
   '/blogs/news/chasing-glory-set-guide': typeof BlogsNewsChasingGlorySetGuideRoute
+  '/blogs/news/funism-ditto-palm-size-wonders-guide': typeof BlogsNewsFunismDittoPalmSizeWondersGuideRoute
+  '/blogs/news/funism-ditto-palm-size-wonders-has-arrived': typeof BlogsNewsFunismDittoPalmSizeWondersHasArrivedRoute
   '/blogs/news/gem-vol-2-card-origins': typeof BlogsNewsGemVol2CardOriginsRoute
   '/blogs/news/gem-vol-2-has-arrived': typeof BlogsNewsGemVol2HasArrivedRoute
   '/blogs/news/gem-vol-2-set-guide': typeof BlogsNewsGemVol2SetGuideRoute
@@ -997,12 +1149,20 @@ export interface FileRoutesById {
   '/blogs/news/gem-vol-6-set-guide': typeof BlogsNewsGemVol6SetGuideRoute
   '/blogs/news/gem-vol-7-card-origins': typeof BlogsNewsGemVol7CardOriginsRoute
   '/blogs/news/gem-vol-7-has-arrived': typeof BlogsNewsGemVol7HasArrivedRoute
+  '/blogs/news/pikachu-dream-painting-figures-guide': typeof BlogsNewsPikachuDreamPaintingFiguresGuideRoute
+  '/blogs/news/pikachu-dream-painting-figures-have-arrived': typeof BlogsNewsPikachuDreamPaintingFiguresHaveArrivedRoute
   '/blogs/news/reward-round-card-origins': typeof BlogsNewsRewardRoundCardOriginsRoute
   '/blogs/news/reward-round-has-arrived': typeof BlogsNewsRewardRoundHasArrivedRoute
   '/blogs/news/reward-round-set-guide': typeof BlogsNewsRewardRoundSetGuideRoute
+  '/blogs/news/stellar-crystal-card-origins': typeof BlogsNewsStellarCrystalCardOriginsRoute
+  '/blogs/news/stellar-crystal-has-arrived': typeof BlogsNewsStellarCrystalHasArrivedRoute
+  '/blogs/news/stellar-crystal-set-guide': typeof BlogsNewsStellarCrystalSetGuideRoute
   '/blogs/news/terastal-gathering-card-origins': typeof BlogsNewsTerastalGatheringCardOriginsRoute
   '/blogs/news/terastal-gathering-has-arrived': typeof BlogsNewsTerastalGatheringHasArrivedRoute
   '/blogs/news/terastal-gathering-set-guide': typeof BlogsNewsTerastalGatheringSetGuideRoute
+  '/blogs/news/true-mystery-card-origins': typeof BlogsNewsTrueMysteryCardOriginsRoute
+  '/blogs/news/true-mystery-has-arrived': typeof BlogsNewsTrueMysteryHasArrivedRoute
+  '/blogs/news/true-mystery-set-guide': typeof BlogsNewsTrueMysterySetGuideRoute
   '/blogs/news/white-flare-card-origins': typeof BlogsNewsWhiteFlareCardOriginsRoute
   '/blogs/news/white-flare-set-guide': typeof BlogsNewsWhiteFlareSetGuideRoute
   '/account/orders/': typeof AccountOrdersIndexRoute
@@ -1087,9 +1247,17 @@ export interface FileRouteTypes {
     | '/blogs/news/black-crystal-blaze-card-origins'
     | '/blogs/news/black-crystal-blaze-has-arrived'
     | '/blogs/news/black-crystal-blaze-set-guide'
+    | '/blogs/news/blade-awakening-card-origins'
+    | '/blogs/news/blade-awakening-has-arrived'
+    | '/blogs/news/blade-awakening-set-guide'
+    | '/blogs/news/brilliant-fantasy-card-origins'
+    | '/blogs/news/brilliant-fantasy-has-arrived'
+    | '/blogs/news/brilliant-fantasy-set-guide'
     | '/blogs/news/chasing-glory-card-origins'
     | '/blogs/news/chasing-glory-has-arrived'
     | '/blogs/news/chasing-glory-set-guide'
+    | '/blogs/news/funism-ditto-palm-size-wonders-guide'
+    | '/blogs/news/funism-ditto-palm-size-wonders-has-arrived'
     | '/blogs/news/gem-vol-2-card-origins'
     | '/blogs/news/gem-vol-2-has-arrived'
     | '/blogs/news/gem-vol-2-set-guide'
@@ -1107,12 +1275,20 @@ export interface FileRouteTypes {
     | '/blogs/news/gem-vol-6-set-guide'
     | '/blogs/news/gem-vol-7-card-origins'
     | '/blogs/news/gem-vol-7-has-arrived'
+    | '/blogs/news/pikachu-dream-painting-figures-guide'
+    | '/blogs/news/pikachu-dream-painting-figures-have-arrived'
     | '/blogs/news/reward-round-card-origins'
     | '/blogs/news/reward-round-has-arrived'
     | '/blogs/news/reward-round-set-guide'
+    | '/blogs/news/stellar-crystal-card-origins'
+    | '/blogs/news/stellar-crystal-has-arrived'
+    | '/blogs/news/stellar-crystal-set-guide'
     | '/blogs/news/terastal-gathering-card-origins'
     | '/blogs/news/terastal-gathering-has-arrived'
     | '/blogs/news/terastal-gathering-set-guide'
+    | '/blogs/news/true-mystery-card-origins'
+    | '/blogs/news/true-mystery-has-arrived'
+    | '/blogs/news/true-mystery-set-guide'
     | '/blogs/news/white-flare-card-origins'
     | '/blogs/news/white-flare-set-guide'
     | '/account/orders/'
@@ -1195,9 +1371,17 @@ export interface FileRouteTypes {
     | '/blogs/news/black-crystal-blaze-card-origins'
     | '/blogs/news/black-crystal-blaze-has-arrived'
     | '/blogs/news/black-crystal-blaze-set-guide'
+    | '/blogs/news/blade-awakening-card-origins'
+    | '/blogs/news/blade-awakening-has-arrived'
+    | '/blogs/news/blade-awakening-set-guide'
+    | '/blogs/news/brilliant-fantasy-card-origins'
+    | '/blogs/news/brilliant-fantasy-has-arrived'
+    | '/blogs/news/brilliant-fantasy-set-guide'
     | '/blogs/news/chasing-glory-card-origins'
     | '/blogs/news/chasing-glory-has-arrived'
     | '/blogs/news/chasing-glory-set-guide'
+    | '/blogs/news/funism-ditto-palm-size-wonders-guide'
+    | '/blogs/news/funism-ditto-palm-size-wonders-has-arrived'
     | '/blogs/news/gem-vol-2-card-origins'
     | '/blogs/news/gem-vol-2-has-arrived'
     | '/blogs/news/gem-vol-2-set-guide'
@@ -1215,12 +1399,20 @@ export interface FileRouteTypes {
     | '/blogs/news/gem-vol-6-set-guide'
     | '/blogs/news/gem-vol-7-card-origins'
     | '/blogs/news/gem-vol-7-has-arrived'
+    | '/blogs/news/pikachu-dream-painting-figures-guide'
+    | '/blogs/news/pikachu-dream-painting-figures-have-arrived'
     | '/blogs/news/reward-round-card-origins'
     | '/blogs/news/reward-round-has-arrived'
     | '/blogs/news/reward-round-set-guide'
+    | '/blogs/news/stellar-crystal-card-origins'
+    | '/blogs/news/stellar-crystal-has-arrived'
+    | '/blogs/news/stellar-crystal-set-guide'
     | '/blogs/news/terastal-gathering-card-origins'
     | '/blogs/news/terastal-gathering-has-arrived'
     | '/blogs/news/terastal-gathering-set-guide'
+    | '/blogs/news/true-mystery-card-origins'
+    | '/blogs/news/true-mystery-has-arrived'
+    | '/blogs/news/true-mystery-set-guide'
     | '/blogs/news/white-flare-card-origins'
     | '/blogs/news/white-flare-set-guide'
     | '/account/orders'
@@ -1303,9 +1495,17 @@ export interface FileRouteTypes {
     | '/blogs/news/black-crystal-blaze-card-origins'
     | '/blogs/news/black-crystal-blaze-has-arrived'
     | '/blogs/news/black-crystal-blaze-set-guide'
+    | '/blogs/news/blade-awakening-card-origins'
+    | '/blogs/news/blade-awakening-has-arrived'
+    | '/blogs/news/blade-awakening-set-guide'
+    | '/blogs/news/brilliant-fantasy-card-origins'
+    | '/blogs/news/brilliant-fantasy-has-arrived'
+    | '/blogs/news/brilliant-fantasy-set-guide'
     | '/blogs/news/chasing-glory-card-origins'
     | '/blogs/news/chasing-glory-has-arrived'
     | '/blogs/news/chasing-glory-set-guide'
+    | '/blogs/news/funism-ditto-palm-size-wonders-guide'
+    | '/blogs/news/funism-ditto-palm-size-wonders-has-arrived'
     | '/blogs/news/gem-vol-2-card-origins'
     | '/blogs/news/gem-vol-2-has-arrived'
     | '/blogs/news/gem-vol-2-set-guide'
@@ -1323,12 +1523,20 @@ export interface FileRouteTypes {
     | '/blogs/news/gem-vol-6-set-guide'
     | '/blogs/news/gem-vol-7-card-origins'
     | '/blogs/news/gem-vol-7-has-arrived'
+    | '/blogs/news/pikachu-dream-painting-figures-guide'
+    | '/blogs/news/pikachu-dream-painting-figures-have-arrived'
     | '/blogs/news/reward-round-card-origins'
     | '/blogs/news/reward-round-has-arrived'
     | '/blogs/news/reward-round-set-guide'
+    | '/blogs/news/stellar-crystal-card-origins'
+    | '/blogs/news/stellar-crystal-has-arrived'
+    | '/blogs/news/stellar-crystal-set-guide'
     | '/blogs/news/terastal-gathering-card-origins'
     | '/blogs/news/terastal-gathering-has-arrived'
     | '/blogs/news/terastal-gathering-set-guide'
+    | '/blogs/news/true-mystery-card-origins'
+    | '/blogs/news/true-mystery-has-arrived'
+    | '/blogs/news/true-mystery-set-guide'
     | '/blogs/news/white-flare-card-origins'
     | '/blogs/news/white-flare-set-guide'
     | '/account/orders/'
@@ -1412,9 +1620,17 @@ export interface RootRouteChildren {
   BlogsNewsBlackCrystalBlazeCardOriginsRoute: typeof BlogsNewsBlackCrystalBlazeCardOriginsRoute
   BlogsNewsBlackCrystalBlazeHasArrivedRoute: typeof BlogsNewsBlackCrystalBlazeHasArrivedRoute
   BlogsNewsBlackCrystalBlazeSetGuideRoute: typeof BlogsNewsBlackCrystalBlazeSetGuideRoute
+  BlogsNewsBladeAwakeningCardOriginsRoute: typeof BlogsNewsBladeAwakeningCardOriginsRoute
+  BlogsNewsBladeAwakeningHasArrivedRoute: typeof BlogsNewsBladeAwakeningHasArrivedRoute
+  BlogsNewsBladeAwakeningSetGuideRoute: typeof BlogsNewsBladeAwakeningSetGuideRoute
+  BlogsNewsBrilliantFantasyCardOriginsRoute: typeof BlogsNewsBrilliantFantasyCardOriginsRoute
+  BlogsNewsBrilliantFantasyHasArrivedRoute: typeof BlogsNewsBrilliantFantasyHasArrivedRoute
+  BlogsNewsBrilliantFantasySetGuideRoute: typeof BlogsNewsBrilliantFantasySetGuideRoute
   BlogsNewsChasingGloryCardOriginsRoute: typeof BlogsNewsChasingGloryCardOriginsRoute
   BlogsNewsChasingGloryHasArrivedRoute: typeof BlogsNewsChasingGloryHasArrivedRoute
   BlogsNewsChasingGlorySetGuideRoute: typeof BlogsNewsChasingGlorySetGuideRoute
+  BlogsNewsFunismDittoPalmSizeWondersGuideRoute: typeof BlogsNewsFunismDittoPalmSizeWondersGuideRoute
+  BlogsNewsFunismDittoPalmSizeWondersHasArrivedRoute: typeof BlogsNewsFunismDittoPalmSizeWondersHasArrivedRoute
   BlogsNewsGemVol2CardOriginsRoute: typeof BlogsNewsGemVol2CardOriginsRoute
   BlogsNewsGemVol2HasArrivedRoute: typeof BlogsNewsGemVol2HasArrivedRoute
   BlogsNewsGemVol2SetGuideRoute: typeof BlogsNewsGemVol2SetGuideRoute
@@ -1432,12 +1648,20 @@ export interface RootRouteChildren {
   BlogsNewsGemVol6SetGuideRoute: typeof BlogsNewsGemVol6SetGuideRoute
   BlogsNewsGemVol7CardOriginsRoute: typeof BlogsNewsGemVol7CardOriginsRoute
   BlogsNewsGemVol7HasArrivedRoute: typeof BlogsNewsGemVol7HasArrivedRoute
+  BlogsNewsPikachuDreamPaintingFiguresGuideRoute: typeof BlogsNewsPikachuDreamPaintingFiguresGuideRoute
+  BlogsNewsPikachuDreamPaintingFiguresHaveArrivedRoute: typeof BlogsNewsPikachuDreamPaintingFiguresHaveArrivedRoute
   BlogsNewsRewardRoundCardOriginsRoute: typeof BlogsNewsRewardRoundCardOriginsRoute
   BlogsNewsRewardRoundHasArrivedRoute: typeof BlogsNewsRewardRoundHasArrivedRoute
   BlogsNewsRewardRoundSetGuideRoute: typeof BlogsNewsRewardRoundSetGuideRoute
+  BlogsNewsStellarCrystalCardOriginsRoute: typeof BlogsNewsStellarCrystalCardOriginsRoute
+  BlogsNewsStellarCrystalHasArrivedRoute: typeof BlogsNewsStellarCrystalHasArrivedRoute
+  BlogsNewsStellarCrystalSetGuideRoute: typeof BlogsNewsStellarCrystalSetGuideRoute
   BlogsNewsTerastalGatheringCardOriginsRoute: typeof BlogsNewsTerastalGatheringCardOriginsRoute
   BlogsNewsTerastalGatheringHasArrivedRoute: typeof BlogsNewsTerastalGatheringHasArrivedRoute
   BlogsNewsTerastalGatheringSetGuideRoute: typeof BlogsNewsTerastalGatheringSetGuideRoute
+  BlogsNewsTrueMysteryCardOriginsRoute: typeof BlogsNewsTrueMysteryCardOriginsRoute
+  BlogsNewsTrueMysteryHasArrivedRoute: typeof BlogsNewsTrueMysteryHasArrivedRoute
+  BlogsNewsTrueMysterySetGuideRoute: typeof BlogsNewsTrueMysterySetGuideRoute
   BlogsNewsWhiteFlareCardOriginsRoute: typeof BlogsNewsWhiteFlareCardOriginsRoute
   BlogsNewsWhiteFlareSetGuideRoute: typeof BlogsNewsWhiteFlareSetGuideRoute
   AccountOrdersIndexRoute: typeof AccountOrdersIndexRoute
@@ -1988,6 +2212,48 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BlogsNewsBlackCrystalBlazeSetGuideRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/blogs/news/blade-awakening-card-origins': {
+      id: '/blogs/news/blade-awakening-card-origins'
+      path: '/blogs/news/blade-awakening-card-origins'
+      fullPath: '/blogs/news/blade-awakening-card-origins'
+      preLoaderRoute: typeof BlogsNewsBladeAwakeningCardOriginsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blogs/news/blade-awakening-has-arrived': {
+      id: '/blogs/news/blade-awakening-has-arrived'
+      path: '/blogs/news/blade-awakening-has-arrived'
+      fullPath: '/blogs/news/blade-awakening-has-arrived'
+      preLoaderRoute: typeof BlogsNewsBladeAwakeningHasArrivedRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blogs/news/blade-awakening-set-guide': {
+      id: '/blogs/news/blade-awakening-set-guide'
+      path: '/blogs/news/blade-awakening-set-guide'
+      fullPath: '/blogs/news/blade-awakening-set-guide'
+      preLoaderRoute: typeof BlogsNewsBladeAwakeningSetGuideRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blogs/news/brilliant-fantasy-card-origins': {
+      id: '/blogs/news/brilliant-fantasy-card-origins'
+      path: '/blogs/news/brilliant-fantasy-card-origins'
+      fullPath: '/blogs/news/brilliant-fantasy-card-origins'
+      preLoaderRoute: typeof BlogsNewsBrilliantFantasyCardOriginsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blogs/news/brilliant-fantasy-has-arrived': {
+      id: '/blogs/news/brilliant-fantasy-has-arrived'
+      path: '/blogs/news/brilliant-fantasy-has-arrived'
+      fullPath: '/blogs/news/brilliant-fantasy-has-arrived'
+      preLoaderRoute: typeof BlogsNewsBrilliantFantasyHasArrivedRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blogs/news/brilliant-fantasy-set-guide': {
+      id: '/blogs/news/brilliant-fantasy-set-guide'
+      path: '/blogs/news/brilliant-fantasy-set-guide'
+      fullPath: '/blogs/news/brilliant-fantasy-set-guide'
+      preLoaderRoute: typeof BlogsNewsBrilliantFantasySetGuideRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/blogs/news/chasing-glory-card-origins': {
       id: '/blogs/news/chasing-glory-card-origins'
       path: '/blogs/news/chasing-glory-card-origins'
@@ -2007,6 +2273,20 @@ declare module '@tanstack/react-router' {
       path: '/blogs/news/chasing-glory-set-guide'
       fullPath: '/blogs/news/chasing-glory-set-guide'
       preLoaderRoute: typeof BlogsNewsChasingGlorySetGuideRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blogs/news/funism-ditto-palm-size-wonders-guide': {
+      id: '/blogs/news/funism-ditto-palm-size-wonders-guide'
+      path: '/blogs/news/funism-ditto-palm-size-wonders-guide'
+      fullPath: '/blogs/news/funism-ditto-palm-size-wonders-guide'
+      preLoaderRoute: typeof BlogsNewsFunismDittoPalmSizeWondersGuideRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blogs/news/funism-ditto-palm-size-wonders-has-arrived': {
+      id: '/blogs/news/funism-ditto-palm-size-wonders-has-arrived'
+      path: '/blogs/news/funism-ditto-palm-size-wonders-has-arrived'
+      fullPath: '/blogs/news/funism-ditto-palm-size-wonders-has-arrived'
+      preLoaderRoute: typeof BlogsNewsFunismDittoPalmSizeWondersHasArrivedRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/blogs/news/gem-vol-2-card-origins': {
@@ -2128,6 +2408,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BlogsNewsGemVol7HasArrivedRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/blogs/news/pikachu-dream-painting-figures-guide': {
+      id: '/blogs/news/pikachu-dream-painting-figures-guide'
+      path: '/blogs/news/pikachu-dream-painting-figures-guide'
+      fullPath: '/blogs/news/pikachu-dream-painting-figures-guide'
+      preLoaderRoute: typeof BlogsNewsPikachuDreamPaintingFiguresGuideRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blogs/news/pikachu-dream-painting-figures-have-arrived': {
+      id: '/blogs/news/pikachu-dream-painting-figures-have-arrived'
+      path: '/blogs/news/pikachu-dream-painting-figures-have-arrived'
+      fullPath: '/blogs/news/pikachu-dream-painting-figures-have-arrived'
+      preLoaderRoute: typeof BlogsNewsPikachuDreamPaintingFiguresHaveArrivedRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/blogs/news/reward-round-card-origins': {
       id: '/blogs/news/reward-round-card-origins'
       path: '/blogs/news/reward-round-card-origins'
@@ -2149,6 +2443,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BlogsNewsRewardRoundSetGuideRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/blogs/news/stellar-crystal-card-origins': {
+      id: '/blogs/news/stellar-crystal-card-origins'
+      path: '/blogs/news/stellar-crystal-card-origins'
+      fullPath: '/blogs/news/stellar-crystal-card-origins'
+      preLoaderRoute: typeof BlogsNewsStellarCrystalCardOriginsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blogs/news/stellar-crystal-has-arrived': {
+      id: '/blogs/news/stellar-crystal-has-arrived'
+      path: '/blogs/news/stellar-crystal-has-arrived'
+      fullPath: '/blogs/news/stellar-crystal-has-arrived'
+      preLoaderRoute: typeof BlogsNewsStellarCrystalHasArrivedRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blogs/news/stellar-crystal-set-guide': {
+      id: '/blogs/news/stellar-crystal-set-guide'
+      path: '/blogs/news/stellar-crystal-set-guide'
+      fullPath: '/blogs/news/stellar-crystal-set-guide'
+      preLoaderRoute: typeof BlogsNewsStellarCrystalSetGuideRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/blogs/news/terastal-gathering-card-origins': {
       id: '/blogs/news/terastal-gathering-card-origins'
       path: '/blogs/news/terastal-gathering-card-origins'
@@ -2168,6 +2483,27 @@ declare module '@tanstack/react-router' {
       path: '/blogs/news/terastal-gathering-set-guide'
       fullPath: '/blogs/news/terastal-gathering-set-guide'
       preLoaderRoute: typeof BlogsNewsTerastalGatheringSetGuideRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blogs/news/true-mystery-card-origins': {
+      id: '/blogs/news/true-mystery-card-origins'
+      path: '/blogs/news/true-mystery-card-origins'
+      fullPath: '/blogs/news/true-mystery-card-origins'
+      preLoaderRoute: typeof BlogsNewsTrueMysteryCardOriginsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blogs/news/true-mystery-has-arrived': {
+      id: '/blogs/news/true-mystery-has-arrived'
+      path: '/blogs/news/true-mystery-has-arrived'
+      fullPath: '/blogs/news/true-mystery-has-arrived'
+      preLoaderRoute: typeof BlogsNewsTrueMysteryHasArrivedRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blogs/news/true-mystery-set-guide': {
+      id: '/blogs/news/true-mystery-set-guide'
+      path: '/blogs/news/true-mystery-set-guide'
+      fullPath: '/blogs/news/true-mystery-set-guide'
+      preLoaderRoute: typeof BlogsNewsTrueMysterySetGuideRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/blogs/news/white-flare-card-origins': {
@@ -2274,9 +2610,24 @@ const rootRouteChildren: RootRouteChildren = {
     BlogsNewsBlackCrystalBlazeHasArrivedRoute,
   BlogsNewsBlackCrystalBlazeSetGuideRoute:
     BlogsNewsBlackCrystalBlazeSetGuideRoute,
+  BlogsNewsBladeAwakeningCardOriginsRoute:
+    BlogsNewsBladeAwakeningCardOriginsRoute,
+  BlogsNewsBladeAwakeningHasArrivedRoute:
+    BlogsNewsBladeAwakeningHasArrivedRoute,
+  BlogsNewsBladeAwakeningSetGuideRoute: BlogsNewsBladeAwakeningSetGuideRoute,
+  BlogsNewsBrilliantFantasyCardOriginsRoute:
+    BlogsNewsBrilliantFantasyCardOriginsRoute,
+  BlogsNewsBrilliantFantasyHasArrivedRoute:
+    BlogsNewsBrilliantFantasyHasArrivedRoute,
+  BlogsNewsBrilliantFantasySetGuideRoute:
+    BlogsNewsBrilliantFantasySetGuideRoute,
   BlogsNewsChasingGloryCardOriginsRoute: BlogsNewsChasingGloryCardOriginsRoute,
   BlogsNewsChasingGloryHasArrivedRoute: BlogsNewsChasingGloryHasArrivedRoute,
   BlogsNewsChasingGlorySetGuideRoute: BlogsNewsChasingGlorySetGuideRoute,
+  BlogsNewsFunismDittoPalmSizeWondersGuideRoute:
+    BlogsNewsFunismDittoPalmSizeWondersGuideRoute,
+  BlogsNewsFunismDittoPalmSizeWondersHasArrivedRoute:
+    BlogsNewsFunismDittoPalmSizeWondersHasArrivedRoute,
   BlogsNewsGemVol2CardOriginsRoute: BlogsNewsGemVol2CardOriginsRoute,
   BlogsNewsGemVol2HasArrivedRoute: BlogsNewsGemVol2HasArrivedRoute,
   BlogsNewsGemVol2SetGuideRoute: BlogsNewsGemVol2SetGuideRoute,
@@ -2294,15 +2645,27 @@ const rootRouteChildren: RootRouteChildren = {
   BlogsNewsGemVol6SetGuideRoute: BlogsNewsGemVol6SetGuideRoute,
   BlogsNewsGemVol7CardOriginsRoute: BlogsNewsGemVol7CardOriginsRoute,
   BlogsNewsGemVol7HasArrivedRoute: BlogsNewsGemVol7HasArrivedRoute,
+  BlogsNewsPikachuDreamPaintingFiguresGuideRoute:
+    BlogsNewsPikachuDreamPaintingFiguresGuideRoute,
+  BlogsNewsPikachuDreamPaintingFiguresHaveArrivedRoute:
+    BlogsNewsPikachuDreamPaintingFiguresHaveArrivedRoute,
   BlogsNewsRewardRoundCardOriginsRoute: BlogsNewsRewardRoundCardOriginsRoute,
   BlogsNewsRewardRoundHasArrivedRoute: BlogsNewsRewardRoundHasArrivedRoute,
   BlogsNewsRewardRoundSetGuideRoute: BlogsNewsRewardRoundSetGuideRoute,
+  BlogsNewsStellarCrystalCardOriginsRoute:
+    BlogsNewsStellarCrystalCardOriginsRoute,
+  BlogsNewsStellarCrystalHasArrivedRoute:
+    BlogsNewsStellarCrystalHasArrivedRoute,
+  BlogsNewsStellarCrystalSetGuideRoute: BlogsNewsStellarCrystalSetGuideRoute,
   BlogsNewsTerastalGatheringCardOriginsRoute:
     BlogsNewsTerastalGatheringCardOriginsRoute,
   BlogsNewsTerastalGatheringHasArrivedRoute:
     BlogsNewsTerastalGatheringHasArrivedRoute,
   BlogsNewsTerastalGatheringSetGuideRoute:
     BlogsNewsTerastalGatheringSetGuideRoute,
+  BlogsNewsTrueMysteryCardOriginsRoute: BlogsNewsTrueMysteryCardOriginsRoute,
+  BlogsNewsTrueMysteryHasArrivedRoute: BlogsNewsTrueMysteryHasArrivedRoute,
+  BlogsNewsTrueMysterySetGuideRoute: BlogsNewsTrueMysterySetGuideRoute,
   BlogsNewsWhiteFlareCardOriginsRoute: BlogsNewsWhiteFlareCardOriginsRoute,
   BlogsNewsWhiteFlareSetGuideRoute: BlogsNewsWhiteFlareSetGuideRoute,
   AccountOrdersIndexRoute: AccountOrdersIndexRoute,

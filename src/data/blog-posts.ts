@@ -6,7 +6,7 @@
 // the post itself.
 import { SITE_URL, R2_IMAGE_HOST } from '~/lib/gem-sets/constants'
 
-export type BlogPostSlug = 'gem-vol-7-has-arrived' | 'black-bolt-white-flare-arrive' | 'gem-vol-7-card-origins' | 'gem-vol-6-has-arrived' | 'gem-vol-6-set-guide' | 'gem-vol-6-card-origins' | 'gem-vol-5-has-arrived' | 'gem-vol-5-set-guide' | 'gem-vol-5-card-origins' | 'gem-vol-4-has-arrived' | 'gem-vol-4-set-guide' | 'gem-vol-4-card-origins' | 'gem-vol-3-has-arrived' | 'gem-vol-3-set-guide' | 'gem-vol-3-card-origins' | 'gem-vol-2-has-arrived' | 'gem-vol-2-set-guide' | 'gem-vol-2-card-origins' | '30th-celebration-has-arrived' | '30th-celebration-set-guide' | '30th-celebration-card-origins' | 'chasing-glory-has-arrived' | 'chasing-glory-set-guide' | 'chasing-glory-card-origins' | 'terastal-gathering-has-arrived' | 'terastal-gathering-set-guide' | 'terastal-gathering-card-origins' | 'reward-round-has-arrived' | 'reward-round-set-guide' | 'reward-round-card-origins' | 'black-crystal-blaze-has-arrived' | 'black-crystal-blaze-set-guide' | 'black-crystal-blaze-card-origins' | 'black-bolt-set-guide' | 'black-bolt-card-origins' | 'white-flare-set-guide' | 'white-flare-card-origins'
+export type BlogPostSlug = 'gem-vol-7-has-arrived' | 'black-bolt-white-flare-arrive' | 'gem-vol-7-card-origins' | 'gem-vol-6-has-arrived' | 'gem-vol-6-set-guide' | 'gem-vol-6-card-origins' | 'gem-vol-5-has-arrived' | 'gem-vol-5-set-guide' | 'gem-vol-5-card-origins' | 'gem-vol-4-has-arrived' | 'gem-vol-4-set-guide' | 'gem-vol-4-card-origins' | 'gem-vol-3-has-arrived' | 'gem-vol-3-set-guide' | 'gem-vol-3-card-origins' | 'gem-vol-2-has-arrived' | 'gem-vol-2-set-guide' | 'gem-vol-2-card-origins' | '30th-celebration-has-arrived' | '30th-celebration-set-guide' | '30th-celebration-card-origins' | 'chasing-glory-has-arrived' | 'chasing-glory-set-guide' | 'chasing-glory-card-origins' | 'terastal-gathering-has-arrived' | 'terastal-gathering-set-guide' | 'terastal-gathering-card-origins' | 'reward-round-has-arrived' | 'reward-round-set-guide' | 'reward-round-card-origins' | 'black-crystal-blaze-has-arrived' | 'black-crystal-blaze-set-guide' | 'black-crystal-blaze-card-origins' | 'black-bolt-set-guide' | 'black-bolt-card-origins' | 'white-flare-set-guide' | 'white-flare-card-origins' | 'true-mystery-has-arrived' | 'true-mystery-set-guide' | 'true-mystery-card-origins' | 'blade-awakening-has-arrived' | 'blade-awakening-set-guide' | 'blade-awakening-card-origins' | 'brilliant-fantasy-has-arrived' | 'brilliant-fantasy-set-guide' | 'brilliant-fantasy-card-origins' | 'stellar-crystal-has-arrived' | 'stellar-crystal-set-guide' | 'stellar-crystal-card-origins' | 'pikachu-dream-painting-figures-have-arrived' | 'pikachu-dream-painting-figures-guide' | 'funism-ditto-palm-size-wonders-has-arrived' | 'funism-ditto-palm-size-wonders-guide'
 
 export interface BlogPostSummary {
   slug: BlogPostSlug
@@ -22,6 +22,215 @@ export interface BlogPostSummary {
 }
 
 export const BLOG_POSTS: BlogPostSummary[] = [
+  {
+    slug: 'true-mystery-has-arrived',
+    path: '/blogs/news/true-mystery-has-arrived',
+    title: 'True Mystery Is Here: Iron Valiant, Roaring Moon and a Chinese-Only Iron Hands ex SAR',
+    excerpt:
+      'The CSV6C set brings the Paradox Pokémon to Simplified Chinese, with Iron Valiant on the pack, slim and jumbo boxes, and an Iron Hands ex Special Art Rare you can only pull in Chinese.',
+    tag: 'New release',
+    date: '2025-11-07',
+    heroImage: `${SITE_URL}/assets/blog/true-mystery-release-hero-v3.webp`,
+    heroAlt: 'True Mystery slim and jumbo booster packs with the Iron Hands ex Special Art Rare in front',
+    glow1: 'rgb(86 206 210 / .30)',
+    glow2: 'rgb(110 60 150 / .35)',
+  },
+  {
+    slug: 'true-mystery-set-guide',
+    path: '/blogs/news/true-mystery-set-guide',
+    title: 'True Mystery Set Guide: Slim vs Jumbo, Every Chase Card and the Paradox Runs',
+    excerpt:
+      'Slim box or jumbo box, every Special Art Rare, Super Rare, Ultra Rare and Art Rare, each Paradox Pokémon ex at every rarity, and how the 163 numbers work.',
+    tag: 'Set guide',
+    date: '2026-11-15',
+    heroImage: `${SITE_URL}/assets/blog/true-mystery-guide-hero-v3.webp`,
+    heroAlt: 'The Iron Hands ex Special Art Rare in an EBI display case above six True Mystery Special Art Rares',
+    glow1: 'rgb(86 206 210 / .30)',
+    glow2: 'rgb(110 60 150 / .35)',
+  },
+  {
+    slug: 'true-mystery-card-origins',
+    path: '/blogs/news/true-mystery-card-origins',
+    title: 'Where Every True Mystery Card Comes From',
+    excerpt:
+      'All 163 cards matched to English: 128 from Paradox Rift, 16 from Obsidian Flames, 15 from Paldean Fates, 2 from other sources and 2 with no English version.',
+    tag: 'Collecting guide',
+    date: '2026-11-15',
+    heroImage: `${SITE_URL}/assets/blog/true-mystery-origins-hero-v3.webp`,
+    heroAlt: 'True Mystery pack linked to tiles for Paradox Rift, Obsidian Flames, Paldean Fates, other sources and cards with no English version',
+    glow1: 'rgb(86 206 210 / .30)',
+    glow2: 'rgb(110 60 150 / .35)',
+  },
+  {
+    slug: 'blade-awakening-has-arrived',
+    path: '/blogs/news/blade-awakening-has-arrived',
+    title: "Blade Awakening Is Here: Tera Greninja ex, ACE SPEC Cards and a Chinese-Only Ciphermaniac SAR",
+    excerpt:
+      "The CSV7C set puts Tera Greninja ex on the pack, adds nine ACE SPEC cards, and includes a Ciphermaniac's Codebreaking Special Art Rare made just for Simplified Chinese.",
+    tag: 'New release',
+    date: '2026-01-16',
+    heroImage: `${SITE_URL}/assets/blog/blade-awakening-release-hero-v3.webp`,
+    heroAlt: "Blade Awakening slim and jumbo booster packs with the Ciphermaniac's Codebreaking Special Art Rare in front",
+    glow1: 'rgb(246 160 78 / .30)',
+    glow2: 'rgb(30 80 160 / .35)',
+  },
+  {
+    slug: 'blade-awakening-set-guide',
+    path: '/blogs/news/blade-awakening-set-guide',
+    title: 'Blade Awakening Set Guide: Slim vs Jumbo Odds, Every Chase Card and the ACE SPECs',
+    excerpt:
+      'Slim box or jumbo box on the official odds, every Special Art Rare, Super Rare, Ultra Rare, Art Rare and ACE SPEC card, each Pokémon ex at every rarity, and the 605-card master set.',
+    tag: 'Set guide',
+    date: '2026-11-15',
+    heroImage: `${SITE_URL}/assets/blog/blade-awakening-guide-hero-v3.webp`,
+    heroAlt: "The Ciphermaniac's Codebreaking Special Art Rare in an EBI display case above six Blade Awakening Special Art Rares",
+    glow1: 'rgb(246 160 78 / .30)',
+    glow2: 'rgb(30 80 160 / .35)',
+  },
+  {
+    slug: 'blade-awakening-card-origins',
+    path: '/blogs/news/blade-awakening-card-origins',
+    title: 'Where Every Blade Awakening Card Comes From',
+    excerpt:
+      'All 259 cards matched to English: 173 from Temporal Forces, 68 from Twilight Masquerade, 17 from six other sources and 1 new art.',
+    tag: 'Collecting guide',
+    date: '2026-11-15',
+    heroImage: `${SITE_URL}/assets/blog/blade-awakening-origins-hero-v3.webp`,
+    heroAlt: 'Blade Awakening pack linked to tiles for Temporal Forces, Twilight Masquerade, other sources and new art',
+    glow1: 'rgb(246 160 78 / .30)',
+    glow2: 'rgb(30 80 160 / .35)',
+  },
+  {
+    slug: 'brilliant-fantasy-has-arrived',
+    path: '/blogs/news/brilliant-fantasy-has-arrived',
+    title: 'Brilliant Fantasy Is Here: Milotic, Every Ogerpon Mask and a Chinese-Only Carmine SAR',
+    excerpt:
+      'Milotic takes the pack of the Kitakami set, with all four Ogerpon ex, the Loyal Three and Pecharunt ex, and a Carmine Special Art Rare you can only pull in Simplified Chinese.',
+    tag: 'New release',
+    date: '2026-03-13',
+    heroImage: `${SITE_URL}/assets/blog/brilliant-fantasy-release-hero-v3.webp`,
+    heroAlt: 'Brilliant Fantasy slim and jumbo booster packs with the Carmine Special Art Rare in front',
+    glow1: 'rgb(56 13 40 / .30)',
+    glow2: 'rgb(64 155 148 / .25)',
+  },
+  {
+    slug: 'brilliant-fantasy-set-guide',
+    path: '/blogs/news/brilliant-fantasy-set-guide',
+    title: 'Brilliant Fantasy Set Guide: Slim vs Jumbo, Every Chase Card and the Ogerpon Run',
+    excerpt:
+      'Slim box or jumbo box, every Special Art Rare, Super Rare, Ultra Rare and Art Rare, each Pokémon ex at every rarity, and what a 616-card master set takes.',
+    tag: 'Set guide',
+    date: '2026-11-15',
+    heroImage: `${SITE_URL}/assets/blog/brilliant-fantasy-guide-hero-v3.webp`,
+    heroAlt: 'The Carmine Special Art Rare in an EBI display case above six Brilliant Fantasy Special Art Rares',
+    glow1: 'rgb(56 13 40 / .30)',
+    glow2: 'rgb(64 155 148 / .25)',
+  },
+  {
+    slug: 'brilliant-fantasy-card-origins',
+    path: '/blogs/news/brilliant-fantasy-card-origins',
+    title: 'Where Every Brilliant Fantasy Card Comes From',
+    excerpt:
+      'All 264 cards matched to English: 109 from Twilight Masquerade, 76 from Shrouded Fable, 38 from Surging Sparks, 40 from five other sources and 1 new.',
+    tag: 'Collecting guide',
+    date: '2026-11-15',
+    heroImage: `${SITE_URL}/assets/blog/brilliant-fantasy-origins-hero-v3.webp`,
+    heroAlt: 'Brilliant Fantasy pack linked to tiles for Twilight Masquerade, Shrouded Fable, Surging Sparks, other sources and new art',
+    glow1: 'rgb(56 13 40 / .30)',
+    glow2: 'rgb(64 155 148 / .25)',
+  },
+  {
+    slug: 'stellar-crystal-has-arrived',
+    path: '/blogs/news/stellar-crystal-has-arrived',
+    title: "Stellar Crystal Is Here: Stellar Tera Pikachu ex and a Chinese-Only Lisia's Appeal SAR",
+    excerpt:
+      "Stellar Tera Pikachu takes the pack of the Terapagos set, with Pikachu ex at four rarities and a Lisia's Appeal Special Art Rare you can only pull in Simplified Chinese.",
+    tag: 'New release',
+    date: '2026-05-15',
+    heroImage: `${SITE_URL}/assets/blog/stellar-crystal-release-hero-v3.webp`,
+    heroAlt: "Stellar Crystal slim and jumbo booster packs with the Lisia's Appeal Special Art Rare in front",
+    glow1: 'rgb(210 110 123 / .30)',
+    glow2: 'rgb(92 103 134 / .25)',
+  },
+  {
+    slug: 'stellar-crystal-set-guide',
+    path: '/blogs/news/stellar-crystal-set-guide',
+    title: 'Stellar Crystal Set Guide: Slim vs Jumbo, Every Chase Card and the Pikachu Run',
+    excerpt:
+      'Slim pack or jumbo pack, every Special Art Rare, Super Rare, Ultra Rare and Art Rare, each Pokémon ex at every rarity, and what a 620-card master set takes.',
+    tag: 'Set guide',
+    date: '2026-11-15',
+    heroImage: `${SITE_URL}/assets/blog/stellar-crystal-guide-hero-v3.webp`,
+    heroAlt: "The Lisia's Appeal Special Art Rare in an EBI display case above six Stellar Crystal Special Art Rares",
+    glow1: 'rgb(210 110 123 / .30)',
+    glow2: 'rgb(92 103 134 / .25)',
+  },
+  {
+    slug: 'stellar-crystal-card-origins',
+    path: '/blogs/news/stellar-crystal-card-origins',
+    title: 'Where Every Stellar Crystal Card Comes From',
+    excerpt:
+      'All 266 cards matched to English: 160 from Surging Sparks, 79 from Stellar Crown, 26 from four other sources including 6 promos, and 1 new.',
+    tag: 'Collecting guide',
+    date: '2026-11-15',
+    heroImage: `${SITE_URL}/assets/blog/stellar-crystal-origins-hero-v3.webp`,
+    heroAlt: 'Stellar Crystal pack linked to tiles for Surging Sparks, Stellar Crown, other sources and new art',
+    glow1: 'rgb(210 110 123 / .30)',
+    glow2: 'rgb(92 103 134 / .25)',
+  },
+
+  {
+    slug: 'pikachu-dream-painting-figures-have-arrived',
+    path: '/blogs/news/pikachu-dream-painting-figures-have-arrived',
+    title: 'Dream Painting Pikachu Figures Are Here: 12 Cards Come to Life, Plus a Secret',
+    excerpt:
+      'Twelve 30th Celebration Pikachu cards turned into figures that step out of their own card, each with the card, a stand and a booster pack, and a secret classic Pikachu in 1 box out of 144.',
+    tag: 'New release',
+    date: '2026-09-16',
+    heroImage: `${SITE_URL}/assets/blog/pikachu-dream-painting-figures-release-hero-v3.webp`,
+    heroAlt: 'Dream Painting Pikachu figure blind box with the secret classic Pikachu figure and card 136/103 in front',
+    glow1: 'rgb(246 206 60 / .30)',
+    glow2: 'rgb(222 185 97 / .25)',
+  },
+  {
+    slug: 'pikachu-dream-painting-figures-guide',
+    path: '/blogs/news/pikachu-dream-painting-figures-guide',
+    title: 'Dream Painting Pikachu Figure Guide: All 13 Figures, Odds and Completing the Set',
+    excerpt:
+      'Every Dream Painting Pikachu figure with its 30th Celebration card and illustrator, the 1 in 144 secret, and how many boxes a full set really takes.',
+    tag: 'Collecting guide',
+    date: '2026-11-15',
+    heroImage: `${SITE_URL}/assets/blog/pikachu-dream-painting-figures-guide-hero-v3.webp`,
+    heroAlt: 'Dream Painting Pikachu figure 18/30 with card 034/103 in an EBI display case above six more figures labelled by card number',
+    glow1: 'rgb(246 206 60 / .30)',
+    glow2: 'rgb(150 110 20 / .25)',
+  },
+  {
+    slug: 'funism-ditto-palm-size-wonders-has-arrived',
+    path: '/blogs/news/funism-ditto-palm-size-wonders-has-arrived',
+    title: 'Funism Happy Ditto Is Here: 12 Transformations, 3 Figures a Box',
+    excerpt:
+      'Funism’s Palm-Size Wonders Happy Ditto blind box: Ditto copies 12 Pokémon but keeps its own face, three figures to a Ditto-shaped box, and no secret to chase.',
+    tag: 'New release',
+    date: '2026-11-15',
+    heroImage: `${SITE_URL}/assets/blog/funism-ditto-palm-size-wonders-release-hero-v3.webp`,
+    heroAlt: 'Funism Happy Ditto display box of four Ditto-shaped blind boxes with Ditto as Gengar, Pikachu and Jigglypuff in front',
+    glow1: 'rgb(196 160 230 / .30)',
+    glow2: 'rgb(246 206 60 / .22)',
+  },
+  {
+    slug: 'funism-ditto-palm-size-wonders-guide',
+    path: '/blogs/news/funism-ditto-palm-size-wonders-guide',
+    title: 'Funism Happy Ditto Guide: All 12 Figures and How to Tell Them Apart',
+    excerpt:
+      'The full Happy Ditto checklist, what a set takes in boxes and cases, and how to tell the look-alike pairs apart.',
+    tag: 'Collecting guide',
+    date: '2026-11-15',
+    heroImage: `${SITE_URL}/assets/blog/funism-ditto-palm-size-wonders-guide-hero-v3.webp`,
+    heroAlt: 'The Ditto-shaped Happy Ditto blind box in an EBI display case above six Ditto figures labelled by Pokémon',
+    glow1: 'rgb(196 160 230 / .30)',
+    glow2: 'rgb(110 60 150 / .28)',
+  },
   {
     slug: 'black-bolt-set-guide',
     path: '/blogs/news/black-bolt-set-guide',
