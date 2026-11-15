@@ -6,7 +6,7 @@
 // the post itself.
 import { SITE_URL, R2_IMAGE_HOST } from '~/lib/gem-sets/constants'
 
-export type BlogPostSlug = 'gem-vol-7-has-arrived' | 'black-bolt-white-flare-arrive' | 'gem-vol-7-card-origins'
+export type BlogPostSlug = 'gem-vol-7-has-arrived' | 'black-bolt-white-flare-arrive' | 'gem-vol-7-card-origins' | 'gem-vol-6-set-guide'
 
 export interface BlogPostSummary {
   slug: BlogPostSlug
@@ -34,6 +34,19 @@ export const BLOG_POSTS: BlogPostSummary[] = [
     heroAlt: "Misty's Psyduck full art from Gem Pack Vol. 7 in a display case, with the six holo Psyduck versions lined up beside the EBI Collectibles logo",
     glow1: 'rgb(138 61 120 / .30)',
     glow2: 'rgb(58 110 165 / .25)',
+  },
+  {
+    slug: 'gem-vol-6-set-guide',
+    path: '/blogs/news/gem-vol-6-set-guide',
+    title: "Gem Vol 6 Guide: Applin's Kitchen Full Art Leads an Orchard of Holos",
+    excerpt:
+      'The sixth Simplified Chinese Gem Pack: 196 all-holo cards, 28 Pokémon with seven versions each, the whole apple family, and an Applin full art you can only pull here.',
+    tag: 'Set guide',
+    date: '2026-11-15',
+    heroImage: `${SITE_URL}/assets/blog/gem-vol-6-ebi-hero.webp`,
+    heroAlt: 'Applin full art from Gem Pack Vol. 6 in a display case, with the six holo Applin versions lined up beside the EBI Collectibles logo',
+    glow1: 'rgb(199 22 116 / .26)',
+    glow2: 'rgb(78 119 104 / .30)',
   },
   {
     slug: 'black-bolt-white-flare-arrive',
