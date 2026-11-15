@@ -174,8 +174,10 @@
   .split > div > h2:first-child { margin-top: 40px; }
   .split .feature-card { margin: 0; max-width: none; }
   .split .spec-table { margin-top: 4px; }
+  .split .spec-table th { width: 52%; }
   .pack-shot { display: block; width: 100%; height: auto; border-radius: 12px; box-shadow: var(--shadow); }
-  .media-full { display: block; width: 100%; height: auto; border-radius: 12px; box-shadow: var(--shadow); margin: 4px 0 28px; }
+  .media-full { display: block; width: 100%; height: auto; aspect-ratio: 16/10; object-fit: cover; object-position: center; border-radius: 12px; box-shadow: var(--shadow); margin: 4px 0 28px; }
+  .media-full.binder { object-fit: contain; aspect-ratio: auto; max-height: 300px; box-shadow: none; border-radius: 0; }
   .card-grid.cols-6 { grid-template-columns: repeat(6, minmax(0, 1fr)); }
   @media (max-width: 900px) {
     .split, .split.aside-pack, .split.aside-wide, .split.media-first { grid-template-columns: minmax(0, 1fr); }

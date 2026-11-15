@@ -330,7 +330,7 @@ function GemVol7Post() {
               one card per pocket, which suits a single Psyduck run or a page of favorite full arts.
             </p>
             <img
-              className="media-full"
+              className="media-full binder"
               src={`${R2_IMAGE_HOST}/Chinese/Blog/gem-vol-7/gem-vol-7-psyduck-collector-binder.webp`}
               alt="Official Gem Pack Vol. 7 Psyduck card binder, 30 pockets"
               loading="lazy"
