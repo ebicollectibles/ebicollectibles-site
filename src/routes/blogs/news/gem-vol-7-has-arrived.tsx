@@ -203,9 +203,9 @@ function GemVol7Post() {
             <thead>
               <tr>
                 <th scope="col">Rarity</th>
-                <th scope="col">Versions</th>
+                <th scope="col" className="col-versions">Versions</th>
                 <th scope="col">In the set</th>
-                <th scope="col">Share of print</th>
+                <th scope="col">Print share</th>
               </tr>
             </thead>
             <tbody>
@@ -217,8 +217,8 @@ function GemVol7Post() {
                     </span>{' '}
                     {r.label}
                   </th>
-                  <td>{r.versions}</td>
-                  <td>{r.cards} cards</td>
+                  <td className="col-versions">{r.versions}</td>
+                  <td>{r.cards}</td>
                   <td>{r.print}</td>
                 </tr>
               ))}
