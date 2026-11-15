@@ -80,6 +80,8 @@ import { Route as BlogsNewsIndexRouteImport } from './routes/blogs/news/index'
 import { Route as BlogsNews30thCelebrationCardOriginsRouteImport } from './routes/blogs/news/30th-celebration-card-origins'
 import { Route as BlogsNews30thCelebrationHasArrivedRouteImport } from './routes/blogs/news/30th-celebration-has-arrived'
 import { Route as BlogsNews30thCelebrationSetGuideRouteImport } from './routes/blogs/news/30th-celebration-set-guide'
+import { Route as BlogsNewsBlackBoltCardOriginsRouteImport } from './routes/blogs/news/black-bolt-card-origins'
+import { Route as BlogsNewsBlackBoltSetGuideRouteImport } from './routes/blogs/news/black-bolt-set-guide'
 import { Route as BlogsNewsBlackBoltWhiteFlareArriveRouteImport } from './routes/blogs/news/black-bolt-white-flare-arrive'
 import { Route as BlogsNewsBlackCrystalBlazeCardOriginsRouteImport } from './routes/blogs/news/black-crystal-blaze-card-origins'
 import { Route as BlogsNewsBlackCrystalBlazeHasArrivedRouteImport } from './routes/blogs/news/black-crystal-blaze-has-arrived'
@@ -110,6 +112,8 @@ import { Route as BlogsNewsRewardRoundSetGuideRouteImport } from './routes/blogs
 import { Route as BlogsNewsTerastalGatheringCardOriginsRouteImport } from './routes/blogs/news/terastal-gathering-card-origins'
 import { Route as BlogsNewsTerastalGatheringHasArrivedRouteImport } from './routes/blogs/news/terastal-gathering-has-arrived'
 import { Route as BlogsNewsTerastalGatheringSetGuideRouteImport } from './routes/blogs/news/terastal-gathering-set-guide'
+import { Route as BlogsNewsWhiteFlareCardOriginsRouteImport } from './routes/blogs/news/white-flare-card-origins'
+import { Route as BlogsNewsWhiteFlareSetGuideRouteImport } from './routes/blogs/news/white-flare-set-guide'
 import { Route as AdminAffiliatesIdDashboardRouteImport } from './routes/admin/affiliates_.$id.dashboard'
 
 const IndexRoute = IndexRouteImport.update({
@@ -471,6 +475,18 @@ const BlogsNews30thCelebrationSetGuideRoute =
     path: '/blogs/news/30th-celebration-set-guide',
     getParentRoute: () => rootRouteImport,
   } as any)
+const BlogsNewsBlackBoltCardOriginsRoute =
+  BlogsNewsBlackBoltCardOriginsRouteImport.update({
+    id: '/blogs/news/black-bolt-card-origins',
+    path: '/blogs/news/black-bolt-card-origins',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const BlogsNewsBlackBoltSetGuideRoute =
+  BlogsNewsBlackBoltSetGuideRouteImport.update({
+    id: '/blogs/news/black-bolt-set-guide',
+    path: '/blogs/news/black-bolt-set-guide',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const BlogsNewsBlackBoltWhiteFlareArriveRoute =
   BlogsNewsBlackBoltWhiteFlareArriveRouteImport.update({
     id: '/blogs/news/black-bolt-white-flare-arrive',
@@ -651,6 +667,18 @@ const BlogsNewsTerastalGatheringSetGuideRoute =
     path: '/blogs/news/terastal-gathering-set-guide',
     getParentRoute: () => rootRouteImport,
   } as any)
+const BlogsNewsWhiteFlareCardOriginsRoute =
+  BlogsNewsWhiteFlareCardOriginsRouteImport.update({
+    id: '/blogs/news/white-flare-card-origins',
+    path: '/blogs/news/white-flare-card-origins',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const BlogsNewsWhiteFlareSetGuideRoute =
+  BlogsNewsWhiteFlareSetGuideRouteImport.update({
+    id: '/blogs/news/white-flare-set-guide',
+    path: '/blogs/news/white-flare-set-guide',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const AdminAffiliatesIdDashboardRoute =
   AdminAffiliatesIdDashboardRouteImport.update({
     id: '/admin/affiliates_/$id/dashboard',
@@ -726,6 +754,8 @@ export interface FileRoutesByFullPath {
   '/blogs/news/30th-celebration-card-origins': typeof BlogsNews30thCelebrationCardOriginsRoute
   '/blogs/news/30th-celebration-has-arrived': typeof BlogsNews30thCelebrationHasArrivedRoute
   '/blogs/news/30th-celebration-set-guide': typeof BlogsNews30thCelebrationSetGuideRoute
+  '/blogs/news/black-bolt-card-origins': typeof BlogsNewsBlackBoltCardOriginsRoute
+  '/blogs/news/black-bolt-set-guide': typeof BlogsNewsBlackBoltSetGuideRoute
   '/blogs/news/black-bolt-white-flare-arrive': typeof BlogsNewsBlackBoltWhiteFlareArriveRoute
   '/blogs/news/black-crystal-blaze-card-origins': typeof BlogsNewsBlackCrystalBlazeCardOriginsRoute
   '/blogs/news/black-crystal-blaze-has-arrived': typeof BlogsNewsBlackCrystalBlazeHasArrivedRoute
@@ -756,6 +786,8 @@ export interface FileRoutesByFullPath {
   '/blogs/news/terastal-gathering-card-origins': typeof BlogsNewsTerastalGatheringCardOriginsRoute
   '/blogs/news/terastal-gathering-has-arrived': typeof BlogsNewsTerastalGatheringHasArrivedRoute
   '/blogs/news/terastal-gathering-set-guide': typeof BlogsNewsTerastalGatheringSetGuideRoute
+  '/blogs/news/white-flare-card-origins': typeof BlogsNewsWhiteFlareCardOriginsRoute
+  '/blogs/news/white-flare-set-guide': typeof BlogsNewsWhiteFlareSetGuideRoute
   '/account/orders/': typeof AccountOrdersIndexRoute
   '/admin/customers/': typeof AdminCustomersIndexRoute
   '/admin/orders/': typeof AdminOrdersIndexRoute
@@ -830,6 +862,8 @@ export interface FileRoutesByTo {
   '/blogs/news/30th-celebration-card-origins': typeof BlogsNews30thCelebrationCardOriginsRoute
   '/blogs/news/30th-celebration-has-arrived': typeof BlogsNews30thCelebrationHasArrivedRoute
   '/blogs/news/30th-celebration-set-guide': typeof BlogsNews30thCelebrationSetGuideRoute
+  '/blogs/news/black-bolt-card-origins': typeof BlogsNewsBlackBoltCardOriginsRoute
+  '/blogs/news/black-bolt-set-guide': typeof BlogsNewsBlackBoltSetGuideRoute
   '/blogs/news/black-bolt-white-flare-arrive': typeof BlogsNewsBlackBoltWhiteFlareArriveRoute
   '/blogs/news/black-crystal-blaze-card-origins': typeof BlogsNewsBlackCrystalBlazeCardOriginsRoute
   '/blogs/news/black-crystal-blaze-has-arrived': typeof BlogsNewsBlackCrystalBlazeHasArrivedRoute
@@ -860,6 +894,8 @@ export interface FileRoutesByTo {
   '/blogs/news/terastal-gathering-card-origins': typeof BlogsNewsTerastalGatheringCardOriginsRoute
   '/blogs/news/terastal-gathering-has-arrived': typeof BlogsNewsTerastalGatheringHasArrivedRoute
   '/blogs/news/terastal-gathering-set-guide': typeof BlogsNewsTerastalGatheringSetGuideRoute
+  '/blogs/news/white-flare-card-origins': typeof BlogsNewsWhiteFlareCardOriginsRoute
+  '/blogs/news/white-flare-set-guide': typeof BlogsNewsWhiteFlareSetGuideRoute
   '/account/orders': typeof AccountOrdersIndexRoute
   '/admin/customers': typeof AdminCustomersIndexRoute
   '/admin/orders': typeof AdminOrdersIndexRoute
@@ -935,6 +971,8 @@ export interface FileRoutesById {
   '/blogs/news/30th-celebration-card-origins': typeof BlogsNews30thCelebrationCardOriginsRoute
   '/blogs/news/30th-celebration-has-arrived': typeof BlogsNews30thCelebrationHasArrivedRoute
   '/blogs/news/30th-celebration-set-guide': typeof BlogsNews30thCelebrationSetGuideRoute
+  '/blogs/news/black-bolt-card-origins': typeof BlogsNewsBlackBoltCardOriginsRoute
+  '/blogs/news/black-bolt-set-guide': typeof BlogsNewsBlackBoltSetGuideRoute
   '/blogs/news/black-bolt-white-flare-arrive': typeof BlogsNewsBlackBoltWhiteFlareArriveRoute
   '/blogs/news/black-crystal-blaze-card-origins': typeof BlogsNewsBlackCrystalBlazeCardOriginsRoute
   '/blogs/news/black-crystal-blaze-has-arrived': typeof BlogsNewsBlackCrystalBlazeHasArrivedRoute
@@ -965,6 +1003,8 @@ export interface FileRoutesById {
   '/blogs/news/terastal-gathering-card-origins': typeof BlogsNewsTerastalGatheringCardOriginsRoute
   '/blogs/news/terastal-gathering-has-arrived': typeof BlogsNewsTerastalGatheringHasArrivedRoute
   '/blogs/news/terastal-gathering-set-guide': typeof BlogsNewsTerastalGatheringSetGuideRoute
+  '/blogs/news/white-flare-card-origins': typeof BlogsNewsWhiteFlareCardOriginsRoute
+  '/blogs/news/white-flare-set-guide': typeof BlogsNewsWhiteFlareSetGuideRoute
   '/account/orders/': typeof AccountOrdersIndexRoute
   '/admin/customers/': typeof AdminCustomersIndexRoute
   '/admin/orders/': typeof AdminOrdersIndexRoute
@@ -1041,6 +1081,8 @@ export interface FileRouteTypes {
     | '/blogs/news/30th-celebration-card-origins'
     | '/blogs/news/30th-celebration-has-arrived'
     | '/blogs/news/30th-celebration-set-guide'
+    | '/blogs/news/black-bolt-card-origins'
+    | '/blogs/news/black-bolt-set-guide'
     | '/blogs/news/black-bolt-white-flare-arrive'
     | '/blogs/news/black-crystal-blaze-card-origins'
     | '/blogs/news/black-crystal-blaze-has-arrived'
@@ -1071,6 +1113,8 @@ export interface FileRouteTypes {
     | '/blogs/news/terastal-gathering-card-origins'
     | '/blogs/news/terastal-gathering-has-arrived'
     | '/blogs/news/terastal-gathering-set-guide'
+    | '/blogs/news/white-flare-card-origins'
+    | '/blogs/news/white-flare-set-guide'
     | '/account/orders/'
     | '/admin/customers/'
     | '/admin/orders/'
@@ -1145,6 +1189,8 @@ export interface FileRouteTypes {
     | '/blogs/news/30th-celebration-card-origins'
     | '/blogs/news/30th-celebration-has-arrived'
     | '/blogs/news/30th-celebration-set-guide'
+    | '/blogs/news/black-bolt-card-origins'
+    | '/blogs/news/black-bolt-set-guide'
     | '/blogs/news/black-bolt-white-flare-arrive'
     | '/blogs/news/black-crystal-blaze-card-origins'
     | '/blogs/news/black-crystal-blaze-has-arrived'
@@ -1175,6 +1221,8 @@ export interface FileRouteTypes {
     | '/blogs/news/terastal-gathering-card-origins'
     | '/blogs/news/terastal-gathering-has-arrived'
     | '/blogs/news/terastal-gathering-set-guide'
+    | '/blogs/news/white-flare-card-origins'
+    | '/blogs/news/white-flare-set-guide'
     | '/account/orders'
     | '/admin/customers'
     | '/admin/orders'
@@ -1249,6 +1297,8 @@ export interface FileRouteTypes {
     | '/blogs/news/30th-celebration-card-origins'
     | '/blogs/news/30th-celebration-has-arrived'
     | '/blogs/news/30th-celebration-set-guide'
+    | '/blogs/news/black-bolt-card-origins'
+    | '/blogs/news/black-bolt-set-guide'
     | '/blogs/news/black-bolt-white-flare-arrive'
     | '/blogs/news/black-crystal-blaze-card-origins'
     | '/blogs/news/black-crystal-blaze-has-arrived'
@@ -1279,6 +1329,8 @@ export interface FileRouteTypes {
     | '/blogs/news/terastal-gathering-card-origins'
     | '/blogs/news/terastal-gathering-has-arrived'
     | '/blogs/news/terastal-gathering-set-guide'
+    | '/blogs/news/white-flare-card-origins'
+    | '/blogs/news/white-flare-set-guide'
     | '/account/orders/'
     | '/admin/customers/'
     | '/admin/orders/'
@@ -1354,6 +1406,8 @@ export interface RootRouteChildren {
   BlogsNews30thCelebrationCardOriginsRoute: typeof BlogsNews30thCelebrationCardOriginsRoute
   BlogsNews30thCelebrationHasArrivedRoute: typeof BlogsNews30thCelebrationHasArrivedRoute
   BlogsNews30thCelebrationSetGuideRoute: typeof BlogsNews30thCelebrationSetGuideRoute
+  BlogsNewsBlackBoltCardOriginsRoute: typeof BlogsNewsBlackBoltCardOriginsRoute
+  BlogsNewsBlackBoltSetGuideRoute: typeof BlogsNewsBlackBoltSetGuideRoute
   BlogsNewsBlackBoltWhiteFlareArriveRoute: typeof BlogsNewsBlackBoltWhiteFlareArriveRoute
   BlogsNewsBlackCrystalBlazeCardOriginsRoute: typeof BlogsNewsBlackCrystalBlazeCardOriginsRoute
   BlogsNewsBlackCrystalBlazeHasArrivedRoute: typeof BlogsNewsBlackCrystalBlazeHasArrivedRoute
@@ -1384,6 +1438,8 @@ export interface RootRouteChildren {
   BlogsNewsTerastalGatheringCardOriginsRoute: typeof BlogsNewsTerastalGatheringCardOriginsRoute
   BlogsNewsTerastalGatheringHasArrivedRoute: typeof BlogsNewsTerastalGatheringHasArrivedRoute
   BlogsNewsTerastalGatheringSetGuideRoute: typeof BlogsNewsTerastalGatheringSetGuideRoute
+  BlogsNewsWhiteFlareCardOriginsRoute: typeof BlogsNewsWhiteFlareCardOriginsRoute
+  BlogsNewsWhiteFlareSetGuideRoute: typeof BlogsNewsWhiteFlareSetGuideRoute
   AccountOrdersIndexRoute: typeof AccountOrdersIndexRoute
   AdminCustomersIndexRoute: typeof AdminCustomersIndexRoute
   AdminOrdersIndexRoute: typeof AdminOrdersIndexRoute
@@ -1890,6 +1946,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BlogsNews30thCelebrationSetGuideRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/blogs/news/black-bolt-card-origins': {
+      id: '/blogs/news/black-bolt-card-origins'
+      path: '/blogs/news/black-bolt-card-origins'
+      fullPath: '/blogs/news/black-bolt-card-origins'
+      preLoaderRoute: typeof BlogsNewsBlackBoltCardOriginsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blogs/news/black-bolt-set-guide': {
+      id: '/blogs/news/black-bolt-set-guide'
+      path: '/blogs/news/black-bolt-set-guide'
+      fullPath: '/blogs/news/black-bolt-set-guide'
+      preLoaderRoute: typeof BlogsNewsBlackBoltSetGuideRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/blogs/news/black-bolt-white-flare-arrive': {
       id: '/blogs/news/black-bolt-white-flare-arrive'
       path: '/blogs/news/black-bolt-white-flare-arrive'
@@ -2100,6 +2170,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BlogsNewsTerastalGatheringSetGuideRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/blogs/news/white-flare-card-origins': {
+      id: '/blogs/news/white-flare-card-origins'
+      path: '/blogs/news/white-flare-card-origins'
+      fullPath: '/blogs/news/white-flare-card-origins'
+      preLoaderRoute: typeof BlogsNewsWhiteFlareCardOriginsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blogs/news/white-flare-set-guide': {
+      id: '/blogs/news/white-flare-set-guide'
+      path: '/blogs/news/white-flare-set-guide'
+      fullPath: '/blogs/news/white-flare-set-guide'
+      preLoaderRoute: typeof BlogsNewsWhiteFlareSetGuideRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/admin/affiliates_/$id/dashboard': {
       id: '/admin/affiliates_/$id/dashboard'
       path: '/admin/affiliates/$id/dashboard'
@@ -2180,6 +2264,8 @@ const rootRouteChildren: RootRouteChildren = {
   BlogsNews30thCelebrationHasArrivedRoute:
     BlogsNews30thCelebrationHasArrivedRoute,
   BlogsNews30thCelebrationSetGuideRoute: BlogsNews30thCelebrationSetGuideRoute,
+  BlogsNewsBlackBoltCardOriginsRoute: BlogsNewsBlackBoltCardOriginsRoute,
+  BlogsNewsBlackBoltSetGuideRoute: BlogsNewsBlackBoltSetGuideRoute,
   BlogsNewsBlackBoltWhiteFlareArriveRoute:
     BlogsNewsBlackBoltWhiteFlareArriveRoute,
   BlogsNewsBlackCrystalBlazeCardOriginsRoute:
@@ -2217,6 +2303,8 @@ const rootRouteChildren: RootRouteChildren = {
     BlogsNewsTerastalGatheringHasArrivedRoute,
   BlogsNewsTerastalGatheringSetGuideRoute:
     BlogsNewsTerastalGatheringSetGuideRoute,
+  BlogsNewsWhiteFlareCardOriginsRoute: BlogsNewsWhiteFlareCardOriginsRoute,
+  BlogsNewsWhiteFlareSetGuideRoute: BlogsNewsWhiteFlareSetGuideRoute,
   AccountOrdersIndexRoute: AccountOrdersIndexRoute,
   AdminCustomersIndexRoute: AdminCustomersIndexRoute,
   AdminOrdersIndexRoute: AdminOrdersIndexRoute,

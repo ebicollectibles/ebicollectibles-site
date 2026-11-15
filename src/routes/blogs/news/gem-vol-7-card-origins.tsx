@@ -194,6 +194,10 @@ function GemVol7OriginsPost() {
         <h2 id="patterns">Patterns worth knowing</h2>
         <ul>
           <li>
+            <strong>Misty's Psyduck is the only new art.</strong> Its regular art comes from Destined Rivals like most of the set, but
+            its full art is brand new.
+          </li>
+          <li>
             <strong>Destined Rivals supplies the most.</strong> It supplies the regular art for 21 Pokémon, including all eight
             Team Rocket cards, and 17 of the full arts.
           </li>
@@ -204,10 +208,6 @@ function GemVol7OriginsPost() {
           <li>
             <strong>Four full arts come from promos.</strong> Team Rocket's Wobbuffet, Steven's Beldum, N's Zorua and Marnie's
             Morpeko reprint English Black Star Promo art, so their Gem full arts pair a set card with a promo.
-          </li>
-          <li>
-            <strong>Misty's Psyduck is the only new art.</strong> Its regular art comes from Destined Rivals like most of the set, but
-            its full art is brand new.
           </li>
         </ul>
 

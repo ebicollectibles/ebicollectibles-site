@@ -46,7 +46,7 @@ const config: GemSetConfig = {
   glow1: 'rgb(161 23 57 / .30)',
   glow2: 'rgb(44 35 47 / .25)',
   heroLede:
-    'All 164 cards in Black Crystal Blaze: 113 Pokémon across the main 129-card set — Items, Pokémon Tools, Supporters, Stadiums and Special Energy round it out — plus Art Rares, Super Rares, Special Art Rares and the gold Ultra Rares as secret rares from 130 up. Tap any card for a closer look and every other printing beside it.',
+    'All 164 cards in Black Crystal Blaze: 113 Pokémon across the main 129-card set (Items, Pokémon Tools, Supporters, Stadiums and Special Energy round it out), plus Art Rares, Super Rares, Special Art Rares and the gold Ultra Rares as secret rares from 130 up. Tap any card for a closer look and every other printing beside it.',
   pokemonFact: '113',
   rarityVersionLabelsOverride: {
     'Common (C)': '001–129 (mixed)',
@@ -59,22 +59,22 @@ const config: GemSetConfig = {
     'Ultra Rare (UR)': '161–164',
   },
   aboutParagraphs: [
-    'Black Crystal Blaze (set code CSV5C) is an officially-licensed Pokémon TCG expansion in the Chinese Scarlet & Violet series, released September 12, 2025 — built around 113 Pokémon plus Items, Pokémon Tools, Supporters, Stadiums and Special Energy, for 164 cards in total.',
-    'Every card has its own collector number, 001 through 164. The 129-card main set runs from Common up to Double Rare; the 35 secret rares that follow reprint select cards in rarer treatments — an Art Rare for a handful of main-set Pokémon, a Super Rare and Special Art Rare for its ex Pokémon and top Supporters, and a run of gold Ultra Rares as the set\'s top chase cards.',
+    'Black Crystal Blaze (set code CSV5C) is an officially-licensed Pokémon TCG expansion in the Chinese Scarlet & Violet series, released September 12, 2025, built around 113 Pokémon plus Items, Pokémon Tools, Supporters, Stadiums and Special Energy, for 164 cards in total.',
+    'Every card has its own collector number, 001 through 164. The 129-card main set runs from Common up to Double Rare; the 35 secret rares that follow reprint select cards in rarer treatments: an Art Rare for a handful of main-set Pokémon, a Super Rare and Special Art Rare for its ex Pokémon and top Supporters, and a run of gold Ultra Rares as the set\'s top chase cards.',
   ],
   faq: [
     { q: 'How many cards are in Black Crystal Blaze?', a: '164 cards: a 129-card main set covering 113 Pokémon plus Trainers, Stadiums and Special Energy, with 35 secret rares (Art Rare, Super Rare, Special Art Rare and Ultra Rare).' },
-    { q: 'What are the chase cards?', a: "The set's top tier is Ultra Rare — 4 gold cards, including Charizard ex (162/129). Larry 157/129, a Special Art Rare, is this set's Chinese exclusive." },
+    { q: 'What are the chase cards?', a: "The set's top tier is Ultra Rare: 4 gold cards, including Charizard ex (162/129). The set has two Chinese exclusives: Larry 157/129, a Special Art Rare, and the gold Defiance Band 164/129, an Ultra Rare." },
     { q: "What's Black Crystal Blaze's rarity scheme?", a: 'An 8-tier scheme: Common, Uncommon, Rare, Double Rare, Art Rare, Super Rare, Special Art Rare and Ultra Rare, from most common to rarest.' },
     { q: 'When did Black Crystal Blaze release?', a: 'September 12, 2025.' },
     { q: 'What language are the cards in?', a: 'Simplified Chinese.' },
     { q: 'Where can I buy Black Crystal Blaze?', a: 'EBI Collectibles carries Black Crystal Blaze packs and boxes.' },
   ],
-  metaTitle: 'Black Crystal Blaze (CSV5) Card List — All 164 Cards | EBI Collectibles',
+  metaTitle: 'Black Crystal Blaze (CSV5) Card List: All 164 Cards | EBI Collectibles',
   metaDescription:
-    'Browse every card in Pokémon TCG Black Crystal Blaze (CSV5, Simplified Chinese): 113 Pokémon, Art Rares, Super Rares, Special Art Rares and the gold Ultra Rares, including the exclusive Larry.',
-  ogTitle: 'Black Crystal Blaze Card List — All 164 Cards',
-  ogDescription: 'All 164 cards in Pokémon TCG Black Crystal Blaze — browse by Pokémon, filter by rarity, and track which ones you own.',
+    'Browse every card in Pokémon TCG Black Crystal Blaze (CSV5, Simplified Chinese): 113 Pokémon, Art Rares, Super Rares, Special Art Rares and the gold Ultra Rares, including the exclusive Larry and gold Defiance Band.',
+  ogTitle: 'Black Crystal Blaze Card List: All 164 Cards',
+  ogDescription: 'All 164 cards in Pokémon TCG Black Crystal Blaze. Browse by Pokémon, filter by rarity, and track which ones you own.',
 }
 
 export const Route = createFileRoute('/sets/csv5')({

@@ -397,6 +397,26 @@ function BlackCrystalBlazeOrigins() {
 
         <h2 id="patterns">Patterns worth knowing</h2>
         <p>
+          <strong>Two cards are new.</strong> English never printed a Larry Special Art Rare or a gold Defiance Band. The English Larry
+          Super Rare is here too, so a Chinese binder holds one more version of Larry.
+        </p>
+        <div className="card-grid cols-2">
+          {fresh.map((r) => (
+            <figure key={r.cn}>
+              <img src={r.image} alt={`${r.name} ${r.cn}/129, Black Crystal Blaze`} loading="lazy" width={300} height={419} />
+              <figcaption>
+                <strong>{r.name}</strong>
+                {r.cn}/129 · {r.rarity} · {r.illus}
+              </figcaption>
+            </figure>
+          ))}
+        </div>
+        <p>
+          <strong>The rest of the chase mostly comes from two sets.</strong> Charizard ex, Eiscue ex, Glimmora ex and Vespiquen ex match Obsidian Flames,
+          while Garchomp ex, Altaria ex, Hoopa ex and the other Pokémon ex match Paradox Rift. Clive's Super Rare and Special Art Rare match
+          Paldean Fates, and the gold Rare Candy matches the original Scarlet & Violet set.
+        </p>
+        <p>
           <strong>Three sets do most of the work.</strong> Every card's English source, from most cards to fewest:
         </p>
         <div className="table-scroll">
@@ -416,26 +436,6 @@ function BlackCrystalBlazeOrigins() {
               ))}
             </tbody>
           </table>
-        </div>
-        <p>
-          <strong>The chase cards come from two sets.</strong> Charizard ex, Eiscue ex, Glimmora ex and Vespiquen ex match Obsidian Flames,
-          while Garchomp ex, Altaria ex, Hoopa ex and the other Pokémon ex match Paradox Rift. Clive's Super Rare and Special Art Rare match
-          Paldean Fates, and the gold Rare Candy matches the original Scarlet & Violet set.
-        </p>
-        <p>
-          <strong>Two cards are new.</strong> English never printed a Larry Special Art Rare or a gold Defiance Band. The English Larry
-          Super Rare is here too, so a Chinese binder holds one more version of Larry.
-        </p>
-        <div className="card-grid cols-2">
-          {fresh.map((r) => (
-            <figure key={r.cn}>
-              <img src={r.image} alt={`${r.name} ${r.cn}/129, Black Crystal Blaze`} loading="lazy" width={300} height={419} />
-              <figcaption>
-                <strong>{r.name}</strong>
-                {r.cn}/129 · {r.rarity} · {r.illus}
-              </figcaption>
-            </figure>
-          ))}
         </div>
         <p>
           <strong>Two promo arts.</strong> Cetitan 037/129 and Paldean Wooper 079/129 use art that English released as SV Black Star

@@ -13,6 +13,11 @@ const EXCLUSIVE = new Set<string>(setData.exclusiveCardNumbers)
 const short = (r: string) => r.match(/\(([^)]+)\)/)?.[1] ?? r
 // The gold Defiance Band is also new for China, though the data source only flags the Larry SAR.
 const isExclusive = (c: Card) => EXCLUSIVE.has(c.number) || c.number === '164/129'
+// Most wanted cards first (by number out of 129), then the rest in number order.
+const lead = (cards: Card[], first: string[]) => [
+  ...first.map((n) => cards.find((c) => c.number === `${n}/129`)!).filter(Boolean),
+  ...cards.filter((c) => !first.includes(c.number.slice(0, 3))),
+]
 
 function Gallery({ cards, cols }: { cards: Card[]; cols: number }) {
   return (
@@ -58,14 +63,14 @@ const LADDER = LADDER_NAMES.map((name) => ({
 }))
 
 const TOC = [
-  { id: 'numbering', label: 'How the numbers work' },
   { id: 'box', label: 'What a slim box holds' },
-  { id: 'ladders', label: 'One Pokémon, several rarities' },
-  { id: 'ultra-rares', label: 'All 4 Ultra Rares' },
   { id: 'special-art-rares', label: 'All 8 Special Art Rares' },
   { id: 'super-rares', label: 'All 15 Super Rares' },
+  { id: 'ultra-rares', label: 'All 4 Ultra Rares' },
   { id: 'art-rares', label: 'All 8 Art Rares' },
+  { id: 'ladders', label: 'One Pokémon, several rarities' },
   { id: 'double-rares', label: 'All 14 Pokémon ex' },
+  { id: 'numbering', label: 'How the numbers work' },
   { id: 'master-set', label: 'Chasing a master set' },
   { id: 'faq', label: 'FAQ' },
 ]
@@ -165,32 +170,6 @@ function BlackCrystalBlazeSetGuide() {
           </ol>
         </nav>
 
-        <h2 id="numbering">How the numbers work</h2>
-        <p>
-          Every card has one number out of 129. The main set runs 001 to 129, and everything above is a secret rare. The rarer versions
-          of a card sit in the secret block at unrelated numbers, so match them by name.
-        </p>
-        <div className="table-scroll">
-          <table className="data-table">
-            <thead>
-              <tr>
-                <th scope="col">Numbers</th>
-                <th scope="col">What they are</th>
-                <th scope="col">Rarity</th>
-              </tr>
-            </thead>
-            <tbody>
-              {BLOCKS.map((b) => (
-                <tr key={b.nos}>
-                  <th scope="row">{b.nos}</th>
-                  <td>{b.what}</td>
-                  <td>{b.rarity}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-
         <h2 id="box">What a slim box holds</h2>
         <p>Pokémon China's odds chart for the 5-card pack, applied to one 15-pack slim box:</p>
         <div className="table-scroll">
@@ -216,6 +195,22 @@ function BlackCrystalBlazeSetGuide() {
           The top band holds 27 different cards and averages about one every 27 packs, so most slim boxes will not have one. A jumbo box
           has 120 cards and 36 holos instead of 75 and 15. Pokémon China did not publish separate odds for the 20-card pack.
         </p>
+
+        <h2 id="special-art-rares">All 8 Special Art Rares</h2>
+        <p>153 to 160. Larry 157 is the Chinese exclusive.</p>
+        <Gallery cards={lead(byRange(153, 160), ['155', '157', '159', '160', '154', '156', '158'])} cols={4} />
+
+        <h2 id="super-rares">All 15 Super Rares</h2>
+        <p>Full arts of ten Pokémon ex and five Supporters, 138 to 152.</p>
+        <Gallery cards={lead(byRange(138, 152), ['145', '151', '152', '148', '149', '140'])} cols={3} />
+
+        <h2 id="ultra-rares">All 4 Ultra Rares</h2>
+        <p>The gold cards, 161 to 164. Defiance Band is new for China.</p>
+        <Gallery cards={lead(byRange(161, 164), ['162', '161', '164'])} cols={4} />
+
+        <h2 id="art-rares">All 8 Art Rares</h2>
+        <p>130 to 137.</p>
+        <Gallery cards={lead(byRange(130, 137), ['135', '136', '132', '133', '134', '137'])} cols={4} />
 
         <h2 id="ladders">One Pokémon, several rarities</h2>
         <p>The Pokémon ex that reach the secret block, and every number they print at:</p>
@@ -244,25 +239,35 @@ function BlackCrystalBlazeSetGuide() {
         </div>
         <p className="table-note">Armarouge ex, Vespiquen ex, Hoopa ex, Toxtricity ex, Glimmora ex and Aegislash ex also have Super Rares (139, 141 to 144 and 146).</p>
 
-        <h2 id="ultra-rares">All 4 Ultra Rares</h2>
-        <p>The gold cards, 161 to 164. Defiance Band is new for China.</p>
-        <Gallery cards={byRange(161, 164)} cols={4} />
-
-        <h2 id="special-art-rares">All 8 Special Art Rares</h2>
-        <p>153 to 160. Larry 157 is the Chinese exclusive.</p>
-        <Gallery cards={byRange(153, 160)} cols={4} />
-
-        <h2 id="super-rares">All 15 Super Rares</h2>
-        <p>Full arts of ten Pokémon ex and five Supporters, 138 to 152.</p>
-        <Gallery cards={byRange(138, 152)} cols={4} />
-
-        <h2 id="art-rares">All 8 Art Rares</h2>
-        <p>130 to 137.</p>
-        <Gallery cards={byRange(130, 137)} cols={4} />
-
         <h2 id="double-rares">All 14 Pokémon ex</h2>
         <p>The Double Rares from the main set.</p>
-        <Gallery cards={setData.cards.filter((c) => c.rarity === 'Double Rare (RR)')} cols={4} />
+        <Gallery cards={lead(setData.cards.filter((c) => c.rarity === 'Double Rare (RR)'), ['075', '039', '028', '104', '069', '101'])} cols={4} />
+
+        <h2 id="numbering">How the numbers work</h2>
+        <p>
+          Every card has one number out of 129. The main set runs 001 to 129, and everything above is a secret rare. The rarer versions
+          of a card sit in the secret block at unrelated numbers, so match them by name.
+        </p>
+        <div className="table-scroll">
+          <table className="data-table">
+            <thead>
+              <tr>
+                <th scope="col">Numbers</th>
+                <th scope="col">What they are</th>
+                <th scope="col">Rarity</th>
+              </tr>
+            </thead>
+            <tbody>
+              {BLOCKS.map((b) => (
+                <tr key={b.nos}>
+                  <th scope="row">{b.nos}</th>
+                  <td>{b.what}</td>
+                  <td>{b.rarity}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
 
         <h2 id="master-set">Chasing a master set</h2>
         <p>

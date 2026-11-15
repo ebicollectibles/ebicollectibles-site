@@ -200,6 +200,9 @@ function GemVol3OriginsPost() {
         <h2 id="patterns">Patterns worth knowing</h2>
         <ul>
           <li>
+            <strong>The lantern five are the new part.</strong> Meowth, Gengar, Cubone, Chandelure and Ceruledge keep regular art from English sets but get brand-new full arts. aspara, who drew the Gengar full art, also drew the Arven Trainer.
+          </li>
+          <li>
             <strong>2023 sets do most of the work.</strong> Obsidian Flames and the base Scarlet & Violet set supply eight artworks each, with Paldea Evolved close behind on six.
           </li>
           <li>
@@ -207,9 +210,6 @@ function GemVol3OriginsPost() {
           </li>
           <li>
             <strong>Three 07 cards are promos.</strong> Darkrai ex, the Mimikyu full art and Annihilape ex reuse English Black Star Promo art rather than set cards.
-          </li>
-          <li>
-            <strong>The lantern five are the new part.</strong> Meowth, Gengar, Cubone, Chandelure and Ceruledge keep regular art from English sets but get brand-new full arts. aspara, who drew the Gengar full art, also drew the Arven Trainer.
           </li>
         </ul>
 

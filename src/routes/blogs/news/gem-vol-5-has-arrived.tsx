@@ -32,11 +32,11 @@ const HORIZONS_FULL_ARTS = [
 // illustrator printed on each card.
 const REVEALED_FULL_ARTS = [
   { id: '0207', name: 'Hisuian Growlithe', illus: 'GIDORA' },
-  { id: '0307', name: 'Magneton', illus: 'Shinji Kanda' },
-  { id: '1107', name: 'Chimecho', illus: 'REND' },
-  { id: '1207', name: 'Spheal', illus: 'miki kudo' },
-  { id: '1807', name: 'Vivillon', illus: 'REND' },
   { id: '2807', name: 'Tatsugiri', illus: 'osare' },
+  { id: '1807', name: 'Vivillon', illus: 'REND' },
+  { id: '1207', name: 'Spheal', illus: 'miki kudo' },
+  { id: '1107', name: 'Chimecho', illus: 'REND' },
+  { id: '0307', name: 'Magneton', illus: 'Shinji Kanda' },
 ]
 
 // One row per rarity: how many cards of it are in the 196-card set, and
@@ -50,10 +50,10 @@ const RARITY = [
 ]
 
 const TOC = [
-  { id: 'how-the-set-works', label: 'How the set is built' },
-  { id: 'floragato', label: 'Floragato, six holo versions' },
   { id: 'horizons-full-arts', label: 'The chase: four Horizons full arts' },
   { id: 'lineup', label: 'The rest of the lineup' },
+  { id: 'how-the-set-works', label: 'How the set is built' },
+  { id: 'floragato', label: 'Floragato, six holo versions' },
   { id: 'booster-box', label: 'What is inside a booster box' },
   { id: 'gem-pack-timeline', label: 'Gem Pack timeline' },
   { id: 'binders', label: 'The four binders' },
@@ -196,6 +196,53 @@ function GemVol5Post() {
           </ol>
         </nav>
 
+        <h2 id="horizons-full-arts">The chase: four Horizons full arts</h2>
+        <p>
+          Gem Vol 5 has four full arts drawn just for this set, each pairing a Pokémon with a member of the Rising Volt Tacklers from
+          the Pokémon Horizons anime. Captain Pikachu rides the deck of the Brave Asagi with Friede, while Floragato, Crocalor and
+          Quaxwell share a meal with Liko, Roy and Dot. Each one carries a small Pokémon Horizons logo.
+        </p>
+        <div className="card-grid cols-2">
+          {HORIZONS_FULL_ARTS.map((c) => (
+            <figure key={c.id}>
+              <img src={cardImg(c.id)} alt={`${c.name} with ${c.with}, full art ${c.id}/07, Gem Vol 5`} loading="lazy" width={300} height={419} />
+              <figcaption>
+                <strong>
+                  {c.name} with {c.with}
+                </strong>
+                {c.id}/07 · Illus. {c.illus}
+              </figcaption>
+            </figure>
+          ))}
+        </div>
+        <p>
+          Because the art debuts here, Gem Vol 5 is the only place to pull these four. Each sits in the 07 slot, the rarest in every
+          run, so plan on opening plenty of packs or picking them up as singles. Captain Pikachu is the one most collectors go after
+          first.
+        </p>
+
+        <h2 id="lineup">The rest of the lineup</h2>
+        <p>
+          Outside the Horizons cards there are no Trainer's Pokémon. The lineup mixes fan favorites like Latios, Ceruledge and Hisuian
+          Growlithe with Paldea picks such as Tatsugiri, Cetitan and Wattrel. Pokémon China revealed these full arts alongside the
+          Horizons four:
+        </p>
+        <div className="card-grid cols-3">
+          {REVEALED_FULL_ARTS.map((c) => (
+            <figure key={c.id}>
+              <img src={cardImg(c.id)} alt={`${c.name} full art ${c.id}/07, Gem Vol 5`} loading="lazy" width={300} height={419} />
+              <figcaption>
+                <strong>{c.name}</strong>
+                {c.id}/07 · Illus. {c.illus}
+              </figcaption>
+            </figure>
+          ))}
+        </div>
+        <p>
+          The rest of the roster: Chansey, Horsea, Sunflora, Skarmory, Houndoom, Phanpy, Vibrava, Timburr, Joltik, Stunfisk, Braviary,
+          Raboot, Applin and Milcery. The <Link to="/sets/gem-vol-5">full card list</Link> shows all 196 cards.
+        </p>
+
         <h2 id="how-the-set-works">How the set is built</h2>
         <p>
           Every one of the 28 Pokémon gets seven numbered cards. The first six share a single illustration and step up in rarity and
@@ -250,53 +297,6 @@ function GemVol5Post() {
             </figure>
           ))}
         </div>
-
-        <h2 id="horizons-full-arts">The chase: four Horizons full arts</h2>
-        <p>
-          Gem Vol 5 has four full arts drawn just for this set, each pairing a Pokémon with a member of the Rising Volt Tacklers from
-          the Pokémon Horizons anime. Captain Pikachu rides the deck of the Brave Asagi with Friede, while Floragato, Crocalor and
-          Quaxwell share a meal with Liko, Roy and Dot. Each one carries a small Pokémon Horizons logo.
-        </p>
-        <div className="card-grid cols-2">
-          {HORIZONS_FULL_ARTS.map((c) => (
-            <figure key={c.id}>
-              <img src={cardImg(c.id)} alt={`${c.name} with ${c.with}, full art ${c.id}/07, Gem Vol 5`} loading="lazy" width={300} height={419} />
-              <figcaption>
-                <strong>
-                  {c.name} with {c.with}
-                </strong>
-                {c.id}/07 · Illus. {c.illus}
-              </figcaption>
-            </figure>
-          ))}
-        </div>
-        <p>
-          Because the art debuts here, Gem Vol 5 is the only place to pull these four. Each sits in the 07 slot, the rarest in every
-          run, so plan on opening plenty of packs or picking them up as singles. Captain Pikachu is the one most collectors go after
-          first.
-        </p>
-
-        <h2 id="lineup">The rest of the lineup</h2>
-        <p>
-          Outside the Horizons cards there are no Trainer's Pokémon. The lineup mixes fan favorites like Latios, Ceruledge and Hisuian
-          Growlithe with Paldea picks such as Tatsugiri, Cetitan and Wattrel. Pokémon China revealed these full arts alongside the
-          Horizons four:
-        </p>
-        <div className="card-grid cols-3">
-          {REVEALED_FULL_ARTS.map((c) => (
-            <figure key={c.id}>
-              <img src={cardImg(c.id)} alt={`${c.name} full art ${c.id}/07, Gem Vol 5`} loading="lazy" width={300} height={419} />
-              <figcaption>
-                <strong>{c.name}</strong>
-                {c.id}/07 · Illus. {c.illus}
-              </figcaption>
-            </figure>
-          ))}
-        </div>
-        <p>
-          The rest of the roster: Chansey, Horsea, Sunflora, Skarmory, Houndoom, Phanpy, Vibrava, Timburr, Joltik, Stunfisk, Braviary,
-          Raboot, Applin and Milcery. The <Link to="/sets/gem-vol-5">full card list</Link> shows all 196 cards.
-        </p>
 
         <h2 id="booster-box">What is inside a booster box</h2>
         <p>

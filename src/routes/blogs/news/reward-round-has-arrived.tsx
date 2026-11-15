@@ -41,21 +41,21 @@ const EXCLUSIVES = [
 ]
 
 const SAR = [
-  { n: '153', name: 'Golisopod ex', note: 'SAR · Oku' },
-  { n: '154', name: 'Tapu Koko ex', note: 'SAR · Jerky' },
-  { n: '155', name: 'Revavroom ex', note: 'SAR · Souichirou Gunjima' },
   { n: '157', name: 'Pidgeot ex', note: 'SAR · Jerky' },
-  { n: '160', name: 'Parasol Lady', note: 'SAR · En Morikura' },
+  { n: '154', name: 'Tapu Koko ex', note: 'SAR · Jerky' },
   { n: '161', name: "Boss's Orders", note: 'SAR · hncl' },
+  { n: '153', name: 'Golisopod ex', note: 'SAR · Oku' },
+  { n: '160', name: 'Parasol Lady', note: 'SAR · En Morikura' },
+  { n: '155', name: 'Revavroom ex', note: 'SAR · Souichirou Gunjima' },
 ]
 
 const ART_RARES = [
-  { n: '132', name: 'Palafin', note: 'Art Rare · Akira Komayama' },
   { n: '133', name: 'Gimmighoul', note: 'Art Rare · Akira Komayama' },
-  { n: '135', name: 'Varoom', note: 'Art Rare · Souichirou Gunjima' },
   { n: '136', name: 'Pidgey', note: 'Art Rare · Jerky' },
   { n: '137', name: 'Pidgeotto', note: 'Art Rare · Jerky' },
+  { n: '132', name: 'Palafin', note: 'Art Rare · Akira Komayama' },
   { n: '131', name: 'Wimpod', note: 'Art Rare · Oku' },
+  { n: '135', name: 'Varoom', note: 'Art Rare · Souichirou Gunjima' },
 ]
 
 // Pokémon China's odds chart for the 5-card pack, in the bands it uses.
@@ -67,8 +67,8 @@ const ODDS = [
 ]
 
 const TOC = [
-  { id: 'gholdengo', label: 'Gholdengo, the cover star' },
   { id: 'exclusives', label: 'Three cards only in Chinese' },
+  { id: 'gholdengo', label: 'Gholdengo, the cover star' },
   { id: 'special-art-rares', label: 'Special Art Rares' },
   { id: 'ultra-rares', label: 'Gold Ultra Rares' },
   { id: 'art-rares', label: 'Art Rares' },
@@ -203,14 +203,6 @@ function RewardRoundReleasePost() {
           </ol>
         </nav>
 
-        <h2 id="gholdengo">Gholdengo, the cover star</h2>
-        <p>
-          Gholdengo ex draws you an extra card every turn with its ability, two if it is in the Active Spot, and its attack discards any
-          number of basic Energy from your hand for 50 damage each. Build up a hand, then cash it in. It appears at four rarities in the
-          set, and the gold Ultra Rare is new for China.
-        </p>
-        <Grid cards={GHOLDENGO} cols={4} />
-
         <h2 id="exclusives">Three cards only in Chinese</h2>
         <p>
           Three secret rares have no English version: the gold Gholdengo ex, a Maushold ex Special Art Rare of the mouse family playing at
@@ -218,6 +210,14 @@ function RewardRoundReleasePost() {
           chasing even if you already own the English ones.
         </p>
         <Grid cards={EXCLUSIVES} cols={3} />
+
+        <h2 id="gholdengo">Gholdengo, the cover star</h2>
+        <p>
+          Gholdengo ex draws you an extra card every turn with its ability, two if it is in the Active Spot, and its attack discards any
+          number of basic Energy from your hand for 50 damage each. Build up a hand, then cash it in. It appears at four rarities in the
+          set, and the gold Ultra Rare is the one with no English version.
+        </p>
+        <Grid cards={GHOLDENGO} cols={4} />
 
         <h2 id="special-art-rares">Special Art Rares</h2>
         <p>

@@ -424,8 +424,8 @@ function TerastalGatheringOrigins() {
     '@type': 'FAQPage',
     mainEntity: FAQ.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
   }
-  const fresh = rows.filter((r) => r.src === 'NEW')
-  const showcase = [...fresh, rows.find((r) => r.cn === '246')!]
+  // The exclusive first, then the promo-art Eevee ex SAR, then the new-art Garchomp ex.
+  const showcase = ['234', '246', '045'].map((n) => rows.find((r) => r.cn === n)!)
 
   return (
     <>
@@ -501,6 +501,21 @@ function TerastalGatheringOrigins() {
           promo SVP 174.
         </p>
         <p>
+          <strong>Two cards are new.</strong> Sylveon ex 234/208 by rika is the Chinese-exclusive Special Art Rare. Garchomp ex 045/208
+          is a Double Rare with new art by PLANETA Mochizuki. In English, Garchomp ex only has its Paradox Rift arts.
+        </p>
+        <div className="card-grid cols-3">
+          {showcase.map((r) => (
+            <figure key={r.cn}>
+              <img src={r.image} alt={`${r.name} ${r.cn}/208, Terastal Gathering`} loading="lazy" width={300} height={419} />
+              <figcaption>
+                <strong>{r.name}</strong>
+                {r.cn}/208 · {r.src === 'NEW' ? 'New art' : `${SET_NAME[r.src]} ${r.en}`}
+              </figcaption>
+            </figure>
+          ))}
+        </div>
+        <p>
           <strong>Promo art comes out of packs.</strong> {PROMO_EX.length} Pokémon ex use art that English only printed as SV Black Star
           Promos: {PROMO_EX.map((r) => r.name).join(', ')}. So do the plain {PROMO_EEVEE.map((r) => r.name).join(', ')}, which match the
           promos SVP 167 to 172 instead of the Rare versions in Prismatic Evolutions.
@@ -526,21 +541,6 @@ function TerastalGatheringOrigins() {
               ))}
             </tbody>
           </table>
-        </div>
-        <p>
-          <strong>Two cards are new.</strong> Sylveon ex 234/208 by rika is the Chinese-exclusive Special Art Rare. Garchomp ex 045/208
-          is a Double Rare with new art by PLANETA Mochizuki. In English, Garchomp ex only has its Paradox Rift arts.
-        </p>
-        <div className="card-grid cols-3">
-          {showcase.map((r) => (
-            <figure key={r.cn}>
-              <img src={r.image} alt={`${r.name} ${r.cn}/208, Terastal Gathering`} loading="lazy" width={300} height={419} />
-              <figcaption>
-                <strong>{r.name}</strong>
-                {r.cn}/208 · {r.src === 'NEW' ? 'New art' : `${SET_NAME[r.src]} ${r.en}`}
-              </figcaption>
-            </figure>
-          ))}
         </div>
         <p>
           <strong>Some of Prismatic Evolutions stayed out.</strong> 24 English cards have no match here:

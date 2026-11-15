@@ -21,16 +21,16 @@ const PONYTA_RUN = [
 ]
 
 // The full arts Pokémon China showed alongside Ponyta in its
-// announcement, with the illustrator printed on each card.
+// announcement, with the illustrator printed on each card. Most wanted first.
 const REVEALED_FULL_ARTS = [
   { id: '0407', name: 'Eevee', illus: 'Narumi Sato' },
   { id: '0907', name: 'Infernape', illus: 'Krgc' },
-  { id: '2307', name: 'Mudsdale', illus: 'MINAMINAMI Take' },
-  { id: '1607', name: 'Cinccino', illus: 'Shibuzoh.' },
   { id: '2007', name: 'Litten', illus: 'Makura Tami' },
   { id: '2407', name: 'Meltan', illus: 'Masa' },
-  { id: '0607', name: 'Torkoal', illus: 'Masa' },
+  { id: '1607', name: 'Cinccino', illus: 'Shibuzoh.' },
+  { id: '2307', name: 'Mudsdale', illus: 'MINAMINAMI Take' },
   { id: '1407', name: 'Excadrill', illus: 'Saboteri' },
+  { id: '0607', name: 'Torkoal', illus: 'Masa' },
   { id: '1907', name: 'Heliolisk', illus: 'Tonji Matsuno' },
 ]
 
@@ -45,10 +45,10 @@ const RARITY = [
 ]
 
 const TOC = [
-  { id: 'how-the-set-works', label: 'How the set is built' },
-  { id: 'ponyta', label: 'Ponyta, six holo versions' },
   { id: 'ponyta-full-art', label: 'The chase: Ponyta full art' },
   { id: 'lineup', label: 'Horses, seasons and a Paradox Pokémon' },
+  { id: 'how-the-set-works', label: 'How the set is built' },
+  { id: 'ponyta', label: 'Ponyta, six holo versions' },
   { id: 'booster-box', label: 'What is inside a booster box' },
   { id: 'gem-pack-timeline', label: 'Gem Pack timeline' },
   { id: 'ponyta-binder', label: 'The Ponyta binder' },
@@ -190,6 +190,45 @@ function GemVol4Post() {
           </ol>
         </nav>
 
+        <h2 id="ponyta-full-art">The chase: Ponyta full art</h2>
+        <figure className="feature-card">
+          <img src={cardImg('0107')} alt="Ponyta 0107/07 full art, Triple Rare, Gem Vol 4" loading="lazy" width={320} height={447} />
+          <figcaption>
+            <strong>0107/07</strong>
+            Triple Rare · Full art · Illus. MINAMINAMI Take
+          </figcaption>
+        </figure>
+        <p>
+          The full art is new artwork by MINAMINAMI Take, drawn for this set. It is a sunset scene on open grassland, with Ponyta
+          mid-stride across the field while a Rapidash rests behind it and keeps watch.
+        </p>
+        <p>
+          Because the illustration debuts here, Gem Vol 4 is the only place to pull it. It sits in the 07 slot, the rarest in every
+          run, so plan on opening plenty of packs or picking it up as a single.
+        </p>
+
+        <h2 id="lineup">Horses, seasons and a Paradox Pokémon</h2>
+        <p>
+          There are no Trainer's Pokémon in this volume. Ponyta has company in Mudsdale, Deerling and Sawsbuck bring the changing
+          seasons, and Eevee, Litten, Minccino and Cinccino round out the cute side. Enamorus and the Paradox Pokémon Flutter Mane give
+          the set a couple of heavier hitters. Pokémon China revealed these full arts alongside Ponyta:
+        </p>
+        <div className="card-grid cols-3">
+          {REVEALED_FULL_ARTS.map((c) => (
+            <figure key={c.id}>
+              <img src={cardImg(c.id)} alt={`${c.name} full art ${c.id}/07, Gem Vol 4`} loading="lazy" width={300} height={419} />
+              <figcaption>
+                <strong>{c.name}</strong>
+                {c.id}/07 · Illus. {c.illus}
+              </figcaption>
+            </figure>
+          ))}
+        </div>
+        <p>
+          The rest of the roster: Lickitung, Pinsir, Paldean Wooper, Relicanth, Grotle, Chatot, Probopass, Froslass, Phione, Charjabug,
+          Cutiefly, Cramorant and Snom. The <Link to="/sets/gem-vol-4">full card list</Link> shows all 196 cards.
+        </p>
+
         <h2 id="how-the-set-works">How the set is built</h2>
         <p>
           Every one of the 28 Pokémon gets seven numbered cards. The first six share a single illustration and step up in rarity and
@@ -244,45 +283,6 @@ function GemVol4Post() {
             </figure>
           ))}
         </div>
-
-        <h2 id="ponyta-full-art">The chase: Ponyta full art</h2>
-        <figure className="feature-card">
-          <img src={cardImg('0107')} alt="Ponyta 0107/07 full art, Triple Rare, Gem Vol 4" loading="lazy" width={320} height={447} />
-          <figcaption>
-            <strong>0107/07</strong>
-            Triple Rare · Full art · Illus. MINAMINAMI Take
-          </figcaption>
-        </figure>
-        <p>
-          The full art is new artwork by MINAMINAMI Take, drawn for this set. It is a sunset scene on open grassland, with Ponyta
-          mid-stride across the field while a Rapidash rests behind it and keeps watch.
-        </p>
-        <p>
-          Because the illustration debuts here, Gem Vol 4 is the only place to pull it. It sits in the 07 slot, the rarest in every
-          run, so plan on opening plenty of packs or picking it up as a single.
-        </p>
-
-        <h2 id="lineup">Horses, seasons and a Paradox Pokémon</h2>
-        <p>
-          There are no Trainer's Pokémon in this volume. Ponyta has company in Mudsdale, Deerling and Sawsbuck bring the changing
-          seasons, and Eevee, Litten, Minccino and Cinccino round out the cute side. Enamorus and the Paradox Pokémon Flutter Mane give
-          the set a couple of heavier hitters. Pokémon China revealed these full arts alongside Ponyta:
-        </p>
-        <div className="card-grid cols-3">
-          {REVEALED_FULL_ARTS.map((c) => (
-            <figure key={c.id}>
-              <img src={cardImg(c.id)} alt={`${c.name} full art ${c.id}/07, Gem Vol 4`} loading="lazy" width={300} height={419} />
-              <figcaption>
-                <strong>{c.name}</strong>
-                {c.id}/07 · Illus. {c.illus}
-              </figcaption>
-            </figure>
-          ))}
-        </div>
-        <p>
-          The rest of the roster: Lickitung, Pinsir, Paldean Wooper, Relicanth, Grotle, Chatot, Probopass, Froslass, Phione, Charjabug,
-          Cutiefly, Cramorant and Snom. The <Link to="/sets/gem-vol-4">full card list</Link> shows all 196 cards.
-        </p>
 
         <h2 id="booster-box">What is inside a booster box</h2>
         <p>

@@ -26,9 +26,9 @@ const REVEALED_FULL_ARTS = [
   { id: '2007', name: 'Flapple', illus: 'Uninori' },
   { id: '2107', name: 'Appletun', illus: 'MINAMINAMI Take' },
   { id: '2407', name: 'Dipplin', illus: 'Akira Komayama' },
-  { id: '1007', name: 'Castform Sunny Form', illus: 'Narano' },
   { id: '2507', name: 'Poltchageist', illus: 'Saboteri' },
   { id: '2707', name: 'Munkidori', illus: 'Teeziro' },
+  { id: '1007', name: 'Castform Sunny Form', illus: 'Narano' },
 ]
 
 // One row per rarity: how many cards of it are in the 196-card set, and
@@ -42,10 +42,10 @@ const RARITY = [
 ]
 
 const TOC = [
-  { id: 'how-the-set-works', label: 'How the set is built' },
-  { id: 'applin', label: 'Applin, six holo versions' },
   { id: 'applin-full-art', label: 'The chase: Applin full art' },
   { id: 'lineup', label: 'Apples, tea and the Loyal Three' },
+  { id: 'how-the-set-works', label: 'How the set is built' },
+  { id: 'applin', label: 'Applin, six holo versions' },
   { id: 'booster-box', label: 'What is inside a booster box' },
   { id: 'gem-pack-timeline', label: 'Gem Pack timeline' },
   { id: 'applin-binder', label: 'The Applin binder' },
@@ -189,6 +189,47 @@ function GemVol6Post() {
           </ol>
         </nav>
 
+        <h2 id="applin-full-art">The chase: Applin full art</h2>
+        <figure className="feature-card">
+          <img src={cardImg('1907')} alt="Applin 1907/07 full art, Triple Rare, Gem Vol 6" loading="lazy" width={320} height={447} />
+          <figcaption>
+            <strong>1907/07</strong>
+            Triple Rare · Full art · Illus. Jiro Sasumo
+          </figcaption>
+        </figure>
+        <p>
+          The full art is new artwork by Jiro Sasumo, drawn for this set. It is a sunny kitchen scene: jars of fruit drinks, a teapot,
+          oranges and a fresh fruit tart on the table, and Applin sitting among the fruit, easy to mistake for one more apple.
+        </p>
+        <p>
+          Because the illustration debuts here, Gem Vol 6 is the only place to pull it. It sits in the 07 slot, the rarest in every
+          run, so plan on opening plenty of packs or picking it up as a single.
+        </p>
+
+        <h2 id="lineup">Apples, tea and the Loyal Three</h2>
+        <p>
+          There are no Trainer's Pokémon this time. Instead the lineup has a garden-and-kitchen feel: Applin and its whole family,
+          Flapple, Appletun and Dipplin, plus Exeggcute, Castform in its Sunny Form, and Poltchageist the tea-cup Pokémon. The Loyal
+          Three from Kitakami, Okidogi, Munkidori and Fezandipiti, close out the set. Pokémon China pitches the set as a treasure hunt,
+          with each illustration telling a small story about its Pokémon, and revealed these six full arts alongside Applin:
+        </p>
+        <div className="card-grid cols-3">
+          {REVEALED_FULL_ARTS.map((c) => (
+            <figure key={c.id}>
+              <img src={cardImg(c.id)} alt={`${c.name} full art ${c.id}/07, Gem Vol 6`} loading="lazy" width={300} height={419} />
+              <figcaption>
+                <strong>{c.name}</strong>
+                {c.id}/07 · Illus. {c.illus}
+              </figcaption>
+            </figure>
+          ))}
+        </div>
+        <p>
+          The rest of the roster: Alolan Dugtrio, Persian, Ledian, Slakoth, Lairon, Meditite, Gulpin, Lileep, Kecleon, Mesprit,
+          Reuniclus, Crabominable, Shiinotic, Bewear, Bruxish, Tapu Bulu, Clobbopus and Cufant. The{' '}
+          <Link to="/sets/gem-vol-6">full card list</Link> shows all 196 cards.
+        </p>
+
         <h2 id="how-the-set-works">How the set is built</h2>
         <p>
           Every one of the 28 Pokémon gets seven numbered cards. The first six share a single illustration and step up in rarity and
@@ -243,47 +284,6 @@ function GemVol6Post() {
             </figure>
           ))}
         </div>
-
-        <h2 id="applin-full-art">The chase: Applin full art</h2>
-        <figure className="feature-card">
-          <img src={cardImg('1907')} alt="Applin 1907/07 full art, Triple Rare, Gem Vol 6" loading="lazy" width={320} height={447} />
-          <figcaption>
-            <strong>1907/07</strong>
-            Triple Rare · Full art · Illus. Jiro Sasumo
-          </figcaption>
-        </figure>
-        <p>
-          The full art is new artwork by Jiro Sasumo, drawn for this set. It is a sunny kitchen scene: jars of fruit drinks, a teapot,
-          oranges and a fresh fruit tart on the table, and Applin sitting among the fruit, easy to mistake for one more apple.
-        </p>
-        <p>
-          Because the illustration debuts here, Gem Vol 6 is the only place to pull it. It sits in the 07 slot, the rarest in every
-          run, so plan on opening plenty of packs or picking it up as a single.
-        </p>
-
-        <h2 id="lineup">Apples, tea and the Loyal Three</h2>
-        <p>
-          There are no Trainer's Pokémon this time. Instead the lineup has a garden-and-kitchen feel: Applin and its whole family,
-          Flapple, Appletun and Dipplin, plus Exeggcute, Castform in its Sunny Form, and Poltchageist the tea-cup Pokémon. The Loyal
-          Three from Kitakami, Okidogi, Munkidori and Fezandipiti, close out the set. Pokémon China pitches the set as a treasure hunt,
-          with each illustration telling a small story about its Pokémon, and revealed these six full arts alongside Applin:
-        </p>
-        <div className="card-grid cols-3">
-          {REVEALED_FULL_ARTS.map((c) => (
-            <figure key={c.id}>
-              <img src={cardImg(c.id)} alt={`${c.name} full art ${c.id}/07, Gem Vol 6`} loading="lazy" width={300} height={419} />
-              <figcaption>
-                <strong>{c.name}</strong>
-                {c.id}/07 · Illus. {c.illus}
-              </figcaption>
-            </figure>
-          ))}
-        </div>
-        <p>
-          The rest of the roster: Alolan Dugtrio, Persian, Ledian, Slakoth, Lairon, Meditite, Gulpin, Lileep, Kecleon, Mesprit,
-          Reuniclus, Crabominable, Shiinotic, Bewear, Bruxish, Tapu Bulu, Clobbopus and Cufant. The{' '}
-          <Link to="/sets/gem-vol-6">full card list</Link> shows all 196 cards.
-        </p>
 
         <h2 id="booster-box">What is inside a booster box</h2>
         <p>

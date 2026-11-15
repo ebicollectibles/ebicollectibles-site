@@ -63,22 +63,22 @@ const config: GemSetConfig = {
     'Ultra Rare (UR)': '192',
   },
   aboutParagraphs: [
-    'Collect 151 (set code 151C) is an officially-licensed Pokémon TCG expansion in Simplified Chinese, built entirely around the 151 original Kanto Pokémon in Pokédex order — there isn\'t a single Trainer or Energy card in the whole set. It was released four times: Journey, Hope, Surprise and Gathering (October 17, 2025), each the same 192-card list plus its own small set of exclusive cards. This is the Gathering release, the last of the four.',
+    'Collect 151 (set code 151C) is an officially-licensed Pokémon TCG expansion in Simplified Chinese, built entirely around the 151 original Kanto Pokémon in Pokédex order. There isn\'t a single Trainer or Energy card in the whole set. It came out as four booster releases: Journey, Hope, Surprise and Gathering (October 17, 2025). All four share the 151-card main set, and each release adds exclusive cards of its own. This is the Gathering release, the last of the four.',
     'Every card has its own collector number, 001 through 192. The 151-card main set runs from Common up to Double Rare; the 41 secret rares that follow add 18 Shiny treatments, 4 Pikachu Art Rares (one per release), 12 Super Rares, 3 Shiny Super Rares and 3 Special Art Rares of the set\'s strongest Pokémon, topped by a single gold Ultra Rare Mew ex.',
   ],
   faq: [
     { q: 'How many cards are in Collect 151?', a: '192 cards: the 151 Kanto Pokémon plus 41 secret rares (Shiny, Art Rare, Super Rare, Shiny Super Rare, Special Art Rare and one Ultra Rare).' },
-    { q: 'What makes the Gathering release different?', a: 'Journey, Hope, Surprise and Gathering are the same 192-card Collect 151 list, released four times. Gathering\'s own exclusives are Pikachu 173/151 (Art Rare) and Zapdos ex 190/151 (Special Art Rare).' },
-    { q: "What's Collect 151's rarity scheme?", a: 'A 10-tier scheme: Common, Uncommon, Rare, Double Rare, Shiny, Art Rare, Super Rare, Shiny Super Rare, Special Art Rare and Ultra Rare, from most common to rarest.' },
-    { q: 'What is the Shiny tier?', a: 'A shiny-colored main-set Pokémon in its own star-sparkle frame — 18 of them, numbered 152–169, alongside 3 Shiny Super Rare full-art ex at 186–188.' },
+    { q: 'What makes the Gathering release different?', a: 'Journey, Hope, Surprise and Gathering are four booster releases of Collect 151. They share the same 151-card main set, and each adds exclusive cards of its own. Gathering\'s own exclusives are Pikachu 173/151 (Art Rare) and Zapdos ex 190/151 (Special Art Rare).' },
+    { q: "What's Collect 151's rarity scheme?", a: 'A 10-tier scheme: Common, Uncommon, Rare and Double Rare in the main set, then Shiny, Art Rare, Super Rare, Shiny Super Rare, Special Art Rare and Ultra Rare in collector-number order.' },
+    { q: 'What is the Shiny tier?', a: 'A shiny-colored main-set Pokémon in its own star-sparkle frame: 18 of them, numbered 152–169, alongside 3 Shiny Super Rare full-art ex at 186–188.' },
     { q: 'When did Collect 151: Gathering release?', a: 'October 17, 2025.' },
     { q: 'What language are the cards in?', a: 'Simplified Chinese.' },
   ],
-  metaTitle: 'Collect 151: Gathering Card List — All 192 Cards | EBI Collectibles',
+  metaTitle: 'Collect 151: Gathering Card List: All 192 Cards | EBI Collectibles',
   metaDescription:
     'Browse every card in Pokémon TCG Collect 151: Gathering (Simplified Chinese): the 151 Kanto Pokémon, Shiny cards, Super Rares and the gold Ultra Rare Mew ex, including the exclusive Pikachu Art Rare and Zapdos ex.',
-  ogTitle: 'Collect 151: Gathering Card List — All 192 Cards',
-  ogDescription: 'All 192 cards in Pokémon TCG Collect 151: Gathering — browse by Pokémon, filter by rarity, and track which ones you own.',
+  ogTitle: 'Collect 151: Gathering Card List: All 192 Cards',
+  ogDescription: 'All 192 cards in Pokémon TCG Collect 151: Gathering. Browse by Pokémon, filter by rarity, and track which ones you own.',
 }
 
 export const Route = createFileRoute('/sets/collect-151-gathering')({

@@ -26,11 +26,11 @@ const PSYDUCK_RUN = [
 // launch announcement.
 const REVEALED_FULL_ARTS = [
   { id: '0207', name: "Team Rocket's Meowth", note: 'with Giovanni' },
-  { id: '1507', name: "Steven's Beldum", note: 'with Steven' },
-  { id: '1607', name: "Cynthia's Roserade", note: 'with Cynthia' },
-  { id: '1707', name: 'Shaymin', note: 'in a flower field' },
-  { id: '1907', name: "N's Zorua", note: 'with N' },
   { id: '2007', name: "Lillie's Ribombee", note: 'with Lillie' },
+  { id: '1907', name: "N's Zorua", note: 'with N' },
+  { id: '1607', name: "Cynthia's Roserade", note: 'with Cynthia' },
+  { id: '1507', name: "Steven's Beldum", note: 'with Steven' },
+  { id: '1707', name: 'Shaymin', note: 'in a flower field' },
 ]
 
 // One row per rarity: how many cards of it are in the 196-card set, and
@@ -44,10 +44,10 @@ const RARITY = [
 ]
 
 const TOC = [
-  { id: 'how-the-set-works', label: 'How the set is built' },
-  { id: 'mistys-psyduck', label: "Misty's Psyduck, six holo versions" },
   { id: 'psyduck-full-art', label: 'The chase: Psyduck full art' },
   { id: 'trainers', label: 'Trainers and their Pokémon' },
+  { id: 'how-the-set-works', label: 'How the set is built' },
+  { id: 'mistys-psyduck', label: "Misty's Psyduck, six holo versions" },
   { id: 'booster-box', label: 'What is inside a booster box' },
   { id: 'gem-pack-timeline', label: 'Gem Pack timeline' },
   { id: 'psyduck-binder', label: 'The Psyduck binder' },
@@ -192,6 +192,47 @@ function GemVol7Post() {
           </ol>
         </nav>
 
+        <h2 id="psyduck-full-art">The chase: Misty's Psyduck full art</h2>
+        <figure className="feature-card">
+          <img src={cardImg('0307')} alt="Misty's Psyduck 0307/07 full art, Triple Rare, Gem Vol 7" loading="lazy" width={300} height={419} />
+          <figcaption>
+            <strong>0307/07</strong>
+            Triple Rare · Full art · Illus. Cona Nitanda
+          </figcaption>
+        </figure>
+        <p>
+          The full art is new artwork by Cona Nitanda, drawn for this set rather than reprinted from another one. Psyduck lounges in a
+          beach chair holding a beach ball up high while Misty waves from behind, ready for a day at the shore.
+        </p>
+        <p>
+          Because the illustration debuts here, Gem Vol 7 is the only place to pull it. It sits in the 07 slot, the rarest in every
+          run, so plan on opening plenty of packs or picking it up as a single.
+        </p>
+
+        <h2 id="trainers">Trainers and their Pokémon</h2>
+        <p>
+          19 of the 28 Pokémon are printed as a Trainer's Pokémon. Team Rocket alone accounts for eight of them: Raticate, Meowth,
+          Weezing, Murkrow, Wobbuffet, Houndoom, Orbeetle and Spidops. Misty brings Psyduck and Lapras, and the rest of the cast
+          includes Ethan, Steven, Cynthia, N, Lillie, Arven, Hop, Marnie and Iono. Pokémon China revealed these six full arts alongside
+          Psyduck:
+        </p>
+        <div className="card-grid cols-3">
+          {REVEALED_FULL_ARTS.map((c) => (
+            <figure key={c.id}>
+              <img src={cardImg(c.id)} alt={`${c.name} full art ${c.id}/07, Gem Vol 7`} loading="lazy" width={300} height={419} />
+              <figcaption>
+                <strong>{c.name}</strong>
+                {c.id}/07 · {c.note}
+              </figcaption>
+            </figure>
+          ))}
+        </div>
+        <p>
+          The other nine Pokémon appear without a Trainer: Rapidash, Furret, Swinub, Blaziken, Clamperl, Shaymin, Crustle, Lycanroc and
+          Hydrapple. Curious where the artwork has appeared before? Our <Link to="/blogs/news/gem-vol-7-card-origins">card origins guide</Link>{' '}
+          traces it card by card.
+        </p>
+
         <h2 id="how-the-set-works">How the set is built</h2>
         <p>
           Every one of the 28 Pokémon gets seven numbered cards. The first six share a single illustration and step up in rarity and
@@ -244,47 +285,6 @@ function GemVol7Post() {
             </figure>
           ))}
         </div>
-
-        <h2 id="psyduck-full-art">The chase: Misty's Psyduck full art</h2>
-        <figure className="feature-card">
-          <img src={cardImg('0307')} alt="Misty's Psyduck 0307/07 full art, Triple Rare, Gem Vol 7" loading="lazy" width={300} height={419} />
-          <figcaption>
-            <strong>0307/07</strong>
-            Triple Rare · Full art · Illus. Cona Nitanda
-          </figcaption>
-        </figure>
-        <p>
-          The full art is new artwork by Cona Nitanda, drawn for this set rather than reprinted from another one. Psyduck lounges in a
-          beach chair holding a beach ball up high while Misty waves from behind, ready for a day at the shore.
-        </p>
-        <p>
-          Because the illustration debuts here, Gem Vol 7 is the only place to pull it. It sits in the 07 slot, the rarest in every
-          run, so plan on opening plenty of packs or picking it up as a single.
-        </p>
-
-        <h2 id="trainers">Trainers and their Pokémon</h2>
-        <p>
-          19 of the 28 Pokémon are printed as a Trainer's Pokémon. Team Rocket alone accounts for eight of them: Raticate, Meowth,
-          Weezing, Murkrow, Wobbuffet, Houndoom, Orbeetle and Spidops. Misty brings Psyduck and Lapras, and the rest of the cast
-          includes Ethan, Steven, Cynthia, N, Lillie, Arven, Hop, Marnie and Iono. Pokémon China revealed these six full arts alongside
-          Psyduck:
-        </p>
-        <div className="card-grid cols-3">
-          {REVEALED_FULL_ARTS.map((c) => (
-            <figure key={c.id}>
-              <img src={cardImg(c.id)} alt={`${c.name} full art ${c.id}/07, Gem Vol 7`} loading="lazy" width={300} height={419} />
-              <figcaption>
-                <strong>{c.name}</strong>
-                {c.id}/07 · {c.note}
-              </figcaption>
-            </figure>
-          ))}
-        </div>
-        <p>
-          The other nine Pokémon appear without a Trainer: Rapidash, Furret, Swinub, Blaziken, Clamperl, Shaymin, Crustle, Lycanroc and
-          Hydrapple. Curious where the artwork has appeared before? Our <Link to="/blogs/news/gem-vol-7-card-origins">card origins guide</Link>{' '}
-          traces it card by card.
-        </p>
 
         <h2 id="booster-box">What is inside a booster box</h2>
         <p>

@@ -42,7 +42,7 @@ const config: GemSetConfig = {
   glow1: 'rgb(56 13 40 / .30)',
   glow2: 'rgb(64 155 148 / .25)',
   heroLede:
-    'All 264 cards in Brilliant Fantasy: 172 Pokémon across the main 207-card set — Items, Pokémon Tools, Supporters, Stadiums and Special Energy round it out, including 9 pink-framed ACE SPEC cards — plus Art Rares, Super Rares, Special Art Rares and the gold Ultra Rares as secret rares from 208 up. Tap any card for a closer look and every other printing beside it.',
+    'All 264 cards in Brilliant Fantasy: 172 Pokémon across the main 207-card set (Items, Pokémon Tools, Supporters, Stadiums and Special Energy round it out, including 9 pink-framed ACE SPEC cards), plus Art Rares, Super Rares, Special Art Rares and the gold Ultra Rares as secret rares from 208 up. Tap any card for a closer look and every other printing beside it.',
   pokemonFact: '172',
   rarityVersionLabelsOverride: {
     'Common (C)': '001–207 (mixed)',
@@ -56,23 +56,23 @@ const config: GemSetConfig = {
     'Ultra Rare (UR)': '256–264',
   },
   aboutParagraphs: [
-    'Brilliant Fantasy (set code CSV8C) is an officially-licensed Pokémon TCG expansion in the Chinese Scarlet & Violet series, released March 13, 2026 — a Kitakami-themed set built around 172 Pokémon (led by Ogerpon, the Loyal Three and the mythical Pecharunt) plus Items, Pokémon Tools, Supporters, Stadiums and Special Energy, for 264 cards in total.',
-    'Every card has its own collector number, 001 through 264. The 207-card main set runs from Common up to Double Rare, and includes 9 ACE SPEC cards — a one-per-deck Trainer/Energy tier printed in a distinct pink frame. The 57 secret rares that follow reprint select cards as Art Rares, Super Rares, Special Art Rares and the gold Ultra Rares, the set\'s top chase tier.',
+    'Brilliant Fantasy (set code CSV8C) is an officially-licensed Pokémon TCG expansion in the Chinese Scarlet & Violet series, released March 13, 2026, a Kitakami-themed set built around 172 Pokémon (led by Ogerpon, the Loyal Three and the mythical Pecharunt) plus Items, Pokémon Tools, Supporters, Stadiums and Special Energy, for 264 cards in total.',
+    'Every card has its own collector number, 001 through 264. The 207-card main set runs from Common up to Double Rare, and includes 9 ACE SPEC cards, a one-per-deck Trainer/Energy tier printed in a distinct pink frame. The 57 secret rares that follow reprint select cards as Art Rares, Super Rares, Special Art Rares and the gold Ultra Rares, the set\'s top chase tier.',
   ],
   faq: [
     { q: 'How many cards are in Brilliant Fantasy?', a: '264 cards: a 207-card main set covering 172 Pokémon plus Trainers, Stadiums, Special Energy and 9 ACE SPEC cards, with 57 secret rares (Art Rare, Super Rare, Special Art Rare and Ultra Rare).' },
-    { q: 'What are the chase cards?', a: "The set's top tier is Ultra Rare — 9 gold cards, including Teal Mask Ogerpon ex. Carmine 255/207, a Special Art Rare, is this set's Chinese exclusive." },
+    { q: 'What are the chase cards?', a: "The set's top tier is Ultra Rare: 9 gold cards, including Teal Mask Ogerpon ex. Carmine 255/207, a Special Art Rare, is this set's Chinese exclusive." },
     { q: "What's Brilliant Fantasy's rarity scheme?", a: 'A 9-tier scheme: Common, Uncommon, Rare, Double Rare, Art Rare, ACE SPEC Rare, Super Rare, Special Art Rare and Ultra Rare, from most common to rarest.' },
-    { q: 'What is an ACE SPEC card?', a: 'A one-per-deck Trainer or Energy card printed in a distinct pink frame — 9 of them sit inside the main set at their own collector numbers.' },
+    { q: 'What is an ACE SPEC card?', a: 'A one-per-deck Trainer or Energy card printed in a distinct pink frame. Nine of them sit inside the main set at their own collector numbers.' },
     { q: 'When did Brilliant Fantasy release?', a: 'March 13, 2026.' },
     { q: 'What language are the cards in?', a: 'Simplified Chinese.' },
     { q: 'Where can I buy Brilliant Fantasy?', a: 'EBI Collectibles carries Brilliant Fantasy packs and boxes.' },
   ],
-  metaTitle: 'Brilliant Fantasy (CSV8) Card List — All 264 Cards | EBI Collectibles',
+  metaTitle: 'Brilliant Fantasy (CSV8) Card List: All 264 Cards | EBI Collectibles',
   metaDescription:
     'Browse every card in Pokémon TCG Brilliant Fantasy (CSV8, Simplified Chinese): 172 Pokémon, ACE SPEC Rares, Art Rares, Super Rares, Special Art Rares and the gold Ultra Rares, including the exclusive Carmine.',
-  ogTitle: 'Brilliant Fantasy Card List — All 264 Cards',
-  ogDescription: 'All 264 cards in Pokémon TCG Brilliant Fantasy — browse by Pokémon, filter by rarity, and track which ones you own.',
+  ogTitle: 'Brilliant Fantasy Card List: All 264 Cards',
+  ogDescription: 'All 264 cards in Pokémon TCG Brilliant Fantasy. Browse by Pokémon, filter by rarity, and track which ones you own.',
 }
 
 export const Route = createFileRoute('/sets/csv8')({

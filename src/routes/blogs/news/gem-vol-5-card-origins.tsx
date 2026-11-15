@@ -196,6 +196,9 @@ function GemVol5OriginsPost() {
         <h2 id="patterns">Patterns worth knowing</h2>
         <ul>
           <li>
+            <strong>The Horizons cards are the new part.</strong> Captain Pikachu has no earlier card at all, and Floragato, Crocalor and Quaxwell keep their regular art from English sets but get brand-new full arts.
+          </li>
+          <li>
             <strong>Surging Sparks supplies the most.</strong> It covers the regular art for 13 Pokémon and the full art for 10.
           </li>
           <li>
@@ -206,9 +209,6 @@ function GemVol5OriginsPost() {
           </li>
           <li>
             <strong>Magneton's full art is a promo.</strong> Its regular art is from Surging Sparks, but its full art reprints a Black Star Promo.
-          </li>
-          <li>
-            <strong>The Horizons cards are the new part.</strong> Captain Pikachu has no earlier card at all, and Floragato, Crocalor and Quaxwell keep their regular art from English sets but get brand-new full arts.
           </li>
         </ul>
 

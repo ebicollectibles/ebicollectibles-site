@@ -11,6 +11,11 @@ type Card = (typeof setData.cards)[number]
 const byRange = (from: number, to: number) => setData.cards.filter((c) => c.pokemonIndex >= from && c.pokemonIndex <= to)
 const EXCLUSIVE = new Set<string>(setData.exclusiveCardNumbers)
 const short = (r: string) => r.match(/\(([^)]+)\)/)?.[1] ?? r
+// Most wanted cards first (by number out of 222), then the rest of the range in number order.
+const lead = (cards: Card[], first: string[]) => [
+  ...first.map((n) => cards.find((c) => c.number === `${n}/222`)!).filter(Boolean),
+  ...cards.filter((c) => !first.includes(c.number.slice(0, 3))),
+]
 
 function Gallery({ cards, cols }: { cards: Card[]; cols: number }) {
   return (
@@ -86,14 +91,14 @@ const ROSTER = (() => {
 })()
 
 const TOC = [
-  { id: 'numbering', label: 'How the numbers work' },
   { id: 'slim-vs-jumbo', label: 'Slim box vs jumbo box' },
-  { id: 'ultra-rares', label: 'All 8 Ultra Rares' },
   { id: 'special-art-rares', label: 'All 18 Special Art Rares' },
   { id: 'super-rares', label: 'All 33 Super Rares' },
+  { id: 'ultra-rares', label: 'All 8 Ultra Rares' },
   { id: 'art-rares', label: 'All 6 Art Rares' },
   { id: 'ladders', label: 'One Pokémon, four rarities' },
   { id: 'roster', label: 'The Trainer roster' },
+  { id: 'numbering', label: 'How the numbers work' },
   { id: 'master-set', label: 'Chasing a master set' },
   { id: 'faq', label: 'FAQ' },
 ]
@@ -197,32 +202,6 @@ function ChasingGlorySetGuide() {
           </ol>
         </nav>
 
-        <h2 id="numbering">How the numbers work</h2>
-        <p>
-          Every card has one number out of 222. The main set runs 001 to 222, from Common to Double Rare, and everything above 222 is a
-          secret rare. The rarer versions of a card sit in the secret block at unrelated numbers, so match them by name.
-        </p>
-        <div className="table-scroll">
-          <table className="data-table">
-            <thead>
-              <tr>
-                <th scope="col">Numbers</th>
-                <th scope="col">What they are</th>
-                <th scope="col">Rarity</th>
-              </tr>
-            </thead>
-            <tbody>
-              {BLOCKS.map((b) => (
-                <tr key={b.nos}>
-                  <th scope="row">{b.nos}</th>
-                  <td>{b.what}</td>
-                  <td>{b.rarity}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-
         <h2 id="slim-vs-jumbo">Slim box vs jumbo box</h2>
         <p>
           Both boxes pull from the same card list, but Pokémon China prints a different odds chart for each pack size. Applied to one
@@ -255,23 +234,23 @@ function ChasingGlorySetGuide() {
           Super Rare, Special Art Rare or Ultra Rare in them. Most jumbo boxes will have one.
         </p>
 
-        <h2 id="ultra-rares">All 8 Ultra Rares</h2>
-        <p>The gold cards, 280 to 287. Team Rocket's Mewtwo ex is the top chase.</p>
-        <Gallery cards={byRange(280, 287)} cols={4} />
-
         <h2 id="special-art-rares">All 18 Special Art Rares</h2>
         <p>
           Fourteen Pokémon ex and four Supporters, 262 to 279. Brock's Scouting 276/222 is the Simplified Chinese exclusive.
         </p>
-        <Gallery cards={byRange(262, 279)} cols={4} />
+        <Gallery cards={lead(byRange(262, 279), ['268', '276', '267', '279', '272', '269', '266', '264'])} cols={3} />
 
         <h2 id="super-rares">All 33 Super Rares</h2>
         <p>Full arts of all 22 Pokémon ex (229 to 250) and 11 Supporters (251 to 261).</p>
-        <Gallery cards={byRange(229, 261)} cols={4} />
+        <Gallery cards={lead(byRange(229, 261), ['239', '259', '238', '237', '245', '241', '232', '255'])} cols={3} />
+
+        <h2 id="ultra-rares">All 8 Ultra Rares</h2>
+        <p>The gold cards, 280 to 287. Team Rocket's Mewtwo ex is the top chase.</p>
+        <Gallery cards={lead(byRange(280, 287), ['282', '280', '281', '285', '283', '284'])} cols={4} />
 
         <h2 id="art-rares">All 6 Art Rares</h2>
         <p>Only six this time, each a full illustration of a main-set Pokémon.</p>
-        <Gallery cards={byRange(223, 228)} cols={3} />
+        <Gallery cards={lead(byRange(223, 228), ['228', '225', '227', '226'])} cols={3} />
 
         <h2 id="ladders">One Pokémon, four rarities</h2>
         <p>Six Pokémon ex reach the gold tier. Here is every number each one prints at, if you want to collect the full run:</p>
@@ -319,6 +298,32 @@ function ChasingGlorySetGuide() {
                   <th scope="row">{r.owner}</th>
                   <td>{r.count}</td>
                   <td>{r.mons.join(', ')}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+
+        <h2 id="numbering">How the numbers work</h2>
+        <p>
+          Every card has one number out of 222. The main set runs 001 to 222, from Common to Double Rare, and everything above 222 is a
+          secret rare. The rarer versions of a card sit in the secret block at unrelated numbers, so match them by name.
+        </p>
+        <div className="table-scroll">
+          <table className="data-table">
+            <thead>
+              <tr>
+                <th scope="col">Numbers</th>
+                <th scope="col">What they are</th>
+                <th scope="col">Rarity</th>
+              </tr>
+            </thead>
+            <tbody>
+              {BLOCKS.map((b) => (
+                <tr key={b.nos}>
+                  <th scope="row">{b.nos}</th>
+                  <td>{b.what}</td>
+                  <td>{b.rarity}</td>
                 </tr>
               ))}
             </tbody>

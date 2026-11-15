@@ -50,7 +50,7 @@ const config: GemSetConfig = {
   glow1: 'rgb(232 129 61 / .30)',
   glow2: 'rgb(29 16 19 / .25)',
   heroLede:
-    'All 287 cards in Chasing Glory: 188 Pokémon across the main 222-card set — Items, Pokémon Tools, Supporters, Stadiums and Special Energy round it out — plus Art Rares, Super Rares, Special Art Rares and Ultra Rares as secret rares from 223 up. Tap any card for a closer look and every other printing beside it.',
+    'All 287 cards in Chasing Glory: 188 Pokémon across the main 222-card set (Items, Pokémon Tools, Supporters, Stadiums and Special Energy round it out), plus Art Rares, Super Rares, Special Art Rares and Ultra Rares as secret rares from 223 up. Tap any card for a closer look and every other printing beside it.',
   pokemonFact: '188',
   rarityVersionLabelsOverride: {
     'Common (C)': '001–222 (mixed)',
@@ -63,23 +63,23 @@ const config: GemSetConfig = {
     'Ultra Rare (UR)': '280–287',
   },
   aboutParagraphs: [
-    "Chasing Glory (set code CSV10C) is an officially-licensed Pokémon TCG expansion in the Chinese Scarlet & Violet series, released July 16, 2026 — the main numbered set that Black Bolt and White Flare follow. It's built around 188 Pokémon (many of them partnered with a trainer, Team Rocket's cards alone number 46) plus Items, Pokémon Tools, Supporters, Stadiums and Special Energy, for 287 cards in total.",
-    'Every card has its own collector number, 001 through 287. The 222-card main set runs from Common up to Double Rare; the 65 secret rares that follow reprint select cards in rarer treatments — an Art Rare for a handful of main-set Pokémon, a Super Rare and Special Art Rare for its ex Pokémon and top Supporters, and a run of gold Ultra Rares as the set\'s top chase cards.',
+    "Chasing Glory (set code CSV10C) is an officially-licensed Pokémon TCG expansion in the Chinese Scarlet & Violet series, released July 16, 2026, the main numbered set that Black Bolt and White Flare follow. It's built around 188 Pokémon (many of them partnered with a trainer, Team Rocket's cards alone number 46) plus Items, Pokémon Tools, Supporters, Stadiums and Special Energy, for 287 cards in total.",
+    'Every card has its own collector number, 001 through 287. The 222-card main set runs from Common up to Double Rare; the 65 secret rares that follow reprint select cards in rarer treatments: an Art Rare for a handful of main-set Pokémon, a Super Rare and Special Art Rare for its ex Pokémon and top Supporters, and a run of gold Ultra Rares as the set\'s top chase cards.',
   ],
   faq: [
     { q: 'How many cards are in Chasing Glory?', a: '287 cards: a 222-card main set covering 188 Pokémon plus Trainers, Stadiums and Special Energy, with 65 secret rares (Art Rare, Super Rare, Special Art Rare and Ultra Rare).' },
-    { q: 'What are the chase cards?', a: "The set's top tier is Ultra Rare — 8 gold cards, including Team Rocket's Mewtwo ex (282/222). Brock's Scouting 276/222, a Special Art Rare, is this set's Chinese exclusive." },
+    { q: 'What are the chase cards?', a: "The set's top tier is Ultra Rare: 8 gold cards, including Team Rocket's Mewtwo ex (282/222). Brock's Scouting 276/222, a Special Art Rare, is this set's Chinese exclusive." },
     { q: "What's Chasing Glory's rarity scheme?", a: 'An 8-tier scheme: Common, Uncommon, Rare, Double Rare, Art Rare, Super Rare, Special Art Rare and Ultra Rare, from most common to rarest.' },
     { q: 'How does Chasing Glory relate to Black Bolt and White Flare?', a: "Chasing Glory is the main numbered CSV10 set; Black Bolt (CSV10.5C) and White Flare (CSV10.6C) are the two half-sets that followed it." },
     { q: 'When did Chasing Glory release?', a: 'July 16, 2026.' },
     { q: 'What language are the cards in?', a: 'Simplified Chinese.' },
     { q: 'Where can I buy Chasing Glory?', a: 'EBI Collectibles carries Chasing Glory packs and boxes.' },
   ],
-  metaTitle: 'Chasing Glory (CSV10) Card List — All 287 Cards | EBI Collectibles',
+  metaTitle: 'Chasing Glory (CSV10) Card List: All 287 Cards | EBI Collectibles',
   metaDescription:
     'Browse every card in Pokémon TCG Chasing Glory (CSV10, Simplified Chinese): 188 Pokémon, Art Rares, Super Rares, Special Art Rares and the gold Ultra Rares, including the exclusive Brock\'s Scouting.',
-  ogTitle: 'Chasing Glory Card List — All 287 Cards',
-  ogDescription: 'All 287 cards in Pokémon TCG Chasing Glory — browse by Pokémon, filter by rarity, and track which ones you own.',
+  ogTitle: 'Chasing Glory Card List: All 287 Cards',
+  ogDescription: 'All 287 cards in Pokémon TCG Chasing Glory. Browse by Pokémon, filter by rarity, and track which ones you own.',
 }
 
 export const Route = createFileRoute('/sets/csv10')({

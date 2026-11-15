@@ -40,7 +40,7 @@ const config: GemSetConfig = {
   glow1: 'rgb(46 123 134 / .30)',
   glow2: 'rgb(179 130 68 / .25)',
   heroLede:
-    'All 165 cards in Reward Round: 114 Pokémon across the main 129-card set — Items, Pokémon Tools, Supporters, Stadiums and Special Energy round it out — plus Art Rares, Super Rares, Special Art Rares and the gold Ultra Rares as secret rares from 130 up. Tap any card for a closer look and every other printing beside it.',
+    'All 165 cards in Reward Round: 114 Pokémon across the main 129-card set (Items, Pokémon Tools, Supporters, Stadiums and Special Energy round it out), plus Art Rares, Super Rares, Special Art Rares and the gold Ultra Rares as secret rares from 130 up. Tap any card for a closer look and every other printing beside it.',
   pokemonFact: '114',
   rarityVersionLabelsOverride: {
     'Common (C)': '001–129 (mixed)',
@@ -53,22 +53,22 @@ const config: GemSetConfig = {
     'Ultra Rare (UR)': '162–165',
   },
   aboutParagraphs: [
-    'Reward Round (set code CSV4C) is an officially-licensed Pokémon TCG expansion in the Chinese Scarlet & Violet series, released July 18, 2025 — built around 114 Pokémon plus Items, Pokémon Tools, Supporters, Stadiums and Special Energy, for 165 cards in total.',
-    'Every card has its own collector number, 001 through 165. The 129-card main set runs from Common up to Double Rare; the 36 secret rares that follow reprint select cards in rarer treatments — an Art Rare for a handful of main-set Pokémon, a Super Rare and Special Art Rare for its ex Pokémon and top Supporters, and a run of gold Ultra Rares as the set\'s top chase cards.',
+    'Reward Round (set code CSV4C) is an officially-licensed Pokémon TCG expansion in the Chinese Scarlet & Violet series, released July 18, 2025, built around 114 Pokémon plus Items, Pokémon Tools, Supporters, Stadiums and Special Energy, for 165 cards in total.',
+    'Every card has its own collector number, 001 through 165. The 129-card main set runs from Common up to Double Rare; the 36 secret rares that follow reprint select cards in rarer treatments: an Art Rare for a handful of main-set Pokémon, a Super Rare and Special Art Rare for its ex Pokémon and top Supporters, and a run of gold Ultra Rares as the set\'s top chase cards.',
   ],
   faq: [
     { q: 'How many cards are in Reward Round?', a: '165 cards: a 129-card main set covering 114 Pokémon plus Trainers, Stadiums and Special Energy, with 36 secret rares (Art Rare, Super Rare, Special Art Rare and Ultra Rare).' },
-    { q: 'What are the chase cards?', a: "The set's top tier is Ultra Rare — 4 gold cards, including Gholdengo ex (162/129). Maushold ex 158/129 and Rika 159/129, both Special Art Rares, are this set's two Chinese exclusives." },
+    { q: 'What are the chase cards?', a: "The set's top tier is Ultra Rare: 4 gold cards, led by Gholdengo ex (162/129), the only gold Gholdengo ex in any language. It and two Special Art Rares, Maushold ex 158/129 and Rika 159/129, are this set's three Chinese exclusives." },
     { q: "What's Reward Round's rarity scheme?", a: 'An 8-tier scheme: Common, Uncommon, Rare, Double Rare, Art Rare, Super Rare, Special Art Rare and Ultra Rare, from most common to rarest.' },
     { q: 'When did Reward Round release?', a: 'July 18, 2025.' },
     { q: 'What language are the cards in?', a: 'Simplified Chinese.' },
     { q: 'Where can I buy Reward Round?', a: 'EBI Collectibles carries Reward Round packs and boxes.' },
   ],
-  metaTitle: 'Reward Round (CSV4) Card List — All 165 Cards | EBI Collectibles',
+  metaTitle: 'Reward Round (CSV4) Card List: All 165 Cards | EBI Collectibles',
   metaDescription:
-    'Browse every card in Pokémon TCG Reward Round (CSV4, Simplified Chinese): 114 Pokémon, Art Rares, Super Rares, Special Art Rares and the gold Ultra Rares, including the exclusive Maushold ex and Rika.',
-  ogTitle: 'Reward Round Card List — All 165 Cards',
-  ogDescription: 'All 165 cards in Pokémon TCG Reward Round — browse by Pokémon, filter by rarity, and track which ones you own.',
+    'Browse every card in Pokémon TCG Reward Round (CSV4, Simplified Chinese): 114 Pokémon, Art Rares, Super Rares, Special Art Rares and the gold Ultra Rares, including the exclusive gold Gholdengo ex, Maushold ex and Rika.',
+  ogTitle: 'Reward Round Card List: All 165 Cards',
+  ogDescription: 'All 165 cards in Pokémon TCG Reward Round. Browse by Pokémon, filter by rarity, and track which ones you own.',
 }
 
 export const Route = createFileRoute('/sets/csv4')({

@@ -511,6 +511,27 @@ function ChasingGloryOrigins() {
 
         <h2 id="patterns">Patterns worth knowing</h2>
         <p>
+          <strong>One card is new.</strong> {brock.name} {brock.cn}/222, the Special Art Rare by {brock.illus}, has no English version.
+          English only has Brock's Scouting as an Uncommon (Journey Together 146) and a full art (Journey Together 179), which Chinese
+          also prints as 207/222 and 255/222.
+        </p>
+        <p>
+          <strong>Psyduck and Golduck skip ahead.</strong> The plain Psyduck 043/222 and Golduck 044/222 by Jiro Sasumo are not in
+          either Scarlet & Violet set. In English that art arrived later, in Ascended Heroes ({psyduck.map((p) => p.en).join(' and ')}).
+          Misty's Psyduck 045/222 is a different card and comes from Destined Rivals.
+        </p>
+        <div className="card-grid cols-3">
+          {[brock, ...psyduck].map((r) => (
+            <figure key={r.cn}>
+              <img src={r.image} alt={`${r.name} ${r.cn}/222, Chasing Glory`} loading="lazy" width={300} height={419} />
+              <figcaption>
+                <strong>{r.name}</strong>
+                {r.cn}/222 · {r.src === 'NEW' ? 'New for Chasing Glory' : `${SET_NAME[r.src]} ${r.en}`}
+              </figcaption>
+            </figure>
+          ))}
+        </div>
+        <p>
           <strong>The Trainer decides the set.</strong> Every Trainer's Pokémon comes from one English set or the other, never both:
         </p>
         <div className="table-scroll">
@@ -530,27 +551,6 @@ function ChasingGloryOrigins() {
               ))}
             </tbody>
           </table>
-        </div>
-        <p>
-          <strong>Psyduck and Golduck skip ahead.</strong> The plain Psyduck 043/222 and Golduck 044/222 by Jiro Sasumo are not in
-          either Scarlet & Violet set. In English that art arrived later, in Ascended Heroes ({psyduck.map((p) => p.en).join(' and ')}).
-          Misty's Psyduck 045/222 is a different card and comes from Destined Rivals.
-        </p>
-        <p>
-          <strong>One card is new.</strong> {brock.name} {brock.cn}/222, the Special Art Rare by {brock.illus}, has no English version.
-          English only has Brock's Scouting as an Uncommon (Journey Together 146) and a full art (Journey Together 179), which Chinese
-          also prints as 207/222 and 255/222.
-        </p>
-        <div className="card-grid cols-3">
-          {[brock, ...psyduck].map((r) => (
-            <figure key={r.cn}>
-              <img src={r.image} alt={`${r.name} ${r.cn}/222, Chasing Glory`} loading="lazy" width={300} height={419} />
-              <figcaption>
-                <strong>{r.name}</strong>
-                {r.cn}/222 · {r.src === 'NEW' ? 'New for Chasing Glory' : `${SET_NAME[r.src]} ${r.en}`}
-              </figcaption>
-            </figure>
-          ))}
         </div>
         <p>
           <strong>Plenty stayed out.</strong> Chasing Glory has 287 cards against 434 across the two English sets. What did not make

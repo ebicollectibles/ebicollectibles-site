@@ -8,6 +8,13 @@ import setData from '~/data/gem-vol-4.json'
 const post = BLOG_POSTS.find((p) => p.slug === 'gem-vol-4-set-guide')!
 
 const FULL_ARTS = setData.cards.filter((c) => c.version === 7)
+// The gallery shows the most wanted full arts first (the exclusive Ponyta, then Eevee, Flutter Mane and other favorites), then the rest in number order.
+const GALLERY_FIRST = [1, 4, 28, 9, 20, 24, 12, 27, 16, 22]
+const galleryRank = (c: (typeof FULL_ARTS)[number]) => {
+  const i = GALLERY_FIRST.indexOf(c.pokemonIndex)
+  return i < 0 ? 100 + c.pokemonIndex : i
+}
+const FULL_ARTS_GALLERY = [...FULL_ARTS].sort((a, b) => galleryRank(a) - galleryRank(b))
 const EXCLUSIVE = new Set<string>(setData.exclusiveCardNumbers)
 
 // How to tell the seven versions of any Pokémon apart. Finishes are as
@@ -32,10 +39,10 @@ const BOX_AVERAGE = [
 ]
 
 const TOC = [
-  { id: 'reading-a-card', label: 'Reading a Gem Vol 4 card' },
+  { id: 'box-average', label: 'What an average box holds' },
   { id: 'full-arts', label: 'All 28 full arts' },
   { id: 'roster', label: 'The full roster' },
-  { id: 'box-average', label: 'What an average box holds' },
+  { id: 'reading-a-card', label: 'Reading a Gem Vol 4 card' },
   { id: 'master-set', label: 'Chasing a master set' },
   { id: 'faq', label: 'FAQ' },
 ]
@@ -139,45 +146,39 @@ function GemVol4SetGuide() {
           </ol>
         </nav>
 
-        <h2 id="reading-a-card">Reading a Gem Vol 4 card</h2>
+        <h2 id="box-average">What an average box holds</h2>
         <p>
-          Every card number has two parts. The first two digits are the Pokémon (01 to 28) and the next two are the version (01 to
-          07), so 0105/07 is Ponyta's version 05. The symbol printed after the number gives the rarity, and the foil tells you the
-          version at a glance:
+          A booster box is 18 packs of 4, so 72 holo cards. Pokémon China publishes the share of the print run each rarity makes up.
+          Applied to one box, that works out to roughly this:
         </p>
         <div className="table-scroll">
           <table className="data-table">
             <thead>
               <tr>
-                <th scope="col">Version</th>
                 <th scope="col">Rarity</th>
-                <th scope="col">What to look for</th>
+                <th scope="col">Print share</th>
+                <th scope="col">Per 72-card box</th>
               </tr>
             </thead>
             <tbody>
-              {VERSIONS.map((v) => (
-                <tr key={v.v}>
-                  <th scope="row">{v.v}</th>
-                  <td>
-                    <span className="sym" aria-hidden="true">
-                      {v.symbol}
-                    </span>{' '}
-                    {v.rarity}
-                  </td>
-                  <td>{v.look}</td>
+              {BOX_AVERAGE.map((r) => (
+                <tr key={r.label}>
+                  <th scope="row">{r.label}</th>
+                  <td>{r.share}</td>
+                  <td>{r.perBox}</td>
                 </tr>
               ))}
             </tbody>
           </table>
         </div>
-        <p className="table-note">Finishes as printed on Ponyta's run, 0101/07 to 0107/07.</p>
+        <p className="table-note">Averages, not guarantees. Individual boxes vary.</p>
 
         <h2 id="full-arts">All 28 full arts</h2>
         <p>
           There is one full art per Pokémon, each with its own illustration. Ponyta's is the only one drawn just for Gem Vol 4.
         </p>
         <div className="card-grid cols-4">
-          {FULL_ARTS.map((c) => (
+          {FULL_ARTS_GALLERY.map((c) => (
             <figure key={c.number}>
               <img src={c.image} alt={`${c.name} full art ${c.number}, Gem Vol 4`} loading="lazy" width={300} height={419} />
               <figcaption>
@@ -220,32 +221,38 @@ function GemVol4SetGuide() {
           </table>
         </div>
 
-        <h2 id="box-average">What an average box holds</h2>
+        <h2 id="reading-a-card">Reading a Gem Vol 4 card</h2>
         <p>
-          A booster box is 18 packs of 4, so 72 holo cards. Pokémon China publishes the share of the print run each rarity makes up.
-          Applied to one box, that works out to roughly this:
+          Every card number has two parts. The first two digits are the Pokémon (01 to 28) and the next two are the version (01 to
+          07), so 0105/07 is Ponyta's version 05. The symbol printed after the number gives the rarity, and the foil tells you the
+          version at a glance:
         </p>
         <div className="table-scroll">
           <table className="data-table">
             <thead>
               <tr>
+                <th scope="col">Version</th>
                 <th scope="col">Rarity</th>
-                <th scope="col">Print share</th>
-                <th scope="col">Per 72-card box</th>
+                <th scope="col">What to look for</th>
               </tr>
             </thead>
             <tbody>
-              {BOX_AVERAGE.map((r) => (
-                <tr key={r.label}>
-                  <th scope="row">{r.label}</th>
-                  <td>{r.share}</td>
-                  <td>{r.perBox}</td>
+              {VERSIONS.map((v) => (
+                <tr key={v.v}>
+                  <th scope="row">{v.v}</th>
+                  <td>
+                    <span className="sym" aria-hidden="true">
+                      {v.symbol}
+                    </span>{' '}
+                    {v.rarity}
+                  </td>
+                  <td>{v.look}</td>
                 </tr>
               ))}
             </tbody>
           </table>
         </div>
-        <p className="table-note">Averages, not guarantees. Individual boxes vary.</p>
+        <p className="table-note">Finishes as printed on Ponyta's run, 0101/07 to 0107/07.</p>
 
         <h2 id="master-set">Chasing a master set</h2>
         <p>

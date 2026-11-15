@@ -43,7 +43,7 @@ const config: GemSetConfig = {
   glow1: 'rgb(64 58 113 / .30)',
   glow2: 'rgb(40 133 151 / .25)',
   heroLede:
-    'All 163 cards in True Mystery: 113 Pokémon across the main 128-card set — Items, Pokémon Tools, Supporters and Stadiums round it out — plus Art Rares, Super Rares, Special Art Rares and the gold Ultra Rares as secret rares from 129 up. Tap any card for a closer look and every other printing beside it.',
+    'All 163 cards in True Mystery: 113 Pokémon across the main 128-card set (Items, Pokémon Tools, Supporters and Stadiums round it out), plus Art Rares, Super Rares, Special Art Rares and the gold Ultra Rares as secret rares from 129 up. Tap any card for a closer look and every other printing beside it.',
   pokemonFact: '113',
   rarityVersionLabelsOverride: {
     'Common (C)': '001–128 (mixed)',
@@ -56,22 +56,22 @@ const config: GemSetConfig = {
     'Ultra Rare (UR)': '160–163',
   },
   aboutParagraphs: [
-    'True Mystery (set code CSV6C) is an officially-licensed Pokémon TCG expansion in the Chinese Scarlet & Violet series, released November 7, 2025 — an Ancient/Future Paradox-themed set built around 113 Pokémon plus Items, Pokémon Tools, Supporters and Stadiums, for 163 cards in total.',
-    'Every card has its own collector number, 001 through 163. The 128-card main set runs from Common up to Double Rare; the 35 secret rares that follow reprint select cards in rarer treatments — an Art Rare for a handful of main-set Pokémon, a Super Rare and Special Art Rare for its ex Pokémon and top Supporters, and a run of gold Ultra Rares as the set\'s top chase cards.',
+    'True Mystery (set code CSV6C) is an officially-licensed Pokémon TCG expansion in the Chinese Scarlet & Violet series, released November 7, 2025, an Ancient/Future Paradox-themed set built around 113 Pokémon plus Items, Pokémon Tools, Supporters and Stadiums, for 163 cards in total.',
+    'Every card has its own collector number, 001 through 163. The 128-card main set runs from Common up to Double Rare; the 35 secret rares that follow reprint select cards in rarer treatments: an Art Rare for a handful of main-set Pokémon, a Super Rare and Special Art Rare for its ex Pokémon and top Supporters, and a run of gold Ultra Rares as the set\'s top chase cards.',
   ],
   faq: [
     { q: 'How many cards are in True Mystery?', a: '163 cards: a 128-card main set covering 113 Pokémon plus Trainers and Stadiums, with 35 secret rares (Art Rare, Super Rare, Special Art Rare and Ultra Rare).' },
-    { q: 'What are the chase cards?', a: "The set's top tier is Ultra Rare — 4 gold cards, including Roaring Moon ex (161/128). Iron Hands ex 152/128, a Special Art Rare, is this set's Chinese exclusive." },
+    { q: 'What are the chase cards?', a: "The set's top tier is Ultra Rare: 4 gold cards, including Roaring Moon ex (161/128). Iron Hands ex 152/128, a Special Art Rare, is this set's Chinese exclusive." },
     { q: "What's True Mystery's rarity scheme?", a: 'An 8-tier scheme: Common, Uncommon, Rare, Double Rare, Art Rare, Super Rare, Special Art Rare and Ultra Rare, from most common to rarest.' },
     { q: 'When did True Mystery release?', a: 'November 7, 2025.' },
     { q: 'What language are the cards in?', a: 'Simplified Chinese.' },
     { q: 'Where can I buy True Mystery?', a: 'EBI Collectibles carries True Mystery packs and boxes.' },
   ],
-  metaTitle: 'True Mystery (CSV6) Card List — All 163 Cards | EBI Collectibles',
+  metaTitle: 'True Mystery (CSV6) Card List: All 163 Cards | EBI Collectibles',
   metaDescription:
     'Browse every card in Pokémon TCG True Mystery (CSV6, Simplified Chinese): 113 Pokémon, Art Rares, Super Rares, Special Art Rares and the gold Ultra Rares, including the exclusive Iron Hands ex.',
-  ogTitle: 'True Mystery Card List — All 163 Cards',
-  ogDescription: 'All 163 cards in Pokémon TCG True Mystery — browse by Pokémon, filter by rarity, and track which ones you own.',
+  ogTitle: 'True Mystery Card List: All 163 Cards',
+  ogDescription: 'All 163 cards in Pokémon TCG True Mystery. Browse by Pokémon, filter by rarity, and track which ones you own.',
 }
 
 export const Route = createFileRoute('/sets/csv6')({

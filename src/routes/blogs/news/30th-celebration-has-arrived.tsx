@@ -46,26 +46,26 @@ const SAR = [
   { id: '0127', no: '127/103', name: 'Pikachu ex', note: 'Special Art Rare · kantaro' },
   { id: '0130', no: '130/103', name: 'Sylveon ex', note: 'Special Art Rare · You Iribi' },
   { id: '0125', no: '125/103', name: 'Greninja ex', note: 'Special Art Rare' },
-  { id: '0124', no: '124/103', name: 'Fuecoco ex', note: 'Special Art Rare' },
   { id: '0133', no: '133/103', name: 'Salamence ex', note: 'Special Art Rare' },
+  { id: '0124', no: '124/103', name: 'Fuecoco ex', note: 'Special Art Rare' },
 ]
 
 const CLASSICS = [
   { id: '0137', no: '137/103', name: 'Charizard', note: 'Base Set, 1999' },
   { id: '0136', no: '136/103', name: 'Pikachu', note: 'Base Set, 1999' },
-  { id: '0141', no: '141/103', name: 'Shining Celebi', note: 'Neo Destiny, 2002' },
-  { id: '0144', no: '144/103', name: 'Dark Tyranitar', note: 'EX Team Rocket Returns, 2004' },
-  { id: '0160', no: '160/103', name: 'Pikachu & Zekrom-GX', note: 'Team Up, 2019' },
-  { id: '0165', no: '165/103', name: 'Magikarp', note: 'Paldea Evolved, 2023' },
+  { id: '0142', no: '142/103', name: 'Lugia', note: 'Aquapolis, 2003' },
+  { id: '0138', no: '138/103', name: 'Misty', note: 'Gym Heroes, 2000' },
+  { id: '0150', no: '150/103', name: 'Gengar', note: 'Triumphant, 2010' },
+  { id: '0154', no: '154/103', name: 'Rayquaza-EX', note: 'Dragons Exalted, 2012' },
 ]
 
 const ART_RARES = [
   { id: '0121', no: '121/103', name: 'Ditto', note: 'Art Rare · Ounishi' },
+  { id: '0108', no: '108/103', name: 'Zapdos', note: 'Art Rare' },
+  { id: '0107', no: '107/103', name: 'Articuno', note: 'Art Rare' },
+  { id: '0105', no: '105/103', name: 'Moltres', note: 'Art Rare' },
   { id: '0106', no: '106/103', name: 'Lapras', note: 'Art Rare · Amelicart' },
-  { id: '0111', no: '111/103', name: 'Drifloon', note: 'Art Rare · Whisker' },
-  { id: '0113', no: '113/103', name: 'Lycanroc', note: 'Art Rare · Raita Kazama' },
   { id: '0122', no: '122/103', name: 'Hisuian Zorua', note: 'Art Rare · 0313' },
-  { id: '0120', no: '120/103', name: 'Meowth', note: 'Art Rare' },
 ]
 
 const BLOCKS = [
@@ -90,14 +90,14 @@ const ODDS = [
 ]
 
 const TOC = [
-  { id: 'how-the-set-works', label: 'How the set is built' },
-  { id: 'pikachu', label: '30 Pikachu, one in every pack' },
   { id: 'futuristic', label: 'The chase: Futuristic Rares' },
   { id: 'sar', label: 'Special Art Rares' },
   { id: 'classics', label: '30 classic cards return' },
+  { id: 'pikachu', label: '30 Pikachu, one in every pack' },
   { id: 'art-rares', label: 'Art Rares' },
-  { id: 'promos', label: 'The 33 promos' },
+  { id: 'how-the-set-works', label: 'How the set is built' },
   { id: 'booster-box', label: 'What is inside a booster box' },
+  { id: 'promos', label: 'The 33 promos' },
   { id: 'binder', label: 'A binder for the whole set' },
   { id: 'faq', label: 'FAQ' },
 ]
@@ -229,40 +229,6 @@ function ThirtiethReleasePost() {
           </ol>
         </nav>
 
-        <h2 id="how-the-set-works">How the set is built</h2>
-        <p>
-          This is a regular numbered set, not a Gem-style ladder. The main set runs 001 to 103, and everything after that is a secret
-          rare. There is no Uncommon tier. Instead there is a set-specific Pikachu rarity for the 30 Pikachu cards.
-        </p>
-        <div className="table-scroll">
-          <table className="data-table">
-            <thead>
-              <tr>
-                <th scope="col">Numbers</th>
-                <th scope="col">What they are</th>
-                <th scope="col">Rarity</th>
-              </tr>
-            </thead>
-            <tbody>
-              {BLOCKS.map((b) => (
-                <tr key={b.nos}>
-                  <th scope="row">{b.nos}</th>
-                  <td>{b.what}</td>
-                  <td>{b.rarity}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-        <p className="table-note">Eight basic Energy cards and 33 promos sit outside the numbered set.</p>
-
-        <h2 id="pikachu">30 Pikachu, one in every pack</h2>
-        <p>
-          Every pack holds one of 30 Pikachu cards, numbered 017 to 046, and each was drawn by a different illustrator. Each one has its
-          own art and a Pikachu-face holo pattern, so collecting all 30 is a set within the set.
-        </p>
-        <Grid cards={PIKACHU} cols={3} />
-
         <h2 id="futuristic">The chase: Futuristic Rares</h2>
         <p>
           Futuristic Rare is a brand-new rarity made for this set, illustrated by the graphic artist YOSHIROTTEN. There are only two:
@@ -299,6 +265,13 @@ function ThirtiethReleasePost() {
           Our <Link to="/blogs/news/30th-celebration-card-origins">card origins guide</Link> traces all 30 back to the original card.
         </p>
 
+        <h2 id="pikachu">30 Pikachu, one in every pack</h2>
+        <p>
+          Every pack holds one of 30 Pikachu cards, numbered 017 to 046, and each was drawn by a different illustrator. Each one has its
+          own art and a Pikachu-face holo pattern, so collecting all 30 is a set within the set.
+        </p>
+        <Grid cards={PIKACHU} cols={3} />
+
         <h2 id="art-rares">Art Rares</h2>
         <p>
           Twenty Art Rares, 104 to 123, give main-set Pokémon a full illustration. Ditto 121/103 is one to note: in English that art was
@@ -306,28 +279,32 @@ function ThirtiethReleasePost() {
         </p>
         <Grid cards={ART_RARES} cols={3} />
 
-        <h2 id="promos">The 33 promos</h2>
-        <p>Thirty-three promos, numbered 001 to 033/30th-P, come in the special products around the set rather than in booster packs:</p>
+        <h2 id="how-the-set-works">How the set is built</h2>
+        <p>
+          This is a regular numbered set, not a Gem-style ladder. The main set runs 001 to 103, and everything after that is a secret
+          rare. There is no Uncommon tier. Instead there is a set-specific Pikachu rarity for the 30 Pikachu cards.
+        </p>
         <div className="table-scroll">
           <table className="data-table">
             <thead>
               <tr>
-                <th scope="col">Promos</th>
-                <th scope="col">Cards</th>
-                <th scope="col">Where they come from</th>
+                <th scope="col">Numbers</th>
+                <th scope="col">What they are</th>
+                <th scope="col">Rarity</th>
               </tr>
             </thead>
             <tbody>
-              {PROMOS.map((p) => (
-                <tr key={p.nos}>
-                  <th scope="row">{p.nos}</th>
-                  <td>{p.what}</td>
-                  <td>{p.where}</td>
+              {BLOCKS.map((b) => (
+                <tr key={b.nos}>
+                  <th scope="row">{b.nos}</th>
+                  <td>{b.what}</td>
+                  <td>{b.rarity}</td>
                 </tr>
               ))}
             </tbody>
           </table>
         </div>
+        <p className="table-note">Eight basic Energy cards and 33 promos sit outside the numbered set.</p>
 
         <h2 id="booster-box">What is inside a booster box</h2>
         <p>
@@ -359,6 +336,29 @@ function ThirtiethReleasePost() {
         <p>
           For every Pikachu, classic and promo in one place, see our <Link to="/blogs/news/30th-celebration-set-guide">30th Celebration set guide</Link>.
         </p>
+
+        <h2 id="promos">The 33 promos</h2>
+        <p>Thirty-three promos, numbered 001 to 033/30th-P, come in the special products around the set rather than in booster packs:</p>
+        <div className="table-scroll">
+          <table className="data-table">
+            <thead>
+              <tr>
+                <th scope="col">Promos</th>
+                <th scope="col">Cards</th>
+                <th scope="col">Where they come from</th>
+              </tr>
+            </thead>
+            <tbody>
+              {PROMOS.map((p) => (
+                <tr key={p.nos}>
+                  <th scope="row">{p.nos}</th>
+                  <td>{p.what}</td>
+                  <td>{p.where}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
 
         <h2 id="binder">A binder for the whole set</h2>
         <p>

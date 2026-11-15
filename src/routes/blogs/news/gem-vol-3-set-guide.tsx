@@ -11,9 +11,16 @@ type Card = (typeof setData.cards)[number]
 const EXCLUSIVE = new Set<string>(setData.exclusiveCardNumbers)
 
 const POKEMON_CARDS = setData.cards.filter((c) => c.pokemonIndex <= 18)
-const FULL_ARTS = POKEMON_CARDS.filter((c) => c.version === 7 && c.rarity === 'Triple Rare')
-const EX_CARDS = POKEMON_CARDS.filter((c) => c.version === 7 && c.rarity === 'Rare')
-const TRAINERS_ENERGY = setData.cards.filter((c) => c.pokemonIndex >= 19)
+// Galleries put the most wanted first: the five new lantern full arts (Gengar, Meowth, Cubone, Chandelure,
+// Ceruledge), then the reprinted full arts, then the ex led by Gardevoir and Darkrai.
+const RANK = [3, 2, 4, 11, 15, 13, 9, 14, 16, 6, 10, 8, 5, 12, 1, 7, 18, 17]
+const byRank = (cards: Card[]) => [...cards].sort((a, b) => RANK.indexOf(a.pokemonIndex) - RANK.indexOf(b.pokemonIndex))
+const FULL_ARTS = byRank(POKEMON_CARDS.filter((c) => c.version === 7 && c.rarity === 'Triple Rare'))
+const EX_CARDS = byRank(POKEMON_CARDS.filter((c) => c.version === 7 && c.rarity === 'Rare'))
+// Arven's full art first, then the Items and Energy.
+const TRAINERS_ENERGY = setData.cards
+  .filter((c) => c.pokemonIndex >= 19)
+  .sort((a, b) => Number(b.number.startsWith('1904')) - Number(a.number.startsWith('1904')))
 const ROSTER = POKEMON_CARDS.filter((c) => c.version === 1).map((c) => {
   const top = POKEMON_CARDS.find((x) => x.pokemonIndex === c.pokemonIndex && x.version === 7)!
   return { pp: c.number.slice(0, 2), name: c.name, seventh: top.rarity === 'Rare' ? top.name : 'Full art', exclusive: EXCLUSIVE.has(top.number) }
@@ -40,12 +47,12 @@ const BOX_AVERAGE = [
 ]
 
 const TOC = [
-  { id: 'reading-a-card', label: 'Reading a Gem Vol 3 card' },
+  { id: 'box-average', label: 'What an average box holds' },
   { id: 'full-arts', label: 'All 9 full arts' },
   { id: 'pokemon-ex', label: 'All 9 Pokémon ex' },
   { id: 'trainers-energy', label: 'Trainers and Energy' },
   { id: 'roster', label: 'The full roster' },
-  { id: 'box-average', label: 'What an average box holds' },
+  { id: 'reading-a-card', label: 'Reading a Gem Vol 3 card' },
   { id: 'master-set', label: 'Chasing a master set' },
   { id: 'faq', label: 'FAQ' },
 ]
@@ -177,35 +184,32 @@ function GemVol3SetGuide() {
           </ol>
         </nav>
 
-        <h2 id="reading-a-card">Reading a Gem Vol 3 card</h2>
+        <h2 id="box-average">What an average box holds</h2>
         <p>
-          Pokémon cards are numbered PPVV/07: the first two digits are the Pokémon (01 to 18) and the next two are the version, so 0305/07
-          is Gengar's version 05. Trainers are numbered 19VV/04 and Energy 20VV/06. The symbol after the number gives the rarity, and
-          the foil tells you the version at a glance:
+          A booster box is 18 packs of 4, so 72 holo cards. Pokémon China publishes the share of the print run each rarity makes up.
+          Applied to one box, that works out to roughly this:
         </p>
         <div className="table-scroll">
           <table className="data-table">
             <thead>
               <tr>
-                <th scope="col">Version</th>
                 <th scope="col">Rarity</th>
-                <th scope="col">What to look for</th>
+                <th scope="col">Print share</th>
+                <th scope="col">Per 72-card box</th>
               </tr>
             </thead>
             <tbody>
-              {VERSIONS.map((v) => (
-                <tr key={v.v}>
-                  <th scope="row">{v.v}</th>
-                  <td>
-                    <SymbolCell symbol={v.symbol} label={v.rarity} />
-                  </td>
-                  <td>{v.look}</td>
+              {BOX_AVERAGE.map((r) => (
+                <tr key={r.label}>
+                  <th scope="row">{r.label}</th>
+                  <td>{r.share}</td>
+                  <td>{r.perBox}</td>
                 </tr>
               ))}
             </tbody>
           </table>
         </div>
-        <p className="table-note">Finishes as printed on Gengar's run, 0301/07 to 0306/07.</p>
+        <p className="table-note">Averages, not guarantees. Individual boxes vary.</p>
 
         <h2 id="full-arts">All 9 full arts</h2>
         <p>Five of these are new art drawn for this set, marked Exclusive. The other four reprint existing art.</p>
@@ -248,32 +252,35 @@ function GemVol3SetGuide() {
           </table>
         </div>
 
-        <h2 id="box-average">What an average box holds</h2>
+        <h2 id="reading-a-card">Reading a Gem Vol 3 card</h2>
         <p>
-          A booster box is 18 packs of 4, so 72 holo cards. Pokémon China publishes the share of the print run each rarity makes up.
-          Applied to one box, that works out to roughly this:
+          Pokémon cards are numbered PPVV/07: the first two digits are the Pokémon (01 to 18) and the next two are the version, so 0305/07
+          is Gengar's version 05. Trainers are numbered 19VV/04 and Energy 20VV/06. The symbol after the number gives the rarity, and
+          the foil tells you the version at a glance:
         </p>
         <div className="table-scroll">
           <table className="data-table">
             <thead>
               <tr>
+                <th scope="col">Version</th>
                 <th scope="col">Rarity</th>
-                <th scope="col">Print share</th>
-                <th scope="col">Per 72-card box</th>
+                <th scope="col">What to look for</th>
               </tr>
             </thead>
             <tbody>
-              {BOX_AVERAGE.map((r) => (
-                <tr key={r.label}>
-                  <th scope="row">{r.label}</th>
-                  <td>{r.share}</td>
-                  <td>{r.perBox}</td>
+              {VERSIONS.map((v) => (
+                <tr key={v.v}>
+                  <th scope="row">{v.v}</th>
+                  <td>
+                    <SymbolCell symbol={v.symbol} label={v.rarity} />
+                  </td>
+                  <td>{v.look}</td>
                 </tr>
               ))}
             </tbody>
           </table>
         </div>
-        <p className="table-note">Averages, not guarantees. Individual boxes vary.</p>
+        <p className="table-note">Finishes as printed on Gengar's run, 0301/07 to 0306/07.</p>
 
         <h2 id="master-set">Chasing a master set</h2>
         <p>

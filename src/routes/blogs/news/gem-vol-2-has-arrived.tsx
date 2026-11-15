@@ -20,16 +20,17 @@ const EEVEE_SAMPLE = [
   { id: '0115', label: 'Full art', note: 'Triple Rare · Exclusive' },
 ]
 
+// Most wanted first.
 const VMAX = [
+  { id: '0614', name: 'Umbreon VMAX' },
+  { id: '0914', name: 'Sylveon VMAX' },
+  { id: '0514', name: 'Espeon VMAX' },
   { id: '0114', name: 'Eevee VMAX' },
+  { id: '0814', name: 'Glaceon VMAX' },
+  { id: '0714', name: 'Leafeon VMAX' },
   { id: '0214', name: 'Vaporeon VMAX' },
   { id: '0314', name: 'Jolteon VMAX' },
   { id: '0414', name: 'Flareon VMAX' },
-  { id: '0514', name: 'Espeon VMAX' },
-  { id: '0614', name: 'Umbreon VMAX' },
-  { id: '0714', name: 'Leafeon VMAX' },
-  { id: '0814', name: 'Glaceon VMAX' },
-  { id: '0914', name: 'Sylveon VMAX' },
 ]
 
 const TRAINERS = [
@@ -49,10 +50,10 @@ const RARITY = [
 ]
 
 const TOC = [
-  { id: 'how-the-set-works', label: 'How the set is built' },
-  { id: 'eevee', label: "Eevee's 15 cards" },
   { id: 'forest-full-arts', label: 'The chase: four full arts, one forest' },
   { id: 'vmax', label: 'Nine VMAX' },
+  { id: 'how-the-set-works', label: 'How the set is built' },
+  { id: 'eevee', label: "Eevee's 15 cards" },
   { id: 'trainers-energy', label: 'Trainers and Energy' },
   { id: 'booster-box', label: 'What is inside a booster box' },
   { id: 'gem-pack-timeline', label: 'Gem Pack timeline' },
@@ -192,6 +193,42 @@ function GemVol2Post() {
           </ol>
         </nav>
 
+        <h2 id="forest-full-arts">The chase: four full arts, one forest</h2>
+        <p>
+          The four full arts are new artwork by HYOGONOSUKE, drawn for this set. Each works on its own, but lay them side by side in the
+          order Leafeon, Sylveon, Umbreon, Eevee and they join into one long picture of the four resting and playing in a sunlit
+          forest.
+        </p>
+        <img
+          className="inline-media"
+          src={`${SITE_URL}/assets/blog/gem-vol-2-forest-panorama.webp`}
+          alt="The four Gem Pack Vol. 2 full arts, Leafeon, Sylveon, Umbreon and Eevee, lined up to form one forest scene"
+          loading="lazy"
+          width={1600}
+          height={562}
+        />
+        <p>
+          The four are Leafeon 0715/15, Sylveon 0915/15, Umbreon 0615/15 and Eevee 0115/15, all Triple Rares. Because the art debuts
+          here, Gem Vol 2 is the only place to pull them, and completing the panorama is the goal for most collectors of this set.
+        </p>
+
+        <h2 id="vmax">Nine VMAX</h2>
+        <p>
+          After the full arts, the VMAX are the next big pulls. Every Pokémon in the set has one, all Triple Rares, and Umbreon VMAX
+          and Sylveon VMAX are the usual favorites.
+        </p>
+        <div className="card-grid cols-3">
+          {VMAX.map((c) => (
+            <figure key={c.id}>
+              <img src={cardImg(c.id)} alt={`${c.name} ${c.id}, Gem Vol 2`} loading="lazy" width={300} height={419} />
+              <figcaption>
+                <strong>{c.name}</strong>
+                {c.id} · Triple Rare
+              </figcaption>
+            </figure>
+          ))}
+        </div>
+
         <h2 id="how-the-set-works">How the set is built</h2>
         <p>
           Vol. 2 has only nine Pokémon, but each one gets a long run. Versions 01 to 12 alternate between two different base cards, with
@@ -243,41 +280,6 @@ function GemVol2Post() {
               <figcaption>
                 <strong>{c.id}/15</strong>
                 {c.label} · {c.note}
-              </figcaption>
-            </figure>
-          ))}
-        </div>
-
-        <h2 id="forest-full-arts">The chase: four full arts, one forest</h2>
-        <p>
-          The four full arts are new artwork by HYOGONOSUKE, drawn for this set. Each works on its own, but lay them side by side in the
-          order Leafeon, Sylveon, Umbreon, Eevee and they join into one long picture of the four resting and playing in a sunlit
-          forest.
-        </p>
-        <img
-          className="inline-media"
-          src={`${SITE_URL}/assets/blog/gem-vol-2-forest-panorama.webp`}
-          alt="The four Gem Pack Vol. 2 full arts, Leafeon, Sylveon, Umbreon and Eevee, lined up to form one forest scene"
-          loading="lazy"
-          width={1600}
-          height={562}
-        />
-        <p>
-          The four are Leafeon 0715/15, Sylveon 0915/15, Umbreon 0615/15 and Eevee 0115/15, all Triple Rares. Because the art debuts
-          here, Gem Vol 2 is the only place to pull them, and completing the panorama is the goal for most collectors of this set.
-        </p>
-
-        <h2 id="vmax">Nine VMAX</h2>
-        <p>
-          Every Pokémon in the set has a VMAX at version 14, all Triple Rares. Umbreon VMAX and Sylveon VMAX are the usual favorites.
-        </p>
-        <div className="card-grid cols-3">
-          {VMAX.map((c) => (
-            <figure key={c.id}>
-              <img src={cardImg(c.id)} alt={`${c.name} ${c.id}, Gem Vol 2`} loading="lazy" width={300} height={419} />
-              <figcaption>
-                <strong>{c.name}</strong>
-                {c.id} · Triple Rare
               </figcaption>
             </figure>
           ))}

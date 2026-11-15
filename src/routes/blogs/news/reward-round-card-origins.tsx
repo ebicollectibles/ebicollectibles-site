@@ -327,7 +327,8 @@ function RewardRoundOrigins() {
     '@type': 'FAQPage',
     mainEntity: FAQ.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
   }
-  const fresh = rows.filter((r) => r.src === 'NEW')
+  // The gold Gholdengo ex first, then the two SARs.
+  const fresh = ['162', '158', '159'].map((n) => rows.find((r) => r.cn === n)!)
 
   return (
     <>
@@ -399,6 +400,28 @@ function RewardRoundOrigins() {
 
         <h2 id="patterns">Patterns worth knowing</h2>
         <p>
+          <strong>Three cards are new.</strong> English never printed a gold Gholdengo ex, a Maushold ex Special Art Rare or a Rika
+          Special Art Rare. The English Gholdengo ex Special Art Rare, Maushold ex Super Rare and Rika Super Rare are all here too, so a
+          Chinese binder holds one more version of each.
+        </p>
+        <div className="card-grid cols-3">
+          {fresh.map((r) => (
+            <figure key={r.cn}>
+              <img src={r.image} alt={`${r.name} ${r.cn}/129, Reward Round`} loading="lazy" width={300} height={419} />
+              <figcaption>
+                <strong>{r.name}</strong>
+                {r.cn}/129 · {r.rarity} · {r.illus}
+              </figcaption>
+            </figure>
+          ))}
+        </div>
+        <p>
+          <strong>The rest of the chase matches English.</strong> Gholdengo ex, Maushold ex, Golisopod ex and Tapu Koko ex
+          match Paradox Rift, Pidgeot ex and Revavroom ex match Obsidian Flames, and Slowking ex, Dedenne ex and Boss's Orders match
+          Paldea Evolved. The exceptions are the Daisy's Help Super Rare, which matches 151, and the gold Nest Ball, which matches the
+          original Scarlet & Violet set.
+        </p>
+        <p>
           <strong>Three sets do most of the work.</strong> Every card's English source, from most cards to fewest:
         </p>
         <div className="table-scroll">
@@ -418,28 +441,6 @@ function RewardRoundOrigins() {
               ))}
             </tbody>
           </table>
-        </div>
-        <p>
-          <strong>The chase cards come from the same three sets.</strong> Gholdengo ex, Maushold ex, Golisopod ex and Tapu Koko ex
-          match Paradox Rift, Pidgeot ex and Revavroom ex match Obsidian Flames, and Slowking ex, Dedenne ex and Boss's Orders match
-          Paldea Evolved. The exceptions are the Daisy's Help Super Rare, which matches 151, and the gold Nest Ball, which matches the
-          original Scarlet & Violet set.
-        </p>
-        <p>
-          <strong>Three cards are new.</strong> English never printed a gold Gholdengo ex, a Maushold ex Special Art Rare or a Rika
-          Special Art Rare. The English Gholdengo ex Special Art Rare, Maushold ex Super Rare and Rika Super Rare are all here too, so a
-          Chinese binder holds one more version of each.
-        </p>
-        <div className="card-grid cols-3">
-          {fresh.map((r) => (
-            <figure key={r.cn}>
-              <img src={r.image} alt={`${r.name} ${r.cn}/129, Reward Round`} loading="lazy" width={300} height={419} />
-              <figcaption>
-                <strong>{r.name}</strong>
-                {r.cn}/129 · {r.rarity} · {r.illus}
-              </figcaption>
-            </figure>
-          ))}
         </div>
         <p>
           <strong>Two promo arts.</strong> Spidops 005/129 and Annihilape ex 066/129 use art that English released as SV Black Star

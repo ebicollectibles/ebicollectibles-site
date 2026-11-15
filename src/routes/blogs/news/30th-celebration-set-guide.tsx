@@ -10,12 +10,17 @@ const post = BLOG_POSTS.find((p) => p.slug === '30th-celebration-set-guide')!
 type Card = (typeof setData.cards)[number]
 const byRange = (from: number, to: number) => setData.cards.filter((c) => c.pokemonIndex >= from && c.pokemonIndex <= to)
 const withImage = (cards: Card[]) => cards.filter((c) => c.image)
+// Most wanted cards first (by number out of 103), then the rest in number order.
+const lead = (cards: Card[], first: string[]) => [
+  ...first.map((n) => cards.find((c) => c.number === `${n}/103`)!).filter(Boolean),
+  ...cards.filter((c) => !first.includes(c.number.slice(0, 3))),
+]
 
 const PIKACHU = byRange(17, 46)
 const ART_RARES = byRange(104, 123)
-const SAR = byRange(124, 133)
+const SAR = lead(byRange(124, 133), ['126', '127', '130', '125'])
 const FUR = byRange(134, 135)
-const CLASSICS = byRange(136, 165)
+const CLASSICS = lead(byRange(136, 165), ['137', '136', '142', '138', '150', '154', '141', '163'])
 const PROMOS = setData.cards.filter((c) => c.pokemonIndex > 1000)
 const MISSING = [...ART_RARES, ...SAR].filter((c) => !c.image)
 
@@ -62,13 +67,13 @@ const PROMO_SOURCES: Record<string, string> = {
 }
 
 const TOC = [
-  { id: 'reading-a-card', label: 'Reading a 30th Celebration card' },
-  { id: 'pikachu', label: 'All 30 Pikachu' },
-  { id: 'futuristic-sar', label: 'Futuristic and Special Art Rares' },
-  { id: 'art-rares', label: 'All 20 Art Rares' },
-  { id: 'classics', label: 'All 30 classic cards' },
-  { id: 'promos', label: 'All 33 promos' },
   { id: 'box-average', label: 'What an average box holds' },
+  { id: 'futuristic-sar', label: 'Futuristic and Special Art Rares' },
+  { id: 'classics', label: 'All 30 classic cards' },
+  { id: 'pikachu', label: 'All 30 Pikachu' },
+  { id: 'art-rares', label: 'All 20 Art Rares' },
+  { id: 'promos', label: 'All 33 promos' },
+  { id: 'reading-a-card', label: 'Reading a 30th Celebration card' },
   { id: 'master-set', label: 'Chasing a master set' },
   { id: 'faq', label: 'FAQ' },
 ]
@@ -172,70 +177,6 @@ function ThirtiethSetGuide() {
           </ol>
         </nav>
 
-        <h2 id="reading-a-card">Reading a 30th Celebration card</h2>
-        <p>
-          Set cards are numbered out of 103, so anything past 103/103 is a secret rare. Promos are numbered separately as NNN/30th-P, so
-          001/30th-P Bulbasaur and 001/103 Exeggcute are different cards. The rarities, from most to least common:
-        </p>
-        <div className="table-scroll">
-          <table className="data-table">
-            <thead>
-              <tr>
-                <th scope="col">Rarity</th>
-                <th scope="col">Where</th>
-                <th scope="col">Cards</th>
-              </tr>
-            </thead>
-            <tbody>
-              {RARITY.map((r) => (
-                <tr key={r.name}>
-                  <th scope="row">{r.name}</th>
-                  <td>{r.where}</td>
-                  <td>{r.count}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-
-        <h2 id="pikachu">All 30 Pikachu</h2>
-        <p>One in every pack, each by a different illustrator, numbered 017 to 046.</p>
-        <Gallery cards={PIKACHU} cols={4} label={(c, i) => `${c.number} · ${i + 1} of 30`} />
-
-        <h2 id="futuristic-sar">Futuristic and Special Art Rares</h2>
-        <p>The two Futuristic Rares by YOSHIROTTEN sit at the top of the set, with the ten Special Art Rares just below.</p>
-        <Gallery cards={FUR} cols={2} />
-        <Gallery cards={SAR} cols={4} />
-
-        <h2 id="art-rares">All 20 Art Rares</h2>
-        <Gallery cards={ART_RARES} cols={4} />
-        {MISSING.length > 0 && (
-          <p className="table-note">
-            Not shown yet, we are still sourcing scans: {MISSING.map((c) => `${c.name} ${c.number}`).join(', ')}.
-          </p>
-        )}
-
-        <h2 id="classics">All 30 classic cards</h2>
-        <p>
-          Famous cards from 1999 to 2023, back in their original frames with a gold glitter border. 151 and 152 are the two halves of
-          the Darkrai &amp; Cresselia LEGEND.
-        </p>
-        <Gallery cards={CLASSICS} cols={4} />
-
-        <h2 id="promos">All 33 promos</h2>
-        <p>
-          Promos 001 to 027 are the first partner Pokémon from all nine generations, from the three First Partner special illustration
-          sets. The six ex promos come from the products listed below.
-        </p>
-        <Gallery
-          cards={PROMOS}
-          cols={4}
-          label={(c) => {
-            const n = c.number.slice(0, 3)
-            return PROMO_SOURCES[n] ? `${c.number} · ${PROMO_SOURCES[n]}` : `${c.number} · First Partner set`
-          }}
-        />
-
         <h2 id="box-average">What an average box holds</h2>
         <p>
           A booster box is 20 packs of 6, so 120 holo cards, including 20 Pikachu. Applied to one box, Pokémon China's print shares work
@@ -262,6 +203,70 @@ function ThirtiethSetGuide() {
           </table>
         </div>
         <p className="table-note">Averages, not guarantees. Individual boxes vary.</p>
+
+        <h2 id="futuristic-sar">Futuristic and Special Art Rares</h2>
+        <p>The two Futuristic Rares by YOSHIROTTEN sit at the top of the set, with the ten Special Art Rares just below.</p>
+        <Gallery cards={FUR} cols={2} />
+        <Gallery cards={SAR} cols={4} />
+
+        <h2 id="classics">All 30 classic cards</h2>
+        <p>
+          Famous cards from 1999 to 2023, back in their original frames with a gold glitter border. 151 and 152 are the two halves of
+          the Darkrai &amp; Cresselia LEGEND.
+        </p>
+        <Gallery cards={CLASSICS} cols={3} />
+
+        <h2 id="pikachu">All 30 Pikachu</h2>
+        <p>One in every pack, each by a different illustrator, numbered 017 to 046.</p>
+        <Gallery cards={PIKACHU} cols={3} label={(c, i) => `${c.number} · ${i + 1} of 30`} />
+
+        <h2 id="art-rares">All 20 Art Rares</h2>
+        <Gallery cards={ART_RARES} cols={4} />
+        {MISSING.length > 0 && (
+          <p className="table-note">
+            Not shown yet, we are still sourcing scans: {MISSING.map((c) => `${c.name} ${c.number}`).join(', ')}.
+          </p>
+        )}
+
+        <h2 id="promos">All 33 promos</h2>
+        <p>
+          Promos 001 to 027 are the first partner Pokémon from all nine generations, from the three First Partner special illustration
+          sets. The six ex promos come from the products listed below.
+        </p>
+        <Gallery
+          cards={PROMOS}
+          cols={4}
+          label={(c) => {
+            const n = c.number.slice(0, 3)
+            return PROMO_SOURCES[n] ? `${c.number} · ${PROMO_SOURCES[n]}` : `${c.number} · First Partner set`
+          }}
+        />
+
+        <h2 id="reading-a-card">Reading a 30th Celebration card</h2>
+        <p>
+          Set cards are numbered out of 103, so anything past 103/103 is a secret rare. Promos are numbered separately as NNN/30th-P, so
+          001/30th-P Bulbasaur and 001/103 Exeggcute are different cards. The rarities, from most to least common:
+        </p>
+        <div className="table-scroll">
+          <table className="data-table">
+            <thead>
+              <tr>
+                <th scope="col">Rarity</th>
+                <th scope="col">Where</th>
+                <th scope="col">Cards</th>
+              </tr>
+            </thead>
+            <tbody>
+              {RARITY.map((r) => (
+                <tr key={r.name}>
+                  <th scope="row">{r.name}</th>
+                  <td>{r.where}</td>
+                  <td>{r.count}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
 
         <h2 id="master-set">Chasing a master set</h2>
         <p>

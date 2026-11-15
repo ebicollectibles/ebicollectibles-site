@@ -11,10 +11,18 @@ type Card = (typeof setData.cards)[number]
 const EXCLUSIVE = new Set<string>(setData.exclusiveCardNumbers)
 
 const POKEMON_CARDS = setData.cards.filter((c) => c.pokemonIndex <= 9)
-const FULL_ARTS = POKEMON_CARDS.filter((c) => c.version === 15)
-const VMAX = POKEMON_CARDS.filter((c) => c.version === 14)
-const V_CARDS = POKEMON_CARDS.filter((c) => c.version === 13)
-const TRAINERS_ENERGY = setData.cards.filter((c) => c.pokemonIndex >= 10)
+// Galleries show the most wanted Eeveelutions first: Umbreon, Sylveon, Espeon, Eevee, Glaceon, Leafeon, Vaporeon, Jolteon, Flareon.
+const RANK = [6, 9, 5, 1, 8, 7, 2, 3, 4]
+const byRank = (cards: Card[]) => [...cards].sort((a, b) => RANK.indexOf(a.pokemonIndex) - RANK.indexOf(b.pokemonIndex))
+// The full arts stay in panorama order (Leafeon, Sylveon, Umbreon, Eevee) so the forest scene reads left to right.
+const PANORAMA = [7, 9, 6, 1]
+const FULL_ARTS = POKEMON_CARDS.filter((c) => c.version === 15).sort((a, b) => PANORAMA.indexOf(a.pokemonIndex) - PANORAMA.indexOf(b.pokemonIndex))
+const VMAX = byRank(POKEMON_CARDS.filter((c) => c.version === 14))
+const V_CARDS = byRank(POKEMON_CARDS.filter((c) => c.version === 13))
+// Penny's full art first, then the Poké Balls and Energy.
+const TRAINERS_ENERGY = setData.cards
+  .filter((c) => c.pokemonIndex >= 10)
+  .sort((a, b) => Number(b.number.startsWith('1004')) - Number(a.number.startsWith('1004')))
 const ROSTER = POKEMON_CARDS.filter((c) => c.version === 1).map((c) => {
   const count = POKEMON_CARDS.filter((x) => x.pokemonIndex === c.pokemonIndex).length
   return { pp: c.number.slice(0, 2), name: c.name, count, fullArt: count === 15 }
@@ -44,13 +52,13 @@ const BOX_AVERAGE = [
 ]
 
 const TOC = [
-  { id: 'reading-a-card', label: 'Reading a Gem Vol 2 card' },
+  { id: 'box-average', label: 'What an average box holds' },
   { id: 'full-arts', label: 'The 4 forest full arts' },
   { id: 'vmax', label: 'All 9 VMAX' },
   { id: 'v-cards', label: 'All 9 Pokémon V' },
   { id: 'trainers-energy', label: 'Trainers and Energy' },
   { id: 'roster', label: 'The full roster' },
-  { id: 'box-average', label: 'What an average box holds' },
+  { id: 'reading-a-card', label: 'Reading a Gem Vol 2 card' },
   { id: 'master-set', label: 'Chasing a master set' },
   { id: 'faq', label: 'FAQ' },
 ]
@@ -182,39 +190,37 @@ function GemVol2SetGuide() {
           </ol>
         </nav>
 
-        <h2 id="reading-a-card">Reading a Gem Vol 2 card</h2>
+        <h2 id="box-average">What an average box holds</h2>
         <p>
-          Pokémon cards are numbered PPVV: the first two digits are the Pokémon (01 to 09) and the next two are the version, so 0614/15
-          is Umbreon VMAX. Trainers are numbered 10VV/04 and Energy 11VV/06. The symbol after the number gives the rarity, and the foil
-          tells you the version:
+          A booster box is 15 packs of 4, so 60 holo cards, and every pack has three Common or Uncommon cards plus one that is Rare or
+          better. Applied to one box, Pokémon China's print shares work out to roughly this:
         </p>
         <div className="table-scroll">
           <table className="data-table">
             <thead>
               <tr>
-                <th scope="col">Version</th>
                 <th scope="col">Rarity</th>
-                <th scope="col">What to look for</th>
+                <th scope="col">Print share</th>
+                <th scope="col">Per 60-card box</th>
               </tr>
             </thead>
             <tbody>
-              {VERSIONS.map((v) => (
-                <tr key={v.v}>
-                  <th scope="row">{v.v}</th>
-                  <td>
-                    <SymbolCell symbol={v.symbol} label={v.rarity} />
-                  </td>
-                  <td>{v.look}</td>
+              {BOX_AVERAGE.map((r) => (
+                <tr key={r.label}>
+                  <th scope="row">{r.label}</th>
+                  <td>{r.share}</td>
+                  <td>{r.perBox}</td>
                 </tr>
               ))}
             </tbody>
           </table>
         </div>
-        <p className="table-note">Finishes as printed on Eevee's run, 0101/15 to 0115/15.</p>
+        <p className="table-note">Averages, not guarantees. Individual boxes vary.</p>
 
         <h2 id="full-arts">The 4 forest full arts</h2>
         <p>
-          New art by HYOGONOSUKE, drawn for this set. Lined up as Leafeon, Sylveon, Umbreon and Eevee, the four form one forest scene.
+          New art by HYOGONOSUKE, drawn for this set, and shown here in order: lined up as Leafeon, Sylveon, Umbreon and Eevee,
+          the four form one forest scene.
         </p>
         <Gallery cards={FULL_ARTS} cols={4} />
 
@@ -257,32 +263,35 @@ function GemVol2SetGuide() {
           </table>
         </div>
 
-        <h2 id="box-average">What an average box holds</h2>
+        <h2 id="reading-a-card">Reading a Gem Vol 2 card</h2>
         <p>
-          A booster box is 15 packs of 4, so 60 holo cards, and every pack has three Common or Uncommon cards plus one that is Rare or
-          better. Applied to one box, Pokémon China's print shares work out to roughly this:
+          Pokémon cards are numbered PPVV: the first two digits are the Pokémon (01 to 09) and the next two are the version, so 0614/15
+          is Umbreon VMAX. Trainers are numbered 10VV/04 and Energy 11VV/06. The symbol after the number gives the rarity, and the foil
+          tells you the version:
         </p>
         <div className="table-scroll">
           <table className="data-table">
             <thead>
               <tr>
+                <th scope="col">Version</th>
                 <th scope="col">Rarity</th>
-                <th scope="col">Print share</th>
-                <th scope="col">Per 60-card box</th>
+                <th scope="col">What to look for</th>
               </tr>
             </thead>
             <tbody>
-              {BOX_AVERAGE.map((r) => (
-                <tr key={r.label}>
-                  <th scope="row">{r.label}</th>
-                  <td>{r.share}</td>
-                  <td>{r.perBox}</td>
+              {VERSIONS.map((v) => (
+                <tr key={v.v}>
+                  <th scope="row">{v.v}</th>
+                  <td>
+                    <SymbolCell symbol={v.symbol} label={v.rarity} />
+                  </td>
+                  <td>{v.look}</td>
                 </tr>
               ))}
             </tbody>
           </table>
         </div>
-        <p className="table-note">Averages, not guarantees. Individual boxes vary.</p>
+        <p className="table-note">Finishes as printed on Eevee's run, 0101/15 to 0115/15.</p>
 
         <h2 id="master-set">Chasing a master set</h2>
         <p>

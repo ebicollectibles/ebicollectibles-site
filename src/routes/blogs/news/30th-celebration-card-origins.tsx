@@ -52,7 +52,8 @@ const ERAS = [
   { era: 'Sword & Shield and Scarlet & Violet', years: '2020 to 2023', count: CLASSICS.filter((c) => +c.cn >= 161).length },
 ]
 
-const HIGHLIGHTS = ['137', '136', '141', '144', '151', '165']
+// Most wanted first, with at least one pick from each era.
+const HIGHLIGHTS = ['137', '136', '142', '150', '154', '163']
 
 const SAMPLES = [
   { cn: '017/103 Pikachu', en: '30th Celebration 023', illus: 'Ken Sugimori' },
@@ -196,7 +197,7 @@ function ThirtiethOriginsPost() {
           </table>
         </div>
         <div className="card-grid cols-3">
-          {CLASSICS.filter((c) => HIGHLIGHTS.includes(c.cn)).map((c) => (
+          {HIGHLIGHTS.map((n) => CLASSICS.find((c) => c.cn === n)!).map((c) => (
             <figure key={c.cn}>
               <img src={cardImg(c.cn)} alt={`Classic ${c.name} ${c.cn}/103, 30th Celebration`} loading="lazy" width={300} height={419} />
               <figcaption>

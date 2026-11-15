@@ -33,7 +33,7 @@ const config: GemSetConfig = {
   // Zekrom ex's full progression (Super Rare, Special Art Rare, and the
   // set's single Black White Rare, centered) plus Genesect ex's SAR and
   // this set's Chinese exclusive, N's Plan.
-  fanIds: ['160', '169', '174', '172', '173'],
+  fanIds: ['161', '169', '174', '172', '173'],
   fanCaption: "The set's top chase cards",
   // An official set, not a Gem Pack — no Gem Pack magenta. Electric blue
   // and deep sea teal echo the set's own black/lightning box art and
@@ -41,7 +41,7 @@ const config: GemSetConfig = {
   glow1: 'rgb(119 167 201 / .30)',
   glow2: 'rgb(72 121 119 / .25)',
   heroLede:
-    "All 174 cards in Black Bolt: 78 Pokémon (6 of them ex) across 8 rarities, from Common up to the set's single Black White Rare — Zekrom ex. Tap any card for a closer look and every other printing beside it.",
+    "All 174 cards in Black Bolt: 78 Pokémon (6 of them ex) across 8 rarities, from Common up to the set's single Black White Rare, Zekrom ex. Tap any card for a closer look and every other printing beside it.",
   pokemonFact: '78',
   rarityVersionLabelsOverride: {
     'Common (C)': '001–085 (mixed)',
@@ -54,23 +54,23 @@ const config: GemSetConfig = {
     'Black White Rare (BWR)': '174',
   },
   aboutParagraphs: [
-    "Black Bolt (set code CSV10.5C) is an officially-licensed Pokémon TCG expansion in the Chinese Scarlet & Violet series, released November 6, 2026 alongside its twin set White Flare. It's built around the Unova region, with 78 Pokémon (including 6 ex) split between the two sets, plus Trainer and Energy cards — 174 cards in Black Bolt in total.",
-    "Every card has its own collector number, 001 through 174. The first 86 cards are the main set — Pokémon, Trainers and a Special Energy, in mixed rarities from Common up to Double Rare. The 88 secret rares that follow reprint select cards in rarer treatments: an Art Rare for every non-ex Pokémon, a Super Rare and Special Art Rare for each of the 6 ex Pokémon and two Supporters, and a single Black White Rare — this set's exclusive Zekrom ex — as its top chase card.",
+    "Black Bolt (set code CSV10.5C) is an officially-licensed Pokémon TCG expansion in the Chinese Scarlet & Violet series, released November 6, 2026 alongside its twin set White Flare. It's built around the Unova region: Black Bolt has 78 of the Unova Pokédex's 156 Pokémon (6 of them as ex) and White Flare has the other 78. With Trainer and Energy cards, that makes 174 cards in Black Bolt in total.",
+    "Every card has its own collector number, 001 through 174. The first 86 cards are the main set: Pokémon, Trainers and a Special Energy, in mixed rarities from Common up to Double Rare. The 88 secret rares that follow reprint select cards in rarer treatments: an Art Rare for every non-ex Pokémon, a Super Rare and Special Art Rare for each of the 6 ex Pokémon, Super Rares of the Supporters N's Plan and Fennel, a Special Art Rare of N's Plan, and a single Black White Rare, Zekrom ex, as its top chase card.",
   ],
   faq: [
     { q: 'How many cards are in Black Bolt?', a: '174 cards: an 86-card main set plus 88 secret rares, covering 78 Pokémon (6 of them ex), 7 Trainer cards and 1 Special Energy.' },
     { q: 'What are the chase cards?', a: "The set's highest tier is its single Black White Rare, Zekrom ex (174/086). N's Plan 173/086, a Special Art Rare, is this set's Chinese exclusive." },
-    { q: "What's Black Bolt's rarity scheme?", a: 'An 8-tier scheme: Common, Uncommon, Rare, Double Rare, Art Rare, Super Rare, Special Art Rare and Black White Rare, from most common to rarest — different from the Gem Set releases.' },
-    { q: 'How does Black Bolt relate to White Flare?', a: "Twin sets released the same day, splitting the Unova Pokédex between them — Black Bolt's mascot is Zekrom ex, White Flare's is Reshiram ex." },
+    { q: "What's Black Bolt's rarity scheme?", a: 'An 8-tier scheme: Common, Uncommon, Rare, Double Rare, Art Rare, Super Rare, Special Art Rare and Black White Rare, from most common to rarest, unlike the Gem Set releases.' },
+    { q: 'How does Black Bolt relate to White Flare?', a: "Twin sets released the same day, splitting the Unova Pokédex between them: Black Bolt's mascot is Zekrom ex, White Flare's is Reshiram ex." },
     { q: 'When did Black Bolt release?', a: 'November 6, 2026.' },
     { q: 'What language are the cards in?', a: 'Simplified Chinese.' },
     { q: 'Where can I buy Black Bolt?', a: 'EBI Collectibles carries Black Bolt packs and boxes.' },
   ],
-  metaTitle: 'Black Bolt Card List — All 174 Cards | EBI Collectibles',
+  metaTitle: 'Black Bolt Card List: All 174 Cards | EBI Collectibles',
   metaDescription:
-    'Browse every card in Pokémon TCG Black Bolt (Simplified Chinese): 78 Pokémon including 6 ex, Art Rares, Super Rares, Special Art Rares and the exclusive Zekrom ex Black White Rare.',
-  ogTitle: 'Black Bolt Card List — All 174 Cards',
-  ogDescription: 'All 174 cards in Pokémon TCG Black Bolt — browse by Pokémon, filter by rarity, and track which ones you own.',
+    "Browse every card in Pokémon TCG Black Bolt (Simplified Chinese): 78 Pokémon including 6 ex, Art Rares, Super Rares, Special Art Rares, the Zekrom ex Black White Rare and the exclusive N's Plan Special Art Rare.",
+  ogTitle: 'Black Bolt Card List: All 174 Cards',
+  ogDescription: 'All 174 cards in Pokémon TCG Black Bolt. Browse by Pokémon, filter by rarity, and track which ones you own.',
 }
 
 export const Route = createFileRoute('/sets/black-bolt')({

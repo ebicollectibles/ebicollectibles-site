@@ -33,21 +33,21 @@ const config: GemSetConfig = {
   glow1: 'rgb(197 24 116 / .30)',
   glow2: 'rgb(230 191 61 / .22)',
   aboutParagraphs: [
-    'Gem Vol 5 (set code CBB5C) is the fifth release in the Simplified Chinese Gem Set series, out April 24, 2026. It has 196 cards built around 28 Pokémon, headlined by four Triple Rare full arts drawn with characters from the Pokémon Horizons anime — Captain Pikachu with Friede, Floragato with Liko, Crocalor with Roy, and Quaxwell — each carrying its own Pokémon Horizons logo stamp.',
+    'Gem Vol 5 (set code CBB5C) is the fifth release in the Simplified Chinese Gem Set series, out April 24, 2026. It has 196 cards built around 28 Pokémon, headlined by four Triple Rare full arts drawn with characters from the Pokémon Horizons anime (Captain Pikachu with Friede, Floragato with Liko, Crocalor with Roy, and Quaxwell with Dot), each carrying its own Pokémon Horizons logo stamp.',
     'Every Pokémon comes in 7 numbered versions. Versions 01 and 02 are Common, 03 and 04 Uncommon, 05 Rare, 06 Double Rare, and 07 is a full-art Triple Rare. Card numbers read as Pokémon number then version, so 0107/07 is the 7th version of the 1st Pokémon.',
   ],
   faq: [
     { q: 'How many cards are in Gem Vol 5?', a: '196 cards: 28 Pokémon with 7 versions each. That breaks down to 56 Common, 56 Uncommon, 28 Rare, 28 Double Rare and 28 Triple Rare.' },
-    { q: 'What are the chase cards?', a: 'The 28 Triple Rares (version 07 of each Pokémon) are full-art cards. Four of them — Captain Pikachu 0107/07, Floragato 2207/07, Crocalor 2307/07 and Quaxwell 2407/07 — are Chinese exclusives drawn with Pokémon Horizons anime characters, and only appear in the Simplified Chinese Gem Vol 5 release.' },
+    { q: 'What are the chase cards?', a: 'The 28 Triple Rares (version 07 of each Pokémon) are full-art cards. Four of them (Captain Pikachu 0107/07, Floragato 2207/07, Crocalor 2307/07 and Quaxwell 2407/07) are Chinese exclusives drawn with Pokémon Horizons anime characters, and only appear in the Simplified Chinese Gem Vol 5 release.' },
     { q: 'When did Gem Vol 5 release?', a: 'April 24, 2026.' },
     { q: 'What language are the cards in?', a: 'Simplified Chinese.' },
     { q: 'Where can I buy Gem Vol 5?', a: 'EBI Collectibles carries Gem Vol 5 packs and boxes.' },
   ],
-  metaTitle: 'Gem Vol 5 Card List — All 196 Cards | EBI Collectibles',
+  metaTitle: 'Gem Vol 5 Card List: All 196 Cards | EBI Collectibles',
   metaDescription:
     'Browse every card in Pokémon TCG Gem Vol 5 (Simplified Chinese): all 28 Pokémon across 7 rarities each, with full-art Triple Rares and a printable checklist.',
-  ogTitle: 'Gem Vol 5 Card List — All 196 Cards',
-  ogDescription: 'All 196 cards in Pokémon TCG Gem Vol 5 — browse by Pokémon, filter by rarity, and track which ones you own.',
+  ogTitle: 'Gem Vol 5 Card List: All 196 Cards',
+  ogDescription: 'All 196 cards in Pokémon TCG Gem Vol 5. Browse by Pokémon, filter by rarity, and track which ones you own.',
 }
 
 export const Route = createFileRoute('/sets/gem-vol-5')({

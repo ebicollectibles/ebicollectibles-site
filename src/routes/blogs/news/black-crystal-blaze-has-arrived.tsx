@@ -40,27 +40,27 @@ const EXCLUSIVES = [
 ]
 
 const SAR = [
-  { n: '153', name: 'Eiscue ex', note: 'SAR · Toshinao Aoki' },
+  { n: '159', name: 'Poppy', note: 'SAR · Ryota Murayama' },
+  { n: '160', name: 'Mela', note: 'SAR · rika' },
   { n: '154', name: 'Garchomp ex', note: 'SAR · Oswaldo KATO' },
   { n: '156', name: 'Altaria ex', note: 'SAR · Jiro Sasumo' },
   { n: '158', name: 'Clive', note: 'SAR · Taiga Kayama' },
-  { n: '159', name: 'Poppy', note: 'SAR · Ryota Murayama' },
-  { n: '160', name: 'Mela', note: 'SAR · rika' },
+  { n: '153', name: 'Eiscue ex', note: 'SAR · Toshinao Aoki' },
 ]
 
 const ULTRA = [
   { n: '161', name: 'Garchomp ex', note: 'Ultra Rare' },
-  { n: '163', name: 'Rare Candy', note: 'Ultra Rare' },
   { n: '164', name: 'Defiance Band', note: 'Ultra Rare · Chinese exclusive' },
+  { n: '163', name: 'Rare Candy', note: 'Ultra Rare' },
 ]
 
 const ART_RARES = [
-  { n: '130', name: 'Gloom', note: 'Art Rare · Masako Tomii' },
   { n: '135', name: 'Yveltal', note: 'Art Rare · Masako Tomii' },
-  { n: '137', name: 'Lechonk', note: 'Art Rare · Narumi Sato' },
+  { n: '136', name: 'Swablu', note: 'Art Rare · Jiro Sasumo' },
   { n: '132', name: 'Joltik', note: 'Art Rare · Atsushi Furusawa' },
   { n: '133', name: 'Minior', note: 'Art Rare · 0313' },
-  { n: '136', name: 'Swablu', note: 'Art Rare · Jiro Sasumo' },
+  { n: '137', name: 'Lechonk', note: 'Art Rare · Narumi Sato' },
+  { n: '130', name: 'Gloom', note: 'Art Rare · Masako Tomii' },
 ]
 
 // Pokémon China's odds chart for the 5-card pack, in the bands it uses.
@@ -72,12 +72,12 @@ const ODDS = [
 ]
 
 const TOC = [
-  { id: 'charizard', label: 'Darkness Tera Charizard ex' },
+  { id: 'packs-and-odds', label: 'Slim and jumbo boxes' },
   { id: 'exclusives', label: 'Two cards only in Chinese' },
+  { id: 'charizard', label: 'Darkness Tera Charizard ex' },
   { id: 'special-art-rares', label: 'Special Art Rares' },
   { id: 'ultra-rares', label: 'Gold Ultra Rares' },
   { id: 'art-rares', label: 'Art Rares' },
-  { id: 'packs-and-odds', label: 'Slim and jumbo boxes' },
   { id: 'faq', label: 'FAQ' },
 ]
 
@@ -208,39 +208,6 @@ function BlackCrystalBlazeReleasePost() {
           </ol>
         </nav>
 
-        <h2 id="charizard">Darkness Tera Charizard ex</h2>
-        <p>
-          Charizard ex is a Darkness-type Tera Pokémon here. When you evolve into it from your hand, its ability attaches up to three
-          basic Fire Energy from your deck, and its attack hits harder for every Prize card your opponent has taken. It appears at four
-          rarities, with the Special Art Rare by AKIRA EGAWA as the set's top chase.
-        </p>
-        <Grid cards={CHARIZARD} cols={4} />
-
-        <h2 id="exclusives">Two cards only in Chinese</h2>
-        <p>
-          Two secret rares have no English version. Larry gets a Special Art Rare by Kariya showing him at work in the city, and Defiance
-          Band gets a gold Ultra Rare by inose yukie. English has Larry as a Supporter and a full art, and Defiance Band only as a regular
-          Pokémon Tool.
-        </p>
-        <Grid cards={EXCLUSIVES} cols={2} />
-
-        <h2 id="special-art-rares">Special Art Rares</h2>
-        <p>
-          Eight Special Art Rares, 153 to 160: Eiscue ex, Garchomp ex, Charizard ex and Altaria ex, plus the Supporters Larry, Clive,
-          Poppy and Mela.
-        </p>
-        <Grid cards={SAR} cols={3} />
-
-        <h2 id="ultra-rares">Gold Ultra Rares</h2>
-        <p>
-          Four gold cards top the set, 161 to 164: Garchomp ex, Charizard ex, Rare Candy and the Chinese-exclusive Defiance Band.
-        </p>
-        <Grid cards={ULTRA} cols={3} />
-
-        <h2 id="art-rares">Art Rares</h2>
-        <p>Eight Art Rares, 130 to 137, give main-set Pokémon a full illustration.</p>
-        <Grid cards={ART_RARES} cols={3} />
-
         <h2 id="packs-and-odds">Slim and jumbo boxes</h2>
         <p>
           Black Crystal Blaze comes in a slim 5-card pack with one holo and a jumbo 20-card pack with six holos, and we carry both boxes.
@@ -288,6 +255,39 @@ function BlackCrystalBlazeReleasePost() {
           394 cards. Our <Link to="/blogs/news/black-crystal-blaze-set-guide">set guide</Link> has the full checklist, and our{' '}
           <Link to="/blogs/news/black-crystal-blaze-card-origins">card origins guide</Link> matches every card to its English version.
         </p>
+
+        <h2 id="exclusives">Two cards only in Chinese</h2>
+        <p>
+          Two secret rares have no English version. Larry gets a Special Art Rare by Kariya showing him at work in the city, and Defiance
+          Band gets a gold Ultra Rare by inose yukie. English has Larry as a Supporter and a full art, and Defiance Band only as a regular
+          Pokémon Tool.
+        </p>
+        <Grid cards={EXCLUSIVES} cols={2} />
+
+        <h2 id="charizard">Darkness Tera Charizard ex</h2>
+        <p>
+          Charizard ex is the card most people open this set for, and it is a Darkness-type Tera Pokémon here. When you evolve into it
+          from your hand, its ability attaches up to three basic Fire Energy from your deck, and its attack hits harder for every Prize card your opponent has taken. It appears at four
+          rarities, with the Special Art Rare by AKIRA EGAWA as the set's top chase.
+        </p>
+        <Grid cards={CHARIZARD} cols={4} />
+
+        <h2 id="special-art-rares">Special Art Rares</h2>
+        <p>
+          Eight Special Art Rares, 153 to 160: Eiscue ex, Garchomp ex, Charizard ex and Altaria ex, plus the Supporters Larry, Clive,
+          Poppy and Mela.
+        </p>
+        <Grid cards={SAR} cols={3} />
+
+        <h2 id="ultra-rares">Gold Ultra Rares</h2>
+        <p>
+          Four gold cards top the set, 161 to 164: Garchomp ex, Charizard ex, Rare Candy and the Chinese-exclusive Defiance Band.
+        </p>
+        <Grid cards={ULTRA} cols={3} />
+
+        <h2 id="art-rares">Art Rares</h2>
+        <p>Eight Art Rares, 130 to 137, give main-set Pokémon a full illustration.</p>
+        <Grid cards={ART_RARES} cols={3} />
 
         <h2 id="faq">FAQ</h2>
         <div className="faq">

@@ -29,11 +29,11 @@ function Grid({ cards, cols }: { cards: Shown[]; cols: number }) {
 
 const TRAINERS = [
   { n: '085', name: "Team Rocket's Mewtwo ex", note: 'Double Rare' },
-  { n: '113', name: "Cynthia's Garchomp ex", note: 'Double Rare' },
-  { n: '145', name: "N's Zoroark ex", note: 'Double Rare' },
-  { n: '151', name: "Arven's Mabosstiff ex", note: 'Double Rare' },
-  { n: '155', name: "Steven's Metagross ex", note: 'Double Rare' },
+  { n: '082', name: "Lillie's Clefairy ex", note: 'Double Rare' },
   { n: '079', name: "Iono's Bellibolt ex", note: 'Double Rare' },
+  { n: '145', name: "N's Zoroark ex", note: 'Double Rare' },
+  { n: '113', name: "Cynthia's Garchomp ex", note: 'Double Rare' },
+  { n: '035', name: "Ethan's Ho-Oh ex", note: 'Double Rare' },
 ]
 
 const OWNERS = [
@@ -62,27 +62,27 @@ const ODDS = [
 const ULTRA = [
   { n: '282', name: "Team Rocket's Mewtwo ex", note: 'Ultra Rare' },
   { n: '280', name: "Ethan's Ho-Oh ex", note: 'Ultra Rare' },
-  { n: '283', name: "Cynthia's Garchomp ex", note: 'Ultra Rare' },
-  { n: '285', name: "N's Zoroark ex", note: 'Ultra Rare' },
   { n: '281', name: "Iono's Bellibolt ex", note: 'Ultra Rare' },
+  { n: '285', name: "N's Zoroark ex", note: 'Ultra Rare' },
+  { n: '283', name: "Cynthia's Garchomp ex", note: 'Ultra Rare' },
   { n: '284', name: "Team Rocket's Crobat ex", note: 'Ultra Rare' },
 ]
 
 const SAR = [
   { n: '268', name: "Team Rocket's Mewtwo ex", note: 'SAR · Iwamoto05' },
-  { n: '264', name: "Ethan's Ho-Oh ex", note: 'SAR · Atsushi Furusawa' },
-  { n: '269', name: "Cynthia's Garchomp ex", note: 'SAR · HICO KIM' },
-  { n: '272', name: "N's Zoroark ex", note: 'SAR · Megumi Mizutani' },
-  { n: '279', name: "Team Rocket's Giovanni", note: 'SAR · Krgc' },
   { n: '267', name: "Lillie's Clefairy ex", note: 'SAR · Susumu Maeya' },
+  { n: '279', name: "Team Rocket's Giovanni", note: 'SAR · Krgc' },
+  { n: '272', name: "N's Zoroark ex", note: 'SAR · Megumi Mizutani' },
+  { n: '269', name: "Cynthia's Garchomp ex", note: 'SAR · HICO KIM' },
+  { n: '264', name: "Ethan's Ho-Oh ex", note: 'SAR · Atsushi Furusawa' },
 ]
 
 const TOC = [
-  { id: 'trainers-pokemon', label: "Trainer's Pokémon" },
   { id: 'slim-or-jumbo', label: 'Slim or jumbo?' },
-  { id: 'ultra-rares', label: 'The chase: gold Ultra Rares' },
-  { id: 'special-art-rares', label: 'Special Art Rares' },
   { id: 'brock', label: "Brock's Scouting, only in Chinese" },
+  { id: 'special-art-rares', label: 'The chase: Special Art Rares' },
+  { id: 'ultra-rares', label: 'Gold Ultra Rares' },
+  { id: 'trainers-pokemon', label: "Trainer's Pokémon" },
   { id: 'parallels', label: 'Poké Ball and Master Ball holos' },
   { id: 'coin-set', label: 'The coin set' },
   { id: 'faq', label: 'FAQ' },
@@ -176,7 +176,8 @@ function ChasingGloryReleasePost() {
         <p>
           Chasing Glory (共逐荣光) released on July 16, 2026. It is the main numbered set of the CSV10 block, the one that Black Bolt
           and White Flare follow, and its big idea is the Trainer's Pokémon: Team Rocket, Cynthia, N, Iono, Misty and other Trainers
-          each bring their own partner Pokémon onto the card.
+          each bring their own partner Pokémon onto the card. The cards to chase are Team Rocket's Mewtwo ex in Special Art Rare and
+          gold, and one card, Brock's Scouting, has an illustration found only in the Chinese set.
         </p>
 
         <aside className="fact-box" aria-label="Chasing Glory key facts">
@@ -218,33 +219,6 @@ function ChasingGloryReleasePost() {
             ))}
           </ol>
         </nav>
-
-        <h2 id="trainers-pokemon">Trainer's Pokémon</h2>
-        <p>
-          121 of the set's 188 Pokémon belong to a Trainer, with the Trainer's name in the card name and their portrait on the art.
-          Team Rocket alone has 46. The rule that matters in play: a Trainer's Pokémon only evolves from the same Trainer's Pokémon, so
-          Misty's Gyarados needs Misty's Magikarp, and plain and owned versions of a species are different cards.
-        </p>
-        <Grid cards={TRAINERS} cols={3} />
-        <div className="table-scroll">
-          <table className="data-table">
-            <thead>
-              <tr>
-                <th scope="col">Trainer</th>
-                <th scope="col">Pokémon in the set</th>
-              </tr>
-            </thead>
-            <tbody>
-              {OWNERS.map((o) => (
-                <tr key={o.who}>
-                  <th scope="row">{o.who}</th>
-                  <td>{o.count}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-        <p className="table-note">Counted from the 188 Pokémon in 001 to 188. The other 67 have no Trainer.</p>
 
         <h2 id="slim-or-jumbo">Slim or jumbo?</h2>
         <p>
@@ -310,21 +284,6 @@ function ChasingGloryReleasePost() {
           <Link to="/blogs/news/chasing-glory-set-guide">set guide</Link> breaks down both boxes in full.
         </p>
 
-        <h2 id="ultra-rares">The chase: gold Ultra Rares</h2>
-        <p>
-          The top tier is eight gold Ultra Rares, 280 to 287: six Pokémon ex plus the Levincia Stadium and Spiky Energy. Team Rocket's
-          Mewtwo ex 282/222 is the headline card, and the one most collectors want first.
-        </p>
-        <Grid cards={ULTRA} cols={3} />
-
-        <h2 id="special-art-rares">Special Art Rares</h2>
-        <p>
-          Eighteen Special Art Rares, 262 to 279, give fourteen Pokémon ex and four Supporters a full scene, usually with the Trainer
-          right there next to their partner. Team Rocket's Mewtwo ex shows Giovanni standing beside it, and Cynthia's Garchomp ex and
-          N's Zoroark ex do the same for their Trainers.
-        </p>
-        <Grid cards={SAR} cols={3} />
-
         <h2 id="brock">Brock's Scouting, only in Chinese</h2>
         <p>
           Brock's Scouting 276/222 is a Special Art Rare drawn just for this set by Atsushi Furusawa: Brock sitting on a rock above a
@@ -345,6 +304,48 @@ function ChasingGloryReleasePost() {
             </figcaption>
           </figure>
         </div>
+
+        <h2 id="special-art-rares">The chase: Special Art Rares</h2>
+        <p>
+          Brock's Scouting is one of eighteen Special Art Rares, 262 to 279, which give fourteen Pokémon ex and four Supporters a
+          full scene, usually with the Trainer right there next to their partner. Team Rocket's Mewtwo ex shows Giovanni standing
+          beside it, and Cynthia's Garchomp ex and N's Zoroark ex do the same for their Trainers.
+        </p>
+        <Grid cards={SAR} cols={3} />
+
+        <h2 id="ultra-rares">Gold Ultra Rares</h2>
+        <p>
+          Alongside the SARs sit eight gold Ultra Rares, 280 to 287: six Pokémon ex plus the Levincia Stadium and Spiky Energy. Team
+          Rocket's Mewtwo ex 282/222 is the gold card most collectors want first.
+        </p>
+        <Grid cards={ULTRA} cols={3} />
+
+        <h2 id="trainers-pokemon">Trainer's Pokémon</h2>
+        <p>
+          121 of the set's 188 Pokémon belong to a Trainer, with the Trainer's name in the card name and their portrait on the art.
+          Team Rocket alone has 46. The rule that matters in play: a Trainer's Pokémon only evolves from the same Trainer's Pokémon, so
+          Misty's Gyarados needs Misty's Magikarp, and plain and owned versions of a species are different cards.
+        </p>
+        <Grid cards={TRAINERS} cols={3} />
+        <div className="table-scroll">
+          <table className="data-table">
+            <thead>
+              <tr>
+                <th scope="col">Trainer</th>
+                <th scope="col">Pokémon in the set</th>
+              </tr>
+            </thead>
+            <tbody>
+              {OWNERS.map((o) => (
+                <tr key={o.who}>
+                  <th scope="row">{o.who}</th>
+                  <td>{o.count}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <p className="table-note">Counted from the 188 Pokémon in 001 to 188. The other 67 have no Trainer.</p>
 
         <h2 id="parallels">Poké Ball and Master Ball holos</h2>
         <p>

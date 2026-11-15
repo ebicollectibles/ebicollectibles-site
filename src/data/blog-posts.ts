@@ -6,7 +6,7 @@
 // the post itself.
 import { SITE_URL, R2_IMAGE_HOST } from '~/lib/gem-sets/constants'
 
-export type BlogPostSlug = 'gem-vol-7-has-arrived' | 'black-bolt-white-flare-arrive' | 'gem-vol-7-card-origins' | 'gem-vol-6-has-arrived' | 'gem-vol-6-set-guide' | 'gem-vol-6-card-origins' | 'gem-vol-5-has-arrived' | 'gem-vol-5-set-guide' | 'gem-vol-5-card-origins' | 'gem-vol-4-has-arrived' | 'gem-vol-4-set-guide' | 'gem-vol-4-card-origins' | 'gem-vol-3-has-arrived' | 'gem-vol-3-set-guide' | 'gem-vol-3-card-origins' | 'gem-vol-2-has-arrived' | 'gem-vol-2-set-guide' | 'gem-vol-2-card-origins' | '30th-celebration-has-arrived' | '30th-celebration-set-guide' | '30th-celebration-card-origins' | 'chasing-glory-has-arrived' | 'chasing-glory-set-guide' | 'chasing-glory-card-origins' | 'terastal-gathering-has-arrived' | 'terastal-gathering-set-guide' | 'terastal-gathering-card-origins' | 'reward-round-has-arrived' | 'reward-round-set-guide' | 'reward-round-card-origins' | 'black-crystal-blaze-has-arrived' | 'black-crystal-blaze-set-guide' | 'black-crystal-blaze-card-origins'
+export type BlogPostSlug = 'gem-vol-7-has-arrived' | 'black-bolt-white-flare-arrive' | 'gem-vol-7-card-origins' | 'gem-vol-6-has-arrived' | 'gem-vol-6-set-guide' | 'gem-vol-6-card-origins' | 'gem-vol-5-has-arrived' | 'gem-vol-5-set-guide' | 'gem-vol-5-card-origins' | 'gem-vol-4-has-arrived' | 'gem-vol-4-set-guide' | 'gem-vol-4-card-origins' | 'gem-vol-3-has-arrived' | 'gem-vol-3-set-guide' | 'gem-vol-3-card-origins' | 'gem-vol-2-has-arrived' | 'gem-vol-2-set-guide' | 'gem-vol-2-card-origins' | '30th-celebration-has-arrived' | '30th-celebration-set-guide' | '30th-celebration-card-origins' | 'chasing-glory-has-arrived' | 'chasing-glory-set-guide' | 'chasing-glory-card-origins' | 'terastal-gathering-has-arrived' | 'terastal-gathering-set-guide' | 'terastal-gathering-card-origins' | 'reward-round-has-arrived' | 'reward-round-set-guide' | 'reward-round-card-origins' | 'black-crystal-blaze-has-arrived' | 'black-crystal-blaze-set-guide' | 'black-crystal-blaze-card-origins' | 'black-bolt-set-guide' | 'black-bolt-card-origins' | 'white-flare-set-guide' | 'white-flare-card-origins'
 
 export interface BlogPostSummary {
   slug: BlogPostSlug
@@ -22,6 +22,58 @@ export interface BlogPostSummary {
 }
 
 export const BLOG_POSTS: BlogPostSummary[] = [
+  {
+    slug: 'black-bolt-set-guide',
+    path: '/blogs/news/black-bolt-set-guide',
+    title: 'Black Bolt Set Guide: Slim vs Jumbo Odds, Zekrom ex and Every Chase Card',
+    excerpt:
+      'Slim or jumbo? What each box holds on average from Pokémon China\'s two odds charts, the Zekrom ex Black White Rare, every Special Art Rare and Super Rare, and what a 334-card master set takes.',
+    tag: 'Set guide',
+    date: '2026-11-15',
+    heroImage: `${SITE_URL}/assets/blog/black-bolt-guide-hero-v3.webp`,
+    heroAlt: 'The Chinese-exclusive N\'s Plan Special Art Rare in an EBI display case above six Black Bolt chase cards led by the Zekrom ex Black White Rare',
+    glow1: 'rgb(119 167 201 / .30)',
+    glow2: 'rgb(72 121 119 / .25)',
+  },
+  {
+    slug: 'black-bolt-card-origins',
+    path: '/blogs/news/black-bolt-card-origins',
+    title: 'Where Every Black Bolt Card Comes From',
+    excerpt:
+      'All 174 cards traced to English: 160 from English Black Bolt, 10 from White Flare after five Pokémon swapped sets, 3 Art Rares from Black Star Promos, and a new N\'s Plan SAR.',
+    tag: 'Collecting guide',
+    date: '2026-11-15',
+    heroImage: `${SITE_URL}/assets/blog/black-bolt-origins-hero-v3.webp`,
+    heroAlt: 'Black Bolt slim and jumbo packs linked to tiles for English Black Bolt, English White Flare, Black Star Promos and one new card',
+    glow1: 'rgb(119 167 201 / .30)',
+    glow2: 'rgb(44 78 108 / .30)',
+  },
+  {
+    slug: 'white-flare-set-guide',
+    path: '/blogs/news/white-flare-set-guide',
+    title: 'White Flare Set Guide: Slim vs Jumbo Odds, Reshiram ex and Every Chase Card',
+    excerpt:
+      'Slim or jumbo? What each box holds on average from Pokémon China\'s two odds charts, the Reshiram ex Black White Rare, every Special Art Rare and Super Rare, and what a 334-card master set takes.',
+    tag: 'Set guide',
+    date: '2026-11-15',
+    heroImage: `${SITE_URL}/assets/blog/white-flare-guide-hero-v3.webp`,
+    heroAlt: 'The Chinese-exclusive Hilda Special Art Rare in an EBI display case above six White Flare chase cards led by the Reshiram ex Black White Rare',
+    glow1: 'rgb(171 49 42 / .30)',
+    glow2: 'rgb(219 172 132 / .22)',
+  },
+  {
+    slug: 'white-flare-card-origins',
+    path: '/blogs/news/white-flare-card-origins',
+    title: 'Where Every White Flare Card Comes From',
+    excerpt:
+      'All 174 cards traced to English: 161 from English White Flare, 10 from Black Bolt after five Pokémon swapped sets, 2 Art Rares from Black Star Promos, and a new Hilda SAR.',
+    tag: 'Collecting guide',
+    date: '2026-11-15',
+    heroImage: `${SITE_URL}/assets/blog/white-flare-origins-hero-v3.webp`,
+    heroAlt: 'White Flare slim and jumbo packs linked to tiles for English White Flare, English Black Bolt, Black Star Promos and one new card',
+    glow1: 'rgb(171 49 42 / .30)',
+    glow2: 'rgb(80 43 39 / .30)',
+  },
   {
     slug: 'black-crystal-blaze-has-arrived',
     path: '/blogs/news/black-crystal-blaze-has-arrived',

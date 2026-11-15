@@ -196,6 +196,9 @@ function GemVol4OriginsPost() {
         <h2 id="patterns">Patterns worth knowing</h2>
         <ul>
           <li>
+            <strong>Ponyta stands out.</strong> Its regular art comes from Destined Rivals, the newest source in the set, and its full art is brand new.
+          </li>
+          <li>
             <strong>Temporal Forces supplies the most.</strong> It covers the regular art for 16 Pokémon and the full art for 15.
           </li>
           <li>
@@ -206,9 +209,6 @@ function GemVol4OriginsPost() {
           </li>
           <li>
             <strong>Two full arts break the pattern.</strong> Paldean Wooper's full art comes from Phantasmal Flames, a Mega Evolution set, and Flutter Mane's is a Black Star Promo.
-          </li>
-          <li>
-            <strong>Ponyta stands out.</strong> Its regular art comes from Destined Rivals, the newest source in the set, and its full art is brand new.
           </li>
         </ul>
 

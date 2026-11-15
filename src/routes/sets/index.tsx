@@ -66,10 +66,10 @@ export const Route = createFileRoute('/sets/')({
       { title: 'Pokémon Sets | EBI Collectibles' },
       {
         name: 'description',
-        content: 'Browse every Simplified Chinese Pokémon TCG release from EBI Collectibles — full card lists, rarities and checklists for every Gem Set and officially-licensed set we carry.',
+        content: 'Browse every Simplified Chinese Pokémon TCG release from EBI Collectibles: full card lists, rarities and checklists for every set we carry.',
       },
       { property: 'og:title', content: 'Pokémon Sets' },
-      { property: 'og:description', content: 'Every card in every Simplified Chinese set we carry — browse, filter and track what you own.' },
+      { property: 'og:description', content: 'Every card in every Simplified Chinese set we carry. Browse, filter and track what you own.' },
       // No declared og:image:width/height — most card images are
       // 300×419, but not all (see the same note in buildGemSetHead), so
       // an undeclared size (platforms measure it themselves) beats a
@@ -79,7 +79,7 @@ export const Route = createFileRoute('/sets/')({
       { property: 'og:type', content: 'website' },
       { name: 'twitter:card', content: 'summary_large_image' },
       { name: 'twitter:title', content: 'Pokémon Sets' },
-      { name: 'twitter:description', content: 'Every card in every Simplified Chinese set we carry — browse, filter and track what you own.' },
+      { name: 'twitter:description', content: 'Every card in every Simplified Chinese set we carry. Browse, filter and track what you own.' },
       { name: 'twitter:image', content: GEM_SETS[0].heroImage },
     ],
     links: [
@@ -107,7 +107,7 @@ function SetsIndexPage() {
           <div className="eyebrow">Simplified Chinese · Pokémon TCG</div>
           <h1>Pokémon sets</h1>
           <p className="lede">
-            Every set we carry, every card. Browse by Pokémon, filter by rarity, and track your own collection — pick a set below to dive in.
+            Every set we carry, every card. Browse by Pokémon, filter by rarity, and track your own collection. Pick a set below to start.
           </p>
         </div>
       </section>

@@ -191,6 +191,9 @@ function GemVol2OriginsPost() {
         <h2 id="patterns">Patterns worth knowing</h2>
         <ul>
           <li>
+            <strong>The forest four are the new part.</strong> Eevee, Umbreon, Leafeon and Sylveon each get a brand-new full art by HYOGONOSUKE, and together they form one forest scene.
+          </li>
+          <li>
             <strong>Promos supply the most.</strong> 13 artworks come from English Sword & Shield Black Star Promos, including Eevee V, Eevee VMAX and the Vaporeon, Jolteon and Flareon V.
           </li>
           <li>
@@ -201,9 +204,6 @@ function GemVol2OriginsPost() {
           </li>
           <li>
             <strong>Leafeon V and Glaceon V are from Crown Zenith.</strong> Both use the Crown Zenith art rather than an Evolving Skies card.
-          </li>
-          <li>
-            <strong>The forest four are the new part.</strong> Eevee, Umbreon, Leafeon and Sylveon each get a brand-new full art by HYOGONOSUKE, and together they form one forest scene.
           </li>
         </ul>
 

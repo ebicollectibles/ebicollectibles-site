@@ -31,23 +31,23 @@ const LANTERN_FULL_ARTS = [
 
 // The other four full arts, reprinted from existing cards.
 const OTHER_FULL_ARTS = [
-  { id: '0907', name: 'Mismagius', illus: 'aoki' },
   { id: '1307', name: 'Mimikyu', illus: 'Mitsuhiro Arita' },
+  { id: '0907', name: 'Mismagius', illus: 'aoki' },
   { id: '1407', name: 'Morpeko', illus: 'Yuu Nishida' },
   { id: '1607', name: 'Greavard', illus: 'sowsow' },
 ]
 
-// The nine Pokémon ex, which take the 07 slot for these Pokémon.
+// The nine Pokémon ex, which take the 07 slot for these Pokémon. Most wanted first.
 const EX_CARDS = [
-  { id: '0107', name: 'Clefable ex' },
-  { id: '0507', name: 'Houndoom ex' },
   { id: '0607', name: 'Gardevoir ex' },
-  { id: '0707', name: 'Banette ex' },
-  { id: '0807', name: 'Absol ex' },
   { id: '1007', name: 'Darkrai ex' },
+  { id: '0807', name: 'Absol ex' },
+  { id: '0507', name: 'Houndoom ex' },
   { id: '1207', name: 'Lycanroc ex' },
-  { id: '1707', name: 'Houndstone ex' },
+  { id: '0107', name: 'Clefable ex' },
+  { id: '0707', name: 'Banette ex' },
   { id: '1807', name: 'Annihilape ex' },
+  { id: '1707', name: 'Houndstone ex' },
 ]
 
 const TRAINERS = [
@@ -67,10 +67,10 @@ const RARITY = [
 ]
 
 const TOC = [
-  { id: 'how-the-set-works', label: 'How the set is built' },
-  { id: 'gengar', label: 'Gengar, six holo versions' },
   { id: 'lantern-full-arts', label: 'The chase: five lantern full arts' },
   { id: 'pokemon-ex', label: 'Nine Pokémon ex' },
+  { id: 'how-the-set-works', label: 'How the set is built' },
+  { id: 'gengar', label: 'Gengar, six holo versions' },
   { id: 'trainers-energy', label: 'Trainers and Energy' },
   { id: 'booster-box', label: 'What is inside a booster box' },
   { id: 'gem-pack-timeline', label: 'Gem Pack timeline' },
@@ -212,6 +212,63 @@ function GemVol3Post() {
           </ol>
         </nav>
 
+        <h2 id="lantern-full-arts">The chase: five lantern full arts</h2>
+        <figure className="feature-card">
+          <img src={cardImg('0307')} alt="Gengar 0307/07 full art, Triple Rare, Gem Vol 3" loading="lazy" width={300} height={419} />
+          <figcaption>
+            <strong>0307/07</strong>
+            Triple Rare · Full art · Illus. aspara
+          </figcaption>
+        </figure>
+        <p>
+          Five of the nine full arts are new artwork drawn for this set, and they all share one night-town look. Gengar grins in an
+          empty living room, using its moves on a table of snacks, while Meowth sits on a rooftop under the moon watching lanterns drift
+          past.
+        </p>
+        <div className="card-grid cols-2">
+          {LANTERN_FULL_ARTS.map((c) => (
+            <figure key={c.id}>
+              <img src={cardImg(c.id)} alt={`${c.name} full art ${c.id}/07, Gem Vol 3`} loading="lazy" width={300} height={419} />
+              <figcaption>
+                <strong>{c.name}</strong>
+                {c.id}/07 · Illus. {c.illus}
+              </figcaption>
+            </figure>
+          ))}
+        </div>
+        <p>
+          Because these five debut here, Gem Vol 3 is the only place to pull them. The other four full arts reprint art from existing
+          cards:
+        </p>
+        <div className="card-grid cols-4">
+          {OTHER_FULL_ARTS.map((c) => (
+            <figure key={c.id}>
+              <img src={cardImg(c.id)} alt={`${c.name} full art ${c.id}/07, Gem Vol 3`} loading="lazy" width={300} height={419} />
+              <figcaption>
+                <strong>{c.name}</strong>
+                {c.id}/07 · Illus. {c.illus}
+              </figcaption>
+            </figure>
+          ))}
+        </div>
+
+        <h2 id="pokemon-ex">Nine Pokémon ex</h2>
+        <p>
+          Each Pokémon's seventh card, the 07 slot, is either a full art or a Pokémon ex. For the other nine Pokémon, it is the ex. In this set the ex cards are marked Rare (★), the same as version
+          05, so they turn up more often than the full arts. Gardevoir ex and Darkrai ex are the ones to watch.
+        </p>
+        <div className="card-grid cols-3">
+          {EX_CARDS.map((c) => (
+            <figure key={c.id}>
+              <img src={cardImg(c.id)} alt={`${c.name} ${c.id}/07, Gem Vol 3`} loading="lazy" width={300} height={419} />
+              <figcaption>
+                <strong>{c.name}</strong>
+                {c.id}/07 · Rare
+              </figcaption>
+            </figure>
+          ))}
+        </div>
+
         <h2 id="how-the-set-works">How the set is built</h2>
         <p>
           Each of the 18 Pokémon gets seven numbered cards. The first six share one illustration and step up in rarity and foil
@@ -262,63 +319,6 @@ function GemVol3Post() {
               <figcaption>
                 <strong>{c.id}/07</strong>
                 {c.rarity} · {c.finish}
-              </figcaption>
-            </figure>
-          ))}
-        </div>
-
-        <h2 id="lantern-full-arts">The chase: five lantern full arts</h2>
-        <figure className="feature-card">
-          <img src={cardImg('0307')} alt="Gengar 0307/07 full art, Triple Rare, Gem Vol 3" loading="lazy" width={300} height={419} />
-          <figcaption>
-            <strong>0307/07</strong>
-            Triple Rare · Full art · Illus. aspara
-          </figcaption>
-        </figure>
-        <p>
-          Five of the nine full arts are new artwork drawn for this set, and they all share one night-town look. Gengar grins in an
-          empty living room, using its moves on a table of snacks, while Meowth sits on a rooftop under the moon watching lanterns drift
-          past.
-        </p>
-        <div className="card-grid cols-2">
-          {LANTERN_FULL_ARTS.map((c) => (
-            <figure key={c.id}>
-              <img src={cardImg(c.id)} alt={`${c.name} full art ${c.id}/07, Gem Vol 3`} loading="lazy" width={300} height={419} />
-              <figcaption>
-                <strong>{c.name}</strong>
-                {c.id}/07 · Illus. {c.illus}
-              </figcaption>
-            </figure>
-          ))}
-        </div>
-        <p>
-          Because these five debut here, Gem Vol 3 is the only place to pull them. The other four full arts reprint art from existing
-          cards:
-        </p>
-        <div className="card-grid cols-4">
-          {OTHER_FULL_ARTS.map((c) => (
-            <figure key={c.id}>
-              <img src={cardImg(c.id)} alt={`${c.name} full art ${c.id}/07, Gem Vol 3`} loading="lazy" width={300} height={419} />
-              <figcaption>
-                <strong>{c.name}</strong>
-                {c.id}/07 · Illus. {c.illus}
-              </figcaption>
-            </figure>
-          ))}
-        </div>
-
-        <h2 id="pokemon-ex">Nine Pokémon ex</h2>
-        <p>
-          For the other nine Pokémon, the 07 slot is a Pokémon ex. In this set the ex cards are marked Rare (★), the same as version
-          05, so they turn up more often than the full arts. Gardevoir ex and Darkrai ex are the ones to watch.
-        </p>
-        <div className="card-grid cols-3">
-          {EX_CARDS.map((c) => (
-            <figure key={c.id}>
-              <img src={cardImg(c.id)} alt={`${c.name} ${c.id}/07, Gem Vol 3`} loading="lazy" width={300} height={419} />
-              <figcaption>
-                <strong>{c.name}</strong>
-                {c.id}/07 · Rare
               </figcaption>
             </figure>
           ))}

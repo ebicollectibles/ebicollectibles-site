@@ -49,7 +49,7 @@ const config: GemSetConfig = {
   glow1: 'rgb(71 118 121 / .30)',
   glow2: 'rgb(216 123 115 / .25)',
   heroLede:
-    "All 259 cards in Terastal Gathering: 156 Pokémon across the main 208-card set — Items, Pokémon Tools, Supporters, Stadiums and Special Energy round it out, including 8 pink-framed ACE SPEC cards — plus Super Rares, Special Art Rares and Ultra Rares as secret rares from 209 up. Tap any card for a closer look and every other printing beside it.",
+    "All 259 cards in Terastal Gathering: 156 Pokémon across the main 208-card set (Items, Pokémon Tools, Supporters, Stadiums and Special Energy round it out, including 8 pink-framed ACE SPEC cards), plus Super Rares, Special Art Rares and Ultra Rares as secret rares from 209 up. Tap any card for a closer look and every other printing beside it.",
   pokemonFact: '156',
   rarityVersionLabelsOverride: {
     'Common (C)': '001–208 (mixed)',
@@ -62,23 +62,23 @@ const config: GemSetConfig = {
     'Ultra Rare (UR)': '255–259',
   },
   aboutParagraphs: [
-    "Terastal Gathering (set code CSV9.5C) is an officially-licensed Pokémon TCG expansion in the Chinese Scarlet & Violet series, released June 12, 2026 — a \".5\" special set between CSV9C and CSV10C (Chasing Glory), built around an Eeveelution-heavy lineup of 156 Pokémon plus Items, Pokémon Tools, Supporters, Stadiums and Special Energy, for 259 cards in total.",
-    "Every card has its own collector number, 001 through 259. The 208-card main set runs from Common up to Double Rare, and includes 8 ACE SPEC cards — a one-per-deck Trainer/Energy tier printed in a distinct pink frame. The 51 secret rares that follow reprint select cards as Super Rares, Special Art Rares and gold Ultra Rares, the set's top chase tier.",
+    "Terastal Gathering (set code CSV9.5C) is an officially-licensed Pokémon TCG expansion in the Chinese Scarlet & Violet series, released June 12, 2026, a \".5\" special set between CSV9C and CSV10C (Chasing Glory), built around an Eeveelution-heavy lineup of 156 Pokémon plus Items, Pokémon Tools, Supporters, Stadiums and Special Energy, for 259 cards in total.",
+    "Every card has its own collector number, 001 through 259. The 208-card main set runs from Common up to Double Rare, and includes 8 ACE SPEC cards, a one-per-deck Trainer/Energy tier printed in a distinct pink frame. The 51 secret rares that follow are 12 Super Rare Supporters, 34 Special Art Rares and 5 gold Ultra Rares, the set's top chase tier. Most reprint main-set cards, but Pikachu ex, Ceruledge ex and nine of the Supporter cards appear only in the secret rares.",
   ],
   faq: [
     { q: 'How many cards are in Terastal Gathering?', a: '259 cards: a 208-card main set covering 156 Pokémon plus Trainers, Stadiums, Special Energy and 8 ACE SPEC cards, with 51 secret rares (Super Rare, Special Art Rare and Ultra Rare).' },
-    { q: 'What are the chase cards?', a: "The set's top tier is Ultra Rare — 5 gold cards, including Pikachu ex. Sylveon ex 234/208, a Special Art Rare, is this set's Chinese exclusive — it shares its name and rarity with a second Sylveon ex SAR (233), so look for the number." },
-    { q: "What's Terastal Gathering's rarity scheme?", a: 'An 8-tier scheme: Common, Uncommon, Rare, Double Rare, ACE SPEC Rare, Super Rare, Special Art Rare and Ultra Rare, from most common to rarest.' },
-    { q: 'What is an ACE SPEC card?', a: 'A one-per-deck Trainer or Energy card printed in a distinct pink frame — 8 of them sit inside the main set at their own collector numbers.' },
+    { q: 'What are the chase cards?', a: "The set's top tier is Ultra Rare: 5 gold cards, including Pikachu ex. Sylveon ex 234/208, a Special Art Rare, is this set's Chinese exclusive. It shares its name and rarity with a second Sylveon ex SAR (233), so look for the number." },
+    { q: "What's Terastal Gathering's rarity scheme?", a: "An 8-tier scheme: Common, Uncommon, Rare, Double Rare, ACE SPEC Rare, Super Rare, Special Art Rare and Ultra Rare. Pokémon China's chart splits the Special Art Rares in two: it ranks the 28 Pokémon SARs below the Super Rares and the 6 Trainer SARs above them, with Ultra Rare at the top." },
+    { q: 'What is an ACE SPEC card?', a: 'A one-per-deck Trainer or Energy card printed in a distinct pink frame. Eight of them sit inside the main set at their own collector numbers.' },
     { q: 'When did Terastal Gathering release?', a: 'June 12, 2026.' },
     { q: 'What language are the cards in?', a: 'Simplified Chinese.' },
     { q: 'Where can I buy Terastal Gathering?', a: 'EBI Collectibles carries Terastal Gathering packs and boxes.' },
   ],
-  metaTitle: 'Terastal Gathering (CSV9.5) Card List — All 259 Cards | EBI Collectibles',
+  metaTitle: 'Terastal Gathering (CSV9.5) Card List: All 259 Cards | EBI Collectibles',
   metaDescription:
     'Browse every card in Pokémon TCG Terastal Gathering (CSV9.5, Simplified Chinese): 156 Pokémon, ACE SPEC Rares, Super Rares, Special Art Rares and the gold Ultra Rares, including the exclusive Sylveon ex.',
-  ogTitle: 'Terastal Gathering Card List — All 259 Cards',
-  ogDescription: 'All 259 cards in Pokémon TCG Terastal Gathering — browse by Pokémon, filter by rarity, and track which ones you own.',
+  ogTitle: 'Terastal Gathering Card List: All 259 Cards',
+  ogDescription: 'All 259 cards in Pokémon TCG Terastal Gathering. Browse by Pokémon, filter by rarity, and track which ones you own.',
 }
 
 export const Route = createFileRoute('/sets/csv9-5')({

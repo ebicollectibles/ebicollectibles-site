@@ -11,6 +11,11 @@ type Card = (typeof setData.cards)[number]
 const byRange = (from: number, to: number) => setData.cards.filter((c) => c.pokemonIndex >= from && c.pokemonIndex <= to)
 const EXCLUSIVE = new Set<string>(setData.exclusiveCardNumbers)
 const short = (r: string) => r.match(/\(([^)]+)\)/)?.[1] ?? r
+// Most wanted cards first (by number out of 208), then the rest of the range in number order.
+const lead = (cards: Card[], first: string[]) => [
+  ...first.map((n) => cards.find((c) => c.number === `${n}/208`)!).filter(Boolean),
+  ...cards.filter((c) => !first.includes(c.number.slice(0, 3))),
+]
 
 function Gallery({ cards, cols }: { cards: Card[]; cols: number }) {
   return (
@@ -59,14 +64,14 @@ const CHECKLIST = EEVEELUTIONS.map((mon) => ({
 }))
 
 const TOC = [
-  { id: 'numbering', label: 'How the numbers work' },
   { id: 'box', label: 'What a box holds' },
-  { id: 'eeveelutions', label: 'The Eeveelution checklist' },
-  { id: 'ultra-rares', label: 'All 5 Ultra Rares' },
   { id: 'pokemon-sars', label: 'All 28 Pokémon SARs' },
   { id: 'trainer-sars', label: 'All 6 Trainer SARs' },
   { id: 'super-rares', label: 'All 12 Super Rares' },
+  { id: 'ultra-rares', label: 'All 5 Ultra Rares' },
+  { id: 'eeveelutions', label: 'The Eeveelution checklist' },
   { id: 'ace-spec', label: 'All 8 ACE SPEC cards' },
+  { id: 'numbering', label: 'How the numbers work' },
   { id: 'master-set', label: 'Chasing a master set' },
   { id: 'faq', label: 'FAQ' },
 ]
@@ -170,32 +175,6 @@ function TerastalGatheringSetGuide() {
           </ol>
         </nav>
 
-        <h2 id="numbering">How the numbers work</h2>
-        <p>
-          Every card has one number out of 208. The main set runs 001 to 208, and everything above 208 is a secret rare. The rarer
-          versions of a card sit in the secret block at unrelated numbers, so match them by name.
-        </p>
-        <div className="table-scroll">
-          <table className="data-table">
-            <thead>
-              <tr>
-                <th scope="col">Numbers</th>
-                <th scope="col">What they are</th>
-                <th scope="col">Rarity</th>
-              </tr>
-            </thead>
-            <tbody>
-              {BLOCKS.map((b) => (
-                <tr key={b.nos}>
-                  <th scope="row">{b.nos}</th>
-                  <td>{b.what}</td>
-                  <td>{b.rarity}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-
         <h2 id="box">What a box holds</h2>
         <p>Pokémon China publishes its odds as three grouped bands. Applied to one 10-pack box, that works out to roughly:</p>
         <div className="table-scroll">
@@ -221,6 +200,24 @@ function TerastalGatheringSetGuide() {
           That top band holds 51 different cards, so a box averages a bit more than one big hit, about one every 7 packs. Pulling a
           specific Special Art Rare, like Umbreon ex, takes many boxes.
         </p>
+
+        <h2 id="pokemon-sars">All 28 Pokémon SARs</h2>
+        <p>221 to 248, including every Stellar Eeveelution.</p>
+        <Gallery cards={lead(byRange(221, 248), ['239', '234', '232', '245', '233', '246', '227', '226'])} cols={4} />
+
+        <h2 id="trainer-sars">All 6 Trainer SARs</h2>
+        <p>
+          249 to 254. Pokémon China ranks these as rarer than both the Pokémon SARs and the Super Rares.
+        </p>
+        <Gallery cards={lead(byRange(249, 254), ['253', '252', '250'])} cols={3} />
+
+        <h2 id="super-rares">All 12 Super Rares</h2>
+        <p>Full-art Trainers, 209 to 220. Atticus has two with different art.</p>
+        <Gallery cards={byRange(209, 220)} cols={4} />
+
+        <h2 id="ultra-rares">All 5 Ultra Rares</h2>
+        <p>The gold cards, 255 to 259.</p>
+        <Gallery cards={lead(byRange(255, 259), ['258', '259'])} cols={3} />
 
         <h2 id="eeveelutions">The Eeveelution checklist</h2>
         <p>Every Eevee family card in the set, by number:</p>
@@ -248,27 +245,35 @@ function TerastalGatheringSetGuide() {
         </div>
         <p className="table-note">Sylveon ex SAR 234 is the Chinese exclusive.</p>
 
-        <h2 id="ultra-rares">All 5 Ultra Rares</h2>
-        <p>The gold cards, 255 to 259.</p>
-        <Gallery cards={byRange(255, 259)} cols={3} />
-
-        <h2 id="pokemon-sars">All 28 Pokémon SARs</h2>
-        <p>221 to 248, including every Stellar Eeveelution.</p>
-        <Gallery cards={byRange(221, 248)} cols={4} />
-
-        <h2 id="trainer-sars">All 6 Trainer SARs</h2>
-        <p>
-          249 to 254. Pokémon China ranks these as rarer than both the Pokémon SARs and the Super Rares.
-        </p>
-        <Gallery cards={byRange(249, 254)} cols={3} />
-
-        <h2 id="super-rares">All 12 Super Rares</h2>
-        <p>Full-art Trainers, 209 to 220. Atticus has two with different art.</p>
-        <Gallery cards={byRange(209, 220)} cols={4} />
-
         <h2 id="ace-spec">All 8 ACE SPEC cards</h2>
         <p>Pink-framed, one per deck, and placed inside the main set rather than the secret block.</p>
         <Gallery cards={setData.cards.filter((c) => c.rarity === 'ACE SPEC Rare (ACE)')} cols={4} />
+
+        <h2 id="numbering">How the numbers work</h2>
+        <p>
+          Every card has one number out of 208. The main set runs 001 to 208, and everything above 208 is a secret rare. The rarer
+          versions of a card sit in the secret block at unrelated numbers, so match them by name.
+        </p>
+        <div className="table-scroll">
+          <table className="data-table">
+            <thead>
+              <tr>
+                <th scope="col">Numbers</th>
+                <th scope="col">What they are</th>
+                <th scope="col">Rarity</th>
+              </tr>
+            </thead>
+            <tbody>
+              {BLOCKS.map((b) => (
+                <tr key={b.nos}>
+                  <th scope="row">{b.nos}</th>
+                  <td>{b.what}</td>
+                  <td>{b.rarity}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
 
         <h2 id="master-set">Chasing a master set</h2>
         <p>

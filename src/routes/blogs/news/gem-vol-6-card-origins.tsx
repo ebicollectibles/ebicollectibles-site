@@ -194,6 +194,10 @@ function GemVol6OriginsPost() {
         <h2 id="patterns">Patterns worth knowing</h2>
         <ul>
           <li>
+            <strong>Applin stands out.</strong> Its regular art comes from Destined Rivals, the only source
+            outside 2024's sets, and its full art is brand new.
+          </li>
+          <li>
             <strong>Surging Sparks supplies the most.</strong> It covers both the regular art and the full art for 11 Pokémon,
             including Flapple and Appletun from the apple family.
           </li>
@@ -204,10 +208,6 @@ function GemVol6OriginsPost() {
           <li>
             <strong>The Loyal Three split.</strong> Okidogi, Munkidori and Fezandipiti take their regular art from
             Twilight Masquerade and their full arts from Shrouded Fable.
-          </li>
-          <li>
-            <strong>Applin stands out.</strong> Its regular art comes from Destined Rivals, the only source
-            outside 2024's sets, and its full art is brand new.
           </li>
         </ul>
 

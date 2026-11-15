@@ -28,21 +28,21 @@ function Grid({ cards, cols }: { cards: Shown[]; cols: number }) {
 }
 
 const STELLAR = [
-  { n: '140', name: 'Eevee ex', note: 'Double Rare' },
-  { n: '068', name: 'Espeon ex', note: 'Double Rare' },
   { n: '104', name: 'Umbreon ex', note: 'Double Rare' },
+  { n: '068', name: 'Espeon ex', note: 'Double Rare' },
   { n: '076', name: 'Sylveon ex', note: 'Double Rare' },
+  { n: '140', name: 'Eevee ex', note: 'Double Rare' },
+  { n: '047', name: 'Glaceon ex', note: 'Double Rare' },
   { n: '036', name: 'Vaporeon ex', note: 'Double Rare' },
-  { n: '058', name: 'Jolteon ex', note: 'Double Rare' },
 ]
 
 const SAR = [
   { n: '239', name: 'Umbreon ex', note: 'SAR · YASHIRO Nanaco' },
   { n: '232', name: 'Espeon ex', note: 'SAR · sui' },
   { n: '245', name: 'Eevee ex', note: 'SAR · tono' },
+  { n: '227', name: 'Glaceon ex', note: 'SAR · Kamome Shirahama' },
+  { n: '226', name: 'Vaporeon ex', note: 'SAR · Narano' },
   { n: '243', name: 'Dragapult ex', note: 'SAR · Jerky' },
-  { n: '248', name: 'Terapagos ex', note: 'SAR · mashu' },
-  { n: '231', name: 'Iron Hands ex', note: 'SAR · Kazumasa Yasukuni' },
 ]
 
 const ULTRA = [
@@ -65,10 +65,10 @@ const ODDS = [
 ]
 
 const TOC = [
-  { id: 'stellar-eeveelutions', label: 'The Stellar Eeveelutions' },
-  { id: 'special-art-rares', label: 'Special Art Rares' },
   { id: 'sylveon', label: 'A second Sylveon ex, only in Chinese' },
+  { id: 'special-art-rares', label: 'Special Art Rares' },
   { id: 'ultra-rares', label: 'Gold Ultra Rares' },
+  { id: 'stellar-eeveelutions', label: 'The Stellar Eeveelutions' },
   { id: 'more-than-prismatic', label: 'More than Prismatic Evolutions' },
   { id: 'ace-spec', label: 'ACE SPEC cards' },
   { id: 'packs-and-boxes', label: 'Packs, boxes and odds' },
@@ -159,7 +159,8 @@ function TerastalGatheringReleasePost() {
         <p>
           Terastal Gathering (太晶盛聚) released on June 12, 2026. It is the special set between Stellar Crystal and Chasing Glory, and
           the Simplified Chinese counterpart to Prismatic Evolutions: Eevee and its evolutions in Stellar Tera form, a deep run of
-          Special Art Rares, and 10-card packs with three or four holos in every one.
+          Special Art Rares, and 10-card packs with three or four holos in every one. It also has a Sylveon ex Special Art Rare that
+          is only in the Chinese set.
         </p>
 
         <aside className="fact-box" aria-label="Terastal Gathering key facts">
@@ -202,23 +203,6 @@ function TerastalGatheringReleasePost() {
           </ol>
         </nav>
 
-        <h2 id="stellar-eeveelutions">The Stellar Eeveelutions</h2>
-        <p>
-          The headline is nine Stellar Tera ex: Eevee ex and all eight of its evolutions. Eevee ex can evolve straight into any of the
-          others, which is what makes the line playable. Each one also gets a plain version in the main set and a Special Art Rare in
-          the secret block.
-        </p>
-        <Grid cards={STELLAR} cols={3} />
-        <p className="table-note">Leafeon ex 006, Flareon ex 023 and Glaceon ex 047 complete the nine.</p>
-
-        <h2 id="special-art-rares">Special Art Rares</h2>
-        <p>
-          Thirty-four Special Art Rares, 221 to 254, are the heart of the set. Pokémon China splits them into
-          28 Pokémon SARs and 6 Trainer SARs. All nine Stellar Eeveelutions are here, with two each for Eevee ex and Sylveon ex.
-          They sit alongside favorites like Dragapult ex, Iron Hands ex and Terapagos ex.
-        </p>
-        <Grid cards={SAR} cols={3} />
-
         <h2 id="sylveon">A second Sylveon ex, only in Chinese</h2>
         <p>
           Sylveon ex has two Special Art Rares here. 233/208 by Cona Nitanda is the same card as in Prismatic Evolutions. 234/208 by
@@ -240,12 +224,29 @@ function TerastalGatheringReleasePost() {
           </figure>
         </div>
 
+        <h2 id="special-art-rares">Special Art Rares</h2>
+        <p>
+          Thirty-four Special Art Rares, 221 to 254, are the heart of the set. Pokémon China splits them into
+          28 Pokémon SARs and 6 Trainer SARs. Eevee ex and all eight of its evolutions get one, in Stellar Tera form, with two
+          each for Eevee ex and Sylveon ex. They sit alongside favorites like Dragapult ex, Iron Hands ex and Terapagos ex.
+        </p>
+        <Grid cards={SAR} cols={3} />
+
         <h2 id="ultra-rares">Gold Ultra Rares</h2>
         <p>
           Five gold cards top the set, 255 to 259: Iron Leaves ex, Teal Mask Ogerpon ex, Walking Wake ex, Pikachu ex and Terapagos ex.
           The gold Pikachu ex is the only Pikachu in the whole set.
         </p>
         <Grid cards={ULTRA} cols={3} />
+
+        <h2 id="stellar-eeveelutions">The Stellar Eeveelutions</h2>
+        <p>
+          In the main set, the Eeveelutions are nine Stellar Tera ex: Eevee ex and all eight of its evolutions. Eevee ex can evolve
+          straight into any of the others, which is what makes the line playable. Each of these Double Rares also has a Special Art
+          Rare in the secret block.
+        </p>
+        <Grid cards={STELLAR} cols={3} />
+        <p className="table-note">Leafeon ex 006, Flareon ex 023 and Jolteon ex 058 complete the nine.</p>
 
         <h2 id="more-than-prismatic">More than Prismatic Evolutions</h2>
         <p>

@@ -41,7 +41,7 @@ const config: GemSetConfig = {
   glow1: 'rgb(208 105 57 / .30)',
   glow2: 'rgb(13 13 18 / .25)',
   heroLede:
-    'All 259 cards in Blade Awakening: 173 Pokémon across the main 204-card set — Items, Pokémon Tools, Supporters, Stadiums and Special Energy round it out, including 9 pink-framed ACE SPEC cards — plus Art Rares, Super Rares, Special Art Rares and the gold Ultra Rares as secret rares from 205 up. Tap any card for a closer look and every other printing beside it.',
+    'All 259 cards in Blade Awakening: 173 Pokémon across the main 204-card set (Items, Pokémon Tools, Supporters, Stadiums and Special Energy round it out, including 9 pink-framed ACE SPEC cards), plus Art Rares, Super Rares, Special Art Rares and the gold Ultra Rares as secret rares from 205 up. Tap any card for a closer look and every other printing beside it.',
   pokemonFact: '173',
   rarityVersionLabelsOverride: {
     'Common (C)': '001–204 (mixed)',
@@ -55,23 +55,23 @@ const config: GemSetConfig = {
     'Ultra Rare (UR)': '251–259',
   },
   aboutParagraphs: [
-    'Blade Awakening (set code CSV7C) is an officially-licensed Pokémon TCG expansion in the Chinese Scarlet & Violet series, released January 16, 2026 — built around 173 Pokémon plus Items, Pokémon Tools, Supporters, Stadiums and Special Energy, for 259 cards in total.',
-    'Every card has its own collector number, 001 through 259. The 204-card main set runs from Common up to Double Rare, and includes 9 ACE SPEC cards — a one-per-deck Trainer/Energy tier printed in a distinct pink frame. The 55 secret rares that follow reprint select cards as Art Rares, Super Rares, Special Art Rares and the gold Ultra Rares, the set\'s top chase tier.',
+    'Blade Awakening (set code CSV7C) is an officially-licensed Pokémon TCG expansion in the Chinese Scarlet & Violet series, released January 16, 2026, built around 173 Pokémon plus Items, Pokémon Tools, Supporters, Stadiums and Special Energy, for 259 cards in total.',
+    'Every card has its own collector number, 001 through 259. The 204-card main set runs from Common up to Double Rare, and includes 9 ACE SPEC cards, a one-per-deck Trainer/Energy tier printed in a distinct pink frame. The 55 secret rares that follow reprint select cards as Art Rares, Super Rares, Special Art Rares and the gold Ultra Rares, the set\'s top chase tier.',
   ],
   faq: [
     { q: 'How many cards are in Blade Awakening?', a: '259 cards: a 204-card main set covering 173 Pokémon plus Trainers, Stadiums, Special Energy and 9 ACE SPEC cards, with 55 secret rares (Art Rare, Super Rare, Special Art Rare and Ultra Rare).' },
-    { q: 'What are the chase cards?', a: "The set's top tier is Ultra Rare — 9 gold cards, including Greninja ex. Ciphermaniac's Codebreaking 245/204, a Special Art Rare, is this set's Chinese exclusive." },
+    { q: 'What are the chase cards?', a: "The set's top tier is Ultra Rare: 9 gold cards, including Walking Wake ex and Gouging Fire ex. Greninja ex has a Super Rare and a Special Art Rare (242/204) but no gold card. Ciphermaniac's Codebreaking 245/204, a Special Art Rare, is this set's Chinese exclusive." },
     { q: "What's Blade Awakening's rarity scheme?", a: 'A 9-tier scheme: Common, Uncommon, Rare, Double Rare, Art Rare, ACE SPEC Rare, Super Rare, Special Art Rare and Ultra Rare, from most common to rarest.' },
-    { q: 'What is an ACE SPEC card?', a: 'A one-per-deck Trainer or Energy card printed in a distinct pink frame — 9 of them sit inside the main set at their own collector numbers.' },
+    { q: 'What is an ACE SPEC card?', a: 'A one-per-deck Trainer or Energy card printed in a distinct pink frame. Nine of them sit inside the main set at their own collector numbers.' },
     { q: 'When did Blade Awakening release?', a: 'January 16, 2026.' },
     { q: 'What language are the cards in?', a: 'Simplified Chinese.' },
     { q: 'Where can I buy Blade Awakening?', a: 'EBI Collectibles carries Blade Awakening packs and boxes.' },
   ],
-  metaTitle: 'Blade Awakening (CSV7) Card List — All 259 Cards | EBI Collectibles',
+  metaTitle: 'Blade Awakening (CSV7) Card List: All 259 Cards | EBI Collectibles',
   metaDescription:
     'Browse every card in Pokémon TCG Blade Awakening (CSV7, Simplified Chinese): 173 Pokémon, ACE SPEC Rares, Art Rares, Super Rares, Special Art Rares and the gold Ultra Rares, including the exclusive Ciphermaniac\'s Codebreaking.',
-  ogTitle: 'Blade Awakening Card List — All 259 Cards',
-  ogDescription: 'All 259 cards in Pokémon TCG Blade Awakening — browse by Pokémon, filter by rarity, and track which ones you own.',
+  ogTitle: 'Blade Awakening Card List: All 259 Cards',
+  ogDescription: 'All 259 cards in Pokémon TCG Blade Awakening. Browse by Pokémon, filter by rarity, and track which ones you own.',
 }
 
 export const Route = createFileRoute('/sets/csv7')({
