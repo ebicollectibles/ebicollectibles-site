@@ -351,9 +351,10 @@ function GemVol7Post() {
 
         <h2 id="our-take">Our take</h2>
         <p>
-          Gem Vol 7 is an easy set to enjoy. Every card is shiny, the packs are small enough to rip a few at a time, and the Trainer
-          theme gives the binder real character. If you only chase one card, make it the Misty's Psyduck full art. If you like
-          completing runs, Psyduck's six holo versions are the perfect place to start.
+          Gem Vol 7 is an easy set to enjoy. Every card is a holo, the packs are small enough to rip a few at a time, and with Misty,
+          Cynthia, N, Team Rocket and the rest of the cast on their Pokémon's cards, a lot of pulls feel like more than just another
+          holo. If you only chase one card, make it the Misty's Psyduck full art. If you like completing runs, Psyduck's six holo
+          versions are an easy place to start.
         </p>
       </BlogPostLayout>
     </>
