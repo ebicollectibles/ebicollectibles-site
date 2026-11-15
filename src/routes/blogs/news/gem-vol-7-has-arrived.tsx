@@ -149,7 +149,7 @@ function GemVol7Post() {
             </tr>
             <tr>
               <th scope="row">Pack</th>
-              <td>4 cards, all holo. Suggested retail ¥10 per pack</td>
+              <td>4 cards, all holo</td>
             </tr>
             <tr>
               <th scope="row">Booster box</th>
@@ -186,13 +186,13 @@ function GemVol7Post() {
           third Pokémon in the set. That structure works out to 56 Commons, 56 Uncommons, 28 Rares, 28 Double Rares and 28 full arts.
         </p>
 
-        <h2>Misty's Psyduck, all seven versions</h2>
+        <h2>Misty's Psyduck, six holo versions</h2>
         <p>
-          Psyduck is the best way to see the ladder in action. Versions 01 to 06 use the same pool-deck illustration by Yuu Nishida,
-          each in a different finish. Version 07 is the full art.
+          Psyduck is the best way to see the ladder in action. Versions 01 to 06 share the same pool-deck illustration by Yuu
+          Nishida, and each one gets its own holo finish.
         </p>
-        <div className="card-grid">
-          {PSYDUCK_RUN.map((c) => (
+        <div className="card-grid cols-3">
+          {PSYDUCK_RUN.filter((c) => c.id !== '0307').map((c) => (
             <figure key={c.id}>
               <img src={cardImg(c.id)} alt={`Misty's Psyduck ${c.id}/07, ${c.rarity}, ${c.finish}, Gem Vol 7`} loading="lazy" width={300} height={419} />
               <figcaption>
@@ -203,14 +203,21 @@ function GemVol7Post() {
           ))}
         </div>
 
-        <h2>The Misty's Psyduck full art</h2>
+        <h2>The chase: Misty's Psyduck full art</h2>
+        <figure className="feature-card">
+          <img src={cardImg('0307')} alt="Misty's Psyduck 0307/07 full art, Triple Rare, Gem Vol 7" loading="lazy" width={300} height={419} />
+          <figcaption>
+            <strong>0307/07</strong>
+            Triple Rare · Full art · Illus. Cona Nitanda
+          </figcaption>
+        </figure>
         <p>
           The full art, 0307/07, is new artwork by Cona Nitanda, drawn for this set rather than reprinted from another one. Psyduck
           lounges in a beach chair holding a beach ball up high while Misty waves from behind, ready for a day at the shore. Because
           the illustration debuts here, Gem Vol 7 is the only place to pull it.
         </p>
 
-        <blockquote className="pull-quote">One Psyduck, seven finishes, and a full art that only exists in this set.</blockquote>
+        <blockquote className="pull-quote">One Psyduck, six holo finishes, and a full art that only exists in this set.</blockquote>
 
         <h2>Trainers and their Pokémon</h2>
         <p>
@@ -282,7 +289,7 @@ function GemVol7Post() {
 
         <h2>A Psyduck binder to go with it</h2>
         <p>
-          Pokémon China also released a 30-pocket Gem Pack Vol. 7 binder with Psyduck on the cover, the same day, at ¥15. It is
+          Pokémon China also released a 30-pocket Gem Pack Vol. 7 binder with Psyduck on the cover the same day. It is
           sized for one card per pocket, which suits a single Psyduck run or a page of favorite full arts.
         </p>
         <img

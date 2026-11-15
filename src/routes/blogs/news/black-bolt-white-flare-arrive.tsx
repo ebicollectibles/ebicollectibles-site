@@ -114,8 +114,8 @@ function BlackBoltWhiteFlarePost() {
 
         <h2>Pack sizes and pricing</h2>
         <p>
-          Both sets ship in two pack sizes: a ¥10 pack with 5 cards (1 holo) and a ¥50 pack with 20 cards (7 holos). The larger pack
-          carries noticeably better odds at every rarity tier above Common/Uncommon, so it's the better per-card value if you're
+          Both sets ship in two pack sizes: a small pack with 5 cards (1 holo) and a large pack with 20 cards (7 holos). The larger pack
+          carries noticeably better odds at every rarity tier above Common/Uncommon, so it's the better pick if you're
           chasing secret rares specifically.
         </p>
         <div style={{ display: 'flex', gap: 24, justifyContent: 'center', alignItems: 'flex-start', flexWrap: 'wrap', margin: '0 0 28px' }}>
