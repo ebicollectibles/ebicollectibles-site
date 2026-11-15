@@ -233,7 +233,7 @@ function GemVol7Post() {
           Nishida, and each one gets its own holo finish: Energy-type and Poké Ball patterns, glitter, starburst, the Master Ball
           pattern, and the gold Gem Pack logo stamp.
         </p>
-        <div className="card-grid cols-6 breakout">
+        <div className="card-grid cols-3">
           {PSYDUCK_RUN.filter((c) => c.id !== '0307').map((c) => (
             <figure key={c.id}>
               <img src={cardImg(c.id)} alt={`Misty's Psyduck ${c.id}/07, ${c.rarity}, ${c.finish}, Gem Vol 7`} loading="lazy" width={300} height={419} />
@@ -269,7 +269,7 @@ function GemVol7Post() {
           includes Ethan, Steven, Cynthia, N, Lillie, Arven, Hop, Marnie and Iono. Pokémon China revealed these six full arts alongside
           Psyduck:
         </p>
-        <div className="card-grid cols-6 breakout">
+        <div className="card-grid cols-3">
           {REVEALED_FULL_ARTS.map((c) => (
             <figure key={c.id}>
               <img src={cardImg(c.id)} alt={`${c.name} full art ${c.id}/07, Gem Vol 7`} loading="lazy" width={300} height={419} />

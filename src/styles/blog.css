@@ -173,9 +173,7 @@
   &.is-wide .article > .back-link { display: flex; width: fit-content; margin-left: max(0px, calc((100% - 728px) / 2)); }
   &.is-wide .cta-box { max-width: 728px; margin-inline: auto; }
   &.is-wide .prose h2 { scroll-margin-top: 90px; }
-  .card-grid.cols-6 { grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 22px 18px; margin-block: 28px 34px; }
-  @media (max-width: 900px) { .card-grid.cols-6 { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
-  @media (max-width: 480px) { .card-grid.cols-6 { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  &.is-wide .card-grid.cols-3 { gap: 26px 22px; margin-block: 26px 32px; }
 
   .fact-box {
     display: grid; grid-template-columns: 132px minmax(0, 1fr); gap: 24px; align-items: center;
