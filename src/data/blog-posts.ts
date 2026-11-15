@@ -77,9 +77,9 @@ export const BLOG_POSTS: BlogPostSummary[] = [
   {
     slug: 'black-bolt-white-flare-arrive',
     path: '/blogs/news/black-bolt-white-flare-arrive',
-    title: 'Black Bolt & White Flare Arrive Together — Zekrom ex and Reshiram ex Split Unova',
+    title: 'Black Bolt and White Flare Arrive Together: Zekrom ex and Reshiram ex Split Unova',
     excerpt:
-      "Two officially-licensed expansions, one release day: 174 cards apiece, a Black White Rare mascot for each, and a Special Art Rare chase card for each set.",
+      'Two Simplified Chinese Scarlet & Violet sets out on the same day, with 174 cards each and a Black White Rare of Zekrom ex or Reshiram ex as the top pull.',
     tag: 'New release',
     date: '2026-11-06',
     heroImage: `${R2_IMAGE_HOST}/Chinese/Blog/black-bolt-white-flare/black-bolt-white-flare-official-key-art.webp`,

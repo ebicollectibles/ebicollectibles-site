@@ -228,7 +228,7 @@ function GemVol6Post() {
 
         <h2 id="applin">Applin, six holo versions</h2>
         <p>
-          Applin's run shows the ladder clearly. Versions 01 to 06 share the same orchard illustration by Tetsu Kayama, with Applin
+          Applin shows how a run works. Versions 01 to 06 share the same orchard illustration by Tetsu Kayama, with Applin
           tucked under a blossoming tree, and each one gets its own holo finish: Grass-type and Poké Ball patterns, glitter, starburst,
           the Master Ball pattern, and the pink Gem Pack logo stamp.
         </p>
@@ -254,8 +254,7 @@ function GemVol6Post() {
         </figure>
         <p>
           The full art is new artwork by Jiro Sasumo, drawn for this set. It is a sunny kitchen scene: jars of fruit drinks, a teapot,
-          oranges and a fresh fruit tart on the table, and Applin sitting among the fruit like it belongs there. It is a fun one to
-          study, because Applin blends right in.
+          oranges and a fresh fruit tart on the table, and Applin sitting among the fruit, easy to mistake for one more apple.
         </p>
         <p>
           Because the illustration debuts here, Gem Vol 6 is the only place to pull it. It sits in the 07 slot, the rarest in every
@@ -292,8 +291,7 @@ function GemVol6Post() {
           finish is guaranteed.
         </p>
         <p>
-          Going by the print shares above, a box averages roughly one or two full arts. That is an estimate, not a promise, and some
-          boxes run hot or cold. With 196 cards in the set and 72 per box, finishing a master set takes several boxes or picking up
+          Going by the print shares above, a box averages one or two full arts, though some boxes run hot and some run cold. With 196 cards in the set and 72 per box, finishing a master set takes several boxes or picking up
           singles.
         </p>
 
@@ -325,8 +323,8 @@ function GemVol6Post() {
           </table>
         </div>
         <p>
-          Want the deep dive? Our <Link to="/blogs/news/gem-vol-6-set-guide">Gem Vol 6 set guide</Link> shows all 28 full arts, the
-          full roster, and what it really takes to finish a master set.
+          For all 28 full arts, the full roster and master set math, see our{' '}
+          <Link to="/blogs/news/gem-vol-6-set-guide">Gem Vol 6 set guide</Link>.
         </p>
 
         <h2 id="applin-binder">An Applin binder to go with it</h2>
@@ -356,8 +354,8 @@ function GemVol6Post() {
 
         <h2 id="our-take">Our take</h2>
         <p>
-          Gem Vol 6 is a warm, easygoing set. Every card is a holo, the packs are small enough to rip a few at a time, and the apple and
-          kitchen art gives it a look no other volume has. If you only chase one card, make it the Applin full art. If you like
+          Gem Vol 6 is a cozy set. Every card is a holo, the packs are small enough to rip a few at a time, and the apple and
+          kitchen art gives it its own look. If you only chase one card, make it the Applin full art. If you like
           completing runs, Applin's six holo versions are an easy place to start.
         </p>
       </BlogPostLayout>

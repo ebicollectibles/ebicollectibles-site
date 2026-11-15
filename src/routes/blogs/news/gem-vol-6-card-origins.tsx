@@ -141,9 +141,8 @@ function GemVol6OriginsPost() {
         }}
       >
         <p>
-          If a Gem Vol 6 card looks familiar, there is a good reason. Gem Packs reuse artwork from existing Pokémon TCG cards and
-          reprint it in Simplified Chinese with new numbers and new foils. We traced every illustration in the set back to the
-          English card it first appeared on.
+          Gem Packs reuse artwork from existing Pokémon TCG cards, reprinted in Simplified Chinese with new numbers and new foils.
+          We traced every illustration in Gem Vol 6 back to the English card it first appeared on.
         </p>
 
         <nav className="toc" aria-label="In this guide">
@@ -160,8 +159,8 @@ function GemVol6OriginsPost() {
         <h2 id="how-it-works">How Gem Pack art works</h2>
         <p>
           Each of the 28 Pokémon in Gem Vol 6 has two illustrations. Versions 01 to 06 all use the art from that Pokémon's regular
-          card, and version 07, the full art, uses the art from its Illustration Rare. So one Gem Pokémon usually brings together two
-          English cards: the everyday one and the chase one.
+          card, and version 07, the full art, uses the art from its Illustration Rare. So most Gem Pokémon reprint two English
+          cards, a regular one and a full art.
         </p>
         <p>
           That adds up to 56 illustrations. 55 of them come from English cards. The 56th, Applin's kitchen full art (1907/07), was
@@ -195,19 +194,19 @@ function GemVol6OriginsPost() {
         <h2 id="patterns">Patterns worth knowing</h2>
         <ul>
           <li>
-            <strong>Surging Sparks leads the way.</strong> It supplies both the regular art and the full art for 11 Pokémon,
+            <strong>Surging Sparks supplies the most.</strong> It covers both the regular art and the full art for 11 Pokémon,
             including Flapple and Appletun from the apple family.
           </li>
           <li>
-            <strong>Pairs usually stay together.</strong> In 24 of the 27 Pokémon with a traced full art, the regular art and the full
+            <strong>Most pairs share a set.</strong> In 24 of the 27 Pokémon with a traced full art, the regular art and the full
             art come from the same English set.
           </li>
           <li>
-            <strong>The Loyal Three are the exception.</strong> Okidogi, Munkidori and Fezandipiti take their regular art from
+            <strong>The Loyal Three split.</strong> Okidogi, Munkidori and Fezandipiti take their regular art from
             Twilight Masquerade and their full arts from Shrouded Fable.
           </li>
           <li>
-            <strong>Applin is the newest and the most original.</strong> Its regular art comes from Destined Rivals, the only source
+            <strong>Applin stands out.</strong> Its regular art comes from Destined Rivals, the only source
             outside 2024's sets, and its full art is brand new.
           </li>
         </ul>

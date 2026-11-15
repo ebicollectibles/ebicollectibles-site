@@ -111,7 +111,7 @@ function GemVol6SetGuide() {
       <BlogPostLayout
         wide
         post={post}
-        lede="Everything you need to collect Gem Pack Vol. 6: how to spot each version, every full art in the set, the full roster, and honest box math for master set hunters."
+        lede="How to tell each Gem Pack Vol. 6 version apart, every full art in the set, the full roster, and what a master set takes."
         cta={{
           heading: 'Collect Gem Vol 6',
           body: 'Track every card on the full checklist, or pick up a booster box and start ripping.',
@@ -122,10 +122,10 @@ function GemVol6SetGuide() {
         }}
       >
         <p>
-          Gem Pack Vol. 6 (CBB6C) is the Applin set: 196 holo cards, 28 Pokémon with seven versions each, and the apple family front
-          and center. Our <Link to="/blogs/news/gem-vol-6-has-arrived">release post</Link> covers what is new in the set, and our{' '}
+          Gem Pack Vol. 6 (CBB6C) is the Applin set: 196 holo cards, 28 Pokémon with seven versions each, and the apple family on the
+          pack. Our <Link to="/blogs/news/gem-vol-6-has-arrived">release post</Link> covers what is new in the set, and our{' '}
           <Link to="/blogs/news/gem-vol-6-card-origins">card origins guide</Link> traces every illustration back to its English card.
-          This guide is the reference you keep open while sorting pulls or planning a master set.
+          Use this one to sort your pulls or plan a master set.
         </p>
 
         <nav className="toc" aria-label="In this guide">
@@ -174,8 +174,7 @@ function GemVol6SetGuide() {
 
         <h2 id="full-arts">All 28 full arts</h2>
         <p>
-          The full arts are the heart of the set: one per Pokémon, each with its own illustration. Applin's is the only one drawn just
-          for Gem Vol 6.
+          There is one full art per Pokémon, each with its own illustration. Applin's is the only one drawn just for Gem Vol 6.
         </p>
         <div className="card-grid cols-4">
           {FULL_ARTS.map((c) => (
@@ -251,16 +250,16 @@ function GemVol6SetGuide() {
         <h2 id="master-set">Chasing a master set</h2>
         <p>
           A master set is all 196 cards. The commons and uncommons come quickly, since a box averages 54 of them and there are only
-          112 to find. The higher rarities are where it gets hard.
+          112 to find. The higher rarities take much longer.
         </p>
         <p>
-          Take the full arts. A box averages about 1.3, spread across 28 different cards. If each full art is equally likely, any one
+          A box averages about 1.3 full arts, spread across 28 different cards. If each full art is equally likely, any one
           specific full art shows up in roughly 1 box in 20, and pulling all 28 from boxes alone would take dozens of boxes. The
           Double Rares are friendlier, at about 4 per box, but still take many boxes to complete.
         </p>
         <p>
-          The practical route most collectors take: open a few boxes for the fun of it and to build up the lower rarities, then buy
-          the remaining full arts and Double Rares as singles. The <Link to="/sets/gem-vol-6">Gem Vol 6 card list</Link> makes it easy
+          So most collectors open a few boxes for fun and for the lower rarities, then buy the full arts and Double Rares they still
+          need as singles. The <Link to="/sets/gem-vol-6">Gem Vol 6 card list</Link> makes it easy
           to track what you still need.
         </p>
 

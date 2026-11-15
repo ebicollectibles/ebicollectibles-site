@@ -10,7 +10,7 @@ const post = BLOG_POSTS.find((p) => p.slug === 'black-bolt-white-flare-arrive')!
 export const Route = createFileRoute('/blogs/news/black-bolt-white-flare-arrive')({
   head: () => ({
     meta: [
-      { title: `${post.title} — EBI Collectibles` },
+      { title: `${post.title} | EBI Collectibles` },
       { name: 'robots', content: 'noindex, nofollow' },
       { name: 'description', content: post.excerpt },
       { property: 'og:title', content: post.title },
@@ -44,10 +44,10 @@ function BlackBoltWhiteFlarePost() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(articleJsonLd) }} />
       <BlogPostLayout
         post={post}
-        lede="Unova's legendary dragons headline a pair of officially-licensed Scarlet & Violet expansions that split one 156-Pokémon roster right down the middle."
+        lede="Zekrom ex and Reshiram ex lead two Simplified Chinese Scarlet & Violet sets that split the Unova roster between them."
         cta={{
           heading: 'Shop Black Bolt & White Flare',
-          body: 'Booster boxes for both sets, Jumbo and Slim, in stock now — plus the full checklists for each.',
+          body: 'Booster boxes for both sets are in stock now.',
           links: [
             { to: '/products/$id', params: { id: 'pokemon-chinese-black-bolt-slim-booster-box' }, label: 'Shop Black Bolt' },
             { to: '/products/$id', params: { id: 'pokemon-chinese-white-flare-slim-booster-box' }, label: 'Shop White Flare' },
@@ -56,9 +56,8 @@ function BlackBoltWhiteFlarePost() {
       >
         <p>
           <strong>Black Bolt</strong> (set code CSV10.5C) and <strong>White Flare</strong> (CSV10.6C) are officially-licensed Pokémon
-          TCG expansions in the Chinese Scarlet & Violet series, released together on November 6, 2026. Unlike the Gem Pack line,
-          these aren't a compilation — they're the real, full Unova-region expansion, split into Pokémon-styled twin sets the same
-          way the English and Japanese versions were released earlier in 2025.
+          TCG expansions in the Simplified Chinese Scarlet & Violet series, out together on November 6, 2026. They are the Chinese
+          release of the twin Unova sets that came out in English and Japanese in 2025, not a Gem-style compilation.
         </p>
 
         <div className="stat-row">
@@ -76,7 +75,7 @@ function BlackBoltWhiteFlarePost() {
           </div>
           <div className="stat">
             <div className="stat-num">2</div>
-            <div className="stat-label">Special Art Rares, one per set</div>
+            <div className="stat-label">Pack sizes, 5 and 20 cards</div>
           </div>
         </div>
 
@@ -100,23 +99,20 @@ function BlackBoltWhiteFlarePost() {
           />
         </div>
         <p>
-          Black Bolt and White Flare divide Unova's 156 featured Pokémon (6 of them ex) between two 174-card sets, 78 Pokémon each. Each half gets its
-          own legendary mascot: Black Bolt is built around <strong>Zekrom ex</strong>, White Flare around <strong>Reshiram ex</strong> —
-          the same split used for the English and Japanese printings this spring.
+          The two sets share out Unova's 156 featured Pokémon, 78 each, with 6 ex between them. Black Bolt is built around{' '}
+          <strong>Zekrom ex</strong> and White Flare around <strong>Reshiram ex</strong>, the same split as the English and Japanese
+          releases.
         </p>
         <p>
-          Every card in both sets has its own unique collector number, 001 through 174 — unlike the Gem Pack series, there's no
-          repeating version ladder here. The first 86 numbers are the main set (Pokémon, Trainers, and a Special Energy in mixed
-          rarities up to Double Rare); the 88 secret rares that follow reprint select cards in progressively rarer treatments — an
-          Art Rare for every non-ex Pokémon, then a Super Rare and Special Art Rare for each ex Pokémon and two Supporters, capped by
-          a single Black White Rare in each set.
+          Each set is numbered 001 to 174. The first 86 cards are the main set: Pokémon, Trainers and a Special Energy, up to Double
+          Rare. The 88 cards after that are secret rares. Every non-ex Pokémon gets an Art Rare, each ex Pokémon and two Supporters
+          get a Super Rare and a Special Art Rare, and each set ends with one Black White Rare.
         </p>
 
-        <h2>Pack sizes and pricing</h2>
+        <h2>Pack sizes</h2>
         <p>
-          Both sets ship in two pack sizes: a small pack with 5 cards (1 holo) and a large pack with 20 cards (7 holos). The larger pack
-          carries noticeably better odds at every rarity tier above Common/Uncommon, so it's the better pick if you're
-          chasing secret rares specifically.
+          Both sets come in two pack sizes: a small pack with 5 cards (1 holo) and a large pack with 20 cards (7 holos). The large
+          pack has better odds at every rarity above Uncommon, so it is the one to open if you are after secret rares.
         </p>
         <div style={{ display: 'flex', gap: 24, justifyContent: 'center', alignItems: 'flex-start', flexWrap: 'wrap', margin: '0 0 28px' }}>
           <img
@@ -155,9 +151,9 @@ function BlackBoltWhiteFlarePost() {
 
         <h2>The chase cards</h2>
         <p>
-          Each set's Black White Rare is its single rarest pull — Zekrom ex in Black Bolt, Reshiram ex in White Flare, both drawn in
-          the monochrome illustration style unique to this rarity tier. One tier down, each set carries its own Special Art Rare:
-          <strong> N's Plan</strong> in Black Bolt, <strong>Hilda</strong> in White Flare.
+          The rarest pull in each set is its Black White Rare: Zekrom ex in Black Bolt and Reshiram ex in White Flare, both in the
+          black-and-white art style only this rarity uses. Below that, the Special Art Rares to look for are{' '}
+          <strong>N's Plan</strong> and <strong>Genesect ex</strong> in Black Bolt and <strong>Hilda</strong> in White Flare.
         </p>
 
         <img
@@ -192,20 +188,16 @@ function BlackBoltWhiteFlarePost() {
           ))}
         </div>
 
-        <blockquote className="pull-quote">Two sets, one Pokédex — anchored by a Black White Rare on each side.</blockquote>
-
-        <h2>Why collectors are splitting their budget between both</h2>
+        <h2>Do you need both?</h2>
         <p>
-          Because Black Bolt and White Flare are genuinely complementary — not a reprint of each other — most collectors building
-          out the Unova lineup end up wanting both rather than picking one. Each set's secret rares only cover that half's Pokémon, so
-          there's no overlap to fall back on if you skip either side.
+          If you want the full Unova roster, yes. Each set only has its own half of the Pokémon, and its secret rares only cover that
+          half, so neither one stands in for the other.
         </p>
 
         <h2>Our take</h2>
         <p>
-          If you collected the English or Japanese versions earlier this year, the card list here will be familiar — this is the
-          same set, officially localized, not a new compilation. What's actually new for collectors in the Simplified Chinese market
-          is getting it at all, plus the two Special Art Rares headlining each set's chase list.
+          If you collected the English or Japanese versions, you will know this card list. The draw here is having it in Simplified
+          Chinese, with the Chinese printing's look and pack sizes. Start with whichever mascot you like more, Zekrom or Reshiram.
         </p>
       </BlogPostLayout>
     </>

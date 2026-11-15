@@ -229,7 +229,7 @@ function GemVol7Post() {
 
         <h2 id="mistys-psyduck">Misty's Psyduck, six holo versions</h2>
         <p>
-          Psyduck is the easiest way to see the ladder in action. Versions 01 to 06 share the same pool-deck illustration by Yuu
+          Psyduck shows how a run works. Versions 01 to 06 share the same pool-deck illustration by Yuu
           Nishida, and each one gets its own holo finish: Energy-type and Poké Ball patterns, glitter, starburst, the Master Ball
           pattern, and the gold Gem Pack logo stamp.
         </p>
@@ -292,8 +292,7 @@ function GemVol7Post() {
           finish is guaranteed.
         </p>
         <p>
-          Going by the print shares above, a box averages roughly one or two full arts. That is an estimate, not a promise, and some
-          boxes run hot or cold. With 196 cards in the set and 72 per box, finishing a master set takes several boxes or picking up
+          Going by the print shares above, a box averages one or two full arts, though some boxes run hot and some run cold. With 196 cards in the set and 72 per box, finishing a master set takes several boxes or picking up
           singles.
         </p>
 
@@ -352,9 +351,8 @@ function GemVol7Post() {
 
         <h2 id="our-take">Our take</h2>
         <p>
-          Gem Vol 7 is an easy set to enjoy. Every card is a holo, the packs are small enough to rip a few at a time, and with Misty,
-          Cynthia, N, Team Rocket and the rest of the cast on their Pokémon's cards, a lot of pulls feel like more than just another
-          holo. If you only chase one card, make it the Misty's Psyduck full art. If you like completing runs, Psyduck's six holo
+          Gem Vol 7 is a fun one to open. Every card is a holo, the packs are small enough to rip a few at a time, and having Misty,
+          Cynthia, N and Team Rocket on the cards makes the Trainer pulls stand out. If you only chase one card, make it the Misty's Psyduck full art. If you like completing runs, Psyduck's six holo
           versions are an easy place to start.
         </p>
       </BlogPostLayout>

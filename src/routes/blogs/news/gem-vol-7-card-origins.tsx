@@ -141,9 +141,8 @@ function GemVol7OriginsPost() {
         }}
       >
         <p>
-          If a Gem Vol 7 card looks familiar, there is a good reason. Gem Packs reuse artwork from existing Pokémon TCG cards and
-          reprint it in Simplified Chinese with new numbers and new foils. We traced every illustration in the set back to the
-          English card it first appeared on.
+          Gem Packs reuse artwork from existing Pokémon TCG cards, reprinted in Simplified Chinese with new numbers and new foils.
+          We traced every illustration in Gem Vol 7 back to the English card it first appeared on.
         </p>
 
         <nav className="toc" aria-label="In this guide">
@@ -160,8 +159,8 @@ function GemVol7OriginsPost() {
         <h2 id="how-it-works">How Gem Pack art works</h2>
         <p>
           Each of the 28 Pokémon in Gem Vol 7 has two illustrations. Versions 01 to 06 all use the art from that Pokémon's regular
-          card, and version 07, the full art, uses the art from its full-art English card. So one Gem Pokémon usually brings
-          together two English cards: the everyday one and the chase one.
+          card, and version 07, the full art, uses the art from its full-art English card. So most Gem Pokémon reprint two English
+          cards, a regular one and a full art.
         </p>
         <p>
           That adds up to 56 illustrations. 55 of them come from English cards. The 56th, Misty's Psyduck's beach full art
@@ -195,19 +194,19 @@ function GemVol7OriginsPost() {
         <h2 id="patterns">Patterns worth knowing</h2>
         <ul>
           <li>
-            <strong>Destined Rivals does most of the work.</strong> It supplies the regular art for 21 Pokémon, including all eight
+            <strong>Destined Rivals supplies the most.</strong> It supplies the regular art for 21 Pokémon, including all eight
             Team Rocket cards, and 17 of the full arts.
           </li>
           <li>
-            <strong>Journey Together covers the rest of the regular art.</strong> Furret, Swinub, N's Zorua, Lillie's Ribombee,
+            <strong>Journey Together has the rest of the regular art.</strong> Furret, Swinub, N's Zorua, Lillie's Ribombee,
             Lycanroc, Hop's Wooloo and Iono's Kilowattrel all come from it.
           </li>
           <li>
-            <strong>Four full arts started life as promos.</strong> Team Rocket's Wobbuffet, Steven's Beldum, N's Zorua and Marnie's
+            <strong>Four full arts come from promos.</strong> Team Rocket's Wobbuffet, Steven's Beldum, N's Zorua and Marnie's
             Morpeko reprint English Black Star Promo art, so their Gem full arts pair a set card with a promo.
           </li>
           <li>
-            <strong>Misty's Psyduck is the one original.</strong> Its regular art comes from Destined Rivals like most of the set, but
+            <strong>Misty's Psyduck is the only new art.</strong> Its regular art comes from Destined Rivals like most of the set, but
             its full art is brand new.
           </li>
         </ul>

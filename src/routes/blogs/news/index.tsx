@@ -6,15 +6,15 @@ import { safeJsonLd } from '~/lib/gem-sets/head'
 export const Route = createFileRoute('/blogs/news/')({
   head: () => ({
     meta: [
-      { title: 'News — EBI Collectibles' },
+      { title: 'News | EBI Collectibles' },
       // Unlisted for now — reachable only by direct link, not linked from
       // nav/footer/sitemap, and excluded from indexing until launched properly.
       { name: 'robots', content: 'noindex, nofollow' },
       {
         name: 'description',
-        content: 'Release coverage and collecting guides for Simplified Chinese Pokémon TCG sets — new Gem Pack and Scarlet & Violet releases, explained.',
+        content: 'Release posts and collecting guides for Simplified Chinese Pokémon TCG, covering Gem Pack and Scarlet & Violet sets.',
       },
-      { property: 'og:title', content: 'News — EBI Collectibles' },
+      { property: 'og:title', content: 'News | EBI Collectibles' },
       {
         property: 'og:description',
         content: 'Release coverage and collecting guides for Simplified Chinese Pokémon TCG sets.',
@@ -63,8 +63,7 @@ function BlogIndexPage() {
           </div>
           <h1>News &amp; collecting guides</h1>
           <p className="lede">
-            What's new in Simplified Chinese Pokémon TCG, and how to actually make sense of it — release breakdowns, chase-card
-            rundowns, and guides to where reprinted cards originally came from.
+            New Simplified Chinese Pokémon TCG releases, the chase cards in each set, and where their artwork first appeared.
           </p>
         </div>
       </section>
