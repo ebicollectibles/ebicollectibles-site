@@ -95,7 +95,6 @@ import { Route as BlogsNewsBrilliantFantasySetGuideRouteImport } from './routes/
 import { Route as BlogsNewsChasingGloryCardOriginsRouteImport } from './routes/blogs/news/chasing-glory-card-origins'
 import { Route as BlogsNewsChasingGloryHasArrivedRouteImport } from './routes/blogs/news/chasing-glory-has-arrived'
 import { Route as BlogsNewsChasingGlorySetGuideRouteImport } from './routes/blogs/news/chasing-glory-set-guide'
-import { Route as BlogsNewsFunismDittoPalmSizeWondersGuideRouteImport } from './routes/blogs/news/funism-ditto-palm-size-wonders-guide'
 import { Route as BlogsNewsFunismDittoPalmSizeWondersHasArrivedRouteImport } from './routes/blogs/news/funism-ditto-palm-size-wonders-has-arrived'
 import { Route as BlogsNewsGemVol2CardOriginsRouteImport } from './routes/blogs/news/gem-vol-2-card-origins'
 import { Route as BlogsNewsGemVol2HasArrivedRouteImport } from './routes/blogs/news/gem-vol-2-has-arrived'
@@ -114,7 +113,6 @@ import { Route as BlogsNewsGemVol6HasArrivedRouteImport } from './routes/blogs/n
 import { Route as BlogsNewsGemVol6SetGuideRouteImport } from './routes/blogs/news/gem-vol-6-set-guide'
 import { Route as BlogsNewsGemVol7CardOriginsRouteImport } from './routes/blogs/news/gem-vol-7-card-origins'
 import { Route as BlogsNewsGemVol7HasArrivedRouteImport } from './routes/blogs/news/gem-vol-7-has-arrived'
-import { Route as BlogsNewsPikachuDreamPaintingFiguresGuideRouteImport } from './routes/blogs/news/pikachu-dream-painting-figures-guide'
 import { Route as BlogsNewsPikachuDreamPaintingFiguresHaveArrivedRouteImport } from './routes/blogs/news/pikachu-dream-painting-figures-have-arrived'
 import { Route as BlogsNewsRewardRoundCardOriginsRouteImport } from './routes/blogs/news/reward-round-card-origins'
 import { Route as BlogsNewsRewardRoundHasArrivedRouteImport } from './routes/blogs/news/reward-round-has-arrived'
@@ -581,12 +579,6 @@ const BlogsNewsChasingGlorySetGuideRoute =
     path: '/blogs/news/chasing-glory-set-guide',
     getParentRoute: () => rootRouteImport,
   } as any)
-const BlogsNewsFunismDittoPalmSizeWondersGuideRoute =
-  BlogsNewsFunismDittoPalmSizeWondersGuideRouteImport.update({
-    id: '/blogs/news/funism-ditto-palm-size-wonders-guide',
-    path: '/blogs/news/funism-ditto-palm-size-wonders-guide',
-    getParentRoute: () => rootRouteImport,
-  } as any)
 const BlogsNewsFunismDittoPalmSizeWondersHasArrivedRoute =
   BlogsNewsFunismDittoPalmSizeWondersHasArrivedRouteImport.update({
     id: '/blogs/news/funism-ditto-palm-size-wonders-has-arrived',
@@ -693,12 +685,6 @@ const BlogsNewsGemVol7HasArrivedRoute =
   BlogsNewsGemVol7HasArrivedRouteImport.update({
     id: '/blogs/news/gem-vol-7-has-arrived',
     path: '/blogs/news/gem-vol-7-has-arrived',
-    getParentRoute: () => rootRouteImport,
-  } as any)
-const BlogsNewsPikachuDreamPaintingFiguresGuideRoute =
-  BlogsNewsPikachuDreamPaintingFiguresGuideRouteImport.update({
-    id: '/blogs/news/pikachu-dream-painting-figures-guide',
-    path: '/blogs/news/pikachu-dream-painting-figures-guide',
     getParentRoute: () => rootRouteImport,
   } as any)
 const BlogsNewsPikachuDreamPaintingFiguresHaveArrivedRoute =
@@ -881,7 +867,6 @@ export interface FileRoutesByFullPath {
   '/blogs/news/chasing-glory-card-origins': typeof BlogsNewsChasingGloryCardOriginsRoute
   '/blogs/news/chasing-glory-has-arrived': typeof BlogsNewsChasingGloryHasArrivedRoute
   '/blogs/news/chasing-glory-set-guide': typeof BlogsNewsChasingGlorySetGuideRoute
-  '/blogs/news/funism-ditto-palm-size-wonders-guide': typeof BlogsNewsFunismDittoPalmSizeWondersGuideRoute
   '/blogs/news/funism-ditto-palm-size-wonders-has-arrived': typeof BlogsNewsFunismDittoPalmSizeWondersHasArrivedRoute
   '/blogs/news/gem-vol-2-card-origins': typeof BlogsNewsGemVol2CardOriginsRoute
   '/blogs/news/gem-vol-2-has-arrived': typeof BlogsNewsGemVol2HasArrivedRoute
@@ -900,7 +885,6 @@ export interface FileRoutesByFullPath {
   '/blogs/news/gem-vol-6-set-guide': typeof BlogsNewsGemVol6SetGuideRoute
   '/blogs/news/gem-vol-7-card-origins': typeof BlogsNewsGemVol7CardOriginsRoute
   '/blogs/news/gem-vol-7-has-arrived': typeof BlogsNewsGemVol7HasArrivedRoute
-  '/blogs/news/pikachu-dream-painting-figures-guide': typeof BlogsNewsPikachuDreamPaintingFiguresGuideRoute
   '/blogs/news/pikachu-dream-painting-figures-have-arrived': typeof BlogsNewsPikachuDreamPaintingFiguresHaveArrivedRoute
   '/blogs/news/reward-round-card-origins': typeof BlogsNewsRewardRoundCardOriginsRoute
   '/blogs/news/reward-round-has-arrived': typeof BlogsNewsRewardRoundHasArrivedRoute
@@ -1005,7 +989,6 @@ export interface FileRoutesByTo {
   '/blogs/news/chasing-glory-card-origins': typeof BlogsNewsChasingGloryCardOriginsRoute
   '/blogs/news/chasing-glory-has-arrived': typeof BlogsNewsChasingGloryHasArrivedRoute
   '/blogs/news/chasing-glory-set-guide': typeof BlogsNewsChasingGlorySetGuideRoute
-  '/blogs/news/funism-ditto-palm-size-wonders-guide': typeof BlogsNewsFunismDittoPalmSizeWondersGuideRoute
   '/blogs/news/funism-ditto-palm-size-wonders-has-arrived': typeof BlogsNewsFunismDittoPalmSizeWondersHasArrivedRoute
   '/blogs/news/gem-vol-2-card-origins': typeof BlogsNewsGemVol2CardOriginsRoute
   '/blogs/news/gem-vol-2-has-arrived': typeof BlogsNewsGemVol2HasArrivedRoute
@@ -1024,7 +1007,6 @@ export interface FileRoutesByTo {
   '/blogs/news/gem-vol-6-set-guide': typeof BlogsNewsGemVol6SetGuideRoute
   '/blogs/news/gem-vol-7-card-origins': typeof BlogsNewsGemVol7CardOriginsRoute
   '/blogs/news/gem-vol-7-has-arrived': typeof BlogsNewsGemVol7HasArrivedRoute
-  '/blogs/news/pikachu-dream-painting-figures-guide': typeof BlogsNewsPikachuDreamPaintingFiguresGuideRoute
   '/blogs/news/pikachu-dream-painting-figures-have-arrived': typeof BlogsNewsPikachuDreamPaintingFiguresHaveArrivedRoute
   '/blogs/news/reward-round-card-origins': typeof BlogsNewsRewardRoundCardOriginsRoute
   '/blogs/news/reward-round-has-arrived': typeof BlogsNewsRewardRoundHasArrivedRoute
@@ -1130,7 +1112,6 @@ export interface FileRoutesById {
   '/blogs/news/chasing-glory-card-origins': typeof BlogsNewsChasingGloryCardOriginsRoute
   '/blogs/news/chasing-glory-has-arrived': typeof BlogsNewsChasingGloryHasArrivedRoute
   '/blogs/news/chasing-glory-set-guide': typeof BlogsNewsChasingGlorySetGuideRoute
-  '/blogs/news/funism-ditto-palm-size-wonders-guide': typeof BlogsNewsFunismDittoPalmSizeWondersGuideRoute
   '/blogs/news/funism-ditto-palm-size-wonders-has-arrived': typeof BlogsNewsFunismDittoPalmSizeWondersHasArrivedRoute
   '/blogs/news/gem-vol-2-card-origins': typeof BlogsNewsGemVol2CardOriginsRoute
   '/blogs/news/gem-vol-2-has-arrived': typeof BlogsNewsGemVol2HasArrivedRoute
@@ -1149,7 +1130,6 @@ export interface FileRoutesById {
   '/blogs/news/gem-vol-6-set-guide': typeof BlogsNewsGemVol6SetGuideRoute
   '/blogs/news/gem-vol-7-card-origins': typeof BlogsNewsGemVol7CardOriginsRoute
   '/blogs/news/gem-vol-7-has-arrived': typeof BlogsNewsGemVol7HasArrivedRoute
-  '/blogs/news/pikachu-dream-painting-figures-guide': typeof BlogsNewsPikachuDreamPaintingFiguresGuideRoute
   '/blogs/news/pikachu-dream-painting-figures-have-arrived': typeof BlogsNewsPikachuDreamPaintingFiguresHaveArrivedRoute
   '/blogs/news/reward-round-card-origins': typeof BlogsNewsRewardRoundCardOriginsRoute
   '/blogs/news/reward-round-has-arrived': typeof BlogsNewsRewardRoundHasArrivedRoute
@@ -1256,7 +1236,6 @@ export interface FileRouteTypes {
     | '/blogs/news/chasing-glory-card-origins'
     | '/blogs/news/chasing-glory-has-arrived'
     | '/blogs/news/chasing-glory-set-guide'
-    | '/blogs/news/funism-ditto-palm-size-wonders-guide'
     | '/blogs/news/funism-ditto-palm-size-wonders-has-arrived'
     | '/blogs/news/gem-vol-2-card-origins'
     | '/blogs/news/gem-vol-2-has-arrived'
@@ -1275,7 +1254,6 @@ export interface FileRouteTypes {
     | '/blogs/news/gem-vol-6-set-guide'
     | '/blogs/news/gem-vol-7-card-origins'
     | '/blogs/news/gem-vol-7-has-arrived'
-    | '/blogs/news/pikachu-dream-painting-figures-guide'
     | '/blogs/news/pikachu-dream-painting-figures-have-arrived'
     | '/blogs/news/reward-round-card-origins'
     | '/blogs/news/reward-round-has-arrived'
@@ -1380,7 +1358,6 @@ export interface FileRouteTypes {
     | '/blogs/news/chasing-glory-card-origins'
     | '/blogs/news/chasing-glory-has-arrived'
     | '/blogs/news/chasing-glory-set-guide'
-    | '/blogs/news/funism-ditto-palm-size-wonders-guide'
     | '/blogs/news/funism-ditto-palm-size-wonders-has-arrived'
     | '/blogs/news/gem-vol-2-card-origins'
     | '/blogs/news/gem-vol-2-has-arrived'
@@ -1399,7 +1376,6 @@ export interface FileRouteTypes {
     | '/blogs/news/gem-vol-6-set-guide'
     | '/blogs/news/gem-vol-7-card-origins'
     | '/blogs/news/gem-vol-7-has-arrived'
-    | '/blogs/news/pikachu-dream-painting-figures-guide'
     | '/blogs/news/pikachu-dream-painting-figures-have-arrived'
     | '/blogs/news/reward-round-card-origins'
     | '/blogs/news/reward-round-has-arrived'
@@ -1504,7 +1480,6 @@ export interface FileRouteTypes {
     | '/blogs/news/chasing-glory-card-origins'
     | '/blogs/news/chasing-glory-has-arrived'
     | '/blogs/news/chasing-glory-set-guide'
-    | '/blogs/news/funism-ditto-palm-size-wonders-guide'
     | '/blogs/news/funism-ditto-palm-size-wonders-has-arrived'
     | '/blogs/news/gem-vol-2-card-origins'
     | '/blogs/news/gem-vol-2-has-arrived'
@@ -1523,7 +1498,6 @@ export interface FileRouteTypes {
     | '/blogs/news/gem-vol-6-set-guide'
     | '/blogs/news/gem-vol-7-card-origins'
     | '/blogs/news/gem-vol-7-has-arrived'
-    | '/blogs/news/pikachu-dream-painting-figures-guide'
     | '/blogs/news/pikachu-dream-painting-figures-have-arrived'
     | '/blogs/news/reward-round-card-origins'
     | '/blogs/news/reward-round-has-arrived'
@@ -1629,7 +1603,6 @@ export interface RootRouteChildren {
   BlogsNewsChasingGloryCardOriginsRoute: typeof BlogsNewsChasingGloryCardOriginsRoute
   BlogsNewsChasingGloryHasArrivedRoute: typeof BlogsNewsChasingGloryHasArrivedRoute
   BlogsNewsChasingGlorySetGuideRoute: typeof BlogsNewsChasingGlorySetGuideRoute
-  BlogsNewsFunismDittoPalmSizeWondersGuideRoute: typeof BlogsNewsFunismDittoPalmSizeWondersGuideRoute
   BlogsNewsFunismDittoPalmSizeWondersHasArrivedRoute: typeof BlogsNewsFunismDittoPalmSizeWondersHasArrivedRoute
   BlogsNewsGemVol2CardOriginsRoute: typeof BlogsNewsGemVol2CardOriginsRoute
   BlogsNewsGemVol2HasArrivedRoute: typeof BlogsNewsGemVol2HasArrivedRoute
@@ -1648,7 +1621,6 @@ export interface RootRouteChildren {
   BlogsNewsGemVol6SetGuideRoute: typeof BlogsNewsGemVol6SetGuideRoute
   BlogsNewsGemVol7CardOriginsRoute: typeof BlogsNewsGemVol7CardOriginsRoute
   BlogsNewsGemVol7HasArrivedRoute: typeof BlogsNewsGemVol7HasArrivedRoute
-  BlogsNewsPikachuDreamPaintingFiguresGuideRoute: typeof BlogsNewsPikachuDreamPaintingFiguresGuideRoute
   BlogsNewsPikachuDreamPaintingFiguresHaveArrivedRoute: typeof BlogsNewsPikachuDreamPaintingFiguresHaveArrivedRoute
   BlogsNewsRewardRoundCardOriginsRoute: typeof BlogsNewsRewardRoundCardOriginsRoute
   BlogsNewsRewardRoundHasArrivedRoute: typeof BlogsNewsRewardRoundHasArrivedRoute
@@ -2275,13 +2247,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BlogsNewsChasingGlorySetGuideRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/blogs/news/funism-ditto-palm-size-wonders-guide': {
-      id: '/blogs/news/funism-ditto-palm-size-wonders-guide'
-      path: '/blogs/news/funism-ditto-palm-size-wonders-guide'
-      fullPath: '/blogs/news/funism-ditto-palm-size-wonders-guide'
-      preLoaderRoute: typeof BlogsNewsFunismDittoPalmSizeWondersGuideRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/blogs/news/funism-ditto-palm-size-wonders-has-arrived': {
       id: '/blogs/news/funism-ditto-palm-size-wonders-has-arrived'
       path: '/blogs/news/funism-ditto-palm-size-wonders-has-arrived'
@@ -2406,13 +2371,6 @@ declare module '@tanstack/react-router' {
       path: '/blogs/news/gem-vol-7-has-arrived'
       fullPath: '/blogs/news/gem-vol-7-has-arrived'
       preLoaderRoute: typeof BlogsNewsGemVol7HasArrivedRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/blogs/news/pikachu-dream-painting-figures-guide': {
-      id: '/blogs/news/pikachu-dream-painting-figures-guide'
-      path: '/blogs/news/pikachu-dream-painting-figures-guide'
-      fullPath: '/blogs/news/pikachu-dream-painting-figures-guide'
-      preLoaderRoute: typeof BlogsNewsPikachuDreamPaintingFiguresGuideRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/blogs/news/pikachu-dream-painting-figures-have-arrived': {
@@ -2624,8 +2582,6 @@ const rootRouteChildren: RootRouteChildren = {
   BlogsNewsChasingGloryCardOriginsRoute: BlogsNewsChasingGloryCardOriginsRoute,
   BlogsNewsChasingGloryHasArrivedRoute: BlogsNewsChasingGloryHasArrivedRoute,
   BlogsNewsChasingGlorySetGuideRoute: BlogsNewsChasingGlorySetGuideRoute,
-  BlogsNewsFunismDittoPalmSizeWondersGuideRoute:
-    BlogsNewsFunismDittoPalmSizeWondersGuideRoute,
   BlogsNewsFunismDittoPalmSizeWondersHasArrivedRoute:
     BlogsNewsFunismDittoPalmSizeWondersHasArrivedRoute,
   BlogsNewsGemVol2CardOriginsRoute: BlogsNewsGemVol2CardOriginsRoute,
@@ -2645,8 +2601,6 @@ const rootRouteChildren: RootRouteChildren = {
   BlogsNewsGemVol6SetGuideRoute: BlogsNewsGemVol6SetGuideRoute,
   BlogsNewsGemVol7CardOriginsRoute: BlogsNewsGemVol7CardOriginsRoute,
   BlogsNewsGemVol7HasArrivedRoute: BlogsNewsGemVol7HasArrivedRoute,
-  BlogsNewsPikachuDreamPaintingFiguresGuideRoute:
-    BlogsNewsPikachuDreamPaintingFiguresGuideRoute,
   BlogsNewsPikachuDreamPaintingFiguresHaveArrivedRoute:
     BlogsNewsPikachuDreamPaintingFiguresHaveArrivedRoute,
   BlogsNewsRewardRoundCardOriginsRoute: BlogsNewsRewardRoundCardOriginsRoute,

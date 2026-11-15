@@ -1,4 +1,4 @@
-import { createFileRoute, Link } from '@tanstack/react-router'
+import { createFileRoute } from '@tanstack/react-router'
 import blogCssUrl from '~/styles/blog.css?url'
 import { BLOG_POSTS, BLOG_SITE_URL } from '~/data/blog-posts'
 import { BlogPostLayout } from '~/components/blog/BlogPostLayout'
@@ -210,9 +210,7 @@ function FunismDittoReleasePost() {
         <p>
           With 12 designs and 3 figures a box, a four-box case holds 12 figures, the same number as there are designs. Funism has not
           officially said a case is one of each, so treat the figures as random. One box is a good way to try the line, and a case is
-          the quickest start on the whole set. Our{' '}
-          <Link to="/blogs/news/funism-ditto-palm-size-wonders-guide">Happy Ditto guide</Link> has the checklist, the math on how many
-          boxes a full set takes, and how to tell the similar-colored figures apart.
+          the quickest start on the whole set.
         </p>
         <p>
           Palm-Size Wonders started in December 2024 with six figures of Pikachu, Charmander, Squirtle, Bulbasaur, Psyduck and Eevee,

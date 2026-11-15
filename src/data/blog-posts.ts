@@ -6,7 +6,7 @@
 // the post itself.
 import { SITE_URL, R2_IMAGE_HOST } from '~/lib/gem-sets/constants'
 
-export type BlogPostSlug = 'gem-vol-7-has-arrived' | 'black-bolt-white-flare-arrive' | 'gem-vol-7-card-origins' | 'gem-vol-6-has-arrived' | 'gem-vol-6-set-guide' | 'gem-vol-6-card-origins' | 'gem-vol-5-has-arrived' | 'gem-vol-5-set-guide' | 'gem-vol-5-card-origins' | 'gem-vol-4-has-arrived' | 'gem-vol-4-set-guide' | 'gem-vol-4-card-origins' | 'gem-vol-3-has-arrived' | 'gem-vol-3-set-guide' | 'gem-vol-3-card-origins' | 'gem-vol-2-has-arrived' | 'gem-vol-2-set-guide' | 'gem-vol-2-card-origins' | '30th-celebration-has-arrived' | '30th-celebration-set-guide' | '30th-celebration-card-origins' | 'chasing-glory-has-arrived' | 'chasing-glory-set-guide' | 'chasing-glory-card-origins' | 'terastal-gathering-has-arrived' | 'terastal-gathering-set-guide' | 'terastal-gathering-card-origins' | 'reward-round-has-arrived' | 'reward-round-set-guide' | 'reward-round-card-origins' | 'black-crystal-blaze-has-arrived' | 'black-crystal-blaze-set-guide' | 'black-crystal-blaze-card-origins' | 'black-bolt-set-guide' | 'black-bolt-card-origins' | 'white-flare-set-guide' | 'white-flare-card-origins' | 'true-mystery-has-arrived' | 'true-mystery-set-guide' | 'true-mystery-card-origins' | 'blade-awakening-has-arrived' | 'blade-awakening-set-guide' | 'blade-awakening-card-origins' | 'brilliant-fantasy-has-arrived' | 'brilliant-fantasy-set-guide' | 'brilliant-fantasy-card-origins' | 'stellar-crystal-has-arrived' | 'stellar-crystal-set-guide' | 'stellar-crystal-card-origins' | 'pikachu-dream-painting-figures-have-arrived' | 'pikachu-dream-painting-figures-guide' | 'funism-ditto-palm-size-wonders-has-arrived' | 'funism-ditto-palm-size-wonders-guide'
+export type BlogPostSlug = 'gem-vol-7-has-arrived' | 'black-bolt-white-flare-arrive' | 'gem-vol-7-card-origins' | 'gem-vol-6-has-arrived' | 'gem-vol-6-set-guide' | 'gem-vol-6-card-origins' | 'gem-vol-5-has-arrived' | 'gem-vol-5-set-guide' | 'gem-vol-5-card-origins' | 'gem-vol-4-has-arrived' | 'gem-vol-4-set-guide' | 'gem-vol-4-card-origins' | 'gem-vol-3-has-arrived' | 'gem-vol-3-set-guide' | 'gem-vol-3-card-origins' | 'gem-vol-2-has-arrived' | 'gem-vol-2-set-guide' | 'gem-vol-2-card-origins' | '30th-celebration-has-arrived' | '30th-celebration-set-guide' | '30th-celebration-card-origins' | 'chasing-glory-has-arrived' | 'chasing-glory-set-guide' | 'chasing-glory-card-origins' | 'terastal-gathering-has-arrived' | 'terastal-gathering-set-guide' | 'terastal-gathering-card-origins' | 'reward-round-has-arrived' | 'reward-round-set-guide' | 'reward-round-card-origins' | 'black-crystal-blaze-has-arrived' | 'black-crystal-blaze-set-guide' | 'black-crystal-blaze-card-origins' | 'black-bolt-set-guide' | 'black-bolt-card-origins' | 'white-flare-set-guide' | 'white-flare-card-origins' | 'true-mystery-has-arrived' | 'true-mystery-set-guide' | 'true-mystery-card-origins' | 'blade-awakening-has-arrived' | 'blade-awakening-set-guide' | 'blade-awakening-card-origins' | 'brilliant-fantasy-has-arrived' | 'brilliant-fantasy-set-guide' | 'brilliant-fantasy-card-origins' | 'stellar-crystal-has-arrived' | 'stellar-crystal-set-guide' | 'stellar-crystal-card-origins' | 'pikachu-dream-painting-figures-have-arrived' | 'funism-ditto-palm-size-wonders-has-arrived'
 
 export interface BlogPostSummary {
   slug: BlogPostSlug
@@ -193,19 +193,6 @@ export const BLOG_POSTS: BlogPostSummary[] = [
     glow2: 'rgb(222 185 97 / .25)',
   },
   {
-    slug: 'pikachu-dream-painting-figures-guide',
-    path: '/blogs/news/pikachu-dream-painting-figures-guide',
-    title: 'Dream Painting Pikachu Figure Guide: All 13 Figures, Odds and Completing the Set',
-    excerpt:
-      'Every Dream Painting Pikachu figure with its 30th Celebration card and illustrator, the 1 in 144 secret, and how many boxes a full set really takes.',
-    tag: 'Collecting guide',
-    date: '2026-11-15',
-    heroImage: `${SITE_URL}/assets/blog/pikachu-dream-painting-figures-guide-hero-v3.webp`,
-    heroAlt: 'Dream Painting Pikachu figure 18/30 with card 034/103 in an EBI display case above six more figures labelled by card number',
-    glow1: 'rgb(246 206 60 / .30)',
-    glow2: 'rgb(150 110 20 / .25)',
-  },
-  {
     slug: 'funism-ditto-palm-size-wonders-has-arrived',
     path: '/blogs/news/funism-ditto-palm-size-wonders-has-arrived',
     title: 'Funism Happy Ditto Is Here: 12 Transformations, 3 Figures a Box',
@@ -217,19 +204,6 @@ export const BLOG_POSTS: BlogPostSummary[] = [
     heroAlt: 'Funism Happy Ditto display box of four Ditto-shaped blind boxes with Ditto as Gengar, Pikachu and Jigglypuff in front',
     glow1: 'rgb(196 160 230 / .30)',
     glow2: 'rgb(246 206 60 / .22)',
-  },
-  {
-    slug: 'funism-ditto-palm-size-wonders-guide',
-    path: '/blogs/news/funism-ditto-palm-size-wonders-guide',
-    title: 'Funism Happy Ditto Guide: All 12 Figures and How to Tell Them Apart',
-    excerpt:
-      'The full Happy Ditto checklist, what a set takes in boxes and cases, and how to tell the look-alike pairs apart.',
-    tag: 'Collecting guide',
-    date: '2026-11-15',
-    heroImage: `${SITE_URL}/assets/blog/funism-ditto-palm-size-wonders-guide-hero-v3.webp`,
-    heroAlt: 'The Ditto-shaped Happy Ditto blind box in an EBI display case above six Ditto figures labelled by Pokémon',
-    glow1: 'rgb(196 160 230 / .30)',
-    glow2: 'rgb(110 60 150 / .28)',
   },
   {
     slug: 'black-bolt-set-guide',

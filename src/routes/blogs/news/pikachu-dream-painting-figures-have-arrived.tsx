@@ -284,8 +284,7 @@ function PikachuDreamPaintingReleasePost() {
         <p className="table-note">From Pokémon China's 143:1 production ratio. Averages, not guarantees.</p>
         <p>
           A case is 12 boxes. At 1 in 144, you would expect a secret about once every 12 cases, and 12 random boxes have about an 8%
-          chance of holding one. Our <Link to="/blogs/news/pikachu-dream-painting-figures-guide">figure guide</Link> has the full
-          checklist and the math on completing the set.
+          chance of holding one.
         </p>
 
         <h2 id="collecting">How to collect them</h2>
