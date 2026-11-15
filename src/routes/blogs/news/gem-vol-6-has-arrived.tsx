@@ -331,8 +331,9 @@ function GemVol6Post() {
 
         <h2 id="applin-binder">An Applin binder to go with it</h2>
         <p>
-          Pokémon China also released a 30-pocket Gem Pack Vol. 6 binder the same day, pink with Applin on the cover. It holds one card
-          per pocket, which suits a single Applin run or a page of favorite full arts.
+          Pokémon China also released a 30-pocket Gem Pack Vol. 6 binder the same day, pink with Applin on the cover. Each page holds a
+          single card, so it works as a showcase for your best pulls, like the Applin full art or all seven Applin versions, rather
+          than as storage for the whole set.
         </p>
         <img
           className="inline-media"

@@ -327,8 +327,9 @@ function GemVol7Post() {
 
         <h2 id="psyduck-binder">A Psyduck binder to go with it</h2>
         <p>
-          Pokémon China also released a 30-pocket Gem Pack Vol. 7 binder with Psyduck on the cover the same day. It holds one card per
-          pocket, which suits a single Psyduck run or a page of favorite full arts.
+          Pokémon China also released a 30-pocket Gem Pack Vol. 7 binder with Psyduck on the cover the same day. Each page holds a single
+          card, so it works as a showcase for your best pulls, like the Psyduck full art or all seven Psyduck versions, rather than
+          as storage for the whole set.
         </p>
         <img
           className="inline-media"
