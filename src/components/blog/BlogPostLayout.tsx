@@ -11,8 +11,11 @@ export function BlogPostLayout({
   lede,
   children,
   cta,
+  wide = false,
 }: {
   post: BlogPostSummary
+  /** Full 1170px content column with side-by-side sections, instead of the narrow reading column. */
+  wide?: boolean
   lede: string
   children: React.ReactNode
   cta: {
@@ -22,9 +25,9 @@ export function BlogPostLayout({
   }
 }) {
   return (
-    <div className="ebi-blog" style={{ '--glow-1': post.glow1, '--glow-2': post.glow2 } as React.CSSProperties}>
+    <div className={wide ? 'ebi-blog is-wide' : 'ebi-blog'} style={{ '--glow-1': post.glow1, '--glow-2': post.glow2 } as React.CSSProperties}>
       <section className="hero">
-        <div className="wrap-narrow">
+        <div className={wide ? 'wrap-wide' : 'wrap-narrow'}>
           <div className="crumbs">
             <Link to="/">Home</Link>
             <span>/</span>
@@ -43,7 +46,7 @@ export function BlogPostLayout({
           </div>
         </div>
       </section>
-      <article className="wrap-narrow article">
+      <article className={`${wide ? 'wrap-wide' : 'wrap-narrow'} article`}>
         <Link to="/blogs/news" className="back-link">
           ← Back to News
         </Link>
