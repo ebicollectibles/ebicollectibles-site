@@ -6,7 +6,7 @@
 // the post itself.
 import { SITE_URL, R2_IMAGE_HOST } from '~/lib/gem-sets/constants'
 
-export type BlogPostSlug = 'gem-vol-7-has-arrived' | 'black-bolt-white-flare-arrive' | 'gem-vol-7-card-origins' | 'gem-vol-6-has-arrived' | 'gem-vol-6-set-guide' | 'gem-vol-6-card-origins' | 'gem-vol-5-has-arrived' | 'gem-vol-5-set-guide' | 'gem-vol-5-card-origins' | 'gem-vol-4-has-arrived' | 'gem-vol-4-set-guide' | 'gem-vol-4-card-origins'
+export type BlogPostSlug = 'gem-vol-7-has-arrived' | 'black-bolt-white-flare-arrive' | 'gem-vol-7-card-origins' | 'gem-vol-6-has-arrived' | 'gem-vol-6-set-guide' | 'gem-vol-6-card-origins' | 'gem-vol-5-has-arrived' | 'gem-vol-5-set-guide' | 'gem-vol-5-card-origins' | 'gem-vol-4-has-arrived' | 'gem-vol-4-set-guide' | 'gem-vol-4-card-origins' | 'gem-vol-3-has-arrived' | 'gem-vol-3-set-guide' | 'gem-vol-3-card-origins' | 'gem-vol-2-has-arrived' | 'gem-vol-2-set-guide' | 'gem-vol-2-card-origins'
 
 export interface BlogPostSummary {
   slug: BlogPostSlug
@@ -150,6 +150,84 @@ export const BLOG_POSTS: BlogPostSummary[] = [
     heroImage: `${SITE_URL}/assets/blog/gem-vol-4-origins-hero.webp`,
     heroAlt: 'Eight Gem Pack Vol. 4 full arts in a display case beside the EBI Collectibles logo, with the title Gem Vol. 4 Card Origins',
     glow1: 'rgb(208 129 105 / .30)',
+    glow2: 'rgb(199 22 116 / .26)',
+  },
+  {
+    slug: 'gem-vol-3-has-arrived',
+    path: '/blogs/news/gem-vol-3-has-arrived',
+    title: 'Gem Vol 3 Is Here: Gengar Leads a Night Out in the Gem Pack',
+    excerpt:
+      'The third Simplified Chinese Gem Pack: 136 all-holo cards of night-time Pokémon, nine Pokémon ex, and five new lantern-lit full arts you can only pull here.',
+    tag: 'New release',
+    date: '2025-09-26',
+    heroImage: `${SITE_URL}/assets/blog/gem-vol-3-release-hero.webp`,
+    heroAlt: 'Gengar full art from Gem Pack Vol. 3 in a display case, with the six holo Gengar versions beside the EBI Collectibles logo',
+    glow1: 'rgb(102 63 90 / .32)',
+    glow2: 'rgb(214 169 151 / .26)',
+  },
+  {
+    slug: 'gem-vol-3-set-guide',
+    path: '/blogs/news/gem-vol-3-set-guide',
+    title: 'Gem Vol 3 Set Guide: Every Full Art, Every ex and Box Math',
+    excerpt:
+      'How to read a Gem Vol 3 card, all nine full arts and nine Pokémon ex in one place, the Trainers and Energy, the full roster, and what a master set takes.',
+    tag: 'Set guide',
+    date: '2026-11-15',
+    heroImage: `${SITE_URL}/assets/blog/gem-vol-3-guide-hero.webp`,
+    heroAlt: 'Eight Gem Pack Vol. 3 full arts, including the lantern-lit Meowth, Gengar and Cubone, in a display case beside the EBI Collectibles logo',
+    glow1: 'rgb(214 169 151 / .26)',
+    glow2: 'rgb(102 63 90 / .32)',
+  },
+  {
+    slug: 'gem-vol-3-card-origins',
+    path: '/blogs/news/gem-vol-3-card-origins',
+    title: 'Where Every Gem Vol 3 Card Actually Comes From',
+    excerpt:
+      '35 of the 40 artworks in Gem Vol 3 are reused from English cards, mostly 2023 Scarlet & Violet sets. The other five are the new lantern full arts. Here\'s the full map.',
+    tag: 'Collecting guide',
+    date: '2026-11-15',
+    heroImage: `${SITE_URL}/assets/blog/gem-vol-3-origins-hero.webp`,
+    heroAlt: 'Eight Gem Pack Vol. 3 Pokémon ex and full arts in a display case beside the EBI Collectibles logo, with the title Gem Vol. 3 Card Origins',
+    glow1: 'rgb(214 169 151 / .26)',
+    glow2: 'rgb(102 63 90 / .32)',
+  },
+  {
+    slug: 'gem-vol-2-has-arrived',
+    path: '/blogs/news/gem-vol-2-has-arrived',
+    title: 'Gem Vol 2 Is Here: Eevee and Friends, With Four Full Arts That Form One Scene',
+    excerpt:
+      'The second Simplified Chinese Gem Pack: 140 all-holo cards across Eevee and all eight Eeveelutions, a V and VMAX for each, and four exclusive full arts that join into one forest scene.',
+    tag: 'New release',
+    date: '2025-05-16',
+    heroImage: `${SITE_URL}/assets/blog/gem-vol-2-release-hero.webp`,
+    heroAlt: 'The four Gem Pack Vol. 2 full arts of Leafeon, Sylveon, Umbreon and Eevee lined up into one forest scene, beside the EBI Collectibles logo',
+    glow1: 'rgb(199 22 116 / .26)',
+    glow2: 'rgb(86 134 135 / .30)',
+  },
+  {
+    slug: 'gem-vol-2-set-guide',
+    path: '/blogs/news/gem-vol-2-set-guide',
+    title: 'Gem Vol 2 Set Guide: Every V, VMAX and Full Art, Plus Box Math',
+    excerpt:
+      'How to read a Gem Vol 2 card, the four forest full arts, all nine V and VMAX, the Trainers and Energy, the full roster, and what a master set takes.',
+    tag: 'Set guide',
+    date: '2026-11-15',
+    heroImage: `${SITE_URL}/assets/blog/gem-vol-2-guide-hero.webp`,
+    heroAlt: 'The four Gem Pack Vol. 2 full arts and four VMAX cards in a display case beside the EBI Collectibles logo',
+    glow1: 'rgb(86 134 135 / .30)',
+    glow2: 'rgb(199 22 116 / .26)',
+  },
+  {
+    slug: 'gem-vol-2-card-origins',
+    path: '/blogs/news/gem-vol-2-card-origins',
+    title: 'Where Every Gem Vol 2 Card Actually Comes From',
+    excerpt:
+      '40 of the 44 artworks in Gem Vol 2 are reused from English cards, mostly Sword & Shield promos and Evolving Skies. The other four are the new forest full arts. Here\'s the full map.',
+    tag: 'Collecting guide',
+    date: '2026-11-15',
+    heroImage: `${SITE_URL}/assets/blog/gem-vol-2-origins-hero.webp`,
+    heroAlt: 'Eight Eeveelution V cards from Gem Pack Vol. 2 in a display case beside the EBI Collectibles logo, with the title Gem Vol. 2 Card Origins',
+    glow1: 'rgb(86 134 135 / .30)',
     glow2: 'rgb(199 22 116 / .26)',
   },
   {
