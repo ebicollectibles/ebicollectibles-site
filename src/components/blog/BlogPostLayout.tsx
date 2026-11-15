@@ -14,7 +14,7 @@ export function BlogPostLayout({
   wide = false,
 }: {
   post: BlogPostSummary
-  /** Full 1170px content column with side-by-side sections, instead of the narrow reading column. */
+  /** Reading column for text, with the hero image and `.breakout` blocks spanning the full 1170px width. */
   wide?: boolean
   lede: string
   children: React.ReactNode
@@ -27,7 +27,7 @@ export function BlogPostLayout({
   return (
     <div className={wide ? 'ebi-blog is-wide' : 'ebi-blog'} style={{ '--glow-1': post.glow1, '--glow-2': post.glow2 } as React.CSSProperties}>
       <section className="hero">
-        <div className={wide ? 'wrap-wide' : 'wrap-narrow'}>
+        <div className="wrap-narrow">
           <div className="crumbs">
             <Link to="/">Home</Link>
             <span>/</span>

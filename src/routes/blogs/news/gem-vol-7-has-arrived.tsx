@@ -33,20 +33,25 @@ const REVEALED_FULL_ARTS = [
   { id: '2007', name: "Lillie's Ribombee", note: 'with Lillie' },
 ]
 
-const ODDS = [
-  { symbol: '●', label: 'Common (versions 01 and 02)', pct: '50.00%' },
-  { symbol: '◆', label: 'Uncommon (versions 03 and 04)', pct: '25.00%' },
-  { symbol: '★', label: 'Rare (version 05)', pct: '17.39%' },
-  { symbol: '★★', label: 'Double Rare (version 06)', pct: '5.80%' },
-  { symbol: '★★★', label: 'Full art (version 07)', pct: '1.81%' },
+// One row per rarity: how many cards of it are in the 196-card set, and
+// the share of the print run Pokémon China says it makes up.
+const RARITY = [
+  { symbol: '●', label: 'Common', versions: '01, 02', cards: 56, print: '50.00%' },
+  { symbol: '◆', label: 'Uncommon', versions: '03, 04', cards: 56, print: '25.00%' },
+  { symbol: '★', label: 'Rare', versions: '05', cards: 28, print: '17.39%' },
+  { symbol: '★★', label: 'Double Rare', versions: '06', cards: 28, print: '5.80%' },
+  { symbol: '★★★', label: 'Full art', versions: '07', cards: 28, print: '1.81%' },
 ]
 
-const RARITY_COUNTS = [
-  { label: 'Common (01, 02)', count: 56 },
-  { label: 'Uncommon (03, 04)', count: 56 },
-  { label: 'Rare (05)', count: 28 },
-  { label: 'Double Rare (06)', count: 28 },
-  { label: 'Full art (07)', count: 28 },
+const TOC = [
+  { id: 'how-the-set-works', label: 'How the set is built' },
+  { id: 'mistys-psyduck', label: "Misty's Psyduck, six holo versions" },
+  { id: 'psyduck-full-art', label: 'The chase: Psyduck full art' },
+  { id: 'trainers', label: 'Trainers and their Pokémon' },
+  { id: 'booster-box', label: 'What is inside a booster box' },
+  { id: 'gem-pack-timeline', label: 'Gem Pack timeline' },
+  { id: 'psyduck-binder', label: 'The Psyduck binder' },
+  { id: 'faq', label: 'FAQ' },
 ]
 
 const GEM_TIMELINE = [
@@ -108,15 +113,25 @@ function GemVol7Post() {
     '@context': 'https://schema.org',
     '@type': 'BlogPosting',
     headline: post.title,
+    description: post.excerpt,
     datePublished: post.date,
+    dateModified: post.date,
     image: post.heroImage,
     url: `${BLOG_SITE_URL}${post.path}`,
-    publisher: { '@type': 'Organization', name: 'EBI Collectibles' },
+    mainEntityOfPage: `${BLOG_SITE_URL}${post.path}`,
+    author: { '@type': 'Organization', name: 'EBI Collectibles', url: BLOG_SITE_URL },
+    publisher: { '@type': 'Organization', name: 'EBI Collectibles', url: BLOG_SITE_URL },
+  }
+  const faqJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: FAQ.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
   }
 
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(articleJsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(faqJsonLd) }} />
       <BlogPostLayout
         wide
         post={post}
@@ -133,90 +148,92 @@ function GemVol7Post() {
         <p>
           Gem Pack Vol. 7 landed in mainland China on November 6, 2026. Like every Gem Pack, it is an official Simplified Chinese
           Pokémon TCG product built for collecting: small 4-card packs where every card is a holo, and a set structure that gives each
-          Pokémon its own run of seven cards. This volume leans hard into Trainers and their partner Pokémon, with Misty's Psyduck on
-          the pack and a new full art you can only pull here.
+          Pokémon its own run of seven cards. This volume leans into Trainers and their partner Pokémon, with Misty's Psyduck on the
+          pack and a new full art you can only pull here.
         </p>
 
-        <h2>At a glance</h2>
-        <div className="split aside-pack">
-          <table className="spec-table">
-            <tbody>
-              <tr>
-                <th scope="row">Name</th>
-                <td>Gem Pack Vol. 7 (宝石包 VOL.7), also sold as Gemstone Vol. 7</td>
-              </tr>
-              <tr>
-                <th scope="row">Set code</th>
-                <td>CBB7C</td>
-              </tr>
-              <tr>
-                <th scope="row">Language</th>
-                <td>Simplified Chinese</td>
-              </tr>
-              <tr>
-                <th scope="row">Release date</th>
-                <td>November 6, 2026 (mainland China)</td>
-              </tr>
-              <tr>
-                <th scope="row">Pack</th>
-                <td>4 cards, all holo</td>
-              </tr>
-              <tr>
-                <th scope="row">Booster box</th>
-                <td>18 packs, 72 cards</td>
-              </tr>
-              <tr>
-                <th scope="row">Set size</th>
-                <td>196 cards: 28 Pokémon × 7 versions</td>
-              </tr>
-              <tr>
-                <th scope="row">Headline card</th>
-                <td>Misty's Psyduck full art, 0307/07</td>
-              </tr>
-            </tbody>
-          </table>
+        <aside className="fact-box" aria-label="Gem Pack Vol. 7 key facts">
           <img
-            className="pack-shot"
             src={`${R2_IMAGE_HOST}/Chinese/Blog/gem-vol-7/gem-vol-7-booster-pack.webp`}
             alt="Gem Pack Vol. 7 booster pack with Psyduck on the front"
             loading="lazy"
             width={1200}
             height={2130}
           />
-        </div>
-
-        <h2>How the set is built</h2>
-        <div className="split aside-wide">
           <div>
-            <p>
-              Every one of the 28 Pokémon gets seven numbered cards. The first six share a single illustration and step up in rarity
-              and foil finish. The seventh is a full art with its own illustration. Pokémon China's announcement names the finishes you
-              will see across a run: Energy-type pattern foils, Master Ball pattern foils, the gold-stamped Gem Pack logo, and the full
-              art.
-            </p>
-            <p>
-              Card numbers tell you exactly where you are. Read 0307/07 as Pokémon 03, version 07 of 7, so it is the full art of the
-              third Pokémon in the set.
-            </p>
+            <p className="fact-box-title">Key facts</p>
+            <dl>
+              <dt>Set</dt>
+              <dd>Gem Pack Vol. 7 (宝石包 VOL.7), also called Gemstone Vol. 7</dd>
+              <dt>Set code</dt>
+              <dd>CBB7C</dd>
+              <dt>Released</dt>
+              <dd>November 6, 2026, mainland China</dd>
+              <dt>Pack</dt>
+              <dd>4 cards, all holo</dd>
+              <dt>Booster box</dt>
+              <dd>18 packs, 72 cards</dd>
+              <dt>Set size</dt>
+              <dd>196 cards: 28 Pokémon × 7 versions</dd>
+              <dt>Chase card</dt>
+              <dd>Misty's Psyduck full art, 0307/07</dd>
+            </dl>
           </div>
-          <table className="spec-table">
+        </aside>
+
+        <nav className="toc" aria-label="In this guide">
+          <p className="toc-title">In this guide</p>
+          <ol>
+            {TOC.map((t) => (
+              <li key={t.id}>
+                <a href={`#${t.id}`}>{t.label}</a>
+              </li>
+            ))}
+          </ol>
+        </nav>
+
+        <h2 id="how-the-set-works">How the set is built</h2>
+        <p>
+          Every one of the 28 Pokémon gets seven numbered cards. The first six share a single illustration and step up in rarity and
+          foil finish. The seventh is a full art with its own illustration. Card numbers tell you exactly where you are: read 0307/07
+          as Pokémon 03, version 07 of 7, so it is the full art of the third Pokémon in the set.
+        </p>
+        <div className="table-scroll">
+          <table className="data-table">
+            <thead>
+              <tr>
+                <th scope="col">Rarity</th>
+                <th scope="col">Versions</th>
+                <th scope="col">In the set</th>
+                <th scope="col">Share of print</th>
+              </tr>
+            </thead>
             <tbody>
-              {RARITY_COUNTS.map((r) => (
+              {RARITY.map((r) => (
                 <tr key={r.label}>
-                  <th scope="row">{r.label}</th>
-                  <td>{r.count} cards</td>
+                  <th scope="row">
+                    <span className="sym" aria-hidden="true">
+                      {r.symbol}
+                    </span>{' '}
+                    {r.label}
+                  </th>
+                  <td>{r.versions}</td>
+                  <td>{r.cards} cards</td>
+                  <td>{r.print}</td>
                 </tr>
               ))}
             </tbody>
           </table>
         </div>
+        <p className="table-note">Print shares are published by Pokémon China.</p>
 
-        <h2>Misty's Psyduck, six holo versions</h2>
+        <h2 id="mistys-psyduck">Misty's Psyduck, six holo versions</h2>
         <p>
-          Psyduck is the best way to see the ladder in action. Versions 01 to 06 share the same pool-deck illustration by Yuu Nishida,
-          and each one gets its own holo finish.
+          Psyduck is the easiest way to see the ladder in action. Versions 01 to 06 share the same pool-deck illustration by Yuu
+          Nishida, and each one gets its own holo finish: Energy-type and Poké Ball patterns, glitter, starburst, the Master Ball
+          pattern, and the gold Gem Pack logo stamp.
         </p>
-        <div className="card-grid cols-6">
+        <div className="card-grid cols-6 breakout">
           {PSYDUCK_RUN.filter((c) => c.id !== '0307').map((c) => (
             <figure key={c.id}>
               <img src={cardImg(c.id)} alt={`Misty's Psyduck ${c.id}/07, ${c.rarity}, ${c.finish}, Gem Vol 7`} loading="lazy" width={300} height={419} />
@@ -228,35 +245,31 @@ function GemVol7Post() {
           ))}
         </div>
 
-        <h2>The chase: Misty's Psyduck full art</h2>
-        <div className="split media-first">
-          <figure className="feature-card">
-            <img src={cardImg('0307')} alt="Misty's Psyduck 0307/07 full art, Triple Rare, Gem Vol 7" loading="lazy" width={300} height={419} />
-            <figcaption>
-              <strong>0307/07</strong>
-              Triple Rare · Full art · Illus. Cona Nitanda
-            </figcaption>
-          </figure>
-          <div>
-            <p>
-              The full art, 0307/07, is new artwork by Cona Nitanda, drawn for this set rather than reprinted from another one. Psyduck
-              lounges in a beach chair holding a beach ball up high while Misty waves from behind, ready for a day at the shore.
-            </p>
-            <p>
-              Because the illustration debuts here, Gem Vol 7 is the only place to pull it. It sits in the 07 slot, the rarest in every
-              run, so expect to open a lot of packs or pick it up as a single.
-            </p>
-            <blockquote className="pull-quote">One Psyduck, six holo finishes, and a full art that only exists in this set.</blockquote>
-          </div>
-        </div>
-
-        <h2>Trainers and their Pokémon</h2>
+        <h2 id="psyduck-full-art">The chase: Misty's Psyduck full art</h2>
+        <figure className="feature-card">
+          <img src={cardImg('0307')} alt="Misty's Psyduck 0307/07 full art, Triple Rare, Gem Vol 7" loading="lazy" width={300} height={419} />
+          <figcaption>
+            <strong>0307/07</strong>
+            Triple Rare · Full art · Illus. Cona Nitanda
+          </figcaption>
+        </figure>
         <p>
-          19 of the 28 Pokémon are printed as a Trainer's Pokémon, and Team Rocket alone accounts for eight of them: Raticate, Meowth,
-          Weezing, Murkrow, Wobbuffet, Houndoom, Orbeetle and Spidops. Misty brings Psyduck and Lapras, and the rest of the cast includes
-          Ethan, Steven, Cynthia, N, Lillie, Arven, Hop, Marnie and Iono. Pokémon China revealed these six full arts alongside Psyduck:
+          The full art is new artwork by Cona Nitanda, drawn for this set rather than reprinted from another one. Psyduck lounges in a
+          beach chair holding a beach ball up high while Misty waves from behind, ready for a day at the shore.
         </p>
-        <div className="card-grid cols-6">
+        <p>
+          Because the illustration debuts here, Gem Vol 7 is the only place to pull it. It sits in the 07 slot, the rarest in every
+          run, so plan on opening plenty of packs or picking it up as a single.
+        </p>
+
+        <h2 id="trainers">Trainers and their Pokémon</h2>
+        <p>
+          19 of the 28 Pokémon are printed as a Trainer's Pokémon. Team Rocket alone accounts for eight of them: Raticate, Meowth,
+          Weezing, Murkrow, Wobbuffet, Houndoom, Orbeetle and Spidops. Misty brings Psyduck and Lapras, and the rest of the cast
+          includes Ethan, Steven, Cynthia, N, Lillie, Arven, Hop, Marnie and Iono. Pokémon China revealed these six full arts alongside
+          Psyduck:
+        </p>
+        <div className="card-grid cols-6 breakout">
           {REVEALED_FULL_ARTS.map((c) => (
             <figure key={c.id}>
               <img src={cardImg(c.id)} alt={`${c.name} full art ${c.id}/07, Gem Vol 7`} loading="lazy" width={300} height={419} />
@@ -273,74 +286,60 @@ function GemVol7Post() {
           traces it card by card.
         </p>
 
-        <h2>What is inside a booster box</h2>
-        <div className="split">
-          <div>
-            <p>
-              A box holds 18 packs of 4 holo cards, 72 cards in total. Pulls are random, so duplicates are normal and no specific
-              Pokémon or finish is guaranteed. Pokémon China publishes how much of each rarity it prints, shown here.
-            </p>
-            <p>
-              Those numbers work out to roughly one or two full arts per box on average. That is an estimate from the print ratios, not
-              a promise, and some boxes will run hot or cold. With 196 cards in the set and 72 per box, finishing a master set takes
-              several boxes or picking up singles.
-            </p>
-          </div>
-          <table className="spec-table">
+        <h2 id="booster-box">What is inside a booster box</h2>
+        <p>
+          A box holds 18 packs of 4 holo cards, 72 cards in total. Pulls are random, so duplicates are normal and no specific Pokémon or
+          finish is guaranteed.
+        </p>
+        <p>
+          Going by the print shares above, a box averages roughly one or two full arts. That is an estimate, not a promise, and some
+          boxes run hot or cold. With 196 cards in the set and 72 per box, finishing a master set takes several boxes or picking up
+          singles.
+        </p>
+
+        <h2 id="gem-pack-timeline">Where Vol. 7 fits in the Gem Pack line</h2>
+        <p>
+          Gem Packs have been a Simplified Chinese collector line since January 2025, with the same 4-holo pack the whole way. Since Vol.
+          4, every volume has used the same 196-card, 28 × 7 shape.
+        </p>
+        <div className="table-scroll">
+          <table className="data-table">
+            <thead>
+              <tr>
+                <th scope="col">Volume</th>
+                <th scope="col">Released</th>
+                <th scope="col">Cards</th>
+              </tr>
+            </thead>
             <tbody>
-              {ODDS.map((o) => (
-                <tr key={o.label}>
+              {GEM_TIMELINE.map((g) => (
+                <tr key={g.vol} className={g.vol === 7 ? 'is-current' : undefined}>
                   <th scope="row">
-                    <span aria-hidden="true">{o.symbol} </span>
-                    {o.label}
+                    <Link to={`/sets/gem-vol-${g.vol}` as never}>Gem Pack Vol. {g.vol}</Link>
                   </th>
-                  <td>{o.pct} of cards printed</td>
+                  <td>{g.date}</td>
+                  <td>{g.cards}</td>
                 </tr>
               ))}
             </tbody>
           </table>
         </div>
 
-        <div className="split">
-          <div>
-            <h2>Where Vol. 7 fits in the Gem Pack line</h2>
-            <p>
-              Gem Packs have been a Simplified Chinese collector line since January 2025, and the 4-holo pack has been the format the
-              whole way. Since Vol. 4 every volume has settled on the same 196-card, 28 × 7 shape.
-            </p>
-            <table className="spec-table">
-              <tbody>
-                {GEM_TIMELINE.map((g) => (
-                  <tr key={g.vol}>
-                    <th scope="row">
-                      <Link to={`/sets/gem-vol-${g.vol}` as never}>Gem Pack Vol. {g.vol}</Link>
-                    </th>
-                    <td>
-                      {g.date} · {g.cards} cards
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-          <div>
-            <h2>A Psyduck binder to go with it</h2>
-            <p>
-              Pokémon China also released a 30-pocket Gem Pack Vol. 7 binder with Psyduck on the cover the same day. It is sized for
-              one card per pocket, which suits a single Psyduck run or a page of favorite full arts.
-            </p>
-            <img
-              className="media-full binder"
-              src={`${R2_IMAGE_HOST}/Chinese/Blog/gem-vol-7/gem-vol-7-psyduck-collector-binder.webp`}
-              alt="Official Gem Pack Vol. 7 Psyduck card binder, 30 pockets"
-              loading="lazy"
-              width={2000}
-              height={1333}
-            />
-          </div>
-        </div>
+        <h2 id="psyduck-binder">A Psyduck binder to go with it</h2>
+        <p>
+          Pokémon China also released a 30-pocket Gem Pack Vol. 7 binder with Psyduck on the cover the same day. It holds one card per
+          pocket, which suits a single Psyduck run or a page of favorite full arts.
+        </p>
+        <img
+          className="inline-media"
+          src={`${R2_IMAGE_HOST}/Chinese/Blog/gem-vol-7/gem-vol-7-psyduck-collector-binder.webp`}
+          alt="Official Gem Pack Vol. 7 Psyduck card binder, 30 pockets"
+          loading="lazy"
+          width={2000}
+          height={1333}
+        />
 
-        <h2>FAQ</h2>
+        <h2 id="faq">FAQ</h2>
         <div className="faq">
           {FAQ.map((f) => (
             <details key={f.q}>
@@ -350,11 +349,11 @@ function GemVol7Post() {
           ))}
         </div>
 
-        <h2>Our take</h2>
+        <h2 id="our-take">Our take</h2>
         <p>
-          Gem Vol 7 is an easy set to enjoy. The packs are cheap, every card is shiny, and the Trainer theme gives the binder a real
-          sense of character. If you only chase one card, make it the Misty's Psyduck full art. If you like completing runs, Psyduck's
-          seven versions are the perfect place to start.
+          Gem Vol 7 is an easy set to enjoy. Every card is shiny, the packs are small enough to rip a few at a time, and the Trainer
+          theme gives the binder real character. If you only chase one card, make it the Misty's Psyduck full art. If you like
+          completing runs, Psyduck's six holo versions are the perfect place to start.
         </p>
       </BlogPostLayout>
     </>
