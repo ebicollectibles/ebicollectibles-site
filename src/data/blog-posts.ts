@@ -6,7 +6,7 @@
 // the post itself.
 import { SITE_URL, R2_IMAGE_HOST } from '~/lib/gem-sets/constants'
 
-export type BlogPostSlug = 'gem-vol-7-has-arrived' | 'black-bolt-white-flare-arrive' | 'gem-vol-7-card-origins' | 'gem-vol-6-has-arrived' | 'gem-vol-6-set-guide' | 'gem-vol-6-card-origins' | 'gem-vol-5-has-arrived' | 'gem-vol-5-set-guide' | 'gem-vol-5-card-origins' | 'gem-vol-4-has-arrived' | 'gem-vol-4-set-guide' | 'gem-vol-4-card-origins' | 'gem-vol-3-has-arrived' | 'gem-vol-3-set-guide' | 'gem-vol-3-card-origins' | 'gem-vol-2-has-arrived' | 'gem-vol-2-set-guide' | 'gem-vol-2-card-origins'
+export type BlogPostSlug = 'gem-vol-7-has-arrived' | 'black-bolt-white-flare-arrive' | 'gem-vol-7-card-origins' | 'gem-vol-6-has-arrived' | 'gem-vol-6-set-guide' | 'gem-vol-6-card-origins' | 'gem-vol-5-has-arrived' | 'gem-vol-5-set-guide' | 'gem-vol-5-card-origins' | 'gem-vol-4-has-arrived' | 'gem-vol-4-set-guide' | 'gem-vol-4-card-origins' | 'gem-vol-3-has-arrived' | 'gem-vol-3-set-guide' | 'gem-vol-3-card-origins' | 'gem-vol-2-has-arrived' | 'gem-vol-2-set-guide' | 'gem-vol-2-card-origins' | '30th-celebration-has-arrived' | '30th-celebration-set-guide' | '30th-celebration-card-origins'
 
 export interface BlogPostSummary {
   slug: BlogPostSlug
@@ -22,6 +22,45 @@ export interface BlogPostSummary {
 }
 
 export const BLOG_POSTS: BlogPostSummary[] = [
+  {
+    slug: '30th-celebration-has-arrived',
+    path: '/blogs/news/30th-celebration-has-arrived',
+    title: '30th Celebration Is Here: 30 Pikachu, Futuristic Rares and 30 Classic Cards',
+    excerpt:
+      'The Pokémon TCG\'s 30th anniversary set: a Pikachu in every pack, the new Futuristic Rare, and 30 famous cards from 1999 to 2023 back in their original frames.',
+    tag: 'New release',
+    date: '2026-09-16',
+    heroImage: `${SITE_URL}/assets/blog/30th-celebration-release-hero-v3.webp`,
+    heroAlt: 'The 30th Celebration booster pack with the Mew ex Futuristic Rare in front, over a blurred close-up of the Pikachu pack art',
+    glow1: 'rgb(222 185 97 / .30)',
+    glow2: 'rgb(90 45 5 / .40)',
+  },
+  {
+    slug: '30th-celebration-set-guide',
+    path: '/blogs/news/30th-celebration-set-guide',
+    title: '30th Celebration Set Guide: Every Pikachu, Classic and Promo',
+    excerpt:
+      'How 30th Celebration is numbered, all 30 Pikachu, every secret rare and classic card, all 33 promos, and what a master set takes.',
+    tag: 'Set guide',
+    date: '2026-11-15',
+    heroImage: `${SITE_URL}/assets/blog/30th-celebration-guide-hero-v3.webp`,
+    heroAlt: '30th Celebration Set Guide banner: the Mewtwo ex Futuristic Rare in a display case, with six of the 30 Pikachu beside the EBI Collectibles logo',
+    glow1: 'rgb(222 185 97 / .30)',
+    glow2: 'rgb(90 45 5 / .40)',
+  },
+  {
+    slug: '30th-celebration-card-origins',
+    path: '/blogs/news/30th-celebration-card-origins',
+    title: 'Where Every 30th Celebration Classic Card Comes From',
+    excerpt:
+      'The 30 classic cards in 30th Celebration reprint famous English cards from Base Set Charizard in 1999 to Paldea Evolved Magikarp in 2023. Here\'s the full map.',
+    tag: 'Collecting guide',
+    date: '2026-11-15',
+    heroImage: `${SITE_URL}/assets/blog/30th-celebration-origins-hero-v3.webp`,
+    heroAlt: '30th Celebration Card Origins banner: the booster pack linked to tiles counting the 30 classic cards by era',
+    glow1: 'rgb(222 185 97 / .30)',
+    glow2: 'rgb(90 45 5 / .40)',
+  },
   {
     slug: 'gem-vol-7-has-arrived',
     path: '/blogs/news/gem-vol-7-has-arrived',

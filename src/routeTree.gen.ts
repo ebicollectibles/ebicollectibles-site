@@ -77,6 +77,9 @@ import { Route as AdminOrdersIdRouteImport } from './routes/admin/orders/$id'
 import { Route as AdminProductsIdRouteImport } from './routes/admin/products/$id'
 import { Route as AdminProductsNewRouteImport } from './routes/admin/products/new'
 import { Route as BlogsNewsIndexRouteImport } from './routes/blogs/news/index'
+import { Route as BlogsNews30thCelebrationCardOriginsRouteImport } from './routes/blogs/news/30th-celebration-card-origins'
+import { Route as BlogsNews30thCelebrationHasArrivedRouteImport } from './routes/blogs/news/30th-celebration-has-arrived'
+import { Route as BlogsNews30thCelebrationSetGuideRouteImport } from './routes/blogs/news/30th-celebration-set-guide'
 import { Route as BlogsNewsBlackBoltWhiteFlareArriveRouteImport } from './routes/blogs/news/black-bolt-white-flare-arrive'
 import { Route as BlogsNewsGemVol2CardOriginsRouteImport } from './routes/blogs/news/gem-vol-2-card-origins'
 import { Route as BlogsNewsGemVol2HasArrivedRouteImport } from './routes/blogs/news/gem-vol-2-has-arrived'
@@ -438,6 +441,24 @@ const BlogsNewsIndexRoute = BlogsNewsIndexRouteImport.update({
   path: '/blogs/news/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const BlogsNews30thCelebrationCardOriginsRoute =
+  BlogsNews30thCelebrationCardOriginsRouteImport.update({
+    id: '/blogs/news/30th-celebration-card-origins',
+    path: '/blogs/news/30th-celebration-card-origins',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const BlogsNews30thCelebrationHasArrivedRoute =
+  BlogsNews30thCelebrationHasArrivedRouteImport.update({
+    id: '/blogs/news/30th-celebration-has-arrived',
+    path: '/blogs/news/30th-celebration-has-arrived',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const BlogsNews30thCelebrationSetGuideRoute =
+  BlogsNews30thCelebrationSetGuideRouteImport.update({
+    id: '/blogs/news/30th-celebration-set-guide',
+    path: '/blogs/news/30th-celebration-set-guide',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const BlogsNewsBlackBoltWhiteFlareArriveRoute =
   BlogsNewsBlackBoltWhiteFlareArriveRouteImport.update({
     id: '/blogs/news/black-bolt-white-flare-arrive',
@@ -618,6 +639,9 @@ export interface FileRoutesByFullPath {
   '/admin/orders/$id': typeof AdminOrdersIdRoute
   '/admin/products/$id': typeof AdminProductsIdRoute
   '/admin/products/new': typeof AdminProductsNewRoute
+  '/blogs/news/30th-celebration-card-origins': typeof BlogsNews30thCelebrationCardOriginsRoute
+  '/blogs/news/30th-celebration-has-arrived': typeof BlogsNews30thCelebrationHasArrivedRoute
+  '/blogs/news/30th-celebration-set-guide': typeof BlogsNews30thCelebrationSetGuideRoute
   '/blogs/news/black-bolt-white-flare-arrive': typeof BlogsNewsBlackBoltWhiteFlareArriveRoute
   '/blogs/news/gem-vol-2-card-origins': typeof BlogsNewsGemVol2CardOriginsRoute
   '/blogs/news/gem-vol-2-has-arrived': typeof BlogsNewsGemVol2HasArrivedRoute
@@ -707,6 +731,9 @@ export interface FileRoutesByTo {
   '/admin/orders/$id': typeof AdminOrdersIdRoute
   '/admin/products/$id': typeof AdminProductsIdRoute
   '/admin/products/new': typeof AdminProductsNewRoute
+  '/blogs/news/30th-celebration-card-origins': typeof BlogsNews30thCelebrationCardOriginsRoute
+  '/blogs/news/30th-celebration-has-arrived': typeof BlogsNews30thCelebrationHasArrivedRoute
+  '/blogs/news/30th-celebration-set-guide': typeof BlogsNews30thCelebrationSetGuideRoute
   '/blogs/news/black-bolt-white-flare-arrive': typeof BlogsNewsBlackBoltWhiteFlareArriveRoute
   '/blogs/news/gem-vol-2-card-origins': typeof BlogsNewsGemVol2CardOriginsRoute
   '/blogs/news/gem-vol-2-has-arrived': typeof BlogsNewsGemVol2HasArrivedRoute
@@ -797,6 +824,9 @@ export interface FileRoutesById {
   '/admin/orders/$id': typeof AdminOrdersIdRoute
   '/admin/products/$id': typeof AdminProductsIdRoute
   '/admin/products/new': typeof AdminProductsNewRoute
+  '/blogs/news/30th-celebration-card-origins': typeof BlogsNews30thCelebrationCardOriginsRoute
+  '/blogs/news/30th-celebration-has-arrived': typeof BlogsNews30thCelebrationHasArrivedRoute
+  '/blogs/news/30th-celebration-set-guide': typeof BlogsNews30thCelebrationSetGuideRoute
   '/blogs/news/black-bolt-white-flare-arrive': typeof BlogsNewsBlackBoltWhiteFlareArriveRoute
   '/blogs/news/gem-vol-2-card-origins': typeof BlogsNewsGemVol2CardOriginsRoute
   '/blogs/news/gem-vol-2-has-arrived': typeof BlogsNewsGemVol2HasArrivedRoute
@@ -888,6 +918,9 @@ export interface FileRouteTypes {
     | '/admin/orders/$id'
     | '/admin/products/$id'
     | '/admin/products/new'
+    | '/blogs/news/30th-celebration-card-origins'
+    | '/blogs/news/30th-celebration-has-arrived'
+    | '/blogs/news/30th-celebration-set-guide'
     | '/blogs/news/black-bolt-white-flare-arrive'
     | '/blogs/news/gem-vol-2-card-origins'
     | '/blogs/news/gem-vol-2-has-arrived'
@@ -977,6 +1010,9 @@ export interface FileRouteTypes {
     | '/admin/orders/$id'
     | '/admin/products/$id'
     | '/admin/products/new'
+    | '/blogs/news/30th-celebration-card-origins'
+    | '/blogs/news/30th-celebration-has-arrived'
+    | '/blogs/news/30th-celebration-set-guide'
     | '/blogs/news/black-bolt-white-flare-arrive'
     | '/blogs/news/gem-vol-2-card-origins'
     | '/blogs/news/gem-vol-2-has-arrived'
@@ -1066,6 +1102,9 @@ export interface FileRouteTypes {
     | '/admin/orders/$id'
     | '/admin/products/$id'
     | '/admin/products/new'
+    | '/blogs/news/30th-celebration-card-origins'
+    | '/blogs/news/30th-celebration-has-arrived'
+    | '/blogs/news/30th-celebration-set-guide'
     | '/blogs/news/black-bolt-white-flare-arrive'
     | '/blogs/news/gem-vol-2-card-origins'
     | '/blogs/news/gem-vol-2-has-arrived'
@@ -1156,6 +1195,9 @@ export interface RootRouteChildren {
   AdminOrdersIdRoute: typeof AdminOrdersIdRoute
   AdminProductsIdRoute: typeof AdminProductsIdRoute
   AdminProductsNewRoute: typeof AdminProductsNewRoute
+  BlogsNews30thCelebrationCardOriginsRoute: typeof BlogsNews30thCelebrationCardOriginsRoute
+  BlogsNews30thCelebrationHasArrivedRoute: typeof BlogsNews30thCelebrationHasArrivedRoute
+  BlogsNews30thCelebrationSetGuideRoute: typeof BlogsNews30thCelebrationSetGuideRoute
   BlogsNewsBlackBoltWhiteFlareArriveRoute: typeof BlogsNewsBlackBoltWhiteFlareArriveRoute
   BlogsNewsGemVol2CardOriginsRoute: typeof BlogsNewsGemVol2CardOriginsRoute
   BlogsNewsGemVol2HasArrivedRoute: typeof BlogsNewsGemVol2HasArrivedRoute
@@ -1659,6 +1701,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BlogsNewsIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/blogs/news/30th-celebration-card-origins': {
+      id: '/blogs/news/30th-celebration-card-origins'
+      path: '/blogs/news/30th-celebration-card-origins'
+      fullPath: '/blogs/news/30th-celebration-card-origins'
+      preLoaderRoute: typeof BlogsNews30thCelebrationCardOriginsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blogs/news/30th-celebration-has-arrived': {
+      id: '/blogs/news/30th-celebration-has-arrived'
+      path: '/blogs/news/30th-celebration-has-arrived'
+      fullPath: '/blogs/news/30th-celebration-has-arrived'
+      preLoaderRoute: typeof BlogsNews30thCelebrationHasArrivedRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blogs/news/30th-celebration-set-guide': {
+      id: '/blogs/news/30th-celebration-set-guide'
+      path: '/blogs/news/30th-celebration-set-guide'
+      fullPath: '/blogs/news/30th-celebration-set-guide'
+      preLoaderRoute: typeof BlogsNews30thCelebrationSetGuideRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/blogs/news/black-bolt-white-flare-arrive': {
       id: '/blogs/news/black-bolt-white-flare-arrive'
       path: '/blogs/news/black-bolt-white-flare-arrive'
@@ -1860,6 +1923,11 @@ const rootRouteChildren: RootRouteChildren = {
   AdminOrdersIdRoute: AdminOrdersIdRoute,
   AdminProductsIdRoute: AdminProductsIdRoute,
   AdminProductsNewRoute: AdminProductsNewRoute,
+  BlogsNews30thCelebrationCardOriginsRoute:
+    BlogsNews30thCelebrationCardOriginsRoute,
+  BlogsNews30thCelebrationHasArrivedRoute:
+    BlogsNews30thCelebrationHasArrivedRoute,
+  BlogsNews30thCelebrationSetGuideRoute: BlogsNews30thCelebrationSetGuideRoute,
   BlogsNewsBlackBoltWhiteFlareArriveRoute:
     BlogsNewsBlackBoltWhiteFlareArriveRoute,
   BlogsNewsGemVol2CardOriginsRoute: BlogsNewsGemVol2CardOriginsRoute,
