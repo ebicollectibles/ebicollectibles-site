@@ -6,7 +6,7 @@
 // the post itself.
 import { SITE_URL, R2_IMAGE_HOST } from '~/lib/gem-sets/constants'
 
-export type BlogPostSlug = 'gem-vol-7-has-arrived' | 'black-bolt-white-flare-arrive' | 'gem-vol-7-card-origins' | 'gem-vol-6-has-arrived' | 'gem-vol-6-set-guide' | 'gem-vol-6-card-origins' | 'gem-vol-5-has-arrived' | 'gem-vol-5-set-guide' | 'gem-vol-5-card-origins' | 'gem-vol-4-has-arrived' | 'gem-vol-4-set-guide' | 'gem-vol-4-card-origins' | 'gem-vol-3-has-arrived' | 'gem-vol-3-set-guide' | 'gem-vol-3-card-origins' | 'gem-vol-2-has-arrived' | 'gem-vol-2-set-guide' | 'gem-vol-2-card-origins' | '30th-celebration-has-arrived' | '30th-celebration-set-guide' | '30th-celebration-card-origins' | 'chasing-glory-has-arrived' | 'chasing-glory-set-guide' | 'chasing-glory-card-origins'
+export type BlogPostSlug = 'gem-vol-7-has-arrived' | 'black-bolt-white-flare-arrive' | 'gem-vol-7-card-origins' | 'gem-vol-6-has-arrived' | 'gem-vol-6-set-guide' | 'gem-vol-6-card-origins' | 'gem-vol-5-has-arrived' | 'gem-vol-5-set-guide' | 'gem-vol-5-card-origins' | 'gem-vol-4-has-arrived' | 'gem-vol-4-set-guide' | 'gem-vol-4-card-origins' | 'gem-vol-3-has-arrived' | 'gem-vol-3-set-guide' | 'gem-vol-3-card-origins' | 'gem-vol-2-has-arrived' | 'gem-vol-2-set-guide' | 'gem-vol-2-card-origins' | '30th-celebration-has-arrived' | '30th-celebration-set-guide' | '30th-celebration-card-origins' | 'chasing-glory-has-arrived' | 'chasing-glory-set-guide' | 'chasing-glory-card-origins' | 'terastal-gathering-has-arrived' | 'terastal-gathering-set-guide' | 'terastal-gathering-card-origins'
 
 export interface BlogPostSummary {
   slug: BlogPostSlug
@@ -22,6 +22,45 @@ export interface BlogPostSummary {
 }
 
 export const BLOG_POSTS: BlogPostSummary[] = [
+  {
+    slug: 'terastal-gathering-has-arrived',
+    path: '/blogs/news/terastal-gathering-has-arrived',
+    title: 'Terastal Gathering Is Here: Stellar Eeveelutions and a Second Sylveon ex SAR',
+    excerpt:
+      'China\'s take on Prismatic Evolutions: Eevee and all eight Eeveelutions as Stellar Tera ex, 259 cards in 10-card packs, and a Sylveon ex Special Art Rare you will not find in English.',
+    tag: 'New release',
+    date: '2026-06-12',
+    heroImage: `${SITE_URL}/assets/blog/terastal-gathering-release-hero-v3.webp`,
+    heroAlt: 'Terastal Gathering booster pack with the Umbreon ex Special Art Rare in front, flanked by Eevee ex and Sylveon ex',
+    glow1: 'rgb(71 118 121 / .30)',
+    glow2: 'rgb(216 123 115 / .25)',
+  },
+  {
+    slug: 'terastal-gathering-set-guide',
+    path: '/blogs/news/terastal-gathering-set-guide',
+    title: 'Terastal Gathering Set Guide: Every Eeveelution, Chase Card and What a Box Holds',
+    excerpt:
+      'Every Special Art Rare and gold Ultra Rare, the full Eeveelution checklist, the ACE SPEC cards, what a 10-pack box averages, and what a master set takes.',
+    tag: 'Set guide',
+    date: '2026-11-15',
+    heroImage: `${SITE_URL}/assets/blog/terastal-gathering-guide-hero-v3.webp`,
+    heroAlt: 'Umbreon ex Special Art Rare in an EBI display case above six Eeveelution ex Special Art Rares',
+    glow1: 'rgb(71 118 121 / .30)',
+    glow2: 'rgb(216 123 115 / .25)',
+  },
+  {
+    slug: 'terastal-gathering-card-origins',
+    path: '/blogs/news/terastal-gathering-card-origins',
+    title: 'Where Every Terastal Gathering Card Comes From',
+    excerpt:
+      'All 259 cards matched to English: 156 from Prismatic Evolutions, 28 arts that were only ever English promos, 73 from other Scarlet & Violet sets, and 2 new.',
+    tag: 'Collecting guide',
+    date: '2026-11-15',
+    heroImage: `${SITE_URL}/assets/blog/terastal-gathering-origins-hero-v3.webp`,
+    heroAlt: 'Terastal Gathering pack linked to tiles for Prismatic Evolutions, promo-only art, other sets and new art',
+    glow1: 'rgb(71 118 121 / .30)',
+    glow2: 'rgb(216 123 115 / .25)',
+  },
   {
     slug: 'chasing-glory-has-arrived',
     path: '/blogs/news/chasing-glory-has-arrived',

@@ -101,6 +101,9 @@ import { Route as BlogsNewsGemVol6HasArrivedRouteImport } from './routes/blogs/n
 import { Route as BlogsNewsGemVol6SetGuideRouteImport } from './routes/blogs/news/gem-vol-6-set-guide'
 import { Route as BlogsNewsGemVol7CardOriginsRouteImport } from './routes/blogs/news/gem-vol-7-card-origins'
 import { Route as BlogsNewsGemVol7HasArrivedRouteImport } from './routes/blogs/news/gem-vol-7-has-arrived'
+import { Route as BlogsNewsTerastalGatheringCardOriginsRouteImport } from './routes/blogs/news/terastal-gathering-card-origins'
+import { Route as BlogsNewsTerastalGatheringHasArrivedRouteImport } from './routes/blogs/news/terastal-gathering-has-arrived'
+import { Route as BlogsNewsTerastalGatheringSetGuideRouteImport } from './routes/blogs/news/terastal-gathering-set-guide'
 import { Route as AdminAffiliatesIdDashboardRouteImport } from './routes/admin/affiliates_.$id.dashboard'
 
 const IndexRoute = IndexRouteImport.update({
@@ -588,6 +591,24 @@ const BlogsNewsGemVol7HasArrivedRoute =
     path: '/blogs/news/gem-vol-7-has-arrived',
     getParentRoute: () => rootRouteImport,
   } as any)
+const BlogsNewsTerastalGatheringCardOriginsRoute =
+  BlogsNewsTerastalGatheringCardOriginsRouteImport.update({
+    id: '/blogs/news/terastal-gathering-card-origins',
+    path: '/blogs/news/terastal-gathering-card-origins',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const BlogsNewsTerastalGatheringHasArrivedRoute =
+  BlogsNewsTerastalGatheringHasArrivedRouteImport.update({
+    id: '/blogs/news/terastal-gathering-has-arrived',
+    path: '/blogs/news/terastal-gathering-has-arrived',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const BlogsNewsTerastalGatheringSetGuideRoute =
+  BlogsNewsTerastalGatheringSetGuideRouteImport.update({
+    id: '/blogs/news/terastal-gathering-set-guide',
+    path: '/blogs/news/terastal-gathering-set-guide',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const AdminAffiliatesIdDashboardRoute =
   AdminAffiliatesIdDashboardRouteImport.update({
     id: '/admin/affiliates_/$id/dashboard',
@@ -684,6 +705,9 @@ export interface FileRoutesByFullPath {
   '/blogs/news/gem-vol-6-set-guide': typeof BlogsNewsGemVol6SetGuideRoute
   '/blogs/news/gem-vol-7-card-origins': typeof BlogsNewsGemVol7CardOriginsRoute
   '/blogs/news/gem-vol-7-has-arrived': typeof BlogsNewsGemVol7HasArrivedRoute
+  '/blogs/news/terastal-gathering-card-origins': typeof BlogsNewsTerastalGatheringCardOriginsRoute
+  '/blogs/news/terastal-gathering-has-arrived': typeof BlogsNewsTerastalGatheringHasArrivedRoute
+  '/blogs/news/terastal-gathering-set-guide': typeof BlogsNewsTerastalGatheringSetGuideRoute
   '/account/orders/': typeof AccountOrdersIndexRoute
   '/admin/customers/': typeof AdminCustomersIndexRoute
   '/admin/orders/': typeof AdminOrdersIndexRoute
@@ -779,6 +803,9 @@ export interface FileRoutesByTo {
   '/blogs/news/gem-vol-6-set-guide': typeof BlogsNewsGemVol6SetGuideRoute
   '/blogs/news/gem-vol-7-card-origins': typeof BlogsNewsGemVol7CardOriginsRoute
   '/blogs/news/gem-vol-7-has-arrived': typeof BlogsNewsGemVol7HasArrivedRoute
+  '/blogs/news/terastal-gathering-card-origins': typeof BlogsNewsTerastalGatheringCardOriginsRoute
+  '/blogs/news/terastal-gathering-has-arrived': typeof BlogsNewsTerastalGatheringHasArrivedRoute
+  '/blogs/news/terastal-gathering-set-guide': typeof BlogsNewsTerastalGatheringSetGuideRoute
   '/account/orders': typeof AccountOrdersIndexRoute
   '/admin/customers': typeof AdminCustomersIndexRoute
   '/admin/orders': typeof AdminOrdersIndexRoute
@@ -875,6 +902,9 @@ export interface FileRoutesById {
   '/blogs/news/gem-vol-6-set-guide': typeof BlogsNewsGemVol6SetGuideRoute
   '/blogs/news/gem-vol-7-card-origins': typeof BlogsNewsGemVol7CardOriginsRoute
   '/blogs/news/gem-vol-7-has-arrived': typeof BlogsNewsGemVol7HasArrivedRoute
+  '/blogs/news/terastal-gathering-card-origins': typeof BlogsNewsTerastalGatheringCardOriginsRoute
+  '/blogs/news/terastal-gathering-has-arrived': typeof BlogsNewsTerastalGatheringHasArrivedRoute
+  '/blogs/news/terastal-gathering-set-guide': typeof BlogsNewsTerastalGatheringSetGuideRoute
   '/account/orders/': typeof AccountOrdersIndexRoute
   '/admin/customers/': typeof AdminCustomersIndexRoute
   '/admin/orders/': typeof AdminOrdersIndexRoute
@@ -972,6 +1002,9 @@ export interface FileRouteTypes {
     | '/blogs/news/gem-vol-6-set-guide'
     | '/blogs/news/gem-vol-7-card-origins'
     | '/blogs/news/gem-vol-7-has-arrived'
+    | '/blogs/news/terastal-gathering-card-origins'
+    | '/blogs/news/terastal-gathering-has-arrived'
+    | '/blogs/news/terastal-gathering-set-guide'
     | '/account/orders/'
     | '/admin/customers/'
     | '/admin/orders/'
@@ -1067,6 +1100,9 @@ export interface FileRouteTypes {
     | '/blogs/news/gem-vol-6-set-guide'
     | '/blogs/news/gem-vol-7-card-origins'
     | '/blogs/news/gem-vol-7-has-arrived'
+    | '/blogs/news/terastal-gathering-card-origins'
+    | '/blogs/news/terastal-gathering-has-arrived'
+    | '/blogs/news/terastal-gathering-set-guide'
     | '/account/orders'
     | '/admin/customers'
     | '/admin/orders'
@@ -1162,6 +1198,9 @@ export interface FileRouteTypes {
     | '/blogs/news/gem-vol-6-set-guide'
     | '/blogs/news/gem-vol-7-card-origins'
     | '/blogs/news/gem-vol-7-has-arrived'
+    | '/blogs/news/terastal-gathering-card-origins'
+    | '/blogs/news/terastal-gathering-has-arrived'
+    | '/blogs/news/terastal-gathering-set-guide'
     | '/account/orders/'
     | '/admin/customers/'
     | '/admin/orders/'
@@ -1258,6 +1297,9 @@ export interface RootRouteChildren {
   BlogsNewsGemVol6SetGuideRoute: typeof BlogsNewsGemVol6SetGuideRoute
   BlogsNewsGemVol7CardOriginsRoute: typeof BlogsNewsGemVol7CardOriginsRoute
   BlogsNewsGemVol7HasArrivedRoute: typeof BlogsNewsGemVol7HasArrivedRoute
+  BlogsNewsTerastalGatheringCardOriginsRoute: typeof BlogsNewsTerastalGatheringCardOriginsRoute
+  BlogsNewsTerastalGatheringHasArrivedRoute: typeof BlogsNewsTerastalGatheringHasArrivedRoute
+  BlogsNewsTerastalGatheringSetGuideRoute: typeof BlogsNewsTerastalGatheringSetGuideRoute
   AccountOrdersIndexRoute: typeof AccountOrdersIndexRoute
   AdminCustomersIndexRoute: typeof AdminCustomersIndexRoute
   AdminOrdersIndexRoute: typeof AdminOrdersIndexRoute
@@ -1911,6 +1953,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BlogsNewsGemVol7HasArrivedRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/blogs/news/terastal-gathering-card-origins': {
+      id: '/blogs/news/terastal-gathering-card-origins'
+      path: '/blogs/news/terastal-gathering-card-origins'
+      fullPath: '/blogs/news/terastal-gathering-card-origins'
+      preLoaderRoute: typeof BlogsNewsTerastalGatheringCardOriginsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blogs/news/terastal-gathering-has-arrived': {
+      id: '/blogs/news/terastal-gathering-has-arrived'
+      path: '/blogs/news/terastal-gathering-has-arrived'
+      fullPath: '/blogs/news/terastal-gathering-has-arrived'
+      preLoaderRoute: typeof BlogsNewsTerastalGatheringHasArrivedRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blogs/news/terastal-gathering-set-guide': {
+      id: '/blogs/news/terastal-gathering-set-guide'
+      path: '/blogs/news/terastal-gathering-set-guide'
+      fullPath: '/blogs/news/terastal-gathering-set-guide'
+      preLoaderRoute: typeof BlogsNewsTerastalGatheringSetGuideRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/admin/affiliates_/$id/dashboard': {
       id: '/admin/affiliates_/$id/dashboard'
       path: '/admin/affiliates/$id/dashboard'
@@ -2013,6 +2076,12 @@ const rootRouteChildren: RootRouteChildren = {
   BlogsNewsGemVol6SetGuideRoute: BlogsNewsGemVol6SetGuideRoute,
   BlogsNewsGemVol7CardOriginsRoute: BlogsNewsGemVol7CardOriginsRoute,
   BlogsNewsGemVol7HasArrivedRoute: BlogsNewsGemVol7HasArrivedRoute,
+  BlogsNewsTerastalGatheringCardOriginsRoute:
+    BlogsNewsTerastalGatheringCardOriginsRoute,
+  BlogsNewsTerastalGatheringHasArrivedRoute:
+    BlogsNewsTerastalGatheringHasArrivedRoute,
+  BlogsNewsTerastalGatheringSetGuideRoute:
+    BlogsNewsTerastalGatheringSetGuideRoute,
   AccountOrdersIndexRoute: AccountOrdersIndexRoute,
   AdminCustomersIndexRoute: AdminCustomersIndexRoute,
   AdminOrdersIndexRoute: AdminOrdersIndexRoute,
