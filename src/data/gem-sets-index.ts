@@ -14,17 +14,17 @@ export type GemSetRoutePath =
   | '/sets/gem-vol-5'
   | '/sets/gem-vol-6'
   | '/sets/gem-vol-7'
-  | '/sets/black-bolt'
-  | '/sets/white-flare'
+  | '/sets/black-bolt-csv10-5'
+  | '/sets/white-flare-csv10-6'
   | '/sets/30th-celebration'
-  | '/sets/csv10'
-  | '/sets/csv9-5'
-  | '/sets/csv8'
-  | '/sets/csv4'
-  | '/sets/csv5'
-  | '/sets/csv6'
-  | '/sets/csv7'
-  | '/sets/csv9'
+  | '/sets/chasing-glory-csv10'
+  | '/sets/terastal-gathering-csv9-5'
+  | '/sets/brilliant-fantasy-csv8'
+  | '/sets/reward-round-csv4'
+  | '/sets/black-crystal-blaze-csv5'
+  | '/sets/true-mystery-csv6'
+  | '/sets/blade-awakening-csv7'
+  | '/sets/stellar-crystal-csv9'
   | '/sets/collect-151-journey'
   | '/sets/collect-151-hope'
   | '/sets/collect-151-surprise'
@@ -64,8 +64,8 @@ export const GEM_SETS: GemSetSummary[] = [
     glow2: 'rgb(90 45 5 / .25)',
   },
   {
-    slug: 'csv4',
-    path: '/sets/csv4',
+    slug: 'reward-round-csv4',
+    path: '/sets/reward-round-csv4',
     name: 'Reward Round',
     series: 'Chinese Scarlet & Violet',
     code: 'CSV4C',
@@ -79,8 +79,8 @@ export const GEM_SETS: GemSetSummary[] = [
     glow2: 'rgb(179 130 68 / .25)',
   },
   {
-    slug: 'csv5',
-    path: '/sets/csv5',
+    slug: 'black-crystal-blaze-csv5',
+    path: '/sets/black-crystal-blaze-csv5',
     name: 'Black Crystal Blaze',
     series: 'Chinese Scarlet & Violet',
     code: 'CSV5C',
@@ -94,8 +94,8 @@ export const GEM_SETS: GemSetSummary[] = [
     glow2: 'rgb(44 35 47 / .25)',
   },
   {
-    slug: 'csv6',
-    path: '/sets/csv6',
+    slug: 'true-mystery-csv6',
+    path: '/sets/true-mystery-csv6',
     name: 'True Mystery',
     series: 'Chinese Scarlet & Violet',
     code: 'CSV6C',
@@ -109,8 +109,8 @@ export const GEM_SETS: GemSetSummary[] = [
     glow2: 'rgb(40 133 151 / .25)',
   },
   {
-    slug: 'csv7',
-    path: '/sets/csv7',
+    slug: 'blade-awakening-csv7',
+    path: '/sets/blade-awakening-csv7',
     name: 'Blade Awakening',
     series: 'Chinese Scarlet & Violet',
     code: 'CSV7C',
@@ -124,8 +124,8 @@ export const GEM_SETS: GemSetSummary[] = [
     glow2: 'rgb(13 13 18 / .25)',
   },
   {
-    slug: 'csv8',
-    path: '/sets/csv8',
+    slug: 'brilliant-fantasy-csv8',
+    path: '/sets/brilliant-fantasy-csv8',
     name: 'Brilliant Fantasy',
     series: 'Chinese Scarlet & Violet',
     code: 'CSV8C',
@@ -139,8 +139,8 @@ export const GEM_SETS: GemSetSummary[] = [
     glow2: 'rgb(64 155 148 / .25)',
   },
   {
-    slug: 'csv9',
-    path: '/sets/csv9',
+    slug: 'stellar-crystal-csv9',
+    path: '/sets/stellar-crystal-csv9',
     name: 'Stellar Crystal',
     series: 'Chinese Scarlet & Violet',
     code: 'CSV9C',
@@ -154,8 +154,8 @@ export const GEM_SETS: GemSetSummary[] = [
     glow2: 'rgb(92 103 134 / .25)',
   },
   {
-    slug: 'csv9-5',
-    path: '/sets/csv9-5',
+    slug: 'terastal-gathering-csv9-5',
+    path: '/sets/terastal-gathering-csv9-5',
     name: 'Terastal Gathering',
     series: 'Chinese Scarlet & Violet',
     code: 'CSV9.5C',
@@ -169,8 +169,8 @@ export const GEM_SETS: GemSetSummary[] = [
     glow2: 'rgb(216 123 115 / .25)',
   },
   {
-    slug: 'csv10',
-    path: '/sets/csv10',
+    slug: 'chasing-glory-csv10',
+    path: '/sets/chasing-glory-csv10',
     name: 'Chasing Glory',
     series: 'Chinese Scarlet & Violet',
     code: 'CSV10C',
@@ -184,8 +184,8 @@ export const GEM_SETS: GemSetSummary[] = [
     glow2: 'rgb(29 16 19 / .25)',
   },
   {
-    slug: 'black-bolt',
-    path: '/sets/black-bolt',
+    slug: 'black-bolt-csv10-5',
+    path: '/sets/black-bolt-csv10-5',
     name: 'Black Bolt',
     series: 'Chinese Scarlet & Violet',
     code: 'CSV10.5C',
@@ -199,8 +199,8 @@ export const GEM_SETS: GemSetSummary[] = [
     glow2: 'rgb(72 121 119 / .25)',
   },
   {
-    slug: 'white-flare',
-    path: '/sets/white-flare',
+    slug: 'white-flare-csv10-6',
+    path: '/sets/white-flare-csv10-6',
     name: 'White Flare',
     series: 'Chinese Scarlet & Violet',
     code: 'CSV10.6C',

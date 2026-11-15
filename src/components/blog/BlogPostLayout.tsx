@@ -31,7 +31,7 @@ export function BlogPostLayout({
           <div className="crumbs">
             <Link to="/">Home</Link>
             <span>/</span>
-            <Link to="/blogs/news">News</Link>
+            <Link to="/blog">News</Link>
           </div>
           <div className="eyebrow">
             <span className="dot" />
@@ -47,7 +47,7 @@ export function BlogPostLayout({
         </div>
       </section>
       <article className={`${wide ? 'wrap-wide' : 'wrap-narrow'} article`}>
-        <Link to="/blogs/news" className="back-link">
+        <Link to="/blog" className="back-link">
           ← Back to News
         </Link>
         <img className="article-hero-img" src={post.heroImage} alt={post.heroAlt} width={1280} height={720} />
