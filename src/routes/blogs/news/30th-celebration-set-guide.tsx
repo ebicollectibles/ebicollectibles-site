@@ -42,8 +42,8 @@ function Gallery({ cards, cols, label }: { cards: Card[]; cols: number; label?: 
 
 const RARITY = [
   { name: 'Common (C)', where: 'Main set', count: 45 },
-  { name: 'Rare (R)', where: 'Main set', count: 18 },
   { name: 'Pikachu', where: '017 to 046', count: 30 },
+  { name: 'Rare (R)', where: 'Main set', count: 18 },
   { name: 'Double Rare (RR)', where: 'The ex in the main set', count: 10 },
   { name: 'Art Rare (AR)', where: '104 to 123', count: 20 },
   { name: 'Special Art Rare (SAR)', where: '124 to 133', count: 10 },
@@ -54,7 +54,7 @@ const RARITY = [
 const BOX_AVERAGE = [
   { group: 'Common, Basic Energy and Pikachu', share: '89.83%', perBox: 'about 108' },
   { group: 'Rare, Double Rare, Art Rare and Classic', share: '9.17%', perBox: 'about 11' },
-  { group: 'Special Art Rare, Futuristic Rare and Master Ball mark', share: '1.00%', perBox: 'about 1' },
+  { group: 'Special Art Rare, Futuristic Rare and RGB mark', share: '1.00%', perBox: 'about 1' },
 ]
 
 const PROMO_SOURCES: Record<string, string> = {
@@ -97,7 +97,7 @@ const FAQ = [
   },
   {
     q: 'How many boxes does a master set take?',
-    a: 'There is no fixed number. With about one card per box from the top group of SAR, FUR and Master Ball mark cards, finishing those from boxes alone takes many boxes, so most collectors finish with singles.',
+    a: 'There is no fixed number. With about one card per box from the top group of SAR, FUR and RGB mark cards, finishing those from boxes alone takes many boxes, so most collectors finish with singles.',
   },
 ]
 
@@ -275,7 +275,7 @@ function ThirtiethSetGuide() {
         </p>
         <p>
           The secret rares are the hard part. A box averages about 11 cards from the Rare to Classic group, spread across 78 different
-          cards, and about one card from the top group of Special Art Rares, Futuristic Rares and Master Ball mark cards. Pulling all of
+          cards, and about one card from the top group of Special Art Rares, Futuristic Rares and RGB mark cards. Pulling all of
           those from boxes alone takes a lot of boxes.
         </p>
         <p>

@@ -72,7 +72,7 @@ const FAQ = [
   },
   {
     q: 'Which cards are exclusive to Gem Vol 3?',
-    a: 'The five lantern full arts: Meowth 0207/07, Gengar 0307/07, Cubone 0407/07, Chandelure 1107/07 and Ceruledge 1507/07. They were drawn for this set and do not appear in any other product.',
+    a: 'The five lantern full arts: Meowth 0207/07, Gengar 0307/07, Cubone 0407/07, Chandelure 1107/07 and Ceruledge 1507/07. They are new art drawn for this set, with no English printing.',
   },
   {
     q: 'How many boxes does a master set take?',

@@ -81,7 +81,7 @@ const FAQ = [
   },
   {
     q: 'Is the Chinese 30th Celebration the same as the English set?',
-    a: 'The cards are the same, but they are split differently. The Chinese set matches the Japanese 30th CELEBRATION number for number. English puts the 30 classics in a separate 30th Classic Collection, moves the Ditto and Nidorina Art Rares to Mega Promos, and adds a few extra cards to its main set.',
+    a: 'Every Chinese card is in English too, but they are split differently. The Chinese set matches the Japanese 30th CELEBRATION number for number. English puts the 30 classics in a separate 30th Classic Collection, moves the Ditto and Nidorina Art Rares to Mega Promos, and adds 25 extra Pokémon cards to its main set.',
   },
   {
     q: 'Is the Ditto Art Rare a promo in English?',
@@ -170,8 +170,8 @@ function ThirtiethOriginsPost() {
         <h2 id="how-it-works">How 30th Celebration lines up</h2>
         <p>
           The Simplified Chinese set matches the Japanese 30th CELEBRATION card for card, with the same numbers from 001 to 165. The
-          English release has the same cards but splits them up: its 30th Celebration set has 128 numbered cards, the 30 classics are a
-          separate 30th Classic Collection, and a few cards became Mega Promos.
+          English release has every Chinese card but splits them up differently: its 30th Celebration set has 128 numbered cards, including 25 cards
+          that are not in the Chinese set, the 30 classics are a separate 30th Classic Collection, and a few cards became Mega Promos.
         </p>
 
         <h2 id="eras">Classics by era</h2>
@@ -211,8 +211,8 @@ function ThirtiethOriginsPost() {
         <h2 id="patterns">Patterns worth knowing</h2>
         <ul>
           <li>
-            <strong>Mitsuhiro Arita leads the list.</strong> He drew four of the classics: the Base Set Pikachu and Charizard, Scizor
-            ex and Pikachu &amp; Zekrom-GX.
+            <strong>5ban Graphics and Ken Sugimori lead the list.</strong> 5ban Graphics made six of the classics and Ken Sugimori drew
+            five. Mitsuhiro Arita drew four: the Base Set Pikachu and Charizard, Scizor ex and Pikachu &amp; Zekrom-GX.
           </li>
           <li>
             <strong>Most are the regular version.</strong> Rayquaza-EX, Genesect-EX and the GX, V, VMAX and VSTAR cards reuse the

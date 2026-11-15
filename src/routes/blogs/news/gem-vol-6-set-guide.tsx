@@ -58,7 +58,7 @@ const FAQ = [
   },
   {
     q: 'Which card is exclusive to Gem Vol 6?',
-    a: 'Applin 1907/07, the kitchen full art by Jiro Sasumo. It was drawn for this set and does not appear in any other product.',
+    a: 'Applin 1907/07, the kitchen full art by Jiro Sasumo. It is new art drawn for this set, with no English printing.',
   },
   {
     q: 'Does Gem Vol 6 have Trainer’s Pokémon?',
@@ -129,8 +129,8 @@ function GemVol6SetGuide() {
         }}
       >
         <p>
-          Gem Pack Vol. 6 (CBB6C) is the Applin set: 196 holo cards, 28 Pokémon with seven versions each, and the apple family on the
-          pack. Our <Link to="/blogs/news/gem-vol-6-has-arrived">release post</Link> covers what is new in the set, and our{' '}
+          Gem Pack Vol. 6 (CBB6C) is the Applin set: 196 holo cards, 28 Pokémon with seven versions each, and the whole apple family in
+          the lineup. Our <Link to="/blogs/news/gem-vol-6-has-arrived">release post</Link> covers what is new in the set, and our{' '}
           <Link to="/blogs/news/gem-vol-6-card-origins">card origins guide</Link> traces every illustration back to its English card.
           Use this one to sort your pulls or plan a master set.
         </p>
@@ -261,7 +261,7 @@ function GemVol6SetGuide() {
         </p>
         <p>
           A box averages about 1.3 full arts, spread across 28 different cards. If each full art is equally likely, any one
-          specific full art shows up in roughly 1 box in 20, and pulling all 28 from boxes alone would take dozens of boxes. The
+          specific full art shows up in roughly 1 box in 21, and pulling all 28 from boxes alone would take dozens of boxes. The
           Double Rares are friendlier, at about 4 per box, but still take many boxes to complete.
         </p>
         <p>

@@ -86,7 +86,7 @@ const PROMOS = [
 const ODDS = [
   { group: 'Common, Basic Energy and the 30 Pikachu', share: '89.83%' },
   { group: 'Rare, Double Rare, Art Rare and Classic', share: '9.17%' },
-  { group: 'Special Art Rare, Futuristic Rare and 3 Master Ball mark cards', share: '1.00%' },
+  { group: 'Special Art Rare, Futuristic Rare and 3 RGB mark cards', share: '1.00%' },
 ]
 
 const TOC = [
@@ -105,7 +105,7 @@ const TOC = [
 const FAQ = [
   {
     q: 'Is the Chinese 30th Celebration the same set as the English and Japanese ones?',
-    a: 'It is the same release. It came out on September 16, 2026, the first Pokémon TCG product released worldwide on the same day, and its card list matches the Japanese 30th Celebration card for card. English splits a few cards out differently, which our card origins guide covers.',
+    a: 'It is the same release. It came out on September 16, 2026, the first Pokémon TCG product released worldwide on the same day, and its card list matches the Japanese 30th Celebration card for card. English splits some cards out differently and adds 25 cards of its own, which our card origins guide covers.',
   },
   {
     q: 'How many packs come in a booster box?',

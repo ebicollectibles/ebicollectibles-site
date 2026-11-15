@@ -68,15 +68,15 @@ const FAQ = [
   },
   {
     q: 'Is any Gem Vol 3 artwork new?',
-    a: 'Yes, five: the lantern full arts of Meowth 0207/07, Gengar 0307/07, Cubone 0407/07, Chandelure 1107/07 and Ceruledge 1507/07. None of them are on an earlier English or Japanese card.',
+    a: 'Yes, five: the lantern full arts of Meowth 0207/07, Gengar 0307/07, Cubone 0407/07, Chandelure 1107/07 and Ceruledge 1507/07. None of them are on an earlier English card.',
   },
   {
     q: 'Which English set does most of Gem Vol 3 come from?',
     a: 'Obsidian Flames and the base Scarlet & Violet set, with eight artworks each.',
   },
   {
-    q: 'Why do two Gem Vol 3 cards have a different regulation mark?',
-    a: 'Gardevoir and Banette reuse Sword & Shield art from Silver Tempest and Lost Origin, so they keep mark F. Darkrai ex carries mark H, matching its English promo.',
+    q: 'Why do some Gem Vol 3 cards have a different regulation mark?',
+    a: 'Gardevoir and Banette reuse Sword & Shield art from Silver Tempest and Lost Origin, so their versions 01 to 06 keep mark F. Darkrai ex carries mark H, matching its English promo.',
   },
 ]
 
@@ -206,7 +206,7 @@ function GemVol3OriginsPost() {
             <strong>2023 sets do most of the work.</strong> Obsidian Flames and the base Scarlet & Violet set supply eight artworks each, with Paldea Evolved close behind on six.
           </li>
           <li>
-            <strong>Two artworks are from Sword & Shield.</strong> Gardevoir comes from Silver Tempest and Banette from Lost Origin, which is why those two Gem cards carry regulation mark F instead of G.
+            <strong>Two artworks are from Sword & Shield.</strong> Gardevoir comes from Silver Tempest and Banette from Lost Origin, which is why their versions 01 to 06 carry regulation mark F instead of G.
           </li>
           <li>
             <strong>Three 07 cards are promos.</strong> Darkrai ex, the Mimikyu full art and Annihilape ex reuse English Black Star Promo art rather than set cards.

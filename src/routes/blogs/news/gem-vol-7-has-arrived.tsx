@@ -148,7 +148,7 @@ function GemVol7Post() {
         <p>
           Gem Pack Vol. 7 landed in mainland China on November 6, 2026. Like every Gem Pack, it is an official Simplified Chinese
           Pokémon TCG product built for collecting: small 4-card packs where every card is a holo, and a set structure that gives each
-          Pokémon its own run of seven cards. This volume leans into Trainers and their partner Pokémon, with Misty's Psyduck on the
+          Pokémon its own run of seven cards. This volume leans into Trainers and their partner Pokémon, with Psyduck on the
           pack and a new full art you can only pull here.
         </p>
 
@@ -272,7 +272,7 @@ function GemVol7Post() {
         <p>
           Psyduck shows how a run works. Versions 01 to 06 share the same pool-deck illustration by Yuu
           Nishida, and each one gets its own holo finish: Energy-type and Poké Ball patterns, glitter, starburst, the Master Ball
-          pattern, and the gold Gem Pack logo stamp.
+          pattern, and the pink Gem Pack logo stamp.
         </p>
         <div className="card-grid cols-3">
           {PSYDUCK_RUN.filter((c) => c.id !== '0307').map((c) => (

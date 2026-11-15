@@ -72,7 +72,7 @@ const FAQ = [
   },
   {
     q: 'Is any Gem Vol 5 artwork new?',
-    a: 'Yes, five: the four Pokémon Horizons full arts (0107, 2207, 2307 and 2407) and Captain Pikachu\'s regular art. None of them are on an earlier English or Japanese card.',
+    a: 'Yes, five: the four Pokémon Horizons full arts (0107, 2207, 2307 and 2407) and Captain Pikachu\'s regular art. None of them are on an earlier English card.',
   },
   {
     q: 'Which English set does most of Gem Vol 5 come from?',

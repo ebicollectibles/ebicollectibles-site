@@ -70,15 +70,15 @@ const FAQ = [
   },
   {
     q: 'Is any Gem Vol 6 artwork new?',
-    a: "Yes, one: Applin's full art, 1907/07 by Jiro Sasumo. It is not on any earlier English, Japanese or Traditional Chinese card, which lines up with Pokémon China calling it new.",
+    a: "Yes, one: Applin's full art, 1907/07 by Jiro Sasumo. It is not on any earlier English card, which lines up with Pokémon China calling it new.",
   },
   {
     q: 'Which English set does most of Gem Vol 6 come from?',
     a: 'Surging Sparks. It supplies the regular art for 11 Pokémon and the full art for 11, more than any other set.',
   },
   {
-    q: 'Why is Applin the only card with a different regulation mark?',
-    a: "Applin's regular art comes from Destined Rivals, which uses regulation mark I. Every other Gem Vol 6 artwork comes from sets that use mark H.",
+    q: 'Why do the Applin cards have a different regulation mark?',
+    a: "Applin's regular art comes from Destined Rivals, which uses regulation mark I, and all seven Applin cards carry mark I. Every other Gem Vol 6 artwork comes from sets that use mark H.",
   },
 ]
 

@@ -58,7 +58,7 @@ const FAQ = [
   },
   {
     q: 'Which cards are exclusive to Gem Vol 5?',
-    a: 'The four Pokémon Horizons full arts: Captain Pikachu with Friede (0107/07), Floragato with Liko (2207/07), Crocalor with Roy (2307/07) and Quaxwell with Dot (2407/07). They were drawn for this set and do not appear in any other product.',
+    a: 'The four Pokémon Horizons full arts: Captain Pikachu with Friede (0107/07), Floragato with Liko (2207/07), Crocalor with Roy (2307/07) and Quaxwell with Dot (2407/07). They are new art drawn for this set, with no English printing.',
   },
   {
     q: 'Does Gem Vol 5 have Trainer’s Pokémon?',
@@ -261,7 +261,7 @@ function GemVol5SetGuide() {
         </p>
         <p>
           A box averages about 1.3 full arts, spread across 28 different cards. If each full art is equally likely, any one
-          specific full art shows up in roughly 1 box in 20, and pulling all 28 from boxes alone would take dozens of boxes. The
+          specific full art shows up in roughly 1 box in 21, and pulling all 28 from boxes alone would take dozens of boxes. The
           Double Rares are friendlier, at about 4 per box, but still take many boxes to complete.
         </p>
         <p>
