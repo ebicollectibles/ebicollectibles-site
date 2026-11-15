@@ -66,7 +66,7 @@ export const BLOG_POSTS: BlogPostSummary[] = [
     path: '/blogs/news/gem-vol-6-card-origins',
     title: 'Where Every Gem Vol 6 Card Actually Comes From',
     excerpt:
-      "55 of the 56 illustrations in Gem Vol 6 first appeared on English Scarlet & Violet cards, mostly from Surging Sparks. Here's the full card-by-card map.",
+      "55 of the 56 artworks in Gem Vol 6 are reused from English Scarlet & Violet cards, mostly Surging Sparks. Here's the full card-by-card map.",
     tag: 'Collecting guide',
     date: '2026-11-15',
     heroImage: `${SITE_URL}/assets/blog/gem-vol-6-origins-hero.webp`,
@@ -92,7 +92,7 @@ export const BLOG_POSTS: BlogPostSummary[] = [
     path: '/blogs/news/gem-vol-7-card-origins',
     title: 'Where Every Gem Vol 7 Card Actually Comes From',
     excerpt:
-      "55 of the 56 illustrations in Gem Vol 7 first appeared on English cards, mostly from Destined Rivals and Journey Together. Here's the full card-by-card map.",
+      "55 of the 56 artworks in Gem Vol 7 are reused from English cards, mostly Destined Rivals and Journey Together. Here's the full card-by-card map.",
     tag: 'Collecting guide',
     date: '2026-11-14',
     heroImage: `${SITE_URL}/assets/blog/gem-vol-7-origins-hero.webp`,

@@ -63,7 +63,7 @@ function BlogIndexPage() {
           </div>
           <h1>News &amp; collecting guides</h1>
           <p className="lede">
-            New Simplified Chinese Pokémon TCG releases, the chase cards in each set, and where their artwork first appeared.
+            New Simplified Chinese Pokémon TCG releases, the chase cards in each set, and which English cards their art comes from.
           </p>
         </div>
       </section>
