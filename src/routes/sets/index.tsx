@@ -50,6 +50,10 @@ function groupBySeries() {
     list.push(s)
     groups.set(s.series, list)
   }
+  // Chinese Scarlet & Violet reads newest to oldest; a stable sort keeps
+  // same-day releases (Black Bolt, White Flare) in their listed order.
+  const sv = groups.get('Chinese Scarlet & Violet')
+  if (sv) sv.sort((x, y) => y.releaseDate.localeCompare(x.releaseDate))
   return [...groups.entries()].sort(([a], [b]) => {
     const ia = SERIES_ORDER.indexOf(a)
     const ib = SERIES_ORDER.indexOf(b)
