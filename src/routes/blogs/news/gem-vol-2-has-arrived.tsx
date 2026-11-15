@@ -20,14 +20,6 @@ const EEVEE_SAMPLE = [
   { id: '0115', label: 'Full art', note: 'Triple Rare · Exclusive' },
 ]
 
-// The four exclusive full arts, in the order that joins them into one scene.
-const FOREST_FULL_ARTS = [
-  { id: '0715', name: 'Leafeon' },
-  { id: '0915', name: 'Sylveon' },
-  { id: '0615', name: 'Umbreon' },
-  { id: '0115', name: 'Eevee' },
-]
-
 const VMAX = [
   { id: '0114', name: 'Eevee VMAX' },
   { id: '0214', name: 'Vaporeon VMAX' },
@@ -270,20 +262,9 @@ function GemVol2Post() {
           width={1600}
           height={562}
         />
-        <div className="card-grid cols-4">
-          {FOREST_FULL_ARTS.map((c) => (
-            <figure key={c.id}>
-              <img src={cardImg(c.id)} alt={`${c.name} full art ${c.id}/15, Gem Vol 2`} loading="lazy" width={300} height={419} />
-              <figcaption>
-                <strong>{c.name}</strong>
-                {c.id}/15 · Illus. HYOGONOSUKE
-              </figcaption>
-            </figure>
-          ))}
-        </div>
         <p>
-          Because the art debuts here, Gem Vol 2 is the only place to pull these four, and completing the panorama is the goal for most
-          collectors of this set.
+          The four are Leafeon 0715/15, Sylveon 0915/15, Umbreon 0615/15 and Eevee 0115/15, all Triple Rares. Because the art debuts
+          here, Gem Vol 2 is the only place to pull them, and completing the panorama is the goal for most collectors of this set.
         </p>
 
         <h2 id="vmax">Nine VMAX</h2>
