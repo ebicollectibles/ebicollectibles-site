@@ -25,13 +25,13 @@ export const BLOG_POSTS: BlogPostSummary[] = [
   {
     slug: 'gem-vol-7-has-arrived',
     path: '/blogs/news/gem-vol-7-has-arrived',
-    title: "Gem Vol 7 Has Landed — Misty's Psyduck Leads a Trainer-Paired Lineup",
+    title: "Gem Vol 7 Is Here: Misty's Psyduck Leads a Trainer-Paired Lineup",
     excerpt:
-      "The 7th Simplified Chinese Gem Pack is here: 196 cards, 28 Pokémon each with a full 7-version ladder, and an exclusive Misty's Psyduck full art you won't find anywhere else.",
+      "The seventh Simplified Chinese Gem Pack: 196 all-holo cards, 28 Pokémon with seven versions each, and a brand-new Misty's Psyduck full art you can only pull here.",
     tag: 'New release',
     date: '2026-11-06',
-    heroImage: `${R2_IMAGE_HOST}/Chinese/Blog/gem-vol-7/gem-vol-7-psyduck-promo-banner.webp`,
-    heroAlt: "Official Gem Pack Vol. 7 promo banner featuring Misty's Psyduck",
+    heroImage: `${SITE_URL}/assets/blog/gem-vol-7-mistys-psyduck-hero.webp`,
+    heroAlt: "All seven versions of Misty's Psyduck from Gem Pack Vol. 7, with the full art in the center",
     glow1: 'rgb(138 61 120 / .30)',
     glow2: 'rgb(58 110 165 / .25)',
   },

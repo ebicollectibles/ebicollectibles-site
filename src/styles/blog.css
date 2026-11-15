@@ -143,6 +143,38 @@
   .origin-table .src-jtg { color: #3a6ea5; font-weight: 600; }
   .origin-table .src-dri { color: #a13a3a; font-weight: 600; }
 
+  /* Captioned card grid: wraps instead of scrolling, so every card in a
+     run is visible at once on phones as well as desktop. */
+  .card-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(132px, 1fr)); gap: 18px 14px; margin: 24px 0 30px; }
+  .card-grid figure { margin: 0; }
+  .card-grid img { display: block; width: 100%; aspect-ratio: 300/419; object-fit: contain; border-radius: 6px; box-shadow: var(--shadow); background: var(--surface); }
+  .card-grid figcaption { margin-top: 8px; font-size: 12px; line-height: 1.35; color: var(--slate); text-align: center; }
+  .card-grid figcaption strong { display: block; color: var(--ink); font-weight: 700; font-size: 12.5px; }
+  .card-grid.cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .card-grid .feature { grid-column: span 2; }
+  @media (max-width: 480px) {
+    .card-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .card-grid.cols-3 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+
+  .spec-table { width: 100%; border-collapse: collapse; margin: 8px 0 30px; font-size: 14.5px; }
+  .spec-table th, .spec-table td { text-align: left; vertical-align: top; padding: 10px 12px; border-bottom: 1px solid var(--line); }
+  .spec-table th { width: 38%; font-weight: 600; color: var(--slate); font-size: 13.5px; }
+  .spec-table td { color: var(--ink-2); }
+  .spec-table tr:last-child th, .spec-table tr:last-child td { border-bottom: 0; }
+  @media (max-width: 480px) {
+    .spec-table th, .spec-table td { padding: 9px 8px; }
+    .spec-table th { width: 42%; }
+  }
+
+  .faq details { border-bottom: 1px solid var(--line); padding: 14px 0; }
+  .faq details:first-child { border-top: 1px solid var(--line); }
+  .faq summary { cursor: pointer; font-weight: 700; color: var(--ink); font-size: 16px; list-style: none; display: flex; justify-content: space-between; gap: 16px; }
+  .faq summary::-webkit-details-marker { display: none; }
+  .faq summary::after { content: '+'; font-family: var(--f-mono); color: var(--slate); }
+  .faq details[open] summary::after { content: '\2212'; }
+  .faq details p { margin: 10px 0 0; font-size: 15.5px; }
+
   .author-row { display: flex; align-items: center; gap: 10px; margin-top: 28px; padding-top: 20px; border-top: 1px solid var(--line); font-size: 13px; color: var(--slate); }
   .back-link { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 600; color: var(--slate); margin-bottom: 18px; }
   .back-link:hover { color: var(--ink); }
