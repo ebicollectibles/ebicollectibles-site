@@ -70,12 +70,12 @@ function groupBySeries() {
 export const Route = createFileRoute('/sets/chinese/')({
   head: () => ({
     meta: [
-      { title: 'Chinese Pokémon Sets: Every Card List | EBI Collectibles' },
+      { title: 'Simplified Chinese Pokémon Sets: Every Card List | EBI Collectibles' },
       {
         name: 'description',
         content: 'Browse every Simplified Chinese Pokémon TCG release from EBI Collectibles: full card lists, rarities and checklists for every set we carry.',
       },
-      { property: 'og:title', content: 'Chinese Pokémon Sets' },
+      { property: 'og:title', content: 'Simplified Chinese Pokémon Sets' },
       { property: 'og:description', content: 'Every card in every Simplified Chinese set we carry. Browse, filter and track what you own.' },
       // No declared og:image:width/height — most card images are
       // 300×419, but not all (see the same note in buildGemSetHead), so
@@ -85,7 +85,7 @@ export const Route = createFileRoute('/sets/chinese/')({
       { property: 'og:url', content: `${SITE_URL}/sets/chinese` },
       { property: 'og:type', content: 'website' },
       { name: 'twitter:card', content: 'summary_large_image' },
-      { name: 'twitter:title', content: 'Chinese Pokémon Sets' },
+      { name: 'twitter:title', content: 'Simplified Chinese Pokémon Sets' },
       { name: 'twitter:description', content: 'Every card in every Simplified Chinese set we carry. Browse, filter and track what you own.' },
       { name: 'twitter:image', content: GEM_SETS[0].heroImage },
     ],
@@ -114,7 +114,7 @@ function SetsIndexPage() {
             <span>Chinese</span>
           </div>
           <div className="eyebrow">Simplified Chinese · Pokémon TCG</div>
-          <h1>Chinese Pokémon sets</h1>
+          <h1>Simplified Chinese Pokémon sets</h1>
           <p className="lede">
             Every set we carry, every card. Browse by Pokémon, filter by rarity, and track your own collection. Pick a set below to start.
           </p>

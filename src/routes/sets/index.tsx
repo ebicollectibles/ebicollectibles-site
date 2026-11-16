@@ -11,7 +11,7 @@ import { safeJsonLd } from '~/lib/gem-sets/head'
 const LANGUAGES = [
   {
     to: '/sets/chinese' as const,
-    name: 'Chinese Pokémon sets',
+    name: 'Simplified Chinese Pokémon sets',
     label: 'Simplified Chinese',
     tagline: 'Gem Packs, the Chinese Scarlet & Violet sets, 30th Celebration and Collect 151.',
     sets: GEM_SETS,
