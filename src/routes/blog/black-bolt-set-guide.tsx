@@ -160,8 +160,7 @@ function BlackBoltSetGuide() {
       >
         <p>
           Black Bolt (CSV10.5C) is the Zekrom half of the Unova pair: 174 cards, a Chinese-exclusive N's Plan Special Art Rare, and slim
-          and jumbo boxes with their own odds. Our <Link to="/blog/black-bolt-white-flare-release-news">release post</Link> covers both
-          sets, and our <Link to="/blog/black-bolt-card-origins">card origins guide</Link> matches every card to English. Use this
+          and jumbo boxes with their own odds. Our <Link to="/blog/black-bolt-card-origins">card origins guide</Link> matches every card to English. Use this
           one to pick a box, sort your pulls or plan a master set.
         </p>
 
