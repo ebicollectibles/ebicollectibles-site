@@ -291,9 +291,10 @@ function ShopPage() {
 
   const productGrid = (
     <>
+      <h2 className="sr-only">Products</h2>
       <div className="ebi-shop-grid" style={{ background: '#e3e6ea', border: '1px solid #e3e6ea', marginTop: 16 }}>
-        {visible.map((p) => (
-          <ProductCard key={p.id} product={p} variant="full" />
+        {visible.map((p, i) => (
+          <ProductCard key={p.id} product={p} variant="full" priority={i < 4} />
         ))}
       </div>
 

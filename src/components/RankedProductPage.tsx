@@ -23,9 +23,10 @@ export function RankedProductPage({ title, rankField }: { title: string; rankFie
     <section style={{ maxWidth: 1240, margin: '0 auto', padding: '40px 20px 80px' }}>
       <div style={monoLabel}>Shop</div>
       <h1 style={{ fontSize: 38, letterSpacing: '-0.025em', fontWeight: 700, margin: '10px 0 0' }}>{title}</h1>
+      <h2 className="sr-only">Products</h2>
       <div className="ebi-shop-grid" style={{ background: '#e3e6ea', border: '1px solid #e3e6ea', marginTop: 24 }}>
-        {ranked.map((p) => (
-          <ProductCard key={p.id} product={p} variant="full" />
+        {ranked.map((p, i) => (
+          <ProductCard key={p.id} product={p} variant="full" priority={i < 4} />
         ))}
       </div>
     </section>

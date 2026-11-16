@@ -41,7 +41,7 @@ export function Footer() {
           >
             Shop
           </div>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 9, marginTop: 14, fontSize: 13 }}>
+          <div className="ebi-footer-links" style={{ display: 'flex', flexDirection: 'column', gap: 2, marginTop: 10, fontSize: 13 }}>
             <Link to="/shop" search={{ category: 'Chinese Pokémon Products' }}>
               All Pokemon (Chinese)
             </Link>
@@ -76,7 +76,7 @@ export function Footer() {
           >
             Help
           </div>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 9, marginTop: 14, fontSize: 13 }}>
+          <div className="ebi-footer-links" style={{ display: 'flex', flexDirection: 'column', gap: 2, marginTop: 10, fontSize: 13 }}>
             <Link to="/shipping-policy">Shipping policy</Link>
             <Link to="/refund-policy">Refund policy</Link>
             <Link to="/privacy">Privacy policy</Link>
@@ -96,7 +96,7 @@ export function Footer() {
           >
             Elsewhere
           </div>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 9, marginTop: 14, fontSize: 13 }}>
+          <div className="ebi-footer-links" style={{ display: 'flex', flexDirection: 'column', gap: 2, marginTop: 10, fontSize: 13 }}>
             <a href="https://www.instagram.com/ebicollectibles" target="_blank" rel="noopener noreferrer">
               Instagram
             </a>
@@ -105,6 +105,7 @@ export function Footer() {
       </div>
       <div style={{ borderTop: '1px solid #e3e6ea' }}>
         <div
+          className="ebi-footer-bottom"
           style={{
             maxWidth: 1240,
             margin: '0 auto',

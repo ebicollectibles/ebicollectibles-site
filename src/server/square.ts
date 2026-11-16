@@ -715,15 +715,67 @@ export async function getSquareCatalogDetails(variationIds: string[]): Promise<R
 // price never silently defaults to 0 — an untracked/variable price just
 // falls back to whatever was already stored, since a wrong price is a much
 // costlier mistake than a wrong stock count.
+// Storefront display data (stock badges, prices on cards) is cached for a
+// short time so every page view doesn't wait on two Square API calls. This
+// only affects what pages *show*: checkout (orders.ts) reads Square live and
+// re-validates stock and price before charging, and admin passes
+// { fresh: true } so its numbers are always live.
+const SQUARE_DISPLAY_TTL_MS = 60_000
+type SquareDisplayData = { counts: Record<string, number>; prices: Record<string, number> }
+const squareDisplayMemo = new Map<string, { at: number; data: SquareDisplayData }>()
+
+async function getSquareDisplayData(variationIds: string[], fresh: boolean): Promise<SquareDisplayData> {
+  const key = [...variationIds].sort().join(',')
+  const now = Date.now()
+  if (!fresh) {
+    const hit = squareDisplayMemo.get(key)
+    if (hit && now - hit.at < SQUARE_DISPLAY_TTL_MS) return hit.data
+    // Shared across Worker isolates through the Cache API when available.
+    const cache = (globalThis as { caches?: { default?: Cache } }).caches?.default
+    const cacheReq = new Request(`https://square-display.internal/${encodeURIComponent(key).slice(0, 1800)}`)
+    if (cache) {
+      try {
+        const res = await cache.match(cacheReq)
+        if (res) {
+          const data = (await res.json()) as SquareDisplayData
+          squareDisplayMemo.set(key, { at: now, data })
+          return data
+        }
+      } catch {
+        /* cache miss or unavailable: fall through to Square */
+      }
+    }
+    const [counts, prices] = await Promise.all([getSquareInventoryCounts(variationIds), getSquareCatalogPrices(variationIds)])
+    const data = { counts, prices }
+    squareDisplayMemo.set(key, { at: now, data })
+    if (cache) {
+      try {
+        await cache.put(
+          cacheReq,
+          new Response(JSON.stringify(data), {
+            headers: { 'content-type': 'application/json', 'cache-control': `max-age=${SQUARE_DISPLAY_TTL_MS / 1000}` },
+          }),
+        )
+      } catch {
+        /* best effort */
+      }
+    }
+    return data
+  }
+  const [counts, prices] = await Promise.all([getSquareInventoryCounts(variationIds), getSquareCatalogPrices(variationIds)])
+  return { counts, prices }
+}
+
 export async function overlaySquareData<T extends { squareVariationId?: string | null; stock: number; price: number }>(
   items: T[],
+  opts: { fresh?: boolean } = {},
 ): Promise<T[]> {
   const mapped = items.filter((i): i is T & { squareVariationId: string } => !!i.squareVariationId)
   if (mapped.length === 0) return items
 
   try {
     const variationIds = mapped.map((i) => i.squareVariationId)
-    const [counts, prices] = await Promise.all([getSquareInventoryCounts(variationIds), getSquareCatalogPrices(variationIds)])
+    const { counts, prices } = await getSquareDisplayData(variationIds, opts.fresh === true)
     return items.map((i) =>
       i.squareVariationId
         ? { ...i, stock: counts[i.squareVariationId] ?? 0, price: prices[i.squareVariationId] ?? i.price }

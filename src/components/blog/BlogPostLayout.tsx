@@ -75,7 +75,17 @@ export function BlogPostLayout({
         <Link to="/blog" className="back-link">
           ← Back to Blog
         </Link>
-        <img className="article-hero-img" src={post.heroImage} alt={post.heroAlt} width={1280} height={720} />
+        <img
+          className="article-hero-img"
+          src={post.heroImage}
+          srcSet={`${post.heroImage.replace(/\.webp$/, '-800.webp')} 800w, ${post.heroImage} 1600w`}
+          sizes="(max-width: 840px) 100vw, 1170px"
+          alt={post.heroAlt}
+          width={1280}
+          height={720}
+          fetchPriority="high"
+          decoding="sync"
+        />
         <div className="prose">{children}</div>
         <ShopPanel products={shop} heading={cta.heading} body={cta.body} links={cta.links} />
       </article>

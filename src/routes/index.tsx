@@ -202,8 +202,8 @@ function HomePage() {
               borderTop: 0,
             }}
           >
-            {bestSelling.slice(0, HOMEPAGE_SECTION_SIZE).map((p) => (
-              <ProductCard key={p.id} product={p} variant="compact" />
+            {bestSelling.slice(0, HOMEPAGE_SECTION_SIZE).map((p, i) => (
+              <ProductCard key={p.id} product={p} variant="compact" priority={i < 4} />
             ))}
           </div>
           {bestSelling.length > HOMEPAGE_SECTION_SIZE && (

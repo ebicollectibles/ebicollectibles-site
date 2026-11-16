@@ -7,7 +7,16 @@ import { useCart } from '~/lib/cart-context'
 
 const STRIPES = 'repeating-linear-gradient(45deg, #eef0f2 0px, #eef0f2 7px, #f6f7f8 7px, #f6f7f8 14px)'
 
-export function ProductCard({ product, variant = 'full' }: { product: Product; variant?: 'compact' | 'full' }) {
+export function ProductCard({
+  product,
+  variant = 'full',
+  priority = false,
+}: {
+  product: Product
+  variant?: 'compact' | 'full'
+  /** First cards on a page: load the photo immediately (Largest Contentful Paint). */
+  priority?: boolean
+}) {
   // notSellable wins over soldOut (a hub/collage listing has no stock of its
   // own) but not comingSoon — see the comment in AddToCartControl.tsx.
   const notSellable = product.notSellable === true
@@ -55,8 +64,10 @@ export function ProductCard({ product, variant = 'full' }: { product: Product; v
             desktop={product.img}
             tablet={product.imgTablet}
             mobile={product.imgMobile}
-            alt={product.imgAlt || product.name}
+            // The card's link already reads out the product name, so the photo is decorative here.
+            alt=""
             loading="lazy"
+            priority={priority}
             style={{
               width: '100%',
               height: '100%',

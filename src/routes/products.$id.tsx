@@ -4,7 +4,7 @@ import { AddToCartControl } from '~/components/AddToCartControl'
 import { FormattedText } from '~/components/FormattedText'
 import { NotifyMeButton } from '~/components/NotifyMeButton'
 import { ProductCard } from '~/components/ProductCard'
-import { ResponsiveImage } from '~/components/ResponsiveImage'
+import { ResponsiveImage, thumbSrcSet } from '~/components/ResponsiveImage'
 import { trackEvent } from '~/lib/analytics'
 import { useCart } from '~/lib/cart-context'
 import { FLAT_SHIPPING_RATE, formatMoney, getHubPriceRange, getHubVariants, type Product } from '~/lib/products'
@@ -345,7 +345,7 @@ function ProductDetailPage() {
                       overflow: 'hidden',
                     }}
                   >
-                    <img src={item.url} alt="" loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
+                    <img src={item.url} srcSet={thumbSrcSet(item.url)} sizes="96px" alt="" loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
                   </button>
                 ))}
               </div>
@@ -363,6 +363,8 @@ function ProductDetailPage() {
                     tablet={currentPhoto.imgTablet}
                     mobile={currentPhoto.imgMobile}
                     alt={currentPhoto.imgAlt || product.name}
+                    priority
+                    sizes="(max-width: 1024px) 100vw, 560px"
                     style={{
                       width: '100%',
                       height: '100%',
@@ -371,6 +373,8 @@ function ProductDetailPage() {
                   />
                 ) : (
                   <img
+                    srcSet={thumbSrcSet(currentPhoto.url)}
+                    sizes="(max-width: 1024px) 100vw, 560px"
                     src={currentPhoto.url}
                     alt={currentPhoto.imgAlt || product.name}
                     style={{
