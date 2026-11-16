@@ -14,6 +14,7 @@ import {
   MIXED_PREORDER_INFO,
 } from '~/lib/order-math'
 import { formatMoney } from '~/lib/products'
+import { thumbSrcSet } from '~/components/ResponsiveImage'
 
 export const Route = createFileRoute('/cart')({
   component: CartPage,
@@ -123,6 +124,8 @@ function CartPage() {
                   {line.product.img ? (
                     <img
                       src={line.product.img}
+                      srcSet={thumbSrcSet(line.product.img)}
+                      sizes="120px"
                       alt={line.product.imgAlt || line.product.name}
                       loading="lazy"
                       style={{ width: '100%', height: '100%', objectFit: 'contain' }}

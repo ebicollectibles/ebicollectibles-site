@@ -6,7 +6,7 @@ import { BLOG_POSTS, BLOG_SITE_URL, blogSeoDescription, blogSeoTitle } from '~/d
 import { BlogPostLayout } from '~/components/blog/BlogPostLayout'
 import { getBlogPostStatus } from '~/server/blog-status'
 import { safeJsonLd } from '~/lib/gem-sets/head'
-import { R2_IMAGE_HOST } from '~/lib/gem-sets/constants'
+import { R2_IMAGE_HOST, SITE_URL } from '~/lib/gem-sets/constants'
 
 const post = BLOG_POSTS.find((p) => p.slug === 'gem-vol-7-release-news')!
 
@@ -185,7 +185,7 @@ function GemVol7Post() {
 
         <aside className="fact-box" aria-label="Gem Pack Vol. 7 key facts">
           <img
-            src={`${R2_IMAGE_HOST}/Chinese/Blog/gem-vol-7/gem-vol-7-booster-pack.webp`}
+            src={`${SITE_URL}/assets/blog/gem-vol-7-booster-pack.webp`}
             alt="Gem Pack Vol. 7 booster pack with Psyduck on the front"
             loading="lazy"
             width={1200}
@@ -367,7 +367,7 @@ function GemVol7Post() {
         </p>
         <img
           className="inline-media"
-          src={`${R2_IMAGE_HOST}/Chinese/Blog/gem-vol-7/gem-vol-7-psyduck-collector-binder.webp`}
+          src={`${SITE_URL}/assets/blog/gem-vol-7-psyduck-collector-binder.webp`}
           alt="Official Gem Pack Vol. 7 Psyduck card binder, 30 pockets"
           loading="lazy"
           width={2000}

@@ -1,6 +1,7 @@
 import * as React from 'react'
 import { Link, useLoaderData } from '@tanstack/react-router'
 import type { BlogShopProduct } from '~/server/blog-status'
+import { thumbSrcSet } from '~/components/ResponsiveImage'
 
 // Shop panels for blog posts: a compact strip after the chase cards and a
 // panel at the end. Prices come live from the store (getBlogPostStatus).
@@ -73,7 +74,7 @@ export function ShopStrip({ products }: { products: BlogShopProduct[] }) {
     const price = priceOf(p)
     return (
       <div className="shop-strip">
-        {p.img && <img src={p.img} alt={p.imgAlt || p.name} width={64} height={64} />}
+        {p.img && <img src={p.img} srcSet={thumbSrcSet(p.img)} sizes="64px" alt={p.imgAlt || p.name} width={64} height={64} loading="lazy" />}
         <div className="shop-strip-text">
           <b>{splitName(p).title}</b>
           {price && <span>{price}</span>}
@@ -89,7 +90,7 @@ export function ShopStrip({ products }: { products: BlogShopProduct[] }) {
   const title = splitName(lead).title
   return (
     <div className="shop-strip">
-      {lead.img && <img src={lead.img} alt={lead.imgAlt || lead.name} width={64} height={64} />}
+      {lead.img && <img src={lead.img} srcSet={thumbSrcSet(lead.img)} sizes="64px" alt={lead.imgAlt || lead.name} width={64} height={64} loading="lazy" />}
       <div className="shop-strip-text">
         <b>
           {title}: {kinds.join(' or ')}
@@ -137,7 +138,7 @@ export function ShopPanel({
             return (
               <div key={p.id} className="shop-tile">
                 <Link to="/products/$id" params={{ id: p.id }} className="shop-tile-img" tabIndex={-1} aria-hidden="true">
-                  {p.img && <img src={p.img} alt="" loading="lazy" width={240} height={240} />}
+                  {p.img && <img src={p.img} srcSet={thumbSrcSet(p.img)} sizes="(max-width: 640px) 96px, 240px" alt="" loading="lazy" width={240} height={240} />}
                 </Link>
                 <div className="shop-tile-body">
                   {kind && <span className="shop-kind">{kind}</span>}
