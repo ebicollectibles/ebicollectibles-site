@@ -122,9 +122,9 @@ export function ShopPanel({
   const fallbackButtons = products.length > 0 ? [] : links
 
   return (
-    <section className="shop-panel" id="shop" aria-labelledby="shop-heading">
+    <section className={`shop-panel${products.length === 1 ? ' is-single' : ''}`} id="shop" aria-labelledby="shop-heading">
       <div className="shop-head">
-        <h3 id="shop-heading">{heading}</h3>
+        <h3 id="shop-heading">{products.length > 0 ? heading.replace(/^(Collect|Explore) /, 'Shop ') : heading}</h3>
         {products.length === 0 && <p>{body}</p>}
       </div>
 
