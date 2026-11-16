@@ -80,10 +80,6 @@ const FAQ = [
     q: 'What is the main chase card?',
     a: 'Applin 1907/07, the full art by Jiro Sasumo drawn for this set. Beyond that, collectors chase the 28 full arts (every card numbered 07).',
   },
-  {
-    q: 'Can I complete the set from one box?',
-    a: 'No. The set has 196 cards and a box holds 72, so even with zero duplicates you would need at least three boxes. In practice a full set takes several boxes or buying singles.',
-  },
 ]
 
 export const Route = createFileRoute('/blog/gem-vol-6-release-news')({

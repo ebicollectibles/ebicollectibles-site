@@ -85,10 +85,6 @@ const FAQ = [
     q: 'What are the main chase cards?',
     a: 'The four full arts of Eevee, Umbreon, Leafeon and Sylveon, which join into one forest scene. After those, Umbreon VMAX and Sylveon VMAX lead the nine VMAX.',
   },
-  {
-    q: 'Can I complete the set from one box?',
-    a: 'No. The set has 140 cards and a box holds 60, so even with zero duplicates you would need at least three boxes. In practice a full set takes several boxes or buying singles.',
-  },
 ]
 
 export const Route = createFileRoute('/blog/gem-vol-2-release-news')({

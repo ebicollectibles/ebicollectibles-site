@@ -103,10 +103,6 @@ const FAQ = [
     q: 'What are the main chase cards?',
     a: 'The five new full arts drawn for this set: Meowth by Makura Tami, Gengar by aspara, Cubone by Katsunori Sato, Chandelure by satoma and Ceruledge by kodama. Gengar, the pack mascot, is the one most collectors go after first.',
   },
-  {
-    q: 'Can I complete the set from one box?',
-    a: 'No. The set has 136 cards and a box holds 72, so even with zero duplicates one box cannot cover it. In practice a full set takes several boxes or buying singles.',
-  },
 ]
 
 export const Route = createFileRoute('/blog/gem-vol-3-release-news')({

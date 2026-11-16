@@ -99,10 +99,6 @@ const FAQ = [
     q: 'Where does the Gem 7 artwork come from?',
     a: 'Mostly from English cards. 55 of the 56 artworks are the same art you will find on English Scarlet & Violet cards, mostly from Destined Rivals. Our Gem Vol 7 card origins guide traces every card.',
   },
-  {
-    q: 'Can I complete the set from one box?',
-    a: 'No. The set has 196 cards and a box holds 72, so even with zero duplicates you would need at least three boxes. In practice a full set takes several boxes or buying singles.',
-  },
 ]
 
 export const Route = createFileRoute('/blog/gem-vol-7-release-news')({

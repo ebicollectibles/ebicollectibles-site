@@ -87,10 +87,6 @@ const FAQ = [
     q: 'What is the main chase card?',
     a: 'The four Pokémon Horizons full arts, led by Captain Pikachu 0107/07 with Friede by Keita Hagiwara. All four were drawn for this set. Beyond those, collectors chase the rest of the 28 full arts (every card numbered 07).',
   },
-  {
-    q: 'Can I complete the set from one box?',
-    a: 'No. The set has 196 cards and a box holds 72, so even with zero duplicates you would need at least three boxes. In practice a full set takes several boxes or buying singles.',
-  },
 ]
 
 export const Route = createFileRoute('/blog/gem-vol-5-release-news')({
