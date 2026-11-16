@@ -82,11 +82,7 @@
   .post-card:hover { transform: translateY(-4px); box-shadow: 0 4px 10px rgb(19 27 40 / .12), 0 20px 36px rgb(19 27 40 / .18); }
   .post-card-art { position: relative; aspect-ratio: 16/10; overflow: hidden; background: linear-gradient(160deg, #1b2434, #0e141f); }
   .post-card-art img { width: 100%; height: 100%; object-fit: cover; display: block; }
-  .post-card-tag {
-    position: absolute; top: 12px; left: 12px; font-family: var(--f-mono); font-size: 10px; font-weight: 700;
-    letter-spacing: .06em; text-transform: uppercase; color: #fff; background: rgb(0 0 0 / .55); backdrop-filter: blur(2px);
-    padding: 4px 9px; border-radius: 999px;
-  }
+  .post-card-kind { color: var(--ink-2); font-weight: 700; }
   .post-card-body { padding: 18px 18px 20px; display: flex; flex-direction: column; gap: 8px; flex: 1; }
   .post-card-date { font-family: var(--f-mono); font-size: 11px; letter-spacing: .06em; text-transform: uppercase; color: var(--slate); }
   .post-card-title { font-family: var(--f-display); font-weight: 800; font-size: 19px; letter-spacing: -.01em; margin: 0; line-height: 1.25; }

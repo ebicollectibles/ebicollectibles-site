@@ -73,11 +73,12 @@ function BlogIndexPage() {
           {posts.map((p) => (
             <Link key={p.slug} className="post-card" to={p.path}>
               <div className="post-card-art">
-                <span className="post-card-tag">{p.tag}</span>
                 <img src={p.heroImage} alt={p.heroAlt} loading="lazy" width={400} height={250} />
               </div>
               <div className="post-card-body">
                 <span className="post-card-date">
+                  <span className="post-card-kind">{p.tag}</span>
+                  <span aria-hidden="true"> · </span>
                   {new Date(`${p.date}T00:00:00Z`).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric', timeZone: 'UTC' })}
                 </span>
                 <h2 className="post-card-title">{p.title}</h2>
