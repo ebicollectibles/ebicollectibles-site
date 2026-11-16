@@ -256,7 +256,7 @@ export function Header({
               Acrylics
             </Link>
           )}
-          <Link to="/shipping-policy" style={{ color: navColor(pathname === '/shipping-policy'), padding: '4px 0' }}>
+          <Link to="/shipping-policy" style={{ color: navColor(pathname === '/shipping-policy'), padding: '4px 0', whiteSpace: 'nowrap' }}>
             Shipping policy
           </Link>
         </nav>
