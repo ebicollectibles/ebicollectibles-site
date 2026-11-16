@@ -5,6 +5,8 @@ import { BLOG_POSTS, BLOG_SITE_URL, blogSeoDescription, blogSeoTitle } from '~/d
 import { BlogPostLayout } from '~/components/blog/BlogPostLayout'
 import { getBlogPostStatus } from '~/server/blog-status'
 import { safeJsonLd } from '~/lib/gem-sets/head'
+import { R2_IMAGE_HOST } from '~/lib/gem-sets/constants'
+import { ChineseExclusiveBadge } from '~/components/blog/ChineseExclusive'
 
 const post = BLOG_POSTS.find((p) => p.slug === 'gem-vol-7-card-origins')!
 
@@ -66,11 +68,16 @@ const TOC = [
 
 const FAQ = [
   {
-    q: 'Are Gem 7 cards reprints?',
-    a: 'The art mostly is. 55 of the 56 artworks are the same art you will find on English Scarlet & Violet cards, mostly from Destined Rivals. What is new is the printing: Simplified Chinese text, new numbers, new holo patterns and the Gem Pack set code.',
+    q: 'When was Gem Vol 7 released?',
+    a: 'November 6, 2026, in mainland China. It is a Simplified Chinese release.',
   },
   {
-    q: 'Which card is the Chinese Exclusive?',
+    q: 'Are Gem 7 cards reprints?',
+    a: 'The art mostly is. 55 of the 56 artworks are the same art you will find on English Scarlet & Violet cards, mostly from Destined Rivals. What is new is the printing: Simplified Chinese text, new numbers, new holo patterns and the Gem Pack set code.',
+    link: { to: '/sets/chinese/gem-vol-7', before: 'See every card on the ', label: 'Gem Vol 7 card list', after: '.' },
+  },
+  {
+    q: 'What is the Chinese Exclusive in Gem Vol 7?',
     a: "Misty's Psyduck's full art, 0307/07 by Cona Nitanda. It is the only new artwork in Gem Vol 7 and is not on any earlier English card, which lines up with Pokémon China calling it new.",
   },
   {
@@ -135,7 +142,11 @@ function GemVol7OriginsPost() {
   const faqJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
-    mainEntity: FAQ.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
+    mainEntity: FAQ.map((f) => ({
+      '@type': 'Question',
+      name: f.q,
+      acceptedAnswer: { '@type': 'Answer', text: f.link ? `${f.a} ${f.link.before}${f.link.label}${f.link.after}` : f.a },
+    })),
   }
 
   return (
@@ -146,7 +157,7 @@ function GemVol7OriginsPost() {
         updated={status.liveAt}
         wide
         post={post}
-        lede="Almost every card in Gem Pack Vol. 7 uses art you have already seen on an English Scarlet & Violet card. Here is which one, for every card in the set."
+        lede="Almost every card in Gem Pack Vol. 7 uses art you have already seen on an English Scarlet & Violet card. We matched all 56 artworks to their English source, and one is a Chinese Exclusive."
         cta={{
           heading: 'Explore Gem Vol 7',
           body: 'See every card in the set, or read our release post for the Psyduck full art and the Trainer lineup.',
@@ -185,6 +196,20 @@ function GemVol7OriginsPost() {
           That adds up to 56 illustrations. 55 of them come from English cards. The 56th, the Chinese Exclusive Misty's Psyduck beach full art
           (0307/07), was drawn for Gem Vol 7 and has no earlier version.
         </p>
+        <figure className="feature-card">
+          <img
+            src={`${R2_IMAGE_HOST}/Chinese/Gem%207/Cards/0307.webp`}
+            alt="Misty's Psyduck 0307/07 Chinese Exclusive full art, Gem Vol 7"
+            loading="lazy"
+            width={300}
+            height={419}
+          />
+          <figcaption>
+            <ChineseExclusiveBadge />
+            <strong>Misty's Psyduck 0307/07</strong>
+            Full art · Illus. Cona Nitanda · no English version
+          </figcaption>
+        </figure>
 
         <h2 id="by-set">Which sets it comes from</h2>
         <p>Everything traces back to two English Scarlet & Violet sets from 2025, plus the Black Star Promos:</p>
@@ -285,7 +310,17 @@ function GemVol7OriginsPost() {
           {FAQ.map((f) => (
             <details key={f.q}>
               <summary>{f.q}</summary>
-              <p>{f.a}</p>
+              <p>
+                {f.a}
+                {f.link && (
+                  <>
+                    {' '}
+                    {f.link.before}
+                    <Link to={f.link.to as never}>{f.link.label}</Link>
+                    {f.link.after}
+                  </>
+                )}
+              </p>
             </details>
           ))}
         </div>
