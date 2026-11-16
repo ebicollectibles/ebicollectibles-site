@@ -140,7 +140,13 @@ export function ShopPanel({
   return (
     <section className="shop-panel" id="shop" aria-labelledby="shop-heading">
       <div className="shop-head">
-        <span className="shop-eyebrow">Buy now</span>
+        <span className="shop-eyebrow">
+          <svg viewBox="0 0 24 24" width="13" height="13" aria-hidden="true">
+            <path d="M6 7h12l-1 13H7L6 7Z" fill="none" stroke="currentColor" strokeWidth="2" strokeLinejoin="round" />
+            <path d="M9 9V6a3 3 0 0 1 6 0v3" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+          </svg>
+          Buy now
+        </span>
         <h3 id="shop-heading">{heading}</h3>
         <p>{body}</p>
       </div>
