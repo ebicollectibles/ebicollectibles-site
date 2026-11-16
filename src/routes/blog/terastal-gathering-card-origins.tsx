@@ -439,7 +439,7 @@ function TerastalGatheringOrigins() {
           heading: 'Collect Terastal Gathering',
           body: 'See every card on the full checklist, or pick up a box.',
           links: [
-            { to: '/sets/terastal-gathering-csv9-5', label: 'Browse the card list' },
+            { to: '/sets/chinese/terastal-gathering-csv9-5', label: 'Browse the card list' },
             { to: '/products/$id', params: { id: 'pokemon-chinese-terastal-gathering-booster-box' }, label: 'Shop the booster box', variant: 'ghost' },
           ],
         }}

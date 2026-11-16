@@ -433,7 +433,7 @@ function BladeAwakeningOrigins() {
           heading: 'Collect Blade Awakening',
           body: 'See every card on the full checklist, or pick up a box.',
           links: [
-            { to: '/sets/blade-awakening-csv7', label: 'Browse the card list' },
+            { to: '/sets/chinese/blade-awakening-csv7', label: 'Browse the card list' },
             { to: '/products/$id', params: { id: 'pokemon-chinese-blade-awakening-jumbo-booster-box' }, label: 'Shop the jumbo box', variant: 'ghost' },
           ],
         }}

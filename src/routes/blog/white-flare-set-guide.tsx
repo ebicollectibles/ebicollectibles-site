@@ -153,7 +153,7 @@ function WhiteFlareSetGuide() {
           heading: 'Collect White Flare',
           body: 'Track every card on the full checklist, or pick up a box and start ripping.',
           links: [
-            { to: '/sets/white-flare-csv10-6', label: 'Browse the card list' },
+            { to: '/sets/chinese/white-flare-csv10-6', label: 'Browse the card list' },
             { to: '/products/$id', params: { id: 'pokemon-chinese-white-flare-jumbo-booster-box' }, label: 'Shop the jumbo box', variant: 'ghost' },
           ],
         }}
@@ -226,7 +226,7 @@ function WhiteFlareSetGuide() {
         </p>
         <Gallery cards={pick([141, 140, 102, 96, 104, 98, 113, 153])} cols={4} />
         <p>
-          The other 64 are on the <Link to="/sets/white-flare-csv10-6">White Flare card list</Link>.
+          The other 64 are on the <Link to="/sets/chinese/white-flare-csv10-6">White Flare card list</Link>.
         </p>
 
         <h2 id="ladders">One card, every rarity</h2>
@@ -295,7 +295,7 @@ function WhiteFlareSetGuide() {
           The Poké Ball holos come fastest, since they share the most common holo band. The Master Ball holos share a band with the 6 Double
           Rares and 72 Art Rares, about 4.5 per slim box or 9 per jumbo box spread across 158 different cards, so they take a long time. The
           16 top-band cards are harder still. The practical route is to open boxes for the lower tiers, then pick up the big cards as singles.
-          The <Link to="/sets/white-flare-csv10-6">White Flare card list</Link> lets you tick off what you have. Its twin,{' '}
+          The <Link to="/sets/chinese/white-flare-csv10-6">White Flare card list</Link> lets you tick off what you have. Its twin,{' '}
           <Link to="/blog/black-bolt-set-guide">Black Bolt</Link>, is a separate 174-card set with its own Pokémon.
         </p>
 

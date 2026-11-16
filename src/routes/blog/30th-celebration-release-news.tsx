@@ -179,7 +179,7 @@ function ThirtiethReleasePost() {
           body: 'Booster boxes in stock now, plus the full checklist with every card.',
           links: [
             { to: '/products/$id', params: { id: 'pokemon-chinese-30th-celebration-booster-box' }, label: 'Shop the booster box' },
-            { to: '/sets/30th-celebration', label: 'Browse the card list', variant: 'ghost' },
+            { to: '/sets/chinese/30th-celebration', label: 'Browse the card list', variant: 'ghost' },
           ],
         }}
       >

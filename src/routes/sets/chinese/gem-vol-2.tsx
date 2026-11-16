@@ -28,7 +28,7 @@ const raw = rawData as GemSetData
 const data = buildGemSetData(raw)
 
 const config: GemSetConfig = {
-  routePath: '/sets/gem-vol-2',
+  routePath: '/sets/chinese/gem-vol-2',
   storageKey: 'gem2-have',
   productId: 'pokemon-chinese-gem-volume-2-booster-box',
   // Just this set's 4 real exclusives — the version-15 full-art
@@ -76,7 +76,7 @@ const config: GemSetConfig = {
   ogDescription: 'All 140 cards in Pokémon TCG Gem Vol 2. Browse by Pokémon, filter by rarity, and track which ones you own.',
 }
 
-export const Route = createFileRoute('/sets/gem-vol-2')({
+export const Route = createFileRoute('/sets/chinese/gem-vol-2')({
   validateSearch: (search) => z.object({ card: z.string().regex(/^\d{4}$/).optional() }).parse(search),
   head: () => buildGemSetHead(data, config),
   component: GemVol2Page,
@@ -86,7 +86,7 @@ function GemVol2Page() {
   const search = Route.useSearch()
   const navigate = useNavigate()
   const navigateToCard = React.useCallback(
-    (id: string | undefined) => navigate({ to: '/sets/gem-vol-2', search: (prev) => ({ ...prev, card: id }), replace: true }),
+    (id: string | undefined) => navigate({ to: '/sets/chinese/gem-vol-2', search: (prev) => ({ ...prev, card: id }), replace: true }),
     [navigate],
   )
   return <GemSetPage raw={raw} data={data} config={config} openCardId={search.card ?? null} navigateToCard={navigateToCard} />

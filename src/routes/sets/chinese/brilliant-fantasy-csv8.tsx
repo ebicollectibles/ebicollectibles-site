@@ -29,7 +29,7 @@ const raw: GemSetData = { ...(rawData as GemSetData) }
 const data = buildGemSetData(raw)
 
 const config: GemSetConfig = {
-  routePath: '/sets/brilliant-fantasy-csv8',
+  routePath: '/sets/chinese/brilliant-fantasy-csv8',
   storageKey: 'csv8-have',
   productId: 'pokemon-chinese-brilliant-fantasy-slim-booster-box',
   // The Chinese-exclusive Carmine SAR centered, flanked by Pecharunt ex
@@ -75,7 +75,7 @@ const config: GemSetConfig = {
   ogDescription: 'All 264 cards in Pokémon TCG Brilliant Fantasy. Browse by Pokémon, filter by rarity, and track which ones you own.',
 }
 
-export const Route = createFileRoute('/sets/brilliant-fantasy-csv8')({
+export const Route = createFileRoute('/sets/chinese/brilliant-fantasy-csv8')({
   validateSearch: (search) => z.object({ card: z.string().regex(/^\d{3}$/).optional() }).parse(search),
   head: () => buildGemSetHead(data, config),
   component: Csv8Page,
@@ -85,7 +85,7 @@ function Csv8Page() {
   const search = Route.useSearch()
   const navigate = useNavigate()
   const navigateToCard = React.useCallback(
-    (id: string | undefined) => navigate({ to: '/sets/brilliant-fantasy-csv8', search: (prev) => ({ ...prev, card: id }), replace: true }),
+    (id: string | undefined) => navigate({ to: '/sets/chinese/brilliant-fantasy-csv8', search: (prev) => ({ ...prev, card: id }), replace: true }),
     [navigate],
   )
   return <GemSetPage raw={raw} data={data} config={config} openCardId={search.card ?? null} navigateToCard={navigateToCard} />

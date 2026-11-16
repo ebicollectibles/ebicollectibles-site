@@ -147,7 +147,7 @@ function BlackCrystalBlazeSetGuide() {
           heading: 'Collect Black Crystal Blaze',
           body: 'Track every card on the full checklist, or pick up a box and start ripping.',
           links: [
-            { to: '/sets/black-crystal-blaze-csv5', label: 'Browse the card list' },
+            { to: '/sets/chinese/black-crystal-blaze-csv5', label: 'Browse the card list' },
             { to: '/products/$id', params: { id: 'pokemon-chinese-black-crystal-blaze-jumbo-booster-box' }, label: 'Shop the jumbo box', variant: 'ghost' },
           ],
         }}
@@ -276,7 +276,7 @@ function BlackCrystalBlazeSetGuide() {
         </p>
         <p>
           The Master Ball holos and the 27 top-band cards take a long time to pull. Most collectors open boxes for fun and the lower
-          rarities, then buy the big cards as singles. The <Link to="/sets/black-crystal-blaze-csv5">Black Crystal Blaze card list</Link> lets you tick off
+          rarities, then buy the big cards as singles. The <Link to="/sets/chinese/black-crystal-blaze-csv5">Black Crystal Blaze card list</Link> lets you tick off
           what you have.
         </p>
 

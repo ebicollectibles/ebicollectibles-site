@@ -52,7 +52,7 @@ const raw: GemSetData = {
 const data = buildGemSetData(raw)
 
 const config: GemSetConfig = {
-  routePath: '/sets/collect-151-journey',
+  routePath: '/sets/chinese/collect-151-journey',
   storageKey: 'collect-151-journey-have',
   // Journey's own exclusive Pikachu Art Rare, centered, flanked by the
   // three starters' Super Rares and the gold Mew ex on the outside.
@@ -97,7 +97,7 @@ const config: GemSetConfig = {
   ogDescription: 'All 192 cards in Pokémon TCG Collect 151: Journey. Browse by Pokémon, filter by rarity, and track which ones you own.',
 }
 
-export const Route = createFileRoute('/sets/collect-151-journey')({
+export const Route = createFileRoute('/sets/chinese/collect-151-journey')({
   validateSearch: (search) => z.object({ card: z.string().regex(/^\d{3}$/).optional() }).parse(search),
   head: () => buildGemSetHead(data, config),
   component: CollectJourneyPage,
@@ -107,7 +107,7 @@ function CollectJourneyPage() {
   const search = Route.useSearch()
   const navigate = useNavigate()
   const navigateToCard = React.useCallback(
-    (id: string | undefined) => navigate({ to: '/sets/collect-151-journey', search: (prev) => ({ ...prev, card: id }), replace: true }),
+    (id: string | undefined) => navigate({ to: '/sets/chinese/collect-151-journey', search: (prev) => ({ ...prev, card: id }), replace: true }),
     [navigate],
   )
   return <GemSetPage raw={raw} data={data} config={config} openCardId={search.card ?? null} navigateToCard={navigateToCard} />

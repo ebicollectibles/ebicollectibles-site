@@ -143,7 +143,7 @@ function GemVol2Post() {
           body: 'Booster boxes in stock now, plus the full 140-card checklist with every version.',
           links: [
             { to: '/products/$id', params: { id: 'pokemon-chinese-gem-volume-2-booster-box' }, label: 'Shop the booster box' },
-            { to: '/sets/gem-vol-2', label: 'Browse the card list', variant: 'ghost' },
+            { to: '/sets/chinese/gem-vol-2', label: 'Browse the card list', variant: 'ghost' },
           ],
         }}
       >
@@ -303,7 +303,7 @@ function GemVol2Post() {
         </div>
         <p>
           The full Eeveelution lineup: Eevee, Vaporeon, Jolteon, Flareon, Espeon, Umbreon, Leafeon, Glaceon and Sylveon. The{' '}
-          <Link to="/sets/gem-vol-2">full card list</Link> shows all 140 cards.
+          <Link to="/sets/chinese/gem-vol-2">full card list</Link> shows all 140 cards.
         </p>
 
         <h2 id="booster-box">What is inside a booster box</h2>
@@ -334,7 +334,7 @@ function GemVol2Post() {
               {GEM_TIMELINE.map((g) => (
                 <tr key={g.vol} className={g.vol === 2 ? 'is-current' : undefined}>
                   <th scope="row">
-                    <Link to={`/sets/gem-vol-${g.vol}` as never}>Gem Pack Vol. {g.vol}</Link>
+                    <Link to={`/sets/chinese/gem-vol-${g.vol}` as never}>Gem Pack Vol. {g.vol}</Link>
                   </th>
                   <td>{g.date}</td>
                   <td>{g.cards}</td>

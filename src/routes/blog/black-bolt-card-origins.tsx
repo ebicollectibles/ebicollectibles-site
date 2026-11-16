@@ -334,7 +334,7 @@ function BlackBoltOrigins() {
           heading: 'Collect Black Bolt',
           body: 'See every card on the full checklist, or pick up a box.',
           links: [
-            { to: '/sets/black-bolt-csv10-5', label: 'Browse the card list' },
+            { to: '/sets/chinese/black-bolt-csv10-5', label: 'Browse the card list' },
             { to: '/products/$id', params: { id: 'pokemon-chinese-black-bolt-jumbo-booster-box' }, label: 'Shop the jumbo box', variant: 'ghost' },
           ],
         }}

@@ -154,7 +154,7 @@ function ThirtiethSetGuide() {
           heading: 'Collect 30th Celebration',
           body: 'Track every card on the full checklist, or pick up a booster box and start ripping.',
           links: [
-            { to: '/sets/30th-celebration', label: 'Browse the card list' },
+            { to: '/sets/chinese/30th-celebration', label: 'Browse the card list' },
             { to: '/products/$id', params: { id: 'pokemon-chinese-30th-celebration-booster-box' }, label: 'Shop the booster box', variant: 'ghost' },
           ],
         }}
@@ -280,7 +280,7 @@ function ThirtiethSetGuide() {
         </p>
         <p>
           So most collectors open a few boxes for fun, then pick up the Futuristic Rares, Special Art Rares and favorite classics as
-          singles. The <Link to="/sets/30th-celebration">30th Celebration card list</Link> makes it easy to track what you still need.
+          singles. The <Link to="/sets/chinese/30th-celebration">30th Celebration card list</Link> makes it easy to track what you still need.
         </p>
 
         <h2 id="faq">FAQ</h2>

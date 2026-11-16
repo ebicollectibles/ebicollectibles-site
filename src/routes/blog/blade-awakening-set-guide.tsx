@@ -174,7 +174,7 @@ function BladeAwakeningSetGuide() {
           heading: 'Collect Blade Awakening',
           body: 'Track every card on the full checklist, or pick up a box and start ripping.',
           links: [
-            { to: '/sets/blade-awakening-csv7', label: 'Browse the card list' },
+            { to: '/sets/chinese/blade-awakening-csv7', label: 'Browse the card list' },
             { to: '/products/$id', params: { id: 'pokemon-chinese-blade-awakening-jumbo-booster-box' }, label: 'Shop the jumbo box', variant: 'ghost' },
           ],
         }}
@@ -323,7 +323,7 @@ function BladeAwakeningSetGuide() {
         </p>
         <p>
           The 173 Master Ball holos and the 49 top-band cards take the longest. Many collectors open boxes for fun and the lower
-          rarities, then buy the big cards as singles. The <Link to="/sets/blade-awakening-csv7">Blade Awakening card list</Link> lets you tick off what
+          rarities, then buy the big cards as singles. The <Link to="/sets/chinese/blade-awakening-csv7">Blade Awakening card list</Link> lets you tick off what
           you have.
         </p>
 

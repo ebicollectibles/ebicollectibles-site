@@ -140,7 +140,7 @@ function TrueMysterySetGuide() {
           heading: 'Collect True Mystery',
           body: 'Track every card on the full checklist, or pick up a box and start ripping.',
           links: [
-            { to: '/sets/true-mystery-csv6', label: 'Browse the card list' },
+            { to: '/sets/chinese/true-mystery-csv6', label: 'Browse the card list' },
             { to: '/products/$id', params: { id: 'pokemon-chinese-true-mystery-jumbo-booster-box' }, label: 'Shop the jumbo box', variant: 'ghost' },
           ],
         }}
@@ -281,7 +281,7 @@ function TrueMysterySetGuide() {
         </p>
         <p>
           The 35 secret rares are where the time goes. Many collectors open boxes for the main set and the fun of the rip, then buy the
-          top Special Art Rares and gold cards as singles. The <Link to="/sets/true-mystery-csv6">True Mystery card list</Link> lets you tick off
+          top Special Art Rares and gold cards as singles. The <Link to="/sets/chinese/true-mystery-csv6">True Mystery card list</Link> lets you tick off
           what you have.
         </p>
 

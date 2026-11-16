@@ -161,7 +161,7 @@ function GemVol3SetGuide() {
           heading: 'Collect Gem Vol 3',
           body: 'Track every card on the full checklist, or pick up a booster box and start ripping.',
           links: [
-            { to: '/sets/gem-vol-3', label: 'Browse the card list' },
+            { to: '/sets/chinese/gem-vol-3', label: 'Browse the card list' },
             { to: '/products/$id', params: { id: 'pokemon-chinese-gem-volume-3-booster-box' }, label: 'Shop the booster box', variant: 'ghost' },
           ],
         }}
@@ -294,7 +294,7 @@ function GemVol3SetGuide() {
         </p>
         <p>
           So most collectors open a few boxes for fun and for the lower rarities, then buy the full arts they still need as singles. The{' '}
-          <Link to="/sets/gem-vol-3">Gem Vol 3 card list</Link> makes it easy to track what you still need.
+          <Link to="/sets/chinese/gem-vol-3">Gem Vol 3 card list</Link> makes it easy to track what you still need.
         </p>
 
         <h2 id="faq">FAQ</h2>

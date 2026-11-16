@@ -99,28 +99,6 @@ import { Route as GoSlugRouteImport } from './routes/go.$slug'
 import { Route as LinksSlugRouteImport } from './routes/links.$slug'
 import { Route as ProductsIdRouteImport } from './routes/products.$id'
 import { Route as SetsIndexRouteImport } from './routes/sets/index'
-import { Route as Sets30thCelebrationRouteImport } from './routes/sets/30th-celebration'
-import { Route as SetsBlackBoltCsv105RouteImport } from './routes/sets/black-bolt-csv10-5'
-import { Route as SetsBlackCrystalBlazeCsv5RouteImport } from './routes/sets/black-crystal-blaze-csv5'
-import { Route as SetsBladeAwakeningCsv7RouteImport } from './routes/sets/blade-awakening-csv7'
-import { Route as SetsBrilliantFantasyCsv8RouteImport } from './routes/sets/brilliant-fantasy-csv8'
-import { Route as SetsChasingGloryCsv10RouteImport } from './routes/sets/chasing-glory-csv10'
-import { Route as SetsCollect151GatheringRouteImport } from './routes/sets/collect-151-gathering'
-import { Route as SetsCollect151HopeRouteImport } from './routes/sets/collect-151-hope'
-import { Route as SetsCollect151JourneyRouteImport } from './routes/sets/collect-151-journey'
-import { Route as SetsCollect151SurpriseRouteImport } from './routes/sets/collect-151-surprise'
-import { Route as SetsGemVol1RouteImport } from './routes/sets/gem-vol-1'
-import { Route as SetsGemVol2RouteImport } from './routes/sets/gem-vol-2'
-import { Route as SetsGemVol3RouteImport } from './routes/sets/gem-vol-3'
-import { Route as SetsGemVol4RouteImport } from './routes/sets/gem-vol-4'
-import { Route as SetsGemVol5RouteImport } from './routes/sets/gem-vol-5'
-import { Route as SetsGemVol6RouteImport } from './routes/sets/gem-vol-6'
-import { Route as SetsGemVol7RouteImport } from './routes/sets/gem-vol-7'
-import { Route as SetsRewardRoundCsv4RouteImport } from './routes/sets/reward-round-csv4'
-import { Route as SetsStellarCrystalCsv9RouteImport } from './routes/sets/stellar-crystal-csv9'
-import { Route as SetsTerastalGatheringCsv95RouteImport } from './routes/sets/terastal-gathering-csv9-5'
-import { Route as SetsTrueMysteryCsv6RouteImport } from './routes/sets/true-mystery-csv6'
-import { Route as SetsWhiteFlareCsv106RouteImport } from './routes/sets/white-flare-csv10-6'
 import { Route as AccountOrdersIndexRouteImport } from './routes/account/orders/index'
 import { Route as AccountOrdersIdRouteImport } from './routes/account/orders/$id'
 import { Route as AdminCustomersIndexRouteImport } from './routes/admin/customers/index'
@@ -130,6 +108,29 @@ import { Route as AdminOrdersIndexRouteImport } from './routes/admin/orders/inde
 import { Route as AdminOrdersIdRouteImport } from './routes/admin/orders/$id'
 import { Route as AdminProductsIdRouteImport } from './routes/admin/products/$id'
 import { Route as AdminProductsNewRouteImport } from './routes/admin/products/new'
+import { Route as SetsChineseIndexRouteImport } from './routes/sets/chinese/index'
+import { Route as SetsChinese30thCelebrationRouteImport } from './routes/sets/chinese/30th-celebration'
+import { Route as SetsChineseBlackBoltCsv105RouteImport } from './routes/sets/chinese/black-bolt-csv10-5'
+import { Route as SetsChineseBlackCrystalBlazeCsv5RouteImport } from './routes/sets/chinese/black-crystal-blaze-csv5'
+import { Route as SetsChineseBladeAwakeningCsv7RouteImport } from './routes/sets/chinese/blade-awakening-csv7'
+import { Route as SetsChineseBrilliantFantasyCsv8RouteImport } from './routes/sets/chinese/brilliant-fantasy-csv8'
+import { Route as SetsChineseChasingGloryCsv10RouteImport } from './routes/sets/chinese/chasing-glory-csv10'
+import { Route as SetsChineseCollect151GatheringRouteImport } from './routes/sets/chinese/collect-151-gathering'
+import { Route as SetsChineseCollect151HopeRouteImport } from './routes/sets/chinese/collect-151-hope'
+import { Route as SetsChineseCollect151JourneyRouteImport } from './routes/sets/chinese/collect-151-journey'
+import { Route as SetsChineseCollect151SurpriseRouteImport } from './routes/sets/chinese/collect-151-surprise'
+import { Route as SetsChineseGemVol1RouteImport } from './routes/sets/chinese/gem-vol-1'
+import { Route as SetsChineseGemVol2RouteImport } from './routes/sets/chinese/gem-vol-2'
+import { Route as SetsChineseGemVol3RouteImport } from './routes/sets/chinese/gem-vol-3'
+import { Route as SetsChineseGemVol4RouteImport } from './routes/sets/chinese/gem-vol-4'
+import { Route as SetsChineseGemVol5RouteImport } from './routes/sets/chinese/gem-vol-5'
+import { Route as SetsChineseGemVol6RouteImport } from './routes/sets/chinese/gem-vol-6'
+import { Route as SetsChineseGemVol7RouteImport } from './routes/sets/chinese/gem-vol-7'
+import { Route as SetsChineseRewardRoundCsv4RouteImport } from './routes/sets/chinese/reward-round-csv4'
+import { Route as SetsChineseStellarCrystalCsv9RouteImport } from './routes/sets/chinese/stellar-crystal-csv9'
+import { Route as SetsChineseTerastalGatheringCsv95RouteImport } from './routes/sets/chinese/terastal-gathering-csv9-5'
+import { Route as SetsChineseTrueMysteryCsv6RouteImport } from './routes/sets/chinese/true-mystery-csv6'
+import { Route as SetsChineseWhiteFlareCsv106RouteImport } from './routes/sets/chinese/white-flare-csv10-6'
 import { Route as AdminAffiliatesIdDashboardRouteImport } from './routes/admin/affiliates_.$id.dashboard'
 
 const IndexRoute = IndexRouteImport.update({
@@ -612,119 +613,6 @@ const SetsIndexRoute = SetsIndexRouteImport.update({
   path: '/sets/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const Sets30thCelebrationRoute = Sets30thCelebrationRouteImport.update({
-  id: '/sets/30th-celebration',
-  path: '/sets/30th-celebration',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const SetsBlackBoltCsv105Route = SetsBlackBoltCsv105RouteImport.update({
-  id: '/sets/black-bolt-csv10-5',
-  path: '/sets/black-bolt-csv10-5',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const SetsBlackCrystalBlazeCsv5Route =
-  SetsBlackCrystalBlazeCsv5RouteImport.update({
-    id: '/sets/black-crystal-blaze-csv5',
-    path: '/sets/black-crystal-blaze-csv5',
-    getParentRoute: () => rootRouteImport,
-  } as any)
-const SetsBladeAwakeningCsv7Route = SetsBladeAwakeningCsv7RouteImport.update({
-  id: '/sets/blade-awakening-csv7',
-  path: '/sets/blade-awakening-csv7',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const SetsBrilliantFantasyCsv8Route =
-  SetsBrilliantFantasyCsv8RouteImport.update({
-    id: '/sets/brilliant-fantasy-csv8',
-    path: '/sets/brilliant-fantasy-csv8',
-    getParentRoute: () => rootRouteImport,
-  } as any)
-const SetsChasingGloryCsv10Route = SetsChasingGloryCsv10RouteImport.update({
-  id: '/sets/chasing-glory-csv10',
-  path: '/sets/chasing-glory-csv10',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const SetsCollect151GatheringRoute = SetsCollect151GatheringRouteImport.update({
-  id: '/sets/collect-151-gathering',
-  path: '/sets/collect-151-gathering',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const SetsCollect151HopeRoute = SetsCollect151HopeRouteImport.update({
-  id: '/sets/collect-151-hope',
-  path: '/sets/collect-151-hope',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const SetsCollect151JourneyRoute = SetsCollect151JourneyRouteImport.update({
-  id: '/sets/collect-151-journey',
-  path: '/sets/collect-151-journey',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const SetsCollect151SurpriseRoute = SetsCollect151SurpriseRouteImport.update({
-  id: '/sets/collect-151-surprise',
-  path: '/sets/collect-151-surprise',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const SetsGemVol1Route = SetsGemVol1RouteImport.update({
-  id: '/sets/gem-vol-1',
-  path: '/sets/gem-vol-1',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const SetsGemVol2Route = SetsGemVol2RouteImport.update({
-  id: '/sets/gem-vol-2',
-  path: '/sets/gem-vol-2',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const SetsGemVol3Route = SetsGemVol3RouteImport.update({
-  id: '/sets/gem-vol-3',
-  path: '/sets/gem-vol-3',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const SetsGemVol4Route = SetsGemVol4RouteImport.update({
-  id: '/sets/gem-vol-4',
-  path: '/sets/gem-vol-4',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const SetsGemVol5Route = SetsGemVol5RouteImport.update({
-  id: '/sets/gem-vol-5',
-  path: '/sets/gem-vol-5',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const SetsGemVol6Route = SetsGemVol6RouteImport.update({
-  id: '/sets/gem-vol-6',
-  path: '/sets/gem-vol-6',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const SetsGemVol7Route = SetsGemVol7RouteImport.update({
-  id: '/sets/gem-vol-7',
-  path: '/sets/gem-vol-7',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const SetsRewardRoundCsv4Route = SetsRewardRoundCsv4RouteImport.update({
-  id: '/sets/reward-round-csv4',
-  path: '/sets/reward-round-csv4',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const SetsStellarCrystalCsv9Route = SetsStellarCrystalCsv9RouteImport.update({
-  id: '/sets/stellar-crystal-csv9',
-  path: '/sets/stellar-crystal-csv9',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const SetsTerastalGatheringCsv95Route =
-  SetsTerastalGatheringCsv95RouteImport.update({
-    id: '/sets/terastal-gathering-csv9-5',
-    path: '/sets/terastal-gathering-csv9-5',
-    getParentRoute: () => rootRouteImport,
-  } as any)
-const SetsTrueMysteryCsv6Route = SetsTrueMysteryCsv6RouteImport.update({
-  id: '/sets/true-mystery-csv6',
-  path: '/sets/true-mystery-csv6',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const SetsWhiteFlareCsv106Route = SetsWhiteFlareCsv106RouteImport.update({
-  id: '/sets/white-flare-csv10-6',
-  path: '/sets/white-flare-csv10-6',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const AccountOrdersIndexRoute = AccountOrdersIndexRouteImport.update({
   id: '/account/orders/',
   path: '/account/orders/',
@@ -771,6 +659,136 @@ const AdminProductsNewRoute = AdminProductsNewRouteImport.update({
   path: '/admin/products/new',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SetsChineseIndexRoute = SetsChineseIndexRouteImport.update({
+  id: '/sets/chinese/',
+  path: '/sets/chinese/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SetsChinese30thCelebrationRoute =
+  SetsChinese30thCelebrationRouteImport.update({
+    id: '/sets/chinese/30th-celebration',
+    path: '/sets/chinese/30th-celebration',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const SetsChineseBlackBoltCsv105Route =
+  SetsChineseBlackBoltCsv105RouteImport.update({
+    id: '/sets/chinese/black-bolt-csv10-5',
+    path: '/sets/chinese/black-bolt-csv10-5',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const SetsChineseBlackCrystalBlazeCsv5Route =
+  SetsChineseBlackCrystalBlazeCsv5RouteImport.update({
+    id: '/sets/chinese/black-crystal-blaze-csv5',
+    path: '/sets/chinese/black-crystal-blaze-csv5',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const SetsChineseBladeAwakeningCsv7Route =
+  SetsChineseBladeAwakeningCsv7RouteImport.update({
+    id: '/sets/chinese/blade-awakening-csv7',
+    path: '/sets/chinese/blade-awakening-csv7',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const SetsChineseBrilliantFantasyCsv8Route =
+  SetsChineseBrilliantFantasyCsv8RouteImport.update({
+    id: '/sets/chinese/brilliant-fantasy-csv8',
+    path: '/sets/chinese/brilliant-fantasy-csv8',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const SetsChineseChasingGloryCsv10Route =
+  SetsChineseChasingGloryCsv10RouteImport.update({
+    id: '/sets/chinese/chasing-glory-csv10',
+    path: '/sets/chinese/chasing-glory-csv10',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const SetsChineseCollect151GatheringRoute =
+  SetsChineseCollect151GatheringRouteImport.update({
+    id: '/sets/chinese/collect-151-gathering',
+    path: '/sets/chinese/collect-151-gathering',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const SetsChineseCollect151HopeRoute =
+  SetsChineseCollect151HopeRouteImport.update({
+    id: '/sets/chinese/collect-151-hope',
+    path: '/sets/chinese/collect-151-hope',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const SetsChineseCollect151JourneyRoute =
+  SetsChineseCollect151JourneyRouteImport.update({
+    id: '/sets/chinese/collect-151-journey',
+    path: '/sets/chinese/collect-151-journey',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const SetsChineseCollect151SurpriseRoute =
+  SetsChineseCollect151SurpriseRouteImport.update({
+    id: '/sets/chinese/collect-151-surprise',
+    path: '/sets/chinese/collect-151-surprise',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const SetsChineseGemVol1Route = SetsChineseGemVol1RouteImport.update({
+  id: '/sets/chinese/gem-vol-1',
+  path: '/sets/chinese/gem-vol-1',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SetsChineseGemVol2Route = SetsChineseGemVol2RouteImport.update({
+  id: '/sets/chinese/gem-vol-2',
+  path: '/sets/chinese/gem-vol-2',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SetsChineseGemVol3Route = SetsChineseGemVol3RouteImport.update({
+  id: '/sets/chinese/gem-vol-3',
+  path: '/sets/chinese/gem-vol-3',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SetsChineseGemVol4Route = SetsChineseGemVol4RouteImport.update({
+  id: '/sets/chinese/gem-vol-4',
+  path: '/sets/chinese/gem-vol-4',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SetsChineseGemVol5Route = SetsChineseGemVol5RouteImport.update({
+  id: '/sets/chinese/gem-vol-5',
+  path: '/sets/chinese/gem-vol-5',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SetsChineseGemVol6Route = SetsChineseGemVol6RouteImport.update({
+  id: '/sets/chinese/gem-vol-6',
+  path: '/sets/chinese/gem-vol-6',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SetsChineseGemVol7Route = SetsChineseGemVol7RouteImport.update({
+  id: '/sets/chinese/gem-vol-7',
+  path: '/sets/chinese/gem-vol-7',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SetsChineseRewardRoundCsv4Route =
+  SetsChineseRewardRoundCsv4RouteImport.update({
+    id: '/sets/chinese/reward-round-csv4',
+    path: '/sets/chinese/reward-round-csv4',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const SetsChineseStellarCrystalCsv9Route =
+  SetsChineseStellarCrystalCsv9RouteImport.update({
+    id: '/sets/chinese/stellar-crystal-csv9',
+    path: '/sets/chinese/stellar-crystal-csv9',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const SetsChineseTerastalGatheringCsv95Route =
+  SetsChineseTerastalGatheringCsv95RouteImport.update({
+    id: '/sets/chinese/terastal-gathering-csv9-5',
+    path: '/sets/chinese/terastal-gathering-csv9-5',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const SetsChineseTrueMysteryCsv6Route =
+  SetsChineseTrueMysteryCsv6RouteImport.update({
+    id: '/sets/chinese/true-mystery-csv6',
+    path: '/sets/chinese/true-mystery-csv6',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const SetsChineseWhiteFlareCsv106Route =
+  SetsChineseWhiteFlareCsv106RouteImport.update({
+    id: '/sets/chinese/white-flare-csv10-6',
+    path: '/sets/chinese/white-flare-csv10-6',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const AdminAffiliatesIdDashboardRoute =
   AdminAffiliatesIdDashboardRouteImport.update({
     id: '/admin/affiliates_/$id/dashboard',
@@ -864,28 +882,6 @@ export interface FileRoutesByFullPath {
   '/go/$slug': typeof GoSlugRoute
   '/links/$slug': typeof LinksSlugRoute
   '/products/$id': typeof ProductsIdRoute
-  '/sets/30th-celebration': typeof Sets30thCelebrationRoute
-  '/sets/black-bolt-csv10-5': typeof SetsBlackBoltCsv105Route
-  '/sets/black-crystal-blaze-csv5': typeof SetsBlackCrystalBlazeCsv5Route
-  '/sets/blade-awakening-csv7': typeof SetsBladeAwakeningCsv7Route
-  '/sets/brilliant-fantasy-csv8': typeof SetsBrilliantFantasyCsv8Route
-  '/sets/chasing-glory-csv10': typeof SetsChasingGloryCsv10Route
-  '/sets/collect-151-gathering': typeof SetsCollect151GatheringRoute
-  '/sets/collect-151-hope': typeof SetsCollect151HopeRoute
-  '/sets/collect-151-journey': typeof SetsCollect151JourneyRoute
-  '/sets/collect-151-surprise': typeof SetsCollect151SurpriseRoute
-  '/sets/gem-vol-1': typeof SetsGemVol1Route
-  '/sets/gem-vol-2': typeof SetsGemVol2Route
-  '/sets/gem-vol-3': typeof SetsGemVol3Route
-  '/sets/gem-vol-4': typeof SetsGemVol4Route
-  '/sets/gem-vol-5': typeof SetsGemVol5Route
-  '/sets/gem-vol-6': typeof SetsGemVol6Route
-  '/sets/gem-vol-7': typeof SetsGemVol7Route
-  '/sets/reward-round-csv4': typeof SetsRewardRoundCsv4Route
-  '/sets/stellar-crystal-csv9': typeof SetsStellarCrystalCsv9Route
-  '/sets/terastal-gathering-csv9-5': typeof SetsTerastalGatheringCsv95Route
-  '/sets/true-mystery-csv6': typeof SetsTrueMysteryCsv6Route
-  '/sets/white-flare-csv10-6': typeof SetsWhiteFlareCsv106Route
   '/account/': typeof AccountIndexRoute
   '/admin/': typeof AdminIndexRoute
   '/blog/': typeof BlogIndexRoute
@@ -897,9 +893,32 @@ export interface FileRoutesByFullPath {
   '/admin/orders/$id': typeof AdminOrdersIdRoute
   '/admin/products/$id': typeof AdminProductsIdRoute
   '/admin/products/new': typeof AdminProductsNewRoute
+  '/sets/chinese/30th-celebration': typeof SetsChinese30thCelebrationRoute
+  '/sets/chinese/black-bolt-csv10-5': typeof SetsChineseBlackBoltCsv105Route
+  '/sets/chinese/black-crystal-blaze-csv5': typeof SetsChineseBlackCrystalBlazeCsv5Route
+  '/sets/chinese/blade-awakening-csv7': typeof SetsChineseBladeAwakeningCsv7Route
+  '/sets/chinese/brilliant-fantasy-csv8': typeof SetsChineseBrilliantFantasyCsv8Route
+  '/sets/chinese/chasing-glory-csv10': typeof SetsChineseChasingGloryCsv10Route
+  '/sets/chinese/collect-151-gathering': typeof SetsChineseCollect151GatheringRoute
+  '/sets/chinese/collect-151-hope': typeof SetsChineseCollect151HopeRoute
+  '/sets/chinese/collect-151-journey': typeof SetsChineseCollect151JourneyRoute
+  '/sets/chinese/collect-151-surprise': typeof SetsChineseCollect151SurpriseRoute
+  '/sets/chinese/gem-vol-1': typeof SetsChineseGemVol1Route
+  '/sets/chinese/gem-vol-2': typeof SetsChineseGemVol2Route
+  '/sets/chinese/gem-vol-3': typeof SetsChineseGemVol3Route
+  '/sets/chinese/gem-vol-4': typeof SetsChineseGemVol4Route
+  '/sets/chinese/gem-vol-5': typeof SetsChineseGemVol5Route
+  '/sets/chinese/gem-vol-6': typeof SetsChineseGemVol6Route
+  '/sets/chinese/gem-vol-7': typeof SetsChineseGemVol7Route
+  '/sets/chinese/reward-round-csv4': typeof SetsChineseRewardRoundCsv4Route
+  '/sets/chinese/stellar-crystal-csv9': typeof SetsChineseStellarCrystalCsv9Route
+  '/sets/chinese/terastal-gathering-csv9-5': typeof SetsChineseTerastalGatheringCsv95Route
+  '/sets/chinese/true-mystery-csv6': typeof SetsChineseTrueMysteryCsv6Route
+  '/sets/chinese/white-flare-csv10-6': typeof SetsChineseWhiteFlareCsv106Route
   '/account/orders/': typeof AccountOrdersIndexRoute
   '/admin/customers/': typeof AdminCustomersIndexRoute
   '/admin/orders/': typeof AdminOrdersIndexRoute
+  '/sets/chinese/': typeof SetsChineseIndexRoute
   '/admin/affiliates/$id/dashboard': typeof AdminAffiliatesIdDashboardRoute
 }
 export interface FileRoutesByTo {
@@ -988,28 +1007,6 @@ export interface FileRoutesByTo {
   '/go/$slug': typeof GoSlugRoute
   '/links/$slug': typeof LinksSlugRoute
   '/products/$id': typeof ProductsIdRoute
-  '/sets/30th-celebration': typeof Sets30thCelebrationRoute
-  '/sets/black-bolt-csv10-5': typeof SetsBlackBoltCsv105Route
-  '/sets/black-crystal-blaze-csv5': typeof SetsBlackCrystalBlazeCsv5Route
-  '/sets/blade-awakening-csv7': typeof SetsBladeAwakeningCsv7Route
-  '/sets/brilliant-fantasy-csv8': typeof SetsBrilliantFantasyCsv8Route
-  '/sets/chasing-glory-csv10': typeof SetsChasingGloryCsv10Route
-  '/sets/collect-151-gathering': typeof SetsCollect151GatheringRoute
-  '/sets/collect-151-hope': typeof SetsCollect151HopeRoute
-  '/sets/collect-151-journey': typeof SetsCollect151JourneyRoute
-  '/sets/collect-151-surprise': typeof SetsCollect151SurpriseRoute
-  '/sets/gem-vol-1': typeof SetsGemVol1Route
-  '/sets/gem-vol-2': typeof SetsGemVol2Route
-  '/sets/gem-vol-3': typeof SetsGemVol3Route
-  '/sets/gem-vol-4': typeof SetsGemVol4Route
-  '/sets/gem-vol-5': typeof SetsGemVol5Route
-  '/sets/gem-vol-6': typeof SetsGemVol6Route
-  '/sets/gem-vol-7': typeof SetsGemVol7Route
-  '/sets/reward-round-csv4': typeof SetsRewardRoundCsv4Route
-  '/sets/stellar-crystal-csv9': typeof SetsStellarCrystalCsv9Route
-  '/sets/terastal-gathering-csv9-5': typeof SetsTerastalGatheringCsv95Route
-  '/sets/true-mystery-csv6': typeof SetsTrueMysteryCsv6Route
-  '/sets/white-flare-csv10-6': typeof SetsWhiteFlareCsv106Route
   '/account': typeof AccountIndexRoute
   '/admin': typeof AdminIndexRoute
   '/blog': typeof BlogIndexRoute
@@ -1021,9 +1018,32 @@ export interface FileRoutesByTo {
   '/admin/orders/$id': typeof AdminOrdersIdRoute
   '/admin/products/$id': typeof AdminProductsIdRoute
   '/admin/products/new': typeof AdminProductsNewRoute
+  '/sets/chinese/30th-celebration': typeof SetsChinese30thCelebrationRoute
+  '/sets/chinese/black-bolt-csv10-5': typeof SetsChineseBlackBoltCsv105Route
+  '/sets/chinese/black-crystal-blaze-csv5': typeof SetsChineseBlackCrystalBlazeCsv5Route
+  '/sets/chinese/blade-awakening-csv7': typeof SetsChineseBladeAwakeningCsv7Route
+  '/sets/chinese/brilliant-fantasy-csv8': typeof SetsChineseBrilliantFantasyCsv8Route
+  '/sets/chinese/chasing-glory-csv10': typeof SetsChineseChasingGloryCsv10Route
+  '/sets/chinese/collect-151-gathering': typeof SetsChineseCollect151GatheringRoute
+  '/sets/chinese/collect-151-hope': typeof SetsChineseCollect151HopeRoute
+  '/sets/chinese/collect-151-journey': typeof SetsChineseCollect151JourneyRoute
+  '/sets/chinese/collect-151-surprise': typeof SetsChineseCollect151SurpriseRoute
+  '/sets/chinese/gem-vol-1': typeof SetsChineseGemVol1Route
+  '/sets/chinese/gem-vol-2': typeof SetsChineseGemVol2Route
+  '/sets/chinese/gem-vol-3': typeof SetsChineseGemVol3Route
+  '/sets/chinese/gem-vol-4': typeof SetsChineseGemVol4Route
+  '/sets/chinese/gem-vol-5': typeof SetsChineseGemVol5Route
+  '/sets/chinese/gem-vol-6': typeof SetsChineseGemVol6Route
+  '/sets/chinese/gem-vol-7': typeof SetsChineseGemVol7Route
+  '/sets/chinese/reward-round-csv4': typeof SetsChineseRewardRoundCsv4Route
+  '/sets/chinese/stellar-crystal-csv9': typeof SetsChineseStellarCrystalCsv9Route
+  '/sets/chinese/terastal-gathering-csv9-5': typeof SetsChineseTerastalGatheringCsv95Route
+  '/sets/chinese/true-mystery-csv6': typeof SetsChineseTrueMysteryCsv6Route
+  '/sets/chinese/white-flare-csv10-6': typeof SetsChineseWhiteFlareCsv106Route
   '/account/orders': typeof AccountOrdersIndexRoute
   '/admin/customers': typeof AdminCustomersIndexRoute
   '/admin/orders': typeof AdminOrdersIndexRoute
+  '/sets/chinese': typeof SetsChineseIndexRoute
   '/admin/affiliates/$id/dashboard': typeof AdminAffiliatesIdDashboardRoute
 }
 export interface FileRoutesById {
@@ -1113,28 +1133,6 @@ export interface FileRoutesById {
   '/go/$slug': typeof GoSlugRoute
   '/links/$slug': typeof LinksSlugRoute
   '/products/$id': typeof ProductsIdRoute
-  '/sets/30th-celebration': typeof Sets30thCelebrationRoute
-  '/sets/black-bolt-csv10-5': typeof SetsBlackBoltCsv105Route
-  '/sets/black-crystal-blaze-csv5': typeof SetsBlackCrystalBlazeCsv5Route
-  '/sets/blade-awakening-csv7': typeof SetsBladeAwakeningCsv7Route
-  '/sets/brilliant-fantasy-csv8': typeof SetsBrilliantFantasyCsv8Route
-  '/sets/chasing-glory-csv10': typeof SetsChasingGloryCsv10Route
-  '/sets/collect-151-gathering': typeof SetsCollect151GatheringRoute
-  '/sets/collect-151-hope': typeof SetsCollect151HopeRoute
-  '/sets/collect-151-journey': typeof SetsCollect151JourneyRoute
-  '/sets/collect-151-surprise': typeof SetsCollect151SurpriseRoute
-  '/sets/gem-vol-1': typeof SetsGemVol1Route
-  '/sets/gem-vol-2': typeof SetsGemVol2Route
-  '/sets/gem-vol-3': typeof SetsGemVol3Route
-  '/sets/gem-vol-4': typeof SetsGemVol4Route
-  '/sets/gem-vol-5': typeof SetsGemVol5Route
-  '/sets/gem-vol-6': typeof SetsGemVol6Route
-  '/sets/gem-vol-7': typeof SetsGemVol7Route
-  '/sets/reward-round-csv4': typeof SetsRewardRoundCsv4Route
-  '/sets/stellar-crystal-csv9': typeof SetsStellarCrystalCsv9Route
-  '/sets/terastal-gathering-csv9-5': typeof SetsTerastalGatheringCsv95Route
-  '/sets/true-mystery-csv6': typeof SetsTrueMysteryCsv6Route
-  '/sets/white-flare-csv10-6': typeof SetsWhiteFlareCsv106Route
   '/account/': typeof AccountIndexRoute
   '/admin/': typeof AdminIndexRoute
   '/blog/': typeof BlogIndexRoute
@@ -1146,9 +1144,32 @@ export interface FileRoutesById {
   '/admin/orders/$id': typeof AdminOrdersIdRoute
   '/admin/products/$id': typeof AdminProductsIdRoute
   '/admin/products/new': typeof AdminProductsNewRoute
+  '/sets/chinese/30th-celebration': typeof SetsChinese30thCelebrationRoute
+  '/sets/chinese/black-bolt-csv10-5': typeof SetsChineseBlackBoltCsv105Route
+  '/sets/chinese/black-crystal-blaze-csv5': typeof SetsChineseBlackCrystalBlazeCsv5Route
+  '/sets/chinese/blade-awakening-csv7': typeof SetsChineseBladeAwakeningCsv7Route
+  '/sets/chinese/brilliant-fantasy-csv8': typeof SetsChineseBrilliantFantasyCsv8Route
+  '/sets/chinese/chasing-glory-csv10': typeof SetsChineseChasingGloryCsv10Route
+  '/sets/chinese/collect-151-gathering': typeof SetsChineseCollect151GatheringRoute
+  '/sets/chinese/collect-151-hope': typeof SetsChineseCollect151HopeRoute
+  '/sets/chinese/collect-151-journey': typeof SetsChineseCollect151JourneyRoute
+  '/sets/chinese/collect-151-surprise': typeof SetsChineseCollect151SurpriseRoute
+  '/sets/chinese/gem-vol-1': typeof SetsChineseGemVol1Route
+  '/sets/chinese/gem-vol-2': typeof SetsChineseGemVol2Route
+  '/sets/chinese/gem-vol-3': typeof SetsChineseGemVol3Route
+  '/sets/chinese/gem-vol-4': typeof SetsChineseGemVol4Route
+  '/sets/chinese/gem-vol-5': typeof SetsChineseGemVol5Route
+  '/sets/chinese/gem-vol-6': typeof SetsChineseGemVol6Route
+  '/sets/chinese/gem-vol-7': typeof SetsChineseGemVol7Route
+  '/sets/chinese/reward-round-csv4': typeof SetsChineseRewardRoundCsv4Route
+  '/sets/chinese/stellar-crystal-csv9': typeof SetsChineseStellarCrystalCsv9Route
+  '/sets/chinese/terastal-gathering-csv9-5': typeof SetsChineseTerastalGatheringCsv95Route
+  '/sets/chinese/true-mystery-csv6': typeof SetsChineseTrueMysteryCsv6Route
+  '/sets/chinese/white-flare-csv10-6': typeof SetsChineseWhiteFlareCsv106Route
   '/account/orders/': typeof AccountOrdersIndexRoute
   '/admin/customers/': typeof AdminCustomersIndexRoute
   '/admin/orders/': typeof AdminOrdersIndexRoute
+  '/sets/chinese/': typeof SetsChineseIndexRoute
   '/admin/affiliates_/$id/dashboard': typeof AdminAffiliatesIdDashboardRoute
 }
 export interface FileRouteTypes {
@@ -1239,28 +1260,6 @@ export interface FileRouteTypes {
     | '/go/$slug'
     | '/links/$slug'
     | '/products/$id'
-    | '/sets/30th-celebration'
-    | '/sets/black-bolt-csv10-5'
-    | '/sets/black-crystal-blaze-csv5'
-    | '/sets/blade-awakening-csv7'
-    | '/sets/brilliant-fantasy-csv8'
-    | '/sets/chasing-glory-csv10'
-    | '/sets/collect-151-gathering'
-    | '/sets/collect-151-hope'
-    | '/sets/collect-151-journey'
-    | '/sets/collect-151-surprise'
-    | '/sets/gem-vol-1'
-    | '/sets/gem-vol-2'
-    | '/sets/gem-vol-3'
-    | '/sets/gem-vol-4'
-    | '/sets/gem-vol-5'
-    | '/sets/gem-vol-6'
-    | '/sets/gem-vol-7'
-    | '/sets/reward-round-csv4'
-    | '/sets/stellar-crystal-csv9'
-    | '/sets/terastal-gathering-csv9-5'
-    | '/sets/true-mystery-csv6'
-    | '/sets/white-flare-csv10-6'
     | '/account/'
     | '/admin/'
     | '/blog/'
@@ -1272,9 +1271,32 @@ export interface FileRouteTypes {
     | '/admin/orders/$id'
     | '/admin/products/$id'
     | '/admin/products/new'
+    | '/sets/chinese/30th-celebration'
+    | '/sets/chinese/black-bolt-csv10-5'
+    | '/sets/chinese/black-crystal-blaze-csv5'
+    | '/sets/chinese/blade-awakening-csv7'
+    | '/sets/chinese/brilliant-fantasy-csv8'
+    | '/sets/chinese/chasing-glory-csv10'
+    | '/sets/chinese/collect-151-gathering'
+    | '/sets/chinese/collect-151-hope'
+    | '/sets/chinese/collect-151-journey'
+    | '/sets/chinese/collect-151-surprise'
+    | '/sets/chinese/gem-vol-1'
+    | '/sets/chinese/gem-vol-2'
+    | '/sets/chinese/gem-vol-3'
+    | '/sets/chinese/gem-vol-4'
+    | '/sets/chinese/gem-vol-5'
+    | '/sets/chinese/gem-vol-6'
+    | '/sets/chinese/gem-vol-7'
+    | '/sets/chinese/reward-round-csv4'
+    | '/sets/chinese/stellar-crystal-csv9'
+    | '/sets/chinese/terastal-gathering-csv9-5'
+    | '/sets/chinese/true-mystery-csv6'
+    | '/sets/chinese/white-flare-csv10-6'
     | '/account/orders/'
     | '/admin/customers/'
     | '/admin/orders/'
+    | '/sets/chinese/'
     | '/admin/affiliates/$id/dashboard'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -1363,28 +1385,6 @@ export interface FileRouteTypes {
     | '/go/$slug'
     | '/links/$slug'
     | '/products/$id'
-    | '/sets/30th-celebration'
-    | '/sets/black-bolt-csv10-5'
-    | '/sets/black-crystal-blaze-csv5'
-    | '/sets/blade-awakening-csv7'
-    | '/sets/brilliant-fantasy-csv8'
-    | '/sets/chasing-glory-csv10'
-    | '/sets/collect-151-gathering'
-    | '/sets/collect-151-hope'
-    | '/sets/collect-151-journey'
-    | '/sets/collect-151-surprise'
-    | '/sets/gem-vol-1'
-    | '/sets/gem-vol-2'
-    | '/sets/gem-vol-3'
-    | '/sets/gem-vol-4'
-    | '/sets/gem-vol-5'
-    | '/sets/gem-vol-6'
-    | '/sets/gem-vol-7'
-    | '/sets/reward-round-csv4'
-    | '/sets/stellar-crystal-csv9'
-    | '/sets/terastal-gathering-csv9-5'
-    | '/sets/true-mystery-csv6'
-    | '/sets/white-flare-csv10-6'
     | '/account'
     | '/admin'
     | '/blog'
@@ -1396,9 +1396,32 @@ export interface FileRouteTypes {
     | '/admin/orders/$id'
     | '/admin/products/$id'
     | '/admin/products/new'
+    | '/sets/chinese/30th-celebration'
+    | '/sets/chinese/black-bolt-csv10-5'
+    | '/sets/chinese/black-crystal-blaze-csv5'
+    | '/sets/chinese/blade-awakening-csv7'
+    | '/sets/chinese/brilliant-fantasy-csv8'
+    | '/sets/chinese/chasing-glory-csv10'
+    | '/sets/chinese/collect-151-gathering'
+    | '/sets/chinese/collect-151-hope'
+    | '/sets/chinese/collect-151-journey'
+    | '/sets/chinese/collect-151-surprise'
+    | '/sets/chinese/gem-vol-1'
+    | '/sets/chinese/gem-vol-2'
+    | '/sets/chinese/gem-vol-3'
+    | '/sets/chinese/gem-vol-4'
+    | '/sets/chinese/gem-vol-5'
+    | '/sets/chinese/gem-vol-6'
+    | '/sets/chinese/gem-vol-7'
+    | '/sets/chinese/reward-round-csv4'
+    | '/sets/chinese/stellar-crystal-csv9'
+    | '/sets/chinese/terastal-gathering-csv9-5'
+    | '/sets/chinese/true-mystery-csv6'
+    | '/sets/chinese/white-flare-csv10-6'
     | '/account/orders'
     | '/admin/customers'
     | '/admin/orders'
+    | '/sets/chinese'
     | '/admin/affiliates/$id/dashboard'
   id:
     | '__root__'
@@ -1487,28 +1510,6 @@ export interface FileRouteTypes {
     | '/go/$slug'
     | '/links/$slug'
     | '/products/$id'
-    | '/sets/30th-celebration'
-    | '/sets/black-bolt-csv10-5'
-    | '/sets/black-crystal-blaze-csv5'
-    | '/sets/blade-awakening-csv7'
-    | '/sets/brilliant-fantasy-csv8'
-    | '/sets/chasing-glory-csv10'
-    | '/sets/collect-151-gathering'
-    | '/sets/collect-151-hope'
-    | '/sets/collect-151-journey'
-    | '/sets/collect-151-surprise'
-    | '/sets/gem-vol-1'
-    | '/sets/gem-vol-2'
-    | '/sets/gem-vol-3'
-    | '/sets/gem-vol-4'
-    | '/sets/gem-vol-5'
-    | '/sets/gem-vol-6'
-    | '/sets/gem-vol-7'
-    | '/sets/reward-round-csv4'
-    | '/sets/stellar-crystal-csv9'
-    | '/sets/terastal-gathering-csv9-5'
-    | '/sets/true-mystery-csv6'
-    | '/sets/white-flare-csv10-6'
     | '/account/'
     | '/admin/'
     | '/blog/'
@@ -1520,9 +1521,32 @@ export interface FileRouteTypes {
     | '/admin/orders/$id'
     | '/admin/products/$id'
     | '/admin/products/new'
+    | '/sets/chinese/30th-celebration'
+    | '/sets/chinese/black-bolt-csv10-5'
+    | '/sets/chinese/black-crystal-blaze-csv5'
+    | '/sets/chinese/blade-awakening-csv7'
+    | '/sets/chinese/brilliant-fantasy-csv8'
+    | '/sets/chinese/chasing-glory-csv10'
+    | '/sets/chinese/collect-151-gathering'
+    | '/sets/chinese/collect-151-hope'
+    | '/sets/chinese/collect-151-journey'
+    | '/sets/chinese/collect-151-surprise'
+    | '/sets/chinese/gem-vol-1'
+    | '/sets/chinese/gem-vol-2'
+    | '/sets/chinese/gem-vol-3'
+    | '/sets/chinese/gem-vol-4'
+    | '/sets/chinese/gem-vol-5'
+    | '/sets/chinese/gem-vol-6'
+    | '/sets/chinese/gem-vol-7'
+    | '/sets/chinese/reward-round-csv4'
+    | '/sets/chinese/stellar-crystal-csv9'
+    | '/sets/chinese/terastal-gathering-csv9-5'
+    | '/sets/chinese/true-mystery-csv6'
+    | '/sets/chinese/white-flare-csv10-6'
     | '/account/orders/'
     | '/admin/customers/'
     | '/admin/orders/'
+    | '/sets/chinese/'
     | '/admin/affiliates_/$id/dashboard'
   fileRoutesById: FileRoutesById
 }
@@ -1612,28 +1636,6 @@ export interface RootRouteChildren {
   GoSlugRoute: typeof GoSlugRoute
   LinksSlugRoute: typeof LinksSlugRoute
   ProductsIdRoute: typeof ProductsIdRoute
-  Sets30thCelebrationRoute: typeof Sets30thCelebrationRoute
-  SetsBlackBoltCsv105Route: typeof SetsBlackBoltCsv105Route
-  SetsBlackCrystalBlazeCsv5Route: typeof SetsBlackCrystalBlazeCsv5Route
-  SetsBladeAwakeningCsv7Route: typeof SetsBladeAwakeningCsv7Route
-  SetsBrilliantFantasyCsv8Route: typeof SetsBrilliantFantasyCsv8Route
-  SetsChasingGloryCsv10Route: typeof SetsChasingGloryCsv10Route
-  SetsCollect151GatheringRoute: typeof SetsCollect151GatheringRoute
-  SetsCollect151HopeRoute: typeof SetsCollect151HopeRoute
-  SetsCollect151JourneyRoute: typeof SetsCollect151JourneyRoute
-  SetsCollect151SurpriseRoute: typeof SetsCollect151SurpriseRoute
-  SetsGemVol1Route: typeof SetsGemVol1Route
-  SetsGemVol2Route: typeof SetsGemVol2Route
-  SetsGemVol3Route: typeof SetsGemVol3Route
-  SetsGemVol4Route: typeof SetsGemVol4Route
-  SetsGemVol5Route: typeof SetsGemVol5Route
-  SetsGemVol6Route: typeof SetsGemVol6Route
-  SetsGemVol7Route: typeof SetsGemVol7Route
-  SetsRewardRoundCsv4Route: typeof SetsRewardRoundCsv4Route
-  SetsStellarCrystalCsv9Route: typeof SetsStellarCrystalCsv9Route
-  SetsTerastalGatheringCsv95Route: typeof SetsTerastalGatheringCsv95Route
-  SetsTrueMysteryCsv6Route: typeof SetsTrueMysteryCsv6Route
-  SetsWhiteFlareCsv106Route: typeof SetsWhiteFlareCsv106Route
   AccountIndexRoute: typeof AccountIndexRoute
   AdminIndexRoute: typeof AdminIndexRoute
   BlogIndexRoute: typeof BlogIndexRoute
@@ -1645,9 +1647,32 @@ export interface RootRouteChildren {
   AdminOrdersIdRoute: typeof AdminOrdersIdRoute
   AdminProductsIdRoute: typeof AdminProductsIdRoute
   AdminProductsNewRoute: typeof AdminProductsNewRoute
+  SetsChinese30thCelebrationRoute: typeof SetsChinese30thCelebrationRoute
+  SetsChineseBlackBoltCsv105Route: typeof SetsChineseBlackBoltCsv105Route
+  SetsChineseBlackCrystalBlazeCsv5Route: typeof SetsChineseBlackCrystalBlazeCsv5Route
+  SetsChineseBladeAwakeningCsv7Route: typeof SetsChineseBladeAwakeningCsv7Route
+  SetsChineseBrilliantFantasyCsv8Route: typeof SetsChineseBrilliantFantasyCsv8Route
+  SetsChineseChasingGloryCsv10Route: typeof SetsChineseChasingGloryCsv10Route
+  SetsChineseCollect151GatheringRoute: typeof SetsChineseCollect151GatheringRoute
+  SetsChineseCollect151HopeRoute: typeof SetsChineseCollect151HopeRoute
+  SetsChineseCollect151JourneyRoute: typeof SetsChineseCollect151JourneyRoute
+  SetsChineseCollect151SurpriseRoute: typeof SetsChineseCollect151SurpriseRoute
+  SetsChineseGemVol1Route: typeof SetsChineseGemVol1Route
+  SetsChineseGemVol2Route: typeof SetsChineseGemVol2Route
+  SetsChineseGemVol3Route: typeof SetsChineseGemVol3Route
+  SetsChineseGemVol4Route: typeof SetsChineseGemVol4Route
+  SetsChineseGemVol5Route: typeof SetsChineseGemVol5Route
+  SetsChineseGemVol6Route: typeof SetsChineseGemVol6Route
+  SetsChineseGemVol7Route: typeof SetsChineseGemVol7Route
+  SetsChineseRewardRoundCsv4Route: typeof SetsChineseRewardRoundCsv4Route
+  SetsChineseStellarCrystalCsv9Route: typeof SetsChineseStellarCrystalCsv9Route
+  SetsChineseTerastalGatheringCsv95Route: typeof SetsChineseTerastalGatheringCsv95Route
+  SetsChineseTrueMysteryCsv6Route: typeof SetsChineseTrueMysteryCsv6Route
+  SetsChineseWhiteFlareCsv106Route: typeof SetsChineseWhiteFlareCsv106Route
   AccountOrdersIndexRoute: typeof AccountOrdersIndexRoute
   AdminCustomersIndexRoute: typeof AdminCustomersIndexRoute
   AdminOrdersIndexRoute: typeof AdminOrdersIndexRoute
+  SetsChineseIndexRoute: typeof SetsChineseIndexRoute
   AdminAffiliatesIdDashboardRoute: typeof AdminAffiliatesIdDashboardRoute
 }
 
@@ -2283,160 +2308,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SetsIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/sets/30th-celebration': {
-      id: '/sets/30th-celebration'
-      path: '/sets/30th-celebration'
-      fullPath: '/sets/30th-celebration'
-      preLoaderRoute: typeof Sets30thCelebrationRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/sets/black-bolt-csv10-5': {
-      id: '/sets/black-bolt-csv10-5'
-      path: '/sets/black-bolt-csv10-5'
-      fullPath: '/sets/black-bolt-csv10-5'
-      preLoaderRoute: typeof SetsBlackBoltCsv105RouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/sets/black-crystal-blaze-csv5': {
-      id: '/sets/black-crystal-blaze-csv5'
-      path: '/sets/black-crystal-blaze-csv5'
-      fullPath: '/sets/black-crystal-blaze-csv5'
-      preLoaderRoute: typeof SetsBlackCrystalBlazeCsv5RouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/sets/blade-awakening-csv7': {
-      id: '/sets/blade-awakening-csv7'
-      path: '/sets/blade-awakening-csv7'
-      fullPath: '/sets/blade-awakening-csv7'
-      preLoaderRoute: typeof SetsBladeAwakeningCsv7RouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/sets/brilliant-fantasy-csv8': {
-      id: '/sets/brilliant-fantasy-csv8'
-      path: '/sets/brilliant-fantasy-csv8'
-      fullPath: '/sets/brilliant-fantasy-csv8'
-      preLoaderRoute: typeof SetsBrilliantFantasyCsv8RouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/sets/chasing-glory-csv10': {
-      id: '/sets/chasing-glory-csv10'
-      path: '/sets/chasing-glory-csv10'
-      fullPath: '/sets/chasing-glory-csv10'
-      preLoaderRoute: typeof SetsChasingGloryCsv10RouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/sets/collect-151-gathering': {
-      id: '/sets/collect-151-gathering'
-      path: '/sets/collect-151-gathering'
-      fullPath: '/sets/collect-151-gathering'
-      preLoaderRoute: typeof SetsCollect151GatheringRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/sets/collect-151-hope': {
-      id: '/sets/collect-151-hope'
-      path: '/sets/collect-151-hope'
-      fullPath: '/sets/collect-151-hope'
-      preLoaderRoute: typeof SetsCollect151HopeRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/sets/collect-151-journey': {
-      id: '/sets/collect-151-journey'
-      path: '/sets/collect-151-journey'
-      fullPath: '/sets/collect-151-journey'
-      preLoaderRoute: typeof SetsCollect151JourneyRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/sets/collect-151-surprise': {
-      id: '/sets/collect-151-surprise'
-      path: '/sets/collect-151-surprise'
-      fullPath: '/sets/collect-151-surprise'
-      preLoaderRoute: typeof SetsCollect151SurpriseRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/sets/gem-vol-1': {
-      id: '/sets/gem-vol-1'
-      path: '/sets/gem-vol-1'
-      fullPath: '/sets/gem-vol-1'
-      preLoaderRoute: typeof SetsGemVol1RouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/sets/gem-vol-2': {
-      id: '/sets/gem-vol-2'
-      path: '/sets/gem-vol-2'
-      fullPath: '/sets/gem-vol-2'
-      preLoaderRoute: typeof SetsGemVol2RouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/sets/gem-vol-3': {
-      id: '/sets/gem-vol-3'
-      path: '/sets/gem-vol-3'
-      fullPath: '/sets/gem-vol-3'
-      preLoaderRoute: typeof SetsGemVol3RouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/sets/gem-vol-4': {
-      id: '/sets/gem-vol-4'
-      path: '/sets/gem-vol-4'
-      fullPath: '/sets/gem-vol-4'
-      preLoaderRoute: typeof SetsGemVol4RouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/sets/gem-vol-5': {
-      id: '/sets/gem-vol-5'
-      path: '/sets/gem-vol-5'
-      fullPath: '/sets/gem-vol-5'
-      preLoaderRoute: typeof SetsGemVol5RouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/sets/gem-vol-6': {
-      id: '/sets/gem-vol-6'
-      path: '/sets/gem-vol-6'
-      fullPath: '/sets/gem-vol-6'
-      preLoaderRoute: typeof SetsGemVol6RouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/sets/gem-vol-7': {
-      id: '/sets/gem-vol-7'
-      path: '/sets/gem-vol-7'
-      fullPath: '/sets/gem-vol-7'
-      preLoaderRoute: typeof SetsGemVol7RouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/sets/reward-round-csv4': {
-      id: '/sets/reward-round-csv4'
-      path: '/sets/reward-round-csv4'
-      fullPath: '/sets/reward-round-csv4'
-      preLoaderRoute: typeof SetsRewardRoundCsv4RouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/sets/stellar-crystal-csv9': {
-      id: '/sets/stellar-crystal-csv9'
-      path: '/sets/stellar-crystal-csv9'
-      fullPath: '/sets/stellar-crystal-csv9'
-      preLoaderRoute: typeof SetsStellarCrystalCsv9RouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/sets/terastal-gathering-csv9-5': {
-      id: '/sets/terastal-gathering-csv9-5'
-      path: '/sets/terastal-gathering-csv9-5'
-      fullPath: '/sets/terastal-gathering-csv9-5'
-      preLoaderRoute: typeof SetsTerastalGatheringCsv95RouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/sets/true-mystery-csv6': {
-      id: '/sets/true-mystery-csv6'
-      path: '/sets/true-mystery-csv6'
-      fullPath: '/sets/true-mystery-csv6'
-      preLoaderRoute: typeof SetsTrueMysteryCsv6RouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/sets/white-flare-csv10-6': {
-      id: '/sets/white-flare-csv10-6'
-      path: '/sets/white-flare-csv10-6'
-      fullPath: '/sets/white-flare-csv10-6'
-      preLoaderRoute: typeof SetsWhiteFlareCsv106RouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/account/orders/': {
       id: '/account/orders/'
       path: '/account/orders'
@@ -2498,6 +2369,167 @@ declare module '@tanstack/react-router' {
       path: '/admin/products/new'
       fullPath: '/admin/products/new'
       preLoaderRoute: typeof AdminProductsNewRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sets/chinese/': {
+      id: '/sets/chinese/'
+      path: '/sets/chinese'
+      fullPath: '/sets/chinese/'
+      preLoaderRoute: typeof SetsChineseIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sets/chinese/30th-celebration': {
+      id: '/sets/chinese/30th-celebration'
+      path: '/sets/chinese/30th-celebration'
+      fullPath: '/sets/chinese/30th-celebration'
+      preLoaderRoute: typeof SetsChinese30thCelebrationRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sets/chinese/black-bolt-csv10-5': {
+      id: '/sets/chinese/black-bolt-csv10-5'
+      path: '/sets/chinese/black-bolt-csv10-5'
+      fullPath: '/sets/chinese/black-bolt-csv10-5'
+      preLoaderRoute: typeof SetsChineseBlackBoltCsv105RouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sets/chinese/black-crystal-blaze-csv5': {
+      id: '/sets/chinese/black-crystal-blaze-csv5'
+      path: '/sets/chinese/black-crystal-blaze-csv5'
+      fullPath: '/sets/chinese/black-crystal-blaze-csv5'
+      preLoaderRoute: typeof SetsChineseBlackCrystalBlazeCsv5RouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sets/chinese/blade-awakening-csv7': {
+      id: '/sets/chinese/blade-awakening-csv7'
+      path: '/sets/chinese/blade-awakening-csv7'
+      fullPath: '/sets/chinese/blade-awakening-csv7'
+      preLoaderRoute: typeof SetsChineseBladeAwakeningCsv7RouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sets/chinese/brilliant-fantasy-csv8': {
+      id: '/sets/chinese/brilliant-fantasy-csv8'
+      path: '/sets/chinese/brilliant-fantasy-csv8'
+      fullPath: '/sets/chinese/brilliant-fantasy-csv8'
+      preLoaderRoute: typeof SetsChineseBrilliantFantasyCsv8RouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sets/chinese/chasing-glory-csv10': {
+      id: '/sets/chinese/chasing-glory-csv10'
+      path: '/sets/chinese/chasing-glory-csv10'
+      fullPath: '/sets/chinese/chasing-glory-csv10'
+      preLoaderRoute: typeof SetsChineseChasingGloryCsv10RouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sets/chinese/collect-151-gathering': {
+      id: '/sets/chinese/collect-151-gathering'
+      path: '/sets/chinese/collect-151-gathering'
+      fullPath: '/sets/chinese/collect-151-gathering'
+      preLoaderRoute: typeof SetsChineseCollect151GatheringRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sets/chinese/collect-151-hope': {
+      id: '/sets/chinese/collect-151-hope'
+      path: '/sets/chinese/collect-151-hope'
+      fullPath: '/sets/chinese/collect-151-hope'
+      preLoaderRoute: typeof SetsChineseCollect151HopeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sets/chinese/collect-151-journey': {
+      id: '/sets/chinese/collect-151-journey'
+      path: '/sets/chinese/collect-151-journey'
+      fullPath: '/sets/chinese/collect-151-journey'
+      preLoaderRoute: typeof SetsChineseCollect151JourneyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sets/chinese/collect-151-surprise': {
+      id: '/sets/chinese/collect-151-surprise'
+      path: '/sets/chinese/collect-151-surprise'
+      fullPath: '/sets/chinese/collect-151-surprise'
+      preLoaderRoute: typeof SetsChineseCollect151SurpriseRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sets/chinese/gem-vol-1': {
+      id: '/sets/chinese/gem-vol-1'
+      path: '/sets/chinese/gem-vol-1'
+      fullPath: '/sets/chinese/gem-vol-1'
+      preLoaderRoute: typeof SetsChineseGemVol1RouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sets/chinese/gem-vol-2': {
+      id: '/sets/chinese/gem-vol-2'
+      path: '/sets/chinese/gem-vol-2'
+      fullPath: '/sets/chinese/gem-vol-2'
+      preLoaderRoute: typeof SetsChineseGemVol2RouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sets/chinese/gem-vol-3': {
+      id: '/sets/chinese/gem-vol-3'
+      path: '/sets/chinese/gem-vol-3'
+      fullPath: '/sets/chinese/gem-vol-3'
+      preLoaderRoute: typeof SetsChineseGemVol3RouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sets/chinese/gem-vol-4': {
+      id: '/sets/chinese/gem-vol-4'
+      path: '/sets/chinese/gem-vol-4'
+      fullPath: '/sets/chinese/gem-vol-4'
+      preLoaderRoute: typeof SetsChineseGemVol4RouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sets/chinese/gem-vol-5': {
+      id: '/sets/chinese/gem-vol-5'
+      path: '/sets/chinese/gem-vol-5'
+      fullPath: '/sets/chinese/gem-vol-5'
+      preLoaderRoute: typeof SetsChineseGemVol5RouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sets/chinese/gem-vol-6': {
+      id: '/sets/chinese/gem-vol-6'
+      path: '/sets/chinese/gem-vol-6'
+      fullPath: '/sets/chinese/gem-vol-6'
+      preLoaderRoute: typeof SetsChineseGemVol6RouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sets/chinese/gem-vol-7': {
+      id: '/sets/chinese/gem-vol-7'
+      path: '/sets/chinese/gem-vol-7'
+      fullPath: '/sets/chinese/gem-vol-7'
+      preLoaderRoute: typeof SetsChineseGemVol7RouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sets/chinese/reward-round-csv4': {
+      id: '/sets/chinese/reward-round-csv4'
+      path: '/sets/chinese/reward-round-csv4'
+      fullPath: '/sets/chinese/reward-round-csv4'
+      preLoaderRoute: typeof SetsChineseRewardRoundCsv4RouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sets/chinese/stellar-crystal-csv9': {
+      id: '/sets/chinese/stellar-crystal-csv9'
+      path: '/sets/chinese/stellar-crystal-csv9'
+      fullPath: '/sets/chinese/stellar-crystal-csv9'
+      preLoaderRoute: typeof SetsChineseStellarCrystalCsv9RouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sets/chinese/terastal-gathering-csv9-5': {
+      id: '/sets/chinese/terastal-gathering-csv9-5'
+      path: '/sets/chinese/terastal-gathering-csv9-5'
+      fullPath: '/sets/chinese/terastal-gathering-csv9-5'
+      preLoaderRoute: typeof SetsChineseTerastalGatheringCsv95RouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sets/chinese/true-mystery-csv6': {
+      id: '/sets/chinese/true-mystery-csv6'
+      path: '/sets/chinese/true-mystery-csv6'
+      fullPath: '/sets/chinese/true-mystery-csv6'
+      preLoaderRoute: typeof SetsChineseTrueMysteryCsv6RouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sets/chinese/white-flare-csv10-6': {
+      id: '/sets/chinese/white-flare-csv10-6'
+      path: '/sets/chinese/white-flare-csv10-6'
+      fullPath: '/sets/chinese/white-flare-csv10-6'
+      preLoaderRoute: typeof SetsChineseWhiteFlareCsv106RouteImport
       parentRoute: typeof rootRouteImport
     }
     '/admin/affiliates_/$id/dashboard': {
@@ -2599,28 +2631,6 @@ const rootRouteChildren: RootRouteChildren = {
   GoSlugRoute: GoSlugRoute,
   LinksSlugRoute: LinksSlugRoute,
   ProductsIdRoute: ProductsIdRoute,
-  Sets30thCelebrationRoute: Sets30thCelebrationRoute,
-  SetsBlackBoltCsv105Route: SetsBlackBoltCsv105Route,
-  SetsBlackCrystalBlazeCsv5Route: SetsBlackCrystalBlazeCsv5Route,
-  SetsBladeAwakeningCsv7Route: SetsBladeAwakeningCsv7Route,
-  SetsBrilliantFantasyCsv8Route: SetsBrilliantFantasyCsv8Route,
-  SetsChasingGloryCsv10Route: SetsChasingGloryCsv10Route,
-  SetsCollect151GatheringRoute: SetsCollect151GatheringRoute,
-  SetsCollect151HopeRoute: SetsCollect151HopeRoute,
-  SetsCollect151JourneyRoute: SetsCollect151JourneyRoute,
-  SetsCollect151SurpriseRoute: SetsCollect151SurpriseRoute,
-  SetsGemVol1Route: SetsGemVol1Route,
-  SetsGemVol2Route: SetsGemVol2Route,
-  SetsGemVol3Route: SetsGemVol3Route,
-  SetsGemVol4Route: SetsGemVol4Route,
-  SetsGemVol5Route: SetsGemVol5Route,
-  SetsGemVol6Route: SetsGemVol6Route,
-  SetsGemVol7Route: SetsGemVol7Route,
-  SetsRewardRoundCsv4Route: SetsRewardRoundCsv4Route,
-  SetsStellarCrystalCsv9Route: SetsStellarCrystalCsv9Route,
-  SetsTerastalGatheringCsv95Route: SetsTerastalGatheringCsv95Route,
-  SetsTrueMysteryCsv6Route: SetsTrueMysteryCsv6Route,
-  SetsWhiteFlareCsv106Route: SetsWhiteFlareCsv106Route,
   AccountIndexRoute: AccountIndexRoute,
   AdminIndexRoute: AdminIndexRoute,
   BlogIndexRoute: BlogIndexRoute,
@@ -2632,9 +2642,33 @@ const rootRouteChildren: RootRouteChildren = {
   AdminOrdersIdRoute: AdminOrdersIdRoute,
   AdminProductsIdRoute: AdminProductsIdRoute,
   AdminProductsNewRoute: AdminProductsNewRoute,
+  SetsChinese30thCelebrationRoute: SetsChinese30thCelebrationRoute,
+  SetsChineseBlackBoltCsv105Route: SetsChineseBlackBoltCsv105Route,
+  SetsChineseBlackCrystalBlazeCsv5Route: SetsChineseBlackCrystalBlazeCsv5Route,
+  SetsChineseBladeAwakeningCsv7Route: SetsChineseBladeAwakeningCsv7Route,
+  SetsChineseBrilliantFantasyCsv8Route: SetsChineseBrilliantFantasyCsv8Route,
+  SetsChineseChasingGloryCsv10Route: SetsChineseChasingGloryCsv10Route,
+  SetsChineseCollect151GatheringRoute: SetsChineseCollect151GatheringRoute,
+  SetsChineseCollect151HopeRoute: SetsChineseCollect151HopeRoute,
+  SetsChineseCollect151JourneyRoute: SetsChineseCollect151JourneyRoute,
+  SetsChineseCollect151SurpriseRoute: SetsChineseCollect151SurpriseRoute,
+  SetsChineseGemVol1Route: SetsChineseGemVol1Route,
+  SetsChineseGemVol2Route: SetsChineseGemVol2Route,
+  SetsChineseGemVol3Route: SetsChineseGemVol3Route,
+  SetsChineseGemVol4Route: SetsChineseGemVol4Route,
+  SetsChineseGemVol5Route: SetsChineseGemVol5Route,
+  SetsChineseGemVol6Route: SetsChineseGemVol6Route,
+  SetsChineseGemVol7Route: SetsChineseGemVol7Route,
+  SetsChineseRewardRoundCsv4Route: SetsChineseRewardRoundCsv4Route,
+  SetsChineseStellarCrystalCsv9Route: SetsChineseStellarCrystalCsv9Route,
+  SetsChineseTerastalGatheringCsv95Route:
+    SetsChineseTerastalGatheringCsv95Route,
+  SetsChineseTrueMysteryCsv6Route: SetsChineseTrueMysteryCsv6Route,
+  SetsChineseWhiteFlareCsv106Route: SetsChineseWhiteFlareCsv106Route,
   AccountOrdersIndexRoute: AccountOrdersIndexRoute,
   AdminCustomersIndexRoute: AdminCustomersIndexRoute,
   AdminOrdersIndexRoute: AdminOrdersIndexRoute,
+  SetsChineseIndexRoute: SetsChineseIndexRoute,
   AdminAffiliatesIdDashboardRoute: AdminAffiliatesIdDashboardRoute,
 }
 export const routeTree = rootRouteImport

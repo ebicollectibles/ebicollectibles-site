@@ -455,7 +455,7 @@ function ChasingGloryOrigins() {
           heading: 'Collect Chasing Glory',
           body: 'See every card on the full checklist, or pick up a box.',
           links: [
-            { to: '/sets/chasing-glory-csv10', label: 'Browse the card list' },
+            { to: '/sets/chinese/chasing-glory-csv10', label: 'Browse the card list' },
             { to: '/products/$id', params: { id: 'pokemon-chinese-chasing-glory-jumbo-booster-box' }, label: 'Shop the jumbo box', variant: 'ghost' },
           ],
         }}

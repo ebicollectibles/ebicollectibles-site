@@ -1,22 +1,22 @@
+import * as React from 'react'
 import { createFileRoute, Link } from '@tanstack/react-router'
 import setsIndexCssUrl from '~/styles/sets-index.css?url'
 import { GEM_SETS } from '~/data/gem-sets-index'
-import { R2_IMAGE_HOST, SITE_URL } from '~/lib/gem-sets/constants'
+import { SITE_URL } from '~/lib/gem-sets/constants'
 import { safeJsonLd } from '~/lib/gem-sets/head'
 
-const itemListJsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'ItemList',
-  name: 'Pokémon Sets',
-  numberOfItems: GEM_SETS.length,
-  itemListElement: GEM_SETS.map((s, i) => ({
-    '@type': 'ListItem',
-    position: i + 1,
-    name: `${s.name} Card List`,
-    url: `${SITE_URL}/sets/${s.slug}`,
-    image: s.heroImage,
-  })),
-}
+// Hub for every language we track. Each language has its own list at
+// /sets/<language> (only Simplified Chinese today; Japanese will sit beside
+// it at /sets/japanese), and every set page lives under its language.
+const LANGUAGES = [
+  {
+    to: '/sets/chinese' as const,
+    name: 'Chinese Pokémon sets',
+    label: 'Simplified Chinese',
+    tagline: 'Gem Packs, the Chinese Scarlet & Violet sets, 30th Celebration and Collect 151.',
+    sets: GEM_SETS,
+  },
+]
 
 const breadcrumbJsonLd = {
   '@context': 'https://schema.org',
@@ -27,80 +27,29 @@ const breadcrumbJsonLd = {
   ],
 }
 
-function formatReleaseDate(iso: string): string {
-  const d = new Date(`${iso}T00:00:00`)
-  if (Number.isNaN(d.getTime())) return iso
-  return d.toLocaleDateString('en-US', { month: 'short', year: 'numeric' })
-}
-
-// Display order for the series sections below — officially-licensed lines
-// first, Chen's own Gem Set branding last. A series not listed here (a
-// future one-off) still renders, just after all of these.
-const SERIES_ORDER = ['Chinese Scarlet & Violet', '30th Anniversary Special Set', 'Gem Set']
-const SERIES_LABEL: Record<string, string> = {
-  'Chinese Scarlet & Violet': 'Chinese Scarlet & Violet',
-  '30th Anniversary Special Set': '30th Anniversary',
-  'Gem Set': 'Gem Set',
-}
-
-function groupBySeries() {
-  const groups = new Map<string, typeof GEM_SETS>()
-  for (const s of GEM_SETS) {
-    const list = groups.get(s.series) ?? []
-    list.push(s)
-    groups.set(s.series, list)
-  }
-  // Chinese Scarlet & Violet and Collect 151 read newest to oldest; a
-  // stable sort keeps same-day releases (Black Bolt, White Flare) in their
-  // listed order.
-  for (const series of ['Chinese Scarlet & Violet', 'Collect 151']) {
-    groups.get(series)?.sort((x, y) => y.releaseDate.localeCompare(x.releaseDate))
-  }
-  return [...groups.entries()].sort(([a], [b]) => {
-    const ia = SERIES_ORDER.indexOf(a)
-    const ib = SERIES_ORDER.indexOf(b)
-    if (ia === -1 && ib === -1) return a.localeCompare(b)
-    if (ia === -1) return 1
-    if (ib === -1) return -1
-    return ia - ib
-  })
-}
-
 export const Route = createFileRoute('/sets/')({
   head: () => ({
     meta: [
-      { title: 'Pokémon Sets | EBI Collectibles' },
-      {
-        name: 'description',
-        content: 'Browse every Simplified Chinese Pokémon TCG release from EBI Collectibles: full card lists, rarities and checklists for every set we carry.',
-      },
+      { title: 'Pokémon Sets by Language | EBI Collectibles' },
+      { name: 'description', content: 'Full card lists, rarities and checklists for every Pokémon TCG set we carry, organized by language.' },
       { property: 'og:title', content: 'Pokémon Sets' },
-      { property: 'og:description', content: 'Every card in every Simplified Chinese set we carry. Browse, filter and track what you own.' },
-      // No declared og:image:width/height — most card images are
-      // 300×419, but not all (see the same note in buildGemSetHead), so
-      // an undeclared size (platforms measure it themselves) beats a
-      // wrong one.
+      { property: 'og:description', content: 'Full card lists and checklists for every Pokémon TCG set we carry, organized by language.' },
       { property: 'og:image', content: GEM_SETS[0].heroImage },
       { property: 'og:url', content: `${SITE_URL}/sets` },
       { property: 'og:type', content: 'website' },
       { name: 'twitter:card', content: 'summary_large_image' },
-      { name: 'twitter:title', content: 'Pokémon Sets' },
-      { name: 'twitter:description', content: 'Every card in every Simplified Chinese set we carry. Browse, filter and track what you own.' },
-      { name: 'twitter:image', content: GEM_SETS[0].heroImage },
     ],
     links: [
       { rel: 'stylesheet', href: setsIndexCssUrl },
       { rel: 'canonical', href: `${SITE_URL}/sets` },
-      { rel: 'preconnect', href: R2_IMAGE_HOST },
     ],
   }),
-  component: SetsIndexPage,
+  component: SetsHubPage,
 })
 
-function SetsIndexPage() {
+function SetsHubPage() {
   return (
     <div className="gem-sets-index">
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(itemListJsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(breadcrumbJsonLd) }} />
 
       <section className="hero">
@@ -110,53 +59,34 @@ function SetsIndexPage() {
             <span>/</span>
             <span>Sets</span>
           </div>
-          <div className="eyebrow">Simplified Chinese · Pokémon TCG</div>
+          <div className="eyebrow">Pokémon TCG</div>
           <h1>Pokémon sets</h1>
-          <p className="lede">
-            Every set we carry, every card. Browse by Pokémon, filter by rarity, and track your own collection. Pick a set below to start.
-          </p>
+          <p className="lede">Every set we carry, every card. Pick a language to browse its sets and track your collection.</p>
         </div>
       </section>
 
       <main className="wrap">
-        {(() => {
-          // Only the first series section's first several cards are
-          // reliably above the fold — a running count across all of them
-          // (not reset per section) so later sections stay lazy. Blanket
-          // loading="lazy" on every card, including the first row, was
-          // delaying a fetch the browser could have started immediately.
-          let cardIndex = 0
-          return groupBySeries().map(([series, sets]) => (
-            <section key={series} className="series">
-              <h2 className="series-h">{SERIES_LABEL[series] ?? series}</h2>
-              <div className="grid">
-                {sets.map((s) => {
-                  const priority = cardIndex++ < 8
-                  return (
-                    <Link key={s.slug} className="card" to={s.path}>
-                      <div className="card-art" style={{ '--glow-1': s.glow1, '--glow-2': s.glow2 } as React.CSSProperties}>
-                        {s.preorder && <span className="card-preorder">Preorder</span>}
-                        <img src={s.heroImage} alt={s.heroAlt} loading={priority ? undefined : 'lazy'} width={300} height={419} />
-                      </div>
-                      <div className="card-body">
-                        <span className="card-series">{s.code}</span>
-                        <h3 className="card-name">{s.name}</h3>
-                        <p className="card-tagline">{s.tagline}</p>
-                        <div className="card-meta">
-                          <span>
-                            <b>{s.cardCount}</b> cards
-                          </span>
-                          <span>{formatReleaseDate(s.releaseDate)}</span>
-                          {s.exclusiveCount > 0 && <span className="card-excl">{s.exclusiveCount}× excl.</span>}
-                        </div>
-                      </div>
-                    </Link>
-                  )
-                })}
-              </div>
-            </section>
-          ))
-        })()}
+        <section className="series">
+          <div className="grid">
+            {LANGUAGES.map((l) => (
+              <Link key={l.to} className="card" to={l.to}>
+                <div className="card-art" style={{ '--glow-1': l.sets[0].glow1, '--glow-2': l.sets[0].glow2 } as React.CSSProperties}>
+                  <img src={l.sets[0].heroImage} alt={l.sets[0].heroAlt} width={300} height={419} />
+                </div>
+                <div className="card-body">
+                  <span className="card-series">{l.label}</span>
+                  <h3 className="card-name">{l.name}</h3>
+                  <p className="card-tagline">{l.tagline}</p>
+                  <div className="card-meta">
+                    <span>
+                      <b>{l.sets.length}</b> sets
+                    </span>
+                  </div>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </section>
       </main>
     </div>
   )

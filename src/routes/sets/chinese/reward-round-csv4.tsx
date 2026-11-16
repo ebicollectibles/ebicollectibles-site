@@ -26,7 +26,7 @@ const raw: GemSetData = { ...(rawData as GemSetData) }
 const data = buildGemSetData(raw)
 
 const config: GemSetConfig = {
-  routePath: '/sets/reward-round-csv4',
+  routePath: '/sets/chinese/reward-round-csv4',
   storageKey: 'csv4-have',
   productId: 'pokemon-chinese-reward-round-booster-box',
   // Gholdengo ex SAR (a gold mascot fitting a "reward" set) centered,
@@ -71,7 +71,7 @@ const config: GemSetConfig = {
   ogDescription: 'All 165 cards in Pokémon TCG Reward Round. Browse by Pokémon, filter by rarity, and track which ones you own.',
 }
 
-export const Route = createFileRoute('/sets/reward-round-csv4')({
+export const Route = createFileRoute('/sets/chinese/reward-round-csv4')({
   validateSearch: (search) => z.object({ card: z.string().regex(/^\d{3}$/).optional() }).parse(search),
   head: () => buildGemSetHead(data, config),
   component: Csv4Page,
@@ -81,7 +81,7 @@ function Csv4Page() {
   const search = Route.useSearch()
   const navigate = useNavigate()
   const navigateToCard = React.useCallback(
-    (id: string | undefined) => navigate({ to: '/sets/reward-round-csv4', search: (prev) => ({ ...prev, card: id }), replace: true }),
+    (id: string | undefined) => navigate({ to: '/sets/chinese/reward-round-csv4', search: (prev) => ({ ...prev, card: id }), replace: true }),
     [navigate],
   )
   return <GemSetPage raw={raw} data={data} config={config} openCardId={search.card ?? null} navigateToCard={navigateToCard} />

@@ -21,13 +21,13 @@ import { GemSetPage } from '~/components/gem-set/GemSetPage'
 // sets groupByName: true so the engine groups by matching name across
 // the whole set instead), and it uses an entirely different 8-tier
 // rarity scheme. Its twin set, White Flare, mirrors this structure
-// exactly, down to the shared field names — see src/routes/sets/white-flare-csv10-6.tsx.
+// exactly, down to the shared field names — see src/routes/sets/chinese/white-flare-csv10-6.tsx.
 
 const raw = rawData as GemSetData
 const data = buildGemSetData(raw)
 
 const config: GemSetConfig = {
-  routePath: '/sets/black-bolt-csv10-5',
+  routePath: '/sets/chinese/black-bolt-csv10-5',
   storageKey: 'black-bolt-have',
   productId: 'pokemon-chinese-black-bolt-slim-booster-box',
   // Zekrom ex's full progression (Super Rare, Special Art Rare, and the
@@ -73,7 +73,7 @@ const config: GemSetConfig = {
   ogDescription: 'All 174 cards in Pokémon TCG Black Bolt. Browse by Pokémon, filter by rarity, and track which ones you own.',
 }
 
-export const Route = createFileRoute('/sets/black-bolt-csv10-5')({
+export const Route = createFileRoute('/sets/chinese/black-bolt-csv10-5')({
   validateSearch: (search) => z.object({ card: z.string().regex(/^\d{3}$/).optional() }).parse(search),
   head: () => buildGemSetHead(data, config),
   component: BlackBoltPage,
@@ -83,7 +83,7 @@ function BlackBoltPage() {
   const search = Route.useSearch()
   const navigate = useNavigate()
   const navigateToCard = React.useCallback(
-    (id: string | undefined) => navigate({ to: '/sets/black-bolt-csv10-5', search: (prev) => ({ ...prev, card: id }), replace: true }),
+    (id: string | undefined) => navigate({ to: '/sets/chinese/black-bolt-csv10-5', search: (prev) => ({ ...prev, card: id }), replace: true }),
     [navigate],
   )
   return <GemSetPage raw={raw} data={data} config={config} openCardId={search.card ?? null} navigateToCard={navigateToCard} />

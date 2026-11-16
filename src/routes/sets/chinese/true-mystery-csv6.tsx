@@ -28,7 +28,7 @@ const raw: GemSetData = { ...(rawData as GemSetData) }
 const data = buildGemSetData(raw)
 
 const config: GemSetConfig = {
-  routePath: '/sets/true-mystery-csv6',
+  routePath: '/sets/chinese/true-mystery-csv6',
   storageKey: 'csv6-have',
   productId: 'pokemon-chinese-true-mystery-slim-booster-box',
   // Roaring Moon ex SAR (the headline Ancient Paradox) centered, flanked
@@ -74,7 +74,7 @@ const config: GemSetConfig = {
   ogDescription: 'All 163 cards in Pokémon TCG True Mystery. Browse by Pokémon, filter by rarity, and track which ones you own.',
 }
 
-export const Route = createFileRoute('/sets/true-mystery-csv6')({
+export const Route = createFileRoute('/sets/chinese/true-mystery-csv6')({
   validateSearch: (search) => z.object({ card: z.string().regex(/^\d{3}$/).optional() }).parse(search),
   head: () => buildGemSetHead(data, config),
   component: Csv6Page,
@@ -84,7 +84,7 @@ function Csv6Page() {
   const search = Route.useSearch()
   const navigate = useNavigate()
   const navigateToCard = React.useCallback(
-    (id: string | undefined) => navigate({ to: '/sets/true-mystery-csv6', search: (prev) => ({ ...prev, card: id }), replace: true }),
+    (id: string | undefined) => navigate({ to: '/sets/chinese/true-mystery-csv6', search: (prev) => ({ ...prev, card: id }), replace: true }),
     [navigate],
   )
   return <GemSetPage raw={raw} data={data} config={config} openCardId={search.card ?? null} navigateToCard={navigateToCard} />

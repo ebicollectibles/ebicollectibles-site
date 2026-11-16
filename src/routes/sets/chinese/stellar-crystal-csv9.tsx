@@ -33,7 +33,7 @@ const raw: GemSetData = { ...(rawData as GemSetData) }
 const data = buildGemSetData(raw)
 
 const config: GemSetConfig = {
-  routePath: '/sets/stellar-crystal-csv9',
+  routePath: '/sets/chinese/stellar-crystal-csv9',
   storageKey: 'csv9-have',
   // Terapagos ex SAR (the set's mascot) centered, flanked by Pikachu ex
   // SAR and Latias ex SAR, with the Chinese-exclusive Lisia's Appeal SAR
@@ -77,7 +77,7 @@ const config: GemSetConfig = {
   ogDescription: 'All 266 cards in Pokémon TCG Stellar Crystal. Browse by Pokémon, filter by rarity, and track which ones you own.',
 }
 
-export const Route = createFileRoute('/sets/stellar-crystal-csv9')({
+export const Route = createFileRoute('/sets/chinese/stellar-crystal-csv9')({
   validateSearch: (search) => z.object({ card: z.string().regex(/^\d{3}$/).optional() }).parse(search),
   head: () => buildGemSetHead(data, config),
   component: Csv9Page,
@@ -87,7 +87,7 @@ function Csv9Page() {
   const search = Route.useSearch()
   const navigate = useNavigate()
   const navigateToCard = React.useCallback(
-    (id: string | undefined) => navigate({ to: '/sets/stellar-crystal-csv9', search: (prev) => ({ ...prev, card: id }), replace: true }),
+    (id: string | undefined) => navigate({ to: '/sets/chinese/stellar-crystal-csv9', search: (prev) => ({ ...prev, card: id }), replace: true }),
     [navigate],
   )
   return <GemSetPage raw={raw} data={data} config={config} openCardId={search.card ?? null} navigateToCard={navigateToCard} />

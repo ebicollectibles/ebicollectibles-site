@@ -7,28 +7,28 @@
 // built from `slug` at render time, so <Link to={...}> stays type-safe
 // without a cast.
 export type GemSetRoutePath =
-  | '/sets/gem-vol-1'
-  | '/sets/gem-vol-2'
-  | '/sets/gem-vol-3'
-  | '/sets/gem-vol-4'
-  | '/sets/gem-vol-5'
-  | '/sets/gem-vol-6'
-  | '/sets/gem-vol-7'
-  | '/sets/black-bolt-csv10-5'
-  | '/sets/white-flare-csv10-6'
-  | '/sets/30th-celebration'
-  | '/sets/chasing-glory-csv10'
-  | '/sets/terastal-gathering-csv9-5'
-  | '/sets/brilliant-fantasy-csv8'
-  | '/sets/reward-round-csv4'
-  | '/sets/black-crystal-blaze-csv5'
-  | '/sets/true-mystery-csv6'
-  | '/sets/blade-awakening-csv7'
-  | '/sets/stellar-crystal-csv9'
-  | '/sets/collect-151-journey'
-  | '/sets/collect-151-hope'
-  | '/sets/collect-151-surprise'
-  | '/sets/collect-151-gathering'
+  | '/sets/chinese/gem-vol-1'
+  | '/sets/chinese/gem-vol-2'
+  | '/sets/chinese/gem-vol-3'
+  | '/sets/chinese/gem-vol-4'
+  | '/sets/chinese/gem-vol-5'
+  | '/sets/chinese/gem-vol-6'
+  | '/sets/chinese/gem-vol-7'
+  | '/sets/chinese/black-bolt-csv10-5'
+  | '/sets/chinese/white-flare-csv10-6'
+  | '/sets/chinese/30th-celebration'
+  | '/sets/chinese/chasing-glory-csv10'
+  | '/sets/chinese/terastal-gathering-csv9-5'
+  | '/sets/chinese/brilliant-fantasy-csv8'
+  | '/sets/chinese/reward-round-csv4'
+  | '/sets/chinese/black-crystal-blaze-csv5'
+  | '/sets/chinese/true-mystery-csv6'
+  | '/sets/chinese/blade-awakening-csv7'
+  | '/sets/chinese/stellar-crystal-csv9'
+  | '/sets/chinese/collect-151-journey'
+  | '/sets/chinese/collect-151-hope'
+  | '/sets/chinese/collect-151-surprise'
+  | '/sets/chinese/collect-151-gathering'
 
 export interface GemSetSummary {
   slug: string
@@ -50,7 +50,7 @@ export interface GemSetSummary {
 export const GEM_SETS: GemSetSummary[] = [
   {
     slug: '30th-celebration',
-    path: '/sets/30th-celebration',
+    path: '/sets/chinese/30th-celebration',
     name: '30th Celebration',
     series: '30th Anniversary Special Set',
     code: '30thC',
@@ -65,7 +65,7 @@ export const GEM_SETS: GemSetSummary[] = [
   },
   {
     slug: 'reward-round-csv4',
-    path: '/sets/reward-round-csv4',
+    path: '/sets/chinese/reward-round-csv4',
     name: 'Reward Round',
     series: 'Chinese Scarlet & Violet',
     code: 'CSV4C',
@@ -80,7 +80,7 @@ export const GEM_SETS: GemSetSummary[] = [
   },
   {
     slug: 'black-crystal-blaze-csv5',
-    path: '/sets/black-crystal-blaze-csv5',
+    path: '/sets/chinese/black-crystal-blaze-csv5',
     name: 'Black Crystal Blaze',
     series: 'Chinese Scarlet & Violet',
     code: 'CSV5C',
@@ -95,7 +95,7 @@ export const GEM_SETS: GemSetSummary[] = [
   },
   {
     slug: 'true-mystery-csv6',
-    path: '/sets/true-mystery-csv6',
+    path: '/sets/chinese/true-mystery-csv6',
     name: 'True Mystery',
     series: 'Chinese Scarlet & Violet',
     code: 'CSV6C',
@@ -110,7 +110,7 @@ export const GEM_SETS: GemSetSummary[] = [
   },
   {
     slug: 'blade-awakening-csv7',
-    path: '/sets/blade-awakening-csv7',
+    path: '/sets/chinese/blade-awakening-csv7',
     name: 'Blade Awakening',
     series: 'Chinese Scarlet & Violet',
     code: 'CSV7C',
@@ -125,7 +125,7 @@ export const GEM_SETS: GemSetSummary[] = [
   },
   {
     slug: 'brilliant-fantasy-csv8',
-    path: '/sets/brilliant-fantasy-csv8',
+    path: '/sets/chinese/brilliant-fantasy-csv8',
     name: 'Brilliant Fantasy',
     series: 'Chinese Scarlet & Violet',
     code: 'CSV8C',
@@ -140,7 +140,7 @@ export const GEM_SETS: GemSetSummary[] = [
   },
   {
     slug: 'stellar-crystal-csv9',
-    path: '/sets/stellar-crystal-csv9',
+    path: '/sets/chinese/stellar-crystal-csv9',
     name: 'Stellar Crystal',
     series: 'Chinese Scarlet & Violet',
     code: 'CSV9C',
@@ -155,7 +155,7 @@ export const GEM_SETS: GemSetSummary[] = [
   },
   {
     slug: 'terastal-gathering-csv9-5',
-    path: '/sets/terastal-gathering-csv9-5',
+    path: '/sets/chinese/terastal-gathering-csv9-5',
     name: 'Terastal Gathering',
     series: 'Chinese Scarlet & Violet',
     code: 'CSV9.5C',
@@ -170,7 +170,7 @@ export const GEM_SETS: GemSetSummary[] = [
   },
   {
     slug: 'chasing-glory-csv10',
-    path: '/sets/chasing-glory-csv10',
+    path: '/sets/chinese/chasing-glory-csv10',
     name: 'Chasing Glory',
     series: 'Chinese Scarlet & Violet',
     code: 'CSV10C',
@@ -185,7 +185,7 @@ export const GEM_SETS: GemSetSummary[] = [
   },
   {
     slug: 'black-bolt-csv10-5',
-    path: '/sets/black-bolt-csv10-5',
+    path: '/sets/chinese/black-bolt-csv10-5',
     name: 'Black Bolt',
     series: 'Chinese Scarlet & Violet',
     code: 'CSV10.5C',
@@ -200,7 +200,7 @@ export const GEM_SETS: GemSetSummary[] = [
   },
   {
     slug: 'white-flare-csv10-6',
-    path: '/sets/white-flare-csv10-6',
+    path: '/sets/chinese/white-flare-csv10-6',
     name: 'White Flare',
     series: 'Chinese Scarlet & Violet',
     code: 'CSV10.6C',
@@ -215,7 +215,7 @@ export const GEM_SETS: GemSetSummary[] = [
   },
   {
     slug: 'gem-vol-7',
-    path: '/sets/gem-vol-7',
+    path: '/sets/chinese/gem-vol-7',
     name: 'Gem Vol 7',
     series: 'Gem Set',
     code: 'CBB7C',
@@ -230,7 +230,7 @@ export const GEM_SETS: GemSetSummary[] = [
   },
   {
     slug: 'gem-vol-6',
-    path: '/sets/gem-vol-6',
+    path: '/sets/chinese/gem-vol-6',
     name: 'Gem Vol 6',
     series: 'Gem Set',
     code: 'CBB6C',
@@ -245,7 +245,7 @@ export const GEM_SETS: GemSetSummary[] = [
   },
   {
     slug: 'gem-vol-5',
-    path: '/sets/gem-vol-5',
+    path: '/sets/chinese/gem-vol-5',
     name: 'Gem Vol 5',
     series: 'Gem Set',
     code: 'CBB5C',
@@ -260,7 +260,7 @@ export const GEM_SETS: GemSetSummary[] = [
   },
   {
     slug: 'gem-vol-4',
-    path: '/sets/gem-vol-4',
+    path: '/sets/chinese/gem-vol-4',
     name: 'Gem Vol 4',
     series: 'Gem Set',
     code: 'CBB4C',
@@ -275,7 +275,7 @@ export const GEM_SETS: GemSetSummary[] = [
   },
   {
     slug: 'gem-vol-3',
-    path: '/sets/gem-vol-3',
+    path: '/sets/chinese/gem-vol-3',
     name: 'Gem Vol 3',
     series: 'Gem Set',
     code: 'CBB3C',
@@ -290,7 +290,7 @@ export const GEM_SETS: GemSetSummary[] = [
   },
   {
     slug: 'gem-vol-2',
-    path: '/sets/gem-vol-2',
+    path: '/sets/chinese/gem-vol-2',
     name: 'Gem Vol 2',
     series: 'Gem Set',
     code: 'CBB2C',
@@ -305,7 +305,7 @@ export const GEM_SETS: GemSetSummary[] = [
   },
   {
     slug: 'gem-vol-1',
-    path: '/sets/gem-vol-1',
+    path: '/sets/chinese/gem-vol-1',
     name: 'Gem Vol 1',
     series: 'Gem Set',
     code: 'CBB1C',
@@ -320,7 +320,7 @@ export const GEM_SETS: GemSetSummary[] = [
   },
   {
     slug: 'collect-151-journey',
-    path: '/sets/collect-151-journey',
+    path: '/sets/chinese/collect-151-journey',
     name: 'Collect 151: Journey',
     series: 'Collect 151',
     code: '151C',
@@ -335,7 +335,7 @@ export const GEM_SETS: GemSetSummary[] = [
   },
   {
     slug: 'collect-151-hope',
-    path: '/sets/collect-151-hope',
+    path: '/sets/chinese/collect-151-hope',
     name: 'Collect 151: Hope',
     series: 'Collect 151',
     code: '151C',
@@ -350,7 +350,7 @@ export const GEM_SETS: GemSetSummary[] = [
   },
   {
     slug: 'collect-151-surprise',
-    path: '/sets/collect-151-surprise',
+    path: '/sets/chinese/collect-151-surprise',
     name: 'Collect 151: Surprise',
     series: 'Collect 151',
     code: '151C',
@@ -365,7 +365,7 @@ export const GEM_SETS: GemSetSummary[] = [
   },
   {
     slug: 'collect-151-gathering',
-    path: '/sets/collect-151-gathering',
+    path: '/sets/chinese/collect-151-gathering',
     name: 'Collect 151: Gathering',
     series: 'Collect 151',
     code: '151C',

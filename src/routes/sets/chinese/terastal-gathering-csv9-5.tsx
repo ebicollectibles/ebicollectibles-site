@@ -35,7 +35,7 @@ const raw: GemSetData = { ...(rawData as GemSetData) }
 const data = buildGemSetData(raw)
 
 const config: GemSetConfig = {
-  routePath: '/sets/terastal-gathering-csv9-5',
+  routePath: '/sets/chinese/terastal-gathering-csv9-5',
   storageKey: 'csv9-5-have',
   productId: 'pokemon-chinese-terastal-gathering-booster-box',
   // Umbreon ex's SAR (the set's headline chase in this Eeveelution-heavy
@@ -81,7 +81,7 @@ const config: GemSetConfig = {
   ogDescription: 'All 259 cards in Pokémon TCG Terastal Gathering. Browse by Pokémon, filter by rarity, and track which ones you own.',
 }
 
-export const Route = createFileRoute('/sets/terastal-gathering-csv9-5')({
+export const Route = createFileRoute('/sets/chinese/terastal-gathering-csv9-5')({
   validateSearch: (search) => z.object({ card: z.string().regex(/^\d{3}$/).optional() }).parse(search),
   head: () => buildGemSetHead(data, config),
   component: Csv95Page,
@@ -91,7 +91,7 @@ function Csv95Page() {
   const search = Route.useSearch()
   const navigate = useNavigate()
   const navigateToCard = React.useCallback(
-    (id: string | undefined) => navigate({ to: '/sets/terastal-gathering-csv9-5', search: (prev) => ({ ...prev, card: id }), replace: true }),
+    (id: string | undefined) => navigate({ to: '/sets/chinese/terastal-gathering-csv9-5', search: (prev) => ({ ...prev, card: id }), replace: true }),
     [navigate],
   )
   return <GemSetPage raw={raw} data={data} config={config} openCardId={search.card ?? null} navigateToCard={navigateToCard} />

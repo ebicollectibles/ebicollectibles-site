@@ -18,7 +18,7 @@ const raw = rawData as GemSetData
 const data = buildGemSetData(raw)
 
 const config: GemSetConfig = {
-  routePath: '/sets/gem-vol-4',
+  routePath: '/sets/chinese/gem-vol-4',
   storageKey: 'gem4-have',
   productId: 'pokemon-chinese-gem-volume-4-booster-box',
   // Ponyta (0107) is this set's Chinese exclusive — a pale Ponyta with a
@@ -50,7 +50,7 @@ const config: GemSetConfig = {
   ogDescription: 'All 196 cards in Pokémon TCG Gem Vol 4. Browse by Pokémon, filter by rarity, and track which ones you own.',
 }
 
-export const Route = createFileRoute('/sets/gem-vol-4')({
+export const Route = createFileRoute('/sets/chinese/gem-vol-4')({
   validateSearch: (search) => z.object({ card: z.string().regex(/^\d{4}$/).optional() }).parse(search),
   head: () => buildGemSetHead(data, config),
   component: GemVol4Page,
@@ -60,7 +60,7 @@ function GemVol4Page() {
   const search = Route.useSearch()
   const navigate = useNavigate()
   const navigateToCard = React.useCallback(
-    (id: string | undefined) => navigate({ to: '/sets/gem-vol-4', search: (prev) => ({ ...prev, card: id }), replace: true }),
+    (id: string | undefined) => navigate({ to: '/sets/chinese/gem-vol-4', search: (prev) => ({ ...prev, card: id }), replace: true }),
     [navigate],
   )
   return <GemSetPage raw={raw} data={data} config={config} openCardId={search.card ?? null} navigateToCard={navigateToCard} />

@@ -143,7 +143,7 @@ function GemVol3OriginsPost() {
           heading: 'Explore Gem Vol 3',
           body: 'See every card in the set, or read our set guide for every full art and ex in one place.',
           links: [
-            { to: '/sets/gem-vol-3', label: 'Browse the card list' },
+            { to: '/sets/chinese/gem-vol-3', label: 'Browse the card list' },
             { to: '/blog/gem-vol-3-set-guide', label: 'Read the set guide', variant: 'ghost' },
           ],
         }}

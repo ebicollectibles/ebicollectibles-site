@@ -27,7 +27,7 @@ const raw: GemSetData = { ...(rawData as GemSetData) }
 const data = buildGemSetData(raw)
 
 const config: GemSetConfig = {
-  routePath: '/sets/blade-awakening-csv7',
+  routePath: '/sets/chinese/blade-awakening-csv7',
   storageKey: 'csv7-have',
   productId: 'pokemon-chinese-blade-awakening-slim-booster-box',
   // Greninja ex SAR (the set's most popular chase) centered, flanked by
@@ -74,7 +74,7 @@ const config: GemSetConfig = {
   ogDescription: 'All 259 cards in Pokémon TCG Blade Awakening. Browse by Pokémon, filter by rarity, and track which ones you own.',
 }
 
-export const Route = createFileRoute('/sets/blade-awakening-csv7')({
+export const Route = createFileRoute('/sets/chinese/blade-awakening-csv7')({
   validateSearch: (search) => z.object({ card: z.string().regex(/^\d{3}$/).optional() }).parse(search),
   head: () => buildGemSetHead(data, config),
   component: Csv7Page,
@@ -84,7 +84,7 @@ function Csv7Page() {
   const search = Route.useSearch()
   const navigate = useNavigate()
   const navigateToCard = React.useCallback(
-    (id: string | undefined) => navigate({ to: '/sets/blade-awakening-csv7', search: (prev) => ({ ...prev, card: id }), replace: true }),
+    (id: string | undefined) => navigate({ to: '/sets/chinese/blade-awakening-csv7', search: (prev) => ({ ...prev, card: id }), replace: true }),
     [navigate],
   )
   return <GemSetPage raw={raw} data={data} config={config} openCardId={search.card ?? null} navigateToCard={navigateToCard} />

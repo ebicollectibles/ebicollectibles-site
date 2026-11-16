@@ -167,7 +167,7 @@ function GemVol2SetGuide() {
           heading: 'Collect Gem Vol 2',
           body: 'Track every card on the full checklist, or pick up a booster box and start ripping.',
           links: [
-            { to: '/sets/gem-vol-2', label: 'Browse the card list' },
+            { to: '/sets/chinese/gem-vol-2', label: 'Browse the card list' },
             { to: '/products/$id', params: { id: 'pokemon-chinese-gem-volume-2-booster-box' }, label: 'Shop the booster box', variant: 'ghost' },
           ],
         }}
@@ -305,7 +305,7 @@ function GemVol2SetGuide() {
         </p>
         <p>
           So most collectors open a few boxes for fun and for the lower rarities, then buy the VMAX and full arts they still need as
-          singles. The <Link to="/sets/gem-vol-2">Gem Vol 2 card list</Link> makes it easy to track what you still need.
+          singles. The <Link to="/sets/chinese/gem-vol-2">Gem Vol 2 card list</Link> makes it easy to track what you still need.
         </p>
 
         <h2 id="faq">FAQ</h2>

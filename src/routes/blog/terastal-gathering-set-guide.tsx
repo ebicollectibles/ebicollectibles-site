@@ -152,7 +152,7 @@ function TerastalGatheringSetGuide() {
           heading: 'Collect Terastal Gathering',
           body: 'Track every card on the full checklist, or pick up a box and start ripping.',
           links: [
-            { to: '/sets/terastal-gathering-csv9-5', label: 'Browse the card list' },
+            { to: '/sets/chinese/terastal-gathering-csv9-5', label: 'Browse the card list' },
             { to: '/products/$id', params: { id: 'pokemon-chinese-terastal-gathering-booster-box' }, label: 'Shop the booster box', variant: 'ghost' },
           ],
         }}
@@ -285,7 +285,7 @@ function TerastalGatheringSetGuide() {
           Double Rares and ACE SPECs, about 13 cards a box spread across 379 different cards, so both take many boxes, and Pokémon China
           ranks the Master Ball holos as the rarest in that band. For the Special Art Rares and gold cards, most collectors
           open a few boxes for fun, then buy the cards they still need as singles. The{' '}
-          <Link to="/sets/terastal-gathering-csv9-5">Terastal Gathering card list</Link> lets you tick off what you have.
+          <Link to="/sets/chinese/terastal-gathering-csv9-5">Terastal Gathering card list</Link> lets you tick off what you have.
         </p>
 
         <h2 id="faq">FAQ</h2>

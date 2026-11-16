@@ -84,7 +84,8 @@ export function buildGemSetJsonLd(raw: GemSetData, data: BuiltGemSetData, config
     itemListElement: [
       { '@type': 'ListItem', position: 1, name: 'Shop', item: `${SITE_URL}/shop` },
       { '@type': 'ListItem', position: 2, name: 'Sets', item: `${SITE_URL}/sets` },
-      { '@type': 'ListItem', position: 3, name: raw.name, item: `${SITE_URL}${config.routePath}` },
+      { '@type': 'ListItem', position: 3, name: 'Chinese Sets', item: `${SITE_URL}/sets/chinese` },
+      { '@type': 'ListItem', position: 4, name: raw.name, item: `${SITE_URL}${config.routePath}` },
     ],
   }
   return { itemListJsonLd, faqJsonLd, breadcrumbJsonLd }

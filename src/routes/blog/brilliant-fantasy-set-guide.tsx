@@ -172,7 +172,7 @@ function BrilliantFantasySetGuide() {
           heading: 'Collect Brilliant Fantasy',
           body: 'Track every card on the full checklist, or pick up a box and start ripping.',
           links: [
-            { to: '/sets/brilliant-fantasy-csv8', label: 'Browse the card list' },
+            { to: '/sets/chinese/brilliant-fantasy-csv8', label: 'Browse the card list' },
             { to: '/products/$id', params: { id: 'pokemon-chinese-brilliant-fantasy-jumbo-booster-box' }, label: 'Shop the jumbo box', variant: 'ghost' },
           ],
         }}
@@ -320,7 +320,7 @@ function BrilliantFantasySetGuide() {
           The Poké Ball holos come quickly, since they share the most common holo band. The Master Ball holos share the Double Rare band,
           which averages about 4 cards per slim box or 8 per jumbo box across 213 different cards, so they take a long time. The 51
           top-band cards are harder still. The practical route is to open boxes for fun and the lower tiers, then pick up the big cards as
-          singles. The <Link to="/sets/brilliant-fantasy-csv8">Brilliant Fantasy card list</Link> lets you tick off what you have.
+          singles. The <Link to="/sets/chinese/brilliant-fantasy-csv8">Brilliant Fantasy card list</Link> lets you tick off what you have.
         </p>
 
         <h2 id="faq">FAQ</h2>

@@ -342,7 +342,7 @@ function TrueMysteryOrigins() {
           heading: 'Collect True Mystery',
           body: 'See every card on the full checklist, or pick up a box.',
           links: [
-            { to: '/sets/true-mystery-csv6', label: 'Browse the card list' },
+            { to: '/sets/chinese/true-mystery-csv6', label: 'Browse the card list' },
             { to: '/products/$id', params: { id: 'pokemon-chinese-true-mystery-jumbo-booster-box' }, label: 'Shop the jumbo box', variant: 'ghost' },
           ],
         }}

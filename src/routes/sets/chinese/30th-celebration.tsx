@@ -67,7 +67,7 @@ const raw: GemSetData = {
 const data = buildGemSetData(raw)
 
 const config: GemSetConfig = {
-  routePath: '/sets/30th-celebration',
+  routePath: '/sets/chinese/30th-celebration',
   storageKey: '30th-celebration-have',
   productId: 'pokemon-chinese-30th-celebration-booster-box',
   // Pikachu ex SAR (the anniversary mascot, main named-tier chase card),
@@ -119,7 +119,7 @@ const config: GemSetConfig = {
   ogDescription: 'All 206 cards in Pokémon TCG 30th Celebration. Browse by Pokémon, filter by rarity, and track which ones you own.',
 }
 
-export const Route = createFileRoute('/sets/30th-celebration')({
+export const Route = createFileRoute('/sets/chinese/30th-celebration')({
   validateSearch: (search) => z.object({ card: z.string().regex(/^P?\d{3}$/).optional() }).parse(search),
   head: () => buildGemSetHead(data, config),
   component: ThirtiethCelebrationPage,
@@ -129,7 +129,7 @@ function ThirtiethCelebrationPage() {
   const search = Route.useSearch()
   const navigate = useNavigate()
   const navigateToCard = React.useCallback(
-    (id: string | undefined) => navigate({ to: '/sets/30th-celebration', search: (prev) => ({ ...prev, card: id }), replace: true }),
+    (id: string | undefined) => navigate({ to: '/sets/chinese/30th-celebration', search: (prev) => ({ ...prev, card: id }), replace: true }),
     [navigate],
   )
   return <GemSetPage raw={raw} data={data} config={config} openCardId={search.card ?? null} navigateToCard={navigateToCard} />

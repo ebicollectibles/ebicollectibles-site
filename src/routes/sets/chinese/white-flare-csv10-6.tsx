@@ -16,7 +16,7 @@ import { GemSetPage } from '~/components/gem-set/GemSetPage'
 //
 // White Flare is Black Bolt's twin — same real, officially-licensed
 // structure (src/data/white-flare.json also sets groupByName: true; see
-// src/routes/sets/black-bolt-csv10-5.tsx for the full explanation of why), same
+// src/routes/sets/chinese/black-bolt-csv10-5.tsx for the full explanation of why), same
 // 8-tier rarity scheme, same card counts, split Unova Pokédex. Its
 // mascot is Reshiram ex where Black Bolt's is Zekrom ex.
 
@@ -24,7 +24,7 @@ const raw = rawData as GemSetData
 const data = buildGemSetData(raw)
 
 const config: GemSetConfig = {
-  routePath: '/sets/white-flare-csv10-6',
+  routePath: '/sets/chinese/white-flare-csv10-6',
   storageKey: 'white-flare-have',
   productId: 'pokemon-chinese-white-flare-slim-booster-box',
   // Reshiram ex's full progression (Super Rare, Special Art Rare, and the
@@ -70,7 +70,7 @@ const config: GemSetConfig = {
   ogDescription: 'All 174 cards in Pokémon TCG White Flare. Browse by Pokémon, filter by rarity, and track which ones you own.',
 }
 
-export const Route = createFileRoute('/sets/white-flare-csv10-6')({
+export const Route = createFileRoute('/sets/chinese/white-flare-csv10-6')({
   validateSearch: (search) => z.object({ card: z.string().regex(/^\d{3}$/).optional() }).parse(search),
   head: () => buildGemSetHead(data, config),
   component: WhiteFlarePage,
@@ -80,7 +80,7 @@ function WhiteFlarePage() {
   const search = Route.useSearch()
   const navigate = useNavigate()
   const navigateToCard = React.useCallback(
-    (id: string | undefined) => navigate({ to: '/sets/white-flare-csv10-6', search: (prev) => ({ ...prev, card: id }), replace: true }),
+    (id: string | undefined) => navigate({ to: '/sets/chinese/white-flare-csv10-6', search: (prev) => ({ ...prev, card: id }), replace: true }),
     [navigate],
   )
   return <GemSetPage raw={raw} data={data} config={config} openCardId={search.card ?? null} navigateToCard={navigateToCard} />

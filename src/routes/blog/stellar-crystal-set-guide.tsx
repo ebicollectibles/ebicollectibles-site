@@ -169,7 +169,7 @@ function StellarCrystalSetGuide() {
         cta={{
           heading: 'Collect Stellar Crystal',
           body: 'Track every card on the full checklist and tick off what you have.',
-          links: [{ to: '/sets/stellar-crystal-csv9', label: 'Browse the card list' }],
+          links: [{ to: '/sets/chinese/stellar-crystal-csv9', label: 'Browse the card list' }],
         }}
       >
         <p>
@@ -310,7 +310,7 @@ function StellarCrystalSetGuide() {
           The Poké Ball holos come quickly, since they share the most common holo band. The Master Ball holos share the Double Rare band,
           which averages about one card every 4 slim packs or 1.4 per jumbo pack across 214 different cards, so they take a long time.
           The 52 top-band cards are harder still. The practical route is to open packs for fun and the lower tiers, then pick up the big
-          cards as singles. The <Link to="/sets/stellar-crystal-csv9">Stellar Crystal card list</Link> lets you tick off what you have.
+          cards as singles. The <Link to="/sets/chinese/stellar-crystal-csv9">Stellar Crystal card list</Link> lets you tick off what you have.
         </p>
 
         <h2 id="faq">FAQ</h2>

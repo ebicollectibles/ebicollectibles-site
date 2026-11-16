@@ -145,7 +145,7 @@ function GemVol5Post() {
           body: 'Booster boxes in stock now, plus the full 196-card checklist with every version.',
           links: [
             { to: '/products/$id', params: { id: 'pokemon-chinese-gem-volume-5-booster-box' }, label: 'Shop the booster box' },
-            { to: '/sets/gem-vol-5', label: 'Browse the card list', variant: 'ghost' },
+            { to: '/sets/chinese/gem-vol-5', label: 'Browse the card list', variant: 'ghost' },
           ],
         }}
       >
@@ -240,7 +240,7 @@ function GemVol5Post() {
         </div>
         <p>
           The rest of the roster: Chansey, Horsea, Sunflora, Skarmory, Houndoom, Phanpy, Vibrava, Timburr, Joltik, Stunfisk, Braviary,
-          Raboot, Applin and Milcery. The <Link to="/sets/gem-vol-5">full card list</Link> shows all 196 cards.
+          Raboot, Applin and Milcery. The <Link to="/sets/chinese/gem-vol-5">full card list</Link> shows all 196 cards.
         </p>
 
         <h2 id="how-the-set-works">How the set is built</h2>
@@ -326,7 +326,7 @@ function GemVol5Post() {
               {GEM_TIMELINE.map((g) => (
                 <tr key={g.vol} className={g.vol === 5 ? 'is-current' : undefined}>
                   <th scope="row">
-                    <Link to={`/sets/gem-vol-${g.vol}` as never}>Gem Pack Vol. {g.vol}</Link>
+                    <Link to={`/sets/chinese/gem-vol-${g.vol}` as never}>Gem Pack Vol. {g.vol}</Link>
                   </th>
                   <td>{g.date}</td>
                   <td>{g.cards}</td>

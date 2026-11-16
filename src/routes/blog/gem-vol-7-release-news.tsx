@@ -141,7 +141,7 @@ function GemVol7Post() {
           body: 'Booster boxes in stock now, plus the full 196-card checklist with every version.',
           links: [
             { to: '/products/$id', params: { id: 'pokemon-chinese-gem-volume-7-booster-box' }, label: 'Shop the booster box' },
-            { to: '/sets/gem-vol-7', label: 'Browse the card list', variant: 'ghost' },
+            { to: '/sets/chinese/gem-vol-7', label: 'Browse the card list', variant: 'ghost' },
           ],
         }}
       >
@@ -314,7 +314,7 @@ function GemVol7Post() {
               {GEM_TIMELINE.map((g) => (
                 <tr key={g.vol} className={g.vol === 7 ? 'is-current' : undefined}>
                   <th scope="row">
-                    <Link to={`/sets/gem-vol-${g.vol}` as never}>Gem Pack Vol. {g.vol}</Link>
+                    <Link to={`/sets/chinese/gem-vol-${g.vol}` as never}>Gem Pack Vol. {g.vol}</Link>
                   </th>
                   <td>{g.date}</td>
                   <td>{g.cards}</td>

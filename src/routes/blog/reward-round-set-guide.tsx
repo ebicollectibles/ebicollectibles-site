@@ -149,7 +149,7 @@ function RewardRoundSetGuide() {
           heading: 'Collect Reward Round',
           body: 'Track every card on the full checklist, or pick up a slim box and start ripping.',
           links: [
-            { to: '/sets/reward-round-csv4', label: 'Browse the card list' },
+            { to: '/sets/chinese/reward-round-csv4', label: 'Browse the card list' },
             { to: '/products/$id', params: { id: 'pokemon-chinese-reward-round-booster-box' }, label: 'Shop the slim box', variant: 'ghost' },
           ],
         }}
@@ -278,7 +278,7 @@ function RewardRoundSetGuide() {
         </p>
         <p>
           With one holo per slim pack, the Master Ball holos and the 28 top-band cards take a long time to pull. Most collectors open boxes
-          for fun and the lower rarities, then buy the big cards as singles. The <Link to="/sets/reward-round-csv4">Reward Round card list</Link> lets
+          for fun and the lower rarities, then buy the big cards as singles. The <Link to="/sets/chinese/reward-round-csv4">Reward Round card list</Link> lets
           you tick off what you have.
         </p>
 
