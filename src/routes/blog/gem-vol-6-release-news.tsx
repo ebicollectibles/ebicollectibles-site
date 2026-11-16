@@ -90,8 +90,8 @@ const FAQ = [
     a: "Full arts make up 1.81% of the print run, going by Pokémon China's print shares. With 72 cards in a box, that averages about 1.3 full arts per box, or roughly one in every 14 packs.",
   },
   {
-    q: 'Where does the Gem 6 artwork come from?',
-    a: 'Mostly from English cards. 55 of the 56 artworks are the same art you will find on English Scarlet & Violet cards, mostly from Surging Sparks.',
+    q: 'Where do the Gem 6 illustrations come from?',
+    a: 'Mostly from English cards. 55 of the 56 illustrations are the same art you will find on English Scarlet & Violet cards, mostly from Surging Sparks.',
     link: { to: '/sets/chinese/gem-vol-6', before: 'See every card on the ', label: 'Gem Vol 6 card list', after: '.' },
   },
 ]

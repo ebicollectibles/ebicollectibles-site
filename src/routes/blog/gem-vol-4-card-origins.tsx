@@ -69,11 +69,11 @@ const TOC = [
 const FAQ = [
   {
     q: 'Are Gem 4 cards reprints?',
-    a: 'The art mostly is. 55 of the 56 artworks are the same art you will find on English cards, mostly from Temporal Forces and Twilight Masquerade. What is new is the printing: Simplified Chinese text, new numbers, new holo patterns and the Gem Pack set code.',
+    a: 'The art mostly is. 55 of the 56 illustrations are the same art you will find on English cards, mostly from Temporal Forces and Twilight Masquerade. What is new is the printing: Simplified Chinese text, new numbers, new holo patterns and the Gem Pack set code.',
   },
   {
     q: 'Which card is the Chinese Exclusive?',
-    a: 'Ponyta\'s full art, 0107/07 by MINAMINAMI Take. It is the only new artwork in Gem Vol 4 and is not on any earlier English card, which lines up with Pokémon China calling it new.',
+    a: 'Ponyta\'s full art, 0107/07 by MINAMINAMI Take. It is the only new illustration in Gem Vol 4 and is not on any earlier English card, which lines up with Pokémon China calling it new.',
   },
   {
     q: 'Which English set does most of Gem Vol 4 come from?',
@@ -159,8 +159,8 @@ function GemVol4OriginsPost() {
         }}
       >
         <p>
-          Gem Packs reuse artwork from existing Pokémon TCG cards, reprinted in Simplified Chinese with new numbers and new holo patterns.
-          We matched every artwork in Gem Vol 4 (Gem 4) to the English card it came from. The one exception is the Chinese Exclusive
+          Gem Packs reuse illustrations from existing Pokémon TCG cards, reprinted in Simplified Chinese with new numbers and new holo patterns.
+          We matched every illustration in Gem Vol 4 (Gem 4) to the English card it came from. The one exception is the Chinese Exclusive
           Ponyta full art, which has no English version.
           For more on the set itself, see our <Link to="/blog/gem-vol-4-release-news">Gem Vol 4 release post</Link> and the{' '}
           <Link to="/blog/gem-vol-4-set-guide">Gem Vol 4 set guide</Link>.
@@ -184,7 +184,7 @@ function GemVol4OriginsPost() {
           cards, a regular one and a full art.
         </p>
         <p>
-          That adds up to 56 artworks. 55 of them come from English cards. The 56th, the Chinese Exclusive Ponyta full art (0107/07),
+          That adds up to 56 illustrations. 55 of them come from English cards. The 56th, the Chinese Exclusive Ponyta full art (0107/07),
           was drawn for Gem Vol 4 and has no earlier version.
         </p>
 

@@ -93,8 +93,8 @@ const FAQ = [
     a: "Full arts make up 1.81% of the print run, going by Pokémon China's print shares. With 72 cards in a box, that averages about 1.3 full arts per box, or roughly one in every 14 packs.",
   },
   {
-    q: 'Where does the Gem 7 artwork come from?',
-    a: 'Mostly from English cards. 55 of the 56 artworks are the same art you will find on English Scarlet & Violet cards, mostly from Destined Rivals.',
+    q: 'Where do the Gem 7 illustrations come from?',
+    a: 'Mostly from English cards. 55 of the 56 illustrations are the same art you will find on English Scarlet & Violet cards, mostly from Destined Rivals.',
     link: { to: '/sets/chinese/gem-vol-7', before: 'See every card on the ', label: 'Gem Vol 7 card list', after: '.' },
   },
 ]
@@ -262,7 +262,7 @@ function GemVol7Post() {
         </div>
         <p>
           The other nine Pokémon appear without a Trainer: Rapidash, Furret, Swinub, Blaziken, Clamperl, Shaymin, Crustle, Lycanroc and
-          Hydrapple. Curious where the artwork has appeared before? Our <Link to="/blog/gem-vol-7-card-origins">card origins guide</Link>{' '}
+          Hydrapple. Curious where these illustrations have appeared before? Our <Link to="/blog/gem-vol-7-card-origins">card origins guide</Link>{' '}
           traces it card by card.
         </p>
 

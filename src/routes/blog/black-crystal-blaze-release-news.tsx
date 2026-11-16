@@ -106,7 +106,7 @@ const FAQ = [
     a: "Super Rares, Special Art Rares and Ultra Rares make up 0.73% of the 5-card print run, going by Pokémon China's print shares. That averages about 0.55 per 15-pack slim box, or one in every 27 packs.",
   },
   {
-    q: 'Where does the Black Crystal Blaze artwork come from?',
+    q: 'Where do the Black Crystal Blaze illustrations come from?',
     a: 'From several English sets at once. Most of its cards match Paradox Rift (73), Obsidian Flames (61) and Paldean Fates (18), and two new arts have no English version.',
     link: { to: '/sets/chinese/black-crystal-blaze-csv5', before: 'See every card on the ', label: 'Black Crystal Blaze card list', after: '.' },
   },

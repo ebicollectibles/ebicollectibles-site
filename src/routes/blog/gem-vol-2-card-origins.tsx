@@ -56,11 +56,11 @@ const TOC = [
 const FAQ = [
   {
     q: 'Are Gem 2 cards reprints?',
-    a: 'The art mostly is. 40 of the 44 artworks we traced are the same art you will find on English cards, mostly from Sword & Shield sets and promos. What is new is the printing: Simplified Chinese text, new numbers, new holo patterns and the Gem Pack set code.',
+    a: 'The art mostly is. 40 of the 44 illustrations we traced are the same art you will find on English cards, mostly from Sword & Shield sets and promos. What is new is the printing: Simplified Chinese text, new numbers, new holo patterns and the Gem Pack set code.',
   },
   {
     q: 'Which cards are Chinese Exclusives?',
-    a: 'Four: the full arts of Eevee 0115/15, Umbreon 0615/15, Leafeon 0715/15 and Sylveon 0915/15, all by HYOGONOSUKE. They are the only new artwork in Gem Vol 2, and none of them are on an earlier English card.',
+    a: 'Four: the full arts of Eevee 0115/15, Umbreon 0615/15, Leafeon 0715/15 and Sylveon 0915/15, all by HYOGONOSUKE. They are the only new illustrations in Gem Vol 2, and none of them are on an earlier English card.',
   },
   {
     q: 'Are the VMAX the same as Evolving Skies?',
@@ -68,7 +68,7 @@ const FAQ = [
   },
   {
     q: 'Where does Penny come from?',
-    a: 'Penny reuses the Special Illustration Rare art by aspara from Paldean Fates, the only Scarlet & Violet artwork in Gem Vol 2.',
+    a: 'Penny reuses the Special Illustration Rare art by aspara from Paldean Fates, the only Scarlet & Violet illustration in Gem Vol 2.',
   },
 ]
 
@@ -156,8 +156,8 @@ function GemVol2OriginsPost() {
         }}
       >
         <p>
-          Gem Packs reuse artwork from existing Pokémon TCG cards, reprinted in Simplified Chinese with new numbers and new holo patterns.
-          We matched every artwork in Gem Vol 2 (Gem 2) to the English card it came from. The only exceptions are the four Chinese Exclusive
+          Gem Packs reuse illustrations from existing Pokémon TCG cards, reprinted in Simplified Chinese with new numbers and new holo patterns.
+          We matched every illustration in Gem Vol 2 (Gem 2) to the English card it came from. The only exceptions are the four Chinese Exclusive
           full arts by HYOGONOSUKE.
           For more on the set itself, see our <Link to="/blog/gem-vol-2-release-news">Gem Vol 2 release post</Link> and the{' '}
           <Link to="/blog/gem-vol-2-set-guide">Gem Vol 2 set guide</Link>.
@@ -176,12 +176,12 @@ function GemVol2OriginsPost() {
 
         <h2 id="how-it-works">How Gem Pack art works</h2>
         <p>
-          Each of the nine Pokémon in Gem Vol 2 has up to five artworks: two base cards (A on the odd versions from 01 to 11, B on the
+          Each of the nine Pokémon in Gem Vol 2 has up to five illustrations: two base cards (A on the odd versions from 01 to 11, B on the
           even ones), the Pokémon V, the VMAX, and for Eevee, Umbreon, Leafeon and Sylveon a full art. The four Trainer cards reuse
           English art too. We left out the basic Energy cards.
         </p>
         <p>
-          That adds up to 44 artworks. 40 of them come from English cards. The other four are the Chinese Exclusive full arts by HYOGONOSUKE,
+          That adds up to 44 illustrations. 40 of them come from English cards. The other four are the Chinese Exclusive full arts by HYOGONOSUKE,
           which were drawn for Gem Vol 2 and have no earlier version.
         </p>
 
@@ -192,7 +192,7 @@ function GemVol2OriginsPost() {
             <thead>
               <tr>
                 <th scope="col">English source</th>
-                <th scope="col">Artworks</th>
+                <th scope="col">Illustrations</th>
               </tr>
             </thead>
             <tbody>
@@ -213,7 +213,7 @@ function GemVol2OriginsPost() {
             <strong>Four full arts are Chinese Exclusives.</strong> Eevee, Umbreon, Leafeon and Sylveon each get a brand-new full art by HYOGONOSUKE, and together they form one forest scene.
           </li>
           <li>
-            <strong>Promos supply the most.</strong> 13 artworks come from English Sword & Shield Black Star Promos, including Eevee V, Eevee VMAX and the Vaporeon, Jolteon and Flareon V.
+            <strong>Promos supply the most.</strong> 13 illustrations come from English Sword & Shield Black Star Promos, including Eevee V, Eevee VMAX and the Vaporeon, Jolteon and Flareon V.
           </li>
           <li>
             <strong>Evolving Skies covers the VMAX.</strong> Eight of the nine VMAX reuse their Evolving Skies art. Only Eevee VMAX is a promo.
@@ -229,7 +229,7 @@ function GemVol2OriginsPost() {
         <BuyStrip />
 
         <h2 id="full-map">The full card-by-card map</h2>
-        <p>Every Gem Vol 2 Pokémon, with the English card behind each of its artworks and the illustrator credited on it.</p>
+        <p>Every Gem Vol 2 Pokémon, with the English card behind each of its illustrations and the illustrator credited on it.</p>
         <div className="table-scroll table-wide">
           <table className="data-table origins-table origins-wide">
             <thead>
@@ -259,7 +259,7 @@ function GemVol2OriginsPost() {
         <p className="table-note">Card numbers are the first English printing.</p>
 
         <h2 id="trainers">Trainer cards</h2>
-        <p>The four Trainer cards reuse English art as well. Penny is aspara's Special Illustration Rare art from Paldean Fates, the only Scarlet & Violet artwork in the set.</p>
+        <p>The four Trainer cards reuse English art as well. Penny is aspara's Special Illustration Rare art from Paldean Fates, the only Scarlet & Violet illustration in the set.</p>
         <div className="table-scroll">
           <table className="data-table origins-table">
             <thead>

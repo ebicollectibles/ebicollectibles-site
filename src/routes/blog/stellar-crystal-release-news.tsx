@@ -114,7 +114,7 @@ const FAQ = [
     a: "Super Rares, Special Art Rares and Ultra Rares make up 0.73% of slim-pack cards and 1.00% of jumbo-pack cards, going by Pokémon China's print shares. That averages about 0.55 per slim box (one in every 27 packs) and about 1.2 per jumbo box (one in every 5 packs).",
   },
   {
-    q: 'Where does the Stellar Crystal artwork come from?',
+    q: 'Where do the Stellar Crystal illustrations come from?',
     a: 'Mostly from English Surging Sparks (160 cards) and Stellar Crown (79). The rest match Shrouded Fable (10), Twilight Masquerade (8), SV Black Star Promos (6) and Prismatic Evolutions (2), plus one Chinese Exclusive.',
     link: { to: '/sets/chinese/stellar-crystal-csv9', before: 'See every card on the ', label: 'Stellar Crystal card list', after: '.' },
   },

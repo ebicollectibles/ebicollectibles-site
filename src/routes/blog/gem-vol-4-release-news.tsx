@@ -91,8 +91,8 @@ const FAQ = [
     a: "Full arts make up 1.81% of the print run, going by Pokémon China's print shares. With 72 cards in a box, that averages about 1.3 full arts per box, or roughly one in every 14 packs.",
   },
   {
-    q: 'Where does the Gem 4 artwork come from?',
-    a: 'Mostly from English cards. 55 of the 56 artworks are the same art you will find on English cards, mostly from Temporal Forces and Twilight Masquerade.',
+    q: 'Where do the Gem 4 illustrations come from?',
+    a: 'Mostly from English cards. 55 of the 56 illustrations are the same art you will find on English cards, mostly from Temporal Forces and Twilight Masquerade.',
     link: { to: '/sets/chinese/gem-vol-4', before: 'See every card on the ', label: 'Gem Vol 4 card list', after: '.' },
   },
 ]
@@ -231,7 +231,7 @@ function GemVol4Post() {
           </figcaption>
         </figure>
         <p>
-          The full art is new artwork by MINAMINAMI Take, drawn for this set. It is a sunset scene on open grassland, with Ponyta
+          The full art is a new illustration by MINAMINAMI Take. It is a sunset scene on open grassland, with Ponyta
           mid-stride across the field while a Rapidash rests behind it and keeps watch.
         </p>
         <p>

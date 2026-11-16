@@ -148,7 +148,7 @@ const FAQ = [
     a: "Super Rares, Special Art Rares and Ultra Rares make up 0.73% of slim-pack cards and 1.00% of jumbo-pack cards, going by Pokémon China's print shares. That averages about 0.55 per slim box (one in every 27 packs) and about 1.2 per jumbo box (one in every 5 packs). The jumbo box gives you more of them.",
   },
   {
-    q: 'Where does the Blade Awakening artwork come from?',
+    q: 'Where do the Blade Awakening illustrations come from?',
     a: 'Mostly from English Temporal Forces, which matches 173 of its 259 cards, with 68 more from Twilight Masquerade. The other 17 come from six English sources, and one card is the new Chinese Exclusive.',
     link: { to: '/sets/chinese/blade-awakening-csv7', before: 'See every card on the ', label: 'Blade Awakening card list', after: '.' },
   },

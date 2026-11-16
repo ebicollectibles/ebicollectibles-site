@@ -69,7 +69,7 @@ const TOC = [
 const FAQ = [
   {
     q: 'Are Gem 5 cards reprints?',
-    a: 'The art mostly is. 51 of the 56 artworks are the same art you will find on English Scarlet & Violet cards, mostly from Surging Sparks. What is new is the printing: Simplified Chinese text, new numbers, new holo patterns and the Gem Pack set code.',
+    a: 'The art mostly is. 51 of the 56 illustrations are the same art you will find on English Scarlet & Violet cards, mostly from Surging Sparks. What is new is the printing: Simplified Chinese text, new numbers, new holo patterns and the Gem Pack set code.',
   },
   {
     q: 'Which cards are Chinese Exclusives?',
@@ -81,7 +81,7 @@ const FAQ = [
   },
   {
     q: 'Is Captain Pikachu in an English set?',
-    a: 'Not with this art. Both Captain Pikachu artworks in Gem Vol 5 are Pokémon Horizons art with no English printing, which is a big part of why it is the chase card.',
+    a: 'Not with this art. Both Captain Pikachu illustrations in Gem Vol 5 are Pokémon Horizons art with no English printing, which is a big part of why it is the chase card.',
   },
 ]
 
@@ -159,8 +159,8 @@ function GemVol5OriginsPost() {
         }}
       >
         <p>
-          Gem Packs reuse artwork from existing Pokémon TCG cards, reprinted in Simplified Chinese with new numbers and new holo patterns.
-          We matched every artwork in Gem Vol 5 (Gem 5) to the English card it came from. The exceptions are Pokémon Horizons art,
+          Gem Packs reuse illustrations from existing Pokémon TCG cards, reprinted in Simplified Chinese with new numbers and new holo patterns.
+          We matched every illustration in Gem Vol 5 (Gem 5) to the English card it came from. The exceptions are Pokémon Horizons art,
           including the four Chinese Exclusive full arts of Captain Pikachu, Floragato, Crocalor and Quaxwell.
           For more on the set itself, see our <Link to="/blog/gem-vol-5-release-news">Gem Vol 5 release post</Link> and the{' '}
           <Link to="/blog/gem-vol-5-set-guide">Gem Vol 5 set guide</Link>.
@@ -184,7 +184,7 @@ function GemVol5OriginsPost() {
           cards, a regular one and a full art.
         </p>
         <p>
-          That adds up to 56 artworks. 51 of them come from English cards. The other five are Pokémon Horizons art with no earlier
+          That adds up to 56 illustrations. 51 of them come from English cards. The other five are Pokémon Horizons art with no earlier
           version: the four Chinese Exclusive Horizons full arts and Captain Pikachu's new regular art.
         </p>
 
@@ -224,7 +224,7 @@ function GemVol5OriginsPost() {
             <strong>Twilight Masquerade comes next.</strong> It covers the regular art and the full art for 8 Pokémon each.
           </li>
           <li>
-            <strong>Most pairs share a set.</strong> In 23 of the 24 Pokémon with both artworks traced, the regular art and the full art come from the same English set.
+            <strong>Most pairs share a set.</strong> In 23 of the 24 Pokémon with both illustrations traced, the regular art and the full art come from the same English set.
           </li>
           <li>
             <strong>Magneton's full art is a promo.</strong> Its regular art is from Surging Sparks, but its full art reprints a Black Star Promo.

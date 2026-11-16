@@ -113,8 +113,8 @@ const FAQ = [
     a: "Triple Rares, the tier that holds the nine full arts, make up 1.81% of the print run, going by Pokémon China's print shares. With 72 cards in a box, that averages about 1.3 per box, or roughly one in every 14 packs.",
   },
   {
-    q: 'Where does the Gem 3 artwork come from?',
-    a: 'Mostly from English cards. 35 of the 40 artworks we traced are the same art you will find on English cards, mostly 2023 Scarlet & Violet sets.',
+    q: 'Where do the Gem 3 illustrations come from?',
+    a: 'Mostly from English cards. 35 of the 40 illustrations we traced are the same art you will find on English cards, mostly 2023 Scarlet & Violet sets.',
     link: { to: '/sets/chinese/gem-vol-3', before: 'See every card on the ', label: 'Gem Vol 3 card list', after: '.' },
   },
 ]
@@ -253,7 +253,7 @@ function GemVol3Post() {
           </figcaption>
         </figure>
         <p>
-          Five of the nine full arts are new artwork drawn for this set, all evening and night scenes. Gengar grins in an
+          Five of the nine full arts are new illustrations drawn for this set, all evening and night scenes. Gengar grins in an
           empty living room, using its moves on a table of snacks, while Meowth sits on a rooftop under the moon watching lanterns drift
           past.
         </p>

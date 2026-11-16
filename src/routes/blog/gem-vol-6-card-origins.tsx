@@ -67,11 +67,11 @@ const TOC = [
 const FAQ = [
   {
     q: 'Are Gem 6 cards reprints?',
-    a: 'The art mostly is. 55 of the 56 artworks are the same art you will find on English Scarlet & Violet cards, mostly from Surging Sparks. What is new is the printing: Simplified Chinese text, new numbers, new holo patterns and the Gem Pack set code.',
+    a: 'The art mostly is. 55 of the 56 illustrations are the same art you will find on English Scarlet & Violet cards, mostly from Surging Sparks. What is new is the printing: Simplified Chinese text, new numbers, new holo patterns and the Gem Pack set code.',
   },
   {
     q: 'Which card is the Chinese Exclusive?',
-    a: "Applin's full art, 1907/07 by Jiro Sasumo. It is the only new artwork in Gem Vol 6 and is not on any earlier English card, which lines up with Pokémon China calling it new.",
+    a: "Applin's full art, 1907/07 by Jiro Sasumo. It is the only new illustration in Gem Vol 6 and is not on any earlier English card, which lines up with Pokémon China calling it new.",
   },
   {
     q: 'Which English set does most of Gem Vol 6 come from?',
@@ -79,7 +79,7 @@ const FAQ = [
   },
   {
     q: 'Why do the Applin cards have a different regulation mark?',
-    a: "Applin's regular art comes from Destined Rivals, which uses regulation mark I, and all seven Applin cards carry mark I. Every other Gem Vol 6 artwork comes from sets that use mark H.",
+    a: "Applin's regular art comes from Destined Rivals, which uses regulation mark I, and all seven Applin cards carry mark I. Every other Gem Vol 6 illustration comes from sets that use mark H.",
   },
 ]
 
@@ -157,8 +157,8 @@ function GemVol6OriginsPost() {
         }}
       >
         <p>
-          Gem Packs reuse artwork from existing Pokémon TCG cards, reprinted in Simplified Chinese with new numbers and new holo patterns.
-          We matched every artwork in Gem Vol 6 (Gem 6) to the English card it came from. The one exception is the Chinese Exclusive
+          Gem Packs reuse illustrations from existing Pokémon TCG cards, reprinted in Simplified Chinese with new numbers and new holo patterns.
+          We matched every illustration in Gem Vol 6 (Gem 6) to the English card it came from. The one exception is the Chinese Exclusive
           Applin full art, which has no English version.
           For more on the set itself, see our <Link to="/blog/gem-vol-6-release-news">Gem Vol 6 release post</Link> and the{' '}
           <Link to="/blog/gem-vol-6-set-guide">Gem Vol 6 set guide</Link>.

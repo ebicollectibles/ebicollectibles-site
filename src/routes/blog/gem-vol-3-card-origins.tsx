@@ -65,15 +65,15 @@ const TOC = [
 const FAQ = [
   {
     q: 'Are Gem 3 cards reprints?',
-    a: 'The art mostly is. 35 of the 40 artworks we traced are the same art you will find on English cards, mostly 2023 Scarlet & Violet sets. What is new is the printing: Simplified Chinese text, new numbers, new holo patterns and the Gem Pack set code.',
+    a: 'The art mostly is. 35 of the 40 illustrations we traced are the same art you will find on English cards, mostly 2023 Scarlet & Violet sets. What is new is the printing: Simplified Chinese text, new numbers, new holo patterns and the Gem Pack set code.',
   },
   {
     q: 'Which cards are Chinese Exclusives?',
-    a: 'Five full arts: Meowth 0207/07, Gengar 0307/07, Cubone 0407/07, Chandelure 1107/07 and Ceruledge 1507/07. They are the only new artwork in Gem Vol 3, and none of them are on an earlier English card.',
+    a: 'Five full arts: Meowth 0207/07, Gengar 0307/07, Cubone 0407/07, Chandelure 1107/07 and Ceruledge 1507/07. They are the only new illustrations in Gem Vol 3, and none of them are on an earlier English card.',
   },
   {
     q: 'Which English set does most of Gem Vol 3 come from?',
-    a: 'Obsidian Flames and the base Scarlet & Violet set, with eight artworks each.',
+    a: 'Obsidian Flames and the base Scarlet & Violet set, with eight illustrations each.',
   },
   {
     q: 'Why do some Gem Vol 3 cards have a different regulation mark?',
@@ -165,8 +165,8 @@ function GemVol3OriginsPost() {
         }}
       >
         <p>
-          Gem Packs reuse artwork from existing Pokémon TCG cards, reprinted in Simplified Chinese with new numbers and new holo patterns.
-          We matched every artwork in Gem Vol 3 (Gem 3) to the English card it came from, except the five Chinese Exclusive full arts,
+          Gem Packs reuse illustrations from existing Pokémon TCG cards, reprinted in Simplified Chinese with new numbers and new holo patterns.
+          We matched every illustration in Gem Vol 3 (Gem 3) to the English card it came from, except the five Chinese Exclusive full arts,
           which have no English version at all.
           For more on the set itself, see our <Link to="/blog/gem-vol-3-release-news">Gem Vol 3 release post</Link> and the{' '}
           <Link to="/blog/gem-vol-3-set-guide">Gem Vol 3 set guide</Link>.
@@ -185,12 +185,12 @@ function GemVol3OriginsPost() {
 
         <h2 id="how-it-works">How Gem Pack art works</h2>
         <p>
-          Each of the 18 Pokémon in Gem Vol 3 has two artworks. Versions 01 to 06 share the art from that Pokémon's regular card. Version
+          Each of the 18 Pokémon in Gem Vol 3 has two illustrations. Versions 01 to 06 share the art from that Pokémon's regular card. Version
           07 is either a full art or a Pokémon ex, and it reuses the art from the matching English card. The four Trainer cards reuse
           English art too. We left out the basic and Luminous Energy cards.
         </p>
         <p>
-          That adds up to 40 artworks. 35 of them come from English cards. The other five are the Chinese Exclusive full arts of Meowth,
+          That adds up to 40 illustrations. 35 of them come from English cards. The other five are the Chinese Exclusive full arts of Meowth,
           Gengar, Cubone, Chandelure and Ceruledge, which were drawn for Gem Vol 3 and have no earlier version.
         </p>
 
@@ -201,7 +201,7 @@ function GemVol3OriginsPost() {
             <thead>
               <tr>
                 <th scope="col">English source</th>
-                <th scope="col">Artworks</th>
+                <th scope="col">Illustrations</th>
               </tr>
             </thead>
             <tbody>
@@ -222,10 +222,10 @@ function GemVol3OriginsPost() {
             <strong>Five full arts are Chinese Exclusives.</strong> Meowth, Gengar, Cubone, Chandelure and Ceruledge keep regular art from English sets but get brand-new full arts. aspara, who drew the Gengar full art, also drew the Arven Trainer.
           </li>
           <li>
-            <strong>2023 sets do most of the work.</strong> Obsidian Flames and the base Scarlet & Violet set supply eight artworks each, with Paldea Evolved close behind on six.
+            <strong>2023 sets do most of the work.</strong> Obsidian Flames and the base Scarlet & Violet set supply eight illustrations each, with Paldea Evolved close behind on six.
           </li>
           <li>
-            <strong>Two artworks are from Sword & Shield.</strong> Gardevoir comes from Silver Tempest and Banette from Lost Origin, which is why their versions 01 to 06 carry regulation mark F instead of G.
+            <strong>Two illustrations are from Sword & Shield.</strong> Gardevoir comes from Silver Tempest and Banette from Lost Origin, which is why their versions 01 to 06 carry regulation mark F instead of G.
           </li>
           <li>
             <strong>Three 07 cards are promos.</strong> Darkrai ex, the Mimikyu full art and Annihilape ex reuse art from English Black Star Promos.

@@ -130,7 +130,7 @@ const FAQ = [
     a: "Special Art Rares, Futuristic Rares and the three RGB mark cards make up 1.00% of the print run, going by Pokémon China's print shares. With 120 cards in a box, that averages about 1.2 per box, or roughly one in every 17 packs.",
   },
   {
-    q: 'Where does the 30th Celebration artwork come from?',
+    q: 'Where do the 30th Celebration illustrations come from?',
     a: 'Every card in the Chinese set is also in English, though split differently. The 30 classic cards reprint famous English cards from 1999 to 2023, from Base Set Charizard and Pikachu to the Paldea Evolved Magikarp Illustration Rare.',
     link: { to: '/sets/chinese/30th-celebration', before: 'See every card on the ', label: '30th Celebration card list', after: '.' },
   },

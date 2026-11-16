@@ -104,7 +104,7 @@ const FAQ = [
     a: "Super Rares, Special Art Rares and Ultra Rares make up 1.40% of the print run, going by Pokémon China's print shares. With 100 cards in a box, that averages about 1.4 per box, or roughly one in every 7 packs.",
   },
   {
-    q: 'Where does the Terastal Gathering artwork come from?',
+    q: 'Where do the Terastal Gathering illustrations come from?',
     a: 'Mostly from Prismatic Evolutions: 156 of its 259 cards share art with it, including 49 of the 51 secret rares. The rest come from other Scarlet & Violet sets, English promos and two new arts.',
     link: { to: '/sets/chinese/terastal-gathering-csv9-5', before: 'See every card on the ', label: 'Terastal Gathering card list', after: '.' },
   },

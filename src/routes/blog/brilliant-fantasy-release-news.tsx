@@ -111,7 +111,7 @@ const FAQ = [
     a: "Super Rares, Special Art Rares and Ultra Rares make up 0.73% of slim-pack cards and 1.00% of jumbo-pack cards, going by Pokémon China's print shares. That averages about 0.55 per slim box (one in every 27 packs) and about 1.2 per jumbo box (one in every 5 packs).",
   },
   {
-    q: 'Where does the Brilliant Fantasy artwork come from?',
+    q: 'Where do the Brilliant Fantasy illustrations come from?',
     a: 'From four English sets at once. Most of its cards match Twilight Masquerade (109) and Shrouded Fable (76), with 38 from Surging Sparks, 32 from Stellar Crown, 8 from four other English sources and one Chinese Exclusive.',
     link: { to: '/sets/chinese/brilliant-fantasy-csv8', before: 'See every card on the ', label: 'Brilliant Fantasy card list', after: '.' },
   },

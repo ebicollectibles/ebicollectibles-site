@@ -113,7 +113,7 @@ const FAQ = [
     a: "Brock's Scouting 276/222, a Special Art Rare by Atsushi Furusawa. English and Japanese have Brock's Scouting as a Supporter and a full art, but not this illustration.",
   },
   {
-    q: 'Where does the Chasing Glory artwork come from?',
+    q: 'Where do the Chasing Glory illustrations come from?',
     a: 'From English Destined Rivals (190 cards) and Journey Together (94 cards). Two more, Psyduck and Golduck, match Ascended Heroes, and Brock’s Scouting 276/222 is a Chinese Exclusive.',
     link: { to: '/sets/chinese/chasing-glory-csv10', before: 'See every card on the ', label: 'Chasing Glory card list', after: '.' },
   },

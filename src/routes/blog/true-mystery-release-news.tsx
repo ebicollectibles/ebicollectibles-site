@@ -111,7 +111,7 @@ const FAQ = [
     a: "Super Rares, Special Art Rares and Ultra Rares make up 0.73% of slim-pack cards and 1.00% of jumbo-pack cards, going by Pokémon China's print shares. That averages about 0.55 per slim box (one in every 27 packs) and about 1.2 per jumbo box (one in every 5 packs).",
   },
   {
-    q: 'Where does the True Mystery artwork come from?',
+    q: 'Where do the True Mystery illustrations come from?',
     a: 'Mostly from Paradox Rift: 128 of its 163 cards match it. The rest come from Obsidian Flames (16), Paldean Fates (15), 151 (1) and an SV Black Star Promo (1), plus 2 cards with no English version.',
     link: { to: '/sets/chinese/true-mystery-csv6', before: 'See every card on the ', label: 'True Mystery card list', after: '.' },
   },

@@ -73,12 +73,12 @@ const FAQ = [
   },
   {
     q: 'Are Gem 7 cards reprints?',
-    a: 'The art mostly is. 55 of the 56 artworks are the same art you will find on English Scarlet & Violet cards, mostly from Destined Rivals. What is new is the printing: Simplified Chinese text, new numbers, new holo patterns and the Gem Pack set code.',
+    a: 'The art mostly is. 55 of the 56 illustrations are the same art you will find on English Scarlet & Violet cards, mostly from Destined Rivals. What is new is the printing: Simplified Chinese text, new numbers, new holo patterns and the Gem Pack set code.',
     link: { to: '/sets/chinese/gem-vol-7', before: 'See every card on the ', label: 'Gem Vol 7 card list', after: '.' },
   },
   {
     q: 'What is the Chinese Exclusive in Gem Vol 7?',
-    a: "Misty's Psyduck's full art, 0307/07 by Cona Nitanda. It is the only new artwork in Gem Vol 7 and is not on any earlier English card, which lines up with Pokémon China calling it new.",
+    a: "Misty's Psyduck's full art, 0307/07 by Cona Nitanda. It is the only new illustration in Gem Vol 7 and is not on any earlier English card, which lines up with Pokémon China calling it new.",
   },
   {
     q: 'Which English set does most of Gem Vol 7 come from?',
@@ -157,7 +157,7 @@ function GemVol7OriginsPost() {
         updated={status.liveAt}
         wide
         post={post}
-        lede="Almost every card in Gem Pack Vol. 7 uses art you have already seen on an English Scarlet & Violet card. We matched all 56 artworks to their English source, and one is a Chinese Exclusive."
+        lede="Almost every card in Gem Pack Vol. 7 uses art you have already seen on an English Scarlet & Violet card. We matched all 56 illustrations to their English source, and one is a Chinese Exclusive."
         cta={{
           heading: 'Explore Gem Vol 7',
           body: 'See every card in the set, or read our release post for the Psyduck full art and the Trainer lineup.',
@@ -168,8 +168,8 @@ function GemVol7OriginsPost() {
         }}
       >
         <p>
-          Gem Packs reuse artwork from existing Pokémon TCG cards, reprinted in Simplified Chinese with new numbers and new holo patterns.
-          We matched every artwork in Gem Vol 7 (Gem 7) to the English card it came from. The one exception is the Chinese Exclusive
+          Gem Packs reuse illustrations from existing Pokémon TCG cards, reprinted in Simplified Chinese with new numbers and new holo patterns.
+          We matched every illustration in Gem Vol 7 (Gem 7) to the English card it came from. The one exception is the Chinese Exclusive
           Misty's Psyduck full art, which has no English version.
           For more on the set itself, see our <Link to="/blog/gem-vol-7-release-news">Gem Vol 7 release post</Link>, and for the
           previous volume, our <Link to="/blog/gem-vol-6-card-origins">Gem Vol 6 card origins guide</Link>.

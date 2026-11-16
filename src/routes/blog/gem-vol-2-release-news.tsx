@@ -95,8 +95,8 @@ const FAQ = [
     a: "Triple Rares, the tier that holds the nine VMAX and the four full arts, make up 2.17% of the print run, going by Pokémon China's print shares. With 60 cards in a box, that averages about 1.3 per box, or roughly one in every 12 packs.",
   },
   {
-    q: 'Where does the Gem 2 artwork come from?',
-    a: 'Mostly from English cards. 40 of the 44 artworks we traced are the same art you will find on English cards, mostly from Sword & Shield sets and promos.',
+    q: 'Where do the Gem 2 illustrations come from?',
+    a: 'Mostly from English cards. 40 of the 44 illustrations we traced are the same art you will find on English cards, mostly from Sword & Shield sets and promos.',
     link: { to: '/sets/chinese/gem-vol-2', before: 'See every card on the ', label: 'Gem Vol 2 card list', after: '.' },
   },
 ]
@@ -226,7 +226,7 @@ function GemVol2Post() {
 
         <h2 id="forest-full-arts">Chinese Exclusives: four full arts, one scene</h2>
         <p>
-          The four Chinese Exclusives are full arts by HYOGONOSUKE, new artwork drawn for this set. Each works on its own, but lay them side by side in the
+          The four Chinese Exclusives are full arts by HYOGONOSUKE, new illustrations drawn for this set. Each works on its own, but lay them side by side in the
           order Leafeon, Sylveon, Umbreon, Eevee and they join into one long picture of the four resting and playing in a sunlit
           forest.
         </p>
