@@ -90,10 +90,6 @@ const FAQ = [
     a: 'No. The main set goes from Common to Rare, and the 30 Pikachu have their own Pikachu rarity instead.',
   },
   {
-    q: 'Can I get all 30 Pikachu from one box?',
-    a: 'No. A box has 20 packs, so 20 Pikachu at most, and pulls are random, so duplicates are normal.',
-  },
-  {
     q: 'Are the 33 promos in booster packs?',
     a: 'No. They come in the special products around the set, such as the First Partner sets, the Espeon ex and Umbreon ex box, the Futuristic box and the display sleeve sets.',
   },
