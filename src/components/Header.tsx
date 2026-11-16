@@ -230,6 +230,7 @@ export function Header({
                 alignItems: 'center',
                 gap: 5,
                 cursor: 'pointer',
+                whiteSpace: 'nowrap',
               }}
             >
               Set Lists
