@@ -8,14 +8,14 @@ export const Route = createFileRoute('/blog/')({
   loader: () => getBlogListState(),
   head: ({ loaderData }) => ({
     meta: [
-      { title: 'News | EBI Collectibles' },
+      { title: 'Pokémon News & Guides | EBI Collectibles' },
       // Indexable once at least one post is live (see /admin/blog).
       { name: 'robots', content: loaderData && Object.keys(loaderData.live).length > 0 ? 'index, follow' : 'noindex, nofollow' },
       {
         name: 'description',
         content: 'Release posts and collecting guides for Simplified Chinese Pokémon TCG sets and Pokémon figures.',
       },
-      { property: 'og:title', content: 'News | EBI Collectibles' },
+      { property: 'og:title', content: 'News & Guides | EBI Collectibles' },
       {
         property: 'og:description',
         content: 'Release coverage and collecting guides for Simplified Chinese Pokémon TCG sets.',
@@ -66,7 +66,7 @@ function BlogIndexPage() {
             <span className="dot" />
             EBI Collectibles
           </div>
-          <h1>News &amp; collecting guides</h1>
+          <h1>News &amp; Guides</h1>
           <p className="lede">
             New Simplified Chinese Pokémon TCG releases, the chase cards in each set, and which English cards their art comes from.
           </p>
