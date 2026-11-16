@@ -277,7 +277,7 @@
   .prose .shop-strip a.btn-outline { color: var(--ink); }
 
   .shop-panel { margin: 48px 0 8px; padding: 28px; border-radius: 12px; background: var(--surface); border: 1px solid var(--line); }
-  .shop-head { margin-bottom: 20px; }
+  .shop-head { margin-bottom: 18px; }
   .shop-head h3 { font-family: var(--f-display); font-weight: 800; font-size: 24px; letter-spacing: -.01em; margin: 0 0 4px; color: var(--ink); }
   .shop-head p { margin: 0; font-size: 14.5px; color: var(--slate); }
   /* Same tile size whatever the count: half-width tiles, centered, extra tiles wrap. */
