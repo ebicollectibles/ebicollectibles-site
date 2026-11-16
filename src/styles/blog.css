@@ -218,7 +218,7 @@
   .data-table .sym { color: var(--slate); display: inline-block; min-width: 2.4em; }
   .data-table tr.is-current th, .data-table tr.is-current td { background: var(--surface); }
   .data-table .cell-sub { display: block; font-size: 12.5px; color: var(--slate); margin-top: 2px; }
-  .origins-table td { vertical-align: top; }
+  .origins-table td, .origins-table th[scope="row"] { vertical-align: top; }
   .origins-table .cell-none { color: var(--slate); font-size: 13px; }
   .origins-wide { min-width: 760px; }
   &.is-wide .prose > .table-wide { max-width: 980px; }
