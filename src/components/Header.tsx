@@ -232,7 +232,7 @@ export function Header({
                 cursor: 'pointer',
               }}
             >
-              Sets
+              Set Lists
               <span style={{ fontSize: 9, color: '#5a6875' }}>{setsMenuOpen ? '▴' : '▾'}</span>
             </button>
             {setsMenuOpen && (
@@ -387,7 +387,7 @@ export function Header({
             Home
           </Link>
           <Link to="/sets/chinese" style={{ color: navColor(pathname.startsWith('/sets')), padding: '10px 0', borderBottom: '1px solid #f0f2f4' }}>
-            Sets: Simplified Chinese
+            Set Lists: Simplified Chinese
           </Link>
           <Link to="/blog" style={{ color: navColor(pathname.startsWith('/blog')), padding: '10px 0', borderBottom: '1px solid #f0f2f4' }}>
             Blog
