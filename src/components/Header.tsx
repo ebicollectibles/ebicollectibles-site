@@ -45,6 +45,8 @@ export function Header({
   const { cartCount } = useCart()
   const [menuOpen, setMenuOpen] = React.useState(false)
   const [pokemonMenuOpen, setPokemonMenuOpen] = React.useState(false)
+  const [setsMenuOpen, setSetsMenuOpen] = React.useState(false)
+  const setsMenuRef = React.useRef<HTMLDivElement>(null)
   const [accountMenuOpen, setAccountMenuOpen] = React.useState(false)
   const pokemonMenuRef = React.useRef<HTMLDivElement>(null)
   const accountMenuRef = React.useRef<HTMLDivElement>(null)
@@ -60,8 +62,18 @@ export function Header({
   React.useEffect(() => {
     setMenuOpen(false)
     setPokemonMenuOpen(false)
+    setSetsMenuOpen(false)
     setAccountMenuOpen(false)
   }, [locationHref])
+
+  React.useEffect(() => {
+    if (!setsMenuOpen) return
+    const onClickOutside = (e: MouseEvent) => {
+      if (!setsMenuRef.current?.contains(e.target as Node)) setSetsMenuOpen(false)
+    }
+    document.addEventListener('mousedown', onClickOutside)
+    return () => document.removeEventListener('mousedown', onClickOutside)
+  }, [setsMenuOpen])
 
   React.useEffect(() => {
     if (!pokemonMenuOpen) return
@@ -203,9 +215,34 @@ export function Header({
               </div>
             )}
           </div>
-          <Link to="/sets" style={{ color: navColor(pathname.startsWith('/sets')), padding: '4px 0' }}>
-            Sets
-          </Link>
+          <div ref={setsMenuRef} style={{ position: 'relative' }}>
+            <button
+              type="button"
+              onClick={() => setSetsMenuOpen((v) => !v)}
+              aria-expanded={setsMenuOpen}
+              style={{
+                background: 'transparent',
+                border: 0,
+                padding: '4px 0',
+                font: 'inherit',
+                color: navColor(pathname.startsWith('/sets') || setsMenuOpen),
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: 5,
+                cursor: 'pointer',
+              }}
+            >
+              Sets
+              <span style={{ fontSize: 9, color: '#5a6875' }}>{setsMenuOpen ? '▴' : '▾'}</span>
+            </button>
+            {setsMenuOpen && (
+              <div className="ebi-nav-dropdown-panel">
+                <Link to="/sets/chinese" style={{ display: 'block', padding: '9px 14px', fontSize: 13, color: '#3d4753', whiteSpace: 'nowrap' }}>
+                  Simplified Chinese
+                </Link>
+              </div>
+            )}
+          </div>
           {SHOW_ACRYLICS && (
             <Link
               to="/shop"
@@ -346,8 +383,8 @@ export function Header({
           <Link to="/" style={{ color: navColor(pathname === '/'), padding: '10px 0', borderBottom: '1px solid #f0f2f4' }}>
             Home
           </Link>
-          <Link to="/sets" style={{ color: navColor(pathname.startsWith('/sets')), padding: '10px 0', borderBottom: '1px solid #f0f2f4' }}>
-            Sets
+          <Link to="/sets/chinese" style={{ color: navColor(pathname.startsWith('/sets')), padding: '10px 0', borderBottom: '1px solid #f0f2f4' }}>
+            Sets: Simplified Chinese
           </Link>
           <Link to="/shop" search={{ category: 'Chinese Pokémon Products' }} style={{ color: navColor(pathname === '/shop'), padding: '10px 0', borderBottom: '1px solid #f0f2f4' }}>
             All Pokemon (Chinese)
