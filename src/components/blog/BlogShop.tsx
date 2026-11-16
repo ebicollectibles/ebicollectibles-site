@@ -102,7 +102,7 @@ export function ShopStrip({ products }: { products: BlogShopProduct[] }) {
 
   const prices = products.map(priceOf).filter(Boolean)
   const min = products.filter((p) => priceOf(p)).reduce((m, p) => Math.min(m, p.price), Infinity)
-  const kinds = products.map((p) => kindLabel(p)?.toLowerCase()).filter(Boolean)
+  const kinds = products.map((p) => kindLabel(p)?.replace(/ box$/i, '').toLowerCase()).filter(Boolean)
   const title = splitName(lead).title
   const inStock = products.filter((p) => statusOf(p).buyable).length
   return (

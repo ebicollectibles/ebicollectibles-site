@@ -271,6 +271,9 @@
   .shop-strip-text b { font-size: 14.5px; color: var(--ink); line-height: 1.3; }
   .shop-strip-text > span { font-size: 13px; color: var(--slate); }
   .shop-strip .btn { flex: 0 0 auto; }
+  .prose .shop-strip a.btn { text-decoration: none; }
+  .prose .shop-strip a.btn-dark { color: #fff; }
+  .prose .shop-strip a.btn-outline { color: var(--ink); }
 
   .shop-panel { margin: 48px 0 8px; padding: 28px; border-radius: 12px; background: var(--surface); border: 1px solid var(--line); }
   .shop-head { margin-bottom: 20px; }
@@ -315,6 +318,7 @@
     .shop-tile { background: #1b2432; }
     .btn-dark { background: #eef1f5; color: #131b28; }
     .btn-dark:hover { background: #c9d1dc; }
+    .prose .shop-strip a.btn-dark { color: #131b28; }
   }
 
   @media (max-width: 560px) {
