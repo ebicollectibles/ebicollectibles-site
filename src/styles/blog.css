@@ -263,7 +263,7 @@
   .shop-dot.is-out { background: #a3acb8; }
 
   .shop-strip {
-    display: flex; align-items: center; gap: 14px; margin: 18px 0 6px; padding: 10px 12px 10px 10px;
+    display: flex; align-items: center; gap: 14px; margin: 28px 0 32px; padding: 10px 12px 10px 10px;
     border: 1px solid var(--line); border-radius: 10px; background: var(--surface);
   }
   .shop-strip img { width: 56px; height: 56px; object-fit: contain; border-radius: 6px; background: #fff; flex: 0 0 auto; }
@@ -274,13 +274,7 @@
 
   .shop-panel { margin: 48px 0 8px; padding: 28px; border-radius: 12px; background: var(--surface); border: 1px solid var(--line); }
   .shop-head { margin-bottom: 20px; }
-  .shop-eyebrow {
-    display: inline-flex; align-items: center; gap: 7px; padding: 6px 12px 6px 10px; border-radius: 999px;
-    background: #131b28; color: #fff; font-family: var(--f-mono); font-size: 11.5px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase;
-    box-shadow: 0 2px 8px rgb(19 27 40 / .18);
-  }
-  .shop-head h3 { margin-top: 12px !important; }
-  .shop-head h3 { font-family: var(--f-display); font-weight: 800; font-size: 24px; letter-spacing: -.01em; margin: 6px 0 4px; color: var(--ink); }
+  .shop-head h3 { font-family: var(--f-display); font-weight: 800; font-size: 24px; letter-spacing: -.01em; margin: 0 0 4px; color: var(--ink); }
   .shop-head p { margin: 0; font-size: 14.5px; color: var(--slate); }
   /* Same tile size whatever the count: half-width tiles, centered, extra tiles wrap. */
   .shop-tiles { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, calc(50% - 8px)); justify-content: center; }
@@ -321,7 +315,6 @@
     .shop-tile { background: #1b2432; }
     .btn-dark { background: #eef1f5; color: #131b28; }
     .btn-dark:hover { background: #c9d1dc; }
-    .shop-eyebrow { background: #eef1f5; color: #131b28; }
   }
 
   @media (max-width: 560px) {

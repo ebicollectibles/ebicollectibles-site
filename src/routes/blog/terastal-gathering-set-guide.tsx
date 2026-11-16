@@ -1,3 +1,4 @@
+import { BuyStrip } from '~/components/blog/BlogShop'
 import { createFileRoute, Link } from '@tanstack/react-router'
 import blogCssUrl from '~/styles/blog.css?url'
 import { BLOG_POSTS, BLOG_SITE_URL } from '~/data/blog-posts'
@@ -214,6 +215,8 @@ function TerastalGatheringSetGuide() {
           249 to 254. Pokémon China ranks these as rarer than both the Pokémon SARs and the Super Rares.
         </p>
         <Gallery cards={lead(byRange(249, 254), ['253', '252', '250'])} cols={3} />
+
+        <BuyStrip />
 
         <h2 id="super-rares">All 12 Super Rares</h2>
         <p>Full-art Trainers, 209 to 220. Atticus has two with different art.</p>

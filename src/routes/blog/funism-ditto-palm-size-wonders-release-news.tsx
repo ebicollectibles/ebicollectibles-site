@@ -1,3 +1,4 @@
+import { BuyStrip } from '~/components/blog/BlogShop'
 import { createFileRoute } from '@tanstack/react-router'
 import blogCssUrl from '~/styles/blog.css?url'
 import { BLOG_POSTS, BLOG_SITE_URL } from '~/data/blog-posts'
@@ -188,6 +189,8 @@ function FunismDittoReleasePost() {
           finish, and the chase is whichever Pokémon you like most. For most people that will be Pikachu or
           Gengar.
         </p>
+
+        <BuyStrip />
 
         <h2 id="in-the-box">The box and the display</h2>
         <p>

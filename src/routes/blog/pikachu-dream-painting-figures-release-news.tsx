@@ -1,3 +1,4 @@
+import { BuyStrip } from '~/components/blog/BlogShop'
 import { createFileRoute, Link } from '@tanstack/react-router'
 import blogCssUrl from '~/styles/blog.css?url'
 import { BLOG_POSTS, BLOG_SITE_URL } from '~/data/blog-posts'
@@ -244,6 +245,8 @@ function PikachuDreamPaintingReleasePost() {
             style={{ width: '100%', height: 'auto', borderRadius: 10 }}
           />
         </figure>
+
+        <BuyStrip />
 
         <h2 id="in-the-box">What is in a box</h2>
         <p>Pokémon China lists three things in each box, and the official photos show the stand the figure and card sit on:</p>

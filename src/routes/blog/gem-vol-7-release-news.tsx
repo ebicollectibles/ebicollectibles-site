@@ -1,3 +1,4 @@
+import { BuyStrip } from '~/components/blog/BlogShop'
 import { createFileRoute, Link } from '@tanstack/react-router'
 import blogCssUrl from '~/styles/blog.css?url'
 import { BLOG_POSTS, BLOG_SITE_URL } from '~/data/blog-posts'
@@ -237,6 +238,8 @@ function GemVol7Post() {
           Hydrapple. Curious where the artwork has appeared before? Our <Link to="/blog/gem-vol-7-card-origins">card origins guide</Link>{' '}
           traces it card by card.
         </p>
+
+        <BuyStrip />
 
         <h2 id="how-the-set-works">How the set is built</h2>
         <p>

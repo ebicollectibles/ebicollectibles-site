@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { Link, useLoaderData } from '@tanstack/react-router'
-import { ShopPanel, ShopStrip, type CtaLink } from './BlogShop'
+import { ShopPanel, type CtaLink } from './BlogShop'
 import type { BlogShopProduct } from '~/server/blog-status'
 import type { BlogPostSummary } from '~/data/blog-posts'
 
@@ -65,7 +65,6 @@ export function BlogPostLayout({
           ← Back to News
         </Link>
         <img className="article-hero-img" src={post.heroImage} alt={post.heroAlt} width={1280} height={720} />
-        <ShopStrip products={shop} />
         <div className="prose">{children}</div>
         <ShopPanel products={shop} heading={cta.heading} body={cta.body} links={cta.links} />
       </article>

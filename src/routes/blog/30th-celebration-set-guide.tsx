@@ -1,3 +1,4 @@
+import { BuyStrip } from '~/components/blog/BlogShop'
 import { createFileRoute, Link } from '@tanstack/react-router'
 import blogCssUrl from '~/styles/blog.css?url'
 import { BLOG_POSTS, BLOG_SITE_URL } from '~/data/blog-posts'
@@ -219,6 +220,8 @@ function ThirtiethSetGuide() {
           the Darkrai &amp; Cresselia LEGEND.
         </p>
         <Gallery cards={CLASSICS} cols={3} />
+
+        <BuyStrip />
 
         <h2 id="pikachu">All 30 Pikachu</h2>
         <p>One in every pack, each by a different illustrator, numbered 017 to 046.</p>

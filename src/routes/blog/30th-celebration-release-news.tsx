@@ -1,3 +1,4 @@
+import { BuyStrip } from '~/components/blog/BlogShop'
 import { createFileRoute, Link } from '@tanstack/react-router'
 import blogCssUrl from '~/styles/blog.css?url'
 import { BLOG_POSTS, BLOG_SITE_URL } from '~/data/blog-posts'
@@ -268,6 +269,8 @@ function ThirtiethReleasePost() {
         <p>
           Our <Link to="/blog/30th-celebration-card-origins">card origins guide</Link> traces all 30 back to the original card.
         </p>
+
+        <BuyStrip />
 
         <h2 id="pikachu">30 Pikachu, one in every pack</h2>
         <p>

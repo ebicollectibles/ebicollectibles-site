@@ -1,3 +1,4 @@
+import { BuyStrip } from '~/components/blog/BlogShop'
 import { createFileRoute, Link } from '@tanstack/react-router'
 import blogCssUrl from '~/styles/blog.css?url'
 import { BLOG_POSTS, BLOG_SITE_URL } from '~/data/blog-posts'
@@ -215,6 +216,8 @@ function GemVol4OriginsPost() {
             <strong>Two full arts break the pattern.</strong> Paldean Wooper's full art comes from Phantasmal Flames, a Mega Evolution set, and Flutter Mane's is a Black Star Promo.
           </li>
         </ul>
+
+        <BuyStrip />
 
         <h2 id="full-map">The full card-by-card map</h2>
         <p>

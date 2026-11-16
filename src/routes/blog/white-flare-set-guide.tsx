@@ -1,3 +1,4 @@
+import { BuyStrip } from '~/components/blog/BlogShop'
 import { createFileRoute, Link } from '@tanstack/react-router'
 import blogCssUrl from '~/styles/blog.css?url'
 import { BLOG_POSTS, BLOG_SITE_URL } from '~/data/blog-posts'
@@ -217,6 +218,8 @@ function WhiteFlareSetGuide() {
           Rares: the six Pokémon ex and Hilda 173/086, the Chinese exclusive.
         </p>
         <Gallery cards={pick([174, 173, 168, 171, 169, 167, 170, 172])} cols={4} />
+
+        <BuyStrip />
 
         <h2 id="super-rares">All 8 Super Rares</h2>
         <p>Full arts of the six Pokémon ex and the Supporters Harlequin and Hilda, 159 to 166.</p>

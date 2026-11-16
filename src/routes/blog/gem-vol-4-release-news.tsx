@@ -1,3 +1,4 @@
+import { BuyStrip } from '~/components/blog/BlogShop'
 import { createFileRoute, Link } from '@tanstack/react-router'
 import blogCssUrl from '~/styles/blog.css?url'
 import { BLOG_POSTS, BLOG_SITE_URL } from '~/data/blog-posts'
@@ -232,6 +233,8 @@ function GemVol4Post() {
           The rest of the roster: Lickitung, Pinsir, Paldean Wooper, Relicanth, Grotle, Chatot, Probopass, Froslass, Phione, Charjabug,
           Cutiefly, Cramorant and Snom. The <Link to="/sets/chinese/gem-vol-4">full card list</Link> shows all 196 cards.
         </p>
+
+        <BuyStrip />
 
         <h2 id="how-the-set-works">How the set is built</h2>
         <p>

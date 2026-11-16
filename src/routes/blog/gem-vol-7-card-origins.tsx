@@ -1,3 +1,4 @@
+import { BuyStrip } from '~/components/blog/BlogShop'
 import { createFileRoute, Link } from '@tanstack/react-router'
 import blogCssUrl from '~/styles/blog.css?url'
 import { BLOG_POSTS, BLOG_SITE_URL } from '~/data/blog-posts'
@@ -214,6 +215,8 @@ function GemVol7OriginsPost() {
             Morpeko reprint English Black Star Promo art, so their Gem full arts pair a set card with a promo.
           </li>
         </ul>
+
+        <BuyStrip />
 
         <h2 id="full-map">The full card-by-card map</h2>
         <p>

@@ -1,3 +1,4 @@
+import { BuyStrip } from '~/components/blog/BlogShop'
 import { createFileRoute, Link } from '@tanstack/react-router'
 import blogCssUrl from '~/styles/blog.css?url'
 import { BLOG_POSTS, BLOG_SITE_URL } from '~/data/blog-posts'
@@ -261,6 +262,8 @@ function ThirtiethOriginsPost() {
           </table>
         </div>
         <p className="table-note">Card numbers are the original English printing.</p>
+
+        <BuyStrip />
 
         <h2 id="rest-of-set">The rest of the set</h2>
         <p>

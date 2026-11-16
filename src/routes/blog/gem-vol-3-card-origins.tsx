@@ -1,3 +1,4 @@
+import { BuyStrip } from '~/components/blog/BlogShop'
 import { createFileRoute, Link } from '@tanstack/react-router'
 import blogCssUrl from '~/styles/blog.css?url'
 import { BLOG_POSTS, BLOG_SITE_URL } from '~/data/blog-posts'
@@ -216,6 +217,8 @@ function GemVol3OriginsPost() {
             <strong>Three 07 cards are promos.</strong> Darkrai ex, the Mimikyu full art and Annihilape ex reuse art from English Black Star Promos.
           </li>
         </ul>
+
+        <BuyStrip />
 
         <h2 id="full-map">The full card-by-card map</h2>
         <p>Every Gem Vol 3 Pokémon, with the English card behind its regular art (versions 01 to 06) and behind its version 07 full art or Pokémon ex, plus the illustrator credited on both.</p>

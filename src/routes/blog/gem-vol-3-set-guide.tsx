@@ -1,3 +1,4 @@
+import { BuyStrip } from '~/components/blog/BlogShop'
 import { createFileRoute, Link } from '@tanstack/react-router'
 import blogCssUrl from '~/styles/blog.css?url'
 import { BLOG_POSTS, BLOG_SITE_URL } from '~/data/blog-posts'
@@ -222,6 +223,8 @@ function GemVol3SetGuide() {
         <h2 id="pokemon-ex">All 9 Pokémon ex</h2>
         <p>The other nine Pokémon get a Pokémon ex in the 07 slot instead of a full art. In this set they are Rares (★).</p>
         <Gallery cards={EX_CARDS} cols={3} />
+
+        <BuyStrip />
 
         <h2 id="trainers-energy">Trainers and Energy</h2>
         <p>

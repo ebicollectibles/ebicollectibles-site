@@ -1,3 +1,4 @@
+import { BuyStrip } from '~/components/blog/BlogShop'
 import { createFileRoute, Link } from '@tanstack/react-router'
 import blogCssUrl from '~/styles/blog.css?url'
 import { BLOG_POSTS, BLOG_SITE_URL } from '~/data/blog-posts'
@@ -205,6 +206,8 @@ function RewardRoundSetGuide() {
         <h2 id="special-art-rares">All 9 Special Art Rares</h2>
         <p>153 to 161. Maushold ex 158 and Rika 159 are Chinese exclusives.</p>
         <Gallery cards={lead(byRange(153, 161), ['158', '159', '157', '156', '154', '161'])} cols={3} />
+
+        <BuyStrip />
 
         <h2 id="super-rares">All 15 Super Rares</h2>
         <p>Full arts of ten Pokémon ex and five Supporters, 138 to 152.</p>

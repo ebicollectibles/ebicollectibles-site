@@ -1,3 +1,4 @@
+import { BuyStrip } from '~/components/blog/BlogShop'
 import { createFileRoute, Link } from '@tanstack/react-router'
 import blogCssUrl from '~/styles/blog.css?url'
 import { BLOG_POSTS, BLOG_SITE_URL } from '~/data/blog-posts'
@@ -260,6 +261,8 @@ function TrueMysteryReleasePost() {
           Professor Turo's Scenario.
         </p>
         <Grid cards={SAR} cols={3} />
+
+        <BuyStrip />
 
         <h2 id="super-rares">Super Rare full arts</h2>
         <p>

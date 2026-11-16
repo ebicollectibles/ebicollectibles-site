@@ -1,3 +1,4 @@
+import { BuyStrip } from '~/components/blog/BlogShop'
 import { createFileRoute, Link } from '@tanstack/react-router'
 import blogCssUrl from '~/styles/blog.css?url'
 import { BLOG_POSTS, BLOG_SITE_URL } from '~/data/blog-posts'
@@ -246,6 +247,8 @@ function GemVol5Post() {
           The rest of the roster: Chansey, Horsea, Sunflora, Skarmory, Houndoom, Phanpy, Vibrava, Timburr, Joltik, Stunfisk, Braviary,
           Raboot, Applin and Milcery. The <Link to="/sets/chinese/gem-vol-5">full card list</Link> shows all 196 cards.
         </p>
+
+        <BuyStrip />
 
         <h2 id="how-the-set-works">How the set is built</h2>
         <p>

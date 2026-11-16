@@ -1,3 +1,4 @@
+import { BuyStrip } from '~/components/blog/BlogShop'
 import { createFileRoute, Link } from '@tanstack/react-router'
 import blogCssUrl from '~/styles/blog.css?url'
 import { BLOG_POSTS, BLOG_SITE_URL } from '~/data/blog-posts'
@@ -203,6 +204,8 @@ function BlackCrystalBlazeSetGuide() {
         <h2 id="special-art-rares">All 8 Special Art Rares</h2>
         <p>153 to 160. Larry 157 is the Chinese exclusive.</p>
         <Gallery cards={lead(byRange(153, 160), ['155', '157', '159', '160', '154', '156', '158'])} cols={4} />
+
+        <BuyStrip />
 
         <h2 id="super-rares">All 15 Super Rares</h2>
         <p>Full arts of ten Pokémon ex and five Supporters, 138 to 152.</p>

@@ -1,3 +1,4 @@
+import { BuyStrip } from '~/components/blog/BlogShop'
 import { createFileRoute, Link } from '@tanstack/react-router'
 import blogCssUrl from '~/styles/blog.css?url'
 import { BLOG_POSTS, BLOG_SITE_URL } from '~/data/blog-posts'
@@ -271,6 +272,8 @@ function GemVol3Post() {
             </figure>
           ))}
         </div>
+
+        <BuyStrip />
 
         <h2 id="how-the-set-works">How the set is built</h2>
         <p>

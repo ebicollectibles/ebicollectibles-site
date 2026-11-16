@@ -1,3 +1,4 @@
+import { BuyStrip } from '~/components/blog/BlogShop'
 import { createFileRoute, Link } from '@tanstack/react-router'
 import blogCssUrl from '~/styles/blog.css?url'
 import { BLOG_POSTS, BLOG_SITE_URL } from '~/data/blog-posts'
@@ -243,6 +244,8 @@ function ChasingGlorySetGuide() {
           Fourteen Pokémon ex and four Supporters, 262 to 279. Brock's Scouting 276/222 is the Simplified Chinese exclusive.
         </p>
         <Gallery cards={lead(byRange(262, 279), ['268', '276', '267', '279', '272', '269', '266', '264'])} cols={3} />
+
+        <BuyStrip />
 
         <h2 id="super-rares">All 33 Super Rares</h2>
         <p>Full arts of all 22 Pokémon ex (229 to 250) and 11 Supporters (251 to 261).</p>

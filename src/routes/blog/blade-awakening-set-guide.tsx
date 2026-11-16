@@ -1,3 +1,4 @@
+import { BuyStrip } from '~/components/blog/BlogShop'
 import { createFileRoute, Link } from '@tanstack/react-router'
 import blogCssUrl from '~/styles/blog.css?url'
 import { BLOG_POSTS, BLOG_SITE_URL } from '~/data/blog-posts'
@@ -236,6 +237,8 @@ function BladeAwakeningSetGuide() {
         <Gallery cards={byRange(237, 244)} cols={4} />
         <p>And six Supporters, 245 to 250. Ciphermaniac's Codebreaking 245 is the Chinese exclusive.</p>
         <Gallery cards={byRange(245, 250)} cols={3} />
+
+        <BuyStrip />
 
         <h2 id="super-rares">All 26 Super Rares</h2>
         <p>Full arts of 17 Pokémon ex and 9 Supporters. First the eight Paradox Pokémon:</p>

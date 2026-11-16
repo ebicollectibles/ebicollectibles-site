@@ -1,3 +1,4 @@
+import { BuyStrip } from '~/components/blog/BlogShop'
 import { createFileRoute, Link } from '@tanstack/react-router'
 import blogCssUrl from '~/styles/blog.css?url'
 import { BLOG_POSTS, BLOG_SITE_URL } from '~/data/blog-posts'
@@ -240,6 +241,8 @@ function BrilliantFantasySetGuide() {
         <Gallery cards={pick([242, 245, 243, 246, 250, 249, 248, 247])} cols={4} />
         <p>Kieran, Bloodmoon Ursaluna ex, Perrin and Cassiopeia.</p>
         <Gallery cards={pick([254, 251, 253, 252])} cols={4} />
+
+        <BuyStrip />
 
         <h2 id="super-rares">All 28 Super Rares</h2>
         <p>Full arts of 18 Pokémon ex (214 to 231) and 10 Supporters (232 to 241).</p>

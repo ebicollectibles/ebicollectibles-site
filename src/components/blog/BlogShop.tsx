@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { Link } from '@tanstack/react-router'
+import { Link, useLoaderData } from '@tanstack/react-router'
 import type { BlogShopProduct } from '~/server/blog-status'
 
 // Shop panels for blog posts: a compact strip under the banner and the
@@ -67,7 +67,13 @@ function ProductLinkButton({ p, className }: { p: BlogShopProduct; className: st
   )
 }
 
-/** Under the banner: what you can buy, at a glance, with one next step. */
+/** Placed in a post's body right after the chase cards; reads the post's live products itself. */
+export function BuyStrip() {
+  const loaded = useLoaderData({ strict: false }) as { shop?: BlogShopProduct[] } | undefined
+  return <ShopStrip products={loaded?.shop ?? []} />
+}
+
+/** What you can buy, at a glance, with one next step. */
 export function ShopStrip({ products }: { products: BlogShopProduct[] }) {
   if (products.length === 0) return null
   const lead = products.find((p) => statusOf(p).buyable) ?? products[0]
@@ -140,13 +146,6 @@ export function ShopPanel({
   return (
     <section className="shop-panel" id="shop" aria-labelledby="shop-heading">
       <div className="shop-head">
-        <span className="shop-eyebrow">
-          <svg viewBox="0 0 24 24" width="13" height="13" aria-hidden="true">
-            <path d="M6 7h12l-1 13H7L6 7Z" fill="none" stroke="currentColor" strokeWidth="2" strokeLinejoin="round" />
-            <path d="M9 9V6a3 3 0 0 1 6 0v3" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-          </svg>
-          Buy now
-        </span>
         <h3 id="shop-heading">{heading}</h3>
         <p>{body}</p>
       </div>

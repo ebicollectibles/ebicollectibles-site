@@ -1,3 +1,4 @@
+import { BuyStrip } from '~/components/blog/BlogShop'
 import { createFileRoute, Link } from '@tanstack/react-router'
 import blogCssUrl from '~/styles/blog.css?url'
 import { BLOG_POSTS, BLOG_SITE_URL } from '~/data/blog-posts'
@@ -282,6 +283,8 @@ function BlackCrystalBlazeReleasePost() {
           Poppy and Mela.
         </p>
         <Grid cards={SAR} cols={3} />
+
+        <BuyStrip />
 
         <h2 id="ultra-rares">Gold Ultra Rares</h2>
         <p>

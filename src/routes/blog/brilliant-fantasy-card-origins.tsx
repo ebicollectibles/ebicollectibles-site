@@ -1,3 +1,4 @@
+import { BuyStrip } from '~/components/blog/BlogShop'
 import { createFileRoute, Link } from '@tanstack/react-router'
 import blogCssUrl from '~/styles/blog.css?url'
 import { BLOG_POSTS, BLOG_SITE_URL } from '~/data/blog-posts'
@@ -561,6 +562,8 @@ function BrilliantFantasyOrigins() {
         <h2 id="secret-rares">All 57 secret rares</h2>
         <p>Every card above 207, with its English twin. The highlighted row is new.</p>
         <OriginsTable list={SECRET} />
+
+        <BuyStrip />
 
         <h2 id="main-set">The 207-card main set</h2>
         <OriginsTable list={MAIN} />

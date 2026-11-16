@@ -1,3 +1,4 @@
+import { BuyStrip } from '~/components/blog/BlogShop'
 import { createFileRoute, Link } from '@tanstack/react-router'
 import blogCssUrl from '~/styles/blog.css?url'
 import { BLOG_POSTS, BLOG_SITE_URL } from '~/data/blog-posts'
@@ -449,6 +450,8 @@ function BlackCrystalBlazeOrigins() {
         <h2 id="secret-rares">All 35 secret rares</h2>
         <p>Every card above 129, with its English twin. Highlighted rows are new.</p>
         <OriginsTable list={SECRET} />
+
+        <BuyStrip />
 
         <h2 id="main-set">The 129-card main set</h2>
         <OriginsTable list={MAIN} />

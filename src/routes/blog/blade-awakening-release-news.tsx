@@ -1,3 +1,4 @@
+import { BuyStrip } from '~/components/blog/BlogShop'
 import { createFileRoute, Link } from '@tanstack/react-router'
 import blogCssUrl from '~/styles/blog.css?url'
 import { BLOG_POSTS, BLOG_SITE_URL } from '~/data/blog-posts'
@@ -319,6 +320,8 @@ function BladeAwakeningReleasePost() {
           which puts Gengar in the frame with Morty.
         </p>
         <Grid cards={SAR_TRAINERS} cols={4} />
+
+        <BuyStrip />
 
         <h2 id="ultra-rares">Gold Ultra Rares</h2>
         <p>

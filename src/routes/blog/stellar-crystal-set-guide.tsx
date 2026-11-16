@@ -1,3 +1,4 @@
+import { BuyStrip } from '~/components/blog/BlogShop'
 import { createFileRoute, Link } from '@tanstack/react-router'
 import blogCssUrl from '~/styles/blog.css?url'
 import { BLOG_POSTS, BLOG_SITE_URL } from '~/data/blog-posts'
@@ -230,6 +231,8 @@ function StellarCrystalSetGuide() {
           242 to 257: ten Pokémon ex and six Supporters. Lisia's Appeal 257/208 is the Simplified Chinese exclusive.
         </p>
         <Gallery cards={pick([245, 257, 251, 247, 248, 250, 249, 244, 243, 246, 242, 253, 254, 252, 255, 256])} cols={4} />
+
+        <BuyStrip />
 
         <h2 id="super-rares">All 27 Super Rares</h2>
         <p>Full arts of 18 Pokémon ex (215 to 232) and 9 Supporters (233 to 241).</p>

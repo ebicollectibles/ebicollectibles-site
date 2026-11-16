@@ -1,3 +1,4 @@
+import { BuyStrip } from '~/components/blog/BlogShop'
 import { createFileRoute, Link } from '@tanstack/react-router'
 import blogCssUrl from '~/styles/blog.css?url'
 import { BLOG_POSTS, BLOG_SITE_URL } from '~/data/blog-posts'
@@ -203,6 +204,8 @@ function TrueMysterySetGuide() {
           Professor Turo's Scenario and Tulip. Iron Hands ex 152 is the Chinese exclusive.
         </p>
         <Gallery cards={byRange(152, 159)} cols={4} />
+
+        <BuyStrip />
 
         <h2 id="super-rares">All 15 Super Rares</h2>
         <p>Full arts of nine Pokémon ex, 137 to 145:</p>
