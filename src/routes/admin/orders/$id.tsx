@@ -262,7 +262,16 @@ const tagStyle: React.CSSProperties = {
   padding: '2px 6px',
 }
 
+// Keyed by order id so moving from one order to another (order-to-order
+// links reuse this route) starts with fresh form state. Without the key,
+// a ship form staged on the previous order kept its line items, and the
+// test email / shipment then sent items from the wrong order.
 function AdminOrderDetailPage() {
+  const order = Route.useLoaderData()
+  return <AdminOrderDetail key={order?.id ?? 'none'} />
+}
+
+function AdminOrderDetail() {
   const navigate = useNavigate()
   const router = useRouter()
   const order = Route.useLoaderData()
@@ -422,8 +431,9 @@ function AdminOrderDetailPage() {
       .filter((c) => c.items.length > 0)
 
   const confirmShipment = async () => {
+    const thisOrderItemIds = new Set(order.items.map((i) => i.id))
     const items = Object.entries(shipQtyByItem)
-      .filter(([, qty]) => qty > 0)
+      .filter(([orderItemId, qty]) => qty > 0 && thisOrderItemIds.has(orderItemId))
       .map(([orderItemId, qty]) => ({ orderItemId, qty }))
     if (items.length === 0) return
     const combined = stagedCombined()
@@ -450,8 +460,9 @@ function AdminOrderDetailPage() {
   // Mirrors confirmShipment's combined-order handling, so checking "also
   // ship order #EBI-XXX" previews that order's own email too.
   const sendTest = async () => {
+    const thisOrderItemIds = new Set(order.items.map((i) => i.id))
     const items = Object.entries(shipQtyByItem)
-      .filter(([, qty]) => qty > 0)
+      .filter(([orderItemId, qty]) => qty > 0 && thisOrderItemIds.has(orderItemId))
       .map(([orderItemId, qty]) => ({ orderItemId, qty }))
     if (items.length === 0) return
     const combined = stagedCombined()
