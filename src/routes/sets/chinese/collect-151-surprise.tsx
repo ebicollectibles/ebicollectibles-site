@@ -44,14 +44,14 @@ const config: GemSetConfig = {
   // flanked by the other two, Pikachu AR and Alakazam ex SAR, with
   // Charizard ex SR and the gold Mew ex UR on the outside.
   fanIds: ['172', '189', '191', '175', '192'],
-  fanCaption: "Surprise's three exclusives, plus Charizard ex and the gold Mew ex",
+  fanCaption: "Surprise's three Chinese Exclusives, plus Charizard ex and gold Mew ex",
   // Kanto green and deep cocoa, from the set's own "收集啦151" logo —
   // shared across all four Collect 151 releases, since they're the same
   // card list under the same branding.
   glow1: 'rgb(86 147 90 / .30)',
   glow2: 'rgb(34 20 16 / .25)',
   heroLede:
-    'All 192 cards in Collect 151: the 151 original Kanto Pokémon in Pokédex order, plus Shiny treatments, Art Rares, Super Rares, Shiny Super Rares, Special Art Rares and a gold Ultra Rare Mew ex as secret rares from 152 up. Surprise, the third release, adds three exclusives of its own: a Pikachu Art Rare and two Special Art Rares, Alakazam ex and Mew ex. Tap any card for a closer look and every other printing beside it.',
+    "All 192 cards in Collect 151 (151C): the 151 original Kanto Pokémon in Pokédex order, then 41 secret rares numbered 152–192, including Shiny cards, Super Rares and a gold Ultra Rare Mew ex. Surprise was the third of the four releases. It has three Chinese Exclusives: Pikachu 172/151 (Art Rare), plus Alakazam ex 189/151 and Mew ex 191/151 (Special Art Rares). Tap any card for a closer look and every other printing beside it.",
   pokemonFact: '151',
   rarityVersionLabelsOverride: {
     'Common (C)': '001–151 (mixed)',
@@ -66,22 +66,24 @@ const config: GemSetConfig = {
     'Ultra Rare (UR)': '192',
   },
   aboutParagraphs: [
-    'Collect 151 (set code 151C) is an officially-licensed Pokémon TCG expansion in Simplified Chinese, built entirely around the 151 original Kanto Pokémon in Pokédex order. There isn\'t a single Trainer or Energy card in the whole set. It came out as four booster releases: Journey, Hope, Surprise (July 18, 2025) and Gathering. All four share the 151-card main set, and each release adds exclusive cards of its own. This is the Surprise release, with three exclusives of its own, more than any other release.',
-    'Every card has its own collector number, 001 through 192. The 151-card main set runs from Common up to Double Rare; the 41 secret rares that follow add 18 Shiny treatments, 4 Pikachu Art Rares (one per release), 12 Super Rares, 3 Shiny Super Rares and 3 Special Art Rares of the set\'s strongest Pokémon, topped by a single gold Ultra Rare Mew ex.',
+    "Collect 151 (set code 151C) is an official Pokémon TCG set in Simplified Chinese. Its main set is the 151 original Kanto Pokémon in Pokédex order, so 001 is Bulbasaur and 151 is Mew ex. There are no Trainer or Energy cards. The set came out in four releases: Journey (January 17, 2025), Hope (April 18, 2025), Surprise (July 18, 2025) and Gathering (October 17, 2025). All four share the same main set and most of the secret rares, but each release has its own Chinese Exclusive cards. This page covers Surprise.",
+    "Every card has its own collector number, printed out of 151. The main set, 001–151, has 63 Commons, 51 Uncommons, 25 Rares and 12 Double Rare ex. The 41 secret rares are 18 Shiny cards (152–169), 4 Pikachu Art Rares (170–173, one per release), 12 Super Rares (174–185), 3 Shiny Super Rares (186–188), 3 Special Art Rares (189–191) and one gold Ultra Rare Mew ex (192).",
   ],
   faq: [
-    { q: 'How many cards are in Collect 151?', a: '192 cards: the 151 Kanto Pokémon plus 41 secret rares (Shiny, Art Rare, Super Rare, Shiny Super Rare, Special Art Rare and one Ultra Rare).' },
-    { q: 'What makes the Surprise release different?', a: 'Journey, Hope, Surprise and Gathering are four booster releases of Collect 151. They share the same 151-card main set, and each adds exclusive cards of its own. Surprise is the only release with three exclusives: Pikachu 172/151 (Art Rare), Alakazam ex 189/151 and Mew ex 191/151 (both Special Art Rares).' },
-    { q: "What's Collect 151's rarity scheme?", a: 'A 10-tier scheme: Common, Uncommon, Rare and Double Rare in the main set, then Shiny, Art Rare, Super Rare, Shiny Super Rare, Special Art Rare and Ultra Rare in collector-number order.' },
-    { q: 'What is the Shiny tier?', a: 'A shiny-colored main-set Pokémon in its own star-sparkle frame: 18 of them, numbered 152–169, alongside 3 Shiny Super Rare full-art ex at 186–188.' },
-    { q: 'When did Collect 151: Surprise release?', a: 'July 18, 2025.' },
-    { q: 'What language are the cards in?', a: 'Simplified Chinese.' },
+    { q: "How many cards are in Collect 151?", a: "192 cards: the 151 Kanto Pokémon in the main set, plus 41 secret rares numbered 152–192." },
+    { q: "What makes the Surprise release different?", a: "Collect 151 came out in four releases: Journey, Hope, Surprise and Gathering. They share the same main set. Each release has its own Chinese Exclusive cards, and Surprise has the most: Pikachu 172/151 (Art Rare), Alakazam ex 189/151 and Mew ex 191/151 (both Special Art Rares)." },
+    { q: "What rarities does Collect 151 have?", a: "Ten. The main set has Common, Uncommon, Rare and Double Rare. The secret rares, in number order, are Shiny, Art Rare, Super Rare, Shiny Super Rare, Special Art Rare and Ultra Rare." },
+    { q: "What is the Shiny tier?", a: "Shiny cards show a main-set Pokémon in its shiny colors with a star-sparkle frame. There are 18 of them, numbered 152–169. The set also has 3 Shiny Super Rare ex at 186–188: Wigglytuff ex, Alakazam ex and Mew ex." },
+    { q: "Does Collect 151 have Trainer or Energy cards?", a: "No. Every card in the set is a Pokémon." },
+    { q: "When did Collect 151: Surprise release?", a: "July 18, 2025. It was the third of the four Collect 151 releases." },
+    { q: "What language are the cards in?", a: "Simplified Chinese." },
   ],
-  metaTitle: 'Collect 151: Surprise Card List: All 192 Cards | EBI Collectibles',
+  metaTitle: "Pokémon Collect 151: Surprise (151C) Card List: All 192 Cards | EBI Collectibles",
   metaDescription:
-    'Browse every card in Pokémon TCG Collect 151: Surprise (Simplified Chinese): the 151 Kanto Pokémon, Shiny cards, Super Rares and the gold Ultra Rare Mew ex, including this release\'s own exclusive Pikachu, Alakazam ex and Mew ex.',
-  ogTitle: 'Collect 151: Surprise Card List: All 192 Cards',
-  ogDescription: 'All 192 cards in Pokémon TCG Collect 151: Surprise. Browse by Pokémon, filter by rarity, and track which ones you own.',
+    "All 192 cards in Pokémon Collect 151: Surprise (151C) in Simplified Chinese, with 3 Chinese Exclusives: Pikachu AR, Alakazam ex SAR and Mew ex SAR.",
+  ogTitle: "Pokémon Collect 151: Surprise (151C) Card List: All 192 Cards",
+  ogDescription:
+    "All 192 cards in Pokémon Collect 151: Surprise (151C) in Simplified Chinese, with 3 Chinese Exclusives: Pikachu AR, Alakazam ex SAR and Mew ex SAR.",
 }
 
 export const Route = createFileRoute('/sets/chinese/collect-151-surprise')({

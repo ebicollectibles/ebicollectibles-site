@@ -43,38 +43,38 @@ const config: GemSetConfig = {
   glow1: 'rgb(194 26 118 / .30)',
   glow2: 'rgb(151 202 224 / .22)',
   heroLede:
-    'All 115 cards in Gem Vol 1 (Gem 1): the first Gem set, built around the Paldea starters Sprigatito, Fuecoco and Quaxly and their middle evolutions, plus Captain Pikachu, 9 other Pokémon, 4 Trainer cards and 6 Energy cards. Tap any card for a closer look and every version beside it.',
+    'All 115 cards in Gem Vol 1 (Gem 1), the first Gem Pack: the Paldea starters Sprigatito, Fuecoco and Quaxly, their middle evolutions, Captain Pikachu and 9 other Pokémon, plus 4 Trainer cards and 6 Energy cards. Tap any card for a closer look and every version beside it.',
   pokemonFact: '16 × 5–9',
   rarityVersionLabelsOverride: {
     Common: '01–02',
     Uncommon: '03–04',
     Rare: '04–06',
     'Double Rare': '05–07 + 3 Trainers',
-    'Triple Rare': '08–09 + Nemona + 6 Energies',
+    'Triple Rare': '08–09 + Nemona + 6 Energy',
   },
   aboutParagraphs: [
-    'Gem Vol 1 (set code CBB1C) is the first release in the Simplified Chinese Gem Set series, out January 17, 2025, built around the Paldea starters Sprigatito, Fuecoco and Quaxly (plus their middle evolutions Floragato, Crocalor and Quaxwell) and Captain Pikachu, alongside 9 other Pokémon, 4 Trainer cards and 6 Energy cards. 115 cards in all.',
-    'Each starter and Captain Pikachu has a 9-version ladder (8 for the middle evolutions): Common through Double Rare, a shiny-style alternate art at version 06, an illustration full art at version 08, and, for the four most iconic of them, a Pokémon Horizons full art exclusive to this set at version 09. The other 9 Pokémon have a shorter 5-version ladder running straight through to Double Rare. The Trainer block adds Poké Ball, Great Ball and Ultra Ball (Double Rare) plus a Triple Rare full-art Nemona; the Energy block has Basic Grass, Basic Fire and Basic Water Energy, each printed twice, all Triple Rare.',
+    'Gem Vol 1 (Gem Pack Vol. 1, set code CBB1C) is the first Simplified Chinese Gem Pack, released January 17, 2025. It has 115 cards: 16 Pokémon, 4 Trainer cards and 6 Energy cards, and every card is a holo. The set is built around the Paldea starters Sprigatito, Fuecoco and Quaxly, their middle evolutions Floragato, Crocalor and Quaxwell, and Captain Pikachu.',
+    'Sprigatito, Fuecoco, Quaxly and Captain Pikachu each have 9 versions, and the three middle evolutions have 8. Both runs go from Common up to Double Rare, with a shiny-style card at version 06 and an illustration full art at version 08. Version 09 is a Pokémon Horizons full art, and all four are Chinese Exclusives. The other 9 Pokémon have 5 versions each, from Common up to Double Rare. The Trainer block has Poké Ball, Great Ball and Ultra Ball (Double Rare) and a full-art Nemona (Triple Rare). The Energy block has Basic Grass, Basic Fire and Basic Water Energy, each printed twice, all Triple Rare.',
   ],
   faq: [
-    { q: 'How many cards are in Gem 1?', a: '115 cards: 16 Pokémon (the Paldea starters, their middle evolutions, Captain Pikachu and 9 others) plus 4 Trainer cards and 6 Energy cards.' },
+    { q: 'How many cards are in Gem 1?', a: '115 cards: 16 Pokémon (the three Paldea starters, their middle evolutions, Captain Pikachu and 9 others), 4 Trainer cards and 6 Energy cards. By rarity that is 32 Common, 23 Uncommon, 23 Rare, 19 Double Rare and 18 Triple Rare.' },
     {
       q: 'What are the chase cards?',
-      a: 'Four Triple Rare Pokémon Horizons full arts (Sprigatito 0109/09, Fuecoco 0309/09, Quaxly 0509/09 and Captain Pikachu 0709/09) are Chinese exclusives, only appearing in the Simplified Chinese Gem Vol 1 release.',
+      a: 'The four Pokémon Horizons full arts: Sprigatito 0109/09, Fuecoco 0309/09, Quaxly 0509/09 and Captain Pikachu 0709/09. All four are Triple Rare Chinese Exclusives, found only in Gem Vol 1.',
     },
     {
       q: "Why is there a card just called \"Pikachu\" in Captain Pikachu's row?",
-      a: 'Two cards in that row (0706/09 and 0708/09) are a separate, ordinary Pikachu rather than Captain Pikachu. That’s a genuine difference between the cards, not a labeling error.',
+      a: 'Two cards in that row, 0706/09 and 0708/09, are a different card: an ordinary Pikachu, not Captain Pikachu. The names are correct.',
     },
     { q: 'When did Gem Vol 1 release?', a: 'January 17, 2025.' },
     { q: 'What language are the cards in?', a: 'Simplified Chinese.' },
     { q: 'Where can I buy Gem Vol 1?', a: "Gem Vol 1 doesn't currently have a dedicated listing. Browse EBI Collectibles' shop for current Pokémon TCG stock." },
   ],
-  metaTitle: 'Gem Vol 1 (Gem 1) Card List: All 115 Cards | EBI Collectibles',
+  metaTitle: 'Pokémon Gem Pack Vol. 1 (Gem 1) Card List: All 115 Cards | EBI Collectibles',
   metaDescription:
-    'Browse every card in Pokémon TCG Gem Vol 1 (Simplified Chinese): the Paldea starters and Captain Pikachu with Horizons full-art exclusives, plus a printable checklist.',
-  ogTitle: 'Gem Vol 1 (Gem 1) Card List: All 115 Cards',
-  ogDescription: 'All 115 cards in Pokémon TCG Gem Vol 1. Browse by Pokémon, filter by rarity, and track which ones you own.',
+    'All 115 cards in Pokémon Gem Pack Vol. 1 (CBB1C), Simplified Chinese: the Paldea starters, Captain Pikachu and four Chinese Exclusive Horizons full arts.',
+  ogTitle: 'Pokémon Gem Pack Vol. 1 (Gem 1) Card List: All 115 Cards',
+  ogDescription: 'All 115 cards in Pokémon Gem Pack Vol. 1 (CBB1C). Browse by Pokémon, filter by rarity and track which ones you own.',
 }
 
 export const Route = createFileRoute('/sets/chinese/gem-vol-1')({

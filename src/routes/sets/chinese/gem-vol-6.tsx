@@ -33,21 +33,21 @@ const config: GemSetConfig = {
   glow1: 'rgb(199 22 116 / .30)',
   glow2: 'rgb(78 119 104 / .25)',
   aboutParagraphs: [
-    'Gem Vol 6 (Gem 6, set code CBB6C) is the sixth release in the Simplified Chinese Gem Set series, out August 7, 2026. It has 196 cards built around 28 Pokémon, with no trainer-owned cards this time. Instead there’s a clear apple/garden thread running through the set (Applin, Flapple, Appletun, Dipplin, Exeggcute, Poltchageist) alongside the Loyal Three (Okidogi, Munkidori, Fezandipiti).',
-    'Every Pokémon comes in 7 numbered versions. Versions 01 and 02 are Common, 03 and 04 Uncommon, 05 Rare, 06 Double Rare, and 07 is a full-art Triple Rare. Card numbers read as Pokémon number then version, so 1907/07 is the 7th version of the 19th Pokémon.',
+    'Gem Vol 6 (Gem Pack Vol. 6, set code CBB6C) is the sixth Simplified Chinese Gem Pack, released August 7, 2026. It has 196 cards built around 28 Pokémon, and every card is a holo. None of the Pokémon belong to a Trainer this time. The lineup leans on fruit, garden and tea Pokémon: Applin, Flapple, Appletun and Dipplin, plus Exeggcute, Castform Sunny Form and Poltchageist. The Loyal Three (Okidogi, Munkidori and Fezandipiti) close out the set.',
+    'Every Pokémon has 7 versions. Versions 01 and 02 are Common, 03 and 04 Uncommon, 05 Rare, 06 Double Rare, and 07 is a full-art Triple Rare. Card numbers read as Pokémon number then version, so 1907/07 is version 7 of Pokémon 19.',
   ],
   faq: [
-    { q: 'How many cards are in Gem 6?', a: '196 cards: 28 Pokémon with 7 versions each. That breaks down to 56 Common, 56 Uncommon, 28 Rare, 28 Double Rare and 28 Triple Rare.' },
-    { q: 'What are the chase cards?', a: 'The 28 Triple Rares (version 07 of each Pokémon) are full-art cards. Applin 1907/07, by Jiro Sasumo, is a Chinese exclusive: this full art only appears in the Simplified Chinese Gem Vol 6 release.' },
+    { q: 'How many cards are in Gem 6?', a: '196 cards: 28 Pokémon with 7 versions each. By rarity that is 56 Common, 56 Uncommon, 28 Rare, 28 Double Rare and 28 Triple Rare.' },
+    { q: 'What are the chase cards?', a: 'Applin 1907/07, a full art by Jiro Sasumo drawn for this set. It is a Triple Rare Chinese Exclusive, found only in Gem Vol 6. Beyond Applin, collectors chase the other 27 full arts, every card numbered 07.' },
     { q: 'When did Gem Vol 6 release?', a: 'August 7, 2026.' },
     { q: 'What language are the cards in?', a: 'Simplified Chinese.' },
     { q: 'Where can I buy Gem Vol 6?', a: 'EBI Collectibles carries Gem Vol 6 packs and boxes.' },
   ],
-  metaTitle: 'Gem Vol 6 (Gem 6) Card List: All 196 Cards | EBI Collectibles',
+  metaTitle: 'Pokémon Gem Pack Vol. 6 (Gem 6) Card List: All 196 Cards | EBI Collectibles',
   metaDescription:
-    'Browse every card in Pokémon TCG Gem Vol 6 (Simplified Chinese): all 28 Pokémon across 7 rarities each, with full-art Triple Rares and a printable checklist.',
-  ogTitle: 'Gem Vol 6 (Gem 6) Card List: All 196 Cards',
-  ogDescription: 'All 196 cards in Pokémon TCG Gem Vol 6. Browse by Pokémon, filter by rarity, and track which ones you own.',
+    'All 196 cards in Pokémon Gem Pack Vol. 6 (CBB6C), Simplified Chinese: 28 Pokémon in 7 versions each, 28 full arts and the Chinese Exclusive Applin.',
+  ogTitle: 'Pokémon Gem Pack Vol. 6 (Gem 6) Card List: All 196 Cards',
+  ogDescription: 'All 196 cards in Pokémon Gem Pack Vol. 6 (CBB6C). Browse by Pokémon, filter by rarity and track which ones you own.',
 }
 
 export const Route = createFileRoute('/sets/chinese/gem-vol-6')({

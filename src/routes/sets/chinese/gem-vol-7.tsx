@@ -30,21 +30,21 @@ const config: GemSetConfig = {
   glow1: 'rgb(138 61 120 / .30)',
   glow2: 'rgb(58 110 165 / .25)',
   aboutParagraphs: [
-    `Gem Vol 7 (Gem 7, set code ${raw.code}) is the seventh release in the Simplified Chinese Gem Set series, out November 6, 2026. It has 196 cards built around 28 Pokémon, many of them partnered with trainers such as Team Rocket, Misty, Cynthia, N, Marnie and Iono.`,
-    'Every Pokémon comes in 7 numbered versions. Versions 01 and 02 are Common, 03 and 04 Uncommon, 05 Rare, 06 Double Rare, and 07 is a full-art Triple Rare. Card numbers read as Pokémon number then version, so 0307/07 is the 7th version of the 3rd Pokémon.',
+    'Gem Vol 7 (Gem Pack Vol. 7, set code CBB7C) is the seventh Simplified Chinese Gem Pack, released November 6, 2026. It has 196 cards built around 28 Pokémon, and every card is a holo. 19 of the 28 Pokémon belong to a Trainer. Team Rocket has eight, Misty has Psyduck and Lapras, and the rest come from Ethan, Steven, Cynthia, N, Lillie, Arven, Hop, Marnie and Iono.',
+    'Every Pokémon has 7 versions. Versions 01 and 02 are Common, 03 and 04 Uncommon, 05 Rare, 06 Double Rare, and 07 is a full-art Triple Rare. Card numbers read as Pokémon number then version, so 0307/07 is version 7 of Pokémon 03.',
   ],
   faq: [
-    { q: 'How many cards are in Gem 7?', a: '196 cards: 28 Pokémon with 7 versions each. That breaks down to 56 Common, 56 Uncommon, 28 Rare, 28 Double Rare and 28 Triple Rare.' },
-    { q: 'What are the chase cards?', a: 'The 28 Triple Rares (version 07 of each Pokémon) are full-art cards. Misty’s Psyduck 0307/07, by Cona Nitanda, is a Chinese exclusive: this full art only appears in the Simplified Chinese Gem Vol 7 release.' },
+    { q: 'How many cards are in Gem 7?', a: '196 cards: 28 Pokémon with 7 versions each. By rarity that is 56 Common, 56 Uncommon, 28 Rare, 28 Double Rare and 28 Triple Rare.' },
+    { q: 'What are the chase cards?', a: 'Misty’s Psyduck 0307/07, a full art by Cona Nitanda drawn for this set. It is a Triple Rare Chinese Exclusive, found only in Gem Vol 7. Beyond Psyduck, collectors chase the other 27 full arts, every card numbered 07.' },
     { q: 'When did Gem Vol 7 release?', a: 'November 6, 2026.' },
     { q: 'What language are the cards in?', a: 'Simplified Chinese.' },
     { q: 'Where can I buy Gem Vol 7?', a: 'EBI Collectibles carries Gem Vol 7 packs and boxes.' },
   ],
-  metaTitle: 'Gem Vol 7 (Gem 7) Card List: All 196 Cards | EBI Collectibles',
+  metaTitle: 'Pokémon Gem Pack Vol. 7 (Gem 7) Card List: All 196 Cards | EBI Collectibles',
   metaDescription:
-    'Browse every card in Pokémon TCG Gem Vol 7 (Simplified Chinese): all 28 Pokémon across 7 rarities each, with full-art Triple Rares and a printable checklist.',
-  ogTitle: 'Gem Vol 7 (Gem 7) Card List: All 196 Cards',
-  ogDescription: 'All 196 cards in Pokémon TCG Gem Vol 7. Browse by Pokémon, filter by rarity, and track which ones you own.',
+    'All 196 cards in Pokémon Gem Pack Vol. 7 (CBB7C), Simplified Chinese: 28 Pokémon in 7 versions each and the Chinese Exclusive Misty\'s Psyduck full art.',
+  ogTitle: 'Pokémon Gem Pack Vol. 7 (Gem 7) Card List: All 196 Cards',
+  ogDescription: 'All 196 cards in Pokémon Gem Pack Vol. 7 (CBB7C). Browse by Pokémon, filter by rarity and track which ones you own.',
 }
 
 export const Route = createFileRoute('/sets/chinese/gem-vol-7')({

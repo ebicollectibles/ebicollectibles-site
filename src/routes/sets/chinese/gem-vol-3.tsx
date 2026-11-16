@@ -43,38 +43,38 @@ const config: GemSetConfig = {
   glow1: 'rgb(196 26 118 / .30)',
   glow2: 'rgb(214 169 151 / .25)',
   heroLede:
-    'All 136 cards in Gem Vol 3 (Gem 3): 18 Pokémon across 7 rarities each (nine as Triple Rare full arts, nine as Pokémon ex), plus 4 Trainer cards and 6 Energy cards. Tap any card for a closer look and every version beside it.',
+    'All 136 cards in Gem Vol 3 (Gem 3): 18 Pokémon in 7 versions each, topped by 9 Triple Rare full arts and 9 Pokémon ex, plus 4 Trainer cards and 6 Energy cards. Tap any card for a closer look and every version beside it.',
   pokemonFact: '18 × 7',
   rarityVersionLabelsOverride: {
     Common: '01–02',
     Uncommon: '03–04',
     Rare: '05 + 9 ex',
     'Double Rare': '06 + 3 Trainers',
-    'Triple Rare': '9 full arts + Arven + 6 Energies',
+    'Triple Rare': '9 full arts + Arven + 6 Energy',
   },
   aboutParagraphs: [
-    'Gem Vol 3 (set code CBB3C) is the third release in the Simplified Chinese Gem Set series, out September 26, 2025, a Halloween-season set built around Ghost and Dark Pokémon, with 136 cards: 18 Pokémon, 4 Trainer cards and 6 Energy cards.',
-    'Each Pokémon comes in 7 numbered versions. Versions 01–02 are Common, 03–04 Uncommon, 05 Rare, and 06 Double Rare. Version 07 is either a Triple Rare full art (Meowth, Gengar, Cubone, Mismagius, Chandelure, Mimikyu, Morpeko, Ceruledge and Greavard) or a Rare-rarity Pokémon ex (Clefable, Houndoom, Gardevoir, Banette, Absol, Darkrai, Lycanroc, Houndstone and Annihilape). The Trainer block adds Super Rod, Nest Ball and Switch (Double Rare) plus a Triple Rare full-art Arven; the Energy block has Basic Fighting, Basic Metal and Luminous Energy, each printed twice, all Triple Rare.',
+    'Gem Vol 3 (Gem Pack Vol. 3, set code CBB3C) is the third Simplified Chinese Gem Pack, released September 26, 2025. It is a night-time set with Gengar on the pack and plenty of Ghost and Dark types. It has 136 cards: 18 Pokémon, 4 Trainer cards and 6 Energy cards, and every card is a holo.',
+    'Each Pokémon has 7 versions. Versions 01–02 are Common, 03–04 Uncommon, 05 Rare and 06 Double Rare. Version 07 is either a Triple Rare full art (Meowth, Gengar, Cubone, Mismagius, Chandelure, Mimikyu, Morpeko, Ceruledge and Greavard) or a Pokémon ex at Rare (Clefable, Houndoom, Gardevoir, Banette, Absol, Darkrai, Lycanroc, Houndstone and Annihilape). The Trainer block has Super Rod, Nest Ball and Switch (Double Rare) and a full-art Arven (Triple Rare). The Energy block has Basic Fighting Energy, Basic Metal Energy and Luminous Energy, each printed twice, all Triple Rare.',
   ],
   faq: [
-    { q: 'How many cards are in Gem 3?', a: '136 cards: 18 Pokémon with 7 versions each, plus 4 Trainer cards and 6 Energy cards.' },
+    { q: 'How many cards are in Gem 3?', a: '136 cards: 18 Pokémon with 7 versions each, plus 4 Trainer cards and 6 Energy cards. By rarity that is 36 Common, 36 Uncommon, 27 Rare, 21 Double Rare and 16 Triple Rare.' },
     {
       q: 'What are the chase cards?',
-      a: 'Five Triple Rare full arts (Meowth 0207/07 by Makura Tami, Gengar 0307/07 by aspara, Cubone 0407/07 by Katsunori Sato, Chandelure 1107/07 by satoma and Ceruledge 1507/07 by kodama) are new art drawn for this set and are Chinese exclusives, only appearing in the Simplified Chinese Gem Vol 3 release.',
+      a: 'The five full arts drawn for this set: Meowth 0207/07 by Makura Tami, Gengar 0307/07 by aspara, Cubone 0407/07 by Katsunori Sato, Chandelure 1107/07 by satoma and Ceruledge 1507/07 by kodama. All five are Triple Rare Chinese Exclusives, found only in Gem Vol 3.',
     },
     {
       q: "What's a Pokémon ex card?",
-      a: 'Nine Pokémon (Clefable, Houndoom, Gardevoir, Banette, Absol, Darkrai, Lycanroc, Houndstone and Annihilape) have a Rare-rarity ex card in their version 07 slot instead of a Triple Rare full art.',
+      a: 'Nine Pokémon (Clefable, Houndoom, Gardevoir, Banette, Absol, Darkrai, Lycanroc, Houndstone and Annihilape) have a Pokémon ex at version 07, at Rare. The other nine get a Triple Rare full art in that slot.',
     },
     { q: 'When did Gem Vol 3 release?', a: 'September 26, 2025.' },
     { q: 'What language are the cards in?', a: 'Simplified Chinese.' },
     { q: 'Where can I buy Gem Vol 3?', a: 'EBI Collectibles carries Gem Vol 3 packs and boxes.' },
   ],
-  metaTitle: 'Gem Vol 3 (Gem 3) Card List: All 136 Cards | EBI Collectibles',
+  metaTitle: 'Pokémon Gem Pack Vol. 3 (Gem 3) Card List: All 136 Cards | EBI Collectibles',
   metaDescription:
-    'Browse every card in Pokémon TCG Gem Vol 3 (Simplified Chinese): 18 Pokémon, Trainer and Energy cards, with full-art Triple Rares, Pokémon ex and a printable checklist.',
-  ogTitle: 'Gem Vol 3 (Gem 3) Card List: All 136 Cards',
-  ogDescription: 'All 136 cards in Pokémon TCG Gem Vol 3. Browse by Pokémon, filter by rarity, and track which ones you own.',
+    'All 136 cards in Pokémon Gem Pack Vol. 3 (CBB3C), Simplified Chinese: 18 Pokémon, 9 Pokémon ex, Trainers, Energy and 5 Chinese Exclusive full arts.',
+  ogTitle: 'Pokémon Gem Pack Vol. 3 (Gem 3) Card List: All 136 Cards',
+  ogDescription: 'All 136 cards in Pokémon Gem Pack Vol. 3 (CBB3C). Browse by Pokémon, filter by rarity and track which ones you own.',
 }
 
 export const Route = createFileRoute('/sets/chinese/gem-vol-3')({

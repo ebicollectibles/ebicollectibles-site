@@ -486,7 +486,7 @@ export function GemSetPage({
               [
                 ['grid', 'All cards'],
                 ['ladder', 'By Pokémon'],
-                ...(hasAnyExclusive ? ([['exclusives', 'Exclusives']] as const) : []),
+                ...(hasAnyExclusive ? ([['exclusives', 'Chinese Exclusives']] as const) : []),
                 ['list', 'Checklist'],
               ] as const
             ).map(([v, label]) => (
@@ -558,7 +558,7 @@ export function GemSetPage({
           </>
         ) : view === 'exclusives' ? (
           exclusiveShown.length === 0 ? (
-            <div className="empty">No exclusive cards match. Try another name or clear the rarity filter.</div>
+            <div className="empty">No Chinese Exclusive cards match. Try another name or clear the rarity filter.</div>
           ) : (
             <div className="grid">
               {exclusiveShown.map((c) => (
@@ -650,7 +650,7 @@ export function GemSetPage({
                 <dd>
                   {openLocalVersion} of {openGroup?.cards.length ?? 1}
                   {openCard.rarity === topRarity ? ' · full art' : ''}
-                  {openCard.exclusive ? ' · Chinese exclusive' : ''}
+                  {openCard.exclusive ? ' · Chinese Exclusive' : ''}
                 </dd>
                 <dt>Set</dt>
                 <dd>

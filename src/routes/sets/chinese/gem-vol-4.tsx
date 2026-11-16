@@ -34,21 +34,21 @@ const config: GemSetConfig = {
   glow1: 'rgb(198 23 117 / .30)',
   glow2: 'rgb(208 129 105 / .25)',
   aboutParagraphs: [
-    'Gem Vol 4 (Gem 4, set code CBB4C) is the fourth release in the Simplified Chinese Gem Set series, out February 6, 2026. It has 196 cards built around 28 Pokémon, with no trainer-owned cards or anime tie-in this time, just an evenly mixed lineup from Ponyta and Eevee through to the Paradox Pokémon Flutter Mane.',
-    'Every Pokémon comes in 7 numbered versions. Versions 01 and 02 are Common, 03 and 04 Uncommon, 05 Rare, 06 Double Rare, and 07 is a full-art Triple Rare. Card numbers read as Pokémon number then version, so 0107/07 is the 7th version of the 1st Pokémon.',
+    'Gem Vol 4 (Gem Pack Vol. 4, set code CBB4C) is the fourth Simplified Chinese Gem Pack, released February 6, 2026, in time for Lunar New Year. Ponyta leads the set, a fitting pick for the Year of the Horse. It has 196 cards built around 28 Pokémon, and every card is a holo. None of the Pokémon belong to a Trainer this time. The lineup runs from Ponyta, Eevee and Sawsbuck to Enamorus and the Paradox Pokémon Flutter Mane.',
+    'Every Pokémon has 7 versions. Versions 01 and 02 are Common, 03 and 04 Uncommon, 05 Rare, 06 Double Rare, and 07 is a full-art Triple Rare. Card numbers read as Pokémon number then version, so 0107/07 is version 7 of Pokémon 01.',
   ],
   faq: [
-    { q: 'How many cards are in Gem 4?', a: '196 cards: 28 Pokémon with 7 versions each. That breaks down to 56 Common, 56 Uncommon, 28 Rare, 28 Double Rare and 28 Triple Rare.' },
-    { q: 'What are the chase cards?', a: 'The 28 Triple Rares (version 07 of each Pokémon) are full-art cards. Ponyta 0107/07, by MINAMINAMI Take, is a Chinese exclusive: this full art only appears in the Simplified Chinese Gem Vol 4 release.' },
+    { q: 'How many cards are in Gem 4?', a: '196 cards: 28 Pokémon with 7 versions each. By rarity that is 56 Common, 56 Uncommon, 28 Rare, 28 Double Rare and 28 Triple Rare.' },
+    { q: 'What are the chase cards?', a: 'Ponyta 0107/07, a full art by MINAMINAMI Take drawn for this set. It is a Triple Rare Chinese Exclusive, found only in Gem Vol 4. Beyond Ponyta, collectors chase the other 27 full arts, every card numbered 07.' },
     { q: 'When did Gem Vol 4 release?', a: 'February 6, 2026.' },
     { q: 'What language are the cards in?', a: 'Simplified Chinese.' },
     { q: 'Where can I buy Gem Vol 4?', a: 'EBI Collectibles carries Gem Vol 4 packs and boxes.' },
   ],
-  metaTitle: 'Gem Vol 4 (Gem 4) Card List: All 196 Cards | EBI Collectibles',
+  metaTitle: 'Pokémon Gem Pack Vol. 4 (Gem 4) Card List: All 196 Cards | EBI Collectibles',
   metaDescription:
-    'Browse every card in Pokémon TCG Gem Vol 4 (Simplified Chinese): all 28 Pokémon across 7 rarities each, with full-art Triple Rares and a printable checklist.',
-  ogTitle: 'Gem Vol 4 (Gem 4) Card List: All 196 Cards',
-  ogDescription: 'All 196 cards in Pokémon TCG Gem Vol 4. Browse by Pokémon, filter by rarity, and track which ones you own.',
+    'All 196 cards in Pokémon Gem Pack Vol. 4 (CBB4C), Simplified Chinese: 28 Pokémon in 7 versions each, 28 full arts and the Chinese Exclusive Ponyta.',
+  ogTitle: 'Pokémon Gem Pack Vol. 4 (Gem 4) Card List: All 196 Cards',
+  ogDescription: 'All 196 cards in Pokémon Gem Pack Vol. 4 (CBB4C). Browse by Pokémon, filter by rarity and track which ones you own.',
 }
 
 export const Route = createFileRoute('/sets/chinese/gem-vol-4')({
