@@ -155,7 +155,10 @@ function RootDocument({ children }: { children: React.ReactNode }) {
         <a href="#main-content" className="ebi-skip-link">
           Skip to main content
         </a>
-        <ClerkProvider>
+        {/* prefetchUI off: this site uses its own login/signup forms (custom flows),
+            never Clerk's prebuilt screens, so the ~220 KB @clerk/ui bundle is never needed.
+            The core clerk-js (sessions, sign-in, SSO, captcha) still loads as before. */}
+        <ClerkProvider prefetchUI={false}>
           <CartProvider products={products}>
             {showMaintenance ? (
               <MaintenancePage />
