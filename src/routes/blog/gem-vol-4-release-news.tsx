@@ -76,7 +76,7 @@ const FAQ = [
   },
   {
     q: 'Are all the cards holo?',
-    a: 'Yes. Every card in every pack is a holo. There are no non-holo cards in the set.',
+    a: 'Yes. Every card in every pack is a holo.',
   },
   {
     q: 'What is the Chinese Exclusive in Gem Vol 4?',

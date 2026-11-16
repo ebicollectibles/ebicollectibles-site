@@ -86,7 +86,7 @@ const FAQ = [
   },
   {
     q: 'Are all the cards holo?',
-    a: 'Yes. Every card in every pack is a holo. There are no non-holo cards in the set.',
+    a: 'Yes. Every card in every pack is a holo.',
   },
   {
     q: 'What is the Chinese Exclusive in Gem Vol 7?',
@@ -98,7 +98,8 @@ const FAQ = [
   },
   {
     q: 'Where does the Gem 7 artwork come from?',
-    a: 'Mostly from English cards. 55 of the 56 artworks are the same art you will find on English Scarlet & Violet cards, mostly from Destined Rivals. Our Gem Vol 7 card origins guide traces every card.',
+    a: 'Mostly from English cards. 55 of the 56 artworks are the same art you will find on English Scarlet & Violet cards, mostly from Destined Rivals.',
+    link: { to: '/sets/chinese/gem-vol-7', before: 'See every card on the ', label: 'Gem Vol 7 card list', after: '.' },
   },
 ]
 
@@ -154,7 +155,11 @@ function GemVol7Post() {
   const faqJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
-    mainEntity: FAQ.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
+    mainEntity: FAQ.map((f) => ({
+      '@type': 'Question',
+      name: f.q,
+      acceptedAnswer: { '@type': 'Answer', text: f.link ? `${f.a} ${f.link.before}${f.link.label}${f.link.after}` : f.a },
+    })),
   }
 
   return (
@@ -378,7 +383,17 @@ function GemVol7Post() {
           {FAQ.map((f) => (
             <details key={f.q}>
               <summary>{f.q}</summary>
-              <p>{f.a}</p>
+              <p>
+                {f.a}
+                {f.link && (
+                  <>
+                    {' '}
+                    {f.link.before}
+                    <Link to={f.link.to as never}>{f.link.label}</Link>
+                    {f.link.after}
+                  </>
+                )}
+              </p>
             </details>
           ))}
         </div>
