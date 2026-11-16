@@ -50,7 +50,7 @@ export function BlogPostLayout({
           <div className="crumbs">
             <Link to="/">Home</Link>
             <span>/</span>
-            <Link to="/blog">Blog</Link>
+            <Link to="/blog" activeOptions={{ exact: true }} activeProps={{}}>Blog</Link>
           </div>
           <div className="eyebrow">
             <span className="dot" />
