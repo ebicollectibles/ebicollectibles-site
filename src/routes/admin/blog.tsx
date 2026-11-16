@@ -114,7 +114,7 @@ function AdminBlogPage() {
       {error && <p style={{ color: '#a85b2c', fontSize: 13.5 }}>{error}</p>}
 
       <div style={{ overflowX: 'auto' }}>
-        <table style={{ width: '100%', borderCollapse: 'collapse', minWidth: 940 }}>
+        <table style={{ width: '100%', borderCollapse: 'collapse', minWidth: 1100 }}>
           <thead>
             <tr>
               <th style={th}>Banner</th>
@@ -130,15 +130,15 @@ function AdminBlogPage() {
               const isLive = p.slug in live
               return (
                 <tr key={p.slug}>
-                  <td style={{ ...td, width: 168 }}>
+                  <td style={{ ...td, width: 328 }}>
                     <a href={p.path} target="_blank" rel="noreferrer">
                       <img
                         src={p.heroImage}
                         alt={p.heroAlt}
                         loading="lazy"
-                        width={160}
-                        height={90}
-                        style={{ display: 'block', width: 160, height: 90, objectFit: 'cover', borderRadius: 4, border: '1px solid #e3e6ea' }}
+                        width={320}
+                        height={180}
+                        style={{ display: 'block', width: 320, height: 180, objectFit: 'cover', borderRadius: 4, border: '1px solid #e3e6ea' }}
                       />
                     </a>
                   </td>
