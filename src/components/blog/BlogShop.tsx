@@ -17,11 +17,11 @@ export type CtaLink = {
 type Status = { label: string; tone: 'ok' | 'low' | 'pre' | 'out'; action: string; buyable: boolean }
 
 function statusOf(p: BlogShopProduct): Status {
-  if (p.comingSoon) return { label: 'Coming soon', tone: 'pre', action: 'Get notified', buyable: false }
+  if (p.comingSoon) return { label: 'Coming soon', tone: 'pre', action: 'View product', buyable: false }
   if (p.preorder) return { label: 'Pre-order', tone: 'pre', action: 'Pre-order now', buyable: true }
   if (p.stock > 0 && p.stock <= 5) return { label: `Only ${p.stock} left`, tone: 'low', action: 'Shop now', buyable: true }
   if (p.stock > 0) return { label: 'In stock', tone: 'ok', action: 'Shop now', buyable: true }
-  return { label: 'Sold out', tone: 'out', action: 'Get a restock alert', buyable: false }
+  return { label: 'Sold out', tone: 'out', action: 'View product', buyable: false }
 }
 
 function money(n: number) {
