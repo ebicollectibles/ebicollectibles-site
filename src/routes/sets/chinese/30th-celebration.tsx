@@ -86,7 +86,7 @@ const config: GemSetConfig = {
   glow1: 'rgb(222 185 97 / .30)',
   glow2: 'rgb(90 45 5 / .25)',
   heroLede:
-    "All 206 cards in 30th Celebration: 100 Pokémon across the main 103-card set (plus 3 Trainers), 20 Art Rares, 10 Special Art Rares, 2 Futuristic Rares, 30 classic reprints spanning the TCG's history, 8 basic Energy and 33 promos. Tap any card for a closer look and every other printing beside it.",
+    "All 206 cards in 30th Celebration: the 103-card main set (100 Pokémon, 30 of them Pikachu Rares, plus 3 Trainers), 20 Art Rares, 10 Special Art Rares, 2 Futuristic Rares, 30 classic reprints, 8 basic Energy and 33 promos. Tap any card for a closer look and every other printing beside it.",
   pokemonFact: '100',
   rarityVersionLabelsOverride: {
     'Common (C)': '001–103 (mixed)',
@@ -101,23 +101,23 @@ const config: GemSetConfig = {
     Promo: 'P001–P033',
   },
   aboutParagraphs: [
-    "30th Celebration (set code 30thC) is an officially-licensed Pokémon TCG special set marking the franchise's 30th anniversary, released September 16, 2026. It isn't part of a numbered main expansion or the Gem Pack line: it's a standalone celebration set built around 100 main-set Pokémon cards (30 of them Pikachu), 30 reprints of famous cards from the TCG's history, and its own promo line.",
-    "The 165 numbered set cards run 001–103 for the main set (100 Pokémon plus 3 Trainers, across Common, Rare, a set-specific Pikachu Rare tier for 30 different Pikachu, and Double Rare) and 104–165 for secret rares: Art Rares, Special Art Rares, two Futuristic Rares (Mewtwo ex and Mew ex), and 30 classic reprints of cards spanning the TCG's history in their original frames. 8 basic Energy and 33 promos (27 starter Pokémon across all 9 generations plus 6 ex) round out the set at 206 cards total. The classic reprints, Energy and promos sit outside the standard rarity tiers, so they're shown here under their own neutral labels rather than a guessed tier.",
+    "30th Celebration is an official Simplified Chinese Pokémon TCG special set for the franchise's 30th anniversary, released September 16, 2026. It is not a Gem Pack or part of a numbered main series. It is a standalone set with a 103-card main set, secret rares, 30 classic reprints and its own promo line. Every card is a holo, and every pack has one of the 30 Pikachu.",
+    "The main set runs 001–103: 100 Pokémon and 3 Trainers (Poké Pad, Switch and Ultra Ball). Its rarities are Common, Rare, Double Rare and a Pikachu Rare tier made for this set, 30 different Pikachu numbered 017–046. There is no Uncommon tier. The secret rares run 104–165: 20 Art Rares, 10 Special Art Rares, 2 Futuristic Rares (Mewtwo ex and Mew ex) and 30 classic reprints of famous cards from 1999 to 2023 in their original frames. Eight basic Energy cards and 33 promos sit outside the numbered set. The promos come in special products, not booster packs. The classic reprints, Energy and promos have no standard rarity tier, so they are listed here as Classic Reprint, Basic Energy and Promo.",
   ],
   faq: [
-    { q: 'How many cards are in 30th Celebration?', a: "206 cards: 165 numbered set cards (100 Pokémon plus 3 Trainers in the main 103-card set, plus Art Rares, Special Art Rares, Futuristic Rares and 30 classic reprints as secret rares), 8 basic Energy and 33 promos." },
-    { q: 'What are the chase cards?', a: 'Mewtwo ex and Mew ex (134/103, 135/103) are the set\'s only Futuristic Rares, a rarity made for this set. Pokémon China\'s odds chart puts them in its rarest band, with the Special Art Rares. Ditto 121/103, an Art Rare, is pullable straight from packs here. English only ever released it as a separate promo.' },
-    { q: "What's 30th Celebration's rarity scheme?", a: 'Common, Rare, a set-specific Pikachu Rare tier (30 different Pikachu), Double Rare, Art Rare, Special Art Rare and Futuristic Rare, plus unrated classic reprints, Energy and promos, unlike any other EBI card list.' },
-    { q: 'What is the Pikachu Rare tier?', a: "A 30-card run (017–046) of different Pikachu, each with its own art and a Pikachu-face holo pattern, unique to this set. Every pack has one, and Pokémon China's odds chart groups them with the Commons and basic Energy in its most common band." },
+    { q: 'How many cards are in 30th Celebration?', a: '206 cards: 165 numbered set cards (the 103-card main set plus 62 secret rares: 20 Art Rares, 10 Special Art Rares, 2 Futuristic Rares and 30 classic reprints), 8 basic Energy and 33 promos.' },
+    { q: 'What are the chase cards?', a: "Mewtwo ex 134/103 and Mew ex 135/103, the set's only Futuristic Rares, a rarity made for this set. Pokémon China's odds chart puts them in its rarest band with the Special Art Rares. Ditto 121/103, an Art Rare, is another one to note: in English that art was only released as a promo, but here it comes out of booster packs." },
+    { q: "What's 30th Celebration's rarity scheme?", a: 'Common, Rare, Pikachu Rare, Double Rare, Art Rare, Special Art Rare and Futuristic Rare. There is no Uncommon tier. The classic reprints, basic Energy and promos have no rarity tier.' },
+    { q: 'What is the Pikachu Rare tier?', a: "A run of 30 different Pikachu, numbered 017–046, each with its own art and a Pikachu-face holo pattern. It only exists in this set. Every pack has one, and Pokémon China's odds chart groups them with the Commons and basic Energy in its most common band." },
     { q: 'When did 30th Celebration release?', a: 'September 16, 2026.' },
     { q: 'What language are the cards in?', a: 'Simplified Chinese.' },
     { q: 'Where can I buy 30th Celebration?', a: 'EBI Collectibles carries 30th Celebration packs and boxes.' },
   ],
-  metaTitle: '30th Celebration Card List: All 206 Cards | EBI Collectibles',
+  metaTitle: 'Pokémon TCG 30th Celebration Card List: All 206 Cards | EBI Collectibles',
   metaDescription:
-    "Browse every card in Pokémon TCG 30th Celebration (Simplified Chinese): 100 Pokémon, the Pikachu Rare tier, Art Rares, Special Art Rares, Futuristic Rares, 30 classic reprints, Energy and promos.",
-  ogTitle: '30th Celebration Card List: All 206 Cards',
-  ogDescription: 'All 206 cards in Pokémon TCG 30th Celebration. Browse by Pokémon, filter by rarity, and track which ones you own.',
+    'All 206 cards in Pokémon 30th Celebration, Simplified Chinese: 30 Pikachu, Art Rares, SARs, 2 Futuristic Rares, 30 classic reprints, Energy and promos.',
+  ogTitle: 'Pokémon TCG 30th Celebration Card List: All 206 Cards',
+  ogDescription: 'All 206 cards in Pokémon 30th Celebration (Simplified Chinese). Browse by Pokémon, filter by rarity and track which ones you own.',
 }
 
 export const Route = createFileRoute('/sets/chinese/30th-celebration')({

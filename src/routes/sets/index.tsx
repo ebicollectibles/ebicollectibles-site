@@ -30,10 +30,10 @@ const breadcrumbJsonLd = {
 export const Route = createFileRoute('/sets/')({
   head: () => ({
     meta: [
-      { title: 'Pokémon Sets by Language | EBI Collectibles' },
-      { name: 'description', content: 'Full card lists, rarities and checklists for every Pokémon TCG set we carry, organized by language.' },
-      { property: 'og:title', content: 'Pokémon Sets' },
-      { property: 'og:description', content: 'Full card lists and checklists for every Pokémon TCG set we carry, organized by language.' },
+      { title: 'Pokémon TCG Sets by Language: Card Lists and Checklists | EBI Collectibles' },
+      { name: 'description', content: 'Full card lists, rarities and checklists for the Pokémon TCG sets we track, sorted by language, starting with Simplified Chinese.' },
+      { property: 'og:title', content: 'Pokémon TCG Sets by Language: Card Lists and Checklists' },
+      { property: 'og:description', content: 'Full card lists, rarities and checklists for the Pokémon TCG sets we track, sorted by language, starting with Simplified Chinese.' },
       { property: 'og:image', content: GEM_SETS[0].heroImage },
       { property: 'og:url', content: `${SITE_URL}/sets` },
       { property: 'og:type', content: 'website' },
@@ -61,7 +61,7 @@ function SetsHubPage() {
           </div>
           <div className="eyebrow">Pokémon TCG</div>
           <h1>Pokémon sets</h1>
-          <p className="lede">Every set we carry, every card. Pick a language to browse its sets and track your collection.</p>
+          <p className="lede">Full card lists for the Pokémon sets we track. Pick a language to browse its sets and track your collection.</p>
         </div>
       </section>
 
@@ -79,7 +79,7 @@ function SetsHubPage() {
                   <p className="card-tagline">{l.tagline}</p>
                   <div className="card-meta">
                     <span>
-                      <b>{l.sets.length}</b> sets
+                      <b>{l.sets.length}</b> card lists
                     </span>
                   </div>
                 </div>

@@ -70,13 +70,13 @@ function groupBySeries() {
 export const Route = createFileRoute('/sets/chinese/')({
   head: () => ({
     meta: [
-      { title: 'Simplified Chinese Pokémon Sets: Every Card List | EBI Collectibles' },
+      { title: 'Pokémon TCG Simplified Chinese Sets: Every Card List | EBI Collectibles' },
       {
         name: 'description',
-        content: 'Browse every Simplified Chinese Pokémon TCG release from EBI Collectibles: full card lists, rarities and checklists for every set we carry.',
+        content: 'Card lists for Simplified Chinese Pokémon TCG: Gem Packs, the Scarlet & Violet sets, 30th Celebration and all four Collect 151 releases.',
       },
-      { property: 'og:title', content: 'Simplified Chinese Pokémon Sets' },
-      { property: 'og:description', content: 'Every card in every Simplified Chinese set we carry. Browse, filter and track what you own.' },
+      { property: 'og:title', content: 'Pokémon TCG Simplified Chinese Sets: Every Card List' },
+      { property: 'og:description', content: 'Card lists for Simplified Chinese Pokémon TCG: Gem Packs, the Scarlet & Violet sets, 30th Celebration and all four Collect 151 releases.' },
       // No declared og:image:width/height — most card images are
       // 300×419, but not all (see the same note in buildGemSetHead), so
       // an undeclared size (platforms measure it themselves) beats a
@@ -85,8 +85,8 @@ export const Route = createFileRoute('/sets/chinese/')({
       { property: 'og:url', content: `${SITE_URL}/sets/chinese` },
       { property: 'og:type', content: 'website' },
       { name: 'twitter:card', content: 'summary_large_image' },
-      { name: 'twitter:title', content: 'Simplified Chinese Pokémon Sets' },
-      { name: 'twitter:description', content: 'Every card in every Simplified Chinese set we carry. Browse, filter and track what you own.' },
+      { name: 'twitter:title', content: 'Pokémon TCG Simplified Chinese Sets: Every Card List' },
+      { name: 'twitter:description', content: 'Card lists for Simplified Chinese Pokémon TCG: Gem Packs, the Scarlet & Violet sets, 30th Celebration and all four Collect 151 releases.' },
       { name: 'twitter:image', content: GEM_SETS[0].heroImage },
     ],
     links: [
@@ -116,7 +116,7 @@ function SetsIndexPage() {
           <div className="eyebrow">Simplified Chinese · Pokémon TCG</div>
           <h1>Simplified Chinese Pokémon sets</h1>
           <p className="lede">
-            Every set we carry, every card. Browse by Pokémon, filter by rarity, and track your own collection. Pick a set below to start.
+            Full card lists for every Simplified Chinese set we track. Browse by Pokémon, filter by rarity and track your own collection. Pick a set below to start.
           </p>
         </div>
       </section>
@@ -150,7 +150,7 @@ function SetsIndexPage() {
                             <b>{s.cardCount}</b> cards
                           </span>
                           <span>{formatReleaseDate(s.releaseDate)}</span>
-                          {s.exclusiveCount > 0 && <span className="card-excl">{s.exclusiveCount}× excl.</span>}
+                          {s.exclusiveCount > 0 && <span className="card-excl">{s.exclusiveCount} Chinese Exclusive{s.exclusiveCount > 1 ? 's' : ''}</span>}
                         </div>
                       </div>
                     </Link>

@@ -30,7 +30,7 @@ const config: GemSetConfig = {
   glow1: 'rgb(138 61 120 / .30)',
   glow2: 'rgb(58 110 165 / .25)',
   aboutParagraphs: [
-    'Gem Vol 7 (Gem Pack Vol. 7, set code CBB7C) is the seventh Simplified Chinese Gem Pack, released November 6, 2026. It has 196 cards built around 28 Pokémon, and every card is a holo. 19 of the 28 Pokémon belong to a Trainer. Team Rocket has eight, Misty has Psyduck and Lapras, and the rest come from Ethan, Steven, Cynthia, N, Lillie, Arven, Hop, Marnie and Iono.',
+    'Gem Vol 7 (Gem Pack Vol. 7, set code CBB7C) is the seventh Simplified Chinese Gem Pack, released November 6, 2026. It has 196 cards built around 28 Pokémon, and every card is a holo. Of the 28 Pokémon, 19 belong to a Trainer. Team Rocket has eight, Misty has Psyduck and Lapras, and the rest come from Ethan, Steven, Cynthia, N, Lillie, Arven, Hop, Marnie and Iono.',
     'Every Pokémon has 7 versions. Versions 01 and 02 are Common, 03 and 04 Uncommon, 05 Rare, 06 Double Rare, and 07 is a full-art Triple Rare. Card numbers read as Pokémon number then version, so 0307/07 is version 7 of Pokémon 03.',
   ],
   faq: [
