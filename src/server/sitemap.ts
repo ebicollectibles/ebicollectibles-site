@@ -23,6 +23,17 @@ export async function handleSitemapRequest(): Promise<Response> {
     .from(products)
     .where(eq(products.published, true))
 
+  const { readLiveMap } = await import('~/server/blog-status')
+  const { BLOG_POSTS } = await import('~/data/blog-posts')
+  const live = await readLiveMap()
+  const livePosts = BLOG_POSTS.filter((p) => p.slug in live)
+  const blogUrls = livePosts.length
+    ? [
+        `<url><loc>${xmlEscape(`${SITE_URL}/blog`)}</loc></url>`,
+        ...livePosts.map((p) => `<url><loc>${xmlEscape(SITE_URL + p.path)}</loc><lastmod>${live[p.slug].slice(0, 10)}</lastmod></url>`),
+      ]
+    : []
+
   const urls = [
     ...STATIC_PATHS.map((path) => `<url><loc>${xmlEscape(SITE_URL + path)}</loc></url>`),
     ...rows.map(
@@ -33,6 +44,8 @@ export async function handleSitemapRequest(): Promise<Response> {
     // sitemap entirely despite being full, content-rich, indexable pages
     // (reachable from /sets, just never previously declared here).
     ...GEM_SETS.map((s) => `<url><loc>${xmlEscape(`${SITE_URL}${s.path}`)}</loc></url>`),
+    // Blog: only posts switched live in /admin/blog, plus the list once any are.
+    ...blogUrls,
   ].join('')
 
   const xml = `<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${urls}</urlset>`

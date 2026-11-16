@@ -50,6 +50,9 @@ export function AdminNav() {
       <Link to="/admin/customers" style={navLinkStyle}>
         Customers
       </Link>
+      <Link to="/admin/blog" style={navLinkStyle}>
+        Blog
+      </Link>
       <Link to="/admin/subscribers" style={navLinkStyle}>
         Subscribers
       </Link>

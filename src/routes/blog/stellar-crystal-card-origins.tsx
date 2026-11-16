@@ -2,6 +2,7 @@ import { createFileRoute, Link } from '@tanstack/react-router'
 import blogCssUrl from '~/styles/blog.css?url'
 import { BLOG_POSTS, BLOG_SITE_URL } from '~/data/blog-posts'
 import { BlogPostLayout } from '~/components/blog/BlogPostLayout'
+import { getBlogPostStatus } from '~/server/blog-status'
 import { safeJsonLd } from '~/lib/gem-sets/head'
 import setData from '~/data/csv9.json'
 
@@ -350,10 +351,11 @@ const FAQ = [
 ]
 
 export const Route = createFileRoute('/blog/stellar-crystal-card-origins')({
-  head: () => ({
+  loader: () => getBlogPostStatus({ data: post.slug }),
+  head: ({ loaderData }) => ({
     meta: [
       { title: `${post.title} | EBI Collectibles` },
-      { name: 'robots', content: 'noindex, nofollow' },
+      { name: 'robots', content: loaderData?.live ? 'index, follow' : 'noindex, nofollow' },
       { name: 'description', content: post.excerpt },
       { property: 'og:title', content: post.title },
       { property: 'og:description', content: post.excerpt },
@@ -408,13 +410,14 @@ function OriginsTable({ list }: { list: typeof rows }) {
 }
 
 function StellarCrystalOrigins() {
+  const status = Route.useLoaderData()
   const articleJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'BlogPosting',
     headline: post.title,
     description: post.excerpt,
     datePublished: post.date,
-    dateModified: post.updated ?? post.date,
+    dateModified: status.liveAt?.slice(0, 10) ?? post.date,
     image: post.heroImage,
     url: `${BLOG_SITE_URL}${post.path}`,
     mainEntityOfPage: `${BLOG_SITE_URL}${post.path}`,
@@ -433,6 +436,7 @@ function StellarCrystalOrigins() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(articleJsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(faqJsonLd) }} />
       <BlogPostLayout
+        updated={status.liveAt}
         wide
         post={post}
         lede="Stellar Crystal is mostly Surging Sparks and Stellar Crown, with a few surprises. Here is where each of its 266 cards lines up in English, and the one card English never printed."

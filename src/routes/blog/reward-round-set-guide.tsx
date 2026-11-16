@@ -2,6 +2,7 @@ import { createFileRoute, Link } from '@tanstack/react-router'
 import blogCssUrl from '~/styles/blog.css?url'
 import { BLOG_POSTS, BLOG_SITE_URL } from '~/data/blog-posts'
 import { BlogPostLayout } from '~/components/blog/BlogPostLayout'
+import { getBlogPostStatus } from '~/server/blog-status'
 import { safeJsonLd } from '~/lib/gem-sets/head'
 import setData from '~/data/csv4.json'
 
@@ -97,10 +98,11 @@ const FAQ = [
 ]
 
 export const Route = createFileRoute('/blog/reward-round-set-guide')({
-  head: () => ({
+  loader: () => getBlogPostStatus({ data: post.slug }),
+  head: ({ loaderData }) => ({
     meta: [
       { title: `${post.title} | EBI Collectibles` },
-      { name: 'robots', content: 'noindex, nofollow' },
+      { name: 'robots', content: loaderData?.live ? 'index, follow' : 'noindex, nofollow' },
       { name: 'description', content: post.excerpt },
       { property: 'og:title', content: post.title },
       { property: 'og:description', content: post.excerpt },
@@ -118,13 +120,14 @@ export const Route = createFileRoute('/blog/reward-round-set-guide')({
 })
 
 function RewardRoundSetGuide() {
+  const status = Route.useLoaderData()
   const articleJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'BlogPosting',
     headline: post.title,
     description: post.excerpt,
     datePublished: post.date,
-    dateModified: post.updated ?? post.date,
+    dateModified: status.liveAt?.slice(0, 10) ?? post.date,
     image: post.heroImage,
     url: `${BLOG_SITE_URL}${post.path}`,
     mainEntityOfPage: `${BLOG_SITE_URL}${post.path}`,
@@ -142,6 +145,7 @@ function RewardRoundSetGuide() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(articleJsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(faqJsonLd) }} />
       <BlogPostLayout
+        updated={status.liveAt}
         wide
         post={post}
         lede="Every chase card in Reward Round, what a slim box averages, each Pokémon ex at every rarity, and what a master set takes."

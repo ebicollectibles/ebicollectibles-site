@@ -2,6 +2,7 @@ import { createFileRoute, Link } from '@tanstack/react-router'
 import blogCssUrl from '~/styles/blog.css?url'
 import { BLOG_POSTS, BLOG_SITE_URL } from '~/data/blog-posts'
 import { BlogPostLayout } from '~/components/blog/BlogPostLayout'
+import { getBlogPostStatus } from '~/server/blog-status'
 import { safeJsonLd } from '~/lib/gem-sets/head'
 import setData from '~/data/csv9-5.json'
 
@@ -348,10 +349,11 @@ const FAQ = [
 ]
 
 export const Route = createFileRoute('/blog/terastal-gathering-card-origins')({
-  head: () => ({
+  loader: () => getBlogPostStatus({ data: post.slug }),
+  head: ({ loaderData }) => ({
     meta: [
       { title: `${post.title} | EBI Collectibles` },
-      { name: 'robots', content: 'noindex, nofollow' },
+      { name: 'robots', content: loaderData?.live ? 'index, follow' : 'noindex, nofollow' },
       { name: 'description', content: post.excerpt },
       { property: 'og:title', content: post.title },
       { property: 'og:description', content: post.excerpt },
@@ -406,13 +408,14 @@ function OriginsTable({ list }: { list: typeof rows }) {
 }
 
 function TerastalGatheringOrigins() {
+  const status = Route.useLoaderData()
   const articleJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'BlogPosting',
     headline: post.title,
     description: post.excerpt,
     datePublished: post.date,
-    dateModified: post.updated ?? post.date,
+    dateModified: status.liveAt?.slice(0, 10) ?? post.date,
     image: post.heroImage,
     url: `${BLOG_SITE_URL}${post.path}`,
     mainEntityOfPage: `${BLOG_SITE_URL}${post.path}`,
@@ -432,6 +435,7 @@ function TerastalGatheringOrigins() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(articleJsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(faqJsonLd) }} />
       <BlogPostLayout
+        updated={status.liveAt}
         wide
         post={post}
         lede="Terastal Gathering is often called the Chinese Prismatic Evolutions, and that is mostly right. Here is where all 259 cards line up in English, including the promo arts and the two cards English never printed."

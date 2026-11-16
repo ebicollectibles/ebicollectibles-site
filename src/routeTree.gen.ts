@@ -32,6 +32,7 @@ import { Route as AccountVerifyRouteImport } from './routes/account/verify'
 import { Route as AdminIndexRouteImport } from './routes/admin/index'
 import { Route as AdminAffiliatesRouteImport } from './routes/admin/affiliates'
 import { Route as AdminBestSellingRouteImport } from './routes/admin/best-selling'
+import { Route as AdminBlogRouteImport } from './routes/admin/blog'
 import { Route as AdminBulkVariantsRouteImport } from './routes/admin/bulk-variants'
 import { Route as AdminLinksRouteImport } from './routes/admin/links'
 import { Route as AdminLoginRouteImport } from './routes/admin/login'
@@ -245,6 +246,11 @@ const AdminAffiliatesRoute = AdminAffiliatesRouteImport.update({
 const AdminBestSellingRoute = AdminBestSellingRouteImport.update({
   id: '/admin/best-selling',
   path: '/admin/best-selling',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminBlogRoute = AdminBlogRouteImport.update({
+  id: '/admin/blog',
+  path: '/admin/blog',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AdminBulkVariantsRoute = AdminBulkVariantsRouteImport.update({
@@ -811,6 +817,7 @@ export interface FileRoutesByFullPath {
   '/account/verify': typeof AccountVerifyRoute
   '/admin/affiliates': typeof AdminAffiliatesRoute
   '/admin/best-selling': typeof AdminBestSellingRoute
+  '/admin/blog': typeof AdminBlogRoute
   '/admin/bulk-variants': typeof AdminBulkVariantsRoute
   '/admin/links': typeof AdminLinksRoute
   '/admin/login': typeof AdminLoginRoute
@@ -935,6 +942,7 @@ export interface FileRoutesByTo {
   '/account/verify': typeof AccountVerifyRoute
   '/admin/affiliates': typeof AdminAffiliatesRoute
   '/admin/best-selling': typeof AdminBestSellingRoute
+  '/admin/blog': typeof AdminBlogRoute
   '/admin/bulk-variants': typeof AdminBulkVariantsRoute
   '/admin/links': typeof AdminLinksRoute
   '/admin/login': typeof AdminLoginRoute
@@ -1060,6 +1068,7 @@ export interface FileRoutesById {
   '/account/verify': typeof AccountVerifyRoute
   '/admin/affiliates': typeof AdminAffiliatesRoute
   '/admin/best-selling': typeof AdminBestSellingRoute
+  '/admin/blog': typeof AdminBlogRoute
   '/admin/bulk-variants': typeof AdminBulkVariantsRoute
   '/admin/links': typeof AdminLinksRoute
   '/admin/login': typeof AdminLoginRoute
@@ -1186,6 +1195,7 @@ export interface FileRouteTypes {
     | '/account/verify'
     | '/admin/affiliates'
     | '/admin/best-selling'
+    | '/admin/blog'
     | '/admin/bulk-variants'
     | '/admin/links'
     | '/admin/login'
@@ -1310,6 +1320,7 @@ export interface FileRouteTypes {
     | '/account/verify'
     | '/admin/affiliates'
     | '/admin/best-selling'
+    | '/admin/blog'
     | '/admin/bulk-variants'
     | '/admin/links'
     | '/admin/login'
@@ -1434,6 +1445,7 @@ export interface FileRouteTypes {
     | '/account/verify'
     | '/admin/affiliates'
     | '/admin/best-selling'
+    | '/admin/blog'
     | '/admin/bulk-variants'
     | '/admin/links'
     | '/admin/login'
@@ -1559,6 +1571,7 @@ export interface RootRouteChildren {
   AccountVerifyRoute: typeof AccountVerifyRoute
   AdminAffiliatesRoute: typeof AdminAffiliatesRoute
   AdminBestSellingRoute: typeof AdminBestSellingRoute
+  AdminBlogRoute: typeof AdminBlogRoute
   AdminBulkVariantsRoute: typeof AdminBulkVariantsRoute
   AdminLinksRoute: typeof AdminLinksRoute
   AdminLoginRoute: typeof AdminLoginRoute
@@ -1823,6 +1836,13 @@ declare module '@tanstack/react-router' {
       path: '/admin/best-selling'
       fullPath: '/admin/best-selling'
       preLoaderRoute: typeof AdminBestSellingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/blog': {
+      id: '/admin/blog'
+      path: '/admin/blog'
+      fullPath: '/admin/blog'
+      preLoaderRoute: typeof AdminBlogRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/admin/bulk-variants': {
@@ -2543,6 +2563,7 @@ const rootRouteChildren: RootRouteChildren = {
   AccountVerifyRoute: AccountVerifyRoute,
   AdminAffiliatesRoute: AdminAffiliatesRoute,
   AdminBestSellingRoute: AdminBestSellingRoute,
+  AdminBlogRoute: AdminBlogRoute,
   AdminBulkVariantsRoute: AdminBulkVariantsRoute,
   AdminLinksRoute: AdminLinksRoute,
   AdminLoginRoute: AdminLoginRoute,

@@ -2,6 +2,7 @@ import { createFileRoute, Link } from '@tanstack/react-router'
 import blogCssUrl from '~/styles/blog.css?url'
 import { BLOG_POSTS, BLOG_SITE_URL } from '~/data/blog-posts'
 import { BlogPostLayout } from '~/components/blog/BlogPostLayout'
+import { getBlogPostStatus } from '~/server/blog-status'
 import { safeJsonLd } from '~/lib/gem-sets/head'
 import { R2_IMAGE_HOST, SITE_URL } from '~/lib/gem-sets/constants'
 
@@ -110,10 +111,11 @@ const FAQ = [
 ]
 
 export const Route = createFileRoute('/blog/true-mystery-release-news')({
-  head: () => ({
+  loader: () => getBlogPostStatus({ data: post.slug }),
+  head: ({ loaderData }) => ({
     meta: [
       { title: `${post.title} | EBI Collectibles` },
-      { name: 'robots', content: 'noindex, nofollow' },
+      { name: 'robots', content: loaderData?.live ? 'index, follow' : 'noindex, nofollow' },
       { name: 'description', content: post.excerpt },
       { property: 'og:title', content: post.title },
       { property: 'og:description', content: post.excerpt },
@@ -131,13 +133,14 @@ export const Route = createFileRoute('/blog/true-mystery-release-news')({
 })
 
 function TrueMysteryReleasePost() {
+  const status = Route.useLoaderData()
   const articleJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'BlogPosting',
     headline: post.title,
     description: post.excerpt,
     datePublished: post.date,
-    dateModified: post.updated ?? post.date,
+    dateModified: status.liveAt?.slice(0, 10) ?? post.date,
     image: post.heroImage,
     url: `${BLOG_SITE_URL}${post.path}`,
     mainEntityOfPage: `${BLOG_SITE_URL}${post.path}`,
@@ -155,6 +158,7 @@ function TrueMysteryReleasePost() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(articleJsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(faqJsonLd) }} />
       <BlogPostLayout
+        updated={status.liveAt}
         wide
         post={post}
         lede="Iron Valiant takes the pack and the Paradox Pokémon take over the set. True Mystery brings Roaring Moon ex, Iron Valiant ex and an Iron Hands ex Special Art Rare you can only pull in Simplified Chinese."

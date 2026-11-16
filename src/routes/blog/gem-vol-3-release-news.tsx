@@ -2,6 +2,7 @@ import { createFileRoute, Link } from '@tanstack/react-router'
 import blogCssUrl from '~/styles/blog.css?url'
 import { BLOG_POSTS, BLOG_SITE_URL } from '~/data/blog-posts'
 import { BlogPostLayout } from '~/components/blog/BlogPostLayout'
+import { getBlogPostStatus } from '~/server/blog-status'
 import { safeJsonLd } from '~/lib/gem-sets/head'
 import { R2_IMAGE_HOST, SITE_URL } from '~/lib/gem-sets/constants'
 
@@ -108,10 +109,11 @@ const FAQ = [
 ]
 
 export const Route = createFileRoute('/blog/gem-vol-3-release-news')({
-  head: () => ({
+  loader: () => getBlogPostStatus({ data: post.slug }),
+  head: ({ loaderData }) => ({
     meta: [
       { title: `${post.title.replace('Gem Vol 3', 'Gem Vol 3 (Gem 3)')} | EBI Collectibles` },
-      { name: 'robots', content: 'noindex, nofollow' },
+      { name: 'robots', content: loaderData?.live ? 'index, follow' : 'noindex, nofollow' },
       { name: 'description', content: post.excerpt },
       { property: 'og:title', content: post.title },
       { property: 'og:description', content: post.excerpt },
@@ -129,13 +131,14 @@ export const Route = createFileRoute('/blog/gem-vol-3-release-news')({
 })
 
 function GemVol3Post() {
+  const status = Route.useLoaderData()
   const articleJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'BlogPosting',
     headline: post.title,
     description: post.excerpt,
     datePublished: post.date,
-    dateModified: post.updated ?? post.date,
+    dateModified: status.liveAt?.slice(0, 10) ?? post.date,
     image: post.heroImage,
     url: `${BLOG_SITE_URL}${post.path}`,
     mainEntityOfPage: `${BLOG_SITE_URL}${post.path}`,
@@ -153,6 +156,7 @@ function GemVol3Post() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(articleJsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(faqJsonLd) }} />
       <BlogPostLayout
+        updated={status.liveAt}
         wide
         post={post}
         lede="Gengar fronts the third Simplified Chinese Gem Pack: 136 all-holo cards of Pokémon that come out at night, nine Pokémon ex, and five new full arts you can only pull here."

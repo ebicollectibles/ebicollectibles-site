@@ -15,7 +15,6 @@ export interface BlogPostSummary {
   excerpt: string
   tag: string
   date: string // ISO date, shown as the publish date
-  updated?: string // ISO date, set from BLOG_LIVE_DATE below
   heroImage: string
   heroAlt: string
   glow1: string
@@ -677,13 +676,3 @@ export const BLOG_POSTS: BlogPostSummary[] = [
 ]
 
 export const BLOG_SITE_URL = SITE_URL
-
-// The day the blog goes public. Every post keeps its own publish date (the
-// set's release day) and shows "Updated <this date>", which is also sent to
-// Google as dateModified. Leave null until launch; set it to 'YYYY-MM-DD' on
-// the day the blog goes live.
-export const BLOG_LIVE_DATE = null as string | null
-
-for (const p of BLOG_POSTS) {
-  if (BLOG_LIVE_DATE && BLOG_LIVE_DATE > p.date) p.updated = BLOG_LIVE_DATE
-}

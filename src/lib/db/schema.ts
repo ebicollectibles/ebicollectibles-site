@@ -929,3 +929,16 @@ export const notifyMeEvents = pgTable(
   },
   (table) => [index('notify_me_events_product_id_idx').on(table.productId), index('notify_me_events_blast_id_idx').on(table.blastId)],
 )
+
+// Which blog posts are public. Post content lives in code (src/routes/blog);
+// this only records whether each post is live, flipped from /admin/blog.
+// A post with no row here is a draft: noindex, hidden from /blog and the
+// sitemap, still reachable by direct link for review.
+export const blogPostStatus = pgTable('blog_post_status', {
+  slug: text('slug').primaryKey(),
+  live: boolean('live').notNull().default(false),
+  // When the post most recently went live; shown as its "Updated" date and
+  // sent to Google as dateModified.
+  liveAt: timestamp('live_at', { withTimezone: true }),
+  updatedAt: timestamp('updated_at', { withTimezone: true }).notNull().defaultNow(),
+})

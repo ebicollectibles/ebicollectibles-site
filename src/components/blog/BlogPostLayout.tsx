@@ -12,10 +12,13 @@ export function BlogPostLayout({
   children,
   cta,
   wide = false,
+  updated,
 }: {
   post: BlogPostSummary
   /** Reading column for text, with the hero image and `.breakout` blocks spanning the full 1170px width. */
   wide?: boolean
+  /** When the post went live (ISO); shown as "Updated" when later than its publish date. */
+  updated?: string | null
   lede: string
   children: React.ReactNode
   cta: {
@@ -41,10 +44,10 @@ export function BlogPostLayout({
           <p className="lede">{lede}</p>
           <div className="meta-row">
             <span>{formatDate(post.date)}</span>
-            {post.updated && (
+            {updated && updated.slice(0, 10) > post.date && (
               <>
                 <span>·</span>
-                <span>Updated {formatDate(post.updated)}</span>
+                <span>Updated {formatDate(updated.slice(0, 10))}</span>
               </>
             )}
             <span>·</span>
