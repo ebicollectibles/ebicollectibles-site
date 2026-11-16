@@ -251,7 +251,7 @@ function StellarCrystalSetGuide() {
 
         <h2 id="ladders">Every Pokémon ex at every rarity</h2>
         <p>
-          18 of the 22 Pokémon ex reach the secret block. Here is every number each one prints at. Ceruledge ex, Sylveon ex, Zacian ex
+          18 of the 22 Pokémon ex reach the secret block. These are the numbers each one prints at. Ceruledge ex, Sylveon ex, Zacian ex
           and Noivern ex are Double Rare only.
         </p>
         <div className="table-scroll">

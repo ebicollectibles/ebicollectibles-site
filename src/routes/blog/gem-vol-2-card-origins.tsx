@@ -56,7 +56,7 @@ const TOC = [
 const FAQ = [
   {
     q: 'Are Gem 2 cards reprints?',
-    a: 'The art mostly is. 40 of the 44 artworks we traced are the same art you will find on English cards, mostly from Sword & Shield sets and promos. The cards are still new: Simplified Chinese text, their own numbers, their own holo patterns and the Gem Pack set code.',
+    a: 'The art mostly is. 40 of the 44 artworks we traced are the same art you will find on English cards, mostly from Sword & Shield sets and promos. What is new is the printing: Simplified Chinese text, new numbers, new holo patterns and the Gem Pack set code.',
   },
   {
     q: 'Is any Gem Vol 2 artwork new?',
@@ -207,7 +207,7 @@ function GemVol2OriginsPost() {
             <strong>Some base art is older still.</strong> Espeon and Umbreon base card A come from Sun & Moon Lost Thunder, and Sylveon base card A from Cosmic Eclipse.
           </li>
           <li>
-            <strong>Leafeon V and Glaceon V are from Crown Zenith.</strong> Both use the Crown Zenith art rather than an Evolving Skies card.
+            <strong>Leafeon V and Glaceon V are from Crown Zenith.</strong> Evolving Skies has its own Leafeon V and Glaceon V, but these use the Crown Zenith art.
           </li>
         </ul>
 

@@ -287,7 +287,8 @@ function GemVol5Post() {
         <h2 id="floragato">Floragato, six holo versions</h2>
         <p>
           Floragato shows how a run works. Versions 01 to 06 share the same illustration by Felicia Chen, with Floragato mid-spin
-          among falling petals, and each one gets its own holo finish: Grass-type and Poké Ball patterns, glitter, starburst, the
+          among falling petals. Only the holo
+          changes: Grass-type and Poké Ball patterns, glitter, starburst, the
           Master Ball pattern, and the pink Gem Pack logo stamp.
         </p>
         <div className="card-grid cols-3">
@@ -347,8 +348,8 @@ function GemVol5Post() {
         <h2 id="binders">Four binders to go with it</h2>
         <p>
           Pokémon China also released a 30-pocket Gem Pack Vol. 5 binder the same day, in four cover designs: Pikachu, Floragato,
-          Crocalor and Quaxwell. Each page holds a single card, so they work as showcases for your best pulls, like a Horizons full art
-          and its run, rather than as storage for the whole set.
+          Crocalor and Quaxwell. Each binder holds 30 cards, one per page, which is
+          enough for your favorite pulls, like a Horizons full art and its run.
         </p>
         <img
           className="inline-media"

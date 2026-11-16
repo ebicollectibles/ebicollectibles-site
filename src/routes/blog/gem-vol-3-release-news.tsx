@@ -311,8 +311,8 @@ function GemVol3Post() {
 
         <h2 id="gengar">Gengar, six holo versions</h2>
         <p>
-          Gengar shows how a run works. Versions 01 to 06 share the same grinning illustration by Nelnal, and each one gets its own
-          holo finish: Energy-type and Poké Ball patterns, glitter, starburst, the Master Ball pattern, and the pink Gem Pack logo
+          Gengar shows how a run works. Versions 01 to 06 share the same grinning illustration by Nelnal. Only the holo
+          changes: Energy-type and Poké Ball patterns, glitter, starburst, the Master Ball pattern, and the pink Gem Pack logo
           stamp.
         </p>
         <div className="card-grid cols-3">
@@ -394,8 +394,8 @@ function GemVol3Post() {
         <h2 id="binders">Five binders to go with it</h2>
         <p>
           Pokémon China also released a 30-pocket Gem Pack Vol. 3 binder the same day, in five cover designs that match the new
-          full arts: Meowth, Gengar, Cubone, Chandelure and Ceruledge. Each page holds a single card, so they work as showcases for your
-          best pulls rather than as storage for the whole set.
+          full arts: Meowth, Gengar, Cubone, Chandelure and Ceruledge. Each binder holds 30 cards, one per page,
+          which is enough for your favorite pulls.
         </p>
         <img
           className="inline-media"

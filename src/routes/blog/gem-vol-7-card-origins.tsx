@@ -67,7 +67,7 @@ const TOC = [
 const FAQ = [
   {
     q: 'Are Gem 7 cards reprints?',
-    a: 'The art mostly is. 55 of the 56 artworks are the same art you will find on English Scarlet & Violet cards, mostly from Destined Rivals. The cards are still new: Simplified Chinese text, their own numbers, their own holo patterns and the Gem Pack set code.',
+    a: 'The art mostly is. 55 of the 56 artworks are the same art you will find on English Scarlet & Violet cards, mostly from Destined Rivals. What is new is the printing: Simplified Chinese text, new numbers, new holo patterns and the Gem Pack set code.',
   },
   {
     q: 'Is any Gem Vol 7 artwork new?',

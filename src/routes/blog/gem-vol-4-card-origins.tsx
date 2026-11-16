@@ -69,7 +69,7 @@ const TOC = [
 const FAQ = [
   {
     q: 'Are Gem 4 cards reprints?',
-    a: 'The art mostly is. 55 of the 56 artworks are the same art you will find on English cards, mostly from Temporal Forces and Twilight Masquerade. The cards are still new: Simplified Chinese text, their own numbers, their own holo patterns and the Gem Pack set code.',
+    a: 'The art mostly is. 55 of the 56 artworks are the same art you will find on English cards, mostly from Temporal Forces and Twilight Masquerade. What is new is the printing: Simplified Chinese text, new numbers, new holo patterns and the Gem Pack set code.',
   },
   {
     q: 'Is any Gem Vol 4 artwork new?',
@@ -81,7 +81,7 @@ const FAQ = [
   },
   {
     q: 'Why does Paldean Wooper\'s full art come from a newer set?',
-    a: 'Its art first came out in English in Phantasmal Flames rather than in a Scarlet & Violet set.',
+    a: 'Its art first came out in English in Phantasmal Flames, a Mega Evolution set.',
   },
 ]
 

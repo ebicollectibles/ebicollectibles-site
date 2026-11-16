@@ -273,7 +273,8 @@ function GemVol4Post() {
         <h2 id="ponyta">Ponyta, six holo versions</h2>
         <p>
           Ponyta shows how a run works. Versions 01 to 06 share the same illustration by Ayako Ozaki, with Ponyta resting in a
-          flower-dotted meadow, and each one gets its own holo finish: Fire-type and Poké Ball patterns, glitter, starburst, the Master
+          flower-dotted meadow. Only the holo
+          changes: Fire-type and Poké Ball patterns, glitter, starburst, the Master
           Ball pattern, and the pink Gem Pack logo stamp.
         </p>
         <div className="card-grid cols-3">
@@ -332,9 +333,8 @@ function GemVol4Post() {
 
         <h2 id="ponyta-binder">A Ponyta binder to go with it</h2>
         <p>
-          Pokémon China also released a 30-pocket Gem Pack Vol. 4 binder the same day, red with Ponyta on the cover. Each page holds a
-          single card, so it works as a showcase for your best pulls, like the Ponyta full art or all seven Ponyta versions, rather than
-          as storage for the whole set.
+          Pokémon China also released a 30-pocket Gem Pack Vol. 4 binder the same day, red with Ponyta on the cover. It holds 30 cards, one
+          per page, which is enough for your favorite pulls, like the Ponyta full art or all seven Ponyta versions.
         </p>
         <img
           className="inline-media"

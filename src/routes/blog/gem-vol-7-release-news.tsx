@@ -205,8 +205,8 @@ function GemVol7Post() {
           </figcaption>
         </figure>
         <p>
-          The full art is new artwork by Cona Nitanda, drawn for this set rather than reprinted from another one. Psyduck lounges in a
-          beach chair holding a beach ball up high while Misty waves from behind, ready for a day at the shore.
+          The full art is a new illustration by Cona Nitanda. Psyduck sits in a beach chair holding a beach ball over its head while
+          Misty waves from behind.
         </p>
         <p>
           Because the illustration debuts here, Gem Vol 7 is the only place to pull it. It sits in the 07 slot, the rarest in every
@@ -275,7 +275,8 @@ function GemVol7Post() {
         <h2 id="mistys-psyduck">Misty's Psyduck, six holo versions</h2>
         <p>
           Psyduck shows how a run works. Versions 01 to 06 share the same pool-deck illustration by Yuu
-          Nishida, and each one gets its own holo finish: Energy-type and Poké Ball patterns, glitter, starburst, the Master Ball
+          Nishida. Only the holo
+          changes: Energy-type and Poké Ball patterns, glitter, starburst, the Master Ball
           pattern, and the pink Gem Pack logo stamp.
         </p>
         <div className="card-grid cols-3">
@@ -330,9 +331,8 @@ function GemVol7Post() {
 
         <h2 id="psyduck-binder">A Psyduck binder to go with it</h2>
         <p>
-          Pokémon China also released a 30-pocket Gem Pack Vol. 7 binder with Psyduck on the cover the same day. Each page holds a single
-          card, so it works as a showcase for your best pulls, like the Psyduck full art or all seven Psyduck versions, rather than
-          as storage for the whole set.
+          Pokémon China also released a 30-pocket Gem Pack Vol. 7 binder with Psyduck on the cover the same day. It holds 30 cards, one per page,
+          which is enough for your favorite pulls, like the Psyduck full art or all seven Psyduck versions.
         </p>
         <img
           className="inline-media"

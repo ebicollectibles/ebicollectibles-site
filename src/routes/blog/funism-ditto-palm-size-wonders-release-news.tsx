@@ -158,7 +158,7 @@ function FunismDittoReleasePost() {
 
         <h2 id="lineup">All 12 designs</h2>
         <p>
-          The lineup is mostly Kanto favorites, plus two picks from later generations, Riolu and Munchlax. Gengar is the one that suits the gag best, since its wide grin is swapped for Ditto's thin one.
+          The lineup is mostly Kanto favorites, plus two picks from later generations, Riolu and Munchlax. Gengar works best, since its wide grin becomes Ditto's thin smile.
         </p>
         <div className="card-grid cols-4">
           {LINEUP.map((f) => (
@@ -184,8 +184,8 @@ function FunismDittoReleasePost() {
         <h2 id="chase">Is there a secret?</h2>
         <p>
           Not that we know of. The display box prints the lineup along its front edge, 12 figures with no secret slot, and we have not
-          seen an official mention of a hidden figure. If that holds, this is one of the easier blind box lines to finish: the chase is simply
-          the Pokémon you like most. For most people that will be Pikachu or
+          seen an official mention of a hidden figure. If so, this is one of the easier blind box lines to
+          finish, and the chase is whichever Pokémon you like most. For most people that will be Pikachu or
           Gengar.
         </p>
 
@@ -233,8 +233,8 @@ function FunismDittoReleasePost() {
 
         <h2 id="our-take">Our take</h2>
         <p>
-          It is a one-joke line and the joke works twelve times. No announced secret, three figures a box and a box you will want to keep make
-          it an easy, friendly blind box, and Ditto-as-Gengar is the one we would put on the desk first.
+          Ditto dressed as other Pokémon is a simple idea, and it works on all twelve figures. With no announced secret, three figures a
+          box and a box worth keeping, it is an easy blind box to collect. Ditto as Gengar is our favorite.
         </p>
       </BlogPostLayout>
     </>

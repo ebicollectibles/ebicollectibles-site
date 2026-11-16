@@ -454,7 +454,7 @@ function ChasingGloryOrigins() {
         updated={status.liveAt}
         wide
         post={post}
-        lede="Chasing Glory pairs Trainers with their Pokémon, and almost every card has an English twin. Here is where each of the 287 cards lines up, and the one card made just for China."
+        lede="Chasing Glory pairs Trainers with their Pokémon, and almost every card has an English twin. We matched all 287, and found one card made just for China."
         cta={{
           heading: 'Collect Chasing Glory',
           body: 'See every card on the full checklist, or pick up a box.',
@@ -466,8 +466,8 @@ function ChasingGloryOrigins() {
       >
         <p>
           If you collect English, most of Chasing Glory will look familiar. 284 of its 287 cards have the same art in Destined Rivals or
-          Journey Together, two more match Ascended Heroes, and one is brand new. The Chinese set picks from both English sets rather
-          than copying either one, so the numbers do not line up. This guide maps every card. For what is in the set and the slim vs
+          Journey Together, two more match Ascended Heroes, and one is brand new. The Chinese set mixes cards from
+          both, so the numbers do not line up. This guide maps every card. For what is in the set and the slim vs
           jumbo odds, see our <Link to="/blog/chasing-glory-set-guide">set guide</Link>.
         </p>
 

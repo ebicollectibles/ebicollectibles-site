@@ -250,7 +250,7 @@ function TerastalGatheringSetGuide() {
         <p className="table-note">Sylveon ex SAR 234 is the Chinese exclusive.</p>
 
         <h2 id="ace-spec">All 8 ACE SPEC cards</h2>
-        <p>Pink-framed, one per deck, and placed inside the main set rather than the secret block.</p>
+        <p>Pink-framed, one per deck, and numbered within the main set.</p>
         <Gallery cards={setData.cards.filter((c) => c.rarity === 'ACE SPEC Rare (ACE)')} cols={4} />
 
         <h2 id="numbering">How the numbers work</h2>

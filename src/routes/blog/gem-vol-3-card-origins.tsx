@@ -65,7 +65,7 @@ const TOC = [
 const FAQ = [
   {
     q: 'Are Gem 3 cards reprints?',
-    a: 'The art mostly is. 35 of the 40 artworks we traced are the same art you will find on English cards, mostly 2023 Scarlet & Violet sets. The cards are still new: Simplified Chinese text, their own numbers, their own holo patterns and the Gem Pack set code.',
+    a: 'The art mostly is. 35 of the 40 artworks we traced are the same art you will find on English cards, mostly 2023 Scarlet & Violet sets. What is new is the printing: Simplified Chinese text, new numbers, new holo patterns and the Gem Pack set code.',
   },
   {
     q: 'Is any Gem Vol 3 artwork new?',
@@ -213,7 +213,7 @@ function GemVol3OriginsPost() {
             <strong>Two artworks are from Sword & Shield.</strong> Gardevoir comes from Silver Tempest and Banette from Lost Origin, which is why their versions 01 to 06 carry regulation mark F instead of G.
           </li>
           <li>
-            <strong>Three 07 cards are promos.</strong> Darkrai ex, the Mimikyu full art and Annihilape ex reuse English Black Star Promo art rather than set cards.
+            <strong>Three 07 cards are promos.</strong> Darkrai ex, the Mimikyu full art and Annihilape ex reuse art from English Black Star Promos.
           </li>
         </ul>
 

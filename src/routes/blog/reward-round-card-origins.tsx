@@ -341,7 +341,7 @@ function RewardRoundOrigins() {
         updated={status.liveAt}
         wide
         post={post}
-        lede="Reward Round mixes cards from several English sets into one. Here is where each of its 165 cards lines up in English, and the three that English never printed."
+        lede="Reward Round mixes cards from several English sets into one. We matched all 165 cards to English and found three that English never printed."
         cta={{
           heading: 'Collect Reward Round',
           body: 'See every card on the full checklist, or pick up a slim box.',

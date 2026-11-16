@@ -257,7 +257,7 @@ function ChasingGlorySetGuide() {
         <Gallery cards={lead(byRange(223, 228), ['228', '225', '227', '226'])} cols={3} />
 
         <h2 id="ladders">One Pokémon, four rarities</h2>
-        <p>Six Pokémon ex reach the gold tier. Here is every number each one prints at, if you want to collect the full run:</p>
+        <p>Six Pokémon ex reach the gold tier. These are the numbers each one prints at, if you want to collect the full run:</p>
         <div className="table-scroll">
           <table className="data-table">
             <thead>

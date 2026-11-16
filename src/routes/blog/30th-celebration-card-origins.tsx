@@ -145,7 +145,7 @@ function ThirtiethOriginsPost() {
         updated={status.liveAt}
         wide
         post={post}
-        lede="30th Celebration brings back 30 famous cards from the game's history. Here is where each one first appeared, plus how the rest of the set lines up with the English release."
+        lede="30th Celebration brings back 30 famous cards from the game's history. We traced each one back to where it first appeared and matched the rest of the set to English."
         cta={{
           heading: 'Explore 30th Celebration',
           body: 'See every card in the set, or read our set guide for every Pikachu, classic and promo in one place.',

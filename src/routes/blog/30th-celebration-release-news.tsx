@@ -342,7 +342,7 @@ function ThirtiethReleasePost() {
         </p>
 
         <h2 id="promos">The 33 promos</h2>
-        <p>Thirty-three promos, numbered 001 to 033/30th-P, come in the special products around the set rather than in booster packs:</p>
+        <p>Thirty-three promos, numbered 001 to 033/30th-P, come in the special products released with the set. They are not in booster packs:</p>
         <div className="table-scroll">
           <table className="data-table">
             <thead>

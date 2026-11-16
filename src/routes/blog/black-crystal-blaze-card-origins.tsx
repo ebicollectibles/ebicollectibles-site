@@ -338,7 +338,7 @@ function BlackCrystalBlazeOrigins() {
         updated={status.liveAt}
         wide
         post={post}
-        lede="Black Crystal Blaze mixes cards from several English sets into one. Here is where each of its 164 cards lines up in English, and the two that English never printed."
+        lede="Black Crystal Blaze mixes cards from several English sets into one. We matched all 164 cards to English and found two that English never printed."
         cta={{
           heading: 'Collect Black Crystal Blaze',
           body: 'See every card on the full checklist, or pick up a box.',

@@ -69,7 +69,7 @@ const TOC = [
 const FAQ = [
   {
     q: 'Are Gem 5 cards reprints?',
-    a: 'The art mostly is. 51 of the 56 artworks are the same art you will find on English Scarlet & Violet cards, mostly from Surging Sparks. The cards are still new: Simplified Chinese text, their own numbers, their own holo patterns and the Gem Pack set code.',
+    a: 'The art mostly is. 51 of the 56 artworks are the same art you will find on English Scarlet & Violet cards, mostly from Surging Sparks. What is new is the printing: Simplified Chinese text, new numbers, new holo patterns and the Gem Pack set code.',
   },
   {
     q: 'Is any Gem Vol 5 artwork new?',

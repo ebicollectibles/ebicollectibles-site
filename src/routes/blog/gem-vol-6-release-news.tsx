@@ -202,8 +202,8 @@ function GemVol6Post() {
           </figcaption>
         </figure>
         <p>
-          The full art is new artwork by Jiro Sasumo, drawn for this set. It is a sunny kitchen scene: jars of fruit drinks, a teapot,
-          oranges and a fresh fruit tart on the table, and Applin sitting among the fruit, easy to mistake for one more apple.
+          The full art is a new illustration by Jiro Sasumo. The table is covered in jars of fruit drinks, a teapot, oranges and a
+          fruit tart, and Applin sits among the fruit looking like one more apple.
         </p>
         <p>
           Because the illustration debuts here, Gem Vol 6 is the only place to pull it. It sits in the 07 slot, the rarest in every
@@ -274,7 +274,8 @@ function GemVol6Post() {
         <h2 id="applin">Applin, six holo versions</h2>
         <p>
           Applin shows how a run works. Versions 01 to 06 share the same illustration by Tetsu Kayama, with Applin
-          tucked under a blossoming tree, and each one gets its own holo finish: Grass-type and Poké Ball patterns, glitter, starburst,
+          tucked under a blossoming tree. Only the holo
+          changes: Grass-type and Poké Ball patterns, glitter, starburst,
           the Master Ball pattern, and the pink Gem Pack logo stamp.
         </p>
         <div className="card-grid cols-3">
@@ -333,9 +334,8 @@ function GemVol6Post() {
 
         <h2 id="applin-binder">An Applin binder to go with it</h2>
         <p>
-          Pokémon China also released a 30-pocket Gem Pack Vol. 6 binder the same day, pink with Applin on the cover. Each page holds a
-          single card, so it works as a showcase for your best pulls, like the Applin full art or all seven Applin versions, rather
-          than as storage for the whole set.
+          Pokémon China also released a 30-pocket Gem Pack Vol. 6 binder the same day, pink with Applin on the cover. It holds 30 cards, one
+          per page, which is enough for your favorite pulls, like the Applin full art or all seven Applin versions.
         </p>
         <img
           className="inline-media"

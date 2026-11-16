@@ -432,7 +432,7 @@ function BladeAwakeningOrigins() {
         updated={status.liveAt}
         wide
         post={post}
-        lede="Blade Awakening is Temporal Forces and Twilight Masquerade rolled into one set, with a few cards from six other English sources and one that English never printed. Here is where each of its 259 cards lines up."
+        lede="Blade Awakening is mostly Temporal Forces and Twilight Masquerade, plus a few cards from six other English sources and one that English never printed. We matched all 259 cards to English."
         cta={{
           heading: 'Collect Blade Awakening',
           body: 'See every card on the full checklist, or pick up a box.',

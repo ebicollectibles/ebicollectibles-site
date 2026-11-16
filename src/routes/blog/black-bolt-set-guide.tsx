@@ -234,7 +234,7 @@ function BlackBoltSetGuide() {
 
         <h2 id="ladders">One card, every rarity</h2>
         <p>
-          The ex Pokémon skip the Art Rare tier and get a Super Rare and a Special Art Rare instead. Here is every number each one prints at,
+          The ex Pokémon skip the Art Rare tier and get a Super Rare and a Special Art Rare instead. These are the numbers each one prints at,
           plus the two Supporters with secret rares:
         </p>
         <div className="table-scroll">
