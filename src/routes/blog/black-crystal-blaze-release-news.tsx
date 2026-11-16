@@ -80,7 +80,7 @@ const ODDS = [
 
 const TOC = [
   { id: 'packs-and-odds', label: 'Slim and jumbo boxes' },
-  { id: 'exclusives', label: 'The Chinese Exclusives: Larry and Defiance Band' },
+  { id: 'exclusives', label: 'Chinese Exclusives: Larry and Defiance Band' },
   { id: 'charizard', label: 'Darkness Tera Charizard ex' },
   { id: 'special-art-rares', label: 'Special Art Rares' },
   { id: 'ultra-rares', label: 'Gold Ultra Rares' },
@@ -293,7 +293,7 @@ function BlackCrystalBlazeReleasePost() {
           <Link to="/blog/black-crystal-blaze-card-origins">card origins guide</Link> matches every card to its English version.
         </p>
 
-        <h2 id="exclusives">The Chinese Exclusives: Larry and Defiance Band</h2>
+        <h2 id="exclusives">Chinese Exclusives: Larry and Defiance Band</h2>
         <p>
           Two secret rares have no English version. Larry gets a Special Art Rare by Kariya showing him at work in the city, and Defiance
           Band gets a gold Ultra Rare by inose yukie. English has Larry as a Supporter and a full art, and Defiance Band only as a regular

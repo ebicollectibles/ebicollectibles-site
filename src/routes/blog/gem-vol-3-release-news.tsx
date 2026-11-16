@@ -70,7 +70,7 @@ const RARITY = [
 ]
 
 const TOC = [
-  { id: 'lantern-full-arts', label: 'The Chinese Exclusives: five new full arts' },
+  { id: 'lantern-full-arts', label: 'Chinese Exclusives: five new full arts' },
   { id: 'pokemon-ex', label: 'Nine Pokémon ex' },
   { id: 'how-the-set-works', label: 'How the set is built' },
   { id: 'gengar', label: 'Gengar, six holo versions' },
@@ -243,7 +243,7 @@ function GemVol3Post() {
           </ol>
         </nav>
 
-        <h2 id="lantern-full-arts">The Chinese Exclusives: five new full arts</h2>
+        <h2 id="lantern-full-arts">Chinese Exclusives: five new full arts</h2>
         <figure className="feature-card">
           <img src={cardImg('0307')} alt="Gengar 0307/07 Chinese Exclusive full art, Triple Rare, Gem Vol 3" loading="lazy" width={300} height={419} />
           <figcaption>

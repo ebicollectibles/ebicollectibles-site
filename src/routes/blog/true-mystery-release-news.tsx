@@ -84,7 +84,7 @@ const BLOCKS = [
 
 const TOC = [
   { id: 'slim-or-jumbo', label: 'Slim or jumbo?' },
-  { id: 'iron-hands', label: 'The Chinese Exclusive: Iron Hands ex SAR' },
+  { id: 'iron-hands', label: 'Chinese Exclusive: Iron Hands ex SAR' },
   { id: 'special-art-rares', label: 'Special Art Rares' },
   { id: 'super-rares', label: 'Super Rare full arts' },
   { id: 'ultra-rares', label: 'Gold Ultra Rares' },
@@ -278,7 +278,7 @@ function TrueMysteryReleasePost() {
           Master Ball pattern holo, 115 of each.
         </p>
 
-        <h2 id="iron-hands">The Chinese Exclusive: Iron Hands ex SAR</h2>
+        <h2 id="iron-hands">Chinese Exclusive: Iron Hands ex SAR</h2>
         <p>
           Iron Hands ex 152/128 is the Chinese Exclusive, a Special Art Rare with no English version. Tonji Matsuno draws it in a
           burst of yellow and blue light, mid-punch. English has Iron Hands ex in Paradox Rift, including its own Special Illustration

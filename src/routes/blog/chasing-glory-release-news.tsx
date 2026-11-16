@@ -82,7 +82,7 @@ const SAR = [
 
 const TOC = [
   { id: 'slim-or-jumbo', label: 'Slim or jumbo?' },
-  { id: 'brock', label: "The Chinese Exclusive: Brock's Scouting" },
+  { id: 'brock', label: "Chinese Exclusive: Brock's Scouting" },
   { id: 'special-art-rares', label: 'The chase: Special Art Rares' },
   { id: 'ultra-rares', label: 'Gold Ultra Rares' },
   { id: 'trainers-pokemon', label: "Trainer's Pokémon" },
@@ -317,7 +317,7 @@ function ChasingGloryReleasePost() {
           <Link to="/blog/chasing-glory-set-guide">set guide</Link> breaks down both boxes in full.
         </p>
 
-        <h2 id="brock">The Chinese Exclusive: Brock's Scouting</h2>
+        <h2 id="brock">Chinese Exclusive: Brock's Scouting</h2>
         <p>
           Brock's Scouting 276/222 is a Special Art Rare drawn just for this set by Atsushi Furusawa: Brock sitting on a rock above a
           mountain valley. Brock's Scouting exists in English and Japanese as a Supporter and a full art, but this illustration is a

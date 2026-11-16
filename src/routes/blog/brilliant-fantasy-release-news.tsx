@@ -85,7 +85,7 @@ const BLOCKS = [
 
 const TOC = [
   { id: 'slim-or-jumbo', label: 'Slim or jumbo?' },
-  { id: 'carmine', label: 'The Chinese Exclusive: Carmine' },
+  { id: 'carmine', label: 'Chinese Exclusive: Carmine' },
   { id: 'special-art-rares', label: 'Special Art Rares' },
   { id: 'ultra-rares', label: 'Gold Ultra Rares' },
   { id: 'art-rares', label: 'Art Rares' },
@@ -276,7 +276,7 @@ function BrilliantFantasyReleasePost() {
           them and a slim box about 0.55. The full odds are further down.
         </p>
 
-        <h2 id="carmine">The Chinese Exclusive: Carmine</h2>
+        <h2 id="carmine">Chinese Exclusive: Carmine</h2>
         <p>
           Carmine 255/207 is a Special Art Rare drawn for this set by OKACHEKE. Carmine and her brother Kieran sit side by side in the
           summer sun eating watermelon, and she smiles as she watches him. English has a Carmine Special Illustration Rare with

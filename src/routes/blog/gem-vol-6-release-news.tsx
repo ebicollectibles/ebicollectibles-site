@@ -45,7 +45,7 @@ const RARITY = [
 ]
 
 const TOC = [
-  { id: 'applin-full-art', label: 'The Chinese Exclusive: Applin full art' },
+  { id: 'applin-full-art', label: 'Chinese Exclusive: Applin full art' },
   { id: 'lineup', label: 'Apples, tea and the Loyal Three' },
   { id: 'how-the-set-works', label: 'How the set is built' },
   { id: 'applin', label: 'Applin, six holo versions' },
@@ -220,7 +220,7 @@ function GemVol6Post() {
           </ol>
         </nav>
 
-        <h2 id="applin-full-art">The Chinese Exclusive: Applin full art</h2>
+        <h2 id="applin-full-art">Chinese Exclusive: Applin full art</h2>
         <figure className="feature-card">
           <img src={cardImg('1907')} alt="Applin 1907/07 Chinese Exclusive full art, Triple Rare, Gem Vol 6" loading="lazy" width={320} height={447} />
           <figcaption>

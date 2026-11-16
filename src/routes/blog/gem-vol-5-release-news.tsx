@@ -53,7 +53,7 @@ const RARITY = [
 ]
 
 const TOC = [
-  { id: 'horizons-full-arts', label: 'The Chinese Exclusives: four Horizons full arts' },
+  { id: 'horizons-full-arts', label: 'Chinese Exclusives: four Horizons full arts' },
   { id: 'lineup', label: 'The rest of the lineup' },
   { id: 'how-the-set-works', label: 'How the set is built' },
   { id: 'floragato', label: 'Floragato, six holo versions' },
@@ -227,7 +227,7 @@ function GemVol5Post() {
           </ol>
         </nav>
 
-        <h2 id="horizons-full-arts">The Chinese Exclusives: four Horizons full arts</h2>
+        <h2 id="horizons-full-arts">Chinese Exclusives: four Horizons full arts</h2>
         <p>
           Gem Vol 5 has four Chinese Exclusive full arts, drawn for this set, each pairing a Pokémon with a member of the Rising Volt Tacklers from
           the Pokémon Horizons anime. Captain Pikachu rides the deck of the Brave Asagi with Friede, while Floragato, Crocalor and

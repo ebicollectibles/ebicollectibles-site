@@ -48,7 +48,7 @@ const RARITY = [
 ]
 
 const TOC = [
-  { id: 'ponyta-full-art', label: 'The Chinese Exclusive: Ponyta full art' },
+  { id: 'ponyta-full-art', label: 'Chinese Exclusive: Ponyta full art' },
   { id: 'lineup', label: 'Horses, seasons and a Paradox Pokémon' },
   { id: 'how-the-set-works', label: 'How the set is built' },
   { id: 'ponyta', label: 'Ponyta, six holo versions' },
@@ -221,7 +221,7 @@ function GemVol4Post() {
           </ol>
         </nav>
 
-        <h2 id="ponyta-full-art">The Chinese Exclusive: Ponyta full art</h2>
+        <h2 id="ponyta-full-art">Chinese Exclusive: Ponyta full art</h2>
         <figure className="feature-card">
           <img src={cardImg('0107')} alt="Ponyta 0107/07 Chinese Exclusive full art, Triple Rare, Gem Vol 4" loading="lazy" width={320} height={447} />
           <figcaption>

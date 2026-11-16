@@ -53,7 +53,7 @@ const RARITY = [
 ]
 
 const TOC = [
-  { id: 'forest-full-arts', label: 'The Chinese Exclusives: four full arts, one scene' },
+  { id: 'forest-full-arts', label: 'Chinese Exclusives: four full arts, one scene' },
   { id: 'vmax', label: 'Nine VMAX' },
   { id: 'how-the-set-works', label: 'How the set is built' },
   { id: 'eevee', label: "Eevee's 15 cards" },
@@ -224,7 +224,7 @@ function GemVol2Post() {
           </ol>
         </nav>
 
-        <h2 id="forest-full-arts">The Chinese Exclusives: four full arts, one scene</h2>
+        <h2 id="forest-full-arts">Chinese Exclusives: four full arts, one scene</h2>
         <p>
           The four Chinese Exclusives are full arts by HYOGONOSUKE, new artwork drawn for this set. Each works on its own, but lay them side by side in the
           order Leafeon, Sylveon, Umbreon, Eevee and they join into one long picture of the four resting and playing in a sunlit

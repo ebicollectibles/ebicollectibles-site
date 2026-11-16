@@ -74,7 +74,7 @@ const ODDS = [
 ]
 
 const TOC = [
-  { id: 'exclusives', label: 'The Chinese Exclusives: Gholdengo ex, Maushold ex and Rika' },
+  { id: 'exclusives', label: 'Chinese Exclusives: Gholdengo ex, Maushold ex and Rika' },
   { id: 'gholdengo', label: 'Gholdengo, the cover star' },
   { id: 'special-art-rares', label: 'Special Art Rares' },
   { id: 'ultra-rares', label: 'Gold Ultra Rares' },
@@ -238,7 +238,7 @@ function RewardRoundReleasePost() {
           </ol>
         </nav>
 
-        <h2 id="exclusives">The Chinese Exclusives: Gholdengo ex, Maushold ex and Rika</h2>
+        <h2 id="exclusives">Chinese Exclusives: Gholdengo ex, Maushold ex and Rika</h2>
         <p>
           Three secret rares have no English version: the gold Gholdengo ex, a Maushold ex Special Art Rare of the mouse family playing at
           home, and a Rika Special Art Rare of the Elite Four member with her Clodsire. These are the cards that make the Chinese set worth

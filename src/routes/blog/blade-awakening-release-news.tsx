@@ -117,7 +117,7 @@ const BOXES = [
 
 const TOC = [
   { id: 'slim-or-jumbo', label: 'Slim or jumbo?' },
-  { id: 'ciphermaniac', label: "The Chinese Exclusive: Ciphermaniac's Codebreaking" },
+  { id: 'ciphermaniac', label: "Chinese Exclusive: Ciphermaniac's Codebreaking" },
   { id: 'greninja', label: 'Tera Greninja ex' },
   { id: 'special-art-rares', label: 'Special Art Rares' },
   { id: 'ultra-rares', label: 'Gold Ultra Rares' },
@@ -326,7 +326,7 @@ function BladeAwakeningReleasePost() {
           averages about half of one. The full numbers are in <a href="#odds">Odds and box math</a> below.
         </p>
 
-        <h2 id="ciphermaniac">The Chinese Exclusive: Ciphermaniac's Codebreaking</h2>
+        <h2 id="ciphermaniac">Chinese Exclusive: Ciphermaniac's Codebreaking</h2>
         <p>
           Pokémon China says it added a brand-new Ciphermaniac's Codebreaking Special Art Rare to Blade Awakening. Taira Akitsu, who drew
           the regular card, shows the Ciphermaniac in a blue-lit street, magnifying glass in one hand and the Violet Book in the other.

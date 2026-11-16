@@ -88,7 +88,7 @@ const BLOCKS = [
 
 const TOC = [
   { id: 'slim-or-jumbo', label: 'Slim or jumbo?' },
-  { id: 'lisia', label: "The Chinese Exclusive: Lisia's Appeal" },
+  { id: 'lisia', label: "Chinese Exclusive: Lisia's Appeal" },
   { id: 'special-art-rares', label: 'Special Art Rares' },
   { id: 'ultra-rares', label: 'Gold Ultra Rares' },
   { id: 'art-rares', label: 'Art Rares' },
@@ -277,7 +277,7 @@ function StellarCrystalReleasePost() {
           odds are further down.
         </p>
 
-        <h2 id="lisia">The Chinese Exclusive: Lisia's Appeal</h2>
+        <h2 id="lisia">Chinese Exclusive: Lisia's Appeal</h2>
         <p>
           Lisia's Appeal 257/208 is a Special Art Rare drawn for this set by En Morikura. Lisia and her Altaria perform together on a
           stage under spotlights, with the crowd below full of lights. English has a Lisia's Appeal Special Illustration Rare with different art,

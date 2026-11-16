@@ -47,7 +47,7 @@ const RARITY = [
 ]
 
 const TOC = [
-  { id: 'psyduck-full-art', label: "The Chinese Exclusive: Misty's Psyduck full art" },
+  { id: 'psyduck-full-art', label: "Chinese Exclusive: Misty's Psyduck full art" },
   { id: 'trainers', label: 'Trainers and their Pokémon' },
   { id: 'how-the-set-works', label: 'How the set is built' },
   { id: 'mistys-psyduck', label: "Misty's Psyduck, six holo versions" },
@@ -223,7 +223,7 @@ function GemVol7Post() {
           </ol>
         </nav>
 
-        <h2 id="psyduck-full-art">The Chinese Exclusive: Misty's Psyduck full art</h2>
+        <h2 id="psyduck-full-art">Chinese Exclusive: Misty's Psyduck full art</h2>
         <figure className="feature-card">
           <img src={cardImg('0307')} alt="Misty's Psyduck 0307/07 Chinese Exclusive full art, Triple Rare, Gem Vol 7" loading="lazy" width={300} height={419} />
           <figcaption>

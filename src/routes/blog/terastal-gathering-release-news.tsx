@@ -68,7 +68,7 @@ const ODDS = [
 ]
 
 const TOC = [
-  { id: 'sylveon', label: 'The Chinese Exclusive: Sylveon ex 234/208' },
+  { id: 'sylveon', label: 'Chinese Exclusive: Sylveon ex 234/208' },
   { id: 'special-art-rares', label: 'Special Art Rares' },
   { id: 'ultra-rares', label: 'Gold Ultra Rares' },
   { id: 'stellar-eeveelutions', label: 'The Stellar Eeveelutions' },
@@ -236,7 +236,7 @@ function TerastalGatheringReleasePost() {
           </ol>
         </nav>
 
-        <h2 id="sylveon">The Chinese Exclusive: Sylveon ex 234/208</h2>
+        <h2 id="sylveon">Chinese Exclusive: Sylveon ex 234/208</h2>
         <p>
           Sylveon ex has two Special Art Rares here. 233/208 by Cona Nitanda is the same card as in Prismatic Evolutions. 234/208 by
           rika is new: Pokémon China calls it a special addition to this set, and there is no English version of it. If you are
