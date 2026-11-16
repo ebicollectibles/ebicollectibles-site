@@ -1,10 +1,13 @@
 import * as React from 'react'
-import { Link } from '@tanstack/react-router'
+import { Link, useLoaderData } from '@tanstack/react-router'
+import type { BlogGuideLink } from '~/server/blog-status'
 import { SITE_URL } from '~/lib/gem-sets/constants'
 import { buildGemSetJsonLd, safeJsonLd } from '~/lib/gem-sets/head'
 import { RARITY_CODE, RARITY_SYMBOL } from '~/lib/gem-sets/rarity'
 import type { BuiltGemSetData, Card, GemSetConfig, GemSetData } from '~/lib/gem-sets/types'
 import { CardThumb, RarityTag } from './parts'
+
+const GUIDE_LABEL: Record<string, string> = { 'release-news': 'Release news', 'set-guide': 'Set guide', 'card-origins': 'Card origins' }
 
 // The shared shell behind every Gem Set card-list page (Gem Vol 7, Gem Vol
 // 6, and whatever's added after). A set's own route file stays thin: it
@@ -58,6 +61,9 @@ export function GemSetPage({
   openCardId: string | null
   navigateToCard: (id: string | undefined) => Promise<void>
 }) {
+  // The set's live blog posts, from the set route's loader (getBlogGuidesFor).
+  const loaded = useLoaderData({ strict: false }) as unknown
+  const guides = Array.isArray(loaded) ? (loaded as BlogGuideLink[]).filter((g) => g && g.path) : []
   const { cards, cardById, groups, versionsPerMon, monCount, rarityVersionLabels } = data
 
   const [view, setView] = React.useState<'ladder' | 'grid' | 'exclusives' | 'list'>('grid')
@@ -385,6 +391,19 @@ export function GemSetPage({
                 Browse the cards
               </a>
             </div>
+            {guides.length > 0 && (
+              <p className="hero-guides">
+                <span>Read our guides:</span>
+                {guides.map((g, i) => (
+                  <React.Fragment key={g.path}>
+                    {i > 0 && <span aria-hidden="true"> · </span>}
+                    <Link to={g.path as never} title={g.title}>
+                      {GUIDE_LABEL[g.path.match(/(release-news|set-guide|card-origins)$/)?.[1] ?? ''] ?? g.tag}
+                    </Link>
+                  </React.Fragment>
+                ))}
+              </p>
+            )}
           </div>
           <div
             className="fan"

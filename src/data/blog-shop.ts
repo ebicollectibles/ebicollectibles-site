@@ -33,3 +33,15 @@ const SET_PRODUCTS: Record<string, string[]> = {
 export function blogShopProductIds(slug: string): string[] {
   return SET_PRODUCTS[slug.replace(/-(release-news|set-guide|card-origins)$/, '')] ?? []
 }
+
+/** The set key ('gem-vol-7', 'chasing-glory') for a set page path like /sets/chinese/chasing-glory-csv10. */
+export function blogSetKeyForSetPath(path: string): string | null {
+  const m = path.match(/^\/sets\/chinese\/([^/?#]+)/)
+  return m ? m[1].replace(/-csv[0-9-]+$/, '') : null
+}
+
+/** The set key for a store product, if any blog set sells it. */
+export function blogSetKeyForProduct(productId: string): string | null {
+  for (const [key, ids] of Object.entries(SET_PRODUCTS)) if (ids.includes(productId)) return key
+  return null
+}

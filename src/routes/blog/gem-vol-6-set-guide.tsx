@@ -82,6 +82,13 @@ export const Route = createFileRoute('/blog/gem-vol-6-set-guide')({
       { property: 'og:title', content: post.title },
       { property: 'og:description', content: post.excerpt },
       { property: 'og:image', content: post.heroImage },
+      { property: 'og:image:width', content: '1600' },
+      { property: 'og:image:height', content: '900' },
+      { property: 'og:image:alt', content: post.heroAlt },
+      { name: 'twitter:image', content: post.heroImage },
+      { name: 'twitter:image:alt', content: post.heroAlt },
+      { property: 'article:published_time', content: post.date },
+      ...(loaderData?.liveAt ? [{ property: 'article:modified_time', content: loaderData.liveAt.slice(0, 10) }] : []),
       { property: 'og:type', content: 'article' },
       { property: 'og:url', content: `${BLOG_SITE_URL}${post.path}` },
       { name: 'twitter:card', content: 'summary_large_image' },
@@ -107,7 +114,12 @@ function GemVol6SetGuide() {
     url: `${BLOG_SITE_URL}${post.path}`,
     mainEntityOfPage: `${BLOG_SITE_URL}${post.path}`,
     author: { '@type': 'Organization', name: 'EBI Collectibles', url: BLOG_SITE_URL },
-    publisher: { '@type': 'Organization', name: 'EBI Collectibles', url: BLOG_SITE_URL },
+    publisher: {
+      '@type': 'Organization',
+      name: 'EBI Collectibles',
+      url: BLOG_SITE_URL,
+      logo: { '@type': 'ImageObject', url: `${BLOG_SITE_URL}/assets/ebi-logo.jpg`, width: 240, height: 240 },
+    },
   }
   const faqJsonLd = {
     '@context': 'https://schema.org',

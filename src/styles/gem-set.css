@@ -113,6 +113,9 @@
     dd { margin: 2px 0 0; font-family: var(--f-mono); font-size: 18px; font-weight: 500; }
   }
   .hero-cta { display: flex; gap: 10px; margin-top: 26px; flex-wrap: wrap; }
+  .hero-guides { margin: 16px 0 0; font-size: 13.5px; color: rgb(255 255 255 / .72); }
+  .hero-guides > span:first-child { margin-right: 6px; }
+  .hero-guides a { color: #fff; font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
   .btn { display: inline-flex; align-items: center; gap: 8px; height: 42px; padding: 0 18px; border-radius: 2px; font-weight: 600; font-size: 14px; border: 1px solid transparent; }
   .btn-light { background: var(--hero-fg); color: #131b28; }
   .btn-ghost { border-color: rgb(255 255 255 / .3); color: var(--hero-fg); background: transparent; }

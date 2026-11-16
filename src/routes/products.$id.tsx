@@ -10,6 +10,8 @@ import { useCart } from '~/lib/cart-context'
 import { FLAT_SHIPPING_RATE, formatMoney, getHubPriceRange, getHubVariants, type Product } from '~/lib/products'
 import { RETURN_POLICY_CATEGORY_URL, SHIPPING_HANDLING_MAX_DAYS, SHIPPING_HANDLING_MIN_DAYS, SHIPS_TO_COUNTRY } from '~/lib/policy'
 import { getProduct } from '~/server/products'
+import { getBlogGuidesFor } from '~/server/blog-status'
+import { BlogGuideLinks } from '~/components/blog/BlogGuideLinks'
 
 const SITE_URL = 'https://ebicollectibles.com'
 
@@ -31,7 +33,13 @@ export const Route = createFileRoute('/products/$id')({
   // Separate from the cart's product list (populated by the root loader) —
   // this exists purely to give head() below something to build per-product
   // meta tags from; the page itself still reads from useCart() as before.
-  loader: ({ params }) => getProduct({ data: { id: params.id } }),
+  loader: async ({ params }) => {
+    const [product, blogGuides] = await Promise.all([
+      getProduct({ data: { id: params.id } }),
+      getBlogGuidesFor({ data: { productId: params.id } }).catch(() => []),
+    ])
+    return product ? { ...product, blogGuides } : null
+  },
   head: ({ loaderData, params }) => {
     if (!loaderData) return {}
     const title = `${loaderData.name} — EBI Collectibles`
@@ -163,6 +171,7 @@ type GalleryPhoto = {
 
 function ProductDetailPage() {
   const { id } = Route.useParams()
+  const blogGuides = Route.useLoaderData()?.blogGuides ?? []
   const { products } = useCart()
   const product = products.find((p) => p.id === id)
   const navigate = useNavigate()
@@ -632,6 +641,7 @@ function ProductDetailPage() {
               {(comingSoon || soldOut) && <NotifyMeButton productId={product.id} padding={14} fontSize={13.5} maxWidth={320} marginTop={12} />}
             </>
           )}
+          <BlogGuideLinks guides={blogGuides} />
         </div>
       </div>
 

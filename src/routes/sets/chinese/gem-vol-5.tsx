@@ -6,6 +6,7 @@ import { buildGemSetData } from '~/lib/gem-sets/buildSetData'
 import { buildGemSetHead } from '~/lib/gem-sets/head'
 import type { GemSetConfig, GemSetData } from '~/lib/gem-sets/types'
 import { GemSetPage } from '~/components/gem-set/GemSetPage'
+import { getBlogGuidesFor } from '~/server/blog-status'
 
 // Reachable only by direct URL — same deliberately-unlinked treatment as
 // Gem Vol 6 and 7. Built on the shared Gem Set engine
@@ -51,6 +52,7 @@ const config: GemSetConfig = {
 }
 
 export const Route = createFileRoute('/sets/chinese/gem-vol-5')({
+  loader: () => getBlogGuidesFor({ data: { setPath: '/sets/chinese/gem-vol-5' } }).catch(() => []),
   validateSearch: (search) => z.object({ card: z.string().regex(/^\d{4}$/).optional() }).parse(search),
   head: () => buildGemSetHead(data, config),
   component: GemVol5Page,

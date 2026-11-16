@@ -9,6 +9,10 @@ import { R2_IMAGE_HOST } from '~/lib/gem-sets/constants'
 
 const post = BLOG_POSTS.find((p) => p.slug === 'gem-vol-7-release-news')!
 
+// Search snippet: kept under ~155 characters, with the names people search.
+const SEO_DESCRIPTION =
+  "Pokémon TCG Gem Pack Vol. 7 (Gem 7): 196 all-holo Simplified Chinese cards, 28 Pokémon × 7 versions, and a new Misty's Psyduck full art."
+
 const cardImg = (id: string) => `${R2_IMAGE_HOST}/Chinese/Gem%207/Cards/${id}.webp`
 
 // All seven Misty's Psyduck cards, in collector-number order. Versions
@@ -68,6 +72,10 @@ const GEM_TIMELINE = [
 
 const FAQ = [
   {
+    q: 'When was Gem Vol 7 released?',
+    a: 'November 6, 2026, in mainland China. It is a Simplified Chinese release.',
+  },
+  {
     q: 'Is Gem 7 the same as "Gemstone Vol. 7"?',
     a: 'Yes. The Chinese name, 宝石包, translates as both "gem pack" and "gemstone pack", so shops use either one. The set code on the cards is CBB7C.',
   },
@@ -84,6 +92,14 @@ const FAQ = [
     a: "Misty's Psyduck 0307/07, the full art by Cona Nitanda drawn for this set. Beyond that, collectors chase the 28 full arts (every card numbered 07).",
   },
   {
+    q: 'What are the odds of pulling a full art?',
+    a: "Full arts make up 1.81% of the print run, going by Pokémon China's print shares. With 72 cards in a box, that averages about 1.3 full arts per box, or roughly one in every 14 packs.",
+  },
+  {
+    q: 'Where does the Gem 7 artwork come from?',
+    a: 'Mostly from English cards. 55 of the 56 artworks are the same art you will find on English Scarlet & Violet cards, mostly from Destined Rivals. Our Gem Vol 7 card origins guide traces every card.',
+  },
+  {
     q: 'Can I complete the set from one box?',
     a: 'No. The set has 196 cards and a box holds 72, so even with zero duplicates you would need at least three boxes. In practice a full set takes several boxes or buying singles.',
   },
@@ -93,12 +109,19 @@ export const Route = createFileRoute('/blog/gem-vol-7-release-news')({
   loader: () => getBlogPostStatus({ data: post.slug }),
   head: ({ loaderData }) => ({
     meta: [
-      { title: `${post.title.replace('Gem Vol 7', 'Gem Vol 7 (Gem 7)')} | EBI Collectibles` },
+      { title: "Pokémon Gem Pack Vol. 7 (Gem 7): Misty's Psyduck & Release Info | EBI Collectibles" },
       { name: 'robots', content: loaderData?.live ? 'index, follow' : 'noindex, nofollow' },
-      { name: 'description', content: post.excerpt },
+      { name: 'description', content: SEO_DESCRIPTION },
       { property: 'og:title', content: post.title },
       { property: 'og:description', content: post.excerpt },
       { property: 'og:image', content: post.heroImage },
+      { property: 'og:image:width', content: '1600' },
+      { property: 'og:image:height', content: '900' },
+      { property: 'og:image:alt', content: post.heroAlt },
+      { name: 'twitter:image', content: post.heroImage },
+      { name: 'twitter:image:alt', content: post.heroAlt },
+      { property: 'article:published_time', content: post.date },
+      ...(loaderData?.liveAt ? [{ property: 'article:modified_time', content: loaderData.liveAt.slice(0, 10) }] : []),
       { property: 'og:type', content: 'article' },
       { property: 'og:url', content: `${BLOG_SITE_URL}${post.path}` },
       { name: 'twitter:card', content: 'summary_large_image' },
@@ -124,7 +147,12 @@ function GemVol7Post() {
     url: `${BLOG_SITE_URL}${post.path}`,
     mainEntityOfPage: `${BLOG_SITE_URL}${post.path}`,
     author: { '@type': 'Organization', name: 'EBI Collectibles', url: BLOG_SITE_URL },
-    publisher: { '@type': 'Organization', name: 'EBI Collectibles', url: BLOG_SITE_URL },
+    publisher: {
+      '@type': 'Organization',
+      name: 'EBI Collectibles',
+      url: BLOG_SITE_URL,
+      logo: { '@type': 'ImageObject', url: `${BLOG_SITE_URL}/assets/ebi-logo.jpg`, width: 240, height: 240 },
+    },
   }
   const faqJsonLd = {
     '@context': 'https://schema.org',

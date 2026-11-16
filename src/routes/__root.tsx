@@ -126,12 +126,20 @@ function RootDocument({ children }: { children: React.ReactNode }) {
   // "real" one. Leaf routes don't need to override this; the pathname
   // alone is always the right canonical target here.
   const canonicalUrl = pathname === '/' ? SITE_URL : `${SITE_URL}${pathname}`
+  // Only when the page does not set its own canonical in head(), so a page
+  // never ends up with two canonical tags.
+  const routeHasCanonical = useRouterState({
+    select: (st) =>
+      st.matches.some(
+        (m) => Array.isArray((m as { links?: unknown }).links) && ((m as { links: Array<{ rel?: string } | undefined> }).links).some((l) => l?.rel === 'canonical'),
+      ),
+  })
 
   return (
     <html lang="en">
       <head>
         <HeadContent />
-        <link rel="canonical" href={canonicalUrl} />
+        {!routeHasCanonical && <link rel="canonical" href={canonicalUrl} />}
         {/* Skipped on /admin — that's the operator's own traffic, not a visitor to track.
             Also gated on analytics cookie consent (see CookieConsent.tsx) — nothing here
             even reaches the browser until the visitor opts in. cookieConsent is always

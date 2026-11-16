@@ -6,6 +6,7 @@ import { buildGemSetData } from '~/lib/gem-sets/buildSetData'
 import { buildGemSetHead } from '~/lib/gem-sets/head'
 import type { GemSetConfig, GemSetData } from '~/lib/gem-sets/types'
 import { GemSetPage } from '~/components/gem-set/GemSetPage'
+import { getBlogGuidesFor } from '~/server/blog-status'
 
 // Reachable only by direct URL — same deliberately-unlinked treatment as
 // every Gem Vol page. Built on the shared Gem Set engine
@@ -71,6 +72,7 @@ const config: GemSetConfig = {
 }
 
 export const Route = createFileRoute('/sets/chinese/white-flare-csv10-6')({
+  loader: () => getBlogGuidesFor({ data: { setPath: '/sets/chinese/white-flare-csv10-6' } }).catch(() => []),
   validateSearch: (search) => z.object({ card: z.string().regex(/^\d{3}$/).optional() }).parse(search),
   head: () => buildGemSetHead(data, config),
   component: WhiteFlarePage,
