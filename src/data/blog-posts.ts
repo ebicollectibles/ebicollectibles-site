@@ -19,6 +19,18 @@ export interface BlogPostSummary {
   heroAlt: string
   glow1: string
   glow2: string
+  /** Search result title (before " | EBI Collectibles"), about 60 characters with the names people search. Falls back to title. */
+  seoTitle?: string
+  /** Search result snippet, under about 155 characters. Falls back to excerpt. */
+  seoDescription?: string
+}
+
+export function blogSeoTitle(post: BlogPostSummary): string {
+  return `${post.seoTitle ?? post.title} | EBI Collectibles`
+}
+
+export function blogSeoDescription(post: BlogPostSummary): string {
+  return post.seoDescription ?? post.excerpt
 }
 
 export const BLOG_POSTS: BlogPostSummary[] = [

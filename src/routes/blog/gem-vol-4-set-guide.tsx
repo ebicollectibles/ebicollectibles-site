@@ -2,7 +2,7 @@ import { BuyStrip } from '~/components/blog/BlogShop'
 import { ChineseExclusiveBadge } from '~/components/blog/ChineseExclusive'
 import { createFileRoute, Link } from '@tanstack/react-router'
 import blogCssUrl from '~/styles/blog.css?url'
-import { BLOG_POSTS, BLOG_SITE_URL } from '~/data/blog-posts'
+import { BLOG_POSTS, BLOG_SITE_URL, blogSeoDescription, blogSeoTitle } from '~/data/blog-posts'
 import { BlogPostLayout } from '~/components/blog/BlogPostLayout'
 import { getBlogPostStatus } from '~/server/blog-status'
 import { safeJsonLd } from '~/lib/gem-sets/head'
@@ -77,9 +77,9 @@ export const Route = createFileRoute('/blog/gem-vol-4-set-guide')({
   loader: () => getBlogPostStatus({ data: post.slug }),
   head: ({ loaderData }) => ({
     meta: [
-      { title: `${post.title.replace('Gem Vol 4', 'Gem Vol 4 (Gem 4)')} | EBI Collectibles` },
+      { title: blogSeoTitle(post) },
       { name: 'robots', content: loaderData?.live ? 'index, follow' : 'noindex, nofollow' },
-      { name: 'description', content: post.excerpt },
+      { name: 'description', content: blogSeoDescription(post) },
       { property: 'og:title', content: post.title },
       { property: 'og:description', content: post.excerpt },
       { property: 'og:image', content: post.heroImage },

@@ -2,17 +2,13 @@ import { BuyStrip } from '~/components/blog/BlogShop'
 import { ChineseExclusiveBadge } from '~/components/blog/ChineseExclusive'
 import { createFileRoute, Link } from '@tanstack/react-router'
 import blogCssUrl from '~/styles/blog.css?url'
-import { BLOG_POSTS, BLOG_SITE_URL } from '~/data/blog-posts'
+import { BLOG_POSTS, BLOG_SITE_URL, blogSeoDescription, blogSeoTitle } from '~/data/blog-posts'
 import { BlogPostLayout } from '~/components/blog/BlogPostLayout'
 import { getBlogPostStatus } from '~/server/blog-status'
 import { safeJsonLd } from '~/lib/gem-sets/head'
 import { R2_IMAGE_HOST } from '~/lib/gem-sets/constants'
 
 const post = BLOG_POSTS.find((p) => p.slug === 'gem-vol-7-release-news')!
-
-// Search snippet: kept under ~155 characters, with the names people search.
-const SEO_DESCRIPTION =
-  "Pokémon TCG Gem Pack Vol. 7 (Gem 7): 196 all-holo Simplified Chinese cards, 28 Pokémon × 7 versions, and a new Misty's Psyduck full art."
 
 const cardImg = (id: string) => `${R2_IMAGE_HOST}/Chinese/Gem%207/Cards/${id}.webp`
 
@@ -107,9 +103,9 @@ export const Route = createFileRoute('/blog/gem-vol-7-release-news')({
   loader: () => getBlogPostStatus({ data: post.slug }),
   head: ({ loaderData }) => ({
     meta: [
-      { title: "Pokémon Gem Pack Vol. 7 (Gem 7): Misty's Psyduck & Release Info | EBI Collectibles" },
+      { title: blogSeoTitle(post) },
       { name: 'robots', content: loaderData?.live ? 'index, follow' : 'noindex, nofollow' },
-      { name: 'description', content: SEO_DESCRIPTION },
+      { name: 'description', content: blogSeoDescription(post) },
       { property: 'og:title', content: post.title },
       { property: 'og:description', content: post.excerpt },
       { property: 'og:image', content: post.heroImage },
