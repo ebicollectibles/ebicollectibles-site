@@ -32,11 +32,11 @@ const ROSTER = POKEMON_CARDS.filter((c) => c.version === 1).map((c) => {
 // How to tell the versions apart. Base card A sits on the odd versions
 // and base card B on the even ones, as printed on Eevee's run.
 const VERSIONS = [
-  { v: '01, 02', symbol: '●', rarity: 'Common', look: 'Energy-type pattern foil (base card A, then B)' },
-  { v: '03, 04', symbol: '●', rarity: 'Common', look: 'Poké Ball pattern foil' },
-  { v: '05, 06', symbol: '◆', rarity: 'Uncommon', look: 'Glitter foil across the whole card' },
-  { v: '07, 08', symbol: '◆', rarity: 'Uncommon', look: 'Starburst foil across the whole card' },
-  { v: '09, 10', symbol: '★', rarity: 'Rare', look: 'Master Ball pattern foil' },
+  { v: '01, 02', symbol: '●', rarity: 'Common', look: 'Energy-type pattern holo (base card A, then B)' },
+  { v: '03, 04', symbol: '●', rarity: 'Common', look: 'Poké Ball pattern holo' },
+  { v: '05, 06', symbol: '◆', rarity: 'Uncommon', look: 'Glitter holo across the whole card' },
+  { v: '07, 08', symbol: '◆', rarity: 'Uncommon', look: 'Starburst holo across the whole card' },
+  { v: '09, 10', symbol: '★', rarity: 'Rare', look: 'Master Ball pattern holo' },
   { v: '11, 12', symbol: '★★', rarity: 'Double Rare', look: 'Pink Gem Pack logo stamped on the art' },
   { v: '13', symbol: '★', rarity: 'Rare', look: 'Pokémon V' },
   { v: '14', symbol: '★★★', rarity: 'Triple Rare', look: 'Pokémon VMAX' },
@@ -270,7 +270,7 @@ function GemVol2SetGuide() {
         <h2 id="reading-a-card">Reading a Gem Vol 2 card</h2>
         <p>
           Pokémon cards are numbered PPVV: the first two digits are the Pokémon (01 to 09) and the next two are the version, so 0614/15
-          is Umbreon VMAX. Trainers are numbered 10VV/04 and Energy 11VV/06. The symbol after the number gives the rarity, and the foil
+          is Umbreon VMAX. Trainers are numbered 10VV/04 and Energy 11VV/06. The symbol after the number gives the rarity, and the holo pattern
           tells you the version:
         </p>
         <div className="table-scroll">

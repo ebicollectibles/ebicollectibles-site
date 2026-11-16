@@ -354,7 +354,7 @@ function ChasingGloryReleasePost() {
         <h2 id="parallels">Poké Ball and Master Ball holos</h2>
         <p>
           Every Common, Uncommon and Rare card also comes as a Poké Ball pattern holo and a Master Ball pattern holo. The card is the
-          same, only the foil changes. That adds 396 cards to a true master set, for 683 in total. The Master Ball versions sit in the
+          same, only the holo pattern changes. That adds 396 cards to a true master set, for 683 in total. The Master Ball versions sit in the
           same odds band as Double Rares and Art Rares, so they are a real chase on their own.
         </p>
 

@@ -11,13 +11,13 @@ const post = BLOG_POSTS.find((p) => p.slug === 'gem-vol-6-release-news')!
 const cardImg = (id: string) => `${R2_IMAGE_HOST}/Chinese/Gem%206/Cards/${id}.webp`
 
 // Applin's six holo versions, in collector-number order. All share one
-// illustration by Tetsu Kayama and differ only in rarity and foil finish.
+// illustration by Tetsu Kayama and differ only in rarity and holo pattern.
 const APPLIN_RUN = [
-  { id: '1901', rarity: 'Common', finish: 'Grass-type pattern foil' },
-  { id: '1902', rarity: 'Common', finish: 'Poké Ball pattern foil' },
-  { id: '1903', rarity: 'Uncommon', finish: 'Glitter foil' },
-  { id: '1904', rarity: 'Uncommon', finish: 'Starburst foil' },
-  { id: '1905', rarity: 'Rare', finish: 'Master Ball pattern foil' },
+  { id: '1901', rarity: 'Common', finish: 'Grass-type pattern holo' },
+  { id: '1902', rarity: 'Common', finish: 'Poké Ball pattern holo' },
+  { id: '1903', rarity: 'Uncommon', finish: 'Glitter holo' },
+  { id: '1904', rarity: 'Uncommon', finish: 'Starburst holo' },
+  { id: '1905', rarity: 'Rare', finish: 'Master Ball pattern holo' },
   { id: '1906', rarity: 'Double Rare', finish: 'Gem Pack logo stamp' },
 ]
 
@@ -72,8 +72,8 @@ const FAQ = [
     a: '18 packs of 4 cards each, so 72 cards per box.',
   },
   {
-    q: 'Are all the cards foil?',
-    a: 'Yes. Every card in every pack is a holo. There are no plain non-foil cards in the set.',
+    q: 'Are all the cards holo?',
+    a: 'Yes. Every card in every pack is a holo. There are no non-holo cards in the set.',
   },
   {
     q: 'What is the main chase card?',
@@ -136,7 +136,7 @@ function GemVol6Post() {
         updated={status.liveAt}
         wide
         post={post}
-        lede="Applin fronts the sixth Simplified Chinese Gem Pack: 28 Pokémon, seven cards each, every card a foil, and a new Applin full art by Jiro Sasumo you can only pull here."
+        lede="Applin fronts the sixth Simplified Chinese Gem Pack: 28 Pokémon, seven cards each, every card a holo, and a new Applin full art by Jiro Sasumo you can only pull here."
         cta={{
           heading: 'Shop Gem Vol 6',
           body: 'Booster boxes in stock now, plus the full 196-card checklist with every version.',
@@ -237,7 +237,7 @@ function GemVol6Post() {
         <h2 id="how-the-set-works">How the set is built</h2>
         <p>
           Every one of the 28 Pokémon gets seven numbered cards. The first six share a single illustration and step up in rarity and
-          foil finish. The seventh is a full art with its own illustration. Card numbers tell you exactly where you are: read 1907/07
+          holo pattern. The seventh is a full art with its own illustration. Card numbers tell you exactly where you are: read 1907/07
           as Pokémon 19, version 07 of 7, so it is the full art of the nineteenth Pokémon in the set, which is Applin.
         </p>
         <div className="table-scroll">

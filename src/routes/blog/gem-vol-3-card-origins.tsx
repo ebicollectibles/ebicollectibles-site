@@ -65,7 +65,7 @@ const TOC = [
 const FAQ = [
   {
     q: 'Are Gem 3 cards reprints?',
-    a: 'The art mostly is. 35 of the 40 artworks we traced are the same art you will find on English cards, mostly 2023 Scarlet & Violet sets. The cards are still new: Simplified Chinese text, their own numbers, their own foils and the Gem Pack set code.',
+    a: 'The art mostly is. 35 of the 40 artworks we traced are the same art you will find on English cards, mostly 2023 Scarlet & Violet sets. The cards are still new: Simplified Chinese text, their own numbers, their own holo patterns and the Gem Pack set code.',
   },
   {
     q: 'Is any Gem Vol 3 artwork new?',
@@ -153,7 +153,7 @@ function GemVol3OriginsPost() {
         }}
       >
         <p>
-          Gem Packs reuse artwork from existing Pokémon TCG cards, reprinted in Simplified Chinese with new numbers and new foils.
+          Gem Packs reuse artwork from existing Pokémon TCG cards, reprinted in Simplified Chinese with new numbers and new holo patterns.
           We matched every artwork in Gem Vol 3 (Gem 3) to the English card it came from.
         </p>
 

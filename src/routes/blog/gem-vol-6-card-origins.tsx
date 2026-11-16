@@ -67,7 +67,7 @@ const TOC = [
 const FAQ = [
   {
     q: 'Are Gem 6 cards reprints?',
-    a: 'The art mostly is. 55 of the 56 artworks are the same art you will find on English Scarlet & Violet cards, mostly from Surging Sparks. The cards are still new: Simplified Chinese text, their own numbers, their own foils and the Gem Pack set code.',
+    a: 'The art mostly is. 55 of the 56 artworks are the same art you will find on English Scarlet & Violet cards, mostly from Surging Sparks. The cards are still new: Simplified Chinese text, their own numbers, their own holo patterns and the Gem Pack set code.',
   },
   {
     q: 'Is any Gem Vol 6 artwork new?',
@@ -145,7 +145,7 @@ function GemVol6OriginsPost() {
         }}
       >
         <p>
-          Gem Packs reuse artwork from existing Pokémon TCG cards, reprinted in Simplified Chinese with new numbers and new foils.
+          Gem Packs reuse artwork from existing Pokémon TCG cards, reprinted in Simplified Chinese with new numbers and new holo patterns.
           We matched every artwork in Gem Vol 6 (Gem 6) to the English card it came from.
         </p>
 

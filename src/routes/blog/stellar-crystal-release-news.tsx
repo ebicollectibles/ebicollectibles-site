@@ -324,7 +324,7 @@ function StellarCrystalReleasePost() {
         </p>
         <p>
           Every Common, Uncommon and Rare also comes as a Poké Ball pattern holo and a Master Ball pattern holo, 177 of each. The card is
-          the same, only the foil changes, which brings a true master set to 620 cards. The Master Ball versions share the Double Rare
+          the same, only the holo pattern changes, which brings a true master set to 620 cards. The Master Ball versions share the Double Rare
           band, so they are a real chase on their own. Our <Link to="/blog/stellar-crystal-set-guide">set guide</Link> has every
           chase card and the box math, and our <Link to="/blog/stellar-crystal-card-origins">card origins guide</Link> matches
           every card to its English version.

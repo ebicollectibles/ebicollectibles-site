@@ -11,13 +11,13 @@ const post = BLOG_POSTS.find((p) => p.slug === 'gem-vol-3-release-news')!
 const cardImg = (id: string) => `${R2_IMAGE_HOST}/Chinese/Gem%203/Cards/${id}.webp`
 
 // Gengar's six holo versions, in collector-number order. All share one
-// illustration by Nelnal and differ only in rarity and foil finish.
+// illustration by Nelnal and differ only in rarity and holo pattern.
 const GENGAR_RUN = [
-  { id: '0301', rarity: 'Common', finish: 'Energy-type pattern foil' },
-  { id: '0302', rarity: 'Common', finish: 'Poké Ball pattern foil' },
-  { id: '0303', rarity: 'Uncommon', finish: 'Glitter foil' },
-  { id: '0304', rarity: 'Uncommon', finish: 'Starburst foil' },
-  { id: '0305', rarity: 'Rare', finish: 'Master Ball pattern foil' },
+  { id: '0301', rarity: 'Common', finish: 'Energy-type pattern holo' },
+  { id: '0302', rarity: 'Common', finish: 'Poké Ball pattern holo' },
+  { id: '0303', rarity: 'Uncommon', finish: 'Glitter holo' },
+  { id: '0304', rarity: 'Uncommon', finish: 'Starburst holo' },
+  { id: '0305', rarity: 'Rare', finish: 'Master Ball pattern holo' },
   { id: '0306', rarity: 'Double Rare', finish: 'Gem Pack logo stamp' },
 ]
 
@@ -95,7 +95,7 @@ const FAQ = [
     a: '18 packs of 4 cards each, so 72 cards per box.',
   },
   {
-    q: 'Are all the cards foil?',
+    q: 'Are all the cards holo?',
     a: 'Yes. Every card in every pack is a holo, including the Trainer and Energy cards.',
   },
   {
@@ -274,8 +274,8 @@ function GemVol3Post() {
 
         <h2 id="how-the-set-works">How the set is built</h2>
         <p>
-          Each of the 18 Pokémon gets seven numbered cards. The first six share one illustration and step up in rarity and foil
-          finish. The seventh is where Vol. 3 differs from later volumes: for nine Pokémon it is a full art, and for the other nine it
+          Each of the 18 Pokémon gets seven numbered cards. The first six share one illustration and step up in rarity and holo
+          pattern. The seventh is where Vol. 3 differs from later volumes: for nine Pokémon it is a full art, and for the other nine it
           is a Pokémon ex. Four Trainer cards and six Energy cards round out the set.
         </p>
         <div className="table-scroll">

@@ -56,7 +56,7 @@ const TOC = [
 const FAQ = [
   {
     q: 'Are Gem 2 cards reprints?',
-    a: 'The art mostly is. 40 of the 44 artworks we traced are the same art you will find on English cards, mostly from Sword & Shield sets and promos. The cards are still new: Simplified Chinese text, their own numbers, their own foils and the Gem Pack set code.',
+    a: 'The art mostly is. 40 of the 44 artworks we traced are the same art you will find on English cards, mostly from Sword & Shield sets and promos. The cards are still new: Simplified Chinese text, their own numbers, their own holo patterns and the Gem Pack set code.',
   },
   {
     q: 'Is any Gem Vol 2 artwork new?',
@@ -144,7 +144,7 @@ function GemVol2OriginsPost() {
         }}
       >
         <p>
-          Gem Packs reuse artwork from existing Pokémon TCG cards, reprinted in Simplified Chinese with new numbers and new foils.
+          Gem Packs reuse artwork from existing Pokémon TCG cards, reprinted in Simplified Chinese with new numbers and new holo patterns.
           We matched every artwork in Gem Vol 2 (Gem 2) to the English card it came from.
         </p>
 

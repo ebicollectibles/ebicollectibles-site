@@ -29,11 +29,11 @@ const ROSTER = POKEMON_CARDS.filter((c) => c.version === 1).map((c) => {
 
 // How to tell the versions apart. Finishes as printed on Gengar's run.
 const VERSIONS = [
-  { v: '01', symbol: '●', rarity: 'Common', look: 'Energy-type pattern foil' },
-  { v: '02', symbol: '●', rarity: 'Common', look: 'Poké Ball pattern foil' },
-  { v: '03', symbol: '◆', rarity: 'Uncommon', look: 'Glitter foil across the whole card' },
-  { v: '04', symbol: '◆', rarity: 'Uncommon', look: 'Starburst foil across the whole card' },
-  { v: '05', symbol: '★', rarity: 'Rare', look: 'Master Ball pattern foil' },
+  { v: '01', symbol: '●', rarity: 'Common', look: 'Energy-type pattern holo' },
+  { v: '02', symbol: '●', rarity: 'Common', look: 'Poké Ball pattern holo' },
+  { v: '03', symbol: '◆', rarity: 'Uncommon', look: 'Glitter holo across the whole card' },
+  { v: '04', symbol: '◆', rarity: 'Uncommon', look: 'Starburst holo across the whole card' },
+  { v: '05', symbol: '★', rarity: 'Rare', look: 'Master Ball pattern holo' },
   { v: '06', symbol: '★★', rarity: 'Double Rare', look: 'Pink Gem Pack logo stamped on the art' },
   { v: '07', symbol: '★★★ or ★', rarity: 'Full art or ex', look: 'A full art (Triple Rare) for 9 Pokémon, a Pokémon ex (Rare) for the other 9' },
 ]
@@ -260,7 +260,7 @@ function GemVol3SetGuide() {
         <p>
           Pokémon cards are numbered PPVV/07: the first two digits are the Pokémon (01 to 18) and the next two are the version, so 0305/07
           is Gengar's version 05. Trainers are numbered 19VV/04 and Energy 20VV/06. The symbol after the number gives the rarity, and
-          the foil tells you the version at a glance:
+          the holo pattern tells you the version at a glance:
         </p>
         <div className="table-scroll">
           <table className="data-table">

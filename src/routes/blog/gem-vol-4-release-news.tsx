@@ -11,13 +11,13 @@ const post = BLOG_POSTS.find((p) => p.slug === 'gem-vol-4-release-news')!
 const cardImg = (id: string) => `${R2_IMAGE_HOST}/Chinese/Gem%204/Cards/${id}.webp`
 
 // Ponyta's six holo versions, in collector-number order. All share one
-// illustration by Ayako Ozaki and differ only in rarity and foil finish.
+// illustration by Ayako Ozaki and differ only in rarity and holo pattern.
 const PONYTA_RUN = [
-  { id: '0101', rarity: 'Common', finish: 'Fire-type pattern foil' },
-  { id: '0102', rarity: 'Common', finish: 'Poké Ball pattern foil' },
-  { id: '0103', rarity: 'Uncommon', finish: 'Glitter foil' },
-  { id: '0104', rarity: 'Uncommon', finish: 'Starburst foil' },
-  { id: '0105', rarity: 'Rare', finish: 'Master Ball pattern foil' },
+  { id: '0101', rarity: 'Common', finish: 'Fire-type pattern holo' },
+  { id: '0102', rarity: 'Common', finish: 'Poké Ball pattern holo' },
+  { id: '0103', rarity: 'Uncommon', finish: 'Glitter holo' },
+  { id: '0104', rarity: 'Uncommon', finish: 'Starburst holo' },
+  { id: '0105', rarity: 'Rare', finish: 'Master Ball pattern holo' },
   { id: '0106', rarity: 'Double Rare', finish: 'Gem Pack logo stamp' },
 ]
 
@@ -73,8 +73,8 @@ const FAQ = [
     a: '18 packs of 4 cards each, so 72 cards per box.',
   },
   {
-    q: 'Are all the cards foil?',
-    a: 'Yes. Every card in every pack is a holo. There are no plain non-foil cards in the set.',
+    q: 'Are all the cards holo?',
+    a: 'Yes. Every card in every pack is a holo. There are no non-holo cards in the set.',
   },
   {
     q: 'What is the main chase card?',
@@ -137,7 +137,7 @@ function GemVol4Post() {
         updated={status.liveAt}
         wide
         post={post}
-        lede="Ponyta fronts the fourth Simplified Chinese Gem Pack: 28 Pokémon, seven cards each, every card a foil, and a new Ponyta full art by MINAMINAMI Take you can only pull here."
+        lede="Ponyta fronts the fourth Simplified Chinese Gem Pack: 28 Pokémon, seven cards each, every card a holo, and a new Ponyta full art by MINAMINAMI Take you can only pull here."
         cta={{
           heading: 'Shop Gem Vol 4',
           body: 'Booster boxes in stock now, plus the full 196-card checklist with every version.',
@@ -236,7 +236,7 @@ function GemVol4Post() {
         <h2 id="how-the-set-works">How the set is built</h2>
         <p>
           Every one of the 28 Pokémon gets seven numbered cards. The first six share a single illustration and step up in rarity and
-          foil finish. The seventh is a full art with its own illustration. Card numbers tell you exactly where you are: read 0107/07
+          holo pattern. The seventh is a full art with its own illustration. Card numbers tell you exactly where you are: read 0107/07
           as Pokémon 01, version 07 of 7, so it is the full art of the first Pokémon in the set, which is Ponyta.
         </p>
         <div className="table-scroll">

@@ -11,13 +11,13 @@ const post = BLOG_POSTS.find((p) => p.slug === 'gem-vol-5-release-news')!
 const cardImg = (id: string) => `${R2_IMAGE_HOST}/Chinese/Gem%205/Cards/${id}.webp`
 
 // Floragato's six holo versions, in collector-number order. All share one
-// illustration by Felicia Chen and differ only in rarity and foil finish.
+// illustration by Felicia Chen and differ only in rarity and holo pattern.
 const FLORAGATO_RUN = [
-  { id: '2201', rarity: 'Common', finish: 'Grass-type pattern foil' },
-  { id: '2202', rarity: 'Common', finish: 'Poké Ball pattern foil' },
-  { id: '2203', rarity: 'Uncommon', finish: 'Glitter foil' },
-  { id: '2204', rarity: 'Uncommon', finish: 'Starburst foil' },
-  { id: '2205', rarity: 'Rare', finish: 'Master Ball pattern foil' },
+  { id: '2201', rarity: 'Common', finish: 'Grass-type pattern holo' },
+  { id: '2202', rarity: 'Common', finish: 'Poké Ball pattern holo' },
+  { id: '2203', rarity: 'Uncommon', finish: 'Glitter holo' },
+  { id: '2204', rarity: 'Uncommon', finish: 'Starburst holo' },
+  { id: '2205', rarity: 'Rare', finish: 'Master Ball pattern holo' },
   { id: '2206', rarity: 'Double Rare', finish: 'Gem Pack logo stamp' },
 ]
 
@@ -79,8 +79,8 @@ const FAQ = [
     a: '18 packs of 4 cards each, so 72 cards per box.',
   },
   {
-    q: 'Are all the cards foil?',
-    a: 'Yes. Every card in every pack is a holo. There are no plain non-foil cards in the set.',
+    q: 'Are all the cards holo?',
+    a: 'Yes. Every card in every pack is a holo. There are no non-holo cards in the set.',
   },
   {
     q: 'What is the main chase card?',
@@ -143,7 +143,7 @@ function GemVol5Post() {
         updated={status.liveAt}
         wide
         post={post}
-        lede="The fifth Simplified Chinese Gem Pack brings Pokémon Horizons to the line: 28 Pokémon, seven cards each, every card a foil, and four brand-new full arts starring Friede, Liko, Roy and Dot."
+        lede="The fifth Simplified Chinese Gem Pack brings Pokémon Horizons to the line: 28 Pokémon, seven cards each, every card a holo, and four brand-new full arts starring Friede, Liko, Roy and Dot."
         cta={{
           heading: 'Shop Gem Vol 5',
           body: 'Booster boxes in stock now, plus the full 196-card checklist with every version.',
@@ -250,7 +250,7 @@ function GemVol5Post() {
         <h2 id="how-the-set-works">How the set is built</h2>
         <p>
           Every one of the 28 Pokémon gets seven numbered cards. The first six share a single illustration and step up in rarity and
-          foil finish. The seventh is a full art with its own illustration. Card numbers tell you exactly where you are: read 2207/07
+          holo pattern. The seventh is a full art with its own illustration. Card numbers tell you exactly where you are: read 2207/07
           as Pokémon 22, version 07 of 7, so it is the full art of the twenty-second Pokémon in the set, which is Floragato.
         </p>
         <div className="table-scroll">

@@ -11,14 +11,14 @@ const post = BLOG_POSTS.find((p) => p.slug === 'gem-vol-7-release-news')!
 const cardImg = (id: string) => `${R2_IMAGE_HOST}/Chinese/Gem%207/Cards/${id}.webp`
 
 // All seven Misty's Psyduck cards, in collector-number order. Versions
-// 01-06 share one illustration and differ only in rarity and foil
+// 01-06 share one illustration and differ only in rarity and holo
 // finish; 07 is the full art.
 const PSYDUCK_RUN = [
-  { id: '0301', rarity: 'Common', finish: 'Water-type pattern foil' },
-  { id: '0302', rarity: 'Common', finish: 'Poké Ball pattern foil' },
-  { id: '0303', rarity: 'Uncommon', finish: 'Glitter foil' },
-  { id: '0304', rarity: 'Uncommon', finish: 'Starburst foil' },
-  { id: '0305', rarity: 'Rare', finish: 'Master Ball pattern foil' },
+  { id: '0301', rarity: 'Common', finish: 'Water-type pattern holo' },
+  { id: '0302', rarity: 'Common', finish: 'Poké Ball pattern holo' },
+  { id: '0303', rarity: 'Uncommon', finish: 'Glitter holo' },
+  { id: '0304', rarity: 'Uncommon', finish: 'Starburst holo' },
+  { id: '0305', rarity: 'Rare', finish: 'Master Ball pattern holo' },
   { id: '0306', rarity: 'Double Rare', finish: 'Gem Pack logo stamp' },
   { id: '0307', rarity: 'Triple Rare', finish: 'Full art' },
 ]
@@ -75,8 +75,8 @@ const FAQ = [
     a: '18 packs of 4 cards each, so 72 cards per box.',
   },
   {
-    q: 'Are all the cards foil?',
-    a: 'Yes. Every card in every pack is a holo. There are no plain non-foil cards in the set.',
+    q: 'Are all the cards holo?',
+    a: 'Yes. Every card in every pack is a holo. There are no non-holo cards in the set.',
   },
   {
     q: 'What is the main chase card?',
@@ -139,7 +139,7 @@ function GemVol7Post() {
         updated={status.liveAt}
         wide
         post={post}
-        lede="Psyduck fronts the seventh Simplified Chinese Gem Pack: 28 Pokémon, seven cards each, every card a foil, and a brand-new Misty's Psyduck full art by Cona Nitanda, drawn just for this set."
+        lede="Psyduck fronts the seventh Simplified Chinese Gem Pack: 28 Pokémon, seven cards each, every card a holo, and a brand-new Misty's Psyduck full art by Cona Nitanda, drawn just for this set."
         cta={{
           heading: 'Shop Gem Vol 7',
           body: 'Booster boxes in stock now, plus the full 196-card checklist with every version.',
@@ -240,7 +240,7 @@ function GemVol7Post() {
         <h2 id="how-the-set-works">How the set is built</h2>
         <p>
           Every one of the 28 Pokémon gets seven numbered cards. The first six share a single illustration and step up in rarity and
-          foil finish. The seventh is a full art with its own illustration. Card numbers tell you exactly where you are: read 0307/07
+          holo pattern. The seventh is a full art with its own illustration. Card numbers tell you exactly where you are: read 0307/07
           as Pokémon 03, version 07 of 7, so it is the full art of the third Pokémon in the set.
         </p>
         <div className="table-scroll">

@@ -21,11 +21,11 @@ const EXCLUSIVE = new Set<string>(setData.exclusiveCardNumbers)
 // How to tell the seven versions of any Pokémon apart. Finishes are as
 // printed on Ponyta's run (0101 to 0107) and match Pokémon China's list.
 const VERSIONS = [
-  { v: '01', symbol: '●', rarity: 'Common', look: "Energy-type pattern foil, matching the Pokémon's type" },
-  { v: '02', symbol: '●', rarity: 'Common', look: 'Poké Ball pattern foil' },
-  { v: '03', symbol: '◆', rarity: 'Uncommon', look: 'Glitter foil across the whole card' },
-  { v: '04', symbol: '◆', rarity: 'Uncommon', look: 'Starburst foil across the whole card' },
-  { v: '05', symbol: '★', rarity: 'Rare', look: 'Master Ball pattern foil' },
+  { v: '01', symbol: '●', rarity: 'Common', look: "Energy-type pattern holo, matching the Pokémon's type" },
+  { v: '02', symbol: '●', rarity: 'Common', look: 'Poké Ball pattern holo' },
+  { v: '03', symbol: '◆', rarity: 'Uncommon', look: 'Glitter holo across the whole card' },
+  { v: '04', symbol: '◆', rarity: 'Uncommon', look: 'Starburst holo across the whole card' },
+  { v: '05', symbol: '★', rarity: 'Rare', look: 'Master Ball pattern holo' },
   { v: '06', symbol: '★★', rarity: 'Double Rare', look: 'Pink Gem Pack logo stamped on the art' },
   { v: '07', symbol: '★★★', rarity: 'Triple Rare', look: 'Full art with its own illustration' },
 ]
@@ -228,7 +228,7 @@ function GemVol4SetGuide() {
         <h2 id="reading-a-card">Reading a Gem Vol 4 card</h2>
         <p>
           Every card number has two parts. The first two digits are the Pokémon (01 to 28) and the next two are the version (01 to
-          07), so 0105/07 is Ponyta's version 05. The symbol printed after the number gives the rarity, and the foil tells you the
+          07), so 0105/07 is Ponyta's version 05. The symbol printed after the number gives the rarity, and the holo pattern tells you the
           version at a glance:
         </p>
         <div className="table-scroll">

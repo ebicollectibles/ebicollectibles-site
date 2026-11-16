@@ -401,7 +401,7 @@ function BladeAwakeningReleasePost() {
         <h2 id="parallels">Poké Ball and Master Ball holos</h2>
         <p>
           Every Common, Uncommon and Rare, 173 cards, also comes as a Poké Ball pattern holo and a Master Ball pattern holo. The card is
-          the same, only the foil changes. That adds 346 cards, for 605 in a true master set. The Master Ball versions share the Double
+          the same, only the holo pattern changes. That adds 346 cards, for 605 in a true master set. The Master Ball versions share the Double
           Rare odds band, so they are a chase of their own.
         </p>
 
