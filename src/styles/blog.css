@@ -149,6 +149,12 @@
   .card-grid figure { margin: 0; }
   .card-grid img { display: block; width: 100%; height: auto; aspect-ratio: 300/419; object-fit: contain; border-radius: 6px; box-shadow: var(--shadow); background: var(--surface); }
   .card-grid figcaption { margin-top: 8px; font-size: 12px; line-height: 1.35; color: var(--slate); text-align: center; }
+  /* Chinese Exclusive label: a red pill, used in card captions and fact boxes. */
+  .ce-badge {
+    display: inline-block; margin: 0 auto 5px; padding: 3px 8px; border-radius: 999px; background: #c8102e; color: #fff;
+    font-family: var(--f-mono); font-size: 9.5px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; line-height: 1.2; white-space: nowrap;
+  }
+  figcaption .ce-badge { display: table; }
   .card-grid figcaption strong { display: block; color: var(--ink); font-weight: 700; font-size: 12.5px; }
   .card-grid.cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .card-grid .feature { grid-column: span 2; }

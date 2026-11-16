@@ -445,7 +445,7 @@ export function GemSetPage({
                     // cards that aren't it into the same top queue.
                     fetchPriority={i === fanIndex ? 'high' : undefined}
                   />
-                  {c.exclusive && <span className="fan-excl">Exclusive</span>}
+                  {c.exclusive && <span className="fan-excl">Chinese Exclusive</span>}
                 </button>
               )
             })}
