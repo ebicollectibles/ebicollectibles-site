@@ -86,7 +86,7 @@ const config: GemSetConfig = {
   glow1: 'rgb(222 185 97 / .30)',
   glow2: 'rgb(90 45 5 / .25)',
   heroLede:
-    "All 206 cards in 30th Celebration: the 103-card main set (100 Pokémon, 30 of them Pikachu Rares, plus 3 Trainers), 20 Art Rares, 10 Special Art Rares, 2 Futuristic Rares, 30 classic reprints, 8 basic Energy and 33 promos. Tap any card for a closer look and every other printing beside it.",
+    "All 206 cards in 30th Celebration, led by 30 different Pikachu, one in every pack: the 103-card main set (100 Pokémon plus 3 Trainers), 20 Art Rares, 10 Special Art Rares, 2 Futuristic Rares, 30 classic reprints, 8 basic Energy and 33 promos. Tap any card for a closer look and every other printing beside it.",
   pokemonFact: '100',
   rarityVersionLabelsOverride: {
     'Common (C)': '001–103 (mixed)',
