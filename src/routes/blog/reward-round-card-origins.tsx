@@ -5,6 +5,7 @@ import { BLOG_POSTS, BLOG_SITE_URL } from '~/data/blog-posts'
 import { BlogPostLayout } from '~/components/blog/BlogPostLayout'
 import { getBlogPostStatus } from '~/server/blog-status'
 import { safeJsonLd } from '~/lib/gem-sets/head'
+import { ChineseExclusiveBadge } from '~/components/blog/ChineseExclusive'
 import setData from '~/data/csv4.json'
 
 const post = BLOG_POSTS.find((p) => p.slug === 'reward-round-card-origins')!
@@ -239,12 +240,12 @@ const FAQ = [
     a: 'There is no single one. Most of its cards match Obsidian Flames (69), Paldea Evolved (41) and Paradox Rift (31), with the rest from six other English sources and three new arts.',
   },
   {
-    q: 'Which Reward Round cards have no English version?',
-    a: 'The gold Gholdengo ex Ultra Rare 162/129 by 5ban Graphics, the Maushold ex Special Art Rare 158/129 by Yoshimi Miyoshi, and the Rika Special Art Rare 159/129 by kantaro.',
+    q: 'Which cards are Chinese Exclusives?',
+    a: 'Three: the Maushold ex Special Art Rare 158/129 by Yoshimi Miyoshi, the Rika Special Art Rare 159/129 by kantaro, and the gold Gholdengo ex Ultra Rare 162/129 by 5ban Graphics. None of them has an English version.',
   },
   {
     q: 'Is the Gholdengo ex Special Art Rare the same as in English?',
-    a: 'Yes. 156/129 matches Paradox Rift 252/182 by Akira Komayama. Only the gold Ultra Rare is new.',
+    a: 'Yes. 156/129 matches Paradox Rift 252/182 by Akira Komayama. Only the gold Ultra Rare is new, and it is one of the set\'s Chinese Exclusives.',
   },
   {
     q: 'Are any Reward Round cards English promos?',
@@ -302,7 +303,7 @@ function OriginsTable({ list }: { list: typeof rows }) {
               </td>
               <td>
                 {r.src === 'NEW' ? (
-                  <span className="cell-none">New art, no English version</span>
+                  <span className="cell-none">Chinese Exclusive, no English version</span>
                 ) : (
                   <>
                     {SET_NAME[r.src]} {r.en}
@@ -354,7 +355,7 @@ function RewardRoundOrigins() {
         updated={status.liveAt}
         wide
         post={post}
-        lede="Reward Round mixes cards from several English sets into one. We matched all 165 cards to English and found three that English never printed."
+        lede="Reward Round mixes cards from several English sets into one. We matched all 165 cards to English and found three Chinese Exclusives that English never printed."
         cta={{
           heading: 'Collect Reward Round',
           body: 'See every card on the full checklist, or pick up a slim box.',
@@ -366,7 +367,7 @@ function RewardRoundOrigins() {
       >
         <p>
           Reward Round does not follow one English set. Its 165 cards pull mostly from Obsidian Flames,
-          Paldea Evolved and Paradox Rift, with a handful from other Scarlet & Violet sets and promos, plus three new arts. For the chase
+          Paldea Evolved and Paradox Rift, with a handful from other Scarlet & Violet sets and promos, plus three Chinese Exclusives. For the chase
           cards and box odds, see our <Link to="/blog/reward-round-set-guide">set guide</Link>.
         </p>
 
@@ -417,15 +418,16 @@ function RewardRoundOrigins() {
 
         <h2 id="patterns">Patterns worth knowing</h2>
         <p>
-          <strong>Three cards are new.</strong> English never printed a gold Gholdengo ex, a Maushold ex Special Art Rare or a Rika
+          <strong>Three cards are Chinese Exclusives.</strong> English never printed a gold Gholdengo ex, a Maushold ex Special Art Rare or a Rika
           Special Art Rare. The English Gholdengo ex Special Art Rare, Maushold ex Super Rare and Rika Super Rare are all here too, so a
           Chinese binder holds one more version of each.
         </p>
         <div className="card-grid cols-3">
           {fresh.map((r) => (
             <figure key={r.cn}>
-              <img src={r.image} alt={`${r.name} ${r.cn}/129, Reward Round`} loading="lazy" width={300} height={419} />
+              <img src={r.image} alt={`${r.name} ${r.cn}/129, Chinese Exclusive, Reward Round`} loading="lazy" width={300} height={419} />
               <figcaption>
+                <ChineseExclusiveBadge />
                 <strong>{r.name}</strong>
                 {r.cn}/129 · {r.rarity} · {r.illus}
               </figcaption>

@@ -5,6 +5,7 @@ import { BLOG_POSTS, BLOG_SITE_URL } from '~/data/blog-posts'
 import { BlogPostLayout } from '~/components/blog/BlogPostLayout'
 import { getBlogPostStatus } from '~/server/blog-status'
 import { safeJsonLd } from '~/lib/gem-sets/head'
+import { ChineseExclusiveBadge } from '~/components/blog/ChineseExclusive'
 import setData from '~/data/csv8.json'
 
 const post = BLOG_POSTS.find((p) => p.slug === 'brilliant-fantasy-card-origins')!
@@ -335,11 +336,11 @@ const TOC = [
 const FAQ = [
   {
     q: 'Which English set is Brilliant Fantasy?',
-    a: 'There is no single one. Most of its cards match Twilight Masquerade (109) and Shrouded Fable (76), with 38 from Surging Sparks, 32 from Stellar Crown, 8 from four other English sources and one new art.',
+    a: 'There is no single one. Most of its cards match Twilight Masquerade (109) and Shrouded Fable (76), with 38 from Surging Sparks, 32 from Stellar Crown, 8 from four other English sources and one Chinese Exclusive.',
   },
   {
-    q: 'Which Brilliant Fantasy card has no English version?',
-    a: 'The Carmine Special Art Rare 255/207 by OKACHEKE. English has a Carmine Special Illustration Rare in Twilight Masquerade, but with different art, and that one is not in the Chinese set.',
+    q: 'Which card is the Chinese Exclusive?',
+    a: 'The Carmine Special Art Rare 255/207 by OKACHEKE, the only card with no English version. English has a Carmine Special Illustration Rare in Twilight Masquerade, but with different art, and that one is not in the Chinese set.',
   },
   {
     q: 'Is the Milotic ex Special Art Rare the same as in English?',
@@ -401,7 +402,7 @@ function OriginsTable({ list }: { list: typeof rows }) {
               </td>
               <td>
                 {r.src === 'NEW' ? (
-                  <span className="cell-none">New art, no English version</span>
+                  <span className="cell-none">Chinese Exclusive, no English version</span>
                 ) : (
                   <>
                     {SET_NAME[r.src]} {r.en}
@@ -452,7 +453,7 @@ function BrilliantFantasyOrigins() {
         updated={status.liveAt}
         wide
         post={post}
-        lede="Brilliant Fantasy draws mostly on four English sets at once. We matched all 264 cards to English and found one that English never printed."
+        lede="Brilliant Fantasy draws mostly on four English sets at once. We matched all 264 cards to English and found one Chinese Exclusive that English never printed."
         cta={{
           heading: 'Collect Brilliant Fantasy',
           body: 'See every card on the full checklist, or pick up a box.',
@@ -465,7 +466,7 @@ function BrilliantFantasyOrigins() {
         <p>
           If you collect English, 263 of Brilliant Fantasy's 264 cards will look familiar. Most match Twilight Masquerade (109) and
           Shrouded Fable (76), with 38 from Surging Sparks, 32 from Stellar Crown and 8 from four other English sources. The one new card
-          is the Carmine Special Art Rare. The Chinese set mixes these sources freely, so the numbers never line up with any one English
+          is the Chinese Exclusive Carmine Special Art Rare. The Chinese set mixes these sources freely, so the numbers never line up with any one English
           set. For the chase cards and box odds, see our <Link to="/blog/brilliant-fantasy-set-guide">set guide</Link>.
         </p>
 
@@ -550,15 +551,16 @@ function BrilliantFantasyOrigins() {
           ex and Kofu Super Rares and the gold Bravery Charm.
         </p>
         <p>
-          <strong>One card is new.</strong> English printed Carmine as a Super Rare and as a Special Illustration Rare by En Morikura.
+          <strong>One card is a Chinese Exclusive.</strong> English printed Carmine as a Super Rare and as a Special Illustration Rare by En Morikura.
           Brilliant Fantasy keeps the Super Rare but swaps the Special Art Rare for a new illustration by OKACHEKE, so the English SIR is
           not in this set at all.
         </p>
         <div className="card-grid cols-2">
           {carmine.map((r) => (
             <figure key={r.cn}>
-              <img src={r.image} alt={`${r.name} ${r.cn}/207, Brilliant Fantasy`} loading="lazy" width={300} height={419} />
+              <img src={r.image} alt={`${r.name} ${r.cn}/207${r.src === 'NEW' ? ', Chinese Exclusive' : ''}, Brilliant Fantasy`} loading="lazy" width={300} height={419} />
               <figcaption>
+                {r.src === 'NEW' && <ChineseExclusiveBadge />}
                 <strong>{r.name}</strong>
                 {r.cn}/207 · {r.rarity} · {r.src === 'NEW' ? 'new art' : SET_NAME[r.src]}
               </figcaption>

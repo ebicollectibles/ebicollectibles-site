@@ -1,4 +1,5 @@
 import { BuyStrip } from '~/components/blog/BlogShop'
+import { ChineseExclusiveBadge } from '~/components/blog/ChineseExclusive'
 import { createFileRoute, Link } from '@tanstack/react-router'
 import blogCssUrl from '~/styles/blog.css?url'
 import { BLOG_POSTS, BLOG_SITE_URL } from '~/data/blog-posts'
@@ -52,7 +53,7 @@ const RARITY = [
 ]
 
 const TOC = [
-  { id: 'horizons-full-arts', label: 'The chase: four Horizons full arts' },
+  { id: 'horizons-full-arts', label: 'The Chinese Exclusives: four Horizons full arts' },
   { id: 'lineup', label: 'The rest of the lineup' },
   { id: 'how-the-set-works', label: 'How the set is built' },
   { id: 'floragato', label: 'Floragato, six holo versions' },
@@ -84,8 +85,8 @@ const FAQ = [
     a: 'Yes. Every card in every pack is a holo. There are no non-holo cards in the set.',
   },
   {
-    q: 'What is the main chase card?',
-    a: 'The four Pokémon Horizons full arts, led by Captain Pikachu 0107/07 with Friede by Keita Hagiwara. All four were drawn for this set. Beyond those, collectors chase the rest of the 28 full arts (every card numbered 07).',
+    q: 'What are the Chinese Exclusives in Gem Vol 5?',
+    a: 'The four Pokémon Horizons full arts drawn for this set: Captain Pikachu 0107/07 with Friede by Keita Hagiwara, Floragato 2207/07 by Lyu YiFei, Crocalor 2307/07 by Kouki Yanagihara and Quaxwell 2407/07 by Rei Yamazaki. Captain Pikachu is the main chase. Beyond those, collectors chase the rest of the 28 full arts (every card numbered 07).',
   },
 ]
 
@@ -152,7 +153,7 @@ function GemVol5Post() {
         updated={status.liveAt}
         wide
         post={post}
-        lede="The fifth Simplified Chinese Gem Pack brings Pokémon Horizons to the line: 28 Pokémon, seven cards each, every card a holo, and four brand-new full arts starring Friede, Liko, Roy and Dot."
+        lede="The fifth Simplified Chinese Gem Pack brings Pokémon Horizons to the line: 28 Pokémon, seven cards each, every card a holo, and four Chinese Exclusive full arts starring Friede, Liko, Roy and Dot."
         cta={{
           heading: 'Shop Gem Vol 5',
           body: 'Booster boxes, plus the full 196-card checklist with every version.',
@@ -192,8 +193,8 @@ function GemVol5Post() {
               <dd>18 packs, 72 cards</dd>
               <dt>Set size</dt>
               <dd>196 cards: 28 Pokémon × 7 versions</dd>
-              <dt>Chase cards</dt>
-              <dd>Four Pokémon Horizons full arts, led by Captain Pikachu 0107/07 by Keita Hagiwara</dd>
+              <dt>Chinese Exclusives</dt>
+              <dd>Four Pokémon Horizons full arts: Captain Pikachu 0107/07 by Keita Hagiwara, Floragato 2207/07, Crocalor 2307/07 and Quaxwell 2407/07</dd>
             </dl>
           </div>
         </aside>
@@ -209,9 +210,9 @@ function GemVol5Post() {
           </ol>
         </nav>
 
-        <h2 id="horizons-full-arts">The chase: four Horizons full arts</h2>
+        <h2 id="horizons-full-arts">The Chinese Exclusives: four Horizons full arts</h2>
         <p>
-          Gem Vol 5 has four full arts drawn just for this set, each pairing a Pokémon with a member of the Rising Volt Tacklers from
+          Gem Vol 5 has four Chinese Exclusive full arts, drawn for this set, each pairing a Pokémon with a member of the Rising Volt Tacklers from
           the Pokémon Horizons anime. Captain Pikachu rides the deck of the Brave Asagi with Friede, while Floragato, Crocalor and
           Quaxwell share a meal with Liko, Roy and Dot. Each one carries a small Pokémon Horizons logo.
         </p>
@@ -220,6 +221,7 @@ function GemVol5Post() {
             <figure key={c.id}>
               <img src={cardImg(c.id)} alt={`${c.name} with ${c.with}, full art ${c.id}/07, Gem Vol 5`} loading="lazy" width={300} height={419} />
               <figcaption>
+                <ChineseExclusiveBadge />
                 <strong>
                   {c.name} with {c.with}
                 </strong>

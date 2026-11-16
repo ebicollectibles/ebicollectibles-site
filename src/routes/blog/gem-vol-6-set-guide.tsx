@@ -1,4 +1,5 @@
 import { BuyStrip } from '~/components/blog/BlogShop'
+import { ChineseExclusiveBadge } from '~/components/blog/ChineseExclusive'
 import { createFileRoute, Link } from '@tanstack/react-router'
 import blogCssUrl from '~/styles/blog.css?url'
 import { BLOG_POSTS, BLOG_SITE_URL } from '~/data/blog-posts'
@@ -10,7 +11,7 @@ import setData from '~/data/gem-vol-6.json'
 const post = BLOG_POSTS.find((p) => p.slug === 'gem-vol-6-set-guide')!
 
 const FULL_ARTS = setData.cards.filter((c) => c.version === 7)
-// The gallery shows the most wanted full arts first (the exclusive Applin and its evolutions, then Poltchageist, Mesprit and the Loyal Three), then the rest in number order.
+// The gallery shows the most wanted full arts first (the Chinese Exclusive Applin and its evolutions, then Poltchageist, Mesprit and the Loyal Three), then the rest in number order.
 const GALLERY_FIRST = [19, 20, 21, 24, 25, 12, 26, 27, 28, 18, 2, 1]
 const galleryRank = (c: (typeof FULL_ARTS)[number]) => {
   const i = GALLERY_FIRST.indexOf(c.pokemonIndex)
@@ -59,7 +60,7 @@ const FAQ = [
     a: 'They show rarity: ● Common, ◆ Uncommon, ★ Rare, ★★ Double Rare, and ★★★ for the full art (Triple Rare).',
   },
   {
-    q: 'Which card is exclusive to Gem Vol 6?',
+    q: 'What is the Chinese Exclusive in Gem Vol 6?',
     a: 'Applin 1907/07, the full art by Jiro Sasumo. It is new art drawn for this set, with no English printing.',
   },
   {
@@ -147,7 +148,7 @@ function GemVol6SetGuide() {
       >
         <p>
           Gem Pack Vol. 6 (Gem 6, CBB6C) is the Applin set: 196 holo cards, 28 Pokémon with seven versions each, and the whole apple family in
-          the lineup. Our <Link to="/blog/gem-vol-6-release-news">release post</Link> covers what is new in the set, and our{' '}
+          the lineup, led by the Chinese Exclusive Applin full art. Our <Link to="/blog/gem-vol-6-release-news">release post</Link> covers what is new in the set, and our{' '}
           <Link to="/blog/gem-vol-6-card-origins">card origins guide</Link> traces every illustration back to its English card.
           Use this one to sort your pulls or plan a master set.
         </p>
@@ -192,16 +193,16 @@ function GemVol6SetGuide() {
 
         <h2 id="full-arts">All 28 full arts</h2>
         <p>
-          There is one full art per Pokémon, each with its own illustration. Applin's is the only one drawn just for Gem Vol 6.
+          There is one full art per Pokémon, each with its own illustration. Applin's is the only Chinese Exclusive, drawn just for Gem Vol 6.
         </p>
         <div className="card-grid cols-4">
           {FULL_ARTS_GALLERY.map((c) => (
             <figure key={c.number}>
               <img src={c.image} alt={`${c.name} full art ${c.number}, Gem Vol 6`} loading="lazy" width={300} height={419} />
               <figcaption>
+                {EXCLUSIVE.has(c.number) && <ChineseExclusiveBadge />}
                 <strong>{c.name}</strong>
                 {c.number}
-                {EXCLUSIVE.has(c.number) ? ' · Exclusive' : ''}
               </figcaption>
             </figure>
           ))}
@@ -232,6 +233,7 @@ function GemVol6SetGuide() {
                     <td>{c.name}</td>
                     <td>
                       {pp}01 to {pp}07
+                      {EXCLUSIVE.has(c.number) ? ' (07 is a Chinese Exclusive)' : ''}
                     </td>
                   </tr>
                 )

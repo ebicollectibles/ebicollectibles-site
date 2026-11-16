@@ -1,4 +1,5 @@
 import { BuyStrip } from '~/components/blog/BlogShop'
+import { ChineseExclusiveBadge } from '~/components/blog/ChineseExclusive'
 import { createFileRoute, Link } from '@tanstack/react-router'
 import blogCssUrl from '~/styles/blog.css?url'
 import { BLOG_POSTS, BLOG_SITE_URL } from '~/data/blog-posts'
@@ -47,7 +48,7 @@ const RARITY = [
 ]
 
 const TOC = [
-  { id: 'ponyta-full-art', label: 'The chase: Ponyta full art' },
+  { id: 'ponyta-full-art', label: 'The Chinese Exclusive: Ponyta full art' },
   { id: 'lineup', label: 'Horses, seasons and a Paradox Pokémon' },
   { id: 'how-the-set-works', label: 'How the set is built' },
   { id: 'ponyta', label: 'Ponyta, six holo versions' },
@@ -78,8 +79,8 @@ const FAQ = [
     a: 'Yes. Every card in every pack is a holo. There are no non-holo cards in the set.',
   },
   {
-    q: 'What is the main chase card?',
-    a: 'Ponyta 0107/07, the full art by MINAMINAMI Take drawn for this set. Beyond that, collectors chase the 28 full arts (every card numbered 07).',
+    q: 'What is the Chinese Exclusive in Gem Vol 4?',
+    a: 'Ponyta 0107/07, the full art by MINAMINAMI Take drawn for this set, and the main chase card. Beyond that, collectors chase the 28 full arts (every card numbered 07).',
   },
 ]
 
@@ -146,7 +147,7 @@ function GemVol4Post() {
         updated={status.liveAt}
         wide
         post={post}
-        lede="Ponyta fronts the fourth Simplified Chinese Gem Pack: 28 Pokémon, seven cards each, every card a holo, and a new Ponyta full art by MINAMINAMI Take you can only pull here."
+        lede="Ponyta fronts the fourth Simplified Chinese Gem Pack: 28 Pokémon, seven cards each, every card a holo, and a Chinese Exclusive Ponyta full art by MINAMINAMI Take."
         cta={{
           heading: 'Shop Gem Vol 4',
           body: 'Booster boxes, plus the full 196-card checklist with every version.',
@@ -186,7 +187,7 @@ function GemVol4Post() {
               <dd>18 packs, 72 cards</dd>
               <dt>Set size</dt>
               <dd>196 cards: 28 Pokémon × 7 versions</dd>
-              <dt>Chase card</dt>
+              <dt>Chinese Exclusive</dt>
               <dd>Ponyta full art 0107/07, by MINAMINAMI Take</dd>
             </dl>
           </div>
@@ -203,10 +204,11 @@ function GemVol4Post() {
           </ol>
         </nav>
 
-        <h2 id="ponyta-full-art">The chase: Ponyta full art</h2>
+        <h2 id="ponyta-full-art">The Chinese Exclusive: Ponyta full art</h2>
         <figure className="feature-card">
-          <img src={cardImg('0107')} alt="Ponyta 0107/07 full art, Triple Rare, Gem Vol 4" loading="lazy" width={320} height={447} />
+          <img src={cardImg('0107')} alt="Ponyta 0107/07 Chinese Exclusive full art, Triple Rare, Gem Vol 4" loading="lazy" width={320} height={447} />
           <figcaption>
+            <ChineseExclusiveBadge />
             <strong>0107/07</strong>
             Triple Rare · Full art · Illus. MINAMINAMI Take
           </figcaption>

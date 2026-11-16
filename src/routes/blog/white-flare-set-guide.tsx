@@ -3,6 +3,7 @@ import { createFileRoute, Link } from '@tanstack/react-router'
 import blogCssUrl from '~/styles/blog.css?url'
 import { BLOG_POSTS, BLOG_SITE_URL } from '~/data/blog-posts'
 import { BlogPostLayout } from '~/components/blog/BlogPostLayout'
+import { ChineseExclusiveBadge } from '~/components/blog/ChineseExclusive'
 import { getBlogPostStatus } from '~/server/blog-status'
 import { safeJsonLd } from '~/lib/gem-sets/head'
 import setData from '~/data/white-flare.json'
@@ -22,9 +23,9 @@ function Gallery({ cards, cols }: { cards: Card[]; cols: number }) {
         <figure key={c.number}>
           <img src={c.image} alt={`${c.name} ${c.number} ${short(c.rarity)}, White Flare`} loading="lazy" width={300} height={419} />
           <figcaption>
+            {EXCLUSIVE.has(c.number) && <ChineseExclusiveBadge />}
             <strong>{c.name}</strong>
             {c.number} · {short(c.rarity)}
-            {EXCLUSIVE.has(c.number) ? ' · Chinese exclusive' : ''}
           </figcaption>
         </figure>
       ))}
@@ -64,7 +65,7 @@ const BLOCKS = [
   { nos: '086', what: 'Ignition Energy', rarity: 'U' },
   { nos: '087 to 158', what: 'Art Rares of all 72 non-ex Pokémon, in main-set order', rarity: 'AR' },
   { nos: '159 to 166', what: 'Super Rare full arts of the 6 ex, Harlequin and Hilda', rarity: 'SR' },
-  { nos: '167 to 173', what: 'Special Art Rares of the 6 ex and Hilda', rarity: 'SAR' },
+  { nos: '167 to 173', what: 'Special Art Rares of the 6 ex and Hilda (the Chinese Exclusive)', rarity: 'SAR' },
   { nos: '174', what: 'Reshiram ex', rarity: 'BWR' },
 ]
 
@@ -89,7 +90,7 @@ const FAQ = [
     a: 'No. Both odds charts list the same 174 cards and the same 80 Poké Ball and 80 Master Ball pattern holos. Only the cards per pack and the odds change.',
   },
   {
-    q: 'What is the Chinese exclusive in White Flare?',
+    q: 'What is the Chinese Exclusive in White Flare?',
     a: 'Hilda 173/086, a Special Art Rare by Ligton. English White Flare has a different Hilda Special Illustration Rare, and that one is not in the Chinese set.',
   },
   {
@@ -176,7 +177,7 @@ function WhiteFlareSetGuide() {
         }}
       >
         <p>
-          White Flare (CSV10.6C) is the Reshiram half of the Unova pair: 174 cards, a Chinese-exclusive Hilda Special Art Rare, and slim
+          White Flare (CSV10.6C) is the Reshiram half of the Unova pair: 174 cards, a Chinese Exclusive Hilda Special Art Rare, and slim
           and jumbo boxes with their own odds. Our <Link to="/blog/white-flare-card-origins">card origins guide</Link> matches every card to English. Use this
           one to pick a box, sort your pulls or plan a master set.
         </p>
@@ -227,7 +228,7 @@ function WhiteFlareSetGuide() {
         <h2 id="top-chases">The Black White Rare and 7 Special Art Rares</h2>
         <p>
           Reshiram ex 174/086 is the set's only Black White Rare, a monochrome full art and the top tier. Below it sit seven Special Art
-          Rares: the six Pokémon ex and Hilda 173/086, the Chinese exclusive.
+          Rares: the six Pokémon ex and Hilda 173/086, the Chinese Exclusive.
         </p>
         <Gallery cards={pick([174, 173, 168, 171, 169, 167, 170, 172])} cols={4} />
 

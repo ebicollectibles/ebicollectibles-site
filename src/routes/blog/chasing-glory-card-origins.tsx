@@ -5,6 +5,7 @@ import { BLOG_POSTS, BLOG_SITE_URL } from '~/data/blog-posts'
 import { BlogPostLayout } from '~/components/blog/BlogPostLayout'
 import { getBlogPostStatus } from '~/server/blog-status'
 import { safeJsonLd } from '~/lib/gem-sets/head'
+import { ChineseExclusiveBadge } from '~/components/blog/ChineseExclusive'
 import setData from '~/data/csv10.json'
 
 const post = BLOG_POSTS.find((p) => p.slug === 'chasing-glory-card-origins')!
@@ -349,15 +350,15 @@ const TOC = [
 const FAQ = [
   {
     q: 'Which English sets is Chasing Glory made from?',
-    a: 'Destined Rivals (190 cards) and Journey Together (94 cards). Two more, Psyduck and Golduck, match Ascended Heroes, and Brock’s Scouting 276/222 is new.',
+    a: 'Destined Rivals (190 cards) and Journey Together (94 cards). Two more, Psyduck and Golduck, match Ascended Heroes, and Brock’s Scouting 276/222 is a Chinese Exclusive.',
   },
   {
     q: 'Is Team Rocket’s Mewtwo ex the same card as in English?',
     a: 'Yes. The Special Art Rare 268/222 is Destined Rivals 231/182 by Iwamoto05, and the gold 282/222 is Destined Rivals 240/182.',
   },
   {
-    q: 'Which Chasing Glory card has no English version?',
-    a: 'Brock’s Scouting 276/222, the Special Art Rare by Atsushi Furusawa. English has Brock’s Scouting as an Uncommon and a full art in Journey Together, but not this art.',
+    q: 'Which card is the Chinese Exclusive?',
+    a: 'Brock’s Scouting 276/222, the Special Art Rare by Atsushi Furusawa, the only card with no English version. English has Brock’s Scouting as an Uncommon and a full art in Journey Together, but not this art.',
   },
   {
     q: 'Does Chasing Glory have every card from Destined Rivals and Journey Together?',
@@ -415,7 +416,7 @@ function OriginsTable({ list }: { list: typeof rows }) {
               </td>
               <td>
                 {r.src === 'NEW' ? (
-                  <span className="cell-none">New art, no English version</span>
+                  <span className="cell-none">Chinese Exclusive, no English version</span>
                 ) : (
                   <>
                     {SET_NAME[r.src]} {r.en}
@@ -467,7 +468,7 @@ function ChasingGloryOrigins() {
         updated={status.liveAt}
         wide
         post={post}
-        lede="Chasing Glory pairs Trainers with their Pokémon, and almost every card has an English twin. We matched all 287, and found one card made just for China."
+        lede="Chasing Glory pairs Trainers with their Pokémon, and almost every card has an English twin. We matched all 287, and found one Chinese Exclusive."
         cta={{
           heading: 'Collect Chasing Glory',
           body: 'See every card on the full checklist, or pick up a box.',
@@ -479,7 +480,8 @@ function ChasingGloryOrigins() {
       >
         <p>
           If you collect English, most of Chasing Glory will look familiar. 284 of its 287 cards have the same art in Destined Rivals or
-          Journey Together, two more match Ascended Heroes, and one is brand new. The Chinese set mixes cards from
+          Journey Together, two more match Ascended Heroes, and one is brand new: the Chinese Exclusive
+          Brock's Scouting Special Art Rare. The Chinese set mixes cards from
           both, so the numbers do not line up. This guide maps every card. For what is in the set and the slim vs
           jumbo odds, see our <Link to="/blog/chasing-glory-set-guide">set guide</Link>.
         </p>
@@ -521,14 +523,14 @@ function ChasingGloryOrigins() {
           </table>
         </div>
         <p className="table-note">
-          Other is Psyduck and Golduck (Ascended Heroes) and Brock's Scouting 276/222 (new). Rarity is the Chinese rarity: Art Rare matches
+          Other is Psyduck and Golduck (Ascended Heroes) and Brock's Scouting 276/222 (Chinese Exclusive). Rarity is the Chinese rarity: Art Rare matches
           English Illustration Rare, Super Rare matches Ultra Rare, Special Art Rare matches Special Illustration Rare, and Ultra Rare
           matches the gold Hyper Rare.
         </p>
 
         <h2 id="patterns">Patterns worth knowing</h2>
         <p>
-          <strong>One card is new.</strong> {brock.name} {brock.cn}/222, the Special Art Rare by {brock.illus}, has no English version.
+          <strong>One card is a Chinese Exclusive.</strong> {brock.name} {brock.cn}/222, the Special Art Rare by {brock.illus}, has no English version.
           English only has Brock's Scouting as an Uncommon (Journey Together 146) and a full art (Journey Together 179), which Chinese
           also prints as 207/222 and 255/222.
         </p>
@@ -540,8 +542,9 @@ function ChasingGloryOrigins() {
         <div className="card-grid cols-3">
           {[brock, ...psyduck].map((r) => (
             <figure key={r.cn}>
-              <img src={r.image} alt={`${r.name} ${r.cn}/222, Chasing Glory`} loading="lazy" width={300} height={419} />
+              <img src={r.image} alt={`${r.name} ${r.cn}/222${r.src === 'NEW' ? ', Chinese Exclusive' : ''}, Chasing Glory`} loading="lazy" width={300} height={419} />
               <figcaption>
+                {r.src === 'NEW' && <ChineseExclusiveBadge />}
                 <strong>{r.name}</strong>
                 {r.cn}/222 · {r.src === 'NEW' ? 'New for Chasing Glory' : `${SET_NAME[r.src]} ${r.en}`}
               </figcaption>
@@ -597,7 +600,7 @@ function ChasingGloryOrigins() {
         </p>
 
         <h2 id="secret-rares">All 65 secret rares</h2>
-        <p>Every card above 222, with its English twin. The highlighted row is the Chinese exclusive.</p>
+        <p>Every card above 222, with its English twin. The highlighted row is the Chinese Exclusive.</p>
         <OriginsTable list={SECRET} />
 
         <BuyStrip />

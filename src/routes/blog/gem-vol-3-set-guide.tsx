@@ -1,4 +1,5 @@
 import { BuyStrip } from '~/components/blog/BlogShop'
+import { ChineseExclusiveBadge } from '~/components/blog/ChineseExclusive'
 import { createFileRoute, Link } from '@tanstack/react-router'
 import blogCssUrl from '~/styles/blog.css?url'
 import { BLOG_POSTS, BLOG_SITE_URL } from '~/data/blog-posts'
@@ -73,7 +74,7 @@ const FAQ = [
     a: 'They show rarity: ● Common, ◆ Uncommon, ★ Rare, ★★ Double Rare and ★★★ Triple Rare.',
   },
   {
-    q: 'Which cards are exclusive to Gem Vol 3?',
+    q: 'What are the Chinese Exclusives in Gem Vol 3?',
     a: 'The five new full arts: Meowth 0207/07 by Makura Tami, Gengar 0307/07 by aspara, Cubone 0407/07 by Katsunori Sato, Chandelure 1107/07 by satoma and Ceruledge 1507/07 by kodama. They are new art drawn for this set, with no English printing.',
   },
   {
@@ -118,9 +119,9 @@ function Gallery({ cards, cols }: { cards: Card[]; cols: number }) {
         <figure key={c.number}>
           <img src={c.image} alt={`${c.name} ${c.number}, Gem Vol 3`} loading="lazy" width={300} height={419} />
           <figcaption>
+            {EXCLUSIVE.has(c.number) && <ChineseExclusiveBadge />}
             <strong>{c.name}</strong>
             {c.number}
-            {EXCLUSIVE.has(c.number) ? ' · Exclusive' : ''}
           </figcaption>
         </figure>
       ))}
@@ -185,7 +186,7 @@ function GemVol3SetGuide() {
       >
         <p>
           Gem Pack Vol. 3 (Gem 3, CBB3C) is the Gengar set: 136 holo cards, 18 Pokémon with seven versions each, and a block of Trainer and
-          Energy cards. Our <Link to="/blog/gem-vol-3-release-news">release post</Link> covers what is new in the set, and our{' '}
+          Energy cards. Five full arts are Chinese Exclusives: Meowth, Gengar, Cubone, Chandelure and Ceruledge. Our <Link to="/blog/gem-vol-3-release-news">release post</Link> covers what is new in the set, and our{' '}
           <Link to="/blog/gem-vol-3-card-origins">card origins guide</Link> traces every artwork back to its English card. Use
           this one to sort your pulls or plan a master set.
         </p>
@@ -229,7 +230,7 @@ function GemVol3SetGuide() {
         <p className="table-note">Averages, not guarantees. Individual boxes vary.</p>
 
         <h2 id="full-arts">All 9 full arts</h2>
-        <p>Five of these are new art drawn for this set, marked Exclusive. The other four reprint existing art.</p>
+        <p>Five of these are Chinese Exclusives, new art drawn for this set and marked with the badge. The other four reprint existing art.</p>
         <Gallery cards={FULL_ARTS} cols={3} />
 
         <h2 id="pokemon-ex">All 9 Pokémon ex</h2>
@@ -263,7 +264,7 @@ function GemVol3SetGuide() {
                   <td>{r.name}</td>
                   <td>
                     {r.seventh}
-                    {r.exclusive ? ' (exclusive)' : ''}
+                    {r.exclusive ? ' (Chinese Exclusive)' : ''}
                   </td>
                 </tr>
               ))}

@@ -5,6 +5,7 @@ import { BLOG_POSTS, BLOG_SITE_URL } from '~/data/blog-posts'
 import { BlogPostLayout } from '~/components/blog/BlogPostLayout'
 import { getBlogPostStatus } from '~/server/blog-status'
 import { safeJsonLd } from '~/lib/gem-sets/head'
+import { ChineseExclusiveBadge } from '~/components/blog/ChineseExclusive'
 import setData from '~/data/csv9.json'
 
 const post = BLOG_POSTS.find((p) => p.slug === 'stellar-crystal-card-origins')!
@@ -335,11 +336,11 @@ const TOC = [
 const FAQ = [
   {
     q: 'Which English set is Stellar Crystal?',
-    a: 'Mostly Surging Sparks (160 cards) and Stellar Crown (79). The rest match Shrouded Fable (10), Twilight Masquerade (8), SV Black Star Promos (6) and Prismatic Evolutions (2), plus one new art.',
+    a: 'Mostly Surging Sparks (160 cards) and Stellar Crown (79). The rest match Shrouded Fable (10), Twilight Masquerade (8), SV Black Star Promos (6) and Prismatic Evolutions (2), plus one Chinese Exclusive.',
   },
   {
-    q: 'Which Stellar Crystal card has no English version?',
-    a: "The Lisia's Appeal Special Art Rare 257/208 by En Morikura. English has a Lisia's Appeal Special Illustration Rare in Surging Sparks, but with different art, and that one is not in the Chinese set.",
+    q: 'Which card is the Chinese Exclusive?',
+    a: "The Lisia's Appeal Special Art Rare 257/208 by En Morikura, the only card with no English version. English has a Lisia's Appeal Special Illustration Rare in Surging Sparks, but with different art, and that one is not in the Chinese set.",
   },
   {
     q: 'Is the Pikachu ex Special Art Rare the same as in English?',
@@ -401,7 +402,7 @@ function OriginsTable({ list }: { list: typeof rows }) {
               </td>
               <td>
                 {r.src === 'NEW' ? (
-                  <span className="cell-none">New art, no English version</span>
+                  <span className="cell-none">Chinese Exclusive, no English version</span>
                 ) : (
                   <>
                     {SET_NAME[r.src]} {r.en}
@@ -452,7 +453,7 @@ function StellarCrystalOrigins() {
         updated={status.liveAt}
         wide
         post={post}
-        lede="Stellar Crystal is mostly Surging Sparks and Stellar Crown, with a few surprises. We matched all 266 cards to English and found one that English never printed."
+        lede="Stellar Crystal is mostly Surging Sparks and Stellar Crown, with a few surprises. We matched all 266 cards to English and found one Chinese Exclusive that English never printed."
         cta={{
           heading: 'Collect Stellar Crystal',
           body: 'See every card on the full checklist and tick off what you have.',
@@ -462,7 +463,7 @@ function StellarCrystalOrigins() {
         <p>
           If you collect English, 265 of Stellar Crystal's 266 cards will look familiar. 160 match Surging Sparks and 79 match Stellar
           Crown, with 10 from Shrouded Fable, 8 from Twilight Masquerade, 6 from SV Black Star Promos and 2 from Prismatic Evolutions. The
-          one new card is the Lisia's Appeal Special Art Rare. The Chinese set mixes these sources freely, so the numbers never line up
+          one new card is the Chinese Exclusive Lisia's Appeal Special Art Rare. The Chinese set mixes these sources freely, so the numbers never line up
           with any one English set. For the chase cards and pack odds, see our{' '}
           <Link to="/blog/stellar-crystal-set-guide">set guide</Link>.
         </p>
@@ -547,15 +548,16 @@ function StellarCrystalOrigins() {
           Super Rare 232/208 match SV Black Star Promos, not a main English set. So do the Noctowl Art Rare, Zacian ex and Pecharunt.
         </p>
         <p>
-          <strong>One card is new.</strong> English printed Lisia's Appeal as a Super Rare and as a Special Illustration Rare. Stellar
+          <strong>One card is a Chinese Exclusive.</strong> English printed Lisia's Appeal as a Super Rare and as a Special Illustration Rare. Stellar
           Crystal keeps the Super Rare by En Morikura but swaps the Special Art Rare for a new illustration, also by En Morikura, so the
           English SIR is not in this set at all.
         </p>
         <div className="card-grid cols-2">
           {lisia.map((r) => (
             <figure key={r.cn}>
-              <img src={r.image} alt={`${r.name} ${r.cn}/208, Stellar Crystal`} loading="lazy" width={300} height={419} />
+              <img src={r.image} alt={`${r.name} ${r.cn}/208${r.src === 'NEW' ? ', Chinese Exclusive' : ''}, Stellar Crystal`} loading="lazy" width={300} height={419} />
               <figcaption>
+                {r.src === 'NEW' && <ChineseExclusiveBadge />}
                 <strong>{r.name}</strong>
                 {r.cn}/208 · {r.rarity} · {r.src === 'NEW' ? 'new art' : SET_NAME[r.src]}
               </figcaption>

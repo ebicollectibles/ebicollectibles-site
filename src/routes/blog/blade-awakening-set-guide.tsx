@@ -3,6 +3,7 @@ import { createFileRoute, Link } from '@tanstack/react-router'
 import blogCssUrl from '~/styles/blog.css?url'
 import { BLOG_POSTS, BLOG_SITE_URL } from '~/data/blog-posts'
 import { BlogPostLayout } from '~/components/blog/BlogPostLayout'
+import { ChineseExclusiveBadge } from '~/components/blog/ChineseExclusive'
 import { getBlogPostStatus } from '~/server/blog-status'
 import { safeJsonLd } from '~/lib/gem-sets/head'
 import setData from '~/data/csv7.json'
@@ -21,9 +22,9 @@ function Gallery({ cards, cols }: { cards: Card[]; cols: number }) {
         <figure key={c.number}>
           <img src={c.image} alt={`${c.name} ${c.number} ${short(c.rarity)}, Blade Awakening`} loading="lazy" width={300} height={419} />
           <figcaption>
+            {EXCLUSIVE.has(c.number) && <ChineseExclusiveBadge />}
             <strong>{c.name}</strong>
             {c.number}
-            {EXCLUSIVE.has(c.number) ? ' · Chinese exclusive' : ''}
           </figcaption>
         </figure>
       ))}
@@ -108,6 +109,10 @@ const FAQ = [
   {
     q: 'Do slim and jumbo packs have different cards?',
     a: 'No. Both pull from the same 259-card list and the same Poké Ball and Master Ball holos. Only the number of cards per pack and the odds change.',
+  },
+  {
+    q: 'What is the Chinese Exclusive in Blade Awakening?',
+    a: "Ciphermaniac's Codebreaking 245/204, a Special Art Rare. The Supporter's regular card and full art are in English too, but this Special Art Rare is not.",
   },
   {
     q: 'Which Pokémon ex reach the gold Ultra Rare tier?',
@@ -197,8 +202,8 @@ function BladeAwakeningSetGuide() {
         }}
       >
         <p>
-          Blade Awakening (CSV7C) is the Tera Greninja ex set: 259 cards, nine ACE SPEC cards, a Ciphermaniac's Codebreaking Special
-          Art Rare only in Chinese, and slim and jumbo boxes with their own odds. Our{' '}
+          Blade Awakening (CSV7C) is the Tera Greninja ex set: 259 cards, nine ACE SPEC cards, a Chinese Exclusive Ciphermaniac's Codebreaking
+          Special Art Rare, and slim and jumbo boxes with their own odds. Our{' '}
           <Link to="/blog/blade-awakening-release-news">release post</Link> covers what is new, and our{' '}
           <Link to="/blog/blade-awakening-card-origins">card origins guide</Link> matches every card to English. Use this one to
           pick a box, sort your pulls or plan a master set.
@@ -247,7 +252,7 @@ function BladeAwakeningSetGuide() {
         <h2 id="special-art-rares">All 14 Special Art Rares</h2>
         <p>Eight Pokémon ex, 237 to 244. Greninja ex 242 is the top chase.</p>
         <Gallery cards={byRange(237, 244)} cols={4} />
-        <p>And six Supporters, 245 to 250. Ciphermaniac's Codebreaking 245 is the Chinese exclusive.</p>
+        <p>And six Supporters, 245 to 250. Ciphermaniac's Codebreaking 245 is the Chinese Exclusive.</p>
         <Gallery cards={byRange(245, 250)} cols={3} />
 
         <BuyStrip />

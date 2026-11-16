@@ -5,6 +5,7 @@ import { BLOG_POSTS, BLOG_SITE_URL } from '~/data/blog-posts'
 import { BlogPostLayout } from '~/components/blog/BlogPostLayout'
 import { getBlogPostStatus } from '~/server/blog-status'
 import { safeJsonLd } from '~/lib/gem-sets/head'
+import { ChineseExclusiveBadge } from '~/components/blog/ChineseExclusive'
 import setData from '~/data/csv9-5.json'
 
 const post = BLOG_POSTS.find((p) => p.slug === 'terastal-gathering-card-origins')!
@@ -278,6 +279,10 @@ const ORIGINS: [string, Src, string, string][] = [
   ['259', 'PRE', '180/131', "5ban Graphics"],
 ]
 
+// The set's Chinese Exclusive (exclusiveCardNumbers in the set data). Garchomp ex
+// 045 is also new art with no English printing, but it is not a Chinese Exclusive.
+const EXCLUSIVE = new Set(['234'])
+
 const SET_NAME: Record<Src, string> = {
   PRE: 'Prismatic Evolutions',
   SVP: 'SV Black Star Promo',
@@ -336,8 +341,8 @@ const FAQ = [
     a: 'Not exactly. 156 of its 259 cards share art with Prismatic Evolutions, including 49 of the 51 secret rares. The rest come from other Scarlet & Violet sets, English promos and two new arts, and it leaves out 24 Prismatic Evolutions cards.',
   },
   {
-    q: 'Which Terastal Gathering cards are not in English at all?',
-    a: 'Sylveon ex 234/208, the Special Art Rare by rika, and Garchomp ex 045/208, a Double Rare with new art by PLANETA Mochizuki.',
+    q: 'Which card is the Chinese Exclusive?',
+    a: 'Sylveon ex 234/208, the Special Art Rare by rika. Garchomp ex 045/208, a Double Rare with new art by PLANETA Mochizuki, is also not in English at all, but it is new art, not a Chinese Exclusive.',
   },
   {
     q: 'Why do some cards look like English promos?',
@@ -399,7 +404,7 @@ function OriginsTable({ list }: { list: typeof rows }) {
               </td>
               <td>
                 {r.src === 'NEW' ? (
-                  <span className="cell-none">New art, no English version</span>
+                  <span className="cell-none">{EXCLUSIVE.has(r.cn) ? 'Chinese Exclusive, no English version' : 'New art, no English version'}</span>
                 ) : (
                   <>
                     {SET_NAME[r.src]} {r.en}
@@ -451,7 +456,7 @@ function TerastalGatheringOrigins() {
         updated={status.liveAt}
         wide
         post={post}
-        lede="Terastal Gathering is often called the Chinese Prismatic Evolutions, and that is mostly right. We matched all 259 cards to English, including the promo arts and the two cards English never printed."
+        lede="Terastal Gathering is often called the Chinese Prismatic Evolutions, and that is mostly right. We matched all 259 cards to English, including the promo arts and the two cards English never printed, one of them the Chinese Exclusive Sylveon ex."
         cta={{
           heading: 'Collect Terastal Gathering',
           body: 'See every card on the full checklist, or pick up a box.',
@@ -464,7 +469,7 @@ function TerastalGatheringOrigins() {
         <p>
           156 of Terastal Gathering's 259 cards have the same art as a Prismatic Evolutions card, including nearly every secret rare.
           The rest is where it gets interesting: 28 cards use art that English only released as promos, 73 are reprints from earlier
-          Scarlet & Violet sets, and two are brand new. For the chase cards and box odds, see our{' '}
+          Scarlet & Violet sets, and two are brand new, among them the Chinese Exclusive Sylveon ex Special Art Rare. For the chase cards and box odds, see our{' '}
           <Link to="/blog/terastal-gathering-set-guide">set guide</Link>.
         </p>
 
@@ -514,18 +519,19 @@ function TerastalGatheringOrigins() {
         <h2 id="patterns">Patterns worth knowing</h2>
         <p>
           <strong>The chase cards are Prismatic Evolutions.</strong> 49 of the 51 secret rares match Prismatic Evolutions card for card.
-          The two that do not are the Chinese-exclusive Sylveon ex 234/208 and Eevee ex 246/208, whose art English only released as the
+          The two that do not are the Chinese Exclusive Sylveon ex 234/208 and Eevee ex 246/208, whose art English only released as the
           promo SVP 174.
         </p>
         <p>
-          <strong>Two cards are new.</strong> Sylveon ex 234/208 by rika is the Chinese-exclusive Special Art Rare. Garchomp ex 045/208
+          <strong>Two cards are new.</strong> Sylveon ex 234/208 by rika is the Chinese Exclusive Special Art Rare. Garchomp ex 045/208
           is a Double Rare with new art by PLANETA Mochizuki. In English, Garchomp ex only has its Paradox Rift arts.
         </p>
         <div className="card-grid cols-3">
           {showcase.map((r) => (
             <figure key={r.cn}>
-              <img src={r.image} alt={`${r.name} ${r.cn}/208, Terastal Gathering`} loading="lazy" width={300} height={419} />
+              <img src={r.image} alt={`${r.name} ${r.cn}/208${EXCLUSIVE.has(r.cn) ? ', Chinese Exclusive' : ''}, Terastal Gathering`} loading="lazy" width={300} height={419} />
               <figcaption>
+                {EXCLUSIVE.has(r.cn) && <ChineseExclusiveBadge />}
                 <strong>{r.name}</strong>
                 {r.cn}/208 · {r.src === 'NEW' ? 'New art' : `${SET_NAME[r.src]} ${r.en}`}
               </figcaption>

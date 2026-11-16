@@ -1,4 +1,5 @@
 import { BuyStrip } from '~/components/blog/BlogShop'
+import { ChineseExclusiveBadge } from '~/components/blog/ChineseExclusive'
 import { createFileRoute, Link } from '@tanstack/react-router'
 import blogCssUrl from '~/styles/blog.css?url'
 import { BLOG_POSTS, BLOG_SITE_URL } from '~/data/blog-posts'
@@ -50,7 +51,7 @@ const RARITY = [
 ]
 
 const TOC = [
-  { id: 'psyduck-full-art', label: 'The chase: Psyduck full art' },
+  { id: 'psyduck-full-art', label: "The Chinese Exclusive: Misty's Psyduck full art" },
   { id: 'trainers', label: 'Trainers and their Pokémon' },
   { id: 'how-the-set-works', label: 'How the set is built' },
   { id: 'mistys-psyduck', label: "Misty's Psyduck, six holo versions" },
@@ -88,8 +89,8 @@ const FAQ = [
     a: 'Yes. Every card in every pack is a holo. There are no non-holo cards in the set.',
   },
   {
-    q: 'What is the main chase card?',
-    a: "Misty's Psyduck 0307/07, the full art by Cona Nitanda drawn for this set. Beyond that, collectors chase the 28 full arts (every card numbered 07).",
+    q: 'What is the Chinese Exclusive in Gem Vol 7?',
+    a: "Misty's Psyduck 0307/07, the full art by Cona Nitanda drawn for this set, and the main chase card. Beyond that, collectors chase the 28 full arts (every card numbered 07).",
   },
   {
     q: 'What are the odds of pulling a full art?',
@@ -164,7 +165,7 @@ function GemVol7Post() {
         updated={status.liveAt}
         wide
         post={post}
-        lede="Psyduck fronts the seventh Simplified Chinese Gem Pack: 28 Pokémon, seven cards each, every card a holo, and a brand-new Misty's Psyduck full art by Cona Nitanda, drawn just for this set."
+        lede="Psyduck fronts the seventh Simplified Chinese Gem Pack: 28 Pokémon, seven cards each, every card a holo, and the Chinese Exclusive Misty's Psyduck full art by Cona Nitanda, drawn for this set."
         cta={{
           heading: 'Shop Gem Vol 7',
           body: 'Booster boxes, plus the full 196-card checklist with every version.',
@@ -178,7 +179,7 @@ function GemVol7Post() {
           Gem Pack Vol. 7 (Gem 7) landed in mainland China on November 6, 2026. Like every Gem Pack, it is an official Simplified Chinese
           Pokémon TCG product built for collecting: small 4-card packs where every card is a holo, and a set structure that gives each
           Pokémon its own run of seven cards. This volume leans into Trainers and their partner Pokémon, with Psyduck on the
-          pack and a new full art you can only pull here.
+          pack and a Chinese Exclusive full art of Misty's Psyduck.
         </p>
 
         <aside className="fact-box" aria-label="Gem Pack Vol. 7 key facts">
@@ -204,7 +205,7 @@ function GemVol7Post() {
               <dd>18 packs, 72 cards</dd>
               <dt>Set size</dt>
               <dd>196 cards: 28 Pokémon × 7 versions</dd>
-              <dt>Chase card</dt>
+              <dt>Chinese Exclusive</dt>
               <dd>Misty's Psyduck full art 0307/07, by Cona Nitanda</dd>
             </dl>
           </div>
@@ -221,10 +222,11 @@ function GemVol7Post() {
           </ol>
         </nav>
 
-        <h2 id="psyduck-full-art">The chase: Misty's Psyduck full art</h2>
+        <h2 id="psyduck-full-art">The Chinese Exclusive: Misty's Psyduck full art</h2>
         <figure className="feature-card">
-          <img src={cardImg('0307')} alt="Misty's Psyduck 0307/07 full art, Triple Rare, Gem Vol 7" loading="lazy" width={300} height={419} />
+          <img src={cardImg('0307')} alt="Misty's Psyduck 0307/07 Chinese Exclusive full art, Triple Rare, Gem Vol 7" loading="lazy" width={300} height={419} />
           <figcaption>
+            <ChineseExclusiveBadge />
             <strong>0307/07</strong>
             Triple Rare · Full art · Illus. Cona Nitanda
           </figcaption>

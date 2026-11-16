@@ -3,6 +3,7 @@ import { createFileRoute, Link } from '@tanstack/react-router'
 import blogCssUrl from '~/styles/blog.css?url'
 import { BLOG_POSTS, BLOG_SITE_URL } from '~/data/blog-posts'
 import { BlogPostLayout } from '~/components/blog/BlogPostLayout'
+import { ChineseExclusiveBadge } from '~/components/blog/ChineseExclusive'
 import { getBlogPostStatus } from '~/server/blog-status'
 import { safeJsonLd } from '~/lib/gem-sets/head'
 import setData from '~/data/csv8.json'
@@ -23,9 +24,9 @@ function Gallery({ cards, cols }: { cards: Card[]; cols: number }) {
         <figure key={c.number}>
           <img src={c.image} alt={`${c.name} ${c.number} ${short(c.rarity)}, Brilliant Fantasy`} loading="lazy" width={300} height={419} />
           <figcaption>
+            {EXCLUSIVE.has(c.number) && <ChineseExclusiveBadge />}
             <strong>{c.name}</strong>
             {c.number}
-            {EXCLUSIVE.has(c.number) ? ' · Chinese exclusive' : ''}
           </figcaption>
         </figure>
       ))}
@@ -108,7 +109,7 @@ const FAQ = [
     a: 'No. Both pull from the same 264-card list and the same Poké Ball and Master Ball holos. Only the number of cards per pack and the odds change.',
   },
   {
-    q: 'Which Brilliant Fantasy card is a Chinese exclusive?',
+    q: 'What is the Chinese Exclusive in Brilliant Fantasy?',
     a: 'Carmine 255/207, a Special Art Rare by OKACHEKE.',
   },
   {
@@ -195,8 +196,8 @@ function BrilliantFantasySetGuide() {
         }}
       >
         <p>
-          Brilliant Fantasy (CSV8C) is the Kitakami set: 264 cards with Milotic on the pack, every Ogerpon mask, and one Chinese
-          exclusive, sold in slim and jumbo packs. Our <Link to="/blog/brilliant-fantasy-release-news">release post</Link> covers
+          Brilliant Fantasy (CSV8C) is the Kitakami set: 264 cards with Milotic on the pack, every Ogerpon mask, and a Chinese
+          Exclusive Carmine Special Art Rare, sold in slim and jumbo packs. Our <Link to="/blog/brilliant-fantasy-release-news">release post</Link> covers
           what is new, and our <Link to="/blog/brilliant-fantasy-card-origins">card origins guide</Link> traces every card to its
           English printing. Use this one to pick a box, sort your pulls or plan a master set.
         </p>
@@ -246,7 +247,7 @@ function BrilliantFantasySetGuide() {
 
         <h2 id="special-art-rares">All 14 Special Art Rares</h2>
         <p>
-          242 to 255. The two headline cards first: Milotic ex, the pack Pokémon, and Carmine 255/207, the Simplified Chinese exclusive.
+          242 to 255. The two headline cards first: Milotic ex, the pack Pokémon, and Carmine 255/207, the Chinese Exclusive.
         </p>
         <Gallery cards={pick([244, 255])} cols={2} />
         <p>The Kitakami eight: the four Ogerpon ex masks by Yano Keiji, then Pecharunt ex and the Loyal Three by kantaro.</p>

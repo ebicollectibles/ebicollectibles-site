@@ -71,8 +71,8 @@ const FAQ = [
     a: 'The art mostly is. 55 of the 56 artworks are the same art you will find on English Scarlet & Violet cards, mostly from Destined Rivals. What is new is the printing: Simplified Chinese text, new numbers, new holo patterns and the Gem Pack set code.',
   },
   {
-    q: 'Is any Gem Vol 7 artwork new?',
-    a: "Yes, one: Misty's Psyduck's full art, 0307/07 by Cona Nitanda. It is not on any earlier English card, which lines up with Pokémon China calling it new.",
+    q: 'Which card is the Chinese Exclusive?',
+    a: "Misty's Psyduck's full art, 0307/07 by Cona Nitanda. It is the only new artwork in Gem Vol 7 and is not on any earlier English card, which lines up with Pokémon China calling it new.",
   },
   {
     q: 'Which English set does most of Gem Vol 7 come from?',
@@ -159,7 +159,8 @@ function GemVol7OriginsPost() {
       >
         <p>
           Gem Packs reuse artwork from existing Pokémon TCG cards, reprinted in Simplified Chinese with new numbers and new holo patterns.
-          We matched every artwork in Gem Vol 7 (Gem 7) to the English card it came from.
+          We matched every artwork in Gem Vol 7 (Gem 7) to the English card it came from. The one exception is the Chinese Exclusive
+          Misty's Psyduck full art, which has no English version.
         </p>
 
         <nav className="toc" aria-label="In this guide">
@@ -180,7 +181,7 @@ function GemVol7OriginsPost() {
           cards, a regular one and a full art.
         </p>
         <p>
-          That adds up to 56 illustrations. 55 of them come from English cards. The 56th, Misty's Psyduck's beach full art
+          That adds up to 56 illustrations. 55 of them come from English cards. The 56th, the Chinese Exclusive Misty's Psyduck beach full art
           (0307/07), was drawn for Gem Vol 7 and has no earlier version.
         </p>
 
@@ -206,13 +207,13 @@ function GemVol7OriginsPost() {
             </tbody>
           </table>
         </div>
-        <p className="table-note">Counts are Gem Vol 7 Pokémon. Psyduck's full art is new, so the full-art column adds up to 27.</p>
+        <p className="table-note">Counts are Gem Vol 7 Pokémon. Psyduck's full art is a Chinese Exclusive, so the full-art column adds up to 27.</p>
 
         <h2 id="patterns">Patterns worth knowing</h2>
         <ul>
           <li>
             <strong>Misty's Psyduck is the only new art.</strong> Its regular art comes from Destined Rivals like most of the set, but
-            its full art is brand new.
+            its full art is a brand-new Chinese Exclusive.
           </li>
           <li>
             <strong>Destined Rivals supplies the most.</strong> It supplies the regular art for 21 Pokémon, including all eight
@@ -262,7 +263,7 @@ function GemVol7OriginsPost() {
                       </>
                     ) : (
                       <>
-                        New for Gem Vol 7
+                        Chinese Exclusive
                         <span className="cell-sub">Illus. Cona Nitanda</span>
                       </>
                     )}

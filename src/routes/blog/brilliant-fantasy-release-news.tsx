@@ -3,6 +3,7 @@ import { createFileRoute, Link } from '@tanstack/react-router'
 import blogCssUrl from '~/styles/blog.css?url'
 import { BLOG_POSTS, BLOG_SITE_URL } from '~/data/blog-posts'
 import { BlogPostLayout } from '~/components/blog/BlogPostLayout'
+import { ChineseExclusiveBadge } from '~/components/blog/ChineseExclusive'
 import { getBlogPostStatus } from '~/server/blog-status'
 import { safeJsonLd } from '~/lib/gem-sets/head'
 import { R2_IMAGE_HOST, SITE_URL } from '~/lib/gem-sets/constants'
@@ -13,6 +14,9 @@ const cardImg = (n: string) => `${R2_IMAGE_HOST}/Chinese/Brilliant%20Fantasy/Car
 
 type Shown = { n: string; name: string; note: string }
 
+// The Chinese Exclusive: the Carmine SAR 255.
+const CHINESE_EXCLUSIVE = new Set(['255'])
+
 function Grid({ cards, cols }: { cards: Shown[]; cols: number }) {
   return (
     <div className={`card-grid cols-${cols}`}>
@@ -20,6 +24,7 @@ function Grid({ cards, cols }: { cards: Shown[]; cols: number }) {
         <figure key={c.n}>
           <img src={cardImg(c.n)} alt={`${c.name} ${c.n}/207, Brilliant Fantasy`} loading="lazy" width={300} height={419} />
           <figcaption>
+            {CHINESE_EXCLUSIVE.has(c.n) && <ChineseExclusiveBadge />}
             <strong>{c.name}</strong>
             {c.n}/207 · {c.note}
           </figcaption>
@@ -30,7 +35,7 @@ function Grid({ cards, cols }: { cards: Shown[]; cols: number }) {
 }
 
 const CARMINE = [
-  { n: '255', name: 'Carmine', note: 'SAR · OKACHEKE · Chinese exclusive' },
+  { n: '255', name: 'Carmine', note: 'SAR · OKACHEKE' },
   { n: '240', name: 'Carmine', note: 'Super Rare · kantaro' },
 ]
 
@@ -80,7 +85,7 @@ const BLOCKS = [
 
 const TOC = [
   { id: 'slim-or-jumbo', label: 'Slim or jumbo?' },
-  { id: 'carmine', label: 'Carmine, only in Chinese' },
+  { id: 'carmine', label: 'The Chinese Exclusive: Carmine' },
   { id: 'special-art-rares', label: 'Special Art Rares' },
   { id: 'ultra-rares', label: 'Gold Ultra Rares' },
   { id: 'art-rares', label: 'Art Rares' },
@@ -90,7 +95,7 @@ const TOC = [
 
 const FAQ = [
   {
-    q: 'What is the Chinese exclusive card in Brilliant Fantasy?',
+    q: 'What is the Chinese Exclusive in Brilliant Fantasy?',
     a: 'Carmine 255/207, a Special Art Rare by OKACHEKE showing Carmine and Kieran eating watermelon in the summer sun. English has a Carmine Special Illustration Rare, but with different art.',
   },
   {
@@ -174,7 +179,7 @@ function BrilliantFantasyReleasePost() {
         updated={status.liveAt}
         wide
         post={post}
-        lede="Milotic takes the cover of Brilliant Fantasy, the Kitakami set with four Ogerpon ex and the Loyal Three, plus a Carmine Special Art Rare you can only pull in Simplified Chinese."
+        lede="Milotic takes the cover of Brilliant Fantasy, the Kitakami set with four Ogerpon ex and the Loyal Three, plus a Chinese Exclusive Carmine Special Art Rare."
         cta={{
           heading: 'Shop Brilliant Fantasy',
           body: 'Slim and jumbo booster boxes, plus the full checklist with every card.',
@@ -187,7 +192,7 @@ function BrilliantFantasyReleasePost() {
         <p>
           Brilliant Fantasy (璀璨诡幻) released on March 13, 2026. Milotic is on the pack, and the set is built around Kitakami: all
           four masks of Ogerpon ex, Okidogi ex, Munkidori ex, Fezandipiti ex and Pecharunt ex, with Kieran, Carmine and Perrin as
-          Supporters. The big Chinese extra is a new Carmine Special Art Rare that no other language has.
+          Supporters. The Chinese Exclusive is a new Carmine Special Art Rare that no other language has.
         </p>
 
         <aside className="fact-box" aria-label="Brilliant Fantasy key facts">
@@ -215,6 +220,8 @@ function BrilliantFantasyReleasePost() {
               <dd>264 cards: 207 in the main set, 57 secret rares</dd>
               <dt>Chase cards</dt>
               <dd>Carmine SAR, Milotic ex SAR, the Ogerpon ex and Pecharunt ex SARs</dd>
+              <dt>Chinese Exclusive</dt>
+              <dd>Carmine SAR 255/207</dd>
             </dl>
           </div>
         </aside>
@@ -256,7 +263,7 @@ function BrilliantFantasyReleasePost() {
           them and a slim box about 0.55. The full odds are further down.
         </p>
 
-        <h2 id="carmine">Carmine, only in Chinese</h2>
+        <h2 id="carmine">The Chinese Exclusive: Carmine</h2>
         <p>
           Carmine 255/207 is a Special Art Rare drawn for this set by OKACHEKE. Carmine and her brother Kieran sit side by side in the
           summer sun eating watermelon, and she smiles as she watches him. English has a Carmine Special Illustration Rare with

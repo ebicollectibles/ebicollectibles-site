@@ -3,6 +3,7 @@ import { createFileRoute, Link } from '@tanstack/react-router'
 import blogCssUrl from '~/styles/blog.css?url'
 import { BLOG_POSTS, BLOG_SITE_URL } from '~/data/blog-posts'
 import { BlogPostLayout } from '~/components/blog/BlogPostLayout'
+import { ChineseExclusiveBadge } from '~/components/blog/ChineseExclusive'
 import { getBlogPostStatus } from '~/server/blog-status'
 import { safeJsonLd } from '~/lib/gem-sets/head'
 import { R2_IMAGE_HOST, SITE_URL } from '~/lib/gem-sets/constants'
@@ -13,6 +14,9 @@ const cardImg = (n: string) => `${R2_IMAGE_HOST}/Chinese/True%20Mystic/Cards/0${
 
 type Shown = { n: string; name: string; note: string }
 
+// The Chinese Exclusive: the Iron Hands ex SAR 152.
+const CHINESE_EXCLUSIVE = new Set(['152'])
+
 function Grid({ cards, cols }: { cards: Shown[]; cols: number }) {
   return (
     <div className={`card-grid cols-${cols}`}>
@@ -20,6 +24,7 @@ function Grid({ cards, cols }: { cards: Shown[]; cols: number }) {
         <figure key={c.n}>
           <img src={cardImg(c.n)} alt={`${c.name} ${c.n}/128, True Mystery`} loading="lazy" width={300} height={419} />
           <figcaption>
+            {CHINESE_EXCLUSIVE.has(c.n) && <ChineseExclusiveBadge />}
             <strong>{c.name}</strong>
             {c.n}/128 · {c.note}
           </figcaption>
@@ -30,7 +35,7 @@ function Grid({ cards, cols }: { cards: Shown[]; cols: number }) {
 }
 
 const EXCLUSIVE = [
-  { n: '152', name: 'Iron Hands ex', note: 'SAR · Tonji Matsuno · Chinese exclusive' },
+  { n: '152', name: 'Iron Hands ex', note: 'SAR · Tonji Matsuno' },
   { n: '051', name: 'Iron Hands ex', note: 'Double Rare · PLANETA Mochizuki' },
 ]
 
@@ -79,7 +84,7 @@ const BLOCKS = [
 
 const TOC = [
   { id: 'slim-or-jumbo', label: 'Slim or jumbo?' },
-  { id: 'iron-hands', label: 'Iron Hands ex SAR, only in Chinese' },
+  { id: 'iron-hands', label: 'The Chinese Exclusive: Iron Hands ex SAR' },
   { id: 'special-art-rares', label: 'Special Art Rares' },
   { id: 'super-rares', label: 'Super Rare full arts' },
   { id: 'ultra-rares', label: 'Gold Ultra Rares' },
@@ -90,7 +95,7 @@ const TOC = [
 
 const FAQ = [
   {
-    q: 'What is the Chinese exclusive card in True Mystery?',
+    q: 'What is the Chinese Exclusive in True Mystery?',
     a: 'The Iron Hands ex Special Art Rare 152/128 by Tonji Matsuno. It is new art for this set, and it has no English version.',
   },
   {
@@ -174,7 +179,7 @@ function TrueMysteryReleasePost() {
         updated={status.liveAt}
         wide
         post={post}
-        lede="Iron Valiant takes the pack and the Paradox Pokémon take over the set. True Mystery brings Roaring Moon ex, Iron Valiant ex and an Iron Hands ex Special Art Rare you can only pull in Simplified Chinese."
+        lede="Iron Valiant takes the pack and the Paradox Pokémon take over the set. True Mystery brings Roaring Moon ex, Iron Valiant ex and a Chinese Exclusive Iron Hands ex Special Art Rare."
         cta={{
           heading: 'Shop True Mystery',
           body: 'Slim and jumbo booster boxes, plus the full checklist with every card.',
@@ -188,7 +193,7 @@ function TrueMysteryReleasePost() {
           True Mystery (真实玄虚) released on November 7, 2025. It is the CSV6C set of the Chinese Scarlet & Violet series, and it is all
           about the Paradox Pokémon from Area Zero: Ancient forms like Roaring Moon and Sandy Shocks, Future forms like Iron Valiant and
           Iron Hands, and the Ancient and Future Trainer cards built to support them. Iron Valiant is on the pack, and the Iron Hands ex
-          Special Art Rare is new for China.
+          Special Art Rare is the set's Chinese Exclusive.
         </p>
 
         <aside className="fact-box" aria-label="True Mystery key facts">
@@ -216,6 +221,8 @@ function TrueMysteryReleasePost() {
               <dd>163 cards: 128 in the main set, 35 secret rares</dd>
               <dt>Chase cards</dt>
               <dd>Roaring Moon ex SAR, Iron Valiant ex SAR, Iron Hands ex SAR</dd>
+              <dt>Chinese Exclusive</dt>
+              <dd>Iron Hands ex SAR 152/128</dd>
             </dl>
           </div>
         </aside>
@@ -258,9 +265,9 @@ function TrueMysteryReleasePost() {
           Master Ball pattern holo, 115 of each.
         </p>
 
-        <h2 id="iron-hands">Iron Hands ex SAR, only in Chinese</h2>
+        <h2 id="iron-hands">The Chinese Exclusive: Iron Hands ex SAR</h2>
         <p>
-          Iron Hands ex 152/128 is the set's Chinese exclusive, a Special Art Rare with no English version. Tonji Matsuno draws it in a
+          Iron Hands ex 152/128 is the Chinese Exclusive, a Special Art Rare with no English version. Tonji Matsuno draws it in a
           burst of yellow and blue light, mid-punch. English has Iron Hands ex in Paradox Rift, including its own Special Illustration
           Rare, but not this art. The regular Double Rare by PLANETA Mochizuki is in the set too.
         </p>

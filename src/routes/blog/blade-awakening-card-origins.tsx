@@ -5,6 +5,7 @@ import { BLOG_POSTS, BLOG_SITE_URL } from '~/data/blog-posts'
 import { BlogPostLayout } from '~/components/blog/BlogPostLayout'
 import { getBlogPostStatus } from '~/server/blog-status'
 import { safeJsonLd } from '~/lib/gem-sets/head'
+import { ChineseExclusiveBadge } from '~/components/blog/ChineseExclusive'
 import setData from '~/data/csv7.json'
 
 const post = BLOG_POSTS.find((p) => p.slug === 'blade-awakening-card-origins')!
@@ -329,11 +330,11 @@ const TOC = [
 const FAQ = [
   {
     q: 'Which English set is Blade Awakening?',
-    a: 'Mostly Temporal Forces, which matches 173 of its 259 cards, with 68 more from Twilight Masquerade. The other 17 come from six English sources, and one card is new.',
+    a: 'Mostly Temporal Forces, which matches 173 of its 259 cards, with 68 more from Twilight Masquerade. The other 17 come from six English sources, and one card is new, the set\'s Chinese Exclusive.',
   },
   {
-    q: 'Which Blade Awakening card has no English version?',
-    a: "The Ciphermaniac's Codebreaking Special Art Rare 245/204 by Taira Akitsu. Every other card matches an English card.",
+    q: 'Which card is the Chinese Exclusive?',
+    a: "The Ciphermaniac's Codebreaking Special Art Rare 245/204 by Taira Akitsu. It has no English version, and every other card matches an English card.",
   },
   {
     q: 'Is the Greninja ex Special Art Rare the same as in English?',
@@ -395,7 +396,7 @@ function OriginsTable({ list }: { list: typeof rows }) {
               </td>
               <td>
                 {r.src === 'NEW' ? (
-                  <span className="cell-none">New art, no English version</span>
+                  <span className="cell-none">Chinese Exclusive, no English version</span>
                 ) : (
                   <>
                     {SET_NAME[r.src]} {r.en}
@@ -445,7 +446,7 @@ function BladeAwakeningOrigins() {
         updated={status.liveAt}
         wide
         post={post}
-        lede="Blade Awakening is mostly Temporal Forces and Twilight Masquerade, plus a few cards from six other English sources and one that English never printed. We matched all 259 cards to English."
+        lede="Blade Awakening is mostly Temporal Forces and Twilight Masquerade, plus a few cards from six other English sources and one Chinese Exclusive that English never printed. We matched all 259 cards to English."
         cta={{
           heading: 'Collect Blade Awakening',
           body: 'See every card on the full checklist, or pick up a box.',
@@ -458,7 +459,7 @@ function BladeAwakeningOrigins() {
         <p>
           173 of Blade Awakening's 259 cards match Temporal Forces and 68 match Twilight Masquerade. The other 17 come from Journey
           Together, Stellar Crown, Prismatic Evolutions, Surging Sparks, Shrouded Fable and two promos. Just one card is new: the
-          Ciphermaniac's Codebreaking Special Art Rare. For the chase cards and box odds, see our{' '}
+          Chinese Exclusive Ciphermaniac's Codebreaking Special Art Rare. For the chase cards and box odds, see our{' '}
           <Link to="/blog/blade-awakening-set-guide">set guide</Link>.
         </p>
 
@@ -543,7 +544,7 @@ function BladeAwakeningOrigins() {
           Earthen Vessel matches Shrouded Fable.
         </p>
         <p>
-          <strong>One card is new.</strong> English has Ciphermaniac's Codebreaking as a regular Supporter and a full art, both here too,
+          <strong>One card is a Chinese Exclusive.</strong> English has Ciphermaniac's Codebreaking as a regular Supporter and a full art, both here too,
           but no Special Illustration Rare. Pokémon China added this one specially.
         </p>
         <div className="card-grid cols-2">
@@ -552,8 +553,9 @@ function BladeAwakeningOrigins() {
             .reverse()
             .map((r) => (
               <figure key={r.cn}>
-                <img src={r.image} alt={`${r.name} ${r.cn}/204, Blade Awakening`} loading="lazy" width={300} height={419} />
+                <img src={r.image} alt={`${r.name} ${r.cn}/204${r.src === 'NEW' ? ', Chinese Exclusive' : ''}, Blade Awakening`} loading="lazy" width={300} height={419} />
                 <figcaption>
+                  {r.src === 'NEW' && <ChineseExclusiveBadge />}
                   <strong>{r.name}</strong>
                   {r.cn}/204 · {r.rarity} · {r.src === 'NEW' ? 'New art' : `${SET_NAME[r.src]} ${r.en}`}
                 </figcaption>

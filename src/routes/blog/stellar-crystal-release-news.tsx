@@ -3,6 +3,7 @@ import { createFileRoute, Link } from '@tanstack/react-router'
 import blogCssUrl from '~/styles/blog.css?url'
 import { BLOG_POSTS, BLOG_SITE_URL } from '~/data/blog-posts'
 import { BlogPostLayout } from '~/components/blog/BlogPostLayout'
+import { ChineseExclusiveBadge } from '~/components/blog/ChineseExclusive'
 import { getBlogPostStatus } from '~/server/blog-status'
 import { safeJsonLd } from '~/lib/gem-sets/head'
 import { R2_IMAGE_HOST, SITE_URL } from '~/lib/gem-sets/constants'
@@ -13,6 +14,9 @@ const cardImg = (n: string) => `${R2_IMAGE_HOST}/Chinese/Stellar%20Crystal/Cards
 
 type Shown = { n: string; name: string; note: string }
 
+// The Chinese Exclusive: the Lisia's Appeal SAR 257.
+const CHINESE_EXCLUSIVE = new Set(['257'])
+
 function Grid({ cards, cols }: { cards: Shown[]; cols: number }) {
   return (
     <div className={`card-grid cols-${cols}`}>
@@ -20,6 +24,7 @@ function Grid({ cards, cols }: { cards: Shown[]; cols: number }) {
         <figure key={c.n}>
           <img src={cardImg(c.n)} alt={`${c.name} ${c.n}/208, Stellar Crystal`} loading="lazy" width={300} height={419} />
           <figcaption>
+            {CHINESE_EXCLUSIVE.has(c.n) && <ChineseExclusiveBadge />}
             <strong>{c.name}</strong>
             {c.n}/208 · {c.note}
           </figcaption>
@@ -30,7 +35,7 @@ function Grid({ cards, cols }: { cards: Shown[]; cols: number }) {
 }
 
 const LISIA = [
-  { n: '257', name: "Lisia's Appeal", note: 'SAR · En Morikura · Chinese exclusive' },
+  { n: '257', name: "Lisia's Appeal", note: 'SAR · En Morikura' },
   { n: '241', name: "Lisia's Appeal", note: 'Super Rare · En Morikura' },
 ]
 
@@ -83,7 +88,7 @@ const BLOCKS = [
 
 const TOC = [
   { id: 'slim-or-jumbo', label: 'Slim or jumbo?' },
-  { id: 'lisia', label: "Lisia's Appeal, only in Chinese" },
+  { id: 'lisia', label: "The Chinese Exclusive: Lisia's Appeal" },
   { id: 'special-art-rares', label: 'Special Art Rares' },
   { id: 'ultra-rares', label: 'Gold Ultra Rares' },
   { id: 'art-rares', label: 'Art Rares' },
@@ -93,7 +98,7 @@ const TOC = [
 
 const FAQ = [
   {
-    q: 'What is the Chinese exclusive card in Stellar Crystal?',
+    q: 'What is the Chinese Exclusive in Stellar Crystal?',
     a: "Lisia's Appeal 257/208, a Special Art Rare by En Morikura showing Lisia and her Altaria performing on stage in front of a crowd. English has a Lisia's Appeal Special Illustration Rare, but with different art.",
   },
   {
@@ -177,7 +182,7 @@ function StellarCrystalReleasePost() {
         updated={status.liveAt}
         wide
         post={post}
-        lede="Stellar Tera Pikachu ex takes the cover of Stellar Crystal, the Terapagos set, with a Lisia's Appeal Special Art Rare you can only pull in Simplified Chinese."
+        lede="Stellar Tera Pikachu ex takes the cover of Stellar Crystal, the Terapagos set, with a Chinese Exclusive Lisia's Appeal Special Art Rare."
         cta={{
           heading: 'Collect Stellar Crystal',
           body: 'Browse all 266 cards on the full checklist and tick off what you have.',
@@ -187,8 +192,8 @@ function StellarCrystalReleasePost() {
         <p>
           Stellar Crystal (星彩晶璃) released on May 15, 2026. It brings the new Stellar Tera type into Chinese, led by a Stellar Tera
           Pikachu ex on the pack and the Legendary Terapagos ex. Stellar Pokémon ex have attacks that need three different Energy types
-          to use. Blueberry Academy's Crispin, Drayton and Lacey join as Supporters, and a new Lisia's Appeal Special Art Rare is only in
-          the Chinese set.
+          to use. Blueberry Academy's Crispin, Drayton and Lacey join as Supporters, and a new Lisia's Appeal Special Art Rare is the
+          set's Chinese Exclusive.
         </p>
 
         <aside className="fact-box" aria-label="Stellar Crystal key facts">
@@ -216,6 +221,8 @@ function StellarCrystalReleasePost() {
               <dd>266 cards: 208 in the main set, 58 secret rares</dd>
               <dt>Chase cards</dt>
               <dd>Pikachu ex SAR and Ultra Rare, Lisia's Appeal SAR, Terapagos ex SAR</dd>
+              <dt>Chinese Exclusive</dt>
+              <dd>Lisia's Appeal SAR 257/208</dd>
             </dl>
           </div>
         </aside>
@@ -257,7 +264,7 @@ function StellarCrystalReleasePost() {
           odds are further down.
         </p>
 
-        <h2 id="lisia">Lisia's Appeal, only in Chinese</h2>
+        <h2 id="lisia">The Chinese Exclusive: Lisia's Appeal</h2>
         <p>
           Lisia's Appeal 257/208 is a Special Art Rare drawn for this set by En Morikura. Lisia and her Altaria perform together on a
           bright stage while a crowd waves glow sticks below. English has a Lisia's Appeal Special Illustration Rare with different art,

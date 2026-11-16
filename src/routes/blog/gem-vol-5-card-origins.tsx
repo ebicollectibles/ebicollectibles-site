@@ -73,8 +73,8 @@ const FAQ = [
     a: 'The art mostly is. 51 of the 56 artworks are the same art you will find on English Scarlet & Violet cards, mostly from Surging Sparks. What is new is the printing: Simplified Chinese text, new numbers, new holo patterns and the Gem Pack set code.',
   },
   {
-    q: 'Is any Gem Vol 5 artwork new?',
-    a: 'Yes, five: the four Pokémon Horizons full arts (0107, 2207, 2307 and 2407) and Captain Pikachu\'s regular art. None of them are on an earlier English card.',
+    q: 'Which cards are Chinese Exclusives?',
+    a: 'The four Pokémon Horizons full arts: Captain Pikachu 0107/07, Floragato 2207/07, Crocalor 2307/07 and Quaxwell 2407/07. Captain Pikachu\'s regular art (versions 01 to 06) is also new art with no English printing, but it is not one of the Chinese Exclusives.',
   },
   {
     q: 'Which English set does most of Gem Vol 5 come from?',
@@ -161,7 +161,8 @@ function GemVol5OriginsPost() {
       >
         <p>
           Gem Packs reuse artwork from existing Pokémon TCG cards, reprinted in Simplified Chinese with new numbers and new holo patterns.
-          We matched every artwork in Gem Vol 5 (Gem 5) to the English card it came from.
+          We matched every artwork in Gem Vol 5 (Gem 5) to the English card it came from. The exceptions are Pokémon Horizons art,
+          including the four Chinese Exclusive full arts of Captain Pikachu, Floragato, Crocalor and Quaxwell.
         </p>
 
         <nav className="toc" aria-label="In this guide">
@@ -183,7 +184,7 @@ function GemVol5OriginsPost() {
         </p>
         <p>
           That adds up to 56 artworks. 51 of them come from English cards. The other five are Pokémon Horizons art with no earlier
-          version: the four Horizons full arts and Captain Pikachu's regular art.
+          version: the four Chinese Exclusive Horizons full arts and Captain Pikachu's new regular art.
         </p>
 
         <h2 id="by-set">Which sets it comes from</h2>
@@ -208,12 +209,12 @@ function GemVol5OriginsPost() {
             </tbody>
           </table>
         </div>
-        <p className="table-note">Counts are Gem Vol 5 Pokémon. Captain Pikachu's regular art and the four Horizons full arts are new, so the columns add up to 27 and 24.</p>
+        <p className="table-note">Counts are Gem Vol 5 Pokémon. Captain Pikachu's new regular art and the four Chinese Exclusive full arts have no English version, so the columns add up to 27 and 24.</p>
 
         <h2 id="patterns">Patterns worth knowing</h2>
         <ul>
           <li>
-            <strong>The Horizons cards are the new part.</strong> Captain Pikachu has no earlier card at all, and Floragato, Crocalor and Quaxwell keep their regular art from English sets but get brand-new full arts.
+            <strong>The Horizons cards are the new part.</strong> Captain Pikachu has no earlier card at all, and Floragato, Crocalor and Quaxwell keep their regular art from English sets but get brand-new full arts. All four Horizons full arts are Chinese Exclusives.
           </li>
           <li>
             <strong>Surging Sparks supplies the most.</strong> It covers the regular art for 13 Pokémon and the full art for 10.
@@ -253,7 +254,7 @@ function GemVol5OriginsPost() {
                   <td>{o.name}</td>
                   {[o.regular, o.full].map((s, i) => (
                     <td key={i}>
-                      {s.set ? sourceLabel(s) : 'New for Gem Vol 5'}
+                      {s.set ? sourceLabel(s) : i === 1 ? 'Chinese Exclusive' : 'New for Gem Vol 5'}
                       <span className="cell-sub">Illus. {s.illus}</span>
                     </td>
                   ))}

@@ -3,6 +3,7 @@ import { createFileRoute, Link } from '@tanstack/react-router'
 import blogCssUrl from '~/styles/blog.css?url'
 import { BLOG_POSTS, BLOG_SITE_URL } from '~/data/blog-posts'
 import { BlogPostLayout } from '~/components/blog/BlogPostLayout'
+import { ChineseExclusiveBadge } from '~/components/blog/ChineseExclusive'
 import { getBlogPostStatus } from '~/server/blog-status'
 import { safeJsonLd } from '~/lib/gem-sets/head'
 import { R2_IMAGE_HOST, SITE_URL } from '~/lib/gem-sets/constants'
@@ -13,6 +14,9 @@ const cardImg = (n: string) => `${R2_IMAGE_HOST}/Chinese/Reward%20Round%20CSV4/C
 
 type Shown = { n: string; name: string; note: string }
 
+// The three Chinese Exclusives: Maushold ex 158, Rika 159 and the gold Gholdengo ex 162.
+const EXCLUSIVE = new Set(['158', '159', '162'])
+
 function Grid({ cards, cols }: { cards: Shown[]; cols: number }) {
   return (
     <div className={`card-grid cols-${cols}`}>
@@ -20,6 +24,7 @@ function Grid({ cards, cols }: { cards: Shown[]; cols: number }) {
         <figure key={c.n}>
           <img src={cardImg(c.n)} alt={`${c.name} ${c.n}/129, Reward Round`} loading="lazy" width={300} height={419} />
           <figcaption>
+            {EXCLUSIVE.has(c.n) && <ChineseExclusiveBadge />}
             <strong>{c.name}</strong>
             {c.n}/129 · {c.note}
           </figcaption>
@@ -33,7 +38,7 @@ const GHOLDENGO = [
   { n: '089', name: 'Gholdengo ex', note: 'Double Rare' },
   { n: '144', name: 'Gholdengo ex', note: 'Super Rare' },
   { n: '156', name: 'Gholdengo ex', note: 'SAR · Akira Komayama' },
-  { n: '162', name: 'Gholdengo ex', note: 'Ultra Rare · Chinese exclusive' },
+  { n: '162', name: 'Gholdengo ex', note: 'Ultra Rare' },
 ]
 
 const EXCLUSIVES = [
@@ -69,7 +74,7 @@ const ODDS = [
 ]
 
 const TOC = [
-  { id: 'exclusives', label: 'Three cards only in Chinese' },
+  { id: 'exclusives', label: 'The Chinese Exclusives: Gholdengo ex, Maushold ex and Rika' },
   { id: 'gholdengo', label: 'Gholdengo, the cover star' },
   { id: 'special-art-rares', label: 'Special Art Rares' },
   { id: 'ultra-rares', label: 'Gold Ultra Rares' },
@@ -80,7 +85,7 @@ const TOC = [
 
 const FAQ = [
   {
-    q: 'What are the Chinese exclusive cards in Reward Round?',
+    q: 'What are the Chinese Exclusives in Reward Round?',
     a: 'Three: the gold Gholdengo ex Ultra Rare 162/129, the Maushold ex Special Art Rare 158/129 and the Rika Special Art Rare 159/129. None of them has an English version.',
   },
   {
@@ -164,7 +169,7 @@ function RewardRoundReleasePost() {
         updated={status.liveAt}
         wide
         post={post}
-        lede="Gholdengo takes the cover of the fourth Chinese Scarlet & Violet set, with a gold Ultra Rare and two Special Art Rares you can only pull in Simplified Chinese."
+        lede="Gholdengo takes the cover of the fourth Chinese Scarlet & Violet set, and it brings three Chinese Exclusives: a gold Gholdengo ex Ultra Rare and Special Art Rares of Maushold ex and Rika."
         cta={{
           heading: 'Shop Reward Round',
           body: 'Slim booster boxes, plus the full checklist with every card.',
@@ -203,7 +208,7 @@ function RewardRoundReleasePost() {
               <dd>20 cards, 6 holo</dd>
               <dt>Set size</dt>
               <dd>165 cards: 129 in the main set, 36 secret rares</dd>
-              <dt>Chase cards</dt>
+              <dt>Chinese Exclusives</dt>
               <dd>Gold Gholdengo ex, Maushold ex SAR, Rika SAR</dd>
             </dl>
           </div>
@@ -220,7 +225,7 @@ function RewardRoundReleasePost() {
           </ol>
         </nav>
 
-        <h2 id="exclusives">Three cards only in Chinese</h2>
+        <h2 id="exclusives">The Chinese Exclusives: Gholdengo ex, Maushold ex and Rika</h2>
         <p>
           Three secret rares have no English version: the gold Gholdengo ex, a Maushold ex Special Art Rare of the mouse family playing at
           home, and a Rika Special Art Rare of the Elite Four member with her Clodsire. These are the cards that make the Chinese set worth
@@ -238,8 +243,8 @@ function RewardRoundReleasePost() {
 
         <h2 id="special-art-rares">Special Art Rares</h2>
         <p>
-          Nine Special Art Rares, 153 to 161: six Pokémon ex, including the Chinese-exclusive Maushold ex, and three Supporters,
-          including the Chinese-exclusive Rika.
+          Nine Special Art Rares, 153 to 161: six Pokémon ex, including the Chinese Exclusive Maushold ex, and three Supporters,
+          including the Chinese Exclusive Rika.
         </p>
         <Grid cards={SAR} cols={3} />
 
@@ -316,7 +321,7 @@ function RewardRoundReleasePost() {
 
         <h2 id="our-take">Our take</h2>
         <p>
-          Reward Round is a fun, bright set, and the three Chinese exclusives give it a real reason to exist alongside the English sets
+          Reward Round is a fun, bright set, and the three Chinese Exclusives give it a real reason to exist alongside the English sets
           it draws from. If you only chase one card, make it the gold Gholdengo ex.
         </p>
       </BlogPostLayout>

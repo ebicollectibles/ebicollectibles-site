@@ -71,8 +71,8 @@ const FAQ = [
     a: 'The art mostly is. 55 of the 56 artworks are the same art you will find on English Scarlet & Violet cards, mostly from Surging Sparks. What is new is the printing: Simplified Chinese text, new numbers, new holo patterns and the Gem Pack set code.',
   },
   {
-    q: 'Is any Gem Vol 6 artwork new?',
-    a: "Yes, one: Applin's full art, 1907/07 by Jiro Sasumo. It is not on any earlier English card, which lines up with Pokémon China calling it new.",
+    q: 'Which card is the Chinese Exclusive?',
+    a: "Applin's full art, 1907/07 by Jiro Sasumo. It is the only new artwork in Gem Vol 6 and is not on any earlier English card, which lines up with Pokémon China calling it new.",
   },
   {
     q: 'Which English set does most of Gem Vol 6 come from?',
@@ -159,7 +159,8 @@ function GemVol6OriginsPost() {
       >
         <p>
           Gem Packs reuse artwork from existing Pokémon TCG cards, reprinted in Simplified Chinese with new numbers and new holo patterns.
-          We matched every artwork in Gem Vol 6 (Gem 6) to the English card it came from.
+          We matched every artwork in Gem Vol 6 (Gem 6) to the English card it came from. The one exception is the Chinese Exclusive
+          Applin full art, which has no English version.
         </p>
 
         <nav className="toc" aria-label="In this guide">
@@ -180,7 +181,7 @@ function GemVol6OriginsPost() {
           cards, a regular one and a full art.
         </p>
         <p>
-          That adds up to 56 illustrations. 55 of them come from English cards. The 56th, Applin's full art (1907/07), was
+          That adds up to 56 illustrations. 55 of them come from English cards. The 56th, the Chinese Exclusive Applin full art (1907/07), was
           drawn for Gem Vol 6 and has no earlier version.
         </p>
 
@@ -206,13 +207,13 @@ function GemVol6OriginsPost() {
             </tbody>
           </table>
         </div>
-        <p className="table-note">Counts are Gem Vol 6 Pokémon. Applin's full art is new, so the full-art column adds up to 27.</p>
+        <p className="table-note">Counts are Gem Vol 6 Pokémon. Applin's full art is a Chinese Exclusive, so the full-art column adds up to 27.</p>
 
         <h2 id="patterns">Patterns worth knowing</h2>
         <ul>
           <li>
             <strong>Applin stands out.</strong> Its regular art comes from Destined Rivals, the only source
-            outside 2024's sets, and its full art is brand new.
+            outside 2024's sets, and its full art is a brand-new Chinese Exclusive.
           </li>
           <li>
             <strong>Surging Sparks supplies the most.</strong> It covers both the regular art and the full art for 11 Pokémon,
@@ -262,7 +263,7 @@ function GemVol6OriginsPost() {
                       </>
                     ) : (
                       <>
-                        New for Gem Vol 6
+                        Chinese Exclusive
                         <span className="cell-sub">Illus. Jiro Sasumo</span>
                       </>
                     )}

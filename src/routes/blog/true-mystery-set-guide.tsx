@@ -3,6 +3,7 @@ import { createFileRoute, Link } from '@tanstack/react-router'
 import blogCssUrl from '~/styles/blog.css?url'
 import { BLOG_POSTS, BLOG_SITE_URL } from '~/data/blog-posts'
 import { BlogPostLayout } from '~/components/blog/BlogPostLayout'
+import { ChineseExclusiveBadge } from '~/components/blog/ChineseExclusive'
 import { getBlogPostStatus } from '~/server/blog-status'
 import { safeJsonLd } from '~/lib/gem-sets/head'
 import setData from '~/data/csv6.json'
@@ -21,9 +22,9 @@ function Gallery({ cards, cols }: { cards: Card[]; cols: number }) {
         <figure key={c.number}>
           <img src={c.image} alt={`${c.name} ${c.number} ${short(c.rarity)}, True Mystery`} loading="lazy" width={300} height={419} />
           <figcaption>
+            {EXCLUSIVE.has(c.number) && <ChineseExclusiveBadge />}
             <strong>{c.name}</strong>
             {c.number}
-            {EXCLUSIVE.has(c.number) ? ' · Chinese exclusive' : ''}
           </figcaption>
         </figure>
       ))}
@@ -76,7 +77,7 @@ const FAQ = [
     a: 'A jumbo box has 120 cards and 36 holos against 75 cards and 15 holos in a slim box. On the odds Pokémon China published, the jumbo box also averages more big hits: about 1.2 Super Rares, Special Art Rares or Ultra Rares against about 0.55 in a slim box. The slim box gives you more packs to open.',
   },
   {
-    q: 'Which True Mystery card is a Chinese exclusive?',
+    q: 'What is the Chinese Exclusive in True Mystery?',
     a: 'The Iron Hands ex Special Art Rare 152/128 by Tonji Matsuno.',
   },
   {
@@ -163,7 +164,7 @@ function TrueMysterySetGuide() {
         }}
       >
         <p>
-          True Mystery (CSV6C) is the Paradox set: 163 cards, an Iron Hands ex Special Art Rare only in Chinese, and slim and jumbo
+          True Mystery (CSV6C) is the Paradox set: 163 cards, a Chinese Exclusive Iron Hands ex Special Art Rare, and slim and jumbo
           boxes. Our <Link to="/blog/true-mystery-release-news">release post</Link> covers what is new, and our{' '}
           <Link to="/blog/true-mystery-card-origins">card origins guide</Link> matches every card to English. Use this one to sort
           your pulls or plan the full set.
@@ -213,7 +214,7 @@ function TrueMysterySetGuide() {
         <h2 id="special-art-rares">All 8 Special Art Rares</h2>
         <p>
           152 to 159: Iron Hands ex, Iron Valiant ex, Sandy Shocks ex and Roaring Moon ex, then Professor Sada's Vitality, Geeta,
-          Professor Turo's Scenario and Tulip. Iron Hands ex 152 is the Chinese exclusive.
+          Professor Turo's Scenario and Tulip. Iron Hands ex 152 is the Chinese Exclusive.
         </p>
         <Gallery cards={byRange(152, 159)} cols={4} />
 

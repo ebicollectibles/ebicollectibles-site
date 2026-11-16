@@ -1,4 +1,5 @@
 import { BuyStrip } from '~/components/blog/BlogShop'
+import { ChineseExclusiveBadge } from '~/components/blog/ChineseExclusive'
 import { createFileRoute, Link } from '@tanstack/react-router'
 import blogCssUrl from '~/styles/blog.css?url'
 import { BLOG_POSTS, BLOG_SITE_URL } from '~/data/blog-posts'
@@ -55,7 +56,7 @@ const BOX_AVERAGE = [
 
 const TOC = [
   { id: 'box-average', label: 'What an average box holds' },
-  { id: 'full-arts', label: 'The 4 new full arts' },
+  { id: 'full-arts', label: 'The 4 Chinese Exclusive full arts' },
   { id: 'vmax', label: 'All 9 VMAX' },
   { id: 'v-cards', label: 'All 9 Pokémon V' },
   { id: 'trainers-energy', label: 'Trainers and Energy' },
@@ -79,7 +80,7 @@ const FAQ = [
     a: 'They show rarity: ● Common, ◆ Uncommon, ★ Rare, ★★ Double Rare and ★★★ Triple Rare. The Pokémon V are Rares, and the VMAX and full arts are Triple Rares.',
   },
   {
-    q: 'Which cards are exclusive to Gem Vol 2?',
+    q: 'What are the Chinese Exclusives in Gem Vol 2?',
     a: 'The four full arts by HYOGONOSUKE: Eevee 0115/15, Umbreon 0615/15, Leafeon 0715/15 and Sylveon 0915/15. They were drawn for this set and join into one scene.',
   },
   {
@@ -124,9 +125,9 @@ function Gallery({ cards, cols }: { cards: Card[]; cols: number }) {
         <figure key={c.number}>
           <img src={c.image} alt={`${c.name} ${c.number}, Gem Vol 2`} loading="lazy" width={300} height={419} />
           <figcaption>
+            {EXCLUSIVE.has(c.number) && <ChineseExclusiveBadge />}
             <strong>{c.name}</strong>
             {c.number}
-            {EXCLUSIVE.has(c.number) ? ' · Exclusive' : ''}
           </figcaption>
         </figure>
       ))}
@@ -179,7 +180,7 @@ function GemVol2SetGuide() {
         updated={status.liveAt}
         wide
         post={post}
-        lede="How to read a Gem Pack Vol. 2 card, the four new full arts, every V and VMAX, the full roster, and what a master set takes."
+        lede="How to read a Gem Pack Vol. 2 card, the four Chinese Exclusive full arts, every V and VMAX, the full roster, and what a master set takes."
         cta={{
           heading: 'Collect Gem Vol 2',
           body: 'Track every card on the full checklist, or pick up a booster box and start ripping.',
@@ -190,8 +191,9 @@ function GemVol2SetGuide() {
         }}
       >
         <p>
-          Gem Pack Vol. 2 (Gem 2, CBB2C) is the Eevee set: 140 holo cards across Eevee and its eight evolutions, with a V and VMAX for each and
-          a block of Trainer and Energy cards. Our <Link to="/blog/gem-vol-2-release-news">release post</Link> covers what is new
+          Gem Pack Vol. 2 (Gem 2, CBB2C) is the Eevee set: 140 holo cards across Eevee and its eight evolutions, with a V and VMAX for each,
+          a block of Trainer and Energy cards, and four Chinese Exclusives: the HYOGONOSUKE full arts of Eevee, Umbreon, Leafeon and
+          Sylveon. Our <Link to="/blog/gem-vol-2-release-news">release post</Link> covers what is new
           in the set, and our <Link to="/blog/gem-vol-2-card-origins">card origins guide</Link> traces every artwork back to its
           English card. Use this one to sort your pulls or plan a master set.
         </p>
@@ -234,7 +236,7 @@ function GemVol2SetGuide() {
         </div>
         <p className="table-note">Averages, not guarantees. Individual boxes vary.</p>
 
-        <h2 id="full-arts">The 4 new full arts</h2>
+        <h2 id="full-arts">The 4 Chinese Exclusive full arts</h2>
         <p>
           New art by HYOGONOSUKE, drawn for this set, and shown here in order: lined up as Leafeon, Sylveon, Umbreon and Eevee,
           the four form one forest scene.

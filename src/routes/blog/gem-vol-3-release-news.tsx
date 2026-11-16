@@ -1,4 +1,5 @@
 import { BuyStrip } from '~/components/blog/BlogShop'
+import { ChineseExclusiveBadge } from '~/components/blog/ChineseExclusive'
 import { createFileRoute, Link } from '@tanstack/react-router'
 import blogCssUrl from '~/styles/blog.css?url'
 import { BLOG_POSTS, BLOG_SITE_URL } from '~/data/blog-posts'
@@ -69,7 +70,7 @@ const RARITY = [
 ]
 
 const TOC = [
-  { id: 'lantern-full-arts', label: 'The chase: five new full arts' },
+  { id: 'lantern-full-arts', label: 'The Chinese Exclusives: five new full arts' },
   { id: 'pokemon-ex', label: 'Nine Pokémon ex' },
   { id: 'how-the-set-works', label: 'How the set is built' },
   { id: 'gengar', label: 'Gengar, six holo versions' },
@@ -100,8 +101,8 @@ const FAQ = [
     a: 'Yes. Every card in every pack is a holo, including the Trainer and Energy cards.',
   },
   {
-    q: 'What are the main chase cards?',
-    a: 'The five new full arts drawn for this set: Meowth by Makura Tami, Gengar by aspara, Cubone by Katsunori Sato, Chandelure by satoma and Ceruledge by kodama. Gengar, the pack mascot, is the one most collectors go after first.',
+    q: 'What are the Chinese Exclusives in Gem Vol 3?',
+    a: 'The five new full arts drawn for this set: Meowth 0207/07 by Makura Tami, Gengar 0307/07 by aspara, Cubone 0407/07 by Katsunori Sato, Chandelure 1107/07 by satoma and Ceruledge 1507/07 by kodama. Gengar, the pack mascot, is the one most collectors go after first.',
   },
 ]
 
@@ -168,7 +169,7 @@ function GemVol3Post() {
         updated={status.liveAt}
         wide
         post={post}
-        lede="Gengar fronts the third Simplified Chinese Gem Pack: 136 all-holo cards of Pokémon that come out at night, nine Pokémon ex, and five new full arts you can only pull here."
+        lede="Gengar fronts the third Simplified Chinese Gem Pack: 136 all-holo cards of Pokémon that come out at night, nine Pokémon ex, and five Chinese Exclusive full arts."
         cta={{
           heading: 'Shop Gem Vol 3',
           body: 'Booster boxes, plus the full 136-card checklist with every version.',
@@ -208,8 +209,8 @@ function GemVol3Post() {
               <dd>18 packs, 72 cards</dd>
               <dt>Set size</dt>
               <dd>136 cards: 18 Pokémon × 7, plus 4 Trainers and 6 Energy</dd>
-              <dt>Chase cards</dt>
-              <dd>Five new full arts, led by Gengar 0307/07 by aspara</dd>
+              <dt>Chinese Exclusives</dt>
+              <dd>Five new full arts: Meowth 0207/07, Gengar 0307/07 by aspara, Cubone 0407/07, Chandelure 1107/07 and Ceruledge 1507/07</dd>
             </dl>
           </div>
         </aside>
@@ -225,10 +226,11 @@ function GemVol3Post() {
           </ol>
         </nav>
 
-        <h2 id="lantern-full-arts">The chase: five new full arts</h2>
+        <h2 id="lantern-full-arts">The Chinese Exclusives: five new full arts</h2>
         <figure className="feature-card">
-          <img src={cardImg('0307')} alt="Gengar 0307/07 full art, Triple Rare, Gem Vol 3" loading="lazy" width={300} height={419} />
+          <img src={cardImg('0307')} alt="Gengar 0307/07 Chinese Exclusive full art, Triple Rare, Gem Vol 3" loading="lazy" width={300} height={419} />
           <figcaption>
+            <ChineseExclusiveBadge />
             <strong>0307/07</strong>
             Triple Rare · Full art · Illus. aspara
           </figcaption>
@@ -243,6 +245,7 @@ function GemVol3Post() {
             <figure key={c.id}>
               <img src={cardImg(c.id)} alt={`${c.name} full art ${c.id}/07, Gem Vol 3`} loading="lazy" width={300} height={419} />
               <figcaption>
+                <ChineseExclusiveBadge />
                 <strong>{c.name}</strong>
                 {c.id}/07 · Illus. {c.illus}
               </figcaption>

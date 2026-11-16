@@ -3,6 +3,7 @@ import { createFileRoute, Link } from '@tanstack/react-router'
 import blogCssUrl from '~/styles/blog.css?url'
 import { BLOG_POSTS, BLOG_SITE_URL } from '~/data/blog-posts'
 import { BlogPostLayout } from '~/components/blog/BlogPostLayout'
+import { ChineseExclusiveBadge } from '~/components/blog/ChineseExclusive'
 import { getBlogPostStatus } from '~/server/blog-status'
 import { safeJsonLd } from '~/lib/gem-sets/head'
 import setData from '~/data/csv5.json'
@@ -13,7 +14,7 @@ type Card = (typeof setData.cards)[number]
 const byRange = (from: number, to: number) => setData.cards.filter((c) => c.pokemonIndex >= from && c.pokemonIndex <= to)
 const EXCLUSIVE = new Set<string>(setData.exclusiveCardNumbers)
 const short = (r: string) => r.match(/\(([^)]+)\)/)?.[1] ?? r
-// The data marks both Chinese exclusives, the Larry SAR 157 and the gold Defiance Band 164.
+// The data marks both Chinese Exclusives, the Larry SAR 157 and the gold Defiance Band 164.
 const isExclusive = (c: Card) => EXCLUSIVE.has(c.number) || c.number === '164/129'
 // Most wanted cards first (by number out of 129), then the rest in number order.
 const lead = (cards: Card[], first: string[]) => [
@@ -28,9 +29,9 @@ function Gallery({ cards, cols }: { cards: Card[]; cols: number }) {
         <figure key={c.number}>
           <img src={c.image} alt={`${c.name} ${c.number} ${short(c.rarity)}, Black Crystal Blaze`} loading="lazy" width={300} height={419} />
           <figcaption>
+            {isExclusive(c) && <ChineseExclusiveBadge />}
             <strong>{c.name}</strong>
             {c.number}
-            {isExclusive(c) ? ' · Chinese exclusive' : ''}
           </figcaption>
         </figure>
       ))}
@@ -79,7 +80,7 @@ const TOC = [
 
 const FAQ = [
   {
-    q: 'Which Black Crystal Blaze cards are Chinese exclusives?',
+    q: 'What are the Chinese Exclusives in Black Crystal Blaze?',
     a: 'The Larry Special Art Rare 157/129 and the gold Defiance Band Ultra Rare 164/129.',
   },
   {
@@ -170,7 +171,7 @@ function BlackCrystalBlazeSetGuide() {
         }}
       >
         <p>
-          Black Crystal Blaze (CSV5C) is the Tera Charizard set: 164 cards, two Chinese exclusives, and slim and jumbo boxes. Our{' '}
+          Black Crystal Blaze (CSV5C) is the Tera Charizard set: 164 cards, two Chinese Exclusives, and slim and jumbo boxes. Our{' '}
           <Link to="/blog/black-crystal-blaze-release-news">release post</Link> covers what is new, and our{' '}
           <Link to="/blog/black-crystal-blaze-card-origins">card origins guide</Link> matches every card to English. Use this one to sort
           your pulls or plan a master set.
@@ -214,7 +215,7 @@ function BlackCrystalBlazeSetGuide() {
         </p>
 
         <h2 id="special-art-rares">All 8 Special Art Rares</h2>
-        <p>153 to 160. Larry 157 is the Chinese exclusive.</p>
+        <p>153 to 160. Larry 157 is a Chinese Exclusive.</p>
         <Gallery cards={lead(byRange(153, 160), ['155', '157', '159', '160', '154', '156', '158'])} cols={4} />
 
         <BuyStrip />
@@ -224,7 +225,7 @@ function BlackCrystalBlazeSetGuide() {
         <Gallery cards={lead(byRange(138, 152), ['145', '151', '152', '148', '149', '140'])} cols={3} />
 
         <h2 id="ultra-rares">All 4 Ultra Rares</h2>
-        <p>The gold cards, 161 to 164. Defiance Band 164 is the second Chinese exclusive.</p>
+        <p>The gold cards, 161 to 164. Defiance Band 164 is the second Chinese Exclusive.</p>
         <Gallery cards={lead(byRange(161, 164), ['162', '161', '164'])} cols={4} />
 
         <h2 id="art-rares">All 8 Art Rares</h2>

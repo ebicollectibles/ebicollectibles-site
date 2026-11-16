@@ -3,6 +3,7 @@ import { createFileRoute, Link } from '@tanstack/react-router'
 import blogCssUrl from '~/styles/blog.css?url'
 import { BLOG_POSTS, BLOG_SITE_URL } from '~/data/blog-posts'
 import { BlogPostLayout } from '~/components/blog/BlogPostLayout'
+import { ChineseExclusiveBadge } from '~/components/blog/ChineseExclusive'
 import { getBlogPostStatus } from '~/server/blog-status'
 import { safeJsonLd } from '~/lib/gem-sets/head'
 import { R2_IMAGE_HOST, SITE_URL } from '~/lib/gem-sets/constants'
@@ -13,6 +14,9 @@ const cardImg = (n: string) => `${R2_IMAGE_HOST}/Chinese/Blade%20Awakening/Cards
 
 type Shown = { n: string; name: string; note: string }
 
+// The Chinese Exclusive: the Ciphermaniac's Codebreaking SAR 245.
+const CHINESE_EXCLUSIVE = new Set(['245'])
+
 function Grid({ cards, cols }: { cards: Shown[]; cols: number }) {
   return (
     <div className={`card-grid cols-${cols}`}>
@@ -20,6 +24,7 @@ function Grid({ cards, cols }: { cards: Shown[]; cols: number }) {
         <figure key={c.n}>
           <img src={cardImg(c.n)} alt={`${c.name} ${c.n}/204, Blade Awakening`} loading="lazy" width={300} height={419} />
           <figcaption>
+            {CHINESE_EXCLUSIVE.has(c.n) && <ChineseExclusiveBadge />}
             <strong>{c.name}</strong>
             {c.n}/204 · {c.note}
           </figcaption>
@@ -30,7 +35,7 @@ function Grid({ cards, cols }: { cards: Shown[]; cols: number }) {
 }
 
 const EXCLUSIVE = [
-  { n: '245', name: "Ciphermaniac's Codebreaking", note: 'SAR · Taira Akitsu · Chinese exclusive' },
+  { n: '245', name: "Ciphermaniac's Codebreaking", note: 'SAR · Taira Akitsu' },
   { n: '228', name: "Ciphermaniac's Codebreaking", note: 'Super Rare · Taira Akitsu' },
 ]
 
@@ -112,7 +117,7 @@ const BOXES = [
 
 const TOC = [
   { id: 'slim-or-jumbo', label: 'Slim or jumbo?' },
-  { id: 'ciphermaniac', label: "Ciphermaniac's Codebreaking, only in Chinese" },
+  { id: 'ciphermaniac', label: "The Chinese Exclusive: Ciphermaniac's Codebreaking" },
   { id: 'greninja', label: 'Tera Greninja ex' },
   { id: 'special-art-rares', label: 'Special Art Rares' },
   { id: 'ultra-rares', label: 'Gold Ultra Rares' },
@@ -127,7 +132,7 @@ const TOC = [
 
 const FAQ = [
   {
-    q: 'What is the Chinese exclusive card in Blade Awakening?',
+    q: 'What is the Chinese Exclusive in Blade Awakening?',
     a: "Ciphermaniac's Codebreaking 245/204, a Special Art Rare by Taira Akitsu. Pokémon China says it was added specially to this set. English has Ciphermaniac's Codebreaking as a Supporter and a full art, but not this illustration.",
   },
   {
@@ -211,7 +216,7 @@ function BladeAwakeningReleasePost() {
         updated={status.liveAt}
         wide
         post={post}
-        lede="Tera Greninja ex leads a 259-card set full of Ancient and Future Pokémon, with nine ACE SPEC cards and a Ciphermaniac Special Art Rare added just for China."
+        lede="Tera Greninja ex leads a 259-card set full of Ancient and Future Pokémon, with nine ACE SPEC cards and a Chinese Exclusive Ciphermaniac Special Art Rare."
         cta={{
           heading: 'Shop Blade Awakening',
           body: 'Slim and jumbo booster boxes, plus the full checklist with every card.',
@@ -225,7 +230,7 @@ function BladeAwakeningReleasePost() {
           Blade Awakening (利刃猛醒) released on January 16, 2026. It is the CSV7C set of the Chinese Scarlet & Violet series and a big
           one: 259 cards, with Tera Greninja ex on the pack, Raging Bolt ex, Walking Wake ex, Iron Crown ex and the other Ancient and
           Future Pokémon in the chase, and nine ACE SPEC cards, the powerful Trainers you can only play one of per deck. Its Chinese
-          exclusive is a Ciphermaniac's Codebreaking Special Art Rare.
+          Exclusive is a Ciphermaniac's Codebreaking Special Art Rare.
         </p>
 
         <aside className="fact-box" aria-label="Blade Awakening key facts">
@@ -253,6 +258,8 @@ function BladeAwakeningReleasePost() {
               <dd>259 cards: 204 in the main set, 55 secret rares</dd>
               <dt>Chase cards</dt>
               <dd>Greninja ex SAR, Raging Bolt ex SAR and gold, Ciphermaniac's Codebreaking SAR</dd>
+              <dt>Chinese Exclusive</dt>
+              <dd>Ciphermaniac's Codebreaking SAR 245/204</dd>
             </dl>
           </div>
         </aside>
@@ -306,7 +313,7 @@ function BladeAwakeningReleasePost() {
           averages about half of one. The full numbers are in <a href="#odds">Odds and box math</a> below.
         </p>
 
-        <h2 id="ciphermaniac">Ciphermaniac's Codebreaking, only in Chinese</h2>
+        <h2 id="ciphermaniac">The Chinese Exclusive: Ciphermaniac's Codebreaking</h2>
         <p>
           Pokémon China says it added a brand-new Ciphermaniac's Codebreaking Special Art Rare to Blade Awakening. Taira Akitsu, who drew
           the regular card, shows the Ciphermaniac in a blue-lit street, magnifying glass in one hand and the Violet Book in the other.

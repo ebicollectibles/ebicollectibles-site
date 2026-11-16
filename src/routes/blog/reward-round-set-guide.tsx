@@ -3,6 +3,7 @@ import { createFileRoute, Link } from '@tanstack/react-router'
 import blogCssUrl from '~/styles/blog.css?url'
 import { BLOG_POSTS, BLOG_SITE_URL } from '~/data/blog-posts'
 import { BlogPostLayout } from '~/components/blog/BlogPostLayout'
+import { ChineseExclusiveBadge } from '~/components/blog/ChineseExclusive'
 import { getBlogPostStatus } from '~/server/blog-status'
 import { safeJsonLd } from '~/lib/gem-sets/head'
 import setData from '~/data/csv4.json'
@@ -13,7 +14,7 @@ type Card = (typeof setData.cards)[number]
 const byRange = (from: number, to: number) => setData.cards.filter((c) => c.pokemonIndex >= from && c.pokemonIndex <= to)
 const EXCLUSIVE = new Set<string>(setData.exclusiveCardNumbers)
 const short = (r: string) => r.match(/\(([^)]+)\)/)?.[1] ?? r
-// The data marks all three Chinese exclusives, including the gold Gholdengo ex 162.
+// The data marks all three Chinese Exclusives, including the gold Gholdengo ex 162.
 const isExclusive = (c: Card) => EXCLUSIVE.has(c.number) || c.number === '162/129'
 // Most wanted cards first (by number out of 129), then the rest in number order.
 const lead = (cards: Card[], first: string[]) => [
@@ -28,9 +29,9 @@ function Gallery({ cards, cols }: { cards: Card[]; cols: number }) {
         <figure key={c.number}>
           <img src={c.image} alt={`${c.name} ${c.number} ${short(c.rarity)}, Reward Round`} loading="lazy" width={300} height={419} />
           <figcaption>
+            {isExclusive(c) && <ChineseExclusiveBadge />}
             <strong>{c.name}</strong>
             {c.number}
-            {isExclusive(c) ? ' · Chinese exclusive' : ''}
           </figcaption>
         </figure>
       ))}
@@ -81,7 +82,7 @@ const TOC = [
 
 const FAQ = [
   {
-    q: 'Which Reward Round cards are Chinese exclusives?',
+    q: 'What are the Chinese Exclusives in Reward Round?',
     a: 'The gold Gholdengo ex 162/129, the Maushold ex Special Art Rare 158/129 and the Rika Special Art Rare 159/129.',
   },
   {
@@ -172,7 +173,7 @@ function RewardRoundSetGuide() {
         }}
       >
         <p>
-          Reward Round (CSV4C) is the Gholdengo set: 165 cards, three Chinese exclusives, and slim and jumbo packs. Our{' '}
+          Reward Round (CSV4C) is the Gholdengo set: 165 cards, three Chinese Exclusives, and slim and jumbo packs. Our{' '}
           <Link to="/blog/reward-round-release-news">release post</Link> covers what is new, and our{' '}
           <Link to="/blog/reward-round-card-origins">card origins guide</Link> matches every card to English. Use this one to sort
           your pulls or plan a master set.
@@ -216,7 +217,7 @@ function RewardRoundSetGuide() {
         </p>
 
         <h2 id="special-art-rares">All 9 Special Art Rares</h2>
-        <p>153 to 161. Maushold ex 158 and Rika 159 are Chinese exclusives.</p>
+        <p>153 to 161. Maushold ex 158 and Rika 159 are Chinese Exclusives.</p>
         <Gallery cards={lead(byRange(153, 161), ['158', '159', '157', '156', '154', '161'])} cols={3} />
 
         <BuyStrip />
@@ -226,7 +227,7 @@ function RewardRoundSetGuide() {
         <Gallery cards={lead(byRange(138, 152), ['146', '144', '150', '149', '152', '151'])} cols={3} />
 
         <h2 id="ultra-rares">All 4 Ultra Rares</h2>
-        <p>The gold cards, 162 to 165. Gholdengo ex 162 is the third Chinese exclusive.</p>
+        <p>The gold cards, 162 to 165. Gholdengo ex 162 is the third Chinese Exclusive.</p>
         <Gallery cards={byRange(162, 165)} cols={4} />
 
         <h2 id="art-rares">All 8 Art Rares</h2>

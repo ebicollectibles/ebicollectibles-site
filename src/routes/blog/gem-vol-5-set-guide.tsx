@@ -1,4 +1,5 @@
 import { BuyStrip } from '~/components/blog/BlogShop'
+import { ChineseExclusiveBadge } from '~/components/blog/ChineseExclusive'
 import { createFileRoute, Link } from '@tanstack/react-router'
 import blogCssUrl from '~/styles/blog.css?url'
 import { BLOG_POSTS, BLOG_SITE_URL } from '~/data/blog-posts'
@@ -10,7 +11,7 @@ import setData from '~/data/gem-vol-5.json'
 const post = BLOG_POSTS.find((p) => p.slug === 'gem-vol-5-set-guide')!
 
 const FULL_ARTS = setData.cards.filter((c) => c.version === 7)
-// The gallery shows the most wanted full arts first (the exclusive Captain Pikachu and the three Horizons starters, then Latios and other favorites), then the rest in number order.
+// The gallery shows the most wanted full arts first (the Chinese Exclusive Captain Pikachu and the three Horizons starters, then Latios and other favorites), then the rest in number order.
 const GALLERY_FIRST = [1, 22, 23, 24, 13, 25, 8, 4, 2, 20, 28, 18]
 const galleryRank = (c: (typeof FULL_ARTS)[number]) => {
   const i = GALLERY_FIRST.indexOf(c.pokemonIndex)
@@ -59,7 +60,7 @@ const FAQ = [
     a: 'They show rarity: ● Common, ◆ Uncommon, ★ Rare, ★★ Double Rare, and ★★★ for the full art (Triple Rare).',
   },
   {
-    q: 'Which cards are exclusive to Gem Vol 5?',
+    q: 'What are the Chinese Exclusives in Gem Vol 5?',
     a: 'The four Pokémon Horizons full arts: Captain Pikachu with Friede (0107/07, Keita Hagiwara), Floragato with Liko (2207/07, Lyu YiFei), Crocalor with Roy (2307/07, Kouki Yanagihara) and Quaxwell with Dot (2407/07, Rei Yamazaki). They are new art drawn for this set, with no English printing.',
   },
   {
@@ -146,7 +147,7 @@ function GemVol5SetGuide() {
         }}
       >
         <p>
-          Gem Pack Vol. 5 (Gem 5, CBB5C) is the Pokémon Horizons set: 196 holo cards, 28 Pokémon with seven versions each, and four full arts
+          Gem Pack Vol. 5 (Gem 5, CBB5C) is the Pokémon Horizons set: 196 holo cards, 28 Pokémon with seven versions each, and four Chinese Exclusive full arts
           starring the Rising Volt Tacklers. Our <Link to="/blog/gem-vol-5-release-news">release post</Link> covers what is new in the set, and our{' '}
           <Link to="/blog/gem-vol-5-card-origins">card origins guide</Link> traces every illustration back to its English card.
           Use this one to sort your pulls or plan a master set.
@@ -192,16 +193,16 @@ function GemVol5SetGuide() {
 
         <h2 id="full-arts">All 28 full arts</h2>
         <p>
-          There is one full art per Pokémon, each with its own illustration. Four of them, the Pokémon Horizons cards, were drawn just for Gem Vol 5.
+          There is one full art per Pokémon, each with its own illustration. Four of them, the Pokémon Horizons cards, are Chinese Exclusives drawn just for Gem Vol 5.
         </p>
         <div className="card-grid cols-4">
           {FULL_ARTS_GALLERY.map((c) => (
             <figure key={c.number}>
               <img src={c.image} alt={`${c.name} full art ${c.number}, Gem Vol 5`} loading="lazy" width={300} height={419} />
               <figcaption>
+                {EXCLUSIVE.has(c.number) && <ChineseExclusiveBadge />}
                 <strong>{c.name}</strong>
                 {c.number}
-                {EXCLUSIVE.has(c.number) ? ' · Exclusive' : ''}
               </figcaption>
             </figure>
           ))}
@@ -232,6 +233,7 @@ function GemVol5SetGuide() {
                     <td>{c.name}</td>
                     <td>
                       {pp}01 to {pp}07
+                      {EXCLUSIVE.has(c.number) ? ' (07 is a Chinese Exclusive)' : ''}
                     </td>
                   </tr>
                 )

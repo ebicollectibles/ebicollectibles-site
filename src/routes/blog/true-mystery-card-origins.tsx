@@ -5,6 +5,7 @@ import { BLOG_POSTS, BLOG_SITE_URL } from '~/data/blog-posts'
 import { BlogPostLayout } from '~/components/blog/BlogPostLayout'
 import { getBlogPostStatus } from '~/server/blog-status'
 import { safeJsonLd } from '~/lib/gem-sets/head'
+import { ChineseExclusiveBadge } from '~/components/blog/ChineseExclusive'
 import setData from '~/data/csv6.json'
 
 const post = BLOG_POSTS.find((p) => p.slug === 'true-mystery-card-origins')!
@@ -191,9 +192,13 @@ const SET_NAME: Record<Src, string> = {
   NEW: 'No English version',
 }
 
+// The set's Chinese Exclusive (exclusiveCardNumbers in the set data). The gold
+// Pal Pad also has no English printing but is not a Chinese Exclusive.
+const EXCLUSIVE = new Set(['152'])
+
 // What to say for cards with no English printing.
 const NO_EN: Record<string, string> = {
-  '152': 'New art, no English version',
+  '152': 'Chinese Exclusive, no English version',
   '163': 'English has Pal Pad only as a regular Item, not in gold',
 }
 
@@ -240,8 +245,8 @@ const FAQ = [
     a: 'Mostly Paradox Rift: 128 of its 163 cards match Paradox Rift. The rest come from Obsidian Flames (16), Paldean Fates (15), 151 (1) and an SV Black Star Promo (1), plus 2 cards with no English version.',
   },
   {
-    q: 'Which True Mystery cards have no English version?',
-    a: 'The Iron Hands ex Special Art Rare 152/128 by Tonji Matsuno, which is new art, and the gold Pal Pad Ultra Rare 163/128. English has Pal Pad only as a regular Item.',
+    q: 'Which card is the Chinese Exclusive?',
+    a: 'The Iron Hands ex Special Art Rare 152/128 by Tonji Matsuno, which is new art with no English version. The gold Pal Pad Ultra Rare 163/128 has no English version either, since English has Pal Pad only as a regular Item, but it is not a Chinese Exclusive.',
   },
   {
     q: 'Is the Roaring Moon ex Special Art Rare the same as in English?',
@@ -354,7 +359,7 @@ function TrueMysteryOrigins() {
         updated={status.liveAt}
         wide
         post={post}
-        lede="True Mystery is mostly Paradox Rift, plus cards from four other English sources and two that English never printed. We matched all 163 cards to English."
+        lede="True Mystery is mostly Paradox Rift, plus cards from four other English sources and two that English never printed, among them the Chinese Exclusive Iron Hands ex. We matched all 163 cards to English."
         cta={{
           heading: 'Collect True Mystery',
           body: 'See every card on the full checklist, or pick up a box.',
@@ -366,7 +371,7 @@ function TrueMysteryOrigins() {
       >
         <p>
           128 of True Mystery's 163 cards match Paradox Rift, including 30 of its 35 secret rares. The rest come from Obsidian Flames,
-          Paldean Fates, 151 and one promo, and two cards have no English version at all: the Iron Hands ex Special Art Rare and a gold
+          Paldean Fates, 151 and one promo, and two cards have no English version at all: the Chinese Exclusive Iron Hands ex Special Art Rare and a gold
           Pal Pad. For the chase cards and box contents, see our <Link to="/blog/true-mystery-set-guide">set guide</Link>.
         </p>
 
@@ -449,14 +454,15 @@ function TrueMysteryOrigins() {
         </p>
         <p>
           <strong>Two cards have no English version.</strong> English printed an Iron Hands ex Special Illustration Rare in Paradox
-          Rift, but with a different art, so Tonji Matsuno's Iron Hands ex is new. Pal Pad has only ever been a regular Item in English,
+          Rift, but with a different art, so Tonji Matsuno's Iron Hands ex is new art and the set's Chinese Exclusive. Pal Pad has only ever been a regular Item in English,
           so the gold Pal Pad is a version English never had.
         </p>
         <div className="card-grid cols-2">
           {fresh.map((r) => (
             <figure key={r.cn}>
-              <img src={r.image} alt={`${r.name} ${r.cn}/128, True Mystery`} loading="lazy" width={300} height={419} />
+              <img src={r.image} alt={`${r.name} ${r.cn}/128${EXCLUSIVE.has(r.cn) ? ', Chinese Exclusive' : ''}, True Mystery`} loading="lazy" width={300} height={419} />
               <figcaption>
+                {EXCLUSIVE.has(r.cn) && <ChineseExclusiveBadge />}
                 <strong>{r.name}</strong>
                 {r.cn}/128 · {r.rarity} · {r.illus}
               </figcaption>

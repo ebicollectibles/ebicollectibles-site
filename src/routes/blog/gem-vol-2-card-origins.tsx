@@ -60,8 +60,8 @@ const FAQ = [
     a: 'The art mostly is. 40 of the 44 artworks we traced are the same art you will find on English cards, mostly from Sword & Shield sets and promos. What is new is the printing: Simplified Chinese text, new numbers, new holo patterns and the Gem Pack set code.',
   },
   {
-    q: 'Is any Gem Vol 2 artwork new?',
-    a: 'Yes, four: the new full arts of Eevee 0115/15, Umbreon 0615/15, Leafeon 0715/15 and Sylveon 0915/15, all by HYOGONOSUKE. None of them are on an earlier English card.',
+    q: 'Which cards are Chinese Exclusives?',
+    a: 'Four: the full arts of Eevee 0115/15, Umbreon 0615/15, Leafeon 0715/15 and Sylveon 0915/15, all by HYOGONOSUKE. They are the only new artwork in Gem Vol 2, and none of them are on an earlier English card.',
   },
   {
     q: 'Are the VMAX the same as Evolving Skies?',
@@ -106,7 +106,7 @@ function SourceCell({ s }: { s: Source | null }) {
   if (!s) return <td className="cell-none">None in this set</td>
   return (
     <td>
-      {s.set ? sourceLabel(s) : 'New for Gem Vol 2'}
+      {s.set ? sourceLabel(s) : 'Chinese Exclusive'}
       <span className="cell-sub">Illus. {s.illus}</span>
     </td>
   )
@@ -158,7 +158,8 @@ function GemVol2OriginsPost() {
       >
         <p>
           Gem Packs reuse artwork from existing Pokémon TCG cards, reprinted in Simplified Chinese with new numbers and new holo patterns.
-          We matched every artwork in Gem Vol 2 (Gem 2) to the English card it came from.
+          We matched every artwork in Gem Vol 2 (Gem 2) to the English card it came from. The only exceptions are the four Chinese Exclusive
+          full arts by HYOGONOSUKE.
         </p>
 
         <nav className="toc" aria-label="In this guide">
@@ -179,7 +180,7 @@ function GemVol2OriginsPost() {
           English art too. We left out the basic Energy cards.
         </p>
         <p>
-          That adds up to 44 artworks. 40 of them come from English cards. The other four are new full arts by HYOGONOSUKE,
+          That adds up to 44 artworks. 40 of them come from English cards. The other four are the Chinese Exclusive full arts by HYOGONOSUKE,
           which were drawn for Gem Vol 2 and have no earlier version.
         </p>
 
@@ -203,12 +204,12 @@ function GemVol2OriginsPost() {
             </tbody>
           </table>
         </div>
-        <p className="table-note">Counts include the four Trainer cards. The four new full arts have no English version, so the column adds up to 40.</p>
+        <p className="table-note">Counts include the four Trainer cards. The four Chinese Exclusive full arts have no English version, so the column adds up to 40.</p>
 
         <h2 id="patterns">Patterns worth knowing</h2>
         <ul>
           <li>
-            <strong>Four full arts are new.</strong> Eevee, Umbreon, Leafeon and Sylveon each get a brand-new full art by HYOGONOSUKE, and together they form one forest scene.
+            <strong>Four full arts are Chinese Exclusives.</strong> Eevee, Umbreon, Leafeon and Sylveon each get a brand-new full art by HYOGONOSUKE, and together they form one forest scene.
           </li>
           <li>
             <strong>Promos supply the most.</strong> 13 artworks come from English Sword & Shield Black Star Promos, including Eevee V, Eevee VMAX and the Vaporeon, Jolteon and Flareon V.

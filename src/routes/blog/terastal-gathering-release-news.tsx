@@ -3,6 +3,7 @@ import { createFileRoute, Link } from '@tanstack/react-router'
 import blogCssUrl from '~/styles/blog.css?url'
 import { BLOG_POSTS, BLOG_SITE_URL } from '~/data/blog-posts'
 import { BlogPostLayout } from '~/components/blog/BlogPostLayout'
+import { ChineseExclusiveBadge } from '~/components/blog/ChineseExclusive'
 import { getBlogPostStatus } from '~/server/blog-status'
 import { safeJsonLd } from '~/lib/gem-sets/head'
 import { R2_IMAGE_HOST, SITE_URL } from '~/lib/gem-sets/constants'
@@ -67,7 +68,7 @@ const ODDS = [
 ]
 
 const TOC = [
-  { id: 'sylveon', label: 'A second Sylveon ex, only in Chinese' },
+  { id: 'sylveon', label: 'The Chinese Exclusive: Sylveon ex 234/208' },
   { id: 'special-art-rares', label: 'Special Art Rares' },
   { id: 'ultra-rares', label: 'Gold Ultra Rares' },
   { id: 'stellar-eeveelutions', label: 'The Stellar Eeveelutions' },
@@ -87,8 +88,8 @@ const FAQ = [
     a: 'Ten cards: either 7 non-holo and 3 holo, or 6 non-holo and 4 holo. A booster box holds 10 packs.',
   },
   {
-    q: 'What is the Chinese exclusive card?',
-    a: 'Sylveon ex 234/208, a Special Art Rare by rika. The set has two Sylveon ex SARs: 233/208 matches Prismatic Evolutions, and 234/208 is the one you will only find in Chinese.',
+    q: 'What is the Chinese Exclusive in Terastal Gathering?',
+    a: 'Sylveon ex 234/208, a Special Art Rare by rika. The set has two Sylveon ex SARs: 233/208 matches Prismatic Evolutions, and 234/208 is the Chinese Exclusive.',
   },
   {
     q: 'What are the chase cards?',
@@ -176,8 +177,8 @@ function TerastalGatheringReleasePost() {
         <p>
           Terastal Gathering (太晶盛聚) released on June 12, 2026. It is the special set between Stellar Crystal and Chasing Glory, and
           the Simplified Chinese counterpart to Prismatic Evolutions: Eevee and its evolutions in Stellar Tera form, a deep run of
-          Special Art Rares, and 10-card packs with three or four holos in every one. It also has a Sylveon ex Special Art Rare that
-          is only in the Chinese set.
+          Special Art Rares, and 10-card packs with three or four holos in every one. It also has a Chinese Exclusive: a Sylveon ex
+          Special Art Rare, 234/208.
         </p>
 
         <aside className="fact-box" aria-label="Terastal Gathering key facts">
@@ -204,7 +205,9 @@ function TerastalGatheringReleasePost() {
               <dt>Set size</dt>
               <dd>259 cards: 208 in the main set, 51 secret rares</dd>
               <dt>Chase cards</dt>
-              <dd>Umbreon ex SAR, Eevee ex SARs, Chinese-exclusive Sylveon ex SAR</dd>
+              <dd>Umbreon ex SAR, Eevee ex SARs, Sylveon ex SAR 234/208</dd>
+              <dt>Chinese Exclusive</dt>
+              <dd>Sylveon ex SAR 234/208</dd>
             </dl>
           </div>
         </aside>
@@ -220,7 +223,7 @@ function TerastalGatheringReleasePost() {
           </ol>
         </nav>
 
-        <h2 id="sylveon">A second Sylveon ex, only in Chinese</h2>
+        <h2 id="sylveon">The Chinese Exclusive: Sylveon ex 234/208</h2>
         <p>
           Sylveon ex has two Special Art Rares here. 233/208 by Cona Nitanda is the same card as in Prismatic Evolutions. 234/208 by
           rika is new: Pokémon China calls it a special addition to this set, and there is no English version of it. If you are
@@ -234,9 +237,10 @@ function TerastalGatheringReleasePost() {
             </figcaption>
           </figure>
           <figure>
-            <img src={cardImg('234')} alt="Sylveon ex 234/208 Special Art Rare, Chinese exclusive" loading="lazy" width={300} height={419} />
+            <img src={cardImg('234')} alt="Sylveon ex 234/208 Special Art Rare, Chinese Exclusive" loading="lazy" width={300} height={419} />
             <figcaption>
-              <strong>Sylveon ex</strong>234/208 · SAR · rika · Chinese exclusive
+              <ChineseExclusiveBadge />
+              <strong>Sylveon ex</strong>234/208 · SAR · rika
             </figcaption>
           </figure>
         </div>

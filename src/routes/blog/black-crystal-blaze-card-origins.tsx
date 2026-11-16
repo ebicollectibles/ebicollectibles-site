@@ -5,6 +5,7 @@ import { BLOG_POSTS, BLOG_SITE_URL } from '~/data/blog-posts'
 import { BlogPostLayout } from '~/components/blog/BlogPostLayout'
 import { getBlogPostStatus } from '~/server/blog-status'
 import { safeJsonLd } from '~/lib/gem-sets/head'
+import { ChineseExclusiveBadge } from '~/components/blog/ChineseExclusive'
 import setData from '~/data/csv5.json'
 
 const post = BLOG_POSTS.find((p) => p.slug === 'black-crystal-blaze-card-origins')!
@@ -237,8 +238,8 @@ const FAQ = [
     a: 'There is no single one. Most of its cards match Paradox Rift (73), Obsidian Flames (61) and Paldean Fates (18), with the rest from five other English sources and two new arts.',
   },
   {
-    q: 'Which Black Crystal Blaze cards have no English version?',
-    a: 'The Larry Special Art Rare 157/129 by Kariya and the gold Defiance Band Ultra Rare 164/129 by inose yukie.',
+    q: 'Which cards are Chinese Exclusives?',
+    a: 'Two: the Larry Special Art Rare 157/129 by Kariya and the gold Defiance Band Ultra Rare 164/129 by inose yukie. Neither has an English version.',
   },
   {
     q: 'Is the Charizard ex Special Art Rare the same as in English?',
@@ -300,7 +301,7 @@ function OriginsTable({ list }: { list: typeof rows }) {
               </td>
               <td>
                 {r.src === 'NEW' ? (
-                  <span className="cell-none">New art, no English version</span>
+                  <span className="cell-none">Chinese Exclusive, no English version</span>
                 ) : (
                   <>
                     {SET_NAME[r.src]} {r.en}
@@ -351,7 +352,7 @@ function BlackCrystalBlazeOrigins() {
         updated={status.liveAt}
         wide
         post={post}
-        lede="Black Crystal Blaze mixes cards from several English sets into one. We matched all 164 cards to English and found two that English never printed."
+        lede="Black Crystal Blaze mixes cards from several English sets into one. We matched all 164 cards to English and found two Chinese Exclusives that English never printed."
         cta={{
           heading: 'Collect Black Crystal Blaze',
           body: 'See every card on the full checklist, or pick up a box.',
@@ -363,7 +364,7 @@ function BlackCrystalBlazeOrigins() {
       >
         <p>
           Black Crystal Blaze does not follow one English set. Its 164 cards pull mostly from Paradox Rift, Obsidian Flames and Paldean
-          Fates, with a handful from other Scarlet & Violet sets and promos, plus two new arts. For the chase cards and box odds, see our{' '}
+          Fates, with a handful from other Scarlet & Violet sets and promos, plus two Chinese Exclusives: the Larry Special Art Rare and the gold Defiance Band. For the chase cards and box odds, see our{' '}
           <Link to="/blog/black-crystal-blaze-set-guide">set guide</Link>.
         </p>
 
@@ -414,14 +415,15 @@ function BlackCrystalBlazeOrigins() {
 
         <h2 id="patterns">Patterns worth knowing</h2>
         <p>
-          <strong>Two cards are new.</strong> English never printed a Larry Special Art Rare or a gold Defiance Band. The English Larry
+          <strong>Two cards are Chinese Exclusives.</strong> English never printed a Larry Special Art Rare or a gold Defiance Band. The English Larry
           Super Rare is here too, so a Chinese binder holds one more version of Larry.
         </p>
         <div className="card-grid cols-2">
           {fresh.map((r) => (
             <figure key={r.cn}>
-              <img src={r.image} alt={`${r.name} ${r.cn}/129, Black Crystal Blaze`} loading="lazy" width={300} height={419} />
+              <img src={r.image} alt={`${r.name} ${r.cn}/129, Chinese Exclusive, Black Crystal Blaze`} loading="lazy" width={300} height={419} />
               <figcaption>
+                <ChineseExclusiveBadge />
                 <strong>{r.name}</strong>
                 {r.cn}/129 · {r.rarity} · {r.illus}
               </figcaption>

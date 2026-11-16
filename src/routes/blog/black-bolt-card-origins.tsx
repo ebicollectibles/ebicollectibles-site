@@ -5,6 +5,7 @@ import { BLOG_POSTS, BLOG_SITE_URL } from '~/data/blog-posts'
 import { BlogPostLayout } from '~/components/blog/BlogPostLayout'
 import { getBlogPostStatus } from '~/server/blog-status'
 import { safeJsonLd } from '~/lib/gem-sets/head'
+import { ChineseExclusiveBadge } from '~/components/blog/ChineseExclusive'
 import setData from '~/data/black-bolt.json'
 
 const post = BLOG_POSTS.find((p) => p.slug === 'black-bolt-card-origins')!
@@ -233,8 +234,8 @@ const FAQ = [
     a: "Mostly. 160 of its 174 cards match English Black Bolt. Ten match English White Flare, three Art Rares match English Black Star Promos, and one card, the N's Plan Special Art Rare, is new.",
   },
   {
-    q: 'Which Black Bolt card has no English version?',
-    a: "N's Plan 173/086, the Special Art Rare by Iwamoto05. It is the set's Chinese exclusive.",
+    q: 'Which card is the Chinese Exclusive?',
+    a: "N's Plan 173/086, the Special Art Rare by Iwamoto05. It is the set's only Chinese Exclusive and has no English version.",
   },
   {
     q: 'Where are Klink and Rufflet?',
@@ -296,7 +297,7 @@ function OriginsTable({ list }: { list: typeof rows }) {
               </td>
               <td>
                 {r.src === 'NEW' ? (
-                  <span className="cell-none">New art, no English version</span>
+                  <span className="cell-none">Chinese Exclusive, no English version</span>
                 ) : (
                   <>
                     {SET_NAME[r.src]} {r.en}
@@ -346,7 +347,7 @@ function BlackBoltOrigins() {
         updated={status.liveAt}
         wide
         post={post}
-        lede="Chinese Black Bolt is close to English Black Bolt, with a few differences. We matched all 174 cards to English, including the ones borrowed from White Flare and the one card English never printed."
+        lede="Chinese Black Bolt is close to English Black Bolt, with a few differences. We matched all 174 cards to English, including the ones borrowed from White Flare and the one Chinese Exclusive that English never printed."
         cta={{
           heading: 'Collect Black Bolt',
           body: 'See every card on the full checklist, or pick up a box.',
@@ -359,7 +360,7 @@ function BlackBoltOrigins() {
         <p>
           {count('BLK')} of Black Bolt's 174 cards match English Black Bolt. The other {174 - count('BLK')} are where it gets interesting:{' '}
           {count('WHT')} match English White Flare, {count('SVP')} Art Rares match English Black Star Promos, and one card is new, the
-          Chinese-exclusive N's Plan Special Art Rare. For the chase cards and box odds, see our{' '}
+          Chinese Exclusive N's Plan Special Art Rare. For the chase cards and box odds, see our{' '}
           <Link to="/blog/black-bolt-set-guide">set guide</Link>.
         </p>
 
@@ -449,7 +450,7 @@ function BlackBoltOrigins() {
           ))}
         </div>
         <p>
-          <strong>One new card, two English cards left out.</strong> The N's Plan Special Art Rare 173/086 by Iwamoto05 has no English
+          <strong>One Chinese Exclusive, two English cards left out.</strong> The Chinese Exclusive N's Plan Special Art Rare 173/086 by Iwamoto05 has no English
           version. English Black Bolt's own N's Plan Special Illustration Rare (170/086 by REND) is not in the Chinese set, and neither is
           its Victini Black White Rare (171/086), so Zekrom ex is the only Black White Rare here. The N's Plan Super Rare is the same art as
           in English.
@@ -459,10 +460,11 @@ function BlackBoltOrigins() {
             <figure key={r.cn}>
               <img src={r.image} alt={`${r.name} ${r.cn}/086 ${r.rarity}, Black Bolt`} loading="lazy" width={300} height={419} />
               <figcaption>
+                {r.src === 'NEW' && <ChineseExclusiveBadge />}
                 <strong>
                   {r.name} {r.rarity}
                 </strong>
-                {r.cn}/086 · {r.src === 'NEW' ? 'new art' : `Black Bolt ${r.en}`} · {r.illus}
+                {r.cn}/086 · {r.src === 'NEW' ? 'no English version' : `Black Bolt ${r.en}`} · {r.illus}
               </figcaption>
             </figure>
           ))}

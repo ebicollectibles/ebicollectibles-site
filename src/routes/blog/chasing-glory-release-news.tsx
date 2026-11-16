@@ -3,6 +3,7 @@ import { createFileRoute, Link } from '@tanstack/react-router'
 import blogCssUrl from '~/styles/blog.css?url'
 import { BLOG_POSTS, BLOG_SITE_URL } from '~/data/blog-posts'
 import { BlogPostLayout } from '~/components/blog/BlogPostLayout'
+import { ChineseExclusiveBadge } from '~/components/blog/ChineseExclusive'
 import { getBlogPostStatus } from '~/server/blog-status'
 import { safeJsonLd } from '~/lib/gem-sets/head'
 import { R2_IMAGE_HOST, SITE_URL } from '~/lib/gem-sets/constants'
@@ -81,7 +82,7 @@ const SAR = [
 
 const TOC = [
   { id: 'slim-or-jumbo', label: 'Slim or jumbo?' },
-  { id: 'brock', label: "Brock's Scouting, only in Chinese" },
+  { id: 'brock', label: "The Chinese Exclusive: Brock's Scouting" },
   { id: 'special-art-rares', label: 'The chase: Special Art Rares' },
   { id: 'ultra-rares', label: 'Gold Ultra Rares' },
   { id: 'trainers-pokemon', label: "Trainer's Pokémon" },
@@ -104,7 +105,7 @@ const FAQ = [
     a: 'The jumbo box. Pokémon China prints Super Rares, Special Art Rares and Ultra Rares at 1.00% of jumbo cards against 0.73% of slim cards, so a jumbo box averages about 1.2 of them and a slim box about 0.55.',
   },
   {
-    q: 'What is the Chinese exclusive card?',
+    q: 'What is the Chinese Exclusive in Chasing Glory?',
     a: "Brock's Scouting 276/222, a Special Art Rare by Atsushi Furusawa. English and Japanese have Brock's Scouting as a Supporter and a full art, but not this illustration.",
   },
   {
@@ -194,7 +195,7 @@ function ChasingGloryReleasePost() {
           Chasing Glory (共逐荣光) released on July 16, 2026. It is the main numbered set of the CSV10 block, the one that Black Bolt
           and White Flare follow, and its big idea is the Trainer's Pokémon: Team Rocket, Cynthia, N, Iono, Misty and other Trainers
           each bring their own partner Pokémon onto the card. The cards to chase are Team Rocket's Mewtwo ex in Special Art Rare and
-          gold, and one card, Brock's Scouting, has an illustration found only in the Chinese set.
+          gold, and the set's Chinese Exclusive is a Brock's Scouting Special Art Rare with an illustration found only in the Chinese set.
         </p>
 
         <aside className="fact-box" aria-label="Chasing Glory key facts">
@@ -222,6 +223,8 @@ function ChasingGloryReleasePost() {
               <dd>287 cards: 222 in the main set, 65 secret rares</dd>
               <dt>Chase cards</dt>
               <dd>Team Rocket's Mewtwo ex SAR and Ultra Rare, Brock's Scouting SAR</dd>
+              <dt>Chinese Exclusive</dt>
+              <dd>Brock's Scouting SAR 276/222</dd>
             </dl>
           </div>
         </aside>
@@ -301,17 +304,18 @@ function ChasingGloryReleasePost() {
           <Link to="/blog/chasing-glory-set-guide">set guide</Link> breaks down both boxes in full.
         </p>
 
-        <h2 id="brock">Brock's Scouting, only in Chinese</h2>
+        <h2 id="brock">The Chinese Exclusive: Brock's Scouting</h2>
         <p>
           Brock's Scouting 276/222 is a Special Art Rare drawn just for this set by Atsushi Furusawa: Brock sitting on a rock above a
-          mountain valley. Brock's Scouting exists in English and Japanese as a Supporter and a full art, but this illustration is only
-          in the Simplified Chinese set.
+          mountain valley. Brock's Scouting exists in English and Japanese as a Supporter and a full art, but this illustration is a
+          Chinese Exclusive.
         </p>
         <div className="card-grid cols-2">
           <figure>
             <img src={cardImg('276')} alt="Brock's Scouting 276/222 Special Art Rare, Chasing Glory" loading="lazy" width={320} height={449} />
             <figcaption>
-              <strong>Brock's Scouting</strong>276/222 · SAR · Chinese exclusive
+              <ChineseExclusiveBadge />
+              <strong>Brock's Scouting</strong>276/222 · SAR
             </figcaption>
           </figure>
           <figure>

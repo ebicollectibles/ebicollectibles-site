@@ -3,6 +3,7 @@ import { createFileRoute, Link } from '@tanstack/react-router'
 import blogCssUrl from '~/styles/blog.css?url'
 import { BLOG_POSTS, BLOG_SITE_URL } from '~/data/blog-posts'
 import { BlogPostLayout } from '~/components/blog/BlogPostLayout'
+import { ChineseExclusiveBadge } from '~/components/blog/ChineseExclusive'
 import { getBlogPostStatus } from '~/server/blog-status'
 import { safeJsonLd } from '~/lib/gem-sets/head'
 import setData from '~/data/csv10.json'
@@ -26,9 +27,9 @@ function Gallery({ cards, cols }: { cards: Card[]; cols: number }) {
         <figure key={c.number}>
           <img src={c.image} alt={`${c.name} ${c.number} ${short(c.rarity)}, Chasing Glory`} loading="lazy" width={300} height={419} />
           <figcaption>
+            {EXCLUSIVE.has(c.number) && <ChineseExclusiveBadge />}
             <strong>{c.name}</strong>
             {c.number}
-            {EXCLUSIVE.has(c.number) ? ' · Chinese exclusive' : ''}
           </figcaption>
         </figure>
       ))}
@@ -113,6 +114,10 @@ const FAQ = [
   {
     q: 'Do slim and jumbo packs have different cards?',
     a: 'No. Both pull from the same 287-card list and the same Poké Ball and Master Ball holos. Only the number of cards per pack and the odds change.',
+  },
+  {
+    q: 'What is the Chinese Exclusive in Chasing Glory?',
+    a: "Brock's Scouting 276/222, a Special Art Rare. Brock's Scouting is in English as a Supporter and a full art, but not with this illustration.",
   },
   {
     q: 'How many Ultra Rares are in Chasing Glory?',
@@ -202,7 +207,8 @@ function ChasingGlorySetGuide() {
         }}
       >
         <p>
-          Chasing Glory (CSV10C) is the Trainer's Pokémon set: 287 cards led by Team Rocket, sold in slim and jumbo packs. Our{' '}
+          Chasing Glory (CSV10C) is the Trainer's Pokémon set: 287 cards led by Team Rocket, with a Chinese Exclusive Brock's Scouting Special
+          Art Rare, sold in slim and jumbo packs. Our{' '}
           <Link to="/blog/chasing-glory-release-news">release post</Link> covers what is new, and our{' '}
           <Link to="/blog/chasing-glory-card-origins">card origins guide</Link> traces every card to its English printing. Use
           this one to pick a box, sort your pulls or plan a master set.
@@ -253,7 +259,7 @@ function ChasingGlorySetGuide() {
 
         <h2 id="special-art-rares">All 18 Special Art Rares</h2>
         <p>
-          Fourteen Pokémon ex and four Supporters, 262 to 279. Brock's Scouting 276/222 is the Simplified Chinese exclusive.
+          Fourteen Pokémon ex and four Supporters, 262 to 279. Brock's Scouting 276/222 is the Chinese Exclusive.
         </p>
         <Gallery cards={lead(byRange(262, 279), ['268', '276', '267', '279', '272', '269', '266', '264'])} cols={3} />
 

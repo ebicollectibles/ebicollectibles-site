@@ -1,4 +1,5 @@
 import { BuyStrip } from '~/components/blog/BlogShop'
+import { ChineseExclusiveBadge } from '~/components/blog/ChineseExclusive'
 import { createFileRoute, Link } from '@tanstack/react-router'
 import blogCssUrl from '~/styles/blog.css?url'
 import { BLOG_POSTS, BLOG_SITE_URL } from '~/data/blog-posts'
@@ -44,7 +45,7 @@ const RARITY = [
 ]
 
 const TOC = [
-  { id: 'applin-full-art', label: 'The chase: Applin full art' },
+  { id: 'applin-full-art', label: 'The Chinese Exclusive: Applin full art' },
   { id: 'lineup', label: 'Apples, tea and the Loyal Three' },
   { id: 'how-the-set-works', label: 'How the set is built' },
   { id: 'applin', label: 'Applin, six holo versions' },
@@ -77,8 +78,8 @@ const FAQ = [
     a: 'Yes. Every card in every pack is a holo. There are no non-holo cards in the set.',
   },
   {
-    q: 'What is the main chase card?',
-    a: 'Applin 1907/07, the full art by Jiro Sasumo drawn for this set. Beyond that, collectors chase the 28 full arts (every card numbered 07).',
+    q: 'What is the Chinese Exclusive in Gem Vol 6?',
+    a: 'Applin 1907/07, the full art by Jiro Sasumo drawn for this set, and the main chase card. Beyond that, collectors chase the 28 full arts (every card numbered 07).',
   },
 ]
 
@@ -145,7 +146,7 @@ function GemVol6Post() {
         updated={status.liveAt}
         wide
         post={post}
-        lede="Applin fronts the sixth Simplified Chinese Gem Pack: 28 Pokémon, seven cards each, every card a holo, and a new Applin full art by Jiro Sasumo you can only pull here."
+        lede="Applin fronts the sixth Simplified Chinese Gem Pack: 28 Pokémon, seven cards each, every card a holo, and a Chinese Exclusive Applin full art by Jiro Sasumo."
         cta={{
           heading: 'Shop Gem Vol 6',
           body: 'Booster boxes, plus the full 196-card checklist with every version.',
@@ -185,7 +186,7 @@ function GemVol6Post() {
               <dd>18 packs, 72 cards</dd>
               <dt>Set size</dt>
               <dd>196 cards: 28 Pokémon × 7 versions</dd>
-              <dt>Chase card</dt>
+              <dt>Chinese Exclusive</dt>
               <dd>Applin full art 1907/07, by Jiro Sasumo</dd>
             </dl>
           </div>
@@ -202,10 +203,11 @@ function GemVol6Post() {
           </ol>
         </nav>
 
-        <h2 id="applin-full-art">The chase: Applin full art</h2>
+        <h2 id="applin-full-art">The Chinese Exclusive: Applin full art</h2>
         <figure className="feature-card">
-          <img src={cardImg('1907')} alt="Applin 1907/07 full art, Triple Rare, Gem Vol 6" loading="lazy" width={320} height={447} />
+          <img src={cardImg('1907')} alt="Applin 1907/07 Chinese Exclusive full art, Triple Rare, Gem Vol 6" loading="lazy" width={320} height={447} />
           <figcaption>
+            <ChineseExclusiveBadge />
             <strong>1907/07</strong>
             Triple Rare · Full art · Illus. Jiro Sasumo
           </figcaption>

@@ -5,6 +5,7 @@ import { BLOG_POSTS, BLOG_SITE_URL } from '~/data/blog-posts'
 import { BlogPostLayout } from '~/components/blog/BlogPostLayout'
 import { getBlogPostStatus } from '~/server/blog-status'
 import { safeJsonLd } from '~/lib/gem-sets/head'
+import { ChineseExclusiveBadge } from '~/components/blog/ChineseExclusive'
 import setData from '~/data/white-flare.json'
 
 const post = BLOG_POSTS.find((p) => p.slug === 'white-flare-card-origins')!
@@ -233,8 +234,8 @@ const FAQ = [
     a: 'Mostly. 161 of its 174 cards match English White Flare. Ten match English Black Bolt, two Art Rares match English Black Star Promos, and one card, the Hilda Special Art Rare, is new.',
   },
   {
-    q: 'Which White Flare card has no English version?',
-    a: "Hilda 173/086, the Special Art Rare by Ligton. It is the set's Chinese exclusive.",
+    q: 'Which card is the Chinese Exclusive?',
+    a: "Hilda 173/086, the Special Art Rare by Ligton. It is the set's only Chinese Exclusive and has no English version.",
   },
   {
     q: 'Where are Litwick and Vullaby?',
@@ -296,7 +297,7 @@ function OriginsTable({ list }: { list: typeof rows }) {
               </td>
               <td>
                 {r.src === 'NEW' ? (
-                  <span className="cell-none">New art, no English version</span>
+                  <span className="cell-none">Chinese Exclusive, no English version</span>
                 ) : (
                   <>
                     {SET_NAME[r.src]} {r.en}
@@ -346,7 +347,7 @@ function WhiteFlareOrigins() {
         updated={status.liveAt}
         wide
         post={post}
-        lede="Chinese White Flare is close to English White Flare, with a few differences. We matched all 174 cards to English, including the ones borrowed from Black Bolt and the one card English never printed."
+        lede="Chinese White Flare is close to English White Flare, with a few differences. We matched all 174 cards to English, including the ones borrowed from Black Bolt and the one Chinese Exclusive that English never printed."
         cta={{
           heading: 'Collect White Flare',
           body: 'See every card on the full checklist, or pick up a box.',
@@ -359,7 +360,7 @@ function WhiteFlareOrigins() {
         <p>
           {count('WHT')} of White Flare's 174 cards match English White Flare. The other {174 - count('WHT')} are where it gets
           interesting: {count('BLK')} match English Black Bolt, {count('SVP')} Art Rares match English Black Star Promos, and one card is
-          new, the Chinese-exclusive Hilda Special Art Rare. For the chase cards and box odds, see our{' '}
+          new, the Chinese Exclusive Hilda Special Art Rare. For the chase cards and box odds, see our{' '}
           <Link to="/blog/white-flare-set-guide">set guide</Link>.
         </p>
 
@@ -449,7 +450,7 @@ function WhiteFlareOrigins() {
           ))}
         </div>
         <p>
-          <strong>One new card, two English cards left out.</strong> The Hilda Special Art Rare 173/086 by Ligton has no English version.
+          <strong>One Chinese Exclusive, two English cards left out.</strong> The Chinese Exclusive Hilda Special Art Rare 173/086 by Ligton has no English version.
           English White Flare's own Hilda Special Illustration Rare (171/086 by Naoki Saito) is not in the Chinese set, and neither is its
           Victini Black White Rare (172/086), so Reshiram ex is the only Black White Rare here. The Hilda Super Rare is the same art as in
           English.
@@ -459,10 +460,11 @@ function WhiteFlareOrigins() {
             <figure key={r.cn}>
               <img src={r.image} alt={`${r.name} ${r.cn}/086 ${r.rarity}, White Flare`} loading="lazy" width={300} height={419} />
               <figcaption>
+                {r.src === 'NEW' && <ChineseExclusiveBadge />}
                 <strong>
                   {r.name} {r.rarity}
                 </strong>
-                {r.cn}/086 · {r.src === 'NEW' ? 'new art' : `White Flare ${r.en}`} · {r.illus}
+                {r.cn}/086 · {r.src === 'NEW' ? 'no English version' : `White Flare ${r.en}`} · {r.illus}
               </figcaption>
             </figure>
           ))}

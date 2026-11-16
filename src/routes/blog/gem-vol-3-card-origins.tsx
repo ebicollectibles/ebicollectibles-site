@@ -69,8 +69,8 @@ const FAQ = [
     a: 'The art mostly is. 35 of the 40 artworks we traced are the same art you will find on English cards, mostly 2023 Scarlet & Violet sets. What is new is the printing: Simplified Chinese text, new numbers, new holo patterns and the Gem Pack set code.',
   },
   {
-    q: 'Is any Gem Vol 3 artwork new?',
-    a: 'Yes, five: the new full arts of Meowth 0207/07, Gengar 0307/07, Cubone 0407/07, Chandelure 1107/07 and Ceruledge 1507/07. None of them are on an earlier English card.',
+    q: 'Which cards are Chinese Exclusives?',
+    a: 'Five full arts: Meowth 0207/07, Gengar 0307/07, Cubone 0407/07, Chandelure 1107/07 and Ceruledge 1507/07. They are the only new artwork in Gem Vol 3, and none of them are on an earlier English card.',
   },
   {
     q: 'Which English set does most of Gem Vol 3 come from?',
@@ -115,7 +115,7 @@ function SourceCell({ s }: { s: Source | null }) {
   if (!s) return <td className="cell-none">None in this set</td>
   return (
     <td>
-      {s.set ? sourceLabel(s) : 'New for Gem Vol 3'}
+      {s.set ? sourceLabel(s) : 'Chinese Exclusive'}
       <span className="cell-sub">Illus. {s.illus}</span>
     </td>
   )
@@ -167,7 +167,8 @@ function GemVol3OriginsPost() {
       >
         <p>
           Gem Packs reuse artwork from existing Pokémon TCG cards, reprinted in Simplified Chinese with new numbers and new holo patterns.
-          We matched every artwork in Gem Vol 3 (Gem 3) to the English card it came from.
+          We matched every artwork in Gem Vol 3 (Gem 3) to the English card it came from, except the five Chinese Exclusive full arts,
+          which have no English version at all.
         </p>
 
         <nav className="toc" aria-label="In this guide">
@@ -188,7 +189,7 @@ function GemVol3OriginsPost() {
           English art too. We left out the basic and Luminous Energy cards.
         </p>
         <p>
-          That adds up to 40 artworks. 35 of them come from English cards. The other five are the new full arts of Meowth,
+          That adds up to 40 artworks. 35 of them come from English cards. The other five are the Chinese Exclusive full arts of Meowth,
           Gengar, Cubone, Chandelure and Ceruledge, which were drawn for Gem Vol 3 and have no earlier version.
         </p>
 
@@ -212,12 +213,12 @@ function GemVol3OriginsPost() {
             </tbody>
           </table>
         </div>
-        <p className="table-note">Counts include the four Trainer cards. The five new full arts have no English version, so the column adds up to 35.</p>
+        <p className="table-note">Counts include the four Trainer cards. The five Chinese Exclusive full arts have no English version, so the column adds up to 35.</p>
 
         <h2 id="patterns">Patterns worth knowing</h2>
         <ul>
           <li>
-            <strong>Five full arts are new.</strong> Meowth, Gengar, Cubone, Chandelure and Ceruledge keep regular art from English sets but get brand-new full arts. aspara, who drew the Gengar full art, also drew the Arven Trainer.
+            <strong>Five full arts are Chinese Exclusives.</strong> Meowth, Gengar, Cubone, Chandelure and Ceruledge keep regular art from English sets but get brand-new full arts. aspara, who drew the Gengar full art, also drew the Arven Trainer.
           </li>
           <li>
             <strong>2023 sets do most of the work.</strong> Obsidian Flames and the base Scarlet & Violet set supply eight artworks each, with Paldea Evolved close behind on six.

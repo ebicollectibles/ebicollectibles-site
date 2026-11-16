@@ -1,4 +1,5 @@
 import { BuyStrip } from '~/components/blog/BlogShop'
+import { ChineseExclusiveBadge } from '~/components/blog/ChineseExclusive'
 import { createFileRoute, Link } from '@tanstack/react-router'
 import blogCssUrl from '~/styles/blog.css?url'
 import { BLOG_POSTS, BLOG_SITE_URL } from '~/data/blog-posts'
@@ -19,7 +20,7 @@ const EEVEE_SAMPLE = [
   { id: '0111', label: 'Base card A', note: 'Double Rare · Gem Pack logo stamp' },
   { id: '0113', label: 'Eevee V', note: 'Rare' },
   { id: '0114', label: 'Eevee VMAX', note: 'Triple Rare' },
-  { id: '0115', label: 'Full art', note: 'Triple Rare · Exclusive' },
+  { id: '0115', label: 'Full art', note: 'Triple Rare', exclusive: true },
 ]
 
 // Most wanted first.
@@ -52,7 +53,7 @@ const RARITY = [
 ]
 
 const TOC = [
-  { id: 'forest-full-arts', label: 'The chase: four full arts, one forest' },
+  { id: 'forest-full-arts', label: 'The Chinese Exclusives: four full arts, one forest' },
   { id: 'vmax', label: 'Nine VMAX' },
   { id: 'how-the-set-works', label: 'How the set is built' },
   { id: 'eevee', label: "Eevee's 15 cards" },
@@ -82,8 +83,8 @@ const FAQ = [
     a: 'Four holo cards: three are Common or Uncommon, and one is Rare or better.',
   },
   {
-    q: 'What are the main chase cards?',
-    a: 'The four full arts of Eevee, Umbreon, Leafeon and Sylveon, which join into one forest scene. After those, Umbreon VMAX and Sylveon VMAX lead the nine VMAX.',
+    q: 'What are the Chinese Exclusives in Gem Vol 2?',
+    a: 'The four HYOGONOSUKE full arts: Eevee 0115/15, Umbreon 0615/15, Leafeon 0715/15 and Sylveon 0915/15, which join into one forest scene. After those, Umbreon VMAX and Sylveon VMAX lead the nine VMAX.',
   },
 ]
 
@@ -150,7 +151,7 @@ function GemVol2Post() {
         updated={status.liveAt}
         wide
         post={post}
-        lede="The second Simplified Chinese Gem Pack is all about Eevee: 140 all-holo cards across Eevee and its eight evolutions, a V and VMAX for each, and four exclusive full arts that join into one forest scene."
+        lede="The second Simplified Chinese Gem Pack is all about Eevee: 140 all-holo cards across Eevee and its eight evolutions, a V and VMAX for each, and four Chinese Exclusive full arts that join into one forest scene."
         cta={{
           heading: 'Shop Gem Vol 2',
           body: 'Booster boxes, plus the full 140-card checklist with every version.',
@@ -189,8 +190,8 @@ function GemVol2Post() {
               <dd>15 packs, 60 cards</dd>
               <dt>Set size</dt>
               <dd>140 cards: 9 Pokémon, plus 4 Trainers and 6 Energy</dd>
-              <dt>Chase cards</dt>
-              <dd>Four new full arts by HYOGONOSUKE: Eevee, Umbreon, Leafeon and Sylveon</dd>
+              <dt>Chinese Exclusives</dt>
+              <dd>Four new full arts by HYOGONOSUKE: Eevee 0115/15, Umbreon 0615/15, Leafeon 0715/15 and Sylveon 0915/15</dd>
             </dl>
           </div>
         </aside>
@@ -206,9 +207,9 @@ function GemVol2Post() {
           </ol>
         </nav>
 
-        <h2 id="forest-full-arts">The chase: four full arts, one forest</h2>
+        <h2 id="forest-full-arts">The Chinese Exclusives: four full arts, one forest</h2>
         <p>
-          The four full arts are new artwork by HYOGONOSUKE, drawn for this set. Each works on its own, but lay them side by side in the
+          The four Chinese Exclusives are full arts by HYOGONOSUKE, new artwork drawn for this set. Each works on its own, but lay them side by side in the
           order Leafeon, Sylveon, Umbreon, Eevee and they join into one long picture of the four resting and playing in a sunlit
           forest.
         </p>
@@ -293,6 +294,7 @@ function GemVol2Post() {
             <figure key={c.id}>
               <img src={cardImg(c.id)} alt={`Eevee ${c.id}, ${c.label}, Gem Vol 2`} loading="lazy" width={300} height={419} />
               <figcaption>
+                {c.exclusive && <ChineseExclusiveBadge />}
                 <strong>{c.id}/15</strong>
                 {c.label} · {c.note}
               </figcaption>

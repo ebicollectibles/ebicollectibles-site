@@ -3,6 +3,7 @@ import { createFileRoute, Link } from '@tanstack/react-router'
 import blogCssUrl from '~/styles/blog.css?url'
 import { BLOG_POSTS, BLOG_SITE_URL } from '~/data/blog-posts'
 import { BlogPostLayout } from '~/components/blog/BlogPostLayout'
+import { ChineseExclusiveBadge } from '~/components/blog/ChineseExclusive'
 import { getBlogPostStatus } from '~/server/blog-status'
 import { safeJsonLd } from '~/lib/gem-sets/head'
 import setData from '~/data/csv9.json'
@@ -23,9 +24,9 @@ function Gallery({ cards, cols }: { cards: Card[]; cols: number }) {
         <figure key={c.number}>
           <img src={c.image} alt={`${c.name} ${c.number} ${short(c.rarity)}, Stellar Crystal`} loading="lazy" width={300} height={419} />
           <figcaption>
+            {EXCLUSIVE.has(c.number) && <ChineseExclusiveBadge />}
             <strong>{c.name}</strong>
             {c.number}
-            {EXCLUSIVE.has(c.number) ? ' · Chinese exclusive' : ''}
           </figcaption>
         </figure>
       ))}
@@ -106,7 +107,7 @@ const FAQ = [
     a: 'No. Both pull from the same 266-card list and the same Poké Ball and Master Ball holos. Only the number of cards per pack and the odds change.',
   },
   {
-    q: 'Which Stellar Crystal card is a Chinese exclusive?',
+    q: 'What is the Chinese Exclusive in Stellar Crystal?',
     a: "Lisia's Appeal 257/208, a Special Art Rare by En Morikura.",
   },
   {
@@ -190,8 +191,8 @@ function StellarCrystalSetGuide() {
         }}
       >
         <p>
-          Stellar Crystal (CSV9C) is the Stellar Tera set: 266 cards with Pikachu on the pack, Terapagos ex, and one Chinese exclusive,
-          sold in slim and jumbo packs. Our <Link to="/blog/stellar-crystal-release-news">release post</Link> covers what is new,
+          Stellar Crystal (CSV9C) is the Stellar Tera set: 266 cards with Pikachu on the pack, Terapagos ex, and a Chinese Exclusive
+          Lisia's Appeal Special Art Rare, sold in slim and jumbo packs. Our <Link to="/blog/stellar-crystal-release-news">release post</Link> covers what is new,
           and our <Link to="/blog/stellar-crystal-card-origins">card origins guide</Link> traces every card to its English
           printing. Use this one to pick a pack size, sort your pulls or plan a master set.
         </p>
@@ -240,7 +241,7 @@ function StellarCrystalSetGuide() {
 
         <h2 id="special-art-rares">All 16 Special Art Rares</h2>
         <p>
-          242 to 257: ten Pokémon ex and six Supporters. Lisia's Appeal 257/208 is the Simplified Chinese exclusive.
+          242 to 257: ten Pokémon ex and six Supporters. Lisia's Appeal 257/208 is the Chinese Exclusive.
         </p>
         <Gallery cards={pick([245, 257, 251, 247, 248, 250, 249, 244, 243, 246, 242, 253, 254, 252, 255, 256])} cols={4} />
 

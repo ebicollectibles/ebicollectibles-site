@@ -3,6 +3,7 @@ import { createFileRoute, Link } from '@tanstack/react-router'
 import blogCssUrl from '~/styles/blog.css?url'
 import { BLOG_POSTS, BLOG_SITE_URL } from '~/data/blog-posts'
 import { BlogPostLayout } from '~/components/blog/BlogPostLayout'
+import { ChineseExclusiveBadge } from '~/components/blog/ChineseExclusive'
 import { getBlogPostStatus } from '~/server/blog-status'
 import { safeJsonLd } from '~/lib/gem-sets/head'
 import { R2_IMAGE_HOST, SITE_URL } from '~/lib/gem-sets/constants'
@@ -13,6 +14,9 @@ const cardImg = (n: string) => `${R2_IMAGE_HOST}/Chinese/Dark%20Crystal%20Blaze%
 
 type Shown = { n: string; name: string; note: string }
 
+// The two Chinese Exclusives: the Larry SAR 157 and the gold Defiance Band 164.
+const EXCLUSIVE = new Set(['157', '164'])
+
 function Grid({ cards, cols }: { cards: Shown[]; cols: number }) {
   return (
     <div className={`card-grid cols-${cols}`}>
@@ -20,6 +24,7 @@ function Grid({ cards, cols }: { cards: Shown[]; cols: number }) {
         <figure key={c.n}>
           <img src={cardImg(c.n)} alt={`${c.name} ${c.n}/129, Black Crystal Blaze`} loading="lazy" width={300} height={419} />
           <figcaption>
+            {EXCLUSIVE.has(c.n) && <ChineseExclusiveBadge />}
             <strong>{c.name}</strong>
             {c.n}/129 · {c.note}
           </figcaption>
@@ -37,8 +42,8 @@ const CHARIZARD = [
 ]
 
 const EXCLUSIVES = [
-  { n: '157', name: 'Larry', note: 'SAR · Kariya · Chinese exclusive' },
-  { n: '164', name: 'Defiance Band', note: 'Ultra Rare · inose yukie · Chinese exclusive' },
+  { n: '157', name: 'Larry', note: 'SAR · Kariya' },
+  { n: '164', name: 'Defiance Band', note: 'Ultra Rare · inose yukie' },
 ]
 
 const SAR = [
@@ -52,7 +57,7 @@ const SAR = [
 
 const ULTRA = [
   { n: '161', name: 'Garchomp ex', note: 'Ultra Rare' },
-  { n: '164', name: 'Defiance Band', note: 'Ultra Rare · Chinese exclusive' },
+  { n: '164', name: 'Defiance Band', note: 'Ultra Rare' },
   { n: '163', name: 'Rare Candy', note: 'Ultra Rare' },
 ]
 
@@ -75,7 +80,7 @@ const ODDS = [
 
 const TOC = [
   { id: 'packs-and-odds', label: 'Slim and jumbo boxes' },
-  { id: 'exclusives', label: 'Two cards only in Chinese' },
+  { id: 'exclusives', label: 'The Chinese Exclusives: Larry and Defiance Band' },
   { id: 'charizard', label: 'Darkness Tera Charizard ex' },
   { id: 'special-art-rares', label: 'Special Art Rares' },
   { id: 'ultra-rares', label: 'Gold Ultra Rares' },
@@ -85,7 +90,7 @@ const TOC = [
 
 const FAQ = [
   {
-    q: 'What are the Chinese exclusive cards in Black Crystal Blaze?',
+    q: 'What are the Chinese Exclusives in Black Crystal Blaze?',
     a: 'Two: the Larry Special Art Rare 157/129 by Kariya and the gold Defiance Band Ultra Rare 164/129 by inose yukie. Neither has an English version.',
   },
   {
@@ -169,7 +174,7 @@ function BlackCrystalBlazeReleasePost() {
         updated={status.liveAt}
         wide
         post={post}
-        lede="Darkness Tera Charizard ex takes the cover of the fifth Chinese Scarlet & Violet set, with a Larry Special Art Rare and a gold Defiance Band you can only pull in Simplified Chinese."
+        lede="Darkness Tera Charizard ex takes the cover of the fifth Chinese Scarlet & Violet set, with two Chinese Exclusives: a Larry Special Art Rare and a gold Defiance Band."
         cta={{
           heading: 'Shop Black Crystal Blaze',
           body: 'Slim and jumbo booster boxes, plus the full checklist with every card.',
@@ -182,7 +187,7 @@ function BlackCrystalBlazeReleasePost() {
         <p>
           Black Crystal Blaze (黑晶炽诚) released on September 12, 2025. It is the fifth main set of the Chinese Scarlet & Violet series,
           built around Pokémon whose Tera type differs from their usual type, led by the Darkness Tera Charizard ex on the pack. Elite
-          Four members Larry and Poppy join as Supporters, and two secret rares are new for China.
+          Four members Larry and Poppy join as Supporters, and two secret rares are Chinese Exclusives.
         </p>
 
         <aside className="fact-box" aria-label="Black Crystal Blaze key facts">
@@ -210,6 +215,8 @@ function BlackCrystalBlazeReleasePost() {
               <dd>164 cards: 129 in the main set, 35 secret rares</dd>
               <dt>Chase cards</dt>
               <dd>Charizard ex SAR, Larry SAR, gold Defiance Band</dd>
+              <dt>Chinese Exclusives</dt>
+              <dd>Larry SAR 157/129, gold Defiance Band 164/129</dd>
             </dl>
           </div>
         </aside>
@@ -273,7 +280,7 @@ function BlackCrystalBlazeReleasePost() {
           <Link to="/blog/black-crystal-blaze-card-origins">card origins guide</Link> matches every card to its English version.
         </p>
 
-        <h2 id="exclusives">Two cards only in Chinese</h2>
+        <h2 id="exclusives">The Chinese Exclusives: Larry and Defiance Band</h2>
         <p>
           Two secret rares have no English version. Larry gets a Special Art Rare by Kariya showing him at work in the city, and Defiance
           Band gets a gold Ultra Rare by inose yukie. English has Larry as a Supporter and a full art, and Defiance Band only as a regular
@@ -300,7 +307,7 @@ function BlackCrystalBlazeReleasePost() {
 
         <h2 id="ultra-rares">Gold Ultra Rares</h2>
         <p>
-          Four gold cards top the set, 161 to 164: Garchomp ex, Charizard ex, Rare Candy and the Chinese-exclusive Defiance Band.
+          Four gold cards top the set, 161 to 164: Garchomp ex, Charizard ex, Rare Candy and the Chinese Exclusive Defiance Band.
         </p>
         <Grid cards={ULTRA} cols={3} />
 
