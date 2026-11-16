@@ -54,8 +54,6 @@ function noteFor(p: BlogShopProduct): string | null {
   const { kind } = splitName(p)
   if (kind === 'Slim') return 'Smaller packs and a lower box price.'
   if (kind === 'Jumbo') return 'Bigger packs, with more cards and holos in each pack.'
-  if (kind === 'Case') return 'A full case of sealed blind boxes.'
-  if (/blind box/i.test(p.name)) return 'One sealed blind box.'
   return null
 }
 

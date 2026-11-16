@@ -295,6 +295,8 @@
   .shop-status { font-size: 13px; color: var(--ink-2); }
   .shop-tile-body .btn { margin-top: auto; }
   .shop-tile.is-muted .shop-price { color: var(--slate); }
+  .shop-tiles.n-1 .shop-tile { align-items: center; }
+  .shop-tiles.n-1 .shop-tile-body .btn { margin-top: 6px; width: auto; align-self: flex-start; padding: 0 22px; }
   .shop-panel .cta-actions { margin-top: 4px; }
   .shop-foot { margin-top: 20px; padding-top: 16px; border-top: 1px solid var(--line); display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px 24px; align-items: center; }
   .shop-read { display: flex; flex-wrap: wrap; gap: 6px 20px; }
@@ -304,7 +306,8 @@
 
   @media (max-width: 640px) {
     .shop-tiles.n-2, .shop-tiles.n-3 { grid-template-columns: 1fr; }
-    .shop-tiles .shop-tile { flex-direction: row; }
+    .shop-tiles.n-1 .shop-tile, .shop-tiles.n-2 .shop-tile, .shop-tiles.n-3 .shop-tile { flex-direction: row; align-items: flex-start; }
+    .shop-tiles .shop-tile-img { width: 96px; }
     .shop-tile-img img, .shop-tiles.n-1 .shop-tile-img img { width: 96px; }
     .shop-panel { padding: 20px 16px; }
     .shop-strip { flex-wrap: wrap; }
