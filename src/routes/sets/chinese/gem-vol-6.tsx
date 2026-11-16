@@ -37,7 +37,7 @@ const config: GemSetConfig = {
   ],
   faq: [
     { q: 'How many cards are in Gem 6?', a: '196 cards: 28 Pokémon with 7 versions each. That breaks down to 56 Common, 56 Uncommon, 28 Rare, 28 Double Rare and 28 Triple Rare.' },
-    { q: 'What are the chase cards?', a: 'The 28 Triple Rares (version 07 of each Pokémon) are full-art cards. Applin 1907/07 is a Chinese exclusive: this full art only appears in the Simplified Chinese Gem Vol 6 release.' },
+    { q: 'What are the chase cards?', a: 'The 28 Triple Rares (version 07 of each Pokémon) are full-art cards. Applin 1907/07, by Jiro Sasumo, is a Chinese exclusive: this full art only appears in the Simplified Chinese Gem Vol 6 release.' },
     { q: 'When did Gem Vol 6 release?', a: 'August 7, 2026.' },
     { q: 'What language are the cards in?', a: 'Simplified Chinese.' },
     { q: 'Where can I buy Gem Vol 6?', a: 'EBI Collectibles carries Gem Vol 6 packs and boxes.' },

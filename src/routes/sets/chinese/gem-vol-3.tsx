@@ -59,7 +59,7 @@ const config: GemSetConfig = {
     { q: 'How many cards are in Gem 3?', a: '136 cards: 18 Pokémon with 7 versions each, plus 4 Trainer cards and 6 Energy cards.' },
     {
       q: 'What are the chase cards?',
-      a: 'Five Triple Rare full arts (Meowth 0207/07, Gengar 0307/07, Cubone 0407/07, Chandelure 1107/07 and Ceruledge 1507/07) are new art drawn for this set and are Chinese exclusives, only appearing in the Simplified Chinese Gem Vol 3 release.',
+      a: 'Five Triple Rare full arts (Meowth 0207/07 by Makura Tami, Gengar 0307/07 by aspara, Cubone 0407/07 by Katsunori Sato, Chandelure 1107/07 by satoma and Ceruledge 1507/07 by kodama) are new art drawn for this set and are Chinese exclusives, only appearing in the Simplified Chinese Gem Vol 3 release.',
     },
     {
       q: "What's a Pokémon ex card?",

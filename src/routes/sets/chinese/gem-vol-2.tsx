@@ -59,7 +59,7 @@ const config: GemSetConfig = {
     { q: 'How many cards are in Gem 2?', a: '140 cards: 9 Pokémon (Eevee and its 8 Eeveelutions) across 14 or 15 versions each, plus 4 Trainer cards and 6 Energy cards.' },
     {
       q: 'What are the chase cards?',
-      a: 'Four Triple Rare full-art illustrations (Eevee 0115/15, Umbreon 0615/15, Leafeon 0715/15 and Sylveon 0915/15) are Chinese exclusives, only appearing in the Simplified Chinese Gem Vol 2 release.',
+      a: 'Four Triple Rare full-art illustrations by HYOGONOSUKE (Eevee 0115/15, Umbreon 0615/15, Leafeon 0715/15 and Sylveon 0915/15) are Chinese exclusives, only appearing in the Simplified Chinese Gem Vol 2 release.',
     },
     {
       q: "What's a V or VMAX card?",

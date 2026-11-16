@@ -76,7 +76,7 @@ const FAQ = [
   },
   {
     q: 'What is the main chase card?',
-    a: 'Applin 1907/07, the full art drawn for this set. Beyond that, collectors chase the 28 full arts (every card numbered 07).',
+    a: 'Applin 1907/07, the full art by Jiro Sasumo drawn for this set. Beyond that, collectors chase the 28 full arts (every card numbered 07).',
   },
   {
     q: 'Can I complete the set from one box?',
@@ -132,7 +132,7 @@ function GemVol6Post() {
       <BlogPostLayout
         wide
         post={post}
-        lede="Applin fronts the sixth Simplified Chinese Gem Pack: 28 Pokémon, seven cards each, every card a foil, and a new full art of Applin you can only pull here."
+        lede="Applin fronts the sixth Simplified Chinese Gem Pack: 28 Pokémon, seven cards each, every card a foil, and a new Applin full art by Jiro Sasumo you can only pull here."
         cta={{
           heading: 'Shop Gem Vol 6',
           body: 'Booster boxes in stock now, plus the full 196-card checklist with every version.',
@@ -173,7 +173,7 @@ function GemVol6Post() {
               <dt>Set size</dt>
               <dd>196 cards: 28 Pokémon × 7 versions</dd>
               <dt>Chase card</dt>
-              <dd>Applin full art, 1907/07</dd>
+              <dd>Applin full art 1907/07, by Jiro Sasumo</dd>
             </dl>
           </div>
         </aside>

@@ -83,7 +83,7 @@ const FAQ = [
   },
   {
     q: 'What is the main chase card?',
-    a: 'The four Pokémon Horizons full arts, led by Captain Pikachu 0107/07 with Friede. All four were drawn for this set. Beyond those, collectors chase the rest of the 28 full arts (every card numbered 07).',
+    a: 'The four Pokémon Horizons full arts, led by Captain Pikachu 0107/07 with Friede by Keita Hagiwara. All four were drawn for this set. Beyond those, collectors chase the rest of the 28 full arts (every card numbered 07).',
   },
   {
     q: 'Can I complete the set from one box?',
@@ -180,7 +180,7 @@ function GemVol5Post() {
               <dt>Set size</dt>
               <dd>196 cards: 28 Pokémon × 7 versions</dd>
               <dt>Chase cards</dt>
-              <dd>Four Pokémon Horizons full arts, led by Captain Pikachu 0107/07</dd>
+              <dd>Four Pokémon Horizons full arts, led by Captain Pikachu 0107/07 by Keita Hagiwara</dd>
             </dl>
           </div>
         </aside>

@@ -38,7 +38,7 @@ const config: GemSetConfig = {
   ],
   faq: [
     { q: 'How many cards are in Gem 5?', a: '196 cards: 28 Pokémon with 7 versions each. That breaks down to 56 Common, 56 Uncommon, 28 Rare, 28 Double Rare and 28 Triple Rare.' },
-    { q: 'What are the chase cards?', a: 'The 28 Triple Rares (version 07 of each Pokémon) are full-art cards. Four of them (Captain Pikachu 0107/07, Floragato 2207/07, Crocalor 2307/07 and Quaxwell 2407/07) are Chinese exclusives drawn with Pokémon Horizons anime characters, and only appear in the Simplified Chinese Gem Vol 5 release.' },
+    { q: 'What are the chase cards?', a: 'The 28 Triple Rares (version 07 of each Pokémon) are full-art cards. Four of them (Captain Pikachu 0107/07 by Keita Hagiwara, Floragato 2207/07 by Lyu YiFei, Crocalor 2307/07 by Kouki Yanagihara and Quaxwell 2407/07 by Rei Yamazaki) are Chinese exclusives drawn with Pokémon Horizons anime characters, and only appear in the Simplified Chinese Gem Vol 5 release.' },
     { q: 'When did Gem Vol 5 release?', a: 'April 24, 2026.' },
     { q: 'What language are the cards in?', a: 'Simplified Chinese.' },
     { q: 'Where can I buy Gem Vol 5?', a: 'EBI Collectibles carries Gem Vol 5 packs and boxes.' },

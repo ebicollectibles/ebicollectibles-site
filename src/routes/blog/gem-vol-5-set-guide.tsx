@@ -58,7 +58,7 @@ const FAQ = [
   },
   {
     q: 'Which cards are exclusive to Gem Vol 5?',
-    a: 'The four Pokémon Horizons full arts: Captain Pikachu with Friede (0107/07), Floragato with Liko (2207/07), Crocalor with Roy (2307/07) and Quaxwell with Dot (2407/07). They are new art drawn for this set, with no English printing.',
+    a: 'The four Pokémon Horizons full arts: Captain Pikachu with Friede (0107/07, Keita Hagiwara), Floragato with Liko (2207/07, Lyu YiFei), Crocalor with Roy (2307/07, Kouki Yanagihara) and Quaxwell with Dot (2407/07, Rei Yamazaki). They are new art drawn for this set, with no English printing.',
   },
   {
     q: 'Does Gem Vol 5 have Trainer’s Pokémon?',

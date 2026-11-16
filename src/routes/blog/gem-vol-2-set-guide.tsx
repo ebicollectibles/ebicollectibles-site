@@ -78,7 +78,7 @@ const FAQ = [
   },
   {
     q: 'Which cards are exclusive to Gem Vol 2?',
-    a: 'The four full arts by HYOGONOSUKE: Eevee 0115/15, Umbreon 0615/15, Leafeon 0715/15 and Sylveon 0915/15. They were drawn for this set and join into one forest scene.',
+    a: 'The four full arts by HYOGONOSUKE: Eevee 0115/15, Umbreon 0615/15, Leafeon 0715/15 and Sylveon 0915/15. They were drawn for this set and join into one scene.',
   },
   {
     q: 'How many boxes does a master set take?',

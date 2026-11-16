@@ -38,7 +38,7 @@ const config: GemSetConfig = {
   ],
   faq: [
     { q: 'How many cards are in Gem 4?', a: '196 cards: 28 Pokémon with 7 versions each. That breaks down to 56 Common, 56 Uncommon, 28 Rare, 28 Double Rare and 28 Triple Rare.' },
-    { q: 'What are the chase cards?', a: 'The 28 Triple Rares (version 07 of each Pokémon) are full-art cards. Ponyta 0107/07 is a Chinese exclusive: this full art only appears in the Simplified Chinese Gem Vol 4 release.' },
+    { q: 'What are the chase cards?', a: 'The 28 Triple Rares (version 07 of each Pokémon) are full-art cards. Ponyta 0107/07, by MINAMINAMI Take, is a Chinese exclusive: this full art only appears in the Simplified Chinese Gem Vol 4 release.' },
     { q: 'When did Gem Vol 4 release?', a: 'February 6, 2026.' },
     { q: 'What language are the cards in?', a: 'Simplified Chinese.' },
     { q: 'Where can I buy Gem Vol 4?', a: 'EBI Collectibles carries Gem Vol 4 packs and boxes.' },

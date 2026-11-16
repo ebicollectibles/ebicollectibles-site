@@ -99,7 +99,7 @@ const FAQ = [
   },
   {
     q: 'What are the main chase cards?',
-    a: 'The five new full arts drawn for this set: Meowth, Gengar, Cubone, Chandelure and Ceruledge. Gengar, the pack mascot, is the one most collectors go after first.',
+    a: 'The five new full arts drawn for this set: Meowth by Makura Tami, Gengar by aspara, Cubone by Katsunori Sato, Chandelure by satoma and Ceruledge by kodama. Gengar, the pack mascot, is the one most collectors go after first.',
   },
   {
     q: 'Can I complete the set from one box?',
@@ -196,7 +196,7 @@ function GemVol3Post() {
               <dt>Set size</dt>
               <dd>136 cards: 18 Pokémon × 7, plus 4 Trainers and 6 Energy</dd>
               <dt>Chase cards</dt>
-              <dd>Five new full arts, led by Gengar 0307/07</dd>
+              <dd>Five new full arts, led by Gengar 0307/07 by aspara</dd>
             </dl>
           </div>
         </aside>

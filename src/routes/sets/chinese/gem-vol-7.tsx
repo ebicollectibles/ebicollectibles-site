@@ -34,7 +34,7 @@ const config: GemSetConfig = {
   ],
   faq: [
     { q: 'How many cards are in Gem 7?', a: '196 cards: 28 Pokémon with 7 versions each. That breaks down to 56 Common, 56 Uncommon, 28 Rare, 28 Double Rare and 28 Triple Rare.' },
-    { q: 'What are the chase cards?', a: 'The 28 Triple Rares (version 07 of each Pokémon) are full-art cards. Misty’s Psyduck 0307/07 is a Chinese exclusive: this full art only appears in the Simplified Chinese Gem Vol 7 release.' },
+    { q: 'What are the chase cards?', a: 'The 28 Triple Rares (version 07 of each Pokémon) are full-art cards. Misty’s Psyduck 0307/07, by Cona Nitanda, is a Chinese exclusive: this full art only appears in the Simplified Chinese Gem Vol 7 release.' },
     { q: 'When did Gem Vol 7 release?', a: 'November 6, 2026.' },
     { q: 'What language are the cards in?', a: 'Simplified Chinese.' },
     { q: 'Where can I buy Gem Vol 7?', a: 'EBI Collectibles carries Gem Vol 7 packs and boxes.' },

@@ -77,7 +77,7 @@ const FAQ = [
   },
   {
     q: 'What is the main chase card?',
-    a: 'Ponyta 0107/07, the full art drawn for this set. Beyond that, collectors chase the 28 full arts (every card numbered 07).',
+    a: 'Ponyta 0107/07, the full art by MINAMINAMI Take drawn for this set. Beyond that, collectors chase the 28 full arts (every card numbered 07).',
   },
   {
     q: 'Can I complete the set from one box?',
@@ -133,7 +133,7 @@ function GemVol4Post() {
       <BlogPostLayout
         wide
         post={post}
-        lede="Ponyta fronts the fourth Simplified Chinese Gem Pack: 28 Pokémon, seven cards each, every card a foil, and a new full art of Ponyta you can only pull here."
+        lede="Ponyta fronts the fourth Simplified Chinese Gem Pack: 28 Pokémon, seven cards each, every card a foil, and a new Ponyta full art by MINAMINAMI Take you can only pull here."
         cta={{
           heading: 'Shop Gem Vol 4',
           body: 'Booster boxes in stock now, plus the full 196-card checklist with every version.',
@@ -174,7 +174,7 @@ function GemVol4Post() {
               <dt>Set size</dt>
               <dd>196 cards: 28 Pokémon × 7 versions</dd>
               <dt>Chase card</dt>
-              <dd>Ponyta full art, 0107/07</dd>
+              <dd>Ponyta full art 0107/07, by MINAMINAMI Take</dd>
             </dl>
           </div>
         </aside>

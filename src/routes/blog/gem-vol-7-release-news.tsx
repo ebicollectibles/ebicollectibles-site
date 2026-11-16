@@ -79,7 +79,7 @@ const FAQ = [
   },
   {
     q: 'What is the main chase card?',
-    a: "Misty's Psyduck 0307/07, the full art drawn for this set. Beyond that, collectors chase the 28 full arts (every card numbered 07).",
+    a: "Misty's Psyduck 0307/07, the full art by Cona Nitanda drawn for this set. Beyond that, collectors chase the 28 full arts (every card numbered 07).",
   },
   {
     q: 'Can I complete the set from one box?',
@@ -135,7 +135,7 @@ function GemVol7Post() {
       <BlogPostLayout
         wide
         post={post}
-        lede="Psyduck fronts the seventh Simplified Chinese Gem Pack: 28 Pokémon, seven cards each, every card a foil, and a brand-new Misty's Psyduck full art drawn just for this set."
+        lede="Psyduck fronts the seventh Simplified Chinese Gem Pack: 28 Pokémon, seven cards each, every card a foil, and a brand-new Misty's Psyduck full art by Cona Nitanda, drawn just for this set."
         cta={{
           heading: 'Shop Gem Vol 7',
           body: 'Booster boxes in stock now, plus the full 196-card checklist with every version.',
@@ -176,7 +176,7 @@ function GemVol7Post() {
               <dt>Set size</dt>
               <dd>196 cards: 28 Pokémon × 7 versions</dd>
               <dt>Chase card</dt>
-              <dd>Misty's Psyduck full art, 0307/07</dd>
+              <dd>Misty's Psyduck full art 0307/07, by Cona Nitanda</dd>
             </dl>
           </div>
         </aside>

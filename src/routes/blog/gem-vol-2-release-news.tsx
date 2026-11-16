@@ -150,7 +150,7 @@ function GemVol2Post() {
         <p>
           Gem Pack Vol. 2 (Gem 2) lands in mainland China on May 16, 2025. Like every Gem Pack, it is an official Simplified Chinese Pokémon TCG
           product built for collecting, with small 4-card packs where every card is a holo. This one is an Eevee set from top to
-          bottom: Eevee and all eight Eeveelutions, Sylveon on the pack, and four new full arts that line up into a single picture.
+          bottom: Eevee and all eight Eeveelutions, Sylveon on the pack, and four new full arts by HYOGONOSUKE that line up into a single picture.
         </p>
 
         <aside className="fact-box" aria-label="Gem Pack Vol. 2 key facts">
@@ -177,7 +177,7 @@ function GemVol2Post() {
               <dt>Set size</dt>
               <dd>140 cards: 9 Pokémon, plus 4 Trainers and 6 Energy</dd>
               <dt>Chase cards</dt>
-              <dd>Four new full arts: Eevee, Umbreon, Leafeon and Sylveon</dd>
+              <dd>Four new full arts by HYOGONOSUKE: Eevee, Umbreon, Leafeon and Sylveon</dd>
             </dl>
           </div>
         </aside>
