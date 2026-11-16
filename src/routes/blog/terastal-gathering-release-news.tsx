@@ -153,7 +153,7 @@ function TerastalGatheringReleasePost() {
         lede="Eevee and all eight Eeveelutions arrive as Stellar Tera ex in China's take on Prismatic Evolutions, with a few cards English never put in a booster pack."
         cta={{
           heading: 'Shop Terastal Gathering',
-          body: 'Booster boxes in stock now, plus the full checklist with every card.',
+          body: 'Booster boxes, plus the full checklist with every card.',
           links: [
             { to: '/products/$id', params: { id: 'pokemon-chinese-terastal-gathering-booster-box' }, label: 'Shop the booster box' },
             { to: '/sets/chinese/terastal-gathering-csv9-5', label: 'Browse the card list', variant: 'ghost' },

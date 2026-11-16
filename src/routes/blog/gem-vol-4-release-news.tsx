@@ -140,7 +140,7 @@ function GemVol4Post() {
         lede="Ponyta fronts the fourth Simplified Chinese Gem Pack: 28 Pokémon, seven cards each, every card a holo, and a new Ponyta full art by MINAMINAMI Take you can only pull here."
         cta={{
           heading: 'Shop Gem Vol 4',
-          body: 'Booster boxes in stock now, plus the full 196-card checklist with every version.',
+          body: 'Booster boxes, plus the full 196-card checklist with every version.',
           links: [
             { to: '/products/$id', params: { id: 'pokemon-chinese-gem-volume-4-booster-box' }, label: 'Shop the booster box' },
             { to: '/sets/chinese/gem-vol-4', label: 'Browse the card list', variant: 'ghost' },

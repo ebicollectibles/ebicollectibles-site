@@ -1,5 +1,7 @@
 import * as React from 'react'
-import { Link } from '@tanstack/react-router'
+import { Link, useLoaderData } from '@tanstack/react-router'
+import { ShopPanel, ShopStrip, type CtaLink } from './BlogShop'
+import type { BlogShopProduct } from '~/server/blog-status'
 import type { BlogPostSummary } from '~/data/blog-posts'
 
 function formatDate(iso: string): string {
@@ -24,9 +26,12 @@ export function BlogPostLayout({
   cta: {
     heading: string
     body: string
-    links: Array<{ to: string; params?: Record<string, string>; search?: Record<string, unknown>; label: string; variant?: 'light' | 'ghost' }>
+    links: CtaLink[]
   }
 }) {
+  // Every post route loads getBlogPostStatus, which includes the live shop products.
+  const loaded = useLoaderData({ strict: false }) as { shop?: BlogShopProduct[] } | undefined
+  const shop = loaded?.shop ?? []
   return (
     <div className={wide ? 'ebi-blog is-wide' : 'ebi-blog'} style={{ '--glow-1': post.glow1, '--glow-2': post.glow2 } as React.CSSProperties}>
       <section className="hero">
@@ -60,26 +65,9 @@ export function BlogPostLayout({
           ← Back to News
         </Link>
         <img className="article-hero-img" src={post.heroImage} alt={post.heroAlt} width={1280} height={720} />
+        <ShopStrip products={shop} />
         <div className="prose">{children}</div>
-        <div className="cta-box">
-          <div>
-            <h3>{cta.heading}</h3>
-            <p>{cta.body}</p>
-          </div>
-          <div className="cta-actions">
-            {cta.links.map((l, i) => (
-              <Link
-                key={i}
-                to={l.to as never}
-                params={l.params as never}
-                search={l.search as never}
-                className={`btn ${l.variant === 'ghost' ? 'btn-ghost' : 'btn-light'}`}
-              >
-                {l.label}
-              </Link>
-            ))}
-          </div>
-        </div>
+        <ShopPanel products={shop} heading={cta.heading} body={cta.body} links={cta.links} />
       </article>
     </div>
   )

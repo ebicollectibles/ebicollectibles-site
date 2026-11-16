@@ -159,7 +159,7 @@ function BlackCrystalBlazeReleasePost() {
         lede="Darkness Tera Charizard ex takes the cover of the fifth Chinese Scarlet & Violet set, with a Larry Special Art Rare and a gold Defiance Band you can only pull in Simplified Chinese."
         cta={{
           heading: 'Shop Black Crystal Blaze',
-          body: 'Slim and jumbo booster boxes in stock now, plus the full checklist with every card.',
+          body: 'Slim and jumbo booster boxes, plus the full checklist with every card.',
           links: [
             { to: '/products/$id', params: { id: 'pokemon-chinese-black-crystal-blaze-jumbo-booster-box' }, label: 'Shop the jumbo box' },
             { to: '/products/$id', params: { id: 'pokemon-chinese-black-crystal-blaze-booster-box' }, label: 'Shop the slim box', variant: 'ghost' },

@@ -154,7 +154,7 @@ function RewardRoundReleasePost() {
         lede="Gholdengo takes the cover of the fourth Chinese Scarlet & Violet set, with a gold Ultra Rare and two Special Art Rares you can only pull in Simplified Chinese."
         cta={{
           heading: 'Shop Reward Round',
-          body: 'Slim booster boxes in stock now, plus the full checklist with every card.',
+          body: 'Slim booster boxes, plus the full checklist with every card.',
           links: [
             { to: '/products/$id', params: { id: 'pokemon-chinese-reward-round-booster-box' }, label: 'Shop the slim box' },
             { to: '/sets/chinese/reward-round-csv4', label: 'Browse the card list', variant: 'ghost' },

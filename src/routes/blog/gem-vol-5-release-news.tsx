@@ -146,7 +146,7 @@ function GemVol5Post() {
         lede="The fifth Simplified Chinese Gem Pack brings Pokémon Horizons to the line: 28 Pokémon, seven cards each, every card a holo, and four brand-new full arts starring Friede, Liko, Roy and Dot."
         cta={{
           heading: 'Shop Gem Vol 5',
-          body: 'Booster boxes in stock now, plus the full 196-card checklist with every version.',
+          body: 'Booster boxes, plus the full 196-card checklist with every version.',
           links: [
             { to: '/products/$id', params: { id: 'pokemon-chinese-gem-volume-5-booster-box' }, label: 'Shop the booster box' },
             { to: '/sets/chinese/gem-vol-5', label: 'Browse the card list', variant: 'ghost' },

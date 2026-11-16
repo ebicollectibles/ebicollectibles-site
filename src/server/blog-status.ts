@@ -29,12 +29,65 @@ export async function readLiveMap(): Promise<BlogLiveMap> {
 /** Public: the live posts and when each went live. */
 export const getBlogLiveMap = createServerFn({ method: 'GET' }).handler(() => readLiveMap())
 
-/** Public: one post's state, for its head (robots) and "Updated" date. */
+/** A store product as the blog's shop panels show it. */
+export type BlogShopProduct = {
+  id: string
+  name: string
+  price: number
+  stock: number
+  preorder: boolean
+  comingSoon: boolean
+  hidePrice: boolean
+  img: string | null
+  imgAlt: string | null
+  variantLabel: string | null
+}
+
+// Live price and stock for the products a post sells (see data/blog-shop.ts).
+// Never throws: on any error the post just shows no product tiles.
+async function readShopProducts(slug: string): Promise<BlogShopProduct[]> {
+  try {
+    const { blogShopProductIds } = await import('~/data/blog-shop')
+    const ids = blogShopProductIds(slug)
+    if (ids.length === 0) return []
+    const { getDb } = await import('~/lib/db/client')
+    const { products } = await import('~/lib/db/schema')
+    const { inArray } = await import('drizzle-orm')
+    const { overlaySquareData } = await import('./square')
+    const rows = await getDb().select().from(products).where(inArray(products.id, ids))
+    const live = await overlaySquareData(
+      rows
+        .filter((r) => r.published)
+        .map((r) => ({
+          id: r.id,
+          name: r.name,
+          price: r.price,
+          stock: r.stock,
+          squareVariationId: r.squareVariationId,
+          preorder: r.preorder,
+          comingSoon: r.comingSoon,
+          hidePrice: r.hidePrice,
+          img: r.img,
+          imgAlt: r.imgAlt,
+          variantLabel: r.variantLabel,
+        })),
+    )
+    return ids
+      .map((id) => live.find((p) => p.id === id))
+      .filter((p): p is (typeof live)[number] => !!p)
+      .map(({ squareVariationId: _sq, ...p }) => p)
+  } catch (err) {
+    console.error('[blog-status] could not read shop products', err)
+    return []
+  }
+}
+
+/** Public: one post's state, for its head (robots) and "Updated" date, plus the products it sells. */
 export const getBlogPostStatus = createServerFn({ method: 'GET' })
   .validator(z.string().min(1).max(200))
   .handler(async ({ data: slug }) => {
-    const map = await readLiveMap()
-    return { live: slug in map, liveAt: map[slug] ?? null }
+    const [map, shop] = await Promise.all([readLiveMap(), readShopProducts(slug)])
+    return { live: slug in map, liveAt: map[slug] ?? null, shop }
   })
 
 /** /blog list: live posts for everyone; admins also see drafts, labelled. */

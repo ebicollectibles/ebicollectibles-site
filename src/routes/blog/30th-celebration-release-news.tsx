@@ -180,7 +180,7 @@ function ThirtiethReleasePost() {
         lede="The Pokémon TCG turns 30 with a set made to celebrate it: a different Pikachu in every pack, a new Futuristic Rare, and 30 famous cards from 1999 to 2023 back in their original frames."
         cta={{
           heading: 'Shop 30th Celebration',
-          body: 'Booster boxes in stock now, plus the full checklist with every card.',
+          body: 'Booster boxes, plus the full checklist with every card.',
           links: [
             { to: '/products/$id', params: { id: 'pokemon-chinese-30th-celebration-booster-box' }, label: 'Shop the booster box' },
             { to: '/sets/chinese/30th-celebration', label: 'Browse the card list', variant: 'ghost' },

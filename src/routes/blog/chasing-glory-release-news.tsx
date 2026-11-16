@@ -170,7 +170,7 @@ function ChasingGloryReleasePost() {
         lede="Trainers and their partner Pokémon arrive in Simplified Chinese. Chasing Glory is the main CSV10 set, led by Team Rocket, and it comes in two pack sizes with different odds."
         cta={{
           heading: 'Shop Chasing Glory',
-          body: 'Slim and jumbo booster boxes in stock now, plus the full checklist with every card.',
+          body: 'Slim and jumbo booster boxes, plus the full checklist with every card.',
           links: [
             { to: '/products/$id', params: { id: 'pokemon-chinese-chasing-glory-jumbo-booster-box' }, label: 'Shop the jumbo box' },
             { to: '/products/$id', params: { id: 'pokemon-chinese-chasing-glory-slim-booster-box' }, label: 'Shop the slim box', variant: 'ghost' },

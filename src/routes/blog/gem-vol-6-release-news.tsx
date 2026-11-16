@@ -139,7 +139,7 @@ function GemVol6Post() {
         lede="Applin fronts the sixth Simplified Chinese Gem Pack: 28 Pokémon, seven cards each, every card a holo, and a new Applin full art by Jiro Sasumo you can only pull here."
         cta={{
           heading: 'Shop Gem Vol 6',
-          body: 'Booster boxes in stock now, plus the full 196-card checklist with every version.',
+          body: 'Booster boxes, plus the full 196-card checklist with every version.',
           links: [
             { to: '/products/$id', params: { id: 'pokemon-chinese-gem-volume-6-booster-box' }, label: 'Shop the booster box' },
             { to: '/sets/chinese/gem-vol-6', label: 'Browse the card list', variant: 'ghost' },
