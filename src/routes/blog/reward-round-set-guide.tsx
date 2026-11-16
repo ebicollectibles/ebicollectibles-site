@@ -167,7 +167,7 @@ function RewardRoundSetGuide() {
           heading: 'Collect Reward Round',
           body: 'Track every card on the full checklist, or pick up a slim box and start ripping.',
           links: [
-            { to: '/sets/chinese/reward-round-csv4', label: 'Browse the card list' },
+            { to: '/sets/chinese/reward-round-csv4', label: 'See the full card list' },
             { to: '/products/$id', params: { id: 'pokemon-chinese-reward-round-booster-box' }, label: 'Shop the slim box', variant: 'ghost' },
           ],
         }}

@@ -199,7 +199,7 @@ function StellarCrystalReleasePost() {
         cta={{
           heading: 'Collect Stellar Crystal',
           body: 'Browse all 266 cards on the full checklist and tick off what you have.',
-          links: [{ to: '/sets/chinese/stellar-crystal-csv9', label: 'Browse the card list' }],
+          links: [{ to: '/sets/chinese/stellar-crystal-csv9', label: 'See the full card list' }],
         }}
       >
         <p>

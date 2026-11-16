@@ -167,7 +167,7 @@ function ThirtiethSetGuide() {
           heading: 'Collect 30th Celebration',
           body: 'Track every card on the full checklist, or pick up a booster box and start ripping.',
           links: [
-            { to: '/sets/chinese/30th-celebration', label: 'Browse the card list' },
+            { to: '/sets/chinese/30th-celebration', label: 'See the full card list' },
             { to: '/products/$id', params: { id: 'pokemon-chinese-30th-celebration-booster-box' }, label: 'Shop the booster box', variant: 'ghost' },
           ],
         }}

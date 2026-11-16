@@ -158,7 +158,7 @@ function TrueMysterySetGuide() {
           heading: 'Collect True Mystery',
           body: 'Track every card on the full checklist, or pick up a box and start ripping.',
           links: [
-            { to: '/sets/chinese/true-mystery-csv6', label: 'Browse the card list' },
+            { to: '/sets/chinese/true-mystery-csv6', label: 'See the full card list' },
             { to: '/products/$id', params: { id: 'pokemon-chinese-true-mystery-jumbo-booster-box' }, label: 'Shop the jumbo box', variant: 'ghost' },
           ],
         }}

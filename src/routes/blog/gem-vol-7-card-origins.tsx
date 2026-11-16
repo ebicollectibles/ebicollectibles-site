@@ -151,7 +151,7 @@ function GemVol7OriginsPost() {
           heading: 'Explore Gem Vol 7',
           body: 'See every card in the set, or read our release post for the Psyduck full art and the Trainer lineup.',
           links: [
-            { to: '/sets/chinese/gem-vol-7', label: 'Browse the card list' },
+            { to: '/sets/chinese/gem-vol-7', label: 'See the full card list' },
             { to: '/blog/gem-vol-7-release-news', label: 'Read the release post', variant: 'ghost' },
           ],
         }}

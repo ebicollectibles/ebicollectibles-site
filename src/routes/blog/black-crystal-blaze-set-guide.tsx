@@ -165,7 +165,7 @@ function BlackCrystalBlazeSetGuide() {
           heading: 'Collect Black Crystal Blaze',
           body: 'Track every card on the full checklist, or pick up a box and start ripping.',
           links: [
-            { to: '/sets/chinese/black-crystal-blaze-csv5', label: 'Browse the card list' },
+            { to: '/sets/chinese/black-crystal-blaze-csv5', label: 'See the full card list' },
             { to: '/products/$id', params: { id: 'pokemon-chinese-black-crystal-blaze-jumbo-booster-box' }, label: 'Shop the jumbo box', variant: 'ghost' },
           ],
         }}

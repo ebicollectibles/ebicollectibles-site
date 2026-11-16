@@ -174,7 +174,7 @@ function GemVol2Post() {
           body: 'Booster boxes, plus the full 140-card checklist with every version.',
           links: [
             { to: '/products/$id', params: { id: 'pokemon-chinese-gem-volume-2-booster-box' }, label: 'Shop the booster box' },
-            { to: '/sets/chinese/gem-vol-2', label: 'Browse the card list', variant: 'ghost' },
+            { to: '/sets/chinese/gem-vol-2', label: 'See the full card list', variant: 'ghost' },
           ],
         }}
       >

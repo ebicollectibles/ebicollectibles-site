@@ -192,7 +192,7 @@ function GemVol3Post() {
           body: 'Booster boxes, plus the full 136-card checklist with every version.',
           links: [
             { to: '/products/$id', params: { id: 'pokemon-chinese-gem-volume-3-booster-box' }, label: 'Shop the booster box' },
-            { to: '/sets/chinese/gem-vol-3', label: 'Browse the card list', variant: 'ghost' },
+            { to: '/sets/chinese/gem-vol-3', label: 'See the full card list', variant: 'ghost' },
           ],
         }}
       >

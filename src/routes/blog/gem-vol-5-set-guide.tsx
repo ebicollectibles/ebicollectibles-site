@@ -141,7 +141,7 @@ function GemVol5SetGuide() {
           heading: 'Collect Gem Vol 5',
           body: 'Track every card on the full checklist, or pick up a booster box and start ripping.',
           links: [
-            { to: '/sets/chinese/gem-vol-5', label: 'Browse the card list' },
+            { to: '/sets/chinese/gem-vol-5', label: 'See the full card list' },
             { to: '/products/$id', params: { id: 'pokemon-chinese-gem-volume-5-booster-box' }, label: 'Shop the booster box', variant: 'ghost' },
           ],
         }}

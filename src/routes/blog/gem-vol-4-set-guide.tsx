@@ -141,7 +141,7 @@ function GemVol4SetGuide() {
           heading: 'Collect Gem Vol 4',
           body: 'Track every card on the full checklist, or pick up a booster box and start ripping.',
           links: [
-            { to: '/sets/chinese/gem-vol-4', label: 'Browse the card list' },
+            { to: '/sets/chinese/gem-vol-4', label: 'See the full card list' },
             { to: '/products/$id', params: { id: 'pokemon-chinese-gem-volume-4-booster-box' }, label: 'Shop the booster box', variant: 'ghost' },
           ],
         }}

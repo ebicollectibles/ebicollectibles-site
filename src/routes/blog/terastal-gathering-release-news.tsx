@@ -183,7 +183,7 @@ function TerastalGatheringReleasePost() {
           body: 'Booster boxes, plus the full checklist with every card.',
           links: [
             { to: '/products/$id', params: { id: 'pokemon-chinese-terastal-gathering-booster-box' }, label: 'Shop the booster box' },
-            { to: '/sets/chinese/terastal-gathering-csv9-5', label: 'Browse the card list', variant: 'ghost' },
+            { to: '/sets/chinese/terastal-gathering-csv9-5', label: 'See the full card list', variant: 'ghost' },
           ],
         }}
       >

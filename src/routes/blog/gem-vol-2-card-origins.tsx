@@ -150,7 +150,7 @@ function GemVol2OriginsPost() {
           heading: 'Explore Gem Vol 2',
           body: 'See every card in the set, or read our set guide for every V, VMAX and full art in one place.',
           links: [
-            { to: '/sets/chinese/gem-vol-2', label: 'Browse the card list' },
+            { to: '/sets/chinese/gem-vol-2', label: 'See the full card list' },
             { to: '/blog/gem-vol-2-set-guide', label: 'Read the set guide', variant: 'ghost' },
           ],
         }}

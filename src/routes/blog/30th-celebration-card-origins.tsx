@@ -162,7 +162,7 @@ function ThirtiethOriginsPost() {
           heading: 'Explore 30th Celebration',
           body: 'See every card in the set, or read our set guide for every Pikachu, classic and promo in one place.',
           links: [
-            { to: '/sets/chinese/30th-celebration', label: 'Browse the card list' },
+            { to: '/sets/chinese/30th-celebration', label: 'See the full card list' },
             { to: '/blog/30th-celebration-set-guide', label: 'Read the set guide', variant: 'ghost' },
           ],
         }}

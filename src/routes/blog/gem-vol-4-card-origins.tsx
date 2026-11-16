@@ -153,7 +153,7 @@ function GemVol4OriginsPost() {
           heading: 'Explore Gem Vol 4',
           body: 'See every card in the set, or read our set guide for all 28 full arts and the box math.',
           links: [
-            { to: '/sets/chinese/gem-vol-4', label: 'Browse the card list' },
+            { to: '/sets/chinese/gem-vol-4', label: 'See the full card list' },
             { to: '/blog/gem-vol-4-set-guide', label: 'Read the set guide', variant: 'ghost' },
           ],
         }}
