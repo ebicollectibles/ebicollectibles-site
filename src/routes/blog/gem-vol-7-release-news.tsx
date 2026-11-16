@@ -232,8 +232,8 @@ function GemVol7Post() {
           </figcaption>
         </figure>
         <p>
-          The full art is a new illustration by Cona Nitanda. Psyduck sits in a beach chair holding a beach ball over its head while
-          Misty waves from behind.
+          The full art is a new illustration by Cona Nitanda. Psyduck sits in a blue beach chair under an umbrella with one hand up on a
+          beach ball, and Misty stands in the background in her swimsuit.
         </p>
         <p>
           Because the illustration debuts here, Gem Vol 7 is the only place to pull it. It sits in the 07 slot, the rarest in every

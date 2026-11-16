@@ -267,7 +267,7 @@ function StellarCrystalReleasePost() {
         <h2 id="lisia">The Chinese Exclusive: Lisia's Appeal</h2>
         <p>
           Lisia's Appeal 257/208 is a Special Art Rare drawn for this set by En Morikura. Lisia and her Altaria perform together on a
-          bright stage while a crowd waves glow sticks below. English has a Lisia's Appeal Special Illustration Rare with different art,
+          stage under spotlights, with the crowd below full of lights. English has a Lisia's Appeal Special Illustration Rare with different art,
           and it is not in this set. The Super Rare, also by En Morikura, is here too.
         </p>
         <Grid cards={LISIA} cols={2} />
