@@ -215,7 +215,8 @@ function GemVol7Post() {
 
         <h2 id="trainers">Trainers and their Pokémon</h2>
         <p>
-          19 of the 28 Pokémon are printed as a Trainer's Pokémon. Team Rocket alone accounts for eight of them: Raticate, Meowth,
+          19 of the 28 Pokémon belong to a Trainer, like Misty's Psyduck or Team Rocket's Meowth. Team Rocket has the most
+          with eight: Raticate, Meowth,
           Weezing, Murkrow, Wobbuffet, Houndoom, Orbeetle and Spidops. Misty brings Psyduck and Lapras, and the rest of the cast
           includes Ethan, Steven, Cynthia, N, Lillie, Arven, Hop, Marnie and Iono. Pokémon China revealed these six full arts alongside
           Psyduck:

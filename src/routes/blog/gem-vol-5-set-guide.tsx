@@ -196,8 +196,8 @@ function GemVol5SetGuide() {
 
         <h2 id="roster">The full roster</h2>
         <p>
-          All 28 Pokémon, in set order. Each one has seven cards, numbered from its first two digits plus 01 to 07. There are no
-          Trainer's Pokémon in this volume.
+          All 28 Pokémon, in set order. Each one has seven cards, numbered from its first two digits plus 01 to 07. None of
+          them belong to a Trainer.
         </p>
         <div className="table-scroll">
           <table className="data-table">

@@ -212,7 +212,7 @@ function GemVol6Post() {
 
         <h2 id="lineup">Apples, tea and the Loyal Three</h2>
         <p>
-          There are no Trainer's Pokémon this time. Instead the lineup leans on fruit, garden and tea Pokémon: Applin and its whole family,
+          This time none of the Pokémon belong to a Trainer. Instead the lineup leans on fruit, garden and tea Pokémon: Applin and its whole family,
           Flapple, Appletun and Dipplin, plus Exeggcute, Castform in its Sunny Form, and Poltchageist the tea-cup Pokémon. The Loyal
           Three from Kitakami, Okidogi, Munkidori and Fezandipiti, close out the set. Pokémon China pitches the set as a treasure hunt,
           with each illustration telling a small story about its Pokémon, and revealed these six full arts alongside Applin:

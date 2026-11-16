@@ -227,7 +227,7 @@ function GemVol5Post() {
 
         <h2 id="lineup">The rest of the lineup</h2>
         <p>
-          Outside the Horizons cards there are no Trainer's Pokémon. The lineup mixes fan favorites like Latios, Ceruledge and Hisuian
+          Apart from the Horizons cards, none of the Pokémon belong to a Trainer. The lineup mixes fan favorites like Latios, Ceruledge and Hisuian
           Growlithe with Paldea picks such as Tatsugiri, Cetitan and Wattrel. Pokémon China revealed these full arts alongside the
           Horizons four:
         </p>

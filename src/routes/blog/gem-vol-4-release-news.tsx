@@ -213,7 +213,7 @@ function GemVol4Post() {
 
         <h2 id="lineup">Horses, seasons and a Paradox Pokémon</h2>
         <p>
-          There are no Trainer's Pokémon in this volume. Ponyta has company in Mudsdale, Deerling and Sawsbuck bring the changing
+          None of the Pokémon in this volume belong to a Trainer. Ponyta has company in Mudsdale, Deerling and Sawsbuck bring the changing
           seasons, and Eevee, Litten, Minccino and Cinccino round out the cute side. Enamorus and the Paradox Pokémon Flutter Mane give
           the set a couple of heavier hitters. Pokémon China revealed these full arts alongside Ponyta:
         </p>
