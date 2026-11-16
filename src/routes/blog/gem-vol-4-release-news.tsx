@@ -232,7 +232,7 @@ function GemVol4Post() {
         </figure>
         <p>
           The full art is a new illustration by MINAMINAMI Take. It is a sunset scene on open grassland, with Ponyta
-          mid-stride across the field while a Rapidash rests behind it and keeps watch.
+          mid-stride across the field while a Rapidash lies in the grass behind it.
         </p>
         <p>
           Because the illustration debuts here, Gem Vol 4 is the only place to pull it. It sits in the 07 slot, the rarest in every

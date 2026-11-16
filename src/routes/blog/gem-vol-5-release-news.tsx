@@ -316,8 +316,7 @@ function GemVol5Post() {
 
         <h2 id="floragato">Floragato, six holo versions</h2>
         <p>
-          Floragato shows how a run works. Versions 01 to 06 share the same illustration by Felicia Chen, with Floragato mid-spin
-          among falling petals. Only the holo
+          Floragato shows how a run works. Versions 01 to 06 share the same illustration by Felicia Chen, with Floragato swinging its flower bud among scattered petals. Only the holo
           changes: Grass-type and Poké Ball patterns, glitter, starburst, the
           Master Ball pattern, and the pink Gem Pack logo stamp.
         </p>

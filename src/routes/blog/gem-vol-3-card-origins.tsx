@@ -5,6 +5,8 @@ import { BLOG_POSTS, BLOG_SITE_URL, blogSeoDescription, blogSeoTitle } from '~/d
 import { BlogPostLayout } from '~/components/blog/BlogPostLayout'
 import { getBlogPostStatus } from '~/server/blog-status'
 import { safeJsonLd } from '~/lib/gem-sets/head'
+import { R2_IMAGE_HOST } from '~/lib/gem-sets/constants'
+import { ChineseExclusiveBadge } from '~/components/blog/ChineseExclusive'
 
 const post = BLOG_POSTS.find((p) => p.slug === 'gem-vol-3-card-origins')!
 
@@ -64,11 +66,16 @@ const TOC = [
 
 const FAQ = [
   {
-    q: 'Are Gem 3 cards reprints?',
-    a: 'The art mostly is. 35 of the 40 illustrations we traced are the same art you will find on English cards, mostly 2023 Scarlet & Violet sets. What is new is the printing: Simplified Chinese text, new numbers, new holo patterns and the Gem Pack set code.',
+    q: 'When was Gem Vol 3 released?',
+    a: 'September 26, 2025, in mainland China. It is a Simplified Chinese release.',
   },
   {
-    q: 'Which cards are Chinese Exclusives?',
+    q: 'Are Gem 3 cards reprints?',
+    a: 'The art mostly is. 35 of the 40 illustrations we traced are the same art you will find on English cards, mostly 2023 Scarlet & Violet sets. What is new is the printing: Simplified Chinese text, new numbers, new holo patterns and the Gem Pack set code.',
+    link: { to: '/sets/chinese/gem-vol-3', before: 'See every card on the ', label: 'Gem Vol 3 card list', after: '.' },
+  },
+  {
+    q: 'What are the Chinese Exclusives in Gem Vol 3?',
     a: 'Five full arts: Meowth 0207/07, Gengar 0307/07, Cubone 0407/07, Chandelure 1107/07 and Ceruledge 1507/07. They are the only new illustrations in Gem Vol 3, and none of them are on an earlier English card.',
   },
   {
@@ -143,7 +150,11 @@ function GemVol3OriginsPost() {
   const faqJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
-    mainEntity: FAQ.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
+    mainEntity: FAQ.map((f) => ({
+      '@type': 'Question',
+      name: f.q,
+      acceptedAnswer: { '@type': 'Answer', text: f.link ? `${f.a} ${f.link.before}${f.link.label}${f.link.after}` : f.a },
+    })),
   }
 
   return (
@@ -154,7 +165,7 @@ function GemVol3OriginsPost() {
         updated={status.liveAt}
         wide
         post={post}
-        lede="Almost every card in Gem Pack Vol. 3 uses art you have already seen on an English card. Here is which one, for every Pokémon and Trainer in the set."
+        lede="Almost every card in Gem Pack Vol. 3 uses art you have already seen on an English card. We matched all 40 illustrations to their English source, and five are Chinese Exclusives."
         cta={{
           heading: 'Explore Gem Vol 3',
           body: 'See every card in the set, or read our set guide for every full art and ex in one place.',
@@ -193,6 +204,78 @@ function GemVol3OriginsPost() {
           That adds up to 40 illustrations. 35 of them come from English cards. The other five are the Chinese Exclusive full arts of Meowth,
           Gengar, Cubone, Chandelure and Ceruledge, which were drawn for Gem Vol 3 and have no earlier version.
         </p>
+        <figure className="feature-card">
+          <img
+            src={`${R2_IMAGE_HOST}/Chinese/Gem%203/Cards/0307.webp`}
+            alt="Gengar 0307/07 Chinese Exclusive full art, Gem Vol 3"
+            loading="lazy"
+            width={300}
+            height={419}
+          />
+          <figcaption>
+            <ChineseExclusiveBadge />
+            <strong>Gengar 0307/07</strong>
+            Full art · Illus. aspara
+          </figcaption>
+        </figure>
+        <div className="card-grid cols-4">
+          <figure>
+            <img
+              src={`${R2_IMAGE_HOST}/Chinese/Gem%203/Cards/0207.webp`}
+              alt="Meowth 0207/07 Chinese Exclusive full art, Gem Vol 3"
+              loading="lazy"
+              width={300}
+              height={419}
+            />
+            <figcaption>
+              <ChineseExclusiveBadge />
+              <strong>Meowth 0207/07</strong>
+              Full art · Illus. Makura Tami
+            </figcaption>
+          </figure>
+          <figure>
+            <img
+              src={`${R2_IMAGE_HOST}/Chinese/Gem%203/Cards/0407.webp`}
+              alt="Cubone 0407/07 Chinese Exclusive full art, Gem Vol 3"
+              loading="lazy"
+              width={300}
+              height={419}
+            />
+            <figcaption>
+              <ChineseExclusiveBadge />
+              <strong>Cubone 0407/07</strong>
+              Full art · Illus. Katsunori Sato
+            </figcaption>
+          </figure>
+          <figure>
+            <img
+              src={`${R2_IMAGE_HOST}/Chinese/Gem%203/Cards/1107.webp`}
+              alt="Chandelure 1107/07 Chinese Exclusive full art, Gem Vol 3"
+              loading="lazy"
+              width={300}
+              height={419}
+            />
+            <figcaption>
+              <ChineseExclusiveBadge />
+              <strong>Chandelure 1107/07</strong>
+              Full art · Illus. satoma
+            </figcaption>
+          </figure>
+          <figure>
+            <img
+              src={`${R2_IMAGE_HOST}/Chinese/Gem%203/Cards/1507.webp`}
+              alt="Ceruledge 1507/07 Chinese Exclusive full art, Gem Vol 3"
+              loading="lazy"
+              width={300}
+              height={419}
+            />
+            <figcaption>
+              <ChineseExclusiveBadge />
+              <strong>Ceruledge 1507/07</strong>
+              Full art · Illus. kodama
+            </figcaption>
+          </figure>
+        </div>
 
         <h2 id="by-set">Which sets it comes from</h2>
         <p>It comes mostly from 2023's English Scarlet & Violet sets, plus two Sword & Shield cards and three Black Star Promos, listed in release order:</p>
@@ -292,7 +375,17 @@ function GemVol3OriginsPost() {
           {FAQ.map((f) => (
             <details key={f.q}>
               <summary>{f.q}</summary>
-              <p>{f.a}</p>
+              <p>
+                {f.a}
+                {f.link && (
+                  <>
+                    {' '}
+                    {f.link.before}
+                    <Link to={f.link.to as never}>{f.link.label}</Link>
+                    {f.link.after}
+                  </>
+                )}
+              </p>
             </details>
           ))}
         </div>

@@ -5,6 +5,8 @@ import { BLOG_POSTS, BLOG_SITE_URL, blogSeoDescription, blogSeoTitle } from '~/d
 import { BlogPostLayout } from '~/components/blog/BlogPostLayout'
 import { getBlogPostStatus } from '~/server/blog-status'
 import { safeJsonLd } from '~/lib/gem-sets/head'
+import { R2_IMAGE_HOST } from '~/lib/gem-sets/constants'
+import { ChineseExclusiveBadge } from '~/components/blog/ChineseExclusive'
 
 const post = BLOG_POSTS.find((p) => p.slug === 'gem-vol-4-card-origins')!
 
@@ -68,11 +70,16 @@ const TOC = [
 
 const FAQ = [
   {
-    q: 'Are Gem 4 cards reprints?',
-    a: 'The art mostly is. 55 of the 56 illustrations are the same art you will find on English cards, mostly from Temporal Forces and Twilight Masquerade. What is new is the printing: Simplified Chinese text, new numbers, new holo patterns and the Gem Pack set code.',
+    q: 'When was Gem Vol 4 released?',
+    a: 'February 6, 2026, in mainland China. It is a Simplified Chinese release.',
   },
   {
-    q: 'Which card is the Chinese Exclusive?',
+    q: 'Are Gem 4 cards reprints?',
+    a: 'The art mostly is. 55 of the 56 illustrations are the same art you will find on English cards, mostly from Temporal Forces and Twilight Masquerade. What is new is the printing: Simplified Chinese text, new numbers, new holo patterns and the Gem Pack set code.',
+    link: { to: '/sets/chinese/gem-vol-4', before: 'See every card on the ', label: 'Gem Vol 4 card list', after: '.' },
+  },
+  {
+    q: 'What is the Chinese Exclusive in Gem Vol 4?',
     a: 'Ponyta\'s full art, 0107/07 by MINAMINAMI Take. It is the only new illustration in Gem Vol 4 and is not on any earlier English card, which lines up with Pokémon China calling it new.',
   },
   {
@@ -137,7 +144,11 @@ function GemVol4OriginsPost() {
   const faqJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
-    mainEntity: FAQ.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
+    mainEntity: FAQ.map((f) => ({
+      '@type': 'Question',
+      name: f.q,
+      acceptedAnswer: { '@type': 'Answer', text: f.link ? `${f.a} ${f.link.before}${f.link.label}${f.link.after}` : f.a },
+    })),
   }
 
   return (
@@ -148,7 +159,7 @@ function GemVol4OriginsPost() {
         updated={status.liveAt}
         wide
         post={post}
-        lede="Almost every card in Gem Pack Vol. 4 uses art you have already seen on an English card. Here is which one, for every card in the set."
+        lede="Almost every card in Gem Pack Vol. 4 uses art you have already seen on an English card. We matched all 56 illustrations to their English source, and one is a Chinese Exclusive."
         cta={{
           heading: 'Explore Gem Vol 4',
           body: 'See every card in the set, or read our set guide for all 28 full arts and the box math.',
@@ -187,6 +198,20 @@ function GemVol4OriginsPost() {
           That adds up to 56 illustrations. 55 of them come from English cards. The 56th, the Chinese Exclusive Ponyta full art (0107/07),
           was drawn for Gem Vol 4 and has no earlier version.
         </p>
+        <figure className="feature-card">
+          <img
+            src={`${R2_IMAGE_HOST}/Chinese/Gem%204/Cards/0107.webp`}
+            alt="Ponyta 0107/07 Chinese Exclusive full art, Gem Vol 4"
+            loading="lazy"
+            width={300}
+            height={419}
+          />
+          <figcaption>
+            <ChineseExclusiveBadge />
+            <strong>Ponyta 0107/07</strong>
+            Full art · Illus. MINAMINAMI Take
+          </figcaption>
+        </figure>
 
         <h2 id="by-set">Which sets it comes from</h2>
         <p>Most of it comes from two English sets from the first half of 2024, Temporal Forces and Twilight Masquerade, plus a few later cards:</p>
@@ -275,7 +300,17 @@ function GemVol4OriginsPost() {
           {FAQ.map((f) => (
             <details key={f.q}>
               <summary>{f.q}</summary>
-              <p>{f.a}</p>
+              <p>
+                {f.a}
+                {f.link && (
+                  <>
+                    {' '}
+                    {f.link.before}
+                    <Link to={f.link.to as never}>{f.link.label}</Link>
+                    {f.link.after}
+                  </>
+                )}
+              </p>
             </details>
           ))}
         </div>

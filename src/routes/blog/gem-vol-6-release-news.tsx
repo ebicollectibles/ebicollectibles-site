@@ -303,8 +303,7 @@ function GemVol6Post() {
 
         <h2 id="applin">Applin, six holo versions</h2>
         <p>
-          Applin shows how a run works. Versions 01 to 06 share the same illustration by Tetsu Kayama, with Applin
-          tucked under a blossoming tree. Only the holo
+          Applin shows how a run works. Versions 01 to 06 share the same illustration by Tetsu Kayama, with Applin sitting in the grass beside a blossoming tree. Only the holo
           changes: Grass-type and Poké Ball patterns, glitter, starburst,
           the Master Ball pattern, and the pink Gem Pack logo stamp.
         </p>

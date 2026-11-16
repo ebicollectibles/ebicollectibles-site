@@ -253,8 +253,7 @@ function GemVol3Post() {
           </figcaption>
         </figure>
         <p>
-          Five of the nine full arts are new illustrations drawn for this set, all evening and night scenes. Gengar grins in an
-          empty living room, using its moves on a table of snacks, while Meowth sits on a rooftop under the moon watching lanterns drift
+          Five of the nine full arts are new illustrations drawn for this set, all evening and night scenes. Gengar grins over a table set for tea while cups and plates float around it, and Meowth sits on a rooftop under the moon watching lanterns drift
           past.
         </p>
         <div className="card-grid cols-2">
@@ -342,7 +341,7 @@ function GemVol3Post() {
 
         <h2 id="gengar">Gengar, six holo versions</h2>
         <p>
-          Gengar shows how a run works. Versions 01 to 06 share the same grinning illustration by Nelnal. Only the holo
+          Gengar shows how a run works. Versions 01 to 06 share the same tongue-out illustration by Nelnal. Only the holo
           changes: Energy-type and Poké Ball patterns, glitter, starburst, the Master Ball pattern, and the pink Gem Pack logo
           stamp.
         </p>

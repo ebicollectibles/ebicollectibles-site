@@ -5,6 +5,8 @@ import { BLOG_POSTS, BLOG_SITE_URL, blogSeoDescription, blogSeoTitle } from '~/d
 import { BlogPostLayout } from '~/components/blog/BlogPostLayout'
 import { getBlogPostStatus } from '~/server/blog-status'
 import { safeJsonLd } from '~/lib/gem-sets/head'
+import { R2_IMAGE_HOST } from '~/lib/gem-sets/constants'
+import { ChineseExclusiveBadge } from '~/components/blog/ChineseExclusive'
 
 const post = BLOG_POSTS.find((p) => p.slug === 'gem-vol-5-card-origins')!
 
@@ -68,11 +70,16 @@ const TOC = [
 
 const FAQ = [
   {
-    q: 'Are Gem 5 cards reprints?',
-    a: 'The art mostly is. 51 of the 56 illustrations are the same art you will find on English Scarlet & Violet cards, mostly from Surging Sparks. What is new is the printing: Simplified Chinese text, new numbers, new holo patterns and the Gem Pack set code.',
+    q: 'When was Gem Vol 5 released?',
+    a: 'April 24, 2026, in mainland China. It is a Simplified Chinese release.',
   },
   {
-    q: 'Which cards are Chinese Exclusives?',
+    q: 'Are Gem 5 cards reprints?',
+    a: 'The art mostly is. 51 of the 56 illustrations are the same art you will find on English Scarlet & Violet cards, mostly from Surging Sparks. What is new is the printing: Simplified Chinese text, new numbers, new holo patterns and the Gem Pack set code.',
+    link: { to: '/sets/chinese/gem-vol-5', before: 'See every card on the ', label: 'Gem Vol 5 card list', after: '.' },
+  },
+  {
+    q: 'What are the Chinese Exclusives in Gem Vol 5?',
     a: 'The four Pokémon Horizons full arts: Captain Pikachu 0107/07, Floragato 2207/07, Crocalor 2307/07 and Quaxwell 2407/07. Captain Pikachu\'s regular art (versions 01 to 06) is also new art with no English printing, but it is not one of the Chinese Exclusives.',
   },
   {
@@ -137,7 +144,11 @@ function GemVol5OriginsPost() {
   const faqJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
-    mainEntity: FAQ.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
+    mainEntity: FAQ.map((f) => ({
+      '@type': 'Question',
+      name: f.q,
+      acceptedAnswer: { '@type': 'Answer', text: f.link ? `${f.a} ${f.link.before}${f.link.label}${f.link.after}` : f.a },
+    })),
   }
 
   return (
@@ -148,7 +159,7 @@ function GemVol5OriginsPost() {
         updated={status.liveAt}
         wide
         post={post}
-        lede="Almost every card in Gem Pack Vol. 5 uses art you have already seen on an English card. Here is which one, for every card in the set."
+        lede="Almost every card in Gem Pack Vol. 5 uses art you have already seen on an English card. We matched all 56 illustrations to their English source, and four are Chinese Exclusives."
         cta={{
           heading: 'Explore Gem Vol 5',
           body: 'See every card in the set, or read our set guide for all 28 full arts and the box math.',
@@ -187,6 +198,64 @@ function GemVol5OriginsPost() {
           That adds up to 56 illustrations. 51 of them come from English cards. The other five are Pokémon Horizons art with no earlier
           version: the four Chinese Exclusive Horizons full arts and Captain Pikachu's new regular art.
         </p>
+        <div className="card-grid cols-4">
+          <figure>
+            <img
+              src={`${R2_IMAGE_HOST}/Chinese/Gem%205/Cards/0107.webp`}
+              alt="Captain Pikachu 0107/07 Chinese Exclusive full art, Gem Vol 5"
+              loading="lazy"
+              width={300}
+              height={419}
+            />
+            <figcaption>
+              <ChineseExclusiveBadge />
+              <strong>Captain Pikachu 0107/07</strong>
+              Full art · Illus. Keita Hagiwara
+            </figcaption>
+          </figure>
+          <figure>
+            <img
+              src={`${R2_IMAGE_HOST}/Chinese/Gem%205/Cards/2207.webp`}
+              alt="Floragato 2207/07 Chinese Exclusive full art, Gem Vol 5"
+              loading="lazy"
+              width={300}
+              height={419}
+            />
+            <figcaption>
+              <ChineseExclusiveBadge />
+              <strong>Floragato 2207/07</strong>
+              Full art · Illus. Lyu YiFei
+            </figcaption>
+          </figure>
+          <figure>
+            <img
+              src={`${R2_IMAGE_HOST}/Chinese/Gem%205/Cards/2307.webp`}
+              alt="Crocalor 2307/07 Chinese Exclusive full art, Gem Vol 5"
+              loading="lazy"
+              width={300}
+              height={419}
+            />
+            <figcaption>
+              <ChineseExclusiveBadge />
+              <strong>Crocalor 2307/07</strong>
+              Full art · Illus. Kouki Yanagihara
+            </figcaption>
+          </figure>
+          <figure>
+            <img
+              src={`${R2_IMAGE_HOST}/Chinese/Gem%205/Cards/2407.webp`}
+              alt="Quaxwell 2407/07 Chinese Exclusive full art, Gem Vol 5"
+              loading="lazy"
+              width={300}
+              height={419}
+            />
+            <figcaption>
+              <ChineseExclusiveBadge />
+              <strong>Quaxwell 2407/07</strong>
+              Full art · Illus. Rei Yamazaki
+            </figcaption>
+          </figure>
+        </div>
 
         <h2 id="by-set">Which sets it comes from</h2>
         <p>Most of it comes from 2024's English Scarlet & Violet sets, led by Surging Sparks, plus one Journey Together card and one Black Star Promo:</p>
@@ -271,7 +340,17 @@ function GemVol5OriginsPost() {
           {FAQ.map((f) => (
             <details key={f.q}>
               <summary>{f.q}</summary>
-              <p>{f.a}</p>
+              <p>
+                {f.a}
+                {f.link && (
+                  <>
+                    {' '}
+                    {f.link.before}
+                    <Link to={f.link.to as never}>{f.link.label}</Link>
+                    {f.link.after}
+                  </>
+                )}
+              </p>
             </details>
           ))}
         </div>

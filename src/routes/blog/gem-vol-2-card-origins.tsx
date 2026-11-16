@@ -5,6 +5,8 @@ import { BLOG_POSTS, BLOG_SITE_URL, blogSeoDescription, blogSeoTitle } from '~/d
 import { BlogPostLayout } from '~/components/blog/BlogPostLayout'
 import { getBlogPostStatus } from '~/server/blog-status'
 import { safeJsonLd } from '~/lib/gem-sets/head'
+import { R2_IMAGE_HOST } from '~/lib/gem-sets/constants'
+import { ChineseExclusiveBadge } from '~/components/blog/ChineseExclusive'
 
 const post = BLOG_POSTS.find((p) => p.slug === 'gem-vol-2-card-origins')!
 
@@ -55,11 +57,16 @@ const TOC = [
 
 const FAQ = [
   {
-    q: 'Are Gem 2 cards reprints?',
-    a: 'The art mostly is. 40 of the 44 illustrations we traced are the same art you will find on English cards, mostly from Sword & Shield sets and promos. What is new is the printing: Simplified Chinese text, new numbers, new holo patterns and the Gem Pack set code.',
+    q: 'When was Gem Vol 2 released?',
+    a: 'May 16, 2025, in mainland China. It is a Simplified Chinese release.',
   },
   {
-    q: 'Which cards are Chinese Exclusives?',
+    q: 'Are Gem 2 cards reprints?',
+    a: 'The art mostly is. 40 of the 44 illustrations we traced are the same art you will find on English cards, mostly from Sword & Shield sets and promos. What is new is the printing: Simplified Chinese text, new numbers, new holo patterns and the Gem Pack set code.',
+    link: { to: '/sets/chinese/gem-vol-2', before: 'See every card on the ', label: 'Gem Vol 2 card list', after: '.' },
+  },
+  {
+    q: 'What are the Chinese Exclusives in Gem Vol 2?',
     a: 'Four: the full arts of Eevee 0115/15, Umbreon 0615/15, Leafeon 0715/15 and Sylveon 0915/15, all by HYOGONOSUKE. They are the only new illustrations in Gem Vol 2, and none of them are on an earlier English card.',
   },
   {
@@ -134,7 +141,11 @@ function GemVol2OriginsPost() {
   const faqJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
-    mainEntity: FAQ.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
+    mainEntity: FAQ.map((f) => ({
+      '@type': 'Question',
+      name: f.q,
+      acceptedAnswer: { '@type': 'Answer', text: f.link ? `${f.a} ${f.link.before}${f.link.label}${f.link.after}` : f.a },
+    })),
   }
 
   return (
@@ -145,7 +156,7 @@ function GemVol2OriginsPost() {
         updated={status.liveAt}
         wide
         post={post}
-        lede="Almost every card in Gem Pack Vol. 2 uses Eevee art you have already seen on an English card. Here is which one, for every card in the set."
+        lede="Almost every card in Gem Pack Vol. 2 uses Eevee art you have already seen on an English card. We matched all 44 illustrations to their English source, and four are Chinese Exclusives."
         cta={{
           heading: 'Explore Gem Vol 2',
           body: 'See every card in the set, or read our set guide for every V, VMAX and full art in one place.',
@@ -184,6 +195,64 @@ function GemVol2OriginsPost() {
           That adds up to 44 illustrations. 40 of them come from English cards. The other four are the Chinese Exclusive full arts by HYOGONOSUKE,
           which were drawn for Gem Vol 2 and have no earlier version.
         </p>
+        <div className="card-grid cols-4">
+          <figure>
+            <img
+              src={`${R2_IMAGE_HOST}/Chinese/Gem%202/Cards/0115.webp`}
+              alt="Eevee 0115/15 Chinese Exclusive full art, Gem Vol 2"
+              loading="lazy"
+              width={300}
+              height={419}
+            />
+            <figcaption>
+              <ChineseExclusiveBadge />
+              <strong>Eevee 0115/15</strong>
+              Full art · Illus. HYOGONOSUKE
+            </figcaption>
+          </figure>
+          <figure>
+            <img
+              src={`${R2_IMAGE_HOST}/Chinese/Gem%202/Cards/0615.webp`}
+              alt="Umbreon 0615/15 Chinese Exclusive full art, Gem Vol 2"
+              loading="lazy"
+              width={300}
+              height={419}
+            />
+            <figcaption>
+              <ChineseExclusiveBadge />
+              <strong>Umbreon 0615/15</strong>
+              Full art · Illus. HYOGONOSUKE
+            </figcaption>
+          </figure>
+          <figure>
+            <img
+              src={`${R2_IMAGE_HOST}/Chinese/Gem%202/Cards/0715.webp`}
+              alt="Leafeon 0715/15 Chinese Exclusive full art, Gem Vol 2"
+              loading="lazy"
+              width={300}
+              height={419}
+            />
+            <figcaption>
+              <ChineseExclusiveBadge />
+              <strong>Leafeon 0715/15</strong>
+              Full art · Illus. HYOGONOSUKE
+            </figcaption>
+          </figure>
+          <figure>
+            <img
+              src={`${R2_IMAGE_HOST}/Chinese/Gem%202/Cards/0915.webp`}
+              alt="Sylveon 0915/15 Chinese Exclusive full art, Gem Vol 2"
+              loading="lazy"
+              width={300}
+              height={419}
+            />
+            <figcaption>
+              <ChineseExclusiveBadge />
+              <strong>Sylveon 0915/15</strong>
+              Full art · Illus. HYOGONOSUKE
+            </figcaption>
+          </figure>
+        </div>
 
         <h2 id="by-set">Which sets it comes from</h2>
         <p>Unlike later Gem Packs, almost none of it is Scarlet & Violet art. It comes from Sword & Shield sets and promos, a few older Sun & Moon cards, and one Paldean Fates Trainer, listed in release order:</p>
@@ -286,7 +355,17 @@ function GemVol2OriginsPost() {
           {FAQ.map((f) => (
             <details key={f.q}>
               <summary>{f.q}</summary>
-              <p>{f.a}</p>
+              <p>
+                {f.a}
+                {f.link && (
+                  <>
+                    {' '}
+                    {f.link.before}
+                    <Link to={f.link.to as never}>{f.link.label}</Link>
+                    {f.link.after}
+                  </>
+                )}
+              </p>
             </details>
           ))}
         </div>
