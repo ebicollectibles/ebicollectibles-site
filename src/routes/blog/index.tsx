@@ -32,9 +32,9 @@ export const Route = createFileRoute('/blog/')({
 })
 
 function BlogIndexPage() {
-  const { live, isAdmin } = Route.useLoaderData()
-  // Everyone sees live posts; a signed-in admin also sees drafts, labelled.
-  const posts = [...BLOG_POSTS].filter((p) => isAdmin || p.slug in live).sort((a, b) => (a.date < b.date ? 1 : -1))
+  const { live } = Route.useLoaderData()
+  // Everyone, admin included, sees only live posts. Drafts are managed at /admin/blog.
+  const posts = [...BLOG_POSTS].filter((p) => p.slug in live).sort((a, b) => (a.date < b.date ? 1 : -1))
   const livePosts = posts.filter((p) => p.slug in live)
 
   const itemListJsonLd = {
@@ -73,13 +73,6 @@ function BlogIndexPage() {
         </div>
       </section>
       <main className="wrap">
-        {isAdmin && (
-          <div className="admin-preview-note">
-            <b>Admin preview.</b> You are signed in, so drafts are shown with a Draft label. Visitors see{' '}
-            {livePosts.length === 0 ? 'no posts yet' : `only the ${livePosts.length} live post${livePosts.length === 1 ? '' : 's'}`}.{' '}
-            <Link to="/admin/blog">Manage posts</Link>
-          </div>
-        )}
         {posts.length === 0 && <p className="lede" style={{ padding: '24px 0 48px' }}>New posts are on the way. Check back soon.</p>}
         <div className="post-grid">
           {posts.map((p) => (
@@ -89,7 +82,6 @@ function BlogIndexPage() {
               </div>
               <div className="post-card-body">
                 <span className="post-card-date">
-                  {!(p.slug in live) && <span className="post-card-draft">Draft</span>}
                   <span className="post-card-kind">{p.tag}</span>
                   <span aria-hidden="true"> · </span>
                   {new Date(`${p.date}T00:00:00Z`).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric', timeZone: 'UTC' })}
