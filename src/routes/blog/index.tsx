@@ -73,6 +73,13 @@ function BlogIndexPage() {
         </div>
       </section>
       <main className="wrap">
+        {isAdmin && (
+          <div className="admin-preview-note">
+            <b>Admin preview.</b> You are signed in, so drafts are shown with a Draft label. Visitors see{' '}
+            {livePosts.length === 0 ? 'no posts yet' : `only the ${livePosts.length} live post${livePosts.length === 1 ? '' : 's'}`}.{' '}
+            <Link to="/admin/blog">Manage posts</Link>
+          </div>
+        )}
         {posts.length === 0 && <p className="lede" style={{ padding: '24px 0 48px' }}>New posts are on the way. Check back soon.</p>}
         <div className="post-grid">
           {posts.map((p) => (
