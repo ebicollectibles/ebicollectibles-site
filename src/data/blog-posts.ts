@@ -571,7 +571,7 @@ export const BLOG_POSTS: BlogPostSummary[] = [
       "The seventh Simplified Chinese Gem Pack: 196 all-holo cards, 28 Pokémon with seven versions each, and a brand-new Misty's Psyduck full art you can only pull here.",
     seoTitle: "Pokémon Gem Pack Vol. 7 (Gem 7): Misty's Psyduck & Release Info",
     seoDescription:
-      "Pokémon TCG Gem Pack Vol. 7 (Gem 7): 196 all-holo Simplified Chinese cards, 28 Pokémon × 7 versions, and a new Misty's Psyduck full art.",
+      "Pokémon TCG Gem Pack Vol. 7 (Gem 7): 196 all-holo Simplified Chinese cards, 28 Pokémon × 7 versions, and a Chinese Exclusive Misty's Psyduck full art.",
     tag: 'New release',
     date: '2026-11-06',
     heroImage: `${SITE_URL}/assets/blog/gem-vol-7-release-hero-v14.webp`,
