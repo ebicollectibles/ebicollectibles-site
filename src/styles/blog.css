@@ -256,11 +256,6 @@
   .btn-outline { background: transparent; color: var(--ink); border-color: var(--line-2); }
   .btn-outline:hover { border-color: var(--ink); }
   .btn-block { width: 100%; justify-content: center; }
-  .shop-dot { display: inline-block; width: 7px; height: 7px; border-radius: 50%; margin-right: 6px; vertical-align: 1px; background: #8793a3; }
-  .shop-dot.is-ok { background: #3f9a6e; }
-  .shop-dot.is-low { background: #d48a2c; }
-  .shop-dot.is-pre { background: #4a7bd0; }
-  .shop-dot.is-out { background: #a3acb8; }
 
   .shop-strip {
     display: flex; align-items: center; gap: 14px; margin: 28px 0 32px; padding: 10px 12px 10px 10px;
@@ -291,9 +286,7 @@
   .shop-note { margin: 0; font-size: 13.5px; color: var(--slate); line-height: 1.45; }
   .shop-meta { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; margin: 4px 0 6px; }
   .shop-price { font-family: var(--f-display); font-weight: 800; font-size: 20px; color: var(--ink); }
-  .shop-status { font-size: 13px; color: var(--ink-2); }
   .shop-tile-body .btn { margin-top: auto; }
-  .shop-tile.is-muted .shop-price { color: var(--slate); }
   .shop-panel .cta-actions { margin-top: 4px; }
   .shop-foot { margin-top: 20px; padding-top: 16px; border-top: 1px solid var(--line); display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px 24px; align-items: center; }
   .shop-read { display: flex; flex-wrap: wrap; gap: 6px 20px; }

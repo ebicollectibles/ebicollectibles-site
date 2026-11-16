@@ -2,9 +2,10 @@ import * as React from 'react'
 import { Link, useLoaderData } from '@tanstack/react-router'
 import type { BlogShopProduct } from '~/server/blog-status'
 
-// Shop panels for blog posts: a compact strip under the banner and the
-// "where to buy" panel at the end. Prices and stock come live from the
-// store (getBlogPostStatus), so nothing here can go stale.
+// Shop panels for blog posts: a compact strip after the chase cards and a
+// panel at the end. Prices come live from the store (getBlogPostStatus).
+// Stock is deliberately not shown: every button just opens the product
+// page, which handles availability (add to cart, sold out, notify me).
 
 export type CtaLink = {
   to: string
@@ -12,16 +13,6 @@ export type CtaLink = {
   search?: Record<string, unknown>
   label: string
   variant?: 'light' | 'ghost'
-}
-
-type Status = { label: string; tone: 'ok' | 'low' | 'pre' | 'out'; action: string; buyable: boolean }
-
-function statusOf(p: BlogShopProduct): Status {
-  if (p.comingSoon) return { label: 'Coming soon', tone: 'pre', action: 'View product', buyable: false }
-  if (p.preorder) return { label: 'Pre-order', tone: 'pre', action: 'Pre-order now', buyable: true }
-  if (p.stock > 0 && p.stock <= 5) return { label: `Only ${p.stock} left`, tone: 'low', action: 'Shop now', buyable: true }
-  if (p.stock > 0) return { label: 'In stock', tone: 'ok', action: 'Shop now', buyable: true }
-  return { label: 'Sold out', tone: 'out', action: 'View product', buyable: false }
 }
 
 function money(n: number) {
@@ -58,10 +49,9 @@ function noteFor(p: BlogShopProduct): string | null {
 }
 
 function ProductLinkButton({ p, className }: { p: BlogShopProduct; className: string }) {
-  const s = statusOf(p)
   return (
     <Link to="/products/$id" params={{ id: p.id }} className={className}>
-      {s.action}
+      Shop now
       <span aria-hidden="true">→</span>
     </Link>
   )
@@ -76,26 +66,19 @@ export function BuyStrip() {
 /** What you can buy, at a glance, with one next step. */
 export function ShopStrip({ products }: { products: BlogShopProduct[] }) {
   if (products.length === 0) return null
-  const lead = products.find((p) => statusOf(p).buyable) ?? products[0]
-  const anyBuyable = products.some((p) => statusOf(p).buyable)
-  const anySoon = products.some((p) => p.comingSoon)
+  const lead = products[0]
 
   if (products.length === 1) {
     const p = products[0]
-    const s = statusOf(p)
     const price = priceOf(p)
     return (
       <div className="shop-strip">
         {p.img && <img src={p.img} alt={p.imgAlt || p.name} width={64} height={64} />}
         <div className="shop-strip-text">
           <b>{splitName(p).title}</b>
-          <span>
-            {price && <>{price} · </>}
-            <span className={`shop-dot is-${s.tone}`} />
-            {s.label}
-          </span>
+          {price && <span>{price}</span>}
         </div>
-        <ProductLinkButton p={p} className={s.buyable ? 'btn btn-dark' : 'btn btn-outline'} />
+        <ProductLinkButton p={p} className="btn btn-dark" />
       </div>
     )
   }
@@ -104,7 +87,6 @@ export function ShopStrip({ products }: { products: BlogShopProduct[] }) {
   const min = products.filter((p) => priceOf(p)).reduce((m, p) => Math.min(m, p.price), Infinity)
   const kinds = products.map((p) => kindLabel(p)?.replace(/ box$/i, '').toLowerCase()).filter(Boolean)
   const title = splitName(lead).title
-  const inStock = products.filter((p) => statusOf(p).buyable).length
   return (
     <div className="shop-strip">
       {lead.img && <img src={lead.img} alt={lead.imgAlt || lead.name} width={64} height={64} />}
@@ -112,21 +94,17 @@ export function ShopStrip({ products }: { products: BlogShopProduct[] }) {
         <b>
           {title}: {kinds.join(' or ')}
         </b>
-        <span>
-          {prices.length > 0 && <>From {money(min)} · </>}
-          <span className={`shop-dot is-${anyBuyable ? 'ok' : anySoon ? 'pre' : 'out'}`} />
-          {anyBuyable ? `${inStock} of ${products.length} in stock` : anySoon ? 'Coming soon' : 'Sold out right now'}
-        </span>
+        {prices.length > 0 && <span>From {money(min)}</span>}
       </div>
-      <a href="#shop" className={anyBuyable ? 'btn btn-dark' : 'btn btn-outline'}>
-        {anyBuyable ? 'Choose your box' : 'See options'}
+      <a href="#shop" className="btn btn-dark">
+        Choose your box
         <span aria-hidden="true">↓</span>
       </a>
     </div>
   )
 }
 
-/** End of post: product tiles with live status, then the reading links. */
+/** End of post: product tiles with live prices, then the reading links. */
 export function ShopPanel({
   products,
   heading,
@@ -153,12 +131,11 @@ export function ShopPanel({
       {products.length > 0 && (
         <div className={`shop-tiles n-${Math.min(products.length, 3)}`}>
           {products.map((p) => {
-            const s = statusOf(p)
             const price = priceOf(p)
             const kind = kindLabel(p)
             const note = noteFor(p)
             return (
-              <div key={p.id} className={`shop-tile${s.buyable ? '' : ' is-muted'}`}>
+              <div key={p.id} className="shop-tile">
                 <Link to="/products/$id" params={{ id: p.id }} className="shop-tile-img" tabIndex={-1} aria-hidden="true">
                   {p.img && <img src={p.img} alt="" loading="lazy" width={240} height={240} />}
                 </Link>
@@ -168,14 +145,12 @@ export function ShopPanel({
                     {splitName(p).title}
                   </Link>
                   {note && <p className="shop-note">{note}</p>}
-                  <div className="shop-meta">
-                    {price && <span className="shop-price">{price}</span>}
-                    <span className="shop-status">
-                      <span className={`shop-dot is-${s.tone}`} />
-                      {s.label}
-                    </span>
-                  </div>
-                  <ProductLinkButton p={p} className={s.buyable ? 'btn btn-dark btn-block' : 'btn btn-outline btn-block'} />
+                  {price && (
+                    <div className="shop-meta">
+                      <span className="shop-price">{price}</span>
+                    </div>
+                  )}
+                  <ProductLinkButton p={p} className="btn btn-dark btn-block" />
                 </div>
               </div>
             )
