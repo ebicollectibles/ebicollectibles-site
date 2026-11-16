@@ -243,6 +243,9 @@ export function Header({
               </div>
             )}
           </div>
+          <Link to="/blog" style={{ color: navColor(pathname.startsWith('/blog')), padding: '4px 0' }}>
+            Blog
+          </Link>
           {SHOW_ACRYLICS && (
             <Link
               to="/shop"
@@ -385,6 +388,9 @@ export function Header({
           </Link>
           <Link to="/sets/chinese" style={{ color: navColor(pathname.startsWith('/sets')), padding: '10px 0', borderBottom: '1px solid #f0f2f4' }}>
             Sets: Simplified Chinese
+          </Link>
+          <Link to="/blog" style={{ color: navColor(pathname.startsWith('/blog')), padding: '10px 0', borderBottom: '1px solid #f0f2f4' }}>
+            Blog
           </Link>
           <Link to="/shop" search={{ category: 'Chinese Pokémon Products' }} style={{ color: navColor(pathname === '/shop'), padding: '10px 0', borderBottom: '1px solid #f0f2f4' }}>
             All Pokemon (Chinese)
