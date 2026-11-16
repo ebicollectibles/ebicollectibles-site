@@ -224,7 +224,6 @@ const TOC = [
   { id: 'patterns', label: 'What is different from English' },
   { id: 'secret-rares', label: 'All 88 secret rares' },
   { id: 'main-set', label: 'The 86-card main set' },
-  { id: 'how-we-checked', label: 'How we checked' },
   { id: 'faq', label: 'FAQ' },
 ]
 
@@ -482,14 +481,6 @@ function BlackBoltOrigins() {
 
         <h2 id="main-set">The 86-card main set</h2>
         <OriginsTable list={MAIN} />
-
-        <h2 id="how-we-checked">How we checked</h2>
-        <p>
-          Names alone were not enough, since several of these Pokémon have more than one English art. We compared each Chinese card's art
-          with every English printing of the same name from Scarlet & Violet onward, then checked the close calls and every card without a
-          match by eye. Where the same art was printed more than once, as with a few reprinted cards, we list the English Black Bolt
-          printing.
-        </p>
 
         <h2 id="faq">FAQ</h2>
         <div className="faq">

@@ -3,6 +3,7 @@ import { createFileRoute, Link } from '@tanstack/react-router'
 import blogCssUrl from '~/styles/blog.css?url'
 import { BLOG_POSTS, BLOG_SITE_URL } from '~/data/blog-posts'
 import { BlogPostLayout } from '~/components/blog/BlogPostLayout'
+import { ChineseExclusiveBadge } from '~/components/blog/ChineseExclusive'
 import { getBlogPostStatus } from '~/server/blog-status'
 import { safeJsonLd } from '~/lib/gem-sets/head'
 import setData from '~/data/csv9-5.json'
@@ -26,9 +27,9 @@ function Gallery({ cards, cols }: { cards: Card[]; cols: number }) {
         <figure key={c.number}>
           <img src={c.image} alt={`${c.name} ${c.number} ${short(c.rarity)}, Terastal Gathering`} loading="lazy" width={300} height={419} />
           <figcaption>
+            {EXCLUSIVE.has(c.number) && <ChineseExclusiveBadge />}
             <strong>{c.name}</strong>
             {c.number}
-            {EXCLUSIVE.has(c.number) ? ' · Chinese exclusive' : ''}
           </figcaption>
         </figure>
       ))}
@@ -84,8 +85,8 @@ const FAQ = [
     a: '34: 28 Pokémon ex (221 to 248) and 6 Trainers (249 to 254). Eevee ex and Sylveon ex each have two.',
   },
   {
-    q: 'Which Sylveon ex SAR is the Chinese exclusive?',
-    a: '234/208, by rika. 233/208, by Cona Nitanda, is the one that matches Prismatic Evolutions.',
+    q: 'What is the Chinese Exclusive in Terastal Gathering?',
+    a: 'Sylveon ex 234/208, a Special Art Rare by rika. The other Sylveon ex SAR, 233/208 by Cona Nitanda, is the one that matches Prismatic Evolutions.',
   },
   {
     q: 'How many cards are in a Terastal Gathering booster box?',
@@ -175,7 +176,8 @@ function TerastalGatheringSetGuide() {
         }}
       >
         <p>
-          Terastal Gathering (CSV9.5C) is the Stellar Eeveelution set: 259 cards in 10-card packs, with 34 Special Art Rares. Our{' '}
+          Terastal Gathering (CSV9.5C) is the Stellar Eeveelution set: 259 cards in 10-card packs, with 34 Special Art Rares
+          and one Chinese Exclusive, the Sylveon ex SAR 234/208. Our{' '}
           <Link to="/blog/terastal-gathering-release-news">release post</Link> covers what is new, and our{' '}
           <Link to="/blog/terastal-gathering-card-origins">card origins guide</Link> matches every card to English. Use this one
           to sort your pulls or plan a master set.
@@ -262,7 +264,7 @@ function TerastalGatheringSetGuide() {
             </tbody>
           </table>
         </div>
-        <p className="table-note">Sylveon ex SAR 234 is the Chinese exclusive.</p>
+        <p className="table-note">Sylveon ex SAR 234 is the Chinese Exclusive.</p>
 
         <h2 id="ace-spec">All 8 ACE SPEC cards</h2>
         <p>Pink-framed, one per deck, and numbered within the main set.</p>

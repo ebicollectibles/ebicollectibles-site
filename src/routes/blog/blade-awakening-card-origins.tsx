@@ -323,7 +323,6 @@ const TOC = [
   { id: 'patterns', label: 'Patterns worth knowing' },
   { id: 'secret-rares', label: 'All 55 secret rares' },
   { id: 'main-set', label: 'The 204-card main set' },
-  { id: 'how-we-checked', label: 'How we checked' },
   { id: 'faq', label: 'FAQ' },
 ]
 
@@ -575,14 +574,6 @@ function BladeAwakeningOrigins() {
 
         <h2 id="main-set">The 204-card main set</h2>
         <OriginsTable list={MAIN} />
-
-        <h2 id="how-we-checked">How we checked</h2>
-        <p>
-          Many of these Pokémon have several English arts, so matching names was not enough. We compared each Chinese card's art with every
-          English printing of the same name from Scarlet & Violet onward, then checked the close calls and the cards with no match by eye.
-          Where the same art was printed more than once, we list the first set it appeared in. The illustrator for the new card is read off
-          the Chinese card.
-        </p>
 
         <h2 id="faq">FAQ</h2>
         <div className="faq">

@@ -61,7 +61,6 @@ const TOC = [
   { id: 'by-set', label: 'Which sets it comes from' },
   { id: 'patterns', label: 'Patterns worth knowing' },
   { id: 'full-map', label: 'The full card-by-card map' },
-  { id: 'how-we-checked', label: 'How we checked' },
   { id: 'faq', label: 'FAQ' },
 ]
 
@@ -161,6 +160,8 @@ function GemVol6OriginsPost() {
           Gem Packs reuse artwork from existing Pokémon TCG cards, reprinted in Simplified Chinese with new numbers and new holo patterns.
           We matched every artwork in Gem Vol 6 (Gem 6) to the English card it came from. The one exception is the Chinese Exclusive
           Applin full art, which has no English version.
+          For more on the set itself, see our <Link to="/blog/gem-vol-6-release-news">Gem Vol 6 release post</Link> and the{' '}
+          <Link to="/blog/gem-vol-6-set-guide">Gem Vol 6 set guide</Link>.
         </p>
 
         <nav className="toc" aria-label="In this guide">
@@ -277,16 +278,6 @@ function GemVol6OriginsPost() {
         <p>
           A few of these illustrations were reprinted again later in English, for example Dipplin, Okidogi, Munkidori and
           Fezandipiti in Prismatic Evolutions. The table lists where each one appeared first.
-        </p>
-
-        <h2 id="how-we-checked">How we checked</h2>
-        <p>
-          Lots of Pokémon have several cards by different artists, so a name match isn't enough. We matched each Gem card to its
-          English original by the illustrator printed on the card, and when two cards were close, we put them side by side.
-        </p>
-        <p>
-          For more on the set itself, see our <Link to="/blog/gem-vol-6-release-news">Gem Vol 6 release post</Link> and the{' '}
-          <Link to="/blog/gem-vol-6-set-guide">Gem Vol 6 set guide</Link>.
         </p>
 
         <h2 id="faq">FAQ</h2>

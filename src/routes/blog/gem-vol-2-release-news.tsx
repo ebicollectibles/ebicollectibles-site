@@ -53,7 +53,7 @@ const RARITY = [
 ]
 
 const TOC = [
-  { id: 'forest-full-arts', label: 'The Chinese Exclusives: four full arts, one forest' },
+  { id: 'forest-full-arts', label: 'The Chinese Exclusives: four full arts, one scene' },
   { id: 'vmax', label: 'Nine VMAX' },
   { id: 'how-the-set-works', label: 'How the set is built' },
   { id: 'eevee', label: "Eevee's 15 cards" },
@@ -84,7 +84,7 @@ const FAQ = [
   },
   {
     q: 'What are the Chinese Exclusives in Gem Vol 2?',
-    a: 'The four HYOGONOSUKE full arts: Eevee 0115/15, Umbreon 0615/15, Leafeon 0715/15 and Sylveon 0915/15, which join into one forest scene. After those, Umbreon VMAX and Sylveon VMAX lead the nine VMAX.',
+    a: 'The four HYOGONOSUKE full arts: Eevee 0115/15, Umbreon 0615/15, Leafeon 0715/15 and Sylveon 0915/15, which join into one scene. After those, Umbreon VMAX and Sylveon VMAX lead the nine VMAX.',
   },
 ]
 
@@ -151,7 +151,7 @@ function GemVol2Post() {
         updated={status.liveAt}
         wide
         post={post}
-        lede="The second Simplified Chinese Gem Pack is all about Eevee: 140 all-holo cards across Eevee and its eight evolutions, a V and VMAX for each, and four Chinese Exclusive full arts that join into one forest scene."
+        lede="The second Simplified Chinese Gem Pack is all about Eevee: 140 all-holo cards across Eevee and its eight evolutions, a V and VMAX for each, and four Chinese Exclusive full arts that join into one scene."
         cta={{
           heading: 'Shop Gem Vol 2',
           body: 'Booster boxes, plus the full 140-card checklist with every version.',
@@ -207,7 +207,7 @@ function GemVol2Post() {
           </ol>
         </nav>
 
-        <h2 id="forest-full-arts">The Chinese Exclusives: four full arts, one forest</h2>
+        <h2 id="forest-full-arts">The Chinese Exclusives: four full arts, one scene</h2>
         <p>
           The four Chinese Exclusives are full arts by HYOGONOSUKE, new artwork drawn for this set. Each works on its own, but lay them side by side in the
           order Leafeon, Sylveon, Umbreon, Eevee and they join into one long picture of the four resting and playing in a sunlit

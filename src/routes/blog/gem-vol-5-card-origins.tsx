@@ -63,7 +63,6 @@ const TOC = [
   { id: 'by-set', label: 'Which sets it comes from' },
   { id: 'patterns', label: 'Patterns worth knowing' },
   { id: 'full-map', label: 'The full card-by-card map' },
-  { id: 'how-we-checked', label: 'How we checked' },
   { id: 'faq', label: 'FAQ' },
 ]
 
@@ -163,6 +162,8 @@ function GemVol5OriginsPost() {
           Gem Packs reuse artwork from existing Pokémon TCG cards, reprinted in Simplified Chinese with new numbers and new holo patterns.
           We matched every artwork in Gem Vol 5 (Gem 5) to the English card it came from. The exceptions are Pokémon Horizons art,
           including the four Chinese Exclusive full arts of Captain Pikachu, Floragato, Crocalor and Quaxwell.
+          For more on the set itself, see our <Link to="/blog/gem-vol-5-release-news">Gem Vol 5 release post</Link> and the{' '}
+          <Link to="/blog/gem-vol-5-set-guide">Gem Vol 5 set guide</Link>.
         </p>
 
         <nav className="toc" aria-label="In this guide">
@@ -264,16 +265,6 @@ function GemVol5OriginsPost() {
           </table>
         </div>
         <p className="table-note">Card numbers are the first English printing. SVP numbers are Scarlet & Violet Black Star Promos.</p>
-
-        <h2 id="how-we-checked">How we checked</h2>
-        <p>
-          Lots of Pokémon have several cards by different artists, so a name match isn't enough. We matched each Gem card to its
-          English original by the illustrator printed on the card, and when two cards were close, we put them side by side.
-        </p>
-        <p>
-          For more on the set itself, see our <Link to="/blog/gem-vol-5-release-news">Gem Vol 5 release post</Link> and the{' '}
-          <Link to="/blog/gem-vol-5-set-guide">Gem Vol 5 set guide</Link>.
-        </p>
 
         <h2 id="faq">FAQ</h2>
         <div className="faq">

@@ -343,7 +343,6 @@ const TOC = [
   { id: 'patterns', label: 'Patterns worth knowing' },
   { id: 'secret-rares', label: 'All 65 secret rares' },
   { id: 'main-set', label: 'The 222-card main set' },
-  { id: 'how-we-checked', label: 'How we checked' },
   { id: 'faq', label: 'FAQ' },
 ]
 
@@ -611,14 +610,6 @@ function ChasingGloryOrigins() {
           {count(MAIN, 'ASC')} match Ascended Heroes.
         </p>
         <OriginsTable list={MAIN} />
-
-        <h2 id="how-we-checked">How we checked</h2>
-        <p>
-          We matched each card by its English name and rarity tier against the full Destined Rivals and Journey Together lists. Where a
-          name appears in both sets, like Torchic, Combusken and the two Team Rocket's Nidoran, we read the illustrator off the Chinese card
-          to pick the right one. Then we spot-checked illustrators across every rarity, from Commons up to the gold cards, and they all
-          matched.
-        </p>
 
         <h2 id="faq">FAQ</h2>
         <div className="faq">

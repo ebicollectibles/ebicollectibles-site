@@ -331,7 +331,6 @@ const TOC = [
   { id: 'patterns', label: 'Patterns worth knowing' },
   { id: 'secret-rares', label: 'All 51 secret rares' },
   { id: 'main-set', label: 'The 208-card main set' },
-  { id: 'how-we-checked', label: 'How we checked' },
   { id: 'faq', label: 'FAQ' },
 ]
 
@@ -596,14 +595,6 @@ function TerastalGatheringOrigins() {
 
         <h2 id="main-set">The 208-card main set</h2>
         <OriginsTable list={MAIN} />
-
-        <h2 id="how-we-checked">How we checked</h2>
-        <p>
-          Many of these cards have been printed several times in English with different art, so matching names was not enough. We compared
-          each Chinese card's art with every English printing of the same name from the Scarlet & Violet era on, then checked the close
-          calls and the cards with no match by eye. Where the same art appears in Prismatic Evolutions and an older set, we list Prismatic
-          Evolutions.
-        </p>
 
         <h2 id="faq">FAQ</h2>
         <div className="faq">

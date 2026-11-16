@@ -50,7 +50,6 @@ const TOC = [
   { id: 'patterns', label: 'Patterns worth knowing' },
   { id: 'full-map', label: 'The full card-by-card map' },
   { id: 'trainers', label: 'Trainer cards' },
-  { id: 'how-we-checked', label: 'How we checked' },
   { id: 'faq', label: 'FAQ' },
 ]
 
@@ -160,6 +159,8 @@ function GemVol2OriginsPost() {
           Gem Packs reuse artwork from existing Pokémon TCG cards, reprinted in Simplified Chinese with new numbers and new holo patterns.
           We matched every artwork in Gem Vol 2 (Gem 2) to the English card it came from. The only exceptions are the four Chinese Exclusive
           full arts by HYOGONOSUKE.
+          For more on the set itself, see our <Link to="/blog/gem-vol-2-release-news">Gem Vol 2 release post</Link> and the{' '}
+          <Link to="/blog/gem-vol-2-set-guide">Gem Vol 2 set guide</Link>.
         </p>
 
         <nav className="toc" aria-label="In this guide">
@@ -279,16 +280,6 @@ function GemVol2OriginsPost() {
             </tbody>
           </table>
         </div>
-
-        <h2 id="how-we-checked">How we checked</h2>
-        <p>
-          Lots of Pokémon have several cards by different artists, so a name match isn't enough. We matched each Gem card to its
-          English original by the illustrator printed on the card, and when two cards were close, we put them side by side.
-        </p>
-        <p>
-          For more on the set itself, see our <Link to="/blog/gem-vol-2-release-news">Gem Vol 2 release post</Link> and the{' '}
-          <Link to="/blog/gem-vol-2-set-guide">Gem Vol 2 set guide</Link>.
-        </p>
 
         <h2 id="faq">FAQ</h2>
         <div className="faq">

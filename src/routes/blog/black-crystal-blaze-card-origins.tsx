@@ -228,7 +228,6 @@ const TOC = [
   { id: 'patterns', label: 'Patterns worth knowing' },
   { id: 'secret-rares', label: 'All 35 secret rares' },
   { id: 'main-set', label: 'The 129-card main set' },
-  { id: 'how-we-checked', label: 'How we checked' },
   { id: 'faq', label: 'FAQ' },
 ]
 
@@ -469,13 +468,6 @@ function BlackCrystalBlazeOrigins() {
 
         <h2 id="main-set">The 129-card main set</h2>
         <OriginsTable list={MAIN} />
-
-        <h2 id="how-we-checked">How we checked</h2>
-        <p>
-          Many of these Pokémon have several English arts, so matching names was not enough. We compared each Chinese card's art with every
-          English printing of the same name from Scarlet & Violet onward, then checked the close calls and the cards with no match by eye.
-          Where the same art was printed more than once, we list the first set it appeared in.
-        </p>
 
         <h2 id="faq">FAQ</h2>
         <div className="faq">

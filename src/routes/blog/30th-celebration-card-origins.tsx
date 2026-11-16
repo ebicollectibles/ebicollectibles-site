@@ -72,7 +72,6 @@ const TOC = [
   { id: 'patterns', label: 'Patterns worth knowing' },
   { id: 'classic-map', label: 'All 30 classics, card by card' },
   { id: 'rest-of-set', label: 'The rest of the set' },
-  { id: 'how-we-checked', label: 'How we checked' },
   { id: 'faq', label: 'FAQ' },
 ]
 
@@ -171,6 +170,8 @@ function ThirtiethOriginsPost() {
         <p>
           The classic collection is the heart of this set: 30 cards from 1999 to 2023, reprinted in their original frames with a gold
           glitter border. We matched each one to the English card it first appeared on.
+          For more on the set itself, see our <Link to="/blog/30th-celebration-release-news">30th Celebration release post</Link>{' '}
+          and the <Link to="/blog/30th-celebration-set-guide">30th Celebration set guide</Link>.
         </p>
 
         <nav className="toc" aria-label="In this guide">
@@ -306,16 +307,6 @@ function ThirtiethOriginsPost() {
         <p>
           Two Art Rares are worth knowing about. Ditto 121/103 and Nidorina 114/103 were released in English only as Mega Promos, while
           here they come out of packs. All 33 Chinese promos are Mega Promos in English too.
-        </p>
-
-        <h2 id="how-we-checked">How we checked</h2>
-        <p>
-          We read the illustrator printed on each Chinese card, matched it to the English card with the same name and the same artist,
-          and put the two side by side to be sure.
-        </p>
-        <p>
-          For more on the set itself, see our <Link to="/blog/30th-celebration-release-news">30th Celebration release post</Link>{' '}
-          and the <Link to="/blog/30th-celebration-set-guide">30th Celebration set guide</Link>.
         </p>
 
         <h2 id="faq">FAQ</h2>
