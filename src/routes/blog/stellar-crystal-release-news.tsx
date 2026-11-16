@@ -98,6 +98,10 @@ const TOC = [
 
 const FAQ = [
   {
+    q: 'When was Stellar Crystal released?',
+    a: 'May 15, 2026, in mainland China. It is a Simplified Chinese release.',
+  },
+  {
     q: 'What is the Chinese Exclusive in Stellar Crystal?',
     a: "Lisia's Appeal 257/208, a Special Art Rare by En Morikura showing Lisia and her Altaria performing on stage in front of a crowd. English has a Lisia's Appeal Special Illustration Rare, but with different art.",
   },
@@ -106,8 +110,13 @@ const FAQ = [
     a: 'A slim pack has 5 cards: 4 non-holo and 1 holo. A jumbo pack has 20 cards: 14 non-holo and 6 holo. The card list is the same, and Pokémon China published a better odds chart for the jumbo pack.',
   },
   {
-    q: 'How often do the big hits turn up?',
-    a: 'Super Rares, Special Art Rares and Ultra Rares are 0.73% of slim cards and 1.00% of jumbo cards. That is about one in every 27 slim packs, against one in every 5 jumbo packs.',
+    q: 'What are the odds of pulling a Super Rare or better?',
+    a: "Super Rares, Special Art Rares and Ultra Rares make up 0.73% of slim-pack cards and 1.00% of jumbo-pack cards, going by Pokémon China's print shares. That averages about 0.55 per slim box (one in every 27 packs) and about 1.2 per jumbo box (one in every 5 packs).",
+  },
+  {
+    q: 'Where does the Stellar Crystal artwork come from?',
+    a: 'Mostly from English Surging Sparks (160 cards) and Stellar Crown (79). The rest match Shrouded Fable (10), Twilight Masquerade (8), SV Black Star Promos (6) and Prismatic Evolutions (2), plus one Chinese Exclusive.',
+    link: { to: '/sets/chinese/stellar-crystal-csv9', before: 'See every card on the ', label: 'Stellar Crystal card list', after: '.' },
   },
   {
     q: 'Who is on the Stellar Crystal pack?',
@@ -171,7 +180,11 @@ function StellarCrystalReleasePost() {
   const faqJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
-    mainEntity: FAQ.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
+    mainEntity: FAQ.map((f) => ({
+      '@type': 'Question',
+      name: f.q,
+      acceptedAnswer: { '@type': 'Answer', text: f.link ? `${f.a} ${f.link.before}${f.link.label}${f.link.after}` : f.a },
+    })),
   }
 
   return (
@@ -357,7 +370,17 @@ function StellarCrystalReleasePost() {
           {FAQ.map((f) => (
             <details key={f.q}>
               <summary>{f.q}</summary>
-              <p>{f.a}</p>
+              <p>
+                {f.a}
+                {f.link && (
+                  <>
+                    {' '}
+                    {f.link.before}
+                    <Link to={f.link.to as never}>{f.link.label}</Link>
+                    {f.link.after}
+                  </>
+                )}
+              </p>
             </details>
           ))}
         </div>

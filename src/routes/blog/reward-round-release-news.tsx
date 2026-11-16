@@ -85,6 +85,10 @@ const TOC = [
 
 const FAQ = [
   {
+    q: 'When was Reward Round released?',
+    a: 'July 18, 2025, in mainland China. It is a Simplified Chinese release.',
+  },
+  {
     q: 'What are the Chinese Exclusives in Reward Round?',
     a: 'Three: the gold Gholdengo ex Ultra Rare 162/129, the Maushold ex Special Art Rare 158/129 and the Rika Special Art Rare 159/129. None of them has an English version.',
   },
@@ -97,8 +101,13 @@ const FAQ = [
     a: '15 packs of 5 cards, so 75 cards with 15 holos.',
   },
   {
-    q: 'How many big hits are in a slim box?',
-    a: 'Super Rares, Special Art Rares and Ultra Rares are 0.73% of the 5-card print run, which works out to about 0.55 per 15-pack box, or one in every 27 packs on average.',
+    q: 'What are the odds of pulling a Super Rare or better?',
+    a: "Super Rares, Special Art Rares and Ultra Rares make up 0.73% of the 5-card print run, going by Pokémon China's print shares. That averages about 0.55 per 15-pack slim box, or one in every 27 packs.",
+  },
+  {
+    q: 'Where does the Reward Round artwork come from?',
+    a: 'From several English sets at once. Most of its cards match Obsidian Flames (69), Paldea Evolved (41) and Paradox Rift (31), and three new arts have no English version.',
+    link: { to: '/sets/chinese/reward-round-csv4', before: 'See every card on the ', label: 'Reward Round card list', after: '.' },
   },
   {
     q: 'How many cards are in Reward Round?',
@@ -158,7 +167,11 @@ function RewardRoundReleasePost() {
   const faqJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
-    mainEntity: FAQ.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
+    mainEntity: FAQ.map((f) => ({
+      '@type': 'Question',
+      name: f.q,
+      acceptedAnswer: { '@type': 'Answer', text: f.link ? `${f.a} ${f.link.before}${f.link.label}${f.link.after}` : f.a },
+    })),
   }
 
   return (
@@ -314,7 +327,17 @@ function RewardRoundReleasePost() {
           {FAQ.map((f) => (
             <details key={f.q}>
               <summary>{f.q}</summary>
-              <p>{f.a}</p>
+              <p>
+                {f.a}
+                {f.link && (
+                  <>
+                    {' '}
+                    {f.link.before}
+                    <Link to={f.link.to as never}>{f.link.label}</Link>
+                    {f.link.after}
+                  </>
+                )}
+              </p>
             </details>
           ))}
         </div>

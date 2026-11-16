@@ -80,6 +80,10 @@ const TOC = [
 
 const FAQ = [
   {
+    q: 'When was Terastal Gathering released?',
+    a: 'June 12, 2026, in mainland China. It is a Simplified Chinese release.',
+  },
+  {
     q: 'Is Terastal Gathering the Chinese Prismatic Evolutions?',
     a: 'Yes, it is the Simplified Chinese counterpart. 156 of its 259 cards share their art with Prismatic Evolutions, and the rest come from other Scarlet & Violet sets, English promos and two new arts.',
   },
@@ -96,8 +100,13 @@ const FAQ = [
     a: 'Umbreon ex 239/208 is the headline Special Art Rare, followed by the other Eeveelution SARs, the two Eevee ex SARs and the gold Pikachu ex 258/208.',
   },
   {
-    q: 'How many big hits are in a box?',
-    a: 'Special Art Rares, Super Rares and Ultra Rares are 1.40% of the print run, which works out to roughly 1.4 per 100-card box, or about one in every 7 packs. These are averages.',
+    q: 'What are the odds of pulling a Super Rare or better?',
+    a: "Super Rares, Special Art Rares and Ultra Rares make up 1.40% of the print run, going by Pokémon China's print shares. With 100 cards in a box, that averages about 1.4 per box, or roughly one in every 7 packs.",
+  },
+  {
+    q: 'Where does the Terastal Gathering artwork come from?',
+    a: 'Mostly from Prismatic Evolutions: 156 of its 259 cards share art with it, including 49 of the 51 secret rares. The rest come from other Scarlet & Violet sets, English promos and two new arts.',
+    link: { to: '/sets/chinese/terastal-gathering-csv9-5', before: 'See every card on the ', label: 'Terastal Gathering card list', after: '.' },
   },
 ]
 
@@ -153,7 +162,11 @@ function TerastalGatheringReleasePost() {
   const faqJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
-    mainEntity: FAQ.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
+    mainEntity: FAQ.map((f) => ({
+      '@type': 'Question',
+      name: f.q,
+      acceptedAnswer: { '@type': 'Answer', text: f.link ? `${f.a} ${f.link.before}${f.link.label}${f.link.after}` : f.a },
+    })),
   }
 
   return (
@@ -326,7 +339,17 @@ function TerastalGatheringReleasePost() {
           {FAQ.map((f) => (
             <details key={f.q}>
               <summary>{f.q}</summary>
-              <p>{f.a}</p>
+              <p>
+                {f.a}
+                {f.link && (
+                  <>
+                    {' '}
+                    {f.link.before}
+                    <Link to={f.link.to as never}>{f.link.label}</Link>
+                    {f.link.after}
+                  </>
+                )}
+              </p>
             </details>
           ))}
         </div>

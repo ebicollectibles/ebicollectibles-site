@@ -65,6 +65,10 @@ const TOC = [
 
 const FAQ = [
   {
+    q: 'When were the Dream Painting Pikachu figures released?',
+    a: 'September 16, 2026, in mainland China, the same day as the 30th Celebration booster set.',
+  },
+  {
     q: 'What is in a Dream Painting Pikachu blind box?',
     a: 'One random Pikachu figure, the 30th Celebration card it is based on, a clear display stand for the two, and one 30th Celebration booster pack of 6 cards.',
   },
@@ -77,12 +81,8 @@ const FAQ = [
     a: 'The classic Pikachu from 30th Celebration, card 136/103, a reprint of the 1999 Base Set Pikachu drawn by Mitsuhiro Arita. It comes with that card.',
   },
   {
-    q: 'What are the odds of the secret figure?',
+    q: 'What are the odds of pulling the secret figure?',
     a: 'Pokémon China gives a production ratio of 143 regular boxes to 1 secret, so about 1 box in 144. The 12 regular figures are made in equal numbers.',
-  },
-  {
-    q: 'When did the Dream Painting Pikachu figures release?',
-    a: 'September 16, 2026, the same day as the 30th Celebration booster set.',
   },
   {
     q: 'What does figure 18/30 mean?',

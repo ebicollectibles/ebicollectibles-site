@@ -90,6 +90,10 @@ const TOC = [
 
 const FAQ = [
   {
+    q: 'When was Black Crystal Blaze released?',
+    a: 'September 12, 2025, in mainland China. It is a Simplified Chinese release.',
+  },
+  {
     q: 'What are the Chinese Exclusives in Black Crystal Blaze?',
     a: 'Two: the Larry Special Art Rare 157/129 by Kariya and the gold Defiance Band Ultra Rare 164/129 by inose yukie. Neither has an English version.',
   },
@@ -98,8 +102,13 @@ const FAQ = [
     a: 'A slim box has 15 packs of 5 cards, 75 cards with 15 holos. A jumbo box has 6 packs of 20 cards, 120 cards with 36 holos. Both pull from the same card list.',
   },
   {
-    q: 'How many big hits are in a slim box?',
-    a: 'Super Rares, Special Art Rares and Ultra Rares are 0.73% of the 5-card print run, about 0.55 per slim box, or one in every 27 packs on average.',
+    q: 'What are the odds of pulling a Super Rare or better?',
+    a: "Super Rares, Special Art Rares and Ultra Rares make up 0.73% of the 5-card print run, going by Pokémon China's print shares. That averages about 0.55 per 15-pack slim box, or one in every 27 packs.",
+  },
+  {
+    q: 'Where does the Black Crystal Blaze artwork come from?',
+    a: 'From several English sets at once. Most of its cards match Paradox Rift (73), Obsidian Flames (61) and Paldean Fates (18), and two new arts have no English version.',
+    link: { to: '/sets/chinese/black-crystal-blaze-csv5', before: 'See every card on the ', label: 'Black Crystal Blaze card list', after: '.' },
   },
   {
     q: 'Which Charizard ex is the chase card?',
@@ -163,7 +172,11 @@ function BlackCrystalBlazeReleasePost() {
   const faqJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
-    mainEntity: FAQ.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
+    mainEntity: FAQ.map((f) => ({
+      '@type': 'Question',
+      name: f.q,
+      acceptedAnswer: { '@type': 'Answer', text: f.link ? `${f.a} ${f.link.before}${f.link.label}${f.link.after}` : f.a },
+    })),
   }
 
   return (
@@ -320,7 +333,17 @@ function BlackCrystalBlazeReleasePost() {
           {FAQ.map((f) => (
             <details key={f.q}>
               <summary>{f.q}</summary>
-              <p>{f.a}</p>
+              <p>
+                {f.a}
+                {f.link && (
+                  <>
+                    {' '}
+                    {f.link.before}
+                    <Link to={f.link.to as never}>{f.link.label}</Link>
+                    {f.link.after}
+                  </>
+                )}
+              </p>
             </details>
           ))}
         </div>

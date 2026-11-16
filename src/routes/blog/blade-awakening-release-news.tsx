@@ -132,6 +132,10 @@ const TOC = [
 
 const FAQ = [
   {
+    q: 'When was Blade Awakening released?',
+    a: 'January 16, 2026, in mainland China. It is a Simplified Chinese release.',
+  },
+  {
     q: 'What is the Chinese Exclusive in Blade Awakening?',
     a: "Ciphermaniac's Codebreaking 245/204, a Special Art Rare by Taira Akitsu. Pokémon China says it was added specially to this set. English has Ciphermaniac's Codebreaking as a Supporter and a full art, but not this illustration.",
   },
@@ -140,8 +144,13 @@ const FAQ = [
     a: 'A slim pack has 5 cards: 4 non-holo and 1 holo. A jumbo pack has 20 cards: 14 non-holo and 6 holo. The card list is the same, but the jumbo pack has better published odds for every holo band.',
   },
   {
-    q: 'Which box gives more chase cards?',
-    a: 'The jumbo box. Pokémon China prints Super Rares, Special Art Rares and Ultra Rares at 1.00% of jumbo cards against 0.73% of slim cards, so a jumbo box averages about 1.2 of them and a slim box about 0.55.',
+    q: 'What are the odds of pulling a Super Rare or better?',
+    a: "Super Rares, Special Art Rares and Ultra Rares make up 0.73% of slim-pack cards and 1.00% of jumbo-pack cards, going by Pokémon China's print shares. That averages about 0.55 per slim box (one in every 27 packs) and about 1.2 per jumbo box (one in every 5 packs). The jumbo box gives you more of them.",
+  },
+  {
+    q: 'Where does the Blade Awakening artwork come from?',
+    a: 'Mostly from English Temporal Forces, which matches 173 of its 259 cards, with 68 more from Twilight Masquerade. The other 17 come from six English sources, and one card is the new Chinese Exclusive.',
+    link: { to: '/sets/chinese/blade-awakening-csv7', before: 'See every card on the ', label: 'Blade Awakening card list', after: '.' },
   },
   {
     q: 'How many ACE SPEC cards are in Blade Awakening?',
@@ -205,7 +214,11 @@ function BladeAwakeningReleasePost() {
   const faqJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
-    mainEntity: FAQ.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
+    mainEntity: FAQ.map((f) => ({
+      '@type': 'Question',
+      name: f.q,
+      acceptedAnswer: { '@type': 'Answer', text: f.link ? `${f.a} ${f.link.before}${f.link.label}${f.link.after}` : f.a },
+    })),
   }
 
   return (
@@ -470,7 +483,17 @@ function BladeAwakeningReleasePost() {
           {FAQ.map((f) => (
             <details key={f.q}>
               <summary>{f.q}</summary>
-              <p>{f.a}</p>
+              <p>
+                {f.a}
+                {f.link && (
+                  <>
+                    {' '}
+                    {f.link.before}
+                    <Link to={f.link.to as never}>{f.link.label}</Link>
+                    {f.link.after}
+                  </>
+                )}
+              </p>
             </details>
           ))}
         </div>

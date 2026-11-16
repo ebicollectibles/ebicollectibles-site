@@ -95,6 +95,10 @@ const TOC = [
 
 const FAQ = [
   {
+    q: 'When was True Mystery released?',
+    a: 'November 7, 2025, in mainland China. It is a Simplified Chinese release.',
+  },
+  {
     q: 'What is the Chinese Exclusive in True Mystery?',
     a: 'The Iron Hands ex Special Art Rare 152/128 by Tonji Matsuno. It is new art for this set, and it has no English version.',
   },
@@ -103,8 +107,13 @@ const FAQ = [
     a: 'A slim box has 15 packs of 5 cards, 75 cards with 15 holos. A jumbo box has 6 packs of 20 cards, 120 cards with 36 holos. Both pull from the same card list.',
   },
   {
-    q: 'What are the pull rates for True Mystery?',
-    a: 'Pokémon China prints Super Rares, Special Art Rares and Ultra Rares together at 0.73% of slim-pack cards and 1.00% of jumbo-pack cards. That is about one every 27 slim packs or every 5 jumbo packs, or about 0.55 per slim box and 1.2 per jumbo box.',
+    q: 'What are the odds of pulling a Super Rare or better?',
+    a: "Super Rares, Special Art Rares and Ultra Rares make up 0.73% of slim-pack cards and 1.00% of jumbo-pack cards, going by Pokémon China's print shares. That averages about 0.55 per slim box (one in every 27 packs) and about 1.2 per jumbo box (one in every 5 packs).",
+  },
+  {
+    q: 'Where does the True Mystery artwork come from?',
+    a: 'Mostly from Paradox Rift: 128 of its 163 cards match it. The rest come from Obsidian Flames (16), Paldean Fates (15), 151 (1) and an SV Black Star Promo (1), plus 2 cards with no English version.',
+    link: { to: '/sets/chinese/true-mystery-csv6', before: 'See every card on the ', label: 'True Mystery card list', after: '.' },
   },
   {
     q: 'Who is on the True Mystery pack?',
@@ -168,7 +177,11 @@ function TrueMysteryReleasePost() {
   const faqJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
-    mainEntity: FAQ.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
+    mainEntity: FAQ.map((f) => ({
+      '@type': 'Question',
+      name: f.q,
+      acceptedAnswer: { '@type': 'Answer', text: f.link ? `${f.a} ${f.link.before}${f.link.label}${f.link.after}` : f.a },
+    })),
   }
 
   return (
@@ -336,7 +349,17 @@ function TrueMysteryReleasePost() {
           {FAQ.map((f) => (
             <details key={f.q}>
               <summary>{f.q}</summary>
-              <p>{f.a}</p>
+              <p>
+                {f.a}
+                {f.link && (
+                  <>
+                    {' '}
+                    {f.link.before}
+                    <Link to={f.link.to as never}>{f.link.label}</Link>
+                    {f.link.after}
+                  </>
+                )}
+              </p>
             </details>
           ))}
         </div>

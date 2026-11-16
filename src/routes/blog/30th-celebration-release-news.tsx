@@ -106,8 +106,12 @@ const TOC = [
 
 const FAQ = [
   {
+    q: 'When was 30th Celebration released?',
+    a: 'September 16, 2026, in mainland China. It was the first Pokémon TCG product released worldwide on the same day.',
+  },
+  {
     q: 'Is the Chinese 30th Celebration the same set as the English and Japanese ones?',
-    a: 'It is the same release. It came out on September 16, 2026, the first Pokémon TCG product released worldwide on the same day, and its card list matches the Japanese 30th Celebration card for card. English splits some cards out differently and adds 25 cards of its own, which our card origins guide covers.',
+    a: 'It is the same release, and its card list matches the Japanese 30th Celebration card for card. English splits some cards out differently and adds 25 cards of its own, which our card origins guide covers.',
   },
   {
     q: 'How many packs come in a booster box?',
@@ -120,6 +124,15 @@ const FAQ = [
   {
     q: 'What are the main chase cards?',
     a: 'The two Futuristic Rares, Mewtwo ex 134/103 and Mew ex 135/103 by YOSHIROTTEN, the Pikachu ex Special Art Rares, and the classic Charizard 137/103.',
+  },
+  {
+    q: 'What are the odds of pulling a Special Art Rare or better?',
+    a: "Special Art Rares, Futuristic Rares and the three RGB mark cards make up 1.00% of the print run, going by Pokémon China's print shares. With 120 cards in a box, that averages about 1.2 per box, or roughly one in every 17 packs.",
+  },
+  {
+    q: 'Where does the 30th Celebration artwork come from?',
+    a: 'Every card in the Chinese set is also in English, though split differently. The 30 classic cards reprint famous English cards from 1999 to 2023, from Base Set Charizard and Pikachu to the Paldea Evolved Magikarp Illustration Rare.',
+    link: { to: '/sets/chinese/30th-celebration', before: 'See every card on the ', label: '30th Celebration card list', after: '.' },
   },
   {
     q: 'Are the classic cards legal to play?',
@@ -179,7 +192,11 @@ function ThirtiethReleasePost() {
   const faqJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
-    mainEntity: FAQ.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
+    mainEntity: FAQ.map((f) => ({
+      '@type': 'Question',
+      name: f.q,
+      acceptedAnswer: { '@type': 'Answer', text: f.link ? `${f.a} ${f.link.before}${f.link.label}${f.link.after}` : f.a },
+    })),
   }
 
   return (
@@ -398,7 +415,17 @@ function ThirtiethReleasePost() {
           {FAQ.map((f) => (
             <details key={f.q}>
               <summary>{f.q}</summary>
-              <p>{f.a}</p>
+              <p>
+                {f.a}
+                {f.link && (
+                  <>
+                    {' '}
+                    {f.link.before}
+                    <Link to={f.link.to as never}>{f.link.label}</Link>
+                    {f.link.after}
+                  </>
+                )}
+              </p>
             </details>
           ))}
         </div>

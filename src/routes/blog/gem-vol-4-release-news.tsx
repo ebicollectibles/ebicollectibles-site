@@ -67,6 +67,10 @@ const GEM_TIMELINE = [
 
 const FAQ = [
   {
+    q: 'When was Gem Vol 4 released?',
+    a: 'February 6, 2026, in mainland China. It is a Simplified Chinese release.',
+  },
+  {
     q: 'Is Gem 4 the same as "Gemstone Vol. 4"?',
     a: 'Yes. The Chinese name, 宝石包, translates as both "gem pack" and "gemstone pack", so shops use either one. The set code on the cards is CBB4C.',
   },
@@ -81,6 +85,15 @@ const FAQ = [
   {
     q: 'What is the Chinese Exclusive in Gem Vol 4?',
     a: 'Ponyta 0107/07, the full art by MINAMINAMI Take drawn for this set, and the main chase card. Beyond that, collectors chase the 28 full arts (every card numbered 07).',
+  },
+  {
+    q: 'What are the odds of pulling a full art?',
+    a: "Full arts make up 1.81% of the print run, going by Pokémon China's print shares. With 72 cards in a box, that averages about 1.3 full arts per box, or roughly one in every 14 packs.",
+  },
+  {
+    q: 'Where does the Gem 4 artwork come from?',
+    a: 'Mostly from English cards. 55 of the 56 artworks are the same art you will find on English cards, mostly from Temporal Forces and Twilight Masquerade.',
+    link: { to: '/sets/chinese/gem-vol-4', before: 'See every card on the ', label: 'Gem Vol 4 card list', after: '.' },
   },
 ]
 
@@ -136,7 +149,11 @@ function GemVol4Post() {
   const faqJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
-    mainEntity: FAQ.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
+    mainEntity: FAQ.map((f) => ({
+      '@type': 'Question',
+      name: f.q,
+      acceptedAnswer: { '@type': 'Answer', text: f.link ? `${f.a} ${f.link.before}${f.link.label}${f.link.after}` : f.a },
+    })),
   }
 
   return (
@@ -363,7 +380,17 @@ function GemVol4Post() {
           {FAQ.map((f) => (
             <details key={f.q}>
               <summary>{f.q}</summary>
-              <p>{f.a}</p>
+              <p>
+                {f.a}
+                {f.link && (
+                  <>
+                    {' '}
+                    {f.link.before}
+                    <Link to={f.link.to as never}>{f.link.label}</Link>
+                    {f.link.after}
+                  </>
+                )}
+              </p>
             </details>
           ))}
         </div>

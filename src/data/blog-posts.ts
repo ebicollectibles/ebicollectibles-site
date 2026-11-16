@@ -40,6 +40,9 @@ export const BLOG_POSTS: BlogPostSummary[] = [
     title: 'True Mystery Is Here: Iron Valiant, Roaring Moon and a Chinese-Only Iron Hands ex SAR',
     excerpt:
       'The CSV6C set brings the Paradox Pokémon to Simplified Chinese, with Iron Valiant on the pack, slim and jumbo boxes, and an Iron Hands ex Special Art Rare you can only pull in Chinese.',
+    seoTitle: 'Pokémon True Mystery (CSV6C): Iron Hands ex SAR & Release Info',
+    seoDescription:
+      'Pokémon TCG True Mystery (CSV6C) in Simplified Chinese: Iron Valiant on the pack, slim and jumbo boxes, and a Chinese Exclusive Iron Hands ex SAR.',
     tag: 'New release',
     date: '2025-11-07',
     heroImage: `${SITE_URL}/assets/blog/true-mystery-release-hero-v10.webp`,
@@ -53,6 +56,9 @@ export const BLOG_POSTS: BlogPostSummary[] = [
     title: 'True Mystery Set Guide: Slim vs Jumbo, Every Chase Card and the Paradox Runs',
     excerpt:
       'Slim box or jumbo box, every Special Art Rare, Super Rare, Ultra Rare and Art Rare, each Paradox Pokémon ex at every rarity, and how the 163 numbers work.',
+    seoTitle: 'Pokémon True Mystery (CSV6C) Set Guide: Chase Cards & Box Odds',
+    seoDescription:
+      'Pokémon TCG True Mystery (CSV6C) set guide: slim vs jumbo box odds, every Special Art Rare and Super Rare, and how the 163 cards are numbered.',
     tag: 'Set guide',
     date: '2025-11-07',
     heroImage: `${SITE_URL}/assets/blog/true-mystery-guide-hero-v10.webp`,
@@ -66,6 +72,9 @@ export const BLOG_POSTS: BlogPostSummary[] = [
     title: 'Where Every True Mystery Card Comes From',
     excerpt:
       'All 163 cards matched to English: 128 from Paradox Rift, 16 from Obsidian Flames, 15 from Paldean Fates, 2 from other sources and 2 with no English version.',
+    seoTitle: 'Pokémon True Mystery (CSV6C) Card Origins: English Art Matches',
+    seoDescription:
+      'All 163 Pokémon TCG True Mystery (CSV6C) cards matched to English: 128 from Paradox Rift, 16 from Obsidian Flames and 15 from Paldean Fates.',
     tag: 'Collecting guide',
     date: '2025-11-07',
     heroImage: `${SITE_URL}/assets/blog/true-mystery-origins-hero-v10.webp`,
@@ -79,6 +88,9 @@ export const BLOG_POSTS: BlogPostSummary[] = [
     title: "Blade Awakening Is Here: Tera Greninja ex, ACE SPEC Cards and a Chinese-Only Ciphermaniac SAR",
     excerpt:
       "The CSV7C set puts Tera Greninja ex on the pack, adds nine ACE SPEC cards, and includes a Ciphermaniac's Codebreaking Special Art Rare made just for Simplified Chinese.",
+    seoTitle: 'Pokémon Blade Awakening (CSV7C): Tera Greninja ex & Release Info',
+    seoDescription:
+      "Pokémon TCG Blade Awakening (CSV7C): Tera Greninja ex on the pack, nine ACE SPEC cards, and a Chinese Exclusive Ciphermaniac's Codebreaking SAR.",
     tag: 'New release',
     date: '2026-01-16',
     heroImage: `${SITE_URL}/assets/blog/blade-awakening-release-hero-v10.webp`,
@@ -92,6 +104,9 @@ export const BLOG_POSTS: BlogPostSummary[] = [
     title: 'Blade Awakening Set Guide: Slim vs Jumbo Odds, Every Chase Card and the ACE SPECs',
     excerpt:
       'Slim box or jumbo box on the official odds, every Special Art Rare, Super Rare, Ultra Rare, Art Rare and ACE SPEC card, each Pokémon ex at every rarity, and the 605-card master set.',
+    seoTitle: 'Pokémon Blade Awakening (CSV7C) Set Guide: Chase Cards & Box Odds',
+    seoDescription:
+      'Pokémon TCG Blade Awakening (CSV7C) set guide: slim vs jumbo box odds, every Special Art Rare and ACE SPEC card, and the 605-card master set.',
     tag: 'Set guide',
     date: '2026-01-16',
     heroImage: `${SITE_URL}/assets/blog/blade-awakening-guide-hero-v10.webp`,
@@ -105,6 +120,9 @@ export const BLOG_POSTS: BlogPostSummary[] = [
     title: 'Where Every Blade Awakening Card Comes From',
     excerpt:
       'All 259 cards matched to English: 173 from Temporal Forces, 68 from Twilight Masquerade, 17 from six other sources and 1 new art.',
+    seoTitle: 'Pokémon Blade Awakening (CSV7C) Card Origins: English Art Matches',
+    seoDescription:
+      'All 259 Pokémon TCG Blade Awakening (CSV7C) cards matched to English: 173 from Temporal Forces, 68 from Twilight Masquerade and 1 new art.',
     tag: 'Collecting guide',
     date: '2026-01-16',
     heroImage: `${SITE_URL}/assets/blog/blade-awakening-origins-hero-v10.webp`,
@@ -118,6 +136,9 @@ export const BLOG_POSTS: BlogPostSummary[] = [
     title: 'Brilliant Fantasy Is Here: Milotic, Every Ogerpon Mask and a Chinese-Only Carmine SAR',
     excerpt:
       'Milotic takes the pack of the Kitakami set, with all four Ogerpon ex, the Loyal Three and Pecharunt ex, and a Carmine Special Art Rare you can only pull in Simplified Chinese.',
+    seoTitle: 'Pokémon Brilliant Fantasy (CSV8C): Carmine SAR & Release Info',
+    seoDescription:
+      'Pokémon TCG Brilliant Fantasy (CSV8C) in Simplified Chinese: Milotic on the pack, all four Ogerpon ex, Pecharunt ex, and a Chinese Exclusive Carmine SAR.',
     tag: 'New release',
     date: '2026-03-13',
     heroImage: `${SITE_URL}/assets/blog/brilliant-fantasy-release-hero-v10.webp`,
@@ -131,6 +152,9 @@ export const BLOG_POSTS: BlogPostSummary[] = [
     title: 'Brilliant Fantasy Set Guide: Slim vs Jumbo, Every Chase Card and the Ogerpon Run',
     excerpt:
       'Slim box or jumbo box, every Special Art Rare, Super Rare, Ultra Rare and Art Rare, each Pokémon ex at every rarity, and what a 616-card master set takes.',
+    seoTitle: 'Brilliant Fantasy (CSV8C) Set Guide: Chase Cards & Box Odds',
+    seoDescription:
+      'Pokémon TCG Brilliant Fantasy (CSV8C) set guide: slim vs jumbo boxes, every Special Art Rare and Super Rare, Ogerpon ex, and the 616-card master set.',
     tag: 'Set guide',
     date: '2026-03-13',
     heroImage: `${SITE_URL}/assets/blog/brilliant-fantasy-guide-hero-v10.webp`,
@@ -144,6 +168,9 @@ export const BLOG_POSTS: BlogPostSummary[] = [
     title: 'Where Every Brilliant Fantasy Card Comes From',
     excerpt:
       'All 264 cards matched to English: 109 from Twilight Masquerade, 76 from Shrouded Fable, 38 from Surging Sparks, 40 from five other sources and 1 new.',
+    seoTitle: 'Brilliant Fantasy (CSV8C) Card Origins: English Art Matches',
+    seoDescription:
+      'All 264 Pokémon TCG Brilliant Fantasy (CSV8C) cards matched to English: 109 from Twilight Masquerade, 76 from Shrouded Fable and 38 from Surging Sparks.',
     tag: 'Collecting guide',
     date: '2026-03-13',
     heroImage: `${SITE_URL}/assets/blog/brilliant-fantasy-origins-hero-v10.webp`,
@@ -157,6 +184,9 @@ export const BLOG_POSTS: BlogPostSummary[] = [
     title: "Stellar Crystal Is Here: Stellar Tera Pikachu ex and a Chinese-Only Lisia's Appeal SAR",
     excerpt:
       "Stellar Tera Pikachu takes the pack of the Terapagos set, with Pikachu ex at four rarities and a Lisia's Appeal Special Art Rare you can only pull in Simplified Chinese.",
+    seoTitle: 'Pokémon Stellar Crystal (CSV9C): Pikachu ex & Release Info',
+    seoDescription:
+      "Pokémon TCG Stellar Crystal (CSV9C): Stellar Tera Pikachu on the pack, Pikachu ex at four rarities, and a Chinese Exclusive Lisia's Appeal SAR.",
     tag: 'New release',
     date: '2026-05-15',
     heroImage: `${SITE_URL}/assets/blog/stellar-crystal-release-hero-v10.webp`,
@@ -170,6 +200,9 @@ export const BLOG_POSTS: BlogPostSummary[] = [
     title: 'Stellar Crystal Set Guide: Slim vs Jumbo, Every Chase Card and the Pikachu Run',
     excerpt:
       'Slim pack or jumbo pack, every Special Art Rare, Super Rare, Ultra Rare and Art Rare, each Pokémon ex at every rarity, and what a 620-card master set takes.',
+    seoTitle: 'Pokémon Stellar Crystal (CSV9C) Set Guide: Chase Cards & Box Odds',
+    seoDescription:
+      'Pokémon TCG Stellar Crystal (CSV9C) set guide: slim vs jumbo packs, every Special Art Rare and Super Rare, the Pikachu ex run, and the 620-card master set.',
     tag: 'Set guide',
     date: '2026-05-15',
     heroImage: `${SITE_URL}/assets/blog/stellar-crystal-guide-hero-v10.webp`,
@@ -183,6 +216,9 @@ export const BLOG_POSTS: BlogPostSummary[] = [
     title: 'Where Every Stellar Crystal Card Comes From',
     excerpt:
       'All 266 cards matched to English: 160 from Surging Sparks, 79 from Stellar Crown, 26 from four other sources including 6 promos, and 1 new.',
+    seoTitle: 'Pokémon Stellar Crystal (CSV9C) Card Origins: English Art Matches',
+    seoDescription:
+      'All 266 Pokémon TCG Stellar Crystal (CSV9C) cards matched to English: 160 from Surging Sparks, 79 from Stellar Crown, 26 from other sources and 1 new.',
     tag: 'Collecting guide',
     date: '2026-05-15',
     heroImage: `${SITE_URL}/assets/blog/stellar-crystal-origins-hero-v10.webp`,
@@ -197,6 +233,9 @@ export const BLOG_POSTS: BlogPostSummary[] = [
     title: 'Dream Painting Pikachu Figures Are Here: 12 Cards Come to Life, Plus a Secret',
     excerpt:
       'Twelve 30th Celebration Pikachu cards turned into figures that step out of their own card, each with the card, a stand and a booster pack, and a secret classic Pikachu in 1 box out of 144.',
+    seoTitle: 'Dream Painting Pikachu Figure Blind Box: Secret & Release Info',
+    seoDescription:
+      'Pokémon Dream Painting Pikachu blind box: 12 figures from 30th Celebration Pikachu cards, each with its card, a stand and a pack, plus a 1 in 144 secret.',
     tag: 'New release',
     date: '2026-09-16',
     heroImage: `${SITE_URL}/assets/blog/pikachu-dream-painting-figures-release-hero-v10.webp`,
@@ -210,6 +249,9 @@ export const BLOG_POSTS: BlogPostSummary[] = [
     title: 'Funism Happy Ditto Is Here: 12 Transformations, 3 Figures a Box',
     excerpt:
       'Funism’s Palm-Size Wonders Happy Ditto blind box: Ditto copies 12 Pokémon but keeps its own face, three figures to a Ditto-shaped box, and no secret announced.',
+    seoTitle: 'Funism Happy Ditto Blind Box: Pokémon Palm-Size Wonders Figures',
+    seoDescription:
+      "Funism's Pokémon Palm-Size Wonders Happy Ditto blind box: Ditto copies 12 Pokémon but keeps its own face, with three figures in each Ditto-shaped box.",
     tag: 'New release',
     date: '2026-11-15',
     heroImage: `${SITE_URL}/assets/blog/funism-ditto-palm-size-wonders-release-hero-v10.webp`,
@@ -223,6 +265,9 @@ export const BLOG_POSTS: BlogPostSummary[] = [
     title: 'Black Bolt Set Guide: Slim vs Jumbo Odds, Zekrom ex and Every Chase Card',
     excerpt:
       'Slim or jumbo? What each box holds on average from Pokémon China\'s two odds charts, the Zekrom ex Black White Rare, every Special Art Rare and Super Rare, and what a 334-card master set takes.',
+    seoTitle: 'Pokémon Black Bolt (CSV10.5C) Set Guide: Chase Cards & Box Odds',
+    seoDescription:
+      "Pokémon TCG Black Bolt (CSV10.5C) set guide: slim vs jumbo odds, the Zekrom ex Black White Rare, the Chinese Exclusive N's Plan SAR, and the master set.",
     tag: 'Set guide',
     date: '2026-11-06',
     heroImage: `${SITE_URL}/assets/blog/black-bolt-guide-hero-v10.webp`,
@@ -236,6 +281,9 @@ export const BLOG_POSTS: BlogPostSummary[] = [
     title: 'Where Every Black Bolt Card Comes From',
     excerpt:
       'All 174 cards traced to English: 160 from English Black Bolt, 10 from White Flare after five Pokémon swapped sets, 3 Art Rares from Black Star Promos, and a new N\'s Plan SAR.',
+    seoTitle: 'Pokémon Black Bolt (CSV10.5C) Card Origins: English Art Matches',
+    seoDescription:
+      "All 174 Pokémon TCG Black Bolt (CSV10.5C) cards traced to English: 160 from Black Bolt, 10 from White Flare, 3 Black Star Promos and a new N's Plan SAR.",
     tag: 'Collecting guide',
     date: '2026-11-06',
     heroImage: `${SITE_URL}/assets/blog/black-bolt-origins-hero-v10.webp`,
@@ -249,6 +297,9 @@ export const BLOG_POSTS: BlogPostSummary[] = [
     title: 'White Flare Set Guide: Slim vs Jumbo Odds, Reshiram ex and Every Chase Card',
     excerpt:
       'Slim or jumbo? What each box holds on average from Pokémon China\'s two odds charts, the Reshiram ex Black White Rare, every Special Art Rare and Super Rare, and what a 334-card master set takes.',
+    seoTitle: 'Pokémon White Flare (CSV10.6C) Set Guide: Chase Cards & Box Odds',
+    seoDescription:
+      'Pokémon TCG White Flare (CSV10.6C) set guide: slim vs jumbo odds, the Reshiram ex Black White Rare, the Chinese Exclusive Hilda SAR, and the master set.',
     tag: 'Set guide',
     date: '2026-11-06',
     heroImage: `${SITE_URL}/assets/blog/white-flare-guide-hero-v10.webp`,
@@ -262,6 +313,9 @@ export const BLOG_POSTS: BlogPostSummary[] = [
     title: 'Where Every White Flare Card Comes From',
     excerpt:
       'All 174 cards traced to English: 161 from English White Flare, 10 from Black Bolt after five Pokémon swapped sets, 2 Art Rares from Black Star Promos, and a new Hilda SAR.',
+    seoTitle: 'Pokémon White Flare (CSV10.6C) Card Origins: English Art Matches',
+    seoDescription:
+      'All 174 Pokémon TCG White Flare (CSV10.6C) cards traced to English: 161 from White Flare, 10 from Black Bolt, 2 Black Star Promos and a new Hilda SAR.',
     tag: 'Collecting guide',
     date: '2026-11-06',
     heroImage: `${SITE_URL}/assets/blog/white-flare-origins-hero-v10.webp`,
@@ -275,6 +329,9 @@ export const BLOG_POSTS: BlogPostSummary[] = [
     title: 'Black Crystal Blaze Is Here: Darkness Tera Charizard ex and a Chinese-Only Larry SAR',
     excerpt:
       'The fifth Chinese Scarlet & Violet set puts Darkness Tera Charizard ex on the pack, with a Larry Special Art Rare and a gold Defiance Band you can only pull in Simplified Chinese.',
+    seoTitle: 'Pokémon Black Crystal Blaze (CSV5C): Charizard ex & Release Info',
+    seoDescription:
+      'Pokémon TCG Black Crystal Blaze (CSV5C): Darkness Tera Charizard ex on the pack, plus a Chinese Exclusive Larry SAR and gold Defiance Band.',
     tag: 'New release',
     date: '2025-09-12',
     heroImage: `${SITE_URL}/assets/blog/black-crystal-blaze-release-hero-v10.webp`,
@@ -288,6 +345,9 @@ export const BLOG_POSTS: BlogPostSummary[] = [
     title: 'Black Crystal Blaze Set Guide: Slim vs Jumbo, Every Chase Card and the Charizard Run',
     excerpt:
       'Slim box or jumbo box, every Ultra Rare, Special Art Rare, Super Rare and Art Rare, each Pokémon ex at every rarity, and what a master set takes.',
+    seoTitle: 'Black Crystal Blaze (CSV5C) Set Guide: Chase Cards & Box Odds',
+    seoDescription:
+      'Pokémon TCG Black Crystal Blaze (CSV5C) set guide: slim vs jumbo boxes, every Special Art Rare and Super Rare, Charizard ex, and the 394-card master set.',
     tag: 'Set guide',
     date: '2025-09-12',
     heroImage: `${SITE_URL}/assets/blog/black-crystal-blaze-guide-hero-v10.webp`,
@@ -301,6 +361,9 @@ export const BLOG_POSTS: BlogPostSummary[] = [
     title: 'Where Every Black Crystal Blaze Card Comes From',
     excerpt:
       'All 164 cards matched to English: 73 from Paradox Rift, 61 from Obsidian Flames, 18 from Paldean Fates, 10 from five other sources and 2 new.',
+    seoTitle: 'Black Crystal Blaze (CSV5C) Card Origins: English Art Matches',
+    seoDescription:
+      'All 164 Pokémon TCG Black Crystal Blaze (CSV5C) cards matched to English: 73 from Paradox Rift, 61 from Obsidian Flames, 18 from Paldean Fates and 2 new.',
     tag: 'Collecting guide',
     date: '2025-09-12',
     heroImage: `${SITE_URL}/assets/blog/black-crystal-blaze-origins-hero-v10.webp`,
@@ -314,6 +377,9 @@ export const BLOG_POSTS: BlogPostSummary[] = [
     title: 'Reward Round Is Here: Gold Gholdengo and Two Chinese-Only SARs',
     excerpt:
       'The fourth Chinese Scarlet & Violet set puts Gholdengo on the pack, with a gold Gholdengo ex, a Maushold ex SAR and a Rika SAR you can only pull in Simplified Chinese.',
+    seoTitle: 'Pokémon Reward Round (CSV4C): Gold Gholdengo ex & Release Info',
+    seoDescription:
+      'Pokémon TCG Reward Round (CSV4C): Gholdengo on the pack and three Chinese Exclusives, a gold Gholdengo ex, a Maushold ex SAR and a Rika SAR.',
     tag: 'New release',
     date: '2025-07-18',
     heroImage: `${SITE_URL}/assets/blog/reward-round-release-hero-v10.webp`,
@@ -327,6 +393,9 @@ export const BLOG_POSTS: BlogPostSummary[] = [
     title: 'Reward Round Set Guide: Every Chase Card and What a Slim Box Holds',
     excerpt:
       'Every Ultra Rare, Special Art Rare, Super Rare and Art Rare in Reward Round, what a 15-pack slim box averages, and what a master set takes.',
+    seoTitle: 'Pokémon Reward Round (CSV4C) Set Guide: Chase Cards & Box Odds',
+    seoDescription:
+      'Pokémon TCG Reward Round (CSV4C) set guide: every Special Art Rare and Super Rare, what a 15-pack slim box averages, and the 395-card master set.',
     tag: 'Set guide',
     date: '2025-07-18',
     heroImage: `${SITE_URL}/assets/blog/reward-round-guide-hero-v10.webp`,
@@ -340,6 +409,9 @@ export const BLOG_POSTS: BlogPostSummary[] = [
     title: 'Where Every Reward Round Card Comes From',
     excerpt:
       'All 165 cards matched to English: 69 from Obsidian Flames, 41 from Paldea Evolved, 31 from Paradox Rift, 21 from six other sources and 3 new.',
+    seoTitle: 'Pokémon Reward Round (CSV4C) Card Origins: English Art Matches',
+    seoDescription:
+      'All 165 Pokémon TCG Reward Round (CSV4C) cards matched to English: 69 from Obsidian Flames, 41 from Paldea Evolved, 31 from Paradox Rift and 3 new.',
     tag: 'Collecting guide',
     date: '2025-07-18',
     heroImage: `${SITE_URL}/assets/blog/reward-round-origins-hero-v10.webp`,
@@ -353,6 +425,9 @@ export const BLOG_POSTS: BlogPostSummary[] = [
     title: 'Terastal Gathering Is Here: Stellar Eeveelutions and a Second Sylveon ex SAR',
     excerpt:
       'China\'s take on Prismatic Evolutions: Eevee and all eight Eeveelutions as Stellar Tera ex, 259 cards in 10-card packs, and a Sylveon ex Special Art Rare you will not find in English.',
+    seoTitle: 'Pokémon Terastal Gathering (CSV9.5C): Eeveelutions & Release Info',
+    seoDescription:
+      'Pokémon TCG Terastal Gathering (CSV9.5C): 259 cards, Eevee and all eight Eeveelutions as Stellar Tera ex, and a Chinese Exclusive Sylveon ex SAR.',
     tag: 'New release',
     date: '2026-06-12',
     heroImage: `${SITE_URL}/assets/blog/terastal-gathering-release-hero-v14.webp`,
@@ -366,6 +441,9 @@ export const BLOG_POSTS: BlogPostSummary[] = [
     title: 'Terastal Gathering Set Guide: Every Eeveelution, Chase Card and What a Box Holds',
     excerpt:
       'Every Special Art Rare and gold Ultra Rare, the full Eeveelution checklist, the ACE SPEC cards, what a 10-pack box averages, and what a master set takes.',
+    seoTitle: 'Terastal Gathering (CSV9.5C) Set Guide: Chase Cards & Box Odds',
+    seoDescription:
+      'Pokémon TCG Terastal Gathering (CSV9.5C) set guide: every Eeveelution, all 34 Special Art Rares, what a 10-pack box averages, and the 601-card master set.',
     tag: 'Set guide',
     date: '2026-06-12',
     heroImage: `${SITE_URL}/assets/blog/terastal-gathering-guide-hero-v10.webp`,
@@ -379,6 +457,9 @@ export const BLOG_POSTS: BlogPostSummary[] = [
     title: 'Where Every Terastal Gathering Card Comes From',
     excerpt:
       'All 259 cards matched to English: 156 from Prismatic Evolutions, 28 arts that were only ever English promos, 73 from other Scarlet & Violet sets, and 2 new.',
+    seoTitle: 'Terastal Gathering (CSV9.5C) Card Origins: English Art Matches',
+    seoDescription:
+      'All 259 Pokémon TCG Terastal Gathering (CSV9.5C) cards matched to English: 156 from Prismatic Evolutions, 28 promo-only arts and 73 from other sets.',
     tag: 'Collecting guide',
     date: '2026-06-12',
     heroImage: `${SITE_URL}/assets/blog/terastal-gathering-origins-hero-v10.webp`,
@@ -392,6 +473,9 @@ export const BLOG_POSTS: BlogPostSummary[] = [
     title: 'Chasing Glory Is Here: Trainer\'s Pokémon in Slim and Jumbo Packs',
     excerpt:
       'The main CSV10 set brings Trainer\'s Pokémon to Simplified Chinese: 287 cards led by Team Rocket, a Chinese-exclusive Brock SAR, and two pack sizes with different odds.',
+    seoTitle: "Pokémon Chasing Glory (CSV10C): Brock's Scouting & Release Info",
+    seoDescription:
+      "Pokémon TCG Chasing Glory (CSV10C) in Simplified Chinese: 287 cards led by Team Rocket, slim and jumbo packs, and a Chinese Exclusive Brock's Scouting SAR.",
     tag: 'New release',
     date: '2026-07-16',
     heroImage: `${SITE_URL}/assets/blog/chasing-glory-release-hero-v10.webp`,
@@ -405,6 +489,9 @@ export const BLOG_POSTS: BlogPostSummary[] = [
     title: 'Chasing Glory Set Guide: Slim vs Jumbo Odds, Every Chase Card and the Trainer Roster',
     excerpt:
       'Slim or jumbo? What each box holds on average, every Ultra Rare and Special Art Rare, which Trainers own which Pokémon, and what a master set takes.',
+    seoTitle: 'Pokémon Chasing Glory (CSV10C) Set Guide: Chase Cards & Box Odds',
+    seoDescription:
+      'Pokémon TCG Chasing Glory (CSV10C) set guide: slim vs jumbo odds, every Ultra Rare and Special Art Rare, the Trainer roster, and the 683-card master set.',
     tag: 'Set guide',
     date: '2026-07-16',
     heroImage: `${SITE_URL}/assets/blog/chasing-glory-guide-hero-v10.webp`,
@@ -418,6 +505,9 @@ export const BLOG_POSTS: BlogPostSummary[] = [
     title: 'Where Every Chasing Glory Card Comes From',
     excerpt:
       'All 287 cards traced to their English printings: 190 from Destined Rivals, 94 from Journey Together, 2 from Ascended Heroes, and one card made only for China.',
+    seoTitle: 'Pokémon Chasing Glory (CSV10C) Card Origins: English Art Matches',
+    seoDescription:
+      'All 287 Pokémon TCG Chasing Glory (CSV10C) cards traced to English: 190 from Destined Rivals, 94 from Journey Together, 2 from Ascended Heroes and 1 new.',
     tag: 'Collecting guide',
     date: '2026-07-16',
     heroImage: `${SITE_URL}/assets/blog/chasing-glory-origins-hero-v10.webp`,
@@ -431,6 +521,9 @@ export const BLOG_POSTS: BlogPostSummary[] = [
     title: '30th Celebration Is Here: 30 Pikachu, Futuristic Rares and 30 Classic Cards',
     excerpt:
       'The Pokémon TCG\'s 30th anniversary set: a Pikachu in every pack, the new Futuristic Rare, and 30 famous cards from 1999 to 2023 back in their original frames.',
+    seoTitle: 'Pokémon 30th Celebration (Chinese): 30 Pikachu & Release Info',
+    seoDescription:
+      'Pokémon TCG 30th Celebration in Chinese: a Pikachu in every pack, the new Futuristic Rare, and 30 classic cards from 1999 to 2023 in their original frames.',
     tag: 'New release',
     date: '2026-09-16',
     heroImage: `${SITE_URL}/assets/blog/30th-celebration-release-hero-v14.webp`,
@@ -444,6 +537,9 @@ export const BLOG_POSTS: BlogPostSummary[] = [
     title: '30th Celebration Set Guide: Every Pikachu, Classic and Promo',
     excerpt:
       'How 30th Celebration is numbered, all 30 Pikachu, every secret rare and classic card, all 33 promos, and what a master set takes.',
+    seoTitle: 'Pokémon 30th Celebration Set Guide: Chase Cards & Box Odds',
+    seoDescription:
+      'Pokémon TCG 30th Celebration set guide: how the 165 cards are numbered, all 30 Pikachu, every secret rare and classic card, and all 33 promos.',
     tag: 'Set guide',
     date: '2026-09-16',
     heroImage: `${SITE_URL}/assets/blog/30th-celebration-guide-hero-v10.webp`,
@@ -457,6 +553,9 @@ export const BLOG_POSTS: BlogPostSummary[] = [
     title: 'Where Every 30th Celebration Classic Card Comes From',
     excerpt:
       'The 30 classic cards in 30th Celebration reprint famous English cards from Base Set Charizard in 1999 to Paldea Evolved Magikarp in 2023. Here\'s the full map.',
+    seoTitle: 'Pokémon 30th Celebration Card Origins: English Art Matches',
+    seoDescription:
+      'Pokémon TCG 30th Celebration card origins: the 30 classic cards traced to English, from Base Set Charizard in 1999 to Paldea Evolved Magikarp in 2023.',
     tag: 'Collecting guide',
     date: '2026-09-16',
     heroImage: `${SITE_URL}/assets/blog/30th-celebration-origins-hero-v10.webp`,
@@ -470,6 +569,9 @@ export const BLOG_POSTS: BlogPostSummary[] = [
     title: "Gem Vol 7 Is Here: Misty's Psyduck Leads a Trainer-Paired Lineup",
     excerpt:
       "The seventh Simplified Chinese Gem Pack: 196 all-holo cards, 28 Pokémon with seven versions each, and a brand-new Misty's Psyduck full art you can only pull here.",
+    seoTitle: "Pokémon Gem Pack Vol. 7 (Gem 7): Misty's Psyduck & Release Info",
+    seoDescription:
+      "Pokémon TCG Gem Pack Vol. 7 (Gem 7): 196 all-holo Simplified Chinese cards, 28 Pokémon × 7 versions, and a new Misty's Psyduck full art.",
     tag: 'New release',
     date: '2026-11-06',
     heroImage: `${SITE_URL}/assets/blog/gem-vol-7-release-hero-v14.webp`,
@@ -483,6 +585,9 @@ export const BLOG_POSTS: BlogPostSummary[] = [
     title: 'Gem Vol 6 Is Here: Applin Leads an All-Holo Lineup',
     excerpt:
       'The sixth Simplified Chinese Gem Pack: 196 all-holo cards, 28 Pokémon with seven versions each, the whole apple family, and an Applin full art you can only pull here.',
+    seoTitle: 'Pokémon Gem Pack Vol. 6 (Gem 6): Applin Full Art & Release Info',
+    seoDescription:
+      'Pokémon TCG Gem Pack Vol. 6 (Gem 6): 196 all-holo Simplified Chinese cards, 28 Pokémon × 7 versions, and a Chinese Exclusive Applin full art.',
     tag: 'New release',
     date: '2026-08-07',
     heroImage: `${SITE_URL}/assets/blog/gem-vol-6-release-hero-v14.webp`,
@@ -496,6 +601,9 @@ export const BLOG_POSTS: BlogPostSummary[] = [
     title: 'Gem Vol 6 Set Guide: Every Full Art, the Full Roster and Box Math',
     excerpt:
       'How to tell every Gem Vol 6 version apart, all 28 full arts in one place, the full roster, and what a master set really takes.',
+    seoTitle: 'Pokémon Gem Pack Vol. 6 (Gem 6) Set Guide: Chase Cards & Box Odds',
+    seoDescription:
+      'Pokémon TCG Gem Pack Vol. 6 (Gem 6) set guide: how to tell the seven versions apart, all 28 full arts, the full roster, and the 196-card master set.',
     tag: 'Set guide',
     date: '2026-08-07',
     heroImage: `${SITE_URL}/assets/blog/gem-vol-6-guide-hero-v10.webp`,
@@ -509,6 +617,9 @@ export const BLOG_POSTS: BlogPostSummary[] = [
     title: 'Where Every Gem Vol 6 Card Actually Comes From',
     excerpt:
       "55 of the 56 artworks in Gem Vol 6 are reused from English Scarlet & Violet cards, mostly Surging Sparks. Here's the full card-by-card map.",
+    seoTitle: 'Pokémon Gem Pack Vol. 6 (Gem 6) Card Origins: English Art Matches',
+    seoDescription:
+      'Pokémon TCG Gem Pack Vol. 6 (Gem 6) card origins: 55 of the 56 artworks reuse English Scarlet & Violet cards, mostly Surging Sparks.',
     tag: 'Collecting guide',
     date: '2026-08-07',
     heroImage: `${SITE_URL}/assets/blog/gem-vol-6-origins-hero-v10.webp`,
@@ -522,6 +633,9 @@ export const BLOG_POSTS: BlogPostSummary[] = [
     title: 'Gem Vol 5 Is Here: Pokémon Horizons Sets Sail in the Gem Pack',
     excerpt:
       'The fifth Simplified Chinese Gem Pack: 196 all-holo cards, 28 Pokémon with seven versions each, and four Pokémon Horizons full arts led by Captain Pikachu.',
+    seoTitle: 'Pokémon Gem Pack Vol. 5 (Gem 5): Captain Pikachu & Release Info',
+    seoDescription:
+      'Pokémon TCG Gem Pack Vol. 5 (Gem 5): 196 all-holo Simplified Chinese cards, 28 Pokémon × 7 versions, and four Chinese Exclusive Pokémon Horizons full arts.',
     tag: 'New release',
     date: '2026-04-24',
     heroImage: `${SITE_URL}/assets/blog/gem-vol-5-release-hero-v14.webp`,
@@ -535,6 +649,9 @@ export const BLOG_POSTS: BlogPostSummary[] = [
     title: 'Gem Vol 5 Set Guide: Every Full Art, the Full Roster and Box Math',
     excerpt:
       'How to tell every Gem Vol 5 version apart, all 28 full arts in one place including the four Horizons cards, the full roster, and what a master set really takes.',
+    seoTitle: 'Pokémon Gem Pack Vol. 5 (Gem 5) Set Guide: Chase Cards & Box Odds',
+    seoDescription:
+      'Pokémon TCG Gem Pack Vol. 5 (Gem 5) set guide: telling the seven versions apart, all 28 full arts with four Horizons cards, and the 196-card master set.',
     tag: 'Set guide',
     date: '2026-04-24',
     heroImage: `${SITE_URL}/assets/blog/gem-vol-5-guide-hero-v10.webp`,
@@ -548,6 +665,9 @@ export const BLOG_POSTS: BlogPostSummary[] = [
     title: 'Where Every Gem Vol 5 Card Actually Comes From',
     excerpt:
       '51 of the 56 artworks in Gem Vol 5 are reused from English cards, mostly Surging Sparks. The other five are new Pokémon Horizons art. Here\'s the full card-by-card map.',
+    seoTitle: 'Pokémon Gem Pack Vol. 5 (Gem 5) Card Origins: English Art Matches',
+    seoDescription:
+      'Pokémon TCG Gem Pack Vol. 5 (Gem 5) card origins: 51 of the 56 artworks reuse English cards, mostly Surging Sparks, and five are new Horizons art.',
     tag: 'Collecting guide',
     date: '2026-04-24',
     heroImage: `${SITE_URL}/assets/blog/gem-vol-5-origins-hero-v10.webp`,
@@ -561,6 +681,9 @@ export const BLOG_POSTS: BlogPostSummary[] = [
     title: 'Gem Vol 4 Is Here: Ponyta Gallops In for the Year of the Horse',
     excerpt:
       'The fourth Simplified Chinese Gem Pack: 196 all-holo cards, 28 Pokémon with seven versions each, and a new Ponyta full art you can only pull here.',
+    seoTitle: 'Pokémon Gem Pack Vol. 4 (Gem 4): Ponyta Full Art & Release Info',
+    seoDescription:
+      'Pokémon TCG Gem Pack Vol. 4 (Gem 4): 196 all-holo Simplified Chinese cards, 28 Pokémon × 7 versions, and a Chinese Exclusive Ponyta full art.',
     tag: 'New release',
     date: '2026-02-06',
     heroImage: `${SITE_URL}/assets/blog/gem-vol-4-release-hero-v14.webp`,
@@ -574,6 +697,9 @@ export const BLOG_POSTS: BlogPostSummary[] = [
     title: 'Gem Vol 4 Set Guide: Every Full Art, the Full Roster and Box Math',
     excerpt:
       'How to tell every Gem Vol 4 version apart, all 28 full arts in one place, the full roster, and what a master set really takes.',
+    seoTitle: 'Pokémon Gem Pack Vol. 4 (Gem 4) Set Guide: Chase Cards & Box Odds',
+    seoDescription:
+      'Pokémon TCG Gem Pack Vol. 4 (Gem 4) set guide: how to tell the seven versions apart, all 28 full arts, the full roster, and the 196-card master set.',
     tag: 'Set guide',
     date: '2026-02-06',
     heroImage: `${SITE_URL}/assets/blog/gem-vol-4-guide-hero-v10.webp`,
@@ -587,6 +713,9 @@ export const BLOG_POSTS: BlogPostSummary[] = [
     title: 'Where Every Gem Vol 4 Card Actually Comes From',
     excerpt:
       '55 of the 56 artworks in Gem Vol 4 are reused from English cards, mostly Temporal Forces and Twilight Masquerade. Here\'s the full card-by-card map.',
+    seoTitle: 'Pokémon Gem Pack Vol. 4 (Gem 4) Card Origins: English Art Matches',
+    seoDescription:
+      'Pokémon TCG Gem Pack Vol. 4 (Gem 4) card origins: 55 of the 56 artworks reuse English cards, mostly Temporal Forces and Twilight Masquerade.',
     tag: 'Collecting guide',
     date: '2026-02-06',
     heroImage: `${SITE_URL}/assets/blog/gem-vol-4-origins-hero-v10.webp`,
@@ -600,6 +729,9 @@ export const BLOG_POSTS: BlogPostSummary[] = [
     title: 'Gem Vol 3 Is Here: Gengar Leads a Night Out in the Gem Pack',
     excerpt:
       'The third Simplified Chinese Gem Pack: 136 all-holo cards of night-time Pokémon, nine Pokémon ex, and five new full arts you can only pull here.',
+    seoTitle: 'Pokémon Gem Pack Vol. 3 (Gem 3): Gengar & Release Info',
+    seoDescription:
+      'Pokémon TCG Gem Pack Vol. 3 (Gem 3): 136 all-holo Simplified Chinese cards of night-time Pokémon, nine Pokémon ex, and five Chinese Exclusive full arts.',
     tag: 'New release',
     date: '2025-09-26',
     heroImage: `${SITE_URL}/assets/blog/gem-vol-3-release-hero-v14.webp`,
@@ -613,6 +745,9 @@ export const BLOG_POSTS: BlogPostSummary[] = [
     title: 'Gem Vol 3 Set Guide: Every Full Art, Every ex and Box Math',
     excerpt:
       'How to read a Gem Vol 3 card, all nine full arts and nine Pokémon ex in one place, the Trainers and Energy, the full roster, and what a master set takes.',
+    seoTitle: 'Pokémon Gem Pack Vol. 3 (Gem 3) Set Guide: Chase Cards & Box Odds',
+    seoDescription:
+      'Pokémon TCG Gem Pack Vol. 3 (Gem 3) set guide: all nine full arts and nine Pokémon ex, the Trainers and Energy, and the 136-card master set.',
     tag: 'Set guide',
     date: '2025-09-26',
     heroImage: `${SITE_URL}/assets/blog/gem-vol-3-guide-hero-v10.webp`,
@@ -626,6 +761,9 @@ export const BLOG_POSTS: BlogPostSummary[] = [
     title: 'Where Every Gem Vol 3 Card Actually Comes From',
     excerpt:
       '35 of the 40 artworks in Gem Vol 3 are reused from English cards, mostly 2023 Scarlet & Violet sets. The other five are new full arts drawn for the set. Here\'s the full map.',
+    seoTitle: 'Pokémon Gem Pack Vol. 3 (Gem 3) Card Origins: English Art Matches',
+    seoDescription:
+      'Pokémon TCG Gem Pack Vol. 3 (Gem 3) card origins: 35 of the 40 artworks reuse English cards, mostly 2023 Scarlet & Violet sets, and five are new full arts.',
     tag: 'Collecting guide',
     date: '2025-09-26',
     heroImage: `${SITE_URL}/assets/blog/gem-vol-3-origins-hero-v10.webp`,
@@ -639,6 +777,9 @@ export const BLOG_POSTS: BlogPostSummary[] = [
     title: 'Gem Vol 2 Is Here: Eevee and Friends, With Four Full Arts That Form One Scene',
     excerpt:
       'The second Simplified Chinese Gem Pack: 140 all-holo cards across Eevee and all eight Eeveelutions, a V and VMAX for each, and four exclusive full arts that join into one forest scene.',
+    seoTitle: 'Pokémon Gem Pack Vol. 2 (Gem 2): Eeveelutions & Release Info',
+    seoDescription:
+      'Pokémon TCG Gem Pack Vol. 2 (Gem 2): 140 all-holo Simplified Chinese cards, Eevee and all eight Eeveelutions, and four Chinese Exclusive full arts.',
     tag: 'New release',
     date: '2025-05-16',
     heroImage: `${SITE_URL}/assets/blog/gem-vol-2-release-hero-v14.webp`,
@@ -652,6 +793,9 @@ export const BLOG_POSTS: BlogPostSummary[] = [
     title: 'Gem Vol 2 Set Guide: Every V, VMAX and Full Art, Plus Box Math',
     excerpt:
       'How to read a Gem Vol 2 card, the four new full arts, all nine V and VMAX, the Trainers and Energy, the full roster, and what a master set takes.',
+    seoTitle: 'Pokémon Gem Pack Vol. 2 (Gem 2) Set Guide: Chase Cards & Box Odds',
+    seoDescription:
+      'Pokémon TCG Gem Pack Vol. 2 (Gem 2) set guide: the four Chinese Exclusive full arts, all nine V and VMAX, the full roster, and the 140-card master set.',
     tag: 'Set guide',
     date: '2025-05-16',
     heroImage: `${SITE_URL}/assets/blog/gem-vol-2-guide-hero-v10.webp`,
@@ -665,6 +809,9 @@ export const BLOG_POSTS: BlogPostSummary[] = [
     title: 'Where Every Gem Vol 2 Card Actually Comes From',
     excerpt:
       '40 of the 44 artworks in Gem Vol 2 are reused from English cards, mostly Sword & Shield promos and Evolving Skies. The other four are new full arts drawn for the set. Here\'s the full map.',
+    seoTitle: 'Pokémon Gem Pack Vol. 2 (Gem 2) Card Origins: English Art Matches',
+    seoDescription:
+      'Pokémon TCG Gem Pack Vol. 2 (Gem 2) card origins: 40 of the 44 artworks reuse English cards, mostly Sword & Shield promos and Evolving Skies.',
     tag: 'Collecting guide',
     date: '2025-05-16',
     heroImage: `${SITE_URL}/assets/blog/gem-vol-2-origins-hero-v10.webp`,
@@ -678,6 +825,9 @@ export const BLOG_POSTS: BlogPostSummary[] = [
     title: 'Where Every Gem Vol 7 Card Actually Comes From',
     excerpt:
       "55 of the 56 artworks in Gem Vol 7 are reused from English cards, mostly Destined Rivals and Journey Together. Here's the full card-by-card map.",
+    seoTitle: 'Pokémon Gem Pack Vol. 7 (Gem 7) Card Origins: English Art Matches',
+    seoDescription:
+      'Pokémon TCG Gem Pack Vol. 7 (Gem 7) card origins: 55 of the 56 artworks reuse English cards, mostly Destined Rivals and Journey Together.',
     tag: 'Collecting guide',
     date: '2026-11-06',
     heroImage: `${SITE_URL}/assets/blog/gem-vol-7-origins-hero-v10.webp`,

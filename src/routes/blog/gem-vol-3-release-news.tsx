@@ -89,6 +89,10 @@ const GEM_TIMELINE = [
 
 const FAQ = [
   {
+    q: 'When was Gem Vol 3 released?',
+    a: 'September 26, 2025, in mainland China. It is a Simplified Chinese release.',
+  },
+  {
     q: 'Is Gem 3 the same as "Gemstone Vol. 3"?',
     a: 'Yes. The Chinese name, 宝石包, translates as both "gem pack" and "gemstone pack", so shops use either one. The set code on the cards is CBB3C.',
   },
@@ -103,6 +107,15 @@ const FAQ = [
   {
     q: 'What are the Chinese Exclusives in Gem Vol 3?',
     a: 'The five new full arts drawn for this set: Meowth 0207/07 by Makura Tami, Gengar 0307/07 by aspara, Cubone 0407/07 by Katsunori Sato, Chandelure 1107/07 by satoma and Ceruledge 1507/07 by kodama. Gengar, the pack mascot, is the one most collectors go after first.',
+  },
+  {
+    q: 'What are the odds of pulling a Triple Rare?',
+    a: "Triple Rares, the tier that holds the nine full arts, make up 1.81% of the print run, going by Pokémon China's print shares. With 72 cards in a box, that averages about 1.3 per box, or roughly one in every 14 packs.",
+  },
+  {
+    q: 'Where does the Gem 3 artwork come from?',
+    a: 'Mostly from English cards. 35 of the 40 artworks we traced are the same art you will find on English cards, mostly 2023 Scarlet & Violet sets.',
+    link: { to: '/sets/chinese/gem-vol-3', before: 'See every card on the ', label: 'Gem Vol 3 card list', after: '.' },
   },
 ]
 
@@ -158,7 +171,11 @@ function GemVol3Post() {
   const faqJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
-    mainEntity: FAQ.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
+    mainEntity: FAQ.map((f) => ({
+      '@type': 'Question',
+      name: f.q,
+      acceptedAnswer: { '@type': 'Answer', text: f.link ? `${f.a} ${f.link.before}${f.link.label}${f.link.after}` : f.a },
+    })),
   }
 
   return (
@@ -425,7 +442,17 @@ function GemVol3Post() {
           {FAQ.map((f) => (
             <details key={f.q}>
               <summary>{f.q}</summary>
-              <p>{f.a}</p>
+              <p>
+                {f.a}
+                {f.link && (
+                  <>
+                    {' '}
+                    {f.link.before}
+                    <Link to={f.link.to as never}>{f.link.label}</Link>
+                    {f.link.after}
+                  </>
+                )}
+              </p>
             </details>
           ))}
         </div>
