@@ -58,7 +58,7 @@ const FAQ = [
   },
   {
     q: 'Which card is exclusive to Gem Vol 4?',
-    a: 'Ponyta 0107/07, the sunset meadow full art by MINAMINAMI Take. It is new art drawn for this set, with no English printing.',
+    a: 'Ponyta 0107/07, the full art by MINAMINAMI Take. It is new art drawn for this set, with no English printing.',
   },
   {
     q: 'Does Gem Vol 4 have Trainer’s Pokémon?',

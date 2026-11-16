@@ -53,7 +53,7 @@ const BOX_AVERAGE = [
 
 const TOC = [
   { id: 'box-average', label: 'What an average box holds' },
-  { id: 'full-arts', label: 'The 4 forest full arts' },
+  { id: 'full-arts', label: 'The 4 new full arts' },
   { id: 'vmax', label: 'All 9 VMAX' },
   { id: 'v-cards', label: 'All 9 Pokémon V' },
   { id: 'trainers-energy', label: 'Trainers and Energy' },
@@ -162,7 +162,7 @@ function GemVol2SetGuide() {
       <BlogPostLayout
         wide
         post={post}
-        lede="How to read a Gem Pack Vol. 2 card, the four forest full arts, every V and VMAX, the full roster, and what a master set takes."
+        lede="How to read a Gem Pack Vol. 2 card, the four new full arts, every V and VMAX, the full roster, and what a master set takes."
         cta={{
           heading: 'Collect Gem Vol 2',
           body: 'Track every card on the full checklist, or pick up a booster box and start ripping.',
@@ -217,7 +217,7 @@ function GemVol2SetGuide() {
         </div>
         <p className="table-note">Averages, not guarantees. Individual boxes vary.</p>
 
-        <h2 id="full-arts">The 4 forest full arts</h2>
+        <h2 id="full-arts">The 4 new full arts</h2>
         <p>
           New art by HYOGONOSUKE, drawn for this set, and shown here in order: lined up as Leafeon, Sylveon, Umbreon and Eevee,
           the four form one forest scene.

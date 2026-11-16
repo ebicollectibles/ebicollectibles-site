@@ -177,7 +177,7 @@ function GemVol2Post() {
               <dt>Set size</dt>
               <dd>140 cards: 9 Pokémon, plus 4 Trainers and 6 Energy</dd>
               <dt>Chase cards</dt>
-              <dd>Four forest full arts: Eevee, Umbreon, Leafeon and Sylveon</dd>
+              <dd>Four new full arts: Eevee, Umbreon, Leafeon and Sylveon</dd>
             </dl>
           </div>
         </aside>
@@ -209,7 +209,7 @@ function GemVol2Post() {
         />
         <p>
           The four are Leafeon 0715/15, Sylveon 0915/15, Umbreon 0615/15 and Eevee 0115/15, all Triple Rares. Because the art debuts
-          here, Gem Vol 2 is the only place to pull them, and completing the panorama is the goal for most collectors of this set.
+          here, Gem Vol 2 is the only place to pull them, and completing all four is the goal for most collectors of this set.
         </p>
 
         <h2 id="vmax">Nine VMAX</h2>
@@ -313,7 +313,7 @@ function GemVol2Post() {
         </p>
         <p>
           Going by the print shares above, a box averages one or two Triple Rares. That slot is shared by the nine VMAX, the four full
-          arts, Penny and the Energy cards, so finishing the forest panorama usually means buying some of it as singles.
+          arts, Penny and the Energy cards, so finishing all four usually means buying some of it as singles.
         </p>
 
         <h2 id="gem-pack-timeline">Where Vol. 2 fits in the Gem Pack line</h2>
@@ -376,7 +376,7 @@ function GemVol2Post() {
         <h2 id="our-take">Our take</h2>
         <p>
           Gem Vol 2 is the easy pick for Eevee fans. Every card is a holo, every pack has a Rare or better, and there is a V and VMAX
-          for every Eeveelution. If you only chase one thing, make it the four forest full arts, since they look best together.
+          for every Eeveelution. If you only chase one thing, make it the four new full arts, since they look best together.
         </p>
       </BlogPostLayout>
     </>

@@ -68,7 +68,7 @@ const FAQ = [
   },
   {
     q: 'Is any Gem Vol 3 artwork new?',
-    a: 'Yes, five: the lantern full arts of Meowth 0207/07, Gengar 0307/07, Cubone 0407/07, Chandelure 1107/07 and Ceruledge 1507/07. None of them are on an earlier English card.',
+    a: 'Yes, five: the new full arts of Meowth 0207/07, Gengar 0307/07, Cubone 0407/07, Chandelure 1107/07 and Ceruledge 1507/07. None of them are on an earlier English card.',
   },
   {
     q: 'Which English set does most of Gem Vol 3 come from?',
@@ -171,7 +171,7 @@ function GemVol3OriginsPost() {
           English art too. We left out the basic and Luminous Energy cards.
         </p>
         <p>
-          That adds up to 40 artworks. 35 of them come from English cards. The other five are the lantern-lit full arts of Meowth,
+          That adds up to 40 artworks. 35 of them come from English cards. The other five are the new full arts of Meowth,
           Gengar, Cubone, Chandelure and Ceruledge, which were drawn for Gem Vol 3 and have no earlier version.
         </p>
 
@@ -195,12 +195,12 @@ function GemVol3OriginsPost() {
             </tbody>
           </table>
         </div>
-        <p className="table-note">Counts include the four Trainer cards. The five lantern full arts are new, so the column adds up to 35.</p>
+        <p className="table-note">Counts include the four Trainer cards. The five new full arts have no English version, so the column adds up to 35.</p>
 
         <h2 id="patterns">Patterns worth knowing</h2>
         <ul>
           <li>
-            <strong>The lantern five are the new part.</strong> Meowth, Gengar, Cubone, Chandelure and Ceruledge keep regular art from English sets but get brand-new full arts. aspara, who drew the Gengar full art, also drew the Arven Trainer.
+            <strong>Five full arts are new.</strong> Meowth, Gengar, Cubone, Chandelure and Ceruledge keep regular art from English sets but get brand-new full arts. aspara, who drew the Gengar full art, also drew the Arven Trainer.
           </li>
           <li>
             <strong>2023 sets do most of the work.</strong> Obsidian Flames and the base Scarlet & Violet set supply eight artworks each, with Paldea Evolved close behind on six.

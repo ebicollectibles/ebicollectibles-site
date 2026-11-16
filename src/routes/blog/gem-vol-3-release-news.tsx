@@ -20,9 +20,9 @@ const GENGAR_RUN = [
   { id: '0306', rarity: 'Double Rare', finish: 'Gem Pack logo stamp' },
 ]
 
-// The five lantern-lit full arts drawn for this set (Gengar is featured
+// The five new full arts drawn for this set (Gengar is featured
 // separately above them).
-const LANTERN_FULL_ARTS = [
+const NEW_FULL_ARTS = [
   { id: '0207', name: 'Meowth', illus: 'Makura Tami' },
   { id: '0407', name: 'Cubone', illus: 'Katsunori Sato' },
   { id: '1107', name: 'Chandelure', illus: 'satoma' },
@@ -67,7 +67,7 @@ const RARITY = [
 ]
 
 const TOC = [
-  { id: 'lantern-full-arts', label: 'The chase: five lantern full arts' },
+  { id: 'lantern-full-arts', label: 'The chase: five new full arts' },
   { id: 'pokemon-ex', label: 'Nine Pokémon ex' },
   { id: 'how-the-set-works', label: 'How the set is built' },
   { id: 'gengar', label: 'Gengar, six holo versions' },
@@ -99,7 +99,7 @@ const FAQ = [
   },
   {
     q: 'What are the main chase cards?',
-    a: 'The five lantern-lit full arts drawn for this set: Meowth, Gengar, Cubone, Chandelure and Ceruledge. Gengar, the pack mascot, is the one most collectors go after first.',
+    a: 'The five new full arts drawn for this set: Meowth, Gengar, Cubone, Chandelure and Ceruledge. Gengar, the pack mascot, is the one most collectors go after first.',
   },
   {
     q: 'Can I complete the set from one box?',
@@ -155,7 +155,7 @@ function GemVol3Post() {
       <BlogPostLayout
         wide
         post={post}
-        lede="Gengar fronts the third Simplified Chinese Gem Pack: 136 all-holo cards of Pokémon that come out at night, nine Pokémon ex, and five new lantern-lit full arts you can only pull here."
+        lede="Gengar fronts the third Simplified Chinese Gem Pack: 136 all-holo cards of Pokémon that come out at night, nine Pokémon ex, and five new full arts you can only pull here."
         cta={{
           heading: 'Shop Gem Vol 3',
           body: 'Booster boxes in stock now, plus the full 136-card checklist with every version.',
@@ -169,7 +169,7 @@ function GemVol3Post() {
           Gem Pack Vol. 3 (Gem 3) lands in mainland China on September 26, 2025. Like every Gem Pack, it is an official Simplified Chinese
           Pokémon TCG product built for collecting, with small 4-card packs where every card is a holo. This volume is set in a city
           after dark, with Pokémon that are most active at night: Gengar on the pack, plenty of Ghost and Dark types, and five new full
-          arts lit by lanterns and a full moon.
+          arts.
         </p>
 
         <aside className="fact-box" aria-label="Gem Pack Vol. 3 key facts">
@@ -196,7 +196,7 @@ function GemVol3Post() {
               <dt>Set size</dt>
               <dd>136 cards: 18 Pokémon × 7, plus 4 Trainers and 6 Energy</dd>
               <dt>Chase cards</dt>
-              <dd>Five lantern full arts, led by Gengar 0307/07</dd>
+              <dd>Five new full arts, led by Gengar 0307/07</dd>
             </dl>
           </div>
         </aside>
@@ -212,7 +212,7 @@ function GemVol3Post() {
           </ol>
         </nav>
 
-        <h2 id="lantern-full-arts">The chase: five lantern full arts</h2>
+        <h2 id="lantern-full-arts">The chase: five new full arts</h2>
         <figure className="feature-card">
           <img src={cardImg('0307')} alt="Gengar 0307/07 full art, Triple Rare, Gem Vol 3" loading="lazy" width={300} height={419} />
           <figcaption>
@@ -221,12 +221,12 @@ function GemVol3Post() {
           </figcaption>
         </figure>
         <p>
-          Five of the nine full arts are new artwork drawn for this set, and they all share one night-town look. Gengar grins in an
+          Five of the nine full arts are new artwork drawn for this set, all evening and night scenes. Gengar grins in an
           empty living room, using its moves on a table of snacks, while Meowth sits on a rooftop under the moon watching lanterns drift
           past.
         </p>
         <div className="card-grid cols-2">
-          {LANTERN_FULL_ARTS.map((c) => (
+          {NEW_FULL_ARTS.map((c) => (
             <figure key={c.id}>
               <img src={cardImg(c.id)} alt={`${c.name} full art ${c.id}/07, Gem Vol 3`} loading="lazy" width={300} height={419} />
               <figcaption>
@@ -351,7 +351,7 @@ function GemVol3Post() {
         </p>
         <p>
           Going by the print shares above, a box averages about one Triple Rare, and that slot is shared by the nine full arts, Arven and
-          the Energy cards. Landing a specific lantern full art from a single box is a long shot, so most collectors buy their favorites
+          the Energy cards. Landing a specific new full art from a single box is a long shot, so most collectors buy their favorites
           as singles.
         </p>
 
@@ -389,7 +389,7 @@ function GemVol3Post() {
 
         <h2 id="binders">Five binders to go with it</h2>
         <p>
-          Pokémon China also released a 30-pocket Gem Pack Vol. 3 binder the same day, in five cover designs that match the lantern
+          Pokémon China also released a 30-pocket Gem Pack Vol. 3 binder the same day, in five cover designs that match the new
           full arts: Meowth, Gengar, Cubone, Chandelure and Ceruledge. Each page holds a single card, so they work as showcases for your
           best pulls rather than as storage for the whole set.
         </p>
@@ -415,7 +415,7 @@ function GemVol3Post() {
         <h2 id="our-take">Our take</h2>
         <p>
           Gem Vol 3 is the moodiest Gem Pack yet. Every card is a holo, the ex cards give every pack a real shot at a big hit, and the
-          lantern full arts are some of the best-looking cards in the line. If you only chase one card, make it the Gengar full art.
+          new full arts are some of the best-looking cards in the line. If you only chase one card, make it the Gengar full art.
         </p>
       </BlogPostLayout>
     </>

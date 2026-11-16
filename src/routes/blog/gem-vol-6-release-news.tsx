@@ -76,7 +76,7 @@ const FAQ = [
   },
   {
     q: 'What is the main chase card?',
-    a: 'Applin 1907/07, the kitchen full art drawn for this set. Beyond that, collectors chase the 28 full arts (every card numbered 07).',
+    a: 'Applin 1907/07, the full art drawn for this set. Beyond that, collectors chase the 28 full arts (every card numbered 07).',
   },
   {
     q: 'Can I complete the set from one box?',
@@ -132,7 +132,7 @@ function GemVol6Post() {
       <BlogPostLayout
         wide
         post={post}
-        lede="Applin fronts the sixth Simplified Chinese Gem Pack: 28 Pokémon, seven cards each, every card a foil, and a cozy kitchen full art of Applin you can only pull here."
+        lede="Applin fronts the sixth Simplified Chinese Gem Pack: 28 Pokémon, seven cards each, every card a foil, and a new full art of Applin you can only pull here."
         cta={{
           heading: 'Shop Gem Vol 6',
           body: 'Booster boxes in stock now, plus the full 196-card checklist with every version.',
@@ -145,8 +145,8 @@ function GemVol6Post() {
         <p>
           Gem Pack Vol. 6 (Gem 6) lands in mainland China on August 7, 2026. Like every Gem Pack, it is an official Simplified Chinese
           Pokémon TCG product built for collecting: small 4-card packs where every card is a holo, and a set structure that gives each
-          Pokémon its own run of seven cards. This volume has an orchard feel, with Applin on the pack, the whole apple family in the
-          lineup, and a brand-new Applin full art as the headline card.
+          Pokémon its own run of seven cards. This volume is built around Applin: it is on the pack, the whole apple family is in the
+          lineup, and a brand-new Applin full art is the headline card.
         </p>
 
         <aside className="fact-box" aria-label="Gem Pack Vol. 6 key facts">
@@ -208,7 +208,7 @@ function GemVol6Post() {
 
         <h2 id="lineup">Apples, tea and the Loyal Three</h2>
         <p>
-          There are no Trainer's Pokémon this time. Instead the lineup has a garden-and-kitchen feel: Applin and its whole family,
+          There are no Trainer's Pokémon this time. Instead the lineup leans on fruit, garden and tea Pokémon: Applin and its whole family,
           Flapple, Appletun and Dipplin, plus Exeggcute, Castform in its Sunny Form, and Poltchageist the tea-cup Pokémon. The Loyal
           Three from Kitakami, Okidogi, Munkidori and Fezandipiti, close out the set. Pokémon China pitches the set as a treasure hunt,
           with each illustration telling a small story about its Pokémon, and revealed these six full arts alongside Applin:
@@ -269,7 +269,7 @@ function GemVol6Post() {
 
         <h2 id="applin">Applin, six holo versions</h2>
         <p>
-          Applin shows how a run works. Versions 01 to 06 share the same orchard illustration by Tetsu Kayama, with Applin
+          Applin shows how a run works. Versions 01 to 06 share the same illustration by Tetsu Kayama, with Applin
           tucked under a blossoming tree, and each one gets its own holo finish: Grass-type and Poké Ball patterns, glitter, starburst,
           the Master Ball pattern, and the pink Gem Pack logo stamp.
         </p>
@@ -354,8 +354,8 @@ function GemVol6Post() {
 
         <h2 id="our-take">Our take</h2>
         <p>
-          Gem Vol 6 is a cozy set. Every card is a holo, the packs are small enough to rip a few at a time, and the apple and
-          kitchen art gives it its own look. If you only chase one card, make it the Applin full art. If you like
+          Gem Vol 6 is a cozy set. Every card is a holo, the packs are small enough to rip a few at a time, and the apple
+          theme gives it its own look. If you only chase one card, make it the Applin full art. If you like
           completing runs, Applin's six holo versions are an easy place to start.
         </p>
       </BlogPostLayout>

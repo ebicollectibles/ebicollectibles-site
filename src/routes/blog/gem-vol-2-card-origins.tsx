@@ -59,7 +59,7 @@ const FAQ = [
   },
   {
     q: 'Is any Gem Vol 2 artwork new?',
-    a: 'Yes, four: the forest full arts of Eevee 0115/15, Umbreon 0615/15, Leafeon 0715/15 and Sylveon 0915/15, all by HYOGONOSUKE. None of them are on an earlier English card.',
+    a: 'Yes, four: the new full arts of Eevee 0115/15, Umbreon 0615/15, Leafeon 0715/15 and Sylveon 0915/15, all by HYOGONOSUKE. None of them are on an earlier English card.',
   },
   {
     q: 'Are the VMAX the same as Evolving Skies?',
@@ -162,7 +162,7 @@ function GemVol2OriginsPost() {
           English art too. We left out the basic Energy cards.
         </p>
         <p>
-          That adds up to 44 artworks. 40 of them come from English cards. The other four are the forest full arts by HYOGONOSUKE,
+          That adds up to 44 artworks. 40 of them come from English cards. The other four are new full arts by HYOGONOSUKE,
           which were drawn for Gem Vol 2 and have no earlier version.
         </p>
 
@@ -186,12 +186,12 @@ function GemVol2OriginsPost() {
             </tbody>
           </table>
         </div>
-        <p className="table-note">Counts include the four Trainer cards. The four forest full arts are new, so the column adds up to 40.</p>
+        <p className="table-note">Counts include the four Trainer cards. The four new full arts have no English version, so the column adds up to 40.</p>
 
         <h2 id="patterns">Patterns worth knowing</h2>
         <ul>
           <li>
-            <strong>The forest four are the new part.</strong> Eevee, Umbreon, Leafeon and Sylveon each get a brand-new full art by HYOGONOSUKE, and together they form one forest scene.
+            <strong>Four full arts are new.</strong> Eevee, Umbreon, Leafeon and Sylveon each get a brand-new full art by HYOGONOSUKE, and together they form one forest scene.
           </li>
           <li>
             <strong>Promos supply the most.</strong> 13 artworks come from English Sword & Shield Black Star Promos, including Eevee V, Eevee VMAX and the Vaporeon, Jolteon and Flareon V.

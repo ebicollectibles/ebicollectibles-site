@@ -72,7 +72,7 @@ const FAQ = [
   },
   {
     q: 'Which cards are exclusive to Gem Vol 3?',
-    a: 'The five lantern full arts: Meowth 0207/07, Gengar 0307/07, Cubone 0407/07, Chandelure 1107/07 and Ceruledge 1507/07. They are new art drawn for this set, with no English printing.',
+    a: 'The five new full arts: Meowth 0207/07, Gengar 0307/07, Cubone 0407/07, Chandelure 1107/07 and Ceruledge 1507/07. They are new art drawn for this set, with no English printing.',
   },
   {
     q: 'How many boxes does a master set take?',
@@ -167,7 +167,7 @@ function GemVol3SetGuide() {
         }}
       >
         <p>
-          Gem Pack Vol. 3 (Gem 3, CBB3C) is the night-town set: 136 holo cards, 18 Pokémon with seven versions each, and a block of Trainer and
+          Gem Pack Vol. 3 (Gem 3, CBB3C) is the Gengar set: 136 holo cards, 18 Pokémon with seven versions each, and a block of Trainer and
           Energy cards. Our <Link to="/blog/gem-vol-3-release-news">release post</Link> covers what is new in the set, and our{' '}
           <Link to="/blog/gem-vol-3-card-origins">card origins guide</Link> traces every artwork back to its English card. Use
           this one to sort your pulls or plan a master set.

@@ -165,7 +165,7 @@ function GemVol4OriginsPost() {
           cards, a regular one and a full art.
         </p>
         <p>
-          That adds up to 56 artworks. 55 of them come from English cards. The 56th, Ponyta's sunset meadow full art (0107/07),
+          That adds up to 56 artworks. 55 of them come from English cards. The 56th, Ponyta's full art (0107/07),
           was drawn for Gem Vol 4 and has no earlier version.
         </p>
 

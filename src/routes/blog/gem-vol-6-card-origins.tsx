@@ -163,7 +163,7 @@ function GemVol6OriginsPost() {
           cards, a regular one and a full art.
         </p>
         <p>
-          That adds up to 56 illustrations. 55 of them come from English cards. The 56th, Applin's kitchen full art (1907/07), was
+          That adds up to 56 illustrations. 55 of them come from English cards. The 56th, Applin's full art (1907/07), was
           drawn for Gem Vol 6 and has no earlier version.
         </p>
 

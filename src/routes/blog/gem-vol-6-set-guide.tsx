@@ -58,7 +58,7 @@ const FAQ = [
   },
   {
     q: 'Which card is exclusive to Gem Vol 6?',
-    a: 'Applin 1907/07, the kitchen full art by Jiro Sasumo. It is new art drawn for this set, with no English printing.',
+    a: 'Applin 1907/07, the full art by Jiro Sasumo. It is new art drawn for this set, with no English printing.',
   },
   {
     q: 'Does Gem Vol 6 have Trainer’s Pokémon?',
