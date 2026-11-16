@@ -140,7 +140,7 @@ export function ShopPanel({
   return (
     <section className="shop-panel" id="shop" aria-labelledby="shop-heading">
       <div className="shop-head">
-        <span className="shop-eyebrow">Where to buy</span>
+        <span className="shop-eyebrow">Buy now</span>
         <h3 id="shop-heading">{heading}</h3>
         <p>{body}</p>
       </div>
