@@ -14,7 +14,8 @@ export interface BlogPostSummary {
   title: string
   excerpt: string
   tag: string
-  date: string // ISO date
+  date: string // ISO date, shown as the publish date
+  updated?: string // ISO date, set from BLOG_LIVE_DATE below
   heroImage: string
   heroAlt: string
   glow1: string
@@ -42,7 +43,7 @@ export const BLOG_POSTS: BlogPostSummary[] = [
     excerpt:
       'Slim box or jumbo box, every Special Art Rare, Super Rare, Ultra Rare and Art Rare, each Paradox Pokémon ex at every rarity, and how the 163 numbers work.',
     tag: 'Set guide',
-    date: '2026-11-15',
+    date: '2025-11-07',
     heroImage: `${SITE_URL}/assets/blog/true-mystery-guide-hero-v5.webp`,
     heroAlt: 'The Iron Hands ex Special Art Rare in an EBI display case above six True Mystery Special Art Rares',
     glow1: 'rgb(86 206 210 / .30)',
@@ -55,7 +56,7 @@ export const BLOG_POSTS: BlogPostSummary[] = [
     excerpt:
       'All 163 cards matched to English: 128 from Paradox Rift, 16 from Obsidian Flames, 15 from Paldean Fates, 2 from other sources and 2 with no English version.',
     tag: 'Collecting guide',
-    date: '2026-11-15',
+    date: '2025-11-07',
     heroImage: `${SITE_URL}/assets/blog/true-mystery-origins-hero-v5.webp`,
     heroAlt: 'True Mystery pack linked to tiles for Paradox Rift, Obsidian Flames, Paldean Fates, other sources and cards with no English version',
     glow1: 'rgb(86 206 210 / .30)',
@@ -81,7 +82,7 @@ export const BLOG_POSTS: BlogPostSummary[] = [
     excerpt:
       'Slim box or jumbo box on the official odds, every Special Art Rare, Super Rare, Ultra Rare, Art Rare and ACE SPEC card, each Pokémon ex at every rarity, and the 605-card master set.',
     tag: 'Set guide',
-    date: '2026-11-15',
+    date: '2026-01-16',
     heroImage: `${SITE_URL}/assets/blog/blade-awakening-guide-hero-v5.webp`,
     heroAlt: "The Ciphermaniac's Codebreaking Special Art Rare in an EBI display case above six Blade Awakening Special Art Rares",
     glow1: 'rgb(246 160 78 / .30)',
@@ -94,7 +95,7 @@ export const BLOG_POSTS: BlogPostSummary[] = [
     excerpt:
       'All 259 cards matched to English: 173 from Temporal Forces, 68 from Twilight Masquerade, 17 from six other sources and 1 new art.',
     tag: 'Collecting guide',
-    date: '2026-11-15',
+    date: '2026-01-16',
     heroImage: `${SITE_URL}/assets/blog/blade-awakening-origins-hero-v5.webp`,
     heroAlt: 'Blade Awakening pack linked to tiles for Temporal Forces, Twilight Masquerade, other sources and new art',
     glow1: 'rgb(246 160 78 / .30)',
@@ -120,7 +121,7 @@ export const BLOG_POSTS: BlogPostSummary[] = [
     excerpt:
       'Slim box or jumbo box, every Special Art Rare, Super Rare, Ultra Rare and Art Rare, each Pokémon ex at every rarity, and what a 616-card master set takes.',
     tag: 'Set guide',
-    date: '2026-11-15',
+    date: '2026-03-13',
     heroImage: `${SITE_URL}/assets/blog/brilliant-fantasy-guide-hero-v5.webp`,
     heroAlt: 'The Carmine Special Art Rare in an EBI display case above six Brilliant Fantasy Special Art Rares',
     glow1: 'rgb(56 13 40 / .30)',
@@ -133,7 +134,7 @@ export const BLOG_POSTS: BlogPostSummary[] = [
     excerpt:
       'All 264 cards matched to English: 109 from Twilight Masquerade, 76 from Shrouded Fable, 38 from Surging Sparks, 40 from five other sources and 1 new.',
     tag: 'Collecting guide',
-    date: '2026-11-15',
+    date: '2026-03-13',
     heroImage: `${SITE_URL}/assets/blog/brilliant-fantasy-origins-hero-v5.webp`,
     heroAlt: 'Brilliant Fantasy pack linked to tiles for Twilight Masquerade, Shrouded Fable, Surging Sparks, other sources and new art',
     glow1: 'rgb(56 13 40 / .30)',
@@ -159,7 +160,7 @@ export const BLOG_POSTS: BlogPostSummary[] = [
     excerpt:
       'Slim pack or jumbo pack, every Special Art Rare, Super Rare, Ultra Rare and Art Rare, each Pokémon ex at every rarity, and what a 620-card master set takes.',
     tag: 'Set guide',
-    date: '2026-11-15',
+    date: '2026-05-15',
     heroImage: `${SITE_URL}/assets/blog/stellar-crystal-guide-hero-v5.webp`,
     heroAlt: "The Lisia's Appeal Special Art Rare in an EBI display case above six Stellar Crystal Special Art Rares",
     glow1: 'rgb(210 110 123 / .30)',
@@ -172,7 +173,7 @@ export const BLOG_POSTS: BlogPostSummary[] = [
     excerpt:
       'All 266 cards matched to English: 160 from Surging Sparks, 79 from Stellar Crown, 26 from four other sources including 6 promos, and 1 new.',
     tag: 'Collecting guide',
-    date: '2026-11-15',
+    date: '2026-05-15',
     heroImage: `${SITE_URL}/assets/blog/stellar-crystal-origins-hero-v5.webp`,
     heroAlt: 'Stellar Crystal pack linked to tiles for Surging Sparks, Stellar Crown, other sources and new art',
     glow1: 'rgb(210 110 123 / .30)',
@@ -212,7 +213,7 @@ export const BLOG_POSTS: BlogPostSummary[] = [
     excerpt:
       'Slim or jumbo? What each box holds on average from Pokémon China\'s two odds charts, the Zekrom ex Black White Rare, every Special Art Rare and Super Rare, and what a 334-card master set takes.',
     tag: 'Set guide',
-    date: '2026-11-15',
+    date: '2026-11-06',
     heroImage: `${SITE_URL}/assets/blog/black-bolt-guide-hero-v5.webp`,
     heroAlt: 'The Chinese-exclusive N\'s Plan Special Art Rare in an EBI display case above six Black Bolt chase cards led by the Zekrom ex Black White Rare',
     glow1: 'rgb(119 167 201 / .30)',
@@ -225,7 +226,7 @@ export const BLOG_POSTS: BlogPostSummary[] = [
     excerpt:
       'All 174 cards traced to English: 160 from English Black Bolt, 10 from White Flare after five Pokémon swapped sets, 3 Art Rares from Black Star Promos, and a new N\'s Plan SAR.',
     tag: 'Collecting guide',
-    date: '2026-11-15',
+    date: '2026-11-06',
     heroImage: `${SITE_URL}/assets/blog/black-bolt-origins-hero-v5.webp`,
     heroAlt: 'Black Bolt slim and jumbo packs linked to tiles for English Black Bolt, English White Flare, Black Star Promos and one new card',
     glow1: 'rgb(119 167 201 / .30)',
@@ -238,7 +239,7 @@ export const BLOG_POSTS: BlogPostSummary[] = [
     excerpt:
       'Slim or jumbo? What each box holds on average from Pokémon China\'s two odds charts, the Reshiram ex Black White Rare, every Special Art Rare and Super Rare, and what a 334-card master set takes.',
     tag: 'Set guide',
-    date: '2026-11-15',
+    date: '2026-11-06',
     heroImage: `${SITE_URL}/assets/blog/white-flare-guide-hero-v5.webp`,
     heroAlt: 'The Chinese-exclusive Hilda Special Art Rare in an EBI display case above six White Flare chase cards led by the Reshiram ex Black White Rare',
     glow1: 'rgb(171 49 42 / .30)',
@@ -251,7 +252,7 @@ export const BLOG_POSTS: BlogPostSummary[] = [
     excerpt:
       'All 174 cards traced to English: 161 from English White Flare, 10 from Black Bolt after five Pokémon swapped sets, 2 Art Rares from Black Star Promos, and a new Hilda SAR.',
     tag: 'Collecting guide',
-    date: '2026-11-15',
+    date: '2026-11-06',
     heroImage: `${SITE_URL}/assets/blog/white-flare-origins-hero-v5.webp`,
     heroAlt: 'White Flare slim and jumbo packs linked to tiles for English White Flare, English Black Bolt, Black Star Promos and one new card',
     glow1: 'rgb(171 49 42 / .30)',
@@ -277,7 +278,7 @@ export const BLOG_POSTS: BlogPostSummary[] = [
     excerpt:
       'Slim box or jumbo box, every Ultra Rare, Special Art Rare, Super Rare and Art Rare, each Pokémon ex at every rarity, and what a master set takes.',
     tag: 'Set guide',
-    date: '2026-11-15',
+    date: '2025-09-12',
     heroImage: `${SITE_URL}/assets/blog/black-crystal-blaze-guide-hero-v5.webp`,
     heroAlt: 'The Charizard ex Special Art Rare in an EBI display case above six Black Crystal Blaze Special Art Rares',
     glow1: 'rgb(240 112 64 / .30)',
@@ -290,7 +291,7 @@ export const BLOG_POSTS: BlogPostSummary[] = [
     excerpt:
       'All 164 cards matched to English: 73 from Paradox Rift, 61 from Obsidian Flames, 18 from Paldean Fates, 10 from five other sources and 2 new.',
     tag: 'Collecting guide',
-    date: '2026-11-15',
+    date: '2025-09-12',
     heroImage: `${SITE_URL}/assets/blog/black-crystal-blaze-origins-hero-v5.webp`,
     heroAlt: 'Black Crystal Blaze pack linked to tiles for Paradox Rift, Obsidian Flames, Paldean Fates, other sources and new art',
     glow1: 'rgb(240 112 64 / .30)',
@@ -316,7 +317,7 @@ export const BLOG_POSTS: BlogPostSummary[] = [
     excerpt:
       'Every Ultra Rare, Special Art Rare, Super Rare and Art Rare in Reward Round, what a 15-pack slim box averages, and what a master set takes.',
     tag: 'Set guide',
-    date: '2026-11-15',
+    date: '2025-07-18',
     heroImage: `${SITE_URL}/assets/blog/reward-round-guide-hero-v5.webp`,
     heroAlt: 'The Chinese-exclusive Maushold ex Special Art Rare in an EBI display case above five Special Art Rares and the gold Gholdengo ex',
     glow1: 'rgb(46 123 134 / .30)',
@@ -329,7 +330,7 @@ export const BLOG_POSTS: BlogPostSummary[] = [
     excerpt:
       'All 165 cards matched to English: 69 from Obsidian Flames, 41 from Paldea Evolved, 31 from Paradox Rift, 21 from six other sources and 3 new.',
     tag: 'Collecting guide',
-    date: '2026-11-15',
+    date: '2025-07-18',
     heroImage: `${SITE_URL}/assets/blog/reward-round-origins-hero-v5.webp`,
     heroAlt: 'Reward Round pack linked to tiles for Obsidian Flames, Paldea Evolved, Paradox Rift, other sources and new art',
     glow1: 'rgb(46 123 134 / .30)',
@@ -355,7 +356,7 @@ export const BLOG_POSTS: BlogPostSummary[] = [
     excerpt:
       'Every Special Art Rare and gold Ultra Rare, the full Eeveelution checklist, the ACE SPEC cards, what a 10-pack box averages, and what a master set takes.',
     tag: 'Set guide',
-    date: '2026-11-15',
+    date: '2026-06-12',
     heroImage: `${SITE_URL}/assets/blog/terastal-gathering-guide-hero-v5.webp`,
     heroAlt: 'Umbreon ex Special Art Rare in an EBI display case above six Eeveelution ex Special Art Rares',
     glow1: 'rgb(71 118 121 / .30)',
@@ -368,7 +369,7 @@ export const BLOG_POSTS: BlogPostSummary[] = [
     excerpt:
       'All 259 cards matched to English: 156 from Prismatic Evolutions, 28 arts that were only ever English promos, 73 from other Scarlet & Violet sets, and 2 new.',
     tag: 'Collecting guide',
-    date: '2026-11-15',
+    date: '2026-06-12',
     heroImage: `${SITE_URL}/assets/blog/terastal-gathering-origins-hero-v5.webp`,
     heroAlt: 'Terastal Gathering pack linked to tiles for Prismatic Evolutions, promo-only art, other sets and new art',
     glow1: 'rgb(71 118 121 / .30)',
@@ -394,7 +395,7 @@ export const BLOG_POSTS: BlogPostSummary[] = [
     excerpt:
       'Slim or jumbo? What each box holds on average, every Ultra Rare and Special Art Rare, which Trainers own which Pokémon, and what a master set takes.',
     tag: 'Set guide',
-    date: '2026-11-15',
+    date: '2026-07-16',
     heroImage: `${SITE_URL}/assets/blog/chasing-glory-guide-hero-v5.webp`,
     heroAlt: 'The Chinese-exclusive Brock\'s Scouting Special Art Rare in an EBI display case above the six gold Pokémon ex Ultra Rares',
     glow1: 'rgb(232 129 61 / .30)',
@@ -407,7 +408,7 @@ export const BLOG_POSTS: BlogPostSummary[] = [
     excerpt:
       'All 287 cards traced to their English printings: 190 from Destined Rivals, 94 from Journey Together, 2 from Ascended Heroes, and one card made only for China.',
     tag: 'Collecting guide',
-    date: '2026-11-15',
+    date: '2026-07-16',
     heroImage: `${SITE_URL}/assets/blog/chasing-glory-origins-hero-v5.webp`,
     heroAlt: 'Chasing Glory pack linked to tiles for Destined Rivals, Journey Together, Ascended Heroes and one new card',
     glow1: 'rgb(232 129 61 / .30)',
@@ -433,7 +434,7 @@ export const BLOG_POSTS: BlogPostSummary[] = [
     excerpt:
       'How 30th Celebration is numbered, all 30 Pikachu, every secret rare and classic card, all 33 promos, and what a master set takes.',
     tag: 'Set guide',
-    date: '2026-11-15',
+    date: '2026-09-16',
     heroImage: `${SITE_URL}/assets/blog/30th-celebration-guide-hero-v5.webp`,
     heroAlt: '30th Celebration Set Guide banner: the Mewtwo ex Futuristic Rare in a display case, with six of the 30 Pikachu beside the EBI Collectibles logo',
     glow1: 'rgb(222 185 97 / .30)',
@@ -446,7 +447,7 @@ export const BLOG_POSTS: BlogPostSummary[] = [
     excerpt:
       'The 30 classic cards in 30th Celebration reprint famous English cards from Base Set Charizard in 1999 to Paldea Evolved Magikarp in 2023. Here\'s the full map.',
     tag: 'Collecting guide',
-    date: '2026-11-15',
+    date: '2026-09-16',
     heroImage: `${SITE_URL}/assets/blog/30th-celebration-origins-hero-v5.webp`,
     heroAlt: '30th Celebration Card Origins banner: the booster pack linked to tiles counting the 30 classic cards by era',
     glow1: 'rgb(222 185 97 / .30)',
@@ -485,7 +486,7 @@ export const BLOG_POSTS: BlogPostSummary[] = [
     excerpt:
       'How to tell every Gem Vol 6 version apart, all 28 full arts in one place, the full roster, and what a master set really takes.',
     tag: 'Set guide',
-    date: '2026-11-15',
+    date: '2026-08-07',
     heroImage: `${SITE_URL}/assets/blog/gem-vol-6-guide-hero-v5.webp`,
     heroAlt: "Gem Vol. 6 Set Guide banner: the Applin full art 1907/07 in a display case, with six holo Applin versions beside the EBI Collectibles logo",
     glow1: 'rgb(78 119 104 / .30)',
@@ -498,7 +499,7 @@ export const BLOG_POSTS: BlogPostSummary[] = [
     excerpt:
       "55 of the 56 artworks in Gem Vol 6 are reused from English Scarlet & Violet cards, mostly Surging Sparks. Here's the full card-by-card map.",
     tag: 'Collecting guide',
-    date: '2026-11-15',
+    date: '2026-08-07',
     heroImage: `${SITE_URL}/assets/blog/gem-vol-6-origins-hero-v5.webp`,
     heroAlt: "Gem Vol. 6 Card Origins banner: the Applin booster pack linked to tiles showing where its 56 artworks came from, led by Surging Sparks",
     glow1: 'rgb(78 119 104 / .28)',
@@ -524,7 +525,7 @@ export const BLOG_POSTS: BlogPostSummary[] = [
     excerpt:
       'How to tell every Gem Vol 5 version apart, all 28 full arts in one place including the four Horizons cards, the full roster, and what a master set really takes.',
     tag: 'Set guide',
-    date: '2026-11-15',
+    date: '2026-04-24',
     heroImage: `${SITE_URL}/assets/blog/gem-vol-5-guide-hero-v5.webp`,
     heroAlt: "Gem Vol. 5 Set Guide banner: the Captain Pikachu and Friede full art 0107/07 in a display case, with six holo Captain Pikachu versions beside the EBI Collectibles logo",
     glow1: 'rgb(214 170 60 / .28)',
@@ -537,7 +538,7 @@ export const BLOG_POSTS: BlogPostSummary[] = [
     excerpt:
       '51 of the 56 artworks in Gem Vol 5 are reused from English cards, mostly Surging Sparks. The other five are new Pokémon Horizons art. Here\'s the full card-by-card map.',
     tag: 'Collecting guide',
-    date: '2026-11-15',
+    date: '2026-04-24',
     heroImage: `${SITE_URL}/assets/blog/gem-vol-5-origins-hero-v5.webp`,
     heroAlt: "Gem Vol. 5 Card Origins banner: the Floragato booster pack linked to tiles showing where its 56 artworks came from, led by Surging Sparks",
     glow1: 'rgb(214 170 60 / .28)',
@@ -563,7 +564,7 @@ export const BLOG_POSTS: BlogPostSummary[] = [
     excerpt:
       'How to tell every Gem Vol 4 version apart, all 28 full arts in one place, the full roster, and what a master set really takes.',
     tag: 'Set guide',
-    date: '2026-11-15',
+    date: '2026-02-06',
     heroImage: `${SITE_URL}/assets/blog/gem-vol-4-guide-hero-v5.webp`,
     heroAlt: "Gem Vol. 4 Set Guide banner: the Ponyta full art 0107/07 in a display case, with six holo Ponyta versions beside the EBI Collectibles logo",
     glow1: 'rgb(208 129 105 / .30)',
@@ -576,7 +577,7 @@ export const BLOG_POSTS: BlogPostSummary[] = [
     excerpt:
       '55 of the 56 artworks in Gem Vol 4 are reused from English cards, mostly Temporal Forces and Twilight Masquerade. Here\'s the full card-by-card map.',
     tag: 'Collecting guide',
-    date: '2026-11-15',
+    date: '2026-02-06',
     heroImage: `${SITE_URL}/assets/blog/gem-vol-4-origins-hero-v5.webp`,
     heroAlt: "Gem Vol. 4 Card Origins banner: the Ponyta booster pack linked to tiles showing where its 56 artworks came from, led by Temporal Forces",
     glow1: 'rgb(208 129 105 / .30)',
@@ -602,7 +603,7 @@ export const BLOG_POSTS: BlogPostSummary[] = [
     excerpt:
       'How to read a Gem Vol 3 card, all nine full arts and nine Pokémon ex in one place, the Trainers and Energy, the full roster, and what a master set takes.',
     tag: 'Set guide',
-    date: '2026-11-15',
+    date: '2025-09-26',
     heroImage: `${SITE_URL}/assets/blog/gem-vol-3-guide-hero-v5.webp`,
     heroAlt: "Gem Vol. 3 Set Guide banner: the Cubone lantern full art 0407/07 in a display case, with six holo Cubone versions beside the EBI Collectibles logo",
     glow1: 'rgb(214 169 151 / .26)',
@@ -615,7 +616,7 @@ export const BLOG_POSTS: BlogPostSummary[] = [
     excerpt:
       '35 of the 40 artworks in Gem Vol 3 are reused from English cards, mostly 2023 Scarlet & Violet sets. The other five are the new lantern full arts. Here\'s the full map.',
     tag: 'Collecting guide',
-    date: '2026-11-15',
+    date: '2025-09-26',
     heroImage: `${SITE_URL}/assets/blog/gem-vol-3-origins-hero-v5.webp`,
     heroAlt: "Gem Vol. 3 Card Origins banner: the Gengar booster pack linked to tiles showing where its 40 artworks came from, led by Obsidian Flames",
     glow1: 'rgb(214 169 151 / .26)',
@@ -641,7 +642,7 @@ export const BLOG_POSTS: BlogPostSummary[] = [
     excerpt:
       'How to read a Gem Vol 2 card, the four forest full arts, all nine V and VMAX, the Trainers and Energy, the full roster, and what a master set takes.',
     tag: 'Set guide',
-    date: '2026-11-15',
+    date: '2025-05-16',
     heroImage: `${SITE_URL}/assets/blog/gem-vol-2-guide-hero-v5.webp`,
     heroAlt: "Gem Vol. 2 Set Guide banner: the sleeping Umbreon forest full art 0615/15 in a display case, with six holo Umbreon versions beside the EBI Collectibles logo",
     glow1: 'rgb(86 134 135 / .30)',
@@ -654,7 +655,7 @@ export const BLOG_POSTS: BlogPostSummary[] = [
     excerpt:
       '40 of the 44 artworks in Gem Vol 2 are reused from English cards, mostly Sword & Shield promos and Evolving Skies. The other four are the new forest full arts. Here\'s the full map.',
     tag: 'Collecting guide',
-    date: '2026-11-15',
+    date: '2025-05-16',
     heroImage: `${SITE_URL}/assets/blog/gem-vol-2-origins-hero-v5.webp`,
     heroAlt: "Gem Vol. 2 Card Origins banner: the Sylveon booster pack linked to tiles showing where its 44 artworks came from, led by Sword & Shield promos",
     glow1: 'rgb(86 134 135 / .30)',
@@ -680,7 +681,7 @@ export const BLOG_POSTS: BlogPostSummary[] = [
     excerpt:
       "55 of the 56 artworks in Gem Vol 7 are reused from English cards, mostly Destined Rivals and Journey Together. Here's the full card-by-card map.",
     tag: 'Collecting guide',
-    date: '2026-11-14',
+    date: '2026-11-06',
     heroImage: `${SITE_URL}/assets/blog/gem-vol-7-origins-hero-v5.webp`,
     heroAlt: "Gem Vol. 7 Card Origins banner: the Psyduck booster pack linked to tiles showing where its 56 artworks came from, led by Destined Rivals",
     glow1: 'rgb(58 110 165 / .28)',
@@ -689,3 +690,13 @@ export const BLOG_POSTS: BlogPostSummary[] = [
 ]
 
 export const BLOG_SITE_URL = SITE_URL
+
+// The day the blog goes public. Every post keeps its own publish date (the
+// set's release day) and shows "Updated <this date>", which is also sent to
+// Google as dateModified. Leave null until launch; set it to 'YYYY-MM-DD' on
+// the day the blog goes live.
+export const BLOG_LIVE_DATE = null as string | null
+
+for (const p of BLOG_POSTS) {
+  if (BLOG_LIVE_DATE && BLOG_LIVE_DATE > p.date) p.updated = BLOG_LIVE_DATE
+}

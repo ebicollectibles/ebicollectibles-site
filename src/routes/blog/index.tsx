@@ -42,6 +42,7 @@ function BlogIndexPage() {
       '@type': 'BlogPosting',
       headline: p.title,
       datePublished: p.date,
+      dateModified: p.updated ?? p.date,
       url: `${BLOG_SITE_URL}${p.path}`,
       image: p.heroImage,
     })),

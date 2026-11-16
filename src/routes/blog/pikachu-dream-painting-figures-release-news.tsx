@@ -116,7 +116,7 @@ function PikachuDreamPaintingReleasePost() {
     headline: post.title,
     description: post.excerpt,
     datePublished: post.date,
-    dateModified: post.date,
+    dateModified: post.updated ?? post.date,
     image: post.heroImage,
     url: `${BLOG_SITE_URL}${post.path}`,
     mainEntityOfPage: `${BLOG_SITE_URL}${post.path}`,

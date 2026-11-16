@@ -41,6 +41,12 @@ export function BlogPostLayout({
           <p className="lede">{lede}</p>
           <div className="meta-row">
             <span>{formatDate(post.date)}</span>
+            {post.updated && (
+              <>
+                <span>·</span>
+                <span>Updated {formatDate(post.updated)}</span>
+              </>
+            )}
             <span>·</span>
             <span>EBI Collectibles</span>
           </div>
