@@ -43,7 +43,7 @@ export const Route = createRootRoute({
       {
         name: 'description',
         content:
-          'Simplified Chinese Pokémon booster boxes, figures and blind boxes — sourced through authorised distribution and verified before it ships.',
+          'Simplified Chinese Pokémon booster boxes, figures and blind boxes, sourced through authorised distribution and verified before it ships.',
       },
       // Open Graph / Twitter Card defaults — a leaf route (e.g. a product
       // page) can override any of these by declaring the same property in
@@ -56,7 +56,7 @@ export const Route = createRootRoute({
       { property: 'og:title', content: 'EBI Collectibles — Sealed Chinese Pokémon, verified' },
       {
         property: 'og:description',
-        content: 'Simplified Chinese Pokémon booster boxes, figures and blind boxes — sourced through authorised distribution and verified before it ships.',
+        content: 'Simplified Chinese Pokémon booster boxes, figures and blind boxes, sourced through authorised distribution and verified before it ships.',
       },
       { property: 'og:image', content: 'https://ebicollectibles.com/assets/ebi-logo.jpg' },
       { property: 'og:url', content: 'https://ebicollectibles.com' },
