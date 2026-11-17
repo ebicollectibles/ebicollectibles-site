@@ -215,6 +215,16 @@ export function Header({
               </div>
             )}
           </div>
+          {SHOW_ACRYLICS && (
+            <Link
+              to="/shop"
+              search={{ category: 'Acrylic Cases' }}
+              className="ebi-nav-link"
+              style={{ color: '#5a6875', padding: '4px 0' }}
+            >
+              Acrylics
+            </Link>
+          )}
           <div ref={setsMenuRef} style={{ position: 'relative' }}>
             <button
               type="button"
@@ -247,16 +257,6 @@ export function Header({
           <Link to="/blog" style={{ color: navColor(pathname.startsWith('/blog')), padding: '4px 0' }}>
             Blog
           </Link>
-          {SHOW_ACRYLICS && (
-            <Link
-              to="/shop"
-              search={{ category: 'Acrylic Cases' }}
-              className="ebi-nav-link"
-              style={{ color: '#5a6875', padding: '4px 0' }}
-            >
-              Acrylics
-            </Link>
-          )}
           <Link to="/shipping-policy" style={{ color: navColor(pathname === '/shipping-policy'), padding: '4px 0', whiteSpace: 'nowrap' }}>
             Shipping policy
           </Link>
@@ -387,12 +387,6 @@ export function Header({
           <Link to="/" style={{ color: navColor(pathname === '/'), padding: '10px 0', borderBottom: '1px solid #f0f2f4' }}>
             Home
           </Link>
-          <Link to="/sets/chinese" style={{ color: navColor(pathname.startsWith('/sets')), padding: '10px 0', borderBottom: '1px solid #f0f2f4' }}>
-            Set Lists: Simplified Chinese
-          </Link>
-          <Link to="/blog" style={{ color: navColor(pathname.startsWith('/blog')), padding: '10px 0', borderBottom: '1px solid #f0f2f4' }}>
-            Blog
-          </Link>
           <Link to="/shop" search={{ category: 'Chinese Pokémon Products' }} style={{ color: navColor(pathname === '/shop'), padding: '10px 0', borderBottom: '1px solid #f0f2f4' }}>
             All Pokemon (Chinese)
           </Link>
@@ -420,6 +414,12 @@ export function Header({
               Acrylics
             </Link>
           )}
+          <Link to="/sets/chinese" style={{ color: navColor(pathname.startsWith('/sets')), padding: '10px 0', borderBottom: '1px solid #f0f2f4' }}>
+            Set Lists: Simplified Chinese
+          </Link>
+          <Link to="/blog" style={{ color: navColor(pathname.startsWith('/blog')), padding: '10px 0', borderBottom: '1px solid #f0f2f4' }}>
+            Blog
+          </Link>
           <Link
             to="/shipping-policy"
             style={{ color: navColor(pathname === '/shipping-policy'), padding: '10px 0', borderBottom: '1px solid #f0f2f4' }}
