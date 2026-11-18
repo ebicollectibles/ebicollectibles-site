@@ -590,7 +590,7 @@ export const BLOG_POSTS: BlogPostSummary[] = [
       'Pokémon TCG Gem Pack Vol. 6 (Gem 6): 196 all-holo Simplified Chinese cards, 28 Pokémon × 7 versions, and a Chinese Exclusive Applin full art.',
     tag: 'New release',
     date: '2026-08-07',
-    heroImage: `${SITE_URL}/assets/blog/gem-vol-6-release-hero-v14.webp`,
+    heroImage: `${SITE_URL}/assets/blog/gem-vol-6-release-hero-v15.webp`,
     heroAlt: "The Gem Pack Vol. 6 booster pack with the Applin full art, over a blurred close-up of the Applin pack art",
     glow1: 'rgb(199 22 116 / .26)',
     glow2: 'rgb(78 119 104 / .30)',
