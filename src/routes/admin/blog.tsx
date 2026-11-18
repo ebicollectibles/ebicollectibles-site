@@ -8,7 +8,20 @@ import { BLOG_POSTS, BLOG_SITE_URL } from '~/data/blog-posts'
 // Turn blog posts on one at a time. A live post is indexable, listed on
 // /blog and in the sitemap, and shows "Updated <date it went live>". Drafts
 // stay reachable by direct link (for review) but are noindex and unlisted.
+// Filters live in the URL (?status=draft&type=guide) so they survive a
+// reload, going live, or coming back to the page later.
+const KINDS = [
+  { key: 'release', label: 'Release news', suffix: '-release-news' },
+  { key: 'guide', label: 'Set guide', suffix: '-set-guide' },
+  { key: 'origins', label: 'Card origins', suffix: '-card-origins' },
+] as const
+type Kind = (typeof KINDS)[number]['key']
+
 export const Route = createFileRoute('/admin/blog')({
+  validateSearch: (search: Record<string, unknown>): { status?: 'live' | 'draft'; type?: Kind } => ({
+    status: search.status === 'live' || search.status === 'draft' ? search.status : undefined,
+    type: KINDS.some((k) => k.key === search.type) ? (search.type as Kind) : undefined,
+  }),
   beforeLoad: () => requireAdmin(),
   loader: () => getBlogLiveMap(),
   component: AdminBlogPage,
@@ -46,14 +59,22 @@ function fmt(iso: string) {
 function AdminBlogPage() {
   const router = useRouter()
   const live = Route.useLoaderData()
-  const [filter, setFilter] = React.useState<Filter>('all')
+  const search = Route.useSearch()
+  const navigate = Route.useNavigate()
+  const filter: Filter = search.status ?? 'all'
+  const kind = search.type
+  const setFilter = (f: Filter) => navigate({ search: (prev) => ({ ...prev, status: f === 'all' ? undefined : f }), replace: true })
+  const setKind = (k: Kind | undefined) => navigate({ search: (prev) => ({ ...prev, type: k }), replace: true })
   const [busy, setBusy] = React.useState<string | null>(null)
   const [copied, setCopied] = React.useState<string | null>(null)
   const [error, setError] = React.useState<string | null>(null)
 
   const posts = [...BLOG_POSTS].sort((a, b) => (a.date < b.date ? 1 : -1))
+  const kindOf = (slug: string): Kind | undefined => KINDS.find((k) => slug.endsWith(k.suffix))?.key
+  const ofKind = posts.filter((p) => !kind || kindOf(p.slug) === kind)
   const liveCount = posts.filter((p) => p.slug in live).length
-  const shown = posts.filter((p) => (filter === 'all' ? true : filter === 'live' ? p.slug in live : !(p.slug in live)))
+  const kindLive = ofKind.filter((p) => p.slug in live).length
+  const shown = ofKind.filter((p) => (filter === 'all' ? true : filter === 'live' ? p.slug in live : !(p.slug in live)))
 
   const toggle = async (slug: string, makeLive: boolean, title: string) => {
     if (!makeLive && !window.confirm(`Unpublish "${title}"? It goes back to draft: hidden from /blog, Google and the sitemap.`)) return
@@ -107,10 +128,35 @@ function AdminBlogPage() {
       </p>
 
       <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', marginBottom: 14 }}>
-        {chip('all', `All (${posts.length})`)}
-        {chip('live', `Live (${liveCount})`)}
-        {chip('draft', `Draft (${posts.length - liveCount})`)}
+        {chip('all', `All (${ofKind.length})`)}
+        {chip('live', `Live (${kindLive})`)}
+        {chip('draft', `Draft (${ofKind.length - kindLive})`)}
       </div>
+      <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', marginBottom: 14 }}>
+        {[{ key: undefined, label: 'All types' }, ...KINDS].map((k) => (
+          <button
+            key={k.label}
+            type="button"
+            onClick={() => setKind(k.key)}
+            style={{
+              ...btn,
+              fontSize: 12,
+              padding: '5px 9px',
+              background: kind === k.key ? '#24314a' : '#f5f6f8',
+              color: kind === k.key ? '#ffffff' : '#24314a',
+              borderColor: kind === k.key ? '#24314a' : '#e3e6ea',
+            }}
+          >
+            {k.label}
+            {k.key ? ` (${posts.filter((p) => kindOf(p.slug) === k.key && !(p.slug in live)).length} draft)` : ''}
+          </button>
+        ))}
+      </div>
+      {shown.length === 0 && (
+        <p style={{ color: '#5a6875', fontSize: 14, margin: '6px 0 18px' }}>
+          {filter === 'draft' ? 'Nothing left in draft here. Everything is live.' : 'No posts match these filters.'}
+        </p>
+      )}
       {error && <p style={{ color: '#a85b2c', fontSize: 13.5 }}>{error}</p>}
 
       <div style={{ overflowX: 'auto' }}>
