@@ -17,14 +17,14 @@ const cardImg = (n: string) => `${R2_IMAGE_HOST}/Chinese/30th%20Celebration/Card
 // Card numbers read off the box side and the official photos; illustrators read off the cards.
 type Fig = { fig: string; card: string; illus: string; pose: string }
 const FIGURES: Fig[] = [
-  { fig: '18', card: '034', illus: 'Shinji Kanda', pose: 'Arms up, with the sketch lines of the card painted on' },
+  { fig: '18', card: '034', illus: 'Shinji Kanda', pose: "One paw raised, with the card's sketch lines painted on" },
   { fig: '01', card: '017', illus: 'Ken Sugimori', pose: 'A round, standing Pikachu' },
   { fig: '10', card: '026', illus: 'Tomokazu Komiya', pose: 'Tumbling past a red streamer' },
   { fig: '15', card: '031', illus: 'Yuu Nishida', pose: 'Rolling on its back, paws up' },
   { fig: '25', card: '041', illus: 'Atsuko Nishida', pose: 'Running out of a mountain view' },
   { fig: '30', card: '046', illus: 'Kazuki Minami', pose: 'Mid-spin, tail flung out of the frame' },
   { fig: '06', card: '022', illus: 'sowsow', pose: 'Sitting with a Poké Ball' },
-  { fig: '28', card: '044', illus: 'Shimaris Yukichi', pose: 'Mid-snack, crumbs on its face' },
+  { fig: '28', card: '044', illus: 'Shimaris Yukichi', pose: 'Eyes shut, mid-snack' },
   { fig: '21', card: '037', illus: 'OOYAMA', pose: 'Lying on the beach, eyes shut' },
   { fig: '14', card: '030', illus: 'OKACHEKE', pose: 'Peeking out between wooden posts' },
   { fig: '12', card: '028', illus: 'USGMEN', pose: 'A flat, graphic Pikachu with a big grin' },
@@ -83,6 +83,10 @@ const FAQ = [
   {
     q: 'What are the odds of pulling the secret figure?',
     a: 'Pokémon China gives a production ratio of 143 regular boxes to 1 secret, so about 1 box in 144. The 12 regular figures are made in equal numbers.',
+  },
+  {
+    q: 'Does a case have one of each figure?',
+    a: 'A case holds 12 boxes, the same as the number of regular designs, but Pokémon China has not said a case is one of each. Treat the boxes as random.',
   },
   {
     q: 'What does figure 18/30 mean?',
@@ -308,7 +312,7 @@ function PikachuDreamPaintingReleasePost() {
 
         <h2 id="collecting">How to collect them</h2>
         <p>
-          If you want the whole display, a case is the simple route. If you want one Pikachu, the one by your favorite illustrator or
+          If you want all 12, a 12-box case is the quickest start, though Pokémon China has not said a case is one of each. If you want one Pikachu, the one by your favorite illustrator or
           the one from a card you already own, buy it as a single: every regular figure is on our shelf individually, opened only to
           confirm the design, with its card, stand and sealed pack still included. Blind boxes are for the fun of the rip and the small
           shot at the secret, and every box still gives you a 30th Celebration pack.

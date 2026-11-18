@@ -54,6 +54,10 @@ const FAQ = [
     a: 'Four. The case is Funism’s display box, which holds four Ditto-shaped blind boxes, so 12 figures in all.',
   },
   {
+    q: 'Does a case have one of each figure?',
+    a: 'Funism has not said so. A four-box case holds 12 figures, the same as the number of designs, but treat the figures as random.',
+  },
+  {
     q: 'Who makes the Happy Ditto figures?',
     a: 'Funism (玩乐主义), an officially licensed Pokémon figure maker in China. Happy Ditto is part of its Palm-Size Wonders (小小奇遇) series.',
   },
