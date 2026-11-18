@@ -232,7 +232,7 @@
     .data-table .col-versions { display: none; }
     /* Let long row labels (odds bands, rarity groups) wrap on phones so the
        numbers fit on screen; keep each number/percentage on one line. */
-    .data-table tbody th { white-space: normal; min-width: 7.5em; }
+    .data-table tbody th { white-space: normal; }
     .data-table td { overflow-wrap: normal; }
     .data-table thead th { white-space: normal; }
   }
