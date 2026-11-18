@@ -230,6 +230,11 @@
     .data-table thead th { font-size: 9.5px; letter-spacing: .05em; }
     .data-table .sym { min-width: 0; margin-right: 2px; }
     .data-table .col-versions { display: none; }
+    /* Let long row labels (odds bands, rarity groups) wrap on phones so the
+       numbers fit on screen; keep each number/percentage on one line. */
+    .data-table tbody th { white-space: normal; min-width: 7.5em; }
+    .data-table td { overflow-wrap: normal; }
+    .data-table thead th { white-space: normal; }
   }
   .inline-media { display: block; width: 100%; height: auto; max-height: 340px; object-fit: contain; margin-block: 4px 12px; }
 
