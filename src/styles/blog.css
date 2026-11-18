@@ -235,6 +235,8 @@
     .data-table tbody th { white-space: normal; }
     .data-table td { overflow-wrap: normal; }
     .data-table thead th { white-space: normal; }
+    .data-table:has(thead th:nth-child(5)) thead th { font-size: 8.5px; letter-spacing: .02em; }
+    .data-table:has(thead th:nth-child(5)) th, .data-table:has(thead th:nth-child(5)) td { padding: 8px 4px; }
   }
   .inline-media { display: block; width: 100%; height: auto; max-height: 340px; object-fit: contain; margin-block: 4px 12px; }
 
