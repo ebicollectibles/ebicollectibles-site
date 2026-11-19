@@ -1,3 +1,6 @@
+import { chunk } from '~/lib/chunk'
+import { RarityAbbr, rarityFullName } from '~/components/blog/RarityAbbr'
+import { useId } from 'react'
 import { BuyStrip } from '~/components/blog/BlogShop'
 import { createFileRoute, Link } from '@tanstack/react-router'
 import blogCssUrl from '~/styles/blog.css?url'
@@ -284,10 +287,15 @@ export const Route = createFileRoute('/blog/fearless-terastal-card-origins')({
   component: FearlessTerastalOrigins,
 })
 
-function OriginsTable({ list }: { list: typeof rows }) {
+function OriginsTable({ list, caption }: { list: typeof rows; caption: string }) {
+  // Names the table for screen readers and labels its scroll area.
+  const captionId = useId()
   return (
-    <div className="table-scroll table-tall">
+    <div className="table-scroll table-tall" role="group" aria-labelledby={captionId} tabIndex={0}>
       <table className="data-table origins-table">
+        <caption id={captionId} className="sr-only">
+          {caption}
+        </caption>
         <thead>
           <tr>
             <th scope="col">No.</th>
@@ -295,27 +303,33 @@ function OriginsTable({ list }: { list: typeof rows }) {
             <th scope="col">English card</th>
           </tr>
         </thead>
-        <tbody>
-          {list.map((r) => (
-            <tr key={r.cn} className={r.src === 'NEW' ? 'is-current' : undefined}>
-              <th scope="row">{r.cn}</th>
-              <td>
-                {r.name}
-                <span className="cell-sub">{r.rarity}</span>
-              </td>
-              <td>
-                {r.src === 'NEW' ? (
-                  <span className="cell-none">Chinese Exclusive, no English version</span>
-                ) : (
-                  <>
-                    {SET_NAME[r.src]} {r.en}
-                  </>
-                )}
-                {r.illus ? <span className="cell-sub">Illus. {r.illus}</span> : null}
-              </td>
-            </tr>
-          ))}
-        </tbody>
+        {/* Row groups of 20: the same table on screen and to screen readers, but no single
+            group outweighs the article text when a reader mode picks the main content. */}
+        {chunk(list, 20).map((group, g) => (
+          <tbody key={g}>
+            {group.map((r) => (
+              <tr key={r.cn} className={r.src === 'NEW' ? 'is-current' : undefined}>
+                <th scope="row">{r.cn}</th>
+                <td>
+                  {r.name}
+                  <span className="cell-sub">
+                    <RarityAbbr code={r.rarity} />
+                  </span>
+                </td>
+                <td>
+                  {r.src === 'NEW' ? (
+                    <span className="cell-none">Chinese Exclusive, no English version</span>
+                  ) : (
+                    <>
+                      {SET_NAME[r.src]} {r.en}
+                    </>
+                  )}
+                  {r.illus ? <span className="cell-sub">Illus. {r.illus}</span> : null}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        ))}
       </table>
     </div>
   )
@@ -382,8 +396,9 @@ function FearlessTerastalOrigins() {
         </nav>
 
         <h2 id="at-a-glance">At a glance</h2>
-        <div className="table-scroll">
+        <div className="table-scroll" role="group" aria-labelledby="tbl-2" tabIndex={0}>
           <table className="data-table">
+            <caption id="tbl-2" className="sr-only">At a glance</caption>
             <thead>
               <tr>
                 <th scope="col">Rarity</th>
@@ -424,24 +439,26 @@ function FearlessTerastalOrigins() {
           224/198. Both are in Fearless Terastal, as 018 and 141. The Special Art Rare 155/130 is
           the extra one. It shows the crystal Arcanine mid-roar under its red Tera Jewel crown, and no English card uses this illustration.
         </p>
-        <div className="card-grid cols-3">
+        <ul className="card-grid cols-3">
           {arcanine.map((r) => (
-            <figure key={r.cn}>
-              <img
-                src={r.image}
-                alt={`${r.name} ${r.cn}/130 ${r.rarity}${r.src === 'NEW' ? ', Chinese Exclusive' : ''}, Fearless Terastal`}
-                loading="lazy"
-                width={300}
-                height={418}
-              />
-              <figcaption>
-                {r.src === 'NEW' && <ChineseExclusiveBadge />}
-                <strong>{r.name}</strong>
-                {r.cn}/130 · {r.rarity} · {r.src === 'NEW' ? r.illus : `${SET_NAME[r.src]} ${r.en}`}
-              </figcaption>
-            </figure>
+            <li key={r.cn}>
+              <figure>
+                <img
+                  src={r.image}
+                  alt={`${r.name} ${r.cn}/130 ${rarityFullName(r.rarity)}${r.src === 'NEW' ? ', Chinese Exclusive' : ''}, Fearless Terastal`}
+                  loading="lazy"
+                  width={300}
+                  height={418}
+                />
+                <figcaption>
+                  {r.src === 'NEW' && <ChineseExclusiveBadge />}
+                  <strong>{r.name}</strong>
+                  {r.cn}/130 · <RarityAbbr code={r.rarity} /> · {r.src === 'NEW' ? r.illus : `${SET_NAME[r.src]} ${r.en}`}
+                </figcaption>
+              </figure>
+            </li>
           ))}
-        </div>
+        </ul>
 
         <h2 id="patterns">Patterns worth knowing</h2>
         <p>
@@ -449,8 +466,9 @@ function FearlessTerastalOrigins() {
           Treasures of Ruin at every rarity, the Grusha, Iono and Giacomo Special Art Rares, and all eight Art Rares except Mabosstiff,
           which matches Scarlet & Violet 218/198. Every card's English source, from most cards to fewest:
         </p>
-        <div className="table-scroll">
+        <div className="table-scroll" role="group" aria-labelledby="tbl-3" tabIndex={0}>
           <table className="data-table">
+            <caption id="tbl-3" className="sr-only">Patterns worth knowing</caption>
             <thead>
               <tr>
                 <th scope="col">English source</th>
@@ -483,12 +501,12 @@ function FearlessTerastalOrigins() {
 
         <h2 id="secret-rares">All {SECRET.length} secret rares</h2>
         <p>Every card above 130, with its English twin. The highlighted row is new.</p>
-        <OriginsTable list={SECRET} />
+        <OriginsTable list={SECRET} caption="Secret rares and the English card each one matches" />
 
         <BuyStrip />
 
         <h2 id="main-set">The {MAIN.length}-card main set</h2>
-        <OriginsTable list={MAIN} />
+        <OriginsTable list={MAIN} caption="Main set cards and the English card each one matches" />
 
         <h2 id="faq">FAQ</h2>
         <div className="faq">

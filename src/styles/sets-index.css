@@ -30,7 +30,11 @@
   -webkit-font-smoothing: antialiased;
 
   a { color: inherit; text-decoration: none; }
-  :focus-visible { outline: 2px solid var(--hero-fg); outline-offset: 2px; }
+  /* A dark ring on the white page, a light one on the dark hero band (the
+     old ring was the hero's near-white everywhere, so it could not be seen
+     on the cards below). */
+  :focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+  .hero :focus-visible { outline-color: var(--hero-fg); }
 
   .wrap { max-width: 1240px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
 
@@ -60,7 +64,7 @@
   }
   p.lede { max-width: 62ch; color: #c8d0db; margin: 0; font-size: 16px; }
 
-  main { padding-block: 40px 64px; }
+  .page-main { padding-block: 40px 64px; }
   .series { margin-bottom: 40px; }
   .series:last-child { margin-bottom: 0; }
   .series-h {
@@ -69,7 +73,11 @@
   }
   .grid {
     display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 24px;
+    list-style: none; margin: 0; padding: 0;
   }
+  /* The grid is a list (ul > li > a.card); the li only passes the grid cell's size on to its card. */
+  .grid > li { display: flex; min-width: 0; }
+  .grid > li > .card { flex: 1; min-width: 0; }
   .card {
     display: flex; flex-direction: column; gap: 0; border-radius: 10px; overflow: hidden;
     background: var(--raise); box-shadow: var(--shadow); border: 1px solid var(--line);
@@ -96,7 +104,7 @@
   .card-art img { width: 64%; max-width: 160px; height: auto; object-fit: contain; border-radius: 10px; box-shadow: 0 14px 30px rgb(0 0 0 / .4); display: block; }
   .card-preorder {
     position: absolute; top: 10px; left: 10px; font-size: 10px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase;
-    color: #fff; background: rgb(0 0 0 / .55); backdrop-filter: blur(2px); padding: 3px 8px; border-radius: 999px;
+    color: #fff; background: rgb(0 0 0 / .7); backdrop-filter: blur(2px); padding: 3px 8px; border-radius: 999px;
   }
   .card-body { padding: 16px 18px 18px; display: flex; flex-direction: column; gap: 6px; }
   .card-series { font-family: var(--f-mono); font-size: 10px; letter-spacing: .1em; text-transform: uppercase; color: var(--slate); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }

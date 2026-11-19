@@ -169,8 +169,9 @@ function GemVol5SetGuide() {
           A booster box is 18 packs of 4, so 72 holo cards. Pokémon China publishes the share of the print run each rarity makes up.
           Applied to one box, that works out to roughly this:
         </p>
-        <div className="table-scroll">
+        <div className="table-scroll" role="group" aria-labelledby="tbl-1" tabIndex={0}>
           <table className="data-table">
+            <caption id="tbl-1" className="sr-only">What an average box holds</caption>
             <thead>
               <tr>
                 <th scope="col">Rarity</th>
@@ -195,18 +196,20 @@ function GemVol5SetGuide() {
         <p>
           There is one full art per Pokémon, each with its own illustration. Four of them, the Pokémon Horizons cards, are Chinese Exclusives drawn just for Gem Vol 5.
         </p>
-        <div className="card-grid cols-4">
+        <ul className="card-grid cols-4">
           {FULL_ARTS_GALLERY.map((c) => (
-            <figure key={c.number}>
-              <img src={c.image} alt={`${c.name} full art ${c.number}, Gem Vol 5`} loading="lazy" width={300} height={419} />
-              <figcaption>
-                {EXCLUSIVE.has(c.number) && <ChineseExclusiveBadge />}
-                <strong>{c.name}</strong>
-                {c.number}
-              </figcaption>
-            </figure>
+            <li key={c.number}>
+              <figure>
+                <img src={c.image} alt={`${c.name} full art ${c.number}, Gem Vol 5`} loading="lazy" width={300} height={419} />
+                <figcaption>
+                  {EXCLUSIVE.has(c.number) && <ChineseExclusiveBadge />}
+                  <strong>{c.name}</strong>
+                  {c.number}
+                </figcaption>
+              </figure>
+            </li>
           ))}
-        </div>
+        </ul>
 
         <BuyStrip />
 
@@ -215,8 +218,9 @@ function GemVol5SetGuide() {
           All 28 Pokémon, in set order. Each one has seven cards, numbered from its first two digits plus 01 to 07. None of
           them belong to a Trainer.
         </p>
-        <div className="table-scroll">
+        <div className="table-scroll" role="group" aria-labelledby="tbl-2" tabIndex={0}>
           <table className="data-table">
+            <caption id="tbl-2" className="sr-only">The full roster</caption>
             <thead>
               <tr>
                 <th scope="col">#</th>
@@ -248,8 +252,9 @@ function GemVol5SetGuide() {
           07), so 2205/07 is Floragato's version 05. The symbol printed after the number gives the rarity, and the holo pattern tells you the
           version at a glance:
         </p>
-        <div className="table-scroll">
+        <div className="table-scroll" role="group" aria-labelledby="tbl-3" tabIndex={0}>
           <table className="data-table">
+            <caption id="tbl-3" className="sr-only">Reading a Gem Vol 5 card</caption>
             <thead>
               <tr>
                 <th scope="col">Version</th>

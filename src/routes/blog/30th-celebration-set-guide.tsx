@@ -28,17 +28,19 @@ const MISSING = [...ART_RARES, ...SAR].filter((c) => !c.image)
 
 function Gallery({ cards, cols, label }: { cards: Card[]; cols: number; label?: (c: Card, i: number) => string }) {
   return (
-    <div className={`card-grid cols-${cols}`}>
+    <ul className={`card-grid cols-${cols}`}>
       {withImage(cards).map((c, i) => (
-        <figure key={c.number}>
-          <img src={c.image!} alt={`${c.name} ${c.number}, 30th Celebration`} loading="lazy" width={300} height={419} />
-          <figcaption>
-            <strong>{c.name}</strong>
-            {label ? label(c, i) : c.number}
-          </figcaption>
-        </figure>
+        <li key={c.number}>
+          <figure>
+            <img src={c.image!} alt={`${c.name} ${c.number}, 30th Celebration`} loading="lazy" width={300} height={419} />
+            <figcaption>
+              <strong>{c.name}</strong>
+              {label ? label(c, i) : c.number}
+            </figcaption>
+          </figure>
+        </li>
       ))}
-    </div>
+    </ul>
   )
 }
 
@@ -195,8 +197,9 @@ function ThirtiethSetGuide() {
           A booster box is 20 packs of 6, so 120 holo cards, including 20 Pikachu. Applied to one box, Pokémon China's print shares work
           out to roughly this:
         </p>
-        <div className="table-scroll">
+        <div className="table-scroll" role="group" aria-labelledby="tbl-1" tabIndex={0}>
           <table className="data-table">
+            <caption id="tbl-1" className="sr-only">What an average box holds</caption>
             <thead>
               <tr>
                 <th scope="col">Rarity group</th>
@@ -243,7 +246,15 @@ function ThirtiethSetGuide() {
           </p>
         )}
 
-        <h2 id="promos">All 33 promos</h2>
+        {/* The anchor id sits on a span inside the heading: reader modes drop a heading whose own id
+
+            contains a word like "promo" or "share", and this section would lose its title there. */}
+
+        <h2>
+
+          <span id="promos">All 33 promos</span>
+
+        </h2>
         <p>
           Promos 001 to 027 are the first partner Pokémon from all nine generations, from the three First Partner special illustration
           sets. The six ex promos come from the products listed below.
@@ -262,8 +273,9 @@ function ThirtiethSetGuide() {
           Set cards are numbered out of 103, so anything past 103/103 is a secret rare. Promos are numbered separately as NNN/30th-P, so
           001/30th-P Bulbasaur and 001/103 Exeggcute are different cards. The rarities, from most to least common:
         </p>
-        <div className="table-scroll">
+        <div className="table-scroll" role="group" aria-labelledby="tbl-2" tabIndex={0}>
           <table className="data-table">
+            <caption id="tbl-2" className="sr-only">Reading a 30th Celebration card</caption>
             <thead>
               <tr>
                 <th scope="col">Rarity</th>

@@ -1,3 +1,4 @@
+import { Zh } from '~/components/blog/Zh'
 import { BuyStrip } from '~/components/blog/BlogShop'
 import { createFileRoute, Link } from '@tanstack/react-router'
 import blogCssUrl from '~/styles/blog.css?url'
@@ -19,18 +20,20 @@ const EXCLUSIVE = new Set(['157', '164'])
 
 function Grid({ cards, cols }: { cards: Shown[]; cols: number }) {
   return (
-    <div className={`card-grid cols-${cols}`}>
+    <ul className={`card-grid cols-${cols}`}>
       {cards.map((c) => (
-        <figure key={c.n}>
-          <img src={cardImg(c.n)} alt={`${c.name} ${c.n}/129, Black Crystal Blaze`} loading="lazy" width={300} height={419} />
-          <figcaption>
-            {EXCLUSIVE.has(c.n) && <ChineseExclusiveBadge />}
-            <strong>{c.name}</strong>
-            {c.n}/129 · {c.note}
-          </figcaption>
-        </figure>
+        <li key={c.n}>
+          <figure>
+            <img src={cardImg(c.n)} alt={`${c.name} ${c.n}/129, Black Crystal Blaze`} loading="lazy" width={300} height={419} />
+            <figcaption>
+              {EXCLUSIVE.has(c.n) && <ChineseExclusiveBadge />}
+              <strong>{c.name}</strong>
+              {c.n}/129 · {c.note}
+            </figcaption>
+          </figure>
+        </li>
       ))}
-    </div>
+    </ul>
   )
 }
 
@@ -198,7 +201,7 @@ function BlackCrystalBlazeReleasePost() {
         }}
       >
         <p>
-          Black Crystal Blaze (黑晶炽诚) released on September 12, 2025. It is the fifth main set of the Chinese Scarlet & Violet series,
+          Black Crystal Blaze (<Zh>黑晶炽诚</Zh>) released on September 12, 2025. It is the fifth main set of the Chinese Scarlet & Violet series,
           built around Pokémon whose Tera type differs from their usual type, led by the Darkness Tera Charizard ex on the pack. Elite
           Four members Larry and Poppy join as Supporters, and two secret rares are Chinese Exclusives.
         </p>
@@ -215,7 +218,7 @@ function BlackCrystalBlazeReleasePost() {
             <p className="fact-box-title">Key facts</p>
             <dl>
               <dt>Set</dt>
-              <dd>Black Crystal Blaze (黑晶炽诚)</dd>
+              <dd>Black Crystal Blaze (<Zh>黑晶炽诚</Zh>)</dd>
               <dt>Set code</dt>
               <dd>CSV5C</dd>
               <dt>Released</dt>
@@ -251,23 +254,28 @@ function BlackCrystalBlazeReleasePost() {
           A slim box is 15 packs, 75 cards and 15 holos. A jumbo box is 6 packs, 120 cards and 36 holos, so it has more than twice the
           holos.
         </p>
-        <div className="card-grid cols-2">
-          <figure>
-            <img src={`${SITE_URL}/assets/blog/black-crystal-blaze-slim-pack.webp`} alt="Black Crystal Blaze slim pack, 5 cards" loading="lazy" width={600} height={1127} />
-            <figcaption>
-              <strong>Slim pack</strong>5 cards · 1 holo
-            </figcaption>
-          </figure>
-          <figure>
-            <img src={`${SITE_URL}/assets/blog/black-crystal-blaze-jumbo-pack.webp`} alt="Black Crystal Blaze jumbo pack, 20 cards" loading="lazy" width={600} height={1196} />
-            <figcaption>
-              <strong>Jumbo pack</strong>20 cards · 6 holo
-            </figcaption>
-          </figure>
-        </div>
+        <ul className="card-grid cols-2">
+          <li>
+            <figure>
+              <img src={`${SITE_URL}/assets/blog/black-crystal-blaze-slim-pack.webp`} alt="Black Crystal Blaze slim pack, 5 cards" loading="lazy" width={600} height={1127} />
+              <figcaption>
+                <strong>Slim pack</strong>5 cards · 1 holo
+              </figcaption>
+            </figure>
+          </li>
+          <li>
+            <figure>
+              <img src={`${SITE_URL}/assets/blog/black-crystal-blaze-jumbo-pack.webp`} alt="Black Crystal Blaze jumbo pack, 20 cards" loading="lazy" width={600} height={1196} />
+              <figcaption>
+                <strong>Jumbo pack</strong>20 cards · 6 holo
+              </figcaption>
+            </figure>
+          </li>
+        </ul>
         <p>Pokémon China's odds chart for the 5-card pack, applied to one slim box:</p>
-        <div className="table-scroll">
+        <div className="table-scroll" role="group" aria-labelledby="tbl-1" tabIndex={0}>
           <table className="data-table">
+            <caption id="tbl-1" className="sr-only">Slim and jumbo boxes</caption>
             <thead>
               <tr>
                 <th scope="col">Rarity group</th>

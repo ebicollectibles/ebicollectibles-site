@@ -120,18 +120,20 @@ export const Route = createFileRoute('/blog/gem-vol-1-set-guide')({
 
 function Gallery({ cards, cols }: { cards: Card[]; cols: number }) {
   return (
-    <div className={`card-grid cols-${cols}`}>
+    <ul className={`card-grid cols-${cols}`}>
       {cards.map((c) => (
-        <figure key={c.number}>
-          <img src={c.image} alt={`${c.name} ${c.number}, Gem Vol 1`} loading="lazy" width={300} height={419} />
-          <figcaption>
-            {EXCLUSIVE.has(c.number) && <ChineseExclusiveBadge />}
-            <strong>{c.name}</strong>
-            {c.number}
-          </figcaption>
-        </figure>
+        <li key={c.number}>
+          <figure>
+            <img src={c.image} alt={`${c.name} ${c.number}, Gem Vol 1`} loading="lazy" width={300} height={419} />
+            <figcaption>
+              {EXCLUSIVE.has(c.number) && <ChineseExclusiveBadge />}
+              <strong>{c.name}</strong>
+              {c.number}
+            </figcaption>
+          </figure>
+        </li>
       ))}
-    </div>
+    </ul>
   )
 }
 
@@ -206,13 +208,22 @@ function GemVol1SetGuide() {
           </ol>
         </nav>
 
-        <h2 id="print-shares">Rarities and print shares</h2>
+        {/* The anchor id sits on a span inside the heading: reader modes drop a heading whose own id
+
+            contains a word like "promo" or "share", and this section would lose its title there. */}
+
+        <h2>
+
+          <span id="print-shares">Rarities and print shares</span>
+
+        </h2>
         <p>
           Every pack has 4 cards, all holo. Pokémon China publishes how much of the print run each rarity takes up, and how many
           different cards share it:
         </p>
-        <div className="table-scroll">
+        <div className="table-scroll" role="group" aria-labelledby="tbl-1" tabIndex={0}>
           <table className="data-table">
+            <caption id="tbl-1" className="sr-only">Rarities and print shares</caption>
             <thead>
               <tr>
                 <th scope="col">Rarity</th>
@@ -267,8 +278,9 @@ function GemVol1SetGuide() {
 
         <h2 id="roster">The full roster</h2>
         <p>All 16 Pokémon, with how many cards each one has.</p>
-        <div className="table-scroll">
+        <div className="table-scroll" role="group" aria-labelledby="tbl-2" tabIndex={0}>
           <table className="data-table">
+            <caption id="tbl-2" className="sr-only">The full roster</caption>
             <thead>
               <tr>
                 <th scope="col">#</th>
@@ -298,8 +310,9 @@ function GemVol1SetGuide() {
           the Captain Pikachu Horizons full art. Trainers are numbered 17VV/04 and Energy 18VV/06. The symbol after the number gives the
           rarity, and the holo pattern tells you the version. The 5-card runs follow the same order but move up a rarity sooner:
         </p>
-        <div className="table-scroll">
+        <div className="table-scroll" role="group" aria-labelledby="tbl-3" tabIndex={0}>
           <table className="data-table">
+            <caption id="tbl-3" className="sr-only">Reading a Gem Vol 1 card</caption>
             <thead>
               <tr>
                 <th scope="col">Version</th>

@@ -49,13 +49,27 @@ function noteFor(p: BlogShopProduct): string | null {
   return null
 }
 
+/** "Black Bolt Booster Box, Slim box": what a product's links are called for screen readers. */
+function spokenName(p: BlogShopProduct): string {
+  const kind = kindLabel(p)
+  return kind ? `${splitName(p).title}, ${kind}` : splitName(p).title
+}
+
+// "Shop now" appears once per product, so each link also says (to screen
+// readers only) which product it opens.
 function ProductLinkButton({ p, className }: { p: BlogShopProduct; className: string }) {
   return (
     <Link to="/products/$id" params={{ id: p.id }} className={className}>
       Shop now
+      <span className="sr-only">: {spokenName(p)}</span>
       <span aria-hidden="true">→</span>
     </Link>
   )
+}
+
+/** Alt for a product photo: the store's own alt text when it has one, else the product name. */
+export function productAlt(p: Pick<BlogShopProduct, 'imgAlt' | 'name'>): string {
+  return p.imgAlt?.trim() || p.name
 }
 
 /** Placed in a post's body right after the chase cards; reads the post's live products itself. */
@@ -74,7 +88,7 @@ export function ShopStrip({ products }: { products: BlogShopProduct[] }) {
     const price = priceOf(p)
     return (
       <div className="shop-strip">
-        {p.img && <img src={p.img} srcSet={thumbSrcSet(p.img)} sizes="64px" alt={p.imgAlt || p.name} width={64} height={64} loading="lazy" />}
+        {p.img && <img src={p.img} srcSet={thumbSrcSet(p.img)} sizes="64px" alt={productAlt(p)} width={64} height={64} loading="lazy" />}
         <div className="shop-strip-text">
           <b>{splitName(p).title}</b>
           {price && <span>{price}</span>}
@@ -90,7 +104,7 @@ export function ShopStrip({ products }: { products: BlogShopProduct[] }) {
   const title = splitName(lead).title
   return (
     <div className="shop-strip">
-      {lead.img && <img src={lead.img} srcSet={thumbSrcSet(lead.img)} sizes="64px" alt={lead.imgAlt || lead.name} width={64} height={64} loading="lazy" />}
+      {lead.img && <img src={lead.img} srcSet={thumbSrcSet(lead.img)} sizes="64px" alt={productAlt(lead)} width={64} height={64} loading="lazy" />}
       <div className="shop-strip-text">
         <b>
           {title}: {kinds.join(' or ')}
@@ -125,18 +139,20 @@ export function ShopPanel({
   return (
     <section className={`shop-panel${products.length === 1 ? ' is-single' : ''}`} id="shop" aria-labelledby="shop-heading">
       <div className="shop-head">
-        <h3 id="shop-heading">{products.length > 0 ? heading.replace(/^(Collect|Explore) /, 'Shop ') : heading}</h3>
+        <h2 id="shop-heading">{products.length > 0 ? heading.replace(/^(Collect|Explore) /, 'Shop ') : heading}</h2>
         {products.length === 0 && <p>{body}</p>}
       </div>
 
       {products.length > 0 && (
-        <div className={`shop-tiles n-${Math.min(products.length, 3)}`}>
+        <ul className={`shop-tiles n-${Math.min(products.length, 3)}`}>
           {products.map((p) => {
             const price = priceOf(p)
             const kind = kindLabel(p)
             const note = noteFor(p)
             return (
-              <div key={p.id} className="shop-tile">
+              <li key={p.id} className="shop-tile">
+                {/* The photo repeats the titled link beside it, so it is kept
+                    out of the tab order and hidden from screen readers. */}
                 <Link to="/products/$id" params={{ id: p.id }} className="shop-tile-img" tabIndex={-1} aria-hidden="true">
                   {p.img && <img src={p.img} srcSet={thumbSrcSet(p.img)} sizes="(max-width: 640px) 96px, 240px" alt="" loading="lazy" width={240} height={240} />}
                 </Link>
@@ -144,6 +160,7 @@ export function ShopPanel({
                   {kind && <span className="shop-kind">{kind}</span>}
                   <Link to="/products/$id" params={{ id: p.id }} className="shop-title">
                     {splitName(p).title}
+                    {kind && <span className="sr-only">, {kind}</span>}
                   </Link>
                   {note && <p className="shop-note">{note}</p>}
                   {price && (
@@ -153,10 +170,10 @@ export function ShopPanel({
                   )}
                   <ProductLinkButton p={p} className="btn btn-dark btn-block" />
                 </div>
-              </div>
+              </li>
             )
           })}
-        </div>
+        </ul>
       )}
 
       {fallbackButtons.length > 0 && (

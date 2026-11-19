@@ -1,3 +1,6 @@
+import { chunk } from '~/lib/chunk'
+import { RarityAbbr, rarityFullName } from '~/components/blog/RarityAbbr'
+import { useId } from 'react'
 import { BuyStrip } from '~/components/blog/BlogShop'
 import { createFileRoute, Link } from '@tanstack/react-router'
 import blogCssUrl from '~/styles/blog.css?url'
@@ -282,10 +285,15 @@ export const Route = createFileRoute('/blog/reward-round-card-origins')({
   component: RewardRoundOrigins,
 })
 
-function OriginsTable({ list }: { list: typeof rows }) {
+function OriginsTable({ list, caption }: { list: typeof rows; caption: string }) {
+  // Names the table for screen readers and labels its scroll area.
+  const captionId = useId()
   return (
-    <div className="table-scroll table-tall">
+    <div className="table-scroll table-tall" role="group" aria-labelledby={captionId} tabIndex={0}>
       <table className="data-table origins-table">
+        <caption id={captionId} className="sr-only">
+          {caption}
+        </caption>
         <thead>
           <tr>
             <th scope="col">No.</th>
@@ -293,27 +301,33 @@ function OriginsTable({ list }: { list: typeof rows }) {
             <th scope="col">English card</th>
           </tr>
         </thead>
-        <tbody>
-          {list.map((r) => (
-            <tr key={r.cn} className={r.src === 'NEW' ? 'is-current' : undefined}>
-              <th scope="row">{r.cn}</th>
-              <td>
-                {r.name}
-                <span className="cell-sub">{r.rarity}</span>
-              </td>
-              <td>
-                {r.src === 'NEW' ? (
-                  <span className="cell-none">Chinese Exclusive, no English version</span>
-                ) : (
-                  <>
-                    {SET_NAME[r.src]} {r.en}
-                  </>
-                )}
-                {r.illus ? <span className="cell-sub">Illus. {r.illus}</span> : null}
-              </td>
-            </tr>
-          ))}
-        </tbody>
+        {/* Row groups of 20: the same table on screen and to screen readers, but no single
+            group outweighs the article text when a reader mode picks the main content. */}
+        {chunk(list, 20).map((group, g) => (
+          <tbody key={g}>
+            {group.map((r) => (
+              <tr key={r.cn} className={r.src === 'NEW' ? 'is-current' : undefined}>
+                <th scope="row">{r.cn}</th>
+                <td>
+                  {r.name}
+                  <span className="cell-sub">
+                    <RarityAbbr code={r.rarity} />
+                  </span>
+                </td>
+                <td>
+                  {r.src === 'NEW' ? (
+                    <span className="cell-none">Chinese Exclusive, no English version</span>
+                  ) : (
+                    <>
+                      {SET_NAME[r.src]} {r.en}
+                    </>
+                  )}
+                  {r.illus ? <span className="cell-sub">Illus. {r.illus}</span> : null}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        ))}
       </table>
     </div>
   )
@@ -383,8 +397,9 @@ function RewardRoundOrigins() {
         </nav>
 
         <h2 id="at-a-glance">At a glance</h2>
-        <div className="table-scroll">
+        <div className="table-scroll" role="group" aria-labelledby="tbl-2" tabIndex={0}>
           <table className="data-table">
+            <caption id="tbl-2" className="sr-only">At a glance</caption>
             <thead>
               <tr>
                 <th scope="col">Rarity</th>
@@ -425,18 +440,20 @@ function RewardRoundOrigins() {
           Special Art Rare. The English Gholdengo ex Special Art Rare, Maushold ex Super Rare and Rika Super Rare are all here too, so a
           Chinese binder holds one more version of each.
         </p>
-        <div className="card-grid cols-3">
+        <ul className="card-grid cols-3">
           {fresh.map((r) => (
-            <figure key={r.cn}>
-              <img src={r.image} alt={`${r.name} ${r.cn}/129, Chinese Exclusive, Reward Round`} loading="lazy" width={300} height={419} />
-              <figcaption>
-                <ChineseExclusiveBadge />
-                <strong>{r.name}</strong>
-                {r.cn}/129 · {r.rarity} · {r.illus}
-              </figcaption>
-            </figure>
+            <li key={r.cn}>
+              <figure>
+                <img src={r.image} alt={`${r.name} ${r.cn}/129 ${rarityFullName(r.rarity)}, Chinese Exclusive, Reward Round`} loading="lazy" width={300} height={419} />
+                <figcaption>
+                  <ChineseExclusiveBadge />
+                  <strong>{r.name}</strong>
+                  {r.cn}/129 · <RarityAbbr code={r.rarity} /> · {r.illus}
+                </figcaption>
+              </figure>
+            </li>
           ))}
-        </div>
+        </ul>
         <p>
           <strong>The rest of the chase matches English.</strong> Gholdengo ex, Maushold ex, Golisopod ex and Tapu Koko ex
           match Paradox Rift, Pidgeot ex and Revavroom ex match Obsidian Flames, and Slowking ex, Dedenne ex and Boss's Orders match
@@ -446,8 +463,9 @@ function RewardRoundOrigins() {
         <p>
           <strong>Three sets do most of the work.</strong> Every card's English source, from most cards to fewest:
         </p>
-        <div className="table-scroll">
+        <div className="table-scroll" role="group" aria-labelledby="tbl-3" tabIndex={0}>
           <table className="data-table">
+            <caption id="tbl-3" className="sr-only">Patterns worth knowing</caption>
             <thead>
               <tr>
                 <th scope="col">English source</th>
@@ -471,12 +489,12 @@ function RewardRoundOrigins() {
 
         <h2 id="secret-rares">All 36 secret rares</h2>
         <p>Every card above 129, with its English twin. Highlighted rows are new.</p>
-        <OriginsTable list={SECRET} />
+        <OriginsTable list={SECRET} caption="Secret rares and the English card each one matches" />
 
         <BuyStrip />
 
         <h2 id="main-set">The 129-card main set</h2>
-        <OriginsTable list={MAIN} />
+        <OriginsTable list={MAIN} caption="Main set cards and the English card each one matches" />
 
         <h2 id="faq">FAQ</h2>
         <div className="faq">

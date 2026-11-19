@@ -1,3 +1,4 @@
+import { rarityFullName } from '~/components/blog/RarityAbbr'
 import { BuyStrip } from '~/components/blog/BlogShop'
 import { createFileRoute, Link } from '@tanstack/react-router'
 import blogCssUrl from '~/styles/blog.css?url'
@@ -22,18 +23,20 @@ const lead = (cards: Card[], first: string[]) => [
 
 function Gallery({ cards, cols }: { cards: Card[]; cols: number }) {
   return (
-    <div className={`card-grid cols-${cols}`}>
+    <ul className={`card-grid cols-${cols}`}>
       {cards.map((c) => (
-        <figure key={c.number}>
-          <img src={c.image} alt={`${c.name} ${c.number} ${short(c.rarity)}, Terastal Gathering`} loading="lazy" width={300} height={419} />
-          <figcaption>
-            {EXCLUSIVE.has(c.number) && <ChineseExclusiveBadge />}
-            <strong>{c.name}</strong>
-            {c.number}
-          </figcaption>
-        </figure>
+        <li key={c.number}>
+          <figure>
+            <img src={c.image} alt={`${c.name} ${c.number} ${rarityFullName(c.rarity)}, Terastal Gathering`} loading="lazy" width={300} height={419} />
+            <figcaption>
+              {EXCLUSIVE.has(c.number) && <ChineseExclusiveBadge />}
+              <strong>{c.name}</strong>
+              {c.number}
+            </figcaption>
+          </figure>
+        </li>
       ))}
-    </div>
+    </ul>
   )
 }
 
@@ -196,8 +199,9 @@ function TerastalGatheringSetGuide() {
 
         <h2 id="box">What a box holds</h2>
         <p>Pokémon China publishes its odds as three grouped bands. Applied to one 10-pack box, that works out to roughly:</p>
-        <div className="table-scroll">
+        <div className="table-scroll" role="group" aria-labelledby="tbl-1" tabIndex={0}>
           <table className="data-table">
+            <caption id="tbl-1" className="sr-only">What a box holds</caption>
             <thead>
               <tr>
                 <th scope="col">Per box</th>
@@ -242,8 +246,9 @@ function TerastalGatheringSetGuide() {
 
         <h2 id="eeveelutions">The Eeveelution checklist</h2>
         <p>Every Eevee family card in the set, by number:</p>
-        <div className="table-scroll">
+        <div className="table-scroll" role="group" aria-labelledby="tbl-2" tabIndex={0}>
           <table className="data-table">
+            <caption id="tbl-2" className="sr-only">The Eeveelution checklist</caption>
             <thead>
               <tr>
                 <th scope="col">Pokémon</th>
@@ -275,8 +280,9 @@ function TerastalGatheringSetGuide() {
           Every card has one number out of 208. The main set runs 001 to 208, and everything above 208 is a secret rare. The rarer
           versions of a card sit in the secret block at unrelated numbers, so match them by name.
         </p>
-        <div className="table-scroll">
+        <div className="table-scroll" role="group" aria-labelledby="tbl-3" tabIndex={0}>
           <table className="data-table">
+            <caption id="tbl-3" className="sr-only">How the numbers work</caption>
             <thead>
               <tr>
                 <th scope="col">Numbers</th>

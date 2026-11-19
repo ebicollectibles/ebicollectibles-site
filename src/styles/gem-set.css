@@ -20,20 +20,24 @@
   --hero: #131b28;
   --hero-fg: #f3f5f8;
   --hero-dim: #9aa6b6;
-  --r-c: #6b7684;
+  /* Rarity colours double as small text (12px tags), so each one keeps at
+     least 4.5:1 against white, the grey surface and an owned checklist
+     row. Common, Art Rare, Super Rare and Shiny were darkened a step for
+     that (they were 4.3, 3.9, 3.3 and 3.8). */
+  --r-c: #626e7c;
   --r-u: #3a6ea5;
   --r-r: #3f7a63;
   --r-rr: #a85b2c;
   --r-rrr: #8a3d78;
   /* Standard-set tiers (Black Bolt, White Flare) above Double Rare —
      Art/Super/Special Art/Black White Rare, in ascending order. */
-  --r-ar: #2f8f82;
-  --r-sr: #b8860b;
+  --r-ar: #24796d;
+  --r-sr: #8a6508;
   --r-sar: #c0315f;
   --r-bwr: #1f2430;
   /* Collect 151's own "Shiny" tier — teal-cyan, distinct from every
      other tier's color on that page. */
-  --r-s: #1c8fa0;
+  --r-s: #13788a;
   --focus: #3a6ea5;
   --shadow: 0 1px 2px rgb(19 27 40 / .08), 0 6px 18px rgb(19 27 40 / .10);
   --f-display: 'Archivo', Helvetica, Arial, sans-serif;
@@ -55,6 +59,9 @@
   a { color: inherit; text-decoration: none; }
   button { font: inherit; color: inherit; cursor: pointer; }
   :focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+  /* On the dark hero the blue ring is too faint (under 3:1); use the hero's own light text colour there. */
+  .hero :focus-visible { outline-color: var(--hero-fg); }
+  .bar:focus { outline: none; }
 
   .wrap { max-width: 1240px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
   .mono { font-family: var(--f-mono); font-variant-numeric: tabular-nums; }
@@ -84,7 +91,7 @@
       padding-block: 36px 44px;
     }
   }
-  .crumbs { font-size: 13px; color: var(--hero-dim); display: flex; gap: 8px; margin-bottom: 18px; }
+  .crumbs { font-size: 13px; color: var(--hero-dim); display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 18px; }
   .crumbs a:hover { color: var(--hero-fg); }
   .eyebrow { font-family: var(--f-mono); font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: var(--hero-dim); }
   .hero h1 {
@@ -150,7 +157,7 @@
     .fan-excl {
       position: absolute; top: 8px; left: 50%; transform: translateX(-50%);
       font-size: 9px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; white-space: nowrap;
-      color: #fff; background: rgb(0 0 0 / .55); backdrop-filter: blur(2px);
+      color: #fff; background: rgb(0 0 0 / .7); backdrop-filter: blur(2px);
       padding: 2px 7px; border-radius: 999px; pointer-events: none;
     }
     /* Position and z-index are both set inline (GemSetPage's
@@ -186,7 +193,8 @@
       button:hover { z-index: 5 !important; box-shadow: 0 24px 40px rgb(0 0 0 / .6); filter: brightness(1.05); }
     }
   }
-  .fan-cap { position: absolute; bottom: 0; left: 0; right: 0; text-align: center; font-size: 12px; color: var(--hero-dim); }
+  /* The lede's lighter grey: this caption sits where a set's second glow colour is strongest. */
+  .fan-cap { position: absolute; bottom: 0; left: 0; right: 0; text-align: center; font-size: 12px; color: #c8d0db; }
 
   .bar {
     position: sticky;
@@ -252,7 +260,7 @@
   .rtag { display: inline-flex; align-items: center; gap: 5px; font-size: 12px; font-weight: 600; color: var(--rc); white-space: nowrap; }
   .rtag .sym { font-size: 10px; letter-spacing: -1px; }
 
-  main { padding-block: 28px 56px; }
+  .set-main { padding-block: 28px 56px; }
   .ladder {
     display: grid; grid-template-columns: 210px minmax(0, 1fr); gap: 20px; padding: 22px 0; border-top: 1px solid var(--line);
   }
@@ -314,11 +322,17 @@
   }
   .spotlight-head { position: relative; z-index: 1; margin-bottom: 18px; }
   .spotlight-tag {
-    display: inline-flex; align-items: center; gap: 6px; font-family: var(--f-mono); font-size: 11.5px; font-weight: 700;
-    letter-spacing: .08em; text-transform: uppercase; color: var(--r-rrr);
+    margin: 0; display: inline-flex; align-items: center; gap: 6px; font-family: var(--f-mono); font-size: 11.5px; font-weight: 700;
+    letter-spacing: .08em; text-transform: uppercase; color: color-mix(in srgb, var(--r-rrr) 70%, var(--ink));
   }
   .spotlight-tag::before { content: '✦'; }
-  .spotlight-sub { margin: 4px 0 0; font-size: 13.5px; color: var(--slate); }
+  .spotlight-sub { margin: 4px 0 0; font-size: 13.5px; color: var(--ink-2); }
+  /* The spotlight panel is tinted with the set's own glow colours, which
+     can be strong (gold, pink) right behind the small text. Inside it the
+     grey and rarity-coloured labels are mixed toward the ink colour, so
+     they keep their hue but stay at 4.5:1 or better on any set's tint. */
+  .spotlight .card .no { color: var(--ink-2); }
+  .spotlight .rtag { color: color-mix(in srgb, var(--rc) 55%, var(--ink)); }
   .spotlight .grid { position: relative; z-index: 1; margin: 0; }
   .grid-head { font-size: 11.5px; letter-spacing: .08em; text-transform: uppercase; color: var(--slate); font-weight: 600; margin: 0 0 14px; }
 
@@ -326,10 +340,12 @@
   table { width: 100%; border-collapse: collapse; font-size: 14px; min-width: 520px; }
   th, td { text-align: left; padding: 9px 14px; border-bottom: 1px solid var(--line); }
   th { font-size: 11.5px; letter-spacing: .08em; text-transform: uppercase; color: var(--slate); font-weight: 600; background: var(--surface); position: sticky; top: 0; }
+  /* Row headers (the card name, the rarity) read as ordinary cells. */
+  tbody th { font-size: inherit; letter-spacing: 0; text-transform: none; color: inherit; font-weight: 400; background: none; position: static; }
   tbody tr:hover { background: var(--surface); }
   td.thumb { width: 52px; padding-block: 5px; img { width: 36px; border-radius: 3px; display: block; } }
-  td .lnk { font-weight: 600; text-align: left; border: 0; background: none; padding: 0; }
-  td .lnk:hover { text-decoration: underline; }
+  :is(td, th) .lnk { font-weight: 600; text-align: left; border: 0; background: none; padding: 0; }
+  :is(td, th) .lnk:hover { text-decoration: underline; }
   .have { width: 18px; height: 18px; accent-color: var(--r-r); }
   .empty { padding: 48px 0; text-align: center; color: var(--slate); }
 
@@ -351,8 +367,10 @@
     td.chk { width: 52px; padding: 0; }
     /* The whole cell is the checkbox's tap target (44px tall minimum). */
     td.chk label { display: grid; place-items: center; min-height: 44px; min-width: 44px; cursor: pointer; }
-    tr.owned td { background: color-mix(in srgb, var(--r-r) 9%, transparent); }
-    td .lnk { min-height: 24px; }
+    /* Mixed with the page background (not layered over the row's hover
+       grey), and light enough that every rarity colour stays readable. */
+    tr.owned :is(td, th) { background: color-mix(in srgb, var(--r-r) 6%, var(--bg)); }
+    :is(td, th) .lnk { min-height: 24px; }
     /* Long rarity names ("Special Art Rare (SAR)") wrap here instead of
        forcing the table wider than a phone screen. */
     .rtag { white-space: normal; }
@@ -381,7 +399,10 @@
 
   .lb {
     position: fixed; inset: 0; z-index: 50; background: rgb(8 12 19 / .86); backdrop-filter: blur(6px); display: grid; place-items: center;
-    padding: max(16px, env(safe-area-inset-top, 0px)) max(16px, env(safe-area-inset-right, 0px)) max(16px, env(safe-area-inset-bottom, 0px)) max(16px, env(safe-area-inset-left, 0px));
+    /* The bottom also clears the cookie banner while it is showing (see
+       --ebi-cookie-banner-h in app.css), so the panel scrolls above it and
+       its buttons are never underneath. */
+    padding: max(16px, env(safe-area-inset-top, 0px)) max(16px, env(safe-area-inset-right, 0px)) calc(max(16px, env(safe-area-inset-bottom, 0px)) + var(--ebi-cookie-banner-h, 0px)) max(16px, env(safe-area-inset-left, 0px));
   }
   .lb-panel {
     background: var(--raise); color: var(--ink); width: min(920px, 100%); max-height: 100%; overflow: auto; border-radius: 4px; display: grid; grid-template-columns: minmax(0, 360px) minmax(0, 1fr); box-shadow: 0 30px 80px rgb(0 0 0 / .5); position: relative;
@@ -403,7 +424,7 @@
     small { display: block; font-size: 14px; font-weight: 500; color: var(--slate); letter-spacing: 0; margin-bottom: 4px; font-stretch: 100%; }
   }
   .lb-dl { display: grid; grid-template-columns: auto 1fr; gap: 6px 18px; margin: 0; font-size: 14px; dt { color: var(--slate); } dd { margin: 0; font-weight: 500; } }
-  .sib-h { font-size: 11.5px; letter-spacing: .08em; text-transform: uppercase; color: var(--slate); font-weight: 600; }
+  .sib-h { margin: 0; font-size: 11.5px; letter-spacing: .08em; text-transform: uppercase; color: var(--slate); font-weight: 600; }
   .sibs {
     /* auto-fit, not a flat repeat(7, ...) — a card with only 1-3 other
        versions (the common case) was getting squeezed into 1/7th of the
@@ -467,7 +488,11 @@
        — there's nothing to drag or scroll, so the whole thing can't be
        grabbed and moved around. This block only resizes the fan itself
        for a narrower screen. */
-    .fan { height: 300px; touch-action: pan-y; }
+    /* The caption sits below the fan here (not over its bottom edge):
+       a long caption wraps to two lines on a phone and ran underneath
+       the outer cards, where it could not be read. */
+    .fan { height: 300px; touch-action: pan-y; margin-bottom: 48px; }
+    .fan-cap { top: 100%; bottom: auto; padding-top: 8px; text-wrap: balance; }
     .fan button { width: 150px; }
     .fan-excl { font-size: 8px; padding: 2px 6px; top: 6px; }
     .ladder { grid-template-columns: minmax(0, 1fr); gap: 10px; }
@@ -478,6 +503,13 @@
     .lb-panel { grid-template-columns: minmax(0, 1fr); }
     .lb-art { padding: 20px; }
     .lb-art img { max-width: 230px; }
+    /* Touch sizes: 44px for the dialog's close and step buttons, the view
+       switcher and the "owned" toggle on each card. */
+    .lb-close, .lb-nav button { width: 44px; height: 44px; }
+    .views button { height: 44px; }
+    .own-toggle { width: 44px; height: 44px; }
+    .chip { height: 36px; }
+    .btn { min-height: 44px; }
   }
   @media (max-width: 560px) {
     .facts { grid-template-columns: repeat(2, auto); }
@@ -494,5 +526,11 @@
   }
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after { transition: none !important; }
+  }
+  @media print {
+    /* The filter bar does not follow the page onto paper, and every FAQ answer is shown. */
+    .bar { position: static; }
+    th { position: static; }
+    .faq details::details-content { content-visibility: visible; display: block; }
   }
 }

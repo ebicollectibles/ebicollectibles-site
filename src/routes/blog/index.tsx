@@ -57,11 +57,11 @@ function BlogIndexPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(itemListJsonLd) }} />
       <section className="hero">
         <div className="wrap">
-          <div className="crumbs">
+          <nav className="crumbs" aria-label="Breadcrumb">
             <Link to="/">Home</Link>
-            <span>/</span>
-            <span>News</span>
-          </div>
+            <span aria-hidden="true">/</span>
+            <span aria-current="page">News</span>
+          </nav>
           <div className="eyebrow">
             <span className="dot" />
             EBI Collectibles
@@ -72,28 +72,37 @@ function BlogIndexPage() {
           </p>
         </div>
       </section>
-      <main className="wrap">
+      <div className="wrap page-main">
         {posts.length === 0 && <p className="lede" style={{ padding: '24px 0 48px' }}>New posts are on the way. Check back soon.</p>}
-        <div className="post-grid">
+        <ul className="post-grid">
           {posts.map((p) => (
-            <Link key={p.slug} className="post-card" to={p.path}>
+            <li key={p.slug}>
+            <Link className="post-card" to={p.path}>
               <div className="post-card-art">
-                <img src={p.heroImage} alt={p.heroAlt} loading="lazy" width={400} height={250} />
+                {/* Decorative here: the card's title, tag and excerpt follow
+                    as text, and the whole card is one link. The banner's
+                    full description (heroAlt) is on the post itself. */}
+                <img src={p.heroImage} alt="" loading="lazy" width={400} height={250} />
               </div>
               <div className="post-card-body">
                 <span className="post-card-date">
                   <span className="post-card-kind">{p.tag}</span>
                   <span aria-hidden="true"> · </span>
-                  {new Date(`${p.date}T00:00:00Z`).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric', timeZone: 'UTC' })}
+                  <time dateTime={p.date}>
+                    {new Date(`${p.date}T00:00:00Z`).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric', timeZone: 'UTC' })}
+                  </time>
                 </span>
                 <h2 className="post-card-title">{p.title}</h2>
                 <p className="post-card-excerpt">{p.excerpt}</p>
-                <span className="post-card-link">Read more →</span>
+                <span className="post-card-link">
+                  Read more <span aria-hidden="true">→</span>
+                </span>
               </div>
             </Link>
+            </li>
           ))}
-        </div>
-      </main>
+        </ul>
+      </div>
     </div>
   )
 }

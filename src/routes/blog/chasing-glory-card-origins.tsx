@@ -1,3 +1,6 @@
+import { chunk } from '~/lib/chunk'
+import { RarityAbbr, rarityFullName } from '~/components/blog/RarityAbbr'
+import { useId } from 'react'
 import { BuyStrip } from '~/components/blog/BlogShop'
 import { createFileRoute, Link } from '@tanstack/react-router'
 import blogCssUrl from '~/styles/blog.css?url'
@@ -395,10 +398,15 @@ export const Route = createFileRoute('/blog/chasing-glory-card-origins')({
   component: ChasingGloryOrigins,
 })
 
-function OriginsTable({ list }: { list: typeof rows }) {
+function OriginsTable({ list, caption }: { list: typeof rows; caption: string }) {
+  // Names the table for screen readers and labels its scroll area.
+  const captionId = useId()
   return (
-    <div className="table-scroll table-tall">
+    <div className="table-scroll table-tall" role="group" aria-labelledby={captionId} tabIndex={0}>
       <table className="data-table origins-table">
+        <caption id={captionId} className="sr-only">
+          {caption}
+        </caption>
         <thead>
           <tr>
             <th scope="col">No.</th>
@@ -406,27 +414,33 @@ function OriginsTable({ list }: { list: typeof rows }) {
             <th scope="col">English card</th>
           </tr>
         </thead>
-        <tbody>
-          {list.map((r) => (
-            <tr key={r.cn} className={r.src === 'NEW' ? 'is-current' : undefined}>
-              <th scope="row">{r.cn}</th>
-              <td>
-                {r.name}
-                <span className="cell-sub">{r.rarity}</span>
-              </td>
-              <td>
-                {r.src === 'NEW' ? (
-                  <span className="cell-none">Chinese Exclusive, no English version</span>
-                ) : (
-                  <>
-                    {SET_NAME[r.src]} {r.en}
-                  </>
-                )}
-                {r.illus ? <span className="cell-sub">Illus. {r.illus}</span> : null}
-              </td>
-            </tr>
-          ))}
-        </tbody>
+        {/* Row groups of 20: the same table on screen and to screen readers, but no single
+            group outweighs the article text when a reader mode picks the main content. */}
+        {chunk(list, 20).map((group, g) => (
+          <tbody key={g}>
+            {group.map((r) => (
+              <tr key={r.cn} className={r.src === 'NEW' ? 'is-current' : undefined}>
+                <th scope="row">{r.cn}</th>
+                <td>
+                  {r.name}
+                  <span className="cell-sub">
+                    <RarityAbbr code={r.rarity} />
+                  </span>
+                </td>
+                <td>
+                  {r.src === 'NEW' ? (
+                    <span className="cell-none">Chinese Exclusive, no English version</span>
+                  ) : (
+                    <>
+                      {SET_NAME[r.src]} {r.en}
+                    </>
+                  )}
+                  {r.illus ? <span className="cell-sub">Illus. {r.illus}</span> : null}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        ))}
       </table>
     </div>
   )
@@ -498,8 +512,9 @@ function ChasingGloryOrigins() {
         </nav>
 
         <h2 id="at-a-glance">At a glance</h2>
-        <div className="table-scroll">
+        <div className="table-scroll" role="group" aria-labelledby="tbl-2" tabIndex={0}>
           <table className="data-table">
+            <caption id="tbl-2" className="sr-only">At a glance</caption>
             <thead>
               <tr>
                 <th scope="col">Rarity</th>
@@ -542,23 +557,26 @@ function ChasingGloryOrigins() {
           either Scarlet & Violet set. In English that art is in Ascended Heroes ({psyduck.map((p) => p.en).join(' and ')}).
           Misty's Psyduck 045/222 is a different card and comes from Destined Rivals.
         </p>
-        <div className="card-grid cols-3">
+        <ul className="card-grid cols-3">
           {[brock, ...psyduck].map((r) => (
-            <figure key={r.cn}>
-              <img src={r.image} alt={`${r.name} ${r.cn}/222${r.src === 'NEW' ? ', Chinese Exclusive' : ''}, Chasing Glory`} loading="lazy" width={300} height={419} />
-              <figcaption>
-                {r.src === 'NEW' && <ChineseExclusiveBadge />}
-                <strong>{r.name}</strong>
-                {r.cn}/222 · {r.src === 'NEW' ? 'New for Chasing Glory' : `${SET_NAME[r.src]} ${r.en}`}
-              </figcaption>
-            </figure>
+            <li key={r.cn}>
+              <figure>
+                <img src={r.image} alt={`${r.name} ${r.cn}/222 ${rarityFullName(r.rarity)}${r.src === 'NEW' ? ', Chinese Exclusive' : ''}, Chasing Glory`} loading="lazy" width={300} height={419} />
+                <figcaption>
+                  {r.src === 'NEW' && <ChineseExclusiveBadge />}
+                  <strong>{r.name}</strong>
+                  {r.cn}/222 · {r.src === 'NEW' ? 'New for Chasing Glory' : `${SET_NAME[r.src]} ${r.en}`}
+                </figcaption>
+              </figure>
+            </li>
           ))}
-        </div>
+        </ul>
         <p>
           <strong>The Trainer decides the set.</strong> Every Trainer's Pokémon comes from one English set or the other, never both:
         </p>
-        <div className="table-scroll">
+        <div className="table-scroll" role="group" aria-labelledby="tbl-3" tabIndex={0}>
           <table className="data-table">
+            <caption id="tbl-3" className="sr-only">Patterns worth knowing: English set, Trainers</caption>
             <thead>
               <tr>
                 <th scope="col">English set</th>
@@ -579,8 +597,9 @@ function ChasingGloryOrigins() {
           <strong>Plenty stayed out.</strong> Chasing Glory has 287 cards against 434 across the two English sets. What did not make
           it:
         </p>
-        <div className="table-scroll">
+        <div className="table-scroll" role="group" aria-labelledby="tbl-4" tabIndex={0}>
           <table className="data-table">
+            <caption id="tbl-4" className="sr-only">Patterns worth knowing: From, Not in Chasing Glory</caption>
             <thead>
               <tr>
                 <th scope="col">From</th>
@@ -604,7 +623,7 @@ function ChasingGloryOrigins() {
 
         <h2 id="secret-rares">All 65 secret rares</h2>
         <p>Every card above 222, with its English twin. The highlighted row is the Chinese Exclusive.</p>
-        <OriginsTable list={SECRET} />
+        <OriginsTable list={SECRET} caption="Secret rares and the English card each one matches" />
 
         <BuyStrip />
 
@@ -613,7 +632,7 @@ function ChasingGloryOrigins() {
           {count(MAIN, 'DRI')} main-set cards match Destined Rivals, {count(MAIN, 'JTG')} match Journey Together and{' '}
           {count(MAIN, 'ASC')} match Ascended Heroes.
         </p>
-        <OriginsTable list={MAIN} />
+        <OriginsTable list={MAIN} caption="Main set cards and the English card each one matches" />
 
         <h2 id="faq">FAQ</h2>
         <div className="faq">

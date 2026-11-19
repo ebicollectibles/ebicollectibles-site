@@ -1,3 +1,4 @@
+import { Zh } from '~/components/blog/Zh'
 import { BuyStrip } from '~/components/blog/BlogShop'
 import { createFileRoute, Link } from '@tanstack/react-router'
 import blogCssUrl from '~/styles/blog.css?url'
@@ -15,17 +16,19 @@ type Shown = { id: string; no: string; name: string; note: string }
 
 function Grid({ cards, cols }: { cards: Shown[]; cols: number }) {
   return (
-    <div className={`card-grid cols-${cols}`}>
+    <ul className={`card-grid cols-${cols}`}>
       {cards.map((c) => (
-        <figure key={c.id}>
-          <img src={cardImg(c.id)} alt={`${c.name} ${c.no}, 30th Celebration`} loading="lazy" width={300} height={419} />
-          <figcaption>
-            <strong>{c.name}</strong>
-            {c.no} · {c.note}
-          </figcaption>
-        </figure>
+        <li key={c.id}>
+          <figure>
+            <img src={cardImg(c.id)} alt={`${c.name} ${c.no}, 30th Celebration`} loading="lazy" width={300} height={419} />
+            <figcaption>
+              <strong>{c.name}</strong>
+              {c.no} · {c.note}
+            </figcaption>
+          </figure>
+        </li>
       ))}
-    </div>
+    </ul>
   )
 }
 
@@ -235,7 +238,7 @@ function ThirtiethReleasePost() {
             <p className="fact-box-title">Key facts</p>
             <dl>
               <dt>Set</dt>
-              <dd>30th Celebration (30周年庆典)</dd>
+              <dd>30th Celebration (<Zh>30周年庆典</Zh>)</dd>
               <dt>Set code</dt>
               <dd>30thC</dd>
               <dt>Released</dt>
@@ -269,17 +272,19 @@ function ThirtiethReleasePost() {
           Mewtwo ex, whose Photon Bullet attack hits each of your opponent's Pokémon ex, and Mew ex, whose Memory Spiral ability lets it
           use the attacks of your Benched Pokémon.
         </p>
-        <div className="card-grid cols-2">
+        <ul className="card-grid cols-2">
           {FUTURISTIC.map((c) => (
-            <figure key={c.id}>
-              <img src={cardImg(c.id)} alt={`${c.name} ${c.no} Futuristic Rare, 30th Celebration`} loading="lazy" width={300} height={419} />
-              <figcaption>
-                <strong>{c.name}</strong>
-                {c.no} · {c.note}
-              </figcaption>
-            </figure>
+            <li key={c.id}>
+              <figure>
+                <img src={cardImg(c.id)} alt={`${c.name} ${c.no} Futuristic Rare, 30th Celebration`} loading="lazy" width={300} height={419} />
+                <figcaption>
+                  <strong>{c.name}</strong>
+                  {c.no} · {c.note}
+                </figcaption>
+              </figure>
+            </li>
           ))}
-        </div>
+        </ul>
 
         <h2 id="sar">Special Art Rares</h2>
         <p>
@@ -320,8 +325,9 @@ function ThirtiethReleasePost() {
           This is a regular numbered set, not a Gem-style ladder. The main set runs 001 to 103, and everything after that is a secret
           rare. There is no Uncommon tier. Instead there is a set-specific Pikachu rarity for the 30 Pikachu cards.
         </p>
-        <div className="table-scroll">
+        <div className="table-scroll" role="group" aria-labelledby="tbl-1" tabIndex={0}>
           <table className="data-table">
+            <caption id="tbl-1" className="sr-only">How the set is built</caption>
             <thead>
               <tr>
                 <th scope="col">Numbers</th>
@@ -347,8 +353,9 @@ function ThirtiethReleasePost() {
           A box holds 20 packs of 6 holo cards, 120 cards in total, including 20 Pikachu. With 30 different Pikachu and random pulls, one
           box will not complete the Pikachu set. Pokémon China publishes how much of the print run each group of rarities makes up:
         </p>
-        <div className="table-scroll">
+        <div className="table-scroll" role="group" aria-labelledby="tbl-2" tabIndex={0}>
           <table className="data-table">
+            <caption id="tbl-2" className="sr-only">What is inside a booster box</caption>
             <thead>
               <tr>
                 <th scope="col">Rarity group</th>
@@ -373,10 +380,19 @@ function ThirtiethReleasePost() {
           For every Pikachu, classic and promo in one place, see our <Link to="/blog/30th-celebration-set-guide">30th Celebration set guide</Link>.
         </p>
 
-        <h2 id="promos">The 33 promos</h2>
+        {/* The anchor id sits on a span inside the heading: reader modes drop a heading whose own id
+
+            contains a word like "promo" or "share", and this section would lose its title there. */}
+
+        <h2>
+
+          <span id="promos">The 33 promos</span>
+
+        </h2>
         <p>Thirty-three promos, numbered 001 to 033/30th-P, come in the special products released with the set. They are not in booster packs:</p>
-        <div className="table-scroll">
+        <div className="table-scroll" role="group" aria-labelledby="tbl-3" tabIndex={0}>
           <table className="data-table">
+            <caption id="tbl-3" className="sr-only">The 33 promos</caption>
             <thead>
               <tr>
                 <th scope="col">Promos</th>

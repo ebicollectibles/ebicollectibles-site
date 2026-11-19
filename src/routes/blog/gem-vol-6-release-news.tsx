@@ -1,3 +1,4 @@
+import { Zh, zh } from '~/components/blog/Zh'
 import { BuyStrip } from '~/components/blog/BlogShop'
 import { ChineseExclusiveBadge } from '~/components/blog/ChineseExclusive'
 import { createFileRoute, Link } from '@tanstack/react-router'
@@ -192,7 +193,7 @@ function GemVol6Post() {
             <p className="fact-box-title">Key facts</p>
             <dl>
               <dt>Set</dt>
-              <dd>Gem Pack Vol. 6 (宝石包 VOL.6), also called Gemstone Vol. 6</dd>
+              <dd>Gem Pack Vol. 6 (<Zh>宝石包 VOL.6</Zh>), also called Gemstone Vol. 6</dd>
               <dt>Set code</dt>
               <dd>CBB6C</dd>
               <dt>Released</dt>
@@ -245,17 +246,19 @@ function GemVol6Post() {
           Three from Kitakami, Okidogi, Munkidori and Fezandipiti, close out the set. Pokémon China pitches the set as a treasure hunt,
           with each illustration telling a small story about its Pokémon, and revealed these six full arts alongside Applin:
         </p>
-        <div className="card-grid cols-3">
+        <ul className="card-grid cols-3">
           {REVEALED_FULL_ARTS.map((c) => (
-            <figure key={c.id}>
-              <img src={cardImg(c.id)} alt={`${c.name} full art ${c.id}/07, Gem Vol 6`} loading="lazy" width={300} height={419} />
-              <figcaption>
-                <strong>{c.name}</strong>
-                {c.id}/07 · Illus. {c.illus}
-              </figcaption>
-            </figure>
+            <li key={c.id}>
+              <figure>
+                <img src={cardImg(c.id)} alt={`${c.name} full art ${c.id}/07, Gem Vol 6`} loading="lazy" width={300} height={419} />
+                <figcaption>
+                  <strong>{c.name}</strong>
+                  {c.id}/07 · Illus. {c.illus}
+                </figcaption>
+              </figure>
+            </li>
           ))}
-        </div>
+        </ul>
         <p>
           The rest of the roster: Alolan Dugtrio, Persian, Ledian, Slakoth, Lairon, Meditite, Gulpin, Lileep, Kecleon, Mesprit,
           Reuniclus, Crabominable, Shiinotic, Bewear, Bruxish, Tapu Bulu, Clobbopus and Cufant. The{' '}
@@ -270,8 +273,9 @@ function GemVol6Post() {
           holo pattern. The seventh is a full art with its own illustration. Card numbers tell you exactly where you are: read 1907/07
           as Pokémon 19, version 07 of 7, so it is the full art of the nineteenth Pokémon in the set, which is Applin.
         </p>
-        <div className="table-scroll">
+        <div className="table-scroll" role="group" aria-labelledby="tbl-1" tabIndex={0}>
           <table className="data-table">
+            <caption id="tbl-1" className="sr-only">How the set is built</caption>
             <thead>
               <tr>
                 <th scope="col">Rarity</th>
@@ -307,17 +311,19 @@ function GemVol6Post() {
           changes: Grass-type and Poké Ball patterns, glitter, starburst,
           the Master Ball pattern, and the pink Gem Pack logo stamp.
         </p>
-        <div className="card-grid cols-3">
+        <ul className="card-grid cols-3">
           {APPLIN_RUN.map((c) => (
-            <figure key={c.id}>
-              <img src={cardImg(c.id)} alt={`Applin ${c.id}/07, ${c.rarity}, ${c.finish}, Gem Vol 6`} loading="lazy" width={300} height={419} />
-              <figcaption>
-                <strong>{c.id}/07</strong>
-                {c.rarity} · {c.finish}
-              </figcaption>
-            </figure>
+            <li key={c.id}>
+              <figure>
+                <img src={cardImg(c.id)} alt={`Applin ${c.id}/07, ${c.rarity}, ${c.finish}, Gem Vol 6`} loading="lazy" width={300} height={419} />
+                <figcaption>
+                  <strong>{c.id}/07</strong>
+                  {c.rarity} · {c.finish}
+                </figcaption>
+              </figure>
+            </li>
           ))}
-        </div>
+        </ul>
 
         <h2 id="booster-box">What is inside a booster box</h2>
         <p>
@@ -334,8 +340,9 @@ function GemVol6Post() {
           Gem Packs have been a Simplified Chinese collector line since January 2025, with the same 4-holo pack the whole way. Since Vol.
           4, every volume has used the same 196-card, 28 × 7 shape.
         </p>
-        <div className="table-scroll">
+        <div className="table-scroll" role="group" aria-labelledby="tbl-2" tabIndex={0}>
           <table className="data-table">
+            <caption id="tbl-2" className="sr-only">Where Vol. 6 fits in the Gem Pack line</caption>
             <thead>
               <tr>
                 <th scope="col">Volume</th>
@@ -381,7 +388,7 @@ function GemVol6Post() {
             <details key={f.q}>
               <summary>{f.q}</summary>
               <p>
-                {f.a}
+                {zh(f.a)}
                 {f.link && (
                   <>
                     {' '}

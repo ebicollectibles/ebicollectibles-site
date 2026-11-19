@@ -1,3 +1,4 @@
+import { Zh, zh } from '~/components/blog/Zh'
 import { BuyStrip } from '~/components/blog/BlogShop'
 import { ChineseExclusiveBadge } from '~/components/blog/ChineseExclusive'
 import { createFileRoute, Link } from '@tanstack/react-router'
@@ -198,7 +199,7 @@ function GemVol1Post() {
             <p className="fact-box-title">Key facts</p>
             <dl>
               <dt>Set</dt>
-              <dd>Gem Pack Vol. 1 (宝石包 VOL.1), also called Gemstone Vol. 1</dd>
+              <dd>Gem Pack Vol. 1 (<Zh>宝石包 VOL.1</Zh>), also called Gemstone Vol. 1</dd>
               <dt>Set code</dt>
               <dd>CBB1C</dd>
               <dt>Released</dt>
@@ -231,18 +232,20 @@ function GemVol1Post() {
           to their partner Pokémon: Liko with Sprigatito, Roy with Fuecoco and Friede with Captain Pikachu. Quaxly appears with
           Nidothing, the costumed persona Dot streams as.
         </p>
-        <div className="card-grid cols-4">
+        <ul className="card-grid cols-4">
           {HORIZONS.map((c) => (
-            <figure key={c.id}>
-              <img src={cardImg(c.id)} alt={`${c.name} ${c.id}/09 Horizons full art${c.with ? ` with ${c.with}` : ''}, Gem Vol 1`} loading="lazy" width={300} height={419} />
-              <figcaption>
-                <ChineseExclusiveBadge />
-                <strong>{c.name}</strong>
-                {c.id}/09 · {c.art}
-              </figcaption>
-            </figure>
+            <li key={c.id}>
+              <figure>
+                <img src={cardImg(c.id)} alt={`${c.name} ${c.id}/09 Horizons full art${c.with ? ` with ${c.with}` : ''}, Gem Vol 1`} loading="lazy" width={300} height={419} />
+                <figcaption>
+                  <ChineseExclusiveBadge />
+                  <strong>{c.name}</strong>
+                  {c.id}/09 · {c.art}
+                </figcaption>
+              </figure>
+            </li>
           ))}
-        </div>
+        </ul>
         <p>
           All four are Triple Rares. Because the art debuts here, Gem Vol 1 is the only place to pull them. The idea came back in{' '}
           <Link to="/blog/gem-vol-5-release-news">Gem Vol 5</Link>, whose four Horizons full arts feature Captain Pikachu again and the
@@ -256,17 +259,19 @@ function GemVol1Post() {
           potted flowers and Floragato sits in a tree above a white house covered in flowers, Fuecoco rides in a shopping cart and
           Crocalor stands at a fruit stall, and Quaxly and Quaxwell share the same room under a hanging lamp.
         </p>
-        <div className="card-grid cols-4">
+        <ul className="card-grid cols-4">
           {FULL_ARTS.map((c) => (
-            <figure key={c.id}>
-              <img src={cardImg(c.id)} alt={`${c.name} ${c.no} illustration full art, Gem Vol 1`} loading="lazy" width={300} height={419} />
-              <figcaption>
-                <strong>{c.name}</strong>
-                {c.no} · Triple Rare
-              </figcaption>
-            </figure>
+            <li key={c.id}>
+              <figure>
+                <img src={cardImg(c.id)} alt={`${c.name} ${c.no} illustration full art, Gem Vol 1`} loading="lazy" width={300} height={419} />
+                <figcaption>
+                  <strong>{c.name}</strong>
+                  {c.no} · Triple Rare
+                </figcaption>
+              </figure>
+            </li>
           ))}
-        </div>
+        </ul>
 
         <BuyStrip />
 
@@ -277,8 +282,9 @@ function GemVol1Post() {
           Fidough, Sudowoodo, Rockruff, Paldean Wooper, Maschiff, Chansey and Lechonk, have 5 cards each, numbered out of 05. Every run
           climbs from Common up through the rarities in order, with no repeats.
         </p>
-        <div className="table-scroll">
+        <div className="table-scroll" role="group" aria-labelledby="tbl-1" tabIndex={0}>
           <table className="data-table">
+            <caption id="tbl-1" className="sr-only">How the set is built</caption>
             <thead>
               <tr>
                 <th scope="col">Rarity</th>
@@ -317,18 +323,20 @@ function GemVol1Post() {
           step and the pink Gem Pack logo stamp at 07. Version 06 is a separate shiny-style card with its own attacks. Then come the
           illustration full art and the Horizons full art.
         </p>
-        <div className="card-grid cols-3">
+        <ul className="card-grid cols-3">
           {SPRIGATITO_SAMPLE.map((c) => (
-            <figure key={c.id}>
-              <img src={cardImg(c.id)} alt={`Sprigatito ${c.id}/09, ${c.label}, Gem Vol 1`} loading="lazy" width={300} height={419} />
-              <figcaption>
-                {c.exclusive && <ChineseExclusiveBadge />}
-                <strong>{c.id}/09</strong>
-                {c.label} · {c.note}
-              </figcaption>
-            </figure>
+            <li key={c.id}>
+              <figure>
+                <img src={cardImg(c.id)} alt={`Sprigatito ${c.id}/09, ${c.label}, Gem Vol 1`} loading="lazy" width={300} height={419} />
+                <figcaption>
+                  {c.exclusive && <ChineseExclusiveBadge />}
+                  <strong>{c.id}/09</strong>
+                  {c.label} · {c.note}
+                </figcaption>
+              </figure>
+            </li>
           ))}
-        </div>
+        </ul>
 
         <h2 id="pikachu">Captain Pikachu and Pikachu</h2>
         <p>
@@ -336,21 +344,23 @@ function GemVol1Post() {
           Horizons logo on the art. On the base card he leaps toward you under a blue sky while Friede waves behind him. The other
           two, 0706/09 and 0708/09, are named plain Pikachu: the shiny-style card and the meadow full art.
         </p>
-        <div className="card-grid cols-3">
+        <ul className="card-grid cols-3">
           {[
             { id: '0701', name: 'Captain Pikachu', note: 'Base card · Common' },
             { id: '0706', name: 'Pikachu', note: 'Shiny-style card · Rare' },
             { id: '0708', name: 'Pikachu', note: 'Illustration full art · Triple Rare' },
           ].map((c) => (
-            <figure key={c.id}>
-              <img src={cardImg(c.id)} alt={`${c.name} ${c.id}/09, Gem Vol 1`} loading="lazy" width={300} height={419} />
-              <figcaption>
-                <strong>{c.name}</strong>
-                {c.id}/09 · {c.note}
-              </figcaption>
-            </figure>
+            <li key={c.id}>
+              <figure>
+                <img src={cardImg(c.id)} alt={`${c.name} ${c.id}/09, Gem Vol 1`} loading="lazy" width={300} height={419} />
+                <figcaption>
+                  <strong>{c.name}</strong>
+                  {c.id}/09 · {c.note}
+                </figcaption>
+              </figure>
+            </li>
           ))}
-        </div>
+        </ul>
 
         <h2 id="trainers-energy">Trainers and Energy</h2>
         <p>
@@ -359,17 +369,19 @@ function GemVol1Post() {
           Basic Grass, Fire and Water Energy, each printed twice, all Triple Rares. The second printing of each, 1804 to 1806, carries
           the Gem Pack logo stamp.
         </p>
-        <div className="card-grid cols-4">
+        <ul className="card-grid cols-4">
           {TRAINERS.map((c) => (
-            <figure key={c.id}>
-              <img src={cardImg(c.id)} alt={`${c.name} ${c.id}/04, Gem Vol 1`} loading="lazy" width={300} height={419} />
-              <figcaption>
-                <strong>{c.name}</strong>
-                {c.id}/04 · {c.rarity}
-              </figcaption>
-            </figure>
+            <li key={c.id}>
+              <figure>
+                <img src={cardImg(c.id)} alt={`${c.name} ${c.id}/04, Gem Vol 1`} loading="lazy" width={300} height={419} />
+                <figcaption>
+                  <strong>{c.name}</strong>
+                  {c.id}/04 · {c.rarity}
+                </figcaption>
+              </figure>
+            </li>
           ))}
-        </div>
+        </ul>
         <p>
           The full lineup: Sprigatito, Floragato, Fuecoco, Crocalor, Quaxly, Quaxwell, Captain Pikachu, Vulpix, Pawmo, Fidough,
           Sudowoodo, Rockruff, Paldean Wooper, Maschiff, Chansey and Lechonk. The <Link to="/sets/chinese/gem-vol-1">full card list</Link>{' '}
@@ -381,8 +393,9 @@ function GemVol1Post() {
           Vol. 1 started the Gem Pack line in January 2025, and every volume since has kept the same 4-holo pack. It is still the
           smallest volume at 115 cards.
         </p>
-        <div className="table-scroll">
+        <div className="table-scroll" role="group" aria-labelledby="tbl-2" tabIndex={0}>
           <table className="data-table">
+            <caption id="tbl-2" className="sr-only">Where Vol. 1 fits in the Gem Pack line</caption>
             <thead>
               <tr>
                 <th scope="col">Volume</th>
@@ -415,7 +428,7 @@ function GemVol1Post() {
             <details key={f.q}>
               <summary>{f.q}</summary>
               <p>
-                {f.a}
+                {zh(f.a)}
                 {f.link && (
                   <>
                     {' '}

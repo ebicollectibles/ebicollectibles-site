@@ -1,3 +1,4 @@
+import { rarityFullName } from '~/components/blog/RarityAbbr'
 import { BuyStrip } from '~/components/blog/BlogShop'
 import { createFileRoute, Link } from '@tanstack/react-router'
 import blogCssUrl from '~/styles/blog.css?url'
@@ -17,18 +18,20 @@ const short = (r: string) => r.match(/\(([^)]+)\)/)?.[1] ?? r
 
 function Gallery({ cards, cols }: { cards: Card[]; cols: number }) {
   return (
-    <div className={`card-grid cols-${cols}`}>
+    <ul className={`card-grid cols-${cols}`}>
       {cards.map((c) => (
-        <figure key={c.number}>
-          <img src={c.image} alt={`${c.name} ${c.number} ${short(c.rarity)}, True Mystery`} loading="lazy" width={300} height={419} />
-          <figcaption>
-            {EXCLUSIVE.has(c.number) && <ChineseExclusiveBadge />}
-            <strong>{c.name}</strong>
-            {c.number}
-          </figcaption>
-        </figure>
+        <li key={c.number}>
+          <figure>
+            <img src={c.image} alt={`${c.name} ${c.number} ${rarityFullName(c.rarity)}, True Mystery`} loading="lazy" width={300} height={419} />
+            <figcaption>
+              {EXCLUSIVE.has(c.number) && <ChineseExclusiveBadge />}
+              <strong>{c.name}</strong>
+              {c.number}
+            </figcaption>
+          </figure>
+        </li>
       ))}
-    </div>
+    </ul>
   )
 }
 
@@ -183,8 +186,9 @@ function TrueMysterySetGuide() {
 
         <h2 id="slim-vs-jumbo">Slim box vs jumbo box</h2>
         <p>Both boxes pull from the same 163-card list. Here is what each one holds:</p>
-        <div className="table-scroll">
+        <div className="table-scroll" role="group" aria-labelledby="tbl-1" tabIndex={0}>
           <table className="data-table">
+            <caption id="tbl-1" className="sr-only">Slim box vs jumbo box</caption>
             <thead>
               <tr>
                 <th scope="col">Per box</th>
@@ -238,8 +242,9 @@ function TrueMysterySetGuide() {
 
         <h2 id="ladders">One Pokémon, several rarities</h2>
         <p>The four Pokémon ex with a Special Art Rare, and every number they print at:</p>
-        <div className="table-scroll">
+        <div className="table-scroll" role="group" aria-labelledby="tbl-2" tabIndex={0}>
           <table className="data-table">
+            <caption id="tbl-2" className="sr-only">One Pokémon, several rarities</caption>
             <thead>
               <tr>
                 <th scope="col">Pokémon</th>
@@ -271,8 +276,9 @@ function TrueMysterySetGuide() {
           Every card has one number out of 128. The main set runs 001 to 128, and everything above is a secret rare. The rarer versions
           of a card sit in the secret block at unrelated numbers, so match them by name.
         </p>
-        <div className="table-scroll">
+        <div className="table-scroll" role="group" aria-labelledby="tbl-3" tabIndex={0}>
           <table className="data-table">
+            <caption id="tbl-3" className="sr-only">How the numbers work</caption>
             <thead>
               <tr>
                 <th scope="col">Numbers</th>

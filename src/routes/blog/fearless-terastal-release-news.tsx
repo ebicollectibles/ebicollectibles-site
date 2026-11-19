@@ -1,3 +1,4 @@
+import { Zh } from '~/components/blog/Zh'
 import { BuyStrip } from '~/components/blog/BlogShop'
 import { createFileRoute, Link } from '@tanstack/react-router'
 import blogCssUrl from '~/styles/blog.css?url'
@@ -19,18 +20,20 @@ const EXCLUSIVE = new Set(['155'])
 
 function Grid({ cards, cols }: { cards: Shown[]; cols: number }) {
   return (
-    <div className={`card-grid cols-${cols}`}>
+    <ul className={`card-grid cols-${cols}`}>
       {cards.map((c) => (
-        <figure key={c.n}>
-          <img src={cardImg(c.n)} alt={`${c.name} ${c.n}/130, Fearless Terastal`} loading="lazy" width={300} height={418} />
-          <figcaption>
-            {EXCLUSIVE.has(c.n) && <ChineseExclusiveBadge />}
-            <strong>{c.name}</strong>
-            {c.n}/130 · {c.note}
-          </figcaption>
-        </figure>
+        <li key={c.n}>
+          <figure>
+            <img src={cardImg(c.n)} alt={`${c.name} ${c.n}/130, Fearless Terastal`} loading="lazy" width={300} height={418} />
+            <figcaption>
+              {EXCLUSIVE.has(c.n) && <ChineseExclusiveBadge />}
+              <strong>{c.name}</strong>
+              {c.n}/130 · {c.note}
+            </figcaption>
+          </figure>
+        </li>
       ))}
-    </div>
+    </ul>
   )
 }
 
@@ -200,7 +203,7 @@ function FearlessTerastalReleasePost() {
         }}
       >
         <p>
-          Fearless Terastal (无畏太晶) released on May 16, 2025. It is the third main set of the Chinese Scarlet & Violet series, and it
+          Fearless Terastal (<Zh>无畏太晶</Zh>) released on May 16, 2025. It is the third main set of the Chinese Scarlet & Violet series, and it
           introduces Terastallized Pokémon as Tera Pokémon ex, with a crystal Arcanine on the pack. Around it are the
           four legendary Treasures of Ruin, a cast of Paldea Pokémon and Trainers, and one card English collectors cannot pull.
         </p>
@@ -211,7 +214,7 @@ function FearlessTerastalReleasePost() {
             <p className="fact-box-title">Key facts</p>
             <dl>
               <dt>Set</dt>
-              <dd>Fearless Terastal (无畏太晶)</dd>
+              <dd>Fearless Terastal (<Zh>无畏太晶</Zh>)</dd>
               <dt>Set code</dt>
               <dd>CSV3C</dd>
               <dt>Released</dt>
@@ -294,8 +297,9 @@ function FearlessTerastalReleasePost() {
           chart for each one. The charts give each rarity group's share of the print run, and multiplying a share by the pack size
           gives the average number of those cards per pack:
         </p>
-        <div className="table-scroll">
+        <div className="table-scroll" role="group" aria-labelledby="tbl-1" tabIndex={0}>
           <table className="data-table">
+            <caption id="tbl-1" className="sr-only">Packs and pull odds</caption>
             <thead>
               <tr>
                 <th scope="col">Rarity group</th>

@@ -195,69 +195,78 @@ function GemVol2OriginsPost() {
           That adds up to 44 illustrations. 40 of them come from English cards. The other four are the Chinese Exclusive full arts by HYOGONOSUKE,
           which were drawn for Gem Vol 2 and have no earlier version.
         </p>
-        <div className="card-grid cols-4">
-          <figure>
-            <img
-              src={`${R2_IMAGE_HOST}/Chinese/Gem%202/Cards/0115.webp`}
-              alt="Eevee 0115/15 Chinese Exclusive full art, Gem Vol 2"
-              loading="lazy"
-              width={300}
-              height={419}
-            />
-            <figcaption>
-              <ChineseExclusiveBadge />
-              <strong>Eevee 0115/15</strong>
-              Full art · Illus. HYOGONOSUKE
-            </figcaption>
-          </figure>
-          <figure>
-            <img
-              src={`${R2_IMAGE_HOST}/Chinese/Gem%202/Cards/0615.webp`}
-              alt="Umbreon 0615/15 Chinese Exclusive full art, Gem Vol 2"
-              loading="lazy"
-              width={300}
-              height={419}
-            />
-            <figcaption>
-              <ChineseExclusiveBadge />
-              <strong>Umbreon 0615/15</strong>
-              Full art · Illus. HYOGONOSUKE
-            </figcaption>
-          </figure>
-          <figure>
-            <img
-              src={`${R2_IMAGE_HOST}/Chinese/Gem%202/Cards/0715.webp`}
-              alt="Leafeon 0715/15 Chinese Exclusive full art, Gem Vol 2"
-              loading="lazy"
-              width={300}
-              height={419}
-            />
-            <figcaption>
-              <ChineseExclusiveBadge />
-              <strong>Leafeon 0715/15</strong>
-              Full art · Illus. HYOGONOSUKE
-            </figcaption>
-          </figure>
-          <figure>
-            <img
-              src={`${R2_IMAGE_HOST}/Chinese/Gem%202/Cards/0915.webp`}
-              alt="Sylveon 0915/15 Chinese Exclusive full art, Gem Vol 2"
-              loading="lazy"
-              width={300}
-              height={419}
-            />
-            <figcaption>
-              <ChineseExclusiveBadge />
-              <strong>Sylveon 0915/15</strong>
-              Full art · Illus. HYOGONOSUKE
-            </figcaption>
-          </figure>
-        </div>
+        <ul className="card-grid cols-4">
+          <li>
+            <figure>
+              <img
+                src={`${R2_IMAGE_HOST}/Chinese/Gem%202/Cards/0115.webp`}
+                alt="Eevee 0115/15 Chinese Exclusive full art, Gem Vol 2"
+                loading="lazy"
+                width={300}
+                height={419}
+              />
+              <figcaption>
+                <ChineseExclusiveBadge />
+                <strong>Eevee 0115/15</strong>
+                Full art · Illus. HYOGONOSUKE
+              </figcaption>
+            </figure>
+          </li>
+          <li>
+            <figure>
+              <img
+                src={`${R2_IMAGE_HOST}/Chinese/Gem%202/Cards/0615.webp`}
+                alt="Umbreon 0615/15 Chinese Exclusive full art, Gem Vol 2"
+                loading="lazy"
+                width={300}
+                height={419}
+              />
+              <figcaption>
+                <ChineseExclusiveBadge />
+                <strong>Umbreon 0615/15</strong>
+                Full art · Illus. HYOGONOSUKE
+              </figcaption>
+            </figure>
+          </li>
+          <li>
+            <figure>
+              <img
+                src={`${R2_IMAGE_HOST}/Chinese/Gem%202/Cards/0715.webp`}
+                alt="Leafeon 0715/15 Chinese Exclusive full art, Gem Vol 2"
+                loading="lazy"
+                width={300}
+                height={419}
+              />
+              <figcaption>
+                <ChineseExclusiveBadge />
+                <strong>Leafeon 0715/15</strong>
+                Full art · Illus. HYOGONOSUKE
+              </figcaption>
+            </figure>
+          </li>
+          <li>
+            <figure>
+              <img
+                src={`${R2_IMAGE_HOST}/Chinese/Gem%202/Cards/0915.webp`}
+                alt="Sylveon 0915/15 Chinese Exclusive full art, Gem Vol 2"
+                loading="lazy"
+                width={300}
+                height={419}
+              />
+              <figcaption>
+                <ChineseExclusiveBadge />
+                <strong>Sylveon 0915/15</strong>
+                Full art · Illus. HYOGONOSUKE
+              </figcaption>
+            </figure>
+          </li>
+        </ul>
 
         <h2 id="by-set">Which sets it comes from</h2>
         <p>Unlike later Gem Packs, almost none of it is Scarlet & Violet art. It comes from Sword & Shield sets and promos, a few older Sun & Moon cards, and one Paldean Fates Trainer, listed in release order:</p>
-        <div className="table-scroll">
+        <div className="table-scroll" role="group" aria-labelledby="tbl-1" tabIndex={0}>
           <table className="data-table">
+            <caption id="tbl-1" className="sr-only">Which sets it comes from</caption>
             <thead>
               <tr>
                 <th scope="col">English source</th>
@@ -299,8 +308,9 @@ function GemVol2OriginsPost() {
 
         <h2 id="full-map">The full card-by-card map</h2>
         <p>Every Gem Vol 2 Pokémon, with the English card behind each of its illustrations and the illustrator credited on it.</p>
-        <div className="table-scroll table-wide">
+        <div className="table-scroll table-wide" role="group" aria-labelledby="tbl-2" tabIndex={0}>
           <table className="data-table origins-table origins-wide">
+            <caption id="tbl-2" className="sr-only">The full card-by-card map</caption>
             <thead>
               <tr>
                 <th scope="col">#</th>
@@ -329,8 +339,9 @@ function GemVol2OriginsPost() {
 
         <h2 id="trainers">Trainer cards</h2>
         <p>The four Trainer cards reuse English art as well. Penny is aspara's Special Illustration Rare art from Paldean Fates, the only Scarlet & Violet illustration in the set.</p>
-        <div className="table-scroll">
+        <div className="table-scroll" role="group" aria-labelledby="tbl-3" tabIndex={0}>
           <table className="data-table origins-table">
+            <caption id="tbl-3" className="sr-only">Trainer cards</caption>
             <thead>
               <tr>
                 <th scope="col">Gem card</th>

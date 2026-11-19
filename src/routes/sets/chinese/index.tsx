@@ -106,13 +106,13 @@ function SetsIndexPage() {
 
       <section className="hero">
         <div className="wrap">
-          <div className="crumbs">
+          <nav className="crumbs" aria-label="Breadcrumb">
             <Link to="/shop">Shop</Link>
-            <span>/</span>
+            <span aria-hidden="true">/</span>
             <Link to="/sets">Sets</Link>
-            <span>/</span>
-            <span>Chinese</span>
-          </div>
+            <span aria-hidden="true">/</span>
+            <span aria-current="page">Chinese</span>
+          </nav>
           <div className="eyebrow">Simplified Chinese · Pokémon TCG</div>
           <h1>Simplified Chinese Pokémon sets</h1>
           <p className="lede">
@@ -121,7 +121,7 @@ function SetsIndexPage() {
         </div>
       </section>
 
-      <main className="wrap">
+      <div className="wrap page-main">
         {(() => {
           // Only the first series section's first several cards are
           // reliably above the fold — a running count across all of them
@@ -132,11 +132,12 @@ function SetsIndexPage() {
           return groupBySeries().map(([series, sets]) => (
             <section key={series} className="series">
               <h2 className="series-h">{SERIES_LABEL[series] ?? series}</h2>
-              <div className="grid">
+              <ul className="grid">
                 {sets.map((s) => {
                   const priority = cardIndex++ < 8
                   return (
-                    <Link key={s.slug} className="card" to={s.path}>
+                    <li key={s.slug}>
+                    <Link className="card" to={s.path}>
                       <div className="card-art" style={{ '--glow-1': s.glow1, '--glow-2': s.glow2 } as React.CSSProperties}>
                         {s.preorder && <span className="card-preorder">Preorder</span>}
                         <img src={s.heroImage} alt={s.heroAlt} loading={priority ? undefined : 'lazy'} width={300} height={419} />
@@ -149,18 +150,19 @@ function SetsIndexPage() {
                           <span>
                             <b>{s.cardCount}</b> cards
                           </span>
-                          <span>{formatReleaseDate(s.releaseDate)}</span>
+                          <time dateTime={s.releaseDate}>{formatReleaseDate(s.releaseDate)}</time>
                           {s.exclusiveCount > 0 && <span className="card-excl">{s.exclusiveCount} Chinese Exclusive{s.exclusiveCount > 1 ? 's' : ''}</span>}
                         </div>
                       </div>
                     </Link>
+                    </li>
                   )
                 })}
-              </div>
+              </ul>
             </section>
           ))
         })()}
-      </main>
+      </div>
     </div>
   )
 }

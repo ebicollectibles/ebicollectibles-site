@@ -1,3 +1,6 @@
+import { chunk } from '~/lib/chunk'
+import { RarityAbbr, rarityFullName } from '~/components/blog/RarityAbbr'
+import { useId } from 'react'
 import { BuyStrip } from '~/components/blog/BlogShop'
 import { createFileRoute, Link } from '@tanstack/react-router'
 import blogCssUrl from '~/styles/blog.css?url'
@@ -381,10 +384,15 @@ export const Route = createFileRoute('/blog/brilliant-fantasy-card-origins')({
   component: BrilliantFantasyOrigins,
 })
 
-function OriginsTable({ list }: { list: typeof rows }) {
+function OriginsTable({ list, caption }: { list: typeof rows; caption: string }) {
+  // Names the table for screen readers and labels its scroll area.
+  const captionId = useId()
   return (
-    <div className="table-scroll table-tall">
+    <div className="table-scroll table-tall" role="group" aria-labelledby={captionId} tabIndex={0}>
       <table className="data-table origins-table">
+        <caption id={captionId} className="sr-only">
+          {caption}
+        </caption>
         <thead>
           <tr>
             <th scope="col">No.</th>
@@ -392,27 +400,33 @@ function OriginsTable({ list }: { list: typeof rows }) {
             <th scope="col">English card</th>
           </tr>
         </thead>
-        <tbody>
-          {list.map((r) => (
-            <tr key={r.cn} className={r.src === 'NEW' ? 'is-current' : undefined}>
-              <th scope="row">{r.cn}</th>
-              <td>
-                {r.name}
-                <span className="cell-sub">{r.rarity}</span>
-              </td>
-              <td>
-                {r.src === 'NEW' ? (
-                  <span className="cell-none">Chinese Exclusive, no English version</span>
-                ) : (
-                  <>
-                    {SET_NAME[r.src]} {r.en}
-                  </>
-                )}
-                {r.illus ? <span className="cell-sub">Illus. {r.illus}</span> : null}
-              </td>
-            </tr>
-          ))}
-        </tbody>
+        {/* Row groups of 20: the same table on screen and to screen readers, but no single
+            group outweighs the article text when a reader mode picks the main content. */}
+        {chunk(list, 20).map((group, g) => (
+          <tbody key={g}>
+            {group.map((r) => (
+              <tr key={r.cn} className={r.src === 'NEW' ? 'is-current' : undefined}>
+                <th scope="row">{r.cn}</th>
+                <td>
+                  {r.name}
+                  <span className="cell-sub">
+                    <RarityAbbr code={r.rarity} />
+                  </span>
+                </td>
+                <td>
+                  {r.src === 'NEW' ? (
+                    <span className="cell-none">Chinese Exclusive, no English version</span>
+                  ) : (
+                    <>
+                      {SET_NAME[r.src]} {r.en}
+                    </>
+                  )}
+                  {r.illus ? <span className="cell-sub">Illus. {r.illus}</span> : null}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        ))}
       </table>
     </div>
   )
@@ -482,8 +496,9 @@ function BrilliantFantasyOrigins() {
         </nav>
 
         <h2 id="at-a-glance">At a glance</h2>
-        <div className="table-scroll">
+        <div className="table-scroll" role="group" aria-labelledby="tbl-2" tabIndex={0}>
           <table className="data-table">
+            <caption id="tbl-2" className="sr-only">At a glance</caption>
             <thead>
               <tr>
                 <th scope="col">Rarity</th>
@@ -525,8 +540,9 @@ function BrilliantFantasyOrigins() {
           <strong>Two sets do most of the work.</strong> Twilight Masquerade and Shrouded Fable account for 185 cards between them.
           Every card's English source, from most cards to fewest:
         </p>
-        <div className="table-scroll">
+        <div className="table-scroll" role="group" aria-labelledby="tbl-3" tabIndex={0}>
           <table className="data-table">
+            <caption id="tbl-3" className="sr-only">Patterns worth knowing</caption>
             <thead>
               <tr>
                 <th scope="col">English source</th>
@@ -558,18 +574,20 @@ function BrilliantFantasyOrigins() {
           Brilliant Fantasy keeps the Super Rare but swaps the Special Art Rare for a new illustration by OKACHEKE, so the English SIR is
           not in this set at all.
         </p>
-        <div className="card-grid cols-2">
+        <ul className="card-grid cols-2">
           {carmine.map((r) => (
-            <figure key={r.cn}>
-              <img src={r.image} alt={`${r.name} ${r.cn}/207${r.src === 'NEW' ? ', Chinese Exclusive' : ''}, Brilliant Fantasy`} loading="lazy" width={300} height={419} />
-              <figcaption>
-                {r.src === 'NEW' && <ChineseExclusiveBadge />}
-                <strong>{r.name}</strong>
-                {r.cn}/207 · {r.rarity} · {r.src === 'NEW' ? 'new art' : SET_NAME[r.src]}
-              </figcaption>
-            </figure>
+            <li key={r.cn}>
+              <figure>
+                <img src={r.image} alt={`${r.name} ${r.cn}/207 ${rarityFullName(r.rarity)}${r.src === 'NEW' ? ', Chinese Exclusive' : ''}, Brilliant Fantasy`} loading="lazy" width={300} height={419} />
+                <figcaption>
+                  {r.src === 'NEW' && <ChineseExclusiveBadge />}
+                  <strong>{r.name}</strong>
+                  {r.cn}/207 · <RarityAbbr code={r.rarity} /> · {r.src === 'NEW' ? 'new art' : SET_NAME[r.src]}
+                </figcaption>
+              </figure>
+            </li>
           ))}
-        </div>
+        </ul>
         <p>
           <strong>Two promo arts and a late gold.</strong> Xerneas ex 088/207 and Dialga ex 141/207 use art that English released as SV
           Black Star Promos. The gold Jamming Tower 262/207 matches Destined Rivals, and Foongus, Amoonguss ex and Reshiram ex match
@@ -578,12 +596,12 @@ function BrilliantFantasyOrigins() {
 
         <h2 id="secret-rares">All 57 secret rares</h2>
         <p>Every card above 207, with its English twin. The highlighted row is new.</p>
-        <OriginsTable list={SECRET} />
+        <OriginsTable list={SECRET} caption="Secret rares and the English card each one matches" />
 
         <BuyStrip />
 
         <h2 id="main-set">The 207-card main set</h2>
-        <OriginsTable list={MAIN} />
+        <OriginsTable list={MAIN} caption="Main set cards and the English card each one matches" />
 
         <h2 id="faq">FAQ</h2>
         <div className="faq">

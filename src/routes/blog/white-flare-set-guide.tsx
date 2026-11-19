@@ -1,3 +1,4 @@
+import { RarityAbbr, rarityFullName } from '~/components/blog/RarityAbbr'
 import { BuyStrip } from '~/components/blog/BlogShop'
 import { createFileRoute, Link } from '@tanstack/react-router'
 import blogCssUrl from '~/styles/blog.css?url'
@@ -18,18 +19,20 @@ const short = (r: string) => r.match(/\(([^)]+)\)/)?.[1] ?? r
 
 function Gallery({ cards, cols }: { cards: Card[]; cols: number }) {
   return (
-    <div className={`card-grid cols-${cols}`}>
+    <ul className={`card-grid cols-${cols}`}>
       {cards.map((c) => (
-        <figure key={c.number}>
-          <img src={c.image} alt={`${c.name} ${c.number} ${short(c.rarity)}, White Flare`} loading="lazy" width={300} height={419} />
-          <figcaption>
-            {EXCLUSIVE.has(c.number) && <ChineseExclusiveBadge />}
-            <strong>{c.name}</strong>
-            {c.number} · {short(c.rarity)}
-          </figcaption>
-        </figure>
+        <li key={c.number}>
+          <figure>
+            <img src={c.image} alt={`${c.name} ${c.number} ${rarityFullName(c.rarity)}, White Flare`} loading="lazy" width={300} height={419} />
+            <figcaption>
+              {EXCLUSIVE.has(c.number) && <ChineseExclusiveBadge />}
+              <strong>{c.name}</strong>
+              {c.number} · <RarityAbbr code={short(c.rarity)} />
+            </figcaption>
+          </figure>
+        </li>
       ))}
-    </div>
+    </ul>
   )
 }
 
@@ -198,8 +201,9 @@ function WhiteFlareSetGuide() {
           Both boxes pull from the same card list, but Pokémon China published a separate odds chart for the 5-card and the 20-card pack.
           Applied to one box, the shares work out to roughly this (slim share / jumbo share in brackets):
         </p>
-        <div className="table-scroll">
+        <div className="table-scroll" role="group" aria-labelledby="tbl-1" tabIndex={0}>
           <table className="data-table">
+            <caption id="tbl-1" className="sr-only">Slim box or jumbo box</caption>
             <thead>
               <tr>
                 <th scope="col">Per box</th>
@@ -253,8 +257,9 @@ function WhiteFlareSetGuide() {
           The ex Pokémon skip the Art Rare tier and get a Super Rare and a Special Art Rare instead. These are the numbers each one prints at,
           plus the two Supporters with secret rares:
         </p>
-        <div className="table-scroll">
+        <div className="table-scroll" role="group" aria-labelledby="tbl-2" tabIndex={0}>
           <table className="data-table">
+            <caption id="tbl-2" className="sr-only">One card, every rarity</caption>
             <thead>
               <tr>
                 <th scope="col">Card</th>
@@ -284,8 +289,9 @@ function WhiteFlareSetGuide() {
           share a fixed offset with its main-set card, because the ex are skipped: Sewaddle 001 is Art Rare 087, but Tornadus 078 is Art Rare
           158. Match them by name.
         </p>
-        <div className="table-scroll">
+        <div className="table-scroll" role="group" aria-labelledby="tbl-3" tabIndex={0}>
           <table className="data-table">
+            <caption id="tbl-3" className="sr-only">How the numbers work</caption>
             <thead>
               <tr>
                 <th scope="col">Numbers</th>

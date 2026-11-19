@@ -1,3 +1,4 @@
+import { Zh } from '~/components/blog/Zh'
 import * as React from 'react'
 import { createFileRoute, Link } from '@tanstack/react-router'
 import { ProductCard } from '~/components/ProductCard'
@@ -90,6 +91,10 @@ function HomePage() {
 
   return (
     <>
+      {/* The hero below carries the page's visible h1. While it is switched
+          off, this keeps one real h1 on the page for screen readers and
+          reader modes (headings then run h1 > h2 as on every other page). */}
+      {!SHOW_HERO && <h1 className="sr-only">EBI Collectibles: sealed Simplified Chinese Pokémon cards, figures and blind boxes</h1>}
       <AnniversaryCountdown />
       {SHOW_HERO && (
       <section style={{ borderBottom: '1px solid #e3e6ea', background: '#f6f7f8' }}>
@@ -119,7 +124,7 @@ function HomePage() {
                 padding: '6px 11px',
               }}
             >
-              Simplified Chinese · 宝可梦
+              Simplified Chinese · <Zh>宝可梦</Zh>
             </div>
             <h1
               className="ebi-hero-h1"
@@ -213,7 +218,7 @@ function HomePage() {
                 className="ebi-btn-dark"
                 style={{ display: 'inline-block', background: '#131b28', color: '#ffffff', border: 0, borderRadius: 2, padding: '13px 26px', fontSize: 13, fontWeight: 600 }}
               >
-                View All
+                View All<span className="sr-only"> best selling products</span>
               </Link>
             </div>
           )}
@@ -254,7 +259,7 @@ function HomePage() {
                 className="ebi-btn-dark"
                 style={{ display: 'inline-block', background: '#131b28', color: '#ffffff', border: 0, borderRadius: 2, padding: '13px 26px', fontSize: 13, fontWeight: 600 }}
               >
-                View All
+                View All<span className="sr-only"> new and upcoming products</span>
               </Link>
             </div>
           )}
@@ -318,12 +323,15 @@ function HomePage() {
             <div>
               <div style={{ fontSize: 18, fontWeight: 600, letterSpacing: '-0.01em' }}>Email me about restocks and new drops.</div>
               {subscribeState === 'done' ? (
-                <div style={{ marginTop: 14, fontSize: 13, color: '#ffffff' }}>You're on the list.</div>
+                <div role="status" style={{ marginTop: 14, fontSize: 13, color: '#ffffff' }}>You're on the list.</div>
               ) : (
                 <form onSubmit={submitSubscribe} style={{ display: 'flex', gap: 8, marginTop: 14 }}>
                   <input
                     type="email"
                     required
+                    aria-label="Email address"
+                    autoComplete="email"
+                    className="ebi-on-dark"
                     placeholder="you@email.com"
                     value={subscribeEmail}
                     onChange={(e) => setSubscribeEmail(e.target.value)}
@@ -336,7 +344,6 @@ function HomePage() {
                       color: '#ffffff',
                       // 16px avoids iOS Safari auto-zooming on focus.
                       fontSize: 16,
-                      outline: 'none',
                     }}
                   />
                   <button
@@ -359,7 +366,7 @@ function HomePage() {
                 </form>
               )}
               {subscribeState === 'error' && (
-                <div style={{ marginTop: 8, fontSize: 12, color: '#e39a7a' }}>Something went wrong — try again.</div>
+                <div role="alert" style={{ marginTop: 8, fontSize: 12, color: '#e39a7a' }}>Something went wrong — try again.</div>
               )}
             </div>
           </div>

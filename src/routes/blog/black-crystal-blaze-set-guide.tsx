@@ -1,3 +1,4 @@
+import { rarityFullName } from '~/components/blog/RarityAbbr'
 import { BuyStrip } from '~/components/blog/BlogShop'
 import { createFileRoute, Link } from '@tanstack/react-router'
 import blogCssUrl from '~/styles/blog.css?url'
@@ -24,18 +25,20 @@ const lead = (cards: Card[], first: string[]) => [
 
 function Gallery({ cards, cols }: { cards: Card[]; cols: number }) {
   return (
-    <div className={`card-grid cols-${cols}`}>
+    <ul className={`card-grid cols-${cols}`}>
       {cards.map((c) => (
-        <figure key={c.number}>
-          <img src={c.image} alt={`${c.name} ${c.number} ${short(c.rarity)}, Black Crystal Blaze`} loading="lazy" width={300} height={419} />
-          <figcaption>
-            {isExclusive(c) && <ChineseExclusiveBadge />}
-            <strong>{c.name}</strong>
-            {c.number}
-          </figcaption>
-        </figure>
+        <li key={c.number}>
+          <figure>
+            <img src={c.image} alt={`${c.name} ${c.number} ${rarityFullName(c.rarity)}, Black Crystal Blaze`} loading="lazy" width={300} height={419} />
+            <figcaption>
+              {isExclusive(c) && <ChineseExclusiveBadge />}
+              <strong>{c.name}</strong>
+              {c.number}
+            </figcaption>
+          </figure>
+        </li>
       ))}
-    </div>
+    </ul>
   )
 }
 
@@ -190,8 +193,9 @@ function BlackCrystalBlazeSetGuide() {
 
         <h2 id="box">What a slim box holds</h2>
         <p>Pokémon China's odds chart for the 5-card pack, applied to one 15-pack slim box:</p>
-        <div className="table-scroll">
+        <div className="table-scroll" role="group" aria-labelledby="tbl-1" tabIndex={0}>
           <table className="data-table">
+            <caption id="tbl-1" className="sr-only">What a slim box holds</caption>
             <thead>
               <tr>
                 <th scope="col">Per slim box</th>
@@ -234,8 +238,9 @@ function BlackCrystalBlazeSetGuide() {
 
         <h2 id="ladders">One Pokémon, several rarities</h2>
         <p>The Pokémon ex with a Special Art Rare, and every number they print at:</p>
-        <div className="table-scroll">
+        <div className="table-scroll" role="group" aria-labelledby="tbl-2" tabIndex={0}>
           <table className="data-table">
+            <caption id="tbl-2" className="sr-only">One Pokémon, several rarities</caption>
             <thead>
               <tr>
                 <th scope="col">Pokémon</th>
@@ -268,8 +273,9 @@ function BlackCrystalBlazeSetGuide() {
           Every card has one number out of 129. The main set runs 001 to 129, and everything above is a secret rare. The rarer versions
           of a card sit in the secret block at unrelated numbers, so match them by name.
         </p>
-        <div className="table-scroll">
+        <div className="table-scroll" role="group" aria-labelledby="tbl-3" tabIndex={0}>
           <table className="data-table">
+            <caption id="tbl-3" className="sr-only">How the numbers work</caption>
             <thead>
               <tr>
                 <th scope="col">Numbers</th>

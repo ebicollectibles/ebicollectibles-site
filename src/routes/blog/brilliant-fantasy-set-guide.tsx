@@ -1,3 +1,4 @@
+import { rarityFullName } from '~/components/blog/RarityAbbr'
 import { BuyStrip } from '~/components/blog/BlogShop'
 import { createFileRoute, Link } from '@tanstack/react-router'
 import blogCssUrl from '~/styles/blog.css?url'
@@ -19,18 +20,20 @@ const short = (r: string) => r.match(/\(([^)]+)\)/)?.[1] ?? r
 
 function Gallery({ cards, cols }: { cards: Card[]; cols: number }) {
   return (
-    <div className={`card-grid cols-${cols}`}>
+    <ul className={`card-grid cols-${cols}`}>
       {cards.map((c) => (
-        <figure key={c.number}>
-          <img src={c.image} alt={`${c.name} ${c.number} ${short(c.rarity)}, Brilliant Fantasy`} loading="lazy" width={300} height={419} />
-          <figcaption>
-            {EXCLUSIVE.has(c.number) && <ChineseExclusiveBadge />}
-            <strong>{c.name}</strong>
-            {c.number}
-          </figcaption>
-        </figure>
+        <li key={c.number}>
+          <figure>
+            <img src={c.image} alt={`${c.name} ${c.number} ${rarityFullName(c.rarity)}, Brilliant Fantasy`} loading="lazy" width={300} height={419} />
+            <figcaption>
+              {EXCLUSIVE.has(c.number) && <ChineseExclusiveBadge />}
+              <strong>{c.name}</strong>
+              {c.number}
+            </figcaption>
+          </figure>
+        </li>
       ))}
-    </div>
+    </ul>
   )
 }
 
@@ -218,8 +221,9 @@ function BrilliantFantasySetGuide() {
           Both boxes pull from the same card list, but Pokémon China prints a different odds chart for each pack size. Applied to one
           box, the published shares work out to roughly this:
         </p>
-        <div className="table-scroll">
+        <div className="table-scroll" role="group" aria-labelledby="tbl-1" tabIndex={0}>
           <table className="data-table">
+            <caption id="tbl-1" className="sr-only">Slim box vs jumbo box</caption>
             <thead>
               <tr>
                 <th scope="col">Per box</th>
@@ -280,8 +284,9 @@ function BrilliantFantasySetGuide() {
           18 of the 22 Pokémon ex reach the secret block. These are the numbers each one prints at. Amoonguss ex, Reshiram ex, Xerneas ex
           and Dialga ex are Double Rare only.
         </p>
-        <div className="table-scroll">
+        <div className="table-scroll" role="group" aria-labelledby="tbl-2" tabIndex={0}>
           <table className="data-table">
+            <caption id="tbl-2" className="sr-only">Every Pokémon ex at every rarity</caption>
             <thead>
               <tr>
                 <th scope="col">Pokémon</th>
@@ -310,8 +315,9 @@ function BrilliantFantasySetGuide() {
           among the Trainers and Energy. Everything above 207 is a secret rare. The rarer versions of a card sit in the secret block at
           unrelated numbers, so match them by name.
         </p>
-        <div className="table-scroll">
+        <div className="table-scroll" role="group" aria-labelledby="tbl-3" tabIndex={0}>
           <table className="data-table">
+            <caption id="tbl-3" className="sr-only">How the numbers work</caption>
             <thead>
               <tr>
                 <th scope="col">Numbers</th>

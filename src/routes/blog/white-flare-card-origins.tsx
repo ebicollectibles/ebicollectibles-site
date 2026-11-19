@@ -1,3 +1,6 @@
+import { chunk } from '~/lib/chunk'
+import { RarityAbbr, rarityFullName } from '~/components/blog/RarityAbbr'
+import { useId } from 'react'
 import { BuyStrip } from '~/components/blog/BlogShop'
 import { createFileRoute, Link } from '@tanstack/react-router'
 import blogCssUrl from '~/styles/blog.css?url'
@@ -276,10 +279,15 @@ export const Route = createFileRoute('/blog/white-flare-card-origins')({
   component: WhiteFlareOrigins,
 })
 
-function OriginsTable({ list }: { list: typeof rows }) {
+function OriginsTable({ list, caption }: { list: typeof rows; caption: string }) {
+  // Names the table for screen readers and labels its scroll area.
+  const captionId = useId()
   return (
-    <div className="table-scroll table-tall">
+    <div className="table-scroll table-tall" role="group" aria-labelledby={captionId} tabIndex={0}>
       <table className="data-table origins-table">
+        <caption id={captionId} className="sr-only">
+          {caption}
+        </caption>
         <thead>
           <tr>
             <th scope="col">No.</th>
@@ -287,27 +295,33 @@ function OriginsTable({ list }: { list: typeof rows }) {
             <th scope="col">English card</th>
           </tr>
         </thead>
-        <tbody>
-          {list.map((r) => (
-            <tr key={r.cn} className={r.src === 'NEW' ? 'is-current' : undefined}>
-              <th scope="row">{r.cn}</th>
-              <td>
-                {r.name}
-                <span className="cell-sub">{r.rarity}</span>
-              </td>
-              <td>
-                {r.src === 'NEW' ? (
-                  <span className="cell-none">Chinese Exclusive, no English version</span>
-                ) : (
-                  <>
-                    {SET_NAME[r.src]} {r.en}
-                  </>
-                )}
-                {r.illus ? <span className="cell-sub">Illus. {r.illus}</span> : null}
-              </td>
-            </tr>
-          ))}
-        </tbody>
+        {/* Row groups of 20: the same table on screen and to screen readers, but no single
+            group outweighs the article text when a reader mode picks the main content. */}
+        {chunk(list, 20).map((group, g) => (
+          <tbody key={g}>
+            {group.map((r) => (
+              <tr key={r.cn} className={r.src === 'NEW' ? 'is-current' : undefined}>
+                <th scope="row">{r.cn}</th>
+                <td>
+                  {r.name}
+                  <span className="cell-sub">
+                    <RarityAbbr code={r.rarity} />
+                  </span>
+                </td>
+                <td>
+                  {r.src === 'NEW' ? (
+                    <span className="cell-none">Chinese Exclusive, no English version</span>
+                  ) : (
+                    <>
+                      {SET_NAME[r.src]} {r.en}
+                    </>
+                  )}
+                  {r.illus ? <span className="cell-sub">Illus. {r.illus}</span> : null}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        ))}
       </table>
     </div>
   )
@@ -376,8 +390,9 @@ function WhiteFlareOrigins() {
         </nav>
 
         <h2 id="at-a-glance">At a glance</h2>
-        <div className="table-scroll">
+        <div className="table-scroll" role="group" aria-labelledby="tbl-2" tabIndex={0}>
           <table className="data-table">
+            <caption id="tbl-2" className="sr-only">At a glance</caption>
             <thead>
               <tr>
                 <th scope="col">Rarity</th>
@@ -417,8 +432,9 @@ function WhiteFlareOrigins() {
           the other way, English White Flare's Litwick, Lampent, Chandelure, Vullaby and Mandibuzz are in Chinese Black Bolt. The art is
           unchanged, only the set is different, so check the right set when you look these up.
         </p>
-        <div className="table-scroll">
+        <div className="table-scroll" role="group" aria-labelledby="tbl-3" tabIndex={0}>
           <table className="data-table">
+            <caption id="tbl-3" className="sr-only">What is different from English</caption>
             <thead>
               <tr>
                 <th scope="col">White Flare card</th>
@@ -429,7 +445,7 @@ function WhiteFlareOrigins() {
               {SWAPPED.map((r) => (
                 <tr key={r.cn}>
                   <th scope="row">
-                    {r.cn} {r.name} ({r.rarity})
+                    {r.cn} {r.name} (<RarityAbbr code={r.rarity} />)
                   </th>
                   <td>{r.en}</td>
                 </tr>
@@ -441,37 +457,41 @@ function WhiteFlareOrigins() {
           <strong>Every non-ex Pokémon gets an Art Rare.</strong> English White Flare has no Illustration Rare of Gothitelle or
           Tornadus. The Chinese set gives both an Art Rare, and each uses art that English released as an SV Black Star Promo:
         </p>
-        <div className="card-grid cols-2">
+        <ul className="card-grid cols-2">
           {PROMOS.map((r) => (
-            <figure key={r.cn}>
-              <img src={r.image} alt={`${r.name} ${r.cn}/086 Art Rare, White Flare`} loading="lazy" width={300} height={419} />
-              <figcaption>
-                <strong>{r.name}</strong>
-                {r.cn}/086 · SVP {r.en} · {r.illus}
-              </figcaption>
-            </figure>
+            <li key={r.cn}>
+              <figure>
+                <img src={r.image} alt={`${r.name} ${r.cn}/086 Art Rare, White Flare`} loading="lazy" width={300} height={419} />
+                <figcaption>
+                  <strong>{r.name}</strong>
+                  {r.cn}/086 · SVP {r.en} · {r.illus}
+                </figcaption>
+              </figure>
+            </li>
           ))}
-        </div>
+        </ul>
         <p>
           <strong>One Chinese Exclusive, two English cards left out.</strong> The Chinese Exclusive Hilda Special Art Rare 173/086 by Ligton has no English version.
           English White Flare's own Hilda Special Illustration Rare (171/086 by Naoki Saito) is not in the Chinese set, and neither is its
           Victini Black White Rare (172/086), so Reshiram ex is the only Black White Rare here. The Hilda Super Rare is the same art as in
           English.
         </p>
-        <div className="card-grid cols-2">
+        <ul className="card-grid cols-2">
           {HILDA.map((r) => (
-            <figure key={r.cn}>
-              <img src={r.image} alt={`${r.name} ${r.cn}/086 ${r.rarity}, White Flare`} loading="lazy" width={300} height={419} />
-              <figcaption>
-                {r.src === 'NEW' && <ChineseExclusiveBadge />}
-                <strong>
-                  {r.name} {r.rarity}
-                </strong>
-                {r.cn}/086 · {r.src === 'NEW' ? 'no English version' : `White Flare ${r.en}`} · {r.illus}
-              </figcaption>
-            </figure>
+            <li key={r.cn}>
+              <figure>
+                <img src={r.image} alt={`${r.name} ${r.cn}/086 ${rarityFullName(r.rarity)}, White Flare`} loading="lazy" width={300} height={419} />
+                <figcaption>
+                  {r.src === 'NEW' && <ChineseExclusiveBadge />}
+                  <strong>
+                    {r.name} <RarityAbbr code={r.rarity} />
+                  </strong>
+                  {r.cn}/086 · {r.src === 'NEW' ? 'no English version' : `White Flare ${r.en}`} · {r.illus}
+                </figcaption>
+              </figure>
+            </li>
           ))}
-        </div>
+        </ul>
         <p>
           <strong>The Reshiram ex cards match English.</strong> The Super Rare 160/086, the Special Art Rare 168/086 and the Black White
           Rare 174/086 are the same art as English White Flare 158, 166 and 173.
@@ -479,12 +499,12 @@ function WhiteFlareOrigins() {
 
         <h2 id="secret-rares">All 88 secret rares</h2>
         <p>Every card above 086, with its English twin. The highlighted row is new.</p>
-        <OriginsTable list={SECRET} />
+        <OriginsTable list={SECRET} caption="Secret rares and the English card each one matches" />
 
         <BuyStrip />
 
         <h2 id="main-set">The 86-card main set</h2>
-        <OriginsTable list={MAIN} />
+        <OriginsTable list={MAIN} caption="Main set cards and the English card each one matches" />
 
         <h2 id="faq">FAQ</h2>
         <div className="faq">

@@ -1,3 +1,4 @@
+import { Zh, zh } from '~/components/blog/Zh'
 import { BuyStrip } from '~/components/blog/BlogShop'
 import { ChineseExclusiveBadge } from '~/components/blog/ChineseExclusive'
 import { createFileRoute, Link } from '@tanstack/react-router'
@@ -196,7 +197,7 @@ function GemVol2Post() {
             <p className="fact-box-title">Key facts</p>
             <dl>
               <dt>Set</dt>
-              <dd>Gem Pack Vol. 2 (宝石包 VOL.2), also called Gemstone Vol. 2</dd>
+              <dd>Gem Pack Vol. 2 (<Zh>宝石包 VOL.2</Zh>), also called Gemstone Vol. 2</dd>
               <dt>Set code</dt>
               <dd>CBB2C</dd>
               <dt>Released</dt>
@@ -248,17 +249,19 @@ function GemVol2Post() {
           After the full arts, the VMAX are the next big pulls. Every Pokémon in the set has one, all Triple Rares, and Umbreon VMAX
           and Sylveon VMAX are the usual favorites.
         </p>
-        <div className="card-grid cols-3">
+        <ul className="card-grid cols-3">
           {VMAX.map((c) => (
-            <figure key={c.id}>
-              <img src={cardImg(c.id)} alt={`${c.name} ${c.id}, Gem Vol 2`} loading="lazy" width={300} height={419} />
-              <figcaption>
-                <strong>{c.name}</strong>
-                {c.id} · Triple Rare
-              </figcaption>
-            </figure>
+            <li key={c.id}>
+              <figure>
+                <img src={cardImg(c.id)} alt={`${c.name} ${c.id}, Gem Vol 2`} loading="lazy" width={300} height={419} />
+                <figcaption>
+                  <strong>{c.name}</strong>
+                  {c.id} · Triple Rare
+                </figcaption>
+              </figure>
+            </li>
           ))}
-        </div>
+        </ul>
 
         <BuyStrip />
 
@@ -269,8 +272,9 @@ function GemVol2Post() {
           Umbreon, Leafeon and Sylveon also get a 15th card, the full art. Each pack has three Common or Uncommon cards and one card that
           is Rare or better.
         </p>
-        <div className="table-scroll">
+        <div className="table-scroll" role="group" aria-labelledby="tbl-1" tabIndex={0}>
           <table className="data-table">
+            <caption id="tbl-1" className="sr-only">How the set is built</caption>
             <thead>
               <tr>
                 <th scope="col">Rarity</th>
@@ -306,35 +310,39 @@ function GemVol2Post() {
           patterns, glitter, starburst, the Master Ball pattern and finally the pink Gem Pack logo stamp. Then come Eevee V, Eevee VMAX
           and the full art.
         </p>
-        <div className="card-grid cols-3">
+        <ul className="card-grid cols-3">
           {EEVEE_SAMPLE.map((c) => (
-            <figure key={c.id}>
-              <img src={cardImg(c.id)} alt={`Eevee ${c.id}, ${c.label}, Gem Vol 2`} loading="lazy" width={300} height={419} />
-              <figcaption>
-                {c.exclusive && <ChineseExclusiveBadge />}
-                <strong>{c.id}/15</strong>
-                {c.label} · {c.note}
-              </figcaption>
-            </figure>
+            <li key={c.id}>
+              <figure>
+                <img src={cardImg(c.id)} alt={`Eevee ${c.id}, ${c.label}, Gem Vol 2`} loading="lazy" width={300} height={419} />
+                <figcaption>
+                  {c.exclusive && <ChineseExclusiveBadge />}
+                  <strong>{c.id}/15</strong>
+                  {c.label} · {c.note}
+                </figcaption>
+              </figure>
+            </li>
           ))}
-        </div>
+        </ul>
 
         <h2 id="trainers-energy">Trainers and Energy</h2>
         <p>
           Packs can also hold a holo Trainer or Energy card. Poké Ball, Level Ball and Quick Ball are Double Rares, and Penny is a
           full-art Triple Rare. The six Energy cards are Basic Lightning, Psychic and Darkness Energy, each printed twice.
         </p>
-        <div className="card-grid cols-4">
+        <ul className="card-grid cols-4">
           {TRAINERS.map((c) => (
-            <figure key={c.id}>
-              <img src={cardImg(c.id)} alt={`${c.name} ${c.id}/04, Gem Vol 2`} loading="lazy" width={300} height={419} />
-              <figcaption>
-                <strong>{c.name}</strong>
-                {c.id}/04 · {c.rarity}
-              </figcaption>
-            </figure>
+            <li key={c.id}>
+              <figure>
+                <img src={cardImg(c.id)} alt={`${c.name} ${c.id}/04, Gem Vol 2`} loading="lazy" width={300} height={419} />
+                <figcaption>
+                  <strong>{c.name}</strong>
+                  {c.id}/04 · {c.rarity}
+                </figcaption>
+              </figure>
+            </li>
           ))}
-        </div>
+        </ul>
         <p>
           The full Eeveelution lineup: Eevee, Vaporeon, Jolteon, Flareon, Espeon, Umbreon, Leafeon, Glaceon and Sylveon. The{' '}
           <Link to="/sets/chinese/gem-vol-2">full card list</Link> shows all 140 cards.
@@ -355,8 +363,9 @@ function GemVol2Post() {
           Gem Packs have been a Simplified Chinese collector line since January 2025, with the same 4-holo pack the whole way. Vol. 2
           grows the line to 140 cards and adds Trainer and Energy cards alongside the Pokémon.
         </p>
-        <div className="table-scroll">
+        <div className="table-scroll" role="group" aria-labelledby="tbl-2" tabIndex={0}>
           <table className="data-table">
+            <caption id="tbl-2" className="sr-only">Where Vol. 2 fits in the Gem Pack line</caption>
             <thead>
               <tr>
                 <th scope="col">Volume</th>
@@ -403,7 +412,7 @@ function GemVol2Post() {
             <details key={f.q}>
               <summary>{f.q}</summary>
               <p>
-                {f.a}
+                {zh(f.a)}
                 {f.link && (
                   <>
                     {' '}

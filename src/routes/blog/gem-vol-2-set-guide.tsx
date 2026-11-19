@@ -120,18 +120,20 @@ export const Route = createFileRoute('/blog/gem-vol-2-set-guide')({
 
 function Gallery({ cards, cols }: { cards: Card[]; cols: number }) {
   return (
-    <div className={`card-grid cols-${cols}`}>
+    <ul className={`card-grid cols-${cols}`}>
       {cards.map((c) => (
-        <figure key={c.number}>
-          <img src={c.image} alt={`${c.name} ${c.number}, Gem Vol 2`} loading="lazy" width={300} height={419} />
-          <figcaption>
-            {EXCLUSIVE.has(c.number) && <ChineseExclusiveBadge />}
-            <strong>{c.name}</strong>
-            {c.number}
-          </figcaption>
-        </figure>
+        <li key={c.number}>
+          <figure>
+            <img src={c.image} alt={`${c.name} ${c.number}, Gem Vol 2`} loading="lazy" width={300} height={419} />
+            <figcaption>
+              {EXCLUSIVE.has(c.number) && <ChineseExclusiveBadge />}
+              <strong>{c.name}</strong>
+              {c.number}
+            </figcaption>
+          </figure>
+        </li>
       ))}
-    </div>
+    </ul>
   )
 }
 
@@ -214,8 +216,9 @@ function GemVol2SetGuide() {
           A booster box is 15 packs of 4, so 60 holo cards, and every pack has three Common or Uncommon cards plus one that is Rare or
           better. Applied to one box, Pokémon China's print shares work out to roughly this:
         </p>
-        <div className="table-scroll">
+        <div className="table-scroll" role="group" aria-labelledby="tbl-1" tabIndex={0}>
           <table className="data-table">
+            <caption id="tbl-1" className="sr-only">What an average box holds</caption>
             <thead>
               <tr>
                 <th scope="col">Rarity</th>
@@ -260,8 +263,9 @@ function GemVol2SetGuide() {
 
         <h2 id="roster">The full roster</h2>
         <p>All nine Pokémon, with how many cards each one has.</p>
-        <div className="table-scroll">
+        <div className="table-scroll" role="group" aria-labelledby="tbl-2" tabIndex={0}>
           <table className="data-table">
+            <caption id="tbl-2" className="sr-only">The full roster</caption>
             <thead>
               <tr>
                 <th scope="col">#</th>
@@ -290,8 +294,9 @@ function GemVol2SetGuide() {
           is Umbreon VMAX. Trainers are numbered 10VV/04 and Energy 11VV/06. The symbol after the number gives the rarity, and the holo pattern
           tells you the version:
         </p>
-        <div className="table-scroll">
+        <div className="table-scroll" role="group" aria-labelledby="tbl-3" tabIndex={0}>
           <table className="data-table">
+            <caption id="tbl-3" className="sr-only">Reading a Gem Vol 2 card</caption>
             <thead>
               <tr>
                 <th scope="col">Version</th>

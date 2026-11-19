@@ -175,8 +175,9 @@ function GemVol7SetGuide() {
           A booster box is 18 packs of 4, so 72 holo cards. Pokémon China publishes the share of the print run each rarity makes up.
           Applied to one box, that works out to roughly this:
         </p>
-        <div className="table-scroll">
+        <div className="table-scroll" role="group" aria-labelledby="tbl-1" tabIndex={0}>
           <table className="data-table">
+            <caption id="tbl-1" className="sr-only">What an average box holds</caption>
             <thead>
               <tr>
                 <th scope="col">Rarity</th>
@@ -203,24 +204,26 @@ function GemVol7SetGuide() {
           just for Gem Vol 7 by Cona Nitanda. Psyduck lounges in a blue beach chair under an umbrella with a beach ball, and Misty
           stands behind it in her swimsuit.
         </p>
-        <div className="card-grid cols-4">
+        <ul className="card-grid cols-4">
           {FULL_ARTS_GALLERY.map((c) => (
-            <figure key={c.number}>
-              <img
-                src={c.image}
-                alt={`${c.name} ${EXCLUSIVE.has(c.number) ? 'Chinese Exclusive full art' : 'full art'} ${c.number}, Gem Vol 7`}
-                loading="lazy"
-                width={300}
-                height={419}
-              />
-              <figcaption>
-                {EXCLUSIVE.has(c.number) && <ChineseExclusiveBadge />}
-                <strong>{c.name}</strong>
-                {c.number}
-              </figcaption>
-            </figure>
+            <li key={c.number}>
+              <figure>
+                <img
+                  src={c.image}
+                  alt={`${c.name} ${EXCLUSIVE.has(c.number) ? 'Chinese Exclusive full art' : 'full art'} ${c.number}, Gem Vol 7`}
+                  loading="lazy"
+                  width={300}
+                  height={419}
+                />
+                <figcaption>
+                  {EXCLUSIVE.has(c.number) && <ChineseExclusiveBadge />}
+                  <strong>{c.name}</strong>
+                  {c.number}
+                </figcaption>
+              </figure>
+            </li>
           ))}
-        </div>
+        </ul>
 
         <BuyStrip />
 
@@ -229,8 +232,9 @@ function GemVol7SetGuide() {
           All 28 Pokémon, in set order. Each one has seven cards, numbered pp01 to pp07, where pp is its two-digit set number (0301 to 0307 for Psyduck). 19 of the 28 are
           paired with a Trainer, like Misty's Psyduck. Team Rocket has the most with eight, and Misty has two.
         </p>
-        <div className="table-scroll">
+        <div className="table-scroll" role="group" aria-labelledby="tbl-2" tabIndex={0}>
           <table className="data-table">
+            <caption id="tbl-2" className="sr-only">The full roster</caption>
             <thead>
               <tr>
                 <th scope="col">#</th>
@@ -264,8 +268,9 @@ function GemVol7SetGuide() {
           07), so 0305/07 is Misty's Psyduck's version 05. The symbol printed after the number gives the rarity, and the holo pattern
           tells you the version at a glance:
         </p>
-        <div className="table-scroll">
+        <div className="table-scroll" role="group" aria-labelledby="tbl-3" tabIndex={0}>
           <table className="data-table">
+            <caption id="tbl-3" className="sr-only">Reading a Gem Vol 7 card</caption>
             <thead>
               <tr>
                 <th scope="col">Version</th>

@@ -1,10 +1,13 @@
 import { RARITY_CODE, RARITY_SYMBOL } from '~/lib/gem-sets/rarity'
+import { cardAlt, cardNumber } from '~/lib/gem-sets/alt'
 import type { Card } from '~/lib/gem-sets/types'
 
 export function RarityTag({ rarity }: { rarity: string }) {
   return (
     <span className="rtag" data-r={RARITY_CODE[rarity]}>
-      <span className="sym">{RARITY_SYMBOL[rarity]}</span>
+      <span className="sym" aria-hidden="true">
+        {RARITY_SYMBOL[rarity]}
+      </span>
       {rarity}
     </span>
   )
@@ -53,7 +56,7 @@ export function CardThumb({
             <img
               loading={priority ? undefined : 'lazy'}
               src={card.image}
-              alt={`${card.name} ${card.id}/${card.suffix}, ${card.rarity}`}
+              alt={cardAlt(card)}
               width={300}
               height={419}
             />
@@ -61,11 +64,19 @@ export function CardThumb({
             <span className="img-ph">Image coming soon</span>
           )}
         </span>
-        <span className="meta">
-          <span className="no">{card.id}/{card.suffix}</span>
+        {/* With an image, its alt already gives the name, number and
+            rarity, so the same text below is hidden from screen readers
+            rather than read twice. Without one, this text is the name. */}
+        <span className="meta" aria-hidden={card.image ? true : undefined}>
+          <span className="no">{cardNumber(card)}</span>
           <RarityTag rarity={card.rarity} />
         </span>
-        {showName && <span className="nm">{card.name}</span>}
+        {showName && (
+          <span className="nm" aria-hidden={card.image ? true : undefined}>
+            {card.name}
+          </span>
+        )}
+        {!showName && !card.image && <span className="sr-only">{card.name}</span>}
       </button>
       <button type="button" className="own-toggle" aria-pressed={have} aria-label={haveLabel(card)} title={have ? 'In your collection' : 'Mark as owned'} onClick={() => onToggleHave(card.id)}>
         <span aria-hidden="true">{have ? '✓' : '+'}</span>
@@ -76,5 +87,5 @@ export function CardThumb({
 
 /** Accessible name shared by every "owned" toggle for a card (tile, checklist row). */
 export function haveLabel(card: Card): string {
-  return `Mark ${card.id} ${card.name} as owned`
+  return `Mark ${card.name} ${cardNumber(card)} as owned`
 }

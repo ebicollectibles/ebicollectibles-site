@@ -1,3 +1,4 @@
+import { Zh } from '~/components/blog/Zh'
 import { BuyStrip } from '~/components/blog/BlogShop'
 import { createFileRoute, Link } from '@tanstack/react-router'
 import blogCssUrl from '~/styles/blog.css?url'
@@ -19,18 +20,20 @@ const CHINESE_EXCLUSIVE = new Set(['257'])
 
 function Grid({ cards, cols }: { cards: Shown[]; cols: number }) {
   return (
-    <div className={`card-grid cols-${cols}`}>
+    <ul className={`card-grid cols-${cols}`}>
       {cards.map((c) => (
-        <figure key={c.n}>
-          <img src={cardImg(c.n)} alt={`${c.name} ${c.n}/208, Stellar Crystal`} loading="lazy" width={300} height={419} />
-          <figcaption>
-            {CHINESE_EXCLUSIVE.has(c.n) && <ChineseExclusiveBadge />}
-            <strong>{c.name}</strong>
-            {c.n}/208 · {c.note}
-          </figcaption>
-        </figure>
+        <li key={c.n}>
+          <figure>
+            <img src={cardImg(c.n)} alt={`${c.name} ${c.n}/208, Stellar Crystal`} loading="lazy" width={300} height={419} />
+            <figcaption>
+              {CHINESE_EXCLUSIVE.has(c.n) && <ChineseExclusiveBadge />}
+              <strong>{c.name}</strong>
+              {c.n}/208 · {c.note}
+            </figcaption>
+          </figure>
+        </li>
       ))}
-    </div>
+    </ul>
   )
 }
 
@@ -203,7 +206,7 @@ function StellarCrystalReleasePost() {
         }}
       >
         <p>
-          Stellar Crystal (星彩晶璃) released on May 15, 2026. It brings the new Stellar Tera type into Chinese, led by a Stellar Tera
+          Stellar Crystal (<Zh>星彩晶璃</Zh>) released on May 15, 2026. It brings the new Stellar Tera type into Chinese, led by a Stellar Tera
           Pikachu ex on the pack and the Legendary Terapagos ex. Stellar Pokémon ex have attacks that need three different Energy types
           to use. Blueberry Academy's Crispin, Drayton and Lacey join as Supporters, and a new Lisia's Appeal Special Art Rare is the
           set's Chinese Exclusive.
@@ -221,7 +224,7 @@ function StellarCrystalReleasePost() {
             <p className="fact-box-title">Key facts</p>
             <dl>
               <dt>Set</dt>
-              <dd>Stellar Crystal (星彩晶璃)</dd>
+              <dd>Stellar Crystal (<Zh>星彩晶璃</Zh>)</dd>
               <dt>Set code</dt>
               <dd>CSV9C</dd>
               <dt>Released</dt>
@@ -257,20 +260,24 @@ function StellarCrystalReleasePost() {
           cards with six holos. Pokémon China published a separate odds chart for each, and the jumbo pack is better at every holo
           level.
         </p>
-        <div className="card-grid cols-2">
-          <figure>
-            <img src={`${SITE_URL}/assets/blog/stellar-crystal-slim-pack.webp`} alt="Stellar Crystal slim pack, 5 cards" loading="lazy" width={600} height={1128} />
-            <figcaption>
-              <strong>Slim pack</strong>5 cards · 1 holo
-            </figcaption>
-          </figure>
-          <figure>
-            <img src={`${SITE_URL}/assets/blog/stellar-crystal-jumbo-pack.webp`} alt="Stellar Crystal jumbo pack, 20 cards" loading="lazy" width={600} height={1197} />
-            <figcaption>
-              <strong>Jumbo pack</strong>20 cards · 6 holo
-            </figcaption>
-          </figure>
-        </div>
+        <ul className="card-grid cols-2">
+          <li>
+            <figure>
+              <img src={`${SITE_URL}/assets/blog/stellar-crystal-slim-pack.webp`} alt="Stellar Crystal slim pack, 5 cards" loading="lazy" width={600} height={1128} />
+              <figcaption>
+                <strong>Slim pack</strong>5 cards · 1 holo
+              </figcaption>
+            </figure>
+          </li>
+          <li>
+            <figure>
+              <img src={`${SITE_URL}/assets/blog/stellar-crystal-jumbo-pack.webp`} alt="Stellar Crystal jumbo pack, 20 cards" loading="lazy" width={600} height={1197} />
+              <figcaption>
+                <strong>Jumbo pack</strong>20 cards · 6 holo
+              </figcaption>
+            </figure>
+          </li>
+        </ul>
         <p>
           The top band (Super Rare, Special Art Rare and Ultra Rare) is 1.00% of jumbo cards against 0.73% of slim cards, about 37% more
           per card. In practice that is roughly one top-band card in every 5 jumbo packs, against one in every 27 slim packs. The full
@@ -311,8 +318,9 @@ function StellarCrystalReleasePost() {
           Energy, and everything above 208 is a secret rare. The rarer versions of a card sit in the secret block at unrelated numbers,
           so match them by name.
         </p>
-        <div className="table-scroll">
+        <div className="table-scroll" role="group" aria-labelledby="tbl-1" tabIndex={0}>
           <table className="data-table">
+            <caption id="tbl-1" className="sr-only">How the set is built, and the odds: Numbers, What they are, Rarity</caption>
             <thead>
               <tr>
                 <th scope="col">Numbers</th>
@@ -332,8 +340,9 @@ function StellarCrystalReleasePost() {
           </table>
         </div>
         <p>Pokémon China's odds charts for each pack size:</p>
-        <div className="table-scroll">
+        <div className="table-scroll" role="group" aria-labelledby="tbl-2" tabIndex={0}>
           <table className="data-table">
+            <caption id="tbl-2" className="sr-only">How the set is built, and the odds: Share of print, Slim, Jumbo</caption>
             <thead>
               <tr>
                 <th scope="col">Share of print</th>

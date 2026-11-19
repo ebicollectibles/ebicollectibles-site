@@ -1,3 +1,4 @@
+import { Zh, zh } from '~/components/blog/Zh'
 import { BuyStrip } from '~/components/blog/BlogShop'
 import { createFileRoute } from '@tanstack/react-router'
 import blogCssUrl from '~/styles/blog.css?url'
@@ -137,7 +138,7 @@ function FunismDittoReleasePost() {
         }}
       >
         <p>
-          Happy Ditto (百变“快”乐) is a blind box from Funism's Palm-Size Wonders (小小奇遇) series of small Pokémon figures. The joke is
+          Happy Ditto (<Zh>百变“快”乐</Zh>) is a blind box from Funism's Palm-Size Wonders (<Zh>小小奇遇</Zh>) series of small Pokémon figures. The joke is
           in every figure: Ditto has copied a Pokémon's shape and colors, from Pikachu's ears to Psyduck's beak, but kept its own dot
           eyes and long flat smile. The box text says Ditto is still practising its Transform and has slipped up again, and asks you to
           spot what is a little off. Each Ditto-shaped box holds three figures.
@@ -149,9 +150,9 @@ function FunismDittoReleasePost() {
             <p className="fact-box-title">Key facts</p>
             <dl>
               <dt>Product</dt>
-              <dd>Palm-Size Wonders Happy Ditto blind box (小小奇遇系列 百变“快”乐)</dd>
+              <dd>Palm-Size Wonders Happy Ditto blind box (<Zh>小小奇遇系列 百变“快”乐</Zh>)</dd>
               <dt>Maker</dt>
-              <dd>Funism (玩乐主义), officially licensed</dd>
+              <dd>Funism (<Zh>玩乐主义</Zh>), officially licensed</dd>
               <dt>Designs</dt>
               <dd>12 shown, no secret announced</dd>
               <dt>Per box</dt>
@@ -177,16 +178,18 @@ function FunismDittoReleasePost() {
         <p>
           The lineup is mostly Kanto favorites, plus two picks from later generations, Riolu and Munchlax. Gengar works best, since its wide grin becomes Ditto's thin smile.
         </p>
-        <div className="card-grid cols-4">
+        <ul className="card-grid cols-4">
           {LINEUP.map((f) => (
-            <figure key={f.slug}>
-              <img src={figImg(f.slug)} alt={`Funism Happy Ditto figure: Ditto as ${f.name}`} loading="lazy" width={336} height={296} style={{ aspectRatio: '336 / 296', objectFit: 'cover' }} />
-              <figcaption>
-                <strong>Ditto as {f.name}</strong>
-              </figcaption>
-            </figure>
+            <li key={f.slug}>
+              <figure>
+                <img src={figImg(f.slug)} alt={`Funism Happy Ditto figure: Ditto as ${f.name}`} loading="lazy" width={336} height={296} style={{ aspectRatio: '336 / 296', objectFit: 'cover' }} />
+                <figcaption>
+                  <strong>Ditto as {f.name}</strong>
+                </figcaption>
+              </figure>
+            </li>
           ))}
-        </div>
+        </ul>
         <figure style={{ margin: '28px auto', maxWidth: 640 }}>
           <img
             src={`${PHOTO}/pokemon-chinese-funism-ditto-transform-blind-box-all-12-figures-badged.webp`}
@@ -214,20 +217,24 @@ function FunismDittoReleasePost() {
           box that holds four Ditto boxes, 12 figures in all, with Gengar, Jigglypuff and Pikachu on the header card and the full lineup
           printed along the base. Our case listing is that display.
         </p>
-        <div className="card-grid cols-2">
-          <figure>
-            <img src={`${PHOTO}/pokemon-chinese-funism-ditto-transform-blind-box-ditto-shell-badged.webp`} alt="Funism Happy Ditto blind box shaped like Ditto" loading="lazy" width={1000} height={1000} style={{ aspectRatio: '1 / 1' }} />
-            <figcaption>
-              <strong>Blind box</strong>3 random figures
-            </figcaption>
-          </figure>
-          <figure>
-            <img src={`${PHOTO}/pokemon-chinese-funism-ditto-transform-blind-box-display-case-badged.webp`} alt="Funism Happy Ditto display box holding four blind boxes" loading="lazy" width={1000} height={1000} style={{ aspectRatio: '1 / 1' }} />
-            <figcaption>
-              <strong>Case</strong>4 boxes · 12 figures
-            </figcaption>
-          </figure>
-        </div>
+        <ul className="card-grid cols-2">
+          <li>
+            <figure>
+              <img src={`${PHOTO}/pokemon-chinese-funism-ditto-transform-blind-box-ditto-shell-badged.webp`} alt="Funism Happy Ditto blind box shaped like Ditto" loading="lazy" width={1000} height={1000} style={{ aspectRatio: '1 / 1' }} />
+              <figcaption>
+                <strong>Blind box</strong>3 random figures
+              </figcaption>
+            </figure>
+          </li>
+          <li>
+            <figure>
+              <img src={`${PHOTO}/pokemon-chinese-funism-ditto-transform-blind-box-display-case-badged.webp`} alt="Funism Happy Ditto display box holding four blind boxes" loading="lazy" width={1000} height={1000} style={{ aspectRatio: '1 / 1' }} />
+              <figcaption>
+                <strong>Case</strong>4 boxes · 12 figures
+              </figcaption>
+            </figure>
+          </li>
+        </ul>
 
         <h2 id="collecting">How to collect them</h2>
         <p>
@@ -245,7 +252,7 @@ function FunismDittoReleasePost() {
           {FAQ.map((f) => (
             <details key={f.q}>
               <summary>{f.q}</summary>
-              <p>{f.a}</p>
+              <p>{zh(f.a)}</p>
             </details>
           ))}
         </div>

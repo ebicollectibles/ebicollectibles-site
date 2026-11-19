@@ -6,6 +6,7 @@ import { cardLinkQuery } from '~/lib/gem-sets/card-search'
 import { buildGemSetJsonLd, safeJsonLd } from '~/lib/gem-sets/head'
 import { RARITY_CODE, RARITY_SYMBOL } from '~/lib/gem-sets/rarity'
 import type { BuiltGemSetData, Card, GemSetConfig, GemSetData } from '~/lib/gem-sets/types'
+import { cardAlt, cardNumber, rarityName } from '~/lib/gem-sets/alt'
 import { CardThumb, RarityTag, haveLabel } from './parts'
 
 const GUIDE_LABEL: Record<string, string> = { 'release-news': 'Release news', 'set-guide': 'Set guide', 'card-origins': 'Card origins' }
@@ -248,13 +249,24 @@ export function GemSetPage({
   // screen reader lands somewhere predictable rather than wherever focus
   // happened to be left) — paired with previousFocusRef/close() above,
   // which sends it back out to whatever opened the dialog.
+  //
+  // Only when focus is not already inside the dialog: stepping with the
+  // arrow buttons, the arrow keys or a version thumbnail keeps focus on
+  // the control that was used (so it can be pressed again), and the new
+  // card is announced by the polite live region in the dialog instead of
+  // "Close, button" being read out on every step.
   React.useEffect(() => {
-    if (openCard) lbCloseRef.current?.focus()
+    if (!openCard) return
+    if (lbPanelRef.current?.contains(document.activeElement)) return
+    lbCloseRef.current?.focus()
   }, [openCard?.id])
 
   React.useEffect(() => {
     if (!openCard) return
     const onKey = (e: KeyboardEvent) => {
+      // A dialog opened on top of this one (cookie preferences) handles
+      // its own keys.
+      if (document.querySelector('[data-ebi-modal]')) return
       if (e.key === 'Escape') close()
       else if (e.key === 'ArrowRight') step(1)
       else if (e.key === 'ArrowLeft') step(-1)
@@ -264,11 +276,14 @@ export function GemSetPage({
         // otherwise prevent since it isn't a native <dialog>.
         const panel = lbPanelRef.current
         if (!panel) return
-        const focusables = Array.from(panel.querySelectorAll<HTMLElement>('button, a[href], input, [tabindex]:not([tabindex="-1"])'))
+        const focusables = Array.from(panel.querySelectorAll<HTMLElement>('button:not([disabled]), a[href], input:not([disabled]), [tabindex]:not([tabindex="-1"])'))
         if (focusables.length === 0) return
         const first = focusables[0]
         const last = focusables[focusables.length - 1]
-        if (e.shiftKey && document.activeElement === first) {
+        if (!panel.contains(document.activeElement)) {
+          e.preventDefault()
+          first.focus()
+        } else if (e.shiftKey && document.activeElement === first) {
           e.preventDefault()
           last.focus()
         } else if (!e.shiftKey && document.activeElement === last) {
@@ -352,6 +367,9 @@ export function GemSetPage({
   // energy types' groups).
   const openGroup = openCard ? groups.find((g) => g.cards.some((c) => c.id === openCard.id)) ?? null : null
   const openLocalVersion = openGroup && openCard ? openGroup.cards.findIndex((c) => c.id === openCard.id) + 1 : 0
+  // Where the open card sits in the list the arrows step through (see step()).
+  const stepList = shown.length > 0 ? shown : cards
+  const stepIndex = openCard ? Math.max(0, stepList.findIndex((c) => c.id === openCard.id)) : 0
 
   return (
     <div
@@ -365,15 +383,15 @@ export function GemSetPage({
       <section className="hero" id="top">
         <div className="wrap">
           <div>
-            <div className="crumbs">
+            <nav className="crumbs" aria-label="Breadcrumb">
               <Link to="/shop">Shop</Link>
-              <span>/</span>
+              <span aria-hidden="true">/</span>
               <Link to="/sets">Sets</Link>
-              <span>/</span>
+              <span aria-hidden="true">/</span>
               <Link to="/sets/chinese">Chinese</Link>
-              <span>/</span>
-              <span>{raw.name}</span>
-            </div>
+              <span aria-hidden="true">/</span>
+              <span aria-current="page">{raw.name}</span>
+            </nav>
             <div className="eyebrow">
               {raw.language} · {raw.series} series
             </div>
@@ -389,7 +407,9 @@ export function GemSetPage({
               </div>
               <div>
                 <dt>Released</dt>
-                <dd>{releasedLabel}</dd>
+                <dd>
+                  <time dateTime={raw.releaseDate}>{releasedLabel}</time>
+                </dd>
               </div>
               <div>
                 <dt>Cards</dt>
@@ -415,7 +435,11 @@ export function GemSetPage({
                 href="#list"
                 onClick={(e) => {
                   e.preventDefault()
-                  document.getElementById('list')?.scrollIntoView({ behavior: 'smooth' })
+                  const list = document.getElementById('list')
+                  const calm = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+                  list?.scrollIntoView({ behavior: calm ? 'auto' : 'smooth' })
+                  // Keyboard and screen-reader focus follows the jump.
+                  list?.focus({ preventScroll: true })
                 }}
               >
                 Browse the cards
@@ -442,7 +466,7 @@ export function GemSetPage({
             onTouchStart={onFanTouchStart}
             onTouchMove={onFanTouchMove}
             onTouchEnd={onFanTouchEnd}
-            aria-label="Featured full-art cards"
+            aria-label="Featured cards"
           >
             {config.fanIds.map((id, i) => {
               // Defensive: a typo'd fanId (easy to introduce by hand across
@@ -462,11 +486,13 @@ export function GemSetPage({
                     }
                     open(id)
                   }}
-                  aria-label={`${c.name} ${id}/${c.suffix}`}
                 >
+                  {/* The button is named by its image's alt (plus the
+                      "Chinese Exclusive" tag when shown), so the visible
+                      text is always part of the accessible name. */}
                   <img
                     src={c.image ?? undefined}
-                    alt={`${c.name} full art, ${raw.name} ${id}/${c.suffix}`}
+                    alt={cardAlt({ ...c, exclusive: false }, { setName: raw.name })}
                     width={300}
                     height={419}
                     // Only the card actually centered on first paint is
@@ -484,7 +510,7 @@ export function GemSetPage({
         </div>
       </section>
 
-      <div className="bar" id="list">
+      <div className="bar" id="list" tabIndex={-1}>
         <div className="wrap">
           <label className="search" htmlFor="gem-set-q">
             <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -503,11 +529,14 @@ export function GemSetPage({
           <div className="chips" role="group" aria-label="Filter by rarity">
             {raw.rarityOrder.map((rarity) => (
               <button key={rarity} type="button" className="chip" aria-pressed={rarities.has(rarity)} onClick={() => toggleRarity(rarity)}>
-                <span className="sym" style={{ color: `var(--r-${(RARITY_CODE[rarity] ?? '').toLowerCase()})` }}>
+                <span className="sym" aria-hidden="true" style={{ color: `var(--r-${(RARITY_CODE[rarity] ?? '').toLowerCase()})` }}>
                   {RARITY_SYMBOL[rarity]}
                 </span>
                 {rarity}
-                <span className="n">{cards.filter((c) => c.rarity === rarity).length}</span>
+                <span className="n">
+                  {cards.filter((c) => c.rarity === rarity).length}
+                  <span className="sr-only"> cards</span>
+                </span>
               </button>
             ))}
           </div>
@@ -526,8 +555,8 @@ export function GemSetPage({
             ))}
           </div>
           <div className="count">
-            <span aria-live="polite">
-              <b>{shown.length}</b> of {raw.cardCount} cards
+            <span role="status">
+              <b>{shown.length}</b> of {raw.cardCount} cards<span className="sr-only"> shown</span>
             </span>
             {view !== 'list' && (
               <span className="progress">
@@ -543,11 +572,13 @@ export function GemSetPage({
         </div>
       </div>
 
-      <main className="wrap">
+      {/* Not a <main>: the site layout (__root.tsx) already wraps every
+          page in the one <main id="main-content"> landmark. */}
+      <div className="wrap set-main">
         {view === 'list' && (
           <section className="cl-head" aria-label="Your checklist" ref={clHeadRef} tabIndex={-1}>
             <div className="cl-progress">
-              <div className="cl-count" aria-live="polite">
+              <div className="cl-count" role="status">
                 <b>{ownedCount}</b> of {cards.length} owned
               </div>
               <div
@@ -573,7 +604,10 @@ export function GemSetPage({
                 ).map(([f, label, n]) => (
                   <button key={f} type="button" className="chip" aria-pressed={ownFilter === f} onClick={() => setOwnFilter(f)}>
                     {label}
-                    <span className="n">{n}</span>
+                    <span className="n">
+                      {n}
+                      <span className="sr-only"> cards</span>
+                    </span>
                   </button>
                 ))}
               </div>
@@ -606,9 +640,13 @@ export function GemSetPage({
               const ownedInGroup = g.cards.filter((c) => have.has(c.id)).length
               const hasExclusive = g.cards.some((c) => c.exclusive)
               return (
-                <section className="ladder" key={c0.id} aria-label={c0.mon}>
+                <section className="ladder" key={c0.id}>
                   <div className="lhead">
-                    <span className="lno">#{g.groupId}</span>
+                    <span className="lno">
+                      <span className="sr-only">Number </span>
+                      <span aria-hidden="true">#</span>
+                      {g.groupId}
+                    </span>
                     <h2 className="lname">
                       {c0.owner && <small>{c0.owner}</small>}
                       {c0.mon}
@@ -631,7 +669,7 @@ export function GemSetPage({
             {exclusiveShown.length > 0 && (
               <section className="spotlight">
                 <div className="spotlight-head">
-                  <span className="spotlight-tag">{exclusiveShown.length > 1 ? 'Chinese Exclusives' : 'Chinese Exclusive'}</span>
+                  <h2 className="spotlight-tag">{exclusiveShown.length > 1 ? 'Chinese Exclusives' : 'Chinese Exclusive'}</h2>
                   <p className="spotlight-sub">Only in the Simplified Chinese release.</p>
                 </div>
                 <div className="grid">
@@ -641,7 +679,10 @@ export function GemSetPage({
                 </div>
               </section>
             )}
-            {exclusiveShown.length > 0 && <div className="grid-head">All cards</div>}
+            {/* Always a heading for the card grid, so the list can be reached
+                by heading navigation; it is only shown when the Chinese
+                Exclusives block sits above it. */}
+            <h2 className={exclusiveShown.length > 0 ? 'grid-head' : 'sr-only'}>All cards</h2>
             <div className="grid">
               {shown.map((c, i) => (
                 <CardThumb key={c.id} card={c} dimmed={false} showName={true} have={have.has(c.id)} priority={exclusiveShown.length === 0 && i < 8} onOpen={open} onToggleHave={toggleHave} />
@@ -652,11 +693,14 @@ export function GemSetPage({
           exclusiveShown.length === 0 ? (
             <div className="empty">No Chinese Exclusive cards match. Try another name or clear the rarity filter.</div>
           ) : (
-            <div className="grid">
-              {exclusiveShown.map((c) => (
-                <CardThumb key={c.id} card={c} dimmed={false} showName={true} have={have.has(c.id)} onOpen={open} onToggleHave={toggleHave} />
-              ))}
-            </div>
+            <>
+              <h2 className="sr-only">Chinese Exclusives</h2>
+              <div className="grid">
+                {exclusiveShown.map((c) => (
+                  <CardThumb key={c.id} card={c} dimmed={false} showName={true} have={have.has(c.id)} onOpen={open} onToggleHave={toggleHave} />
+                ))}
+              </div>
+            </>
           )
         ) : (
           checklistShown.length === 0 ? (
@@ -667,7 +711,8 @@ export function GemSetPage({
           </div>
         ) : (
           <div className="tablewrap">
-            <table className="checklist" aria-label={`${raw.name} checklist`}>
+            <table className="checklist">
+              <caption className="sr-only">{raw.name} checklist</caption>
               <thead>
                 <tr>
                   <th scope="col">Own</th>
@@ -691,11 +736,11 @@ export function GemSetPage({
                     <td className="mono">
                       {c.id}/{c.suffix}
                     </td>
-                    <td>
+                    <th scope="row">
                       <button type="button" className="lnk" onClick={() => open(c.id)}>
                         {c.name}
                       </button>
-                    </td>
+                    </th>
                     <td>
                       <RarityTag rarity={c.rarity} />
                     </td>
@@ -706,7 +751,7 @@ export function GemSetPage({
           </div>
         )
         )}
-      </main>
+      </div>
 
       <section className="about">
         <div className="wrap">
@@ -715,20 +760,23 @@ export function GemSetPage({
             {config.aboutParagraphs.map((p, i) => (
               <p key={i}>{p}</p>
             ))}
-            <table className="odds" aria-label="Cards by rarity">
+            <table className="odds">
+              <caption className="sr-only">{raw.name} cards by rarity</caption>
               <thead>
                 <tr>
-                  <th>Rarity</th>
-                  <th>Versions</th>
-                  <th className="mono">Cards</th>
+                  <th scope="col">Rarity</th>
+                  <th scope="col">Versions</th>
+                  <th scope="col" className="mono">
+                    Cards
+                  </th>
                 </tr>
               </thead>
               <tbody>
                 {raw.rarityOrder.map((rarity) => (
                   <tr key={rarity}>
-                    <td>
+                    <th scope="row">
                       <RarityTag rarity={rarity} />
-                    </td>
+                    </th>
                     <td className="mono">{oddsLabels[rarity]}</td>
                     <td className="mono">{cards.filter((c) => c.rarity === rarity).length}</td>
                   </tr>
@@ -751,25 +799,30 @@ export function GemSetPage({
       {openCard && (
         <div className="lb" role="dialog" aria-modal="true" aria-labelledby="gem-set-lb-title" onClick={(e) => e.target === e.currentTarget && close()}>
           <div className="lb-panel" ref={lbPanelRef}>
-            <button className="lb-close" type="button" aria-label="Close" ref={lbCloseRef} onClick={close}>
-              ×
+            <button className="lb-close" type="button" aria-label="Close card details" ref={lbCloseRef} onClick={close}>
+              <span aria-hidden="true">×</span>
             </button>
             <div className="lb-art">
               {openCard.image ? (
-                <img src={openCard.image} alt={`${openCard.name} ${openCard.id}/${openCard.suffix}, ${openCard.rarity}, ${raw.name}`} width={300} height={419} />
+                <img src={openCard.image} alt={cardAlt(openCard, { setName: raw.name })} width={300} height={419} />
               ) : (
                 <div className="lb-art-ph">Image coming soon</div>
               )}
             </div>
             <div className="lb-info">
               <div className="lb-nav">
-                <button type="button" aria-label="Previous card" onClick={() => step(-1)}>
-                  ←
+                <button type="button" aria-label="Previous card" aria-keyshortcuts="ArrowLeft" onClick={() => step(-1)}>
+                  <span aria-hidden="true">←</span>
                 </button>
-                <button type="button" aria-label="Next card" onClick={() => step(1)}>
-                  →
+                <button type="button" aria-label="Next card" aria-keyshortcuts="ArrowRight" onClick={() => step(1)}>
+                  <span aria-hidden="true">→</span>
                 </button>
               </div>
+              {/* Read out when the card changes (arrow keys, arrow buttons,
+                  a version thumbnail) without moving focus. */}
+              <p className="sr-only" aria-live="polite" aria-atomic="true">
+                {`${openCard.name}, ${cardNumber(openCard)}, ${rarityName(openCard.rarity)}${openCard.exclusive ? ', Chinese Exclusive' : ''}. Card ${stepIndex + 1} of ${stepList.length}.`}
+              </p>
               <h2 id="gem-set-lb-title">
                 {openCard.owner && <small>{openCard.owner}</small>}
                 {openCard.mon}
@@ -794,10 +847,12 @@ export function GemSetPage({
                   {raw.name} · {raw.code}
                 </dd>
               </dl>
-              <div className="sib-h">All {openGroup?.cards.length ?? 1} versions</div>
-              <div className="sibs">
+              <h3 className="sib-h" id="gem-set-lb-versions">
+                All {openGroup?.cards.length ?? 1} versions
+              </h3>
+              <div className="sibs" role="group" aria-labelledby="gem-set-lb-versions">
                 {(openGroup?.cards ?? []).map((sib, i) => (
-                  <button key={sib.id} type="button" aria-current={sib.id === openCard.id} aria-label={`Version ${i + 1}, ${sib.rarity}`} onClick={() => open(sib.id)}>
+                  <button key={sib.id} type="button" aria-current={sib.id === openCard.id} aria-label={`Version ${i + 1}, ${cardNumber(sib)}, ${rarityName(sib.rarity)}`} onClick={() => open(sib.id)}>
                     {sib.image ? <img src={sib.image} alt="" width={300} height={419} /> : <span className="sib-ph" aria-hidden="true" />}
                   </button>
                 ))}
@@ -830,7 +885,9 @@ export function GemSetPage({
                   Copy link to card
                 </button>
               </div>
-              <div className="toast">{copied ? 'Link copied.' : ''}</div>
+              <div className="toast" role="status">
+                {copied ? 'Link copied.' : ''}
+              </div>
             </div>
           </div>
         </div>

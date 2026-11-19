@@ -1,3 +1,6 @@
+import { chunk } from '~/lib/chunk'
+import { RarityAbbr, rarityFullName } from '~/components/blog/RarityAbbr'
+import { useId } from 'react'
 import { BuyStrip } from '~/components/blog/BlogShop'
 import { createFileRoute, Link } from '@tanstack/react-router'
 import blogCssUrl from '~/styles/blog.css?url'
@@ -279,10 +282,15 @@ export const Route = createFileRoute('/blog/miracle-journey-card-origins')({
   component: MiracleJourneyOrigins,
 })
 
-function OriginsTable({ list }: { list: typeof rows }) {
+function OriginsTable({ list, caption }: { list: typeof rows; caption: string }) {
+  // Names the table for screen readers and labels its scroll area.
+  const captionId = useId()
   return (
-    <div className="table-scroll table-tall">
+    <div className="table-scroll table-tall" role="group" aria-labelledby={captionId} tabIndex={0}>
       <table className="data-table origins-table">
+        <caption id={captionId} className="sr-only">
+          {caption}
+        </caption>
         <thead>
           <tr>
             <th scope="col">No.</th>
@@ -290,21 +298,27 @@ function OriginsTable({ list }: { list: typeof rows }) {
             <th scope="col">English card</th>
           </tr>
         </thead>
-        <tbody>
-          {list.map((r) => (
-            <tr key={r.cn}>
-              <th scope="row">{r.cn}</th>
-              <td>
-                {r.name}
-                <span className="cell-sub">{r.rarity}</span>
-              </td>
-              <td>
-                {SET_NAME[r.src]} {r.en}
-                {r.illus ? <span className="cell-sub">Illus. {r.illus}</span> : null}
-              </td>
-            </tr>
-          ))}
-        </tbody>
+        {/* Row groups of 20: the same table on screen and to screen readers, but no single
+            group outweighs the article text when a reader mode picks the main content. */}
+        {chunk(list, 20).map((group, g) => (
+          <tbody key={g}>
+            {group.map((r) => (
+              <tr key={r.cn}>
+                <th scope="row">{r.cn}</th>
+                <td>
+                  {r.name}
+                  <span className="cell-sub">
+                    <RarityAbbr code={r.rarity} />
+                  </span>
+                </td>
+                <td>
+                  {SET_NAME[r.src]} {r.en}
+                  {r.illus ? <span className="cell-sub">Illus. {r.illus}</span> : null}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        ))}
       </table>
     </div>
   )
@@ -371,8 +385,9 @@ function MiracleJourneyOrigins() {
         </nav>
 
         <h2 id="at-a-glance">At a glance</h2>
-        <div className="table-scroll">
+        <div className="table-scroll" role="group" aria-labelledby="tbl-2" tabIndex={0}>
           <table className="data-table">
+            <caption id="tbl-2" className="sr-only">At a glance</caption>
             <thead>
               <tr>
                 <th scope="col">Rarity</th>
@@ -412,17 +427,19 @@ function MiracleJourneyOrigins() {
           the Ralts and Kirlia Art Rares and the Gardevoir ex Special Art Rare, which shows Gardevoir on a sofa holding balls of yarn
           beside a woman knitting.
         </p>
-        <div className="card-grid cols-3">
+        <ul className="card-grid cols-3">
           {gardevoir.map((r) => (
-            <figure key={r.cn}>
-              <img src={r.image} alt={`${r.name} ${r.cn}/128 ${r.rarity}, Miracle Journey`} loading="lazy" width={300} height={418} />
-              <figcaption>
-                <strong>{r.name}</strong>
-                {r.cn}/128 · {r.rarity} · {SET_NAME[r.src]} {r.en}
-              </figcaption>
-            </figure>
+            <li key={r.cn}>
+              <figure>
+                <img src={r.image} alt={`${r.name} ${r.cn}/128 ${rarityFullName(r.rarity)}, Miracle Journey`} loading="lazy" width={300} height={418} />
+                <figcaption>
+                  <strong>{r.name}</strong>
+                  {r.cn}/128 · <RarityAbbr code={r.rarity} /> · {SET_NAME[r.src]} {r.en}
+                </figcaption>
+              </figure>
+            </li>
           ))}
-        </div>
+        </ul>
 
         <h2 id="patterns">Patterns in the matches</h2>
         <p>
@@ -430,8 +447,9 @@ function MiracleJourneyOrigins() {
           ex, Skeledirge ex and Quaquaval ex at every rarity, all three versions of Squawkabilly ex, and the Dendra and Saguaro
           Special Art Rares. Every card's English source, from most cards to fewest:
         </p>
-        <div className="table-scroll">
+        <div className="table-scroll" role="group" aria-labelledby="tbl-3" tabIndex={0}>
           <table className="data-table">
+            <caption id="tbl-3" className="sr-only">Patterns in the matches</caption>
             <thead>
               <tr>
                 <th scope="col">English source</th>
@@ -465,12 +483,12 @@ function MiracleJourneyOrigins() {
 
         <h2 id="secret-rares">All {SECRET.length} secret rares</h2>
         <p>Every card above 128, with its English twin.</p>
-        <OriginsTable list={SECRET} />
+        <OriginsTable list={SECRET} caption="Secret rares and the English card each one matches" />
 
         <BuyStrip />
 
         <h2 id="main-set">The {MAIN.length}-card main set</h2>
-        <OriginsTable list={MAIN} />
+        <OriginsTable list={MAIN} caption="Main set cards and the English card each one matches" />
 
         <h2 id="faq">FAQ</h2>
         <div className="faq">

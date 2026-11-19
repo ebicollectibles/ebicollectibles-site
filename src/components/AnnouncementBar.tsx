@@ -1,6 +1,7 @@
 export function AnnouncementBar() {
   return (
-    <div
+    <aside
+      aria-label="Store notice"
       style={{
         background: '#131b28',
         color: '#ffffff',
@@ -17,8 +18,8 @@ export function AnnouncementBar() {
         textTransform: 'uppercase',
       }}
     >
-      <span style={{ width: 6, height: 6, borderRadius: '50%', background: '#5fbf97', display: 'inline-block', flexShrink: 0 }} />
+      <span aria-hidden="true" style={{ width: 6, height: 6, borderRadius: '50%', background: '#5fbf97', display: 'inline-block', flexShrink: 0 }} />
       <span>Orders Ship From WA · Family Owned</span>
-    </div>
+    </aside>
   )
 }

@@ -218,69 +218,78 @@ function GemVol3OriginsPost() {
             Full art · Illus. aspara
           </figcaption>
         </figure>
-        <div className="card-grid cols-4">
-          <figure>
-            <img
-              src={`${R2_IMAGE_HOST}/Chinese/Gem%203/Cards/0207.webp`}
-              alt="Meowth 0207/07 Chinese Exclusive full art, Gem Vol 3"
-              loading="lazy"
-              width={300}
-              height={419}
-            />
-            <figcaption>
-              <ChineseExclusiveBadge />
-              <strong>Meowth 0207/07</strong>
-              Full art · Illus. Makura Tami
-            </figcaption>
-          </figure>
-          <figure>
-            <img
-              src={`${R2_IMAGE_HOST}/Chinese/Gem%203/Cards/0407.webp`}
-              alt="Cubone 0407/07 Chinese Exclusive full art, Gem Vol 3"
-              loading="lazy"
-              width={300}
-              height={419}
-            />
-            <figcaption>
-              <ChineseExclusiveBadge />
-              <strong>Cubone 0407/07</strong>
-              Full art · Illus. Katsunori Sato
-            </figcaption>
-          </figure>
-          <figure>
-            <img
-              src={`${R2_IMAGE_HOST}/Chinese/Gem%203/Cards/1107.webp`}
-              alt="Chandelure 1107/07 Chinese Exclusive full art, Gem Vol 3"
-              loading="lazy"
-              width={300}
-              height={419}
-            />
-            <figcaption>
-              <ChineseExclusiveBadge />
-              <strong>Chandelure 1107/07</strong>
-              Full art · Illus. satoma
-            </figcaption>
-          </figure>
-          <figure>
-            <img
-              src={`${R2_IMAGE_HOST}/Chinese/Gem%203/Cards/1507.webp`}
-              alt="Ceruledge 1507/07 Chinese Exclusive full art, Gem Vol 3"
-              loading="lazy"
-              width={300}
-              height={419}
-            />
-            <figcaption>
-              <ChineseExclusiveBadge />
-              <strong>Ceruledge 1507/07</strong>
-              Full art · Illus. kodama
-            </figcaption>
-          </figure>
-        </div>
+        <ul className="card-grid cols-4">
+          <li>
+            <figure>
+              <img
+                src={`${R2_IMAGE_HOST}/Chinese/Gem%203/Cards/0207.webp`}
+                alt="Meowth 0207/07 Chinese Exclusive full art, Gem Vol 3"
+                loading="lazy"
+                width={300}
+                height={419}
+              />
+              <figcaption>
+                <ChineseExclusiveBadge />
+                <strong>Meowth 0207/07</strong>
+                Full art · Illus. Makura Tami
+              </figcaption>
+            </figure>
+          </li>
+          <li>
+            <figure>
+              <img
+                src={`${R2_IMAGE_HOST}/Chinese/Gem%203/Cards/0407.webp`}
+                alt="Cubone 0407/07 Chinese Exclusive full art, Gem Vol 3"
+                loading="lazy"
+                width={300}
+                height={419}
+              />
+              <figcaption>
+                <ChineseExclusiveBadge />
+                <strong>Cubone 0407/07</strong>
+                Full art · Illus. Katsunori Sato
+              </figcaption>
+            </figure>
+          </li>
+          <li>
+            <figure>
+              <img
+                src={`${R2_IMAGE_HOST}/Chinese/Gem%203/Cards/1107.webp`}
+                alt="Chandelure 1107/07 Chinese Exclusive full art, Gem Vol 3"
+                loading="lazy"
+                width={300}
+                height={419}
+              />
+              <figcaption>
+                <ChineseExclusiveBadge />
+                <strong>Chandelure 1107/07</strong>
+                Full art · Illus. satoma
+              </figcaption>
+            </figure>
+          </li>
+          <li>
+            <figure>
+              <img
+                src={`${R2_IMAGE_HOST}/Chinese/Gem%203/Cards/1507.webp`}
+                alt="Ceruledge 1507/07 Chinese Exclusive full art, Gem Vol 3"
+                loading="lazy"
+                width={300}
+                height={419}
+              />
+              <figcaption>
+                <ChineseExclusiveBadge />
+                <strong>Ceruledge 1507/07</strong>
+                Full art · Illus. kodama
+              </figcaption>
+            </figure>
+          </li>
+        </ul>
 
         <h2 id="by-set">Which sets it comes from</h2>
         <p>It comes mostly from 2023's English Scarlet & Violet sets, plus two Sword & Shield cards and three Black Star Promos, listed in release order:</p>
-        <div className="table-scroll">
+        <div className="table-scroll" role="group" aria-labelledby="tbl-1" tabIndex={0}>
           <table className="data-table">
+            <caption id="tbl-1" className="sr-only">Which sets it comes from</caption>
             <thead>
               <tr>
                 <th scope="col">English source</th>
@@ -319,8 +328,9 @@ function GemVol3OriginsPost() {
 
         <h2 id="full-map">The full card-by-card map</h2>
         <p>Every Gem Vol 3 Pokémon, with the English card behind its regular art (versions 01 to 06) and behind its version 07 full art or Pokémon ex, plus the illustrator credited on both.</p>
-        <div className="table-scroll">
+        <div className="table-scroll" role="group" aria-labelledby="tbl-2" tabIndex={0}>
           <table className="data-table origins-table">
+            <caption id="tbl-2" className="sr-only">The full card-by-card map</caption>
             <thead>
               <tr>
                 <th scope="col">#</th>
@@ -349,8 +359,9 @@ function GemVol3OriginsPost() {
 
         <h2 id="trainers">Trainer cards</h2>
         <p>The four Trainer cards reuse English art as well. Arven is aspara's Special Illustration Rare art from Paldean Fates.</p>
-        <div className="table-scroll">
+        <div className="table-scroll" role="group" aria-labelledby="tbl-3" tabIndex={0}>
           <table className="data-table origins-table">
+            <caption id="tbl-3" className="sr-only">Trainer cards</caption>
             <thead>
               <tr>
                 <th scope="col">Gem card</th>

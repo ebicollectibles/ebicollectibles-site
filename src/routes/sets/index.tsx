@@ -54,28 +54,29 @@ function SetsHubPage() {
 
       <section className="hero">
         <div className="wrap">
-          <div className="crumbs">
+          <nav className="crumbs" aria-label="Breadcrumb">
             <Link to="/shop">Shop</Link>
-            <span>/</span>
-            <span>Sets</span>
-          </div>
+            <span aria-hidden="true">/</span>
+            <span aria-current="page">Sets</span>
+          </nav>
           <div className="eyebrow">Pokémon TCG</div>
           <h1>Pokémon sets</h1>
           <p className="lede">Full card lists for the Pokémon sets we track. Pick a language to browse its sets and track your collection.</p>
         </div>
       </section>
 
-      <main className="wrap">
+      <div className="wrap page-main">
         <section className="series">
-          <div className="grid">
+          <ul className="grid">
             {LANGUAGES.map((l) => (
-              <Link key={l.to} className="card" to={l.to}>
+              <li key={l.to}>
+              <Link className="card" to={l.to}>
                 <div className="card-art" style={{ '--glow-1': l.sets[0].glow1, '--glow-2': l.sets[0].glow2 } as React.CSSProperties}>
                   <img src={l.sets[0].heroImage} alt={l.sets[0].heroAlt} width={300} height={419} />
                 </div>
                 <div className="card-body">
                   <span className="card-series">{l.label}</span>
-                  <h3 className="card-name">{l.name}</h3>
+                  <h2 className="card-name">{l.name}</h2>
                   <p className="card-tagline">{l.tagline}</p>
                   <div className="card-meta">
                     <span>
@@ -84,10 +85,11 @@ function SetsHubPage() {
                   </div>
                 </div>
               </Link>
+              </li>
             ))}
-          </div>
+          </ul>
         </section>
-      </main>
+      </div>
     </div>
   )
 }

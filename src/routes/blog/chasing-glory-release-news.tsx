@@ -1,3 +1,4 @@
+import { Zh } from '~/components/blog/Zh'
 import { BuyStrip } from '~/components/blog/BlogShop'
 import { createFileRoute, Link } from '@tanstack/react-router'
 import blogCssUrl from '~/styles/blog.css?url'
@@ -16,17 +17,19 @@ type Shown = { n: string; name: string; note: string }
 
 function Grid({ cards, cols }: { cards: Shown[]; cols: number }) {
   return (
-    <div className={`card-grid cols-${cols}`}>
+    <ul className={`card-grid cols-${cols}`}>
       {cards.map((c) => (
-        <figure key={c.n}>
-          <img src={cardImg(c.n)} alt={`${c.name} ${c.n}/222, Chasing Glory`} loading="lazy" width={300} height={419} />
-          <figcaption>
-            <strong>{c.name}</strong>
-            {c.n}/222 · {c.note}
-          </figcaption>
-        </figure>
+        <li key={c.n}>
+          <figure>
+            <img src={cardImg(c.n)} alt={`${c.name} ${c.n}/222, Chasing Glory`} loading="lazy" width={300} height={419} />
+            <figcaption>
+              <strong>{c.name}</strong>
+              {c.n}/222 · {c.note}
+            </figcaption>
+          </figure>
+        </li>
       ))}
-    </div>
+    </ul>
   )
 }
 
@@ -205,7 +208,7 @@ function ChasingGloryReleasePost() {
         }}
       >
         <p>
-          Chasing Glory (共逐荣光) released on July 16, 2026. It is the main numbered set of the CSV10 block, the one that Black Bolt
+          Chasing Glory (<Zh>共逐荣光</Zh>) released on July 16, 2026. It is the main numbered set of the CSV10 block, the one that Black Bolt
           and White Flare follow, and its big idea is the Trainer's Pokémon: Team Rocket, Cynthia, N, Iono, Misty and other Trainers
           each bring their own partner Pokémon onto the card. The cards to chase are Team Rocket's Mewtwo ex in Special Art Rare and
           gold, and the set's Chinese Exclusive is a Brock's Scouting Special Art Rare with an illustration found only in the Chinese set.
@@ -223,7 +226,7 @@ function ChasingGloryReleasePost() {
             <p className="fact-box-title">Key facts</p>
             <dl>
               <dt>Set</dt>
-              <dd>Chasing Glory (共逐荣光)</dd>
+              <dd>Chasing Glory (<Zh>共逐荣光</Zh>)</dd>
               <dt>Set code</dt>
               <dd>CSV10C</dd>
               <dt>Released</dt>
@@ -258,34 +261,39 @@ function ChasingGloryReleasePost() {
           Chasing Glory comes in two pack sizes with the same card list. The slim pack is the classic 5-card pack with one holo. The
           jumbo pack is 20 cards with six holos. Pokémon China publishes a separate odds chart for each, and they are not the same.
         </p>
-        <div className="card-grid cols-2">
-          <figure>
-            <img
-              src={`${SITE_URL}/assets/blog/chasing-glory-slim-pack.webp`}
-              alt="Chasing Glory slim pack, 5 cards"
-              loading="lazy"
-              width={600}
-              height={1128}
-            />
-            <figcaption>
-              <strong>Slim pack</strong>5 cards · 1 holo
-            </figcaption>
-          </figure>
-          <figure>
-            <img
-              src={`${SITE_URL}/assets/blog/chasing-glory-jumbo-pack.webp`}
-              alt="Chasing Glory jumbo pack, 20 cards"
-              loading="lazy"
-              width={600}
-              height={1197}
-            />
-            <figcaption>
-              <strong>Jumbo pack</strong>20 cards · 6 holo
-            </figcaption>
-          </figure>
-        </div>
-        <div className="table-scroll">
+        <ul className="card-grid cols-2">
+          <li>
+            <figure>
+              <img
+                src={`${SITE_URL}/assets/blog/chasing-glory-slim-pack.webp`}
+                alt="Chasing Glory slim pack, 5 cards"
+                loading="lazy"
+                width={600}
+                height={1128}
+              />
+              <figcaption>
+                <strong>Slim pack</strong>5 cards · 1 holo
+              </figcaption>
+            </figure>
+          </li>
+          <li>
+            <figure>
+              <img
+                src={`${SITE_URL}/assets/blog/chasing-glory-jumbo-pack.webp`}
+                alt="Chasing Glory jumbo pack, 20 cards"
+                loading="lazy"
+                width={600}
+                height={1197}
+              />
+              <figcaption>
+                <strong>Jumbo pack</strong>20 cards · 6 holo
+              </figcaption>
+            </figure>
+          </li>
+        </ul>
+        <div className="table-scroll" role="group" aria-labelledby="tbl-1" tabIndex={0}>
           <table className="data-table">
+            <caption id="tbl-1" className="sr-only">Slim or jumbo?</caption>
             <thead>
               <tr>
                 <th scope="col">Share of print</th>
@@ -323,21 +331,25 @@ function ChasingGloryReleasePost() {
           mountain valley. Brock's Scouting exists in English and Japanese as a Supporter and a full art, but this illustration is a
           Chinese Exclusive.
         </p>
-        <div className="card-grid cols-2">
-          <figure>
-            <img src={cardImg('276')} alt="Brock's Scouting 276/222 Special Art Rare, Chasing Glory" loading="lazy" width={320} height={449} />
-            <figcaption>
-              <ChineseExclusiveBadge />
-              <strong>Brock's Scouting</strong>276/222 · SAR
-            </figcaption>
-          </figure>
-          <figure>
-            <img src={cardImg('255')} alt="Brock's Scouting 255/222 Super Rare, Chasing Glory" loading="lazy" width={300} height={419} />
-            <figcaption>
-              <strong>Brock's Scouting</strong>255/222 · Super Rare
-            </figcaption>
-          </figure>
-        </div>
+        <ul className="card-grid cols-2">
+          <li>
+            <figure>
+              <img src={cardImg('276')} alt="Brock's Scouting 276/222 Special Art Rare, Chasing Glory" loading="lazy" width={320} height={449} />
+              <figcaption>
+                <ChineseExclusiveBadge />
+                <strong>Brock's Scouting</strong>276/222 · SAR
+              </figcaption>
+            </figure>
+          </li>
+          <li>
+            <figure>
+              <img src={cardImg('255')} alt="Brock's Scouting 255/222 Super Rare, Chasing Glory" loading="lazy" width={300} height={419} />
+              <figcaption>
+                <strong>Brock's Scouting</strong>255/222 · Super Rare
+              </figcaption>
+            </figure>
+          </li>
+        </ul>
 
         <h2 id="special-art-rares">The chase: Special Art Rares</h2>
         <p>
@@ -363,8 +375,9 @@ function ChasingGloryReleasePost() {
           Misty's Gyarados needs Misty's Magikarp, and plain and owned versions of a species are different cards.
         </p>
         <Grid cards={TRAINERS} cols={3} />
-        <div className="table-scroll">
+        <div className="table-scroll" role="group" aria-labelledby="tbl-2" tabIndex={0}>
           <table className="data-table">
+            <caption id="tbl-2" className="sr-only">Trainer's Pokémon</caption>
             <thead>
               <tr>
                 <th scope="col">Trainer</th>
@@ -396,32 +409,36 @@ function ChasingGloryReleasePost() {
           Pokémon coin that matches the card. Each coin has two regular designs and a gold hidden design, printed at 1 gold coin for
           every 99 regular ones. A Mewtwo coin album with 30 slots came out the same day.
         </p>
-        <div className="card-grid cols-2">
-          <figure>
-            <img
-              src={`${SITE_URL}/assets/blog/chasing-glory-coin-set.webp`}
-              alt="Chasing Glory coin set package"
-              loading="lazy"
-              width={600}
-              height={1191}
-            />
-            <figcaption>
-              <strong>Coin set</strong>3 slim packs, 1 featured holo, 1 coin
-            </figcaption>
-          </figure>
-          <figure>
-            <img
-              src={`${SITE_URL}/assets/blog/chasing-glory-gold-coins.webp`}
-              alt="The 30 gold hidden Chasing Glory coins"
-              loading="lazy"
-              width={900}
-              height={769}
-            />
-            <figcaption>
-              <strong>Gold hidden coins</strong>1 in 100 coins
-            </figcaption>
-          </figure>
-        </div>
+        <ul className="card-grid cols-2">
+          <li>
+            <figure>
+              <img
+                src={`${SITE_URL}/assets/blog/chasing-glory-coin-set.webp`}
+                alt="Chasing Glory coin set package"
+                loading="lazy"
+                width={600}
+                height={1191}
+              />
+              <figcaption>
+                <strong>Coin set</strong>3 slim packs, 1 featured holo, 1 coin
+              </figcaption>
+            </figure>
+          </li>
+          <li>
+            <figure>
+              <img
+                src={`${SITE_URL}/assets/blog/chasing-glory-gold-coins.webp`}
+                alt="The 30 gold hidden Chasing Glory coins"
+                loading="lazy"
+                width={900}
+                height={769}
+              />
+              <figcaption>
+                <strong>Gold hidden coins</strong>1 in 100 coins
+              </figcaption>
+            </figure>
+          </li>
+        </ul>
 
         <h2 id="faq">FAQ</h2>
         <div className="faq">

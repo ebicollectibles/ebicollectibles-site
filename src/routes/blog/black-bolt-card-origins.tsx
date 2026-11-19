@@ -1,3 +1,6 @@
+import { chunk } from '~/lib/chunk'
+import { RarityAbbr, rarityFullName } from '~/components/blog/RarityAbbr'
+import { useId } from 'react'
 import { BuyStrip } from '~/components/blog/BlogShop'
 import { createFileRoute, Link } from '@tanstack/react-router'
 import blogCssUrl from '~/styles/blog.css?url'
@@ -276,10 +279,15 @@ export const Route = createFileRoute('/blog/black-bolt-card-origins')({
   component: BlackBoltOrigins,
 })
 
-function OriginsTable({ list }: { list: typeof rows }) {
+function OriginsTable({ list, caption }: { list: typeof rows; caption: string }) {
+  // Names the table for screen readers and labels its scroll area.
+  const captionId = useId()
   return (
-    <div className="table-scroll table-tall">
+    <div className="table-scroll table-tall" role="group" aria-labelledby={captionId} tabIndex={0}>
       <table className="data-table origins-table">
+        <caption id={captionId} className="sr-only">
+          {caption}
+        </caption>
         <thead>
           <tr>
             <th scope="col">No.</th>
@@ -287,27 +295,33 @@ function OriginsTable({ list }: { list: typeof rows }) {
             <th scope="col">English card</th>
           </tr>
         </thead>
-        <tbody>
-          {list.map((r) => (
-            <tr key={r.cn} className={r.src === 'NEW' ? 'is-current' : undefined}>
-              <th scope="row">{r.cn}</th>
-              <td>
-                {r.name}
-                <span className="cell-sub">{r.rarity}</span>
-              </td>
-              <td>
-                {r.src === 'NEW' ? (
-                  <span className="cell-none">Chinese Exclusive, no English version</span>
-                ) : (
-                  <>
-                    {SET_NAME[r.src]} {r.en}
-                  </>
-                )}
-                {r.illus ? <span className="cell-sub">Illus. {r.illus}</span> : null}
-              </td>
-            </tr>
-          ))}
-        </tbody>
+        {/* Row groups of 20: the same table on screen and to screen readers, but no single
+            group outweighs the article text when a reader mode picks the main content. */}
+        {chunk(list, 20).map((group, g) => (
+          <tbody key={g}>
+            {group.map((r) => (
+              <tr key={r.cn} className={r.src === 'NEW' ? 'is-current' : undefined}>
+                <th scope="row">{r.cn}</th>
+                <td>
+                  {r.name}
+                  <span className="cell-sub">
+                    <RarityAbbr code={r.rarity} />
+                  </span>
+                </td>
+                <td>
+                  {r.src === 'NEW' ? (
+                    <span className="cell-none">Chinese Exclusive, no English version</span>
+                  ) : (
+                    <>
+                      {SET_NAME[r.src]} {r.en}
+                    </>
+                  )}
+                  {r.illus ? <span className="cell-sub">Illus. {r.illus}</span> : null}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        ))}
       </table>
     </div>
   )
@@ -376,8 +390,9 @@ function BlackBoltOrigins() {
         </nav>
 
         <h2 id="at-a-glance">At a glance</h2>
-        <div className="table-scroll">
+        <div className="table-scroll" role="group" aria-labelledby="tbl-2" tabIndex={0}>
           <table className="data-table">
+            <caption id="tbl-2" className="sr-only">At a glance</caption>
             <thead>
               <tr>
                 <th scope="col">Rarity</th>
@@ -417,8 +432,9 @@ function BlackBoltOrigins() {
           from. Going the other way, English Black Bolt's Klink, Klang, Klinklang, Rufflet and Braviary are in Chinese White Flare. The art
           is unchanged, only the set is different, so check the right set when you look these up.
         </p>
-        <div className="table-scroll">
+        <div className="table-scroll" role="group" aria-labelledby="tbl-3" tabIndex={0}>
           <table className="data-table">
+            <caption id="tbl-3" className="sr-only">What is different from English</caption>
             <thead>
               <tr>
                 <th scope="col">Black Bolt card</th>
@@ -429,7 +445,7 @@ function BlackBoltOrigins() {
               {SWAPPED.map((r) => (
                 <tr key={r.cn}>
                   <th scope="row">
-                    {r.cn} {r.name} ({r.rarity})
+                    {r.cn} {r.name} (<RarityAbbr code={r.rarity} />)
                   </th>
                   <td>{r.en}</td>
                 </tr>
@@ -441,37 +457,41 @@ function BlackBoltOrigins() {
           <strong>Every non-ex Pokémon gets an Art Rare.</strong> English Black Bolt has no Illustration Rare of Victini, Thundurus or
           Reuniclus. The Chinese set gives all three an Art Rare, and each uses art that English released as an SV Black Star Promo:
         </p>
-        <div className="card-grid cols-3">
+        <ul className="card-grid cols-3">
           {PROMOS.map((r) => (
-            <figure key={r.cn}>
-              <img src={r.image} alt={`${r.name} ${r.cn}/086 Art Rare, Black Bolt`} loading="lazy" width={300} height={419} />
-              <figcaption>
-                <strong>{r.name}</strong>
-                {r.cn}/086 · SVP {r.en} · {r.illus}
-              </figcaption>
-            </figure>
+            <li key={r.cn}>
+              <figure>
+                <img src={r.image} alt={`${r.name} ${r.cn}/086 Art Rare, Black Bolt`} loading="lazy" width={300} height={419} />
+                <figcaption>
+                  <strong>{r.name}</strong>
+                  {r.cn}/086 · SVP {r.en} · {r.illus}
+                </figcaption>
+              </figure>
+            </li>
           ))}
-        </div>
+        </ul>
         <p>
           <strong>One Chinese Exclusive, two English cards left out.</strong> The Chinese Exclusive N's Plan Special Art Rare 173/086 by Iwamoto05 has no English
           version. English Black Bolt's own N's Plan Special Illustration Rare (170/086 by REND) is not in the Chinese set, and neither is
           its Victini Black White Rare (171/086), so Zekrom ex is the only Black White Rare here. The N's Plan Super Rare is the same art as
           in English.
         </p>
-        <div className="card-grid cols-2">
+        <ul className="card-grid cols-2">
           {NPLAN.map((r) => (
-            <figure key={r.cn}>
-              <img src={r.image} alt={`${r.name} ${r.cn}/086 ${r.rarity}, Black Bolt`} loading="lazy" width={300} height={419} />
-              <figcaption>
-                {r.src === 'NEW' && <ChineseExclusiveBadge />}
-                <strong>
-                  {r.name} {r.rarity}
-                </strong>
-                {r.cn}/086 · {r.src === 'NEW' ? 'no English version' : `Black Bolt ${r.en}`} · {r.illus}
-              </figcaption>
-            </figure>
+            <li key={r.cn}>
+              <figure>
+                <img src={r.image} alt={`${r.name} ${r.cn}/086 ${rarityFullName(r.rarity)}, Black Bolt`} loading="lazy" width={300} height={419} />
+                <figcaption>
+                  {r.src === 'NEW' && <ChineseExclusiveBadge />}
+                  <strong>
+                    {r.name} <RarityAbbr code={r.rarity} />
+                  </strong>
+                  {r.cn}/086 · {r.src === 'NEW' ? 'no English version' : `Black Bolt ${r.en}`} · {r.illus}
+                </figcaption>
+              </figure>
+            </li>
           ))}
-        </div>
+        </ul>
         <p>
           <strong>The Zekrom ex cards match English.</strong> The Super Rare 161/086, the Special Art Rare 169/086 and the Black White Rare
           174/086 are the same art as English Black Bolt 158, 166 and 172.
@@ -479,12 +499,12 @@ function BlackBoltOrigins() {
 
         <h2 id="secret-rares">All 88 secret rares</h2>
         <p>Every card above 086, with its English twin. The highlighted row is new.</p>
-        <OriginsTable list={SECRET} />
+        <OriginsTable list={SECRET} caption="Secret rares and the English card each one matches" />
 
         <BuyStrip />
 
         <h2 id="main-set">The 86-card main set</h2>
-        <OriginsTable list={MAIN} />
+        <OriginsTable list={MAIN} caption="Main set cards and the English card each one matches" />
 
         <h2 id="faq">FAQ</h2>
         <div className="faq">

@@ -1,3 +1,4 @@
+import { Zh, zh } from '~/components/blog/Zh'
 import { BuyStrip } from '~/components/blog/BlogShop'
 import { ChineseExclusiveBadge } from '~/components/blog/ChineseExclusive'
 import { createFileRoute, Link } from '@tanstack/react-router'
@@ -215,7 +216,7 @@ function GemVol3Post() {
             <p className="fact-box-title">Key facts</p>
             <dl>
               <dt>Set</dt>
-              <dd>Gem Pack Vol. 3 (宝石包 VOL.3), also called Gemstone Vol. 3</dd>
+              <dd>Gem Pack Vol. 3 (<Zh>宝石包 VOL.3</Zh>), also called Gemstone Vol. 3</dd>
               <dt>Set code</dt>
               <dd>CBB3C</dd>
               <dt>Released</dt>
@@ -256,49 +257,55 @@ function GemVol3Post() {
           Five of the nine full arts are new illustrations drawn for this set, all evening and night scenes. Gengar grins over a table set for tea while cups and plates float around it, and Meowth sits on a rooftop under the moon watching lanterns drift
           past.
         </p>
-        <div className="card-grid cols-2">
+        <ul className="card-grid cols-2">
           {NEW_FULL_ARTS.map((c) => (
-            <figure key={c.id}>
-              <img src={cardImg(c.id)} alt={`${c.name} full art ${c.id}/07, Gem Vol 3`} loading="lazy" width={300} height={419} />
-              <figcaption>
-                <ChineseExclusiveBadge />
-                <strong>{c.name}</strong>
-                {c.id}/07 · Illus. {c.illus}
-              </figcaption>
-            </figure>
+            <li key={c.id}>
+              <figure>
+                <img src={cardImg(c.id)} alt={`${c.name} full art ${c.id}/07, Gem Vol 3`} loading="lazy" width={300} height={419} />
+                <figcaption>
+                  <ChineseExclusiveBadge />
+                  <strong>{c.name}</strong>
+                  {c.id}/07 · Illus. {c.illus}
+                </figcaption>
+              </figure>
+            </li>
           ))}
-        </div>
+        </ul>
         <p>
           Because these five debut here, Gem Vol 3 is the only place to pull them. The other four full arts reprint art from existing
           cards:
         </p>
-        <div className="card-grid cols-4">
+        <ul className="card-grid cols-4">
           {OTHER_FULL_ARTS.map((c) => (
-            <figure key={c.id}>
-              <img src={cardImg(c.id)} alt={`${c.name} full art ${c.id}/07, Gem Vol 3`} loading="lazy" width={300} height={419} />
-              <figcaption>
-                <strong>{c.name}</strong>
-                {c.id}/07 · Illus. {c.illus}
-              </figcaption>
-            </figure>
+            <li key={c.id}>
+              <figure>
+                <img src={cardImg(c.id)} alt={`${c.name} full art ${c.id}/07, Gem Vol 3`} loading="lazy" width={300} height={419} />
+                <figcaption>
+                  <strong>{c.name}</strong>
+                  {c.id}/07 · Illus. {c.illus}
+                </figcaption>
+              </figure>
+            </li>
           ))}
-        </div>
+        </ul>
 
         <h2 id="pokemon-ex">Nine Pokémon ex</h2>
         <p>
           Each Pokémon's seventh card, the 07 slot, is either a full art or a Pokémon ex. For the other nine Pokémon, it is the ex. In this set the ex cards are marked Rare (★), the same as the Master Ball pattern holos, so they turn up more often than the full arts. Gardevoir ex and Darkrai ex are the ones to watch.
         </p>
-        <div className="card-grid cols-3">
+        <ul className="card-grid cols-3">
           {EX_CARDS.map((c) => (
-            <figure key={c.id}>
-              <img src={cardImg(c.id)} alt={`${c.name} ${c.id}/07, Gem Vol 3`} loading="lazy" width={300} height={419} />
-              <figcaption>
-                <strong>{c.name}</strong>
-                {c.id}/07 · Rare
-              </figcaption>
-            </figure>
+            <li key={c.id}>
+              <figure>
+                <img src={cardImg(c.id)} alt={`${c.name} ${c.id}/07, Gem Vol 3`} loading="lazy" width={300} height={419} />
+                <figcaption>
+                  <strong>{c.name}</strong>
+                  {c.id}/07 · Rare
+                </figcaption>
+              </figure>
+            </li>
           ))}
-        </div>
+        </ul>
 
         <BuyStrip />
 
@@ -308,8 +315,9 @@ function GemVol3Post() {
           pattern. The seventh is where Vol. 3 differs from later volumes: for nine Pokémon it is a full art, and for the other nine it
           is a Pokémon ex. Four Trainer cards and six Energy cards round out the set.
         </p>
-        <div className="table-scroll">
+        <div className="table-scroll" role="group" aria-labelledby="tbl-1" tabIndex={0}>
           <table className="data-table">
+            <caption id="tbl-1" className="sr-only">How the set is built</caption>
             <thead>
               <tr>
                 <th scope="col">Rarity</th>
@@ -345,34 +353,38 @@ function GemVol3Post() {
           changes: Energy-type and Poké Ball patterns, glitter, starburst, the Master Ball pattern, and the pink Gem Pack logo
           stamp.
         </p>
-        <div className="card-grid cols-3">
+        <ul className="card-grid cols-3">
           {GENGAR_RUN.map((c) => (
-            <figure key={c.id}>
-              <img src={cardImg(c.id)} alt={`Gengar ${c.id}/07, ${c.rarity}, ${c.finish}, Gem Vol 3`} loading="lazy" width={300} height={419} />
-              <figcaption>
-                <strong>{c.id}/07</strong>
-                {c.rarity} · {c.finish}
-              </figcaption>
-            </figure>
+            <li key={c.id}>
+              <figure>
+                <img src={cardImg(c.id)} alt={`Gengar ${c.id}/07, ${c.rarity}, ${c.finish}, Gem Vol 3`} loading="lazy" width={300} height={419} />
+                <figcaption>
+                  <strong>{c.id}/07</strong>
+                  {c.rarity} · {c.finish}
+                </figcaption>
+              </figure>
+            </li>
           ))}
-        </div>
+        </ul>
 
         <h2 id="trainers-energy">Trainers and Energy</h2>
         <p>
           Every pack can also hold a holo Trainer or Energy card. Super Rod, Nest Ball and Switch are Double Rares, and Arven is a
           full-art Triple Rare. The six Energy cards are Basic Fighting, Basic Metal and Luminous Energy, each printed twice.
         </p>
-        <div className="card-grid cols-4">
+        <ul className="card-grid cols-4">
           {TRAINERS.map((c) => (
-            <figure key={c.id}>
-              <img src={cardImg(c.id)} alt={`${c.name} ${c.id}/04, Gem Vol 3`} loading="lazy" width={300} height={419} />
-              <figcaption>
-                <strong>{c.name}</strong>
-                {c.id}/04 · {c.rarity}
-              </figcaption>
-            </figure>
+            <li key={c.id}>
+              <figure>
+                <img src={cardImg(c.id)} alt={`${c.name} ${c.id}/04, Gem Vol 3`} loading="lazy" width={300} height={419} />
+                <figcaption>
+                  <strong>{c.name}</strong>
+                  {c.id}/04 · {c.rarity}
+                </figcaption>
+              </figure>
+            </li>
           ))}
-        </div>
+        </ul>
         <p>
           The rest of the Pokémon roster: Clefable, Houndoom, Gardevoir, Banette, Absol, Darkrai, Lycanroc, Houndstone and Annihilape,
           alongside the full-art Pokémon above. The <Link to="/sets/chinese/gem-vol-3">full card list</Link> shows all 136 cards.
@@ -394,8 +406,9 @@ function GemVol3Post() {
           Gem Packs have been a Simplified Chinese collector line since January 2025, with the same 4-holo pack the whole way. Vol. 3 is
           the last volume with Trainer and Energy cards and Pokémon ex in the 07 slot. From Vol. 4 on, every volume is 28 Pokémon × 7.
         </p>
-        <div className="table-scroll">
+        <div className="table-scroll" role="group" aria-labelledby="tbl-2" tabIndex={0}>
           <table className="data-table">
+            <caption id="tbl-2" className="sr-only">Where Vol. 3 fits in the Gem Pack line</caption>
             <thead>
               <tr>
                 <th scope="col">Volume</th>
@@ -442,7 +455,7 @@ function GemVol3Post() {
             <details key={f.q}>
               <summary>{f.q}</summary>
               <p>
-                {f.a}
+                {zh(f.a)}
                 {f.link && (
                   <>
                     {' '}

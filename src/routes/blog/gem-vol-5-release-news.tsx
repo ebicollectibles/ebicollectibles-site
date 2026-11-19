@@ -1,3 +1,4 @@
+import { Zh, zh } from '~/components/blog/Zh'
 import { BuyStrip } from '~/components/blog/BlogShop'
 import { ChineseExclusiveBadge } from '~/components/blog/ChineseExclusive'
 import { createFileRoute, Link } from '@tanstack/react-router'
@@ -199,7 +200,7 @@ function GemVol5Post() {
             <p className="fact-box-title">Key facts</p>
             <dl>
               <dt>Set</dt>
-              <dd>Gem Pack Vol. 5 (宝石包 VOL.5), also called Gemstone Vol. 5</dd>
+              <dd>Gem Pack Vol. 5 (<Zh>宝石包 VOL.5</Zh>), also called Gemstone Vol. 5</dd>
               <dt>Set code</dt>
               <dd>CBB5C</dd>
               <dt>Released</dt>
@@ -233,20 +234,22 @@ function GemVol5Post() {
           the Pokémon Horizons anime. Captain Pikachu rides the deck of the Brave Asagi with Friede, while Floragato, Crocalor and
           Quaxwell share a meal with Liko, Roy and Dot. Each one carries a small Pokémon Horizons logo.
         </p>
-        <div className="card-grid cols-2">
+        <ul className="card-grid cols-2">
           {HORIZONS_FULL_ARTS.map((c) => (
-            <figure key={c.id}>
-              <img src={cardImg(c.id)} alt={`${c.name} with ${c.with}, full art ${c.id}/07, Gem Vol 5`} loading="lazy" width={300} height={419} />
-              <figcaption>
-                <ChineseExclusiveBadge />
-                <strong>
-                  {c.name} with {c.with}
-                </strong>
-                {c.id}/07 · Illus. {c.illus}
-              </figcaption>
-            </figure>
+            <li key={c.id}>
+              <figure>
+                <img src={cardImg(c.id)} alt={`${c.name} with ${c.with}, full art ${c.id}/07, Gem Vol 5`} loading="lazy" width={300} height={419} />
+                <figcaption>
+                  <ChineseExclusiveBadge />
+                  <strong>
+                    {c.name} with {c.with}
+                  </strong>
+                  {c.id}/07 · Illus. {c.illus}
+                </figcaption>
+              </figure>
+            </li>
           ))}
-        </div>
+        </ul>
         <p>
           Because the art debuts here, Gem Vol 5 is the only place to pull these four. Each sits in the 07 slot, the rarest in every
           run, so plan on opening plenty of packs or picking them up as singles. Captain Pikachu is the one most collectors go after
@@ -259,17 +262,19 @@ function GemVol5Post() {
           Growlithe with Paldea picks such as Tatsugiri, Cetitan and Wattrel. Pokémon China revealed these full arts alongside the
           Horizons four:
         </p>
-        <div className="card-grid cols-3">
+        <ul className="card-grid cols-3">
           {REVEALED_FULL_ARTS.map((c) => (
-            <figure key={c.id}>
-              <img src={cardImg(c.id)} alt={`${c.name} full art ${c.id}/07, Gem Vol 5`} loading="lazy" width={300} height={419} />
-              <figcaption>
-                <strong>{c.name}</strong>
-                {c.id}/07 · Illus. {c.illus}
-              </figcaption>
-            </figure>
+            <li key={c.id}>
+              <figure>
+                <img src={cardImg(c.id)} alt={`${c.name} full art ${c.id}/07, Gem Vol 5`} loading="lazy" width={300} height={419} />
+                <figcaption>
+                  <strong>{c.name}</strong>
+                  {c.id}/07 · Illus. {c.illus}
+                </figcaption>
+              </figure>
+            </li>
           ))}
-        </div>
+        </ul>
         <p>
           The rest of the roster: Chansey, Horsea, Sunflora, Skarmory, Houndoom, Phanpy, Vibrava, Timburr, Joltik, Stunfisk, Braviary,
           Raboot, Applin and Milcery. The <Link to="/sets/chinese/gem-vol-5">full card list</Link> shows all 196 cards.
@@ -283,8 +288,9 @@ function GemVol5Post() {
           holo pattern. The seventh is a full art with its own illustration. Card numbers tell you exactly where you are: read 2207/07
           as Pokémon 22, version 07 of 7, so it is the full art of the twenty-second Pokémon in the set, which is Floragato.
         </p>
-        <div className="table-scroll">
+        <div className="table-scroll" role="group" aria-labelledby="tbl-1" tabIndex={0}>
           <table className="data-table">
+            <caption id="tbl-1" className="sr-only">How the set is built</caption>
             <thead>
               <tr>
                 <th scope="col">Rarity</th>
@@ -320,17 +326,19 @@ function GemVol5Post() {
           changes: Grass-type and Poké Ball patterns, glitter, starburst, the
           Master Ball pattern, and the pink Gem Pack logo stamp.
         </p>
-        <div className="card-grid cols-3">
+        <ul className="card-grid cols-3">
           {FLORAGATO_RUN.map((c) => (
-            <figure key={c.id}>
-              <img src={cardImg(c.id)} alt={`Floragato ${c.id}/07, ${c.rarity}, ${c.finish}, Gem Vol 5`} loading="lazy" width={300} height={419} />
-              <figcaption>
-                <strong>{c.id}/07</strong>
-                {c.rarity} · {c.finish}
-              </figcaption>
-            </figure>
+            <li key={c.id}>
+              <figure>
+                <img src={cardImg(c.id)} alt={`Floragato ${c.id}/07, ${c.rarity}, ${c.finish}, Gem Vol 5`} loading="lazy" width={300} height={419} />
+                <figcaption>
+                  <strong>{c.id}/07</strong>
+                  {c.rarity} · {c.finish}
+                </figcaption>
+              </figure>
+            </li>
           ))}
-        </div>
+        </ul>
 
         <h2 id="booster-box">What is inside a booster box</h2>
         <p>
@@ -347,8 +355,9 @@ function GemVol5Post() {
           Gem Packs have been a Simplified Chinese collector line since January 2025, with the same 4-holo pack the whole way. Since Vol.
           4, every volume has used the same 196-card, 28 × 7 shape.
         </p>
-        <div className="table-scroll">
+        <div className="table-scroll" role="group" aria-labelledby="tbl-2" tabIndex={0}>
           <table className="data-table">
+            <caption id="tbl-2" className="sr-only">Where Vol. 5 fits in the Gem Pack line</caption>
             <thead>
               <tr>
                 <th scope="col">Volume</th>
@@ -395,7 +404,7 @@ function GemVol5Post() {
             <details key={f.q}>
               <summary>{f.q}</summary>
               <p>
-                {f.a}
+                {zh(f.a)}
                 {f.link && (
                   <>
                     {' '}

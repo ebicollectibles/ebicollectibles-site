@@ -120,8 +120,10 @@ export function HeaderSearch({
           placeholder="Search products…"
           aria-label="Search products"
           role="combobox"
+          aria-autocomplete="list"
           aria-expanded={open && matches.length > 0}
           aria-controls={`${inputId}-results`}
+          aria-activedescendant={open && matches.length > 0 ? `${inputId}-opt-${highlighted}` : undefined}
           autoComplete="off"
           style={{
             border: 0,
@@ -135,10 +137,14 @@ export function HeaderSearch({
         />
       </form>
 
+      {/* Says how many suggestions there are (or that there are none) as
+          the visitor types; the visible list below is the same information. */}
+      <span className="sr-only" role="status">
+        {open && query ? (matches.length === 0 ? 'No products found.' : `${matches.length} ${matches.length === 1 ? 'suggestion' : 'suggestions'}. Use the up and down arrow keys to choose one.`) : ''}
+      </span>
+
       {open && query && (
         <div
-          id={`${inputId}-results`}
-          role="listbox"
           style={{
             position: desktop ? 'absolute' : 'static',
             top: desktop ? 'calc(100% + 6px)' : undefined,
@@ -159,10 +165,13 @@ export function HeaderSearch({
           {matches.length === 0 ? (
             <div style={{ padding: '14px 14px', fontSize: 12.5, color: '#5a6875' }}>No products found.</div>
           ) : (
-            matches.map((p, i) => (
+            <div id={`${inputId}-results`} role="listbox" aria-label="Product suggestions">
+            {matches.map((p, i) => (
               <button
                 key={p.id}
+                id={`${inputId}-opt-${i}`}
                 type="button"
+                tabIndex={-1}
                 role="option"
                 aria-selected={i === highlighted}
                 onMouseEnter={() => setHighlighted(i)}
@@ -193,7 +202,8 @@ export function HeaderSearch({
                   {p.name}
                 </span>
               </button>
-            ))
+            ))}
+            </div>
           )}
           {matches.length > 0 && (
             <button

@@ -215,8 +215,9 @@ function GemVol4OriginsPost() {
 
         <h2 id="by-set">Which sets it comes from</h2>
         <p>Most of it comes from two English sets from the first half of 2024, Temporal Forces and Twilight Masquerade, plus a few later cards:</p>
-        <div className="table-scroll">
+        <div className="table-scroll" role="group" aria-labelledby="tbl-1" tabIndex={0}>
           <table className="data-table">
+            <caption id="tbl-1" className="sr-only">Which sets it comes from</caption>
             <thead>
               <tr>
                 <th scope="col">English source</th>
@@ -263,8 +264,9 @@ function GemVol4OriginsPost() {
           Every Gem Vol 4 Pokémon, with the English card behind its regular art (versions 01 to 06) and behind its full art (version
           07), plus the illustrator credited on both.
         </p>
-        <div className="table-scroll">
+        <div className="table-scroll" role="group" aria-labelledby="tbl-2" tabIndex={0}>
           <table className="data-table origins-table">
+            <caption id="tbl-2" className="sr-only">The full card-by-card map</caption>
             <thead>
               <tr>
                 <th scope="col">#</th>

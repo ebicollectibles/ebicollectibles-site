@@ -1,3 +1,4 @@
+import { Zh, zh } from '~/components/blog/Zh'
 import { BuyStrip } from '~/components/blog/BlogShop'
 import { ChineseExclusiveBadge } from '~/components/blog/ChineseExclusive'
 import { createFileRoute, Link } from '@tanstack/react-router'
@@ -195,7 +196,7 @@ function GemVol7Post() {
             <p className="fact-box-title">Key facts</p>
             <dl>
               <dt>Set</dt>
-              <dd>Gem Pack Vol. 7 (宝石包 VOL.7), also called Gemstone Vol. 7</dd>
+              <dd>Gem Pack Vol. 7 (<Zh>宝石包 VOL.7</Zh>), also called Gemstone Vol. 7</dd>
               <dt>Set code</dt>
               <dd>CBB7C</dd>
               <dt>Released</dt>
@@ -249,17 +250,19 @@ function GemVol7Post() {
           includes Ethan, Steven, Cynthia, N, Lillie, Arven, Hop, Marnie and Iono. Pokémon China revealed these six full arts alongside
           Psyduck:
         </p>
-        <div className="card-grid cols-3">
+        <ul className="card-grid cols-3">
           {REVEALED_FULL_ARTS.map((c) => (
-            <figure key={c.id}>
-              <img src={cardImg(c.id)} alt={`${c.name} full art ${c.id}/07, Gem Vol 7`} loading="lazy" width={300} height={419} />
-              <figcaption>
-                <strong>{c.name}</strong>
-                {c.id}/07 · {c.note}
-              </figcaption>
-            </figure>
+            <li key={c.id}>
+              <figure>
+                <img src={cardImg(c.id)} alt={`${c.name} full art ${c.id}/07, Gem Vol 7`} loading="lazy" width={300} height={419} />
+                <figcaption>
+                  <strong>{c.name}</strong>
+                  {c.id}/07 · {c.note}
+                </figcaption>
+              </figure>
+            </li>
           ))}
-        </div>
+        </ul>
         <p>
           The other nine Pokémon appear without a Trainer: Rapidash, Furret, Swinub, Blaziken, Clamperl, Shaymin, Crustle, Lycanroc and
           Hydrapple. Curious where these illustrations have appeared before? Our <Link to="/blog/gem-vol-7-card-origins">card origins guide</Link>{' '}
@@ -274,8 +277,9 @@ function GemVol7Post() {
           holo pattern. The seventh is a full art with its own illustration. Card numbers tell you exactly where you are: read 0307/07
           as Pokémon 03, version 07 of 7, so it is the full art of the third Pokémon in the set.
         </p>
-        <div className="table-scroll">
+        <div className="table-scroll" role="group" aria-labelledby="tbl-1" tabIndex={0}>
           <table className="data-table">
+            <caption id="tbl-1" className="sr-only">How the set is built</caption>
             <thead>
               <tr>
                 <th scope="col">Rarity</th>
@@ -310,17 +314,19 @@ function GemVol7Post() {
           changes: Energy-type and Poké Ball patterns, glitter, starburst, the Master Ball
           pattern, and the pink Gem Pack logo stamp.
         </p>
-        <div className="card-grid cols-3">
+        <ul className="card-grid cols-3">
           {PSYDUCK_RUN.filter((c) => c.id !== '0307').map((c) => (
-            <figure key={c.id}>
-              <img src={cardImg(c.id)} alt={`Misty's Psyduck ${c.id}/07, ${c.rarity}, ${c.finish}, Gem Vol 7`} loading="lazy" width={300} height={419} />
-              <figcaption>
-                <strong>{c.id}/07</strong>
-                {c.rarity} · {c.finish}
-              </figcaption>
-            </figure>
+            <li key={c.id}>
+              <figure>
+                <img src={cardImg(c.id)} alt={`Misty's Psyduck ${c.id}/07, ${c.rarity}, ${c.finish}, Gem Vol 7`} loading="lazy" width={300} height={419} />
+                <figcaption>
+                  <strong>{c.id}/07</strong>
+                  {c.rarity} · {c.finish}
+                </figcaption>
+              </figure>
+            </li>
           ))}
-        </div>
+        </ul>
 
         <h2 id="booster-box">What is inside a booster box</h2>
         <p>
@@ -337,8 +343,9 @@ function GemVol7Post() {
           Gem Packs have been a Simplified Chinese collector line since January 2025, with the same 4-holo pack the whole way. Since Vol.
           4, every volume has used the same 196-card, 28 × 7 shape.
         </p>
-        <div className="table-scroll">
+        <div className="table-scroll" role="group" aria-labelledby="tbl-2" tabIndex={0}>
           <table className="data-table">
+            <caption id="tbl-2" className="sr-only">Where Vol. 7 fits in the Gem Pack line</caption>
             <thead>
               <tr>
                 <th scope="col">Volume</th>
@@ -380,7 +387,7 @@ function GemVol7Post() {
             <details key={f.q}>
               <summary>{f.q}</summary>
               <p>
-                {f.a}
+                {zh(f.a)}
                 {f.link && (
                   <>
                     {' '}

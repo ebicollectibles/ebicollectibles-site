@@ -1,3 +1,4 @@
+import { Zh } from '~/components/blog/Zh'
 import { BuyStrip } from '~/components/blog/BlogShop'
 import { createFileRoute, Link } from '@tanstack/react-router'
 import blogCssUrl from '~/styles/blog.css?url'
@@ -19,18 +20,20 @@ const CHINESE_EXCLUSIVE = new Set(['245'])
 
 function Grid({ cards, cols }: { cards: Shown[]; cols: number }) {
   return (
-    <div className={`card-grid cols-${cols}`}>
+    <ul className={`card-grid cols-${cols}`}>
       {cards.map((c) => (
-        <figure key={c.n}>
-          <img src={cardImg(c.n)} alt={`${c.name} ${c.n}/204, Blade Awakening`} loading="lazy" width={300} height={419} />
-          <figcaption>
-            {CHINESE_EXCLUSIVE.has(c.n) && <ChineseExclusiveBadge />}
-            <strong>{c.name}</strong>
-            {c.n}/204 · {c.note}
-          </figcaption>
-        </figure>
+        <li key={c.n}>
+          <figure>
+            <img src={cardImg(c.n)} alt={`${c.name} ${c.n}/204, Blade Awakening`} loading="lazy" width={300} height={419} />
+            <figcaption>
+              {CHINESE_EXCLUSIVE.has(c.n) && <ChineseExclusiveBadge />}
+              <strong>{c.name}</strong>
+              {c.n}/204 · {c.note}
+            </figcaption>
+          </figure>
+        </li>
       ))}
-    </div>
+    </ul>
   )
 }
 
@@ -240,7 +243,7 @@ function BladeAwakeningReleasePost() {
         }}
       >
         <p>
-          Blade Awakening (利刃猛醒) released on January 16, 2026. It is the CSV7C set of the Chinese Scarlet & Violet series and a big
+          Blade Awakening (<Zh>利刃猛醒</Zh>) released on January 16, 2026. It is the CSV7C set of the Chinese Scarlet & Violet series and a big
           one: 259 cards, with Tera Greninja ex on the pack, Raging Bolt ex, Walking Wake ex, Iron Crown ex and the other Ancient and
           Future Pokémon in the chase, and nine ACE SPEC cards, the powerful Trainers you can only play one of per deck. Its Chinese
           Exclusive is a Ciphermaniac's Codebreaking Special Art Rare.
@@ -258,7 +261,7 @@ function BladeAwakeningReleasePost() {
             <p className="fact-box-title">Key facts</p>
             <dl>
               <dt>Set</dt>
-              <dd>Blade Awakening (利刃猛醒)</dd>
+              <dd>Blade Awakening (<Zh>利刃猛醒</Zh>)</dd>
               <dt>Set code</dt>
               <dd>CSV7C</dd>
               <dt>Released</dt>
@@ -295,32 +298,36 @@ function BladeAwakeningReleasePost() {
           Rares, Special Art Rares and Ultra Rares are 1.00% of jumbo cards against 0.73% of slim cards. That works out to about one big
           hit every 5 jumbo packs, against one every 27 slim packs.
         </p>
-        <div className="card-grid cols-2">
-          <figure>
-            <img
-              src={`${SITE_URL}/assets/blog/blade-awakening-slim-pack.webp`}
-              alt="Blade Awakening slim pack, 5 cards"
-              loading="lazy"
-              width={600}
-              height={1129}
-            />
-            <figcaption>
-              <strong>Slim pack</strong>5 cards · 1 holo
-            </figcaption>
-          </figure>
-          <figure>
-            <img
-              src={`${SITE_URL}/assets/blog/blade-awakening-jumbo-pack.webp`}
-              alt="Blade Awakening jumbo pack, 20 cards"
-              loading="lazy"
-              width={600}
-              height={1197}
-            />
-            <figcaption>
-              <strong>Jumbo pack</strong>20 cards · 6 holo
-            </figcaption>
-          </figure>
-        </div>
+        <ul className="card-grid cols-2">
+          <li>
+            <figure>
+              <img
+                src={`${SITE_URL}/assets/blog/blade-awakening-slim-pack.webp`}
+                alt="Blade Awakening slim pack, 5 cards"
+                loading="lazy"
+                width={600}
+                height={1129}
+              />
+              <figcaption>
+                <strong>Slim pack</strong>5 cards · 1 holo
+              </figcaption>
+            </figure>
+          </li>
+          <li>
+            <figure>
+              <img
+                src={`${SITE_URL}/assets/blog/blade-awakening-jumbo-pack.webp`}
+                alt="Blade Awakening jumbo pack, 20 cards"
+                loading="lazy"
+                width={600}
+                height={1197}
+              />
+              <figcaption>
+                <strong>Jumbo pack</strong>20 cards · 6 holo
+              </figcaption>
+            </figure>
+          </li>
+        </ul>
         <p>
           A jumbo box (6 packs, 120 cards, 36 holos) averages about 1.2 of those top cards. A slim box (15 packs, 75 cards, 15 holos)
           averages about half of one. The full numbers are in <a href="#odds">Odds and box math</a> below.
@@ -385,8 +392,9 @@ function BladeAwakeningReleasePost() {
 
         <h2 id="odds">Odds and box math</h2>
         <p>Pokémon China's charts for each pack size, in the bands they use:</p>
-        <div className="table-scroll">
+        <div className="table-scroll" role="group" aria-labelledby="tbl-1" tabIndex={0}>
           <table className="data-table">
+            <caption id="tbl-1" className="sr-only">Odds and box math: Share of print, Slim, Jumbo</caption>
             <thead>
               <tr>
                 <th scope="col">Share of print</th>
@@ -407,8 +415,9 @@ function BladeAwakeningReleasePost() {
         </div>
         <p className="table-note">From Pokémon China's odds chart for each pack size.</p>
         <p>Applied to one box of each:</p>
-        <div className="table-scroll">
+        <div className="table-scroll" role="group" aria-labelledby="tbl-2" tabIndex={0}>
           <table className="data-table">
+            <caption id="tbl-2" className="sr-only">Odds and box math: Per box, Slim, Jumbo</caption>
             <thead>
               <tr>
                 <th scope="col">Per box</th>
@@ -447,32 +456,36 @@ function BladeAwakeningReleasePost() {
           pattern or, at 1 in 100, a Master Ball pattern. Each coin has two regular designs and a gold hidden design, printed at 1 hidden
           coin for every 99 regular ones. A Greninja coin album with 30 slots came out the same day.
         </p>
-        <div className="card-grid cols-2">
-          <figure>
-            <img
-              src={`${SITE_URL}/assets/blog/blade-awakening-coin-set.webp`}
-              alt="Blade Awakening coin set package with Greninja on the front"
-              loading="lazy"
-              width={600}
-              height={1190}
-            />
-            <figcaption>
-              <strong>Coin set</strong>3 slim packs, 1 featured holo, 1 coin
-            </figcaption>
-          </figure>
-          <figure>
-            <img
-              src={`${SITE_URL}/assets/blog/blade-awakening-gold-coins.webp`}
-              alt="The 30 gold hidden Blade Awakening coins"
-              loading="lazy"
-              width={900}
-              height={795}
-            />
-            <figcaption>
-              <strong>Gold hidden coins</strong>1 in 100 coins
-            </figcaption>
-          </figure>
-        </div>
+        <ul className="card-grid cols-2">
+          <li>
+            <figure>
+              <img
+                src={`${SITE_URL}/assets/blog/blade-awakening-coin-set.webp`}
+                alt="Blade Awakening coin set package with Greninja on the front"
+                loading="lazy"
+                width={600}
+                height={1190}
+              />
+              <figcaption>
+                <strong>Coin set</strong>3 slim packs, 1 featured holo, 1 coin
+              </figcaption>
+            </figure>
+          </li>
+          <li>
+            <figure>
+              <img
+                src={`${SITE_URL}/assets/blog/blade-awakening-gold-coins.webp`}
+                alt="The 30 gold hidden Blade Awakening coins"
+                loading="lazy"
+                width={900}
+                height={795}
+              />
+              <figcaption>
+                <strong>Gold hidden coins</strong>1 in 100 coins
+              </figcaption>
+            </figure>
+          </li>
+        </ul>
         <p>
           Our <Link to="/blog/blade-awakening-set-guide">set guide</Link> has every secret rare and each Pokémon ex at every rarity,
           and our <Link to="/blog/blade-awakening-card-origins">card origins guide</Link> matches every card to its English version.

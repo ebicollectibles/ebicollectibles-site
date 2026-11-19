@@ -1,3 +1,4 @@
+import { Zh } from '~/components/blog/Zh'
 import { BuyStrip } from '~/components/blog/BlogShop'
 import { createFileRoute, Link } from '@tanstack/react-router'
 import blogCssUrl from '~/styles/blog.css?url'
@@ -33,24 +34,26 @@ const FIGURES: Fig[] = [
 
 function FigureGrid({ figs }: { figs: Fig[] }) {
   return (
-    <div className="card-grid cols-4">
+    <ul className="card-grid cols-4">
       {figs.map((f) => (
-        <figure key={f.fig}>
-          <img
-            src={figImg(f.fig)}
-            alt={`Dream Painting Pikachu figure ${f.fig}/30 on its stand with card ${f.card}/103`}
-            loading="lazy"
-            width={600}
-            height={600}
-            style={{ aspectRatio: '1 / 1', objectFit: 'cover' }}
-          />
-          <figcaption>
-            <strong>Figure {f.fig}/30</strong>
-            Card {f.card}/103 · {f.illus}
-          </figcaption>
-        </figure>
+        <li key={f.fig}>
+          <figure>
+            <img
+              src={figImg(f.fig)}
+              alt={`Dream Painting Pikachu figure ${f.fig}/30 on its stand with card ${f.card}/103`}
+              loading="lazy"
+              width={600}
+              height={600}
+              style={{ aspectRatio: '1 / 1', objectFit: 'cover' }}
+            />
+            <figcaption>
+              <strong>Figure {f.fig}/30</strong>
+              Card {f.card}/103 · {f.illus}
+            </figcaption>
+          </figure>
+        </li>
       ))}
-    </div>
+    </ul>
   )
 }
 
@@ -168,7 +171,7 @@ function PikachuDreamPaintingReleasePost() {
         }}
       >
         <p>
-          Dream Painting (绘梦点睛) is Pokémon China's figure line built on card art: each figure recreates the Pokémon from one card
+          Dream Painting (<Zh>绘梦点睛</Zh>) is Pokémon China's figure line built on card art: each figure recreates the Pokémon from one card
           illustration, and you stand the card behind it so the figure looks like it is stepping out of the picture. This release, the
           30th Anniversary Pikachu Figure Set, takes 12 of the 30 Pikachu cards from <Link to="/blog/30th-celebration-release-news">30th
           Celebration</Link>. Every box also has the matching card and a sealed 30th Celebration pack. The secret is the classic Base Set
@@ -187,7 +190,7 @@ function PikachuDreamPaintingReleasePost() {
             <p className="fact-box-title">Key facts</p>
             <dl>
               <dt>Product</dt>
-              <dd>Dream Painting 30th Anniversary Pikachu Figure Set (绘梦点睛 30周年皮卡丘手办套装)</dd>
+              <dd>Dream Painting 30th Anniversary Pikachu Figure Set (<Zh>绘梦点睛 30周年皮卡丘手办套装</Zh>)</dd>
               <dt>Released</dt>
               <dd>September 16, 2026</dd>
               <dt>Designs</dt>
@@ -225,7 +228,7 @@ function PikachuDreamPaintingReleasePost() {
         <figure style={{ margin: '28px 0' }}>
           <img
             src={`${SITE_URL}/assets/blog/pikachu-dream-painting-lineup.webp`}
-            alt="Pokémon China's photo of all 12 regular Dream Painting Pikachu figures on their stands"
+            alt="All 12 regular Dream Painting Pikachu figures on their stands, as shown by Pokémon China"
             loading="lazy"
             width={1400}
             height={1135}
@@ -233,17 +236,19 @@ function PikachuDreamPaintingReleasePost() {
           />
         </figure>
         <p>And the cards they come from, in the same order:</p>
-        <div className="card-grid cols-4">
+        <ul className="card-grid cols-4">
           {FIGURES.map((f) => (
-            <figure key={f.card}>
-              <img src={cardImg(f.card)} alt={`Pikachu ${f.card}/103, 30th Celebration`} loading="lazy" width={300} height={419} />
-              <figcaption>
-                <strong>Pikachu {f.card}/103</strong>
-                {f.illus}
-              </figcaption>
-            </figure>
+            <li key={f.card}>
+              <figure>
+                <img src={cardImg(f.card)} alt={`Pikachu ${f.card}/103, 30th Celebration`} loading="lazy" width={300} height={419} />
+                <figcaption>
+                  <strong>Pikachu {f.card}/103</strong>
+                  {f.illus}
+                </figcaption>
+              </figure>
+            </li>
           ))}
-        </div>
+        </ul>
 
         <h2 id="secret">The secret: classic Pikachu</h2>
         <p>
@@ -281,8 +286,9 @@ function PikachuDreamPaintingReleasePost() {
           Pokémon China publishes the ratio: each regular figure is made in equal numbers, and regular boxes outnumber secret boxes 143
           to 1. So about 1 box in 144 is the secret, and each regular figure is about 1 box in 12.
         </p>
-        <div className="table-scroll">
+        <div className="table-scroll" role="group" aria-labelledby="tbl-1" tabIndex={0}>
           <table className="data-table">
+            <caption id="tbl-1" className="sr-only">Odds and cases</caption>
             <thead>
               <tr>
                 <th scope="col">Figure</th>

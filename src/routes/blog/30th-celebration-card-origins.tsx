@@ -194,8 +194,9 @@ function ThirtiethOriginsPost() {
 
         <h2 id="eras">Classics by era</h2>
         <p>The 30 classics cover every era of the game:</p>
-        <div className="table-scroll">
+        <div className="table-scroll" role="group" aria-labelledby="tbl-1" tabIndex={0}>
           <table className="data-table">
+            <caption id="tbl-1" className="sr-only">Classics by era</caption>
             <thead>
               <tr>
                 <th scope="col">Era</th>
@@ -214,17 +215,19 @@ function ThirtiethOriginsPost() {
             </tbody>
           </table>
         </div>
-        <div className="card-grid cols-3">
+        <ul className="card-grid cols-3">
           {HIGHLIGHTS.map((n) => CLASSICS.find((c) => c.cn === n)!).map((c) => (
-            <figure key={c.cn}>
-              <img src={cardImg(c.cn)} alt={`Classic ${c.name} ${c.cn}/103, 30th Celebration`} loading="lazy" width={300} height={419} />
-              <figcaption>
-                <strong>{c.name}</strong>
-                {c.cn}/103 · {c.set}, {c.year}
-              </figcaption>
-            </figure>
+            <li key={c.cn}>
+              <figure>
+                <img src={cardImg(c.cn)} alt={`Classic ${c.name} ${c.cn}/103, 30th Celebration`} loading="lazy" width={300} height={419} />
+                <figcaption>
+                  <strong>{c.name}</strong>
+                  {c.cn}/103 · {c.set}, {c.year}
+                </figcaption>
+              </figure>
+            </li>
           ))}
-        </div>
+        </ul>
 
         <h2 id="patterns">Patterns worth knowing</h2>
         <ul>
@@ -251,8 +254,9 @@ function ThirtiethOriginsPost() {
         </ul>
 
         <h2 id="classic-map">All 30 classics, card by card</h2>
-        <div className="table-scroll">
+        <div className="table-scroll" role="group" aria-labelledby="tbl-2" tabIndex={0}>
           <table className="data-table origins-table">
+            <caption id="tbl-2" className="sr-only">All 30 classics, card by card</caption>
             <thead>
               <tr>
                 <th scope="col">#</th>
@@ -283,8 +287,9 @@ function ThirtiethOriginsPost() {
           Outside the classics, the main set, Art Rares, Special Art Rares and Futuristic Rares share their art with the English 30th
           Celebration release. A few examples:
         </p>
-        <div className="table-scroll">
+        <div className="table-scroll" role="group" aria-labelledby="tbl-3" tabIndex={0}>
           <table className="data-table origins-table">
+            <caption id="tbl-3" className="sr-only">The rest of the set</caption>
             <thead>
               <tr>
                 <th scope="col">Chinese card</th>

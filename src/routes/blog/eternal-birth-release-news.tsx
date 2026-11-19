@@ -1,3 +1,4 @@
+import { Zh } from '~/components/blog/Zh'
 import { BuyStrip } from '~/components/blog/BlogShop'
 import { createFileRoute, Link } from '@tanstack/react-router'
 import blogCssUrl from '~/styles/blog.css?url'
@@ -15,17 +16,19 @@ type Shown = { n: string; name: string; note: string }
 
 function Grid({ cards, cols }: { cards: Shown[]; cols: number }) {
   return (
-    <div className={`card-grid cols-${cols}`}>
+    <ul className={`card-grid cols-${cols}`}>
       {cards.map((c) => (
-        <figure key={c.n}>
-          <img src={cardImg(c.n)} alt={`${c.name} ${c.n}/127, Eternal Birth`} loading="lazy" width={300} height={418} />
-          <figcaption>
-            <strong>{c.name}</strong>
-            {c.n}/127 · {c.note}
-          </figcaption>
-        </figure>
+        <li key={c.n}>
+          <figure>
+            <img src={cardImg(c.n)} alt={`${c.name} ${c.n}/127, Eternal Birth`} loading="lazy" width={300} height={418} />
+            <figcaption>
+              <strong>{c.name}</strong>
+              {c.n}/127 · {c.note}
+            </figcaption>
+          </figure>
+        </li>
       ))}
-    </div>
+    </ul>
   )
 }
 
@@ -196,7 +199,7 @@ function EternalBirthReleasePost() {
         }}
       >
         <p>
-          Eternal Birth (亘古开来) released on January 17, 2025. It is the first main set of the Chinese Scarlet & Violet series, and
+          Eternal Birth (<Zh>亘古开来</Zh>) released on January 17, 2025. It is the first main set of the Chinese Scarlet & Violet series, and
           it introduces Pokémon ex to Simplified Chinese. It also includes the Paldea starters Sprigatito, Fuecoco and Quaxly. Miraidon is
           on the pack, and Miraidon ex and Koraidon ex are the lead chase cards.
         </p>
@@ -207,7 +210,7 @@ function EternalBirthReleasePost() {
             <p className="fact-box-title">Key facts</p>
             <dl>
               <dt>Set</dt>
-              <dd>Eternal Birth (亘古开来)</dd>
+              <dd>Eternal Birth (<Zh>亘古开来</Zh>)</dd>
               <dt>Set code</dt>
               <dd>CSV1C</dd>
               <dt>Released</dt>
@@ -289,8 +292,9 @@ function EternalBirthReleasePost() {
           for each one. The charts give each rarity group's share of the print run, and multiplying a share by the pack size gives
           the average number of those cards per pack:
         </p>
-        <div className="table-scroll">
+        <div className="table-scroll" role="group" aria-labelledby="tbl-1" tabIndex={0}>
           <table className="data-table">
+            <caption id="tbl-1" className="sr-only">Packs and pull odds</caption>
             <thead>
               <tr>
                 <th scope="col">Rarity group</th>

@@ -1,3 +1,4 @@
+import { Zh } from '~/components/blog/Zh'
 import { BuyStrip } from '~/components/blog/BlogShop'
 import { createFileRoute, Link } from '@tanstack/react-router'
 import blogCssUrl from '~/styles/blog.css?url'
@@ -19,18 +20,20 @@ const CHINESE_EXCLUSIVE = new Set(['152'])
 
 function Grid({ cards, cols }: { cards: Shown[]; cols: number }) {
   return (
-    <div className={`card-grid cols-${cols}`}>
+    <ul className={`card-grid cols-${cols}`}>
       {cards.map((c) => (
-        <figure key={c.n}>
-          <img src={cardImg(c.n)} alt={`${c.name} ${c.n}/128, True Mystery`} loading="lazy" width={300} height={419} />
-          <figcaption>
-            {CHINESE_EXCLUSIVE.has(c.n) && <ChineseExclusiveBadge />}
-            <strong>{c.name}</strong>
-            {c.n}/128 · {c.note}
-          </figcaption>
-        </figure>
+        <li key={c.n}>
+          <figure>
+            <img src={cardImg(c.n)} alt={`${c.name} ${c.n}/128, True Mystery`} loading="lazy" width={300} height={419} />
+            <figcaption>
+              {CHINESE_EXCLUSIVE.has(c.n) && <ChineseExclusiveBadge />}
+              <strong>{c.name}</strong>
+              {c.n}/128 · {c.note}
+            </figcaption>
+          </figure>
+        </li>
       ))}
-    </div>
+    </ul>
   )
 }
 
@@ -203,7 +206,7 @@ function TrueMysteryReleasePost() {
         }}
       >
         <p>
-          True Mystery (真实玄虚) released on November 7, 2025. It is the CSV6C set of the Chinese Scarlet & Violet series, and it is all
+          True Mystery (<Zh>真实玄虚</Zh>) released on November 7, 2025. It is the CSV6C set of the Chinese Scarlet & Violet series, and it is all
           about the Paradox Pokémon from Area Zero: Ancient forms like Roaring Moon and Sandy Shocks, Future forms like Iron Valiant and
           Iron Hands, and the Ancient and Future Trainer cards built to support them. Iron Valiant is on the pack, and the Iron Hands ex
           Special Art Rare is the set's Chinese Exclusive.
@@ -221,7 +224,7 @@ function TrueMysteryReleasePost() {
             <p className="fact-box-title">Key facts</p>
             <dl>
               <dt>Set</dt>
-              <dd>True Mystery (真实玄虚)</dd>
+              <dd>True Mystery (<Zh>真实玄虚</Zh>)</dd>
               <dt>Set code</dt>
               <dd>CSV6C</dd>
               <dt>Released</dt>
@@ -257,20 +260,24 @@ function TrueMysteryReleasePost() {
           cards with six holos. A slim box is 15 packs, 75 cards and 15 holos. A jumbo box is 6 packs, 120 cards and 36 holos, so it
           holds more than twice the holos of a slim box.
         </p>
-        <div className="card-grid cols-2">
-          <figure>
-            <img src={`${SITE_URL}/assets/blog/true-mystery-slim-pack.webp`} alt="True Mystery slim pack, 5 cards" loading="lazy" width={600} height={1127} />
-            <figcaption>
-              <strong>Slim pack</strong>5 cards · 1 holo
-            </figcaption>
-          </figure>
-          <figure>
-            <img src={`${SITE_URL}/assets/blog/true-mystery-jumbo-pack.webp`} alt="True Mystery jumbo pack, 20 cards" loading="lazy" width={600} height={1196} />
-            <figcaption>
-              <strong>Jumbo pack</strong>20 cards · 6 holo
-            </figcaption>
-          </figure>
-        </div>
+        <ul className="card-grid cols-2">
+          <li>
+            <figure>
+              <img src={`${SITE_URL}/assets/blog/true-mystery-slim-pack.webp`} alt="True Mystery slim pack, 5 cards" loading="lazy" width={600} height={1127} />
+              <figcaption>
+                <strong>Slim pack</strong>5 cards · 1 holo
+              </figcaption>
+            </figure>
+          </li>
+          <li>
+            <figure>
+              <img src={`${SITE_URL}/assets/blog/true-mystery-jumbo-pack.webp`} alt="True Mystery jumbo pack, 20 cards" loading="lazy" width={600} height={1196} />
+              <figcaption>
+                <strong>Jumbo pack</strong>20 cards · 6 holo
+              </figcaption>
+            </figure>
+          </li>
+        </ul>
         <p>
           Pokémon China published an odds chart for each pack size. Super Rares, Special Art Rares and Ultra Rares together are 0.73% of
           slim-pack cards and 1.00% of jumbo-pack cards: about one every 27 slim packs, against one every 5 jumbo packs. That averages
@@ -319,8 +326,9 @@ function TrueMysteryReleasePost() {
           Every card has one number out of 128. Rarer versions of a card sit in the secret block at unrelated numbers, so match them by
           name. Four Pokémon ex, Espathra ex, Great Tusk ex, Skeledirge ex and Iron Treads ex, appear only as Double Rares.
         </p>
-        <div className="table-scroll">
+        <div className="table-scroll" role="group" aria-labelledby="tbl-1" tabIndex={0}>
           <table className="data-table">
+            <caption id="tbl-1" className="sr-only">How the set is numbered</caption>
             <thead>
               <tr>
                 <th scope="col">Numbers</th>

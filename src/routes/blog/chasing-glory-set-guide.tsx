@@ -1,3 +1,4 @@
+import { rarityFullName } from '~/components/blog/RarityAbbr'
 import { BuyStrip } from '~/components/blog/BlogShop'
 import { createFileRoute, Link } from '@tanstack/react-router'
 import blogCssUrl from '~/styles/blog.css?url'
@@ -22,18 +23,20 @@ const lead = (cards: Card[], first: string[]) => [
 
 function Gallery({ cards, cols }: { cards: Card[]; cols: number }) {
   return (
-    <div className={`card-grid cols-${cols}`}>
+    <ul className={`card-grid cols-${cols}`}>
       {cards.map((c) => (
-        <figure key={c.number}>
-          <img src={c.image} alt={`${c.name} ${c.number} ${short(c.rarity)}, Chasing Glory`} loading="lazy" width={300} height={419} />
-          <figcaption>
-            {EXCLUSIVE.has(c.number) && <ChineseExclusiveBadge />}
-            <strong>{c.name}</strong>
-            {c.number}
-          </figcaption>
-        </figure>
+        <li key={c.number}>
+          <figure>
+            <img src={c.image} alt={`${c.name} ${c.number} ${rarityFullName(c.rarity)}, Chasing Glory`} loading="lazy" width={300} height={419} />
+            <figcaption>
+              {EXCLUSIVE.has(c.number) && <ChineseExclusiveBadge />}
+              <strong>{c.name}</strong>
+              {c.number}
+            </figcaption>
+          </figure>
+        </li>
       ))}
-    </div>
+    </ul>
   )
 }
 
@@ -230,8 +233,9 @@ function ChasingGlorySetGuide() {
           Both boxes pull from the same card list, but Pokémon China prints a different odds chart for each pack size. Applied to one
           box, the published shares work out to roughly this:
         </p>
-        <div className="table-scroll">
+        <div className="table-scroll" role="group" aria-labelledby="tbl-1" tabIndex={0}>
           <table className="data-table">
+            <caption id="tbl-1" className="sr-only">Slim box vs jumbo box</caption>
             <thead>
               <tr>
                 <th scope="col">Per box</th>
@@ -279,8 +283,9 @@ function ChasingGlorySetGuide() {
 
         <h2 id="ladders">One Pokémon, four rarities</h2>
         <p>Six Pokémon ex reach the gold tier. These are the numbers each one prints at, if you want to collect the full run:</p>
-        <div className="table-scroll">
+        <div className="table-scroll" role="group" aria-labelledby="tbl-2" tabIndex={0}>
           <table className="data-table">
+            <caption id="tbl-2" className="sr-only">One Pokémon, four rarities</caption>
             <thead>
               <tr>
                 <th scope="col">Pokémon</th>
@@ -308,8 +313,9 @@ function ChasingGlorySetGuide() {
           Every Trainer in the set and the Pokémon they own, from most cards to fewest. A Trainer's Pokémon only evolves from the same
           Trainer's Pokémon, so build each line from one Trainer.
         </p>
-        <div className="table-scroll">
+        <div className="table-scroll" role="group" aria-labelledby="tbl-3" tabIndex={0}>
           <table className="data-table">
+            <caption id="tbl-3" className="sr-only">The Trainer roster</caption>
             <thead>
               <tr>
                 <th scope="col">Trainer</th>
@@ -334,8 +340,9 @@ function ChasingGlorySetGuide() {
           Every card has one number out of 222. The main set runs 001 to 222, from Common to Double Rare, and everything above 222 is a
           secret rare. The rarer versions of a card sit in the secret block at unrelated numbers, so match them by name.
         </p>
-        <div className="table-scroll">
+        <div className="table-scroll" role="group" aria-labelledby="tbl-4" tabIndex={0}>
           <table className="data-table">
+            <caption id="tbl-4" className="sr-only">How the numbers work</caption>
             <thead>
               <tr>
                 <th scope="col">Numbers</th>

@@ -1,3 +1,4 @@
+import { Zh } from '~/components/blog/Zh'
 import { BuyStrip } from '~/components/blog/BlogShop'
 import { createFileRoute, Link } from '@tanstack/react-router'
 import blogCssUrl from '~/styles/blog.css?url'
@@ -16,17 +17,19 @@ type Shown = { n: string; name: string; note: string }
 
 function Grid({ cards, cols }: { cards: Shown[]; cols: number }) {
   return (
-    <div className={`card-grid cols-${cols}`}>
+    <ul className={`card-grid cols-${cols}`}>
       {cards.map((c) => (
-        <figure key={c.n}>
-          <img src={cardImg(c.n)} alt={`${c.name} ${c.n}/208, Terastal Gathering`} loading="lazy" width={300} height={419} />
-          <figcaption>
-            <strong>{c.name}</strong>
-            {c.n}/208 · {c.note}
-          </figcaption>
-        </figure>
+        <li key={c.n}>
+          <figure>
+            <img src={cardImg(c.n)} alt={`${c.name} ${c.n}/208, Terastal Gathering`} loading="lazy" width={300} height={419} />
+            <figcaption>
+              <strong>{c.name}</strong>
+              {c.n}/208 · {c.note}
+            </figcaption>
+          </figure>
+        </li>
       ))}
-    </div>
+    </ul>
   )
 }
 
@@ -188,7 +191,7 @@ function TerastalGatheringReleasePost() {
         }}
       >
         <p>
-          Terastal Gathering (太晶盛聚) released on June 12, 2026. It is the special set between Stellar Crystal and Chasing Glory, and
+          Terastal Gathering (<Zh>太晶盛聚</Zh>) released on June 12, 2026. It is the special set between Stellar Crystal and Chasing Glory, and
           the Simplified Chinese counterpart to Prismatic Evolutions: Eevee and its evolutions in Stellar Tera form, a deep run of
           Special Art Rares, and 10-card packs with three or four holos in every one. It also has a Chinese Exclusive: a Sylveon ex
           Special Art Rare, 234/208.
@@ -206,7 +209,7 @@ function TerastalGatheringReleasePost() {
             <p className="fact-box-title">Key facts</p>
             <dl>
               <dt>Set</dt>
-              <dd>Terastal Gathering (太晶盛聚)</dd>
+              <dd>Terastal Gathering (<Zh>太晶盛聚</Zh>)</dd>
               <dt>Set code</dt>
               <dd>CSV9.5C</dd>
               <dt>Released</dt>
@@ -242,21 +245,25 @@ function TerastalGatheringReleasePost() {
           rika is new: Pokémon China calls it a special addition to this set, and there is no English version of it. If you are
           buying a single, check the number.
         </p>
-        <div className="card-grid cols-2">
-          <figure>
-            <img src={cardImg('233')} alt="Sylveon ex 233/208 Special Art Rare, Terastal Gathering" loading="lazy" width={300} height={419} />
-            <figcaption>
-              <strong>Sylveon ex</strong>233/208 · SAR · Cona Nitanda
-            </figcaption>
-          </figure>
-          <figure>
-            <img src={cardImg('234')} alt="Sylveon ex 234/208 Special Art Rare, Chinese Exclusive" loading="lazy" width={300} height={419} />
-            <figcaption>
-              <ChineseExclusiveBadge />
-              <strong>Sylveon ex</strong>234/208 · SAR · rika
-            </figcaption>
-          </figure>
-        </div>
+        <ul className="card-grid cols-2">
+          <li>
+            <figure>
+              <img src={cardImg('233')} alt="Sylveon ex 233/208 Special Art Rare, Terastal Gathering" loading="lazy" width={300} height={419} />
+              <figcaption>
+                <strong>Sylveon ex</strong>233/208 · SAR · Cona Nitanda
+              </figcaption>
+            </figure>
+          </li>
+          <li>
+            <figure>
+              <img src={cardImg('234')} alt="Sylveon ex 234/208 Special Art Rare, Chinese Exclusive" loading="lazy" width={300} height={419} />
+              <figcaption>
+                <ChineseExclusiveBadge />
+                <strong>Sylveon ex</strong>234/208 · SAR · rika
+              </figcaption>
+            </figure>
+          </li>
+        </ul>
 
         <h2 id="special-art-rares">Special Art Rares</h2>
         <p>
@@ -307,8 +314,9 @@ function TerastalGatheringReleasePost() {
           Every pack has 10 cards, with either three or four holos. A box of 10 packs gives you 100 cards and somewhere between 30 and 40
           holos. Pokémon China groups its odds into three bands:
         </p>
-        <div className="table-scroll">
+        <div className="table-scroll" role="group" aria-labelledby="tbl-1" tabIndex={0}>
           <table className="data-table">
+            <caption id="tbl-1" className="sr-only">Packs, boxes and odds</caption>
             <thead>
               <tr>
                 <th scope="col">Rarity group</th>

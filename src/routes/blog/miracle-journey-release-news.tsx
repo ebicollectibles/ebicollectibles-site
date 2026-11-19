@@ -1,3 +1,4 @@
+import { Zh } from '~/components/blog/Zh'
 import { BuyStrip } from '~/components/blog/BlogShop'
 import { createFileRoute, Link } from '@tanstack/react-router'
 import blogCssUrl from '~/styles/blog.css?url'
@@ -15,17 +16,19 @@ type Shown = { n: string; name: string; note: string }
 
 function Grid({ cards, cols }: { cards: Shown[]; cols: number }) {
   return (
-    <div className={`card-grid cols-${cols}`}>
+    <ul className={`card-grid cols-${cols}`}>
       {cards.map((c) => (
-        <figure key={c.n}>
-          <img src={cardImg(c.n)} alt={`${c.name} ${c.n}/128, Miracle Journey`} loading="lazy" width={300} height={418} />
-          <figcaption>
-            <strong>{c.name}</strong>
-            {c.n}/128 · {c.note}
-          </figcaption>
-        </figure>
+        <li key={c.n}>
+          <figure>
+            <img src={cardImg(c.n)} alt={`${c.name} ${c.n}/128, Miracle Journey`} loading="lazy" width={300} height={418} />
+            <figcaption>
+              <strong>{c.name}</strong>
+              {c.n}/128 · {c.note}
+            </figcaption>
+          </figure>
+        </li>
       ))}
-    </div>
+    </ul>
   )
 }
 
@@ -198,7 +201,7 @@ function MiracleJourneyReleasePost() {
         }}
       >
         <p>
-          Miracle Journey (奇迹启程) released on March 21, 2025. It is the second main set of the Chinese Scarlet & Violet series, with
+          Miracle Journey (<Zh>奇迹启程</Zh>) released on March 21, 2025. It is the second main set of the Chinese Scarlet & Violet series, with
           Gardevoir on the pack and in the set as Gardevoir ex. Around it are Meowscarada ex, Skeledirge ex and Quaquaval ex, more
           Pokémon and Trainers from Paldea, and 35 secret rares.
         </p>
@@ -209,7 +212,7 @@ function MiracleJourneyReleasePost() {
             <p className="fact-box-title">Key facts</p>
             <dl>
               <dt>Set</dt>
-              <dd>Miracle Journey (奇迹启程)</dd>
+              <dd>Miracle Journey (<Zh>奇迹启程</Zh>)</dd>
               <dt>Set code</dt>
               <dd>CSV2C</dd>
               <dt>Released</dt>
@@ -301,8 +304,9 @@ function MiracleJourneyReleasePost() {
           chart for each one. The charts give each rarity group's share of the print run, and multiplying a share by the pack size
           gives the average number of those cards per pack:
         </p>
-        <div className="table-scroll">
+        <div className="table-scroll" role="group" aria-labelledby="tbl-1" tabIndex={0}>
           <table className="data-table">
+            <caption id="tbl-1" className="sr-only">Packs and pull odds</caption>
             <thead>
               <tr>
                 <th scope="col">Rarity group</th>

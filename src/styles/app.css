@@ -53,18 +53,157 @@
 .ebi-cookie-banner {
   animation: ebiCookieBannerIn 0.25s ease-out;
 }
+.ebi-cookie-banner-inner {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 18px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+.ebi-cookie-banner-text {
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--ink);
+  margin: 0;
+  max-width: 62ch;
+  flex: 1 1 320px;
+}
+.ebi-cookie-banner-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  flex-shrink: 0;
+}
+/* Phones: a more compact banner (it was about 199px tall at 390px wide and
+   sat over the last mobile-menu item and the card dialog's buttons). Tighter
+   padding and type, and the three actions on one row with 44px-tall targets;
+   the same three choices, in the same order, as on desktop. */
+@media (max-width: 640px) {
+  .ebi-cookie-banner-inner {
+    padding: 10px 14px calc(10px + env(safe-area-inset-bottom, 0px));
+    gap: 8px;
+  }
+  .ebi-cookie-banner-text {
+    font-size: 12.5px;
+    line-height: 1.4;
+    flex-basis: 100%;
+  }
+  .ebi-cookie-banner-actions {
+    width: 100%;
+    flex-wrap: nowrap;
+    gap: 8px;
+  }
+  .ebi-cookie-banner-actions .ebi-cookie-btn {
+    min-height: 44px;
+    padding: 4px 8px !important;
+    line-height: 1.2;
+    flex: 1 1 0;
+  }
+  .ebi-cookie-banner-actions .ebi-cookie-btn:first-child {
+    flex: 0 1 auto;
+    padding-inline: 2px !important;
+    text-align: left;
+  }
+}
+
+/* While the cookie banner shows, CookieConsent.tsx publishes its height as
+   --ebi-cookie-banner-h. The page gets that much room at the bottom (so the
+   footer can scroll clear of the banner), anything scrolled into view by
+   focus or an anchor stops above it, and the open mobile menu scrolls
+   inside the space left between the header and the banner. */
+body {
+  padding-bottom: var(--ebi-cookie-banner-h, 0px);
+}
+html,
+body {
+  scroll-padding-bottom: var(--ebi-cookie-banner-h, 0px);
+}
+
+/* Print: the page content only. The cookie banner, skip link and any open
+   dialog backdrop are screen furniture, and a sticky header would repeat
+   over the text. */
+@media print {
+  .ebi-cookie-banner,
+  .ebi-skip-link {
+    display: none !important;
+  }
+  header {
+    position: static !important;
+  }
+  body {
+    padding-bottom: 0;
+  }
+}
+
+/* Cookie preferences dialog. */
+.ebi-cookie-dialog:focus {
+  outline: none;
+}
+.ebi-cookie-dialog-close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  background: none;
+  border: 0;
+  border-radius: 50%;
+  color: var(--ink);
+  font-size: 22px;
+  line-height: 1;
+  cursor: pointer;
+}
+.ebi-cookie-dialog-close:hover {
+  background: var(--surface);
+}
+/* The real checkbox is transparent over the drawn switch, so the focus ring
+   is drawn on the switch's track instead. */
+.ebi-switch input:focus-visible + span {
+  outline: 2px solid var(--ink);
+  outline-offset: 2px;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .ebi-cookie-banner {
     animation: none;
   }
-}
-/* Without this, the action-button group keeps its unwrapped, max-content
-   width as a flex item and overflows past the right edge on narrow screens
-   instead of actually wrapping its buttons onto a second line. */
-@media (max-width: 640px) {
-  .ebi-cookie-banner-actions {
-    width: 100%;
+  .ebi-switch span {
+    transition: none !important;
   }
+  .ebi-cart-overlay,
+  .ebi-cart-panel,
+  .ebi-qty-stepper,
+  .ebi-qty-pulse,
+  .ebi-atc-check circle,
+  .ebi-atc-check path {
+    animation-duration: 0.01ms !important;
+    animation-delay: 0s !important;
+  }
+}
+
+/* Keyboard focus: one visible ring everywhere, unless a section sets its
+   own (the set pages and blog do, to suit their dark hero bands). :where()
+   keeps this at zero specificity so those always win. */
+:where(a, button, input, select, textarea, summary, [tabindex]):focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 2px;
+}
+/* The skip link and "jump to" links move focus to the page's <main> (and
+   other non-interactive targets), which should not draw a ring around the
+   whole region. */
+/* Controls that sit on the dark navy panels need a light ring. */
+.ebi-on-dark:focus-visible {
+  outline-color: #ffffff;
+}
+#main-content:focus,
+[tabindex='-1']:focus {
+  outline: none;
 }
 
 html,
@@ -461,6 +600,21 @@ button {
 
   .ebi-mobile-menu.is-open {
     display: flex;
+    /* Scrolls within the screen below the header row (72px) and above the
+       cookie banner when that is showing, so every item, down to "Log in",
+       can be reached. */
+    max-height: calc(100vh - 72px - var(--ebi-cookie-banner-h, 0px));
+    max-height: calc(100dvh - 72px - var(--ebi-cookie-banner-h, 0px));
+    overflow-y: auto;
+    overscroll-behavior: contain;
+  }
+
+  /* 44px touch targets for the mobile menu's links. */
+  .ebi-mobile-menu nav > a,
+  .ebi-mobile-menu nav > button {
+    min-height: 44px;
+    display: flex;
+    align-items: center;
   }
 
   .ebi-header-row {

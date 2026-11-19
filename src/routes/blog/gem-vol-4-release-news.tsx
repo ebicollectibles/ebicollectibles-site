@@ -1,3 +1,4 @@
+import { Zh, zh } from '~/components/blog/Zh'
 import { BuyStrip } from '~/components/blog/BlogShop'
 import { ChineseExclusiveBadge } from '~/components/blog/ChineseExclusive'
 import { createFileRoute, Link } from '@tanstack/react-router'
@@ -193,7 +194,7 @@ function GemVol4Post() {
             <p className="fact-box-title">Key facts</p>
             <dl>
               <dt>Set</dt>
-              <dd>Gem Pack Vol. 4 (宝石包 VOL.4), also called Gemstone Vol. 4</dd>
+              <dd>Gem Pack Vol. 4 (<Zh>宝石包 VOL.4</Zh>), also called Gemstone Vol. 4</dd>
               <dt>Set code</dt>
               <dd>CBB4C</dd>
               <dt>Released</dt>
@@ -245,17 +246,19 @@ function GemVol4Post() {
           seasons, and Eevee, Litten, Minccino and Cinccino round out the cute side. Enamorus and the Paradox Pokémon Flutter Mane give
           the set a couple of heavier hitters. Pokémon China revealed these full arts alongside Ponyta:
         </p>
-        <div className="card-grid cols-3">
+        <ul className="card-grid cols-3">
           {REVEALED_FULL_ARTS.map((c) => (
-            <figure key={c.id}>
-              <img src={cardImg(c.id)} alt={`${c.name} full art ${c.id}/07, Gem Vol 4`} loading="lazy" width={300} height={419} />
-              <figcaption>
-                <strong>{c.name}</strong>
-                {c.id}/07 · Illus. {c.illus}
-              </figcaption>
-            </figure>
+            <li key={c.id}>
+              <figure>
+                <img src={cardImg(c.id)} alt={`${c.name} full art ${c.id}/07, Gem Vol 4`} loading="lazy" width={300} height={419} />
+                <figcaption>
+                  <strong>{c.name}</strong>
+                  {c.id}/07 · Illus. {c.illus}
+                </figcaption>
+              </figure>
+            </li>
           ))}
-        </div>
+        </ul>
         <p>
           The rest of the roster: Lickitung, Pinsir, Paldean Wooper, Relicanth, Grotle, Chatot, Probopass, Froslass, Phione, Charjabug,
           Cutiefly, Cramorant and Snom. The <Link to="/sets/chinese/gem-vol-4">full card list</Link> shows all 196 cards.
@@ -269,8 +272,9 @@ function GemVol4Post() {
           holo pattern. The seventh is a full art with its own illustration. Card numbers tell you exactly where you are: read 0107/07
           as Pokémon 01, version 07 of 7, so it is the full art of the first Pokémon in the set, which is Ponyta.
         </p>
-        <div className="table-scroll">
+        <div className="table-scroll" role="group" aria-labelledby="tbl-1" tabIndex={0}>
           <table className="data-table">
+            <caption id="tbl-1" className="sr-only">How the set is built</caption>
             <thead>
               <tr>
                 <th scope="col">Rarity</th>
@@ -307,17 +311,19 @@ function GemVol4Post() {
           changes: Fire-type and Poké Ball patterns, glitter, starburst, the Master
           Ball pattern, and the pink Gem Pack logo stamp.
         </p>
-        <div className="card-grid cols-3">
+        <ul className="card-grid cols-3">
           {PONYTA_RUN.map((c) => (
-            <figure key={c.id}>
-              <img src={cardImg(c.id)} alt={`Ponyta ${c.id}/07, ${c.rarity}, ${c.finish}, Gem Vol 4`} loading="lazy" width={300} height={419} />
-              <figcaption>
-                <strong>{c.id}/07</strong>
-                {c.rarity} · {c.finish}
-              </figcaption>
-            </figure>
+            <li key={c.id}>
+              <figure>
+                <img src={cardImg(c.id)} alt={`Ponyta ${c.id}/07, ${c.rarity}, ${c.finish}, Gem Vol 4`} loading="lazy" width={300} height={419} />
+                <figcaption>
+                  <strong>{c.id}/07</strong>
+                  {c.rarity} · {c.finish}
+                </figcaption>
+              </figure>
+            </li>
           ))}
-        </div>
+        </ul>
 
         <h2 id="booster-box">What is inside a booster box</h2>
         <p>
@@ -334,8 +340,9 @@ function GemVol4Post() {
           Gem Packs have been a Simplified Chinese collector line since January 2025, with the same 4-holo pack the whole way. Vol. 4 is
           the first volume with the 196-card, 28 × 7 shape, up from 136 cards in Vol. 3.
         </p>
-        <div className="table-scroll">
+        <div className="table-scroll" role="group" aria-labelledby="tbl-2" tabIndex={0}>
           <table className="data-table">
+            <caption id="tbl-2" className="sr-only">Where Vol. 4 fits in the Gem Pack line</caption>
             <thead>
               <tr>
                 <th scope="col">Volume</th>
@@ -381,7 +388,7 @@ function GemVol4Post() {
             <details key={f.q}>
               <summary>{f.q}</summary>
               <p>
-                {f.a}
+                {zh(f.a)}
                 {f.link && (
                   <>
                     {' '}

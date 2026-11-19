@@ -43,37 +43,51 @@ export function BlogPostLayout({
     ],
   }
   return (
-    <div className={wide ? 'ebi-blog is-wide' : 'ebi-blog'} style={{ '--glow-1': post.glow1, '--glow-2': post.glow2 } as React.CSSProperties}>
+    // One <article> for the whole post: its header (title, intro, date,
+    // author) and its body. Screen readers get a single article landmark
+    // whose first heading is the h1, and reader modes / e-readers pick up
+    // the title, date and byline together with the text.
+    <article className={wide ? 'ebi-blog is-wide' : 'ebi-blog'} style={{ '--glow-1': post.glow1, '--glow-2': post.glow2 } as React.CSSProperties}>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(breadcrumbJsonLd) }} />
-      <section className="hero">
+      <header className="hero">
         <div className="wrap-narrow">
-          <div className="crumbs">
+          <nav className="crumbs" aria-label="Breadcrumb">
             <Link to="/">Home</Link>
-            <span>/</span>
+            <span aria-hidden="true">/</span>
             <Link to="/blog" activeOptions={{ exact: true }} activeProps={{}}>Blog</Link>
-          </div>
+          </nav>
           <div className="eyebrow">
-            <span className="dot" />
+            <span className="dot" aria-hidden="true" />
             {post.tag}
           </div>
           <h1>{post.title}</h1>
           <p className="lede">{lede}</p>
           <div className="meta-row">
-            <span>{formatDate(post.date)}</span>
+            <span>
+              <span className="sr-only">Published </span>
+              <time dateTime={post.date}>{formatDate(post.date)}</time>
+            </span>
             {updated && updated.slice(0, 10) > post.date && (
               <>
-                <span>·</span>
-                <span>Updated {formatDate(updated.slice(0, 10))}</span>
+                <span aria-hidden="true">·</span>
+                <span>
+                  Updated <time dateTime={updated.slice(0, 10)}>{formatDate(updated.slice(0, 10))}</time>
+                </span>
               </>
             )}
-            <span>·</span>
-            <span>EBI Collectibles</span>
+            <span aria-hidden="true">·</span>
+            <span className="byline">
+              <span className="sr-only">By </span>
+              <span className="author">EBI Collectibles</span>
+            </span>
           </div>
         </div>
-      </section>
-      <article className={`${wide ? 'wrap-wide' : 'wrap-narrow'} article`}>
+      </header>
+      <div className={`${wide ? 'wrap-wide' : 'wrap-narrow'} article`}>
         <Link to="/blog" className="back-link">
-          ← Back to Blog
+          <span>
+            <span aria-hidden="true">←</span> Back to Blog
+          </span>
         </Link>
         <img
           className="article-hero-img"
@@ -88,7 +102,7 @@ export function BlogPostLayout({
         />
         <div className="prose">{children}</div>
         <ShopPanel products={shop} heading={cta.heading} body={cta.body} links={cta.links} />
-      </article>
-    </div>
+      </div>
+    </article>
   )
 }

@@ -218,25 +218,28 @@ function GemVol1OriginsPost() {
           That adds up to 38 illustrations. 33 of them come from English cards. The other five are Pokémon Horizons art with no English
           printing we could find: the four Chinese Exclusive full arts and Captain Pikachu's base card.
         </p>
-        <div className="card-grid cols-4">
+        <ul className="card-grid cols-4">
           {EXCLUSIVES.map((c) => (
-            <figure key={c.id}>
-              <img src={cardImg(c.id)} alt={`${c.name} ${c.id}/09 Chinese Exclusive Horizons full art, Gem Vol 1`} loading="lazy" width={300} height={419} />
-              <figcaption>
-                <ChineseExclusiveBadge />
-                <strong>
-                  {c.name} {c.id}/09
-                </strong>
-                Horizons full art · Illus. {c.illus}
-              </figcaption>
-            </figure>
+            <li key={c.id}>
+              <figure>
+                <img src={cardImg(c.id)} alt={`${c.name} ${c.id}/09 Chinese Exclusive Horizons full art, Gem Vol 1`} loading="lazy" width={300} height={419} />
+                <figcaption>
+                  <ChineseExclusiveBadge />
+                  <strong>
+                    {c.name} {c.id}/09
+                  </strong>
+                  Horizons full art · Illus. {c.illus}
+                </figcaption>
+              </figure>
+            </li>
           ))}
-        </div>
+        </ul>
 
         <h2 id="by-set">Which sets it comes from</h2>
         <p>All of it is Scarlet & Violet era art, with Paldea Evolved the biggest source, listed in release order:</p>
-        <div className="table-scroll">
+        <div className="table-scroll" role="group" aria-labelledby="tbl-1" tabIndex={0}>
           <table className="data-table">
+            <caption id="tbl-1" className="sr-only">Which sets it comes from</caption>
             <thead>
               <tr>
                 <th scope="col">English source</th>
@@ -286,8 +289,9 @@ function GemVol1OriginsPost() {
 
         <h2 id="full-map">The full card-by-card map</h2>
         <p>Every Gem Vol 1 Pokémon, with the English card behind each of its illustrations and the illustrator credited on it.</p>
-        <div className="table-scroll table-wide">
+        <div className="table-scroll table-wide" role="group" aria-labelledby="tbl-2" tabIndex={0}>
           <table className="data-table origins-table origins-wide">
+            <caption id="tbl-2" className="sr-only">The full card-by-card map</caption>
             <thead>
               <tr>
                 <th scope="col">#</th>
@@ -319,8 +323,9 @@ function GemVol1OriginsPost() {
 
         <h2 id="trainers">Trainer cards</h2>
         <p>The four Trainer cards reuse English art as well. Nemona is aspara's Special Illustration Rare art from Paldean Fates.</p>
-        <div className="table-scroll">
+        <div className="table-scroll" role="group" aria-labelledby="tbl-3" tabIndex={0}>
           <table className="data-table origins-table">
+            <caption id="tbl-3" className="sr-only">Trainer cards</caption>
             <thead>
               <tr>
                 <th scope="col">Gem card</th>

@@ -1,3 +1,4 @@
+import { Zh } from '~/components/blog/Zh'
 import { BuyStrip } from '~/components/blog/BlogShop'
 import { createFileRoute, Link } from '@tanstack/react-router'
 import blogCssUrl from '~/styles/blog.css?url'
@@ -19,18 +20,20 @@ const EXCLUSIVE = new Set(['158', '159', '162'])
 
 function Grid({ cards, cols }: { cards: Shown[]; cols: number }) {
   return (
-    <div className={`card-grid cols-${cols}`}>
+    <ul className={`card-grid cols-${cols}`}>
       {cards.map((c) => (
-        <figure key={c.n}>
-          <img src={cardImg(c.n)} alt={`${c.name} ${c.n}/129, Reward Round`} loading="lazy" width={300} height={419} />
-          <figcaption>
-            {EXCLUSIVE.has(c.n) && <ChineseExclusiveBadge />}
-            <strong>{c.name}</strong>
-            {c.n}/129 · {c.note}
-          </figcaption>
-        </figure>
+        <li key={c.n}>
+          <figure>
+            <img src={cardImg(c.n)} alt={`${c.name} ${c.n}/129, Reward Round`} loading="lazy" width={300} height={419} />
+            <figcaption>
+              {EXCLUSIVE.has(c.n) && <ChineseExclusiveBadge />}
+              <strong>{c.name}</strong>
+              {c.n}/129 · {c.note}
+            </figcaption>
+          </figure>
+        </li>
       ))}
-    </div>
+    </ul>
   )
 }
 
@@ -193,7 +196,7 @@ function RewardRoundReleasePost() {
         }}
       >
         <p>
-          Reward Round (嘉奖回合) released on July 18, 2025. It is the fourth main set of the Chinese Scarlet & Violet series, with
+          Reward Round (<Zh>嘉奖回合</Zh>) released on July 18, 2025. It is the fourth main set of the Chinese Scarlet & Violet series, with
           Gholdengo on the pack and a cast of Paldea Pokémon and Trainers around it. It came in two pack sizes, slim and jumbo, and it
           hides three cards English collectors cannot pull.
         </p>
@@ -210,7 +213,7 @@ function RewardRoundReleasePost() {
             <p className="fact-box-title">Key facts</p>
             <dl>
               <dt>Set</dt>
-              <dd>Reward Round (嘉奖回合)</dd>
+              <dd>Reward Round (<Zh>嘉奖回合</Zh>)</dd>
               <dt>Set code</dt>
               <dd>CSV4C</dd>
               <dt>Released</dt>
@@ -281,22 +284,27 @@ function RewardRoundReleasePost() {
           Reward Round came in a slim 5-card pack with one holo and a jumbo 20-card pack with six holos. We carry the slim booster box: 15
           packs, 75 cards, 15 holos. Pokémon China's odds chart for the 5-card pack, applied to one slim box:
         </p>
-        <div className="card-grid cols-2">
-          <figure>
-            <img src={`${SITE_URL}/assets/blog/reward-round-slim-pack.webp`} alt="Reward Round slim pack, 5 cards" loading="lazy" width={600} height={1128} />
-            <figcaption>
-              <strong>Slim pack</strong>5 cards · 1 holo
-            </figcaption>
-          </figure>
-          <figure>
-            <img src={`${SITE_URL}/assets/blog/reward-round-jumbo-pack.webp`} alt="Reward Round jumbo pack, 20 cards" loading="lazy" width={600} height={1196} />
-            <figcaption>
-              <strong>Jumbo pack</strong>20 cards · 6 holo
-            </figcaption>
-          </figure>
-        </div>
-        <div className="table-scroll">
+        <ul className="card-grid cols-2">
+          <li>
+            <figure>
+              <img src={`${SITE_URL}/assets/blog/reward-round-slim-pack.webp`} alt="Reward Round slim pack, 5 cards" loading="lazy" width={600} height={1128} />
+              <figcaption>
+                <strong>Slim pack</strong>5 cards · 1 holo
+              </figcaption>
+            </figure>
+          </li>
+          <li>
+            <figure>
+              <img src={`${SITE_URL}/assets/blog/reward-round-jumbo-pack.webp`} alt="Reward Round jumbo pack, 20 cards" loading="lazy" width={600} height={1196} />
+              <figcaption>
+                <strong>Jumbo pack</strong>20 cards · 6 holo
+              </figcaption>
+            </figure>
+          </li>
+        </ul>
+        <div className="table-scroll" role="group" aria-labelledby="tbl-1" tabIndex={0}>
           <table className="data-table">
+            <caption id="tbl-1" className="sr-only">Slim and jumbo packs</caption>
             <thead>
               <tr>
                 <th scope="col">Rarity group</th>

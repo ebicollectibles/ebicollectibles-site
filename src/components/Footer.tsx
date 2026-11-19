@@ -1,6 +1,17 @@
+import * as React from 'react'
 import { Link } from '@tanstack/react-router'
 import { SHOW_ACRYLICS } from '~/lib/feature-flags'
 import { useCookiePreferencesUI } from '~/components/CookieConsent'
+
+const footerHeading: React.CSSProperties = {
+  fontFamily: "'IBM Plex Mono', monospace",
+  fontSize: 10.5,
+  fontWeight: 400,
+  letterSpacing: '0.14em',
+  textTransform: 'uppercase',
+  color: '#131b28',
+  margin: 0,
+}
 
 export function Footer() {
   const { openPreferences } = useCookiePreferencesUI()
@@ -29,79 +40,80 @@ export function Footer() {
             in-house before it ships.
           </p>
         </div>
-        <div>
-          <div
-            style={{
-              fontFamily: "'IBM Plex Mono', monospace",
-              fontSize: 10.5,
-              letterSpacing: '0.14em',
-              textTransform: 'uppercase',
-              color: '#131b28',
-            }}
-          >
+        <nav aria-labelledby="footer-shop">
+          <h2 id="footer-shop" style={footerHeading}>
             Shop
-          </div>
-          <div className="ebi-footer-links" style={{ display: 'flex', flexDirection: 'column', gap: 2, marginTop: 10, fontSize: 13 }}>
-            <Link to="/shop" search={{ category: 'Chinese Pokémon Products' }}>
-              All Pokemon (Chinese)
-            </Link>
-            <Link to="/shop" search={{ subcategory: 'Booster Box' }}>
-              Booster Boxes
-            </Link>
-            <Link to="/shop" search={{ subcategory: 'Blind Box' }}>
-              Blind Boxes
-            </Link>
-            <Link to="/shop" search={{ subcategories: ['Figure', 'Plush'] }}>
-              Figures &amp; Plush
-            </Link>
-            <Link to="/shop" search={{ subcategory: 'Special Products' }}>
-              Special Products
-            </Link>
-            {SHOW_ACRYLICS && (
-              <Link to="/shop" search={{ category: 'Acrylic Cases' }}>
-                Acrylic Cases
+          </h2>
+          <ul className="ebi-footer-links" style={{ display: 'flex', flexDirection: 'column', gap: 2, margin: '10px 0 0', padding: 0, listStyle: 'none', fontSize: 13 }}>
+            <li>
+              <Link to="/shop" search={{ category: 'Chinese Pokémon Products' }}>
+                All Pokemon (Chinese)
               </Link>
+            </li>
+            <li>
+              <Link to="/shop" search={{ subcategory: 'Booster Box' }}>
+                Booster Boxes
+              </Link>
+            </li>
+            <li>
+              <Link to="/shop" search={{ subcategory: 'Blind Box' }}>
+                Blind Boxes
+              </Link>
+            </li>
+            <li>
+              <Link to="/shop" search={{ subcategories: ['Figure', 'Plush'] }}>
+                Figures &amp; Plush
+              </Link>
+            </li>
+            <li>
+              <Link to="/shop" search={{ subcategory: 'Special Products' }}>
+                Special Products
+              </Link>
+            </li>
+            {SHOW_ACRYLICS && (
+              <li>
+                <Link to="/shop" search={{ category: 'Acrylic Cases' }}>
+                  Acrylic Cases
+                </Link>
+              </li>
             )}
-          </div>
-        </div>
-        <div>
-          <div
-            style={{
-              fontFamily: "'IBM Plex Mono', monospace",
-              fontSize: 10.5,
-              letterSpacing: '0.14em',
-              textTransform: 'uppercase',
-              color: '#131b28',
-            }}
-          >
+          </ul>
+        </nav>
+        <nav aria-labelledby="footer-help">
+          <h2 id="footer-help" style={footerHeading}>
             Help
-          </div>
-          <div className="ebi-footer-links" style={{ display: 'flex', flexDirection: 'column', gap: 2, marginTop: 10, fontSize: 13 }}>
-            <Link to="/shipping-policy">Shipping policy</Link>
-            <Link to="/refund-policy">Refund policy</Link>
-            <Link to="/privacy">Privacy policy</Link>
-            <Link to="/cookie-policy">Cookie policy</Link>
-            <Link to="/terms-of-service">Terms of service</Link>
-          </div>
-        </div>
-        <div>
-          <div
-            style={{
-              fontFamily: "'IBM Plex Mono', monospace",
-              fontSize: 10.5,
-              letterSpacing: '0.14em',
-              textTransform: 'uppercase',
-              color: '#131b28',
-            }}
-          >
+          </h2>
+          <ul className="ebi-footer-links" style={{ display: 'flex', flexDirection: 'column', gap: 2, margin: '10px 0 0', padding: 0, listStyle: 'none', fontSize: 13 }}>
+            <li>
+              <Link to="/shipping-policy">Shipping policy</Link>
+            </li>
+            <li>
+              <Link to="/refund-policy">Refund policy</Link>
+            </li>
+            <li>
+              <Link to="/privacy">Privacy policy</Link>
+            </li>
+            <li>
+              <Link to="/cookie-policy">Cookie policy</Link>
+            </li>
+            <li>
+              <Link to="/terms-of-service">Terms of service</Link>
+            </li>
+          </ul>
+        </nav>
+        <nav aria-labelledby="footer-elsewhere">
+          <h2 id="footer-elsewhere" style={footerHeading}>
             Elsewhere
-          </div>
-          <div className="ebi-footer-links" style={{ display: 'flex', flexDirection: 'column', gap: 2, marginTop: 10, fontSize: 13 }}>
-            <a href="https://www.instagram.com/ebicollectibles" target="_blank" rel="noopener noreferrer">
-              Instagram
-            </a>
-          </div>
-        </div>
+          </h2>
+          <ul className="ebi-footer-links" style={{ display: 'flex', flexDirection: 'column', gap: 2, margin: '10px 0 0', padding: 0, listStyle: 'none', fontSize: 13 }}>
+            <li>
+              <a href="https://www.instagram.com/ebicollectibles" target="_blank" rel="noopener noreferrer">
+                Instagram
+              <span className="sr-only"> (opens in a new tab)</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
       </div>
       <div style={{ borderTop: '1px solid #e3e6ea' }}>
         <div
@@ -122,6 +134,8 @@ export function Footer() {
           <span>© 2026 EBI Collectibles</span>
           <button
             type="button"
+            data-cookie-preferences
+            aria-haspopup="dialog"
             onClick={openPreferences}
             style={{ background: 'none', border: 'none', color: '#5a6875', fontFamily: 'inherit', fontSize: 11, textDecoration: 'underline', cursor: 'pointer', padding: 0 }}
           >

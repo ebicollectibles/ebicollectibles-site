@@ -1,3 +1,6 @@
+import { chunk } from '~/lib/chunk'
+import { RarityAbbr, rarityFullName } from '~/components/blog/RarityAbbr'
+import { useId } from 'react'
 import { BuyStrip } from '~/components/blog/BlogShop'
 import { createFileRoute, Link } from '@tanstack/react-router'
 import blogCssUrl from '~/styles/blog.css?url'
@@ -383,10 +386,15 @@ export const Route = createFileRoute('/blog/terastal-gathering-card-origins')({
   component: TerastalGatheringOrigins,
 })
 
-function OriginsTable({ list }: { list: typeof rows }) {
+function OriginsTable({ list, caption }: { list: typeof rows; caption: string }) {
+  // Names the table for screen readers and labels its scroll area.
+  const captionId = useId()
   return (
-    <div className="table-scroll table-tall">
+    <div className="table-scroll table-tall" role="group" aria-labelledby={captionId} tabIndex={0}>
       <table className="data-table origins-table">
+        <caption id={captionId} className="sr-only">
+          {caption}
+        </caption>
         <thead>
           <tr>
             <th scope="col">No.</th>
@@ -394,27 +402,33 @@ function OriginsTable({ list }: { list: typeof rows }) {
             <th scope="col">English card</th>
           </tr>
         </thead>
-        <tbody>
-          {list.map((r) => (
-            <tr key={r.cn} className={r.src === 'NEW' ? 'is-current' : undefined}>
-              <th scope="row">{r.cn}</th>
-              <td>
-                {r.name}
-                <span className="cell-sub">{r.rarity}</span>
-              </td>
-              <td>
-                {r.src === 'NEW' ? (
-                  <span className="cell-none">{EXCLUSIVE.has(r.cn) ? 'Chinese Exclusive, no English version' : 'New art, no English version'}</span>
-                ) : (
-                  <>
-                    {SET_NAME[r.src]} {r.en}
-                  </>
-                )}
-                {r.illus ? <span className="cell-sub">Illus. {r.illus}</span> : null}
-              </td>
-            </tr>
-          ))}
-        </tbody>
+        {/* Row groups of 20: the same table on screen and to screen readers, but no single
+            group outweighs the article text when a reader mode picks the main content. */}
+        {chunk(list, 20).map((group, g) => (
+          <tbody key={g}>
+            {group.map((r) => (
+              <tr key={r.cn} className={r.src === 'NEW' ? 'is-current' : undefined}>
+                <th scope="row">{r.cn}</th>
+                <td>
+                  {r.name}
+                  <span className="cell-sub">
+                    <RarityAbbr code={r.rarity} />
+                  </span>
+                </td>
+                <td>
+                  {r.src === 'NEW' ? (
+                    <span className="cell-none">{EXCLUSIVE.has(r.cn) ? 'Chinese Exclusive, no English version' : 'New art, no English version'}</span>
+                  ) : (
+                    <>
+                      {SET_NAME[r.src]} {r.en}
+                    </>
+                  )}
+                  {r.illus ? <span className="cell-sub">Illus. {r.illus}</span> : null}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        ))}
       </table>
     </div>
   )
@@ -485,8 +499,9 @@ function TerastalGatheringOrigins() {
         </nav>
 
         <h2 id="at-a-glance">At a glance</h2>
-        <div className="table-scroll">
+        <div className="table-scroll" role="group" aria-labelledby="tbl-2" tabIndex={0}>
           <table className="data-table">
+            <caption id="tbl-2" className="sr-only">At a glance</caption>
             <thead>
               <tr>
                 <th scope="col">Rarity</th>
@@ -529,18 +544,20 @@ function TerastalGatheringOrigins() {
           <strong>Two cards are new.</strong> Sylveon ex 234/208 by rika is the Chinese Exclusive Special Art Rare. Garchomp ex 045/208
           is a Double Rare with new art by PLANETA Mochizuki. In English, Garchomp ex only has its Paradox Rift arts.
         </p>
-        <div className="card-grid cols-3">
+        <ul className="card-grid cols-3">
           {showcase.map((r) => (
-            <figure key={r.cn}>
-              <img src={r.image} alt={`${r.name} ${r.cn}/208${EXCLUSIVE.has(r.cn) ? ', Chinese Exclusive' : ''}, Terastal Gathering`} loading="lazy" width={300} height={419} />
-              <figcaption>
-                {EXCLUSIVE.has(r.cn) && <ChineseExclusiveBadge />}
-                <strong>{r.name}</strong>
-                {r.cn}/208 · {r.src === 'NEW' ? 'New art' : `${SET_NAME[r.src]} ${r.en}`}
-              </figcaption>
-            </figure>
+            <li key={r.cn}>
+              <figure>
+                <img src={r.image} alt={`${r.name} ${r.cn}/208 ${rarityFullName(r.rarity)}${EXCLUSIVE.has(r.cn) ? ', Chinese Exclusive' : ''}, Terastal Gathering`} loading="lazy" width={300} height={419} />
+                <figcaption>
+                  {EXCLUSIVE.has(r.cn) && <ChineseExclusiveBadge />}
+                  <strong>{r.name}</strong>
+                  {r.cn}/208 · {r.src === 'NEW' ? 'New art' : `${SET_NAME[r.src]} ${r.en}`}
+                </figcaption>
+              </figure>
+            </li>
           ))}
-        </div>
+        </ul>
         <p>
           <strong>Promo art comes out of packs.</strong> {PROMO_EX.length} Pokémon ex use art that English only printed as SV Black Star
           Promos: {PROMO_EX.map((r) => r.name).join(', ')}. So do the plain {PROMO_EEVEE.map((r) => r.name).join(', ')}, which match the
@@ -550,8 +567,9 @@ function TerastalGatheringOrigins() {
           <strong>The rest of the main set reaches back.</strong> {BY_OTHER_SET.reduce((a, b) => a + b.n, 0)} main-set cards match
           earlier Scarlet & Violet sets, mostly Paradox Rift, Twilight Masquerade and Temporal Forces:
         </p>
-        <div className="table-scroll">
+        <div className="table-scroll" role="group" aria-labelledby="tbl-3" tabIndex={0}>
           <table className="data-table">
+            <caption id="tbl-3" className="sr-only">Patterns worth knowing: English set, Cards</caption>
             <thead>
               <tr>
                 <th scope="col">English set</th>
@@ -571,8 +589,9 @@ function TerastalGatheringOrigins() {
         <p>
           <strong>Some of Prismatic Evolutions stayed out.</strong> 24 English cards have no match here:
         </p>
-        <div className="table-scroll">
+        <div className="table-scroll" role="group" aria-labelledby="tbl-4" tabIndex={0}>
           <table className="data-table">
+            <caption id="tbl-4" className="sr-only">Patterns worth knowing: Type, Not in Terastal Gathering</caption>
             <thead>
               <tr>
                 <th scope="col">Type</th>
@@ -593,12 +612,12 @@ function TerastalGatheringOrigins() {
 
         <h2 id="secret-rares">All 51 secret rares</h2>
         <p>Every card above 208, with its English twin. Highlighted rows are new.</p>
-        <OriginsTable list={SECRET} />
+        <OriginsTable list={SECRET} caption="Secret rares and the English card each one matches" />
 
         <BuyStrip />
 
         <h2 id="main-set">The 208-card main set</h2>
-        <OriginsTable list={MAIN} />
+        <OriginsTable list={MAIN} caption="Main set cards and the English card each one matches" />
 
         <h2 id="faq">FAQ</h2>
         <div className="faq">
