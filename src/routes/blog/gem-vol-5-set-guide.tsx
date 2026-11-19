@@ -136,7 +136,7 @@ function GemVol5SetGuide() {
         updated={status.liveAt}
         wide
         post={post}
-        lede="How to tell each Gem Pack Vol. 5 version apart, every full art in the set, the full roster, and what a master set takes."
+        lede="Each of the 28 Pokémon comes in seven versions, and four of the full arts are Chinese Exclusive Pokémon Horizons cards. This guide shows how to tell the versions apart and what it really takes to finish the set."
         cta={{
           heading: 'Collect Gem Vol 5',
           body: 'Track every card on the full checklist, or pick up a booster box and start ripping.',

@@ -180,7 +180,7 @@ function GemVol1SetGuide() {
         updated={status.liveAt}
         wide
         post={post}
-        lede="How to read a Gem Pack Vol. 1 card, the four Chinese Exclusive Horizons full arts, every illustration full art and shiny-style card, the full roster, and what a master set takes."
+        lede="The first Gem Pack mixes 9-, 8- and 5-card runs, so the numbering takes a minute to learn. This guide explains it, shows the four Chinese Exclusive Horizons full arts, and works out what it takes to finish the set."
         cta={{
           heading: 'Collect Gem Vol 1',
           body: 'Track every card on the full checklist and tick off what you have.',

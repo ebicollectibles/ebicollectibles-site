@@ -141,7 +141,7 @@ function GemVol7SetGuide() {
         updated={status.liveAt}
         wide
         post={post}
-        lede="How to tell each Gem Pack Vol. 7 version apart, every full art in the set, the full roster with its Trainers, and what a master set takes."
+        lede="Each of the 28 Pokémon comes in seven versions, from a common holo to a full art, and 19 of them are paired with a Trainer like Misty's Psyduck. This guide shows how to tell the versions apart and what it really takes to finish the set."
         cta={{
           heading: 'Collect Gem Vol 7',
           body: 'Track every card on the full checklist, or pick up a booster box and start ripping.',

@@ -174,7 +174,7 @@ function GemVol3SetGuide() {
         updated={status.liveAt}
         wide
         post={post}
-        lede="How to read a Gem Pack Vol. 3 card, every full art and Pokémon ex in the set, the full roster, and what a master set takes."
+        lede="Gem 3 mixes 18 Pokémon with nine Pokémon ex and Trainer and Energy cards, and five of its full arts are Chinese Exclusives. This guide explains how the numbering works and what it really takes to finish the set."
         cta={{
           heading: 'Collect Gem Vol 3',
           body: 'Track every card on the full checklist, or pick up a booster box and start ripping.',

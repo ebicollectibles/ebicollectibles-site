@@ -584,7 +584,7 @@ export const BLOG_POSTS: BlogPostSummary[] = [
     path: '/blog/gem-vol-7-set-guide',
     title: 'Gem Vol 7 Set Guide: Every Full Art, the Full Roster and Box Math',
     excerpt:
-      'How to tell every Gem Vol 7 version apart, all 28 full arts in one place, the full roster with its Trainers, and what a master set takes.',
+      "Each of the 28 Pokémon comes in seven versions, from a common holo to a full art, and 19 of them are paired with a Trainer like Misty's Psyduck. This guide shows how to tell the versions apart and what it really takes to finish the set.",
     seoTitle: 'Pokémon Gem Pack Vol. 7 (Gem 7) Set Guide: Chase Cards & Box Odds',
     seoDescription:
       'Pokémon TCG Gem Pack Vol. 7 (Gem 7) set guide: how to tell the seven versions apart, all 28 full arts, the Trainer lineup and the 196-card master set.',
@@ -616,7 +616,7 @@ export const BLOG_POSTS: BlogPostSummary[] = [
     path: '/blog/gem-vol-6-set-guide',
     title: 'Gem Vol 6 Set Guide: Every Full Art, the Full Roster and Box Math',
     excerpt:
-      'How to tell every Gem Vol 6 version apart, all 28 full arts in one place, the full roster, and what a master set really takes.',
+      "Each of the 28 Pokémon comes in seven versions, from a common holo to a full art, and Applin's full art is a Chinese Exclusive. This guide shows how to tell them apart and what it really takes to finish the set.",
     seoTitle: 'Pokémon Gem Pack Vol. 6 (Gem 6) Set Guide: Chase Cards & Box Odds',
     seoDescription:
       'Pokémon TCG Gem Pack Vol. 6 (Gem 6) set guide: how to tell the seven versions apart, all 28 full arts, the full roster, and the 196-card master set.',
@@ -664,7 +664,7 @@ export const BLOG_POSTS: BlogPostSummary[] = [
     path: '/blog/gem-vol-5-set-guide',
     title: 'Gem Vol 5 Set Guide: Every Full Art, the Full Roster and Box Math',
     excerpt:
-      'How to tell every Gem Vol 5 version apart, all 28 full arts in one place including the four Horizons cards, the full roster, and what a master set really takes.',
+      'Each of the 28 Pokémon comes in seven versions, and four of the full arts are Chinese Exclusive Pokémon Horizons cards. This guide shows how to tell the versions apart and what it really takes to finish the set.',
     seoTitle: 'Pokémon Gem Pack Vol. 5 (Gem 5) Set Guide: Chase Cards & Box Odds',
     seoDescription:
       'Pokémon TCG Gem Pack Vol. 5 (Gem 5) set guide: telling the seven versions apart, all 28 full arts with four Horizons cards, and the 196-card master set.',
@@ -712,7 +712,7 @@ export const BLOG_POSTS: BlogPostSummary[] = [
     path: '/blog/gem-vol-4-set-guide',
     title: 'Gem Vol 4 Set Guide: Every Full Art, the Full Roster and Box Math',
     excerpt:
-      'How to tell every Gem Vol 4 version apart, all 28 full arts in one place, the full roster, and what a master set really takes.',
+      "Each of the 28 Pokémon comes in seven versions, from a common holo to a full art, led by Ponyta's Chinese Exclusive. This guide shows how to tell them apart and what it really takes to finish the set.",
     seoTitle: 'Pokémon Gem Pack Vol. 4 (Gem 4) Set Guide: Chase Cards & Box Odds',
     seoDescription:
       'Pokémon TCG Gem Pack Vol. 4 (Gem 4) set guide: how to tell the seven versions apart, all 28 full arts, the full roster, and the 196-card master set.',
@@ -760,7 +760,7 @@ export const BLOG_POSTS: BlogPostSummary[] = [
     path: '/blog/gem-vol-3-set-guide',
     title: 'Gem Vol 3 Set Guide: Every Full Art, Every ex and Box Math',
     excerpt:
-      'How to read a Gem Vol 3 card, all nine full arts and nine Pokémon ex in one place, the Trainers and Energy, the full roster, and what a master set takes.',
+      'Gem 3 mixes 18 Pokémon with nine Pokémon ex and Trainer and Energy cards, and five of its full arts are Chinese Exclusives. This guide explains how the numbering works and what it really takes to finish the set.',
     seoTitle: 'Pokémon Gem Pack Vol. 3 (Gem 3) Set Guide: Chase Cards & Box Odds',
     seoDescription:
       'Pokémon TCG Gem Pack Vol. 3 (Gem 3) set guide: all nine full arts and nine Pokémon ex, the Trainers and Energy, and the 136-card master set.',
@@ -808,7 +808,7 @@ export const BLOG_POSTS: BlogPostSummary[] = [
     path: '/blog/gem-vol-2-set-guide',
     title: 'Gem Vol 2 Set Guide: Every V, VMAX and Full Art, Plus Box Math',
     excerpt:
-      'How to read a Gem Vol 2 card, the four new full arts, all nine V and VMAX, the Trainers and Energy, the full roster, and what a master set takes.',
+      'Eevee and its eight evolutions fill Gem 2, with V and VMAX cards and four Chinese Exclusive full arts. This guide explains how the numbering works and what it really takes to finish the set.',
     seoTitle: 'Pokémon Gem Pack Vol. 2 (Gem 2) Set Guide: Chase Cards & Box Odds',
     seoDescription:
       'Pokémon TCG Gem Pack Vol. 2 (Gem 2) set guide: the four Chinese Exclusive full arts, all nine V and VMAX, the full roster, and the 140-card master set.',
@@ -856,7 +856,7 @@ export const BLOG_POSTS: BlogPostSummary[] = [
     path: '/blog/gem-vol-1-set-guide',
     title: 'Gem Vol 1 Set Guide: Every Full Art, Every Shiny-Style Card and the Odds',
     excerpt:
-      'How to read a Gem Vol 1 card, the four Horizons full arts, all seven illustration full arts and shiny-style cards, the full roster, and what a master set takes.',
+      'The first Gem Pack mixes 9-, 8- and 5-card runs, so the numbering takes a minute to learn. This guide explains it, shows the four Chinese Exclusive Horizons full arts, and works out what it takes to finish the set.',
     seoTitle: 'Pokémon Gem Pack Vol. 1 (Gem 1) Set Guide: Chase Cards & Odds',
     seoDescription:
       'Pokémon TCG Gem Pack Vol. 1 (Gem 1) set guide: the four Chinese Exclusive Horizons full arts, every full art, print shares and the 115-card master set.',

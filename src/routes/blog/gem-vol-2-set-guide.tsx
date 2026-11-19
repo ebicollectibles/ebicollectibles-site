@@ -180,7 +180,7 @@ function GemVol2SetGuide() {
         updated={status.liveAt}
         wide
         post={post}
-        lede="How to read a Gem Pack Vol. 2 card, the four Chinese Exclusive full arts, every V and VMAX, the full roster, and what a master set takes."
+        lede="Eevee and its eight evolutions fill Gem 2, with V and VMAX cards and four Chinese Exclusive full arts. This guide explains how the numbering works and what it really takes to finish the set."
         cta={{
           heading: 'Collect Gem Vol 2',
           body: 'Track every card on the full checklist, or pick up a booster box and start ripping.',

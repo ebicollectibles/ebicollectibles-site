@@ -136,7 +136,7 @@ function GemVol6SetGuide() {
         updated={status.liveAt}
         wide
         post={post}
-        lede="How to tell each Gem Pack Vol. 6 version apart, every full art in the set, the full roster, and what a master set takes."
+        lede="Each of the 28 Pokémon comes in seven versions, from a common holo to a full art, and Applin's full art is a Chinese Exclusive. This guide shows how to tell them apart and what it really takes to finish the set."
         cta={{
           heading: 'Collect Gem Vol 6',
           body: 'Track every card on the full checklist, or pick up a booster box and start ripping.',
