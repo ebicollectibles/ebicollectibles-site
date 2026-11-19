@@ -58,7 +58,7 @@ const TOC = [
 const FAQ = [
   {
     q: 'How many full arts are in Gem 7?',
-    a: "28, one for every Pokémon in the set. Every full art is numbered 07, for example 0307/07 for Misty's Psyduck.",
+    a: "28, one for every Pokémon in the set. Every full art is version 07, so its number ends 07/07, for example 0307/07 for Misty's Psyduck.",
   },
   {
     q: 'What do the symbols next to the card number mean?',
@@ -74,7 +74,7 @@ const FAQ = [
   },
   {
     q: 'How many boxes does a master set take?',
-    a: 'There is no fixed number. Commons fill in fast, but with about 1.3 full arts per box and 28 to find, landing every full art from boxes alone takes dozens of boxes, so most collectors finish with singles.',
+    a: 'There is no fixed number. If every card at a rarity is equally likely, the commons fill in within about 7 boxes and the uncommons take about 14. With about 1.3 full arts per box and 28 to find, landing every full art from boxes alone takes around 80 boxes on average, so most collectors finish with singles.',
   },
 ]
 
@@ -226,7 +226,7 @@ function GemVol7SetGuide() {
 
         <h2 id="roster">The full roster</h2>
         <p>
-          All 28 Pokémon, in set order. Each one has seven cards, numbered from its first two digits plus 01 to 07. 19 of the 28 are
+          All 28 Pokémon, in set order. Each one has seven cards, numbered pp01 to pp07, where pp is its two-digit set number (0301 to 0307 for Psyduck). 19 of the 28 are
           paired with a Trainer, like Misty's Psyduck. Team Rocket has the most with eight, and Misty has two.
         </p>
         <div className="table-scroll">
@@ -291,19 +291,19 @@ function GemVol7SetGuide() {
         </div>
         <p className="table-note">Finishes as printed on Misty's Psyduck's run, 0301/07 to 0307/07.</p>
         <p>
-          Cards paired with a Trainer are easy to spot. On versions 01 to 06, a small portrait of the Trainer sits at the right edge of the
-          art, like Misty on Psyduck. Team Rocket's portraits carry a red R.
+          Cards paired with a Trainer are easy to spot. On versions 01 to 06, a small portrait of the Trainer sits in the bottom-right corner
+          of the art, like Misty on Psyduck. Team Rocket's portraits carry a red R.
         </p>
 
         <h2 id="master-set">Chasing a master set</h2>
         <p>
-          A master set is all 196 cards. The commons and uncommons come quickly, since a box averages 54 of them and there are only
-          112 to find. The higher rarities take much longer.
+          A master set is all 196 cards. A box averages 36 commons and 18 uncommons. If every card at a rarity is equally likely, the 56
+          commons fill in within about 7 boxes, and the 56 uncommons take about 14. The higher rarities take much longer.
         </p>
         <p>
           A box averages about 1.3 full arts, spread across 28 different cards. If each full art is equally likely, any one
-          specific full art shows up in roughly 1 box in 21 or 22, and pulling all 28 from boxes alone would take dozens of boxes.
-          The Double Rares are friendlier, at about 4 per box, but still take many boxes to complete.
+          specific full art shows up in roughly 1 box in 21 or 22, and pulling all 28 from boxes alone would take around 80 boxes
+          on average. The Double Rares are friendlier, at about 4 per box, but still take about 25 boxes to complete.
         </p>
         <p>
           So most collectors open a few boxes for fun and for the lower rarities, then buy the full arts and Double Rares they still
