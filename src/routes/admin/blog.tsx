@@ -70,7 +70,8 @@ function AdminBlogPage() {
   const [error, setError] = React.useState<string | null>(null)
 
   const posts = [...BLOG_POSTS].sort((a, b) => (a.date < b.date ? 1 : -1))
-  const kindOf = (slug: string): Kind | undefined => KINDS.find((k) => slug.endsWith(k.suffix))?.key
+  // Posts whose slug has no type suffix (e.g. the sets timeline) count as guides.
+  const kindOf = (slug: string): Kind | undefined => KINDS.find((k) => k.suffix && slug.endsWith(k.suffix))?.key ?? 'guide'
   const ofKind = posts.filter((p) => !kind || kindOf(p.slug) === kind)
   const liveCount = posts.filter((p) => p.slug in live).length
   const kindLive = ofKind.filter((p) => p.slug in live).length

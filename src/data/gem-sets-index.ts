@@ -20,6 +20,8 @@ export type GemSetRoutePath =
   | '/sets/chinese/chasing-glory-csv10'
   | '/sets/chinese/terastal-gathering-csv9-5'
   | '/sets/chinese/brilliant-fantasy-csv8'
+  | '/sets/chinese/eternal-birth-csv1'
+  | '/sets/chinese/miracle-journey-csv2'
   | '/sets/chinese/fearless-terastal-csv3'
   | '/sets/chinese/reward-round-csv4'
   | '/sets/chinese/black-crystal-blaze-csv5'
@@ -63,6 +65,36 @@ export const GEM_SETS: GemSetSummary[] = [
     heroAlt: 'Pikachu ex Special Art Rare',
     glow1: 'rgb(222 185 97 / .30)',
     glow2: 'rgb(90 45 5 / .25)',
+  },
+  {
+    slug: 'eternal-birth-csv1',
+    path: '/sets/chinese/eternal-birth-csv1',
+    name: 'Eternal Birth',
+    series: 'Chinese Scarlet & Violet',
+    code: 'CSV1C',
+    cardCount: 167,
+    releaseDate: '2025-01-17',
+    exclusiveCount: 0,
+    tagline: '106 Pokémon led by Miraidon ex and Koraidon ex',
+    heroImage: 'https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Eternal%20Birth%20CSV1/Cards/0154.webp',
+    heroAlt: 'Miraidon ex Special Art Rare',
+    glow1: 'rgb(98 78 190 / .30)',
+    glow2: 'rgb(230 200 60 / .25)',
+  },
+  {
+    slug: 'miracle-journey-csv2',
+    path: '/sets/chinese/miracle-journey-csv2',
+    name: 'Miracle Journey',
+    series: 'Chinese Scarlet & Violet',
+    code: 'CSV2C',
+    cardCount: 163,
+    releaseDate: '2025-03-21',
+    exclusiveCount: 0,
+    tagline: '109 Pokémon led by Gardevoir ex',
+    heroImage: 'https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Miracle%20Journey%20CSV2/Cards/0155.webp',
+    heroAlt: 'Gardevoir ex Special Art Rare',
+    glow1: 'rgb(226 110 170 / .30)',
+    glow2: 'rgb(70 160 90 / .25)',
   },
   {
     slug: 'fearless-terastal-csv3',

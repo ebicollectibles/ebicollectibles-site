@@ -6,7 +6,7 @@
 // the post itself.
 import { SITE_URL, R2_IMAGE_HOST } from '~/lib/gem-sets/constants'
 
-export type BlogPostSlug = 'gem-vol-7-release-news' | 'gem-vol-7-set-guide' | 'gem-vol-7-card-origins' | 'gem-vol-6-release-news' | 'gem-vol-6-set-guide' | 'gem-vol-6-card-origins' | 'gem-vol-5-release-news' | 'gem-vol-5-set-guide' | 'gem-vol-5-card-origins' | 'gem-vol-4-release-news' | 'gem-vol-4-set-guide' | 'gem-vol-4-card-origins' | 'gem-vol-3-release-news' | 'gem-vol-3-set-guide' | 'gem-vol-3-card-origins' | 'gem-vol-2-release-news' | 'gem-vol-2-set-guide' | 'gem-vol-2-card-origins' | 'gem-vol-1-release-news' | 'gem-vol-1-set-guide' | 'gem-vol-1-card-origins' | '30th-celebration-release-news' | '30th-celebration-set-guide' | '30th-celebration-card-origins' | 'chasing-glory-release-news' | 'chasing-glory-set-guide' | 'chasing-glory-card-origins' | 'terastal-gathering-release-news' | 'terastal-gathering-set-guide' | 'terastal-gathering-card-origins' | 'reward-round-release-news' | 'reward-round-set-guide' | 'reward-round-card-origins' | 'black-crystal-blaze-release-news' | 'black-crystal-blaze-set-guide' | 'black-crystal-blaze-card-origins' | 'black-bolt-set-guide' | 'black-bolt-card-origins' | 'white-flare-set-guide' | 'white-flare-card-origins' | 'true-mystery-release-news' | 'true-mystery-set-guide' | 'true-mystery-card-origins' | 'blade-awakening-release-news' | 'blade-awakening-set-guide' | 'blade-awakening-card-origins' | 'brilliant-fantasy-release-news' | 'brilliant-fantasy-set-guide' | 'brilliant-fantasy-card-origins' | 'stellar-crystal-release-news' | 'stellar-crystal-set-guide' | 'stellar-crystal-card-origins' | 'pikachu-dream-painting-figures-release-news' | 'funism-ditto-palm-size-wonders-release-news'
+export type BlogPostSlug = 'chinese-pokemon-sets-in-order' | 'gem-vol-7-release-news' | 'gem-vol-7-set-guide' | 'gem-vol-7-card-origins' | 'gem-vol-6-release-news' | 'gem-vol-6-set-guide' | 'gem-vol-6-card-origins' | 'gem-vol-5-release-news' | 'gem-vol-5-set-guide' | 'gem-vol-5-card-origins' | 'gem-vol-4-release-news' | 'gem-vol-4-set-guide' | 'gem-vol-4-card-origins' | 'gem-vol-3-release-news' | 'gem-vol-3-set-guide' | 'gem-vol-3-card-origins' | 'gem-vol-2-release-news' | 'gem-vol-2-set-guide' | 'gem-vol-2-card-origins' | 'gem-vol-1-release-news' | 'gem-vol-1-set-guide' | 'gem-vol-1-card-origins' | '30th-celebration-release-news' | '30th-celebration-set-guide' | '30th-celebration-card-origins' | 'chasing-glory-release-news' | 'chasing-glory-set-guide' | 'chasing-glory-card-origins' | 'terastal-gathering-release-news' | 'terastal-gathering-set-guide' | 'terastal-gathering-card-origins' | 'reward-round-release-news' | 'reward-round-set-guide' | 'reward-round-card-origins' | 'fearless-terastal-release-news' | 'fearless-terastal-set-guide' | 'fearless-terastal-card-origins' | 'black-crystal-blaze-release-news' | 'black-crystal-blaze-set-guide' | 'black-crystal-blaze-card-origins' | 'black-bolt-set-guide' | 'black-bolt-card-origins' | 'white-flare-set-guide' | 'white-flare-card-origins' | 'true-mystery-release-news' | 'true-mystery-set-guide' | 'true-mystery-card-origins' | 'blade-awakening-release-news' | 'blade-awakening-set-guide' | 'blade-awakening-card-origins' | 'brilliant-fantasy-release-news' | 'brilliant-fantasy-set-guide' | 'brilliant-fantasy-card-origins' | 'stellar-crystal-release-news' | 'stellar-crystal-set-guide' | 'stellar-crystal-card-origins' | 'pikachu-dream-painting-figures-release-news' | 'funism-ditto-palm-size-wonders-release-news'
 
 export interface BlogPostSummary {
   slug: BlogPostSlug
@@ -34,6 +34,22 @@ export function blogSeoDescription(post: BlogPostSummary): string {
 }
 
 export const BLOG_POSTS: BlogPostSummary[] = [
+  {
+    slug: 'chinese-pokemon-sets-in-order',
+    path: '/blog/chinese-pokemon-sets-in-order',
+    title: 'Every Simplified Chinese Pokémon TCG Set in Order (2025–2026)',
+    excerpt:
+      'A release timeline of the Simplified Chinese Pokémon TCG sets we have card lists for: main CSV expansions, Gem Packs, Collect 151 and special sets, with dates, set codes and card counts.',
+    seoTitle: 'Simplified Chinese Pokémon TCG Sets in Order (2025–2026)',
+    seoDescription:
+      'Simplified Chinese Pokémon TCG sets in release order: CSV main expansions, Gem Packs, Collect 151 and special sets, with dates, set codes and card lists.',
+    tag: 'Collecting guide',
+    date: '2026-11-19',
+    heroImage: `${SITE_URL}/assets/blog/chinese-sets-timeline-hero-v1.webp`,
+    heroAlt: 'Timeline of Simplified Chinese Pokémon TCG sets from 2025 to 2026',
+    glow1: 'rgb(194 26 118 / .26)',
+    glow2: 'rgb(64 130 170 / .30)',
+  },
   {
     slug: 'true-mystery-release-news',
     path: '/blog/true-mystery-release-news',
@@ -418,6 +434,54 @@ export const BLOG_POSTS: BlogPostSummary[] = [
     heroAlt: 'Reward Round jumbo and slim packs linked to tiles for Obsidian Flames, Paldea Evolved, Paradox Rift, other sources and new art',
     glow1: 'rgb(46 123 134 / .30)',
     glow2: 'rgb(179 130 68 / .30)',
+  },
+  {
+    slug: 'fearless-terastal-release-news',
+    path: '/blog/fearless-terastal-release-news',
+    title: 'Fearless Terastal Is Here: Tera Arcanine ex and a Chinese Exclusive SAR',
+    excerpt:
+      'The third Chinese Scarlet & Violet set puts Tera Arcanine ex on the pack and brings the four Treasures of Ruin. Its Arcanine ex Special Art Rare is a Chinese Exclusive with no English version.',
+    seoTitle: 'Pokémon Fearless Terastal (CSV3C): Arcanine ex SAR & Release Info',
+    seoDescription:
+      'Pokémon TCG Fearless Terastal (CSV3C) in Simplified Chinese: Tera Arcanine ex on the pack, pull odds, and a Chinese Exclusive Arcanine ex SAR.',
+    tag: 'New release',
+    date: '2025-05-16',
+    heroImage: `${SITE_URL}/assets/blog/fearless-terastal-release-hero-v1.webp`,
+    heroAlt: 'Fearless Terastal banner: the 5-card and 20-card booster packs with the Arcanine ex Special Art Rare and the gold Ting-Lu ex',
+    glow1: 'rgb(214 96 40 / .30)',
+    glow2: 'rgb(64 130 170 / .25)',
+  },
+  {
+    slug: 'fearless-terastal-set-guide',
+    path: '/blog/fearless-terastal-set-guide',
+    title: 'Fearless Terastal Set Guide: Every Chase Card and the Pull Odds',
+    excerpt:
+      'Fearless Terastal has 35 secret rares behind a 130-card main set, and its 5-card and 20-card packs have different pull odds. This guide shows every chase card and how often you can expect to pull one.',
+    seoTitle: 'Pokémon Fearless Terastal (CSV3C) Set Guide: Chase Cards & Odds',
+    seoDescription:
+      'Pokémon TCG Fearless Terastal (CSV3C) set guide: every Special Art Rare and Super Rare, the official pull odds, and the 397-card master set.',
+    tag: 'Set guide',
+    date: '2025-05-16',
+    heroImage: `${SITE_URL}/assets/blog/fearless-terastal-guide-hero-v1.webp`,
+    heroAlt: 'Fearless Terastal set guide banner: the Chinese Exclusive Arcanine ex Special Art Rare 155/130 in a display case',
+    glow1: 'rgb(214 96 40 / .30)',
+    glow2: 'rgb(64 130 170 / .25)',
+  },
+  {
+    slug: 'fearless-terastal-card-origins',
+    path: '/blog/fearless-terastal-card-origins',
+    title: 'Where Every Fearless Terastal Card Comes From',
+    excerpt:
+      'Fearless Terastal is built mostly from Paldea Evolved, with Obsidian Flames and Scarlet & Violet filling in most of the rest. We matched all 165 cards to English and found one that English never printed.',
+    seoTitle: 'Pokémon Fearless Terastal (CSV3C) Card Origins: English Matches',
+    seoDescription:
+      'All 165 Pokémon TCG Fearless Terastal (CSV3C) cards matched to English: 96 from Paldea Evolved, 34 from Obsidian Flames, 22 from Scarlet & Violet, 1 new.',
+    tag: 'Collecting guide',
+    date: '2025-05-16',
+    heroImage: `${SITE_URL}/assets/blog/fearless-terastal-origins-hero-v1.webp`,
+    heroAlt: 'Fearless Terastal card origins banner: both booster packs with tiles for Paldea Evolved, Obsidian Flames, Scarlet & Violet, three other sources and one Chinese Exclusive',
+    glow1: 'rgb(214 96 40 / .30)',
+    glow2: 'rgb(64 130 170 / .25)',
   },
   {
     slug: 'terastal-gathering-release-news',

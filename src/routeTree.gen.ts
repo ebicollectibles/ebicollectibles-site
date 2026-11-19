@@ -60,6 +60,10 @@ import { Route as BlogBrilliantFantasySetGuideRouteImport } from './routes/blog/
 import { Route as BlogChasingGloryCardOriginsRouteImport } from './routes/blog/chasing-glory-card-origins'
 import { Route as BlogChasingGloryReleaseNewsRouteImport } from './routes/blog/chasing-glory-release-news'
 import { Route as BlogChasingGlorySetGuideRouteImport } from './routes/blog/chasing-glory-set-guide'
+import { Route as BlogChinesePokemonSetsInOrderRouteImport } from './routes/blog/chinese-pokemon-sets-in-order'
+import { Route as BlogFearlessTerastalCardOriginsRouteImport } from './routes/blog/fearless-terastal-card-origins'
+import { Route as BlogFearlessTerastalReleaseNewsRouteImport } from './routes/blog/fearless-terastal-release-news'
+import { Route as BlogFearlessTerastalSetGuideRouteImport } from './routes/blog/fearless-terastal-set-guide'
 import { Route as BlogFunismDittoPalmSizeWondersReleaseNewsRouteImport } from './routes/blog/funism-ditto-palm-size-wonders-release-news'
 import { Route as BlogGemVol1CardOriginsRouteImport } from './routes/blog/gem-vol-1-card-origins'
 import { Route as BlogGemVol1ReleaseNewsRouteImport } from './routes/blog/gem-vol-1-release-news'
@@ -123,6 +127,7 @@ import { Route as SetsChineseCollect151GatheringRouteImport } from './routes/set
 import { Route as SetsChineseCollect151HopeRouteImport } from './routes/sets/chinese/collect-151-hope'
 import { Route as SetsChineseCollect151JourneyRouteImport } from './routes/sets/chinese/collect-151-journey'
 import { Route as SetsChineseCollect151SurpriseRouteImport } from './routes/sets/chinese/collect-151-surprise'
+import { Route as SetsChineseEternalBirthCsv1RouteImport } from './routes/sets/chinese/eternal-birth-csv1'
 import { Route as SetsChineseFearlessTerastalCsv3RouteImport } from './routes/sets/chinese/fearless-terastal-csv3'
 import { Route as SetsChineseGemVol1RouteImport } from './routes/sets/chinese/gem-vol-1'
 import { Route as SetsChineseGemVol2RouteImport } from './routes/sets/chinese/gem-vol-2'
@@ -131,6 +136,7 @@ import { Route as SetsChineseGemVol4RouteImport } from './routes/sets/chinese/ge
 import { Route as SetsChineseGemVol5RouteImport } from './routes/sets/chinese/gem-vol-5'
 import { Route as SetsChineseGemVol6RouteImport } from './routes/sets/chinese/gem-vol-6'
 import { Route as SetsChineseGemVol7RouteImport } from './routes/sets/chinese/gem-vol-7'
+import { Route as SetsChineseMiracleJourneyCsv2RouteImport } from './routes/sets/chinese/miracle-journey-csv2'
 import { Route as SetsChineseRewardRoundCsv4RouteImport } from './routes/sets/chinese/reward-round-csv4'
 import { Route as SetsChineseStellarCrystalCsv9RouteImport } from './routes/sets/chinese/stellar-crystal-csv9'
 import { Route as SetsChineseTerastalGatheringCsv95RouteImport } from './routes/sets/chinese/terastal-gathering-csv9-5'
@@ -407,6 +413,30 @@ const BlogChasingGlorySetGuideRoute =
   BlogChasingGlorySetGuideRouteImport.update({
     id: '/blog/chasing-glory-set-guide',
     path: '/blog/chasing-glory-set-guide',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const BlogChinesePokemonSetsInOrderRoute =
+  BlogChinesePokemonSetsInOrderRouteImport.update({
+    id: '/blog/chinese-pokemon-sets-in-order',
+    path: '/blog/chinese-pokemon-sets-in-order',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const BlogFearlessTerastalCardOriginsRoute =
+  BlogFearlessTerastalCardOriginsRouteImport.update({
+    id: '/blog/fearless-terastal-card-origins',
+    path: '/blog/fearless-terastal-card-origins',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const BlogFearlessTerastalReleaseNewsRoute =
+  BlogFearlessTerastalReleaseNewsRouteImport.update({
+    id: '/blog/fearless-terastal-release-news',
+    path: '/blog/fearless-terastal-release-news',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const BlogFearlessTerastalSetGuideRoute =
+  BlogFearlessTerastalSetGuideRouteImport.update({
+    id: '/blog/fearless-terastal-set-guide',
+    path: '/blog/fearless-terastal-set-guide',
     getParentRoute: () => rootRouteImport,
   } as any)
 const BlogFunismDittoPalmSizeWondersReleaseNewsRoute =
@@ -748,6 +778,12 @@ const SetsChineseCollect151SurpriseRoute =
     path: '/sets/chinese/collect-151-surprise',
     getParentRoute: () => rootRouteImport,
   } as any)
+const SetsChineseEternalBirthCsv1Route =
+  SetsChineseEternalBirthCsv1RouteImport.update({
+    id: '/sets/chinese/eternal-birth-csv1',
+    path: '/sets/chinese/eternal-birth-csv1',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const SetsChineseFearlessTerastalCsv3Route =
   SetsChineseFearlessTerastalCsv3RouteImport.update({
     id: '/sets/chinese/fearless-terastal-csv3',
@@ -789,6 +825,12 @@ const SetsChineseGemVol7Route = SetsChineseGemVol7RouteImport.update({
   path: '/sets/chinese/gem-vol-7',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SetsChineseMiracleJourneyCsv2Route =
+  SetsChineseMiracleJourneyCsv2RouteImport.update({
+    id: '/sets/chinese/miracle-journey-csv2',
+    path: '/sets/chinese/miracle-journey-csv2',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const SetsChineseRewardRoundCsv4Route =
   SetsChineseRewardRoundCsv4RouteImport.update({
     id: '/sets/chinese/reward-round-csv4',
@@ -875,6 +917,10 @@ export interface FileRoutesByFullPath {
   '/blog/chasing-glory-card-origins': typeof BlogChasingGloryCardOriginsRoute
   '/blog/chasing-glory-release-news': typeof BlogChasingGloryReleaseNewsRoute
   '/blog/chasing-glory-set-guide': typeof BlogChasingGlorySetGuideRoute
+  '/blog/chinese-pokemon-sets-in-order': typeof BlogChinesePokemonSetsInOrderRoute
+  '/blog/fearless-terastal-card-origins': typeof BlogFearlessTerastalCardOriginsRoute
+  '/blog/fearless-terastal-release-news': typeof BlogFearlessTerastalReleaseNewsRoute
+  '/blog/fearless-terastal-set-guide': typeof BlogFearlessTerastalSetGuideRoute
   '/blog/funism-ditto-palm-size-wonders-release-news': typeof BlogFunismDittoPalmSizeWondersReleaseNewsRoute
   '/blog/gem-vol-1-card-origins': typeof BlogGemVol1CardOriginsRoute
   '/blog/gem-vol-1-release-news': typeof BlogGemVol1ReleaseNewsRoute
@@ -937,6 +983,7 @@ export interface FileRoutesByFullPath {
   '/sets/chinese/collect-151-hope': typeof SetsChineseCollect151HopeRoute
   '/sets/chinese/collect-151-journey': typeof SetsChineseCollect151JourneyRoute
   '/sets/chinese/collect-151-surprise': typeof SetsChineseCollect151SurpriseRoute
+  '/sets/chinese/eternal-birth-csv1': typeof SetsChineseEternalBirthCsv1Route
   '/sets/chinese/fearless-terastal-csv3': typeof SetsChineseFearlessTerastalCsv3Route
   '/sets/chinese/gem-vol-1': typeof SetsChineseGemVol1Route
   '/sets/chinese/gem-vol-2': typeof SetsChineseGemVol2Route
@@ -945,6 +992,7 @@ export interface FileRoutesByFullPath {
   '/sets/chinese/gem-vol-5': typeof SetsChineseGemVol5Route
   '/sets/chinese/gem-vol-6': typeof SetsChineseGemVol6Route
   '/sets/chinese/gem-vol-7': typeof SetsChineseGemVol7Route
+  '/sets/chinese/miracle-journey-csv2': typeof SetsChineseMiracleJourneyCsv2Route
   '/sets/chinese/reward-round-csv4': typeof SetsChineseRewardRoundCsv4Route
   '/sets/chinese/stellar-crystal-csv9': typeof SetsChineseStellarCrystalCsv9Route
   '/sets/chinese/terastal-gathering-csv9-5': typeof SetsChineseTerastalGatheringCsv95Route
@@ -1005,6 +1053,10 @@ export interface FileRoutesByTo {
   '/blog/chasing-glory-card-origins': typeof BlogChasingGloryCardOriginsRoute
   '/blog/chasing-glory-release-news': typeof BlogChasingGloryReleaseNewsRoute
   '/blog/chasing-glory-set-guide': typeof BlogChasingGlorySetGuideRoute
+  '/blog/chinese-pokemon-sets-in-order': typeof BlogChinesePokemonSetsInOrderRoute
+  '/blog/fearless-terastal-card-origins': typeof BlogFearlessTerastalCardOriginsRoute
+  '/blog/fearless-terastal-release-news': typeof BlogFearlessTerastalReleaseNewsRoute
+  '/blog/fearless-terastal-set-guide': typeof BlogFearlessTerastalSetGuideRoute
   '/blog/funism-ditto-palm-size-wonders-release-news': typeof BlogFunismDittoPalmSizeWondersReleaseNewsRoute
   '/blog/gem-vol-1-card-origins': typeof BlogGemVol1CardOriginsRoute
   '/blog/gem-vol-1-release-news': typeof BlogGemVol1ReleaseNewsRoute
@@ -1067,6 +1119,7 @@ export interface FileRoutesByTo {
   '/sets/chinese/collect-151-hope': typeof SetsChineseCollect151HopeRoute
   '/sets/chinese/collect-151-journey': typeof SetsChineseCollect151JourneyRoute
   '/sets/chinese/collect-151-surprise': typeof SetsChineseCollect151SurpriseRoute
+  '/sets/chinese/eternal-birth-csv1': typeof SetsChineseEternalBirthCsv1Route
   '/sets/chinese/fearless-terastal-csv3': typeof SetsChineseFearlessTerastalCsv3Route
   '/sets/chinese/gem-vol-1': typeof SetsChineseGemVol1Route
   '/sets/chinese/gem-vol-2': typeof SetsChineseGemVol2Route
@@ -1075,6 +1128,7 @@ export interface FileRoutesByTo {
   '/sets/chinese/gem-vol-5': typeof SetsChineseGemVol5Route
   '/sets/chinese/gem-vol-6': typeof SetsChineseGemVol6Route
   '/sets/chinese/gem-vol-7': typeof SetsChineseGemVol7Route
+  '/sets/chinese/miracle-journey-csv2': typeof SetsChineseMiracleJourneyCsv2Route
   '/sets/chinese/reward-round-csv4': typeof SetsChineseRewardRoundCsv4Route
   '/sets/chinese/stellar-crystal-csv9': typeof SetsChineseStellarCrystalCsv9Route
   '/sets/chinese/terastal-gathering-csv9-5': typeof SetsChineseTerastalGatheringCsv95Route
@@ -1136,6 +1190,10 @@ export interface FileRoutesById {
   '/blog/chasing-glory-card-origins': typeof BlogChasingGloryCardOriginsRoute
   '/blog/chasing-glory-release-news': typeof BlogChasingGloryReleaseNewsRoute
   '/blog/chasing-glory-set-guide': typeof BlogChasingGlorySetGuideRoute
+  '/blog/chinese-pokemon-sets-in-order': typeof BlogChinesePokemonSetsInOrderRoute
+  '/blog/fearless-terastal-card-origins': typeof BlogFearlessTerastalCardOriginsRoute
+  '/blog/fearless-terastal-release-news': typeof BlogFearlessTerastalReleaseNewsRoute
+  '/blog/fearless-terastal-set-guide': typeof BlogFearlessTerastalSetGuideRoute
   '/blog/funism-ditto-palm-size-wonders-release-news': typeof BlogFunismDittoPalmSizeWondersReleaseNewsRoute
   '/blog/gem-vol-1-card-origins': typeof BlogGemVol1CardOriginsRoute
   '/blog/gem-vol-1-release-news': typeof BlogGemVol1ReleaseNewsRoute
@@ -1198,6 +1256,7 @@ export interface FileRoutesById {
   '/sets/chinese/collect-151-hope': typeof SetsChineseCollect151HopeRoute
   '/sets/chinese/collect-151-journey': typeof SetsChineseCollect151JourneyRoute
   '/sets/chinese/collect-151-surprise': typeof SetsChineseCollect151SurpriseRoute
+  '/sets/chinese/eternal-birth-csv1': typeof SetsChineseEternalBirthCsv1Route
   '/sets/chinese/fearless-terastal-csv3': typeof SetsChineseFearlessTerastalCsv3Route
   '/sets/chinese/gem-vol-1': typeof SetsChineseGemVol1Route
   '/sets/chinese/gem-vol-2': typeof SetsChineseGemVol2Route
@@ -1206,6 +1265,7 @@ export interface FileRoutesById {
   '/sets/chinese/gem-vol-5': typeof SetsChineseGemVol5Route
   '/sets/chinese/gem-vol-6': typeof SetsChineseGemVol6Route
   '/sets/chinese/gem-vol-7': typeof SetsChineseGemVol7Route
+  '/sets/chinese/miracle-journey-csv2': typeof SetsChineseMiracleJourneyCsv2Route
   '/sets/chinese/reward-round-csv4': typeof SetsChineseRewardRoundCsv4Route
   '/sets/chinese/stellar-crystal-csv9': typeof SetsChineseStellarCrystalCsv9Route
   '/sets/chinese/terastal-gathering-csv9-5': typeof SetsChineseTerastalGatheringCsv95Route
@@ -1268,6 +1328,10 @@ export interface FileRouteTypes {
     | '/blog/chasing-glory-card-origins'
     | '/blog/chasing-glory-release-news'
     | '/blog/chasing-glory-set-guide'
+    | '/blog/chinese-pokemon-sets-in-order'
+    | '/blog/fearless-terastal-card-origins'
+    | '/blog/fearless-terastal-release-news'
+    | '/blog/fearless-terastal-set-guide'
     | '/blog/funism-ditto-palm-size-wonders-release-news'
     | '/blog/gem-vol-1-card-origins'
     | '/blog/gem-vol-1-release-news'
@@ -1330,6 +1394,7 @@ export interface FileRouteTypes {
     | '/sets/chinese/collect-151-hope'
     | '/sets/chinese/collect-151-journey'
     | '/sets/chinese/collect-151-surprise'
+    | '/sets/chinese/eternal-birth-csv1'
     | '/sets/chinese/fearless-terastal-csv3'
     | '/sets/chinese/gem-vol-1'
     | '/sets/chinese/gem-vol-2'
@@ -1338,6 +1403,7 @@ export interface FileRouteTypes {
     | '/sets/chinese/gem-vol-5'
     | '/sets/chinese/gem-vol-6'
     | '/sets/chinese/gem-vol-7'
+    | '/sets/chinese/miracle-journey-csv2'
     | '/sets/chinese/reward-round-csv4'
     | '/sets/chinese/stellar-crystal-csv9'
     | '/sets/chinese/terastal-gathering-csv9-5'
@@ -1398,6 +1464,10 @@ export interface FileRouteTypes {
     | '/blog/chasing-glory-card-origins'
     | '/blog/chasing-glory-release-news'
     | '/blog/chasing-glory-set-guide'
+    | '/blog/chinese-pokemon-sets-in-order'
+    | '/blog/fearless-terastal-card-origins'
+    | '/blog/fearless-terastal-release-news'
+    | '/blog/fearless-terastal-set-guide'
     | '/blog/funism-ditto-palm-size-wonders-release-news'
     | '/blog/gem-vol-1-card-origins'
     | '/blog/gem-vol-1-release-news'
@@ -1460,6 +1530,7 @@ export interface FileRouteTypes {
     | '/sets/chinese/collect-151-hope'
     | '/sets/chinese/collect-151-journey'
     | '/sets/chinese/collect-151-surprise'
+    | '/sets/chinese/eternal-birth-csv1'
     | '/sets/chinese/fearless-terastal-csv3'
     | '/sets/chinese/gem-vol-1'
     | '/sets/chinese/gem-vol-2'
@@ -1468,6 +1539,7 @@ export interface FileRouteTypes {
     | '/sets/chinese/gem-vol-5'
     | '/sets/chinese/gem-vol-6'
     | '/sets/chinese/gem-vol-7'
+    | '/sets/chinese/miracle-journey-csv2'
     | '/sets/chinese/reward-round-csv4'
     | '/sets/chinese/stellar-crystal-csv9'
     | '/sets/chinese/terastal-gathering-csv9-5'
@@ -1528,6 +1600,10 @@ export interface FileRouteTypes {
     | '/blog/chasing-glory-card-origins'
     | '/blog/chasing-glory-release-news'
     | '/blog/chasing-glory-set-guide'
+    | '/blog/chinese-pokemon-sets-in-order'
+    | '/blog/fearless-terastal-card-origins'
+    | '/blog/fearless-terastal-release-news'
+    | '/blog/fearless-terastal-set-guide'
     | '/blog/funism-ditto-palm-size-wonders-release-news'
     | '/blog/gem-vol-1-card-origins'
     | '/blog/gem-vol-1-release-news'
@@ -1590,6 +1666,7 @@ export interface FileRouteTypes {
     | '/sets/chinese/collect-151-hope'
     | '/sets/chinese/collect-151-journey'
     | '/sets/chinese/collect-151-surprise'
+    | '/sets/chinese/eternal-birth-csv1'
     | '/sets/chinese/fearless-terastal-csv3'
     | '/sets/chinese/gem-vol-1'
     | '/sets/chinese/gem-vol-2'
@@ -1598,6 +1675,7 @@ export interface FileRouteTypes {
     | '/sets/chinese/gem-vol-5'
     | '/sets/chinese/gem-vol-6'
     | '/sets/chinese/gem-vol-7'
+    | '/sets/chinese/miracle-journey-csv2'
     | '/sets/chinese/reward-round-csv4'
     | '/sets/chinese/stellar-crystal-csv9'
     | '/sets/chinese/terastal-gathering-csv9-5'
@@ -1659,6 +1737,10 @@ export interface RootRouteChildren {
   BlogChasingGloryCardOriginsRoute: typeof BlogChasingGloryCardOriginsRoute
   BlogChasingGloryReleaseNewsRoute: typeof BlogChasingGloryReleaseNewsRoute
   BlogChasingGlorySetGuideRoute: typeof BlogChasingGlorySetGuideRoute
+  BlogChinesePokemonSetsInOrderRoute: typeof BlogChinesePokemonSetsInOrderRoute
+  BlogFearlessTerastalCardOriginsRoute: typeof BlogFearlessTerastalCardOriginsRoute
+  BlogFearlessTerastalReleaseNewsRoute: typeof BlogFearlessTerastalReleaseNewsRoute
+  BlogFearlessTerastalSetGuideRoute: typeof BlogFearlessTerastalSetGuideRoute
   BlogFunismDittoPalmSizeWondersReleaseNewsRoute: typeof BlogFunismDittoPalmSizeWondersReleaseNewsRoute
   BlogGemVol1CardOriginsRoute: typeof BlogGemVol1CardOriginsRoute
   BlogGemVol1ReleaseNewsRoute: typeof BlogGemVol1ReleaseNewsRoute
@@ -1721,6 +1803,7 @@ export interface RootRouteChildren {
   SetsChineseCollect151HopeRoute: typeof SetsChineseCollect151HopeRoute
   SetsChineseCollect151JourneyRoute: typeof SetsChineseCollect151JourneyRoute
   SetsChineseCollect151SurpriseRoute: typeof SetsChineseCollect151SurpriseRoute
+  SetsChineseEternalBirthCsv1Route: typeof SetsChineseEternalBirthCsv1Route
   SetsChineseFearlessTerastalCsv3Route: typeof SetsChineseFearlessTerastalCsv3Route
   SetsChineseGemVol1Route: typeof SetsChineseGemVol1Route
   SetsChineseGemVol2Route: typeof SetsChineseGemVol2Route
@@ -1729,6 +1812,7 @@ export interface RootRouteChildren {
   SetsChineseGemVol5Route: typeof SetsChineseGemVol5Route
   SetsChineseGemVol6Route: typeof SetsChineseGemVol6Route
   SetsChineseGemVol7Route: typeof SetsChineseGemVol7Route
+  SetsChineseMiracleJourneyCsv2Route: typeof SetsChineseMiracleJourneyCsv2Route
   SetsChineseRewardRoundCsv4Route: typeof SetsChineseRewardRoundCsv4Route
   SetsChineseStellarCrystalCsv9Route: typeof SetsChineseStellarCrystalCsv9Route
   SetsChineseTerastalGatheringCsv95Route: typeof SetsChineseTerastalGatheringCsv95Route
@@ -2098,6 +2182,34 @@ declare module '@tanstack/react-router' {
       path: '/blog/chasing-glory-set-guide'
       fullPath: '/blog/chasing-glory-set-guide'
       preLoaderRoute: typeof BlogChasingGlorySetGuideRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/chinese-pokemon-sets-in-order': {
+      id: '/blog/chinese-pokemon-sets-in-order'
+      path: '/blog/chinese-pokemon-sets-in-order'
+      fullPath: '/blog/chinese-pokemon-sets-in-order'
+      preLoaderRoute: typeof BlogChinesePokemonSetsInOrderRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/fearless-terastal-card-origins': {
+      id: '/blog/fearless-terastal-card-origins'
+      path: '/blog/fearless-terastal-card-origins'
+      fullPath: '/blog/fearless-terastal-card-origins'
+      preLoaderRoute: typeof BlogFearlessTerastalCardOriginsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/fearless-terastal-release-news': {
+      id: '/blog/fearless-terastal-release-news'
+      path: '/blog/fearless-terastal-release-news'
+      fullPath: '/blog/fearless-terastal-release-news'
+      preLoaderRoute: typeof BlogFearlessTerastalReleaseNewsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/fearless-terastal-set-guide': {
+      id: '/blog/fearless-terastal-set-guide'
+      path: '/blog/fearless-terastal-set-guide'
+      fullPath: '/blog/fearless-terastal-set-guide'
+      preLoaderRoute: typeof BlogFearlessTerastalSetGuideRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/blog/funism-ditto-palm-size-wonders-release-news': {
@@ -2541,6 +2653,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SetsChineseCollect151SurpriseRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/sets/chinese/eternal-birth-csv1': {
+      id: '/sets/chinese/eternal-birth-csv1'
+      path: '/sets/chinese/eternal-birth-csv1'
+      fullPath: '/sets/chinese/eternal-birth-csv1'
+      preLoaderRoute: typeof SetsChineseEternalBirthCsv1RouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/sets/chinese/fearless-terastal-csv3': {
       id: '/sets/chinese/fearless-terastal-csv3'
       path: '/sets/chinese/fearless-terastal-csv3'
@@ -2595,6 +2714,13 @@ declare module '@tanstack/react-router' {
       path: '/sets/chinese/gem-vol-7'
       fullPath: '/sets/chinese/gem-vol-7'
       preLoaderRoute: typeof SetsChineseGemVol7RouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sets/chinese/miracle-journey-csv2': {
+      id: '/sets/chinese/miracle-journey-csv2'
+      path: '/sets/chinese/miracle-journey-csv2'
+      fullPath: '/sets/chinese/miracle-journey-csv2'
+      preLoaderRoute: typeof SetsChineseMiracleJourneyCsv2RouteImport
       parentRoute: typeof rootRouteImport
     }
     '/sets/chinese/reward-round-csv4': {
@@ -2691,6 +2817,10 @@ const rootRouteChildren: RootRouteChildren = {
   BlogChasingGloryCardOriginsRoute: BlogChasingGloryCardOriginsRoute,
   BlogChasingGloryReleaseNewsRoute: BlogChasingGloryReleaseNewsRoute,
   BlogChasingGlorySetGuideRoute: BlogChasingGlorySetGuideRoute,
+  BlogChinesePokemonSetsInOrderRoute: BlogChinesePokemonSetsInOrderRoute,
+  BlogFearlessTerastalCardOriginsRoute: BlogFearlessTerastalCardOriginsRoute,
+  BlogFearlessTerastalReleaseNewsRoute: BlogFearlessTerastalReleaseNewsRoute,
+  BlogFearlessTerastalSetGuideRoute: BlogFearlessTerastalSetGuideRoute,
   BlogFunismDittoPalmSizeWondersReleaseNewsRoute:
     BlogFunismDittoPalmSizeWondersReleaseNewsRoute,
   BlogGemVol1CardOriginsRoute: BlogGemVol1CardOriginsRoute,
@@ -2755,6 +2885,7 @@ const rootRouteChildren: RootRouteChildren = {
   SetsChineseCollect151HopeRoute: SetsChineseCollect151HopeRoute,
   SetsChineseCollect151JourneyRoute: SetsChineseCollect151JourneyRoute,
   SetsChineseCollect151SurpriseRoute: SetsChineseCollect151SurpriseRoute,
+  SetsChineseEternalBirthCsv1Route: SetsChineseEternalBirthCsv1Route,
   SetsChineseFearlessTerastalCsv3Route: SetsChineseFearlessTerastalCsv3Route,
   SetsChineseGemVol1Route: SetsChineseGemVol1Route,
   SetsChineseGemVol2Route: SetsChineseGemVol2Route,
@@ -2763,6 +2894,7 @@ const rootRouteChildren: RootRouteChildren = {
   SetsChineseGemVol5Route: SetsChineseGemVol5Route,
   SetsChineseGemVol6Route: SetsChineseGemVol6Route,
   SetsChineseGemVol7Route: SetsChineseGemVol7Route,
+  SetsChineseMiracleJourneyCsv2Route: SetsChineseMiracleJourneyCsv2Route,
   SetsChineseRewardRoundCsv4Route: SetsChineseRewardRoundCsv4Route,
   SetsChineseStellarCrystalCsv9Route: SetsChineseStellarCrystalCsv9Route,
   SetsChineseTerastalGatheringCsv95Route:

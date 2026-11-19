@@ -9,7 +9,7 @@ Source: https://www.chencards.com/sets/fearless_terastal (Chen Cards, used with 
 - Release: **2025-05-16** (Chen and the official page agree; official announcement dated 2025-04-11).
 - **165 cards**: `001/130`–`130/130` main set + `131/130`–`165/130` secret rares (printed total **130**).
 - Official page: https://www.pokemon.cn/tcg/product/15519.html. Odds chart image: Chen's `set-odds/csv3c.webp` (same chart as the official page).
-- Packs (official page): a **5-card pack with 1 holo** and a **20-card pack with 6 holos**. The odds chart is for the 5-card pack: 4 non-holo (C/U) + 1 holo.
+- Packs (official page): a **5-card pack with 1 holo** and a **20-card pack with 6 holos**. The first odds chart is for the 5-card pack: 4 non-holo (C/U) + 1 holo (shares 80.00 / 14.53 / 4.74 / 0.73%). The official page has a second chart for the 20-card pack: 14 non-holo + 6 holos (shares 70.00 / 22.99 / 6.01 / 1.00%), same kind counts.
 - Pack art: **Tera Arcanine ex**.
 - Images: every card image came from Chen (165 of 165, 300 × 418 WebP). R2 path: `Chinese/Fearless Terastal CSV3/Cards/NNNN.webp`.
 
