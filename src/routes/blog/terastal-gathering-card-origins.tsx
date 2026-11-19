@@ -481,7 +481,7 @@ function TerastalGatheringOrigins() {
         }}
       >
         <p>
-          156 of Terastal Gathering's 259 cards have the same art as a Prismatic Evolutions card, including nearly every secret rare.
+          156 of the 259 cards in Terastal Gathering (set code CSV9.5C) have the same art as a Prismatic Evolutions card, including nearly every secret rare.
           The rest is where it gets interesting: 28 cards use art that English only released as promos, 73 are reprints from earlier
           Scarlet & Violet sets, and two are brand new, among them the Chinese Exclusive Sylveon ex Special Art Rare. For the chase cards and box odds, see our{' '}
           <Link to="/blog/terastal-gathering-set-guide">set guide</Link>.

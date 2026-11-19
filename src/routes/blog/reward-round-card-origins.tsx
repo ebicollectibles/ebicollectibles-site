@@ -380,7 +380,7 @@ function RewardRoundOrigins() {
         }}
       >
         <p>
-          Reward Round does not follow one English set. Its 165 cards pull mostly from Obsidian Flames,
+          Reward Round (set code CSV4C) does not follow one English set. Its 165 cards pull mostly from Obsidian Flames,
           Paldea Evolved and Paradox Rift, with a handful from other Scarlet & Violet sets and promos, plus three Chinese Exclusives. For the chase
           cards and box odds, see our <Link to="/blog/reward-round-set-guide">set guide</Link>.
         </p>

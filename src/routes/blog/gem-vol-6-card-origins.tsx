@@ -169,7 +169,7 @@ function GemVol6OriginsPost() {
       >
         <p>
           Gem Packs reuse illustrations from existing Pokémon TCG cards, reprinted in Simplified Chinese with new numbers and new holo patterns.
-          We matched every illustration in Gem Vol 6 (Gem 6) to the English card it came from. The one exception is the Chinese Exclusive
+          We matched every illustration in Gem Vol 6 (Gem 6, set code CBB6C) to the English card it came from. The one exception is the Chinese Exclusive
           Applin full art, which has no English version.
           For more on the set itself, see our <Link to="/blog/gem-vol-6-release-news">Gem Vol 6 release post</Link> and the{' '}
           <Link to="/blog/gem-vol-6-set-guide">Gem Vol 6 set guide</Link>.

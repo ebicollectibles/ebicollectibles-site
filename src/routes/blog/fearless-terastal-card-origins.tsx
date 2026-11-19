@@ -379,7 +379,7 @@ function FearlessTerastalOrigins() {
         }}
       >
         <p>
-          Fearless Terastal does not follow one English set. More than half of its 165 cards match Paldea Evolved, and Obsidian Flames and
+          Fearless Terastal (set code CSV3C) does not follow one English set. More than half of its 165 cards match Paldea Evolved, and Obsidian Flames and
           the first Scarlet & Violet set supply most of the rest. A few come from promos, 151 and Paradox Rift, and one card is a Chinese
           Exclusive. For the chase cards and pull odds, see our <Link to="/blog/fearless-terastal-set-guide">set guide</Link>.
         </p>

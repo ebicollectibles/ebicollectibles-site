@@ -206,7 +206,7 @@ function StellarCrystalReleasePost() {
         }}
       >
         <p>
-          Stellar Crystal (<Zh>星彩晶璃</Zh>) released on May 15, 2026. It brings the new Stellar Tera type into Chinese, led by a Stellar Tera
+          Stellar Crystal (<Zh>星彩晶璃</Zh>, set code CSV9C) released on May 15, 2026. It brings the new Stellar Tera type into Chinese, led by a Stellar Tera
           Pikachu ex on the pack and the Legendary Terapagos ex. Stellar Pokémon ex have attacks that need three different Energy types
           to use. Blueberry Academy's Crispin, Drayton and Lacey join as Supporters, and a new Lisia's Appeal Special Art Rare is the
           set's Chinese Exclusive.

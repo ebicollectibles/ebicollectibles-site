@@ -475,7 +475,7 @@ function StellarCrystalOrigins() {
         }}
       >
         <p>
-          If you collect English, 265 of Stellar Crystal's 266 cards will look familiar. 160 match Surging Sparks and 79 match Stellar
+          If you collect English, 265 of the 266 cards in Stellar Crystal (set code CSV9C) will look familiar. 160 match Surging Sparks and 79 match Stellar
           Crown, with 10 from Shrouded Fable, 8 from Twilight Masquerade, 6 from SV Black Star Promos and 2 from Prismatic Evolutions. The
           one new card is the Chinese Exclusive Lisia's Appeal Special Art Rare. The Chinese set mixes these sources freely, so the numbers never line up
           with any one English set. For the chase cards and pack odds, see our{' '}

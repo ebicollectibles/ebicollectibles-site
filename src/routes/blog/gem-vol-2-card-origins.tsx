@@ -168,7 +168,7 @@ function GemVol2OriginsPost() {
       >
         <p>
           Gem Packs reuse illustrations from existing Pokémon TCG cards, reprinted in Simplified Chinese with new numbers and new holo patterns.
-          We matched every illustration in Gem Vol 2 (Gem 2) to the English card it came from. The only exceptions are the four Chinese Exclusive
+          We matched every illustration in Gem Vol 2 (Gem 2, set code CBB2C) to the English card it came from. The only exceptions are the four Chinese Exclusive
           full arts by HYOGONOSUKE.
           For more on the set itself, see our <Link to="/blog/gem-vol-2-release-news">Gem Vol 2 release post</Link> and the{' '}
           <Link to="/blog/gem-vol-2-set-guide">Gem Vol 2 set guide</Link>.

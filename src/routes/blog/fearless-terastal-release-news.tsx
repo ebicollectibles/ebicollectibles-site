@@ -203,7 +203,7 @@ function FearlessTerastalReleasePost() {
         }}
       >
         <p>
-          Fearless Terastal (<Zh>无畏太晶</Zh>) released on May 16, 2025. It is the third main set of the Chinese Scarlet & Violet series, and it
+          Fearless Terastal (<Zh>无畏太晶</Zh>, set code CSV3C) released on May 16, 2025. It is the third main set of the Chinese Scarlet & Violet series, and it
           introduces Terastallized Pokémon as Tera Pokémon ex, with a crystal Arcanine on the pack. Around it are the
           four legendary Treasures of Ruin, a cast of Paldea Pokémon and Trainers, and one card that does not exist in English.
         </p>

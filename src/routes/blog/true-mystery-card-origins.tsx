@@ -384,7 +384,7 @@ function TrueMysteryOrigins() {
         }}
       >
         <p>
-          128 of True Mystery's 163 cards match Paradox Rift, including 30 of its 35 secret rares. The rest come from Obsidian Flames,
+          128 of the 163 cards in True Mystery (set code CSV6C) match Paradox Rift, including 30 of its 35 secret rares. The rest come from Obsidian Flames,
           Paldean Fates, 151 and one promo, and two cards have no English version at all: the Chinese Exclusive Iron Hands ex Special Art Rare and a gold
           Pal Pad. For the chase cards and box contents, see our <Link to="/blog/true-mystery-set-guide">set guide</Link>.
         </p>

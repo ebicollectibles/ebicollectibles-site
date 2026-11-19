@@ -177,7 +177,7 @@ function GemVol3OriginsPost() {
       >
         <p>
           Gem Packs reuse illustrations from existing Pokémon TCG cards, reprinted in Simplified Chinese with new numbers and new holo patterns.
-          We matched every illustration in Gem Vol 3 (Gem 3) to the English card it came from, except the five Chinese Exclusive full arts,
+          We matched every illustration in Gem Vol 3 (Gem 3, set code CBB3C) to the English card it came from, except the five Chinese Exclusive full arts,
           which have no English version at all.
           For more on the set itself, see our <Link to="/blog/gem-vol-3-release-news">Gem Vol 3 release post</Link> and the{' '}
           <Link to="/blog/gem-vol-3-set-guide">Gem Vol 3 set guide</Link>.

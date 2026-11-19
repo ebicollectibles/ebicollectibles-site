@@ -187,7 +187,7 @@ function GemVol1Post() {
         }}
       >
         <p>
-          Gem Pack Vol. 1 (Gem 1) landed in mainland China on January 17, 2025, and started the Gem Pack line. It is an official
+          Gem Pack Vol. 1 (Gem 1, set code CBB1C) landed in mainland China on January 17, 2025, and started the Gem Pack line. It is an official
           Simplified Chinese Pokémon TCG product built for collecting, with small 4-card packs where every card is a holo. This first
           volume is a Paldea set: Sprigatito on the pack, the three starters and their middle evolutions, Captain Pikachu, and four
           new full arts from the Pokémon Horizons anime.

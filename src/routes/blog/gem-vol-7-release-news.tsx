@@ -178,7 +178,7 @@ function GemVol7Post() {
         }}
       >
         <p>
-          Gem Pack Vol. 7 (Gem 7) landed in mainland China on November 6, 2026. Like every Gem Pack, it is an official Simplified Chinese
+          Gem Pack Vol. 7 (Gem 7, set code CBB7C) landed in mainland China on November 6, 2026. Like every Gem Pack, it is an official Simplified Chinese
           Pokémon TCG product built for collecting: small 4-card packs where every card is a holo, and a set structure that gives each
           Pokémon its own run of seven cards. This volume leans into Trainers and their partner Pokémon, with Psyduck on the
           pack and a Chinese Exclusive full art of Misty's Psyduck.

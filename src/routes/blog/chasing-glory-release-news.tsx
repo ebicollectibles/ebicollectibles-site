@@ -208,7 +208,7 @@ function ChasingGloryReleasePost() {
         }}
       >
         <p>
-          Chasing Glory (<Zh>共逐荣光</Zh>) released on July 16, 2026. It is the main numbered set of the CSV10 block, the one that Black Bolt
+          Chasing Glory (<Zh>共逐荣光</Zh>, set code CSV10C) released on July 16, 2026. It is the main numbered set of the CSV10 block, the one that Black Bolt
           and White Flare follow, and its big idea is the Trainer's Pokémon: Team Rocket, Cynthia, N, Iono, Misty and other Trainers
           each bring their own partner Pokémon onto the card. The cards to chase are Team Rocket's Mewtwo ex in Special Art Rare and
           gold, and the set's Chinese Exclusive is a Brock's Scouting Special Art Rare with an illustration found only in the Chinese set.

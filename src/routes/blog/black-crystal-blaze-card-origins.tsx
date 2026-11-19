@@ -377,7 +377,7 @@ function BlackCrystalBlazeOrigins() {
         }}
       >
         <p>
-          Black Crystal Blaze does not follow one English set. Its 164 cards pull mostly from Paradox Rift, Obsidian Flames and Paldean
+          Black Crystal Blaze (set code CSV5C) does not follow one English set. Its 164 cards pull mostly from Paradox Rift, Obsidian Flames and Paldean
           Fates, with a handful from other Scarlet & Violet sets and promos, plus two Chinese Exclusives: the Larry Special Art Rare and the gold Defiance Band. For the chase cards and box odds, see our{' '}
           <Link to="/blog/black-crystal-blaze-set-guide">set guide</Link>.
         </p>

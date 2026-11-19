@@ -176,7 +176,7 @@ function GemVol4Post() {
         }}
       >
         <p>
-          Gem Pack Vol. 4 (Gem 4) lands in mainland China on February 6, 2026, right in time for Lunar New Year. Like every Gem Pack, it is an
+          Gem Pack Vol. 4 (Gem 4, set code CBB4C) lands in mainland China on February 6, 2026, right in time for Lunar New Year. Like every Gem Pack, it is an
           official Simplified Chinese Pokémon TCG product built for collecting: small 4-card packs where every card is a holo, and a
           set structure that gives each Pokémon its own run of seven cards. This volume is all about Ponyta, a fitting pick for the
           Year of the Horse, with a brand-new Ponyta full art as the headline card.

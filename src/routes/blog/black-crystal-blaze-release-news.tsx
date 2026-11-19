@@ -201,7 +201,7 @@ function BlackCrystalBlazeReleasePost() {
         }}
       >
         <p>
-          Black Crystal Blaze (<Zh>黑晶炽诚</Zh>) released on September 12, 2025. It is the fifth main set of the Chinese Scarlet & Violet series,
+          Black Crystal Blaze (<Zh>黑晶炽诚</Zh>, set code CSV5C) released on September 12, 2025. It is the fifth main set of the Chinese Scarlet & Violet series,
           built around Pokémon whose Tera type differs from their usual type, led by the Darkness Tera Charizard ex on the pack. Elite
           Four members Larry and Poppy join as Supporters, and two secret rares are Chinese Exclusives.
         </p>

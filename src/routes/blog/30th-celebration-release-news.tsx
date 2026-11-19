@@ -221,7 +221,7 @@ function ThirtiethReleasePost() {
         }}
       >
         <p>
-          30th Celebration lands on September 16, 2026, and it is a first: the Simplified Chinese, English and Japanese versions all
+          30th Celebration (set code 30thC) lands on September 16, 2026, and it is a first: the Simplified Chinese, English and Japanese versions all
           release on the same day. It marks 30 years of the Pokémon TCG with a 165-card set built around Pikachu, a brand-new
           Futuristic Rare, and a collection of 30 classic cards reprinted in their original frames.
         </p>

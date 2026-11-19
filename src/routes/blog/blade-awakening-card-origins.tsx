@@ -471,7 +471,7 @@ function BladeAwakeningOrigins() {
         }}
       >
         <p>
-          173 of Blade Awakening's 259 cards match Temporal Forces and 68 match Twilight Masquerade. The other 17 come from Journey
+          173 of the 259 cards in Blade Awakening (set code CSV7C) match Temporal Forces and 68 match Twilight Masquerade. The other 17 come from Journey
           Together, Stellar Crown, Prismatic Evolutions, Surging Sparks, Shrouded Fable and two promos. Just one card is new: the
           Chinese Exclusive Ciphermaniac's Codebreaking Special Art Rare. For the chase cards and box odds, see our{' '}
           <Link to="/blog/blade-awakening-set-guide">set guide</Link>.

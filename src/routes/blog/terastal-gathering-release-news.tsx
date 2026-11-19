@@ -191,7 +191,7 @@ function TerastalGatheringReleasePost() {
         }}
       >
         <p>
-          Terastal Gathering (<Zh>太晶盛聚</Zh>) released on June 12, 2026. It is the special set between Stellar Crystal and Chasing Glory, and
+          Terastal Gathering (<Zh>太晶盛聚</Zh>, set code CSV9.5C) released on June 12, 2026. It is the special set between Stellar Crystal and Chasing Glory, and
           the Simplified Chinese counterpart to Prismatic Evolutions: Eevee and its evolutions in Stellar Tera form, a deep run of
           Special Art Rares, and 10-card packs with three or four holos in every one. It also has a Chinese Exclusive: a Sylveon ex
           Special Art Rare, 234/208.

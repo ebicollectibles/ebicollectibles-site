@@ -199,7 +199,7 @@ function EternalBirthReleasePost() {
         }}
       >
         <p>
-          Eternal Birth (<Zh>亘古开来</Zh>) released on January 17, 2025. It is the first main set of the Chinese Scarlet & Violet series, and
+          Eternal Birth (<Zh>亘古开来</Zh>, set code CSV1C) released on January 17, 2025. It is the first main set of the Chinese Scarlet & Violet series, and
           it introduces Pokémon ex to Simplified Chinese. It also includes the Paldea starters Sprigatito, Fuecoco and Quaxly. Miraidon is
           on the pack, and Miraidon ex and Koraidon ex are the lead chase cards.
         </p>

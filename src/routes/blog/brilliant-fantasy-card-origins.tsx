@@ -478,7 +478,7 @@ function BrilliantFantasyOrigins() {
         }}
       >
         <p>
-          If you collect English, 263 of Brilliant Fantasy's 264 cards will look familiar. Most match Twilight Masquerade (109) and
+          If you collect English, 263 of the 264 cards in Brilliant Fantasy (set code CSV8C) will look familiar. Most match Twilight Masquerade (109) and
           Shrouded Fable (76), with 38 from Surging Sparks, 32 from Stellar Crown and 8 from four other English sources. The one new card
           is the Chinese Exclusive Carmine Special Art Rare. The Chinese set mixes these sources freely, so the numbers never line up with any one English
           set. For the chase cards and box odds, see our <Link to="/blog/brilliant-fantasy-set-guide">set guide</Link>.

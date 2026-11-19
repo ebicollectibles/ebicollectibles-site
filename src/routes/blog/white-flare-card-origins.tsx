@@ -372,7 +372,7 @@ function WhiteFlareOrigins() {
         }}
       >
         <p>
-          {count('WHT')} of White Flare's 174 cards match English White Flare. The other {174 - count('WHT')} are where it gets
+          {count('WHT')} of the 174 cards in White Flare (set code CSV10.6C) match English White Flare. The other {174 - count('WHT')} are where it gets
           interesting: {count('BLK')} match English Black Bolt, {count('SVP')} Art Rares match English Black Star Promos, and one card is
           new, the Chinese Exclusive Hilda Special Art Rare. For the chase cards and box odds, see our{' '}
           <Link to="/blog/white-flare-set-guide">set guide</Link>.

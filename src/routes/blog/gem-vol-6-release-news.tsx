@@ -175,7 +175,7 @@ function GemVol6Post() {
         }}
       >
         <p>
-          Gem Pack Vol. 6 (Gem 6) lands in mainland China on August 7, 2026. Like every Gem Pack, it is an official Simplified Chinese
+          Gem Pack Vol. 6 (Gem 6, set code CBB6C) lands in mainland China on August 7, 2026. Like every Gem Pack, it is an official Simplified Chinese
           Pokémon TCG product built for collecting: small 4-card packs where every card is a holo, and a set structure that gives each
           Pokémon its own run of seven cards. This volume is built around Applin: it is on the pack, the whole apple family is in the
           lineup, and a brand-new Applin full art is the headline card.

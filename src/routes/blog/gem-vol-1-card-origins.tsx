@@ -190,7 +190,7 @@ function GemVol1OriginsPost() {
       >
         <p>
           Gem Packs reuse illustrations from existing Pokémon TCG cards, reprinted in Simplified Chinese with new numbers and new holo
-          patterns. We matched every illustration in Gem Vol 1 (Gem 1) to the English card it came from. The exceptions are Pokémon
+          patterns. We matched every illustration in Gem Vol 1 (Gem 1, set code CBB1C) to the English card it came from. The exceptions are Pokémon
           Horizons art: the four Chinese Exclusive full arts and Captain Pikachu's base card. For more on the set itself, see our{' '}
           <Link to="/blog/gem-vol-1-release-news">Gem Vol 1 release post</Link> and the{' '}
           <Link to="/blog/gem-vol-1-set-guide">Gem Vol 1 set guide</Link>.

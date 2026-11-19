@@ -196,7 +196,7 @@ function RewardRoundReleasePost() {
         }}
       >
         <p>
-          Reward Round (<Zh>嘉奖回合</Zh>) released on July 18, 2025. It is the fourth main set of the Chinese Scarlet & Violet series, with
+          Reward Round (<Zh>嘉奖回合</Zh>, set code CSV4C) released on July 18, 2025. It is the fourth main set of the Chinese Scarlet & Violet series, with
           Gholdengo on the pack and a cast of Paldea Pokémon and Trainers around it. It came in two pack sizes, slim and jumbo, and it
           hides three cards that do not exist in English.
         </p>

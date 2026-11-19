@@ -368,7 +368,7 @@ function MiracleJourneyOrigins() {
         }}
       >
         <p>
-          Miracle Journey does not follow one English set. Almost half of its 163 cards match Paldea Evolved, and the first Scarlet &
+          Miracle Journey (set code CSV2C) does not follow one English set. Almost half of its 163 cards match Paldea Evolved, and the first Scarlet &
           Violet set and Obsidian Flames supply most of the rest. A few come from promos, 151 and Paldean Fates, and no card is new
           art. For the chase cards and pull odds, see our <Link to="/blog/miracle-journey-set-guide">set guide</Link>.
         </p>

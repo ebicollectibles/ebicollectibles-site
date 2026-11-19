@@ -168,7 +168,7 @@ function ThirtiethOriginsPost() {
         }}
       >
         <p>
-          The classic collection is the heart of this set: 30 cards from 1999 to 2023, reprinted in their original frames with a gold
+          The classic collection is the heart of 30th Celebration (set code 30thC): 30 cards from 1999 to 2023, reprinted in their original frames with a gold
           glitter border. We matched each one to the English card it first appeared on.
           For more on the set itself, see our <Link to="/blog/30th-celebration-release-news">30th Celebration release post</Link>{' '}
           and the <Link to="/blog/30th-celebration-set-guide">30th Celebration set guide</Link>.

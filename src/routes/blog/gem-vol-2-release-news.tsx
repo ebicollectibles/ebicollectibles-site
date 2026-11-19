@@ -180,7 +180,7 @@ function GemVol2Post() {
         }}
       >
         <p>
-          Gem Pack Vol. 2 (Gem 2) lands in mainland China on May 16, 2025. Like every Gem Pack, it is an official Simplified Chinese Pokémon TCG
+          Gem Pack Vol. 2 (Gem 2, set code CBB2C) lands in mainland China on May 16, 2025. Like every Gem Pack, it is an official Simplified Chinese Pokémon TCG
           product built for collecting, with small 4-card packs where every card is a holo. This one is an Eevee set from top to
           bottom: Eevee and all eight Eeveelutions, Sylveon on the pack, and four new full arts by HYOGONOSUKE that line up into a single picture.
         </p>

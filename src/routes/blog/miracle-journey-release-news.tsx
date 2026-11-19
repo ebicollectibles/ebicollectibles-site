@@ -201,7 +201,7 @@ function MiracleJourneyReleasePost() {
         }}
       >
         <p>
-          Miracle Journey (<Zh>奇迹启程</Zh>) released on March 21, 2025. It is the second main set of the Chinese Scarlet & Violet series, with
+          Miracle Journey (<Zh>奇迹启程</Zh>, set code CSV2C) released on March 21, 2025. It is the second main set of the Chinese Scarlet & Violet series, with
           Gardevoir on the pack and in the set as Gardevoir ex. Around it are Meowscarada ex, Skeledirge ex and Quaquaval ex, more
           Pokémon and Trainers from Paldea, and 35 secret rares.
         </p>

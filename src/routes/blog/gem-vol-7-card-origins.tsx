@@ -169,7 +169,7 @@ function GemVol7OriginsPost() {
       >
         <p>
           Gem Packs reuse illustrations from existing Pokémon TCG cards, reprinted in Simplified Chinese with new numbers and new holo patterns.
-          We matched every illustration in Gem Vol 7 (Gem 7) to the English card it came from. The one exception is the Chinese Exclusive
+          We matched every illustration in Gem Vol 7 (Gem 7, set code CBB7C) to the English card it came from. The one exception is the Chinese Exclusive
           Misty's Psyduck full art, which has no English version.
           For more on the set itself, see our <Link to="/blog/gem-vol-7-release-news">Gem Vol 7 release post</Link>, and for the
           previous volume, our <Link to="/blog/gem-vol-6-card-origins">Gem Vol 6 card origins guide</Link>.

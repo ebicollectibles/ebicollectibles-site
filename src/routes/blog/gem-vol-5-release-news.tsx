@@ -182,7 +182,7 @@ function GemVol5Post() {
         }}
       >
         <p>
-          Gem Pack Vol. 5 (Gem 5) lands in mainland China on April 24, 2026. Like every Gem Pack, it is an official Simplified Chinese Pokémon
+          Gem Pack Vol. 5 (Gem 5, set code CBB5C) lands in mainland China on April 24, 2026. Like every Gem Pack, it is an official Simplified Chinese Pokémon
           TCG product built for collecting: small 4-card packs where every card is a holo, and a set structure that gives each Pokémon
           its own run of seven cards. This volume sets sail with Pokémon Horizons, with Floragato on the pack and four new full arts of
           the Rising Volt Tacklers and their partners.

@@ -206,7 +206,7 @@ function BrilliantFantasyReleasePost() {
         }}
       >
         <p>
-          Brilliant Fantasy (<Zh>璀璨诡幻</Zh>) released on March 13, 2026. Milotic is on the pack, and the set is built around Kitakami: all
+          Brilliant Fantasy (<Zh>璀璨诡幻</Zh>, set code CSV8C) released on March 13, 2026. Milotic is on the pack, and the set is built around Kitakami: all
           four masks of Ogerpon ex, Okidogi ex, Munkidori ex, Fezandipiti ex and Pecharunt ex, with Kieran, Carmine and Perrin as
           Supporters. The Chinese Exclusive is a new Carmine Special Art Rare that no other language has.
         </p>

@@ -171,7 +171,7 @@ function GemVol5OriginsPost() {
       >
         <p>
           Gem Packs reuse illustrations from existing Pokémon TCG cards, reprinted in Simplified Chinese with new numbers and new holo patterns.
-          We matched every illustration in Gem Vol 5 (Gem 5) to the English card it came from. The exceptions are Pokémon Horizons art,
+          We matched every illustration in Gem Vol 5 (Gem 5, set code CBB5C) to the English card it came from. The exceptions are Pokémon Horizons art,
           including the four Chinese Exclusive full arts of Captain Pikachu, Floragato, Crocalor and Quaxwell.
           For more on the set itself, see our <Link to="/blog/gem-vol-5-release-news">Gem Vol 5 release post</Link> and the{' '}
           <Link to="/blog/gem-vol-5-set-guide">Gem Vol 5 set guide</Link>.

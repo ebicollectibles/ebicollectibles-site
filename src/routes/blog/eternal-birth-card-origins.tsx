@@ -373,7 +373,7 @@ function EternalBirthOrigins() {
         }}
       >
         <p>
-          Eternal Birth is the first Chinese Scarlet & Violet set, and four in five of its 167 cards match the first English
+          Eternal Birth (set code CSV1C) is the first Chinese Scarlet & Violet set, and four in five of its 167 cards match the first English
           Scarlet & Violet set. Paldea Evolved and Obsidian Flames supply most of the rest, and a few come from 151, promos, Paradox
           Rift and Paldean Fates. For the chase cards and pull odds, see our{' '}
           <Link to="/blog/eternal-birth-set-guide">set guide</Link>.

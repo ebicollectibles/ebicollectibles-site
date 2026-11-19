@@ -493,7 +493,7 @@ function ChasingGloryOrigins() {
         }}
       >
         <p>
-          If you collect English, most of Chasing Glory will look familiar. 284 of its 287 cards have the same art in Destined Rivals or
+          If you collect English, most of Chasing Glory (set code CSV10C) will look familiar. 284 of its 287 cards have the same art in Destined Rivals or
           Journey Together, two more match Ascended Heroes, and one is brand new: the Chinese Exclusive
           Brock's Scouting Special Art Rare. The Chinese set mixes cards from
           both, so the numbers do not line up. This guide maps every card. For what is in the set and the slim vs
