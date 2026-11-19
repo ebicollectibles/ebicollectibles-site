@@ -81,6 +81,7 @@ import { Route as BlogGemVol6ReleaseNewsRouteImport } from './routes/blog/gem-vo
 import { Route as BlogGemVol6SetGuideRouteImport } from './routes/blog/gem-vol-6-set-guide'
 import { Route as BlogGemVol7CardOriginsRouteImport } from './routes/blog/gem-vol-7-card-origins'
 import { Route as BlogGemVol7ReleaseNewsRouteImport } from './routes/blog/gem-vol-7-release-news'
+import { Route as BlogGemVol7SetGuideRouteImport } from './routes/blog/gem-vol-7-set-guide'
 import { Route as BlogPikachuDreamPaintingFiguresReleaseNewsRouteImport } from './routes/blog/pikachu-dream-painting-figures-release-news'
 import { Route as BlogRewardRoundCardOriginsRouteImport } from './routes/blog/reward-round-card-origins'
 import { Route as BlogRewardRoundReleaseNewsRouteImport } from './routes/blog/reward-round-release-news'
@@ -513,6 +514,11 @@ const BlogGemVol7ReleaseNewsRoute = BlogGemVol7ReleaseNewsRouteImport.update({
   path: '/blog/gem-vol-7-release-news',
   getParentRoute: () => rootRouteImport,
 } as any)
+const BlogGemVol7SetGuideRoute = BlogGemVol7SetGuideRouteImport.update({
+  id: '/blog/gem-vol-7-set-guide',
+  path: '/blog/gem-vol-7-set-guide',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const BlogPikachuDreamPaintingFiguresReleaseNewsRoute =
   BlogPikachuDreamPaintingFiguresReleaseNewsRouteImport.update({
     id: '/blog/pikachu-dream-painting-figures-release-news',
@@ -883,6 +889,7 @@ export interface FileRoutesByFullPath {
   '/blog/gem-vol-6-set-guide': typeof BlogGemVol6SetGuideRoute
   '/blog/gem-vol-7-card-origins': typeof BlogGemVol7CardOriginsRoute
   '/blog/gem-vol-7-release-news': typeof BlogGemVol7ReleaseNewsRoute
+  '/blog/gem-vol-7-set-guide': typeof BlogGemVol7SetGuideRoute
   '/blog/pikachu-dream-painting-figures-release-news': typeof BlogPikachuDreamPaintingFiguresReleaseNewsRoute
   '/blog/reward-round-card-origins': typeof BlogRewardRoundCardOriginsRoute
   '/blog/reward-round-release-news': typeof BlogRewardRoundReleaseNewsRoute
@@ -1011,6 +1018,7 @@ export interface FileRoutesByTo {
   '/blog/gem-vol-6-set-guide': typeof BlogGemVol6SetGuideRoute
   '/blog/gem-vol-7-card-origins': typeof BlogGemVol7CardOriginsRoute
   '/blog/gem-vol-7-release-news': typeof BlogGemVol7ReleaseNewsRoute
+  '/blog/gem-vol-7-set-guide': typeof BlogGemVol7SetGuideRoute
   '/blog/pikachu-dream-painting-figures-release-news': typeof BlogPikachuDreamPaintingFiguresReleaseNewsRoute
   '/blog/reward-round-card-origins': typeof BlogRewardRoundCardOriginsRoute
   '/blog/reward-round-release-news': typeof BlogRewardRoundReleaseNewsRoute
@@ -1140,6 +1148,7 @@ export interface FileRoutesById {
   '/blog/gem-vol-6-set-guide': typeof BlogGemVol6SetGuideRoute
   '/blog/gem-vol-7-card-origins': typeof BlogGemVol7CardOriginsRoute
   '/blog/gem-vol-7-release-news': typeof BlogGemVol7ReleaseNewsRoute
+  '/blog/gem-vol-7-set-guide': typeof BlogGemVol7SetGuideRoute
   '/blog/pikachu-dream-painting-figures-release-news': typeof BlogPikachuDreamPaintingFiguresReleaseNewsRoute
   '/blog/reward-round-card-origins': typeof BlogRewardRoundCardOriginsRoute
   '/blog/reward-round-release-news': typeof BlogRewardRoundReleaseNewsRoute
@@ -1270,6 +1279,7 @@ export interface FileRouteTypes {
     | '/blog/gem-vol-6-set-guide'
     | '/blog/gem-vol-7-card-origins'
     | '/blog/gem-vol-7-release-news'
+    | '/blog/gem-vol-7-set-guide'
     | '/blog/pikachu-dream-painting-figures-release-news'
     | '/blog/reward-round-card-origins'
     | '/blog/reward-round-release-news'
@@ -1398,6 +1408,7 @@ export interface FileRouteTypes {
     | '/blog/gem-vol-6-set-guide'
     | '/blog/gem-vol-7-card-origins'
     | '/blog/gem-vol-7-release-news'
+    | '/blog/gem-vol-7-set-guide'
     | '/blog/pikachu-dream-painting-figures-release-news'
     | '/blog/reward-round-card-origins'
     | '/blog/reward-round-release-news'
@@ -1526,6 +1537,7 @@ export interface FileRouteTypes {
     | '/blog/gem-vol-6-set-guide'
     | '/blog/gem-vol-7-card-origins'
     | '/blog/gem-vol-7-release-news'
+    | '/blog/gem-vol-7-set-guide'
     | '/blog/pikachu-dream-painting-figures-release-news'
     | '/blog/reward-round-card-origins'
     | '/blog/reward-round-release-news'
@@ -1655,6 +1667,7 @@ export interface RootRouteChildren {
   BlogGemVol6SetGuideRoute: typeof BlogGemVol6SetGuideRoute
   BlogGemVol7CardOriginsRoute: typeof BlogGemVol7CardOriginsRoute
   BlogGemVol7ReleaseNewsRoute: typeof BlogGemVol7ReleaseNewsRoute
+  BlogGemVol7SetGuideRoute: typeof BlogGemVol7SetGuideRoute
   BlogPikachuDreamPaintingFiguresReleaseNewsRoute: typeof BlogPikachuDreamPaintingFiguresReleaseNewsRoute
   BlogRewardRoundCardOriginsRoute: typeof BlogRewardRoundCardOriginsRoute
   BlogRewardRoundReleaseNewsRoute: typeof BlogRewardRoundReleaseNewsRoute
@@ -2220,6 +2233,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BlogGemVol7ReleaseNewsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/blog/gem-vol-7-set-guide': {
+      id: '/blog/gem-vol-7-set-guide'
+      path: '/blog/gem-vol-7-set-guide'
+      fullPath: '/blog/gem-vol-7-set-guide'
+      preLoaderRoute: typeof BlogGemVol7SetGuideRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/blog/pikachu-dream-painting-figures-release-news': {
       id: '/blog/pikachu-dream-painting-figures-release-news'
       path: '/blog/pikachu-dream-painting-figures-release-news'
@@ -2672,6 +2692,7 @@ const rootRouteChildren: RootRouteChildren = {
   BlogGemVol6SetGuideRoute: BlogGemVol6SetGuideRoute,
   BlogGemVol7CardOriginsRoute: BlogGemVol7CardOriginsRoute,
   BlogGemVol7ReleaseNewsRoute: BlogGemVol7ReleaseNewsRoute,
+  BlogGemVol7SetGuideRoute: BlogGemVol7SetGuideRoute,
   BlogPikachuDreamPaintingFiguresReleaseNewsRoute:
     BlogPikachuDreamPaintingFiguresReleaseNewsRoute,
   BlogRewardRoundCardOriginsRoute: BlogRewardRoundCardOriginsRoute,
