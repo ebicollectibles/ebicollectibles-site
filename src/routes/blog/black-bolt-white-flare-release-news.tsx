@@ -261,10 +261,18 @@ function BlackBoltWhiteFlareReleasePost() {
 
         <h2 id="exclusives">Chinese Exclusives: N's Plan and Hilda</h2>
         <p>
-          Each set has one Special Art Rare with no English version, and both sit at 173/086. In Black Bolt it is N's Plan, illustrated
-          by Iwamoto05, which shows N against a blue city backdrop. In White Flare it is Hilda, illustrated by Ligton, shown up close in
-          warm orange light. English Black Bolt and White Flare have Special Illustration Rares of the same two Trainers, but with
-          different illustrations, and those are not in the Chinese sets.
+          Each set has one card that English collectors cannot pull, and it is the same slot in both: the Special Art Rare at 173/086.
+        </p>
+        <p>
+          Black Bolt's is N's Plan, illustrated by Iwamoto05. N leans on a railing at night and looks back over his shoulder, with city
+          lights blurred behind him.
+        </p>
+        <p>
+          White Flare's is Hilda, illustrated by Ligton. She is drawn up close with her fist clenched, and flames rise around her.
+        </p>
+        <p>
+          The English sets also have a Special Illustration Rare of N's Plan and of Hilda, but each uses a different illustration.
+          The English ones are not in the Chinese sets, and these two are not in the English ones.
         </p>
         <Grid picks={EXCLUSIVES} cols={2} />
 
