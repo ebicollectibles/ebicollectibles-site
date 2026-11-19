@@ -49,12 +49,13 @@ function joinList(items: string[]): string {
 
 const nameWithCode = (s: GemSetSummary) => `${s.name} (${s.code})`
 
-// Oldest first. Sets that share a date keep a steady order: main expansions,
-// then Gem Packs, then Collect 151, then special sets, then by set code.
+// Oldest first. Sets that share a date keep a steady order: Gem Packs lead,
+// then main expansions, then Collect 151, then special sets, then by set code.
+const SAME_DAY_ORDER: LineKey[] = ['gem', 'main', '151', 'special']
 const SETS = [...GEM_SETS].sort(
   (a, b) =>
     a.releaseDate.localeCompare(b.releaseDate) ||
-    LINE_ORDER.indexOf(lineOf(a)) - LINE_ORDER.indexOf(lineOf(b)) ||
+    SAME_DAY_ORDER.indexOf(lineOf(a)) - SAME_DAY_ORDER.indexOf(lineOf(b)) ||
     a.code.localeCompare(b.code, 'en', { numeric: true }) ||
     a.name.localeCompare(b.name),
 )
