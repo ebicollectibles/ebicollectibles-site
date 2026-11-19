@@ -470,7 +470,7 @@ function TerastalGatheringOrigins() {
         updated={status.liveAt}
         wide
         post={post}
-        lede="Terastal Gathering is often called the Chinese Prismatic Evolutions, and that is mostly right. We matched all 259 cards to English, including the promo arts and the two cards English never printed, one of them the Chinese Exclusive Sylveon ex."
+        lede="Terastal Gathering is often called the Chinese Prismatic Evolutions, and that is mostly right. We matched all 259 cards to English, including the promo arts and the two cards that do not exist in English, one of them the Chinese Exclusive Sylveon ex."
         cta={{
           heading: 'Collect Terastal Gathering',
           body: 'See every card on the full checklist, or pick up a box.',

@@ -373,7 +373,7 @@ function TrueMysteryOrigins() {
         updated={status.liveAt}
         wide
         post={post}
-        lede="True Mystery is mostly Paradox Rift, plus cards from four other English sources and two that English never printed, among them the Chinese Exclusive Iron Hands ex. We matched all 163 cards to English."
+        lede="True Mystery is mostly Paradox Rift, plus cards from four other English sources and two that do not exist in English, among them the Chinese Exclusive Iron Hands ex. We matched all 163 cards to English."
         cta={{
           heading: 'Collect True Mystery',
           body: 'See every card on the full checklist, or pick up a box.',
@@ -474,7 +474,7 @@ function TrueMysteryOrigins() {
         <p>
           <strong>Two cards have no English version.</strong> English printed an Iron Hands ex Special Illustration Rare in Paradox
           Rift, but with a different art, so Tonji Matsuno's Iron Hands ex is new art and the set's Chinese Exclusive. Pal Pad has only ever been a regular Item in English,
-          so the gold Pal Pad is a version English never had.
+          so the gold Pal Pad is a version that does not exist in English.
         </p>
         <ul className="card-grid cols-2">
           {fresh.map((r) => (

@@ -180,7 +180,7 @@ function TerastalGatheringReleasePost() {
         updated={status.liveAt}
         wide
         post={post}
-        lede="Eevee and all eight Eeveelutions arrive as Stellar Tera ex in China's take on Prismatic Evolutions, with a few cards English never put in a booster pack."
+        lede="Eevee and all eight Eeveelutions arrive as Stellar Tera ex in China's take on Prismatic Evolutions, with a few cards that never came in an English booster pack."
         cta={{
           heading: 'Shop Terastal Gathering',
           body: 'Booster boxes, plus the full checklist with every card.',

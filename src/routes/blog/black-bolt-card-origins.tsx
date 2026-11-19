@@ -361,7 +361,7 @@ function BlackBoltOrigins() {
         updated={status.liveAt}
         wide
         post={post}
-        lede="Chinese Black Bolt is close to English Black Bolt, with a few differences. We matched all 174 cards to English, including the ones borrowed from White Flare and the one Chinese Exclusive that English never printed."
+        lede="Chinese Black Bolt is close to English Black Bolt, with a few differences. We matched all 174 cards to English, including the ones borrowed from White Flare and the one Chinese Exclusive that does not exist in English."
         cta={{
           heading: 'Collect Black Bolt',
           body: 'See every card on the full checklist, or pick up a box.',

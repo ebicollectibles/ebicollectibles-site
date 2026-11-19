@@ -467,7 +467,7 @@ function StellarCrystalOrigins() {
         updated={status.liveAt}
         wide
         post={post}
-        lede="Stellar Crystal is mostly Surging Sparks and Stellar Crown, with a few surprises. We matched all 266 cards to English and found one Chinese Exclusive that English never printed."
+        lede="Stellar Crystal is mostly Surging Sparks and Stellar Crown, with a few surprises. We matched all 266 cards to English and found one Chinese Exclusive that does not exist in English."
         cta={{
           heading: 'Collect Stellar Crystal',
           body: 'See every card on the full checklist and tick off what you have.',

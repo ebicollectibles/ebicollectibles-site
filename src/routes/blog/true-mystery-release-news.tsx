@@ -375,7 +375,7 @@ function TrueMysteryReleasePost() {
         <h2 id="our-take">Our take</h2>
         <p>
           True Mystery is the Paradox set, and the Roaring Moon ex and Iron Valiant ex runs are the ones to chase, each from Double Rare
-          up to gold. The Iron Hands ex SAR gives Chinese collectors a card English never had. On the published odds, the jumbo box is
+          up to gold. The Iron Hands ex SAR is a card that does not exist in English. On the published odds, the jumbo box is
           the better pick for hits as well as holos.
         </p>
       </BlogPostLayout>

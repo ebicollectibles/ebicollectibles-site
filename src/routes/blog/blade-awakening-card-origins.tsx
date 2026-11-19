@@ -460,7 +460,7 @@ function BladeAwakeningOrigins() {
         updated={status.liveAt}
         wide
         post={post}
-        lede="Blade Awakening is mostly Temporal Forces and Twilight Masquerade, plus a few cards from six other English sources and one Chinese Exclusive that English never printed. We matched all 259 cards to English."
+        lede="Blade Awakening is mostly Temporal Forces and Twilight Masquerade, plus a few cards from six other English sources and one Chinese Exclusive that does not exist in English. We matched all 259 cards to English."
         cta={{
           heading: 'Collect Blade Awakening',
           body: 'See every card on the full checklist, or pick up a box.',

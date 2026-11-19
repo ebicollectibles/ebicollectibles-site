@@ -366,7 +366,7 @@ function BlackCrystalBlazeOrigins() {
         updated={status.liveAt}
         wide
         post={post}
-        lede="Black Crystal Blaze mixes cards from several English sets into one. We matched all 164 cards to English and found two Chinese Exclusives that English never printed."
+        lede="Black Crystal Blaze mixes cards from several English sets into one. We matched all 164 cards to English and found two Chinese Exclusives that do not exist in English."
         cta={{
           heading: 'Collect Black Crystal Blaze',
           body: 'See every card on the full checklist, or pick up a box.',
@@ -433,7 +433,7 @@ function BlackCrystalBlazeOrigins() {
 
         <h2 id="patterns">Patterns worth knowing</h2>
         <p>
-          <strong>Two cards are Chinese Exclusives.</strong> English never printed a Larry Special Art Rare or a gold Defiance Band. The English Larry
+          <strong>Two cards are Chinese Exclusives.</strong> There is no English Larry Special Art Rare or gold Defiance Band. The English Larry
           Super Rare is here too, so a Chinese binder holds one more version of Larry.
         </p>
         <ul className="card-grid cols-2">

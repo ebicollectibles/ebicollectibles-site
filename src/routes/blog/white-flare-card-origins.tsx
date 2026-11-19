@@ -361,7 +361,7 @@ function WhiteFlareOrigins() {
         updated={status.liveAt}
         wide
         post={post}
-        lede="Chinese White Flare is close to English White Flare, with a few differences. We matched all 174 cards to English, including the ones borrowed from Black Bolt and the one Chinese Exclusive that English never printed."
+        lede="Chinese White Flare is close to English White Flare, with a few differences. We matched all 174 cards to English, including the ones borrowed from Black Bolt and the one Chinese Exclusive that does not exist in English."
         cta={{
           heading: 'Collect White Flare',
           body: 'See every card on the full checklist, or pick up a box.',

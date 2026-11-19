@@ -488,7 +488,7 @@ export const BLOG_POSTS: BlogPostSummary[] = [
     path: '/blog/fearless-terastal-card-origins',
     title: 'Where Every Fearless Terastal Card Comes From',
     excerpt:
-      'Fearless Terastal is built mostly from Paldea Evolved, with Obsidian Flames and Scarlet & Violet filling in most of the rest. We matched all 165 cards to English and found one that English never printed.',
+      'Fearless Terastal is built mostly from Paldea Evolved, with Obsidian Flames and Scarlet & Violet filling in most of the rest. We matched all 165 cards to English and found one that does not exist in English.',
     seoTitle: 'Pokémon Fearless Terastal (CSV3C) Card Origins: English Matches',
     seoDescription:
       'All 165 Pokémon TCG Fearless Terastal (CSV3C) cards matched to English: 96 from Paldea Evolved, 34 from Obsidian Flames, 22 from Scarlet & Violet, 1 new.',

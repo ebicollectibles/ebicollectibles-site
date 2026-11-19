@@ -371,7 +371,7 @@ function FearlessTerastalOrigins() {
         updated={status.liveAt}
         wide
         post={post}
-        lede="Fearless Terastal is built mostly from Paldea Evolved, with cards from five other English sources mixed in. We matched all 165 cards to English and found one Chinese Exclusive that English never printed."
+        lede="Fearless Terastal is built mostly from Paldea Evolved, with cards from five other English sources mixed in. We matched all 165 cards to English and found one Chinese Exclusive that does not exist in English."
         cta={{
           heading: 'Collect Fearless Terastal',
           body: 'Browse all 165 cards on the full checklist and tick off what you have.',

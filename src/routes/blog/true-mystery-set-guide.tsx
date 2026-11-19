@@ -232,7 +232,7 @@ function TrueMysterySetGuide() {
 
         <h2 id="ultra-rares">All 4 Ultra Rares</h2>
         <p>
-          The gold cards, 160 to 163. English has never printed a gold Pal Pad, and Pokémon China calls this one new.
+          The gold cards, 160 to 163. There is no English gold Pal Pad, and Pokémon China calls this one new.
         </p>
         <Gallery cards={byRange(160, 163)} cols={4} />
 

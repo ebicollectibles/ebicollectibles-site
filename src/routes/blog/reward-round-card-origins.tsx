@@ -369,7 +369,7 @@ function RewardRoundOrigins() {
         updated={status.liveAt}
         wide
         post={post}
-        lede="Reward Round mixes cards from several English sets into one. We matched all 165 cards to English and found three Chinese Exclusives that English never printed."
+        lede="Reward Round mixes cards from several English sets into one. We matched all 165 cards to English and found three Chinese Exclusives that do not exist in English."
         cta={{
           heading: 'Collect Reward Round',
           body: 'See every card on the full checklist, or pick up a slim box.',
@@ -436,7 +436,7 @@ function RewardRoundOrigins() {
 
         <h2 id="patterns">Patterns worth knowing</h2>
         <p>
-          <strong>Three cards are Chinese Exclusives.</strong> English never printed a gold Gholdengo ex, a Maushold ex Special Art Rare or a Rika
+          <strong>Three cards are Chinese Exclusives.</strong> There is no English gold Gholdengo ex, Maushold ex Special Art Rare or Rika
           Special Art Rare. The English Gholdengo ex Special Art Rare, Maushold ex Super Rare and Rika Super Rare are all here too, so a
           Chinese binder holds one more version of each.
         </p>
