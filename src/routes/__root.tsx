@@ -35,16 +35,29 @@ export const Route = createRootRoute({
     const [isAdmin, isAffiliate] = customer ? await Promise.all([isAdminAuthenticated(), hasMyAffiliate()]) : [false, false]
     return { products, customer, maintenanceMode, isAdmin, isAffiliate }
   },
-  head: () => ({
+  // `match._notFound` is set on the root match when it is the one rendering
+  // the 404 page: an unknown URL, or a loader that threw notFound() (e.g.
+  // products.$id.tsx for a missing product). The 404 then gets its own
+  // title/description and noindex instead of looking like a copy of the
+  // home page. Leaf routes' own head() is not applied in that case.
+  head: ({ match }) => ({
     meta: [
       { charSet: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { title: 'EBI Collectibles — Sealed Chinese Pokémon, verified' },
-      {
-        name: 'description',
-        content:
-          'Simplified Chinese Pokémon booster boxes, figures and blind boxes, sourced through authorised distribution and verified before it ships.',
-      },
+      ...(match._notFound
+        ? [
+            { title: 'Page not found | EBI Collectibles' },
+            { name: 'description', content: 'This page does not exist. Head back to the EBI Collectibles catalogue.' },
+            { name: 'robots', content: 'noindex' },
+          ]
+        : [
+            { title: 'EBI Collectibles — Sealed Chinese Pokémon, verified' },
+            {
+              name: 'description',
+              content:
+                'Simplified Chinese Pokémon booster boxes, figures and blind boxes, sourced through authorised distribution and verified before it ships.',
+            },
+          ]),
       // Open Graph / Twitter Card defaults — a leaf route (e.g. a product
       // page) can override any of these by declaring the same property in
       // its own head(); TanStack Router dedupes by name/property, leaf wins.

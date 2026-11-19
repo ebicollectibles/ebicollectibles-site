@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { createFileRoute, useNavigate } from '@tanstack/react-router'
-import { z } from 'zod'
+import { cardSearchValidator, cardSearchValue, openCardIdFromSearch } from '~/lib/gem-sets/card-search'
 import rawData from '~/data/csv4.json'
 import { buildGemSetData } from '~/lib/gem-sets/buildSetData'
 import { buildGemSetHead } from '~/lib/gem-sets/head'
@@ -75,7 +75,7 @@ const config: GemSetConfig = {
 
 export const Route = createFileRoute('/sets/chinese/reward-round-csv4')({
   loader: () => getBlogGuidesFor({ data: { setPath: '/sets/chinese/reward-round-csv4' } }).catch(() => []),
-  validateSearch: (search) => z.object({ card: z.string().regex(/^\d{3}$/).optional() }).parse(search),
+  validateSearch: cardSearchValidator(/^\d{3}$/),
   head: () => buildGemSetHead(data, config),
   component: Csv4Page,
 })
@@ -84,8 +84,8 @@ function Csv4Page() {
   const search = Route.useSearch()
   const navigate = useNavigate()
   const navigateToCard = React.useCallback(
-    (id: string | undefined) => navigate({ to: '/sets/chinese/reward-round-csv4', search: (prev) => ({ ...prev, card: id }), replace: true }),
+    (id: string | undefined) => navigate({ to: '/sets/chinese/reward-round-csv4', search: (prev) => ({ ...prev, card: cardSearchValue(id) }), replace: true }),
     [navigate],
   )
-  return <GemSetPage raw={raw} data={data} config={config} openCardId={search.card ?? null} navigateToCard={navigateToCard} />
+  return <GemSetPage raw={raw} data={data} config={config} openCardId={openCardIdFromSearch(search)} navigateToCard={navigateToCard} />
 }

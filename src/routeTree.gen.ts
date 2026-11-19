@@ -61,6 +61,9 @@ import { Route as BlogChasingGloryCardOriginsRouteImport } from './routes/blog/c
 import { Route as BlogChasingGloryReleaseNewsRouteImport } from './routes/blog/chasing-glory-release-news'
 import { Route as BlogChasingGlorySetGuideRouteImport } from './routes/blog/chasing-glory-set-guide'
 import { Route as BlogChinesePokemonSetsInOrderRouteImport } from './routes/blog/chinese-pokemon-sets-in-order'
+import { Route as BlogEternalBirthCardOriginsRouteImport } from './routes/blog/eternal-birth-card-origins'
+import { Route as BlogEternalBirthReleaseNewsRouteImport } from './routes/blog/eternal-birth-release-news'
+import { Route as BlogEternalBirthSetGuideRouteImport } from './routes/blog/eternal-birth-set-guide'
 import { Route as BlogFearlessTerastalCardOriginsRouteImport } from './routes/blog/fearless-terastal-card-origins'
 import { Route as BlogFearlessTerastalReleaseNewsRouteImport } from './routes/blog/fearless-terastal-release-news'
 import { Route as BlogFearlessTerastalSetGuideRouteImport } from './routes/blog/fearless-terastal-set-guide'
@@ -86,6 +89,9 @@ import { Route as BlogGemVol6SetGuideRouteImport } from './routes/blog/gem-vol-6
 import { Route as BlogGemVol7CardOriginsRouteImport } from './routes/blog/gem-vol-7-card-origins'
 import { Route as BlogGemVol7ReleaseNewsRouteImport } from './routes/blog/gem-vol-7-release-news'
 import { Route as BlogGemVol7SetGuideRouteImport } from './routes/blog/gem-vol-7-set-guide'
+import { Route as BlogMiracleJourneyCardOriginsRouteImport } from './routes/blog/miracle-journey-card-origins'
+import { Route as BlogMiracleJourneyReleaseNewsRouteImport } from './routes/blog/miracle-journey-release-news'
+import { Route as BlogMiracleJourneySetGuideRouteImport } from './routes/blog/miracle-journey-set-guide'
 import { Route as BlogPikachuDreamPaintingFiguresReleaseNewsRouteImport } from './routes/blog/pikachu-dream-painting-figures-release-news'
 import { Route as BlogRewardRoundCardOriginsRouteImport } from './routes/blog/reward-round-card-origins'
 import { Route as BlogRewardRoundReleaseNewsRouteImport } from './routes/blog/reward-round-release-news'
@@ -421,6 +427,24 @@ const BlogChinesePokemonSetsInOrderRoute =
     path: '/blog/chinese-pokemon-sets-in-order',
     getParentRoute: () => rootRouteImport,
   } as any)
+const BlogEternalBirthCardOriginsRoute =
+  BlogEternalBirthCardOriginsRouteImport.update({
+    id: '/blog/eternal-birth-card-origins',
+    path: '/blog/eternal-birth-card-origins',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const BlogEternalBirthReleaseNewsRoute =
+  BlogEternalBirthReleaseNewsRouteImport.update({
+    id: '/blog/eternal-birth-release-news',
+    path: '/blog/eternal-birth-release-news',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const BlogEternalBirthSetGuideRoute =
+  BlogEternalBirthSetGuideRouteImport.update({
+    id: '/blog/eternal-birth-set-guide',
+    path: '/blog/eternal-birth-set-guide',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const BlogFearlessTerastalCardOriginsRoute =
   BlogFearlessTerastalCardOriginsRouteImport.update({
     id: '/blog/fearless-terastal-card-origins',
@@ -550,6 +574,24 @@ const BlogGemVol7SetGuideRoute = BlogGemVol7SetGuideRouteImport.update({
   path: '/blog/gem-vol-7-set-guide',
   getParentRoute: () => rootRouteImport,
 } as any)
+const BlogMiracleJourneyCardOriginsRoute =
+  BlogMiracleJourneyCardOriginsRouteImport.update({
+    id: '/blog/miracle-journey-card-origins',
+    path: '/blog/miracle-journey-card-origins',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const BlogMiracleJourneyReleaseNewsRoute =
+  BlogMiracleJourneyReleaseNewsRouteImport.update({
+    id: '/blog/miracle-journey-release-news',
+    path: '/blog/miracle-journey-release-news',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const BlogMiracleJourneySetGuideRoute =
+  BlogMiracleJourneySetGuideRouteImport.update({
+    id: '/blog/miracle-journey-set-guide',
+    path: '/blog/miracle-journey-set-guide',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const BlogPikachuDreamPaintingFiguresReleaseNewsRoute =
   BlogPikachuDreamPaintingFiguresReleaseNewsRouteImport.update({
     id: '/blog/pikachu-dream-painting-figures-release-news',
@@ -918,6 +960,9 @@ export interface FileRoutesByFullPath {
   '/blog/chasing-glory-release-news': typeof BlogChasingGloryReleaseNewsRoute
   '/blog/chasing-glory-set-guide': typeof BlogChasingGlorySetGuideRoute
   '/blog/chinese-pokemon-sets-in-order': typeof BlogChinesePokemonSetsInOrderRoute
+  '/blog/eternal-birth-card-origins': typeof BlogEternalBirthCardOriginsRoute
+  '/blog/eternal-birth-release-news': typeof BlogEternalBirthReleaseNewsRoute
+  '/blog/eternal-birth-set-guide': typeof BlogEternalBirthSetGuideRoute
   '/blog/fearless-terastal-card-origins': typeof BlogFearlessTerastalCardOriginsRoute
   '/blog/fearless-terastal-release-news': typeof BlogFearlessTerastalReleaseNewsRoute
   '/blog/fearless-terastal-set-guide': typeof BlogFearlessTerastalSetGuideRoute
@@ -943,6 +988,9 @@ export interface FileRoutesByFullPath {
   '/blog/gem-vol-7-card-origins': typeof BlogGemVol7CardOriginsRoute
   '/blog/gem-vol-7-release-news': typeof BlogGemVol7ReleaseNewsRoute
   '/blog/gem-vol-7-set-guide': typeof BlogGemVol7SetGuideRoute
+  '/blog/miracle-journey-card-origins': typeof BlogMiracleJourneyCardOriginsRoute
+  '/blog/miracle-journey-release-news': typeof BlogMiracleJourneyReleaseNewsRoute
+  '/blog/miracle-journey-set-guide': typeof BlogMiracleJourneySetGuideRoute
   '/blog/pikachu-dream-painting-figures-release-news': typeof BlogPikachuDreamPaintingFiguresReleaseNewsRoute
   '/blog/reward-round-card-origins': typeof BlogRewardRoundCardOriginsRoute
   '/blog/reward-round-release-news': typeof BlogRewardRoundReleaseNewsRoute
@@ -1054,6 +1102,9 @@ export interface FileRoutesByTo {
   '/blog/chasing-glory-release-news': typeof BlogChasingGloryReleaseNewsRoute
   '/blog/chasing-glory-set-guide': typeof BlogChasingGlorySetGuideRoute
   '/blog/chinese-pokemon-sets-in-order': typeof BlogChinesePokemonSetsInOrderRoute
+  '/blog/eternal-birth-card-origins': typeof BlogEternalBirthCardOriginsRoute
+  '/blog/eternal-birth-release-news': typeof BlogEternalBirthReleaseNewsRoute
+  '/blog/eternal-birth-set-guide': typeof BlogEternalBirthSetGuideRoute
   '/blog/fearless-terastal-card-origins': typeof BlogFearlessTerastalCardOriginsRoute
   '/blog/fearless-terastal-release-news': typeof BlogFearlessTerastalReleaseNewsRoute
   '/blog/fearless-terastal-set-guide': typeof BlogFearlessTerastalSetGuideRoute
@@ -1079,6 +1130,9 @@ export interface FileRoutesByTo {
   '/blog/gem-vol-7-card-origins': typeof BlogGemVol7CardOriginsRoute
   '/blog/gem-vol-7-release-news': typeof BlogGemVol7ReleaseNewsRoute
   '/blog/gem-vol-7-set-guide': typeof BlogGemVol7SetGuideRoute
+  '/blog/miracle-journey-card-origins': typeof BlogMiracleJourneyCardOriginsRoute
+  '/blog/miracle-journey-release-news': typeof BlogMiracleJourneyReleaseNewsRoute
+  '/blog/miracle-journey-set-guide': typeof BlogMiracleJourneySetGuideRoute
   '/blog/pikachu-dream-painting-figures-release-news': typeof BlogPikachuDreamPaintingFiguresReleaseNewsRoute
   '/blog/reward-round-card-origins': typeof BlogRewardRoundCardOriginsRoute
   '/blog/reward-round-release-news': typeof BlogRewardRoundReleaseNewsRoute
@@ -1191,6 +1245,9 @@ export interface FileRoutesById {
   '/blog/chasing-glory-release-news': typeof BlogChasingGloryReleaseNewsRoute
   '/blog/chasing-glory-set-guide': typeof BlogChasingGlorySetGuideRoute
   '/blog/chinese-pokemon-sets-in-order': typeof BlogChinesePokemonSetsInOrderRoute
+  '/blog/eternal-birth-card-origins': typeof BlogEternalBirthCardOriginsRoute
+  '/blog/eternal-birth-release-news': typeof BlogEternalBirthReleaseNewsRoute
+  '/blog/eternal-birth-set-guide': typeof BlogEternalBirthSetGuideRoute
   '/blog/fearless-terastal-card-origins': typeof BlogFearlessTerastalCardOriginsRoute
   '/blog/fearless-terastal-release-news': typeof BlogFearlessTerastalReleaseNewsRoute
   '/blog/fearless-terastal-set-guide': typeof BlogFearlessTerastalSetGuideRoute
@@ -1216,6 +1273,9 @@ export interface FileRoutesById {
   '/blog/gem-vol-7-card-origins': typeof BlogGemVol7CardOriginsRoute
   '/blog/gem-vol-7-release-news': typeof BlogGemVol7ReleaseNewsRoute
   '/blog/gem-vol-7-set-guide': typeof BlogGemVol7SetGuideRoute
+  '/blog/miracle-journey-card-origins': typeof BlogMiracleJourneyCardOriginsRoute
+  '/blog/miracle-journey-release-news': typeof BlogMiracleJourneyReleaseNewsRoute
+  '/blog/miracle-journey-set-guide': typeof BlogMiracleJourneySetGuideRoute
   '/blog/pikachu-dream-painting-figures-release-news': typeof BlogPikachuDreamPaintingFiguresReleaseNewsRoute
   '/blog/reward-round-card-origins': typeof BlogRewardRoundCardOriginsRoute
   '/blog/reward-round-release-news': typeof BlogRewardRoundReleaseNewsRoute
@@ -1329,6 +1389,9 @@ export interface FileRouteTypes {
     | '/blog/chasing-glory-release-news'
     | '/blog/chasing-glory-set-guide'
     | '/blog/chinese-pokemon-sets-in-order'
+    | '/blog/eternal-birth-card-origins'
+    | '/blog/eternal-birth-release-news'
+    | '/blog/eternal-birth-set-guide'
     | '/blog/fearless-terastal-card-origins'
     | '/blog/fearless-terastal-release-news'
     | '/blog/fearless-terastal-set-guide'
@@ -1354,6 +1417,9 @@ export interface FileRouteTypes {
     | '/blog/gem-vol-7-card-origins'
     | '/blog/gem-vol-7-release-news'
     | '/blog/gem-vol-7-set-guide'
+    | '/blog/miracle-journey-card-origins'
+    | '/blog/miracle-journey-release-news'
+    | '/blog/miracle-journey-set-guide'
     | '/blog/pikachu-dream-painting-figures-release-news'
     | '/blog/reward-round-card-origins'
     | '/blog/reward-round-release-news'
@@ -1465,6 +1531,9 @@ export interface FileRouteTypes {
     | '/blog/chasing-glory-release-news'
     | '/blog/chasing-glory-set-guide'
     | '/blog/chinese-pokemon-sets-in-order'
+    | '/blog/eternal-birth-card-origins'
+    | '/blog/eternal-birth-release-news'
+    | '/blog/eternal-birth-set-guide'
     | '/blog/fearless-terastal-card-origins'
     | '/blog/fearless-terastal-release-news'
     | '/blog/fearless-terastal-set-guide'
@@ -1490,6 +1559,9 @@ export interface FileRouteTypes {
     | '/blog/gem-vol-7-card-origins'
     | '/blog/gem-vol-7-release-news'
     | '/blog/gem-vol-7-set-guide'
+    | '/blog/miracle-journey-card-origins'
+    | '/blog/miracle-journey-release-news'
+    | '/blog/miracle-journey-set-guide'
     | '/blog/pikachu-dream-painting-figures-release-news'
     | '/blog/reward-round-card-origins'
     | '/blog/reward-round-release-news'
@@ -1601,6 +1673,9 @@ export interface FileRouteTypes {
     | '/blog/chasing-glory-release-news'
     | '/blog/chasing-glory-set-guide'
     | '/blog/chinese-pokemon-sets-in-order'
+    | '/blog/eternal-birth-card-origins'
+    | '/blog/eternal-birth-release-news'
+    | '/blog/eternal-birth-set-guide'
     | '/blog/fearless-terastal-card-origins'
     | '/blog/fearless-terastal-release-news'
     | '/blog/fearless-terastal-set-guide'
@@ -1626,6 +1701,9 @@ export interface FileRouteTypes {
     | '/blog/gem-vol-7-card-origins'
     | '/blog/gem-vol-7-release-news'
     | '/blog/gem-vol-7-set-guide'
+    | '/blog/miracle-journey-card-origins'
+    | '/blog/miracle-journey-release-news'
+    | '/blog/miracle-journey-set-guide'
     | '/blog/pikachu-dream-painting-figures-release-news'
     | '/blog/reward-round-card-origins'
     | '/blog/reward-round-release-news'
@@ -1738,6 +1816,9 @@ export interface RootRouteChildren {
   BlogChasingGloryReleaseNewsRoute: typeof BlogChasingGloryReleaseNewsRoute
   BlogChasingGlorySetGuideRoute: typeof BlogChasingGlorySetGuideRoute
   BlogChinesePokemonSetsInOrderRoute: typeof BlogChinesePokemonSetsInOrderRoute
+  BlogEternalBirthCardOriginsRoute: typeof BlogEternalBirthCardOriginsRoute
+  BlogEternalBirthReleaseNewsRoute: typeof BlogEternalBirthReleaseNewsRoute
+  BlogEternalBirthSetGuideRoute: typeof BlogEternalBirthSetGuideRoute
   BlogFearlessTerastalCardOriginsRoute: typeof BlogFearlessTerastalCardOriginsRoute
   BlogFearlessTerastalReleaseNewsRoute: typeof BlogFearlessTerastalReleaseNewsRoute
   BlogFearlessTerastalSetGuideRoute: typeof BlogFearlessTerastalSetGuideRoute
@@ -1763,6 +1844,9 @@ export interface RootRouteChildren {
   BlogGemVol7CardOriginsRoute: typeof BlogGemVol7CardOriginsRoute
   BlogGemVol7ReleaseNewsRoute: typeof BlogGemVol7ReleaseNewsRoute
   BlogGemVol7SetGuideRoute: typeof BlogGemVol7SetGuideRoute
+  BlogMiracleJourneyCardOriginsRoute: typeof BlogMiracleJourneyCardOriginsRoute
+  BlogMiracleJourneyReleaseNewsRoute: typeof BlogMiracleJourneyReleaseNewsRoute
+  BlogMiracleJourneySetGuideRoute: typeof BlogMiracleJourneySetGuideRoute
   BlogPikachuDreamPaintingFiguresReleaseNewsRoute: typeof BlogPikachuDreamPaintingFiguresReleaseNewsRoute
   BlogRewardRoundCardOriginsRoute: typeof BlogRewardRoundCardOriginsRoute
   BlogRewardRoundReleaseNewsRoute: typeof BlogRewardRoundReleaseNewsRoute
@@ -2191,6 +2275,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BlogChinesePokemonSetsInOrderRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/blog/eternal-birth-card-origins': {
+      id: '/blog/eternal-birth-card-origins'
+      path: '/blog/eternal-birth-card-origins'
+      fullPath: '/blog/eternal-birth-card-origins'
+      preLoaderRoute: typeof BlogEternalBirthCardOriginsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/eternal-birth-release-news': {
+      id: '/blog/eternal-birth-release-news'
+      path: '/blog/eternal-birth-release-news'
+      fullPath: '/blog/eternal-birth-release-news'
+      preLoaderRoute: typeof BlogEternalBirthReleaseNewsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/eternal-birth-set-guide': {
+      id: '/blog/eternal-birth-set-guide'
+      path: '/blog/eternal-birth-set-guide'
+      fullPath: '/blog/eternal-birth-set-guide'
+      preLoaderRoute: typeof BlogEternalBirthSetGuideRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/blog/fearless-terastal-card-origins': {
       id: '/blog/fearless-terastal-card-origins'
       path: '/blog/fearless-terastal-card-origins'
@@ -2364,6 +2469,27 @@ declare module '@tanstack/react-router' {
       path: '/blog/gem-vol-7-set-guide'
       fullPath: '/blog/gem-vol-7-set-guide'
       preLoaderRoute: typeof BlogGemVol7SetGuideRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/miracle-journey-card-origins': {
+      id: '/blog/miracle-journey-card-origins'
+      path: '/blog/miracle-journey-card-origins'
+      fullPath: '/blog/miracle-journey-card-origins'
+      preLoaderRoute: typeof BlogMiracleJourneyCardOriginsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/miracle-journey-release-news': {
+      id: '/blog/miracle-journey-release-news'
+      path: '/blog/miracle-journey-release-news'
+      fullPath: '/blog/miracle-journey-release-news'
+      preLoaderRoute: typeof BlogMiracleJourneyReleaseNewsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/miracle-journey-set-guide': {
+      id: '/blog/miracle-journey-set-guide'
+      path: '/blog/miracle-journey-set-guide'
+      fullPath: '/blog/miracle-journey-set-guide'
+      preLoaderRoute: typeof BlogMiracleJourneySetGuideRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/blog/pikachu-dream-painting-figures-release-news': {
@@ -2818,6 +2944,9 @@ const rootRouteChildren: RootRouteChildren = {
   BlogChasingGloryReleaseNewsRoute: BlogChasingGloryReleaseNewsRoute,
   BlogChasingGlorySetGuideRoute: BlogChasingGlorySetGuideRoute,
   BlogChinesePokemonSetsInOrderRoute: BlogChinesePokemonSetsInOrderRoute,
+  BlogEternalBirthCardOriginsRoute: BlogEternalBirthCardOriginsRoute,
+  BlogEternalBirthReleaseNewsRoute: BlogEternalBirthReleaseNewsRoute,
+  BlogEternalBirthSetGuideRoute: BlogEternalBirthSetGuideRoute,
   BlogFearlessTerastalCardOriginsRoute: BlogFearlessTerastalCardOriginsRoute,
   BlogFearlessTerastalReleaseNewsRoute: BlogFearlessTerastalReleaseNewsRoute,
   BlogFearlessTerastalSetGuideRoute: BlogFearlessTerastalSetGuideRoute,
@@ -2844,6 +2973,9 @@ const rootRouteChildren: RootRouteChildren = {
   BlogGemVol7CardOriginsRoute: BlogGemVol7CardOriginsRoute,
   BlogGemVol7ReleaseNewsRoute: BlogGemVol7ReleaseNewsRoute,
   BlogGemVol7SetGuideRoute: BlogGemVol7SetGuideRoute,
+  BlogMiracleJourneyCardOriginsRoute: BlogMiracleJourneyCardOriginsRoute,
+  BlogMiracleJourneyReleaseNewsRoute: BlogMiracleJourneyReleaseNewsRoute,
+  BlogMiracleJourneySetGuideRoute: BlogMiracleJourneySetGuideRoute,
   BlogPikachuDreamPaintingFiguresReleaseNewsRoute:
     BlogPikachuDreamPaintingFiguresReleaseNewsRoute,
   BlogRewardRoundCardOriginsRoute: BlogRewardRoundCardOriginsRoute,

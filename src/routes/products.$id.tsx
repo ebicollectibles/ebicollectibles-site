@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { createFileRoute, Link, useNavigate } from '@tanstack/react-router'
+import { createFileRoute, Link, notFound, useNavigate } from '@tanstack/react-router'
 import { AddToCartControl } from '~/components/AddToCartControl'
 import { FormattedText } from '~/components/FormattedText'
 import { NotifyMeButton } from '~/components/NotifyMeButton'
@@ -38,13 +38,23 @@ export const Route = createFileRoute('/products/$id')({
       getProduct({ data: { id: params.id } }),
       getBlogGuidesFor({ data: { productId: params.id } }).catch(() => []),
     ])
-    return product ? { ...product, blogGuides } : null
+    // A missing or unpublished product is a real 404 (the root route's
+    // NotFound page, which also carries noindex) rather than a 200 page
+    // saying "not found", which search engines treat as a soft 404.
+    if (!product) throw notFound()
+    return { ...product, blogGuides }
   },
   head: ({ loaderData, params }) => {
     if (!loaderData) return {}
     const title = `${loaderData.name} — EBI Collectibles`
-    const description = `${formatMoney(loaderData.price)} — ${loaderData.name}. Simplified Chinese Pokémon, verified before it ships. ${
-      loaderData.stock > 0 ? 'In stock' : 'Currently sold out'
+    // Same "is there a price a shopper can see" rule the page and
+    // ProductCard use (coming soon at $0, hidePrice, and notSellable hub
+    // listings show none). Without one, the description must not open with
+    // "$0.00" and the JSON-LD must not carry an Offer priced at 0 (or at a
+    // price the listing deliberately hides). Display metadata only.
+    const hasVisiblePrice = loaderData.price > 0 && !loaderData.hidePrice && !loaderData.notSellable
+    const description = `${hasVisiblePrice ? `${formatMoney(loaderData.price)} — ` : ''}${loaderData.name}. Simplified Chinese Pokémon, verified before it ships. ${
+      loaderData.comingSoon ? 'Coming soon' : loaderData.stock > 0 ? 'In stock' : 'Currently sold out'
     }, ships from Washington.`
     const url = `${SITE_URL}/products/${params.id}`
     const image = absoluteImageUrl(loaderData.img)
@@ -81,7 +91,7 @@ export const Route = createFileRoute('/products/$id')({
             // "missing identifier" indefinitely, since it can't otherwise
             // tell "none exists" from "forgot to add it."
             ...(loaderData.gtin ? {} : { identifierExists: false }),
-            offers: {
+            ...(hasVisiblePrice ? { offers: {
               '@type': 'Offer',
               url,
               priceCurrency: 'USD',
@@ -116,7 +126,7 @@ export const Route = createFileRoute('/products/$id')({
                 returnPolicyCategory: RETURN_POLICY_CATEGORY_URL,
                 applicableCountry: SHIPS_TO_COUNTRY,
               },
-            },
+            } } : {}),
           },
         },
       ],

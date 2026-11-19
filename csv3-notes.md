@@ -58,5 +58,5 @@ Chen flags **one** card as exclusive to this set: **155/130 Arcanine ex (SAR)**.
 
 ## Not verified
 
-- English-set matches for each card (left for the card origins post).
+- English matches: now done for every card in src/routes/blog/fearless-terastal-card-origins.tsx.
 - Box sizes (packs per box) for either pack type: not on Chen or the official page.

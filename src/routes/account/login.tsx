@@ -13,6 +13,15 @@ const searchSchema = z.object({ error: z.string().optional() })
 
 export const Route = createFileRoute('/account/login')({
   validateSearch: searchSchema,
+  // Utility page: its own title instead of inheriting the home page's, and
+  // kept out of search results.
+  head: () => ({
+    meta: [
+      { title: 'Sign in | EBI Collectibles' },
+      { name: 'description', content: 'Sign in to your EBI Collectibles account to view orders and check out faster.' },
+      { name: 'robots', content: 'noindex, follow' },
+    ],
+  }),
   component: LoginPage,
 })
 

@@ -4,6 +4,15 @@ import { useSignIn } from '@clerk/tanstack-react-start/legacy'
 import { clerkErrorMessage } from '~/lib/clerk-error'
 
 export const Route = createFileRoute('/account/forgot-password')({
+  // Utility page: its own title instead of inheriting the home page's, and
+  // kept out of search results.
+  head: () => ({
+    meta: [
+      { title: 'Reset your password | EBI Collectibles' },
+      { name: 'description', content: 'Reset the password for your EBI Collectibles account.' },
+      { name: 'robots', content: 'noindex, follow' },
+    ],
+  }),
   component: ForgotPasswordPage,
 })
 

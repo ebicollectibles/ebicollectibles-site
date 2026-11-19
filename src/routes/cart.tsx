@@ -17,6 +17,15 @@ import { formatMoney } from '~/lib/products'
 import { thumbSrcSet } from '~/components/ResponsiveImage'
 
 export const Route = createFileRoute('/cart')({
+  // Utility page: its own title instead of inheriting the home page's, and
+  // kept out of search results.
+  head: () => ({
+    meta: [
+      { title: 'Your cart | EBI Collectibles' },
+      { name: 'description', content: 'Review the items in your EBI Collectibles cart before checkout.' },
+      { name: 'robots', content: 'noindex, follow' },
+    ],
+  }),
   component: CartPage,
 })
 

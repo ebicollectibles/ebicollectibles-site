@@ -16,6 +16,15 @@ const searchSchema = z.object({ email: z.string().optional() })
 
 export const Route = createFileRoute('/account/signup')({
   validateSearch: searchSchema,
+  // Utility page: its own title instead of inheriting the home page's, and
+  // kept out of search results.
+  head: () => ({
+    meta: [
+      { title: 'Create an account | EBI Collectibles' },
+      { name: 'description', content: 'Create an EBI Collectibles account to track orders and check out faster.' },
+      { name: 'robots', content: 'noindex, follow' },
+    ],
+  }),
   component: SignupPage,
 })
 

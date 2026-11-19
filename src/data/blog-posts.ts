@@ -6,7 +6,7 @@
 // the post itself.
 import { SITE_URL, R2_IMAGE_HOST } from '~/lib/gem-sets/constants'
 
-export type BlogPostSlug = 'chinese-pokemon-sets-in-order' | 'gem-vol-7-release-news' | 'gem-vol-7-set-guide' | 'gem-vol-7-card-origins' | 'gem-vol-6-release-news' | 'gem-vol-6-set-guide' | 'gem-vol-6-card-origins' | 'gem-vol-5-release-news' | 'gem-vol-5-set-guide' | 'gem-vol-5-card-origins' | 'gem-vol-4-release-news' | 'gem-vol-4-set-guide' | 'gem-vol-4-card-origins' | 'gem-vol-3-release-news' | 'gem-vol-3-set-guide' | 'gem-vol-3-card-origins' | 'gem-vol-2-release-news' | 'gem-vol-2-set-guide' | 'gem-vol-2-card-origins' | 'gem-vol-1-release-news' | 'gem-vol-1-set-guide' | 'gem-vol-1-card-origins' | '30th-celebration-release-news' | '30th-celebration-set-guide' | '30th-celebration-card-origins' | 'chasing-glory-release-news' | 'chasing-glory-set-guide' | 'chasing-glory-card-origins' | 'terastal-gathering-release-news' | 'terastal-gathering-set-guide' | 'terastal-gathering-card-origins' | 'reward-round-release-news' | 'reward-round-set-guide' | 'reward-round-card-origins' | 'fearless-terastal-release-news' | 'fearless-terastal-set-guide' | 'fearless-terastal-card-origins' | 'black-crystal-blaze-release-news' | 'black-crystal-blaze-set-guide' | 'black-crystal-blaze-card-origins' | 'black-bolt-set-guide' | 'black-bolt-card-origins' | 'white-flare-set-guide' | 'white-flare-card-origins' | 'true-mystery-release-news' | 'true-mystery-set-guide' | 'true-mystery-card-origins' | 'blade-awakening-release-news' | 'blade-awakening-set-guide' | 'blade-awakening-card-origins' | 'brilliant-fantasy-release-news' | 'brilliant-fantasy-set-guide' | 'brilliant-fantasy-card-origins' | 'stellar-crystal-release-news' | 'stellar-crystal-set-guide' | 'stellar-crystal-card-origins' | 'pikachu-dream-painting-figures-release-news' | 'funism-ditto-palm-size-wonders-release-news'
+export type BlogPostSlug = 'chinese-pokemon-sets-in-order' | 'gem-vol-7-release-news' | 'gem-vol-7-set-guide' | 'gem-vol-7-card-origins' | 'gem-vol-6-release-news' | 'gem-vol-6-set-guide' | 'gem-vol-6-card-origins' | 'gem-vol-5-release-news' | 'gem-vol-5-set-guide' | 'gem-vol-5-card-origins' | 'gem-vol-4-release-news' | 'gem-vol-4-set-guide' | 'gem-vol-4-card-origins' | 'gem-vol-3-release-news' | 'gem-vol-3-set-guide' | 'gem-vol-3-card-origins' | 'gem-vol-2-release-news' | 'gem-vol-2-set-guide' | 'gem-vol-2-card-origins' | 'gem-vol-1-release-news' | 'gem-vol-1-set-guide' | 'gem-vol-1-card-origins' | '30th-celebration-release-news' | '30th-celebration-set-guide' | '30th-celebration-card-origins' | 'chasing-glory-release-news' | 'chasing-glory-set-guide' | 'chasing-glory-card-origins' | 'terastal-gathering-release-news' | 'terastal-gathering-set-guide' | 'terastal-gathering-card-origins' | 'reward-round-release-news' | 'reward-round-set-guide' | 'reward-round-card-origins' | 'fearless-terastal-release-news' | 'fearless-terastal-set-guide' | 'fearless-terastal-card-origins' | 'eternal-birth-release-news' | 'eternal-birth-set-guide' | 'eternal-birth-card-origins' | 'miracle-journey-release-news' | 'miracle-journey-set-guide' | 'miracle-journey-card-origins' | 'black-crystal-blaze-release-news' | 'black-crystal-blaze-set-guide' | 'black-crystal-blaze-card-origins' | 'black-bolt-set-guide' | 'black-bolt-card-origins' | 'white-flare-set-guide' | 'white-flare-card-origins' | 'true-mystery-release-news' | 'true-mystery-set-guide' | 'true-mystery-card-origins' | 'blade-awakening-release-news' | 'blade-awakening-set-guide' | 'blade-awakening-card-origins' | 'brilliant-fantasy-release-news' | 'brilliant-fantasy-set-guide' | 'brilliant-fantasy-card-origins' | 'stellar-crystal-release-news' | 'stellar-crystal-set-guide' | 'stellar-crystal-card-origins' | 'pikachu-dream-painting-figures-release-news' | 'funism-ditto-palm-size-wonders-release-news'
 
 export interface BlogPostSummary {
   slug: BlogPostSlug
@@ -482,6 +482,102 @@ export const BLOG_POSTS: BlogPostSummary[] = [
     heroAlt: 'Fearless Terastal card origins banner: both booster packs with tiles for Paldea Evolved, Obsidian Flames, Scarlet & Violet, three other sources and one Chinese Exclusive',
     glow1: 'rgb(214 96 40 / .30)',
     glow2: 'rgb(64 130 170 / .25)',
+  },
+  {
+    slug: 'eternal-birth-release-news',
+    path: '/blog/eternal-birth-release-news',
+    title: 'Eternal Birth Is Here: Miraidon ex Opens Chinese Scarlet & Violet',
+    excerpt:
+      'Eternal Birth is the first Chinese Scarlet & Violet set, with Miraidon on the pack and Pokémon ex in Simplified Chinese. It comes in a 5-card and a 20-card pack, and Miraidon ex and Koraidon ex are its lead chase cards.',
+    seoTitle: 'Pokémon Eternal Birth (CSV1C): Miraidon ex SAR & Release Info',
+    seoDescription:
+      'Pokémon TCG Eternal Birth (CSV1C) in Simplified Chinese: Miraidon on the pack, Pokémon ex, pull odds for both pack sizes and the lead chase cards.',
+    tag: 'New release',
+    date: '2025-01-17',
+    heroImage: `${SITE_URL}/assets/blog/eternal-birth-release-hero-v1.webp`,
+    heroAlt: 'Eternal Birth banner: the 5-card and 20-card booster packs with the Koraidon ex and Miriam Special Art Rares',
+    glow1: 'rgb(98 78 190 / .30)',
+    glow2: 'rgb(230 200 60 / .25)',
+  },
+  {
+    slug: 'eternal-birth-set-guide',
+    path: '/blog/eternal-birth-set-guide',
+    title: 'Eternal Birth Set Guide: Every Chase Card and the Pull Odds',
+    excerpt:
+      'Eternal Birth has 40 secret rares behind a 127-card main set, and its 5-card and 20-card packs have different pull odds. This guide shows every chase card and how often you can expect to pull one.',
+    seoTitle: 'Pokémon Eternal Birth (CSV1C) Set Guide: Chase Cards & Odds',
+    seoDescription:
+      'Pokémon TCG Eternal Birth (CSV1C) set guide: every Special Art Rare and Super Rare, the official pull odds, and the 393-card master set.',
+    tag: 'Set guide',
+    date: '2025-01-17',
+    heroImage: `${SITE_URL}/assets/blog/eternal-birth-guide-hero-v1.webp`,
+    heroAlt: 'Eternal Birth set guide banner: the Koraidon ex Special Art Rare 157/127 in a display case beside a row of six more chase cards',
+    glow1: 'rgb(98 78 190 / .30)',
+    glow2: 'rgb(230 200 60 / .25)',
+  },
+  {
+    slug: 'eternal-birth-card-origins',
+    path: '/blog/eternal-birth-card-origins',
+    title: 'Where Every Eternal Birth Card Comes From',
+    excerpt:
+      'Eternal Birth follows the first English Scarlet & Violet set closely, with Paldea Evolved and Obsidian Flames filling in most of the rest. We matched all 167 cards to English, and every one has an English version.',
+    seoTitle: 'Pokémon Eternal Birth (CSV1C) Card Origins: English Matches',
+    seoDescription:
+      'All 167 Pokémon TCG Eternal Birth (CSV1C) cards matched to English: 134 from Scarlet & Violet, 16 from Paldea Evolved, 7 from Obsidian Flames.',
+    tag: 'Collecting guide',
+    date: '2025-01-17',
+    heroImage: `${SITE_URL}/assets/blog/eternal-birth-origins-hero-v1.webp`,
+    heroAlt: 'Eternal Birth card origins banner: both booster packs with tiles for Scarlet & Violet, Paldea Evolved, Obsidian Flames and four other sources',
+    glow1: 'rgb(98 78 190 / .30)',
+    glow2: 'rgb(230 200 60 / .25)',
+  },
+  {
+    slug: 'miracle-journey-release-news',
+    path: '/blog/miracle-journey-release-news',
+    title: 'Miracle Journey Is Here: Gardevoir ex and the Paldea Starters as Pokémon ex',
+    excerpt:
+      'The second Chinese Scarlet & Violet set puts Gardevoir on the pack and brings the final forms of the three Paldea starters as Pokémon ex. Its Gardevoir ex Special Art Rare leads the 35 secret rares.',
+    seoTitle: 'Pokémon Miracle Journey (CSV2C): Gardevoir ex SAR & Release Info',
+    seoDescription:
+      'Pokémon TCG Miracle Journey (CSV2C) in Simplified Chinese: Gardevoir on the pack, the Paldea starters as Pokémon ex, pull odds and the Gardevoir ex SAR.',
+    tag: 'New release',
+    date: '2025-03-21',
+    heroImage: `${SITE_URL}/assets/blog/miracle-journey-release-hero-v1.webp`,
+    heroAlt: "Miracle Journey banner: the 5-card and 20-card booster packs with the Gardevoir ex Special Art Rare and the Erika's Invitation Super Rare",
+    glow1: 'rgb(226 110 170 / .30)',
+    glow2: 'rgb(70 160 90 / .25)',
+  },
+  {
+    slug: 'miracle-journey-set-guide',
+    path: '/blog/miracle-journey-set-guide',
+    title: 'Miracle Journey Set Guide: Every Chase Card and the Pull Odds',
+    excerpt:
+      'Miracle Journey has 35 secret rares behind a 128-card main set, and its 5-card and 20-card packs have different pull odds. This guide shows every chase card and how often you can expect to pull one.',
+    seoTitle: 'Pokémon Miracle Journey (CSV2C) Set Guide: Chase Cards & Odds',
+    seoDescription:
+      'Pokémon TCG Miracle Journey (CSV2C) set guide: every Special Art Rare and Super Rare, the official pull odds, and the 393-card master set.',
+    tag: 'Set guide',
+    date: '2025-03-21',
+    heroImage: `${SITE_URL}/assets/blog/miracle-journey-guide-hero-v1.webp`,
+    heroAlt: 'Miracle Journey set guide banner: the Gardevoir ex Special Art Rare 155/128 in a display case beside a row of six more chase cards',
+    glow1: 'rgb(226 110 170 / .30)',
+    glow2: 'rgb(70 160 90 / .25)',
+  },
+  {
+    slug: 'miracle-journey-card-origins',
+    path: '/blog/miracle-journey-card-origins',
+    title: 'Where Every Miracle Journey Card Comes From',
+    excerpt:
+      'Miracle Journey is built mostly from Paldea Evolved and Scarlet & Violet, with Obsidian Flames filling in most of the rest. We matched all 163 cards to English, and every one has an English version.',
+    seoTitle: 'Pokémon Miracle Journey (CSV2C) Card Origins: English Matches',
+    seoDescription:
+      'All 163 Pokémon TCG Miracle Journey (CSV2C) cards matched to English: 80 from Paldea Evolved, 43 from Scarlet & Violet, 26 from Obsidian Flames.',
+    tag: 'Collecting guide',
+    date: '2025-03-21',
+    heroImage: `${SITE_URL}/assets/blog/miracle-journey-origins-hero-v1.webp`,
+    heroAlt: 'Miracle Journey card origins banner: the booster packs with tiles for Paldea Evolved, Scarlet & Violet, Obsidian Flames and three other sources',
+    glow1: 'rgb(226 110 170 / .30)',
+    glow2: 'rgb(70 160 90 / .25)',
   },
   {
     slug: 'terastal-gathering-release-news',
