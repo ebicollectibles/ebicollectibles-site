@@ -17,7 +17,7 @@ const cardImg = (id: string) => `${R2_IMAGE_HOST}/Chinese/Gem%201/Cards/${id}.we
 const HORIZONS = [
   { id: '0109', name: 'Sprigatito', with: 'Liko', art: 'Liko kneels in the grass, winking as she holds up her glowing pendant, with Sprigatito leaping up beside her.' },
   { id: '0309', name: 'Fuecoco', with: 'Roy', art: 'Roy sits on a wooden deck under a blue sky with Fuecoco in his lap, balancing a bronze Poké Ball on one finger.' },
-  { id: '0509', name: 'Quaxly', with: null, art: "Quaxly spreads its wings against a starry purple and blue sky, with Nidothing, Dot's costumed streaming persona, behind it." },
+  { id: '0509', name: 'Quaxly', with: 'Nidothing', art: "Quaxly spreads its wings against a starry purple and blue sky, with Nidothing, Dot's costumed streaming persona, behind it." },
   { id: '0709', name: 'Captain Pikachu', with: 'Friede', art: 'Captain Pikachu, arms folded, stands on the back of a sofa while Friede leans in behind him, hand on chin.' },
 ]
 
@@ -54,7 +54,7 @@ const RARITY = [
   { symbol: '●', label: 'Common', which: 'Versions 01 and 02 of all 16 Pokémon', cards: 32, print: '50.00%' },
   { symbol: '◆', label: 'Uncommon', which: 'Versions 03 and 04 of the 9- and 8-card runs, version 03 of the 5-card runs', cards: 23, print: '25.00%' },
   { symbol: '★', label: 'Rare', which: 'Versions 05 and 06 of the 9- and 8-card runs, version 04 of the 5-card runs', cards: 23, print: '17.90%' },
-  { symbol: '★★', label: 'Double Rare', which: 'Version 07 of the 9- and 8-card runs, version 05 of the 5-card runs, 3 Poké Ball Trainers', cards: 19, print: '4.93%' },
+  { symbol: '★★', label: 'Double Rare', which: 'Version 07 of the 9- and 8-card runs, version 05 of the 5-card runs, Poké Ball, Great Ball and Ultra Ball', cards: 19, print: '4.93%' },
   { symbol: '★★★', label: 'Triple Rare', which: '7 illustration full arts, 4 Horizons full arts, Nemona, 6 Energy', cards: 18, print: '2.17%' },
 ]
 
@@ -65,7 +65,7 @@ const TOC = [
   { id: 'sprigatito', label: "Sprigatito's 9 cards" },
   { id: 'pikachu', label: 'Captain Pikachu and Pikachu' },
   { id: 'trainers-energy', label: 'Trainers and Energy' },
-  { id: 'gem-pack-timeline', label: 'Gem Pack timeline' },
+  { id: 'gem-pack-timeline', label: 'Where Vol. 1 fits in the Gem Pack line' },
   { id: 'faq', label: 'FAQ' },
 ]
 
@@ -106,7 +106,7 @@ const FAQ = [
   },
   {
     q: 'Where do the Gem 1 illustrations come from?',
-    a: 'Mostly from English cards. 33 of the 38 illustrations we traced are the same art you will find on English Scarlet & Violet cards, mostly from Paldea Evolved.',
+    a: 'Mostly from English cards. 33 of the 38 illustrations we traced are the same art you will find on English Scarlet & Violet cards, nearly half of them from Paldea Evolved.',
     link: { to: '/sets/chinese/gem-vol-1', before: 'See every card on the ', label: 'Gem Vol 1 card list', after: '.' },
   },
 ]
@@ -228,7 +228,8 @@ function GemVol1Post() {
         <p>
           The four Chinese Exclusives are new full arts based on the Pokémon Horizons anime. Each one is version 09 of its Pokémon,
           the only version 09 cards in the set, and each carries a small Pokémon Horizons logo. Three of them put the anime cast next
-          to their partner Pokémon: Liko with Sprigatito, Roy with Fuecoco and Friede with Captain Pikachu.
+          to their partner Pokémon: Liko with Sprigatito, Roy with Fuecoco and Friede with Captain Pikachu. Quaxly appears with
+          Nidothing, the costumed persona Dot streams as.
         </p>
         <div className="card-grid cols-4">
           {HORIZONS.map((c) => (
@@ -307,7 +308,7 @@ function GemVol1Post() {
         </div>
         <p className="table-note">
           Print shares are published by Pokémon China. Its chart splits the 18 Triple Rares into 11 illustration full art Pokémon cards,
-          4 holo cards without gold stamping and 3 with it. The counts line up with the set: the 11 are the seven version 08 full arts and the four Horizons full arts, the 4 are Nemona and Energy 1801 to 1803, and the 3 are Energy 1804 to 1806, the ones with the Gem Pack logo stamp.
+          4 holo cards without gold stamping and 3 with it. The counts line up with the set: the 11 are the seven version 08 full arts and the four Horizons full arts, the 4 are Nemona and Energy 1801 to 1803, and the 3 appear to be Energy 1804 to 1806, the ones with the Gem Pack logo stamp. The chart itself doesn't name the cards.
         </p>
 
         <h2 id="sprigatito">Sprigatito's 9 cards</h2>

@@ -73,7 +73,7 @@ const FAQ = [
   },
   {
     q: 'What is the shiny-style card at version 06?',
-    a: 'In the 9- and 8-card runs, version 06 shows the Pokémon in its shiny colors inside a star-sparkle frame. For Sprigatito, Fuecoco, Quaxly and Pikachu it is a different card from the base card, with its own HP and attacks. For Floragato, Crocalor and Quaxwell the attacks match the base card.',
+    a: 'In the 9- and 8-card runs, version 06 shows the Pokémon in its shiny colors inside a star-sparkle frame. For Sprigatito, Fuecoco, Quaxly and Pikachu it is a different card from the base card, with its own attacks, and the three starters also change HP. For Floragato, Crocalor and Quaxwell the attacks match the base card.',
   },
   {
     q: 'What do the symbols next to the card number mean?',
@@ -191,7 +191,7 @@ function GemVol1SetGuide() {
           Gem Pack Vol. 1 (Gem 1, CBB1C) is the Paldea starter set: 115 holo cards across 16 Pokémon, a block of Trainer and Energy
           cards, and four Chinese Exclusives: the Pokémon Horizons full arts of Sprigatito, Fuecoco, Quaxly and Captain Pikachu. Our{' '}
           <Link to="/blog/gem-vol-1-release-news">release post</Link> covers what is in the set, and our{' '}
-          <Link to="/blog/gem-vol-1-card-origins">card origins guide</Link> traces every illustration back to its English card. Use this
+          <Link to="/blog/gem-vol-1-card-origins">card origins guide</Link> traces each illustration back to its English card, where there is one. Use this
           one to sort your pulls or plan a master set.
         </p>
 
@@ -253,7 +253,7 @@ function GemVol1SetGuide() {
         <h2 id="shiny">All 7 shiny-style cards</h2>
         <p>
           Version 06 of every long run shows the Pokémon in its shiny colors, set in a star-sparkle frame. Sprigatito, Fuecoco, Quaxly and
-          Pikachu get a different card here, with new HP and attacks. Floragato, Crocalor and Quaxwell keep their base card's attacks.
+          Pikachu get a different card here, with new attacks (and a different HP for the three starters). Floragato, Crocalor and Quaxwell keep their base card's attacks.
         </p>
         <Gallery cards={SHINY} cols={4} />
 
@@ -332,7 +332,7 @@ function GemVol1SetGuide() {
         <p>
           The Triple Rares are the hard part. They take up 2.17% of the print run, and that share is split across the seven illustration
           full arts, the four Horizons full arts, Nemona and the six Energy cards, 18 cards in all. If each is equally likely, any one
-          specific Triple Rare turns up about once in every 830 cards, or roughly once in 200 packs.
+          specific Triple Rare turns up about once in every 830 cards, or roughly once in 210 packs.
         </p>
         <p>
           So most collectors open packs for fun and for the lower rarities, then buy the full arts they still need as singles. The{' '}

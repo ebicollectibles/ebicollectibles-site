@@ -856,10 +856,10 @@ export const BLOG_POSTS: BlogPostSummary[] = [
     path: '/blog/gem-vol-1-card-origins',
     title: 'Where Every Gem Vol 1 Card Actually Comes From',
     excerpt:
-      '33 of the 38 illustrations in Gem Vol 1 are reused from English cards, mostly Paldea Evolved. The other five are Pokémon Horizons art, including four Chinese Exclusive full arts.',
+      '33 of the 38 illustrations in Gem Vol 1 are reused from English cards, nearly half from Paldea Evolved. The other five are Pokémon Horizons art, including four Chinese Exclusive full arts.',
     seoTitle: 'Pokémon Gem Pack Vol. 1 (Gem 1) Card Origins: English Art Matches',
     seoDescription:
-      'Pokémon TCG Gem Pack Vol. 1 (Gem 1) card origins: 33 of the 38 illustrations reuse English Scarlet & Violet cards, mostly from Paldea Evolved.',
+      'Pokémon TCG Gem Pack Vol. 1 (Gem 1) card origins: 33 of the 38 illustrations reuse English Scarlet & Violet cards, the most from Paldea Evolved.',
     tag: 'Collecting guide',
     date: '2025-01-17',
     heroImage: `${SITE_URL}/assets/blog/gem-vol-1-origins-hero-v1.webp`,

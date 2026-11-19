@@ -80,7 +80,7 @@ const FAQ = [
   },
   {
     q: 'Are Gem 1 cards reprints?',
-    a: 'The art mostly is. 33 of the 38 illustrations we traced are the same art you will find on English Scarlet & Violet cards, mostly from Paldea Evolved. What is new is the printing: Simplified Chinese text, new numbers, new holo patterns and the Gem Pack set code.',
+    a: 'The art mostly is. 33 of the 38 illustrations we traced are the same art you will find on English Scarlet & Violet cards, nearly half of them from Paldea Evolved. What is new is the printing: Simplified Chinese text, new numbers, new holo patterns and the Gem Pack set code.',
     link: { to: '/sets/chinese/gem-vol-1', before: 'See every card on the ', label: 'Gem Vol 1 card list', after: '.' },
   },
   {
@@ -234,7 +234,7 @@ function GemVol1OriginsPost() {
         </div>
 
         <h2 id="by-set">Which sets it comes from</h2>
-        <p>All of it is Scarlet & Violet era art, most of it from Paldea Evolved, listed in release order:</p>
+        <p>All of it is Scarlet & Violet era art, with Paldea Evolved the biggest source, listed in release order:</p>
         <div className="table-scroll">
           <table className="data-table">
             <thead>
@@ -262,7 +262,7 @@ function GemVol1OriginsPost() {
         <ul>
           <li>
             <strong>Four full arts are Chinese Exclusives.</strong> Sprigatito, Fuecoco, Quaxly and Captain Pikachu each get a new Pokémon
-            Horizons full art, three of them with Liko, Roy and Friede.
+            Horizons full art, three of them with Liko, Roy and Friede, and Quaxly with Nidothing.
           </li>
           <li>
             <strong>Captain Pikachu's base card is new too.</strong> It is Horizons art with Friede in the background, and we found no
