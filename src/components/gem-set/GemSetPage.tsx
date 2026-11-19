@@ -2,10 +2,11 @@ import * as React from 'react'
 import { Link, useLoaderData } from '@tanstack/react-router'
 import type { BlogGuideLink } from '~/server/blog-status'
 import { SITE_URL } from '~/lib/gem-sets/constants'
+import { cardLinkQuery } from '~/lib/gem-sets/card-search'
 import { buildGemSetJsonLd, safeJsonLd } from '~/lib/gem-sets/head'
 import { RARITY_CODE, RARITY_SYMBOL } from '~/lib/gem-sets/rarity'
 import type { BuiltGemSetData, Card, GemSetConfig, GemSetData } from '~/lib/gem-sets/types'
-import { CardThumb, RarityTag } from './parts'
+import { CardThumb, RarityTag, haveLabel } from './parts'
 
 const GUIDE_LABEL: Record<string, string> = { 'release-news': 'Release news', 'set-guide': 'Set guide', 'card-origins': 'Card origins' }
 
@@ -70,8 +71,14 @@ export function GemSetPage({
   const [query, setQuery] = React.useState('')
   const [rarities, setRarities] = React.useState<Set<string>>(() => new Set())
   const [have, setHave] = React.useState<Set<string>>(() => new Set())
+  // Set once the saved checklist has been read back, so the save effect
+  // below never writes the initial empty set over what is in storage.
+  const [haveLoaded, setHaveLoaded] = React.useState(false)
+  // Checklist tab only: which cards to list, and the two-step "Clear
+  // checklist" confirmation.
+  const [ownFilter, setOwnFilter] = React.useState<'all' | 'missing' | 'owned'>('all')
+  const [confirmClear, setConfirmClear] = React.useState(false)
   const [headerH, setHeaderH] = React.useState(73)
-  const haveLoadedRef = React.useRef(false)
   const fanRef = React.useRef<HTMLDivElement>(null)
   // Which of config.fanIds sits in the center slot. The others fall into
   // the 4 remaining fixed slots around it, wrapping cyclically — a swipe
@@ -142,22 +149,22 @@ export function GemSetPage({
   React.useEffect(() => {
     try {
       const saved = JSON.parse(localStorage.getItem(config.storageKey) ?? '[]')
-      if (Array.isArray(saved)) setHave(new Set(saved))
+      if (Array.isArray(saved)) setHave(new Set(saved.filter((id): id is string => typeof id === 'string')))
     } catch {
       // ignore
     }
-    haveLoadedRef.current = true
+    setHaveLoaded(true)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
   React.useEffect(() => {
-    if (!haveLoadedRef.current) return
+    if (!haveLoaded) return
     try {
       localStorage.setItem(config.storageKey, JSON.stringify([...have]))
     } catch {
       // ignore
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [have])
+  }, [have, haveLoaded])
 
   // The real site Header is sticky too — this keeps our own sticky
   // toolbar sitting directly under it instead of overlapping, at
@@ -293,7 +300,7 @@ export function GemSetPage({
   const [copied, setCopied] = React.useState(false)
   const copyLink = async () => {
     if (!openCard) return
-    const url = `${SITE_URL}${config.routePath}?card=${openCard.id}`
+    const url = `${SITE_URL}${config.routePath}${cardLinkQuery(openCard.id)}`
     try {
       await navigator.clipboard.writeText(url)
       setCopied(true)
@@ -307,7 +314,30 @@ export function GemSetPage({
     return () => clearTimeout(t)
   }, [copied])
 
-  const ownedCount = have.size
+  // Counted against this set's own cards, not have.size, so an id left in
+  // storage that the set no longer has can never push it past the total.
+  const ownedCount = React.useMemo(() => cards.filter((c) => have.has(c.id)).length, [cards, have])
+  const ownedPct = cards.length > 0 ? Math.round((ownedCount / cards.length) * 100) : 0
+  const checklistShown = React.useMemo(
+    () => (ownFilter === 'all' ? shown : shown.filter((c) => have.has(c.id) === (ownFilter === 'owned'))),
+    [shown, have, ownFilter],
+  )
+  // The confirm buttons unmount when the question is answered, which would
+  // drop keyboard focus onto <body>; send it somewhere sensible instead
+  // (back to "Clear checklist" on cancel; that button is disabled once the
+  // list is empty, so to the checklist header after a clear).
+  const clearBtnRef = React.useRef<HTMLButtonElement>(null)
+  const clHeadRef = React.useRef<HTMLElement>(null)
+  const clearChecklist = () => {
+    setHave(new Set())
+    setConfirmClear(false)
+    setOwnFilter('all')
+    requestAnimationFrame(() => clHeadRef.current?.focus())
+  }
+  const cancelClear = () => {
+    setConfirmClear(false)
+    requestAnimationFrame(() => clearBtnRef.current?.focus())
+  }
   const topRarity = raw.rarityOrder[raw.rarityOrder.length - 1]
   const releasedLabel = formatReleaseDate(raw.releaseDate)
   const heroLede =
@@ -499,11 +529,73 @@ export function GemSetPage({
             <span aria-live="polite">
               <b>{shown.length}</b> of {raw.cardCount} cards
             </span>
+            {view !== 'list' && (
+              <span className="progress">
+                <i aria-hidden="true">
+                  <s style={{ width: `${ownedPct}%` }} />
+                </i>
+                <span>
+                  <b>{ownedCount}</b> of {cards.length} owned
+                </span>
+              </span>
+            )}
           </div>
         </div>
       </div>
 
       <main className="wrap">
+        {view === 'list' && (
+          <section className="cl-head" aria-label="Your checklist" ref={clHeadRef} tabIndex={-1}>
+            <div className="cl-progress">
+              <div className="cl-count" aria-live="polite">
+                <b>{ownedCount}</b> of {cards.length} owned
+              </div>
+              <div
+                className="cl-bar"
+                role="progressbar"
+                aria-label={`${raw.name} cards owned`}
+                aria-valuemin={0}
+                aria-valuemax={cards.length}
+                aria-valuenow={ownedCount}
+                aria-valuetext={`${ownedCount} of ${cards.length} owned`}
+              >
+                <span style={{ width: `${ownedPct}%` }} />
+              </div>
+            </div>
+            <div className="cl-tools">
+              <div className="chips" role="group" aria-label="Show cards">
+                {(
+                  [
+                    ['all', 'All', cards.length],
+                    ['missing', 'Missing', cards.length - ownedCount],
+                    ['owned', 'Owned', ownedCount],
+                  ] as const
+                ).map(([f, label, n]) => (
+                  <button key={f} type="button" className="chip" aria-pressed={ownFilter === f} onClick={() => setOwnFilter(f)}>
+                    {label}
+                    <span className="n">{n}</span>
+                  </button>
+                ))}
+              </div>
+              {confirmClear ? (
+                <div className="cl-confirm" role="group" aria-label="Confirm clearing the checklist">
+                  <span>Clear all {ownedCount} owned cards?</span>
+                  <button type="button" className="btn btn-dark" onClick={clearChecklist}>
+                    Yes, clear
+                  </button>
+                  <button type="button" className="btn btn-line" onClick={cancelClear} autoFocus>
+                    Cancel
+                  </button>
+                </div>
+              ) : (
+                <button type="button" className="btn btn-line cl-clear" ref={clearBtnRef} disabled={ownedCount === 0} onClick={() => setConfirmClear(true)}>
+                  Clear checklist
+                </button>
+              )}
+            </div>
+            <p className="cl-note">Saved in this browser only.</p>
+          </section>
+        )}
         {shown.length === 0 ? (
           <div className="empty">No cards match. Try another name or clear the rarity filter.</div>
         ) : view === 'ladder' ? (
@@ -528,7 +620,7 @@ export function GemSetPage({
                   </div>
                   <div className="rail">
                     {g.cards.map((c) => (
-                      <CardThumb key={c.id} card={c} dimmed={!match(c)} showName={false} have={have.has(c.id)} onOpen={open} />
+                      <CardThumb key={c.id} card={c} dimmed={!match(c)} showName={false} have={have.has(c.id)} onOpen={open} onToggleHave={toggleHave} />
                     ))}
                   </div>
                 </section>
@@ -544,7 +636,7 @@ export function GemSetPage({
                 </div>
                 <div className="grid">
                   {exclusiveShown.map((c, i) => (
-                    <CardThumb key={c.id} card={c} dimmed={false} showName={true} have={have.has(c.id)} priority={i < 8} onOpen={open} />
+                    <CardThumb key={c.id} card={c} dimmed={false} showName={true} have={have.has(c.id)} priority={i < 8} onOpen={open} onToggleHave={toggleHave} />
                   ))}
                 </div>
               </section>
@@ -552,7 +644,7 @@ export function GemSetPage({
             {exclusiveShown.length > 0 && <div className="grid-head">All cards</div>}
             <div className="grid">
               {shown.map((c, i) => (
-                <CardThumb key={c.id} card={c} dimmed={false} showName={true} have={have.has(c.id)} priority={exclusiveShown.length === 0 && i < 8} onOpen={open} />
+                <CardThumb key={c.id} card={c} dimmed={false} showName={true} have={have.has(c.id)} priority={exclusiveShown.length === 0 && i < 8} onOpen={open} onToggleHave={toggleHave} />
               ))}
             </div>
           </>
@@ -562,12 +654,57 @@ export function GemSetPage({
           ) : (
             <div className="grid">
               {exclusiveShown.map((c) => (
-                <CardThumb key={c.id} card={c} dimmed={false} showName={true} have={have.has(c.id)} onOpen={open} />
+                <CardThumb key={c.id} card={c} dimmed={false} showName={true} have={have.has(c.id)} onOpen={open} onToggleHave={toggleHave} />
               ))}
             </div>
           )
         ) : (
-          <div className="empty">Checklist tracking is coming soon.</div>
+          checklistShown.length === 0 ? (
+          <div className="empty">
+            {ownFilter === 'owned'
+              ? 'No owned cards here yet. Tick a card to add it to your collection.'
+              : 'Nothing missing here. You own every card that matches.'}
+          </div>
+        ) : (
+          <div className="tablewrap">
+            <table className="checklist" aria-label={`${raw.name} checklist`}>
+              <thead>
+                <tr>
+                  <th scope="col">Own</th>
+                  <th scope="col" className="thumb">
+                    <span className="sr-only">Image</span>
+                  </th>
+                  <th scope="col">No.</th>
+                  <th scope="col">Card</th>
+                  <th scope="col">Rarity</th>
+                </tr>
+              </thead>
+              <tbody>
+                {checklistShown.map((c) => (
+                  <tr key={c.id} className={have.has(c.id) ? 'owned' : undefined}>
+                    <td className="chk">
+                      <label>
+                        <input type="checkbox" className="have" checked={have.has(c.id)} onChange={() => toggleHave(c.id)} aria-label={haveLabel(c)} />
+                      </label>
+                    </td>
+                    <td className="thumb">{c.image ? <img src={c.image} alt="" loading="lazy" width={36} height={50} /> : null}</td>
+                    <td className="mono">
+                      {c.id}/{c.suffix}
+                    </td>
+                    <td>
+                      <button type="button" className="lnk" onClick={() => open(c.id)}>
+                        {c.name}
+                      </button>
+                    </td>
+                    <td>
+                      <RarityTag rarity={c.rarity} />
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )
         )}
       </main>
 
@@ -665,6 +802,20 @@ export function GemSetPage({
                   </button>
                 ))}
               </div>
+              <button
+                type="button"
+                className="btn have-btn"
+                aria-pressed={have.has(openCard.id)}
+                onClick={() => toggleHave(openCard.id)}
+              >
+                {have.has(openCard.id) ? (
+                  <>
+                    In my collection <span aria-hidden="true">✓</span>
+                  </>
+                ) : (
+                  'I have this card'
+                )}
+              </button>
               <div className="lb-actions">
                 {config.productId ? (
                   <Link className="btn btn-dark" to="/products/$id" params={{ id: config.productId }}>

@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { createFileRoute, useNavigate } from '@tanstack/react-router'
-import { z } from 'zod'
+import { cardSearchValidator, cardSearchValue, openCardIdFromSearch } from '~/lib/gem-sets/card-search'
 import rawData from '~/data/white-flare.json'
 import { buildGemSetData } from '~/lib/gem-sets/buildSetData'
 import { buildGemSetHead } from '~/lib/gem-sets/head'
@@ -74,7 +74,7 @@ const config: GemSetConfig = {
 
 export const Route = createFileRoute('/sets/chinese/white-flare-csv10-6')({
   loader: () => getBlogGuidesFor({ data: { setPath: '/sets/chinese/white-flare-csv10-6' } }).catch(() => []),
-  validateSearch: (search) => z.object({ card: z.string().regex(/^\d{3}$/).optional() }).parse(search),
+  validateSearch: cardSearchValidator(/^\d{3}$/),
   head: () => buildGemSetHead(data, config),
   component: WhiteFlarePage,
 })
@@ -83,8 +83,8 @@ function WhiteFlarePage() {
   const search = Route.useSearch()
   const navigate = useNavigate()
   const navigateToCard = React.useCallback(
-    (id: string | undefined) => navigate({ to: '/sets/chinese/white-flare-csv10-6', search: (prev) => ({ ...prev, card: id }), replace: true }),
+    (id: string | undefined) => navigate({ to: '/sets/chinese/white-flare-csv10-6', search: (prev) => ({ ...prev, card: cardSearchValue(id) }), replace: true }),
     [navigate],
   )
-  return <GemSetPage raw={raw} data={data} config={config} openCardId={search.card ?? null} navigateToCard={navigateToCard} />
+  return <GemSetPage raw={raw} data={data} config={config} openCardId={openCardIdFromSearch(search)} navigateToCard={navigateToCard} />
 }

@@ -23,6 +23,11 @@ export function RarityTag({ rarity }: { rarity: string }) {
 // fetch the browser could have started immediately. Blanket loading=lazy
 // on every single card, including the first row, was actively hurting
 // this page's LCP.
+//
+// The tile is a wrapper around two sibling buttons (a button cannot sit
+// inside another button): the card itself, which opens the detail dialog,
+// and a small "owned" toggle over the image's top-right corner, which
+// flips the checklist state without opening anything.
 export function CardThumb({
   card,
   dimmed,
@@ -30,6 +35,7 @@ export function CardThumb({
   have,
   priority,
   onOpen,
+  onToggleHave,
 }: {
   card: Card
   dimmed: boolean
@@ -37,32 +43,38 @@ export function CardThumb({
   have: boolean
   priority?: boolean
   onOpen: (id: string) => void
+  onToggleHave: (id: string) => void
 }) {
   return (
-    <button type="button" className={`card${dimmed ? ' dim' : ''}`} onClick={() => onOpen(card.id)}>
-      <span className="img">
-        {card.image ? (
-          <img
-            loading={priority ? undefined : 'lazy'}
-            src={card.image}
-            alt={`${card.name} ${card.id}/${card.suffix}, ${card.rarity}`}
-            width={300}
-            height={419}
-          />
-        ) : (
-          <span className="img-ph">Image coming soon</span>
-        )}
-        {have && (
-          <span className="own" aria-label="In your collection">
-            ✓
-          </span>
-        )}
-      </span>
-      <span className="meta">
-        <span className="no">{card.id}/{card.suffix}</span>
-        <RarityTag rarity={card.rarity} />
-      </span>
-      {showName && <span className="nm">{card.name}</span>}
-    </button>
+    <div className={`tile${dimmed ? ' dim' : ''}${have ? ' owned' : ''}`}>
+      <button type="button" className="card" onClick={() => onOpen(card.id)}>
+        <span className="img">
+          {card.image ? (
+            <img
+              loading={priority ? undefined : 'lazy'}
+              src={card.image}
+              alt={`${card.name} ${card.id}/${card.suffix}, ${card.rarity}`}
+              width={300}
+              height={419}
+            />
+          ) : (
+            <span className="img-ph">Image coming soon</span>
+          )}
+        </span>
+        <span className="meta">
+          <span className="no">{card.id}/{card.suffix}</span>
+          <RarityTag rarity={card.rarity} />
+        </span>
+        {showName && <span className="nm">{card.name}</span>}
+      </button>
+      <button type="button" className="own-toggle" aria-pressed={have} aria-label={haveLabel(card)} title={have ? 'In your collection' : 'Mark as owned'} onClick={() => onToggleHave(card.id)}>
+        <span aria-hidden="true">{have ? '✓' : '+'}</span>
+      </button>
+    </div>
   )
+}
+
+/** Accessible name shared by every "owned" toggle for a card (tile, checklist row). */
+export function haveLabel(card: Card): string {
+  return `Mark ${card.id} ${card.name} as owned`
 }

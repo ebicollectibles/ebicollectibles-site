@@ -1,44 +1,16 @@
 import * as React from 'react'
 import { createFileRoute, Link } from '@tanstack/react-router'
-import { z } from 'zod'
 import { ProductCard } from '~/components/ProductCard'
 import { useCart } from '~/lib/cart-context'
-import { PRODUCT_CATEGORIES, SUBCATEGORIES_BY_CATEGORY, ALL_SUBCATEGORIES, type ProductCategory, type ProductSubcategory } from '~/lib/products'
+import { PRODUCT_CATEGORIES, SUBCATEGORIES_BY_CATEGORY, type ProductCategory, type ProductSubcategory } from '~/lib/products'
 import { SHOW_ACRYLICS } from '~/lib/feature-flags'
+import { searchText, shopSearchSchema } from '~/lib/shop-search'
 
 // Same set of category pills shown everywhere on this page — computed once
 // so the filter panel and product-visibility check can't drift apart.
 const VISIBLE_CATEGORIES = PRODUCT_CATEGORIES.filter((cat) => SHOW_ACRYLICS || cat !== 'Acrylic Cases')
 
 const categoryLabel = (cat: ProductCategory) => (cat === 'Chinese Pokémon Products' ? 'Pokemon (Simplified Chinese)' : cat)
-
-const shopSearchSchema = z.object({
-  category: z.enum(PRODUCT_CATEGORIES).optional(),
-  subcategory: z.enum(ALL_SUBCATEGORIES as [string, ...string[]]).optional(),
-  // Plural variant, for a nav link that spans more than one subcategory at
-  // once (e.g. "Figures & Plush") — subcategory (singular) still works
-  // for the common single-subcategory case.
-  subcategories: z.array(z.enum(ALL_SUBCATEGORIES as [string, ...string[]])).optional(),
-  q: z.string().optional(),
-  // Browse every product sharing one variantGroupId at once, ignoring
-  // hideFromShopGrid — the one place that flag is deliberately overridden,
-  // for a "see the full collection" link off a notSellable hub listing.
-  // Category/subcategory/search filters are ignored in this mode (a
-  // collection is its own self-contained browse, not a slice of the catalog).
-  variantGroup: z.string().optional(),
-  // Show only pre-order items, across every category — combinable with the
-  // category/subcategory filters below (unlike variantGroup, which is its
-  // own self-contained view). Accepts a real boolean (how the nav Link
-  // passes it) or the string "true"/"false" (how it actually arrives when
-  // someone types, pastes, bookmarks, or a crawler fetches the raw URL —
-  // a query string is always text) — a bare z.boolean() rejects that string
-  // with a validateSearch error instead of just treating it as the filter
-  // being off.
-  preorder: z
-    .union([z.boolean(), z.string()])
-    .optional()
-    .transform((v) => v === true || v === 'true'),
-})
 
 const SITE_URL = 'https://ebicollectibles.com'
 
@@ -131,16 +103,18 @@ function ShopPage() {
     setSubcategories((prev) => (prev.includes(s) ? prev.filter((x) => x !== s) : [...prev, s]))
   }
 
-  const query = (search.q ?? '').trim().toLowerCase()
+  const searchQuery = searchText(search.q)
+  const query = searchQuery.toLowerCase()
+  const variantGroup = searchText(search.variantGroup) || undefined
 
   // A collection view ignores every other filter — it's a deliberate,
   // self-contained browse of one variant group's full set of real
   // variants, not a slice of the normal catalog. The notSellable hub
   // listing itself (if any) is excluded — it's what linked here, not one
   // of the 30 things to actually buy.
-  let visible = search.variantGroup
+  let visible = variantGroup
     ? products
-        .filter((p) => p.variantGroupId === search.variantGroup && !p.notSellable)
+        .filter((p) => p.variantGroupId === variantGroup && !p.notSellable)
         // Admin's own list order for this group (same field the product
         // page's Options dropdown sorts by) rather than createdAt — a
         // collection view is browsing one deliberately curated set, not a
@@ -168,13 +142,23 @@ function ShopPage() {
   // product into this one explicitly rather than every product
   // participating by default. Still fully overridden by an explicit
   // Low/High/Name sort below, same as the variantGroup view's own order is.
-  if (sort === 'featured' && !search.variantGroup) {
+  if (sort === 'featured' && !variantGroup) {
     const pinned = visible.filter((p) => p.shopSortOrder != null).sort((a, b) => a.shopSortOrder! - b.shopSortOrder!)
     const rest = visible.filter((p) => p.shopSortOrder == null)
     visible = [...pinned, ...rest]
   }
-  if (sort === 'low') visible = [...visible].sort((a, b) => a.price - b.price)
-  if (sort === 'high') visible = [...visible].sort((a, b) => b.price - a.price)
+  // Items with no price a shopper can see (coming soon at $0, hidePrice,
+  // notSellable hubs) go after every priced item in BOTH price sorts —
+  // treated as 0 they used to lead "Price: low to high".
+  const hasVisiblePrice = (p: (typeof products)[number]) => p.price > 0 && !p.hidePrice
+  const byPrice = (dir: 1 | -1) => (a: (typeof products)[number], b: (typeof products)[number]) => {
+    const pa = hasVisiblePrice(a)
+    const pb = hasVisiblePrice(b)
+    if (pa !== pb) return pa ? -1 : 1
+    return pa ? dir * (a.price - b.price) : 0
+  }
+  if (sort === 'low') visible = [...visible].sort(byPrice(1))
+  if (sort === 'high') visible = [...visible].sort(byPrice(-1))
   if (sort === 'name') visible = [...visible].sort((a, b) => a.name.localeCompare(b.name))
 
   // If every subcategory of a category is selected, that's really "show all
@@ -187,14 +171,14 @@ function ShopPage() {
       subcategories.every((s) => SUBCATEGORIES_BY_CATEGORY[cat].includes(s)),
   )
 
-  const collectionHub = search.variantGroup ? products.find((p) => p.variantGroupId === search.variantGroup && p.notSellable) : undefined
+  const collectionHub = variantGroup ? products.find((p) => p.variantGroupId === variantGroup && p.notSellable) : undefined
 
-  const shopTitle = search.variantGroup
+  const shopTitle = variantGroup
     ? collectionHub
       ? `${collectionHub.name} — Full Collection`
       : 'Full Collection'
-    : search.q
-      ? `Results for "${search.q}"`
+    : searchQuery
+      ? `Results for "${searchQuery}"`
       : search.preorder && subcategories.length === 0
         ? 'Pre-orders'
         : matchedCategory
@@ -287,7 +271,7 @@ function ShopPage() {
   // On the pre-orders view, tell shoppers plainly when nothing is up for
   // pre-order at all, rather than blaming their filters.
   const noActivePreorders =
-    !!search.preorder && !search.variantGroup && !products.some((p) => p.preorder && !p.hideFromShopGrid && !p.notSellable)
+    !!search.preorder && !variantGroup && !products.some((p) => p.preorder && !p.hideFromShopGrid && !p.notSellable)
 
   const productGrid = (
     <>
@@ -375,7 +359,7 @@ function ShopPage() {
             <span style={{ fontSize: 9 }}>{filtersOpen ? '▴' : '▾'}</span>
           </button>
           <div style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 11.5, color: '#5a6875' }}>
-            {visible.length} products
+            {visible.length} {visible.length === 1 ? 'product' : 'products'}
           </div>
         </div>
         <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>

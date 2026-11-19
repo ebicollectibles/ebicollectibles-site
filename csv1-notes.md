@@ -9,7 +9,7 @@ Source: https://www.chencards.com/sets/eternal_birth (Chen Cards, used with perm
 - Release: **2025-01-17** (Chen and the official page agree; official announcement dated 2024-12-22).
 - **167 cards**: `001/127`–`127/127` main set + `128/127`–`167/127` secret rares (printed total **127**).
 - Official page: https://www.pokemon.cn/tcg/product/15585.html (Chen's `packOddsSourceUrl`). Odds chart image: Chen's `set-odds/csv1c.webp`.
-- Packs (official page): a **5-card pack with 1 holo** and a **20-card pack with 6 holos**. The odds chart is for the 5-card pack: 4 non-holo (C/U) + 1 holo. Each pack also carries one extra slip: a Pokémon UNITE (宝可梦大集结) campaign or item code card for Miraidon items.
+- Packs (official page): a **5-card pack with 1 holo** and a **20-card pack with 6 holos**. The odds chart is for the 5-card pack: 4 non-holo (C/U) + 1 holo. Each pack also carries one extra slip: a Pokémon UNITE (宝可梦大集结) campaign or item code card for Miraidon items. The official page also has a second chart for the 20-card pack: 14 non-holo + 6 holos (shares 70.00 / 22.99 / 6.01 / 1.00%), same kind counts.
 - Pack art: **Miraidon** (viewed on the official page: Miraidon with yellow lightning over a blue city, same art on both pack sizes).
 - Images: every card image came from Chen (167 of 167, no failures; 300 px wide WebP, 418 or 419 px tall, re-encoded at quality 82). R2 path: `Chinese/Eternal Birth CSV1/Cards/NNNN.webp`. Local folder `csv1-images/cards/` is untracked.
 
@@ -63,5 +63,5 @@ Chen flags **no** exclusive cards for this set (`exclusiveCardNumbers: []`), so 
 
 ## Not verified
 
-- English or Japanese set matches for each card.
+- English matches: now done for every card in src/routes/blog/eternal-birth-card-origins.tsx.
 - Box sizes (packs per box) for either pack type: not on Chen or the official page.

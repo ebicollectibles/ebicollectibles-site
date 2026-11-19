@@ -9,7 +9,7 @@ Source: https://www.chencards.com/sets/miracle_journey (Chen Cards, used with pe
 - Release: **2025-03-21** (Chen and the official page agree; official announcement dated 2025-02-21).
 - **163 cards**: `001/128`–`128/128` main set + `129/128`–`163/128` secret rares (printed total **128**).
 - Official page: https://www.pokemon.cn/tcg/product/15556.html (Chen's `packOddsSourceUrl`). Odds chart image: Chen's `set-odds/csv2c.webp`.
-- Packs (official page): a **5-card pack with 1 holo** and a **20-card pack with 6 holos**. The odds chart is for the 5-card pack: 4 non-holo (C/U) + 1 holo.
+- Packs (official page): a **5-card pack with 1 holo** and a **20-card pack with 6 holos**. The odds chart is for the 5-card pack: 4 non-holo (C/U) + 1 holo. The official page also has a second chart for the 20-card pack: 14 non-holo + 6 holos (shares 70.00 / 22.99 / 6.01 / 1.00%), same kind counts.
 - Pack art: **Gardevoir** (the official page names it as the cover Pokémon; viewed: Gardevoir on a pink background, same art on both pack sizes). It is in the set as Gardevoir ex.
 - Images: every card image came from Chen (163 of 163, no failures; 300 px wide WebP, 418 or 419 px tall, re-encoded at quality 82). R2 path: `Chinese/Miracle Journey CSV2/Cards/NNNN.webp`. Local folder `csv2-images/cards/` is untracked.
 
@@ -44,7 +44,7 @@ After the corrections the data has 57 Common and 47 Uncommon, an exact match to 
 - 001–109: Pokémon (109). 110–113: Items (4). 114–117: Pokémon Tools (4). 118–125: Supporters (8). 126–127: Stadiums (2, Moonlit Hill and Artazon). 128: Special Energy (Reversal Energy). Card types read from the type label on cards 107–128.
 - Paldean Tauros appears three times in the main set (015, 022, 073, all Uncommon) and once as an Art Rare (134).
 - 13 Double Rares, all Pokémon ex: Meowscarada, Skeledirge, Greninja, Quaquaval, Miraidon, Gardevoir, Lycanroc, Koraidon, Paldean Clodsire, Mabosstiff, Copperajah, Squawkabilly, Grafaiai.
-- Cards featured on the official page: Gardevoir ex (with Ralts, Kirlia and Drifblim), Meowscarada ex, Skeledirge ex, Quaquaval ex, Squawkabilly ex, Grafaiai ex, Paldean Clodsire ex, Mabosstiff ex; Erika's Invitation, Artazon, Letter of Encouragement, Rigid Band.
+- Cards featured on the official page: Gardevoir ex (with Ralts, Kirlia and Drifloon), Meowscarada ex, Skeledirge ex, Quaquaval ex, Squawkabilly ex, Grafaiai ex, Paldean Clodsire ex, Mabosstiff ex; Erika's Invitation, Artazon, Letter of Encouragement, Rigid Band.
 
 ## Secret rares (35)
 
@@ -63,5 +63,5 @@ Chen flags **no** exclusive cards for this set (`exclusiveCardNumbers: []`), so 
 
 ## Not verified
 
-- English or Japanese set matches for each card.
+- English matches: now done for every card in src/routes/blog/miracle-journey-card-origins.tsx.
 - Box sizes (packs per box) for either pack type: not on Chen or the official page.
