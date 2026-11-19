@@ -48,6 +48,7 @@ import { Route as Blog30thCelebrationReleaseNewsRouteImport } from './routes/blo
 import { Route as Blog30thCelebrationSetGuideRouteImport } from './routes/blog/30th-celebration-set-guide'
 import { Route as BlogBlackBoltCardOriginsRouteImport } from './routes/blog/black-bolt-card-origins'
 import { Route as BlogBlackBoltSetGuideRouteImport } from './routes/blog/black-bolt-set-guide'
+import { Route as BlogBlackBoltWhiteFlareReleaseNewsRouteImport } from './routes/blog/black-bolt-white-flare-release-news'
 import { Route as BlogBlackCrystalBlazeCardOriginsRouteImport } from './routes/blog/black-crystal-blaze-card-origins'
 import { Route as BlogBlackCrystalBlazeReleaseNewsRouteImport } from './routes/blog/black-crystal-blaze-release-news'
 import { Route as BlogBlackCrystalBlazeSetGuideRouteImport } from './routes/blog/black-crystal-blaze-set-guide'
@@ -349,6 +350,12 @@ const BlogBlackBoltSetGuideRoute = BlogBlackBoltSetGuideRouteImport.update({
   path: '/blog/black-bolt-set-guide',
   getParentRoute: () => rootRouteImport,
 } as any)
+const BlogBlackBoltWhiteFlareReleaseNewsRoute =
+  BlogBlackBoltWhiteFlareReleaseNewsRouteImport.update({
+    id: '/blog/black-bolt-white-flare-release-news',
+    path: '/blog/black-bolt-white-flare-release-news',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const BlogBlackCrystalBlazeCardOriginsRoute =
   BlogBlackCrystalBlazeCardOriginsRouteImport.update({
     id: '/blog/black-crystal-blaze-card-origins',
@@ -947,6 +954,7 @@ export interface FileRoutesByFullPath {
   '/blog/30th-celebration-set-guide': typeof Blog30thCelebrationSetGuideRoute
   '/blog/black-bolt-card-origins': typeof BlogBlackBoltCardOriginsRoute
   '/blog/black-bolt-set-guide': typeof BlogBlackBoltSetGuideRoute
+  '/blog/black-bolt-white-flare-release-news': typeof BlogBlackBoltWhiteFlareReleaseNewsRoute
   '/blog/black-crystal-blaze-card-origins': typeof BlogBlackCrystalBlazeCardOriginsRoute
   '/blog/black-crystal-blaze-release-news': typeof BlogBlackCrystalBlazeReleaseNewsRoute
   '/blog/black-crystal-blaze-set-guide': typeof BlogBlackCrystalBlazeSetGuideRoute
@@ -1089,6 +1097,7 @@ export interface FileRoutesByTo {
   '/blog/30th-celebration-set-guide': typeof Blog30thCelebrationSetGuideRoute
   '/blog/black-bolt-card-origins': typeof BlogBlackBoltCardOriginsRoute
   '/blog/black-bolt-set-guide': typeof BlogBlackBoltSetGuideRoute
+  '/blog/black-bolt-white-flare-release-news': typeof BlogBlackBoltWhiteFlareReleaseNewsRoute
   '/blog/black-crystal-blaze-card-origins': typeof BlogBlackCrystalBlazeCardOriginsRoute
   '/blog/black-crystal-blaze-release-news': typeof BlogBlackCrystalBlazeReleaseNewsRoute
   '/blog/black-crystal-blaze-set-guide': typeof BlogBlackCrystalBlazeSetGuideRoute
@@ -1232,6 +1241,7 @@ export interface FileRoutesById {
   '/blog/30th-celebration-set-guide': typeof Blog30thCelebrationSetGuideRoute
   '/blog/black-bolt-card-origins': typeof BlogBlackBoltCardOriginsRoute
   '/blog/black-bolt-set-guide': typeof BlogBlackBoltSetGuideRoute
+  '/blog/black-bolt-white-flare-release-news': typeof BlogBlackBoltWhiteFlareReleaseNewsRoute
   '/blog/black-crystal-blaze-card-origins': typeof BlogBlackCrystalBlazeCardOriginsRoute
   '/blog/black-crystal-blaze-release-news': typeof BlogBlackCrystalBlazeReleaseNewsRoute
   '/blog/black-crystal-blaze-set-guide': typeof BlogBlackCrystalBlazeSetGuideRoute
@@ -1376,6 +1386,7 @@ export interface FileRouteTypes {
     | '/blog/30th-celebration-set-guide'
     | '/blog/black-bolt-card-origins'
     | '/blog/black-bolt-set-guide'
+    | '/blog/black-bolt-white-flare-release-news'
     | '/blog/black-crystal-blaze-card-origins'
     | '/blog/black-crystal-blaze-release-news'
     | '/blog/black-crystal-blaze-set-guide'
@@ -1518,6 +1529,7 @@ export interface FileRouteTypes {
     | '/blog/30th-celebration-set-guide'
     | '/blog/black-bolt-card-origins'
     | '/blog/black-bolt-set-guide'
+    | '/blog/black-bolt-white-flare-release-news'
     | '/blog/black-crystal-blaze-card-origins'
     | '/blog/black-crystal-blaze-release-news'
     | '/blog/black-crystal-blaze-set-guide'
@@ -1660,6 +1672,7 @@ export interface FileRouteTypes {
     | '/blog/30th-celebration-set-guide'
     | '/blog/black-bolt-card-origins'
     | '/blog/black-bolt-set-guide'
+    | '/blog/black-bolt-white-flare-release-news'
     | '/blog/black-crystal-blaze-card-origins'
     | '/blog/black-crystal-blaze-release-news'
     | '/blog/black-crystal-blaze-set-guide'
@@ -1803,6 +1816,7 @@ export interface RootRouteChildren {
   Blog30thCelebrationSetGuideRoute: typeof Blog30thCelebrationSetGuideRoute
   BlogBlackBoltCardOriginsRoute: typeof BlogBlackBoltCardOriginsRoute
   BlogBlackBoltSetGuideRoute: typeof BlogBlackBoltSetGuideRoute
+  BlogBlackBoltWhiteFlareReleaseNewsRoute: typeof BlogBlackBoltWhiteFlareReleaseNewsRoute
   BlogBlackCrystalBlazeCardOriginsRoute: typeof BlogBlackCrystalBlazeCardOriginsRoute
   BlogBlackCrystalBlazeReleaseNewsRoute: typeof BlogBlackCrystalBlazeReleaseNewsRoute
   BlogBlackCrystalBlazeSetGuideRoute: typeof BlogBlackCrystalBlazeSetGuideRoute
@@ -2182,6 +2196,13 @@ declare module '@tanstack/react-router' {
       path: '/blog/black-bolt-set-guide'
       fullPath: '/blog/black-bolt-set-guide'
       preLoaderRoute: typeof BlogBlackBoltSetGuideRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/black-bolt-white-flare-release-news': {
+      id: '/blog/black-bolt-white-flare-release-news'
+      path: '/blog/black-bolt-white-flare-release-news'
+      fullPath: '/blog/black-bolt-white-flare-release-news'
+      preLoaderRoute: typeof BlogBlackBoltWhiteFlareReleaseNewsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/blog/black-crystal-blaze-card-origins': {
@@ -2931,6 +2952,8 @@ const rootRouteChildren: RootRouteChildren = {
   Blog30thCelebrationSetGuideRoute: Blog30thCelebrationSetGuideRoute,
   BlogBlackBoltCardOriginsRoute: BlogBlackBoltCardOriginsRoute,
   BlogBlackBoltSetGuideRoute: BlogBlackBoltSetGuideRoute,
+  BlogBlackBoltWhiteFlareReleaseNewsRoute:
+    BlogBlackBoltWhiteFlareReleaseNewsRoute,
   BlogBlackCrystalBlazeCardOriginsRoute: BlogBlackCrystalBlazeCardOriginsRoute,
   BlogBlackCrystalBlazeReleaseNewsRoute: BlogBlackCrystalBlazeReleaseNewsRoute,
   BlogBlackCrystalBlazeSetGuideRoute: BlogBlackCrystalBlazeSetGuideRoute,

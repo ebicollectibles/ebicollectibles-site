@@ -20,6 +20,14 @@ const SET_PRODUCTS: Record<string, string[]> = {
   'chasing-glory': ['pokemon-chinese-chasing-glory-slim-booster-box', 'pokemon-chinese-chasing-glory-jumbo-booster-box'],
   'black-bolt': ['pokemon-chinese-black-bolt-slim-booster-box', 'pokemon-chinese-black-bolt-jumbo-booster-box'],
   'white-flare': ['pokemon-chinese-white-flare-slim-booster-box', 'pokemon-chinese-white-flare-jumbo-booster-box'],
+  // The paired release post. Listed after the two single sets so a product
+  // page still resolves to its own set's posts first.
+  'black-bolt-white-flare': [
+    'pokemon-chinese-black-bolt-slim-booster-box',
+    'pokemon-chinese-black-bolt-jumbo-booster-box',
+    'pokemon-chinese-white-flare-slim-booster-box',
+    'pokemon-chinese-white-flare-jumbo-booster-box',
+  ],
   'funism-ditto-palm-size-wonders': [
     'pokemon-chinese-funism-ditto-palmsize-wonders-blind-box',
     'pokemon-chinese-funism-ditto-palmsize-wonders-blind-box-case',
