@@ -70,7 +70,7 @@ Six Triple Rares: three basic Energy types, each printed twice, and the two prin
 - Basic Fire Energy: **1802** and **1805**
 - Basic Water Energy: **1803** and **1806**
 
-So `catalogGroups: [17, 18]`, the same mechanism as Vol 3's `[19, 20]` and Vol 2's `[10, 11]`. The Trainer and Energy groups are **17 and 18** here. In Chen's images, 1805 and 1806 carry the Gem Pack stamp.
+So `catalogGroups: [17, 18]`, the same mechanism as Vol 3's `[19, 20]` and Vol 2's `[10, 11]`. The Trainer and Energy groups are **17 and 18** here. In Chen's images, 1804, 1805 and 1806 carry the Gem Pack stamp (1801–1803 have none). Matches the official odds chart: 3 Triple Rares with gold stamping.
 
 ### Rarity counts and odds
 

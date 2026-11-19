@@ -17,7 +17,7 @@ const cardImg = (id: string) => `${R2_IMAGE_HOST}/Chinese/Gem%201/Cards/${id}.we
 const HORIZONS = [
   { id: '0109', name: 'Sprigatito', with: 'Liko', art: 'Liko kneels in the grass, winking as she holds up her glowing pendant, with Sprigatito leaping up beside her.' },
   { id: '0309', name: 'Fuecoco', with: 'Roy', art: 'Roy sits on a wooden deck under a blue sky with Fuecoco in his lap, balancing a bronze Poké Ball on one finger.' },
-  { id: '0509', name: 'Quaxly', with: null, art: 'Quaxly spreads its wings against a starry purple and blue sky, with a pale blue, zip-backed costume character behind it.' },
+  { id: '0509', name: 'Quaxly', with: null, art: "Quaxly spreads its wings against a starry purple and blue sky, with Nidothing, Dot's costumed streaming persona, behind it." },
   { id: '0709', name: 'Captain Pikachu', with: 'Friede', art: 'Captain Pikachu, arms folded, stands on the back of a sofa while Friede leans in behind him, hand on chin.' },
 ]
 
@@ -94,7 +94,7 @@ const FAQ = [
   },
   {
     q: 'What are the Chinese Exclusives in Gem Vol 1?',
-    a: 'The four Pokémon Horizons full arts: Sprigatito 0109/09 with Liko, Fuecoco 0309/09 with Roy, Quaxly 0509/09 and Captain Pikachu 0709/09 with Friede. They are the only version 09 cards in the set, and all four are Triple Rares.',
+    a: 'The four Pokémon Horizons full arts: Sprigatito 0109/09 with Liko, Fuecoco 0309/09 with Roy, Quaxly 0509/09 with Nidothing and Captain Pikachu 0709/09 with Friede. They are the only version 09 cards in the set, and all four are Triple Rares.',
   },
   {
     q: 'What are the odds of pulling a Triple Rare?',
@@ -307,7 +307,7 @@ function GemVol1Post() {
         </div>
         <p className="table-note">
           Print shares are published by Pokémon China. Its chart splits the 18 Triple Rares into 11 illustration full art Pokémon cards,
-          4 holo cards without gold stamping and 3 with gold stamping.
+          4 holo cards without gold stamping and 3 with it. The counts line up with the set: the 11 are the seven version 08 full arts and the four Horizons full arts, the 4 are Nemona and Energy 1801 to 1803, and the 3 are Energy 1804 to 1806, the ones with the Gem Pack logo stamp.
         </p>
 
         <h2 id="sprigatito">Sprigatito's 9 cards</h2>
