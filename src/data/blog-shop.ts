@@ -38,6 +38,18 @@ const SET_PRODUCTS: Record<string, string[]> = {
   ],
 }
 
+// A release post that covers more than one set. Each set's own page and
+// product pages link to it alongside that set's guide and origins posts.
+const SHARED_RELEASE_POST: Record<string, string> = {
+  'black-bolt': 'black-bolt-white-flare-release-news',
+  'white-flare': 'black-bolt-white-flare-release-news',
+}
+
+/** Slugs of the posts about one set key, in display order: release news, set guide, card origins. */
+export function blogPostSlugsForSetKey(key: string): string[] {
+  return [SHARED_RELEASE_POST[key] ?? `${key}-release-news`, `${key}-set-guide`, `${key}-card-origins`]
+}
+
 export function blogShopProductIds(slug: string): string[] {
   return SET_PRODUCTS[slug.replace(/-(release-news|set-guide|card-origins)$/, '')] ?? []
 }

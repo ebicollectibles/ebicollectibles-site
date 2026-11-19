@@ -127,14 +127,14 @@ export const getBlogGuidesFor = createServerFn({ method: 'GET' })
   .validator(z.object({ setPath: z.string().max(200).optional(), productId: z.string().max(200).optional() }))
   .handler(async ({ data }): Promise<BlogGuideLink[]> => {
     try {
-      const { blogSetKeyForProduct, blogSetKeyForSetPath } = await import('~/data/blog-shop')
+      const { blogPostSlugsForSetKey, blogSetKeyForProduct, blogSetKeyForSetPath } = await import('~/data/blog-shop')
       const key = data.productId ? blogSetKeyForProduct(data.productId) : data.setPath ? blogSetKeyForSetPath(data.setPath) : null
       if (!key) return []
       const { BLOG_POSTS } = await import('~/data/blog-posts')
       const live = await readLiveMap()
-      const order = ['release-news', 'set-guide', 'card-origins']
-      return BLOG_POSTS.filter((p) => p.slug in live && order.some((k) => p.slug === `${key}-${k}`))
-        .sort((a, b) => order.findIndex((k) => a.slug.endsWith(k)) - order.findIndex((k) => b.slug.endsWith(k)))
+      const slugs = blogPostSlugsForSetKey(key)
+      return BLOG_POSTS.filter((p) => p.slug in live && slugs.includes(p.slug))
+        .sort((a, b) => slugs.indexOf(a.slug) - slugs.indexOf(b.slug))
         .map((p) => ({ path: p.path, title: p.title, tag: p.tag }))
     } catch {
       return []
