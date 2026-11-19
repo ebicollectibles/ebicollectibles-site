@@ -261,7 +261,7 @@ function BlackBoltWhiteFlareReleasePost() {
 
         <h2 id="exclusives">Chinese Exclusives: N's Plan and Hilda</h2>
         <p>
-          Each set has one card that was never printed in English, and it is the same slot in both: the Special Art Rare at 173/086.
+          Each set has one card that does not exist in English, and it is the same slot in both: the Special Art Rare at 173/086.
         </p>
         <p>
           Black Bolt's is N's Plan, illustrated by Iwamoto05. N leans on a railing at night and looks back over his shoulder, with city
