@@ -375,7 +375,8 @@ function BlackBoltOrigins() {
           {count('BLK')} of the 174 cards in Black Bolt (set code CSV10.5C) match English Black Bolt. The other {174 - count('BLK')} are where it gets interesting:{' '}
           {count('WHT')} match English White Flare, {count('SVP')} Art Rares match English Black Star Promos, and one card is new, the
           Chinese Exclusive N's Plan Special Art Rare. For the chase cards and box odds, see our{' '}
-          <Link to="/blog/black-bolt-set-guide">set guide</Link>.
+          <Link to="/blog/black-bolt-set-guide">set guide</Link>. Our{' '}
+          <Link to="/blog/black-bolt-white-flare-release-news">release post</Link> covers both sets side by side.
         </p>
 
         <nav className="toc" aria-label="In this guide">

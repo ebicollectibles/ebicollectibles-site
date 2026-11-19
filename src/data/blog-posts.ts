@@ -306,7 +306,7 @@ export const BLOG_POSTS: BlogPostSummary[] = [
     path: '/blog/black-bolt-set-guide',
     title: 'Black Bolt Set Guide: Slim vs Jumbo Odds, Zekrom ex and Every Chase Card',
     excerpt:
-      'Slim or jumbo? What each box holds on average from Pokémon China\'s two odds charts, the Zekrom ex Black White Rare, every Special Art Rare and Super Rare, and what a 334-card master set takes.',
+      'Black Bolt is the Zekrom half of a twin release, and its slim and jumbo boxes have different odds. This guide helps you pick a box, shows every chase card, and explains what a 334-card master set takes.',
     seoTitle: 'Pokémon Black Bolt (CSV10.5C) Set Guide: Chase Cards & Box Odds',
     seoDescription:
       "Pokémon TCG Black Bolt (CSV10.5C) set guide: slim vs jumbo odds, the Zekrom ex Black White Rare, the Chinese Exclusive N's Plan SAR, and the master set.",
@@ -322,7 +322,7 @@ export const BLOG_POSTS: BlogPostSummary[] = [
     path: '/blog/black-bolt-card-origins',
     title: 'Where Every Black Bolt Card Comes From',
     excerpt:
-      'All 174 cards traced to English: 160 from English Black Bolt, 10 from White Flare after five Pokémon swapped sets, 3 Art Rares from Black Star Promos, and a new N\'s Plan SAR.',
+      'Chinese Black Bolt is close to English Black Bolt, but not identical. Ten cards come from English White Flare after five Pokémon swapped sets, and the N\'s Plan Special Art Rare does not exist in English.',
     seoTitle: 'Pokémon Black Bolt (CSV10.5C) Card Origins: English Art Matches',
     seoDescription:
       "All 174 Pokémon TCG Black Bolt (CSV10.5C) cards traced to English: 160 from Black Bolt, 10 from White Flare, 3 Black Star Promos and a new N's Plan SAR.",
@@ -338,7 +338,7 @@ export const BLOG_POSTS: BlogPostSummary[] = [
     path: '/blog/white-flare-set-guide',
     title: 'White Flare Set Guide: Slim vs Jumbo Odds, Reshiram ex and Every Chase Card',
     excerpt:
-      'Slim or jumbo? What each box holds on average from Pokémon China\'s two odds charts, the Reshiram ex Black White Rare, every Special Art Rare and Super Rare, and what a 334-card master set takes.',
+      'White Flare is the Reshiram half of a twin release, and its slim and jumbo boxes have different odds. This guide helps you pick a box, shows every chase card, and explains what a 334-card master set takes.',
     seoTitle: 'Pokémon White Flare (CSV10.6C) Set Guide: Chase Cards & Box Odds',
     seoDescription:
       'Pokémon TCG White Flare (CSV10.6C) set guide: slim vs jumbo odds, the Reshiram ex Black White Rare, the Chinese Exclusive Hilda SAR, and the master set.',
@@ -354,7 +354,7 @@ export const BLOG_POSTS: BlogPostSummary[] = [
     path: '/blog/white-flare-card-origins',
     title: 'Where Every White Flare Card Comes From',
     excerpt:
-      'All 174 cards traced to English: 161 from English White Flare, 10 from Black Bolt after five Pokémon swapped sets, 2 Art Rares from Black Star Promos, and a new Hilda SAR.',
+      'Chinese White Flare is close to English White Flare, but not identical. Ten cards come from English Black Bolt after five Pokémon swapped sets, and the Hilda Special Art Rare does not exist in English.',
     seoTitle: 'Pokémon White Flare (CSV10.6C) Card Origins: English Art Matches',
     seoDescription:
       'All 174 Pokémon TCG White Flare (CSV10.6C) cards traced to English: 161 from White Flare, 10 from Black Bolt, 2 Black Star Promos and a new Hilda SAR.',

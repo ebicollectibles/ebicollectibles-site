@@ -1,3 +1,4 @@
+import { Zh } from '~/components/blog/Zh'
 import { RarityAbbr, rarityFullName } from '~/components/blog/RarityAbbr'
 import { BuyStrip } from '~/components/blog/BlogShop'
 import { createFileRoute, Link } from '@tanstack/react-router'
@@ -48,7 +49,7 @@ const BOXES = [
   { row: 'Poké Ball pattern holo and Rare (13.23% / 26.45%)', slim: 'about 10', jumbo: 'about 32' },
   { row: 'Double Rare, Art Rare and Master Ball pattern (6.04% / 7.55%)', slim: 'about 4.5', jumbo: 'about 9' },
   { row: 'Super Rare, Special Art Rare and Black White Rare (0.73% / 1.00%)', slim: 'about 0.55', jumbo: 'about 1.2' },
-  { row: 'One top-band card every', slim: 'about 27 packs', jumbo: 'about 5 packs' },
+  { row: 'One Super Rare or better every', slim: 'about 27 packs', jumbo: 'about 5 packs' },
 ]
 
 // The six Pokémon ex and the two Supporters with secret rares, and every number they print at.
@@ -63,13 +64,13 @@ const LADDER = LADDER_NAMES.map((name) => ({
 }))
 
 const BLOCKS = [
-  { nos: '001 to 078', what: 'Pokémon, grouped by type', rarity: 'C, U, R, RR' },
-  { nos: '079 to 085', what: 'Items, a Pokémon Tool and Supporters', rarity: 'U (Antique Plume Fossil is C)' },
-  { nos: '086', what: 'Ignition Energy', rarity: 'U' },
-  { nos: '087 to 158', what: 'Art Rares of all 72 non-ex Pokémon, in main-set order', rarity: 'AR' },
-  { nos: '159 to 166', what: 'Super Rare full arts of the 6 ex, Harlequin and Hilda', rarity: 'SR' },
-  { nos: '167 to 173', what: 'Special Art Rares of the 6 ex and Hilda (the Chinese Exclusive)', rarity: 'SAR' },
-  { nos: '174', what: 'Reshiram ex', rarity: 'BWR' },
+  { nos: '001 to 078', what: 'Pokémon, grouped by type', rarity: 'Common, Uncommon, Rare, Double Rare' },
+  { nos: '079 to 085', what: 'Items, a Pokémon Tool and Supporters', rarity: 'Uncommon (Antique Plume Fossil is Common)' },
+  { nos: '086', what: 'Ignition Energy', rarity: 'Uncommon' },
+  { nos: '087 to 158', what: 'Art Rares of all 72 non-ex Pokémon, in main-set order', rarity: 'Art Rare' },
+  { nos: '159 to 166', what: 'Super Rare full arts of the 6 ex, Harlequin and Hilda', rarity: 'Super Rare' },
+  { nos: '167 to 173', what: 'Special Art Rares of the 6 ex and Hilda (the Chinese Exclusive)', rarity: 'Special Art Rare' },
+  { nos: '174', what: 'Reshiram ex', rarity: 'Black White Rare' },
 ]
 
 const TOC = [
@@ -169,10 +170,10 @@ function WhiteFlareSetGuide() {
         updated={status.liveAt}
         wide
         post={post}
-        lede="Slim box or jumbo box, every chase card from the Reshiram ex Black White Rare down, each ex at every rarity, and what a White Flare master set takes."
+        lede="White Flare is the Reshiram half of a twin release, sold in slim and jumbo boxes with different odds. This guide helps you pick a box, shows every chase card, and explains what a full set takes."
         cta={{
           heading: 'Collect White Flare',
-          body: 'Track every card on the full checklist, or pick up a box and start ripping.',
+          body: 'Track every card on the full checklist, or pick up a box.',
           links: [
             { to: '/sets/chinese/white-flare-csv10-6', label: 'See the full card list' },
             { to: '/products/$id', params: { id: 'pokemon-chinese-white-flare-jumbo-booster-box' }, label: 'Shop the jumbo box', variant: 'ghost' },
@@ -180,9 +181,13 @@ function WhiteFlareSetGuide() {
         }}
       >
         <p>
-          White Flare (CSV10.6C) is the Reshiram half of the Unova pair: 174 cards, a Chinese Exclusive Hilda Special Art Rare, and slim
-          and jumbo boxes with their own odds. Our <Link to="/blog/white-flare-card-origins">card origins guide</Link> matches every card to English. Use this
-          one to pick a box, sort your pulls or plan a master set.
+          White Flare (<Zh>白焰迸涌</Zh>, set code CSV10.6C) released on November 6, 2026, together with its twin, Black Bolt. It is the Reshiram
+          half of the pair: 174 cards, one Chinese Exclusive, and slim and jumbo boxes that each have their own odds.
+        </p>
+        <p>
+          Our <Link to="/blog/black-bolt-white-flare-release-news">release post</Link> covers both sets side by side, and our{' '}
+          <Link to="/blog/white-flare-card-origins">card origins guide</Link> matches every card to its English version. Use this guide to pick a
+          box, sort your pulls or plan a master set.
         </p>
 
         <nav className="toc" aria-label="In this guide">
@@ -224,8 +229,8 @@ function WhiteFlareSetGuide() {
         </div>
         <p className="table-note">Averages from the official print shares, not guarantees. Individual boxes vary.</p>
         <p>
-          The jumbo box has 1.6 times the cards of a slim box but more than twice the top-band pulls, because each jumbo card is more
-          likely to be one: 1.00% against 0.73%. A slim box averages about half a Super Rare or better, so many slim boxes will not have
+          The jumbo box has 1.6 times the cards of a slim box but more than twice the Super Rares and above, because each jumbo
+          card is more likely to be one: 1.00% against 0.73%. A slim box averages about half a Super Rare or better, so many slim boxes will not have
           one. A jumbo pack also carries 7 holos to the slim pack's 1, which is why the jumbo box ends up with 42 holos to 15.
         </p>
 
@@ -264,9 +269,9 @@ function WhiteFlareSetGuide() {
               <tr>
                 <th scope="col">Card</th>
                 <th scope="col">Main set</th>
-                <th scope="col">SR</th>
-                <th scope="col">SAR</th>
-                <th scope="col">BWR</th>
+                <th scope="col">Super Rare</th>
+                <th scope="col">Special Art Rare</th>
+                <th scope="col">Black White Rare</th>
               </tr>
             </thead>
             <tbody>
@@ -319,7 +324,7 @@ function WhiteFlareSetGuide() {
         <p>
           The Poké Ball holos come fastest, since they share the most common holo band. The Master Ball holos share a band with the 6 Double
           Rares and 72 Art Rares, about 4.5 per slim box or 9 per jumbo box spread across 158 different cards, so they take a long time. The
-          16 top-band cards are harder still. The practical route is to open boxes for the lower tiers, then pick up the big cards as singles.
+          16 cards at Super Rare and above are harder still. The practical route is to open boxes for the lower tiers, then pick up the big cards as singles.
           The <Link to="/sets/chinese/white-flare-csv10-6">White Flare card list</Link> lets you tick off what you have. Its twin,{' '}
           <Link to="/blog/black-bolt-set-guide">Black Bolt</Link>, is a separate 174-card set with its own Pokémon.
         </p>
