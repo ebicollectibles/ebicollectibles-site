@@ -10,6 +10,7 @@ import { useCart } from '~/lib/cart-context'
 import { FLAT_SHIPPING_RATE, formatMoney, getHubPriceRange, getHubVariants, type Product } from '~/lib/products'
 import { RETURN_POLICY_CATEGORY_URL, SHIPPING_HANDLING_MAX_DAYS, SHIPPING_HANDLING_MIN_DAYS, SHIPS_TO_COUNTRY } from '~/lib/policy'
 import { getProduct } from '~/server/products'
+import shareProductIds from '~/data/share-products.json'
 import { getBlogGuidesFor } from '~/server/blog-status'
 import { BlogGuideLinks } from '~/components/blog/BlogGuideLinks'
 
@@ -58,6 +59,7 @@ export const Route = createFileRoute('/products/$id')({
     }, ships from Washington.`
     const url = `${SITE_URL}/products/${params.id}`
     const image = absoluteImageUrl(loaderData.img)
+    const shareImage = (shareProductIds as string[]).includes(params.id) ? `${SITE_URL}/assets/share/product-${params.id}.jpg` : null
 
     return {
       meta: [
@@ -67,7 +69,20 @@ export const Route = createFileRoute('/products/$id')({
         { property: 'og:description', content: description },
         { property: 'og:type', content: 'product' },
         { property: 'og:url', content: url },
-        ...(image ? [{ property: 'og:image', content: image }] : []),
+        // Link previews use the wide 1200x630 card made for this product when
+        // one exists (public/assets/share); a product added since the cards
+        // were last generated falls back to its square photo.
+        ...(shareImage
+          ? [
+              { property: 'og:image', content: shareImage },
+              { property: 'og:image:width', content: '1200' },
+              { property: 'og:image:height', content: '630' },
+              { property: 'og:image:alt', content: `${loaderData.name}: product photo beside the product name` },
+              { name: 'twitter:image', content: shareImage },
+            ]
+          : image
+            ? [{ property: 'og:image', content: image }]
+            : []),
         {
           'script:ld+json': {
             '@context': 'https://schema.org',
