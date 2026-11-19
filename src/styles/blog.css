@@ -237,6 +237,9 @@
     .data-table thead th { white-space: normal; }
     .data-table:has(thead th:nth-child(5)) thead th { font-size: 8.5px; letter-spacing: .02em; }
     .data-table:has(thead th:nth-child(5)) th, .data-table:has(thead th:nth-child(5)) td { padding: 8px 4px; }
+    /* eight-column tables (card origins At a glance): smaller row labels so full rarity names fit */
+    .data-table:has(thead th:nth-child(8)) tbody th { font-size: 10.5px; }
+    .data-table:has(thead th:nth-child(8)) td { font-size: 12.5px; }
   }
   .inline-media { display: block; width: 100%; height: auto; max-height: 340px; object-fit: contain; margin-block: 4px 12px; }
 
