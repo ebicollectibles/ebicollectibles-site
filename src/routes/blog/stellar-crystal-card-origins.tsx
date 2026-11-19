@@ -383,7 +383,7 @@ export const Route = createFileRoute('/blog/stellar-crystal-card-origins')({
 
 function OriginsTable({ list }: { list: typeof rows }) {
   return (
-    <div className="table-scroll">
+    <div className="table-scroll table-tall">
       <table className="data-table origins-table">
         <thead>
           <tr>

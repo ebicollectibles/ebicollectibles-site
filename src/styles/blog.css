@@ -220,6 +220,11 @@
   .data-table .cell-sub { display: block; font-size: 12.5px; color: var(--slate); margin-top: 2px; }
   .origins-table td, .origins-table th[scope="row"] { vertical-align: top; }
   .origins-table .cell-none { color: var(--slate); font-size: 13px; }
+  /* long card-by-card lists: a scroll box with pinned column headings and tighter rows */
+  .table-tall { max-height: min(72vh, 680px); overflow-y: auto; border-bottom: 1px solid var(--line-2); overscroll-behavior: contain; }
+  .table-tall thead th { position: sticky; top: 0; z-index: 1; background: var(--bg); }
+  .table-tall .data-table th, .table-tall .data-table td { padding-block: 7px; }
+  .table-tall .data-table .cell-sub { margin-top: 0; font-size: 12px; }
   .origins-wide { min-width: 760px; }
   &.is-wide .prose > .table-wide { max-width: 980px; }
   .prose .table-note, &.is-wide .prose .table-note { font-size: 13px; color: var(--slate); margin-bottom: 8px; }
