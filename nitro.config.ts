@@ -82,6 +82,10 @@ export default defineNitroConfig({
       // the dev Worker too — it only holds product photos, not order/
       // customer data, so isolating it isn't worth a second bucket.
       r2_buckets: [{ binding: 'PRODUCT_IMAGES', bucket_name: 'ebicollectibles-product-images' }],
+      // Keeps Worker logs for a few days so they can be read after the
+      // fact. Without it logs only exist while someone is live-tailing, and
+      // the CSP reports logged by src/server/csp.ts would be lost.
+      observability: { enabled: true },
       // The dev Worker gets no custom domain — it's reachable only at its
       // own workers.dev URL, so it can never intercept production traffic.
       routes: isDev

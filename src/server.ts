@@ -4,6 +4,7 @@ import type { RequestHandler } from '@tanstack/react-start/server'
 import { handleSquareWebhook } from './server/square-webhook'
 import { handleResendWebhook } from './server/resend-webhook'
 import { handleSitemapRequest } from './server/sitemap'
+import { CSP_REPORT_ONLY, CSP_REPORT_PATH, handleCspReport } from './server/csp'
 
 const startFetch = createStartHandler(defaultStreamHandler)
 
@@ -29,6 +30,9 @@ function withSecurityHeaders(response: Response): Response {
   // ebicollectibles.com, including any that might exist outside this
   // deploy (mail, a future tool) and aren't confirmed HTTPS-only.
   headers.set('Strict-Transport-Security', 'max-age=15552000')
+  // Report-only: browsers report what this policy would block and block
+  // nothing. See src/server/csp.ts.
+  headers.set('Content-Security-Policy-Report-Only', CSP_REPORT_ONLY)
   return new Response(response.body, { status: response.status, statusText: response.statusText, headers })
 }
 
@@ -64,6 +68,9 @@ const entry: ServerEntry = {
     }
     if (request.method === 'POST' && url.pathname === '/api/webhooks/resend') {
       return handleResendWebhook(request)
+    }
+    if (request.method === 'POST' && url.pathname === CSP_REPORT_PATH) {
+      return handleCspReport(request)
     }
     // Enumerates live published products from the DB — a static public/
     // file would go stale the moment a product is added or unpublished.
