@@ -1,0 +1,14 @@
+// Full names for the rarity codes used in the card origins "At a glance" tables,
+// as printed in the set data (e.g. "Special Art Rare (SAR)").
+export const RARITY_NAME: Record<string, string> = {
+  C: 'Common',
+  U: 'Uncommon',
+  R: 'Rare',
+  RR: 'Double Rare',
+  ACE: 'ACE SPEC Rare',
+  AR: 'Art Rare',
+  SR: 'Super Rare',
+  SAR: 'Special Art Rare',
+  UR: 'Ultra Rare',
+  BWR: 'Black White Rare',
+}

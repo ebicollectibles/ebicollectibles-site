@@ -7,6 +7,7 @@ import { getBlogPostStatus } from '~/server/blog-status'
 import { safeJsonLd } from '~/lib/gem-sets/head'
 import { ChineseExclusiveBadge } from '~/components/blog/ChineseExclusive'
 import setData from '~/data/csv9-5.json'
+import { RARITY_NAME } from '~/components/blog/rarityNames'
 
 const post = BLOG_POSTS.find((p) => p.slug === 'terastal-gathering-card-origins')!
 
@@ -499,7 +500,10 @@ function TerastalGatheringOrigins() {
             <tbody>
               {BY_TIER.map((t) => (
                 <tr key={t.tier}>
-                  <th scope="row">{t.tier}</th>
+                  <th scope="row">
+                    {RARITY_NAME[t.tier] ?? t.tier}
+                    <span className="cell-sub">{t.tier}</span>
+                  </th>
                   <td>{t.pre || '–'}</td>
                   <td>{t.promo || '–'}</td>
                   <td>{t.other || '–'}</td>

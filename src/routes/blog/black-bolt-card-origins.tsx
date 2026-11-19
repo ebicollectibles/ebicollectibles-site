@@ -7,6 +7,7 @@ import { getBlogPostStatus } from '~/server/blog-status'
 import { safeJsonLd } from '~/lib/gem-sets/head'
 import { ChineseExclusiveBadge } from '~/components/blog/ChineseExclusive'
 import setData from '~/data/black-bolt.json'
+import { RARITY_NAME } from '~/components/blog/rarityNames'
 
 const post = BLOG_POSTS.find((p) => p.slug === 'black-bolt-card-origins')!
 
@@ -390,7 +391,10 @@ function BlackBoltOrigins() {
             <tbody>
               {BY_TIER.map((t) => (
                 <tr key={t.tier}>
-                  <th scope="row">{t.tier}</th>
+                  <th scope="row">
+                    {RARITY_NAME[t.tier] ?? t.tier}
+                    <span className="cell-sub">{t.tier}</span>
+                  </th>
                   <td>{t.blk || '–'}</td>
                   <td>{t.wht || '–'}</td>
                   <td>{t.svp || '–'}</td>

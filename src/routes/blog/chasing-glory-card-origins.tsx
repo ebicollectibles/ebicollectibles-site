@@ -7,6 +7,7 @@ import { getBlogPostStatus } from '~/server/blog-status'
 import { safeJsonLd } from '~/lib/gem-sets/head'
 import { ChineseExclusiveBadge } from '~/components/blog/ChineseExclusive'
 import setData from '~/data/csv10.json'
+import { RARITY_NAME } from '~/components/blog/rarityNames'
 
 const post = BLOG_POSTS.find((p) => p.slug === 'chasing-glory-card-origins')!
 
@@ -511,7 +512,10 @@ function ChasingGloryOrigins() {
             <tbody>
               {BY_TIER.map((t) => (
                 <tr key={t.tier}>
-                  <th scope="row">{t.tier}</th>
+                  <th scope="row">
+                    {RARITY_NAME[t.tier] ?? t.tier}
+                    <span className="cell-sub">{t.tier}</span>
+                  </th>
                   <td>{t.dri}</td>
                   <td>{t.jtg}</td>
                   <td>{t.other || '–'}</td>
