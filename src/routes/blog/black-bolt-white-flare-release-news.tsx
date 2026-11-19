@@ -191,7 +191,8 @@ function BlackBoltWhiteFlareReleasePost() {
         }}
       >
         <p>
-          Black Bolt (<Zh>黑雷奔流</Zh>) and White Flare (<Zh>白焰迸涌</Zh>) released together on November 6, 2026. They are a matched
+          Black Bolt (<Zh>黑雷奔流</Zh>, set code CSV10.5C) and White Flare (<Zh>白焰迸涌</Zh>, set code CSV10.6C) released together on
+          November 6, 2026. They are a matched
           pair in the Chinese Scarlet & Violet series: Zekrom is on the Black Bolt pack and Reshiram is on the White Flare pack. Each
           set has 174 cards, and between them they print {UNOVA_TOTAL} Pokémon from the Unova region, with no Pokémon in both.
         </p>
@@ -202,7 +203,9 @@ function BlackBoltWhiteFlareReleasePost() {
             <p className="fact-box-title">Key facts</p>
             <dl>
               <dt>Sets</dt>
-              <dd>Black Bolt (CSV10.5C) and White Flare (CSV10.6C)</dd>
+              <dd>Black Bolt (<Zh>黑雷奔流</Zh>) and White Flare (<Zh>白焰迸涌</Zh>)</dd>
+              <dt>Set codes</dt>
+              <dd>CSV10.5C (Black Bolt) and CSV10.6C (White Flare)</dd>
               <dt>Released</dt>
               <dd>November 6, 2026</dd>
               <dt>Set size</dt>
