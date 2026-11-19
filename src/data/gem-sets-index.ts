@@ -20,6 +20,7 @@ export type GemSetRoutePath =
   | '/sets/chinese/chasing-glory-csv10'
   | '/sets/chinese/terastal-gathering-csv9-5'
   | '/sets/chinese/brilliant-fantasy-csv8'
+  | '/sets/chinese/fearless-terastal-csv3'
   | '/sets/chinese/reward-round-csv4'
   | '/sets/chinese/black-crystal-blaze-csv5'
   | '/sets/chinese/true-mystery-csv6'
@@ -62,6 +63,21 @@ export const GEM_SETS: GemSetSummary[] = [
     heroAlt: 'Pikachu ex Special Art Rare',
     glow1: 'rgb(222 185 97 / .30)',
     glow2: 'rgb(90 45 5 / .25)',
+  },
+  {
+    slug: 'fearless-terastal-csv3',
+    path: '/sets/chinese/fearless-terastal-csv3',
+    name: 'Fearless Terastal',
+    series: 'Chinese Scarlet & Violet',
+    code: 'CSV3C',
+    cardCount: 165,
+    releaseDate: '2025-05-16',
+    exclusiveCount: 1,
+    tagline: '114 Pokémon led by Tera Arcanine ex',
+    heroImage: 'https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Fearless%20Terastal%20CSV3/Cards/0155.webp',
+    heroAlt: 'Arcanine ex Special Art Rare',
+    glow1: 'rgb(214 96 40 / .30)',
+    glow2: 'rgb(64 130 170 / .25)',
   },
   {
     slug: 'reward-round-csv4',

@@ -123,6 +123,7 @@ import { Route as SetsChineseCollect151GatheringRouteImport } from './routes/set
 import { Route as SetsChineseCollect151HopeRouteImport } from './routes/sets/chinese/collect-151-hope'
 import { Route as SetsChineseCollect151JourneyRouteImport } from './routes/sets/chinese/collect-151-journey'
 import { Route as SetsChineseCollect151SurpriseRouteImport } from './routes/sets/chinese/collect-151-surprise'
+import { Route as SetsChineseFearlessTerastalCsv3RouteImport } from './routes/sets/chinese/fearless-terastal-csv3'
 import { Route as SetsChineseGemVol1RouteImport } from './routes/sets/chinese/gem-vol-1'
 import { Route as SetsChineseGemVol2RouteImport } from './routes/sets/chinese/gem-vol-2'
 import { Route as SetsChineseGemVol3RouteImport } from './routes/sets/chinese/gem-vol-3'
@@ -747,6 +748,12 @@ const SetsChineseCollect151SurpriseRoute =
     path: '/sets/chinese/collect-151-surprise',
     getParentRoute: () => rootRouteImport,
   } as any)
+const SetsChineseFearlessTerastalCsv3Route =
+  SetsChineseFearlessTerastalCsv3RouteImport.update({
+    id: '/sets/chinese/fearless-terastal-csv3',
+    path: '/sets/chinese/fearless-terastal-csv3',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const SetsChineseGemVol1Route = SetsChineseGemVol1RouteImport.update({
   id: '/sets/chinese/gem-vol-1',
   path: '/sets/chinese/gem-vol-1',
@@ -930,6 +937,7 @@ export interface FileRoutesByFullPath {
   '/sets/chinese/collect-151-hope': typeof SetsChineseCollect151HopeRoute
   '/sets/chinese/collect-151-journey': typeof SetsChineseCollect151JourneyRoute
   '/sets/chinese/collect-151-surprise': typeof SetsChineseCollect151SurpriseRoute
+  '/sets/chinese/fearless-terastal-csv3': typeof SetsChineseFearlessTerastalCsv3Route
   '/sets/chinese/gem-vol-1': typeof SetsChineseGemVol1Route
   '/sets/chinese/gem-vol-2': typeof SetsChineseGemVol2Route
   '/sets/chinese/gem-vol-3': typeof SetsChineseGemVol3Route
@@ -1059,6 +1067,7 @@ export interface FileRoutesByTo {
   '/sets/chinese/collect-151-hope': typeof SetsChineseCollect151HopeRoute
   '/sets/chinese/collect-151-journey': typeof SetsChineseCollect151JourneyRoute
   '/sets/chinese/collect-151-surprise': typeof SetsChineseCollect151SurpriseRoute
+  '/sets/chinese/fearless-terastal-csv3': typeof SetsChineseFearlessTerastalCsv3Route
   '/sets/chinese/gem-vol-1': typeof SetsChineseGemVol1Route
   '/sets/chinese/gem-vol-2': typeof SetsChineseGemVol2Route
   '/sets/chinese/gem-vol-3': typeof SetsChineseGemVol3Route
@@ -1189,6 +1198,7 @@ export interface FileRoutesById {
   '/sets/chinese/collect-151-hope': typeof SetsChineseCollect151HopeRoute
   '/sets/chinese/collect-151-journey': typeof SetsChineseCollect151JourneyRoute
   '/sets/chinese/collect-151-surprise': typeof SetsChineseCollect151SurpriseRoute
+  '/sets/chinese/fearless-terastal-csv3': typeof SetsChineseFearlessTerastalCsv3Route
   '/sets/chinese/gem-vol-1': typeof SetsChineseGemVol1Route
   '/sets/chinese/gem-vol-2': typeof SetsChineseGemVol2Route
   '/sets/chinese/gem-vol-3': typeof SetsChineseGemVol3Route
@@ -1320,6 +1330,7 @@ export interface FileRouteTypes {
     | '/sets/chinese/collect-151-hope'
     | '/sets/chinese/collect-151-journey'
     | '/sets/chinese/collect-151-surprise'
+    | '/sets/chinese/fearless-terastal-csv3'
     | '/sets/chinese/gem-vol-1'
     | '/sets/chinese/gem-vol-2'
     | '/sets/chinese/gem-vol-3'
@@ -1449,6 +1460,7 @@ export interface FileRouteTypes {
     | '/sets/chinese/collect-151-hope'
     | '/sets/chinese/collect-151-journey'
     | '/sets/chinese/collect-151-surprise'
+    | '/sets/chinese/fearless-terastal-csv3'
     | '/sets/chinese/gem-vol-1'
     | '/sets/chinese/gem-vol-2'
     | '/sets/chinese/gem-vol-3'
@@ -1578,6 +1590,7 @@ export interface FileRouteTypes {
     | '/sets/chinese/collect-151-hope'
     | '/sets/chinese/collect-151-journey'
     | '/sets/chinese/collect-151-surprise'
+    | '/sets/chinese/fearless-terastal-csv3'
     | '/sets/chinese/gem-vol-1'
     | '/sets/chinese/gem-vol-2'
     | '/sets/chinese/gem-vol-3'
@@ -1708,6 +1721,7 @@ export interface RootRouteChildren {
   SetsChineseCollect151HopeRoute: typeof SetsChineseCollect151HopeRoute
   SetsChineseCollect151JourneyRoute: typeof SetsChineseCollect151JourneyRoute
   SetsChineseCollect151SurpriseRoute: typeof SetsChineseCollect151SurpriseRoute
+  SetsChineseFearlessTerastalCsv3Route: typeof SetsChineseFearlessTerastalCsv3Route
   SetsChineseGemVol1Route: typeof SetsChineseGemVol1Route
   SetsChineseGemVol2Route: typeof SetsChineseGemVol2Route
   SetsChineseGemVol3Route: typeof SetsChineseGemVol3Route
@@ -2527,6 +2541,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SetsChineseCollect151SurpriseRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/sets/chinese/fearless-terastal-csv3': {
+      id: '/sets/chinese/fearless-terastal-csv3'
+      path: '/sets/chinese/fearless-terastal-csv3'
+      fullPath: '/sets/chinese/fearless-terastal-csv3'
+      preLoaderRoute: typeof SetsChineseFearlessTerastalCsv3RouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/sets/chinese/gem-vol-1': {
       id: '/sets/chinese/gem-vol-1'
       path: '/sets/chinese/gem-vol-1'
@@ -2734,6 +2755,7 @@ const rootRouteChildren: RootRouteChildren = {
   SetsChineseCollect151HopeRoute: SetsChineseCollect151HopeRoute,
   SetsChineseCollect151JourneyRoute: SetsChineseCollect151JourneyRoute,
   SetsChineseCollect151SurpriseRoute: SetsChineseCollect151SurpriseRoute,
+  SetsChineseFearlessTerastalCsv3Route: SetsChineseFearlessTerastalCsv3Route,
   SetsChineseGemVol1Route: SetsChineseGemVol1Route,
   SetsChineseGemVol2Route: SetsChineseGemVol2Route,
   SetsChineseGemVol3Route: SetsChineseGemVol3Route,
