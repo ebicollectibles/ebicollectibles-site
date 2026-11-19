@@ -61,6 +61,9 @@ import { Route as BlogChasingGloryCardOriginsRouteImport } from './routes/blog/c
 import { Route as BlogChasingGloryReleaseNewsRouteImport } from './routes/blog/chasing-glory-release-news'
 import { Route as BlogChasingGlorySetGuideRouteImport } from './routes/blog/chasing-glory-set-guide'
 import { Route as BlogFunismDittoPalmSizeWondersReleaseNewsRouteImport } from './routes/blog/funism-ditto-palm-size-wonders-release-news'
+import { Route as BlogGemVol1CardOriginsRouteImport } from './routes/blog/gem-vol-1-card-origins'
+import { Route as BlogGemVol1ReleaseNewsRouteImport } from './routes/blog/gem-vol-1-release-news'
+import { Route as BlogGemVol1SetGuideRouteImport } from './routes/blog/gem-vol-1-set-guide'
 import { Route as BlogGemVol2CardOriginsRouteImport } from './routes/blog/gem-vol-2-card-origins'
 import { Route as BlogGemVol2ReleaseNewsRouteImport } from './routes/blog/gem-vol-2-release-news'
 import { Route as BlogGemVol2SetGuideRouteImport } from './routes/blog/gem-vol-2-set-guide'
@@ -410,6 +413,21 @@ const BlogFunismDittoPalmSizeWondersReleaseNewsRoute =
     path: '/blog/funism-ditto-palm-size-wonders-release-news',
     getParentRoute: () => rootRouteImport,
   } as any)
+const BlogGemVol1CardOriginsRoute = BlogGemVol1CardOriginsRouteImport.update({
+  id: '/blog/gem-vol-1-card-origins',
+  path: '/blog/gem-vol-1-card-origins',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BlogGemVol1ReleaseNewsRoute = BlogGemVol1ReleaseNewsRouteImport.update({
+  id: '/blog/gem-vol-1-release-news',
+  path: '/blog/gem-vol-1-release-news',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BlogGemVol1SetGuideRoute = BlogGemVol1SetGuideRouteImport.update({
+  id: '/blog/gem-vol-1-set-guide',
+  path: '/blog/gem-vol-1-set-guide',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const BlogGemVol2CardOriginsRoute = BlogGemVol2CardOriginsRouteImport.update({
   id: '/blog/gem-vol-2-card-origins',
   path: '/blog/gem-vol-2-card-origins',
@@ -845,6 +863,9 @@ export interface FileRoutesByFullPath {
   '/blog/chasing-glory-release-news': typeof BlogChasingGloryReleaseNewsRoute
   '/blog/chasing-glory-set-guide': typeof BlogChasingGlorySetGuideRoute
   '/blog/funism-ditto-palm-size-wonders-release-news': typeof BlogFunismDittoPalmSizeWondersReleaseNewsRoute
+  '/blog/gem-vol-1-card-origins': typeof BlogGemVol1CardOriginsRoute
+  '/blog/gem-vol-1-release-news': typeof BlogGemVol1ReleaseNewsRoute
+  '/blog/gem-vol-1-set-guide': typeof BlogGemVol1SetGuideRoute
   '/blog/gem-vol-2-card-origins': typeof BlogGemVol2CardOriginsRoute
   '/blog/gem-vol-2-release-news': typeof BlogGemVol2ReleaseNewsRoute
   '/blog/gem-vol-2-set-guide': typeof BlogGemVol2SetGuideRoute
@@ -970,6 +991,9 @@ export interface FileRoutesByTo {
   '/blog/chasing-glory-release-news': typeof BlogChasingGloryReleaseNewsRoute
   '/blog/chasing-glory-set-guide': typeof BlogChasingGlorySetGuideRoute
   '/blog/funism-ditto-palm-size-wonders-release-news': typeof BlogFunismDittoPalmSizeWondersReleaseNewsRoute
+  '/blog/gem-vol-1-card-origins': typeof BlogGemVol1CardOriginsRoute
+  '/blog/gem-vol-1-release-news': typeof BlogGemVol1ReleaseNewsRoute
+  '/blog/gem-vol-1-set-guide': typeof BlogGemVol1SetGuideRoute
   '/blog/gem-vol-2-card-origins': typeof BlogGemVol2CardOriginsRoute
   '/blog/gem-vol-2-release-news': typeof BlogGemVol2ReleaseNewsRoute
   '/blog/gem-vol-2-set-guide': typeof BlogGemVol2SetGuideRoute
@@ -1096,6 +1120,9 @@ export interface FileRoutesById {
   '/blog/chasing-glory-release-news': typeof BlogChasingGloryReleaseNewsRoute
   '/blog/chasing-glory-set-guide': typeof BlogChasingGlorySetGuideRoute
   '/blog/funism-ditto-palm-size-wonders-release-news': typeof BlogFunismDittoPalmSizeWondersReleaseNewsRoute
+  '/blog/gem-vol-1-card-origins': typeof BlogGemVol1CardOriginsRoute
+  '/blog/gem-vol-1-release-news': typeof BlogGemVol1ReleaseNewsRoute
+  '/blog/gem-vol-1-set-guide': typeof BlogGemVol1SetGuideRoute
   '/blog/gem-vol-2-card-origins': typeof BlogGemVol2CardOriginsRoute
   '/blog/gem-vol-2-release-news': typeof BlogGemVol2ReleaseNewsRoute
   '/blog/gem-vol-2-set-guide': typeof BlogGemVol2SetGuideRoute
@@ -1223,6 +1250,9 @@ export interface FileRouteTypes {
     | '/blog/chasing-glory-release-news'
     | '/blog/chasing-glory-set-guide'
     | '/blog/funism-ditto-palm-size-wonders-release-news'
+    | '/blog/gem-vol-1-card-origins'
+    | '/blog/gem-vol-1-release-news'
+    | '/blog/gem-vol-1-set-guide'
     | '/blog/gem-vol-2-card-origins'
     | '/blog/gem-vol-2-release-news'
     | '/blog/gem-vol-2-set-guide'
@@ -1348,6 +1378,9 @@ export interface FileRouteTypes {
     | '/blog/chasing-glory-release-news'
     | '/blog/chasing-glory-set-guide'
     | '/blog/funism-ditto-palm-size-wonders-release-news'
+    | '/blog/gem-vol-1-card-origins'
+    | '/blog/gem-vol-1-release-news'
+    | '/blog/gem-vol-1-set-guide'
     | '/blog/gem-vol-2-card-origins'
     | '/blog/gem-vol-2-release-news'
     | '/blog/gem-vol-2-set-guide'
@@ -1473,6 +1506,9 @@ export interface FileRouteTypes {
     | '/blog/chasing-glory-release-news'
     | '/blog/chasing-glory-set-guide'
     | '/blog/funism-ditto-palm-size-wonders-release-news'
+    | '/blog/gem-vol-1-card-origins'
+    | '/blog/gem-vol-1-release-news'
+    | '/blog/gem-vol-1-set-guide'
     | '/blog/gem-vol-2-card-origins'
     | '/blog/gem-vol-2-release-news'
     | '/blog/gem-vol-2-set-guide'
@@ -1599,6 +1635,9 @@ export interface RootRouteChildren {
   BlogChasingGloryReleaseNewsRoute: typeof BlogChasingGloryReleaseNewsRoute
   BlogChasingGlorySetGuideRoute: typeof BlogChasingGlorySetGuideRoute
   BlogFunismDittoPalmSizeWondersReleaseNewsRoute: typeof BlogFunismDittoPalmSizeWondersReleaseNewsRoute
+  BlogGemVol1CardOriginsRoute: typeof BlogGemVol1CardOriginsRoute
+  BlogGemVol1ReleaseNewsRoute: typeof BlogGemVol1ReleaseNewsRoute
+  BlogGemVol1SetGuideRoute: typeof BlogGemVol1SetGuideRoute
   BlogGemVol2CardOriginsRoute: typeof BlogGemVol2CardOriginsRoute
   BlogGemVol2ReleaseNewsRoute: typeof BlogGemVol2ReleaseNewsRoute
   BlogGemVol2SetGuideRoute: typeof BlogGemVol2SetGuideRoute
@@ -2039,6 +2078,27 @@ declare module '@tanstack/react-router' {
       path: '/blog/funism-ditto-palm-size-wonders-release-news'
       fullPath: '/blog/funism-ditto-palm-size-wonders-release-news'
       preLoaderRoute: typeof BlogFunismDittoPalmSizeWondersReleaseNewsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/gem-vol-1-card-origins': {
+      id: '/blog/gem-vol-1-card-origins'
+      path: '/blog/gem-vol-1-card-origins'
+      fullPath: '/blog/gem-vol-1-card-origins'
+      preLoaderRoute: typeof BlogGemVol1CardOriginsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/gem-vol-1-release-news': {
+      id: '/blog/gem-vol-1-release-news'
+      path: '/blog/gem-vol-1-release-news'
+      fullPath: '/blog/gem-vol-1-release-news'
+      preLoaderRoute: typeof BlogGemVol1ReleaseNewsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/gem-vol-1-set-guide': {
+      id: '/blog/gem-vol-1-set-guide'
+      path: '/blog/gem-vol-1-set-guide'
+      fullPath: '/blog/gem-vol-1-set-guide'
+      preLoaderRoute: typeof BlogGemVol1SetGuideRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/blog/gem-vol-2-card-origins': {
@@ -2592,6 +2652,9 @@ const rootRouteChildren: RootRouteChildren = {
   BlogChasingGlorySetGuideRoute: BlogChasingGlorySetGuideRoute,
   BlogFunismDittoPalmSizeWondersReleaseNewsRoute:
     BlogFunismDittoPalmSizeWondersReleaseNewsRoute,
+  BlogGemVol1CardOriginsRoute: BlogGemVol1CardOriginsRoute,
+  BlogGemVol1ReleaseNewsRoute: BlogGemVol1ReleaseNewsRoute,
+  BlogGemVol1SetGuideRoute: BlogGemVol1SetGuideRoute,
   BlogGemVol2CardOriginsRoute: BlogGemVol2CardOriginsRoute,
   BlogGemVol2ReleaseNewsRoute: BlogGemVol2ReleaseNewsRoute,
   BlogGemVol2SetGuideRoute: BlogGemVol2SetGuideRoute,

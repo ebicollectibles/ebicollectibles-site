@@ -6,7 +6,7 @@
 // the post itself.
 import { SITE_URL, R2_IMAGE_HOST } from '~/lib/gem-sets/constants'
 
-export type BlogPostSlug = 'gem-vol-7-release-news' | 'gem-vol-7-card-origins' | 'gem-vol-6-release-news' | 'gem-vol-6-set-guide' | 'gem-vol-6-card-origins' | 'gem-vol-5-release-news' | 'gem-vol-5-set-guide' | 'gem-vol-5-card-origins' | 'gem-vol-4-release-news' | 'gem-vol-4-set-guide' | 'gem-vol-4-card-origins' | 'gem-vol-3-release-news' | 'gem-vol-3-set-guide' | 'gem-vol-3-card-origins' | 'gem-vol-2-release-news' | 'gem-vol-2-set-guide' | 'gem-vol-2-card-origins' | '30th-celebration-release-news' | '30th-celebration-set-guide' | '30th-celebration-card-origins' | 'chasing-glory-release-news' | 'chasing-glory-set-guide' | 'chasing-glory-card-origins' | 'terastal-gathering-release-news' | 'terastal-gathering-set-guide' | 'terastal-gathering-card-origins' | 'reward-round-release-news' | 'reward-round-set-guide' | 'reward-round-card-origins' | 'black-crystal-blaze-release-news' | 'black-crystal-blaze-set-guide' | 'black-crystal-blaze-card-origins' | 'black-bolt-set-guide' | 'black-bolt-card-origins' | 'white-flare-set-guide' | 'white-flare-card-origins' | 'true-mystery-release-news' | 'true-mystery-set-guide' | 'true-mystery-card-origins' | 'blade-awakening-release-news' | 'blade-awakening-set-guide' | 'blade-awakening-card-origins' | 'brilliant-fantasy-release-news' | 'brilliant-fantasy-set-guide' | 'brilliant-fantasy-card-origins' | 'stellar-crystal-release-news' | 'stellar-crystal-set-guide' | 'stellar-crystal-card-origins' | 'pikachu-dream-painting-figures-release-news' | 'funism-ditto-palm-size-wonders-release-news'
+export type BlogPostSlug = 'gem-vol-7-release-news' | 'gem-vol-7-card-origins' | 'gem-vol-6-release-news' | 'gem-vol-6-set-guide' | 'gem-vol-6-card-origins' | 'gem-vol-5-release-news' | 'gem-vol-5-set-guide' | 'gem-vol-5-card-origins' | 'gem-vol-4-release-news' | 'gem-vol-4-set-guide' | 'gem-vol-4-card-origins' | 'gem-vol-3-release-news' | 'gem-vol-3-set-guide' | 'gem-vol-3-card-origins' | 'gem-vol-2-release-news' | 'gem-vol-2-set-guide' | 'gem-vol-2-card-origins' | 'gem-vol-1-release-news' | 'gem-vol-1-set-guide' | 'gem-vol-1-card-origins' | '30th-celebration-release-news' | '30th-celebration-set-guide' | '30th-celebration-card-origins' | 'chasing-glory-release-news' | 'chasing-glory-set-guide' | 'chasing-glory-card-origins' | 'terastal-gathering-release-news' | 'terastal-gathering-set-guide' | 'terastal-gathering-card-origins' | 'reward-round-release-news' | 'reward-round-set-guide' | 'reward-round-card-origins' | 'black-crystal-blaze-release-news' | 'black-crystal-blaze-set-guide' | 'black-crystal-blaze-card-origins' | 'black-bolt-set-guide' | 'black-bolt-card-origins' | 'white-flare-set-guide' | 'white-flare-card-origins' | 'true-mystery-release-news' | 'true-mystery-set-guide' | 'true-mystery-card-origins' | 'blade-awakening-release-news' | 'blade-awakening-set-guide' | 'blade-awakening-card-origins' | 'brilliant-fantasy-release-news' | 'brilliant-fantasy-set-guide' | 'brilliant-fantasy-card-origins' | 'stellar-crystal-release-news' | 'stellar-crystal-set-guide' | 'stellar-crystal-card-origins' | 'pikachu-dream-painting-figures-release-news' | 'funism-ditto-palm-size-wonders-release-news'
 
 export interface BlogPostSummary {
   slug: BlogPostSlug
@@ -818,6 +818,54 @@ export const BLOG_POSTS: BlogPostSummary[] = [
     heroAlt: "Gem Vol. 2 Card Origins banner: the Sylveon booster pack linked to tiles showing where its 44 illustrations came from, led by Sword & Shield promos",
     glow1: 'rgb(86 134 135 / .30)',
     glow2: 'rgb(199 22 116 / .26)',
+  },
+  {
+    slug: 'gem-vol-1-release-news',
+    path: '/blog/gem-vol-1-release-news',
+    title: 'Gem Vol 1 Is Here: Paldea Starters, Captain Pikachu and Four Horizons Full Arts',
+    excerpt:
+      'The first Simplified Chinese Gem Pack: 115 all-holo cards with Sprigatito, Fuecoco, Quaxly, their middle evolutions and Captain Pikachu, plus four Chinese Exclusive Horizons full arts.',
+    seoTitle: 'Pokémon Gem Pack Vol. 1 (Gem 1): Paldea Starters & Release Info',
+    seoDescription:
+      'Pokémon TCG Gem Pack Vol. 1 (CBB1C): 115 all-holo Simplified Chinese cards, the Paldea starters, Captain Pikachu and four Chinese Exclusive full arts.',
+    tag: 'New release',
+    date: '2025-01-17',
+    heroImage: `${SITE_URL}/assets/blog/gem-vol-1-release-hero-v1.webp`,
+    heroAlt: 'Gem Pack Vol. 1 banner: the Sprigatito booster pack with the Captain Pikachu and Liko and Sprigatito Horizons full arts',
+    glow1: 'rgb(194 26 118 / .30)',
+    glow2: 'rgb(151 202 224 / .22)',
+  },
+  {
+    slug: 'gem-vol-1-set-guide',
+    path: '/blog/gem-vol-1-set-guide',
+    title: 'Gem Vol 1 Set Guide: Every Full Art, Every Shiny-Style Card and the Odds',
+    excerpt:
+      'How to read a Gem Vol 1 card, the four Horizons full arts, all seven illustration full arts and shiny-style cards, the full roster, and what a master set takes.',
+    seoTitle: 'Pokémon Gem Pack Vol. 1 (Gem 1) Set Guide: Chase Cards & Odds',
+    seoDescription:
+      'Pokémon TCG Gem Pack Vol. 1 (Gem 1) set guide: the four Chinese Exclusive Horizons full arts, every full art, print shares and the 115-card master set.',
+    tag: 'Set guide',
+    date: '2025-01-17',
+    heroImage: `${SITE_URL}/assets/blog/gem-vol-1-guide-hero-v1.webp`,
+    heroAlt: 'Gem Vol. 1 set guide banner: the Sprigatito 0109/09 Horizons full art with all nine Sprigatito cards below',
+    glow1: 'rgb(151 202 224 / .22)',
+    glow2: 'rgb(194 26 118 / .30)',
+  },
+  {
+    slug: 'gem-vol-1-card-origins',
+    path: '/blog/gem-vol-1-card-origins',
+    title: 'Where Every Gem Vol 1 Card Actually Comes From',
+    excerpt:
+      '33 of the 38 illustrations in Gem Vol 1 are reused from English cards, mostly Paldea Evolved. The other five are Pokémon Horizons art, including four Chinese Exclusive full arts.',
+    seoTitle: 'Pokémon Gem Pack Vol. 1 (Gem 1) Card Origins: English Art Matches',
+    seoDescription:
+      'Pokémon TCG Gem Pack Vol. 1 (Gem 1) card origins: 33 of the 38 illustrations reuse English Scarlet & Violet cards, mostly from Paldea Evolved.',
+    tag: 'Collecting guide',
+    date: '2025-01-17',
+    heroImage: `${SITE_URL}/assets/blog/gem-vol-1-origins-hero-v1.webp`,
+    heroAlt: 'Gem Vol. 1 card origins banner: the Sprigatito pack with tiles for Paldea Evolved, Scarlet & Violet, three other sets and five new Horizons illustrations',
+    glow1: 'rgb(151 202 224 / .22)',
+    glow2: 'rgb(194 26 118 / .30)',
   },
   {
     slug: 'gem-vol-7-card-origins',
