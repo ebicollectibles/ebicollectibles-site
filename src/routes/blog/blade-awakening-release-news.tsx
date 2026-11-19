@@ -514,7 +514,7 @@ function BladeAwakeningReleasePost() {
         <h2 id="our-take">Our take</h2>
         <p>
           Blade Awakening is a set with real depth: six Paradox Pokémon run all the way to gold, and the akagi Greninja ex sits on
-          top. The Ciphermaniac SAR is a quiet favorite that English collectors cannot get. For hits,
+          top. The Ciphermaniac SAR is a quiet favorite that was never printed in English. For hits,
           the jumbo box is the better buy on the published odds.
         </p>
       </BlogPostLayout>

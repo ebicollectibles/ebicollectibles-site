@@ -205,7 +205,7 @@ function FearlessTerastalReleasePost() {
         <p>
           Fearless Terastal (<Zh>无畏太晶</Zh>) released on May 16, 2025. It is the third main set of the Chinese Scarlet & Violet series, and it
           introduces Terastallized Pokémon as Tera Pokémon ex, with a crystal Arcanine on the pack. Around it are the
-          four legendary Treasures of Ruin, a cast of Paldea Pokémon and Trainers, and one card English collectors cannot pull.
+          four legendary Treasures of Ruin, a cast of Paldea Pokémon and Trainers, and one card that was never printed in English.
         </p>
 
         <aside className="fact-box" aria-label="Fearless Terastal key facts">
@@ -246,8 +246,8 @@ function FearlessTerastalReleasePost() {
         <p>
           One secret rare has no English version: the Arcanine ex Special Art Rare, 155/130. It shows the Terastallized Arcanine
           mid-roar, its body cut like crystal, with a red Tera Jewel crown on its head and its glow lighting the dark forest behind it. The
-          Double Rare and Super Rare versions match English cards, so this is the one card here that an English
-          collection cannot include.
+          Double Rare and Super Rare versions match English cards, so this is the one card here with art
+          you will only find in the Chinese set.
         </p>
         <Grid cards={ARCANINE} cols={3} />
 

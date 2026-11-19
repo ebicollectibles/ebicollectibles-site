@@ -365,7 +365,7 @@ function TerastalGatheringReleasePost() {
         <h2 id="our-take">Our take</h2>
         <p>
           If you love Eevee, this is the set. The Stellar Eeveelution SARs are some of the best-looking cards of the era, and Chinese
-          adds a Sylveon ex SAR that English collectors cannot pull. With three or four holos in every pack, it is also just a fun box to
+          adds a Sylveon ex SAR that was never printed in English. With three or four holos in every pack, it is also just a fun box to
           open.
         </p>
       </BlogPostLayout>
