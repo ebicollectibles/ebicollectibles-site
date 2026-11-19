@@ -2,7 +2,7 @@ import { Zh } from '~/components/blog/Zh'
 import { BuyStrip } from '~/components/blog/BlogShop'
 import { createFileRoute, Link } from '@tanstack/react-router'
 import blogCssUrl from '~/styles/blog.css?url'
-import { BLOG_POSTS, BLOG_SITE_URL, blogSeoDescription, blogSeoTitle } from '~/data/blog-posts'
+import { BLOG_POSTS, BLOG_SITE_URL, blogSeoDescription, blogSeoTitle, blogShareImage } from '~/data/blog-posts'
 import { BlogPostLayout } from '~/components/blog/BlogPostLayout'
 import { ChineseExclusiveBadge } from '~/components/blog/ChineseExclusive'
 import { getBlogPostStatus } from '~/server/blog-status'
@@ -127,11 +127,11 @@ export const Route = createFileRoute('/blog/reward-round-release-news')({
       { name: 'description', content: blogSeoDescription(post) },
       { property: 'og:title', content: post.title },
       { property: 'og:description', content: post.excerpt },
-      { property: 'og:image', content: post.heroImage },
-      { property: 'og:image:width', content: '1600' },
-      { property: 'og:image:height', content: '900' },
+      { property: 'og:image', content: blogShareImage(post) },
+      { property: 'og:image:width', content: '1200' },
+      { property: 'og:image:height', content: '630' },
       { property: 'og:image:alt', content: post.heroAlt },
-      { name: 'twitter:image', content: post.heroImage },
+      { name: 'twitter:image', content: blogShareImage(post) },
       { name: 'twitter:image:alt', content: post.heroAlt },
       { property: 'article:published_time', content: post.date },
       ...(loaderData?.liveAt ? [{ property: 'article:modified_time', content: loaderData.liveAt.slice(0, 10) }] : []),

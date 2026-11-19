@@ -14,25 +14,26 @@ export function safeJsonLd(value: unknown): string {
 
 export function buildGemSetHead(data: BuiltGemSetData, config: GemSetConfig) {
   const heroImage = data.cardById.get(config.fanIds[Math.floor(config.fanIds.length / 2)])?.image
+  const shareImage = `${SITE_URL}/assets/share/set-${config.routePath.split('/').pop()}.jpg`
   return {
     meta: [
       { title: config.metaTitle },
       { name: 'description', content: config.metaDescription },
       { property: 'og:title', content: config.ogTitle },
       { property: 'og:description', content: config.ogDescription },
-      // No declared og:image:width/height: most card images are 300×419,
-      // but a few sets (CSV8's 0208/0209/0212/0239/0244/0255/0256) are
-      // genuinely 320×445–448 — asserting a size that's wrong for
-      // whichever card a page's own fan happens to center is worse than
-      // leaving it undeclared, since platforms fetch and measure the
-      // image themselves when it's omitted.
-      ...(heroImage ? [{ property: 'og:image', content: heroImage }] : []),
+      // The link-preview image is a wide 1200x630 card made for sharing
+      // (public/assets/share), not a single upright card, which chat apps
+      // and social sites crop badly.
+      { property: 'og:image', content: shareImage },
+      { property: 'og:image:width', content: '1200' },
+      { property: 'og:image:height', content: '630' },
+      { property: 'og:image:alt', content: `${config.ogTitle}: three cards from the set fanned beside the set name` },
       { property: 'og:url', content: `${SITE_URL}${config.routePath}` },
       { property: 'og:type', content: 'website' },
       { name: 'twitter:card', content: 'summary_large_image' },
       { name: 'twitter:title', content: config.ogTitle },
       { name: 'twitter:description', content: config.ogDescription },
-      ...(heroImage ? [{ name: 'twitter:image', content: heroImage }] : []),
+      { name: 'twitter:image', content: shareImage },
     ],
     links: [
       { rel: 'stylesheet', href: gemSetCssUrl },

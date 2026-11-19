@@ -1,0 +1,20 @@
+import { existsSync } from 'node:fs'
+import { describe, expect, it } from 'vitest'
+import { BLOG_POSTS, blogShareImage } from './blog-posts'
+import { GEM_SETS } from './gem-sets-index'
+
+// Link previews (og:image) point at wide JPG cards in public/assets/share.
+// A missing file would mean a blank preview wherever the page is shared.
+const local = (url: string) => url.replace(/^https?:\/\/[^/]+/, 'public')
+
+describe('link preview images', () => {
+  it('exist for every blog post', () => {
+    expect(BLOG_POSTS.map((p) => local(blogShareImage(p))).filter((f) => !existsSync(f))).toEqual([])
+  })
+  it('exist for every set list', () => {
+    expect(GEM_SETS.map((s) => `public/assets/share/set-${s.slug}.jpg`).filter((f) => !existsSync(f))).toEqual([])
+  })
+  it('exist for the site, shop, set index and blog index', () => {
+    expect(['site', 'shop', 'sets', 'blog'].map((n) => `public/assets/share/${n}.jpg`).filter((f) => !existsSync(f))).toEqual([])
+  })
+})

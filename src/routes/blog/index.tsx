@@ -21,6 +21,10 @@ export const Route = createFileRoute('/blog/')({
         content: 'Release coverage and collecting guides for Simplified Chinese Pokémon TCG sets.',
       },
       { property: 'og:url', content: `${BLOG_SITE_URL}/blog` },
+      { property: 'og:image', content: `${BLOG_SITE_URL}/assets/share/blog.jpg` },
+      { property: 'og:image:width', content: '1200' },
+      { property: 'og:image:height', content: '630' },
+      { property: 'og:image:alt', content: 'Three Simplified Chinese Pokémon cards fanned beside the words News & Guides' },
       { name: 'twitter:card', content: 'summary_large_image' },
     ],
     links: [

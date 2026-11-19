@@ -39,6 +39,7 @@ export const Route = createFileRoute('/shop')({
         { property: 'og:title', content: title },
         { property: 'og:description', content: description },
         { property: 'og:url', content: `${SITE_URL}/shop` },
+        { property: 'og:image', content: `${SITE_URL}/assets/share/shop.jpg` },
       ],
       links: [{ rel: 'canonical', href: `${SITE_URL}/shop` }],
     }

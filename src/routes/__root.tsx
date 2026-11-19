@@ -71,7 +71,10 @@ export const Route = createRootRoute({
         property: 'og:description',
         content: 'Simplified Chinese Pokémon booster boxes, figures and blind boxes, sourced through authorised distribution and verified before it ships.',
       },
-      { property: 'og:image', content: 'https://ebicollectibles.com/assets/ebi-logo.jpg' },
+      // Site-wide link-preview card. No width, height or alt here on purpose:
+      // pages that set their own og:image (products, for one) would inherit
+      // them and describe the wrong picture.
+      { property: 'og:image', content: 'https://ebicollectibles.com/assets/share/site.jpg' },
       { property: 'og:url', content: 'https://ebicollectibles.com' },
       { name: 'twitter:card', content: 'summary_large_image' },
     ],

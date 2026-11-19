@@ -29,6 +29,16 @@ export function blogSeoTitle(post: BlogPostSummary): string {
   return `${post.seoTitle ?? post.title} | EBI Collectibles`
 }
 
+/**
+ * The wide 1200x630 JPG used for link previews (og:image). It is the post's
+ * banner cropped to the shape chat apps and social sites show, saved as a
+ * JPG because not every platform displays WebP.
+ */
+export function blogShareImage(post: BlogPostSummary): string {
+  const file = post.heroImage.split('/').pop()!.replace(/\.webp$/, '.jpg')
+  return `${SITE_URL}/assets/share/blog-${file}`
+}
+
 export function blogSeoDescription(post: BlogPostSummary): string {
   return post.seoDescription ?? post.excerpt
 }
