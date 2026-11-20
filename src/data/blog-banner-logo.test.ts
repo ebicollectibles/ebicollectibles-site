@@ -14,7 +14,9 @@ const TOLERANCE = 2
 
 const local = (url: string) => url.replace(/^https?:\/\/[^/]+/, 'public')
 
-async function logoBox(file: string, sharp: typeof import('sharp')) {
+type Sharp = (typeof import('sharp'))['default']
+
+async function logoBox(file: string, sharp: Sharp) {
   // Look only at the top-left corner, above any label that sits under the logo.
   const region = { left: 90, top: 70, width: 470, height: 102 }
   const crop = () => sharp(file).extract(region).greyscale()
