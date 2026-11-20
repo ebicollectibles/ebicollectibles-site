@@ -327,7 +327,8 @@ function PikachuGiftBoxPost() {
           <Link to="/sets/chinese">Chinese set lists</Link> page.
         </p>
         <p>
-          The 20-card packs are the same ones that come in each set's Jumbo booster box, with 6 holos in every pack. Pokémon China
+          The 20-card packs are the larger of the two pack sizes these sets come in, the size sold in Jumbo booster boxes. Each has 6
+          holos, or 7 in Black Bolt and White Flare. Pokémon China
           points to each set's own product page for its odds. Our guides cover them for{' '}
           <Link to="/blog/chasing-glory-set-guide">Chasing Glory</Link>, <Link to="/blog/terastal-gathering-set-guide">Terastal Gathering</Link>,{' '}
           <Link to="/blog/black-bolt-set-guide">Black Bolt</Link> and <Link to="/blog/white-flare-set-guide">White Flare</Link>.
