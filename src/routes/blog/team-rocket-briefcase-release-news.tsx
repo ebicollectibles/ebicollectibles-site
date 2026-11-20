@@ -290,7 +290,7 @@ function TeamRocketBriefcasePost() {
         <ul className="card-grid cols-2">
           <li>
             <figure>
-              <img src={img('mewtwo-ex-promo')} alt="Team Rocket's Mewtwo ex 354/SV-P promo card from the Team Rocket gift box" loading="lazy" width={788} height={1100} />
+              <img src={img('mewtwo-ex-promo')} alt="Team Rocket's Mewtwo ex 354/SV-P promo card from the Team Rocket gift box" loading="lazy" width={788} height={1100} style={{ background: 'transparent', boxShadow: 'none' }} />
               <figcaption>
                 <strong>Team Rocket's Mewtwo ex</strong>354/SV-P · Promo
               </figcaption>
@@ -298,7 +298,7 @@ function TeamRocketBriefcasePost() {
           </li>
           <li>
             <figure>
-              <img src={img('booster-pack')} alt="Chasing Glory 20-card booster pack with Mewtwo and Giovanni" loading="lazy" width={610} height={1100} />
+              <img src={img('booster-pack')} alt="Chasing Glory 20-card booster pack with Mewtwo and Giovanni" loading="lazy" width={610} height={1100} style={{ background: 'transparent', boxShadow: 'none' }} />
               <figcaption>
                 <strong>Chasing Glory pack</strong>20 cards · 6 in the gift box
               </figcaption>
@@ -358,7 +358,7 @@ function TeamRocketBriefcasePost() {
         <ul className="card-grid cols-2">
           <li>
             <figure>
-              <img src={img('member-card-holder')} alt="The black secret member card holder with a red R, shown with a red member card" loading="lazy" width={1100} height={1100} />
+              <img src={img('member-card-holder')} alt="The black secret member card holder with a red R, shown with a red member card" loading="lazy" width={1100} height={1100} style={{ aspectRatio: '1 / 1' }} />
               <figcaption>
                 <strong>Member card holder</strong>130,000 made
               </figcaption>
@@ -366,7 +366,7 @@ function TeamRocketBriefcasePost() {
           </li>
           <li>
             <figure>
-              <img src={img('paper-bag')} alt="The Team Rocket paper bag: black with red handles and red line art of Wobbuffet, Meowth, Crobat and Ekans" loading="lazy" width={1100} height={1100} />
+              <img src={img('paper-bag')} alt="The Team Rocket paper bag: black with red handles and red line art of Wobbuffet, Meowth, Crobat and Ekans" loading="lazy" width={1100} height={1100} style={{ aspectRatio: '1 / 1' }} />
               <figcaption>
                 <strong>Team Rocket paper bag</strong>150,000 made
               </figcaption>
