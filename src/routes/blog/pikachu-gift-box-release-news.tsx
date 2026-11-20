@@ -48,6 +48,7 @@ const TOC = [
   { id: 'box', label: 'The box itself' },
   { id: 'names', label: 'What is it called?' },
   { id: 'not-known', label: 'What Pokémon China has not said' },
+  { id: 'pre-orders', label: 'Pre-orders at EBI Collectibles' },
   { id: 'faq', label: 'FAQ' },
 ]
 
@@ -79,6 +80,10 @@ const FAQ = [
   {
     q: 'What is the Pikachu gift box called in Chinese?',
     a: '璀璨晶耀 皮卡丘专属礼盒. It translates roughly as Brilliant Crystal Shine: Pikachu Exclusive Gift Box. There is no official English name, so you will also see it called the Pikachu Exclusive Gift Box or the Stellar Pikachu Gift Box.',
+  },
+  {
+    q: 'Can I pre-order the Chinese Pikachu gift box?',
+    a: 'We plan to open pre-orders at EBI Collectibles. Leave your email in the pre-orders section of this post and we will write to you as soon as they open.',
   },
   {
     q: 'What language are the cards?',
@@ -179,6 +184,10 @@ function PikachuGiftBoxPost() {
           2026, and a matching set of sleeves, a deck box and a card display frame.
         </p>
 
+        <p>
+          <strong>Pre-orders will be available at EBI Collectibles.</strong> <a href="#pre-orders">Get an email when they open</a>.
+        </p>
+
         <aside className="fact-box" aria-label="Stellar Pikachu gift box key facts">
           {/* Same card as in the promo section below, where it is described, so this copy is decorative */}
           <img src={img('pikachu-ex-promo')} alt="" loading="lazy" width={788} height={1100} />
@@ -254,12 +263,6 @@ function PikachuGiftBoxPost() {
           />
           <figcaption>Pokémon China's announcement image, showing everything in the box.</figcaption>
         </figure>
-
-        <BlogEmailSignup
-          heading="Pre-orders are coming to EBI Collectibles"
-          body="We plan to open pre-orders for the Pikachu gift box. Leave your email and we will tell you as soon as they open."
-          source="blog-pikachu-gift-box"
-        />
 
         <h2 id="promo">The Pikachu ex promo card</h2>
         <p>
@@ -363,6 +366,17 @@ function PikachuGiftBoxPost() {
           The announcement gives the release date and the full contents. It does not say how many boxes are being made, and it does not
           say which stores will sell it. We will update this post if that changes.
         </p>
+
+        <h2 id="pre-orders">Pre-orders at EBI Collectibles</h2>
+        <p>
+          We plan to open pre-orders for the Pikachu gift box here at EBI Collectibles. Leave your email below and we will write to
+          you as soon as they open. Orders ship from the US.
+        </p>
+        <BlogEmailSignup
+          heading="Get an email when pre-orders open"
+          body="One email when the Pikachu gift box is ready to pre-order."
+          source="blog-pikachu-gift-box"
+        />
 
         <h2 id="faq">FAQ</h2>
         <div className="faq">
