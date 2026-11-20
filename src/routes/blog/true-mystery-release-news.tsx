@@ -126,6 +126,10 @@ const FAQ = [
     q: 'How many cards are in True Mystery?',
     a: '163 numbered cards: 128 in the main set and 35 secret rares. Counting the Poké Ball and Master Ball pattern holos of every Common, Uncommon and Rare, there are 393 different cards.',
   },
+  {
+    q: 'Is True Mystery also sold under other names?',
+    a: 'Yes. The set has no official English name, so shops translate it differently. Mystic & Void and Paradox Veil are the same set, CSV6C.',
+  },
 ]
 
 export const Route = createFileRoute('/blog/true-mystery-release-news')({

@@ -111,6 +111,10 @@ const FAQ = [
     a: 'Mostly from Prismatic Evolutions: 156 of its 259 cards share art with it, including 49 of the 51 secret rares. The rest come from other Scarlet & Violet sets, English promos and two new arts.',
     link: { to: '/sets/chinese/terastal-gathering-csv9-5', before: 'See every card on the ', label: 'Terastal Gathering card list', after: '.' },
   },
+  {
+    q: 'Is Terastal Gathering also sold under other names?',
+    a: 'Yes. The set has no official English name, so shops translate it differently. Crystal Gathering and Grand Crystal Gathering are the same set, CSV9.5C.',
+  },
 ]
 
 export const Route = createFileRoute('/blog/terastal-gathering-release-news')({

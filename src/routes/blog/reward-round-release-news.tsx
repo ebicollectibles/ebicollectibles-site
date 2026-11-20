@@ -116,6 +116,10 @@ const FAQ = [
     q: 'How many cards are in Reward Round?',
     a: '165 numbered cards: 129 in the main set and 36 secret rares. With the Poké Ball and Master Ball pattern holos of every Common, Uncommon and Rare, there are 395 different cards.',
   },
+  {
+    q: 'Is Reward Round also sold under other names?',
+    a: 'Yes. The set has no official English name, so shops translate it differently. Prize Turn and Awards Round are the same set, CSV4C.',
+  },
 ]
 
 export const Route = createFileRoute('/blog/reward-round-release-news')({

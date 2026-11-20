@@ -111,6 +111,10 @@ const FAQ: Array<{ q: string; a: string; link?: { to: string; before: string; la
     q: 'Are the pull odds the same for both sets?',
     a: 'Yes. Pokémon China publishes the same two odds charts for each set, one for the 5-card slim pack and one for the 20-card jumbo pack.',
   },
+  {
+    q: 'Are Black Bolt and White Flare sold under other names?',
+    a: 'Yes. The sets have no official English names, so shops translate them differently. White Flame Surge is White Flare, CSV10.6C.',
+  },
 ]
 
 export const Route = createFileRoute('/blog/black-bolt-white-flare-release-news')({

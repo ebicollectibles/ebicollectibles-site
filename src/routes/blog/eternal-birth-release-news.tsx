@@ -122,6 +122,10 @@ const FAQ = [
     a: 'Mostly from the first English Scarlet & Violet set, which matches 134 of the 167 cards. Paldea Evolved (16), Obsidian Flames (7), 151 (5) and three other English sources supply the rest.',
     link: { to: '/sets/chinese/eternal-birth-csv1', before: 'See every card on the ', label: 'Eternal Birth card list', after: '.' },
   },
+  {
+    q: 'Is Eternal Birth also sold under other names?',
+    a: 'Yes. The set has no official English name, so shops translate it differently. Eternal Beginning and Eternal Beginnings are the same set, CSV1C.',
+  },
 ]
 
 export const Route = createFileRoute('/blog/eternal-birth-release-news')({

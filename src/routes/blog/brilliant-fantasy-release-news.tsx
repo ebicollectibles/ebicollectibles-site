@@ -126,6 +126,10 @@ const FAQ = [
     q: 'How many cards are in Brilliant Fantasy?',
     a: '264 numbered cards: 207 in the main set and 57 secret rares. With the Poké Ball and Master Ball pattern holos of all 176 Commons, Uncommons and Rares, there are 616 different cards.',
   },
+  {
+    q: 'Is Brilliant Fantasy also sold under other names?',
+    a: 'Yes. The set has no official English name, so shops translate it differently. Sparkling Fantasy and Bright Fantasy are the same set, CSV8C.',
+  },
 ]
 
 export const Route = createFileRoute('/blog/brilliant-fantasy-release-news')({

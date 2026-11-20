@@ -128,6 +128,10 @@ const FAQ = [
     q: 'How many cards are in Chasing Glory?',
     a: '287 numbered cards: 222 in the main set and 65 secret rares. Counting the Poké Ball and Master Ball pattern holos of every Common, Uncommon and Rare, there are 683 different cards.',
   },
+  {
+    q: 'Is Chasing Glory also sold under other names?',
+    a: 'Yes. The set has no official English name, so shops translate it differently. Chasing Glory Together is the same set, CSV10C. Some shops also list it as The Glory of Team Rocket, the name of the Japanese set it is based on.',
+  },
 ]
 
 export const Route = createFileRoute('/blog/chasing-glory-release-news')({

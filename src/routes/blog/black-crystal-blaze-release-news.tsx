@@ -94,10 +94,6 @@ const TOC = [
 
 const FAQ = [
   {
-    q: 'Is Black Crystal Blazing the same set as Black Crystal Blaze?',
-    a: 'Yes. The set has no official English name, so shops translate the Chinese name in different ways. Black Crystal Blaze, Black Crystal Blazing, Crystal Blaze and Dark Crystal Blaze all mean the same set, CSV5C.',
-  },
-  {
     q: 'When was Black Crystal Blaze released?',
     a: 'September 12, 2025, in mainland China. It is a Simplified Chinese release.',
   },
@@ -125,6 +121,10 @@ const FAQ = [
   {
     q: 'How many cards are in Black Crystal Blaze?',
     a: '164 numbered cards: 129 in the main set and 35 secret rares. Counting the Poké Ball and Master Ball pattern holos of every Common, Uncommon and Rare, there are 394 different cards.',
+  },
+  {
+    q: 'Is Black Crystal Blaze also sold under other names?',
+    a: 'Yes. The set has no official English name, so shops translate it differently. Black Crystal Blazing, Crystal Blaze and Dark Crystal Blaze are the same set, CSV5C.',
   },
 ]
 
@@ -210,10 +210,6 @@ function BlackCrystalBlazeReleasePost() {
           built around Pokémon whose Tera type differs from their usual type, and the Darkness Tera Charizard ex is on the pack. Elite
           Four members Larry and Poppy join as Supporters, and two secret rares are Chinese Exclusives: a Larry Special Art Rare and a
           gold Defiance Band.
-        </p>
-        <p>
-          There is no official English name, so shops list it under several: Black Crystal Blaze, Black Crystal Blazing, Crystal Blaze
-          and Dark Crystal Blaze are all this same set.
         </p>
         <p>
           Our <Link to="/blog/black-crystal-blaze-set-guide">set guide</Link> shows every secret rare and what each box holds, and our{' '}

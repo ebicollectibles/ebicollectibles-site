@@ -163,6 +163,10 @@ const FAQ = [
     q: 'How many cards are in Blade Awakening?',
     a: '259 numbered cards: 204 in the main set and 55 secret rares. Counting the Poké Ball and Master Ball pattern holos of every Common, Uncommon and Rare, there are 605 different cards.',
   },
+  {
+    q: 'Is Blade Awakening also sold under other names?',
+    a: 'Yes. The set has no official English name, so shops translate it differently. Blade Awakened and Sharp Blade Awakening are the same set, CSV7C.',
+  },
 ]
 
 export const Route = createFileRoute('/blog/blade-awakening-release-news')({
