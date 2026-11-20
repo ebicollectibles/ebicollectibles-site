@@ -100,6 +100,7 @@ import { Route as BlogRewardRoundSetGuideRouteImport } from './routes/blog/rewar
 import { Route as BlogStellarCrystalCardOriginsRouteImport } from './routes/blog/stellar-crystal-card-origins'
 import { Route as BlogStellarCrystalReleaseNewsRouteImport } from './routes/blog/stellar-crystal-release-news'
 import { Route as BlogStellarCrystalSetGuideRouteImport } from './routes/blog/stellar-crystal-set-guide'
+import { Route as BlogTeamRocketBriefcaseReleaseNewsRouteImport } from './routes/blog/team-rocket-briefcase-release-news'
 import { Route as BlogTerastalGatheringCardOriginsRouteImport } from './routes/blog/terastal-gathering-card-origins'
 import { Route as BlogTerastalGatheringReleaseNewsRouteImport } from './routes/blog/terastal-gathering-release-news'
 import { Route as BlogTerastalGatheringSetGuideRouteImport } from './routes/blog/terastal-gathering-set-guide'
@@ -640,6 +641,12 @@ const BlogStellarCrystalSetGuideRoute =
     path: '/blog/stellar-crystal-set-guide',
     getParentRoute: () => rootRouteImport,
   } as any)
+const BlogTeamRocketBriefcaseReleaseNewsRoute =
+  BlogTeamRocketBriefcaseReleaseNewsRouteImport.update({
+    id: '/blog/team-rocket-briefcase-release-news',
+    path: '/blog/team-rocket-briefcase-release-news',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const BlogTerastalGatheringCardOriginsRoute =
   BlogTerastalGatheringCardOriginsRouteImport.update({
     id: '/blog/terastal-gathering-card-origins',
@@ -1006,6 +1013,7 @@ export interface FileRoutesByFullPath {
   '/blog/stellar-crystal-card-origins': typeof BlogStellarCrystalCardOriginsRoute
   '/blog/stellar-crystal-release-news': typeof BlogStellarCrystalReleaseNewsRoute
   '/blog/stellar-crystal-set-guide': typeof BlogStellarCrystalSetGuideRoute
+  '/blog/team-rocket-briefcase-release-news': typeof BlogTeamRocketBriefcaseReleaseNewsRoute
   '/blog/terastal-gathering-card-origins': typeof BlogTerastalGatheringCardOriginsRoute
   '/blog/terastal-gathering-release-news': typeof BlogTerastalGatheringReleaseNewsRoute
   '/blog/terastal-gathering-set-guide': typeof BlogTerastalGatheringSetGuideRoute
@@ -1149,6 +1157,7 @@ export interface FileRoutesByTo {
   '/blog/stellar-crystal-card-origins': typeof BlogStellarCrystalCardOriginsRoute
   '/blog/stellar-crystal-release-news': typeof BlogStellarCrystalReleaseNewsRoute
   '/blog/stellar-crystal-set-guide': typeof BlogStellarCrystalSetGuideRoute
+  '/blog/team-rocket-briefcase-release-news': typeof BlogTeamRocketBriefcaseReleaseNewsRoute
   '/blog/terastal-gathering-card-origins': typeof BlogTerastalGatheringCardOriginsRoute
   '/blog/terastal-gathering-release-news': typeof BlogTerastalGatheringReleaseNewsRoute
   '/blog/terastal-gathering-set-guide': typeof BlogTerastalGatheringSetGuideRoute
@@ -1293,6 +1302,7 @@ export interface FileRoutesById {
   '/blog/stellar-crystal-card-origins': typeof BlogStellarCrystalCardOriginsRoute
   '/blog/stellar-crystal-release-news': typeof BlogStellarCrystalReleaseNewsRoute
   '/blog/stellar-crystal-set-guide': typeof BlogStellarCrystalSetGuideRoute
+  '/blog/team-rocket-briefcase-release-news': typeof BlogTeamRocketBriefcaseReleaseNewsRoute
   '/blog/terastal-gathering-card-origins': typeof BlogTerastalGatheringCardOriginsRoute
   '/blog/terastal-gathering-release-news': typeof BlogTerastalGatheringReleaseNewsRoute
   '/blog/terastal-gathering-set-guide': typeof BlogTerastalGatheringSetGuideRoute
@@ -1438,6 +1448,7 @@ export interface FileRouteTypes {
     | '/blog/stellar-crystal-card-origins'
     | '/blog/stellar-crystal-release-news'
     | '/blog/stellar-crystal-set-guide'
+    | '/blog/team-rocket-briefcase-release-news'
     | '/blog/terastal-gathering-card-origins'
     | '/blog/terastal-gathering-release-news'
     | '/blog/terastal-gathering-set-guide'
@@ -1581,6 +1592,7 @@ export interface FileRouteTypes {
     | '/blog/stellar-crystal-card-origins'
     | '/blog/stellar-crystal-release-news'
     | '/blog/stellar-crystal-set-guide'
+    | '/blog/team-rocket-briefcase-release-news'
     | '/blog/terastal-gathering-card-origins'
     | '/blog/terastal-gathering-release-news'
     | '/blog/terastal-gathering-set-guide'
@@ -1724,6 +1736,7 @@ export interface FileRouteTypes {
     | '/blog/stellar-crystal-card-origins'
     | '/blog/stellar-crystal-release-news'
     | '/blog/stellar-crystal-set-guide'
+    | '/blog/team-rocket-briefcase-release-news'
     | '/blog/terastal-gathering-card-origins'
     | '/blog/terastal-gathering-release-news'
     | '/blog/terastal-gathering-set-guide'
@@ -1868,6 +1881,7 @@ export interface RootRouteChildren {
   BlogStellarCrystalCardOriginsRoute: typeof BlogStellarCrystalCardOriginsRoute
   BlogStellarCrystalReleaseNewsRoute: typeof BlogStellarCrystalReleaseNewsRoute
   BlogStellarCrystalSetGuideRoute: typeof BlogStellarCrystalSetGuideRoute
+  BlogTeamRocketBriefcaseReleaseNewsRoute: typeof BlogTeamRocketBriefcaseReleaseNewsRoute
   BlogTerastalGatheringCardOriginsRoute: typeof BlogTerastalGatheringCardOriginsRoute
   BlogTerastalGatheringReleaseNewsRoute: typeof BlogTerastalGatheringReleaseNewsRoute
   BlogTerastalGatheringSetGuideRoute: typeof BlogTerastalGatheringSetGuideRoute
@@ -2562,6 +2576,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BlogStellarCrystalSetGuideRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/blog/team-rocket-briefcase-release-news': {
+      id: '/blog/team-rocket-briefcase-release-news'
+      path: '/blog/team-rocket-briefcase-release-news'
+      fullPath: '/blog/team-rocket-briefcase-release-news'
+      preLoaderRoute: typeof BlogTeamRocketBriefcaseReleaseNewsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/blog/terastal-gathering-card-origins': {
       id: '/blog/terastal-gathering-card-origins'
       path: '/blog/terastal-gathering-card-origins'
@@ -3007,6 +3028,8 @@ const rootRouteChildren: RootRouteChildren = {
   BlogStellarCrystalCardOriginsRoute: BlogStellarCrystalCardOriginsRoute,
   BlogStellarCrystalReleaseNewsRoute: BlogStellarCrystalReleaseNewsRoute,
   BlogStellarCrystalSetGuideRoute: BlogStellarCrystalSetGuideRoute,
+  BlogTeamRocketBriefcaseReleaseNewsRoute:
+    BlogTeamRocketBriefcaseReleaseNewsRoute,
   BlogTerastalGatheringCardOriginsRoute: BlogTerastalGatheringCardOriginsRoute,
   BlogTerastalGatheringReleaseNewsRoute: BlogTerastalGatheringReleaseNewsRoute,
   BlogTerastalGatheringSetGuideRoute: BlogTerastalGatheringSetGuideRoute,

@@ -28,6 +28,7 @@ const SET_PRODUCTS: Record<string, string[]> = {
     'pokemon-chinese-white-flare-slim-booster-box',
     'pokemon-chinese-white-flare-jumbo-booster-box',
   ],
+  'team-rocket-briefcase': ['pokemon-chinese-glory-of-team-rocket-briefcase-set'],
   'funism-ditto-palm-size-wonders': [
     'pokemon-chinese-funism-ditto-palmsize-wonders-blind-box',
     'pokemon-chinese-funism-ditto-palmsize-wonders-blind-box-case',
