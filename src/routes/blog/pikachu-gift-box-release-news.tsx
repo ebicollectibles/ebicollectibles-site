@@ -36,19 +36,20 @@ const CONTENTS = [
 ]
 
 const TOC = [
-  { id: 'what-it-is', label: 'What is the Stellar Pikachu gift box?' },
+  { id: 'what-it-is', label: 'What is the Chinese Pikachu gift box?' },
   { id: 'contents', label: 'What comes inside?' },
   { id: 'promo', label: 'The Pikachu ex promo card' },
   { id: 'packs', label: 'The 21 booster packs' },
   { id: 'accessories', label: 'The sleeves, deck box and display frame' },
   { id: 'box', label: 'The box itself' },
+  { id: 'names', label: 'What is it called?' },
   { id: 'not-known', label: 'What Pokémon China has not said' },
   { id: 'faq', label: 'FAQ' },
 ]
 
 const FAQ = [
   {
-    q: 'What is the Chinese Stellar Pikachu gift box?',
+    q: 'What is the Chinese Pikachu gift box?',
     a: 'An official Pokémon TCG gift box from Pokémon China, themed on Pikachu with the Stellar Tera Type. Its Chinese name is 璀璨晶耀 皮卡丘专属礼盒. It holds a Pikachu ex promo card, 21 booster packs, 64 sleeves, a deck box and a card display frame.',
   },
   {
@@ -70,6 +71,10 @@ const FAQ = [
   {
     q: 'What accessories come in the Pikachu gift box?',
     a: 'A set of 64 themed art sleeves, a themed deck box with two dividers, and a themed card display frame.',
+  },
+  {
+    q: 'What is the Pikachu gift box called in Chinese?',
+    a: '璀璨晶耀 皮卡丘专属礼盒. It translates roughly as Brilliant Crystal Shine: Pikachu Exclusive Gift Box. There is no official English name, so you will also see it called the Pikachu Exclusive Gift Box or the Stellar Pikachu Gift Box.',
   },
   {
     q: 'What language are the cards?',
@@ -148,7 +153,7 @@ function PikachuGiftBoxPost() {
         updated={status.liveAt}
         wide
         post={post}
-        lede="Pokémon China's Stellar Pikachu gift box releases on December 4, 2026. This post covers everything in it: the Pikachu ex promo, the 21 booster packs from this year's seven sets, and the matching accessories."
+        lede="Pokémon China's new Pikachu gift box releases on December 4, 2026. This post covers everything in the Chinese Pikachu Exclusive Gift Box: the Stellar Pikachu ex promo, the 21 booster packs from this year's seven sets, and the matching accessories."
         cta={{
           heading: 'See the sets inside the box',
           body: 'Every one of the seven sets has a full card list and checklist.',
@@ -158,9 +163,9 @@ function PikachuGiftBoxPost() {
           ],
         }}
       >
-        <h2 id="what-it-is">What is the Stellar Pikachu gift box?</h2>
+        <h2 id="what-it-is">What is the Chinese Pikachu gift box?</h2>
         <p>
-          It is an official Pokémon TCG gift box from Pokémon China, announced on November 20, 2026, and releasing on December 4,
+          It is an official Simplified Chinese Pokémon TCG gift box from Pokémon China, announced on November 20, 2026, and releasing on December 4,
           2026. Its Chinese name is <Zh>璀璨晶耀 皮卡丘专属礼盒</Zh>, which translates roughly as Brilliant Crystal Shine: Pikachu
           Exclusive Gift Box. It is part of the Scarlet &amp; Violet series.
         </p>
@@ -328,6 +333,13 @@ function PikachuGiftBoxPost() {
           <img src={img('box')} alt="The pink Stellar Pikachu gift box, closed, with Pikachu printed in gold across the lid" loading="lazy" width={1100} height={612} style={{ width: '100%', height: 'auto' }} />
           <figcaption>The gift box.</figcaption>
         </figure>
+
+        <h2 id="names">What is it called?</h2>
+        <p>
+          Pokémon China calls it <Zh>璀璨晶耀 皮卡丘专属礼盒</Zh>. There is no official English name. A close translation is Brilliant
+          Crystal Shine: Pikachu Exclusive Gift Box, and we call it the Stellar Pikachu Gift Box for short. Other shops may list it as
+          the Chinese Pikachu Gift Box, the Pikachu Exclusive Gift Box or the Pikachu ex Gift Box. They are all the same product.
+        </p>
 
         <h2 id="not-known">What Pokémon China has not said</h2>
         <p>
