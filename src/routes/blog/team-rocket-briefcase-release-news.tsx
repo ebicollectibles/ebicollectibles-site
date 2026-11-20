@@ -181,7 +181,8 @@ function TeamRocketBriefcasePost() {
         </p>
 
         <aside className="fact-box" aria-label="Team Rocket briefcase key facts">
-          <img src={img('key-visual')} alt="Pokémon China's announcement image for the Team Rocket gift box, showing the briefcase and its contents" loading="lazy" width={1100} height={826} />
+          {/* Same card as in the promo section below, where it is described, so this copy is decorative */}
+          <img src={img('mewtwo-ex-promo')} alt="" loading="lazy" width={788} height={1100} />
           <div>
             <p className="fact-box-title">Key facts</p>
             <dl>
