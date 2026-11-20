@@ -18,7 +18,7 @@ const CONTENTS = [
   { item: 'Day celebration fridge magnet', qty: '1', note: 'Espeon and friends by day' },
   { item: 'Night celebration fridge magnet', qty: '1', note: 'Umbreon and friends by night' },
   { item: 'Two-card display frame', qty: '1', note: 'Holds both promo cards side by side' },
-  { item: '30th Celebration booster packs', qty: '15', note: '6 cards each, 90 cards in all' },
+  { item: '30th Celebration booster packs', qty: '15', note: 'Set code 30thC, 6 cards each, 90 cards in all' },
 ]
 
 const TOC = [
@@ -46,7 +46,7 @@ const FAQ = [
   },
   {
     q: 'How many booster packs are in the Day & Night gift box?',
-    a: 'Fifteen 30th Celebration booster packs of 6 cards each, which is 90 cards.',
+    a: 'Fifteen 30th Celebration booster packs (set code 30thC) of 6 cards each, which is 90 cards.',
   },
   {
     q: 'Is the gift box the same as the Espeon or Umbreon deluxe deck set?',
@@ -172,7 +172,7 @@ function DayNightGiftBoxPost() {
               <dt>Promo cards</dt>
               <dd>Espeon ex 028/30th-P, Umbreon ex 029/30th-P</dd>
               <dt>Booster packs</dt>
-              <dd>15 packs of 30th Celebration, 6 cards each</dd>
+              <dd>15 packs of 30th Celebration (set code 30thC), 6 cards each</dd>
               <dt>Extras</dt>
               <dd>Two-card display frame, 2 fridge magnets</dd>
               <dt>Language</dt>
@@ -265,7 +265,8 @@ function DayNightGiftBoxPost() {
 
         <h2 id="packs">The 15 booster packs</h2>
         <p>
-          The box holds 15 packs of 30th Celebration, 6 cards each, which is 90 cards. 30th Celebration is the 30th anniversary set,
+          The box holds 15 packs of 30th Celebration, 6 cards each, which is 90 cards. The set code is 30thC, printed in the top
+          corner of each pack. 30th Celebration is the 30th anniversary set,
           with 30 different Pikachu cards and 30 classic cards brought back from the game's history. Every pack has a Pikachu.
         </p>
 
