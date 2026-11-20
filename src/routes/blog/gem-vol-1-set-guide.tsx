@@ -190,7 +190,7 @@ function GemVol1SetGuide() {
         }}
       >
         <p>
-          Gem Pack Vol. 1 (Gem 1, CBB1C) is the Paldea starter set: 115 holo cards across 16 Pokémon, a block of Trainer and Energy
+          Gem Pack Vol. 1 (Gem 1, set code CBB1C) is the Paldea starter set: 115 holo cards across 16 Pokémon, a block of Trainer and Energy
           cards, and four Chinese Exclusives: the Pokémon Horizons full arts of Sprigatito, Fuecoco, Quaxly and Captain Pikachu. Our{' '}
           <Link to="/blog/gem-vol-1-release-news">release post</Link> covers what is in the set, and our{' '}
           <Link to="/blog/gem-vol-1-card-origins">card origins guide</Link> traces each illustration back to its English card, where there is one. Use this
@@ -246,14 +246,14 @@ function GemVol1SetGuide() {
 
         <h2 id="horizons">The 4 Chinese Exclusive Horizons full arts</h2>
         <p>
-          New art from the Pokémon Horizons anime, drawn for this set. Liko kneels with Sprigatito, Roy sits with Fuecoco in his lap,
+          These four cards are new art from the Pokémon Horizons anime, drawn for this set. Liko kneels with Sprigatito, Roy sits with Fuecoco in his lap,
           Quaxly spreads its wings among stars, and Captain Pikachu stands with Friede.
         </p>
         <Gallery cards={HORIZONS} cols={4} />
 
         <h2 id="full-arts">All 7 illustration full arts</h2>
         <p>
-          Version 08 of every long run. Pikachu runs through a flower meadow with Sprigatito and Pawmi, and each pair of starters shares
+          The illustration full art is version 08 of every 9-card and 8-card run. Pikachu runs through a flower meadow with Sprigatito and Pawmi, and each pair of starters shares
           a scene: a flower-filled town for Sprigatito and Floragato, a shop and a market for Fuecoco and Crocalor, and one room for
           Quaxly and Quaxwell.
         </p>
@@ -264,7 +264,7 @@ function GemVol1SetGuide() {
         <h2 id="shiny">All 7 shiny-style cards</h2>
         <p>
           Version 06 of every long run shows the Pokémon in its shiny colors, set in a star-sparkle frame. Sprigatito, Fuecoco, Quaxly and
-          Pikachu get a different card here, with new attacks (and a different HP for the three starters). Floragato, Crocalor and Quaxwell keep their base card's attacks.
+          Pikachu get a different card here, with new attacks, and the three starters also have a different HP. Floragato, Crocalor and Quaxwell keep their base card's attacks.
         </p>
         <Gallery cards={SHINY} cols={4} />
 
@@ -277,7 +277,7 @@ function GemVol1SetGuide() {
         <Gallery cards={TRAINERS_ENERGY} cols={4} />
 
         <h2 id="roster">The full roster</h2>
-        <p>All 16 Pokémon, with how many cards each one has.</p>
+        <p>These are all 16 Pokémon in the set, with how many cards each one has.</p>
         <div className="table-scroll" role="group" aria-labelledby="tbl-2" tabIndex={0}>
           <table className="data-table">
             <caption id="tbl-2" className="sr-only">The full roster</caption>

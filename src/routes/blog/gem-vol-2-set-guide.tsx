@@ -193,7 +193,7 @@ function GemVol2SetGuide() {
         }}
       >
         <p>
-          Gem Pack Vol. 2 (Gem 2, CBB2C) is the Eevee set: 140 holo cards across Eevee and its eight evolutions, with a V and VMAX for each,
+          Gem Pack Vol. 2 (Gem 2, set code CBB2C) is the Eevee set: 140 holo cards across Eevee and its eight evolutions, with a V and VMAX for each,
           a block of Trainer and Energy cards, and four Chinese Exclusives: the HYOGONOSUKE full arts of Eevee, Umbreon, Leafeon and
           Sylveon. Our <Link to="/blog/gem-vol-2-release-news">release post</Link> covers what is new
           in the set, and our <Link to="/blog/gem-vol-2-card-origins">card origins guide</Link> traces every illustration back to its
