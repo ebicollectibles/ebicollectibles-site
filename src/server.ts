@@ -69,6 +69,15 @@ const entry: ServerEntry = {
     if (request.method === 'POST' && url.pathname === '/api/webhooks/resend') {
       return handleResendWebhook(request)
     }
+    // Google Search Console ownership check. Served from here and not as a
+    // static file because static .html files are redirected to their
+    // extensionless address, and Google wants this exact address to answer
+    // directly. It must stay for the site to remain verified.
+    if (request.method === 'GET' && url.pathname === '/googlebf98bffc1bcc2bc8.html') {
+      return new Response('google-site-verification: googlebf98bffc1bcc2bc8.html', {
+        headers: { 'content-type': 'text/html; charset=utf-8' },
+      })
+    }
     if (request.method === 'POST' && url.pathname === CSP_REPORT_PATH) {
       return handleCspReport(request)
     }
