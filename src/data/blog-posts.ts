@@ -280,7 +280,7 @@ export const BLOG_POSTS: BlogPostSummary[] = [
       "The Chinese Pokémon TCG Team Rocket briefcase gift box: 6 Chasing Glory packs, Team Rocket's Mewtwo ex promo 354/SV-P, playmat, sleeves and deck box.",
     tag: 'New release',
     date: '2026-07-16',
-    heroImage: `${SITE_URL}/assets/blog/team-rocket-briefcase-release-hero-v3.webp`,
+    heroImage: `${SITE_URL}/assets/blog/team-rocket-briefcase-release-hero-v4.webp`,
     heroAlt: 'The black Team Rocket briefcase, front on, with a red R in the middle and a red glow along its edges',
     glow1: 'rgb(232 64 52 / .30)',
     glow2: 'rgb(60 40 90 / .25)',
