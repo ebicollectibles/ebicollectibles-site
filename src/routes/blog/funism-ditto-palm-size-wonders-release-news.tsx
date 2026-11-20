@@ -55,6 +55,10 @@ const FAQ = [
     a: 'A set of 12 small Pokémon figures made by Funism (玩乐主义), an officially licensed Pokémon figure maker in China. Each figure is Ditto transformed into another Pokémon, but still with Ditto’s own face. It is part of the Palm-Size Wonders (小小奇遇) series.',
   },
   {
+    q: 'When did Funism Happy Ditto come out?',
+    a: 'September 24, 2026, in mainland China.',
+  },
+  {
     q: 'How many figures are in a Happy Ditto blind box?',
     a: 'Three. The blind box is a hollow plastic Ditto, and the display case is printed with 3粒/盒, three pieces per box. You do not know which three you have until you open it.',
   },
@@ -167,7 +171,8 @@ function FunismDittoReleasePost() {
       >
         <h2 id="what-it-is">What is Funism Happy Ditto?</h2>
         <p>
-          Happy Ditto (<Zh>百变“快”乐</Zh>) is a set of 12 small Pokémon figures from Funism's Palm-Size Wonders (<Zh>小小奇遇</Zh>) series. Every
+          Happy Ditto (<Zh>百变“快”乐</Zh>) is a set of 12 small Pokémon figures from Funism's Palm-Size Wonders (<Zh>小小奇遇</Zh>) series. It
+          went on sale in China on September 24, 2026. Every
           figure is Ditto in the middle of a Transform that has not quite worked: it has copied a Pokémon's shape and colors, from
           Pikachu's ears to Psyduck's beak, but kept its own dot eyes and long flat smile.
         </p>
@@ -185,6 +190,8 @@ function FunismDittoReleasePost() {
               <dd>Palm-Size Wonders Happy Ditto (<Zh>小小奇遇系列 百变“快”乐</Zh>)</dd>
               <dt>Maker</dt>
               <dd>Funism (<Zh>玩乐主义</Zh>), officially licensed</dd>
+              <dt>Released</dt>
+              <dd>September 24, 2026, in China</dd>
               <dt>Type</dt>
               <dd>Blind box figures</dd>
               <dt>Figures</dt>

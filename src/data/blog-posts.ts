@@ -295,7 +295,7 @@ export const BLOG_POSTS: BlogPostSummary[] = [
     seoDescription:
       "Funism Happy Ditto Pokémon figures: all 12 Ditto transformations, 3 figures in each plastic Ditto blind box, and a sealed case of 4 that has one of each.",
     tag: 'New release',
-    date: '2026-11-15',
+    date: '2026-09-24',
     heroImage: `${SITE_URL}/assets/blog/funism-ditto-palm-size-wonders-release-hero-v11.webp`,
     heroAlt: 'Funism Happy Ditto display case of four plastic Dittos with the Ditto as Gengar, Pikachu and Jigglypuff figures in front',
     glow1: 'rgb(196 160 230 / .30)',

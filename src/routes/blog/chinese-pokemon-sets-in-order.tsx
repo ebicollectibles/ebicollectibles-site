@@ -294,8 +294,10 @@ function ChineseSetsTimelinePost() {
     })),
   }
 
-  // Single-set dates alternate sides down the spine; a date with several
-  // sets fills both sides, starting from whichever side is next.
+  // Single-set dates alternate sides down the spine. A date with several
+  // sets puts the first one (the Gem Pack, when there is one) on the left and
+  // keeps the rest together on the right, so a pair such as Black Bolt and
+  // White Flare is never split across the spine.
   let nextSide = 0
 
   return (
@@ -402,8 +404,9 @@ function ChineseSetsTimelinePost() {
               </h2>
               <ol className="tl-stops">
                 {y.stops.map((stop) => {
+                  const multi = stop.sets.length > 1
                   const start = nextSide
-                  nextSide = (nextSide + stop.sets.length) % 2
+                  nextSide = multi ? 0 : (nextSide + 1) % 2
                   return (
                     <li key={stop.date} className={`tl-stop${stop.sets.length > 1 ? ' is-multi' : ''}`}>
                       <p className="tl-date">
@@ -413,7 +416,7 @@ function ChineseSetsTimelinePost() {
                       </p>
                       <ul className="tl-cards">
                         {stop.sets.map((s, i) => (
-                          <SetCard key={s.slug} set={s} side={(start + i) % 2 === 0 ? 'left' : 'right'} />
+                          <SetCard key={s.slug} set={s} side={multi ? (i === 0 ? 'left' : 'right') : start === 0 ? 'left' : 'right'} />
                         ))}
                       </ul>
                     </li>
