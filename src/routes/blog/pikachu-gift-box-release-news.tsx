@@ -334,7 +334,8 @@ function PikachuGiftBoxPost() {
           The 20-card packs are the larger of the two pack sizes these sets come in, the size sold in Jumbo booster boxes. Each has 6
           holos, or 7 in Black Bolt and White Flare. Pokémon China
           points to each set's own product page for its odds. Our guides cover them for{' '}
-          <Link to="/blog/chasing-glory-set-guide">Chasing Glory</Link>, <Link to="/blog/terastal-gathering-set-guide">Terastal Gathering</Link>,{' '}
+          <Link to="/blog/stellar-crystal-set-guide">Stellar Crystal</Link>, <Link to="/blog/terastal-gathering-set-guide">Terastal Gathering</Link>,{' '}
+          <Link to="/blog/chasing-glory-set-guide">Chasing Glory</Link>,{' '}
           <Link to="/blog/black-bolt-set-guide">Black Bolt</Link> and <Link to="/blog/white-flare-set-guide">White Flare</Link>.
         </p>
 
@@ -343,10 +344,32 @@ function PikachuGiftBoxPost() {
           Three accessories come with the box, all in the same pink Stellar Pikachu design. There is a set of 64 art sleeves, a deck
           box with two dividers, and a card display frame for showing off a single card.
         </p>
-        <figure style={{ margin: '28px auto', maxWidth: 440 }}>
-          <img src={img('sleeves')} alt="Pink card sleeves printed with Stellar Tera Pikachu in gold, fanned out" loading="lazy" width={1000} height={967} style={{ width: '100%', height: 'auto' }} />
-          <figcaption>The art sleeves, 64 in the set.</figcaption>
-        </figure>
+        <ul className="card-grid cols-3">
+          <li>
+            <figure>
+              <img src={img('sleeves')} alt="Pink card sleeves printed with Stellar Tera Pikachu in gold, fanned out" loading="lazy" width={1000} height={967} style={{ aspectRatio: '1 / 1', objectFit: 'contain', background: '#fff' }} />
+              <figcaption>
+                <strong>Art sleeves</strong>64 in the set
+              </figcaption>
+            </figure>
+          </li>
+          <li>
+            <figure>
+              <img src={img('deck-box')} alt="Pink deck box with Stellar Tera Pikachu on the front flap" loading="lazy" width={549} height={659} style={{ aspectRatio: '1 / 1', objectFit: 'contain', background: '#fff' }} />
+              <figcaption>
+                <strong>Deck box</strong>With 2 dividers
+              </figcaption>
+            </figure>
+          </li>
+          <li>
+            <figure>
+              <img src={img('display-frame')} alt="Pink acrylic card display frame with four gold screws and a stand" loading="lazy" width={900} height={1502} style={{ aspectRatio: '1 / 1', objectFit: 'contain', background: '#fff' }} />
+              <figcaption>
+                <strong>Card display frame</strong>Holds one card
+              </figcaption>
+            </figure>
+          </li>
+        </ul>
 
         <h2 id="box">The box itself</h2>
         <p>

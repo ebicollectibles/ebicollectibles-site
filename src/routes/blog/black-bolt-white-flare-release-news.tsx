@@ -315,6 +315,40 @@ function BlackBoltWhiteFlareReleasePost() {
         </p>
 
         <h2 id="packs-and-odds">Packs and pull odds</h2>
+        <ul className="card-grid cols-4">
+          <li>
+            <figure>
+              <img src={`${BLOG_SITE_URL}/assets/blog/black-bolt-slim-pack.webp`} alt="Black Bolt slim pack, 5 cards" loading="lazy" width={444} height={850} style={{ background: 'transparent', boxShadow: 'none' }} />
+              <figcaption>
+                <strong>Black Bolt slim pack</strong>5 cards · 1 holo
+              </figcaption>
+            </figure>
+          </li>
+          <li>
+            <figure>
+              <img src={`${BLOG_SITE_URL}/assets/blog/black-bolt-jumbo-pack.webp`} alt="Black Bolt jumbo pack, 20 cards" loading="lazy" width={600} height={1197} style={{ background: 'transparent', boxShadow: 'none' }} />
+              <figcaption>
+                <strong>Black Bolt jumbo pack</strong>20 cards · 7 holo
+              </figcaption>
+            </figure>
+          </li>
+          <li>
+            <figure>
+              <img src={`${BLOG_SITE_URL}/assets/blog/white-flare-slim-pack.webp`} alt="White Flare slim pack, 5 cards" loading="lazy" width={446} height={852} style={{ background: 'transparent', boxShadow: 'none' }} />
+              <figcaption>
+                <strong>White Flare slim pack</strong>5 cards · 1 holo
+              </figcaption>
+            </figure>
+          </li>
+          <li>
+            <figure>
+              <img src={`${BLOG_SITE_URL}/assets/blog/white-flare-jumbo-pack.webp`} alt="White Flare jumbo pack, 20 cards" loading="lazy" width={600} height={1197} style={{ background: 'transparent', boxShadow: 'none' }} />
+              <figcaption>
+                <strong>White Flare jumbo pack</strong>20 cards · 7 holo
+              </figcaption>
+            </figure>
+          </li>
+        </ul>
         <p>
           Both sets come in a slim box of 15 packs with 5 cards each, and a jumbo box of 6 packs with 20 cards each. A slim pack has one
           holo and a jumbo pack has seven. Pokémon China publishes an odds chart for each pack size, and the two sets share the same

@@ -295,8 +295,26 @@ function FearlessTerastalReleasePost() {
         <Grid cards={ART_RARES} cols={4} />
 
         <h2 id="packs-and-odds">Packs and pull odds</h2>
+        <ul className="card-grid cols-2">
+          <li>
+            <figure>
+              <img src={`${BLOG_SITE_URL}/assets/blog/fearless-terastal-slim-pack.webp`} alt="Fearless Terastal slim pack, 5 cards" loading="lazy" width={600} height={1127} style={{ background: 'transparent', boxShadow: 'none' }} />
+              <figcaption>
+                <strong>Slim pack</strong>5 cards · 1 holo
+              </figcaption>
+            </figure>
+          </li>
+          <li>
+            <figure>
+              <img src={`${BLOG_SITE_URL}/assets/blog/fearless-terastal-jumbo-pack.webp`} alt="Fearless Terastal jumbo pack, 20 cards" loading="lazy" width={600} height={1196} style={{ background: 'transparent', boxShadow: 'none' }} />
+              <figcaption>
+                <strong>Jumbo pack</strong>20 cards · 6 holo
+              </figcaption>
+            </figure>
+          </li>
+        </ul>
         <p>
-          Fearless Terastal came in a 5-card pack with one holo and a 20-card pack with six holos. Pokémon China publishes an odds
+          Fearless Terastal came in two pack sizes with the same card list: a 5-card slim pack with one holo and a 20-card jumbo pack with six holos. Pokémon China publishes an odds
           chart for each one. The charts give each rarity group's share of the print run, and multiplying a share by the pack size
           gives the average number of those cards per pack:
         </p>
