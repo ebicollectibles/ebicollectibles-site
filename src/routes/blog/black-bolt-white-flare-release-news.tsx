@@ -198,7 +198,7 @@ function BlackBoltWhiteFlareReleasePost() {
         </p>
 
         <aside className="fact-box" aria-label="Black Bolt and White Flare key facts">
-          <img src={card(['bb', 174]).image} alt="Zekrom ex 174/086 Black White Rare, Black Bolt" loading="lazy" width={300} height={419} />
+          <img src={card(['bb', 174]).image} alt="" loading="lazy" width={300} height={419} />
           <div>
             <p className="fact-box-title">Key facts</p>
             <dl>
@@ -309,9 +309,9 @@ function BlackBoltWhiteFlareReleasePost() {
         <p>
           The Chinese sets do not split the Pokémon exactly the way the English ones do. Litwick, Lampent, Chandelure, Vullaby and
           Mandibuzz are in Chinese Black Bolt, and Klink, Klang, Klinklang, Rufflet and Braviary are in Chinese White Flare. In English
-          those two groups are the other way round. Victini is in Black Bolt as a Rare and an Art Rare. Our card origins guides for{' '}
-          <Link to="/blog/black-bolt-card-origins">Black Bolt</Link> and <Link to="/blog/white-flare-card-origins">White Flare</Link>{' '}
-          match every card to its English version.
+          those two groups are the other way round. Victini is in Black Bolt as a Rare and an Art Rare. The{' '}
+          <Link to="/blog/black-bolt-card-origins">Black Bolt card origins guide</Link> and the{' '}
+          <Link to="/blog/white-flare-card-origins">White Flare card origins guide</Link> match every card to its English version.
         </p>
 
         <h2 id="packs-and-odds">Packs and pull odds</h2>
@@ -350,8 +350,8 @@ function BlackBoltWhiteFlareReleasePost() {
         </p>
         <p>
           Every Common, Uncommon and Rare also comes as a Poké Ball pattern and a Master Ball pattern holo, which brings each set to 334
-          cards. The set guides for <Link to="/blog/black-bolt-set-guide">Black Bolt</Link> and{' '}
-          <Link to="/blog/white-flare-set-guide">White Flare</Link> compare the slim and jumbo boxes and list every chase card.
+          cards. The <Link to="/blog/black-bolt-set-guide">Black Bolt set guide</Link> and the{' '}
+          <Link to="/blog/white-flare-set-guide">White Flare set guide</Link> compare the slim and jumbo boxes and list every chase card.
         </p>
 
         <h2 id="faq">FAQ</h2>
