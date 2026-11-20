@@ -60,7 +60,7 @@ const FAQ = [
   },
   {
     q: 'Does a sealed case of Happy Ditto have all 12 figures?',
-    a: 'Yes. A factory-sealed case holds four plastic Dittos with three figures each, and together they are the 12 designs, one of each. Four Dittos bought loose can repeat, so the guarantee only applies to a case that is still sealed.',
+    a: 'Yes. A factory-sealed case holds four plastic Dittos with three figures each, and together they are the 12 designs, one of each. Four Dittos bought loose can repeat, so this only applies to a case that is still sealed. It is based on what sealed cases contain, not on an official statement.',
   },
   {
     q: 'Which Pokémon does Ditto turn into?',
@@ -72,7 +72,7 @@ const FAQ = [
   },
   {
     q: 'How many Dittos are in a case?',
-    a: 'Four. The case is Funism’s display box, which holds four plastic Dittos, so 12 figures in all.',
+    a: 'Four. The case is the display box, which holds four plastic Dittos, so 12 figures in all.',
   },
   {
     q: 'Is the box itself a Ditto figure?',
@@ -251,12 +251,13 @@ function FunismDittoReleasePost() {
 
         <h2 id="sealed-case">Does a sealed case have all 12?</h2>
         <p>
-          Yes. Funism packs the Dittos in a display case of four, and a factory-sealed case holds all 12 designs, one of each. Four
-          Dittos times three figures is 12, and none of them repeat.
+          Yes. The Dittos come four to a display case, and a sealed case holds all 12 designs, one of each. Four Dittos times three
+          figures is 12, and none of them repeat.
         </p>
         <p>
           That only holds for a case that is still sealed. Four Dittos bought one at a time, or taken from different cases, are
-          random and can repeat. Our case listing is the sealed display.
+          random and can repeat. We are going by what sealed cases contain, not by an official statement. Our case listing is the
+          sealed display.
         </p>
         <ul className="card-grid cols-2">
           <li>
