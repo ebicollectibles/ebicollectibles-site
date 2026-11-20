@@ -7,6 +7,7 @@ import { BlogPostLayout } from '~/components/blog/BlogPostLayout'
 import { getBlogPostStatus } from '~/server/blog-status'
 import { safeJsonLd } from '~/lib/gem-sets/head'
 import { SITE_URL } from '~/lib/gem-sets/constants'
+import { GEM_SETS } from '~/data/gem-sets-index'
 
 const post = BLOG_POSTS.find((p) => p.slug === 'pikachu-gift-box-release-news')!
 
@@ -23,6 +24,8 @@ const PACKS = [
   { set: 'Black Bolt', code: 'CSV10.5C', cards: 20, to: '/sets/chinese/black-bolt-csv10-5' },
   { set: 'White Flare', code: 'CSV10.6C', cards: 20, to: '/sets/chinese/white-flare-csv10-6' },
 ] as const
+// Card counts come from the set list index, so they always match the set pages.
+const cardCount = (to: string) => GEM_SETS.find((g) => g.path === to)!.cardCount
 const PACKS_EACH = 3
 const TOTAL_PACKS = PACKS.length * PACKS_EACH
 const TOTAL_CARDS = PACKS.reduce((n, p) => n + p.cards * PACKS_EACH, 0)
@@ -296,23 +299,30 @@ function PikachuGiftBoxPost() {
                 <th scope="col">Set code</th>
                 <th scope="col">Packs</th>
                 <th scope="col">Cards per pack</th>
+                <th scope="col">Card list</th>
               </tr>
             </thead>
             <tbody>
               {PACKS.map((p) => (
                 <tr key={p.code}>
-                  <th scope="row">
-                    <Link to={p.to}>{p.set}</Link>
-                  </th>
+                  <th scope="row">{p.set}</th>
                   <td>{p.code}</td>
                   <td>{PACKS_EACH}</td>
                   <td>{p.cards}</td>
+                  <td>
+                    <Link to={p.to}>
+                      All {cardCount(p.to)} {p.set} cards
+                    </Link>
+                  </td>
                 </tr>
               ))}
             </tbody>
           </table>
         </div>
-        <p className="table-note">Each set name links to its full card list.</p>
+        <p className="table-note">
+          We have a full card list and checklist for every set in the box. All of them are on our{' '}
+          <Link to="/sets/chinese">Chinese set lists</Link> page.
+        </p>
         <p>
           The 20-card packs are the same ones that come in each set's Jumbo booster box, with 6 holos in every pack. Pokémon China
           points to each set's own product page for its odds. Our guides cover them for{' '}
