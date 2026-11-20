@@ -188,7 +188,7 @@ function BrilliantFantasySetGuide() {
         updated={status.liveAt}
         wide
         post={post}
-        lede="Slim box or jumbo box, every chase card in Brilliant Fantasy from the Carmine SAR down, each Pokémon ex at every rarity, and what a master set takes."
+        lede="Brilliant Fantasy is the Kitakami set, with Milotic on the pack and every Ogerpon mask. This guide helps you choose between slim and jumbo boxes, shows every chase card, and explains what a 616-card master set takes."
         cta={{
           heading: 'Collect Brilliant Fantasy',
           body: 'Track every card on the full checklist, or pick up a box and start ripping.',

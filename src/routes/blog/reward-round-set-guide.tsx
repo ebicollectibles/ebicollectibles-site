@@ -165,7 +165,7 @@ function RewardRoundSetGuide() {
         updated={status.liveAt}
         wide
         post={post}
-        lede="Every chase card in Reward Round, what a slim box averages, each Pokémon ex at every rarity, and what a master set takes."
+        lede="Reward Round is the Gholdengo set, with three Chinese Exclusives. This guide shows every chase card, what a slim box holds on average, and what a master set takes."
         cta={{
           heading: 'Collect Reward Round',
           body: 'Track every card on the full checklist, or pick up a slim box and start ripping.',

@@ -163,7 +163,7 @@ function BlackCrystalBlazeSetGuide() {
         updated={status.liveAt}
         wide
         post={post}
-        lede="Every chase card in Black Crystal Blaze, slim box against jumbo box, each Pokémon ex at every rarity, and what a master set takes."
+        lede="Black Crystal Blaze is the Tera Charizard set, with two Chinese Exclusives and slim and jumbo boxes. This guide helps you pick a box, shows every chase card, and explains what a master set takes."
         cta={{
           heading: 'Collect Black Crystal Blaze',
           body: 'Track every card on the full checklist, or pick up a box and start ripping.',

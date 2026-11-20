@@ -186,7 +186,7 @@ function StellarCrystalSetGuide() {
         updated={status.liveAt}
         wide
         post={post}
-        lede="Slim pack or jumbo pack, every chase card in Stellar Crystal from the Pikachu ex SAR down, each Pokémon ex at every rarity, and what a master set takes."
+        lede="Stellar Crystal is the Stellar Tera set, with Pikachu on the pack and Terapagos ex. This guide helps you choose between slim and jumbo packs, shows every chase card, and explains what a 620-card master set takes."
         cta={{
           heading: 'Collect Stellar Crystal',
           body: 'Track every card on the full checklist and tick off what you have.',

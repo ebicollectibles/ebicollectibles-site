@@ -81,7 +81,7 @@ export const BLOG_POSTS: BlogPostSummary[] = [
     path: '/blog/true-mystery-set-guide',
     title: 'True Mystery Set Guide: Slim vs Jumbo, Every Chase Card and the Paradox Runs',
     excerpt:
-      'Slim box or jumbo box, every Special Art Rare, Super Rare, Ultra Rare and Art Rare, each Paradox Pokémon ex at every rarity, and how the 163 numbers work.',
+      "True Mystery is the Paradox set, sold in slim and jumbo boxes. This guide helps you pick a box, shows every secret rare, and explains how the 163 card numbers fit together.",
     seoTitle: 'Pokémon True Mystery (CSV6C) Set Guide: Chase Cards & Box Odds',
     seoDescription:
       'Pokémon TCG True Mystery (CSV6C) set guide: slim vs jumbo box odds, every Special Art Rare and Super Rare, and how the 163 cards are numbered.',
@@ -129,7 +129,7 @@ export const BLOG_POSTS: BlogPostSummary[] = [
     path: '/blog/blade-awakening-set-guide',
     title: 'Blade Awakening Set Guide: Slim vs Jumbo Odds, Every Chase Card and the ACE SPECs',
     excerpt:
-      'Slim box or jumbo box on the official odds, every Special Art Rare, Super Rare, Ultra Rare, Art Rare and ACE SPEC card, each Pokémon ex at every rarity, and the 605-card master set.',
+      "Blade Awakening is the Tera Greninja ex set, with nine ACE SPEC cards and slim and jumbo boxes that have different odds. This guide helps you pick a box, shows every chase card, and explains what a 605-card master set takes.",
     seoTitle: 'Pokémon Blade Awakening (CSV7C) Set Guide: Chase Cards & Box Odds',
     seoDescription:
       'Pokémon TCG Blade Awakening (CSV7C) set guide: slim vs jumbo box odds, every Special Art Rare and ACE SPEC card, and the 605-card master set.',
@@ -177,7 +177,7 @@ export const BLOG_POSTS: BlogPostSummary[] = [
     path: '/blog/brilliant-fantasy-set-guide',
     title: 'Brilliant Fantasy Set Guide: Slim vs Jumbo, Every Chase Card and the Ogerpon Run',
     excerpt:
-      'Slim box or jumbo box, every Special Art Rare, Super Rare, Ultra Rare and Art Rare, each Pokémon ex at every rarity, and what a 616-card master set takes.',
+      "Brilliant Fantasy is the Kitakami set, with Milotic on the pack and every Ogerpon mask. This guide helps you choose between slim and jumbo boxes, shows every chase card, and explains what a 616-card master set takes.",
     seoTitle: 'Brilliant Fantasy (CSV8C) Set Guide: Chase Cards & Box Odds',
     seoDescription:
       'Pokémon TCG Brilliant Fantasy (CSV8C) set guide: slim vs jumbo boxes, every Special Art Rare and Super Rare, Ogerpon ex, and the 616-card master set.',
@@ -225,7 +225,7 @@ export const BLOG_POSTS: BlogPostSummary[] = [
     path: '/blog/stellar-crystal-set-guide',
     title: 'Stellar Crystal Set Guide: Slim vs Jumbo, Every Chase Card and the Pikachu Run',
     excerpt:
-      'Slim pack or jumbo pack, every Special Art Rare, Super Rare, Ultra Rare and Art Rare, each Pokémon ex at every rarity, and what a 620-card master set takes.',
+      "Stellar Crystal is the Stellar Tera set, with Pikachu on the pack and Terapagos ex. This guide helps you choose between slim and jumbo packs, shows every chase card, and explains what a 620-card master set takes.",
     seoTitle: 'Pokémon Stellar Crystal (CSV9C) Set Guide: Chase Cards & Box Odds',
     seoDescription:
       'Pokémon TCG Stellar Crystal (CSV9C) set guide: slim vs jumbo packs, every Special Art Rare and Super Rare, the Pikachu ex run, and the 620-card master set.',
@@ -386,7 +386,7 @@ export const BLOG_POSTS: BlogPostSummary[] = [
     path: '/blog/black-crystal-blaze-set-guide',
     title: 'Black Crystal Blaze Set Guide: Slim vs Jumbo, Every Chase Card and the Charizard Run',
     excerpt:
-      'Slim box or jumbo box, every Ultra Rare, Special Art Rare, Super Rare and Art Rare, each Pokémon ex at every rarity, and what a master set takes.',
+      "Black Crystal Blaze is the Tera Charizard set, with two Chinese Exclusives and slim and jumbo boxes. This guide helps you pick a box, shows every chase card, and explains what a master set takes.",
     seoTitle: 'Black Crystal Blaze (CSV5C) Set Guide: Chase Cards & Box Odds',
     seoDescription:
       'Pokémon TCG Black Crystal Blaze (CSV5C) set guide: slim vs jumbo boxes, every Special Art Rare and Super Rare, Charizard ex, and the 394-card master set.',
@@ -434,7 +434,7 @@ export const BLOG_POSTS: BlogPostSummary[] = [
     path: '/blog/reward-round-set-guide',
     title: 'Reward Round Set Guide: Every Chase Card and What a Slim Box Holds',
     excerpt:
-      'Every Ultra Rare, Special Art Rare, Super Rare and Art Rare in Reward Round, what a 15-pack slim box averages, and what a master set takes.',
+      "Reward Round is the Gholdengo set, with three Chinese Exclusives. This guide shows every chase card, what a slim box holds on average, and what a master set takes.",
     seoTitle: 'Pokémon Reward Round (CSV4C) Set Guide: Chase Cards & Box Odds',
     seoDescription:
       'Pokémon TCG Reward Round (CSV4C) set guide: every Special Art Rare and Super Rare, what a 15-pack slim box averages, and the 395-card master set.',
@@ -626,7 +626,7 @@ export const BLOG_POSTS: BlogPostSummary[] = [
     path: '/blog/terastal-gathering-set-guide',
     title: 'Terastal Gathering Set Guide: Every Eeveelution, Chase Card and What a Box Holds',
     excerpt:
-      'Every Special Art Rare and gold Ultra Rare, the full Eeveelution checklist, the ACE SPEC cards, what a 10-pack box averages, and what a master set takes.',
+      "Terastal Gathering is the Stellar Eeveelution set, with 34 Special Art Rares in 10-card packs. This guide shows every Eeveelution and chase card, what a box holds on average, and what a master set takes.",
     seoTitle: 'Terastal Gathering (CSV9.5C) Set Guide: Chase Cards & Box Odds',
     seoDescription:
       'Pokémon TCG Terastal Gathering (CSV9.5C) set guide: every Eeveelution, all 34 Special Art Rares, what a 10-pack box averages, and the 601-card master set.',
@@ -674,7 +674,7 @@ export const BLOG_POSTS: BlogPostSummary[] = [
     path: '/blog/chasing-glory-set-guide',
     title: 'Chasing Glory Set Guide: Slim vs Jumbo Odds, Every Chase Card and the Trainer Roster',
     excerpt:
-      'Slim or jumbo? What each box holds on average, every Ultra Rare and Special Art Rare, which Trainers own which Pokémon, and what a master set takes.',
+      "Chasing Glory is the Trainer's Pokémon set, led by Team Rocket and sold in slim and jumbo boxes. This guide helps you pick a box, shows every chase card, and lists which Trainer owns which Pokémon.",
     seoTitle: 'Pokémon Chasing Glory (CSV10C) Set Guide: Chase Cards & Box Odds',
     seoDescription:
       'Pokémon TCG Chasing Glory (CSV10C) set guide: slim vs jumbo odds, every Ultra Rare and Special Art Rare, the Trainer roster, and the 683-card master set.',
@@ -722,7 +722,7 @@ export const BLOG_POSTS: BlogPostSummary[] = [
     path: '/blog/30th-celebration-set-guide',
     title: '30th Celebration Set Guide: Every Pikachu, Classic and Promo',
     excerpt:
-      'How 30th Celebration is numbered, all 30 Pikachu, every secret rare and classic card, all 33 promos, and what a master set takes.',
+      "30th Celebration is the Pokémon TCG's 30th anniversary set: 165 holo cards, with a Pikachu in every pack. This guide explains how the set is numbered, shows every chase card and promo, and tells you what a master set takes.",
     seoTitle: 'Pokémon 30th Celebration Set Guide: Chase Cards & Box Odds',
     seoDescription:
       'Pokémon TCG 30th Celebration set guide: how the 165 cards are numbered, all 30 Pikachu, every secret rare and classic card, and all 33 promos.',

@@ -156,7 +156,7 @@ function TrueMysterySetGuide() {
         updated={status.liveAt}
         wide
         post={post}
-        lede="Slim box or jumbo box, every secret rare in True Mystery, the Paradox Pokémon ex at every rarity, and how the 163 numbers fit together."
+        lede="True Mystery is the Paradox set, sold in slim and jumbo boxes. This guide helps you pick a box, shows every secret rare, and explains how the 163 card numbers fit together."
         cta={{
           heading: 'Collect True Mystery',
           body: 'Track every card on the full checklist, or pick up a box and start ripping.',

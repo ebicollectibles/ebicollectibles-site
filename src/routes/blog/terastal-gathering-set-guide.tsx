@@ -168,7 +168,7 @@ function TerastalGatheringSetGuide() {
         updated={status.liveAt}
         wide
         post={post}
-        lede="Every Eeveelution in the set, every Special Art Rare and gold card, what a 10-pack box averages, and what a Terastal Gathering master set takes."
+        lede="Terastal Gathering is the Stellar Eeveelution set, with 34 Special Art Rares in 10-card packs. This guide shows every Eeveelution and chase card, what a box holds on average, and what a master set takes."
         cta={{
           heading: 'Collect Terastal Gathering',
           body: 'Track every card on the full checklist, or pick up a box and start ripping.',

@@ -199,7 +199,7 @@ function ChasingGlorySetGuide() {
         updated={status.liveAt}
         wide
         post={post}
-        lede="Slim box or jumbo box, every chase card in the set, which Trainer owns which Pokémon, and what a Chasing Glory master set takes."
+        lede="Chasing Glory is the Trainer's Pokémon set, led by Team Rocket and sold in slim and jumbo boxes. This guide helps you pick a box, shows every chase card, and lists which Trainer owns which Pokémon."
         cta={{
           heading: 'Collect Chasing Glory',
           body: 'Track every card on the full checklist, or pick up a box and start ripping.',

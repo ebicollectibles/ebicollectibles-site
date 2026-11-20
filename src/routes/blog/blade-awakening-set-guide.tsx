@@ -194,7 +194,7 @@ function BladeAwakeningSetGuide() {
         updated={status.liveAt}
         wide
         post={post}
-        lede="Slim box against jumbo box on Pokémon China's own odds, every secret rare and ACE SPEC card in Blade Awakening, each Pokémon ex at every rarity, and what a master set takes."
+        lede="Blade Awakening is the Tera Greninja ex set, with nine ACE SPEC cards and slim and jumbo boxes that have different odds. This guide helps you pick a box, shows every chase card, and explains what a 605-card master set takes."
         cta={{
           heading: 'Collect Blade Awakening',
           body: 'Track every card on the full checklist, or pick up a box and start ripping.',
