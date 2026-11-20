@@ -1,4 +1,5 @@
 import { Zh, zh } from '~/components/blog/Zh'
+import { BlogEmailSignup } from '~/components/blog/BlogEmailSignup'
 import { createFileRoute, Link } from '@tanstack/react-router'
 import blogCssUrl from '~/styles/blog.css?url'
 import { BLOG_POSTS, BLOG_SITE_URL, blogSeoDescription, blogSeoTitle, blogShareImage } from '~/data/blog-posts'
@@ -250,6 +251,12 @@ function PikachuGiftBoxPost() {
           />
           <figcaption>Pokémon China's announcement image, showing everything in the box.</figcaption>
         </figure>
+
+        <BlogEmailSignup
+          heading="Pre-orders are coming to EBI Collectibles"
+          body="We plan to open pre-orders for the Pikachu gift box. Leave your email and we will tell you as soon as they open."
+          source="blog-pikachu-gift-box"
+        />
 
         <h2 id="promo">The Pikachu ex promo card</h2>
         <p>

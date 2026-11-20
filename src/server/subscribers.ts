@@ -42,11 +42,14 @@ export async function upsertSubscriber(
 }
 
 export const subscribeToNewsletter = createServerFn({ method: 'POST' })
-  .validator(z.object({ email: z.string().trim().email() }))
+  // `source` says which form the signup came from. Only the home page and
+  // blog post forms ("blog-<name>") are accepted, so the field can't be
+  // used to write arbitrary text into the subscriber list.
+  .validator(z.object({ email: z.string().trim().email(), source: z.string().regex(/^blog-[a-z0-9-]{1,48}$/).optional() }))
   .handler(async ({ data }) => {
     const { getDb } = await import('~/lib/db/client')
     const db = getDb()
-    await upsertSubscriber(db, data.email.trim().toLowerCase(), 'homepage')
+    await upsertSubscriber(db, data.email.trim().toLowerCase(), data.source ?? 'homepage')
     return { ok: true }
   })
 

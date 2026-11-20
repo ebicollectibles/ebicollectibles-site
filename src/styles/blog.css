@@ -137,6 +137,20 @@
     margin: 40px 0 8px; padding: 26px; border-radius: 10px; background: var(--ink); color: #fff;
     display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 18px;
   }
+  .signup-box { margin: 32px 0; padding: 24px 26px; border-radius: 10px; background: var(--ink); color: #fff; display: grid; gap: 14px; }
+  .prose .signup-box h3, &.is-wide .prose .signup-box h3 { font-family: var(--f-display); font-weight: 800; font-size: 19px; margin: 0 0 4px; color: #fff; }
+  .prose .signup-box p, &.is-wide .prose .signup-box p { margin: 0; font-size: 14px; line-height: 1.5; color: #c8d0db; max-width: none; }
+  .signup-box form { display: flex; gap: 8px; flex-wrap: wrap; }
+  /* 16px text stops iOS Safari zooming in when the field is focused. */
+  .signup-box input { flex: 1 1 220px; min-width: 0; height: 44px; padding: 0 12px; border-radius: 2px; border: 1px solid rgb(255 255 255 / .45); background: rgb(255 255 255 / .08); color: #fff; font-size: 16px; }
+  .signup-box input::placeholder { color: #aeb8c5; }
+  .signup-box input:focus-visible, .signup-box button:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
+  .signup-box .btn { height: 44px; cursor: pointer; }
+  .signup-box .btn[disabled] { opacity: .6; cursor: default; }
+  .prose .signup-box .signup-done, &.is-wide .prose .signup-box .signup-done { color: #fff; font-weight: 600; }
+  .prose .signup-box .signup-error, &.is-wide .prose .signup-box .signup-error { color: #ffb59a; }
+  .prose .signup-box .signup-note, &.is-wide .prose .signup-box .signup-note { font-size: 12.5px; color: #aeb8c5; }
+  .signup-box .signup-note a { color: #fff; text-decoration: underline; }
   .cta-box h3 { font-family: var(--f-display); font-weight: 800; font-size: 19px; margin: 0 0 4px; }
   .cta-box p { margin: 0; font-size: 13.5px; color: #c8d0db; }
   .cta-actions { display: flex; gap: 10px; flex-wrap: wrap; }
