@@ -62,6 +62,7 @@ import { Route as BlogChasingGloryCardOriginsRouteImport } from './routes/blog/c
 import { Route as BlogChasingGloryReleaseNewsRouteImport } from './routes/blog/chasing-glory-release-news'
 import { Route as BlogChasingGlorySetGuideRouteImport } from './routes/blog/chasing-glory-set-guide'
 import { Route as BlogChinesePokemonSetsInOrderRouteImport } from './routes/blog/chinese-pokemon-sets-in-order'
+import { Route as BlogDayNightGiftBoxReleaseNewsRouteImport } from './routes/blog/day-night-gift-box-release-news'
 import { Route as BlogEternalBirthCardOriginsRouteImport } from './routes/blog/eternal-birth-card-origins'
 import { Route as BlogEternalBirthReleaseNewsRouteImport } from './routes/blog/eternal-birth-release-news'
 import { Route as BlogEternalBirthSetGuideRouteImport } from './routes/blog/eternal-birth-set-guide'
@@ -434,6 +435,12 @@ const BlogChinesePokemonSetsInOrderRoute =
   BlogChinesePokemonSetsInOrderRouteImport.update({
     id: '/blog/chinese-pokemon-sets-in-order',
     path: '/blog/chinese-pokemon-sets-in-order',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const BlogDayNightGiftBoxReleaseNewsRoute =
+  BlogDayNightGiftBoxReleaseNewsRouteImport.update({
+    id: '/blog/day-night-gift-box-release-news',
+    path: '/blog/day-night-gift-box-release-news',
     getParentRoute: () => rootRouteImport,
   } as any)
 const BlogEternalBirthCardOriginsRoute =
@@ -982,6 +989,7 @@ export interface FileRoutesByFullPath {
   '/blog/chasing-glory-release-news': typeof BlogChasingGloryReleaseNewsRoute
   '/blog/chasing-glory-set-guide': typeof BlogChasingGlorySetGuideRoute
   '/blog/chinese-pokemon-sets-in-order': typeof BlogChinesePokemonSetsInOrderRoute
+  '/blog/day-night-gift-box-release-news': typeof BlogDayNightGiftBoxReleaseNewsRoute
   '/blog/eternal-birth-card-origins': typeof BlogEternalBirthCardOriginsRoute
   '/blog/eternal-birth-release-news': typeof BlogEternalBirthReleaseNewsRoute
   '/blog/eternal-birth-set-guide': typeof BlogEternalBirthSetGuideRoute
@@ -1127,6 +1135,7 @@ export interface FileRoutesByTo {
   '/blog/chasing-glory-release-news': typeof BlogChasingGloryReleaseNewsRoute
   '/blog/chasing-glory-set-guide': typeof BlogChasingGlorySetGuideRoute
   '/blog/chinese-pokemon-sets-in-order': typeof BlogChinesePokemonSetsInOrderRoute
+  '/blog/day-night-gift-box-release-news': typeof BlogDayNightGiftBoxReleaseNewsRoute
   '/blog/eternal-birth-card-origins': typeof BlogEternalBirthCardOriginsRoute
   '/blog/eternal-birth-release-news': typeof BlogEternalBirthReleaseNewsRoute
   '/blog/eternal-birth-set-guide': typeof BlogEternalBirthSetGuideRoute
@@ -1273,6 +1282,7 @@ export interface FileRoutesById {
   '/blog/chasing-glory-release-news': typeof BlogChasingGloryReleaseNewsRoute
   '/blog/chasing-glory-set-guide': typeof BlogChasingGlorySetGuideRoute
   '/blog/chinese-pokemon-sets-in-order': typeof BlogChinesePokemonSetsInOrderRoute
+  '/blog/day-night-gift-box-release-news': typeof BlogDayNightGiftBoxReleaseNewsRoute
   '/blog/eternal-birth-card-origins': typeof BlogEternalBirthCardOriginsRoute
   '/blog/eternal-birth-release-news': typeof BlogEternalBirthReleaseNewsRoute
   '/blog/eternal-birth-set-guide': typeof BlogEternalBirthSetGuideRoute
@@ -1420,6 +1430,7 @@ export interface FileRouteTypes {
     | '/blog/chasing-glory-release-news'
     | '/blog/chasing-glory-set-guide'
     | '/blog/chinese-pokemon-sets-in-order'
+    | '/blog/day-night-gift-box-release-news'
     | '/blog/eternal-birth-card-origins'
     | '/blog/eternal-birth-release-news'
     | '/blog/eternal-birth-set-guide'
@@ -1565,6 +1576,7 @@ export interface FileRouteTypes {
     | '/blog/chasing-glory-release-news'
     | '/blog/chasing-glory-set-guide'
     | '/blog/chinese-pokemon-sets-in-order'
+    | '/blog/day-night-gift-box-release-news'
     | '/blog/eternal-birth-card-origins'
     | '/blog/eternal-birth-release-news'
     | '/blog/eternal-birth-set-guide'
@@ -1710,6 +1722,7 @@ export interface FileRouteTypes {
     | '/blog/chasing-glory-release-news'
     | '/blog/chasing-glory-set-guide'
     | '/blog/chinese-pokemon-sets-in-order'
+    | '/blog/day-night-gift-box-release-news'
     | '/blog/eternal-birth-card-origins'
     | '/blog/eternal-birth-release-news'
     | '/blog/eternal-birth-set-guide'
@@ -1856,6 +1869,7 @@ export interface RootRouteChildren {
   BlogChasingGloryReleaseNewsRoute: typeof BlogChasingGloryReleaseNewsRoute
   BlogChasingGlorySetGuideRoute: typeof BlogChasingGlorySetGuideRoute
   BlogChinesePokemonSetsInOrderRoute: typeof BlogChinesePokemonSetsInOrderRoute
+  BlogDayNightGiftBoxReleaseNewsRoute: typeof BlogDayNightGiftBoxReleaseNewsRoute
   BlogEternalBirthCardOriginsRoute: typeof BlogEternalBirthCardOriginsRoute
   BlogEternalBirthReleaseNewsRoute: typeof BlogEternalBirthReleaseNewsRoute
   BlogEternalBirthSetGuideRoute: typeof BlogEternalBirthSetGuideRoute
@@ -2322,6 +2336,13 @@ declare module '@tanstack/react-router' {
       path: '/blog/chinese-pokemon-sets-in-order'
       fullPath: '/blog/chinese-pokemon-sets-in-order'
       preLoaderRoute: typeof BlogChinesePokemonSetsInOrderRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/day-night-gift-box-release-news': {
+      id: '/blog/day-night-gift-box-release-news'
+      path: '/blog/day-night-gift-box-release-news'
+      fullPath: '/blog/day-night-gift-box-release-news'
+      preLoaderRoute: typeof BlogDayNightGiftBoxReleaseNewsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/blog/eternal-birth-card-origins': {
@@ -3009,6 +3030,7 @@ const rootRouteChildren: RootRouteChildren = {
   BlogChasingGloryReleaseNewsRoute: BlogChasingGloryReleaseNewsRoute,
   BlogChasingGlorySetGuideRoute: BlogChasingGlorySetGuideRoute,
   BlogChinesePokemonSetsInOrderRoute: BlogChinesePokemonSetsInOrderRoute,
+  BlogDayNightGiftBoxReleaseNewsRoute: BlogDayNightGiftBoxReleaseNewsRoute,
   BlogEternalBirthCardOriginsRoute: BlogEternalBirthCardOriginsRoute,
   BlogEternalBirthReleaseNewsRoute: BlogEternalBirthReleaseNewsRoute,
   BlogEternalBirthSetGuideRoute: BlogEternalBirthSetGuideRoute,
