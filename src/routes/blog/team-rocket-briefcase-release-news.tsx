@@ -268,8 +268,7 @@ function TeamRocketBriefcasePost() {
           handle and the corner protectors, with the same red R in the middle. It has a carry handle of its own on top.
         </p>
         <p>
-          For a collector the outer box matters. It is what a sealed copy looks like, and it is the first thing to check when you buy
-          one.
+          If you collect sealed products, keep the outer box. A briefcase that still has it is the complete product.
         </p>
         <figure style={{ margin: '28px auto', maxWidth: 520 }}>
           <img src={img('outer-box')} alt="The black outer box of the Team Rocket gift box, printed with a line drawing of the briefcase and a red R" loading="lazy" width={1100} height={1100} style={{ width: '100%', height: 'auto', borderRadius: 10 }} />
@@ -430,8 +429,8 @@ function TeamRocketBriefcasePost() {
         <h2 id="our-take">Our take</h2>
         <p>
           This is a complete kit in one case: a promo card with its own illustration, a full box of 20-card packs, and a deck box,
-          playmat and sleeves that all match. The briefcase is sturdy enough to use, and the outer box makes a sealed copy easy to
-          recognise.
+          playmat and sleeves that all match. The briefcase is sturdy enough to use, and it comes in an outer box that is worth
+          keeping.
         </p>
       </BlogPostLayout>
     </>
