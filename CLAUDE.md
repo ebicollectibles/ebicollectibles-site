@@ -56,3 +56,12 @@ from these when making a new banner or changing an old one.
 - Banner scripts and source images are kept outside the repository.
 - Product photos and banners on white must not get a white box behind them on
   dark pages: save cut-outs with transparency.
+
+## Traffic check
+
+The site runs on the Cloudflare Workers free plan: 100,000 Worker requests per
+UTC day, after which the site fails until 00:00 UTC. The owner does not want an
+automated alert. When working with the owner, occasionally check recent daily
+Worker requests (Cloudflare GraphQL, `workersInvocationsAdaptive`) and tell
+them if any day has passed 50,000, and recommend Workers Paid ($5/month) before
+a big release if it is getting close.
