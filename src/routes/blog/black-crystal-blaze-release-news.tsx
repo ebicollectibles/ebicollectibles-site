@@ -95,7 +95,7 @@ const TOC = [
 const FAQ = [
   {
     q: 'Is Black Crystal Blazing the same set as Black Crystal Blaze?',
-    a: 'Yes. The set has no official English name, so shops translate 黑晶炽诚 in different ways. Black Crystal Blaze, Black Crystal Blazing, Crystal Blaze and Dark Crystal Blaze all mean the same set, CSV5C.',
+    a: 'Yes. The set has no official English name, so shops translate the Chinese name in different ways. Black Crystal Blaze, Black Crystal Blazing, Crystal Blaze and Dark Crystal Blaze all mean the same set, CSV5C.',
   },
   {
     q: 'When was Black Crystal Blaze released?',
