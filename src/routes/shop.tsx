@@ -23,10 +23,15 @@ export const Route = createFileRoute('/shop')({
       (match.search.category ? categoryLabel(match.search.category) : undefined) ||
       (match.search.variantGroup ? 'Full Collection' : undefined) ||
       (match.search.preorder ? 'Pre-orders' : undefined)
-    const title = label ? `${label} — EBI Collectibles` : 'Shop — EBI Collectibles'
-    const description = label
-      ? `Shop ${label} — Simplified Chinese Pokémon, verified before it ships.`
-      : 'Shop the full EBI Collectibles catalog — Simplified Chinese Pokémon booster boxes, blind boxes, plush, figures, and more, verified before it ships.'
+    // The Binders link from the menu gets its own preview: a plural title
+    // and a card showing the binders in place of the generic shop one.
+    const binders = match.search.subcategory === 'Binder' && !match.search.subcategories?.length
+    const title = binders ? 'Binders — EBI Collectibles' : label ? `${label} — EBI Collectibles` : 'Shop — EBI Collectibles'
+    const description = binders
+      ? 'Official Pokémon China card binders, from the Psyduck Mini Binder to the 30th Celebration 9-pocket zip binder. Ships from the US.'
+      : label
+        ? `Shop ${label} — Simplified Chinese Pokémon, verified before it ships.`
+        : 'Shop the full EBI Collectibles catalog — Simplified Chinese Pokémon booster boxes, blind boxes, plush, figures, and more, verified before it ships.'
     // Every category/subcategory/price/search filter is just client-side UX
     // on top of the same underlying catalog, not distinct content — so,
     // same as faceted navigation on any storefront, they all canonicalize
@@ -39,7 +44,7 @@ export const Route = createFileRoute('/shop')({
         { property: 'og:title', content: title },
         { property: 'og:description', content: description },
         { property: 'og:url', content: `${SITE_URL}/shop` },
-        { property: 'og:image', content: `${SITE_URL}/assets/share/shop.jpg` },
+        { property: 'og:image', content: `${SITE_URL}/assets/share/${binders ? 'shop-binders' : 'shop'}.jpg` },
       ],
       links: [{ rel: 'canonical', href: `${SITE_URL}/shop` }],
     }

@@ -66,3 +66,15 @@ export function blogSetKeyForProduct(productId: string): string | null {
   for (const [key, ids] of Object.entries(SET_PRODUCTS)) if (ids.includes(productId)) return key
   return null
 }
+
+// Products that belong together without being the same kind of thing, such
+// as a set's booster box and its accessory. Each one leads the other's
+// "You may also like" row.
+const COMPANION_GROUPS: string[][] = [
+  ['pokemon-chinese-gem-volume-7-booster-box', 'pokemon-chinese-gem-volume-7-psyduck-collector-binder'],
+]
+
+/** Ids of the products that go with this one, for the top of its "You may also like" row. */
+export function companionProductIds(productId: string): string[] {
+  return COMPANION_GROUPS.filter((g) => g.includes(productId)).flatMap((g) => g.filter((id) => id !== productId))
+}

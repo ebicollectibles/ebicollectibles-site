@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import { BLOG_POSTS } from './blog-posts'
-import { blogPostSlugsForSetKey, blogSetKeyForProduct, blogSetKeyForSetPath } from './blog-shop'
+import { blogPostSlugsForSetKey, blogSetKeyForProduct, blogSetKeyForSetPath, companionProductIds } from './blog-shop'
 
 describe('blog posts linked from set and product pages', () => {
   it('uses the shared release post for Black Bolt and White Flare', () => {
@@ -17,5 +17,15 @@ describe('blog posts linked from set and product pages', () => {
   it('still resolves a set page and a product to their own set', () => {
     expect(blogSetKeyForSetPath('/sets/chinese/black-bolt-csv10-5')).toBe('black-bolt')
     expect(blogSetKeyForProduct('pokemon-chinese-white-flare-slim-booster-box')).toBe('white-flare')
+  })
+})
+
+describe('companionProductIds', () => {
+  it('pairs the Gem Pack Vol. 7 booster box with its Psyduck binder, both ways', () => {
+    const box = 'pokemon-chinese-gem-volume-7-booster-box'
+    const binder = 'pokemon-chinese-gem-volume-7-psyduck-collector-binder'
+    expect(companionProductIds(box)).toEqual([binder])
+    expect(companionProductIds(binder)).toEqual([box])
+    expect(companionProductIds('pokemon-chinese-gem-volume-6-booster-box')).toEqual([])
   })
 })

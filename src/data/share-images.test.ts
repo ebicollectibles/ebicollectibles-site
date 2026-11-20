@@ -18,7 +18,7 @@ describe('link preview images', () => {
   it('exist for every product listed in share-products.json', () => {
     expect((shareProductIds as string[]).map((id) => `public/assets/share/product-${id}.jpg`).filter((f) => !existsSync(f))).toEqual([])
   })
-  it('exist for the site, shop, set index and blog index', () => {
-    expect(['site', 'shop', 'sets', 'blog'].map((n) => `public/assets/share/${n}.jpg`).filter((f) => !existsSync(f))).toEqual([])
+  it('exist for the site, shop, binders shelf, set index and blog index', () => {
+    expect(['site', 'shop', 'shop-binders', 'sets', 'blog'].map((n) => `public/assets/share/${n}.jpg`).filter((f) => !existsSync(f))).toEqual([])
   })
 })

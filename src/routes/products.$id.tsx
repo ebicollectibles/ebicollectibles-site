@@ -1,4 +1,5 @@
 import * as React from 'react'
+import { companionProductIds } from '~/data/blog-shop'
 import { createFileRoute, Link, notFound, useNavigate } from '@tanstack/react-router'
 import { AddToCartControl } from '~/components/AddToCartControl'
 import { FormattedText } from '~/components/FormattedText'
@@ -294,9 +295,15 @@ function ProductDetailPage() {
 
   const related = React.useMemo(() => {
     if (!product) return []
-    const sameType = products.filter((p) => p.id !== product.id && p.subcategory === product.subcategory)
-    const rest = products.filter((p) => p.id !== product.id && p.subcategory !== product.subcategory)
-    return [...sameType, ...rest].slice(0, 4)
+    // Companions first (a set's booster box and its binder), then the same
+    // kind of product, then everything else.
+    const companionIds = companionProductIds(product.id)
+    const others = products.filter((p) => p.id !== product.id)
+    const companions = companionIds.flatMap((id) => others.filter((p) => p.id === id))
+    const remaining = others.filter((p) => !companionIds.includes(p.id))
+    const sameType = remaining.filter((p) => p.subcategory === product.subcategory)
+    const rest = remaining.filter((p) => p.subcategory !== product.subcategory)
+    return [...companions, ...sameType, ...rest].slice(0, 4)
   }, [products, product])
 
   if (!product) {
