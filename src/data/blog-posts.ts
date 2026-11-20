@@ -409,7 +409,7 @@ export const BLOG_POSTS: BlogPostSummary[] = [
     tag: 'New release',
     date: '2025-09-12',
     heroImage: `${SITE_URL}/assets/blog/black-crystal-blaze-release-hero-v10.webp`,
-    heroAlt: 'Black Crystal Blaze slim and jumbo booster packs with the Charizard ex Special Art Rare in front',
+    heroAlt: 'Black Crystal Blaze slim and jumbo booster packs with the Charizard ex Special Art Rare in front and Larry behind',
     glow1: 'rgb(240 112 64 / .30)',
     glow2: 'rgb(120 30 40 / .35)',
   },
