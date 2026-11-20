@@ -94,6 +94,10 @@ const TOC = [
 
 const FAQ = [
   {
+    q: 'Is Black Crystal Blazing the same set as Black Crystal Blaze?',
+    a: 'Yes. The set has no official English name, so shops translate 黑晶炽诚 in different ways. Black Crystal Blaze, Black Crystal Blazing, Crystal Blaze and Dark Crystal Blaze all mean the same set, CSV5C.',
+  },
+  {
     q: 'When was Black Crystal Blaze released?',
     a: 'September 12, 2025, in mainland China. It is a Simplified Chinese release.',
   },
@@ -206,6 +210,10 @@ function BlackCrystalBlazeReleasePost() {
           built around Pokémon whose Tera type differs from their usual type, and the Darkness Tera Charizard ex is on the pack. Elite
           Four members Larry and Poppy join as Supporters, and two secret rares are Chinese Exclusives: a Larry Special Art Rare and a
           gold Defiance Band.
+        </p>
+        <p>
+          There is no official English name, so shops list it under several: Black Crystal Blaze, Black Crystal Blazing, Crystal Blaze
+          and Dark Crystal Blaze are all this same set.
         </p>
         <p>
           Our <Link to="/blog/black-crystal-blaze-set-guide">set guide</Link> shows every secret rare and what each box holds, and our{' '}
