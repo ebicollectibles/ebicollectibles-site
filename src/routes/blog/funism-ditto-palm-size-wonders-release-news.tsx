@@ -72,7 +72,7 @@ const FAQ = [
   },
   {
     q: 'Is there a secret or hidden Happy Ditto figure?',
-    a: 'No. The packaging and the display case show 12 designs and no secret slot, and a sealed case of 12 figures is one of each of those 12.',
+    a: 'No. Funism’s release announcement lists 12 designs and says there is no hidden figure. The packaging and the display case also show 12 designs and no secret slot.',
   },
   {
     q: 'How many Dittos are in a case?',
@@ -195,7 +195,7 @@ function FunismDittoReleasePost() {
               <dt>Type</dt>
               <dd>Blind box figures</dd>
               <dt>Figures</dt>
-              <dd>12 designs, no secret figure</dd>
+              <dd>12 designs, no secret figure, per Funism</dd>
               <dt>Per Ditto</dt>
               <dd>3 random figures inside a plastic Ditto</dd>
               <dt>Sealed case</dt>
@@ -287,9 +287,9 @@ function FunismDittoReleasePost() {
 
         <h2 id="secret">Is there a secret figure?</h2>
         <p>
-          No. The display case prints the lineup along its front edge, 12 figures with no secret slot, and a sealed case of 12 is one
-          of each of those. That makes this one of the easier blind box lines to finish. The chase is whichever Pokémon you like
-          most, and for most people that will be Pikachu or Gengar.
+          No. Funism's release announcement lists 12 designs and says there is no hidden figure. The display case agrees: it prints
+          the lineup along its front edge, 12 figures with no secret slot. That makes this one of the easier blind box lines to
+          finish. The chase is whichever Pokémon you like most, and for most people that will be Pikachu or Gengar.
         </p>
 
         <h2 id="single-or-case">One Ditto or a sealed case?</h2>
