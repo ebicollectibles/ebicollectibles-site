@@ -1,3 +1,4 @@
+import { Zh } from '~/components/blog/Zh'
 import { rarityFullName } from '~/components/blog/RarityAbbr'
 import { BuyStrip } from '~/components/blog/BlogShop'
 import { createFileRoute, Link } from '@tanstack/react-router'
@@ -41,14 +42,14 @@ function Gallery({ cards, cols }: { cards: Card[]; cols: number }) {
 }
 
 const BLOCKS = [
-  { nos: '001 to 156', what: 'Pokémon, grouped by type', rarity: 'C, U, R, RR' },
-  { nos: '157 to 181', what: 'Items and Pokémon Tools', rarity: 'U, 6 ACE SPEC' },
-  { nos: '182 to 200', what: 'Supporters', rarity: 'U (Black Belt’s Training is R)' },
-  { nos: '201 to 208', what: 'Stadiums and Special Energy', rarity: 'U, 2 ACE SPEC' },
-  { nos: '209 to 220', what: 'Super Rare full-art Trainers', rarity: 'SR' },
-  { nos: '221 to 248', what: 'Special Art Rares of 28 Pokémon ex', rarity: 'SAR' },
-  { nos: '249 to 254', what: 'Special Art Rares of 6 Trainers', rarity: 'SAR' },
-  { nos: '255 to 259', what: 'Gold Ultra Rares', rarity: 'UR' },
+  { nos: '001 to 156', what: 'Pokémon, grouped by type', rarity: 'Common, Uncommon, Rare, Double Rare' },
+  { nos: '157 to 181', what: 'Items and Pokémon Tools', rarity: 'Uncommon, plus 6 ACE SPEC' },
+  { nos: '182 to 200', what: 'Supporters', rarity: 'Uncommon (Black Belt’s Training is Rare)' },
+  { nos: '201 to 208', what: 'Stadiums and Special Energy', rarity: 'Uncommon, plus 2 ACE SPEC' },
+  { nos: '209 to 220', what: 'Super Rare full-art Trainers', rarity: 'Super Rare' },
+  { nos: '221 to 248', what: 'Special Art Rares of 28 Pokémon ex', rarity: 'Special Art Rare' },
+  { nos: '249 to 254', what: 'Special Art Rares of 6 Trainers', rarity: 'Special Art Rare' },
+  { nos: '255 to 259', what: 'Gold Ultra Rares', rarity: 'Ultra Rare' },
 ]
 
 // Averages for one 10-pack box, from Pokémon China's grouped print shares.
@@ -71,8 +72,8 @@ const CHECKLIST = EEVEELUTIONS.map((mon) => ({
 
 const TOC = [
   { id: 'box', label: 'What a box holds' },
-  { id: 'pokemon-sars', label: 'All 28 Pokémon SARs' },
-  { id: 'trainer-sars', label: 'All 6 Trainer SARs' },
+  { id: 'pokemon-sars', label: 'All 28 Pokémon Special Art Rares' },
+  { id: 'trainer-sars', label: 'All 6 Trainer Special Art Rares' },
   { id: 'super-rares', label: 'All 12 Super Rares' },
   { id: 'ultra-rares', label: 'All 5 Ultra Rares' },
   { id: 'eeveelutions', label: 'The Eeveelution checklist' },
@@ -89,7 +90,7 @@ const FAQ = [
   },
   {
     q: 'What is the Chinese Exclusive in Terastal Gathering?',
-    a: 'Sylveon ex 234/208, a Special Art Rare by rika. The other Sylveon ex SAR, 233/208 by Cona Nitanda, is the one that matches Prismatic Evolutions.',
+    a: 'Sylveon ex 234/208, a Special Art Rare by rika. The other Sylveon ex Special Art Rare, 233/208 by Cona Nitanda, is the one that matches Prismatic Evolutions.',
   },
   {
     q: 'How many cards are in a Terastal Gathering booster box?',
@@ -97,7 +98,7 @@ const FAQ = [
   },
   {
     q: 'Are there Poké Ball and Master Ball versions?',
-    a: 'Yes. Every Common, Uncommon and Rare comes as a Poké Ball pattern holo and a Master Ball pattern holo, 171 of each, with a special finish in this set.',
+    a: 'Yes. Every Common, Uncommon and Rare comes as a Poké Ball pattern holo and a Master Ball pattern holo, 171 of each.',
   },
   {
     q: 'How many cards are in a Terastal Gathering master set?',
@@ -171,7 +172,7 @@ function TerastalGatheringSetGuide() {
         lede="Terastal Gathering is the Stellar Eeveelution set, with 34 Special Art Rares in 10-card packs. This guide shows every Eeveelution and chase card, what a box holds on average, and what a master set takes."
         cta={{
           heading: 'Collect Terastal Gathering',
-          body: 'Track every card on the full checklist, or pick up a box and start ripping.',
+          body: 'Track every card on the full checklist, or pick up a box.',
           links: [
             { to: '/sets/chinese/terastal-gathering-csv9-5', label: 'See the full card list' },
             { to: '/products/$id', params: { id: 'pokemon-chinese-terastal-gathering-booster-box' }, label: 'Shop the booster box', variant: 'ghost' },
@@ -179,11 +180,13 @@ function TerastalGatheringSetGuide() {
         }}
       >
         <p>
-          Terastal Gathering (CSV9.5C) is the Stellar Eeveelution set: 259 cards in 10-card packs, with 34 Special Art Rares
-          and one Chinese Exclusive, the Sylveon ex SAR 234/208. Our{' '}
-          <Link to="/blog/terastal-gathering-release-news">release post</Link> covers what is new, and our{' '}
-          <Link to="/blog/terastal-gathering-card-origins">card origins guide</Link> matches every card to English. Use this one
-          to sort your pulls or plan a master set.
+          Terastal Gathering (<Zh>太晶盛聚</Zh>, set code CSV9.5C) released on June 12, 2026. It is the Stellar Eeveelution set: 259 cards
+          in 10-card packs, with 34 Special Art Rares and one Chinese Exclusive, the Sylveon ex Special Art Rare 234/208.
+        </p>
+        <p>
+          Our <Link to="/blog/terastal-gathering-release-news">release post</Link> covers what is new, and our{' '}
+          <Link to="/blog/terastal-gathering-card-origins">card origins guide</Link> matches every card to its English version. Use
+          this guide to sort your pulls or plan a master set.
         </p>
 
         <nav className="toc" aria-label="In this guide">
@@ -198,7 +201,7 @@ function TerastalGatheringSetGuide() {
         </nav>
 
         <h2 id="box">What a box holds</h2>
-        <p>Pokémon China publishes its odds as three grouped bands. Applied to one 10-pack box, that works out to roughly:</p>
+        <p>Pokémon China publishes its odds in three rarity groups. Applied to one 10-pack box, that works out to roughly:</p>
         <div className="table-scroll" role="group" aria-labelledby="tbl-1" tabIndex={0}>
           <table className="data-table">
             <caption id="tbl-1" className="sr-only">What a box holds</caption>
@@ -220,28 +223,29 @@ function TerastalGatheringSetGuide() {
         </div>
         <p className="table-note">Averages, not guarantees. Individual boxes vary.</p>
         <p>
-          That top band holds 51 different cards, so a box averages a bit more than one big hit, about one every 7 packs. Pulling a
-          specific Special Art Rare, like Umbreon ex, takes many boxes.
+          The top group holds 51 different cards, so a box averages a bit more than one of them, about one every 7 packs. Pulling
+          one specific Special Art Rare, like Sylveon ex or Umbreon ex, takes many boxes.
         </p>
 
-        <h2 id="pokemon-sars">All 28 Pokémon SARs</h2>
-        <p>221 to 248, including every Stellar Eeveelution.</p>
-        <Gallery cards={lead(byRange(221, 248), ['239', '234', '232', '245', '233', '246', '227', '226'])} cols={4} />
+        <h2 id="pokemon-sars">All 28 Pokémon Special Art Rares</h2>
+        <p>These are numbered 221 to 248 and include every Stellar Eeveelution. Sylveon ex 234/208 is the Chinese Exclusive.</p>
+        <Gallery cards={lead(byRange(221, 248), ['234', '239', '232', '245', '233', '246', '227', '226'])} cols={4} />
 
-        <h2 id="trainer-sars">All 6 Trainer SARs</h2>
+        <h2 id="trainer-sars">All 6 Trainer Special Art Rares</h2>
         <p>
-          249 to 254. Pokémon China ranks these as rarer than both the Pokémon SARs and the Super Rares.
+          These are numbered 249 to 254. Pokémon China ranks them as rarer than both the Pokémon Special Art Rares and the Super
+          Rares.
         </p>
         <Gallery cards={lead(byRange(249, 254), ['253', '252', '250'])} cols={3} />
 
         <BuyStrip />
 
         <h2 id="super-rares">All 12 Super Rares</h2>
-        <p>Full-art Trainers, 209 to 220. Atticus has two with different art.</p>
+        <p>These are the full-art Trainers, numbered 209 to 220. Atticus has two, each with a different illustration.</p>
         <Gallery cards={byRange(209, 220)} cols={4} />
 
         <h2 id="ultra-rares">All 5 Ultra Rares</h2>
-        <p>The gold cards, 255 to 259.</p>
+        <p>These are the gold cards, numbered 255 to 259.</p>
         <Gallery cards={lead(byRange(255, 259), ['258', '259'])} cols={3} />
 
         <h2 id="eeveelutions">The Eeveelution checklist</h2>
@@ -253,8 +257,8 @@ function TerastalGatheringSetGuide() {
               <tr>
                 <th scope="col">Pokémon</th>
                 <th scope="col">Plain</th>
-                <th scope="col">ex (RR)</th>
-                <th scope="col">ex SAR</th>
+                <th scope="col">ex, Double Rare</th>
+                <th scope="col">ex, Special Art Rare</th>
               </tr>
             </thead>
             <tbody>
@@ -269,10 +273,10 @@ function TerastalGatheringSetGuide() {
             </tbody>
           </table>
         </div>
-        <p className="table-note">Sylveon ex SAR 234 is the Chinese Exclusive.</p>
+        <p className="table-note">The Sylveon ex Special Art Rare 234 is the Chinese Exclusive.</p>
 
         <h2 id="ace-spec">All 8 ACE SPEC cards</h2>
-        <p>Pink-framed, one per deck, and numbered within the main set.</p>
+        <p>ACE SPEC cards have a pink frame, and a deck can hold only one. They are numbered within the main set.</p>
         <Gallery cards={setData.cards.filter((c) => c.rarity === 'ACE SPEC Rare (ACE)')} cols={4} />
 
         <h2 id="numbering">How the numbers work</h2>
@@ -308,9 +312,9 @@ function TerastalGatheringSetGuide() {
           Uncommons and Rares, for 601 in total.
         </p>
         <p>
-          The main set fills in quickly with three or four holos per pack. The Poké Ball and Master Ball holos share the 13% band with
+          The main set fills in quickly with three or four holos per pack. The Poké Ball and Master Ball holos share the 13% group with
           Double Rares and ACE SPECs, about 13 cards a box spread across 379 different cards, so both take many boxes, and Pokémon China
-          ranks the Master Ball holos as the rarest in that band. For the Special Art Rares and gold cards, most collectors
+          ranks the Master Ball holos as the rarest in that group. For the Special Art Rares and gold cards, most collectors
           open a few boxes for fun, then buy the cards they still need as singles. The{' '}
           <Link to="/sets/chinese/terastal-gathering-csv9-5">Terastal Gathering card list</Link> lets you tick off what you have.
         </p>
