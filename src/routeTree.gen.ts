@@ -91,6 +91,7 @@ import { Route as BlogGemVol6SetGuideRouteImport } from './routes/blog/gem-vol-6
 import { Route as BlogGemVol7CardOriginsRouteImport } from './routes/blog/gem-vol-7-card-origins'
 import { Route as BlogGemVol7ReleaseNewsRouteImport } from './routes/blog/gem-vol-7-release-news'
 import { Route as BlogGemVol7SetGuideRouteImport } from './routes/blog/gem-vol-7-set-guide'
+import { Route as BlogGreninjaSylveonDisplaySetReleaseNewsRouteImport } from './routes/blog/greninja-sylveon-display-set-release-news'
 import { Route as BlogMiracleJourneyCardOriginsRouteImport } from './routes/blog/miracle-journey-card-origins'
 import { Route as BlogMiracleJourneyReleaseNewsRouteImport } from './routes/blog/miracle-journey-release-news'
 import { Route as BlogMiracleJourneySetGuideRouteImport } from './routes/blog/miracle-journey-set-guide'
@@ -590,6 +591,12 @@ const BlogGemVol7SetGuideRoute = BlogGemVol7SetGuideRouteImport.update({
   path: '/blog/gem-vol-7-set-guide',
   getParentRoute: () => rootRouteImport,
 } as any)
+const BlogGreninjaSylveonDisplaySetReleaseNewsRoute =
+  BlogGreninjaSylveonDisplaySetReleaseNewsRouteImport.update({
+    id: '/blog/greninja-sylveon-display-set-release-news',
+    path: '/blog/greninja-sylveon-display-set-release-news',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const BlogMiracleJourneyCardOriginsRoute =
   BlogMiracleJourneyCardOriginsRouteImport.update({
     id: '/blog/miracle-journey-card-origins',
@@ -1018,6 +1025,7 @@ export interface FileRoutesByFullPath {
   '/blog/gem-vol-7-card-origins': typeof BlogGemVol7CardOriginsRoute
   '/blog/gem-vol-7-release-news': typeof BlogGemVol7ReleaseNewsRoute
   '/blog/gem-vol-7-set-guide': typeof BlogGemVol7SetGuideRoute
+  '/blog/greninja-sylveon-display-set-release-news': typeof BlogGreninjaSylveonDisplaySetReleaseNewsRoute
   '/blog/miracle-journey-card-origins': typeof BlogMiracleJourneyCardOriginsRoute
   '/blog/miracle-journey-release-news': typeof BlogMiracleJourneyReleaseNewsRoute
   '/blog/miracle-journey-set-guide': typeof BlogMiracleJourneySetGuideRoute
@@ -1164,6 +1172,7 @@ export interface FileRoutesByTo {
   '/blog/gem-vol-7-card-origins': typeof BlogGemVol7CardOriginsRoute
   '/blog/gem-vol-7-release-news': typeof BlogGemVol7ReleaseNewsRoute
   '/blog/gem-vol-7-set-guide': typeof BlogGemVol7SetGuideRoute
+  '/blog/greninja-sylveon-display-set-release-news': typeof BlogGreninjaSylveonDisplaySetReleaseNewsRoute
   '/blog/miracle-journey-card-origins': typeof BlogMiracleJourneyCardOriginsRoute
   '/blog/miracle-journey-release-news': typeof BlogMiracleJourneyReleaseNewsRoute
   '/blog/miracle-journey-set-guide': typeof BlogMiracleJourneySetGuideRoute
@@ -1311,6 +1320,7 @@ export interface FileRoutesById {
   '/blog/gem-vol-7-card-origins': typeof BlogGemVol7CardOriginsRoute
   '/blog/gem-vol-7-release-news': typeof BlogGemVol7ReleaseNewsRoute
   '/blog/gem-vol-7-set-guide': typeof BlogGemVol7SetGuideRoute
+  '/blog/greninja-sylveon-display-set-release-news': typeof BlogGreninjaSylveonDisplaySetReleaseNewsRoute
   '/blog/miracle-journey-card-origins': typeof BlogMiracleJourneyCardOriginsRoute
   '/blog/miracle-journey-release-news': typeof BlogMiracleJourneyReleaseNewsRoute
   '/blog/miracle-journey-set-guide': typeof BlogMiracleJourneySetGuideRoute
@@ -1459,6 +1469,7 @@ export interface FileRouteTypes {
     | '/blog/gem-vol-7-card-origins'
     | '/blog/gem-vol-7-release-news'
     | '/blog/gem-vol-7-set-guide'
+    | '/blog/greninja-sylveon-display-set-release-news'
     | '/blog/miracle-journey-card-origins'
     | '/blog/miracle-journey-release-news'
     | '/blog/miracle-journey-set-guide'
@@ -1605,6 +1616,7 @@ export interface FileRouteTypes {
     | '/blog/gem-vol-7-card-origins'
     | '/blog/gem-vol-7-release-news'
     | '/blog/gem-vol-7-set-guide'
+    | '/blog/greninja-sylveon-display-set-release-news'
     | '/blog/miracle-journey-card-origins'
     | '/blog/miracle-journey-release-news'
     | '/blog/miracle-journey-set-guide'
@@ -1751,6 +1763,7 @@ export interface FileRouteTypes {
     | '/blog/gem-vol-7-card-origins'
     | '/blog/gem-vol-7-release-news'
     | '/blog/gem-vol-7-set-guide'
+    | '/blog/greninja-sylveon-display-set-release-news'
     | '/blog/miracle-journey-card-origins'
     | '/blog/miracle-journey-release-news'
     | '/blog/miracle-journey-set-guide'
@@ -1898,6 +1911,7 @@ export interface RootRouteChildren {
   BlogGemVol7CardOriginsRoute: typeof BlogGemVol7CardOriginsRoute
   BlogGemVol7ReleaseNewsRoute: typeof BlogGemVol7ReleaseNewsRoute
   BlogGemVol7SetGuideRoute: typeof BlogGemVol7SetGuideRoute
+  BlogGreninjaSylveonDisplaySetReleaseNewsRoute: typeof BlogGreninjaSylveonDisplaySetReleaseNewsRoute
   BlogMiracleJourneyCardOriginsRoute: typeof BlogMiracleJourneyCardOriginsRoute
   BlogMiracleJourneyReleaseNewsRoute: typeof BlogMiracleJourneyReleaseNewsRoute
   BlogMiracleJourneySetGuideRoute: typeof BlogMiracleJourneySetGuideRoute
@@ -2541,6 +2555,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BlogGemVol7SetGuideRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/blog/greninja-sylveon-display-set-release-news': {
+      id: '/blog/greninja-sylveon-display-set-release-news'
+      path: '/blog/greninja-sylveon-display-set-release-news'
+      fullPath: '/blog/greninja-sylveon-display-set-release-news'
+      preLoaderRoute: typeof BlogGreninjaSylveonDisplaySetReleaseNewsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/blog/miracle-journey-card-origins': {
       id: '/blog/miracle-journey-card-origins'
       path: '/blog/miracle-journey-card-origins'
@@ -3060,6 +3081,8 @@ const rootRouteChildren: RootRouteChildren = {
   BlogGemVol7CardOriginsRoute: BlogGemVol7CardOriginsRoute,
   BlogGemVol7ReleaseNewsRoute: BlogGemVol7ReleaseNewsRoute,
   BlogGemVol7SetGuideRoute: BlogGemVol7SetGuideRoute,
+  BlogGreninjaSylveonDisplaySetReleaseNewsRoute:
+    BlogGreninjaSylveonDisplaySetReleaseNewsRoute,
   BlogMiracleJourneyCardOriginsRoute: BlogMiracleJourneyCardOriginsRoute,
   BlogMiracleJourneyReleaseNewsRoute: BlogMiracleJourneyReleaseNewsRoute,
   BlogMiracleJourneySetGuideRoute: BlogMiracleJourneySetGuideRoute,
