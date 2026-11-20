@@ -15,7 +15,7 @@ const img = (name: string) => `${SITE_URL}/assets/blog/team-rocket-briefcase-${n
 // The seven items on Pokémon China's contents list, in its order.
 const CONTENTS = [
   { item: "Team Rocket's Mewtwo ex holo promo card", qty: '1', note: '354/SV-P' },
-  { item: 'Chasing Glory booster box', qty: '1', note: '6 packs of 20 cards, 120 cards in all' },
+  { item: 'Chasing Glory Jumbo booster box', qty: '1', note: '6 packs of 20 cards, 120 cards in all' },
   { item: 'Deck box', qty: '1', note: 'With 2 dividers' },
   { item: 'Playmat', qty: '1', note: 'Mewtwo behind a red R' },
   { item: 'Playmat pouch', qty: '1', note: 'Zip pouch for the rolled playmat' },
@@ -63,7 +63,7 @@ const FAQ = [
   },
   {
     q: 'What comes in the Team Rocket briefcase?',
-    a: 'Seven things: a Team Rocket’s Mewtwo ex holo promo card (354/SV-P), one Chasing Glory booster box of six 20-card packs, a deck box with two dividers, a playmat, a playmat pouch, 64 card sleeves, and the briefcase itself.',
+    a: 'Seven things: a Team Rocket’s Mewtwo ex holo promo card (354/SV-P), one Chasing Glory Jumbo booster box of six 20-card packs, a deck box with two dividers, a playmat, a playmat pouch, 64 card sleeves, and the briefcase itself.',
   },
   {
     q: 'What is the promo card in the Team Rocket briefcase?',
@@ -71,7 +71,7 @@ const FAQ = [
   },
   {
     q: 'How many booster packs are in the Team Rocket briefcase?',
-    a: 'Six. They are 20-card Chasing Glory packs, which is one full jumbo booster box and 120 cards in all.',
+    a: 'Six. They are 20-card Chasing Glory packs, which is one full Jumbo booster box and 120 cards in all.',
   },
   {
     q: 'Is this the same as the Japanese Team Rocket briefcase?',
@@ -195,7 +195,7 @@ function TeamRocketBriefcasePost() {
               <dt>Promo card</dt>
               <dd>Team Rocket's Mewtwo ex, 354/SV-P</dd>
               <dt>Booster packs</dt>
-              <dd>6 Chasing Glory packs of 20 cards</dd>
+              <dd>1 Chasing Glory Jumbo box: 6 packs of 20 cards</dd>
               <dt>Accessories</dt>
               <dd>Deck box, playmat, playmat pouch, 64 sleeves</dd>
               <dt>Language</dt>
@@ -241,7 +241,7 @@ function TeamRocketBriefcasePost() {
           </table>
         </div>
         <figure style={{ margin: '28px auto', maxWidth: 760 }}>
-          <img src={img('case-packed')} alt="The Team Rocket briefcase open and fully packed: deck box on the left, sleeves and booster box in the middle, playmat pouch along the front" loading="lazy" width={1100} height={733} style={{ width: '100%', height: 'auto', borderRadius: 10 }} />
+          <img src={img('case-packed')} alt="The Team Rocket briefcase open and fully packed: deck box on the left, sleeves and Jumbo booster box in the middle, playmat pouch along the front" loading="lazy" width={1100} height={733} style={{ width: '100%', height: 'auto', borderRadius: 10 }} />
           <figcaption>The briefcase as it comes packed.</figcaption>
         </figure>
 
@@ -308,8 +308,8 @@ function TeamRocketBriefcasePost() {
 
         <h2 id="packs">The booster packs inside</h2>
         <p>
-          The gift box holds one Chasing Glory booster box of six packs. They are the 20-card packs, so that is 120 cards and the same
-          contents as a jumbo booster box.
+          The gift box holds one Chasing Glory Jumbo booster box: six packs of 20 cards, 120 cards in all. It is the same box that
+          is sold separately.
         </p>
         <p>
           Chasing Glory is the Trainer's Pokémon set, led by Team Rocket, with 287 cards. Our{' '}
