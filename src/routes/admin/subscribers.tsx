@@ -37,10 +37,14 @@ const sourceLabel: Record<string, string> = {
   checkout: 'Checkout',
   admin: 'Admin',
 }
+// Blog post signup boxes tag their signups "blog-<name>", e.g.
+// "blog-pikachu-gift-box" reads as "Blog: pikachu gift box".
+const labelFor = (source: string) => sourceLabel[source] ?? (source.startsWith('blog-') ? `Blog: ${source.slice(5).replace(/-/g, ' ')}` : source)
 
 const eventLabel: Record<string, string> = {
   subscribed: 'Subscribed',
   unsubscribed: 'Unsubscribed',
+  requested: 'Asked for updates',
 }
 
 const eventColor: Record<string, string> = {
@@ -57,6 +61,18 @@ function AdminSubscribersPage() {
   const [updatingEmail, setUpdatingEmail] = React.useState<string | null>(null)
 
   const activeCount = subscribers.filter((s) => !s.unsubscribedAt).length
+
+  // Who signed up on each blog post's signup box, newest first. Built from
+  // the activity log, so it includes people who were already subscribed.
+  const unsubscribed = new Set(subscribers.filter((s) => s.unsubscribedAt).map((s) => s.email))
+  const byPage = new Map<string, { email: string; at: string | Date }[]>()
+  for (const e of events) {
+    if (!e.source?.startsWith('blog-') || e.type === 'unsubscribed') continue
+    const list = byPage.get(e.source) ?? []
+    if (!list.some((x) => x.email === e.email)) list.push({ email: e.email, at: e.createdAt })
+    byPage.set(e.source, list)
+  }
+  const [copied, setCopied] = React.useState<string | null>(null)
 
   const totalSubPages = Math.max(1, Math.ceil(subscribers.length / SUBSCRIBERS_PER_PAGE))
   const currentSubPage = Math.min(subPage, totalSubPages)
@@ -97,6 +113,42 @@ function AdminSubscribersPage() {
 
       {subscribers.length === 0 && <p style={{ fontSize: 13.5, color: '#131b28', marginTop: 16 }}>No subscribers yet.</p>}
 
+      {byPage.size > 0 && (
+        <section aria-labelledby="by-page-title" style={{ marginTop: 28 }}>
+          <h2 id="by-page-title" style={{ fontSize: 15, fontWeight: 700, margin: '0 0 6px' }}>
+            Signups by page
+          </h2>
+          <p style={{ fontSize: 12.5, color: '#5a6875', margin: '0 0 14px' }}>People who left their email on a blog post's signup box. Unsubscribed emails are struck through and left out of Copy.</p>
+          {[...byPage.entries()].map(([source, list]) => {
+            const active = list.filter((x) => !unsubscribed.has(x.email))
+            return (
+              <details key={source} style={{ border: '1px solid #e3e6ea', borderRadius: 4, padding: '10px 14px', marginBottom: 8 }}>
+                <summary style={{ cursor: 'pointer', fontSize: 13.5, fontWeight: 600 }}>
+                  {labelFor(source)} <span style={{ color: '#5a6875', fontWeight: 400 }}>· {active.length} {active.length === 1 ? 'person' : 'people'}</span>
+                </summary>
+                <button
+                  onClick={async () => {
+                    await navigator.clipboard.writeText(active.map((x) => x.email).join(', '))
+                    setCopied(source)
+                  }}
+                  style={{ margin: '12px 0 8px', background: '#ffffff', border: '1px solid #131b28', borderRadius: 2, padding: '6px 12px', fontSize: 12.5, fontWeight: 600, color: '#131b28', cursor: 'pointer' }}
+                >
+                  {copied === source ? 'Copied' : 'Copy emails'}
+                </button>
+                <ul style={{ listStyle: 'none', margin: 0, padding: 0 }}>
+                  {list.map((x) => (
+                    <li key={x.email} style={{ display: 'flex', justifyContent: 'space-between', gap: 12, padding: '6px 0', borderTop: '1px solid #f0f2f4', fontSize: 12.5 }}>
+                      <span style={unsubscribed.has(x.email) ? { textDecoration: 'line-through', color: '#5a6875' } : undefined}>{x.email}</span>
+                      <span style={{ color: '#5a6875', fontFamily: "'IBM Plex Mono', monospace", fontSize: 11.5, whiteSpace: 'nowrap' }}>{new Date(x.at).toLocaleString()}</span>
+                    </li>
+                  ))}
+                </ul>
+              </details>
+            )
+          })}
+        </section>
+      )}
+
       {subscribers.length > 0 && (
         <div className="ebi-admin-scroll-hint" style={{ fontSize: 11.5, color: '#5a6875', marginTop: 14 }}>
           Swipe to see more →
@@ -135,7 +187,7 @@ function AdminSubscribersPage() {
                     </span>
                   </td>
                   <td style={{ ...td, fontFamily: "'IBM Plex Mono', monospace", fontSize: 11.5, color: '#5a6875' }}>
-                    {sourceLabel[s.source] ?? s.source}
+                    {labelFor(s.source)}
                   </td>
                   <td style={{ ...td, fontSize: 12, color: '#5a6875' }}>{new Date(s.subscribedAt).toLocaleString()}</td>
                   <td style={{ ...td, textAlign: 'right', whiteSpace: 'nowrap' }}>
@@ -228,7 +280,7 @@ function AdminSubscribersPage() {
                 <span style={{ color: eventColor[e.type] ?? '#131b28', fontWeight: 600 }}>{eventLabel[e.type] ?? e.type}</span>
                 {' — '}
                 {e.email}
-                {e.source && <span style={{ color: '#5a6875' }}> ({sourceLabel[e.source] ?? e.source})</span>}
+                {e.source && <span style={{ color: '#5a6875' }}> ({labelFor(e.source)})</span>}
               </span>
               <span style={{ color: '#5a6875', fontFamily: "'IBM Plex Mono', monospace", fontSize: 11.5, whiteSpace: 'nowrap' }}>
                 {new Date(e.createdAt).toLocaleString()}

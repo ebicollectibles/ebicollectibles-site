@@ -137,7 +137,8 @@
     margin: 40px 0 8px; padding: 26px; border-radius: 10px; background: var(--ink); color: #fff;
     display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 18px;
   }
-  .signup-box { margin: 32px 0; padding: 24px 26px; border-radius: 10px; background: var(--ink); color: #fff; display: grid; gap: 14px; }
+  /* Fixed colours, not the theme tokens: --ink turns pale in dark mode, which would put white text on a pale box. */
+  .signup-box { margin: 32px 0; padding: 24px 26px; border-radius: 10px; background: #131b28; border: 1px solid #131b28; color: #fff; display: grid; gap: 14px; }
   .prose .signup-box h3, &.is-wide .prose .signup-box h3 { font-family: var(--f-display); font-weight: 800; font-size: 19px; margin: 0 0 4px; color: #fff; }
   .prose .signup-box p, &.is-wide .prose .signup-box p { margin: 0; font-size: 14px; line-height: 1.5; color: #c8d0db; max-width: none; }
   .signup-box form { display: flex; gap: 8px; flex-wrap: wrap; }
@@ -513,6 +514,7 @@
     --line: #26303f; --line-2: #313d4e; --hero: #0b0f16;
     .stat { background: #1b2432; }
     .shop-tile { background: #1b2432; }
+    .signup-box { background: #1b2432; border-color: #3a4658; }
     .btn-dark { background: #eef1f5; color: #131b28; }
     .btn-dark:hover { background: #c9d1dc; }
     .prose .shop-strip a.btn-dark { color: #131b28; }
