@@ -6,8 +6,6 @@ import { AnniversaryCountdown } from '~/components/AnniversaryCountdown'
 import { useCart } from '~/lib/cart-context'
 import { rankProducts } from '~/lib/products'
 import { subscribeToNewsletter, getMySubscriptionStatus } from '~/server/subscribers'
-import { getBlogLiveMap } from '~/server/blog-status'
-import { HomeBlogStrip } from '~/components/HomeBlogStrip'
 
 // How many show in the homepage teaser before "View All" takes over —
 // 2 columns × 4 rows on mobile/tablet (see .ebi-arrivals-grid in app.css).
@@ -18,12 +16,7 @@ const HOMEPAGE_SECTION_SIZE = 8
 const SHOW_HERO = false
 
 export const Route = createFileRoute('/')({
-  // The blog strip needs to know which posts are published. If that lookup
-  // fails the page still loads, just without the strip.
-  loader: async () => {
-    const [sub, blogLive] = await Promise.all([getMySubscriptionStatus(), getBlogLiveMap().catch(() => ({}))])
-    return { sub, blogLive }
-  },
+  loader: () => getMySubscriptionStatus(),
   // Title/description/og:url all come from __root.tsx's defaults, which are
   // already written for the homepage — only the canonical link (which root
   // doesn't set, so every other page can declare its own) is this page's
@@ -46,7 +39,7 @@ function HomePage() {
   const { products } = useCart()
   const bestSelling = rankProducts(products, 'bestSellingRank')
   const newAndUpcoming = rankProducts(products, 'newAndUpcomingRank')
-  const { sub: subStatus, blogLive } = Route.useLoaderData()
+  const subStatus = Route.useLoaderData()
 
   const [subscribeEmail, setSubscribeEmail] = React.useState(subStatus.email ?? '')
   // Logged-in visitors start already knowing the real answer (their account
@@ -379,8 +372,6 @@ function HomePage() {
           </div>
         </div>
       </section>
-
-      <HomeBlogStrip live={blogLive} />
     </>
   )
 }
