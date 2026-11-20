@@ -94,6 +94,7 @@ import { Route as BlogMiracleJourneyCardOriginsRouteImport } from './routes/blog
 import { Route as BlogMiracleJourneyReleaseNewsRouteImport } from './routes/blog/miracle-journey-release-news'
 import { Route as BlogMiracleJourneySetGuideRouteImport } from './routes/blog/miracle-journey-set-guide'
 import { Route as BlogPikachuDreamPaintingFiguresReleaseNewsRouteImport } from './routes/blog/pikachu-dream-painting-figures-release-news'
+import { Route as BlogPikachuGiftBoxReleaseNewsRouteImport } from './routes/blog/pikachu-gift-box-release-news'
 import { Route as BlogRewardRoundCardOriginsRouteImport } from './routes/blog/reward-round-card-origins'
 import { Route as BlogRewardRoundReleaseNewsRouteImport } from './routes/blog/reward-round-release-news'
 import { Route as BlogRewardRoundSetGuideRouteImport } from './routes/blog/reward-round-set-guide'
@@ -606,6 +607,12 @@ const BlogPikachuDreamPaintingFiguresReleaseNewsRoute =
     path: '/blog/pikachu-dream-painting-figures-release-news',
     getParentRoute: () => rootRouteImport,
   } as any)
+const BlogPikachuGiftBoxReleaseNewsRoute =
+  BlogPikachuGiftBoxReleaseNewsRouteImport.update({
+    id: '/blog/pikachu-gift-box-release-news',
+    path: '/blog/pikachu-gift-box-release-news',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const BlogRewardRoundCardOriginsRoute =
   BlogRewardRoundCardOriginsRouteImport.update({
     id: '/blog/reward-round-card-origins',
@@ -1007,6 +1014,7 @@ export interface FileRoutesByFullPath {
   '/blog/miracle-journey-release-news': typeof BlogMiracleJourneyReleaseNewsRoute
   '/blog/miracle-journey-set-guide': typeof BlogMiracleJourneySetGuideRoute
   '/blog/pikachu-dream-painting-figures-release-news': typeof BlogPikachuDreamPaintingFiguresReleaseNewsRoute
+  '/blog/pikachu-gift-box-release-news': typeof BlogPikachuGiftBoxReleaseNewsRoute
   '/blog/reward-round-card-origins': typeof BlogRewardRoundCardOriginsRoute
   '/blog/reward-round-release-news': typeof BlogRewardRoundReleaseNewsRoute
   '/blog/reward-round-set-guide': typeof BlogRewardRoundSetGuideRoute
@@ -1151,6 +1159,7 @@ export interface FileRoutesByTo {
   '/blog/miracle-journey-release-news': typeof BlogMiracleJourneyReleaseNewsRoute
   '/blog/miracle-journey-set-guide': typeof BlogMiracleJourneySetGuideRoute
   '/blog/pikachu-dream-painting-figures-release-news': typeof BlogPikachuDreamPaintingFiguresReleaseNewsRoute
+  '/blog/pikachu-gift-box-release-news': typeof BlogPikachuGiftBoxReleaseNewsRoute
   '/blog/reward-round-card-origins': typeof BlogRewardRoundCardOriginsRoute
   '/blog/reward-round-release-news': typeof BlogRewardRoundReleaseNewsRoute
   '/blog/reward-round-set-guide': typeof BlogRewardRoundSetGuideRoute
@@ -1296,6 +1305,7 @@ export interface FileRoutesById {
   '/blog/miracle-journey-release-news': typeof BlogMiracleJourneyReleaseNewsRoute
   '/blog/miracle-journey-set-guide': typeof BlogMiracleJourneySetGuideRoute
   '/blog/pikachu-dream-painting-figures-release-news': typeof BlogPikachuDreamPaintingFiguresReleaseNewsRoute
+  '/blog/pikachu-gift-box-release-news': typeof BlogPikachuGiftBoxReleaseNewsRoute
   '/blog/reward-round-card-origins': typeof BlogRewardRoundCardOriginsRoute
   '/blog/reward-round-release-news': typeof BlogRewardRoundReleaseNewsRoute
   '/blog/reward-round-set-guide': typeof BlogRewardRoundSetGuideRoute
@@ -1442,6 +1452,7 @@ export interface FileRouteTypes {
     | '/blog/miracle-journey-release-news'
     | '/blog/miracle-journey-set-guide'
     | '/blog/pikachu-dream-painting-figures-release-news'
+    | '/blog/pikachu-gift-box-release-news'
     | '/blog/reward-round-card-origins'
     | '/blog/reward-round-release-news'
     | '/blog/reward-round-set-guide'
@@ -1586,6 +1597,7 @@ export interface FileRouteTypes {
     | '/blog/miracle-journey-release-news'
     | '/blog/miracle-journey-set-guide'
     | '/blog/pikachu-dream-painting-figures-release-news'
+    | '/blog/pikachu-gift-box-release-news'
     | '/blog/reward-round-card-origins'
     | '/blog/reward-round-release-news'
     | '/blog/reward-round-set-guide'
@@ -1730,6 +1742,7 @@ export interface FileRouteTypes {
     | '/blog/miracle-journey-release-news'
     | '/blog/miracle-journey-set-guide'
     | '/blog/pikachu-dream-painting-figures-release-news'
+    | '/blog/pikachu-gift-box-release-news'
     | '/blog/reward-round-card-origins'
     | '/blog/reward-round-release-news'
     | '/blog/reward-round-set-guide'
@@ -1875,6 +1888,7 @@ export interface RootRouteChildren {
   BlogMiracleJourneyReleaseNewsRoute: typeof BlogMiracleJourneyReleaseNewsRoute
   BlogMiracleJourneySetGuideRoute: typeof BlogMiracleJourneySetGuideRoute
   BlogPikachuDreamPaintingFiguresReleaseNewsRoute: typeof BlogPikachuDreamPaintingFiguresReleaseNewsRoute
+  BlogPikachuGiftBoxReleaseNewsRoute: typeof BlogPikachuGiftBoxReleaseNewsRoute
   BlogRewardRoundCardOriginsRoute: typeof BlogRewardRoundCardOriginsRoute
   BlogRewardRoundReleaseNewsRoute: typeof BlogRewardRoundReleaseNewsRoute
   BlogRewardRoundSetGuideRoute: typeof BlogRewardRoundSetGuideRoute
@@ -2534,6 +2548,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BlogPikachuDreamPaintingFiguresReleaseNewsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/blog/pikachu-gift-box-release-news': {
+      id: '/blog/pikachu-gift-box-release-news'
+      path: '/blog/pikachu-gift-box-release-news'
+      fullPath: '/blog/pikachu-gift-box-release-news'
+      preLoaderRoute: typeof BlogPikachuGiftBoxReleaseNewsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/blog/reward-round-card-origins': {
       id: '/blog/reward-round-card-origins'
       path: '/blog/reward-round-card-origins'
@@ -3022,6 +3043,7 @@ const rootRouteChildren: RootRouteChildren = {
   BlogMiracleJourneySetGuideRoute: BlogMiracleJourneySetGuideRoute,
   BlogPikachuDreamPaintingFiguresReleaseNewsRoute:
     BlogPikachuDreamPaintingFiguresReleaseNewsRoute,
+  BlogPikachuGiftBoxReleaseNewsRoute: BlogPikachuGiftBoxReleaseNewsRoute,
   BlogRewardRoundCardOriginsRoute: BlogRewardRoundCardOriginsRoute,
   BlogRewardRoundReleaseNewsRoute: BlogRewardRoundReleaseNewsRoute,
   BlogRewardRoundSetGuideRoute: BlogRewardRoundSetGuideRoute,
