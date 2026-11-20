@@ -272,16 +272,16 @@ export const BLOG_POSTS: BlogPostSummary[] = [
   {
     slug: 'funism-ditto-palm-size-wonders-release-news',
     path: '/blog/funism-ditto-palm-size-wonders-release-news',
-    title: 'Funism Happy Ditto Is Here: 12 Transformations, 3 Figures a Box',
+    title: 'Funism Happy Ditto: All 12 Figures, and What a Sealed Case Holds',
     excerpt:
-      'Funism’s Palm-Size Wonders Happy Ditto blind box: Ditto copies 12 Pokémon but keeps its own face, three figures to a Ditto-shaped box, and no secret announced.',
-    seoTitle: 'Funism Happy Ditto Blind Box: Pokémon Palm-Size Wonders Figures',
+      'Funism’s Happy Ditto figures show Ditto copying 12 Pokémon while keeping its own face. Three figures come inside each plastic Ditto, and a sealed case of four holds one of every design.',
+    seoTitle: 'Funism Happy Ditto Blind Box: All 12 Figures & Case',
     seoDescription:
-      "Funism's Pokémon Palm-Size Wonders Happy Ditto blind box: Ditto copies 12 Pokémon but keeps its own face, with three figures in each Ditto-shaped box.",
+      "Funism Happy Ditto Pokémon figures: all 12 Ditto transformations, 3 figures in each plastic Ditto blind box, and a sealed case of 4 that has one of each.",
     tag: 'New release',
     date: '2026-11-15',
-    heroImage: `${SITE_URL}/assets/blog/funism-ditto-palm-size-wonders-release-hero-v10.webp`,
-    heroAlt: 'Funism Happy Ditto display box of four Ditto-shaped blind boxes with Ditto as Gengar, Pikachu and Jigglypuff in front',
+    heroImage: `${SITE_URL}/assets/blog/funism-ditto-palm-size-wonders-release-hero-v11.webp`,
+    heroAlt: 'Funism Happy Ditto display case of four plastic Dittos with the Ditto as Gengar, Pikachu and Jigglypuff figures in front',
     glow1: 'rgb(196 160 230 / .30)',
     glow2: 'rgb(246 206 60 / .22)',
   },

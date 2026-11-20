@@ -30,17 +30,37 @@ const LINEUP = [
 ]
 
 const TOC = [
-  { id: 'lineup', label: 'All 12 designs' },
-  { id: 'chase', label: 'Is there a secret?' },
-  { id: 'in-the-box', label: 'The box and the display' },
-  { id: 'collecting', label: 'How to collect them' },
+  { id: 'what-it-is', label: 'What is Funism Happy Ditto?' },
+  { id: 'lineup', label: 'All 12 Happy Ditto figures' },
+  { id: 'in-each-ditto', label: 'What comes in each Ditto?' },
+  { id: 'sealed-case', label: 'Does a sealed case have all 12?' },
+  { id: 'secret', label: 'Is there a secret figure?' },
+  { id: 'single-or-case', label: 'One Ditto or a sealed case?' },
   { id: 'faq', label: 'FAQ' },
+]
+
+// Buying options side by side. The case row is the point of the post: a
+// factory-sealed case is the only way to be sure of all 12.
+const OPTIONS = [
+  { row: 'What you get', single: '1 plastic Ditto', sealed: '4 plastic Dittos in a display case' },
+  { row: 'Figures', single: '3', sealed: '12' },
+  { row: 'Which figures', single: 'Random', sealed: 'One of each design' },
+  { row: 'Duplicates', single: 'Possible if you buy more than one', sealed: 'None' },
+  { row: 'Best for', single: 'Trying the line, or a small gift', sealed: 'Finishing the whole set in one go' },
 ]
 
 const FAQ = [
   {
+    q: 'What is Funism Happy Ditto?',
+    a: 'A set of 12 small Pokémon figures made by Funism (玩乐主义), an officially licensed Pokémon figure maker in China. Each figure is Ditto transformed into another Pokémon, but still with Ditto’s own face. It is part of the Palm-Size Wonders (小小奇遇) series.',
+  },
+  {
     q: 'How many figures are in a Happy Ditto blind box?',
-    a: 'Three. The display box is printed with 3粒/盒, three pieces per box, and each box is shaped like Ditto.',
+    a: 'Three. The blind box is a hollow plastic Ditto, and the display case is printed with 3粒/盒, three pieces per box. You do not know which three you have until you open it.',
+  },
+  {
+    q: 'Does a sealed case of Happy Ditto have all 12 figures?',
+    a: 'Yes. A factory-sealed case holds four plastic Dittos with three figures each, and together they are the 12 designs, one of each. Four Dittos bought loose can repeat, so the guarantee only applies to a case that is still sealed.',
   },
   {
     q: 'Which Pokémon does Ditto turn into?',
@@ -48,15 +68,15 @@ const FAQ = [
   },
   {
     q: 'Is there a secret or hidden Happy Ditto figure?',
-    a: 'None is shown. The packaging and display box show 12 designs and no secret slot, and we have not seen an official mention of a hidden figure.',
+    a: 'No. The packaging and the display case show 12 designs and no secret slot, and a sealed case of 12 figures is one of each of those 12.',
   },
   {
-    q: 'How many boxes are in a case?',
-    a: 'Four. The case is Funism’s display box, which holds four Ditto-shaped blind boxes, so 12 figures in all.',
+    q: 'How many Dittos are in a case?',
+    a: 'Four. The case is Funism’s display box, which holds four plastic Dittos, so 12 figures in all.',
   },
   {
-    q: 'Does a case have one of each figure?',
-    a: 'Funism has not said so. A four-box case holds 12 figures, the same as the number of designs, but treat the figures as random.',
+    q: 'Is the box itself a Ditto figure?',
+    a: 'Yes. Each set of three figures comes inside a purple plastic Ditto with its usual dot eyes and smile, so you keep the container as a thirteenth Ditto for the shelf.',
   },
   {
     q: 'Who makes the Happy Ditto figures?',
@@ -113,6 +133,13 @@ function FunismDittoReleasePost() {
       logo: { '@type': 'ImageObject', url: `${BLOG_SITE_URL}/assets/ebi-logo.jpg`, width: 240, height: 240 },
     },
   }
+  const lineupJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    name: 'All 12 Funism Happy Ditto figures',
+    numberOfItems: LINEUP.length,
+    itemListElement: LINEUP.map((f, i) => ({ '@type': 'ListItem', position: i + 1, name: `Ditto as ${f.name}`, image: figImg(f.slug) })),
+  }
   const faqJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
@@ -123,42 +150,49 @@ function FunismDittoReleasePost() {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(articleJsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(faqJsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(lineupJsonLd) }} />
       <BlogPostLayout
         updated={status.liveAt}
         wide
         post={post}
-        lede="Ditto tries to transform into 12 Pokémon and gets everything right except its own face. Three figures per box, and the box is a Ditto too."
+        lede="Funism's Happy Ditto figures show Ditto copying 12 Pokémon while keeping its own face. Three figures come inside each plastic Ditto, and a sealed case of four holds one of every design."
         cta={{
           heading: 'Shop Happy Ditto',
-          body: 'Single Ditto blind boxes, or the full four-box display.',
+          body: 'One plastic Ditto with three random figures, or a sealed case with all 12.',
           links: [
-            { to: '/products/$id', params: { id: 'pokemon-chinese-funism-ditto-palmsize-wonders-blind-box' }, label: 'Shop the blind box' },
-            { to: '/products/$id', params: { id: 'pokemon-chinese-funism-ditto-palmsize-wonders-blind-box-case' }, label: 'Shop the 4-box case', variant: 'ghost' },
+            { to: '/products/$id', params: { id: 'pokemon-chinese-funism-ditto-palmsize-wonders-blind-box' }, label: 'Shop a single Ditto' },
+            { to: '/products/$id', params: { id: 'pokemon-chinese-funism-ditto-palmsize-wonders-blind-box-case' }, label: 'Shop the sealed case', variant: 'ghost' },
           ],
         }}
       >
+        <h2 id="what-it-is">What is Funism Happy Ditto?</h2>
         <p>
-          Happy Ditto (<Zh>百变“快”乐</Zh>) is a blind box from Funism's Palm-Size Wonders (<Zh>小小奇遇</Zh>) series of small Pokémon figures. The joke is
-          in every figure: Ditto has copied a Pokémon's shape and colors, from Pikachu's ears to Psyduck's beak, but kept its own dot
-          eyes and long flat smile. The box text says Ditto is still practising its Transform and has slipped up again, and asks you to
-          spot what is a little off. Each Ditto-shaped box holds three figures.
+          Happy Ditto (<Zh>百变“快”乐</Zh>) is a set of 12 small Pokémon figures from Funism's Palm-Size Wonders (<Zh>小小奇遇</Zh>) series. Every
+          figure is Ditto in the middle of a Transform that has not quite worked: it has copied a Pokémon's shape and colors, from
+          Pikachu's ears to Psyduck's beak, but kept its own dot eyes and long flat smile.
+        </p>
+        <p>
+          It is sold as a blind box, but the box is not cardboard. Each one is a hollow plastic Ditto with three random figures
+          inside. Four of those Dittos make a case, and a sealed case holds all 12 figures, one of each.
         </p>
 
         <aside className="fact-box" aria-label="Happy Ditto key facts">
-          <img src={`${PHOTO}/pokemon-chinese-funism-ditto-transform-blind-box-display-case-badged.webp`} alt="Funism Happy Ditto display box with four Ditto-shaped blind boxes" loading="lazy" width={1000} height={1000} />
+          <img src={`${PHOTO}/pokemon-chinese-funism-ditto-transform-blind-box-display-case-badged.webp`} alt="Funism Happy Ditto display case holding four plastic Dittos" loading="lazy" width={1000} height={1000} />
           <div>
             <p className="fact-box-title">Key facts</p>
             <dl>
               <dt>Product</dt>
-              <dd>Palm-Size Wonders Happy Ditto blind box (<Zh>小小奇遇系列 百变“快”乐</Zh>)</dd>
+              <dd>Palm-Size Wonders Happy Ditto (<Zh>小小奇遇系列 百变“快”乐</Zh>)</dd>
               <dt>Maker</dt>
               <dd>Funism (<Zh>玩乐主义</Zh>), officially licensed</dd>
-              <dt>Designs</dt>
-              <dd>12 shown, no secret announced</dd>
-              <dt>Per box</dt>
-              <dd>3 random figures in a Ditto-shaped box</dd>
-              <dt>Case</dt>
-              <dd>Display box of 4 blind boxes, 12 figures</dd>
+              <dt>Type</dt>
+              <dd>Blind box figures</dd>
+              <dt>Figures</dt>
+              <dd>12 designs, no secret figure</dd>
+              <dt>Per Ditto</dt>
+              <dd>3 random figures inside a plastic Ditto</dd>
+              <dt>Sealed case</dt>
+              <dd>4 Dittos, all 12 figures, one of each</dd>
             </dl>
           </div>
         </aside>
@@ -174,9 +208,11 @@ function FunismDittoReleasePost() {
           </ol>
         </nav>
 
-        <h2 id="lineup">All 12 designs</h2>
+        <h2 id="lineup">All 12 Happy Ditto figures</h2>
         <p>
-          The lineup is mostly Kanto favorites, plus two picks from later generations, Riolu and Munchlax. Gengar works best, since its wide grin becomes Ditto's thin smile.
+          Ditto turns into {LINEUP.slice(0, -1).map((f) => f.name).join(', ')} and {LINEUP[LINEUP.length - 1].name}. The lineup is mostly
+          Kanto favorites, plus two picks from later generations, Riolu and Munchlax. Gengar works best, since its wide grin becomes
+          Ditto's thin smile.
         </p>
         <ul className="card-grid cols-4">
           {LINEUP.map((f) => (
@@ -201,50 +237,84 @@ function FunismDittoReleasePost() {
           />
         </figure>
 
-        <h2 id="chase">Is there a secret?</h2>
+        <h2 id="in-each-ditto">What comes in each Ditto?</h2>
         <p>
-          Not that we know of. The display box prints the lineup along its front edge, 12 figures with no secret slot, and we have not
-          seen an official mention of a hidden figure. If so, this is one of the easier blind box lines to
-          finish, and the chase is whichever Pokémon you like most. For most people that will be Pikachu or
-          Gengar.
+          Three figures. The container is a purple plastic Ditto, smile and all, and it opens to show the three figures inside. The
+          display case is printed with <Zh>3粒/盒</Zh>, three pieces per box.
+        </p>
+        <p>
+          You do not know which three you have until you open it, which is why it is sold as a blind box. The plastic Ditto is worth
+          keeping too: it is bigger than the figures and sits on a shelf next to them.
         </p>
 
         <BuyStrip />
 
-        <h2 id="in-the-box">The box and the display</h2>
+        <h2 id="sealed-case">Does a sealed case have all 12?</h2>
         <p>
-          The blind box itself is a purple Ditto, smile and all, with three random figures inside. Funism sells them in a display
-          box that holds four Ditto boxes, 12 figures in all, with Gengar, Jigglypuff and Pikachu on the header card and the full lineup
-          printed along the base. Our case listing is that display.
+          Yes. Funism packs the Dittos in a display case of four, and a factory-sealed case holds all 12 designs, one of each. Four
+          Dittos times three figures is 12, and none of them repeat.
+        </p>
+        <p>
+          That only holds for a case that is still sealed. Four Dittos bought one at a time, or taken from different cases, are
+          random and can repeat. Our case listing is the sealed display.
         </p>
         <ul className="card-grid cols-2">
           <li>
             <figure>
-              <img src={`${PHOTO}/pokemon-chinese-funism-ditto-transform-blind-box-ditto-shell-badged.webp`} alt="Funism Happy Ditto blind box shaped like Ditto" loading="lazy" width={1000} height={1000} style={{ aspectRatio: '1 / 1' }} />
+              <img src={`${PHOTO}/pokemon-chinese-funism-ditto-transform-blind-box-ditto-shell-badged.webp`} alt="Funism Happy Ditto: one plastic Ditto that holds three figures" loading="lazy" width={1000} height={1000} style={{ aspectRatio: '1 / 1' }} />
               <figcaption>
-                <strong>Blind box</strong>3 random figures
+                <strong>Single Ditto</strong>3 random figures
               </figcaption>
             </figure>
           </li>
           <li>
             <figure>
-              <img src={`${PHOTO}/pokemon-chinese-funism-ditto-transform-blind-box-display-case-badged.webp`} alt="Funism Happy Ditto display box holding four blind boxes" loading="lazy" width={1000} height={1000} style={{ aspectRatio: '1 / 1' }} />
+              <img src={`${PHOTO}/pokemon-chinese-funism-ditto-transform-blind-box-display-case-badged.webp`} alt="Funism Happy Ditto sealed display case holding four plastic Dittos" loading="lazy" width={1000} height={1000} style={{ aspectRatio: '1 / 1' }} />
               <figcaption>
-                <strong>Case</strong>4 boxes · 12 figures
+                <strong>Sealed case</strong>4 Dittos · all 12 figures
               </figcaption>
             </figure>
           </li>
         </ul>
 
-        <h2 id="collecting">How to collect them</h2>
+        <h2 id="secret">Is there a secret figure?</h2>
         <p>
-          With 12 designs and 3 figures a box, a four-box case holds 12 figures, the same number as there are designs. Funism has not
-          officially said a case is one of each, so treat the figures as random. One box is a good way to try the line, and a case is
-          the quickest start on the whole set.
+          No. The display case prints the lineup along its front edge, 12 figures with no secret slot, and a sealed case of 12 is one
+          of each of those. That makes this one of the easier blind box lines to finish. The chase is whichever Pokémon you like
+          most, and for most people that will be Pikachu or Gengar.
         </p>
+
+        <h2 id="single-or-case">One Ditto or a sealed case?</h2>
         <p>
-          Palm-Size Wonders started in December 2024 with six figures of Pikachu, Charmander, Squirtle, Bulbasaur, Psyduck and Eevee,
-          so if you already have those, Happy Ditto's Ditto versions of five of them make a fun pairing.
+          It depends on whether you want the surprise or the full set. One Ditto gives you three random figures. A sealed case gives
+          you every design with no duplicates.
+        </p>
+        <div className="table-scroll" role="group" aria-labelledby="tbl-options" tabIndex={0}>
+          <table className="data-table">
+            <caption id="tbl-options" className="sr-only">
+              A single Happy Ditto compared with a sealed case
+            </caption>
+            <thead>
+              <tr>
+                <td />
+                <th scope="col">Single Ditto</th>
+                <th scope="col">Sealed case</th>
+              </tr>
+            </thead>
+            <tbody>
+              {OPTIONS.map((o) => (
+                <tr key={o.row}>
+                  <th scope="row">{o.row}</th>
+                  <td>{o.single}</td>
+                  <td>{o.sealed}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <p>
+          Palm-Size Wonders started in December 2024 with six figures of Pikachu, Charmander, Squirtle, Bulbasaur, Psyduck and Eevee.
+          If you already have those, Happy Ditto's Ditto versions of five of them make a fun pairing.
         </p>
 
         <h2 id="faq">FAQ</h2>
@@ -259,8 +329,8 @@ function FunismDittoReleasePost() {
 
         <h2 id="our-take">Our take</h2>
         <p>
-          Ditto dressed as other Pokémon is a simple idea, and it works on all twelve figures. With no announced secret, three figures a
-          box and a box worth keeping, it is an easy blind box to collect. Ditto as Gengar is our favorite.
+          Ditto dressed as other Pokémon is a simple idea, and it works on all twelve figures. There is no secret figure to hunt, the
+          plastic Ditto is worth keeping, and a sealed case finishes the set in one purchase. Ditto as Gengar is our favorite.
         </p>
       </BlogPostLayout>
     </>
