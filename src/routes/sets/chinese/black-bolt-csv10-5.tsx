@@ -69,10 +69,10 @@ const config: GemSetConfig = {
   ],
   metaTitle: "Pokémon Black Bolt (CSV10.5C) Card List: All 174 Cards | EBI Collectibles",
   metaDescription:
-    "All 174 cards in Pokémon Black Bolt (CSV10.5C), Simplified Chinese: Unova Pokémon, the Zekrom ex Black White Rare and the Chinese Exclusive N's Plan SAR.",
+    "All 174 cards in Pokémon Black Bolt (CSV10.5C), Simplified Chinese: Unova Pokémon, the Zekrom ex Black White Rare and the Chinese Exclusive N's Plan.",
   ogTitle: "Pokémon Black Bolt (CSV10.5C) Card List: All 174 Cards",
   ogDescription:
-    "All 174 cards in Pokémon Black Bolt (CSV10.5C), Simplified Chinese: Unova Pokémon, the Zekrom ex Black White Rare and the Chinese Exclusive N's Plan SAR.",
+    "All 174 cards in Pokémon Black Bolt (CSV10.5C), Simplified Chinese: Unova Pokémon, the Zekrom ex Black White Rare and the Chinese Exclusive N's Plan.",
 }
 
 export const Route = createFileRoute('/sets/chinese/black-bolt-csv10-5')({

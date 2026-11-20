@@ -78,10 +78,10 @@ const config: GemSetConfig = {
   ],
   metaTitle: "Pokémon Chasing Glory (CSV10C) Card List: All 287 Cards | EBI Collectibles",
   metaDescription:
-    "All 287 cards in Pokémon Chasing Glory (CSV10C), Simplified Chinese, from Team Rocket's Mewtwo ex to the Chinese Exclusive Brock's Scouting SAR.",
+    "All 287 cards in Pokémon Chasing Glory (CSV10C), Simplified Chinese, from Team Rocket's Mewtwo ex to the Chinese Exclusive Brock's Scouting.",
   ogTitle: "Pokémon Chasing Glory (CSV10C) Card List: All 287 Cards",
   ogDescription:
-    "All 287 cards in Pokémon Chasing Glory (CSV10C), Simplified Chinese, from Team Rocket's Mewtwo ex to the Chinese Exclusive Brock's Scouting SAR.",
+    "All 287 cards in Pokémon Chasing Glory (CSV10C), Simplified Chinese, from Team Rocket's Mewtwo ex to the Chinese Exclusive Brock's Scouting.",
 }
 
 export const Route = createFileRoute('/sets/chinese/chasing-glory-csv10')({

@@ -115,7 +115,7 @@ const config: GemSetConfig = {
   ],
   metaTitle: 'Pokémon TCG 30th Celebration Card List: All 206 Cards | EBI Collectibles',
   metaDescription:
-    'All 206 cards in Pokémon 30th Celebration, Simplified Chinese: 30 Pikachu, Art Rares, SARs, 2 Futuristic Rares, 30 classic reprints, Energy and promos.',
+    'All 206 cards in Pokémon 30th Celebration, Simplified Chinese: 30 Pikachu, Special Art Rares, 2 Futuristic Rares, 30 classic reprints and promos.',
   ogTitle: 'Pokémon TCG 30th Celebration Card List: All 206 Cards',
   ogDescription: 'All 206 cards in Pokémon 30th Celebration (Simplified Chinese). Browse by Pokémon, filter by rarity and track which ones you own.',
 }

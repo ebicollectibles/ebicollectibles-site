@@ -70,10 +70,10 @@ const config: GemSetConfig = {
   ],
   metaTitle: "Pokémon True Mystery (CSV6C) Card List: All 163 Cards | EBI Collectibles",
   metaDescription:
-    "All 163 cards in Pokémon True Mystery (CSV6C), the Simplified Chinese Paradox set, from Roaring Moon ex to the Chinese Exclusive Iron Hands ex SAR.",
+    "All 163 cards in Pokémon True Mystery (CSV6C), the Simplified Chinese Paradox set, from Roaring Moon ex to the Chinese Exclusive Iron Hands ex.",
   ogTitle: "Pokémon True Mystery (CSV6C) Card List: All 163 Cards",
   ogDescription:
-    "All 163 cards in Pokémon True Mystery (CSV6C), the Simplified Chinese Paradox set, from Roaring Moon ex to the Chinese Exclusive Iron Hands ex SAR.",
+    "All 163 cards in Pokémon True Mystery (CSV6C), the Simplified Chinese Paradox set, from Roaring Moon ex to the Chinese Exclusive Iron Hands ex.",
 }
 
 export const Route = createFileRoute('/sets/chinese/true-mystery-csv6')({

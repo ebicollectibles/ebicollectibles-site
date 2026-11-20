@@ -71,10 +71,10 @@ const config: GemSetConfig = {
   ],
   metaTitle: "Pokémon Brilliant Fantasy (CSV8C) Card List: All 264 Cards | EBI Collectibles",
   metaDescription:
-    "All 264 cards in Pokémon Brilliant Fantasy (CSV8C), the Simplified Chinese Kitakami set, with four Ogerpon ex and the Chinese Exclusive Carmine SAR.",
+    "All 264 cards in Pokémon Brilliant Fantasy (CSV8C), the Simplified Chinese Kitakami set, with four Ogerpon ex and a Chinese Exclusive Carmine.",
   ogTitle: "Pokémon Brilliant Fantasy (CSV8C) Card List: All 264 Cards",
   ogDescription:
-    "All 264 cards in Pokémon Brilliant Fantasy (CSV8C), the Simplified Chinese Kitakami set, with four Ogerpon ex and the Chinese Exclusive Carmine SAR.",
+    "All 264 cards in Pokémon Brilliant Fantasy (CSV8C), the Simplified Chinese Kitakami set, with four Ogerpon ex and a Chinese Exclusive Carmine.",
 }
 
 export const Route = createFileRoute('/sets/chinese/brilliant-fantasy-csv8')({

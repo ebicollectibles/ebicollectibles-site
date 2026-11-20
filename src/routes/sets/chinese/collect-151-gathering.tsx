@@ -78,10 +78,10 @@ const config: GemSetConfig = {
   ],
   metaTitle: "Pokémon Collect 151: Gathering (151C) Card List: All 192 Cards | EBI Collectibles",
   metaDescription:
-    "All 192 cards in Pokémon Collect 151: Gathering (151C) in Simplified Chinese, including the Chinese Exclusive Pikachu AR 173/151 and Zapdos ex SAR 190/151.",
+    "All 192 cards in Pokémon Collect 151: Gathering (151C) in Simplified Chinese, including the Chinese Exclusive Pikachu 173/151 and Zapdos ex 190/151.",
   ogTitle: "Pokémon Collect 151: Gathering (151C) Card List: All 192 Cards",
   ogDescription:
-    "All 192 cards in Pokémon Collect 151: Gathering (151C) in Simplified Chinese, including the Chinese Exclusive Pikachu AR 173/151 and Zapdos ex SAR 190/151.",
+    "All 192 cards in Pokémon Collect 151: Gathering (151C) in Simplified Chinese, including the Chinese Exclusive Pikachu 173/151 and Zapdos ex 190/151.",
 }
 
 export const Route = createFileRoute('/sets/chinese/collect-151-gathering')({

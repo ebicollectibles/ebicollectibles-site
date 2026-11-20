@@ -67,10 +67,10 @@ const config: GemSetConfig = {
   ],
   metaTitle: "Pokémon Reward Round (CSV4C) Card List: All 165 Cards | EBI Collectibles",
   metaDescription:
-    "All 165 cards in Pokémon Reward Round (CSV4C), Simplified Chinese, with the Chinese Exclusive gold Gholdengo ex, Maushold ex SAR and Rika SAR.",
+    "All 165 cards in Pokémon Reward Round (CSV4C), Simplified Chinese, with the Chinese Exclusive gold Gholdengo ex, Maushold ex and Rika.",
   ogTitle: "Pokémon Reward Round (CSV4C) Card List: All 165 Cards",
   ogDescription:
-    "All 165 cards in Pokémon Reward Round (CSV4C), Simplified Chinese, with the Chinese Exclusive gold Gholdengo ex, Maushold ex SAR and Rika SAR.",
+    "All 165 cards in Pokémon Reward Round (CSV4C), Simplified Chinese, with the Chinese Exclusive gold Gholdengo ex, Maushold ex and Rika.",
 }
 
 export const Route = createFileRoute('/sets/chinese/reward-round-csv4')({

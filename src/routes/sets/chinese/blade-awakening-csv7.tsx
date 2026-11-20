@@ -70,10 +70,10 @@ const config: GemSetConfig = {
   ],
   metaTitle: "Pokémon Blade Awakening (CSV7C) Card List: All 259 Cards | EBI Collectibles",
   metaDescription:
-    "All 259 cards in Pokémon Blade Awakening (CSV7C), Simplified Chinese, with 9 ACE SPEC cards and the Chinese Exclusive Ciphermaniac's Codebreaking SAR.",
+    "All 259 cards in Pokémon Blade Awakening (CSV7C), Simplified Chinese, with 9 ACE SPEC cards and the Chinese Exclusive Ciphermaniac's Codebreaking.",
   ogTitle: "Pokémon Blade Awakening (CSV7C) Card List: All 259 Cards",
   ogDescription:
-    "All 259 cards in Pokémon Blade Awakening (CSV7C), Simplified Chinese, with 9 ACE SPEC cards and the Chinese Exclusive Ciphermaniac's Codebreaking SAR.",
+    "All 259 cards in Pokémon Blade Awakening (CSV7C), Simplified Chinese, with 9 ACE SPEC cards and the Chinese Exclusive Ciphermaniac's Codebreaking.",
 }
 
 export const Route = createFileRoute('/sets/chinese/blade-awakening-csv7')({

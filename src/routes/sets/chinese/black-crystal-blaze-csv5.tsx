@@ -73,10 +73,10 @@ const config: GemSetConfig = {
   ],
   metaTitle: "Pokémon Black Crystal Blaze (CSV5C) Card List: All 164 Cards | EBI Collectibles",
   metaDescription:
-    "All 164 cards in Pokémon Black Crystal Blaze (CSV5C), Simplified Chinese, from Charizard ex to the Chinese Exclusive Larry SAR and gold Defiance Band.",
+    "All 164 cards in Pokémon Black Crystal Blaze (CSV5C), Simplified Chinese, from Charizard ex to the Chinese Exclusive Larry and gold Defiance Band.",
   ogTitle: "Pokémon Black Crystal Blaze (CSV5C) Card List: All 164 Cards",
   ogDescription:
-    "All 164 cards in Pokémon Black Crystal Blaze (CSV5C), Simplified Chinese, from Charizard ex to the Chinese Exclusive Larry SAR and gold Defiance Band.",
+    "All 164 cards in Pokémon Black Crystal Blaze (CSV5C), Simplified Chinese, from Charizard ex to the Chinese Exclusive Larry and gold Defiance Band.",
 }
 
 export const Route = createFileRoute('/sets/chinese/black-crystal-blaze-csv5')({

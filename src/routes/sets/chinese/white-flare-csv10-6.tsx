@@ -66,10 +66,10 @@ const config: GemSetConfig = {
   ],
   metaTitle: "Pokémon White Flare (CSV10.6C) Card List: All 174 Cards | EBI Collectibles",
   metaDescription:
-    "All 174 cards in Pokémon White Flare (CSV10.6C), Simplified Chinese: Unova Pokémon, the Reshiram ex Black White Rare and the Chinese Exclusive Hilda SAR.",
+    "All 174 cards in Pokémon White Flare (CSV10.6C), Simplified Chinese: Unova Pokémon, the Reshiram ex Black White Rare and the Chinese Exclusive Hilda.",
   ogTitle: "Pokémon White Flare (CSV10.6C) Card List: All 174 Cards",
   ogDescription:
-    "All 174 cards in Pokémon White Flare (CSV10.6C), Simplified Chinese: Unova Pokémon, the Reshiram ex Black White Rare and the Chinese Exclusive Hilda SAR.",
+    "All 174 cards in Pokémon White Flare (CSV10.6C), Simplified Chinese: Unova Pokémon, the Reshiram ex Black White Rare and the Chinese Exclusive Hilda.",
 }
 
 export const Route = createFileRoute('/sets/chinese/white-flare-csv10-6')({

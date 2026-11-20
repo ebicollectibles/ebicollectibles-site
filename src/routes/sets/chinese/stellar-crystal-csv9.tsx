@@ -73,10 +73,10 @@ const config: GemSetConfig = {
   ],
   metaTitle: "Pokémon Stellar Crystal (CSV9C) Card List: All 266 Cards | EBI Collectibles",
   metaDescription:
-    "All 266 cards in Pokémon Stellar Crystal (CSV9C), Simplified Chinese, with Terapagos ex, Pikachu ex and the Chinese Exclusive Lisia's Appeal SAR.",
+    "All 266 cards in Pokémon Stellar Crystal (CSV9C), Simplified Chinese, with Terapagos ex, Pikachu ex and the Chinese Exclusive Lisia's Appeal.",
   ogTitle: "Pokémon Stellar Crystal (CSV9C) Card List: All 266 Cards",
   ogDescription:
-    "All 266 cards in Pokémon Stellar Crystal (CSV9C), Simplified Chinese, with Terapagos ex, Pikachu ex and the Chinese Exclusive Lisia's Appeal SAR.",
+    "All 266 cards in Pokémon Stellar Crystal (CSV9C), Simplified Chinese, with Terapagos ex, Pikachu ex and the Chinese Exclusive Lisia's Appeal.",
 }
 
 export const Route = createFileRoute('/sets/chinese/stellar-crystal-csv9')({

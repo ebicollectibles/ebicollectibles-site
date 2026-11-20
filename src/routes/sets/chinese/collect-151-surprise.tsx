@@ -80,10 +80,10 @@ const config: GemSetConfig = {
   ],
   metaTitle: "Pokémon Collect 151: Surprise (151C) Card List: All 192 Cards | EBI Collectibles",
   metaDescription:
-    "All 192 cards in Pokémon Collect 151: Surprise (151C) in Simplified Chinese, with 3 Chinese Exclusives: Pikachu AR, Alakazam ex SAR and Mew ex SAR.",
+    "All 192 cards in Pokémon Collect 151: Surprise (151C) in Simplified Chinese, with 3 Chinese Exclusives: Pikachu, Alakazam ex and Mew ex.",
   ogTitle: "Pokémon Collect 151: Surprise (151C) Card List: All 192 Cards",
   ogDescription:
-    "All 192 cards in Pokémon Collect 151: Surprise (151C) in Simplified Chinese, with 3 Chinese Exclusives: Pikachu AR, Alakazam ex SAR and Mew ex SAR.",
+    "All 192 cards in Pokémon Collect 151: Surprise (151C) in Simplified Chinese, with 3 Chinese Exclusives: Pikachu, Alakazam ex and Mew ex.",
 }
 
 export const Route = createFileRoute('/sets/chinese/collect-151-surprise')({

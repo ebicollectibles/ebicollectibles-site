@@ -69,7 +69,7 @@ const config: GemSetConfig = {
   faq: [
     { q: "How many cards are in Terastal Gathering?", a: "259 cards: a 208-card main set with 156 Pokémon, 49 Trainer cards and 3 Special Energy (8 of them ACE SPEC cards), plus 51 secret rares (12 Super Rare, 34 Special Art Rare and 5 Ultra Rare)." },
     { q: "What are the chase cards?", a: "The top tier is Ultra Rare, with 5 gold cards including Pikachu ex 258/208. The Sylveon ex Special Art Rare 234/208 is this set's Chinese Exclusive. A second Sylveon ex Special Art Rare, 233/208, has the same name and rarity, so check the number." },
-    { q: "What's Terastal Gathering's rarity scheme?", a: "An 8-tier scheme: Common, Uncommon, Rare, Double Rare, ACE SPEC Rare, Super Rare, Special Art Rare and Ultra Rare. Pokémon China's chart splits the Special Art Rares in two: it ranks the 28 Pokémon SARs below the Super Rares and the 6 Trainer SARs above them, with Ultra Rare at the top." },
+    { q: "What's Terastal Gathering's rarity scheme?", a: "An 8-tier scheme: Common, Uncommon, Rare, Double Rare, ACE SPEC Rare, Super Rare, Special Art Rare and Ultra Rare. Pokémon China's chart splits the Special Art Rares in two: it ranks the 28 Pokémon Special Art Rares below the Super Rares and the 6 Trainer Special Art Rares above them, with Ultra Rare at the top." },
     { q: "What is an ACE SPEC card?", a: "A one-per-deck Trainer or Energy card printed in a pink frame. Terastal Gathering has 8 of them, all in the main set at their own collector numbers." },
     { q: "When did Terastal Gathering release?", a: "June 12, 2026." },
     { q: "What language are the cards in?", a: "Simplified Chinese." },
@@ -77,10 +77,10 @@ const config: GemSetConfig = {
   ],
   metaTitle: "Pokémon Terastal Gathering (CSV9.5C) Card List: All 259 Cards | EBI Collectibles",
   metaDescription:
-    "All 259 cards in Pokémon Terastal Gathering (CSV9.5C), the Simplified Chinese Eeveelution set, with 34 SARs and the Chinese Exclusive Sylveon ex SAR.",
+    "All 259 cards in Pokémon Terastal Gathering (CSV9.5C), the Simplified Chinese Eeveelution set, with 34 Special Art Rares and a Chinese Exclusive Sylveon ex.",
   ogTitle: "Pokémon Terastal Gathering (CSV9.5C) Card List: All 259 Cards",
   ogDescription:
-    "All 259 cards in Pokémon Terastal Gathering (CSV9.5C), the Simplified Chinese Eeveelution set, with 34 SARs and the Chinese Exclusive Sylveon ex SAR.",
+    "All 259 cards in Pokémon Terastal Gathering (CSV9.5C), the Simplified Chinese Eeveelution set, with 34 Special Art Rares and a Chinese Exclusive Sylveon ex.",
 }
 
 export const Route = createFileRoute('/sets/chinese/terastal-gathering-csv9-5')({
