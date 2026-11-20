@@ -1,3 +1,4 @@
+import { Zh } from '~/components/blog/Zh'
 import { BuyStrip } from '~/components/blog/BlogShop'
 import { createFileRoute, Link } from '@tanstack/react-router'
 import blogCssUrl from '~/styles/blog.css?url'
@@ -45,20 +46,20 @@ function Gallery({ cards, cols, label }: { cards: Card[]; cols: number; label?: 
 }
 
 const RARITY = [
-  { name: 'Common (C)', where: 'Main set', count: 45 },
-  { name: 'Pikachu', where: '017 to 046', count: 30 },
-  { name: 'Rare (R)', where: 'Main set', count: 18 },
-  { name: 'Double Rare (RR)', where: 'The ex in the main set', count: 10 },
-  { name: 'Art Rare (AR)', where: '104 to 123', count: 20 },
-  { name: 'Special Art Rare (SAR)', where: '124 to 133', count: 10 },
-  { name: 'Futuristic Rare (FUR)', where: '134 to 135', count: 2 },
+  { name: 'Common', where: 'Main set', count: 45 },
+  { name: 'Pikachu Rare', where: '017 to 046', count: 30 },
+  { name: 'Rare', where: 'Main set', count: 18 },
+  { name: 'Double Rare', where: 'The Pokémon ex in the main set', count: 10 },
+  { name: 'Art Rare', where: '104 to 123', count: 20 },
+  { name: 'Special Art Rare', where: '124 to 133', count: 10 },
+  { name: 'Futuristic Rare', where: '134 to 135', count: 2 },
   { name: 'Classic', where: '136 to 165', count: 30 },
 ]
 
 const BOX_AVERAGE = [
-  { group: 'Common, Basic Energy and Pikachu', share: '89.83%', perBox: 'about 108' },
+  { group: 'Common, Basic Energy and the 30 Pikachu', share: '89.83%', perBox: 'about 108' },
   { group: 'Rare, Double Rare, Art Rare and Classic', share: '9.17%', perBox: 'about 11' },
-  { group: 'Special Art Rare, Futuristic Rare and RGB mark', share: '1.00%', perBox: 'about 1' },
+  { group: 'Special Art Rare, Futuristic Rare and 3 RGB mark cards', share: '1.00%', perBox: 'about 1' },
 ]
 
 const PROMO_SOURCES: Record<string, string> = {
@@ -89,7 +90,7 @@ const FAQ = [
   },
   {
     q: 'Is there an Uncommon rarity?',
-    a: 'No. The main set goes from Common to Rare, and the 30 Pikachu have their own Pikachu rarity instead.',
+    a: 'No. The main set has Common, Rare and Double Rare cards, and the 30 Pikachu have their own rarity, Pikachu Rare.',
   },
   {
     q: 'Are the 33 promos in booster packs?',
@@ -97,7 +98,7 @@ const FAQ = [
   },
   {
     q: 'How many boxes does a master set take?',
-    a: 'There is no fixed number. With about one card per box from the top group of SAR, FUR and RGB mark cards, finishing those from boxes alone takes many boxes, so most collectors finish with singles.',
+    a: 'There is no fixed number. A box averages about one card from the top group of Special Art Rares, Futuristic Rares and RGB mark cards, so finishing those from boxes alone takes many boxes. Most collectors finish with singles.',
   },
 ]
 
@@ -164,10 +165,10 @@ function ThirtiethSetGuide() {
         updated={status.liveAt}
         wide
         post={post}
-        lede="30th Celebration is the Pokémon TCG's 30th anniversary set: 165 holo cards, with a Pikachu in every pack. This guide explains how the set is numbered, shows every chase card and promo, and tells you what a master set takes."
+        lede="30th Celebration is the Pokémon TCG's 30th anniversary set: 165 holo cards, with a Pikachu in every pack. This guide explains how the set is numbered, shows every secret rare and promo, and tells you what a master set takes."
         cta={{
           heading: 'Collect 30th Celebration',
-          body: 'Track every card on the full checklist, or pick up a booster box and start ripping.',
+          body: 'Track every card on the full checklist, or pick up a booster box.',
           links: [
             { to: '/sets/chinese/30th-celebration', label: 'See the full card list' },
             { to: '/products/$id', params: { id: 'pokemon-chinese-30th-celebration-booster-box' }, label: 'Shop the booster box', variant: 'ghost' },
@@ -175,10 +176,13 @@ function ThirtiethSetGuide() {
         }}
       >
         <p>
-          30th Celebration (30thC) is the Pokémon TCG's 30th anniversary set: 165 holo cards with a Pikachu in every pack. Our{' '}
-          <Link to="/blog/30th-celebration-release-news">release post</Link> covers what is new in the set, and our{' '}
-          <Link to="/blog/30th-celebration-card-origins">card origins guide</Link> traces the 30 classic cards back to their
-          originals. Use this one to sort your pulls or plan a master set.
+          30th Celebration (<Zh>30周年庆典</Zh>, set code 30thC) released on September 16, 2026. It is the Pokémon TCG's 30th
+          anniversary set: 165 numbered cards, all holo, with one of 30 different Pikachu in every pack.
+        </p>
+        <p>
+          Our <Link to="/blog/30th-celebration-release-news">release post</Link> covers what is new in the set, and our{' '}
+          <Link to="/blog/30th-celebration-card-origins">card origins guide</Link> matches the 30 classic cards to their original
+          English cards. Use this guide to sort your pulls or plan a master set.
         </p>
 
         <nav className="toc" aria-label="In this guide">
@@ -221,24 +225,25 @@ function ThirtiethSetGuide() {
         <p className="table-note">Averages, not guarantees. Individual boxes vary.</p>
 
         <h2 id="futuristic-sar">Futuristic and Special Art Rares</h2>
-        <p>The two Futuristic Rares by YOSHIROTTEN sit at the top of the set, with the ten Special Art Rares just below.</p>
+        <p>The two Futuristic Rares by YOSHIROTTEN are numbered 134 and 135. The ten Special Art Rares are numbered 124 to 133.</p>
         <Gallery cards={FUR} cols={2} />
         <Gallery cards={SAR} cols={4} />
 
         <h2 id="classics">All 30 classic cards</h2>
         <p>
-          Famous cards from 1999 to 2023, back in their original frames with a gold glitter border. 151 and 152 are the two halves of
-          the Darkrai &amp; Cresselia LEGEND.
+          These are famous cards from 1999 to 2023, numbered 136 to 165 and reprinted in their original frames with a gold glitter
+          border. 151 and 152 are the two halves of the Darkrai &amp; Cresselia LEGEND.
         </p>
         <Gallery cards={CLASSICS} cols={3} />
 
         <BuyStrip />
 
         <h2 id="pikachu">All 30 Pikachu</h2>
-        <p>One in every pack, each by a different illustrator, numbered 017 to 046.</p>
+        <p>These are numbered 017 to 046. There is one in every pack, and each was drawn by a different illustrator.</p>
         <Gallery cards={PIKACHU} cols={3} label={(c, i) => `${c.number} · ${i + 1} of 30`} />
 
         <h2 id="art-rares">All 20 Art Rares</h2>
+        <p>These are numbered 104 to 123. Each one is a full illustration of a main-set Pokémon.</p>
         <Gallery cards={ART_RARES} cols={4} />
         {MISSING.length > 0 && (
           <p className="table-note">
@@ -301,8 +306,9 @@ function ThirtiethSetGuide() {
           fast. The 30 Pikachu take a little longer, since each box gives you 20 at random.
         </p>
         <p>
-          The secret rares are the hard part. A box averages about 11 cards from the Rare to Classic group, spread across 78 different
-          cards, and about one card from the top group of Special Art Rares, Futuristic Rares and RGB mark cards. Pulling all of
+          The secret rares are the hard part. A box averages about 11 cards from the Rare, Double Rare, Art Rare and Classic group,
+          spread across 78 different cards, and about one card from the top group of Special Art Rares, Futuristic Rares and RGB mark
+          cards. Pulling all of
           those from boxes alone takes a lot of boxes.
         </p>
         <p>

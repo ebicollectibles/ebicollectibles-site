@@ -15,7 +15,7 @@ const cardImg = (n: string) => `${R2_IMAGE_HOST}/Chinese/Brilliant%20Fantasy/Car
 
 type Shown = { n: string; name: string; note: string }
 
-// The Chinese Exclusive: the Carmine SAR 255.
+// The Chinese Exclusive: the Carmine Special Art Rare 255.
 const CHINESE_EXCLUSIVE = new Set(['255'])
 
 function Grid({ cards, cols }: { cards: Shown[]; cols: number }) {
@@ -38,19 +38,19 @@ function Grid({ cards, cols }: { cards: Shown[]; cols: number }) {
 }
 
 const CARMINE = [
-  { n: '255', name: 'Carmine', note: 'SAR · OKACHEKE' },
+  { n: '255', name: 'Carmine', note: 'Special Art Rare · OKACHEKE' },
   { n: '240', name: 'Carmine', note: 'Super Rare · kantaro' },
 ]
 
 const SAR = [
-  { n: '244', name: 'Milotic ex', note: 'SAR · Kuroimori' },
-  { n: '242', name: 'Teal Mask Ogerpon ex', note: 'SAR · Yano Keiji' },
-  { n: '250', name: 'Pecharunt ex', note: 'SAR · kantaro' },
-  { n: '254', name: 'Kieran', note: 'SAR · Teeziro' },
-  { n: '251', name: 'Bloodmoon Ursaluna ex', note: 'SAR · MINAMINAMI Take' },
-  { n: '245', name: 'Wellspring Mask Ogerpon ex', note: 'SAR · Yano Keiji' },
-  { n: '253', name: 'Perrin', note: 'SAR · GIDORA' },
-  { n: '252', name: 'Cassiopeia', note: 'SAR · burari' },
+  { n: '244', name: 'Milotic ex', note: 'Special Art Rare · Kuroimori' },
+  { n: '242', name: 'Teal Mask Ogerpon ex', note: 'Special Art Rare · Yano Keiji' },
+  { n: '250', name: 'Pecharunt ex', note: 'Special Art Rare · kantaro' },
+  { n: '254', name: 'Kieran', note: 'Special Art Rare · Teeziro' },
+  { n: '251', name: 'Bloodmoon Ursaluna ex', note: 'Special Art Rare · MINAMINAMI Take' },
+  { n: '245', name: 'Wellspring Mask Ogerpon ex', note: 'Special Art Rare · Yano Keiji' },
+  { n: '253', name: 'Perrin', note: 'Special Art Rare · GIDORA' },
+  { n: '252', name: 'Cassiopeia', note: 'Special Art Rare · burari' },
 ]
 
 const ULTRA = [
@@ -73,17 +73,17 @@ const ART_RARES = [
 const ODDS = [
   { band: 'Common and Uncommon (non-holo)', slim: '80.00%', jumbo: '70.00%' },
   { band: 'Poké Ball pattern holo and Rare', slim: '13.82%', jumbo: '22.11%' },
-  { band: 'Double Rare, Art Rare, ACE SPEC and Master Ball pattern holo', slim: '5.45%', jumbo: '6.89%' },
+  { band: 'Double Rare, Art Rare, ACE SPEC Rare and Master Ball pattern holo', slim: '5.45%', jumbo: '6.89%' },
   { band: 'Super Rare, Special Art Rare and Ultra Rare', slim: '0.73%', jumbo: '1.00%' },
 ]
 
 const BLOCKS = [
-  { nos: '001 to 172', what: 'Pokémon, grouped by type', rarity: 'C, U, R, RR' },
-  { nos: '173 to 207', what: 'Items, Tools, Supporters, Stadiums, Special Energy', rarity: 'C, U, ACE' },
-  { nos: '208 to 213', what: 'Art Rares', rarity: 'AR' },
-  { nos: '214 to 241', what: 'Super Rare full arts of 18 ex and 10 Supporters', rarity: 'SR' },
-  { nos: '242 to 255', what: 'Special Art Rares of 10 ex and 4 Supporters', rarity: 'SAR' },
-  { nos: '256 to 264', what: 'Gold Ultra Rares', rarity: 'UR' },
+  { nos: '001 to 172', what: 'Pokémon, grouped by type', rarity: 'Common, Uncommon, Rare, Double Rare' },
+  { nos: '173 to 207', what: 'Items, Pokémon Tools, Supporters, Stadiums and Special Energy', rarity: 'Common, Uncommon, plus 9 ACE SPEC' },
+  { nos: '208 to 213', what: 'Art Rares', rarity: 'Art Rare' },
+  { nos: '214 to 241', what: 'Super Rare full arts of 18 ex and 10 Supporters', rarity: 'Super Rare' },
+  { nos: '242 to 255', what: 'Special Art Rares of 10 ex and 4 Supporters', rarity: 'Special Art Rare' },
+  { nos: '256 to 264', what: 'Gold Ultra Rares', rarity: 'Ultra Rare' },
 ]
 
 const TOC = [
@@ -103,7 +103,7 @@ const FAQ = [
   },
   {
     q: 'What is the Chinese Exclusive in Brilliant Fantasy?',
-    a: 'Carmine 255/207, a Special Art Rare by OKACHEKE showing Carmine and Kieran eating watermelon in the summer sun. English has a Carmine Special Illustration Rare, but with different art.',
+    a: 'Carmine 255/207, a Special Art Rare by OKACHEKE showing Carmine and Kieran eating watermelon in the sun. English has a Carmine Special Illustration Rare, but not with this illustration.',
   },
   {
     q: 'What is the difference between the slim and jumbo Brilliant Fantasy packs?',
@@ -206,9 +206,13 @@ function BrilliantFantasyReleasePost() {
         }}
       >
         <p>
-          Brilliant Fantasy (<Zh>璀璨诡幻</Zh>, set code CSV8C) released on March 13, 2026. Milotic is on the pack, and the set is built around Kitakami: all
-          four masks of Ogerpon ex, Okidogi ex, Munkidori ex, Fezandipiti ex and Pecharunt ex, with Kieran, Carmine and Perrin as
-          Supporters. The Chinese Exclusive is a new Carmine Special Art Rare that no other language has.
+          Brilliant Fantasy (<Zh>璀璨诡幻</Zh>, set code CSV8C) released on March 13, 2026. Milotic is on the pack, and the set is built
+          around Kitakami. It has all four masks of Ogerpon ex, Okidogi ex, Munkidori ex, Fezandipiti ex and Pecharunt ex, with Kieran,
+          Carmine and Perrin as Supporters. The Chinese Exclusive is a Carmine Special Art Rare with a new illustration.
+        </p>
+        <p>
+          Our <Link to="/blog/brilliant-fantasy-set-guide">set guide</Link> shows every secret rare and the box odds, and our{' '}
+          <Link to="/blog/brilliant-fantasy-card-origins">card origins guide</Link> matches every card to its English version.
         </p>
 
         <aside className="fact-box" aria-label="Brilliant Fantasy key facts">
@@ -235,9 +239,9 @@ function BrilliantFantasyReleasePost() {
               <dt>Set size</dt>
               <dd>264 cards: 207 in the main set, 57 secret rares</dd>
               <dt>Chase cards</dt>
-              <dd>Carmine SAR, Milotic ex SAR, the Ogerpon ex and Pecharunt ex SARs</dd>
+              <dd>The Special Art Rares of Milotic ex, Carmine, the four Ogerpon ex and Pecharunt ex</dd>
               <dt>Chinese Exclusive</dt>
-              <dd>Carmine SAR 255/207</dd>
+              <dd>Carmine Special Art Rare 255/207</dd>
             </dl>
           </div>
         </aside>
@@ -278,22 +282,22 @@ function BrilliantFantasyReleasePost() {
           </li>
         </ul>
         <p>
-          A slim box is 15 packs, 75 cards and 15 holos. A jumbo box is 6 packs, 120 cards and 36 holos. The top band (Super Rare,
+          A slim box is 15 packs, 75 cards and 15 holos. A jumbo box is 6 packs, 120 cards and 36 holos. The top rarity group (Super Rare,
           Special Art Rare and Ultra Rare) is 1.00% of jumbo cards against 0.73% of slim cards, so a jumbo box averages about 1.2 of
           them and a slim box about 0.55. The full odds are further down.
         </p>
 
         <h2 id="carmine">Chinese Exclusive: Carmine</h2>
         <p>
-          Carmine 255/207 is a Special Art Rare drawn for this set by OKACHEKE. Carmine and her brother Kieran sit side by side in the
-          summer sun eating watermelon, and she smiles as she watches him. English has a Carmine Special Illustration Rare with
-          different art, and it is not in this set. The Carmine Super Rare by kantaro is here too.
+          Carmine 255/207 is a Special Art Rare with a new illustration by OKACHEKE. Carmine and her brother Kieran sit side by side
+          in the sun eating watermelon. English has a Carmine Special Illustration Rare with a different illustration, and that one is
+          not in this set. The Carmine Super Rare by kantaro is in this set too.
         </p>
         <Grid cards={CARMINE} cols={2} />
 
         <h2 id="special-art-rares">Special Art Rares</h2>
         <p>
-          Fourteen Special Art Rares, 242 to 255: ten Pokémon ex and four Supporters. Milotic ex by Kuroimori matches the pack. The four
+          There are fourteen Special Art Rares, numbered 242 to 255: ten Pokémon ex and four Supporters. Milotic ex by Kuroimori matches the pack. The four
           Ogerpon ex are a matching set by Yano Keiji, and kantaro drew Okidogi ex, Munkidori ex, Fezandipiti ex and Pecharunt ex as
           another.
         </p>
@@ -303,14 +307,14 @@ function BrilliantFantasyReleasePost() {
 
         <h2 id="ultra-rares">Gold Ultra Rares</h2>
         <p>
-          Nine gold cards, 256 to 264. Three are Pokémon ex: Teal Mask Ogerpon ex, Pecharunt ex and Bloodmoon Ursaluna ex. The other six
+          There are nine gold Ultra Rares, numbered 256 to 264. Three are Pokémon ex: Teal Mask Ogerpon ex, Pecharunt ex and Bloodmoon Ursaluna ex. The other six
           are Enhanced Hammer, Bravery Charm, Gravity Mountain, Jamming Tower, Jet Energy and Luminous Energy.
         </p>
         <Grid cards={ULTRA} cols={3} />
 
         <h2 id="art-rares">Art Rares</h2>
         <p>
-          Six Art Rares, 208 to 213. Feebas is by Kuroimori, the artist behind the Milotic ex Special Art Rare, and James Turner drew
+          There are six Art Rares, numbered 208 to 213. Feebas is by Kuroimori, the artist behind the Milotic ex Special Art Rare, and James Turner drew
           Duskull, Dusclops and Dusknoir as a set of three.
         </p>
         <Grid cards={ART_RARES} cols={3} />
@@ -342,7 +346,7 @@ function BrilliantFantasyReleasePost() {
             </tbody>
           </table>
         </div>
-        <p>Pokémon China's odds charts for each pack size:</p>
+        <p>These are Pokémon China's odds charts for each pack size, in the rarity groups they use:</p>
         <div className="table-scroll" role="group" aria-labelledby="tbl-2" tabIndex={0}>
           <table className="data-table">
             <caption id="tbl-2" className="sr-only">How the set is built, and the odds: Share of print, Slim, Jumbo</caption>
@@ -366,15 +370,13 @@ function BrilliantFantasyReleasePost() {
         </div>
         <p className="table-note">From Pokémon China's odds chart for each pack size.</p>
         <p>
-          In packs, that is roughly one top-band card in every 27 slim packs, against one in every 5 jumbo packs. Per box, a slim box
-          averages about 4 cards from the Double Rare band and a jumbo box about 8.
+          In packs, that is roughly one Super Rare, Special Art Rare or Ultra Rare in every 27 slim packs, against one in every 5
+          jumbo packs. Per box, a slim box averages about 4 cards from the Double Rare group and a jumbo box about 8.
         </p>
         <p>
           Every Common, Uncommon and Rare also comes as a Poké Ball pattern holo and a Master Ball pattern holo, 176 of each. The card is
           the same, only the holo pattern changes, which brings a true master set to 616 cards. The Master Ball versions share the Double Rare
-          band, so they are a real chase on their own. Our <Link to="/blog/brilliant-fantasy-set-guide">set guide</Link> has
-          every chase card and the box math, and our{' '}
-          <Link to="/blog/brilliant-fantasy-card-origins">card origins guide</Link> matches every card to its English version.
+          group, so they take a long time to collect.
         </p>
 
         <h2 id="faq">FAQ</h2>
@@ -399,9 +401,9 @@ function BrilliantFantasyReleasePost() {
 
         <h2 id="our-take">Our take</h2>
         <p>
-          Brilliant Fantasy is the set for Kitakami fans, with every Ogerpon mask and the Loyal Three at Special Art Rare. The Carmine SAR
-          is the card that makes the Chinese version worth having next to English, and the Milotic ex SAR is the prettiest card in the
-          set. If you are opening for hits, the jumbo box is the better buy on the odds.
+          Brilliant Fantasy is the set for Kitakami fans, with every Ogerpon mask and the Loyal Three at Special Art Rare. The Milotic
+          ex Special Art Rare matches the pack, and the Carmine Special Art Rare does not exist in English with this illustration. If
+          you are opening for Super Rares and above, the jumbo box is the better buy on the published odds.
         </p>
       </BlogPostLayout>
     </>

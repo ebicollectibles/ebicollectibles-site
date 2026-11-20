@@ -63,12 +63,12 @@ export const BLOG_POSTS: BlogPostSummary[] = [
   {
     slug: 'true-mystery-release-news',
     path: '/blog/true-mystery-release-news',
-    title: 'True Mystery Is Here: Iron Valiant, Roaring Moon and a Chinese-Only Iron Hands ex SAR',
+    title: 'True Mystery Is Here: Iron Valiant, Roaring Moon and a Chinese Exclusive Iron Hands ex',
     excerpt:
-      'The CSV6C set brings the Paradox Pokémon to Simplified Chinese, with Iron Valiant on the pack, slim and jumbo boxes, and an Iron Hands ex Special Art Rare you can only pull in Chinese.',
-    seoTitle: 'Pokémon True Mystery (CSV6C): Iron Hands ex SAR & Release Info',
+      'True Mystery (CSV6C) brings the Paradox Pokémon to Simplified Chinese, with Iron Valiant on the pack and slim and jumbo boxes. Its Chinese Exclusive is an Iron Hands ex Special Art Rare.',
+    seoTitle: 'Pokémon True Mystery (CSV6C): Iron Hands ex & Release Info',
     seoDescription:
-      'Pokémon TCG True Mystery (CSV6C) in Simplified Chinese: Iron Valiant on the pack, slim and jumbo boxes, and a Chinese Exclusive Iron Hands ex SAR.',
+      'Pokémon TCG True Mystery (CSV6C) in Simplified Chinese: Iron Valiant on the pack, slim and jumbo boxes, and a Chinese Exclusive Iron Hands ex Special Art Rare.',
     tag: 'New release',
     date: '2025-11-07',
     heroImage: `${SITE_URL}/assets/blog/true-mystery-release-hero-v10.webp`,
@@ -81,7 +81,7 @@ export const BLOG_POSTS: BlogPostSummary[] = [
     path: '/blog/true-mystery-set-guide',
     title: 'True Mystery Set Guide: Slim vs Jumbo, Every Chase Card and the Paradox Runs',
     excerpt:
-      "True Mystery is the Paradox set, sold in slim and jumbo boxes. This guide helps you pick a box, shows every secret rare, and explains how the 163 card numbers fit together.",
+      "True Mystery (CSV6C) is the Paradox set, sold in slim and jumbo boxes. This guide helps you pick a box, shows every secret rare, and explains how the 163 card numbers fit together.",
     seoTitle: 'Pokémon True Mystery (CSV6C) Set Guide: Chase Cards & Box Odds',
     seoDescription:
       'Pokémon TCG True Mystery (CSV6C) set guide: slim vs jumbo box odds, every Special Art Rare and Super Rare, and how the 163 cards are numbered.',
@@ -97,7 +97,7 @@ export const BLOG_POSTS: BlogPostSummary[] = [
     path: '/blog/true-mystery-card-origins',
     title: 'Where Every True Mystery Card Comes From',
     excerpt:
-      'All 163 cards matched to English: 128 from Paradox Rift, 16 from Obsidian Flames, 15 from Paldean Fates, 2 from other sources and 2 with no English version.',
+      'All 163 True Mystery (CSV6C) cards matched to their English versions: 128 from Paradox Rift, 16 from Obsidian Flames, 15 from Paldean Fates, 2 from other sources and 2 that do not exist in English.',
     seoTitle: 'Pokémon True Mystery (CSV6C) Card Origins: English Art Matches',
     seoDescription:
       'All 163 Pokémon TCG True Mystery (CSV6C) cards matched to English: 128 from Paradox Rift, 16 from Obsidian Flames and 15 from Paldean Fates.',
@@ -111,12 +111,12 @@ export const BLOG_POSTS: BlogPostSummary[] = [
   {
     slug: 'blade-awakening-release-news',
     path: '/blog/blade-awakening-release-news',
-    title: "Blade Awakening Is Here: Tera Greninja ex, ACE SPEC Cards and a Chinese-Only Ciphermaniac SAR",
+    title: "Blade Awakening Is Here: Tera Greninja ex, ACE SPEC Cards and a Chinese Exclusive Ciphermaniac Special Art Rare",
     excerpt:
-      "The CSV7C set puts Tera Greninja ex on the pack, adds nine ACE SPEC cards, and includes a Ciphermaniac's Codebreaking Special Art Rare made just for Simplified Chinese.",
+      "Blade Awakening (set code CSV7C) puts Tera Greninja ex on the pack and adds nine ACE SPEC cards. Its Chinese Exclusive is a Ciphermaniac's Codebreaking Special Art Rare.",
     seoTitle: 'Pokémon Blade Awakening (CSV7C): Tera Greninja ex & Release Info',
     seoDescription:
-      "Pokémon TCG Blade Awakening (CSV7C): Tera Greninja ex on the pack, nine ACE SPEC cards, and a Chinese Exclusive Ciphermaniac's Codebreaking SAR.",
+      "Pokémon TCG Blade Awakening (CSV7C) has Tera Greninja ex on the pack and nine ACE SPEC cards. Its Chinese Exclusive is a Ciphermaniac's Codebreaking Special Art Rare.",
     tag: 'New release',
     date: '2026-01-16',
     heroImage: `${SITE_URL}/assets/blog/blade-awakening-release-hero-v10.webp`,
@@ -129,10 +129,10 @@ export const BLOG_POSTS: BlogPostSummary[] = [
     path: '/blog/blade-awakening-set-guide',
     title: 'Blade Awakening Set Guide: Slim vs Jumbo Odds, Every Chase Card and the ACE SPECs',
     excerpt:
-      "Blade Awakening is the Tera Greninja ex set, with nine ACE SPEC cards and slim and jumbo boxes that have different odds. This guide helps you pick a box, shows every chase card, and explains what a 605-card master set takes.",
+      "Blade Awakening (set code CSV7C) is the Tera Greninja ex set, with nine ACE SPEC cards and slim and jumbo boxes that have different odds. This guide helps you pick a box and plan a 605-card master set.",
     seoTitle: 'Pokémon Blade Awakening (CSV7C) Set Guide: Chase Cards & Box Odds',
     seoDescription:
-      'Pokémon TCG Blade Awakening (CSV7C) set guide: slim vs jumbo box odds, every Special Art Rare and ACE SPEC card, and the 605-card master set.',
+      'Pokémon TCG Blade Awakening (CSV7C) is the Tera Greninja ex set. This guide compares slim and jumbo box odds and shows what a 605-card master set takes.',
     tag: 'Set guide',
     date: '2026-01-16',
     heroImage: `${SITE_URL}/assets/blog/blade-awakening-guide-hero-v10.webp`,
@@ -145,10 +145,10 @@ export const BLOG_POSTS: BlogPostSummary[] = [
     path: '/blog/blade-awakening-card-origins',
     title: 'Where Every Blade Awakening Card Comes From',
     excerpt:
-      'All 259 cards matched to English: 173 from Temporal Forces, 68 from Twilight Masquerade, 17 from six other sources and 1 new art.',
+      'All 259 cards in Blade Awakening (set code CSV7C) matched to English. 173 match Temporal Forces, 68 match Twilight Masquerade, and one is a Chinese Exclusive.',
     seoTitle: 'Pokémon Blade Awakening (CSV7C) Card Origins: English Art Matches',
     seoDescription:
-      'All 259 Pokémon TCG Blade Awakening (CSV7C) cards matched to English: 173 from Temporal Forces, 68 from Twilight Masquerade and 1 new art.',
+      'All 259 Pokémon TCG Blade Awakening (CSV7C) cards matched to English. 173 match Temporal Forces, 68 match Twilight Masquerade, and one is a Chinese Exclusive.',
     tag: 'Collecting guide',
     date: '2026-01-16',
     heroImage: `${SITE_URL}/assets/blog/blade-awakening-origins-hero-v10.webp`,
@@ -159,12 +159,12 @@ export const BLOG_POSTS: BlogPostSummary[] = [
   {
     slug: 'brilliant-fantasy-release-news',
     path: '/blog/brilliant-fantasy-release-news',
-    title: 'Brilliant Fantasy Is Here: Milotic, Every Ogerpon Mask and a Chinese-Only Carmine SAR',
+    title: 'Brilliant Fantasy Is Here: Milotic, Every Ogerpon Mask and a Chinese Exclusive Carmine Special Art Rare',
     excerpt:
-      'Milotic takes the pack of the Kitakami set, with all four Ogerpon ex, the Loyal Three and Pecharunt ex, and a Carmine Special Art Rare you can only pull in Simplified Chinese.',
-    seoTitle: 'Pokémon Brilliant Fantasy (CSV8C): Carmine SAR & Release Info',
+      'Brilliant Fantasy (set code CSV8C) is the Kitakami set, with Milotic on the pack and all four Ogerpon ex. Its Chinese Exclusive is a Carmine Special Art Rare with a new illustration.',
+    seoTitle: 'Pokémon Brilliant Fantasy (CSV8C): Milotic, Carmine & Release Info',
     seoDescription:
-      'Pokémon TCG Brilliant Fantasy (CSV8C) in Simplified Chinese: Milotic on the pack, all four Ogerpon ex, Pecharunt ex, and a Chinese Exclusive Carmine SAR.',
+      'Pokémon TCG Brilliant Fantasy (CSV8C) is the Kitakami set, with Milotic on the pack and all four Ogerpon ex. Its Chinese Exclusive is a Carmine Special Art Rare.',
     tag: 'New release',
     date: '2026-03-13',
     heroImage: `${SITE_URL}/assets/blog/brilliant-fantasy-release-hero-v10.webp`,
@@ -177,10 +177,10 @@ export const BLOG_POSTS: BlogPostSummary[] = [
     path: '/blog/brilliant-fantasy-set-guide',
     title: 'Brilliant Fantasy Set Guide: Slim vs Jumbo, Every Chase Card and the Ogerpon Run',
     excerpt:
-      "Brilliant Fantasy is the Kitakami set, with Milotic on the pack and every Ogerpon mask. This guide helps you choose between slim and jumbo boxes, shows every chase card, and explains what a 616-card master set takes.",
+      "Brilliant Fantasy (set code CSV8C) is the Kitakami set, with Milotic on the pack and every Ogerpon mask. This guide helps you choose between slim and jumbo boxes and plan a 616-card master set.",
     seoTitle: 'Brilliant Fantasy (CSV8C) Set Guide: Chase Cards & Box Odds',
     seoDescription:
-      'Pokémon TCG Brilliant Fantasy (CSV8C) set guide: slim vs jumbo boxes, every Special Art Rare and Super Rare, Ogerpon ex, and the 616-card master set.',
+      'Pokémon TCG Brilliant Fantasy (CSV8C) is the Kitakami set. This guide compares slim and jumbo boxes and shows what a 616-card master set takes.',
     tag: 'Set guide',
     date: '2026-03-13',
     heroImage: `${SITE_URL}/assets/blog/brilliant-fantasy-guide-hero-v10.webp`,
@@ -193,10 +193,10 @@ export const BLOG_POSTS: BlogPostSummary[] = [
     path: '/blog/brilliant-fantasy-card-origins',
     title: 'Where Every Brilliant Fantasy Card Comes From',
     excerpt:
-      'All 264 cards matched to English: 109 from Twilight Masquerade, 76 from Shrouded Fable, 38 from Surging Sparks, 40 from five other sources and 1 new.',
+      'All 264 cards in Brilliant Fantasy (set code CSV8C) matched to English. 109 match Twilight Masquerade, 76 match Shrouded Fable, and one is a Chinese Exclusive.',
     seoTitle: 'Brilliant Fantasy (CSV8C) Card Origins: English Art Matches',
     seoDescription:
-      'All 264 Pokémon TCG Brilliant Fantasy (CSV8C) cards matched to English: 109 from Twilight Masquerade, 76 from Shrouded Fable and 38 from Surging Sparks.',
+      'All 264 Pokémon TCG Brilliant Fantasy (CSV8C) cards matched to English. 109 match Twilight Masquerade, 76 match Shrouded Fable, and one is a Chinese Exclusive.',
     tag: 'Collecting guide',
     date: '2026-03-13',
     heroImage: `${SITE_URL}/assets/blog/brilliant-fantasy-origins-hero-v10.webp`,
@@ -207,12 +207,12 @@ export const BLOG_POSTS: BlogPostSummary[] = [
   {
     slug: 'stellar-crystal-release-news',
     path: '/blog/stellar-crystal-release-news',
-    title: "Stellar Crystal Is Here: Stellar Tera Pikachu ex and a Chinese-Only Lisia's Appeal SAR",
+    title: "Stellar Crystal Is Here: Stellar Tera Pikachu ex and a Chinese Exclusive Lisia's Appeal",
     excerpt:
-      "Stellar Tera Pikachu takes the pack of the Terapagos set, with Pikachu ex at four rarities and a Lisia's Appeal Special Art Rare you can only pull in Simplified Chinese.",
+      "Stellar Crystal (set code CSV9C) is the Terapagos set, with Stellar Tera Pikachu on the pack. Pikachu ex comes at four rarities, and the Lisia's Appeal Special Art Rare is a Chinese Exclusive.",
     seoTitle: 'Pokémon Stellar Crystal (CSV9C): Pikachu ex & Release Info',
     seoDescription:
-      "Pokémon TCG Stellar Crystal (CSV9C): Stellar Tera Pikachu on the pack, Pikachu ex at four rarities, and a Chinese Exclusive Lisia's Appeal SAR.",
+      "Pokémon TCG Stellar Crystal (CSV9C): Stellar Tera Pikachu on the pack, Pikachu ex at four rarities and a Chinese Exclusive Lisia's Appeal Special Art Rare.",
     tag: 'New release',
     date: '2026-05-15',
     heroImage: `${SITE_URL}/assets/blog/stellar-crystal-release-hero-v10.webp`,
@@ -225,7 +225,7 @@ export const BLOG_POSTS: BlogPostSummary[] = [
     path: '/blog/stellar-crystal-set-guide',
     title: 'Stellar Crystal Set Guide: Slim vs Jumbo, Every Chase Card and the Pikachu Run',
     excerpt:
-      "Stellar Crystal is the Stellar Tera set, with Pikachu on the pack and Terapagos ex. This guide helps you choose between slim and jumbo packs, shows every chase card, and explains what a 620-card master set takes.",
+      "Stellar Crystal (set code CSV9C) is the Stellar Tera set, with Pikachu on the pack and Terapagos ex. This guide helps you choose between slim and jumbo packs, shows every secret rare, and explains what a 620-card master set takes.",
     seoTitle: 'Pokémon Stellar Crystal (CSV9C) Set Guide: Chase Cards & Box Odds',
     seoDescription:
       'Pokémon TCG Stellar Crystal (CSV9C) set guide: slim vs jumbo packs, every Special Art Rare and Super Rare, the Pikachu ex run, and the 620-card master set.',
@@ -241,10 +241,10 @@ export const BLOG_POSTS: BlogPostSummary[] = [
     path: '/blog/stellar-crystal-card-origins',
     title: 'Where Every Stellar Crystal Card Comes From',
     excerpt:
-      'All 266 cards matched to English: 160 from Surging Sparks, 79 from Stellar Crown, 26 from four other sources including 6 promos, and 1 new.',
+      'All 266 cards in Stellar Crystal (set code CSV9C) are matched to their English versions. 160 match Surging Sparks, 79 match Stellar Crown, 26 come from four other sources, and one is a Chinese Exclusive.',
     seoTitle: 'Pokémon Stellar Crystal (CSV9C) Card Origins: English Art Matches',
     seoDescription:
-      'All 266 Pokémon TCG Stellar Crystal (CSV9C) cards matched to English: 160 from Surging Sparks, 79 from Stellar Crown, 26 from other sources and 1 new.',
+      'All 266 Pokémon TCG Stellar Crystal (CSV9C) cards matched to English: 160 match Surging Sparks, 79 match Stellar Crown and one is a Chinese Exclusive.',
     tag: 'Collecting guide',
     date: '2026-05-15',
     heroImage: `${SITE_URL}/assets/blog/stellar-crystal-origins-hero-v10.webp`,
@@ -256,12 +256,12 @@ export const BLOG_POSTS: BlogPostSummary[] = [
   {
     slug: 'pikachu-dream-painting-figures-release-news',
     path: '/blog/pikachu-dream-painting-figures-release-news',
-    title: 'Dream Painting Pikachu Figures Are Here: 12 Cards Come to Life, Plus a Secret',
+    title: 'Dream Painting Pikachu Figures: All 12, the Secret, and What Comes in a Box',
     excerpt:
-      'Twelve 30th Celebration Pikachu cards turned into figures that step out of their own card, each with the card, a stand and a booster pack, and a secret classic Pikachu in 1 box out of 144.',
+      'Pokémon China turned 12 of the 30th Celebration Pikachu cards into figures that stand in front of their own card. Each box has one random figure, its card, a display stand and a 30th Celebration pack, and about 1 box in 144 holds a secret classic Pikachu.',
     seoTitle: 'Dream Painting Pikachu Figure Blind Box: Secret & Release Info',
     seoDescription:
-      'Pokémon Dream Painting Pikachu blind box: 12 figures from 30th Celebration Pikachu cards, each with its card, a stand and a pack, plus a 1 in 144 secret.',
+      'Pokémon Dream Painting Pikachu blind box: 12 figures based on 30th Celebration Pikachu cards, each with its card, a stand and a pack, and a 1 in 144 secret.',
     tag: 'New release',
     date: '2026-09-16',
     heroImage: `${SITE_URL}/assets/blog/pikachu-dream-painting-figures-release-hero-v10.webp`,
@@ -384,12 +384,12 @@ export const BLOG_POSTS: BlogPostSummary[] = [
   {
     slug: 'black-crystal-blaze-release-news',
     path: '/blog/black-crystal-blaze-release-news',
-    title: 'Black Crystal Blaze Is Here: Darkness Tera Charizard ex and a Chinese-Only Larry SAR',
+    title: 'Black Crystal Blaze Is Here: Darkness Tera Charizard ex and a Chinese Exclusive Larry',
     excerpt:
-      'The fifth Chinese Scarlet & Violet set puts Darkness Tera Charizard ex on the pack, with a Larry Special Art Rare and a gold Defiance Band you can only pull in Simplified Chinese.',
+      'Black Crystal Blaze (CSV5C) is the fifth Chinese Scarlet & Violet set, with Darkness Tera Charizard ex on the pack. It has two Chinese Exclusives: a Larry Special Art Rare and a gold Defiance Band.',
     seoTitle: 'Pokémon Black Crystal Blaze (CSV5C): Charizard ex & Release Info',
     seoDescription:
-      'Pokémon TCG Black Crystal Blaze (CSV5C): Darkness Tera Charizard ex on the pack, plus a Chinese Exclusive Larry SAR and gold Defiance Band.',
+      'Pokémon TCG Black Crystal Blaze (CSV5C): Darkness Tera Charizard ex on the pack, plus two Chinese Exclusives, a Larry Special Art Rare and a gold Defiance Band.',
     tag: 'New release',
     date: '2025-09-12',
     heroImage: `${SITE_URL}/assets/blog/black-crystal-blaze-release-hero-v10.webp`,
@@ -402,10 +402,10 @@ export const BLOG_POSTS: BlogPostSummary[] = [
     path: '/blog/black-crystal-blaze-set-guide',
     title: 'Black Crystal Blaze Set Guide: Slim vs Jumbo, Every Chase Card and the Charizard Run',
     excerpt:
-      "Black Crystal Blaze is the Tera Charizard set, with two Chinese Exclusives and slim and jumbo boxes. This guide helps you pick a box, shows every chase card, and explains what a master set takes.",
+      "Black Crystal Blaze (CSV5C) is the Tera Charizard set, with two Chinese Exclusives and slim and jumbo boxes. This guide helps you pick a box, shows every chase card, and explains what a master set takes.",
     seoTitle: 'Black Crystal Blaze (CSV5C) Set Guide: Chase Cards & Box Odds',
     seoDescription:
-      'Pokémon TCG Black Crystal Blaze (CSV5C) set guide: slim vs jumbo boxes, every Special Art Rare and Super Rare, Charizard ex, and the 394-card master set.',
+      'Pokémon TCG Black Crystal Blaze (CSV5C) set guide: slim vs jumbo odds, every Special Art Rare and Super Rare, Charizard ex, and the 394-card master set.',
     tag: 'Set guide',
     date: '2025-09-12',
     heroImage: `${SITE_URL}/assets/blog/black-crystal-blaze-guide-hero-v10.webp`,
@@ -418,10 +418,10 @@ export const BLOG_POSTS: BlogPostSummary[] = [
     path: '/blog/black-crystal-blaze-card-origins',
     title: 'Where Every Black Crystal Blaze Card Comes From',
     excerpt:
-      'All 164 cards matched to English: 73 from Paradox Rift, 61 from Obsidian Flames, 18 from Paldean Fates, 10 from five other sources and 2 new.',
+      'All 164 Black Crystal Blaze (CSV5C) cards matched to their English versions: 73 from Paradox Rift, 61 from Obsidian Flames, 18 from Paldean Fates, 10 from five other sources and 2 Chinese Exclusives.',
     seoTitle: 'Black Crystal Blaze (CSV5C) Card Origins: English Art Matches',
     seoDescription:
-      'All 164 Pokémon TCG Black Crystal Blaze (CSV5C) cards matched to English: 73 from Paradox Rift, 61 from Obsidian Flames, 18 from Paldean Fates and 2 new.',
+      'All 164 Pokémon TCG Black Crystal Blaze (CSV5C) cards matched to English: 73 Paradox Rift, 61 Obsidian Flames, 18 Paldean Fates and 2 Chinese Exclusives.',
     tag: 'Collecting guide',
     date: '2025-09-12',
     heroImage: `${SITE_URL}/assets/blog/black-crystal-blaze-origins-hero-v10.webp`,
@@ -432,12 +432,12 @@ export const BLOG_POSTS: BlogPostSummary[] = [
   {
     slug: 'reward-round-release-news',
     path: '/blog/reward-round-release-news',
-    title: 'Reward Round Is Here: Gold Gholdengo and Two Chinese-Only SARs',
+    title: 'Reward Round Is Here: Gold Gholdengo ex and Two More Chinese Exclusives',
     excerpt:
-      'The fourth Chinese Scarlet & Violet set puts Gholdengo on the pack, with a gold Gholdengo ex, a Maushold ex SAR and a Rika SAR you can only pull in Simplified Chinese.',
+      'Reward Round (set code CSV4C) is the fourth Chinese Scarlet & Violet set, with Gholdengo on the pack. It has three Chinese Exclusives: a gold Gholdengo ex, a Maushold ex Special Art Rare and a Rika Special Art Rare.',
     seoTitle: 'Pokémon Reward Round (CSV4C): Gold Gholdengo ex & Release Info',
     seoDescription:
-      'Pokémon TCG Reward Round (CSV4C): Gholdengo on the pack and three Chinese Exclusives, a gold Gholdengo ex, a Maushold ex SAR and a Rika SAR.',
+      'Pokémon TCG Reward Round (CSV4C) has Gholdengo on the pack and three Chinese Exclusives: a gold Gholdengo ex and Special Art Rares of Maushold ex and Rika.',
     tag: 'New release',
     date: '2025-07-18',
     heroImage: `${SITE_URL}/assets/blog/reward-round-release-hero-v10.webp`,
@@ -450,10 +450,10 @@ export const BLOG_POSTS: BlogPostSummary[] = [
     path: '/blog/reward-round-set-guide',
     title: 'Reward Round Set Guide: Every Chase Card and What a Slim Box Holds',
     excerpt:
-      "Reward Round is the Gholdengo set, with three Chinese Exclusives. This guide shows every chase card, what a slim box holds on average, and what a master set takes.",
+      "Reward Round (set code CSV4C) is the Gholdengo set, with 165 cards and three Chinese Exclusives. This guide helps you sort your pulls, see what a slim box holds on average and plan a master set.",
     seoTitle: 'Pokémon Reward Round (CSV4C) Set Guide: Chase Cards & Box Odds',
     seoDescription:
-      'Pokémon TCG Reward Round (CSV4C) set guide: every Special Art Rare and Super Rare, what a 15-pack slim box averages, and the 395-card master set.',
+      'Pokémon TCG Reward Round (CSV4C) is the 165-card Gholdengo set. This guide shows every Special Art Rare and what a 15-pack slim box holds on average.',
     tag: 'Set guide',
     date: '2025-07-18',
     heroImage: `${SITE_URL}/assets/blog/reward-round-guide-hero-v10.webp`,
@@ -466,10 +466,10 @@ export const BLOG_POSTS: BlogPostSummary[] = [
     path: '/blog/reward-round-card-origins',
     title: 'Where Every Reward Round Card Comes From',
     excerpt:
-      'All 165 cards matched to English: 69 from Obsidian Flames, 41 from Paldea Evolved, 31 from Paradox Rift, 21 from six other sources and 3 new.',
+      'Reward Round (set code CSV4C) does not follow one English set. We matched all 165 cards to English: most come from Obsidian Flames, Paldea Evolved and Paradox Rift, and three are Chinese Exclusives.',
     seoTitle: 'Pokémon Reward Round (CSV4C) Card Origins: English Art Matches',
     seoDescription:
-      'All 165 Pokémon TCG Reward Round (CSV4C) cards matched to English: 69 from Obsidian Flames, 41 from Paldea Evolved, 31 from Paradox Rift and 3 new.',
+      'All 165 Pokémon TCG Reward Round (CSV4C) cards matched to English. Most match Obsidian Flames, Paldea Evolved and Paradox Rift, and three are Chinese Exclusives.',
     tag: 'Collecting guide',
     date: '2025-07-18',
     heroImage: `${SITE_URL}/assets/blog/reward-round-origins-hero-v10.webp`,
@@ -480,12 +480,12 @@ export const BLOG_POSTS: BlogPostSummary[] = [
   {
     slug: 'fearless-terastal-release-news',
     path: '/blog/fearless-terastal-release-news',
-    title: 'Fearless Terastal Is Here: Tera Arcanine ex and a Chinese Exclusive SAR',
+    title: 'Fearless Terastal Is Here: Tera Arcanine ex and a Chinese Exclusive Special Art Rare',
     excerpt:
-      'The third Chinese Scarlet & Violet set puts Tera Arcanine ex on the pack and brings the four Treasures of Ruin. Its Arcanine ex Special Art Rare is a Chinese Exclusive with no English version.',
-    seoTitle: 'Pokémon Fearless Terastal (CSV3C): Arcanine ex SAR & Release Info',
+      'Fearless Terastal (set code CSV3C) is the third Chinese Scarlet & Violet set, with Tera Arcanine ex on the pack and the four Treasures of Ruin. Its Arcanine ex Special Art Rare is a Chinese Exclusive that does not exist in English.',
+    seoTitle: 'Pokémon Fearless Terastal (CSV3C): Tera Arcanine ex & Release Info',
     seoDescription:
-      'Pokémon TCG Fearless Terastal (CSV3C) in Simplified Chinese: Tera Arcanine ex on the pack, pull odds, and a Chinese Exclusive Arcanine ex SAR.',
+      'Pokémon TCG Fearless Terastal (CSV3C) in Simplified Chinese has Tera Arcanine ex on the pack and a Chinese Exclusive Arcanine ex Special Art Rare.',
     tag: 'New release',
     date: '2025-05-16',
     heroImage: `${SITE_URL}/assets/blog/fearless-terastal-release-hero-v1.webp`,
@@ -498,10 +498,10 @@ export const BLOG_POSTS: BlogPostSummary[] = [
     path: '/blog/fearless-terastal-set-guide',
     title: 'Fearless Terastal Set Guide: Every Chase Card and the Pull Odds',
     excerpt:
-      'Fearless Terastal has 35 secret rares behind a 130-card main set, and its 5-card and 20-card packs have different pull odds. This guide shows every chase card and how often you can expect to pull one.',
+      'Fearless Terastal (set code CSV3C) has 35 secret rares behind a 130-card main set, and its 5-card and 20-card packs have different pull odds. This guide shows every chase card and how often you can expect to pull one.',
     seoTitle: 'Pokémon Fearless Terastal (CSV3C) Set Guide: Chase Cards & Odds',
     seoDescription:
-      'Pokémon TCG Fearless Terastal (CSV3C) set guide: every Special Art Rare and Super Rare, the official pull odds, and the 397-card master set.',
+      'Pokémon TCG Fearless Terastal (CSV3C) has 165 cards and one Chinese Exclusive. This guide shows every Special Art Rare and the official pull odds.',
     tag: 'Set guide',
     date: '2025-05-16',
     heroImage: `${SITE_URL}/assets/blog/fearless-terastal-guide-hero-v1.webp`,
@@ -514,10 +514,10 @@ export const BLOG_POSTS: BlogPostSummary[] = [
     path: '/blog/fearless-terastal-card-origins',
     title: 'Where Every Fearless Terastal Card Comes From',
     excerpt:
-      'Fearless Terastal is built mostly from Paldea Evolved, with Obsidian Flames and Scarlet & Violet filling in most of the rest. We matched all 165 cards to English and found one that does not exist in English.',
+      'Fearless Terastal (set code CSV3C) is built mostly from Paldea Evolved, with Obsidian Flames and Scarlet & Violet filling in most of the rest. We matched all 165 cards to English and found one that does not exist in English.',
     seoTitle: 'Pokémon Fearless Terastal (CSV3C) Card Origins: English Matches',
     seoDescription:
-      'All 165 Pokémon TCG Fearless Terastal (CSV3C) cards matched to English: 96 from Paldea Evolved, 34 from Obsidian Flames, 22 from Scarlet & Violet, 1 new.',
+      'All 165 Pokémon TCG Fearless Terastal (CSV3C) cards matched to English. Most match Paldea Evolved, and the Arcanine ex Special Art Rare is a Chinese Exclusive.',
     tag: 'Collecting guide',
     date: '2025-05-16',
     heroImage: `${SITE_URL}/assets/blog/fearless-terastal-origins-hero-v1.webp`,
@@ -530,10 +530,10 @@ export const BLOG_POSTS: BlogPostSummary[] = [
     path: '/blog/eternal-birth-release-news',
     title: 'Eternal Birth Is Here: Miraidon ex Opens Chinese Scarlet & Violet',
     excerpt:
-      'Eternal Birth is the first Chinese Scarlet & Violet set, with Miraidon on the pack and Pokémon ex in Simplified Chinese. It comes in a 5-card and a 20-card pack, and Miraidon ex and Koraidon ex are its lead chase cards.',
-    seoTitle: 'Pokémon Eternal Birth (CSV1C): Miraidon ex SAR & Release Info',
+      'Eternal Birth (set code CSV1C) is the first Chinese Scarlet & Violet set, with Miraidon on the pack and Pokémon ex in Simplified Chinese. It comes in a 5-card and a 20-card pack, and Miraidon ex and Koraidon ex are its lead chase cards.',
+    seoTitle: 'Pokémon Eternal Birth (CSV1C): Miraidon ex & Release Info',
     seoDescription:
-      'Pokémon TCG Eternal Birth (CSV1C) in Simplified Chinese: Miraidon on the pack, Pokémon ex, pull odds for both pack sizes and the lead chase cards.',
+      'Pokémon TCG Eternal Birth (set code CSV1C) is the first Chinese Scarlet & Violet set, released January 17, 2025. Miraidon ex and Koraidon ex lead it.',
     tag: 'New release',
     date: '2025-01-17',
     heroImage: `${SITE_URL}/assets/blog/eternal-birth-release-hero-v1.webp`,
@@ -546,10 +546,10 @@ export const BLOG_POSTS: BlogPostSummary[] = [
     path: '/blog/eternal-birth-set-guide',
     title: 'Eternal Birth Set Guide: Every Chase Card and the Pull Odds',
     excerpt:
-      'Eternal Birth has 40 secret rares behind a 127-card main set, and its 5-card and 20-card packs have different pull odds. This guide shows every chase card and how often you can expect to pull one.',
+      'Eternal Birth (set code CSV1C) has 40 secret rares behind a 127-card main set, and its 5-card and 20-card packs have different pull odds. This guide shows every chase card and how often you can expect to pull one.',
     seoTitle: 'Pokémon Eternal Birth (CSV1C) Set Guide: Chase Cards & Odds',
     seoDescription:
-      'Pokémon TCG Eternal Birth (CSV1C) set guide: every Special Art Rare and Super Rare, the official pull odds, and the 393-card master set.',
+      'Pokémon TCG Eternal Birth (set code CSV1C) has 167 cards and 40 secret rares. This guide shows every chase card and the official pull odds.',
     tag: 'Set guide',
     date: '2025-01-17',
     heroImage: `${SITE_URL}/assets/blog/eternal-birth-guide-hero-v1.webp`,
@@ -562,10 +562,10 @@ export const BLOG_POSTS: BlogPostSummary[] = [
     path: '/blog/eternal-birth-card-origins',
     title: 'Where Every Eternal Birth Card Comes From',
     excerpt:
-      'Eternal Birth follows the first English Scarlet & Violet set closely, with Paldea Evolved and Obsidian Flames filling in most of the rest. We matched all 167 cards to English, and every one has an English version.',
+      'Eternal Birth (set code CSV1C) follows the first English Scarlet & Violet set closely, with Paldea Evolved and Obsidian Flames filling in most of the rest. We matched all 167 cards to English, and every one has an English version.',
     seoTitle: 'Pokémon Eternal Birth (CSV1C) Card Origins: English Matches',
     seoDescription:
-      'All 167 Pokémon TCG Eternal Birth (CSV1C) cards matched to English: 134 from Scarlet & Violet, 16 from Paldea Evolved, 7 from Obsidian Flames.',
+      'All 167 Pokémon TCG Eternal Birth (set code CSV1C) cards have an English version. 134 match Scarlet & Violet and 16 match Paldea Evolved.',
     tag: 'Collecting guide',
     date: '2025-01-17',
     heroImage: `${SITE_URL}/assets/blog/eternal-birth-origins-hero-v1.webp`,
@@ -578,10 +578,10 @@ export const BLOG_POSTS: BlogPostSummary[] = [
     path: '/blog/miracle-journey-release-news',
     title: 'Miracle Journey Is Here: Gardevoir ex and the Paldea Starters as Pokémon ex',
     excerpt:
-      'The second Chinese Scarlet & Violet set puts Gardevoir on the pack and brings the final forms of the three Paldea starters as Pokémon ex. Its Gardevoir ex Special Art Rare leads the 35 secret rares.',
-    seoTitle: 'Pokémon Miracle Journey (CSV2C): Gardevoir ex SAR & Release Info',
+      'Miracle Journey (set code CSV2C) is the second Chinese Scarlet & Violet set. It puts Gardevoir on the pack and brings the final forms of the three Paldea starters as Pokémon ex. Its Gardevoir ex Special Art Rare leads the 35 secret rares.',
+    seoTitle: 'Pokémon Miracle Journey (CSV2C): Gardevoir ex & Release Info',
     seoDescription:
-      'Pokémon TCG Miracle Journey (CSV2C) in Simplified Chinese: Gardevoir on the pack, the Paldea starters as Pokémon ex, pull odds and the Gardevoir ex SAR.',
+      'Pokémon TCG Miracle Journey (set code CSV2C) released March 21, 2025 in Simplified Chinese. Gardevoir is on the pack and Gardevoir ex leads the set.',
     tag: 'New release',
     date: '2025-03-21',
     heroImage: `${SITE_URL}/assets/blog/miracle-journey-release-hero-v1.webp`,
@@ -594,10 +594,10 @@ export const BLOG_POSTS: BlogPostSummary[] = [
     path: '/blog/miracle-journey-set-guide',
     title: 'Miracle Journey Set Guide: Every Chase Card and the Pull Odds',
     excerpt:
-      'Miracle Journey has 35 secret rares behind a 128-card main set, and its 5-card and 20-card packs have different pull odds. This guide shows every chase card and how often you can expect to pull one.',
+      'Miracle Journey (set code CSV2C) has 35 secret rares behind a 128-card main set, and its 5-card and 20-card packs have different pull odds. This guide shows every chase card and how often you can expect to pull one.',
     seoTitle: 'Pokémon Miracle Journey (CSV2C) Set Guide: Chase Cards & Odds',
     seoDescription:
-      'Pokémon TCG Miracle Journey (CSV2C) set guide: every Special Art Rare and Super Rare, the official pull odds, and the 393-card master set.',
+      'Pokémon TCG Miracle Journey (set code CSV2C) has 163 cards and 35 secret rares. This guide shows every chase card and the official pull odds.',
     tag: 'Set guide',
     date: '2025-03-21',
     heroImage: `${SITE_URL}/assets/blog/miracle-journey-guide-hero-v1.webp`,
@@ -610,10 +610,10 @@ export const BLOG_POSTS: BlogPostSummary[] = [
     path: '/blog/miracle-journey-card-origins',
     title: 'Where Every Miracle Journey Card Comes From',
     excerpt:
-      'Miracle Journey is built mostly from Paldea Evolved and Scarlet & Violet, with Obsidian Flames filling in most of the rest. We matched all 163 cards to English, and every one has an English version.',
+      'Miracle Journey (set code CSV2C) is built mostly from Paldea Evolved and Scarlet & Violet, with Obsidian Flames filling in most of the rest. We matched all 163 cards to English, and every one has an English version.',
     seoTitle: 'Pokémon Miracle Journey (CSV2C) Card Origins: English Matches',
     seoDescription:
-      'All 163 Pokémon TCG Miracle Journey (CSV2C) cards matched to English: 80 from Paldea Evolved, 43 from Scarlet & Violet, 26 from Obsidian Flames.',
+      'All 163 Pokémon TCG Miracle Journey (set code CSV2C) cards have an English version. 80 match Paldea Evolved and 43 match Scarlet & Violet.',
     tag: 'Collecting guide',
     date: '2025-03-21',
     heroImage: `${SITE_URL}/assets/blog/miracle-journey-origins-hero-v1.webp`,
@@ -722,10 +722,10 @@ export const BLOG_POSTS: BlogPostSummary[] = [
     path: '/blog/30th-celebration-release-news',
     title: '30th Celebration Is Here: 30 Pikachu, Futuristic Rares and 30 Classic Cards',
     excerpt:
-      'The Pokémon TCG\'s 30th anniversary set: a Pikachu in every pack, the new Futuristic Rare, and 30 famous cards from 1999 to 2023 back in their original frames.',
+      '30th Celebration is the Pokémon TCG\'s 30th anniversary set. It has a Pikachu in every pack, the new Futuristic Rare, and 30 famous cards from 1999 to 2023 in their original frames.',
     seoTitle: 'Pokémon 30th Celebration (Chinese): 30 Pikachu & Release Info',
     seoDescription:
-      'Pokémon TCG 30th Celebration in Chinese: a Pikachu in every pack, the new Futuristic Rare, and 30 classic cards from 1999 to 2023 in their original frames.',
+      'Pokémon TCG 30th Celebration in Simplified Chinese has a Pikachu in every pack, the new Futuristic Rare and 30 classic cards from 1999 to 2023.',
     tag: 'New release',
     date: '2026-09-16',
     heroImage: `${SITE_URL}/assets/blog/30th-celebration-release-hero-v14.webp`,
@@ -738,7 +738,7 @@ export const BLOG_POSTS: BlogPostSummary[] = [
     path: '/blog/30th-celebration-set-guide',
     title: '30th Celebration Set Guide: Every Pikachu, Classic and Promo',
     excerpt:
-      "30th Celebration is the Pokémon TCG's 30th anniversary set: 165 holo cards, with a Pikachu in every pack. This guide explains how the set is numbered, shows every chase card and promo, and tells you what a master set takes.",
+      "30th Celebration is the Pokémon TCG's 30th anniversary set: 165 holo cards, with a Pikachu in every pack. This guide explains how the set is numbered, shows every secret rare and promo, and tells you what a master set takes.",
     seoTitle: 'Pokémon 30th Celebration Set Guide: Chase Cards & Box Odds',
     seoDescription:
       'Pokémon TCG 30th Celebration set guide: how the 165 cards are numbered, all 30 Pikachu, every secret rare and classic card, and all 33 promos.',
@@ -754,7 +754,7 @@ export const BLOG_POSTS: BlogPostSummary[] = [
     path: '/blog/30th-celebration-card-origins',
     title: 'Where Every 30th Celebration Classic Card Comes From',
     excerpt:
-      'The 30 classic cards in 30th Celebration reprint famous English cards from Base Set Charizard in 1999 to Paldea Evolved Magikarp in 2023. Here\'s the full map.',
+      'The 30 classic cards in 30th Celebration reprint famous English cards, from Base Set Charizard in 1999 to Paldea Evolved Magikarp in 2023. This guide matches each one to its original card.',
     seoTitle: 'Pokémon 30th Celebration Card Origins: English Art Matches',
     seoDescription:
       'Pokémon TCG 30th Celebration card origins: the 30 classic cards traced to English, from Base Set Charizard in 1999 to Paldea Evolved Magikarp in 2023.',
@@ -866,10 +866,10 @@ export const BLOG_POSTS: BlogPostSummary[] = [
     path: '/blog/gem-vol-5-set-guide',
     title: 'Gem Vol 5 Set Guide: Every Full Art, the Full Roster and Box Math',
     excerpt:
-      'Each of the 28 Pokémon comes in seven versions, and four of the full arts are Chinese Exclusive Pokémon Horizons cards. This guide shows how to tell the versions apart and what it really takes to finish the set.',
+      'Each of the 28 Pokémon comes in seven versions, from a common holo to a full art, and four of the full arts are Chinese Exclusive Pokémon Horizons cards. This guide shows how to tell the versions apart and what it really takes to finish the set.',
     seoTitle: 'Pokémon Gem Pack Vol. 5 (Gem 5) Set Guide: Chase Cards & Box Odds',
     seoDescription:
-      'Pokémon TCG Gem Pack Vol. 5 (Gem 5) set guide: telling the seven versions apart, all 28 full arts with four Horizons cards, and the 196-card master set.',
+      'Pokémon TCG Gem Pack Vol. 5 (Gem 5) set guide: how to tell the seven versions apart, all 28 full arts, the four Horizons cards and the 196-card master set.',
     tag: 'Set guide',
     date: '2026-04-24',
     heroImage: `${SITE_URL}/assets/blog/gem-vol-5-guide-hero-v10.webp`,

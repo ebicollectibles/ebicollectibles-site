@@ -179,7 +179,7 @@ function GemVol3SetGuide() {
         lede="Gem 3 mixes 18 Pokémon with nine Pokémon ex and Trainer and Energy cards, and five of its full arts are Chinese Exclusives. This guide explains how the numbering works and what it really takes to finish the set."
         cta={{
           heading: 'Collect Gem Vol 3',
-          body: 'Track every card on the full checklist, or pick up a booster box and start ripping.',
+          body: 'Track every card on the full checklist, or pick up a booster box.',
           links: [
             { to: '/sets/chinese/gem-vol-3', label: 'See the full card list' },
             { to: '/products/$id', params: { id: 'pokemon-chinese-gem-volume-3-booster-box' }, label: 'Shop the booster box', variant: 'ghost' },

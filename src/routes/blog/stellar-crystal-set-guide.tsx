@@ -1,3 +1,4 @@
+import { Zh } from '~/components/blog/Zh'
 import { rarityFullName } from '~/components/blog/RarityAbbr'
 import { BuyStrip } from '~/components/blog/BlogShop'
 import { createFileRoute, Link } from '@tanstack/react-router'
@@ -44,21 +45,21 @@ const PACKS = [
   { row: 'Holos per pack', slim: '1', jumbo: '6' },
   { row: 'Common and Uncommon', slim: '4', jumbo: '14' },
   { row: 'Poké Ball pattern holo and Rare', slim: 'about 0.7', jumbo: 'about 4.4' },
-  { row: 'Double Rare, Art Rare, ACE SPEC and Master Ball pattern', slim: 'about 0.27 (1 in 4 packs)', jumbo: 'about 1.4' },
+  { row: 'Double Rare, Art Rare, ACE SPEC and Master Ball pattern holo', slim: 'about 0.27 (1 in 4 packs)', jumbo: 'about 1.4' },
   { row: 'Super Rare, Special Art Rare and Ultra Rare', slim: '1 in 27 packs', jumbo: '1 in 5 packs' },
 ]
 
 const BLOCKS = [
-  { nos: '001 to 175', what: 'Pokémon, grouped by type', rarity: 'C, U, R, RR' },
-  { nos: '176 to 189', what: 'Items', rarity: 'C, U, ACE' },
-  { nos: '190 to 195', what: 'Pokémon Tools', rarity: 'U, ACE' },
-  { nos: '196 to 204', what: 'Supporters', rarity: 'U (Drasna is C)' },
-  { nos: '205 to 207', what: 'Stadiums', rarity: 'U, ACE' },
-  { nos: '208', what: 'Special Energy', rarity: 'ACE' },
-  { nos: '209 to 214', what: 'Art Rares', rarity: 'AR' },
-  { nos: '215 to 241', what: 'Super Rare full arts of 18 ex and 9 Supporters', rarity: 'SR' },
-  { nos: '242 to 257', what: 'Special Art Rares of 10 ex and 6 Supporters', rarity: 'SAR' },
-  { nos: '258 to 266', what: 'Gold Ultra Rares', rarity: 'UR' },
+  { nos: '001 to 175', what: 'Pokémon, grouped by type', rarity: 'Common, Uncommon, Rare, Double Rare' },
+  { nos: '176 to 189', what: 'Items', rarity: 'Common, Uncommon, plus 6 ACE SPEC' },
+  { nos: '190 to 195', what: 'Pokémon Tools', rarity: 'Uncommon, plus 1 ACE SPEC' },
+  { nos: '196 to 204', what: 'Supporters', rarity: 'Uncommon (Drasna is Common)' },
+  { nos: '205 to 207', what: 'Stadiums', rarity: 'Uncommon, plus 1 ACE SPEC' },
+  { nos: '208', what: 'Special Energy', rarity: 'ACE SPEC' },
+  { nos: '209 to 214', what: 'Art Rares', rarity: 'Art Rare' },
+  { nos: '215 to 241', what: 'Super Rare full arts of 18 ex and 9 Supporters', rarity: 'Super Rare' },
+  { nos: '242 to 257', what: 'Special Art Rares of 10 ex and 6 Supporters', rarity: 'Special Art Rare' },
+  { nos: '258 to 266', what: 'Gold Ultra Rares', rarity: 'Ultra Rare' },
 ]
 
 // Every Pokémon ex that reaches the secret block, with every number it prints at.
@@ -103,7 +104,7 @@ const TOC = [
 const FAQ = [
   {
     q: 'Are slim or jumbo Stellar Crystal packs better?',
-    a: 'For chase cards, jumbo. Pokémon China prints Super Rares, Special Art Rares and Ultra Rares at 1.00% of jumbo cards against 0.73% of slim cards, so a jumbo pack averages one every 5 packs and a slim pack one every 27.',
+    a: 'For the rarest cards, jumbo. Pokémon China prints Super Rares, Special Art Rares and Ultra Rares at 1.00% of jumbo cards against 0.73% of slim cards, so jumbo packs average one every 5 packs and slim packs one every 27.',
   },
   {
     q: 'Do slim and jumbo packs have different cards?',
@@ -111,10 +112,10 @@ const FAQ = [
   },
   {
     q: 'What is the Chinese Exclusive in Stellar Crystal?',
-    a: "Lisia's Appeal 257/208, a Special Art Rare by En Morikura.",
+    a: "Lisia's Appeal 257/208, a Special Art Rare by En Morikura. This illustration does not exist in English.",
   },
   {
-    q: 'Which Pokémon ex reach the gold Ultra Rare tier?',
+    q: 'Which Pokémon ex have a gold Ultra Rare?',
     a: 'Five: Cinderace ex, Lapras ex, Pikachu ex, Alolan Exeggutor ex and Terapagos ex. Pikachu ex, Alolan Exeggutor ex and Terapagos ex also have a Special Art Rare.',
   },
   {
@@ -186,7 +187,7 @@ function StellarCrystalSetGuide() {
         updated={status.liveAt}
         wide
         post={post}
-        lede="Stellar Crystal is the Stellar Tera set, with Pikachu on the pack and Terapagos ex. This guide helps you choose between slim and jumbo packs, shows every chase card, and explains what a 620-card master set takes."
+        lede="Stellar Crystal is the Stellar Tera set, with Pikachu on the pack and Terapagos ex. This guide helps you choose between slim and jumbo packs, shows every secret rare, and explains what a 620-card master set takes."
         cta={{
           heading: 'Collect Stellar Crystal',
           body: 'Track every card on the full checklist and tick off what you have.',
@@ -194,10 +195,14 @@ function StellarCrystalSetGuide() {
         }}
       >
         <p>
-          Stellar Crystal (CSV9C) is the Stellar Tera set: 266 cards with Pikachu on the pack, Terapagos ex, and a Chinese Exclusive
-          Lisia's Appeal Special Art Rare, sold in slim and jumbo packs. Our <Link to="/blog/stellar-crystal-release-news">release post</Link> covers what is new,
-          and our <Link to="/blog/stellar-crystal-card-origins">card origins guide</Link> traces every card to its English
-          printing. Use this one to pick a pack size, sort your pulls or plan a master set.
+          Stellar Crystal (<Zh>星彩晶璃</Zh>, set code CSV9C) released on May 15, 2026. It is the Stellar Tera set: 266 cards with
+          Pikachu on the pack, Terapagos ex and one Chinese Exclusive, the Lisia's Appeal Special Art Rare 257/208. It is sold in
+          slim and jumbo packs.
+        </p>
+        <p>
+          Our <Link to="/blog/stellar-crystal-release-news">release post</Link> covers what is new, and our{' '}
+          <Link to="/blog/stellar-crystal-card-origins">card origins guide</Link> matches every card to its English version. Use
+          this guide to pick a pack size, sort your pulls or plan a master set.
         </p>
 
         <nav className="toc" aria-label="In this guide">
@@ -240,19 +245,19 @@ function StellarCrystalSetGuide() {
         <p className="table-note">Averages from the official print shares, not guarantees.</p>
         <p>
           The jumbo pack is better per card as well as bigger: 1.00% of jumbo cards are Super Rare or higher, against 0.73% of slim
-          cards, about 37% more. Card for card, 120 jumbo cards average about 1.2 top-band pulls and 75 slim cards about 0.55.
+          cards, about 37% more. Over 120 jumbo cards that averages about 1.2 cards from the top group, and over 75 slim cards about 0.55.
         </p>
 
         <h2 id="special-art-rares">All 16 Special Art Rares</h2>
         <p>
-          242 to 257: ten Pokémon ex and six Supporters. Lisia's Appeal 257/208 is the Chinese Exclusive.
+          These are numbered 242 to 257: ten Pokémon ex and six Supporters. Lisia's Appeal 257/208 is the Chinese Exclusive.
         </p>
         <Gallery cards={pick([245, 257, 251, 247, 248, 250, 249, 244, 243, 246, 242, 253, 254, 252, 255, 256])} cols={4} />
 
         <BuyStrip />
 
         <h2 id="super-rares">All 27 Super Rares</h2>
-        <p>Full arts of 18 Pokémon ex (215 to 232) and 9 Supporters (233 to 241).</p>
+        <p>These are full arts of 18 Pokémon ex, numbered 215 to 232, and 9 Supporters, numbered 233 to 241.</p>
         <Gallery
           cards={pick([
             221, 241, 232, 223, 226, 218, 220, 228, 227, 237, 234, 233, 236, 240, 239, 238, 235, 217, 216, 222, 225, 229, 215, 219, 224,
@@ -262,17 +267,17 @@ function StellarCrystalSetGuide() {
         />
 
         <h2 id="ultra-rares">All 9 Ultra Rares</h2>
-        <p>The gold cards, 258 to 266: five Pokémon ex, then the Trainers.</p>
+        <p>These are the gold cards, numbered 258 to 266: five Pokémon ex, then four Trainer cards.</p>
         <Gallery cards={pick([260, 262, 259, 258, 261, 266, 263, 264, 265])} cols={3} />
 
         <h2 id="art-rares">All 6 Art Rares</h2>
-        <p>209 to 214, each a full illustration of a main-set Pokémon.</p>
+        <p>These are numbered 209 to 214. Each one is a full illustration of a main-set Pokémon.</p>
         <Gallery cards={pick([212, 211, 214, 210, 209, 213])} cols={3} />
 
         <h2 id="ladders">Every Pokémon ex at every rarity</h2>
         <p>
-          18 of the 22 Pokémon ex reach the secret block. These are the numbers each one prints at. Ceruledge ex, Sylveon ex, Zacian ex
-          and Noivern ex are Double Rare only.
+          18 of the 22 Pokémon ex also have a secret rare. The table shows the number of each version. Ceruledge ex, Sylveon ex,
+          Zacian ex and Noivern ex are Double Rare only.
         </p>
         <div className="table-scroll" role="group" aria-labelledby="tbl-2" tabIndex={0}>
           <table className="data-table">
@@ -280,10 +285,10 @@ function StellarCrystalSetGuide() {
             <thead>
               <tr>
                 <th scope="col">Pokémon</th>
-                <th scope="col">RR</th>
-                <th scope="col">SR</th>
-                <th scope="col">SAR</th>
-                <th scope="col">UR</th>
+                <th scope="col">Double Rare</th>
+                <th scope="col">Super Rare</th>
+                <th scope="col">Special Art Rare</th>
+                <th scope="col">Ultra Rare</th>
               </tr>
             </thead>
             <tbody>
@@ -301,7 +306,7 @@ function StellarCrystalSetGuide() {
 
         <h2 id="numbering">How the numbers work</h2>
         <p>
-          Every card has one number out of 208. The main set runs 001 to 208, from Common to Double Rare, with nine pink ACE SPEC cards
+          Every card has one number out of 208. The main set runs 001 to 208, from Common to Double Rare, with nine pink-framed ACE SPEC cards
           among the Trainers and Energy. Everything above 208 is a secret rare. The rarer versions of a card sit in the secret block at
           unrelated numbers, so match them by name.
         </p>
@@ -333,10 +338,10 @@ function StellarCrystalSetGuide() {
           Common, Uncommon and Rare cards, for 620 in total.
         </p>
         <p>
-          The Poké Ball holos come quickly, since they share the most common holo band. The Master Ball holos share the Double Rare band,
-          which averages about one card every 4 slim packs or 1.4 per jumbo pack across 214 different cards, so they take a long time.
-          The 52 top-band cards are harder still. The practical route is to open packs for fun and the lower tiers, then pick up the big
-          cards as singles. The <Link to="/sets/chinese/stellar-crystal-csv9">Stellar Crystal card list</Link> lets you tick off what you have.
+          The Poké Ball holos come quickly, since they are in the most common holo group. The Master Ball holos share a group with the
+          Double Rares, Art Rares and ACE SPEC cards. That group averages about one card every 4 slim packs, or 1.4 per jumbo pack,
+          spread across 214 different cards, so they take a long time. The 52 Super Rares, Special Art Rares and Ultra Rares are
+          harder still. Most collectors open packs for fun and for the lower rarities, then buy the rarest cards as singles. The <Link to="/sets/chinese/stellar-crystal-csv9">Stellar Crystal card list</Link> lets you tick off what you have.
         </p>
 
         <h2 id="faq">FAQ</h2>

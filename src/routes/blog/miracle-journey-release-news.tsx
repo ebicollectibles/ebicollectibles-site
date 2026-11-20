@@ -33,7 +33,7 @@ function Grid({ cards, cols }: { cards: Shown[]; cols: number }) {
 }
 
 const GARDEVOIR = [
-  { n: '155', name: 'Gardevoir ex', note: 'SAR · Jiro Sasumo' },
+  { n: '155', name: 'Gardevoir ex', note: 'Special Art Rare · Jiro Sasumo' },
   { n: '132', name: 'Ralts', note: 'Art Rare · Jiro Sasumo' },
   { n: '133', name: 'Kirlia', note: 'Art Rare · Jiro Sasumo' },
 ]
@@ -52,16 +52,16 @@ const MORE_EX = [
 ]
 
 const SARS = [
-  { n: '152', name: 'Meowscarada ex', note: 'SAR · Kouki Saitou' },
-  { n: '153', name: 'Skeledirge ex', note: 'SAR · kantaro' },
-  { n: '154', name: 'Quaquaval ex', note: 'SAR · Souichirou Gunjima' },
-  { n: '156', name: 'Squawkabilly ex', note: 'SAR · Amelicart' },
+  { n: '152', name: 'Meowscarada ex', note: 'Special Art Rare · Kouki Saitou' },
+  { n: '153', name: 'Skeledirge ex', note: 'Special Art Rare · kantaro' },
+  { n: '154', name: 'Quaquaval ex', note: 'Special Art Rare · Souichirou Gunjima' },
+  { n: '156', name: 'Squawkabilly ex', note: 'Special Art Rare · Amelicart' },
 ]
 
 const SUPPORTERS = [
-  { n: '157', name: "Erika's Invitation", note: 'SAR · Cona Nitanda' },
-  { n: '158', name: 'Dendra', note: 'SAR · GIDORA' },
-  { n: '159', name: 'Saguaro', note: 'SAR · Sanosuke Sakuma' },
+  { n: '157', name: "Erika's Invitation", note: 'Special Art Rare · Cona Nitanda' },
+  { n: '158', name: 'Dendra', note: 'Special Art Rare · GIDORA' },
+  { n: '159', name: 'Saguaro', note: 'Special Art Rare · Sanosuke Sakuma' },
 ]
 
 const ULTRA_RARES = [
@@ -205,6 +205,10 @@ function MiracleJourneyReleasePost() {
           Gardevoir on the pack and in the set as Gardevoir ex. Around it are Meowscarada ex, Skeledirge ex and Quaquaval ex, more
           Pokémon and Trainers from Paldea, and 35 secret rares.
         </p>
+        <p>
+          Our <Link to="/blog/miracle-journey-set-guide">set guide</Link> shows every chase card and the pull odds, and our{' '}
+          <Link to="/blog/miracle-journey-card-origins">card origins guide</Link> matches every card to its English version.
+        </p>
 
         <aside className="fact-box" aria-label="Miracle Journey key facts">
           <img src={cardImg('155')} alt="Gardevoir ex 155/128 Special Art Rare, Miracle Journey" loading="lazy" width={300} height={418} />
@@ -223,7 +227,7 @@ function MiracleJourneyReleasePost() {
               <dd>14 non-holo cards, 6 holo</dd>
               <dt>Set size</dt>
               <dd>163 cards: 128 in the main set, 35 secret rares</dd>
-              <dt>Cover Pokémon</dt>
+              <dt>On the pack</dt>
               <dd>Gardevoir</dd>
             </dl>
           </div>
@@ -247,9 +251,9 @@ function MiracleJourneyReleasePost() {
           Pokémon. Its Miracle Force attack does 190 damage.
         </p>
         <p>
-          The lead chase card is the Special Art Rare, 155/128, by Jiro Sasumo. Gardevoir sits on a sofa holding balls of yarn while a
-          woman knits beside it and a man with a camera sits at the coffee table. Jiro Sasumo also drew the Ralts and Kirlia Art
-          Rares, and the three cards follow one household: Ralts watches a young woman unpack moving boxes, and Kirlia sits beside
+          The lead chase card is the Special Art Rare, 155/128, by Jiro Sasumo. Gardevoir sits on a sofa holding a ball of yarn while a
+          woman knits beside it and a man sits at the coffee table. Jiro Sasumo also drew the Ralts and Kirlia Art
+          Rares, and the three cards follow one household: Ralts watches a young woman unpack moving boxes, and Kirlia stays beside
           her as she holds a baby.
         </p>
         <Grid cards={GARDEVOIR} cols={3} />
@@ -266,7 +270,7 @@ function MiracleJourneyReleasePost() {
 
         <h2 id="pokemon-ex">All 13 Pokémon ex</h2>
         <p>
-          The main set has 13 Pokémon ex, all Double Rares. Beside Gardevoir ex and the three starters there are Greninja ex,
+          The main set has 13 Pokémon ex, all Double Rares. Besides Gardevoir ex and the three starters, there are Greninja ex,
           Miraidon ex, Koraidon ex, Lycanroc ex, Paldean Clodsire ex, Mabosstiff ex, Copperajah ex, Squawkabilly ex and Grafaiai ex.
           Squawkabilly ex has the Squawk and Seize Ability: once during your first turn, you may discard your hand and draw 6 cards.
         </p>
@@ -274,7 +278,7 @@ function MiracleJourneyReleasePost() {
 
         <h2 id="special-art-rares">Special Art Rares</h2>
         <p>
-          Eight Special Art Rares, 152 to 159: five Pokémon ex and three Supporters. Skeledirge ex walks down a shopping street
+          The set has eight Special Art Rares, numbered 152 to 159. Five are Pokémon ex and three are Supporters. Skeledirge ex walks down a shopping street
           beside a Trainer, and a green Squawkabilly ex perches on a tiled rooftop.
         </p>
         <Grid cards={SARS} cols={4} />
@@ -288,12 +292,12 @@ function MiracleJourneyReleasePost() {
         <BuyStrip />
 
         <h2 id="ultra-rares">Gold Ultra Rares</h2>
-        <p>Four gold cards top the set, 160 to 163: Meowscarada ex, Skeledirge ex, Quaquaval ex and the Artazon Stadium.</p>
+        <p>Four gold cards top the set, numbered 160 to 163. They are Meowscarada ex, Skeledirge ex, Quaquaval ex and the Artazon Stadium.</p>
         <Grid cards={ULTRA_RARES} cols={4} />
 
         <h2 id="art-rares">Art Rares</h2>
         <p>
-          Eight Art Rares, 129 to 136, give main-set Pokémon a full illustration. Beside Ralts and Kirlia, Bellibolt glows in a dark
+          Eight Art Rares, numbered 129 to 136, give main-set Pokémon a full illustration. Besides Ralts and Kirlia, Bellibolt glows in a dark
           cave and a herd of Paldean Tauros stands under a low sun.
         </p>
         <Grid cards={ART_RARES} cols={4} />
@@ -336,8 +340,7 @@ function MiracleJourneyReleasePost() {
         </p>
         <p>
           Every Common, Uncommon and Rare also comes as a Poké Ball pattern and a Master Ball pattern holo, which brings the full set to
-          393 cards. Our <Link to="/blog/miracle-journey-set-guide">set guide</Link> has every chase card, and our{' '}
-          <Link to="/blog/miracle-journey-card-origins">card origins guide</Link> matches every card to its English version.
+          393 cards.
         </p>
 
         <h2 id="faq">FAQ</h2>

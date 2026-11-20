@@ -1,3 +1,4 @@
+import { Zh } from '~/components/blog/Zh'
 import { rarityFullName } from '~/components/blog/RarityAbbr'
 import { BuyStrip } from '~/components/blog/BlogShop'
 import { createFileRoute, Link } from '@tanstack/react-router'
@@ -43,14 +44,14 @@ function Gallery({ cards, cols }: { cards: Card[]; cols: number }) {
 }
 
 const BLOCKS = [
-  { nos: '001 to 114', what: 'Pokémon, grouped by type', rarity: 'C, U, R, RR' },
-  { nos: '115 to 120', what: 'Items and Pokémon Tools', rarity: 'U' },
-  { nos: '121 to 126', what: 'Supporters', rarity: 'C, U, R' },
-  { nos: '127 to 129', what: 'Stadiums and Special Energy', rarity: 'U' },
-  { nos: '130 to 137', what: 'Art Rares', rarity: 'AR' },
-  { nos: '138 to 152', what: 'Super Rare full arts of ex and Supporters', rarity: 'SR' },
-  { nos: '153 to 161', what: 'Special Art Rares of ex and Supporters', rarity: 'SAR' },
-  { nos: '162 to 165', what: 'Gold Ultra Rares', rarity: 'UR' },
+  { nos: '001 to 114', what: 'Pokémon, grouped by type', rarity: 'Common, Uncommon, Rare, Double Rare' },
+  { nos: '115 to 120', what: 'Items and Pokémon Tools', rarity: 'Uncommon' },
+  { nos: '121 to 126', what: 'Supporters', rarity: 'Common, Uncommon, Rare' },
+  { nos: '127 to 129', what: 'Stadiums and Special Energy', rarity: 'Uncommon' },
+  { nos: '130 to 137', what: 'Art Rares', rarity: 'Art Rare' },
+  { nos: '138 to 152', what: 'Super Rare full arts of ex and Supporters', rarity: 'Super Rare' },
+  { nos: '153 to 161', what: 'Special Art Rares of ex and Supporters', rarity: 'Special Art Rare' },
+  { nos: '162 to 165', what: 'Gold Ultra Rares', rarity: 'Ultra Rare' },
 ]
 
 // One slim box (15 packs of 5) with Pokémon China's 5-card odds applied.
@@ -168,7 +169,7 @@ function RewardRoundSetGuide() {
         lede="Reward Round is the Gholdengo set, with three Chinese Exclusives. This guide shows every chase card, what a slim box holds on average, and what a master set takes."
         cta={{
           heading: 'Collect Reward Round',
-          body: 'Track every card on the full checklist, or pick up a slim box and start ripping.',
+          body: 'Track every card on the full checklist, or pick up a slim box.',
           links: [
             { to: '/sets/chinese/reward-round-csv4', label: 'See the full card list' },
             { to: '/products/$id', params: { id: 'pokemon-chinese-reward-round-booster-box' }, label: 'Shop the slim box', variant: 'ghost' },
@@ -176,10 +177,13 @@ function RewardRoundSetGuide() {
         }}
       >
         <p>
-          Reward Round (CSV4C) is the Gholdengo set: 165 cards, three Chinese Exclusives, and slim and jumbo packs. Our{' '}
-          <Link to="/blog/reward-round-release-news">release post</Link> covers what is new, and our{' '}
-          <Link to="/blog/reward-round-card-origins">card origins guide</Link> matches every card to English. Use this one to sort
-          your pulls or plan a master set.
+          Reward Round (<Zh>嘉奖回合</Zh>, set code CSV4C) released on July 18, 2025. It is the Gholdengo set: 165 cards in slim and
+          jumbo packs, with 36 secret rares and three Chinese Exclusives.
+        </p>
+        <p>
+          Our <Link to="/blog/reward-round-release-news">release post</Link> covers what is new, and our{' '}
+          <Link to="/blog/reward-round-card-origins">card origins guide</Link> matches every card to its English version. Use
+          this guide to sort your pulls or plan a master set.
         </p>
 
         <nav className="toc" aria-label="In this guide">
@@ -194,7 +198,7 @@ function RewardRoundSetGuide() {
         </nav>
 
         <h2 id="box">What a slim box holds</h2>
-        <p>Pokémon China's odds chart for the 5-card pack, applied to one 15-pack slim box:</p>
+        <p>Pokémon China publishes an odds chart for the 5-card pack. Applied to one 15-pack slim box, it works out to roughly:</p>
         <div className="table-scroll" role="group" aria-labelledby="tbl-1" tabIndex={0}>
           <table className="data-table">
             <caption id="tbl-1" className="sr-only">What a slim box holds</caption>
@@ -216,40 +220,40 @@ function RewardRoundSetGuide() {
         </div>
         <p className="table-note">Averages from the official print shares, not guarantees.</p>
         <p>
-          The top band holds 28 different cards and averages about one every 27 packs, so most slim boxes will not have one. The 20-card
-          jumbo pack holds six holos instead of one.
+          The top group holds 28 different cards and averages about one in every 27 packs, so most slim boxes will not have one. The
+          20-card jumbo pack holds six holos, against one in a slim pack.
         </p>
 
         <h2 id="special-art-rares">All 9 Special Art Rares</h2>
-        <p>153 to 161. Maushold ex 158 and Rika 159 are Chinese Exclusives.</p>
-        <Gallery cards={lead(byRange(153, 161), ['158', '159', '157', '156', '154', '161'])} cols={3} />
+        <p>These are numbered 153 to 161: six Pokémon ex and three Supporters. Maushold ex 158/129 and Rika 159/129 are Chinese Exclusives.</p>
+        <Gallery cards={lead(byRange(153, 161), ['156', '158', '159', '157', '154', '161'])} cols={3} />
 
         <BuyStrip />
 
         <h2 id="super-rares">All 15 Super Rares</h2>
-        <p>Full arts of ten Pokémon ex and five Supporters, 138 to 152.</p>
+        <p>These are the full arts of ten Pokémon ex and five Supporters, numbered 138 to 152.</p>
         <Gallery cards={lead(byRange(138, 152), ['146', '144', '150', '149', '152', '151'])} cols={3} />
 
         <h2 id="ultra-rares">All 4 Ultra Rares</h2>
-        <p>The gold cards, 162 to 165. Gholdengo ex 162 is the third Chinese Exclusive.</p>
+        <p>These are the gold cards, numbered 162 to 165. Gholdengo ex 162/129 is the third Chinese Exclusive.</p>
         <Gallery cards={byRange(162, 165)} cols={4} />
 
         <h2 id="art-rares">All 8 Art Rares</h2>
-        <p>130 to 137.</p>
+        <p>These are numbered 130 to 137. Each one gives a main-set Pokémon a full illustration.</p>
         <Gallery cards={lead(byRange(130, 137), ['133', '136', '137', '132', '131'])} cols={4} />
 
         <h2 id="ladders">One Pokémon, several rarities</h2>
-        <p>The Pokémon ex with a Special Art Rare, and every number they print at:</p>
+        <p>These are the Pokémon ex with a Special Art Rare, and the number of each version.</p>
         <div className="table-scroll" role="group" aria-labelledby="tbl-2" tabIndex={0}>
           <table className="data-table">
             <caption id="tbl-2" className="sr-only">One Pokémon, several rarities</caption>
             <thead>
               <tr>
                 <th scope="col">Pokémon</th>
-                <th scope="col">RR</th>
-                <th scope="col">SR</th>
-                <th scope="col">SAR</th>
-                <th scope="col">UR</th>
+                <th scope="col">Double Rare</th>
+                <th scope="col">Super Rare</th>
+                <th scope="col">Special Art Rare</th>
+                <th scope="col">Ultra Rare</th>
               </tr>
             </thead>
             <tbody>
@@ -267,7 +271,7 @@ function RewardRoundSetGuide() {
         <p className="table-note">Slowking ex, Dedenne ex, Annihilape ex and Noivern ex also have Super Rares (140, 141, 142 and 145).</p>
 
         <h2 id="double-rares">All 14 Pokémon ex</h2>
-        <p>The Double Rares from the main set.</p>
+        <p>These are the Double Rares from the main set.</p>
         <Gallery cards={lead(setData.cards.filter((c) => c.rarity === 'Double Rare (RR)'), ['092', '101', '089', '114', '032', '058'])} cols={4} />
 
         <h2 id="numbering">How the numbers work</h2>
@@ -303,8 +307,8 @@ function RewardRoundSetGuide() {
           and Rares, for 395 in total.
         </p>
         <p>
-          With one holo per slim pack, the Master Ball holos and the 28 top-band cards take a long time to pull. Most collectors open boxes
-          for fun and the lower rarities, then buy the big cards as singles. The <Link to="/sets/chinese/reward-round-csv4">Reward Round card list</Link> lets
+          With one holo per slim pack, the Master Ball holos and the 28 cards in the top rarity group take a long time to pull. Most
+          collectors open boxes for fun and the lower rarities, then buy the rarest cards as singles. The <Link to="/sets/chinese/reward-round-csv4">Reward Round card list</Link> lets
           you tick off what you have.
         </p>
 

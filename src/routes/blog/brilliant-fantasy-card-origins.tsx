@@ -343,7 +343,7 @@ const FAQ = [
   },
   {
     q: 'Which card is the Chinese Exclusive?',
-    a: 'The Carmine Special Art Rare 255/207 by OKACHEKE, the only card with no English version. English has a Carmine Special Illustration Rare in Twilight Masquerade, but with different art, and that one is not in the Chinese set.',
+    a: 'The Carmine Special Art Rare 255/207 by OKACHEKE. It does not exist in English with this illustration. English has a Carmine Special Illustration Rare in Twilight Masquerade with a different illustration, and that one is not in the Chinese set.',
   },
   {
     q: 'Is the Milotic ex Special Art Rare the same as in English?',
@@ -351,7 +351,7 @@ const FAQ = [
   },
   {
     q: 'Are any Brilliant Fantasy cards English promos?',
-    a: 'Two: Xerneas ex 088/207 matches SVP 179 and Dialga ex 141/207 matches SVP 180.',
+    a: 'Two: Xerneas ex 088/207 matches SV Black Star Promo 179 and Dialga ex 141/207 matches SV Black Star Promo 180.',
   },
 ]
 
@@ -478,10 +478,14 @@ function BrilliantFantasyOrigins() {
         }}
       >
         <p>
-          If you collect English, 263 of the 264 cards in Brilliant Fantasy (set code CSV8C) will look familiar. Most match Twilight Masquerade (109) and
-          Shrouded Fable (76), with 38 from Surging Sparks, 32 from Stellar Crown and 8 from four other English sources. The one new card
-          is the Chinese Exclusive Carmine Special Art Rare. The Chinese set mixes these sources freely, so the numbers never line up with any one English
-          set. For the chase cards and box odds, see our <Link to="/blog/brilliant-fantasy-set-guide">set guide</Link>.
+          Brilliant Fantasy (set code CSV8C) released on March 13, 2026. Of its 264 cards, 109 match Twilight Masquerade and 76 match
+          Shrouded Fable, with 38 from Surging Sparks, 32 from Stellar Crown and 8 from four other English sources. The one new card is
+          the Chinese Exclusive Carmine Special Art Rare. The Chinese set mixes these sources, so its numbers do not line up with any
+          one English set. This guide matches every card to its English version.
+        </p>
+        <p>
+          Our <Link to="/blog/brilliant-fantasy-release-news">release post</Link> covers what is new, and our{' '}
+          <Link to="/blog/brilliant-fantasy-set-guide">set guide</Link> has the most wanted cards and the box odds.
         </p>
 
         <nav className="toc" aria-label="In this guide">
@@ -560,7 +564,7 @@ function BrilliantFantasyOrigins() {
           </table>
         </div>
         <p>
-          <strong>The Kitakami chase cards come from two sets.</strong> The four Ogerpon ex, Bloodmoon Ursaluna ex, Kieran, Carmine's Super
+          <strong>The Kitakami cards come from two sets.</strong> The four Ogerpon ex, Bloodmoon Ursaluna ex, Kieran, Carmine's Super
           Rare and Perrin match Twilight Masquerade. Okidogi ex, Munkidori ex, Fezandipiti ex, Pecharunt ex and the Cassiopeia Special Art
           Rare match Shrouded Fable.
         </p>
@@ -570,9 +574,9 @@ function BrilliantFantasyOrigins() {
           ex and Kofu Super Rares and the gold Bravery Charm.
         </p>
         <p>
-          <strong>One card is a Chinese Exclusive.</strong> English printed Carmine as a Super Rare and as a Special Illustration Rare by En Morikura.
-          Brilliant Fantasy keeps the Super Rare but swaps the Special Art Rare for a new illustration by OKACHEKE, so the English SIR is
-          not in this set at all.
+          <strong>One card is a Chinese Exclusive.</strong> English has Carmine as a full art and as a Special Illustration Rare.
+          Brilliant Fantasy keeps the full art as its Super Rare, but its Special Art Rare has a new illustration by OKACHEKE. The
+          English Special Illustration Rare is not in this set.
         </p>
         <ul className="card-grid cols-2">
           {carmine.map((r) => (
@@ -589,13 +593,13 @@ function BrilliantFantasyOrigins() {
           ))}
         </ul>
         <p>
-          <strong>Two promo arts and a late gold.</strong> Xerneas ex 088/207 and Dialga ex 141/207 use art that English released as SV
-          Black Star Promos. The gold Jamming Tower 262/207 matches Destined Rivals, and Foongus, Amoonguss ex and Reshiram ex match
+          <strong>Two cards match promos, and one gold card matches a later set.</strong> Xerneas ex 088/207 and Dialga ex 141/207
+          match SV Black Star Promos. The gold Jamming Tower 262/207 matches Destined Rivals, and Foongus, Amoonguss ex and Reshiram ex match
           Journey Together.
         </p>
 
         <h2 id="secret-rares">All 57 secret rares</h2>
-        <p>Every card above 207, with its English twin. The highlighted row is new.</p>
+        <p>This table lists every card above 207 with the English card it matches. The highlighted row is the Chinese Exclusive.</p>
         <OriginsTable list={SECRET} caption="Secret rares and the English card each one matches" />
 
         <BuyStrip />

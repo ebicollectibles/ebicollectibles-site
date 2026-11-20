@@ -1,4 +1,5 @@
 import { chunk } from '~/lib/chunk'
+import { Zh } from '~/components/blog/Zh'
 import { RarityAbbr, rarityFullName } from '~/components/blog/RarityAbbr'
 import { useId } from 'react'
 import { BuyStrip } from '~/components/blog/BlogShop'
@@ -254,7 +255,7 @@ const FAQ = [
   },
   {
     q: 'Are any Eternal Birth cards English promos?',
-    a: 'Three: Tinkaton ex 068/127 matches SVP 031, Lucario ex 075/127 matches SVP 017 and Cyclizar ex 106/127 matches SVP 018.',
+    a: 'Yes, three. Tinkaton ex 068/127 matches SVP 031, Lucario ex 075/127 matches SVP 017 and Cyclizar ex 106/127 matches SVP 018.',
   },
 ]
 
@@ -373,10 +374,13 @@ function EternalBirthOrigins() {
         }}
       >
         <p>
-          Eternal Birth (set code CSV1C) is the first Chinese Scarlet & Violet set, and four in five of its 167 cards match the first English
-          Scarlet & Violet set. Paldea Evolved and Obsidian Flames supply most of the rest, and a few come from 151, promos, Paradox
-          Rift and Paldean Fates. For the chase cards and pull odds, see our{' '}
-          <Link to="/blog/eternal-birth-set-guide">set guide</Link>.
+          Eternal Birth (<Zh>亘古开来</Zh>, set code CSV1C) released on January 17, 2025. It is the first Chinese Scarlet & Violet set, and
+          four in five of its 167 cards match the first English Scarlet & Violet set. Paldea Evolved and Obsidian Flames supply most
+          of the rest, and a few come from 151, promos, Paradox Rift and Paldean Fates. Every card has an English version.
+        </p>
+        <p>
+          Our <Link to="/blog/eternal-birth-release-news">release post</Link> covers what is new, and our{' '}
+          <Link to="/blog/eternal-birth-set-guide">set guide</Link> shows the chase cards and pull odds.
         </p>
 
         <nav className="toc" aria-label="In this guide">
@@ -439,7 +443,7 @@ function EternalBirthOrigins() {
                 <img src={r.image} alt={`${r.name} ${r.cn}/127 ${rarityFullName(r.rarity)}, Eternal Birth`} loading="lazy" width={300} height={418} />
                 <figcaption>
                   <strong>{r.name}</strong>
-                  {r.cn}/127 · <RarityAbbr code={r.rarity} /> · {SET_NAME[r.src]} {r.en}
+                  {r.cn}/127 · {rarityFullName(r.rarity)} · {SET_NAME[r.src]} {r.en}
                 </figcaption>
               </figure>
             </li>
@@ -478,11 +482,11 @@ function EternalBirthOrigins() {
         </p>
         <p>
           <strong>Three Double Rares are English promos.</strong> Tinkaton ex 068/127, Lucario ex 075/127 and Cyclizar ex 106/127
-          use art that English released as SV Black Star Promos.
+          use illustrations that are SV Black Star Promos in English.
         </p>
         <p>
-          <strong>Obsidian Flames adds seven cards.</strong> Rowlet, Dartrix and Decidueye ex, Victini ex, Thundurus, and Absol ex as
-          both a Double Rare and a Super Rare.
+          <strong>Obsidian Flames adds seven cards.</strong> They are Rowlet, Dartrix and Decidueye ex, Victini ex, Thundurus, and
+          Absol ex as both a Double Rare and a Super Rare.
         </p>
         <p>
           <strong>Giovanni comes from 151.</strong> All three versions of Giovanni's Charisma match 151, along with Grabber and the
@@ -490,7 +494,7 @@ function EternalBirthOrigins() {
         </p>
 
         <h2 id="secret-rares">All {SECRET.length} secret rares</h2>
-        <p>Every card above 127, with its English twin.</p>
+        <p>This table lists every card above 127 with its English twin.</p>
         <OriginsTable list={SECRET} caption="Secret rares and the English card each one matches" />
 
         <BuyStrip />

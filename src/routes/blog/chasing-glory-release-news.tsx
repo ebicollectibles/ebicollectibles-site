@@ -101,7 +101,7 @@ const FAQ = [
   },
   {
     q: 'What is the difference between the slim and jumbo Chasing Glory packs?',
-    a: 'A slim pack has 5 cards: 4 non-holo and 1 holo. A jumbo pack has 20 cards: 14 non-holo and 6 holo. The card list is the same, but the jumbo pack has better published odds for every holo band.',
+    a: 'A slim pack has 5 cards: 4 non-holo and 1 holo. A jumbo pack has 20 cards: 14 non-holo and 6 holo. The card list is the same, but the jumbo pack has better published odds for every holo group.',
   },
   {
     q: 'How many packs are in each booster box?',
@@ -314,14 +314,14 @@ function ChasingGloryReleasePost() {
         </div>
         <p className="table-note">From Pokémon China's odds chart for each pack size.</p>
         <p>
-          The jumbo pack is better at every holo level. The top band (Super Rare, Special Art Rare and Ultra Rare) is 1.00% of jumbo
-          cards against 0.73% of slim cards, about 37% more per card. In practice that is roughly one top-band card in every 5 jumbo
+          The jumbo pack is better at every holo level. The top group (Super Rare, Special Art Rare and Ultra Rare) is 1.00% of jumbo
+          cards against 0.73% of slim cards, about 37% more per card. In practice that is roughly one top-group card in every 5 jumbo
           packs, against one in every 27 slim packs.
         </p>
         <p>
-          Per box, a jumbo box (6 packs, 120 cards, 36 holos) averages about 1.2 top-band cards and 8 from the Double Rare band. A slim
-          box (15 packs, 75 cards, 15 holos) averages about half a top-band card and 4 from the Double Rare band. If you are chasing
-          the big hits, jumbo is the stronger box. If you like ripping lots of small packs, slim is the classic experience. Our{' '}
+          Per box, a jumbo box (6 packs, 120 cards, 36 holos) averages about 1.2 top-group cards and 8 from the Double Rare group. A slim
+          box (15 packs, 75 cards, 15 holos) averages about half a top-group card and 4 from the Double Rare group. If you are chasing
+          the rarest cards, jumbo is the stronger box. If you like ripping lots of small packs, slim is the classic experience. Our{' '}
           <Link to="/blog/chasing-glory-set-guide">set guide</Link> breaks down both boxes in full.
         </p>
 
@@ -400,7 +400,7 @@ function ChasingGloryReleasePost() {
         <p>
           Every Common, Uncommon and Rare card also comes as a Poké Ball pattern holo and a Master Ball pattern holo. The card is the
           same, only the holo pattern changes. That adds 396 cards to a true master set, for 683 in total. The Master Ball versions sit in the
-          same odds band as Double Rares and Art Rares, so they are a real chase on their own.
+          same odds group as Double Rares and Art Rares, so they are a real chase on their own.
         </p>
 
         <h2 id="coin-set">The coin set</h2>

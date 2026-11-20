@@ -58,12 +58,23 @@ function FigureGrid({ figs }: { figs: Fig[] }) {
 }
 
 const TOC = [
-  { id: 'lineup', label: 'The 12 regular figures' },
-  { id: 'secret', label: 'The secret: classic Pikachu' },
-  { id: 'in-the-box', label: 'What is in a box' },
-  { id: 'odds', label: 'Odds and cases' },
-  { id: 'collecting', label: 'How to collect them' },
+  { id: 'what-it-is', label: 'What are the Dream Painting Pikachu figures?' },
+  { id: 'lineup', label: 'All 12 regular Pikachu figures' },
+  { id: 'secret', label: 'What is the secret figure?' },
+  { id: 'in-the-box', label: 'What comes in a box?' },
+  { id: 'odds', label: 'What are the odds of the secret figure?' },
+  { id: 'collecting', label: 'Blind box, case or single figure?' },
   { id: 'faq', label: 'FAQ' },
+]
+
+// Buying options side by side. Pokémon China has not said what a case holds
+// beyond 12 boxes, so the case column says the boxes are random.
+const OPTIONS = [
+  { row: 'What you get', box: '1 sealed box', sealed: '12 sealed boxes', single: '1 box we opened to confirm the figure' },
+  { row: 'Which figure', box: 'Random', sealed: 'Random', single: 'The one you choose' },
+  { row: 'Secret figure', box: 'About 1 box in 144', sealed: 'About an 8% chance in 12 boxes', single: 'Not possible' },
+  { row: 'Card, stand and pack', box: 'Included', sealed: 'Included in every box', single: 'Included, with the pack still sealed' },
+  { row: 'Best for', box: 'The surprise', sealed: 'Starting a full set of 12', single: 'One Pikachu you want' },
 ]
 
 const FAQ = [
@@ -89,7 +100,7 @@ const FAQ = [
   },
   {
     q: 'Does a case have one of each figure?',
-    a: 'A case holds 12 boxes, the same as the number of regular designs, but Pokémon China has not said a case is one of each. Treat the boxes as random.',
+    a: 'A case holds 12 boxes, the same as the number of regular designs, but Pokémon China has not said that a case holds one of each. Treat the boxes as random.',
   },
   {
     q: 'What does figure 18/30 mean?',
@@ -146,6 +157,18 @@ function PikachuDreamPaintingReleasePost() {
       logo: { '@type': 'ImageObject', url: `${BLOG_SITE_URL}/assets/ebi-logo.jpg`, width: 240, height: 240 },
     },
   }
+  const lineupJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    name: 'All 12 regular Dream Painting Pikachu figures',
+    numberOfItems: FIGURES.length,
+    itemListElement: FIGURES.map((f, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      name: `Pikachu figure ${f.fig}/30, from 30th Celebration card ${f.card}/103 by ${f.illus}`,
+      image: figImg(f.fig),
+    })),
+  }
   const faqJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
@@ -156,26 +179,32 @@ function PikachuDreamPaintingReleasePost() {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(articleJsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(faqJsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(lineupJsonLd) }} />
       <BlogPostLayout
         updated={status.liveAt}
         wide
         post={post}
-        lede="Twelve of the 30 Pikachu cards from 30th Celebration, sculpted so the Pikachu climbs out of its own card, plus a secret classic Pikachu in 1 box out of 144."
+        lede="Pokémon China turned 12 of the 30th Celebration Pikachu cards into figures that stand in front of their own card. Each box has one random figure, its card, a display stand and a 30th Celebration pack, and about 1 box in 144 holds a secret classic Pikachu."
         cta={{
           heading: 'Shop the Pikachu figures',
-          body: 'Blind boxes, a 12-box case, or the exact figure you want as a single.',
+          body: 'One blind box, a 12-box case, or the exact figure you want as a single.',
           links: [
             { to: '/products/$id', params: { id: 'pokemon-chinese-pikachu-30th-celebration-figures-blind-box' }, label: 'Shop the blind box' },
             { to: '/products/$id', params: { id: 'pokemon-chinese-pikachu-30th-celebration-figures-blind-box-case' }, label: 'Shop the 12-box case', variant: 'ghost' },
           ],
         }}
       >
+        <h2 id="what-it-is">What are the Dream Painting Pikachu figures?</h2>
         <p>
-          Dream Painting (<Zh>绘梦点睛</Zh>) is Pokémon China's figure line built on card art: each figure recreates the Pokémon from one card
-          illustration, and you stand the card behind it so the figure looks like it is stepping out of the picture. This release, the
-          30th Anniversary Pikachu Figure Set, takes 12 of the 30 Pikachu cards from <Link to="/blog/30th-celebration-release-news">30th
-          Celebration</Link>. Every box also has the matching card and a sealed 30th Celebration pack. The secret is the classic Base Set
-          Pikachu.
+          The Dream Painting 30th Anniversary Pikachu Figure Set (<Zh>绘梦点睛 30周年皮卡丘手办套装</Zh>) is a blind box of Pikachu figures from
+          Pokémon China. It went on sale in China on September 16, 2026, the same day as the{' '}
+          <Link to="/blog/30th-celebration-release-news">30th Celebration</Link> booster set. Dream Painting (<Zh>绘梦点睛</Zh>) is Pokémon
+          China's figure line based on card illustrations. Each figure recreates the Pokémon from one card, and the card stands behind it, so
+          the figure looks like it is stepping out of the picture.
+        </p>
+        <p>
+          This release uses 12 of the 30 Pikachu cards from 30th Celebration, plus one secret figure. Every box has one random figure, the
+          card it is based on, a display stand and a sealed 30th Celebration pack.
         </p>
 
         <aside className="fact-box" aria-label="Dream Painting Pikachu key facts">
@@ -216,15 +245,15 @@ function PikachuDreamPaintingReleasePost() {
           </ol>
         </nav>
 
-        <h2 id="lineup">The 12 regular figures</h2>
+        <h2 id="lineup">All 12 regular Pikachu figures</h2>
         <p>
           Each 30th Celebration Pikachu card was drawn by a different illustrator, so no two figures share a style. Some stay close to
-          the card, like Shinji Kanda's Pikachu with the pencil hatching painted onto the figure. Others break the frame: Tomokazu
-          Komiya's tumbling Pikachu trails a red streamer past the card edge, and Kazuki Minami's spinning Pikachu flings its tail out
-          to the side. Atsuko Nishida, Pikachu's original designer, and Ken Sugimori each have one of the 12.
+          the card, like Shinji Kanda's Pikachu, which has the card's hatching lines painted onto the figure. Others reach past the card:
+          Tomokazu Komiya's Pikachu trails a red streamer out to the side, and Kazuki Minami's Pikachu swings its tail out past the
+          card edge. Atsuko Nishida, Pikachu's original designer, and Ken Sugimori each have one of the 12.
         </p>
         <FigureGrid figs={FIGURES} />
-        <p className="table-note">Our photos of the figures, each on its stand with its card. The number is the Pikachu number printed on the card.</p>
+        <p className="table-note">These are our photos of the figures, each on its stand with its card. The number is the Pikachu number printed on the card.</p>
         <figure style={{ margin: '28px 0' }}>
           <img
             src={`${SITE_URL}/assets/blog/pikachu-dream-painting-lineup.webp`}
@@ -235,7 +264,7 @@ function PikachuDreamPaintingReleasePost() {
             style={{ width: '100%', height: 'auto', borderRadius: 10 }}
           />
         </figure>
-        <p>And the cards they come from, in the same order:</p>
+        <p>These are the cards the figures come from, in the same order.</p>
         <ul className="card-grid cols-4">
           {FIGURES.map((f) => (
             <li key={f.card}>
@@ -250,11 +279,11 @@ function PikachuDreamPaintingReleasePost() {
           ))}
         </ul>
 
-        <h2 id="secret">The secret: classic Pikachu</h2>
+        <h2 id="secret">What is the secret figure?</h2>
         <p>
-          The 13th figure is hidden. It is the Pikachu from card 136/103, one of the 30 classic cards in 30th Celebration that reprint
-          famous cards from the TCG's history in their original frames. This one is the 1999 Base Set Pikachu by Mitsuhiro Arita: the chubby,
-          round-cheeked Pikachu from the very first set, now a figure with the same soft painted look. It comes with the 136/103 card.
+          The secret figure is the classic Pikachu from card 136/103. That card is one of the 30 classic cards in 30th Celebration, which
+          reprint famous cards from the TCG's history in their original frames. This one is the 1999 Base Set Pikachu by Mitsuhiro Arita,
+          the round Pikachu from the very first set. The figure comes with the 136/103 card.
         </p>
         <figure style={{ margin: '24px auto 30px', maxWidth: 720 }}>
           <img
@@ -269,8 +298,11 @@ function PikachuDreamPaintingReleasePost() {
 
         <BuyStrip />
 
-        <h2 id="in-the-box">What is in a box</h2>
-        <p>Pokémon China lists three things in each box, and the official photos show the stand the figure and card sit on:</p>
+        <h2 id="in-the-box">What comes in a box?</h2>
+        <p>
+          Pokémon China lists a figure, its card and a booster pack in each box, and its photos show the stand that the figure and card
+          sit on.
+        </p>
         <ul>
           <li>1 random Pikachu figure, one of 13</li>
           <li>The 30th Celebration Pikachu card that figure is based on</li>
@@ -281,14 +313,14 @@ function PikachuDreamPaintingReleasePost() {
           The box has all 12 regular figures and their card numbers printed on the side, plus a silhouette for the secret.
         </p>
 
-        <h2 id="odds">Odds and cases</h2>
+        <h2 id="odds">What are the odds of the secret figure?</h2>
         <p>
-          Pokémon China publishes the ratio: each regular figure is made in equal numbers, and regular boxes outnumber secret boxes 143
-          to 1. So about 1 box in 144 is the secret, and each regular figure is about 1 box in 12.
+          About 1 box in 144. Pokémon China publishes the production ratio: the 12 regular figures are made in equal numbers, and regular
+          boxes outnumber secret boxes 143 to 1. Each regular figure is about 1 box in 12.
         </p>
         <div className="table-scroll" role="group" aria-labelledby="tbl-1" tabIndex={0}>
           <table className="data-table">
-            <caption id="tbl-1" className="sr-only">Odds and cases</caption>
+            <caption id="tbl-1" className="sr-only">Odds for each Dream Painting Pikachu figure</caption>
             <thead>
               <tr>
                 <th scope="col">Figure</th>
@@ -310,21 +342,45 @@ function PikachuDreamPaintingReleasePost() {
             </tbody>
           </table>
         </div>
-        <p className="table-note">From Pokémon China's 143:1 production ratio. Averages, not guarantees.</p>
+        <p className="table-note">These figures come from Pokémon China's 143 to 1 production ratio. They are averages, not guarantees.</p>
         <p>
-          A case is 12 boxes. At 1 in 144, you would expect a secret about once every 12 cases, and 12 random boxes have about an 8%
+          A case is 12 boxes. At 1 box in 144, you would expect a secret about once every 12 cases, and 12 random boxes have about an 8%
           chance of holding one.
         </p>
 
-        <h2 id="collecting">How to collect them</h2>
+        <h2 id="collecting">Blind box, case or single figure?</h2>
         <p>
-          If you want all 12, a 12-box case is the quickest start, though Pokémon China has not said a case is one of each. If you want one Pikachu, the one by your favorite illustrator or
-          the one from a card you already own, buy it as a single: every regular figure is on our shelf individually, opened only to
-          confirm the design, with its card, stand and sealed pack still included. Blind boxes are for the fun of the rip and the small
-          shot at the secret, and every box still gives you a 30th Celebration pack.
+          It depends on whether you want the surprise, the whole set or one Pikachu. A case holds 12 boxes, the same as the number of
+          regular designs, but Pokémon China has not said that a case holds one of each, so treat the boxes as random. A single is a box
+          we opened only to confirm the figure. Its card, stand and sealed pack are still included.
         </p>
+        <div className="table-scroll" role="group" aria-labelledby="tbl-options" tabIndex={0}>
+          <table className="data-table">
+            <caption id="tbl-options" className="sr-only">
+              A blind box compared with a 12-box case and a single figure
+            </caption>
+            <thead>
+              <tr>
+                <td />
+                <th scope="col">Blind box</th>
+                <th scope="col">12-box case</th>
+                <th scope="col">Single figure</th>
+              </tr>
+            </thead>
+            <tbody>
+              {OPTIONS.map((o) => (
+                <tr key={o.row}>
+                  <th scope="row">{o.row}</th>
+                  <td>{o.box}</td>
+                  <td>{o.sealed}</td>
+                  <td>{o.single}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
         <p>
-          The singles: {FIGURES.map((f, i) => (
+          Each regular figure has its own listing: {FIGURES.map((f, i) => (
             <span key={f.fig}>
               <Link to="/products/$id" params={{ id: `pokemon-chinese-pikachu-30th-celebration-figure-${f.fig}` }}>
                 {f.fig}/30
@@ -346,10 +402,9 @@ function PikachuDreamPaintingReleasePost() {
 
         <h2 id="our-take">Our take</h2>
         <p>
-          Of everything around the 30th Celebration launch that is not a card, these are our favorite. The figures are faithful to very
-          different art styles, the card-behind-figure display looks great on a shelf, and the secret is the right choice: the Pikachu
-          that started it all. Pair a figure with the same card from your binder and you have a 30th anniversary display that costs
-          you one shelf slot.
+          Of everything released around 30th Celebration that is not a card, these are our favorite. The figures stay faithful to 12 very
+          different illustration styles, and the card standing behind the figure makes a good shelf display. The Base Set Pikachu is a
+          fitting choice for the secret.
         </p>
       </BlogPostLayout>
     </>

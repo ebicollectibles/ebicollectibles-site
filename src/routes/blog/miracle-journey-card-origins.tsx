@@ -1,4 +1,5 @@
 import { chunk } from '~/lib/chunk'
+import { Zh } from '~/components/blog/Zh'
 import { RarityAbbr, rarityFullName } from '~/components/blog/RarityAbbr'
 import { useId } from 'react'
 import { BuyStrip } from '~/components/blog/BlogShop'
@@ -249,7 +250,7 @@ const FAQ = [
   },
   {
     q: 'Are any Miracle Journey cards English promos?',
-    a: 'Six: Greninja ex 030/128 matches SVP 054, Latias 059/128 matches SVP 139, Tinkaton 070/128 matches SVP 140, Mabosstiff ex 096/128 matches SVP 086, Shroodle 106/128 matches SVP 099 and Grafaiai ex 107/128 matches SVP 100.',
+    a: 'Yes, six. Greninja ex 030/128 matches SVP 054, Latias 059/128 matches SVP 139, Tinkaton 070/128 matches SVP 140, Mabosstiff ex 096/128 matches SVP 086, Shroodle 106/128 matches SVP 099 and Grafaiai ex 107/128 matches SVP 100.',
   },
 ]
 
@@ -368,9 +369,13 @@ function MiracleJourneyOrigins() {
         }}
       >
         <p>
-          Miracle Journey (set code CSV2C) does not follow one English set. Almost half of its 163 cards match Paldea Evolved, and the first Scarlet &
-          Violet set and Obsidian Flames supply most of the rest. A few come from promos, 151 and Paldean Fates, and no card is new
-          art. For the chase cards and pull odds, see our <Link to="/blog/miracle-journey-set-guide">set guide</Link>.
+          Miracle Journey (<Zh>奇迹启程</Zh>, set code CSV2C) released on March 21, 2025. It does not follow one English set. Almost half
+          of its 163 cards match Paldea Evolved, and the first Scarlet & Violet set and Obsidian Flames supply most of the rest. A
+          few come from promos, 151 and Paldean Fates, and no card is new art.
+        </p>
+        <p>
+          Our <Link to="/blog/miracle-journey-release-news">release post</Link> covers what is new, and our{' '}
+          <Link to="/blog/miracle-journey-set-guide">set guide</Link> shows the chase cards and pull odds.
         </p>
 
         <nav className="toc" aria-label="In this guide">
@@ -422,9 +427,9 @@ function MiracleJourneyOrigins() {
 
         <h2 id="gardevoir">The Gardevoir line</h2>
         <p>
-          The cover Pokémon's cards all match the first Scarlet & Violet set. Ralts 053, Kirlia 054 and Gardevoir ex 055 match
+          The cards of Gardevoir, the Pokémon on the pack, all match the first Scarlet & Violet set. Ralts 053, Kirlia 054 and Gardevoir ex 055 match
           084/198, 085/198 and 086/198, and the Gardevoir ex Super Rare 140 matches 228/198. The three cards by Jiro Sasumo match too:
-          the Ralts and Kirlia Art Rares and the Gardevoir ex Special Art Rare, which shows Gardevoir on a sofa holding balls of yarn
+          the Ralts and Kirlia Art Rares and the Gardevoir ex Special Art Rare, which shows Gardevoir on a sofa holding a ball of yarn
           beside a woman knitting.
         </p>
         <ul className="card-grid cols-3">
@@ -434,7 +439,7 @@ function MiracleJourneyOrigins() {
                 <img src={r.image} alt={`${r.name} ${r.cn}/128 ${rarityFullName(r.rarity)}, Miracle Journey`} loading="lazy" width={300} height={418} />
                 <figcaption>
                   <strong>{r.name}</strong>
-                  {r.cn}/128 · <RarityAbbr code={r.rarity} /> · {SET_NAME[r.src]} {r.en}
+                  {r.cn}/128 · {rarityFullName(r.rarity)} · {SET_NAME[r.src]} {r.en}
                 </figcaption>
               </figure>
             </li>
@@ -472,8 +477,8 @@ function MiracleJourneyOrigins() {
           Artazon 127/128 matches Paldea Evolved 171/193.
         </p>
         <p>
-          <strong>Six promo arts.</strong> Greninja ex 030/128, Latias 059/128, Tinkaton 070/128, Mabosstiff ex 096/128, Shroodle
-          106/128 and Grafaiai ex 107/128 use art that English released as SV Black Star Promos.
+          <strong>Six cards are English promos.</strong> Greninja ex 030/128, Latias 059/128, Tinkaton 070/128, Mabosstiff ex
+          096/128, Shroodle 106/128 and Grafaiai ex 107/128 use illustrations that are SV Black Star Promos in English.
         </p>
         <p>
           <strong>Erika's Invitation comes from 151.</strong> All three versions match 151: the Uncommon 118/128, the Super Rare
@@ -482,7 +487,7 @@ function MiracleJourneyOrigins() {
         </p>
 
         <h2 id="secret-rares">All {SECRET.length} secret rares</h2>
-        <p>Every card above 128, with its English twin.</p>
+        <p>This table lists every card above 128 with its English twin.</p>
         <OriginsTable list={SECRET} caption="Secret rares and the English card each one matches" />
 
         <BuyStrip />

@@ -53,7 +53,7 @@ const TOC = [
 const FAQ = [
   {
     q: 'How many full arts are in Gem 5?',
-    a: '28, one for every Pokémon in the set. Every full art is numbered 07, for example 0107/07 for Captain Pikachu.',
+    a: '28, one for every Pokémon in the set. Every full art is version 07, so its number ends 07/07, for example 0107/07 for Captain Pikachu.',
   },
   {
     q: 'What do the symbols next to the card number mean?',
@@ -69,7 +69,7 @@ const FAQ = [
   },
   {
     q: 'How many boxes does a master set take?',
-    a: 'There is no fixed number. Commons fill in fast, but with about 1.3 full arts per box and 28 to find, landing every full art from boxes alone takes dozens of boxes, so most collectors finish with singles.',
+    a: 'There is no fixed number. If every card at a rarity is equally likely, the commons fill in within about 7 boxes and the uncommons take about 14. With about 1.3 full arts per box and 28 to find, landing every full art from boxes alone takes around 80 boxes on average, so most collectors finish with singles.',
   },
 ]
 
@@ -136,10 +136,10 @@ function GemVol5SetGuide() {
         updated={status.liveAt}
         wide
         post={post}
-        lede="Each of the 28 Pokémon comes in seven versions, and four of the full arts are Chinese Exclusive Pokémon Horizons cards. This guide shows how to tell the versions apart and what it really takes to finish the set."
+        lede="Each of the 28 Pokémon comes in seven versions, from a common holo to a full art, and four of the full arts are Chinese Exclusive Pokémon Horizons cards. This guide shows how to tell the versions apart and what it really takes to finish the set."
         cta={{
           heading: 'Collect Gem Vol 5',
-          body: 'Track every card on the full checklist, or pick up a booster box and start ripping.',
+          body: 'Track every card on the full checklist, or pick up a booster box.',
           links: [
             { to: '/sets/chinese/gem-vol-5', label: 'See the full card list' },
             { to: '/products/$id', params: { id: 'pokemon-chinese-gem-volume-5-booster-box' }, label: 'Shop the booster box', variant: 'ghost' },
@@ -200,7 +200,7 @@ function GemVol5SetGuide() {
           {FULL_ARTS_GALLERY.map((c) => (
             <li key={c.number}>
               <figure>
-                <img src={c.image} alt={`${c.name} full art ${c.number}, Gem Vol 5`} loading="lazy" width={300} height={419} />
+                <img src={c.image} alt={`${c.name} ${EXCLUSIVE.has(c.number) ? 'Chinese Exclusive full art' : 'full art'} ${c.number}, Gem Vol 5`} loading="lazy" width={300} height={419} />
                 <figcaption>
                   {EXCLUSIVE.has(c.number) && <ChineseExclusiveBadge />}
                   <strong>{c.name}</strong>
@@ -215,7 +215,7 @@ function GemVol5SetGuide() {
 
         <h2 id="roster">The full roster</h2>
         <p>
-          All 28 Pokémon, in set order. Each one has seven cards, numbered from its first two digits plus 01 to 07. None of
+          All 28 Pokémon, in set order. Each one has seven cards, numbered pp01 to pp07, where pp is its two-digit set number (0101 to 0107 for Captain Pikachu). None of
           them belong to a Trainer.
         </p>
         <div className="table-scroll" role="group" aria-labelledby="tbl-2" tabIndex={0}>
@@ -282,13 +282,13 @@ function GemVol5SetGuide() {
 
         <h2 id="master-set">Chasing a master set</h2>
         <p>
-          A master set is all 196 cards. The commons and uncommons come quickly, since a box averages 54 of them and there are only
-          112 to find. The higher rarities take much longer.
+          A master set is all 196 cards. A box averages 36 commons and 18 uncommons. If every card at a rarity is equally likely, the 56
+          commons fill in within about 7 boxes, and the 56 uncommons take about 14. The higher rarities take much longer.
         </p>
         <p>
           A box averages about 1.3 full arts, spread across 28 different cards. If each full art is equally likely, any one
-          specific full art shows up in roughly 1 box in 21, and pulling all 28 from boxes alone would take dozens of boxes. The
-          Double Rares are friendlier, at about 4 per box, but still take many boxes to complete.
+          specific full art shows up in roughly 1 box in 21 or 22, and pulling all 28 from boxes alone would take around 80 boxes
+          on average. The Double Rares are friendlier, at about 4 per box, but still take about 25 boxes to complete.
         </p>
         <p>
           So most collectors open a few boxes for fun and for the lower rarities, then buy the full arts and Double Rares they still

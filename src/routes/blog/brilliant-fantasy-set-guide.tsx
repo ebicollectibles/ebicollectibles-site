@@ -1,3 +1,4 @@
+import { Zh } from '~/components/blog/Zh'
 import { rarityFullName } from '~/components/blog/RarityAbbr'
 import { BuyStrip } from '~/components/blog/BlogShop'
 import { createFileRoute, Link } from '@tanstack/react-router'
@@ -45,22 +46,22 @@ const BOXES = [
   { row: 'Cards per box', slim: '75', jumbo: '120' },
   { row: 'Holos per box', slim: '15', jumbo: '36' },
   { row: 'Common and Uncommon', slim: '60', jumbo: '84' },
-  { row: 'Poké Ball pattern holo and Rare', slim: 'about 10', jumbo: 'about 27' },
-  { row: 'Double Rare, Art Rare, ACE SPEC and Master Ball pattern', slim: 'about 4', jumbo: 'about 8' },
+  { row: 'Poké Ball pattern holo and Rare', slim: 'about 10', jumbo: 'about 26 to 27' },
+  { row: 'Double Rare, Art Rare, ACE SPEC Rare and Master Ball pattern', slim: 'about 4', jumbo: 'about 8' },
   { row: 'Super Rare, Special Art Rare and Ultra Rare', slim: 'about 0.55', jumbo: 'about 1.2' },
 ]
 
 const BLOCKS = [
-  { nos: '001 to 172', what: 'Pokémon, grouped by type', rarity: 'C, U, R, RR' },
-  { nos: '173 to 183', what: 'Items', rarity: 'U, ACE' },
-  { nos: '184 to 190', what: 'Pokémon Tools', rarity: 'U, ACE' },
-  { nos: '191 to 200', what: 'Supporters', rarity: 'U (Caretaker is C)' },
-  { nos: '201 to 205', what: 'Stadiums', rarity: 'U, ACE' },
-  { nos: '206 to 207', what: 'Special Energy', rarity: 'U, ACE' },
-  { nos: '208 to 213', what: 'Art Rares', rarity: 'AR' },
-  { nos: '214 to 241', what: 'Super Rare full arts of 18 ex and 10 Supporters', rarity: 'SR' },
-  { nos: '242 to 255', what: 'Special Art Rares of 10 ex and 4 Supporters', rarity: 'SAR' },
-  { nos: '256 to 264', what: 'Gold Ultra Rares', rarity: 'UR' },
+  { nos: '001 to 172', what: 'Pokémon, grouped by type', rarity: 'Common, Uncommon, Rare, Double Rare' },
+  { nos: '173 to 183', what: 'Items', rarity: 'Uncommon, plus 5 ACE SPEC' },
+  { nos: '184 to 190', what: 'Pokémon Tools', rarity: 'Uncommon, plus 2 ACE SPEC' },
+  { nos: '191 to 200', what: 'Supporters', rarity: 'Uncommon (Caretaker is Common)' },
+  { nos: '201 to 205', what: 'Stadiums', rarity: 'Uncommon, plus 1 ACE SPEC' },
+  { nos: '206 to 207', what: 'Special Energy', rarity: 'Uncommon (Boomerang Energy), ACE SPEC (Legacy Energy)' },
+  { nos: '208 to 213', what: 'Art Rares', rarity: 'Art Rare' },
+  { nos: '214 to 241', what: 'Super Rare full arts of 18 ex and 10 Supporters', rarity: 'Super Rare' },
+  { nos: '242 to 255', what: 'Special Art Rares of 10 ex and 4 Supporters', rarity: 'Special Art Rare' },
+  { nos: '256 to 264', what: 'Gold Ultra Rares', rarity: 'Ultra Rare' },
 ]
 
 // Every Pokémon ex that reaches the secret block, with every number it prints at.
@@ -105,7 +106,7 @@ const TOC = [
 const FAQ = [
   {
     q: 'Should I buy the slim or the jumbo Brilliant Fantasy box?',
-    a: 'For chase cards, jumbo. A jumbo box averages about 1.2 Super Rares, Special Art Rares or Ultra Rares against about 0.55 for a slim box, and its odds are better per card too. The slim box gives you more packs to open: 15 against 6.',
+    a: 'For the rarest cards, jumbo. A jumbo box averages about 1.2 Super Rares, Special Art Rares or Ultra Rares against about 0.55 for a slim box, and its odds are better per card too. The slim box gives you more packs to open: 15 against 6.',
   },
   {
     q: 'Do slim and jumbo packs have different cards?',
@@ -113,10 +114,10 @@ const FAQ = [
   },
   {
     q: 'What is the Chinese Exclusive in Brilliant Fantasy?',
-    a: 'Carmine 255/207, a Special Art Rare by OKACHEKE.',
+    a: 'Carmine 255/207, a Special Art Rare by OKACHEKE. English has a Carmine Special Illustration Rare, but not with this illustration.',
   },
   {
-    q: 'Which Pokémon ex reach the gold Ultra Rare tier?',
+    q: 'Which Pokémon ex have a gold Ultra Rare?',
     a: 'Three: Teal Mask Ogerpon ex, Pecharunt ex and Bloodmoon Ursaluna ex. Each also has a Double Rare, a Super Rare and a Special Art Rare.',
   },
   {
@@ -188,10 +189,10 @@ function BrilliantFantasySetGuide() {
         updated={status.liveAt}
         wide
         post={post}
-        lede="Brilliant Fantasy is the Kitakami set, with Milotic on the pack and every Ogerpon mask. This guide helps you choose between slim and jumbo boxes, shows every chase card, and explains what a 616-card master set takes."
+        lede="Brilliant Fantasy is the Kitakami set, with Milotic on the pack and every Ogerpon mask. This guide helps you choose between slim and jumbo boxes, shows the most wanted cards, and explains what a 616-card master set takes."
         cta={{
           heading: 'Collect Brilliant Fantasy',
-          body: 'Track every card on the full checklist, or pick up a box and start ripping.',
+          body: 'Track every card on the full checklist, or pick up a box.',
           links: [
             { to: '/sets/chinese/brilliant-fantasy-csv8', label: 'See the full card list' },
             { to: '/products/$id', params: { id: 'pokemon-chinese-brilliant-fantasy-jumbo-booster-box' }, label: 'Shop the jumbo box', variant: 'ghost' },
@@ -199,10 +200,14 @@ function BrilliantFantasySetGuide() {
         }}
       >
         <p>
-          Brilliant Fantasy (CSV8C) is the Kitakami set: 264 cards with Milotic on the pack, every Ogerpon mask, and a Chinese
-          Exclusive Carmine Special Art Rare, sold in slim and jumbo packs. Our <Link to="/blog/brilliant-fantasy-release-news">release post</Link> covers
-          what is new, and our <Link to="/blog/brilliant-fantasy-card-origins">card origins guide</Link> traces every card to its
-          English printing. Use this one to pick a box, sort your pulls or plan a master set.
+          Brilliant Fantasy (<Zh>璀璨诡幻</Zh>, set code CSV8C) released on March 13, 2026. It is the Kitakami set: 264 cards with
+          Milotic on the pack, every Ogerpon mask and one Chinese Exclusive, the Carmine Special Art Rare 255/207. It is sold in slim
+          and jumbo boxes, and each has its own odds.
+        </p>
+        <p>
+          Our <Link to="/blog/brilliant-fantasy-release-news">release post</Link> covers what is new, and our{' '}
+          <Link to="/blog/brilliant-fantasy-card-origins">card origins guide</Link> matches every card to its English version. Use
+          this guide to pick a box, sort your pulls or plan a master set.
         </p>
 
         <nav className="toc" aria-label="In this guide">
@@ -244,45 +249,47 @@ function BrilliantFantasySetGuide() {
         </div>
         <p className="table-note">Averages from the official print shares, not guarantees. Individual boxes vary.</p>
         <p>
-          The jumbo box has 1.6 times the cards of a slim box but more than twice the top-band pulls, because its odds are better per
-          card as well: 1.00% of jumbo cards are Super Rare or higher, against 0.73% of slim cards. That is about one top-band card every
-          5 jumbo packs, against one every 27 slim packs: about half of one per slim box on average, and more than one per jumbo box.
+          The jumbo box has 1.6 times the cards of a slim box but more than twice the Super Rares, Special Art Rares and Ultra Rares,
+          because its odds are better per card as well: 1.00% of jumbo cards are Super Rare or higher, against 0.73% of slim cards.
+          That is about one of those cards every 5 jumbo packs, against one every 27 slim packs. A slim box averages about half of
+          one, and a jumbo box averages more than one.
         </p>
 
         <h2 id="special-art-rares">All 14 Special Art Rares</h2>
         <p>
-          242 to 255. The two headline cards first: Milotic ex, the pack Pokémon, and Carmine 255/207, the Chinese Exclusive.
+          These are numbered 242 to 255. The first two are Milotic ex 244/207, the pack Pokémon, and Carmine 255/207, the Chinese
+          Exclusive.
         </p>
         <Gallery cards={pick([244, 255])} cols={2} />
-        <p>The Kitakami eight: the four Ogerpon ex masks by Yano Keiji, then Pecharunt ex and the Loyal Three by kantaro.</p>
+        <p>The next eight are from Kitakami: the four Ogerpon ex masks by Yano Keiji, then Pecharunt ex and the Loyal Three by kantaro.</p>
         <Gallery cards={pick([242, 245, 243, 246, 250, 249, 248, 247])} cols={4} />
-        <p>Kieran, Bloodmoon Ursaluna ex, Perrin and Cassiopeia.</p>
+        <p>The last four are Kieran, Bloodmoon Ursaluna ex, Perrin and Cassiopeia.</p>
         <Gallery cards={pick([254, 251, 253, 252])} cols={4} />
 
         <BuyStrip />
 
         <h2 id="super-rares">All 28 Super Rares</h2>
-        <p>Full arts of 18 Pokémon ex (214 to 231) and 10 Supporters (232 to 241).</p>
+        <p>These are full arts of 18 Pokémon ex, numbered 214 to 231, and 10 Supporters, numbered 232 to 241.</p>
         <Gallery
           cards={pick([
-            240, 239, 217, 214, 227, 231, 220, 215, 223, 226, 225, 224, 229, 218, 238, 234, 216, 219, 221, 222, 228, 230, 232, 233, 235,
+            217, 214, 227, 240, 239, 231, 220, 215, 223, 226, 225, 224, 229, 218, 238, 234, 216, 219, 221, 222, 228, 230, 232, 233, 235,
             236, 237, 241,
           ])}
           cols={4}
         />
 
         <h2 id="ultra-rares">All 9 Ultra Rares</h2>
-        <p>The gold cards, 256 to 264: three Pokémon ex, then the Trainers and Energy.</p>
+        <p>These are the gold cards, numbered 256 to 264: three Pokémon ex, then the Trainers and Energy.</p>
         <Gallery cards={pick([256, 257, 258, 259, 260, 261, 262, 263, 264])} cols={3} />
 
         <h2 id="art-rares">All 6 Art Rares</h2>
-        <p>208 to 213, each a full illustration of a main-set Pokémon.</p>
+        <p>These are numbered 208 to 213. Each is a full illustration of a main-set Pokémon.</p>
         <Gallery cards={pick([209, 208, 213, 210, 211, 212])} cols={3} />
 
         <h2 id="ladders">Every Pokémon ex at every rarity</h2>
         <p>
-          18 of the 22 Pokémon ex reach the secret block. These are the numbers each one prints at. Amoonguss ex, Reshiram ex, Xerneas ex
-          and Dialga ex are Double Rare only.
+          18 of the 22 Pokémon ex have secret rare versions. This table gives the number of each version. Amoonguss ex, Reshiram ex,
+          Xerneas ex and Dialga ex come only as Double Rares.
         </p>
         <div className="table-scroll" role="group" aria-labelledby="tbl-2" tabIndex={0}>
           <table className="data-table">
@@ -290,10 +297,10 @@ function BrilliantFantasySetGuide() {
             <thead>
               <tr>
                 <th scope="col">Pokémon</th>
-                <th scope="col">RR</th>
-                <th scope="col">SR</th>
-                <th scope="col">SAR</th>
-                <th scope="col">UR</th>
+                <th scope="col">Double Rare</th>
+                <th scope="col">Super Rare</th>
+                <th scope="col">Special Art Rare</th>
+                <th scope="col">Ultra Rare</th>
               </tr>
             </thead>
             <tbody>
@@ -343,10 +350,10 @@ function BrilliantFantasySetGuide() {
           Common, Uncommon and Rare cards, for 616 in total.
         </p>
         <p>
-          The Poké Ball holos come quickly, since they share the most common holo band. The Master Ball holos share the Double Rare band,
-          which averages about 4 cards per slim box or 8 per jumbo box across 213 different cards, so they take a long time. The 51
-          top-band cards are harder still. The practical route is to open boxes for fun and the lower tiers, then pick up the big cards as
-          singles. The <Link to="/sets/chinese/brilliant-fantasy-csv8">Brilliant Fantasy card list</Link> lets you tick off what you have.
+          The Poké Ball holos come quickly, since they share the most common holo group. The Master Ball holos share the Double Rare
+          group, which averages about 4 cards per slim box or 8 per jumbo box across 213 different cards, so they take a long time. The
+          51 Super Rares, Special Art Rares and Ultra Rares are harder still. The practical route is to open boxes for fun and the
+          lower rarities, then pick up the rarest cards as singles. The <Link to="/sets/chinese/brilliant-fantasy-csv8">Brilliant Fantasy card list</Link> lets you tick off what you have.
         </p>
 
         <h2 id="faq">FAQ</h2>

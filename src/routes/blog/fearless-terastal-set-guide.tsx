@@ -1,3 +1,4 @@
+import { Zh } from '~/components/blog/Zh'
 import { rarityFullName } from '~/components/blog/RarityAbbr'
 import { BuyStrip } from '~/components/blog/BlogShop'
 import { createFileRoute, Link } from '@tanstack/react-router'
@@ -15,7 +16,7 @@ type Card = (typeof setData.cards)[number]
 const byRange = (from: number, to: number) => setData.cards.filter((c) => c.pokemonIndex >= from && c.pokemonIndex <= to)
 const EXCLUSIVE = new Set<string>(setData.exclusiveCardNumbers)
 const short = (r: string) => r.match(/\(([^)]+)\)/)?.[1] ?? r
-// The data marks the one Chinese Exclusive, the Arcanine ex SAR 155/130.
+// The data marks the one Chinese Exclusive, the Arcanine ex Special Art Rare 155/130.
 const isExclusive = (c: Card) => EXCLUSIVE.has(c.number)
 // Most wanted cards first (by number out of 130), then the rest in number order.
 const lead = (cards: Card[], first: string[]) => [
@@ -43,14 +44,14 @@ function Gallery({ cards, cols }: { cards: Card[]; cols: number }) {
 }
 
 const BLOCKS = [
-  { nos: '001 to 114', what: 'Pokémon, grouped by type', rarity: 'C, U, R, RR' },
-  { nos: '115 to 120', what: 'Items and Pokémon Tools', rarity: 'U' },
-  { nos: '121 to 127', what: 'Supporters', rarity: 'U' },
-  { nos: '128 to 130', what: 'Stadiums and Special Energy', rarity: 'U' },
-  { nos: '131 to 138', what: 'Art Rares', rarity: 'AR' },
-  { nos: '139 to 153', what: 'Super Rare full arts of ex and Supporters', rarity: 'SR' },
-  { nos: '154 to 161', what: 'Special Art Rares of ex and Supporters', rarity: 'SAR' },
-  { nos: '162 to 165', what: 'Gold Ultra Rares', rarity: 'UR' },
+  { nos: '001 to 114', what: 'Pokémon, grouped by type', rarity: 'Common, Uncommon, Rare, Double Rare' },
+  { nos: '115 to 120', what: 'Items and Pokémon Tools', rarity: 'Uncommon' },
+  { nos: '121 to 127', what: 'Supporters', rarity: 'Uncommon' },
+  { nos: '128 to 130', what: 'Stadiums and Special Energy', rarity: 'Uncommon' },
+  { nos: '131 to 138', what: 'Art Rares', rarity: 'Art Rare' },
+  { nos: '139 to 153', what: 'Super Rare full arts of ex and Supporters', rarity: 'Super Rare' },
+  { nos: '154 to 161', what: 'Special Art Rares of ex and Supporters', rarity: 'Special Art Rare' },
+  { nos: '162 to 165', what: 'Gold Ultra Rares', rarity: 'Ultra Rare' },
 ]
 
 // Pokémon China's two odds charts applied to one pack of each size. The
@@ -88,7 +89,7 @@ const TOC = [
 const FAQ = [
   {
     q: 'What is the Chinese Exclusive in Fearless Terastal?',
-    a: 'The Arcanine ex Special Art Rare 155/130. It is the only card in the set with no English version.',
+    a: 'The Arcanine ex Special Art Rare 155/130. It is the only card in the set that does not exist in English.',
   },
   {
     q: 'How often does a pack hold a Super Rare or better?',
@@ -175,10 +176,13 @@ function FearlessTerastalSetGuide() {
         }}
       >
         <p>
-          Fearless Terastal (CSV3C) is the Tera Arcanine set: 165 cards, one Chinese Exclusive, and 5-card and 20-card packs. Our{' '}
-          <Link to="/blog/fearless-terastal-release-news">release post</Link> covers what is new, and our{' '}
-          <Link to="/blog/fearless-terastal-card-origins">card origins guide</Link> matches every card to English. Use this one to sort
-          your pulls or plan a master set.
+          Fearless Terastal (<Zh>无畏太晶</Zh>, set code CSV3C) released on May 16, 2025. It is the Tera Arcanine set: 165 cards in
+          5-card and 20-card packs, with 35 secret rares and one Chinese Exclusive, the Arcanine ex Special Art Rare 155/130.
+        </p>
+        <p>
+          Our <Link to="/blog/fearless-terastal-release-news">release post</Link> covers what is new, and our{' '}
+          <Link to="/blog/fearless-terastal-card-origins">card origins guide</Link> matches every card to its English version. Use
+          this guide to sort your pulls or plan a master set.
         </p>
 
         <nav className="toc" aria-label="In this guide">
@@ -193,7 +197,7 @@ function FearlessTerastalSetGuide() {
         </nav>
 
         <h2 id="pack">What a pack holds</h2>
-        <p>Pokémon China's odds charts for the 5-card and the 20-card pack, applied to one pack of each:</p>
+        <p>Pokémon China publishes one odds chart for the 5-card pack and another for the 20-card pack. Applied to one pack of each, they work out to roughly:</p>
         <div className="table-scroll" role="group" aria-labelledby="tbl-1" tabIndex={0}>
           <table className="data-table">
             <caption id="tbl-1" className="sr-only">What a pack holds</caption>
@@ -217,47 +221,47 @@ function FearlessTerastalSetGuide() {
         </div>
         <p className="table-note">Averages from the official print shares, shown in brackets. They are not guarantees.</p>
         <p>
-          The top band holds 27 different cards. It averages about one every 27 of the 5-card packs, or one every five of the 20-card
-          packs. Card for card the 20-card pack is the richer one: 30% of its cards are holos, against 20% in the 5-card pack.
+          The top group holds 27 different cards. It averages about one in every 27 of the 5-card packs, or one in every five of the
+          20-card packs. Card for card the 20-card pack is the richer one: 30% of its cards are holos, against 20% in the 5-card pack.
         </p>
 
         <h2 id="exclusive">Chinese Exclusive: Arcanine ex</h2>
         <p>
-          The Arcanine ex Special Art Rare, 155/130, is the one card here with no English version. Arcanine ex also has a Double Rare
+          The Arcanine ex Special Art Rare, 155/130, is the one card here that does not exist in English. Arcanine ex also has a Double Rare
           and a Super Rare, and both of those match English cards.
         </p>
         <Gallery cards={['155', '018', '141'].map((n) => setData.cards.find((c) => c.number === `${n}/130`)!)} cols={3} />
 
         <h2 id="special-art-rares">All 8 Special Art Rares</h2>
-        <p>154 to 161: five Pokémon ex and three Supporters. Arcanine ex 155 is the Chinese Exclusive.</p>
+        <p>These are numbered 154 to 161: five Pokémon ex and three Supporters. Arcanine ex 155/130 is the Chinese Exclusive.</p>
         <Gallery cards={lead(byRange(154, 161), ['155', '160', '157', '158'])} cols={4} />
 
         <BuyStrip />
 
         <h2 id="super-rares">All 15 Super Rares</h2>
-        <p>Full arts of nine Pokémon ex and six Supporters, 139 to 153.</p>
+        <p>These are the full arts of nine Pokémon ex and six Supporters, numbered 139 to 153.</p>
         <Gallery cards={lead(byRange(139, 153), ['141', '149', '143', '144', '146', '148'])} cols={3} />
 
         <h2 id="ultra-rares">All 4 Ultra Rares</h2>
-        <p>The gold cards, 162 to 165.</p>
+        <p>These are the gold cards, numbered 162 to 165.</p>
         <Gallery cards={byRange(162, 165)} cols={4} />
 
         <h2 id="art-rares">All 8 Art Rares</h2>
-        <p>131 to 138.</p>
+        <p>These are numbered 131 to 138. Each one gives a main-set Pokémon a full illustration.</p>
         <Gallery cards={byRange(131, 138)} cols={4} />
 
         <h2 id="ladders">One Pokémon, several rarities</h2>
-        <p>The Pokémon ex with a Special Art Rare, and every number they print at:</p>
+        <p>These are the Pokémon ex with a Special Art Rare, and the number of each version.</p>
         <div className="table-scroll" role="group" aria-labelledby="tbl-2" tabIndex={0}>
           <table className="data-table">
             <caption id="tbl-2" className="sr-only">One Pokémon, several rarities</caption>
             <thead>
               <tr>
                 <th scope="col">Pokémon</th>
-                <th scope="col">RR</th>
-                <th scope="col">SR</th>
-                <th scope="col">SAR</th>
-                <th scope="col">UR</th>
+                <th scope="col">Double Rare</th>
+                <th scope="col">Super Rare</th>
+                <th scope="col">Special Art Rare</th>
+                <th scope="col">Ultra Rare</th>
               </tr>
             </thead>
             <tbody>
@@ -278,7 +282,7 @@ function FearlessTerastalSetGuide() {
         </p>
 
         <h2 id="double-rares">All 14 Pokémon ex</h2>
-        <p>The Double Rares from the main set. Arcanine ex, Forretress ex and Gyarados ex are the Tera Pokémon ex.</p>
+        <p>These are the Double Rares from the main set. Arcanine ex, Forretress ex and Gyarados ex are the Tera Pokémon ex.</p>
         <Gallery cards={lead(setData.cards.filter((c) => c.rarity === 'Double Rare (RR)'), ['018', '033', '005', '043', '080', '015', '031'])} cols={4} />
 
         <h2 id="numbering">How the numbers work</h2>
@@ -314,8 +318,8 @@ function FearlessTerastalSetGuide() {
           and Rares, for 397 in total.
         </p>
         <p>
-          With one holo per 5-card pack and six per 20-card pack, the Master Ball holos and the 27 top-band cards take a long time to pull. Most collectors open
-          packs for fun and the lower rarities, then buy the big cards as singles. The{' '}
+          With one holo per 5-card pack and six per 20-card pack, the Master Ball holos and the 27 cards in the top
+          rarity group take a long time to pull. Most collectors open packs for fun and the lower rarities, then buy the rarest cards as singles. The{' '}
           <Link to="/sets/chinese/fearless-terastal-csv3">Fearless Terastal card list</Link> lets you tick off what you have.
         </p>
 

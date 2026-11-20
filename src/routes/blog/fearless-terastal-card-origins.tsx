@@ -1,3 +1,4 @@
+import { Zh } from '~/components/blog/Zh'
 import { chunk } from '~/lib/chunk'
 import { RarityAbbr, rarityFullName } from '~/components/blog/RarityAbbr'
 import { useId } from 'react'
@@ -242,11 +243,11 @@ const TOC = [
 const FAQ = [
   {
     q: 'Which English set is Fearless Terastal?',
-    a: `There is no single one. Most of its cards match Paldea Evolved (${count('PAL')}), Obsidian Flames (${count('OBF')}) and Scarlet & Violet (${count('SVI')}), with the rest from SV Black Star Promos, 151 and Paradox Rift, plus one new art.`,
+    a: `There is no single one. Most of its cards match Paldea Evolved (${count('PAL')}), Obsidian Flames (${count('OBF')}) and Scarlet & Violet (${count('SVI')}), with the rest from SV Black Star Promos, 151 and Paradox Rift, plus one Chinese Exclusive.`,
   },
   {
     q: 'What is the Chinese Exclusive in Fearless Terastal?',
-    a: 'The Arcanine ex Special Art Rare 155/130, credited to Gemi. English printed Tera Arcanine ex as a Double Rare and a full art in Scarlet & Violet, but never with this illustration.',
+    a: 'The Arcanine ex Special Art Rare 155/130, illustrated by Gemi. English has Tera Arcanine ex as a Double Rare and a full art in Scarlet & Violet, but this illustration does not exist in English.',
   },
   {
     q: 'Is the Iono Special Art Rare the same as in English?',
@@ -360,7 +361,7 @@ function FearlessTerastalOrigins() {
     '@type': 'FAQPage',
     mainEntity: FAQ.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
   }
-  // The Chinese Exclusive SAR, with the two Arcanine ex that English did print.
+  // The Chinese Exclusive Special Art Rare, with the two Arcanine ex that match English cards.
   const arcanine = ['155', '018', '141'].map((n) => rows.find((r) => r.cn === n)!)
 
   return (
@@ -379,9 +380,13 @@ function FearlessTerastalOrigins() {
         }}
       >
         <p>
-          Fearless Terastal (set code CSV3C) does not follow one English set. More than half of its 165 cards match Paldea Evolved, and Obsidian Flames and
-          the first Scarlet & Violet set supply most of the rest. A few come from promos, 151 and Paradox Rift, and one card is a Chinese
-          Exclusive. For the chase cards and pull odds, see our <Link to="/blog/fearless-terastal-set-guide">set guide</Link>.
+          Fearless Terastal (<Zh>无畏太晶</Zh>, set code CSV3C) released on May 16, 2025. It does not follow one English set. More
+          than half of its 165 cards match Paldea Evolved, and Obsidian Flames and the first Scarlet & Violet set supply most of the
+          rest. A few come from promos, 151 and Paradox Rift, and one card is a Chinese Exclusive.
+        </p>
+        <p>
+          Our <Link to="/blog/fearless-terastal-release-news">release post</Link> covers what is new, and our{' '}
+          <Link to="/blog/fearless-terastal-set-guide">set guide</Link> shows every secret rare and the pull odds.
         </p>
 
         <nav className="toc" aria-label="In this guide">
@@ -435,9 +440,10 @@ function FearlessTerastalOrigins() {
 
         <h2 id="exclusive">Chinese Exclusive: Arcanine ex</h2>
         <p>
-          English printed Tera Arcanine ex twice, both in the first Scarlet & Violet set: the Double Rare 032/198 and the full art
-          224/198. Both are in Fearless Terastal, as 018 and 141. The Special Art Rare 155/130 is
-          the extra one. It shows the crystal Arcanine mid-roar under its red Tera Jewel crown, and no English card uses this illustration.
+          English has Tera Arcanine ex twice, both in the first Scarlet & Violet set: the Double Rare 032/198 and the full art
+          224/198. Both are in Fearless Terastal, as 018/130 and 141/130. The Special Art Rare 155/130, illustrated by Gemi, is the
+          extra one. It shows the crystal Arcanine roaring under its red Tera Jewel crown, and this illustration does not exist in
+          English.
         </p>
         <ul className="card-grid cols-3">
           {arcanine.map((r) => (
@@ -453,7 +459,7 @@ function FearlessTerastalOrigins() {
                 <figcaption>
                   {r.src === 'NEW' && <ChineseExclusiveBadge />}
                   <strong>{r.name}</strong>
-                  {r.cn}/130 · <RarityAbbr code={r.rarity} /> · {r.src === 'NEW' ? r.illus : `${SET_NAME[r.src]} ${r.en}`}
+                  {r.cn}/130 · {rarityFullName(r.rarity)} · {r.src === 'NEW' ? r.illus : `${SET_NAME[r.src]} ${r.en}`}
                 </figcaption>
               </figure>
             </li>
@@ -491,8 +497,8 @@ function FearlessTerastalOrigins() {
           Uncommons plus the Ryme Super Rare.
         </p>
         <p>
-          <strong>Five promo arts.</strong> Arcanine 017/130, Ampharos ex 050/130, Mimikyu ex 063/130, Espathra 065/130 and Cyclizar
-          113/130 use art that English released as SV Black Star Promos.
+          <strong>Five cards match promos.</strong> Arcanine 017/130, Ampharos ex 050/130, Mimikyu ex 063/130, Espathra 065/130 and Cyclizar
+          113/130 use illustrations that English released as SV Black Star Promos.
         </p>
         <p>
           <strong>A few cards from later sets.</strong> Latios 058/130, Morpeko 086/130 and the gold Reversal Energy 165/130 match
@@ -500,12 +506,13 @@ function FearlessTerastalOrigins() {
         </p>
 
         <h2 id="secret-rares">All {SECRET.length} secret rares</h2>
-        <p>Every card above 130, with its English twin. The highlighted row is new.</p>
+        <p>This table lists every card above 130 with its English match. The highlighted row is the Chinese Exclusive.</p>
         <OriginsTable list={SECRET} caption="Secret rares and the English card each one matches" />
 
         <BuyStrip />
 
         <h2 id="main-set">The {MAIN.length}-card main set</h2>
+        <p>This table lists every card from 001 to 130 with its English match.</p>
         <OriginsTable list={MAIN} caption="Main set cards and the English card each one matches" />
 
         <h2 id="faq">FAQ</h2>

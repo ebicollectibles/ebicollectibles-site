@@ -15,7 +15,7 @@ const cardImg = (n: string) => `${R2_IMAGE_HOST}/Chinese/Stellar%20Crystal/Cards
 
 type Shown = { n: string; name: string; note: string }
 
-// The Chinese Exclusive: the Lisia's Appeal SAR 257.
+// The Chinese Exclusive: the Lisia's Appeal Special Art Rare 257.
 const CHINESE_EXCLUSIVE = new Set(['257'])
 
 function Grid({ cards, cols }: { cards: Shown[]; cols: number }) {
@@ -38,19 +38,19 @@ function Grid({ cards, cols }: { cards: Shown[]; cols: number }) {
 }
 
 const LISIA = [
-  { n: '257', name: "Lisia's Appeal", note: 'SAR · En Morikura' },
+  { n: '257', name: "Lisia's Appeal", note: 'Special Art Rare · En Morikura' },
   { n: '241', name: "Lisia's Appeal", note: 'Super Rare · En Morikura' },
 ]
 
 const SAR = [
-  { n: '245', name: 'Pikachu ex', note: 'SAR · GIDORA' },
-  { n: '251', name: 'Terapagos ex', note: 'SAR · Saboteri' },
-  { n: '247', name: 'Latias ex', note: 'SAR · OKACHEKE' },
-  { n: '248', name: 'Hydreigon ex', note: 'SAR · AKIRA EGAWA' },
-  { n: '250', name: 'Alolan Exeggutor ex', note: 'SAR · Yuriko Akase' },
-  { n: '249', name: 'Archaludon ex', note: 'SAR · Shinya Mizuno' },
-  { n: '253', name: "Clemont's Quick Wit", note: 'SAR · Shinya Mizuno' },
-  { n: '254', name: 'Lacey', note: 'SAR · Souichirou Gunjima' },
+  { n: '245', name: 'Pikachu ex', note: 'Special Art Rare · GIDORA' },
+  { n: '251', name: 'Terapagos ex', note: 'Special Art Rare · Saboteri' },
+  { n: '247', name: 'Latias ex', note: 'Special Art Rare · OKACHEKE' },
+  { n: '248', name: 'Hydreigon ex', note: 'Special Art Rare · AKIRA EGAWA' },
+  { n: '250', name: 'Alolan Exeggutor ex', note: 'Special Art Rare · Yuriko Akase' },
+  { n: '249', name: 'Archaludon ex', note: 'Special Art Rare · Shinya Mizuno' },
+  { n: '253', name: "Clemont's Quick Wit", note: 'Special Art Rare · Shinya Mizuno' },
+  { n: '254', name: 'Lacey', note: 'Special Art Rare · Souichirou Gunjima' },
 ]
 
 const ULTRA = [
@@ -72,7 +72,7 @@ const ART_RARES = [
 ]
 
 // Pokémon China's two odds charts, one per pack size. Shares are of all
-// cards printed for that pack size, grouped into the bands the chart uses.
+// cards printed for that pack size, in the rarity groups the chart uses.
 const ODDS = [
   { band: 'Common and Uncommon (non-holo)', slim: '80.00%', jumbo: '70.00%' },
   { band: 'Poké Ball pattern holo and Rare', slim: '13.82%', jumbo: '22.11%' },
@@ -81,12 +81,12 @@ const ODDS = [
 ]
 
 const BLOCKS = [
-  { nos: '001 to 175', what: 'Pokémon, grouped by type', rarity: 'C, U, R, RR' },
-  { nos: '176 to 208', what: 'Items, Tools, Supporters, Stadiums, Special Energy', rarity: 'C, U, ACE' },
-  { nos: '209 to 214', what: 'Art Rares', rarity: 'AR' },
-  { nos: '215 to 241', what: 'Super Rare full arts of 18 ex and 9 Supporters', rarity: 'SR' },
-  { nos: '242 to 257', what: 'Special Art Rares of 10 ex and 6 Supporters', rarity: 'SAR' },
-  { nos: '258 to 266', what: 'Gold Ultra Rares', rarity: 'UR' },
+  { nos: '001 to 175', what: 'Pokémon, grouped by type', rarity: 'Common, Uncommon, Rare, Double Rare' },
+  { nos: '176 to 208', what: 'Items, Tools, Supporters, Stadiums, Special Energy', rarity: 'Common, Uncommon, ACE SPEC' },
+  { nos: '209 to 214', what: 'Art Rares', rarity: 'Art Rare' },
+  { nos: '215 to 241', what: 'Super Rare full arts of 18 ex and 9 Supporters', rarity: 'Super Rare' },
+  { nos: '242 to 257', what: 'Special Art Rares of 10 ex and 6 Supporters', rarity: 'Special Art Rare' },
+  { nos: '258 to 266', what: 'Gold Ultra Rares', rarity: 'Ultra Rare' },
 ]
 
 const TOC = [
@@ -106,7 +106,7 @@ const FAQ = [
   },
   {
     q: 'What is the Chinese Exclusive in Stellar Crystal?',
-    a: "Lisia's Appeal 257/208, a Special Art Rare by En Morikura showing Lisia and her Altaria performing on stage in front of a crowd. English has a Lisia's Appeal Special Illustration Rare, but with different art.",
+    a: "Lisia's Appeal 257/208, a Special Art Rare by En Morikura. It shows Lisia and her Altaria performing under stage lights in front of a crowd. English has a Lisia's Appeal Special Illustration Rare, but with a different illustration.",
   },
   {
     q: 'What is the difference between the slim and jumbo Stellar Crystal packs?',
@@ -114,7 +114,7 @@ const FAQ = [
   },
   {
     q: 'What are the odds of pulling a Super Rare or better?',
-    a: "Super Rares, Special Art Rares and Ultra Rares make up 0.73% of slim-pack cards and 1.00% of jumbo-pack cards, going by Pokémon China's print shares. That averages about 0.55 per slim box (one in every 27 packs) and about 1.2 per jumbo box (one in every 5 packs).",
+    a: "Super Rares, Special Art Rares and Ultra Rares make up 0.73% of slim-pack cards and 1.00% of jumbo-pack cards, going by Pokémon China's print shares. That averages about one in every 27 slim packs and about one in every 5 jumbo packs.",
   },
   {
     q: 'Where do the Stellar Crystal illustrations come from?',
@@ -198,7 +198,7 @@ function StellarCrystalReleasePost() {
         updated={status.liveAt}
         wide
         post={post}
-        lede="Stellar Tera Pikachu ex takes the cover of Stellar Crystal, the Terapagos set, with a Chinese Exclusive Lisia's Appeal Special Art Rare."
+        lede="Stellar Tera Pikachu is on the pack of Stellar Crystal, the Terapagos set, and the set has one Chinese Exclusive: a Lisia's Appeal Special Art Rare."
         cta={{
           heading: 'Collect Stellar Crystal',
           body: 'Browse all 266 cards on the full checklist and tick off what you have.',
@@ -206,10 +206,13 @@ function StellarCrystalReleasePost() {
         }}
       >
         <p>
-          Stellar Crystal (<Zh>星彩晶璃</Zh>, set code CSV9C) released on May 15, 2026. It brings the new Stellar Tera type into Chinese, led by a Stellar Tera
-          Pikachu ex on the pack and the Legendary Terapagos ex. Stellar Pokémon ex have attacks that need three different Energy types
-          to use. Blueberry Academy's Crispin, Drayton and Lacey join as Supporters, and a new Lisia's Appeal Special Art Rare is the
-          set's Chinese Exclusive.
+          Stellar Crystal (<Zh>星彩晶璃</Zh>, set code CSV9C) released on May 15, 2026. It brings Stellar Tera Pokémon ex into Simplified
+          Chinese, with Stellar Tera Pikachu on the pack and the Legendary Pokémon Terapagos ex. Blueberry Academy's Crispin, Drayton
+          and Lacey join as Supporters, and a Lisia's Appeal Special Art Rare is the set's Chinese Exclusive.
+        </p>
+        <p>
+          Our <Link to="/blog/stellar-crystal-set-guide">set guide</Link> shows every Special Art Rare, Super Rare and Ultra Rare,
+          and our <Link to="/blog/stellar-crystal-card-origins">card origins guide</Link> matches every card to its English version.
         </p>
 
         <aside className="fact-box" aria-label="Stellar Crystal key facts">
@@ -236,9 +239,9 @@ function StellarCrystalReleasePost() {
               <dt>Set size</dt>
               <dd>266 cards: 208 in the main set, 58 secret rares</dd>
               <dt>Chase cards</dt>
-              <dd>Pikachu ex SAR and Ultra Rare, Lisia's Appeal SAR, Terapagos ex SAR</dd>
+              <dd>Pikachu ex Special Art Rare and Ultra Rare, Lisia's Appeal Special Art Rare, Terapagos ex Special Art Rare</dd>
               <dt>Chinese Exclusive</dt>
-              <dd>Lisia's Appeal SAR 257/208</dd>
+              <dd>Lisia's Appeal Special Art Rare 257/208</dd>
             </dl>
           </div>
         </aside>
@@ -279,23 +282,23 @@ function StellarCrystalReleasePost() {
           </li>
         </ul>
         <p>
-          The top band (Super Rare, Special Art Rare and Ultra Rare) is 1.00% of jumbo cards against 0.73% of slim cards, about 37% more
-          per card. In practice that is roughly one top-band card in every 5 jumbo packs, against one in every 27 slim packs. The full
-          odds are further down.
+          The top rarity group (Super Rare, Special Art Rare and Ultra Rare) is 1.00% of jumbo cards against 0.73% of slim cards, about
+          37% more per card. In practice that is roughly one card from the top group in every 5 jumbo packs, against one in every 27
+          slim packs. The full odds are further down.
         </p>
 
         <h2 id="lisia">Chinese Exclusive: Lisia's Appeal</h2>
         <p>
-          Lisia's Appeal 257/208 is a Special Art Rare drawn for this set by En Morikura. Lisia and her Altaria perform together on a
-          stage under spotlights, with the crowd below full of lights. English has a Lisia's Appeal Special Illustration Rare with different art,
-          and it is not in this set. The Super Rare, also by En Morikura, is here too.
+          Lisia's Appeal 257/208 is a Special Art Rare by En Morikura, and this illustration does not exist in English. Lisia and
+          her Altaria perform under stage lights in front of a crowd. English has a Lisia's Appeal Special Illustration Rare with a
+          different illustration, and that one is not in this set. The Super Rare 241/208, also by En Morikura, is here too.
         </p>
         <Grid cards={LISIA} cols={2} />
 
         <h2 id="special-art-rares">Special Art Rares</h2>
         <p>
-          Sixteen Special Art Rares, 242 to 257: ten Pokémon ex and six Supporters. Pikachu ex by GIDORA is the headline, with Terapagos
-          ex, Latias ex and Hydreigon ex close behind.
+          There are sixteen Special Art Rares, numbered 242 to 257: ten Pokémon ex and six Supporters. Pikachu ex by GIDORA is the
+          most wanted, followed by Terapagos ex, Latias ex and Hydreigon ex.
         </p>
         <Grid cards={SAR} cols={4} />
 
@@ -303,18 +306,18 @@ function StellarCrystalReleasePost() {
 
         <h2 id="ultra-rares">Gold Ultra Rares</h2>
         <p>
-          Nine gold cards, 258 to 266. Five are Pokémon ex: Cinderace ex, Lapras ex, Pikachu ex, Alolan Exeggutor ex and Terapagos ex.
+          There are nine gold cards, numbered 258 to 266. Five are Pokémon ex: Cinderace ex, Lapras ex, Pikachu ex, Alolan Exeggutor ex and Terapagos ex.
           The other four are Night Stretcher, Counter Gain, Powerglass and Area Zero Underdepths.
         </p>
         <Grid cards={ULTRA} cols={3} />
 
         <h2 id="art-rares">Art Rares</h2>
-        <p>Six Art Rares, 209 to 214, each a full illustration of a main-set Pokémon.</p>
+        <p>There are six Art Rares, numbered 209 to 214. Each one is a full illustration of a main-set Pokémon.</p>
         <Grid cards={ART_RARES} cols={3} />
 
         <h2 id="set-and-odds">How the set is built, and the odds</h2>
         <p>
-          Every card has one number out of 208. The main set runs 001 to 208, with nine pink ACE SPEC cards among the Trainers and
+          Every card has one number out of 208. The main set runs 001 to 208, with nine pink-framed ACE SPEC cards among the Trainers and
           Energy, and everything above 208 is a secret rare. The rarer versions of a card sit in the secret block at unrelated numbers,
           so match them by name.
         </p>
@@ -339,7 +342,7 @@ function StellarCrystalReleasePost() {
             </tbody>
           </table>
         </div>
-        <p>Pokémon China's odds charts for each pack size:</p>
+        <p>Pokémon China publishes an odds chart for each pack size:</p>
         <div className="table-scroll" role="group" aria-labelledby="tbl-2" tabIndex={0}>
           <table className="data-table">
             <caption id="tbl-2" className="sr-only">How the set is built, and the odds: Share of print, Slim, Jumbo</caption>
@@ -363,15 +366,14 @@ function StellarCrystalReleasePost() {
         </div>
         <p className="table-note">From Pokémon China's odds chart for each pack size.</p>
         <p>
-          Over 15 slim packs (75 cards) that averages about 0.55 top-band cards and about 4 from the Double Rare band. Over 6 jumbo
-          packs (120 cards) it averages about 1.2 and about 8.
+          Over 15 slim packs (75 cards) that averages about 0.55 cards from the top group and about 4 from the Double Rare group. Over
+          6 jumbo packs (120 cards) it averages about 1.2 and about 8.
         </p>
         <p>
           Every Common, Uncommon and Rare also comes as a Poké Ball pattern holo and a Master Ball pattern holo, 177 of each. The card is
           the same, only the holo pattern changes, which brings a true master set to 620 cards. The Master Ball versions share the Double Rare
-          band, so they are a real chase on their own. Our <Link to="/blog/stellar-crystal-set-guide">set guide</Link> has every
-          chase card and the box math, and our <Link to="/blog/stellar-crystal-card-origins">card origins guide</Link> matches
-          every card to its English version.
+          group, so they are hard to find on their own. Our <Link to="/blog/stellar-crystal-set-guide">set guide</Link> works out
+          what each pack size averages.
         </p>
 
         <h2 id="faq">FAQ</h2>
@@ -397,9 +399,9 @@ function StellarCrystalReleasePost() {
         <h2 id="our-take">Our take</h2>
         <p>
           Stellar Crystal is a Pikachu set first, and the GIDORA Special Art Rare and the gold Pikachu ex are the cards most collectors
-          will chase. The Lisia's Appeal SAR gives the Chinese version something English does not have, and with six Supporter SARs there is
-          plenty here for Trainer collectors too. If you are opening for hits, the jumbo pack has
-          the better odds.
+          want. The Lisia's Appeal Special Art Rare is an illustration that does not exist in English, and with six Supporter Special
+          Art Rares there is plenty here for Trainer collectors too. If you are opening for the rarest cards, the jumbo pack has the
+          better odds.
         </p>
       </BlogPostLayout>
     </>

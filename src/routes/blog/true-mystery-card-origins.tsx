@@ -197,13 +197,13 @@ const SET_NAME: Record<Src, string> = {
 }
 
 // The set's Chinese Exclusive (exclusiveCardNumbers in the set data). The gold
-// Pal Pad also has no English printing but is not a Chinese Exclusive.
+// Pal Pad also has no English printing but is not a Chinese Exclusive, so it is called new art.
 const EXCLUSIVE = new Set(['152'])
 
 // What to say for cards with no English printing.
 const NO_EN: Record<string, string> = {
   '152': 'Chinese Exclusive, no English version',
-  '163': 'English has Pal Pad only as a regular Item, not in gold',
+  '163': 'New art. The gold Pal Pad does not exist in English',
 }
 
 const CARDS = new Map(setData.cards.map((c) => [c.number.slice(0, 3), c]))
@@ -245,11 +245,11 @@ const TOC = [
 const FAQ = [
   {
     q: 'Which English set is True Mystery?',
-    a: 'Mostly Paradox Rift: 128 of its 163 cards match Paradox Rift. The rest come from Obsidian Flames (16), Paldean Fates (15), 151 (1) and an SV Black Star Promo (1), plus 2 cards with no English version.',
+    a: 'Mostly Paradox Rift: 128 of its 163 cards match Paradox Rift. The rest come from Obsidian Flames (16), Paldean Fates (15), 151 (1) and an SV Black Star Promo (1). The last 2 cards do not exist in English.',
   },
   {
     q: 'Which card is the Chinese Exclusive?',
-    a: 'The Iron Hands ex Special Art Rare 152/128 by Tonji Matsuno, which is new art with no English version. The gold Pal Pad Ultra Rare 163/128 has no English version either, since English has Pal Pad only as a regular Item, but it is not a Chinese Exclusive.',
+    a: 'The Iron Hands ex Special Art Rare 152/128 by Tonji Matsuno. Iron Hands ex is in English, but not with this illustration. The gold Pal Pad Ultra Rare 163/128 does not exist in English either, where Pal Pad is a regular Item. It is new art, not a Chinese Exclusive.',
   },
   {
     q: 'Is the Roaring Moon ex Special Art Rare the same as in English?',
@@ -373,7 +373,7 @@ function TrueMysteryOrigins() {
         updated={status.liveAt}
         wide
         post={post}
-        lede="True Mystery is mostly Paradox Rift, plus cards from four other English sources and two that do not exist in English, among them the Chinese Exclusive Iron Hands ex. We matched all 163 cards to English."
+        lede="True Mystery is mostly Paradox Rift, with cards from four other English sources and two that do not exist in English. One of those two is the Chinese Exclusive Iron Hands ex. We matched all 163 cards to English."
         cta={{
           heading: 'Collect True Mystery',
           body: 'See every card on the full checklist, or pick up a box.',
@@ -384,9 +384,13 @@ function TrueMysteryOrigins() {
         }}
       >
         <p>
-          128 of the 163 cards in True Mystery (set code CSV6C) match Paradox Rift, including 30 of its 35 secret rares. The rest come from Obsidian Flames,
-          Paldean Fates, 151 and one promo, and two cards have no English version at all: the Chinese Exclusive Iron Hands ex Special Art Rare and a gold
-          Pal Pad. For the chase cards and box contents, see our <Link to="/blog/true-mystery-set-guide">set guide</Link>.
+          True Mystery (set code CSV6C) released on November 7, 2025. 128 of its 163 cards match Paradox Rift, including 30 of its 35
+          secret rares. Most of the rest match Obsidian Flames or Paldean Fates, one matches 151 and one matches a promo. Two cards do not
+          exist in English: the Chinese Exclusive Iron Hands ex Special Art Rare and a gold Pal Pad. This guide maps every card.
+        </p>
+        <p>
+          Our <Link to="/blog/true-mystery-release-news">release post</Link> covers what is new, and our{' '}
+          <Link to="/blog/true-mystery-set-guide">set guide</Link> shows every secret rare and what each box holds.
         </p>
 
         <nav className="toc" aria-label="In this guide">
@@ -411,7 +415,7 @@ function TrueMysteryOrigins() {
                 <th scope="col">Obsidian Flames</th>
                 <th scope="col">Paldean Fates</th>
                 <th scope="col">Other</th>
-                <th scope="col">No English</th>
+                <th scope="col">Not in English</th>
                 <th scope="col">Total</th>
               </tr>
             </thead>
@@ -462,7 +466,7 @@ function TrueMysteryOrigins() {
           </table>
         </div>
         <p>
-          <strong>Nearly every chase card is from Paradox Rift.</strong> Every Art Rare, every Pokémon ex Super Rare except Tyranitar ex,
+          <strong>Nearly every secret rare is from Paradox Rift.</strong> Every Art Rare, every Pokémon ex Super Rare except Tyranitar ex,
           the Roaring Moon ex, Iron Valiant ex and Sandy Shocks ex Special Art Rares, and the gold Roaring Moon ex, Iron Valiant ex and
           Counter Catcher match Paradox Rift cards.
         </p>
@@ -472,9 +476,9 @@ function TrueMysteryOrigins() {
           Espathra ex, Great Tusk ex and Iron Treads ex.
         </p>
         <p>
-          <strong>Two cards have no English version.</strong> English printed an Iron Hands ex Special Illustration Rare in Paradox
-          Rift, but with a different art, so Tonji Matsuno's Iron Hands ex is new art and the set's Chinese Exclusive. Pal Pad has only ever been a regular Item in English,
-          so the gold Pal Pad is a version that does not exist in English.
+          <strong>Two cards do not exist in English.</strong> English has an Iron Hands ex Special Illustration Rare in Paradox Rift,
+          but with a different illustration, so Tonji Matsuno's Iron Hands ex 152/128 is the set's Chinese Exclusive. Pal Pad is a
+          regular Item in English, so the gold Pal Pad 163/128 is new art that does not exist in English.
         </p>
         <ul className="card-grid cols-2">
           {fresh.map((r) => (
@@ -484,24 +488,29 @@ function TrueMysteryOrigins() {
                 <figcaption>
                   {EXCLUSIVE.has(r.cn) && <ChineseExclusiveBadge />}
                   <strong>{r.name}</strong>
-                  {r.cn}/128 · <RarityAbbr code={r.rarity} /> · {r.illus}
+                  {r.cn}/128 · {rarityFullName(r.rarity)} · {r.illus}
                 </figcaption>
               </figure>
             </li>
           ))}
         </ul>
         <p>
-          <strong>Two odd ones out.</strong> Bellibolt 050/128 uses art English released as SV Black Star Promo 094, and the Cycling Road
-          Stadium 127/128 matches the 151 set.
+          <strong>Two cards come from elsewhere.</strong> Bellibolt 050/128 uses the illustration from SV Black Star Promo 094, and the
+          Cycling Road Stadium 127/128 matches the 151 set.
         </p>
 
         <h2 id="secret-rares">All 35 secret rares</h2>
-        <p>Every card above 128, with its English twin. Highlighted rows have no English version.</p>
+        <p>Every card above 128, with its English twin. The two highlighted rows do not exist in English.</p>
         <OriginsTable list={SECRET} caption="Secret rares and the English card each one matches" />
 
         <BuyStrip />
 
         <h2 id="main-set">The 128-card main set</h2>
+        <p>
+          {MAIN.filter((r) => r.src === 'PAR').length} main-set cards match Paradox Rift, {MAIN.filter((r) => r.src === 'PAF').length} match
+          Paldean Fates and {MAIN.filter((r) => r.src === 'OBF').length} match Obsidian Flames. The other{' '}
+          {MAIN.filter((r) => !BIG3.includes(r.src)).length} match 151 and an SV Black Star Promo.
+        </p>
         <OriginsTable list={MAIN} caption="Main set cards and the English card each one matches" />
 
         <h2 id="faq">FAQ</h2>

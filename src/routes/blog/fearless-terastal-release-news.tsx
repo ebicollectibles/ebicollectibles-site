@@ -38,7 +38,7 @@ function Grid({ cards, cols }: { cards: Shown[]; cols: number }) {
 }
 
 const ARCANINE = [
-  { n: '155', name: 'Arcanine ex', note: 'SAR · Gemi' },
+  { n: '155', name: 'Arcanine ex', note: 'Special Art Rare · Gemi' },
   { n: '018', name: 'Arcanine ex', note: 'Double Rare' },
   { n: '141', name: 'Arcanine ex', note: 'Super Rare' },
 ]
@@ -50,16 +50,16 @@ const TERA = [
 ]
 
 const TREASURES = [
-  { n: '154', name: 'Wo-Chien ex', note: 'SAR · takuyoa' },
-  { n: '156', name: 'Chi-Yu ex', note: 'SAR · AKIRA EGAWA' },
-  { n: '157', name: 'Chien-Pao ex', note: 'SAR · kodama' },
-  { n: '158', name: 'Ting-Lu ex', note: 'SAR · KEIICHIRO ITO' },
+  { n: '154', name: 'Wo-Chien ex', note: 'Special Art Rare · takuyoa' },
+  { n: '156', name: 'Chi-Yu ex', note: 'Special Art Rare · AKIRA EGAWA' },
+  { n: '157', name: 'Chien-Pao ex', note: 'Special Art Rare · kodama' },
+  { n: '158', name: 'Ting-Lu ex', note: 'Special Art Rare · KEIICHIRO ITO' },
 ]
 
 const SUPPORTERS = [
-  { n: '160', name: 'Iono', note: 'SAR · kirisAki' },
-  { n: '159', name: 'Grusha', note: 'SAR · DOM' },
-  { n: '161', name: 'Giacomo', note: 'SAR · KIYOTAKA OSHIYAMA' },
+  { n: '160', name: 'Iono', note: 'Special Art Rare · kirisAki' },
+  { n: '159', name: 'Grusha', note: 'Special Art Rare · DOM' },
+  { n: '161', name: 'Giacomo', note: 'Special Art Rare · KIYOTAKA OSHIYAMA' },
 ]
 
 const ULTRA_RARES = [
@@ -81,7 +81,7 @@ const ART_RARES = [
 ]
 
 // Pokémon China's two odds charts, for the 5-card and the 20-card pack, in the
-// bands they use. The per-pack average is the print share times the pack size.
+// rarity groups they use. The per-pack average is the print share times the pack size.
 const ODDS = [
   { band: 'Common and Uncommon (non-holo)', s5: '80.00%', p5: '4', s20: '70.00%', p20: '14' },
   { band: 'Poké Ball pattern holo and Rare', s5: '14.53%', p5: 'about 0.73', s20: '22.99%', p20: 'about 4.6' },
@@ -107,7 +107,7 @@ const FAQ = [
   },
   {
     q: 'What is the Chinese Exclusive in Fearless Terastal?',
-    a: 'The Arcanine ex Special Art Rare 155/130. English printed Tera Arcanine ex as a Double Rare and a full art, but never as a Special Illustration Rare.',
+    a: 'The Arcanine ex Special Art Rare 155/130, illustrated by Gemi. English has Tera Arcanine ex as a Double Rare and a full art, but this illustration does not exist in English.',
   },
   {
     q: 'What is in a Fearless Terastal pack?',
@@ -119,7 +119,7 @@ const FAQ = [
   },
   {
     q: 'Where do the Fearless Terastal illustrations come from?',
-    a: 'From several English sets at once. Most of its cards match Paldea Evolved (96), Obsidian Flames (34) and Scarlet & Violet (22), and one new art has no English version.',
+    a: 'From several English sets at once. Most of its cards match Paldea Evolved (96), Obsidian Flames (34) and Scarlet & Violet (22), and one card, the Arcanine ex Special Art Rare, does not exist in English.',
     link: { to: '/sets/chinese/fearless-terastal-csv3', before: 'See every card on the ', label: 'Fearless Terastal card list', after: '.' },
   },
   {
@@ -205,7 +205,11 @@ function FearlessTerastalReleasePost() {
         <p>
           Fearless Terastal (<Zh>无畏太晶</Zh>, set code CSV3C) released on May 16, 2025. It is the third main set of the Chinese Scarlet & Violet series, and it
           introduces Terastallized Pokémon as Tera Pokémon ex, with a crystal Arcanine on the pack. Around it are the
-          four legendary Treasures of Ruin, a cast of Paldea Pokémon and Trainers, and one card that does not exist in English.
+          four legendary Treasures of Ruin, a cast of Paldea Pokémon and Trainers, and one Chinese Exclusive that does not exist in English.
+        </p>
+        <p>
+          Our <Link to="/blog/fearless-terastal-set-guide">set guide</Link> shows every secret rare and the pull odds, and our{' '}
+          <Link to="/blog/fearless-terastal-card-origins">card origins guide</Link> matches every card to its English version.
         </p>
 
         <aside className="fact-box" aria-label="Fearless Terastal key facts">
@@ -226,7 +230,7 @@ function FearlessTerastalReleasePost() {
               <dt>Set size</dt>
               <dd>165 cards: 130 in the main set, 35 secret rares</dd>
               <dt>Chinese Exclusive</dt>
-              <dd>Arcanine ex SAR 155/130</dd>
+              <dd>Arcanine ex Special Art Rare 155/130</dd>
             </dl>
           </div>
         </aside>
@@ -244,10 +248,9 @@ function FearlessTerastalReleasePost() {
 
         <h2 id="exclusive">Chinese Exclusive: Arcanine ex</h2>
         <p>
-          One secret rare has no English version: the Arcanine ex Special Art Rare, 155/130. It shows the Terastallized Arcanine
-          mid-roar, its body cut like crystal, with a red Tera Jewel crown on its head and its glow lighting the dark forest behind it. The
-          Double Rare and Super Rare versions match English cards, so this is the one card here with art
-          you will only find in the Chinese set.
+          One secret rare does not exist in English: the Arcanine ex Special Art Rare, 155/130, illustrated by Gemi. It shows the
+          Terastallized Arcanine roaring, its body cut like crystal, with a red Tera Jewel crown on its head and dark tree trunks
+          behind it. The Double Rare and Super Rare versions match English cards, so this is the set's one Chinese Exclusive.
         </p>
         <Grid cards={ARCANINE} cols={3} />
 
@@ -270,7 +273,7 @@ function FearlessTerastalReleasePost() {
 
         <h2 id="special-art-rares">Special Art Rares</h2>
         <p>
-          Eight Special Art Rares, 154 to 161: five Pokémon ex, including the Chinese Exclusive Arcanine ex, and three Supporters. Iono
+          There are eight Special Art Rares, numbered 154 to 161: five Pokémon ex, including the Chinese Exclusive Arcanine ex, and three Supporters. Iono
           holds up plates of desserts, Grusha is seen through a window behind snow-covered branches, and Giacomo stands behind a set
           of DJ decks.
         </p>
@@ -280,13 +283,13 @@ function FearlessTerastalReleasePost() {
 
         <h2 id="ultra-rares">Gold Ultra Rares</h2>
         <p>
-          Four gold cards top the set, 162 to 165: Chien-Pao ex, Ting-Lu ex, Superior Energy Retrieval and Reversal Energy.
+          Four gold cards top the set, numbered 162 to 165: Chien-Pao ex, Ting-Lu ex, Superior Energy Retrieval and Reversal Energy.
         </p>
         <Grid cards={ULTRA_RARES} cols={4} />
 
         <h2 id="art-rares">Art Rares</h2>
         <p>
-          Eight Art Rares, 131 to 138, give main-set Pokémon a full illustration. Tomokazu Komiya drew the whole Frigibax line, and
+          Eight Art Rares, numbered 131 to 138, give main-set Pokémon a full illustration. Tomokazu Komiya drew the whole Frigibax line, and
           OKACHEKE drew Mabosstiff and Orthworm.
         </p>
         <Grid cards={ART_RARES} cols={4} />
@@ -329,8 +332,7 @@ function FearlessTerastalReleasePost() {
         </p>
         <p>
           Every Common, Uncommon and Rare also comes as a Poké Ball pattern and a Master Ball pattern holo, which brings the full set to
-          397 cards. Our <Link to="/blog/fearless-terastal-set-guide">set guide</Link> has every chase card, and our{' '}
-          <Link to="/blog/fearless-terastal-card-origins">card origins guide</Link> matches every card to its English version.
+          397 cards. Our <Link to="/blog/fearless-terastal-set-guide">set guide</Link> covers what a master set takes.
         </p>
 
         <h2 id="faq">FAQ</h2>

@@ -15,7 +15,7 @@ const cardImg = (n: string) => `${R2_IMAGE_HOST}/Chinese/Blade%20Awakening/Cards
 
 type Shown = { n: string; name: string; note: string }
 
-// The Chinese Exclusive: the Ciphermaniac's Codebreaking SAR 245.
+// The Chinese Exclusive: the Ciphermaniac's Codebreaking Special Art Rare 245.
 const CHINESE_EXCLUSIVE = new Set(['245'])
 
 function Grid({ cards, cols }: { cards: Shown[]; cols: number }) {
@@ -38,28 +38,28 @@ function Grid({ cards, cols }: { cards: Shown[]; cols: number }) {
 }
 
 const EXCLUSIVE = [
-  { n: '245', name: "Ciphermaniac's Codebreaking", note: 'SAR · Taira Akitsu' },
+  { n: '245', name: "Ciphermaniac's Codebreaking", note: 'Special Art Rare · Taira Akitsu' },
   { n: '228', name: "Ciphermaniac's Codebreaking", note: 'Super Rare · Taira Akitsu' },
 ]
 
 const GRENINJA = [
-  { n: '242', name: 'Greninja ex', note: 'SAR · akagi' },
+  { n: '242', name: 'Greninja ex', note: 'Special Art Rare · akagi' },
   { n: '223', name: 'Greninja ex', note: 'Super Rare · 5ban Graphics' },
   { n: '123', name: 'Greninja ex', note: 'Double Rare · 5ban Graphics' },
 ]
 
 const SAR_POKEMON = [
-  { n: '244', name: 'Raging Bolt ex', note: 'SAR · Teeziro' },
-  { n: '239', name: 'Walking Wake ex', note: 'SAR · Teeziro' },
-  { n: '238', name: 'Gouging Fire ex', note: 'SAR · Teeziro' },
-  { n: '241', name: 'Iron Crown ex', note: 'SAR · nagimiso' },
+  { n: '244', name: 'Raging Bolt ex', note: 'Special Art Rare · Teeziro' },
+  { n: '239', name: 'Walking Wake ex', note: 'Special Art Rare · Teeziro' },
+  { n: '238', name: 'Gouging Fire ex', note: 'Special Art Rare · Teeziro' },
+  { n: '241', name: 'Iron Crown ex', note: 'Special Art Rare · nagimiso' },
 ]
 
 const SAR_TRAINERS = [
-  { n: '250', name: "Morty's Conviction", note: 'SAR · Megumi Mizutani' },
-  { n: '249', name: "Bianca's Devotion", note: 'SAR · Cona Nitanda' },
-  { n: '246', name: "Lana's Aid", note: 'SAR · Toshinao Aoki' },
-  { n: '248', name: 'Eri', note: 'SAR · DOM' },
+  { n: '250', name: "Morty's Conviction", note: 'Special Art Rare · Megumi Mizutani' },
+  { n: '249', name: "Bianca's Devotion", note: 'Special Art Rare · Cona Nitanda' },
+  { n: '246', name: "Lana's Aid", note: 'Special Art Rare · Toshinao Aoki' },
+  { n: '248', name: 'Eri', note: 'Special Art Rare · DOM' },
 ]
 
 const ULTRA = [
@@ -140,11 +140,11 @@ const FAQ = [
   },
   {
     q: 'What is the Chinese Exclusive in Blade Awakening?',
-    a: "Ciphermaniac's Codebreaking 245/204, a Special Art Rare by Taira Akitsu. Pokémon China says it was added specially to this set. English has Ciphermaniac's Codebreaking as a Supporter and a full art, but not this illustration.",
+    a: "Ciphermaniac's Codebreaking 245/204, a Special Art Rare by Taira Akitsu. English has Ciphermaniac's Codebreaking as a Supporter and a full art, but not with this illustration.",
   },
   {
     q: 'What is the difference between the slim and jumbo Blade Awakening packs?',
-    a: 'A slim pack has 5 cards: 4 non-holo and 1 holo. A jumbo pack has 20 cards: 14 non-holo and 6 holo. The card list is the same, but the jumbo pack has better published odds for every holo band.',
+    a: 'A slim pack has 5 cards: 4 non-holo and 1 holo. A jumbo pack has 20 cards: 14 non-holo and 6 holo. The card list is the same, but the jumbo pack has better published odds for every holo rarity group.',
   },
   {
     q: 'What are the odds of pulling a Super Rare or better?',
@@ -243,10 +243,14 @@ function BladeAwakeningReleasePost() {
         }}
       >
         <p>
-          Blade Awakening (<Zh>利刃猛醒</Zh>) released on January 16, 2026. It is the CSV7C set of the Chinese Scarlet & Violet series and a big
-          one: 259 cards, with Tera Greninja ex on the pack, Raging Bolt ex, Walking Wake ex, Iron Crown ex and the other Ancient and
-          Future Pokémon in the chase, and nine ACE SPEC cards, the powerful Trainers you can only play one of per deck. Its Chinese
-          Exclusive is a Ciphermaniac's Codebreaking Special Art Rare.
+          Blade Awakening (<Zh>利刃猛醒</Zh>, set code CSV7C) released on January 16, 2026. It is a 259-card set of the Chinese Scarlet &
+          Violet series with Tera Greninja ex on the pack. The set is full of Ancient and Future Pokémon such as Raging Bolt ex, Walking
+          Wake ex and Iron Crown ex, and it has nine ACE SPEC cards. Its Chinese Exclusive is a Ciphermaniac's Codebreaking Special Art
+          Rare.
+        </p>
+        <p>
+          Our <Link to="/blog/blade-awakening-set-guide">set guide</Link> shows every secret rare and each Pokémon ex at every rarity,
+          and our <Link to="/blog/blade-awakening-card-origins">card origins guide</Link> matches every card to its English version.
         </p>
 
         <aside className="fact-box" aria-label="Blade Awakening key facts">
@@ -273,9 +277,9 @@ function BladeAwakeningReleasePost() {
               <dt>Set size</dt>
               <dd>259 cards: 204 in the main set, 55 secret rares</dd>
               <dt>Chase cards</dt>
-              <dd>Greninja ex SAR, Raging Bolt ex SAR and gold, Ciphermaniac's Codebreaking SAR</dd>
+              <dd>Greninja ex Special Art Rare, Raging Bolt ex Special Art Rare and gold Ultra Rare, Ciphermaniac's Codebreaking Special Art Rare</dd>
               <dt>Chinese Exclusive</dt>
-              <dd>Ciphermaniac's Codebreaking SAR 245/204</dd>
+              <dd>Ciphermaniac's Codebreaking Special Art Rare 245/204</dd>
             </dl>
           </div>
         </aside>
@@ -294,9 +298,9 @@ function BladeAwakeningReleasePost() {
         <h2 id="slim-or-jumbo">Slim or jumbo?</h2>
         <p>
           Blade Awakening comes in two pack sizes with the same card list. The slim pack is 5 cards with one holo. The jumbo pack is 20
-          cards with six holos. Pokémon China published an odds chart for each, and the jumbo pack wins at every holo level: Super
-          Rares, Special Art Rares and Ultra Rares are 1.00% of jumbo cards against 0.73% of slim cards. That works out to about one big
-          hit every 5 jumbo packs, against one every 27 slim packs.
+          cards with six holos. Pokémon China published an odds chart for each, and the jumbo pack is better at every holo level. Super
+          Rares, Special Art Rares and Ultra Rares are 1.00% of jumbo cards against 0.73% of slim cards. That works out to about one of
+          those cards every 5 jumbo packs, against one every 27 slim packs.
         </p>
         <ul className="card-grid cols-2">
           <li>
@@ -335,28 +339,29 @@ function BladeAwakeningReleasePost() {
 
         <h2 id="ciphermaniac">Chinese Exclusive: Ciphermaniac's Codebreaking</h2>
         <p>
-          Pokémon China says it added a brand-new Ciphermaniac's Codebreaking Special Art Rare to Blade Awakening. Taira Akitsu, who drew
-          the regular card, shows the Ciphermaniac in a blue-lit street, magnifying glass in one hand and the Violet Book in the other.
-          English has this Supporter as a regular card and a full art, both of which are here too, but never this art.
+          Ciphermaniac's Codebreaking 245/204 is a Special Art Rare with a new illustration by Taira Akitsu, who also drew the regular
+          card. It shows the Ciphermaniac in a blue-lit street with a magnifying glass in one hand and an open book in the other.
+          English has this Supporter as a regular card and a full art, and both are in this set too. The card is not in English with
+          this illustration.
         </p>
         <Grid cards={EXCLUSIVE} cols={2} />
 
         <h2 id="greninja">Tera Greninja ex</h2>
         <p>
           Greninja ex is the pack Pokémon, a Fighting-type Tera Pokémon with 310 HP. While it sits on your Bench it takes no damage from
-          attacks. It comes at three rarities, and the Special Art Rare by akagi is the one most collectors will chase.
+          attacks. It comes at three rarities, and the Special Art Rare by akagi is the one most collectors want.
         </p>
         <Grid cards={GRENINJA} cols={3} />
 
         <h2 id="special-art-rares">Special Art Rares</h2>
         <p>
-          Fourteen Special Art Rares, 237 to 250. Eight are Pokémon ex: Greninja ex, Dachsbun ex and six Paradox Pokémon, with Teeziro
-          drawing Raging Bolt ex, Walking Wake ex and Gouging Fire ex as a matching set.
+          There are fourteen Special Art Rares, numbered 237 to 250. Eight are Pokémon ex: Greninja ex, Dachsbun ex and six Paradox
+          Pokémon. Teeziro drew Raging Bolt ex, Walking Wake ex and Gouging Fire ex as a matching set.
         </p>
         <Grid cards={SAR_POKEMON} cols={4} />
         <p>
-          The other six are Supporters: Ciphermaniac's Codebreaking, Lana's Aid, Salvatore, Eri, Bianca's Devotion and Morty's Conviction,
-          which puts Gengar in the frame with Morty.
+          The other six are Supporters: Ciphermaniac's Codebreaking, Lana's Aid, Salvatore, Eri, Bianca's Devotion and Morty's
+          Conviction, which shows Morty with his Gengar.
         </p>
         <Grid cards={SAR_TRAINERS} cols={4} />
 
@@ -364,21 +369,24 @@ function BladeAwakeningReleasePost() {
 
         <h2 id="ultra-rares">Gold Ultra Rares</h2>
         <p>
-          Nine gold cards, 251 to 259. Six are the Paradox Pokémon ex, so Raging Bolt ex, Walking Wake ex, Gouging Fire ex, Iron Crown
+          There are nine gold Ultra Rares, numbered 251 to 259. Six are the Paradox Pokémon ex, so Raging Bolt ex, Walking Wake ex, Gouging Fire ex, Iron Crown
           ex, Iron Leaves ex and Iron Boulder ex each run from Double Rare to Super Rare, Special Art Rare and gold. The other three are
           Earthen Vessel, Buddy-Buddy Poffin and Rescue Board.
         </p>
         <Grid cards={ULTRA} cols={3} />
 
         <h2 id="art-rares">Art Rares</h2>
-        <p>Six Art Rares, 205 to 210. Metagross in a snowy town by Katsunori Sato and Drampa carrying two children over the rooftops by Mékayu are the standouts.</p>
+        <p>
+          There are six Art Rares, numbered 205 to 210. Katsunori Sato drew Metagross in a snowy town, and Mékayu drew Drampa carrying
+          two children over the rooftops.
+        </p>
         <Grid cards={ART_RARES} cols={3} />
 
         <h2 id="ace-spec">ACE SPEC cards</h2>
         <p>
-          Pokémon China makes the ACE SPEC cards a headline of Blade Awakening. These are Trainers and Energy with a pink frame and
-          strong effects, and a deck can only include one. All nine sit in the main set between 176 and 203, at their own ACE
-          SPEC Rare rarity, which shares the Double Rare odds band.
+          Blade Awakening has nine ACE SPEC cards. These are Trainers and Energy with a pink frame and strong effects, and a deck can
+          only include one. All nine sit in the main set between 176 and 203, at their own ACE SPEC Rare rarity, which shares a rarity
+          group with the Double Rares.
         </p>
         <Grid cards={ACE} cols={3} />
 
@@ -391,7 +399,7 @@ function BladeAwakeningReleasePost() {
         <Grid cards={MAIN_EX} cols={3} />
 
         <h2 id="odds">Odds and box math</h2>
-        <p>Pokémon China's charts for each pack size, in the bands they use:</p>
+        <p>These are Pokémon China's charts for each pack size, in the rarity groups they use:</p>
         <div className="table-scroll" role="group" aria-labelledby="tbl-1" tabIndex={0}>
           <table className="data-table">
             <caption id="tbl-1" className="sr-only">Odds and box math: Share of print, Slim, Jumbo</caption>
@@ -414,7 +422,7 @@ function BladeAwakeningReleasePost() {
           </table>
         </div>
         <p className="table-note">From Pokémon China's odds chart for each pack size.</p>
-        <p>Applied to one box of each:</p>
+        <p>Applied to one box of each, the shares work out to this:</p>
         <div className="table-scroll" role="group" aria-labelledby="tbl-2" tabIndex={0}>
           <table className="data-table">
             <caption id="tbl-2" className="sr-only">Odds and box math: Per box, Slim, Jumbo</caption>
@@ -438,15 +446,15 @@ function BladeAwakeningReleasePost() {
         </div>
         <p className="table-note">Averages from the official print shares, not guarantees. Individual boxes vary.</p>
         <p>
-          The top band holds 49 different cards: 26 Super Rares, 14 Special Art Rares and 9 Ultra Rares. Per card, the jumbo pack prints
-          it about 37% more often.
+          The top group holds 49 different cards: 26 Super Rares, 14 Special Art Rares and 9 Ultra Rares. Per card, the jumbo pack has
+          about 37% more of them.
         </p>
 
         <h2 id="parallels">Poké Ball and Master Ball holos</h2>
         <p>
           Every Common, Uncommon and Rare, 173 cards, also comes as a Poké Ball pattern holo and a Master Ball pattern holo. The card is
-          the same, only the holo pattern changes. That adds 346 cards, for 605 in a true master set. The Master Ball versions share the Double
-          Rare odds band, so they are a chase of their own.
+          the same, only the holo pattern changes. That adds 346 cards, for 605 in a true master set. The Master Ball versions share a rarity
+          group with the Double Rares, so they take a long time to collect.
         </p>
 
         <h2 id="coin-set">The coin set</h2>
@@ -486,10 +494,6 @@ function BladeAwakeningReleasePost() {
             </figure>
           </li>
         </ul>
-        <p>
-          Our <Link to="/blog/blade-awakening-set-guide">set guide</Link> has every secret rare and each Pokémon ex at every rarity,
-          and our <Link to="/blog/blade-awakening-card-origins">card origins guide</Link> matches every card to its English version.
-        </p>
 
         <h2 id="faq">FAQ</h2>
         <div className="faq">
@@ -513,9 +517,9 @@ function BladeAwakeningReleasePost() {
 
         <h2 id="our-take">Our take</h2>
         <p>
-          Blade Awakening is a set with real depth: six Paradox Pokémon run all the way to gold, and the akagi Greninja ex sits on
-          top. The Ciphermaniac SAR is a quiet favorite that does not exist in English. For hits,
-          the jumbo box is the better buy on the published odds.
+          Blade Awakening goes deep: six Paradox Pokémon ex run all the way to gold, and the Greninja ex Special Art Rare by akagi
+          is the card most collectors want. The Ciphermaniac's Codebreaking Special Art Rare does not exist in English. If you are
+          opening for Super Rares and above, the jumbo box is the better buy on the published odds.
         </p>
       </BlogPostLayout>
     </>

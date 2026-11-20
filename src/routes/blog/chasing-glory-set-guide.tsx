@@ -202,7 +202,7 @@ function ChasingGlorySetGuide() {
         lede="Chasing Glory is the Trainer's Pokémon set, led by Team Rocket and sold in slim and jumbo boxes. This guide helps you pick a box, shows every chase card, and lists which Trainer owns which Pokémon."
         cta={{
           heading: 'Collect Chasing Glory',
-          body: 'Track every card on the full checklist, or pick up a box and start ripping.',
+          body: 'Track every card on the full checklist, or pick up a box.',
           links: [
             { to: '/sets/chinese/chasing-glory-csv10', label: 'See the full card list' },
             { to: '/products/$id', params: { id: 'pokemon-chinese-chasing-glory-jumbo-booster-box' }, label: 'Shop the jumbo box', variant: 'ghost' },
@@ -256,7 +256,7 @@ function ChasingGlorySetGuide() {
         </div>
         <p className="table-note">Averages from the official print shares, not guarantees. Individual boxes vary.</p>
         <p>
-          The jumbo box has 1.6 times the cards of a slim box but more than twice the top-band pulls, because its odds are better per
+          The jumbo box has 1.6 times the cards of a slim box but more than twice the top-group pulls, because its odds are better per
           card as well: 1.00% of jumbo cards are Super Rare or higher, against 0.73% of slim cards. Most slim boxes will not have a
           Super Rare, Special Art Rare or Ultra Rare in them. Most jumbo boxes will have one.
         </p>
@@ -289,10 +289,10 @@ function ChasingGlorySetGuide() {
             <thead>
               <tr>
                 <th scope="col">Pokémon</th>
-                <th scope="col">RR</th>
-                <th scope="col">SR</th>
-                <th scope="col">SAR</th>
-                <th scope="col">UR</th>
+                <th scope="col">Double Rare</th>
+                <th scope="col">Super Rare</th>
+                <th scope="col">Special Art Rare</th>
+                <th scope="col">Ultra Rare</th>
               </tr>
             </thead>
             <tbody>
@@ -368,8 +368,8 @@ function ChasingGlorySetGuide() {
           Common, Uncommon and Rare cards, for 683 in total.
         </p>
         <p>
-          The Poké Ball holos come fastest, since they share the most common holo band. The Master Ball holos share the Double Rare band,
-          about 4 per slim box or 8 per jumbo box spread across 228 different cards in that band, so they take a long time. The 59 top-band
+          The Poké Ball holos come fastest, since they share the most common holo group. The Master Ball holos share the Double Rare group,
+          about 4 per slim box or 8 per jumbo box spread across 228 different cards in that group, so they take a long time. The 59 top-group
           cards are harder still. Like most sets, the practical route is to open boxes for fun and the lower tiers, then pick up the big
           cards as singles. The <Link to="/sets/chinese/chasing-glory-csv10">Chasing Glory card list</Link> lets you tick off what you have.
         </p>

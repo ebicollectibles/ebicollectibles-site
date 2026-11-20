@@ -1,3 +1,4 @@
+import { Zh } from '~/components/blog/Zh'
 import { rarityFullName } from '~/components/blog/RarityAbbr'
 import { BuyStrip } from '~/components/blog/BlogShop'
 import { createFileRoute, Link } from '@tanstack/react-router'
@@ -39,15 +40,15 @@ function Gallery({ cards, cols }: { cards: Card[]; cols: number }) {
 }
 
 const BLOCKS = [
-  { nos: '001 to 106', what: 'Pokémon, grouped by type', rarity: 'C, U, R, RR' },
-  { nos: '107 to 113', what: 'Items', rarity: 'U' },
-  { nos: '114 to 118', what: 'Pokémon Tools', rarity: 'U' },
-  { nos: '119 to 125', what: 'Supporters', rarity: 'U, R' },
-  { nos: '126 to 127', what: 'Stadium and Special Energy', rarity: 'U' },
-  { nos: '128 to 135', what: 'Art Rares', rarity: 'AR' },
-  { nos: '136 to 152', what: 'Super Rare full arts of ex and Supporters', rarity: 'SR' },
-  { nos: '153 to 163', what: 'Special Art Rares of ex and Supporters', rarity: 'SAR' },
-  { nos: '164 to 167', what: 'Gold Ultra Rares', rarity: 'UR' },
+  { nos: '001 to 106', what: 'Pokémon, grouped by type', rarity: 'Common, Uncommon, Rare, Double Rare' },
+  { nos: '107 to 113', what: 'Items', rarity: 'Uncommon' },
+  { nos: '114 to 118', what: 'Pokémon Tools', rarity: 'Uncommon' },
+  { nos: '119 to 125', what: 'Supporters', rarity: 'Uncommon (both Professor’s Research are Rare)' },
+  { nos: '126 to 127', what: 'Stadium and Special Energy', rarity: 'Uncommon' },
+  { nos: '128 to 135', what: 'Art Rares', rarity: 'Art Rare' },
+  { nos: '136 to 152', what: 'Super Rare full arts of ex and Supporters', rarity: 'Super Rare' },
+  { nos: '153 to 163', what: 'Special Art Rares of ex and Supporters', rarity: 'Special Art Rare' },
+  { nos: '164 to 167', what: 'Gold Ultra Rares', rarity: 'Ultra Rare' },
 ]
 
 // Pokémon China's two odds charts applied to one pack of each size. The
@@ -85,11 +86,11 @@ const TOC = [
 const FAQ = [
   {
     q: 'What are the chase cards in Eternal Birth?',
-    a: 'The Miraidon ex and Koraidon ex Special Art Rares, 154/127 and 157/127, and their gold Ultra Rares, 164/127 and 165/127. Ultra Rare is the top rarity, with four cards.',
+    a: 'The lead chase cards are the Miraidon ex and Koraidon ex Special Art Rares, 154/127 and 157/127, and their gold Ultra Rares, 164/127 and 165/127. Ultra Rare is the top rarity, with four cards.',
   },
   {
     q: 'How often does a pack hold a Super Rare or better?',
-    a: "About one 5-card pack in 27, or one 20-card pack in five, going by Pokémon China's print shares. Super Rares, Special Art Rares and Ultra Rares make up 0.73% of the 5-card print run and 1.00% of the 20-card print run.",
+    a: "About one 5-card pack in 27 holds one, or one 20-card pack in five, going by Pokémon China's print shares. Super Rares, Special Art Rares and Ultra Rares make up 0.73% of the 5-card print run and 1.00% of the 20-card print run.",
   },
   {
     q: 'Which Pokémon ex have no secret rare?',
@@ -97,7 +98,7 @@ const FAQ = [
   },
   {
     q: 'How many cards are in an Eternal Birth master set?',
-    a: '393: the 167 numbered cards plus a Poké Ball and a Master Ball pattern holo of each of the 113 Commons, Uncommons and Rares.',
+    a: 'A master set has 393 cards: the 167 numbered cards plus a Poké Ball and a Master Ball pattern holo of each of the 113 Commons, Uncommons and Rares.',
   },
 ]
 
@@ -172,10 +173,13 @@ function EternalBirthSetGuide() {
         }}
       >
         <p>
-          Eternal Birth (CSV1C) is the Miraidon set that opened the Chinese Scarlet & Violet series: 167 cards, 14 Pokémon ex, and
-          5-card and 20-card packs. Our <Link to="/blog/eternal-birth-release-news">release post</Link> covers what is new, and our{' '}
-          <Link to="/blog/eternal-birth-card-origins">card origins guide</Link> matches every card to English. Use this one to sort
-          your pulls or plan a master set.
+          Eternal Birth (<Zh>亘古开来</Zh>, set code CSV1C) released on January 17, 2025. It is the Miraidon set that opened the Chinese
+          Scarlet & Violet series. It has 167 cards, 14 of them Pokémon ex, and it comes in 5-card and 20-card packs.
+        </p>
+        <p>
+          Our <Link to="/blog/eternal-birth-release-news">release post</Link> covers what is new, and our{' '}
+          <Link to="/blog/eternal-birth-card-origins">card origins guide</Link> matches every card to its English version. Use
+          this guide to sort your pulls or plan a master set.
         </p>
 
         <nav className="toc" aria-label="In this guide">
@@ -190,7 +194,7 @@ function EternalBirthSetGuide() {
         </nav>
 
         <h2 id="pack">What a pack holds</h2>
-        <p>Pokémon China's odds charts for the 5-card and the 20-card pack, applied to one pack of each:</p>
+        <p>Pokémon China publishes an odds chart for the 5-card pack and one for the 20-card pack. Applied to one pack of each, they work out to roughly:</p>
         <div className="table-scroll" role="group" aria-labelledby="tbl-1" tabIndex={0}>
           <table className="data-table">
             <caption id="tbl-1" className="sr-only">What a pack holds</caption>
@@ -214,8 +218,8 @@ function EternalBirthSetGuide() {
         </div>
         <p className="table-note">Averages from the official print shares, shown in brackets. They are not guarantees.</p>
         <p>
-          The top band holds 32 different cards. It averages about one every 27 of the 5-card packs, or one every five of the 20-card
-          packs. Card for card the 20-card pack is the richer one: 30% of its cards are holos, against 20% in the 5-card pack.
+          The top group holds 32 different cards. It averages about one every 27 of the 5-card packs, or one every five of the 20-card
+          packs. Card for card, the 20-card pack has more holos: 30% of its cards are holos, against 20% in the 5-card pack.
         </p>
 
         <h2 id="chase-cards">Lead chase cards: Miraidon ex and Koraidon ex</h2>
@@ -226,35 +230,35 @@ function EternalBirthSetGuide() {
         <Gallery cards={byNos(['154', '157', '164', '165'])} cols={4} />
 
         <h2 id="special-art-rares">All 11 Special Art Rares</h2>
-        <p>153 to 163: six Pokémon ex and five Supporters.</p>
+        <p>These are numbered 153 to 163. Six are Pokémon ex and five are Supporters.</p>
         <Gallery cards={lead(byRange(153, 163), ['154', '157', '155', '163'])} cols={4} />
 
         <BuyStrip />
 
         <h2 id="super-rares">All 17 Super Rares</h2>
-        <p>Full arts of ten Pokémon ex and seven Supporters, 136 to 152. Professor's Research has two, one for each professor.</p>
+        <p>These are full arts of ten Pokémon ex and seven Supporters, numbered 136 to 152. Professor's Research has two, one for each professor.</p>
         <Gallery cards={lead(byRange(136, 152), ['138', '142', '140', '152', '151', '150'])} cols={3} />
 
         <h2 id="ultra-rares">All 4 Ultra Rares</h2>
-        <p>The gold cards, 164 to 167.</p>
+        <p>These are the gold cards, numbered 164 to 167.</p>
         <Gallery cards={byRange(164, 167)} cols={4} />
 
         <h2 id="art-rares">All 8 Art Rares</h2>
-        <p>128 to 135.</p>
+        <p>These are numbered 128 to 135.</p>
         <Gallery cards={byRange(128, 135)} cols={4} />
 
         <h2 id="ladders">One Pokémon, several rarities</h2>
-        <p>The Pokémon ex with a Special Art Rare, and every number they print at:</p>
+        <p>These are the Pokémon ex with a Special Art Rare, and the number of each version:</p>
         <div className="table-scroll" role="group" aria-labelledby="tbl-2" tabIndex={0}>
           <table className="data-table">
             <caption id="tbl-2" className="sr-only">One Pokémon, several rarities</caption>
             <thead>
               <tr>
                 <th scope="col">Pokémon</th>
-                <th scope="col">RR</th>
-                <th scope="col">SR</th>
-                <th scope="col">SAR</th>
-                <th scope="col">UR</th>
+                <th scope="col">Double Rare</th>
+                <th scope="col">Super Rare</th>
+                <th scope="col">Special Art Rare</th>
+                <th scope="col">Ultra Rare</th>
               </tr>
             </thead>
             <tbody>
@@ -276,13 +280,13 @@ function EternalBirthSetGuide() {
         </p>
 
         <h2 id="double-rares">All 14 Pokémon ex</h2>
-        <p>The Double Rares from the main set, 008 to 106.</p>
+        <p>These are the Double Rares from the main set. Miraidon ex is 050/127 and Koraidon ex is 084/127.</p>
         <Gallery cards={lead(setData.cards.filter((c) => c.rarity === 'Double Rare (RR)'), ['050', '084', '068', '086', '075', '023', '008'])} cols={4} />
 
         <h2 id="numbering">How the numbers work</h2>
         <p>
           Every card has one number out of 127. The main set runs 001 to 127, and everything above is a secret rare. The rarer versions
-          of a card sit in the secret block at unrelated numbers, so match them by name.
+          of a card sit among the secret rares at unrelated numbers, so match them by name.
         </p>
         <div className="table-scroll" role="group" aria-labelledby="tbl-3" tabIndex={0}>
           <table className="data-table">
@@ -312,7 +316,7 @@ function EternalBirthSetGuide() {
           and Rares, for 393 in total.
         </p>
         <p>
-          With one holo per 5-card pack and six per 20-card pack, the Master Ball holos and the 32 top-band cards take a long time to
+          With one holo per 5-card pack and six per 20-card pack, the Master Ball holos and the 32 cards in the top group take a long time to
           pull. The <Link to="/sets/chinese/eternal-birth-csv1">Eternal Birth card list</Link> lets you tick off what you have.
         </p>
 

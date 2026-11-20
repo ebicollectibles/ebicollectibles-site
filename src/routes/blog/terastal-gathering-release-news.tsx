@@ -312,7 +312,7 @@ function TerastalGatheringReleasePost() {
         <h2 id="packs-and-boxes">Packs, boxes and odds</h2>
         <p>
           Every pack has 10 cards, with either three or four holos. A box of 10 packs gives you 100 cards and somewhere between 30 and 40
-          holos. Pokémon China groups its odds into three bands:
+          holos. Pokémon China groups its odds into three groups:
         </p>
         <div className="table-scroll" role="group" aria-labelledby="tbl-1" tabIndex={0}>
           <table className="data-table">

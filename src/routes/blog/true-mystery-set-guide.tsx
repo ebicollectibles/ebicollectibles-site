@@ -1,3 +1,4 @@
+import { Zh } from '~/components/blog/Zh'
 import { rarityFullName } from '~/components/blog/RarityAbbr'
 import { BuyStrip } from '~/components/blog/BlogShop'
 import { createFileRoute, Link } from '@tanstack/react-router'
@@ -15,6 +16,11 @@ type Card = (typeof setData.cards)[number]
 const byRange = (from: number, to: number) => setData.cards.filter((c) => c.pokemonIndex >= from && c.pokemonIndex <= to)
 const EXCLUSIVE = new Set<string>(setData.exclusiveCardNumbers)
 const short = (r: string) => r.match(/\(([^)]+)\)/)?.[1] ?? r
+// Most wanted cards first (by number out of 128), then the rest in number order.
+const lead = (cards: Card[], first: string[]) => [
+  ...first.map((n) => cards.find((c) => c.number === `${n}/128`)!).filter(Boolean),
+  ...cards.filter((c) => !first.includes(c.number.slice(0, 3))),
+]
 
 function Gallery({ cards, cols }: { cards: Card[]; cols: number }) {
   return (
@@ -35,24 +41,30 @@ function Gallery({ cards, cols }: { cards: Card[]; cols: number }) {
   )
 }
 
+// Averages from Pokémon China's two odds charts. Each share is of all
+// cards printed for that pack size, applied to the cards in one box.
+// Slim: 80.00%, 14.53%, 4.74%, 0.73%. Jumbo: 70.00%, 22.99%, 6.01%, 1.00%.
 const BOXES = [
   { row: 'Packs per box', slim: '15', jumbo: '6' },
   { row: 'Cards per pack', slim: '5 (1 holo)', jumbo: '20 (6 holo)' },
   { row: 'Cards per box', slim: '75', jumbo: '120' },
   { row: 'Holos per box', slim: '15', jumbo: '36' },
-  { row: 'Non-holo cards per box', slim: '60', jumbo: '84' },
+  { row: 'Common and Uncommon', slim: '60', jumbo: '84' },
+  { row: 'Poké Ball pattern holo and Rare', slim: 'about 11', jumbo: 'about 28' },
+  { row: 'Double Rare, Art Rare and Master Ball pattern holo', slim: 'about 3 to 4', jumbo: 'about 7' },
+  { row: 'Super Rare, Special Art Rare and Ultra Rare', slim: 'about 0.55', jumbo: 'about 1.2' },
 ]
 
 const BLOCKS = [
-  { nos: '001 to 113', what: 'Pokémon, grouped by type', rarity: 'C, U, R, RR' },
-  { nos: '114 to 117', what: 'Items', rarity: 'U' },
-  { nos: '118 to 120', what: 'Pokémon Tools', rarity: 'U' },
-  { nos: '121 to 126', what: 'Supporters', rarity: 'U (Geeta is R)' },
-  { nos: '127 to 128', what: 'Stadiums', rarity: 'U' },
-  { nos: '129 to 136', what: 'Art Rares', rarity: 'AR' },
-  { nos: '137 to 151', what: 'Super Rare full arts of 9 ex and 6 Supporters', rarity: 'SR' },
-  { nos: '152 to 159', what: 'Special Art Rares of 4 ex and 4 Supporters', rarity: 'SAR' },
-  { nos: '160 to 163', what: 'Gold Ultra Rares', rarity: 'UR' },
+  { nos: '001 to 113', what: 'Pokémon, grouped by type', rarity: 'Common, Uncommon, Rare, Double Rare' },
+  { nos: '114 to 117', what: 'Items', rarity: 'Uncommon' },
+  { nos: '118 to 120', what: 'Pokémon Tools', rarity: 'Uncommon' },
+  { nos: '121 to 126', what: 'Supporters', rarity: 'Uncommon (Geeta is Rare)' },
+  { nos: '127 to 128', what: 'Stadiums', rarity: 'Uncommon' },
+  { nos: '129 to 136', what: 'Art Rares', rarity: 'Art Rare' },
+  { nos: '137 to 151', what: 'Super Rare full arts of 9 ex and 6 Supporters', rarity: 'Super Rare' },
+  { nos: '152 to 159', what: 'Special Art Rares of 4 ex and 4 Supporters', rarity: 'Special Art Rare' },
+  { nos: '160 to 163', what: 'Gold Ultra Rares', rarity: 'Ultra Rare' },
 ]
 
 const LADDER_NAMES = ['Roaring Moon ex', 'Iron Valiant ex', 'Iron Hands ex', 'Sandy Shocks ex']
@@ -77,19 +89,19 @@ const TOC = [
 const FAQ = [
   {
     q: 'Should I buy a slim or a jumbo True Mystery box?',
-    a: 'A jumbo box has 120 cards and 36 holos against 75 cards and 15 holos in a slim box. On the odds Pokémon China published, the jumbo box also averages more big hits: about 1.2 Super Rares, Special Art Rares or Ultra Rares against about 0.55 in a slim box. The slim box gives you more packs to open.',
+    a: 'For Super Rares and above, the jumbo box. It averages about 1.2 Super Rares, Special Art Rares or Ultra Rares against about 0.55 for a slim box, and it has 36 holos against 15. The slim box gives you more packs to open: 15 against 6.',
   },
   {
     q: 'What is the Chinese Exclusive in True Mystery?',
-    a: 'The Iron Hands ex Special Art Rare 152/128 by Tonji Matsuno.',
+    a: 'The Iron Hands ex Special Art Rare 152/128 by Tonji Matsuno. Iron Hands ex is in English, but not with this illustration.',
   },
   {
-    q: 'Which Pokémon ex reach the gold Ultra Rare tier?',
+    q: 'Which Pokémon ex have a gold Ultra Rare?',
     a: 'Two: Roaring Moon ex (096, 144, 155 and 161) and Iron Valiant ex (066, 142, 153 and 160). Each has a Double Rare, Super Rare, Special Art Rare and gold Ultra Rare.',
   },
   {
     q: 'How many secret rares are in True Mystery?',
-    a: '35: 8 Art Rares, 15 Super Rares, 8 Special Art Rares and 4 gold Ultra Rares, numbered 129 to 163.',
+    a: 'There are 35: 8 Art Rares, 15 Super Rares, 8 Special Art Rares and 4 gold Ultra Rares, numbered 129 to 163.',
   },
 ]
 
@@ -159,7 +171,7 @@ function TrueMysterySetGuide() {
         lede="True Mystery is the Paradox set, sold in slim and jumbo boxes. This guide helps you pick a box, shows every secret rare, and explains how the 163 card numbers fit together."
         cta={{
           heading: 'Collect True Mystery',
-          body: 'Track every card on the full checklist, or pick up a box and start ripping.',
+          body: 'Track every card on the full checklist, or pick up a box.',
           links: [
             { to: '/sets/chinese/true-mystery-csv6', label: 'See the full card list' },
             { to: '/products/$id', params: { id: 'pokemon-chinese-true-mystery-jumbo-booster-box' }, label: 'Shop the jumbo box', variant: 'ghost' },
@@ -167,10 +179,13 @@ function TrueMysterySetGuide() {
         }}
       >
         <p>
-          True Mystery (CSV6C) is the Paradox set: 163 cards, a Chinese Exclusive Iron Hands ex Special Art Rare, and slim and jumbo
-          boxes. Our <Link to="/blog/true-mystery-release-news">release post</Link> covers what is new, and our{' '}
-          <Link to="/blog/true-mystery-card-origins">card origins guide</Link> matches every card to English. Use this one to sort
-          your pulls or plan the full set.
+          True Mystery (<Zh>真实玄虚</Zh>, set code CSV6C) released on November 7, 2025. It is the Paradox Pokémon set: 163 cards sold
+          in slim and jumbo boxes, with one Chinese Exclusive, the Iron Hands ex Special Art Rare 152/128.
+        </p>
+        <p>
+          Our <Link to="/blog/true-mystery-release-news">release post</Link> covers what is new, and our{' '}
+          <Link to="/blog/true-mystery-card-origins">card origins guide</Link> matches every card to its English version. Use this
+          guide to pick a box, sort your pulls or plan the full set.
         </p>
 
         <nav className="toc" aria-label="In this guide">
@@ -185,15 +200,18 @@ function TrueMysterySetGuide() {
         </nav>
 
         <h2 id="slim-vs-jumbo">Slim box vs jumbo box</h2>
-        <p>Both boxes pull from the same 163-card list. Here is what each one holds:</p>
+        <p>
+          Both boxes pull from the same 163-card list, but Pokémon China publishes a different odds chart for each pack size. Applied
+          to one box, the published shares work out to roughly this:
+        </p>
         <div className="table-scroll" role="group" aria-labelledby="tbl-1" tabIndex={0}>
           <table className="data-table">
             <caption id="tbl-1" className="sr-only">Slim box vs jumbo box</caption>
             <thead>
               <tr>
                 <th scope="col">Per box</th>
-                <th scope="col">Slim</th>
-                <th scope="col">Jumbo</th>
+                <th scope="col">Slim box</th>
+                <th scope="col">Jumbo box</th>
               </tr>
             </thead>
             <tbody>
@@ -207,51 +225,53 @@ function TrueMysterySetGuide() {
             </tbody>
           </table>
         </div>
-        <p className="table-note">Cards and holos per pack from Pokémon China's product page.</p>
+        <p className="table-note">Averages from the official print shares, not guarantees. Individual boxes vary.</p>
         <p>
-          Pokémon China's odds charts put Super Rares, Special Art Rares and Ultra Rares at 0.73% of slim-pack cards and 1.00% of
-          jumbo-pack cards. Over a box that averages about 0.55 in a slim box and 1.2 in a jumbo box. Art Rares and Master Ball pattern
-          holos share a band at 4.74% (slim) and 6.01% (jumbo), about 3.6 and 7.2 per box. On holos alone, a jumbo box has 36 against
-          15 in a slim box, 2.4 times as many. The slim box gives you more packs to open: 15 against 6.
+          Super Rares, Special Art Rares and Ultra Rares are 0.73% of slim-pack cards and 1.00% of jumbo-pack cards, so most slim boxes
+          will not have one and most jumbo boxes will. Double Rares, Art Rares and Master Ball pattern holos share a rarity group at
+          4.74% of slim cards and 6.01% of jumbo cards. A jumbo box also has 36 holos against 15 in a slim box. The slim box gives you
+          more packs to open: 15 against 6.
         </p>
 
         <h2 id="special-art-rares">All 8 Special Art Rares</h2>
         <p>
-          152 to 159: Iron Hands ex, Iron Valiant ex, Sandy Shocks ex and Roaring Moon ex, then Professor Sada's Vitality, Geeta,
-          Professor Turo's Scenario and Tulip. Iron Hands ex 152 is the Chinese Exclusive.
+          These are numbered 152 to 159. The four Pokémon ex are Iron Hands ex, Iron Valiant ex, Sandy Shocks ex and Roaring Moon ex,
+          and the four Supporters are Professor Sada's Vitality, Geeta, Professor Turo's Scenario and Tulip. Iron Hands ex 152/128 is
+          the Chinese Exclusive.
         </p>
-        <Gallery cards={byRange(152, 159)} cols={4} />
+        <Gallery cards={lead(byRange(152, 159), ['153', '155', '152'])} cols={4} />
 
         <BuyStrip />
 
         <h2 id="super-rares">All 15 Super Rares</h2>
-        <p>Full arts of nine Pokémon ex, 137 to 145:</p>
-        <Gallery cards={byRange(137, 145)} cols={3} />
-        <p>And six Supporters, 146 to 151:</p>
+        <p>Nine are full arts of Pokémon ex, numbered 137 to 145.</p>
+        <Gallery cards={lead(byRange(137, 145), ['142', '144'])} cols={3} />
+        <p>The other six are full arts of Supporters, numbered 146 to 151.</p>
         <Gallery cards={byRange(146, 151)} cols={3} />
 
         <h2 id="ultra-rares">All 4 Ultra Rares</h2>
         <p>
-          The gold cards, 160 to 163. There is no English gold Pal Pad, and Pokémon China calls this one new.
+          These are the gold cards, numbered 160 to 163. The gold Pal Pad 163/128 is new art and does not exist in English, where Pal
+          Pad is a regular Item.
         </p>
         <Gallery cards={byRange(160, 163)} cols={4} />
 
         <h2 id="art-rares">All 8 Art Rares</h2>
-        <p>129 to 136, each a full illustration of a main-set Pokémon.</p>
+        <p>These are numbered 129 to 136. Each one is a full illustration of a main-set Pokémon.</p>
         <Gallery cards={byRange(129, 136)} cols={4} />
 
         <h2 id="ladders">One Pokémon, several rarities</h2>
-        <p>The four Pokémon ex with a Special Art Rare, and every number they print at:</p>
+        <p>Four Pokémon ex have a Special Art Rare. These are the numbers each one prints at:</p>
         <div className="table-scroll" role="group" aria-labelledby="tbl-2" tabIndex={0}>
           <table className="data-table">
             <caption id="tbl-2" className="sr-only">One Pokémon, several rarities</caption>
             <thead>
               <tr>
                 <th scope="col">Pokémon</th>
-                <th scope="col">RR</th>
-                <th scope="col">SR</th>
-                <th scope="col">SAR</th>
-                <th scope="col">UR</th>
+                <th scope="col">Double Rare</th>
+                <th scope="col">Super Rare</th>
+                <th scope="col">Special Art Rare</th>
+                <th scope="col">Ultra Rare</th>
               </tr>
             </thead>
             <tbody>
@@ -273,7 +293,7 @@ function TrueMysterySetGuide() {
 
         <h2 id="numbering">How the numbers work</h2>
         <p>
-          Every card has one number out of 128. The main set runs 001 to 128, and everything above is a secret rare. The rarer versions
+          Every card has one number out of 128. The main set runs 001 to 128, from Common to Double Rare, and everything above 128 is a secret rare. The rarer versions
           of a card sit in the secret block at unrelated numbers, so match them by name.
         </p>
         <div className="table-scroll" role="group" aria-labelledby="tbl-3" tabIndex={0}>
@@ -301,13 +321,12 @@ function TrueMysterySetGuide() {
 
         <h2 id="master-set">Completing the set</h2>
         <p>
-          The numbered set is 163 cards: 128 in the main set and 35 secret rares. Pokémon China's odds chart also lists a Poké Ball
-          pattern holo and a Master Ball pattern holo of all 115 Commons, Uncommons and Rares, so a master set with both parallels is
-          393 cards.
+          The numbered set is 163 cards: 128 in the main set and 35 secret rares. Pokémon China's odds charts also list a Poké Ball
+          pattern holo and a Master Ball pattern holo of all 115 Commons, Uncommons and Rares, so a master set with both is 393 cards.
         </p>
         <p>
-          The 35 secret rares are where the time goes. Many collectors open boxes for the main set and the fun of the rip, then buy the
-          top Special Art Rares and gold cards as singles. The <Link to="/sets/chinese/true-mystery-csv6">True Mystery card list</Link> lets you tick off
+          The 35 secret rares and the Master Ball pattern holos take the longest. Many collectors open boxes for fun and the main
+          set, then buy the Special Art Rares and gold cards they still need as singles. The <Link to="/sets/chinese/true-mystery-csv6">True Mystery card list</Link> lets you tick off
           what you have.
         </p>
 

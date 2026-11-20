@@ -74,10 +74,10 @@ const ART_RARES = [
 ]
 
 const BLOCKS = [
-  { nos: '001 to 103', what: 'Main set: Pokémon, the 30 Pikachu (017 to 046) and 3 Trainers', rarity: 'C, R, Pikachu, RR' },
-  { nos: '104 to 123', what: 'Art Rares', rarity: 'AR' },
-  { nos: '124 to 133', what: 'Special Art Rares of the ex', rarity: 'SAR' },
-  { nos: '134 to 135', what: 'Futuristic Rares: Mewtwo ex and Mew ex', rarity: 'FUR' },
+  { nos: '001 to 103', what: 'Main set: Pokémon, the 30 Pikachu (017 to 046) and 3 Trainers', rarity: 'Common, Rare, Pikachu Rare, Double Rare' },
+  { nos: '104 to 123', what: 'Art Rares', rarity: 'Art Rare' },
+  { nos: '124 to 133', what: 'Special Art Rares of the ex', rarity: 'Special Art Rare' },
+  { nos: '134 to 135', what: 'Futuristic Rares: Mewtwo ex and Mew ex', rarity: 'Futuristic Rare' },
   { nos: '136 to 165', what: 'Classic collection: 30 famous cards from 1999 to 2023', rarity: 'Classic' },
 ]
 
@@ -95,7 +95,7 @@ const ODDS = [
 ]
 
 const TOC = [
-  { id: 'futuristic', label: 'The chase: Futuristic Rares' },
+  { id: 'futuristic', label: 'Most wanted: Futuristic Rares' },
   { id: 'sar', label: 'Special Art Rares' },
   { id: 'classics', label: '30 classic cards return' },
   { id: 'pikachu', label: '30 Pikachu, one in every pack' },
@@ -110,11 +110,11 @@ const TOC = [
 const FAQ = [
   {
     q: 'When was 30th Celebration released?',
-    a: 'September 16, 2026, in mainland China. It was the first Pokémon TCG product released worldwide on the same day.',
+    a: 'September 16, 2026, in mainland China. The English and Japanese versions released on the same day.',
   },
   {
     q: 'Is the Chinese 30th Celebration the same set as the English and Japanese ones?',
-    a: 'It is the same release, and its card list matches the Japanese 30th Celebration card for card. English splits some cards out differently and adds 25 cards of its own, which our card origins guide covers.',
+    a: 'It is the same release, and its card list matches the Japanese 30th CELEBRATION number for number. English has every Chinese card but splits them up differently and adds 25 more Pokémon to its main set. Our card origins guide covers the differences.',
   },
   {
     q: 'How many packs come in a booster box?',
@@ -125,7 +125,7 @@ const FAQ = [
     a: 'Yes. Each pack has one of the 30 Pikachu cards, numbered 017 to 046, each drawn by a different illustrator.',
   },
   {
-    q: 'What are the main chase cards?',
+    q: 'Which cards are the most wanted?',
     a: 'The two Futuristic Rares, Mewtwo ex 134/103 and Mew ex 135/103 by YOSHIROTTEN, the Pikachu ex Special Art Rares, and the classic Charizard 137/103.',
   },
   {
@@ -134,7 +134,7 @@ const FAQ = [
   },
   {
     q: 'Where do the 30th Celebration illustrations come from?',
-    a: 'Every card in the Chinese set is also in English, though split differently. The 30 classic cards reprint famous English cards from 1999 to 2023, from Base Set Charizard and Pikachu to the Paldea Evolved Magikarp Illustration Rare.',
+    a: 'Every card in the Chinese set is also in English, but the English release splits them up differently. The 30 classic cards reprint famous English cards from 1999 to 2023, from Base Set Charizard and Pikachu to the Paldea Evolved Magikarp Illustration Rare.',
     link: { to: '/sets/chinese/30th-celebration', before: 'See every card on the ', label: '30th Celebration card list', after: '.' },
   },
   {
@@ -221,9 +221,14 @@ function ThirtiethReleasePost() {
         }}
       >
         <p>
-          30th Celebration (set code 30thC) lands on September 16, 2026, and it is a first: the Simplified Chinese, English and Japanese versions all
-          release on the same day. It marks 30 years of the Pokémon TCG with a 165-card set built around Pikachu, a brand-new
-          Futuristic Rare, and a collection of 30 classic cards reprinted in their original frames.
+          30th Celebration (<Zh>30周年庆典</Zh>, set code 30thC) released on September 16, 2026, the same day as the English and
+          Japanese versions. It marks 30 years of the Pokémon TCG with a 165-card set built around Pikachu. It has a new rarity
+          called Futuristic Rare, and 30 classic cards reprinted in their original frames.
+        </p>
+        <p>
+          Our <Link to="/blog/30th-celebration-set-guide">set guide</Link> shows every Pikachu, classic card and promo, and our{' '}
+          <Link to="/blog/30th-celebration-card-origins">card origins guide</Link> matches each classic card to its original
+          English card.
         </p>
 
         <aside className="fact-box" aria-label="30th Celebration key facts">
@@ -242,7 +247,7 @@ function ThirtiethReleasePost() {
               <dt>Set code</dt>
               <dd>30thC</dd>
               <dt>Released</dt>
-              <dd>September 16, 2026, worldwide on the same day</dd>
+              <dd>September 16, 2026, the same day as English and Japanese</dd>
               <dt>Pack</dt>
               <dd>6 cards, all holo, with 1 Pikachu in every pack</dd>
               <dt>Booster box</dt>
@@ -266,11 +271,11 @@ function ThirtiethReleasePost() {
           </ol>
         </nav>
 
-        <h2 id="futuristic">The chase: Futuristic Rares</h2>
+        <h2 id="futuristic">Most wanted: Futuristic Rares</h2>
         <p>
-          Futuristic Rare is a brand-new rarity made for this set, illustrated by the graphic artist YOSHIROTTEN. There are only two:
-          Mewtwo ex, whose Photon Bullet attack hits each of your opponent's Pokémon ex, and Mew ex, whose Memory Spiral ability lets it
-          use the attacks of your Benched Pokémon.
+          Futuristic Rare is a new rarity made for this set, and both cards are illustrated by YOSHIROTTEN. There are only two.
+          Mewtwo ex has the Photon Bullets attack, which does damage to each of your opponent's Pokémon ex. Mew ex has the Memory
+          Helix Ability, which lets it use the attacks of your Benched Pokémon.
         </p>
         <ul className="card-grid cols-2">
           {FUTURISTIC.map((c) => (
@@ -288,8 +293,9 @@ function ThirtiethReleasePost() {
 
         <h2 id="sar">Special Art Rares</h2>
         <p>
-          The ten Special Art Rares, 124 to 133, give each Pokémon ex in the set a full scene. The two Pikachu ex by kantaro are the
-          headliners, joined by Fuecoco, Greninja, Mewtwo, Mew, Sylveon, Gengar, Jirachi and Salamence ex.
+          The ten Special Art Rares are numbered 124 to 133, one for each Pokémon ex in the main set. The two Pikachu ex by kantaro
+          are the most wanted. The others are Fuecoco ex, Greninja ex, Mewtwo ex, Mew ex, Sylveon ex, Gengar ex, Jirachi ex and
+          Salamence ex.
         </p>
         <Grid cards={SAR} cols={3} />
 
@@ -309,21 +315,22 @@ function ThirtiethReleasePost() {
         <h2 id="pikachu">30 Pikachu, one in every pack</h2>
         <p>
           Every pack holds one of 30 Pikachu cards, numbered 017 to 046, and each was drawn by a different illustrator. Each one has its
-          own art and a Pikachu-face holo pattern, so collecting all 30 is a set within the set.
+          own illustration and a Pikachu-face holo pattern, so collecting all 30 is a set within the set.
         </p>
         <Grid cards={PIKACHU} cols={3} />
 
         <h2 id="art-rares">Art Rares</h2>
         <p>
-          Twenty Art Rares, 104 to 123, give main-set Pokémon a full illustration. Ditto 121/103 is one to note: in English that art was
-          only released as a promo, but here it comes out of booster packs.
+          There are twenty Art Rares, numbered 104 to 123. Each one gives a main-set Pokémon a full illustration. Ditto 121/103 and
+          Nidorina 114/103 are two to note: in English these illustrations were only released as promos, but here they come out of
+          booster packs.
         </p>
         <Grid cards={ART_RARES} cols={3} />
 
         <h2 id="how-the-set-works">How the set is built</h2>
         <p>
           This is a regular numbered set, not a Gem-style ladder. The main set runs 001 to 103, and everything after that is a secret
-          rare. There is no Uncommon tier. Instead there is a set-specific Pikachu rarity for the 30 Pikachu cards.
+          rare. There is no Uncommon rarity. The 30 Pikachu cards have their own rarity, Pikachu Rare, made for this set.
         </p>
         <div className="table-scroll" role="group" aria-labelledby="tbl-1" tabIndex={0}>
           <table className="data-table">
@@ -373,8 +380,8 @@ function ThirtiethReleasePost() {
           </table>
         </div>
         <p>
-          Across 120 cards, that works out to roughly 11 cards from the Rare to Classic group and about one card from the top group per
-          box. These are averages, and individual boxes vary.
+          Across 120 cards, that works out to roughly 11 cards from the Rare, Double Rare, Art Rare and Classic group and about one
+          card from the top group per box. These are averages, and individual boxes vary.
         </p>
         <p>
           For every Pikachu, classic and promo in one place, see our <Link to="/blog/30th-celebration-set-guide">30th Celebration set guide</Link>.
@@ -389,7 +396,7 @@ function ThirtiethReleasePost() {
           <span id="promos">The 33 promos</span>
 
         </h2>
-        <p>Thirty-three promos, numbered 001 to 033/30th-P, come in the special products released with the set. They are not in booster packs:</p>
+        <p>There are thirty-three promos, numbered 001 to 033/30th-P. They come in the special products released with the set and are not in booster packs.</p>
         <div className="table-scroll" role="group" aria-labelledby="tbl-3" tabIndex={0}>
           <table className="data-table">
             <caption id="tbl-3" className="sr-only">The 33 promos</caption>
@@ -449,8 +456,8 @@ function ThirtiethReleasePost() {
         <h2 id="our-take">Our take</h2>
         <p>
           30th Celebration is a set to open for the fun of it. Every card is a holo, every pack has a Pikachu, and the classic collection
-          puts famous cards from 1999 to 2023 in one binder. If you only chase one card, make it a Futuristic Rare. If you like completing runs,
-          the 30 Pikachu are the perfect project.
+          puts famous cards from 1999 to 2023 in one set. If you only go after one card, make it a Futuristic Rare. If you like
+          completing runs, the 30 Pikachu are a good one to finish.
         </p>
       </BlogPostLayout>
     </>

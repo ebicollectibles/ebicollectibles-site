@@ -35,8 +35,8 @@ function Grid({ cards, cols }: { cards: Shown[]; cols: number }) {
 // The lead chase cards: the two cover legendaries as Special Art Rares and
 // as gold Ultra Rares.
 const LEAD = [
-  { n: '154', name: 'Miraidon ex', note: 'SAR · kantaro' },
-  { n: '157', name: 'Koraidon ex', note: 'SAR · Ryota Murayama' },
+  { n: '154', name: 'Miraidon ex', note: 'Special Art Rare · kantaro' },
+  { n: '157', name: 'Koraidon ex', note: 'Special Art Rare · Ryota Murayama' },
   { n: '164', name: 'Miraidon ex', note: 'Ultra Rare' },
   { n: '165', name: 'Koraidon ex', note: 'Ultra Rare' },
 ]
@@ -49,18 +49,18 @@ const POKEMON_EX = [
 ]
 
 const SAR_POKEMON = [
-  { n: '155', name: 'Tinkaton ex', note: 'SAR · Tika Matsuno' },
-  { n: '153', name: 'Spidops ex', note: 'SAR · Miki Tanaka' },
-  { n: '156', name: 'Great Tusk ex', note: 'SAR · Pani Kobayashi' },
-  { n: '158', name: 'Iron Treads ex', note: 'SAR · KEIICHIRO ITO' },
+  { n: '155', name: 'Tinkaton ex', note: 'Special Art Rare · Tika Matsuno' },
+  { n: '153', name: 'Spidops ex', note: 'Special Art Rare · Miki Tanaka' },
+  { n: '156', name: 'Great Tusk ex', note: 'Special Art Rare · Pani Kobayashi' },
+  { n: '158', name: 'Iron Treads ex', note: 'Special Art Rare · KEIICHIRO ITO' },
 ]
 
 const SAR_SUPPORTERS = [
-  { n: '163', name: 'Miriam', note: 'SAR · Akira Komayama' },
-  { n: '162', name: 'Penny', note: 'SAR · OKACHEKE' },
-  { n: '161', name: 'Arven', note: 'SAR · kantaro' },
-  { n: '160', name: 'Jacq', note: 'SAR · Oswaldo KATO' },
-  { n: '159', name: "Giovanni's Charisma", note: 'SAR · Hideki Ishikawa' },
+  { n: '163', name: 'Miriam', note: 'Special Art Rare · Akira Komayama' },
+  { n: '162', name: 'Penny', note: 'Special Art Rare · OKACHEKE' },
+  { n: '161', name: 'Arven', note: 'Special Art Rare · kantaro' },
+  { n: '160', name: 'Jacq', note: 'Special Art Rare · Oswaldo KATO' },
+  { n: '159', name: "Giovanni's Charisma", note: 'Special Art Rare · Hideki Ishikawa' },
 ]
 
 const ULTRA_RARES = [
@@ -203,6 +203,10 @@ function EternalBirthReleasePost() {
           it introduces Pokémon ex to Simplified Chinese. It also includes the Paldea starters Sprigatito, Fuecoco and Quaxly. Miraidon is
           on the pack, and Miraidon ex and Koraidon ex are the lead chase cards.
         </p>
+        <p>
+          Our <Link to="/blog/eternal-birth-set-guide">set guide</Link> shows every chase card and the pull odds, and our{' '}
+          <Link to="/blog/eternal-birth-card-origins">card origins guide</Link> matches every card to its English version.
+        </p>
 
         <aside className="fact-box" aria-label="Eternal Birth key facts">
           <img src={cardImg('154')} alt="Miraidon ex 154/127 Special Art Rare, Eternal Birth" loading="lazy" width={300} height={418} />
@@ -261,8 +265,8 @@ function EternalBirthReleasePost() {
 
         <h2 id="special-art-rares">Special Art Rares</h2>
         <p>
-          Eleven Special Art Rares, 153 to 163: six Pokémon ex and five Supporters. Besides Miraidon ex and Koraidon ex, Tinkaton ex
-          sits with its giant hammer over its shoulder, Spidops ex hangs from its threads beside a tree, Great Tusk ex crosses a
+          The set has eleven Special Art Rares, numbered 153 to 163. Six are Pokémon ex and five are Supporters. Besides Miraidon ex
+          and Koraidon ex, Tinkaton ex holds its giant hammer over its shoulder, Spidops ex hangs from its threads beside a tree, Great Tusk ex crosses a
           desert under a swirling red sky, and Iron Treads ex is set against a starry night sky.
         </p>
         <Grid cards={SAR_POKEMON} cols={4} />
@@ -276,12 +280,12 @@ function EternalBirthReleasePost() {
         <BuyStrip />
 
         <h2 id="ultra-rares">Gold Ultra Rares</h2>
-        <p>Four gold cards top the set, 164 to 167: Miraidon ex, Koraidon ex, Super Rod and Switch.</p>
+        <p>Four gold cards top the set, numbered 164 to 167. They are Miraidon ex, Koraidon ex, Super Rod and Switch.</p>
         <Grid cards={ULTRA_RARES} cols={4} />
 
         <h2 id="art-rares">Art Rares</h2>
         <p>
-          Eight Art Rares, 128 to 135, give main-set Pokémon a full illustration. Tika Matsuno drew Tinkatink and Tinkatuff as well
+          Eight Art Rares, numbered 128 to 135, give main-set Pokémon a full illustration. Tika Matsuno drew Tinkatink and Tinkatuff as well
           as the Tinkaton ex Special Art Rare, and Oswaldo KATO drew Dolliv and Grafaiai.
         </p>
         <Grid cards={ART_RARES} cols={4} />
@@ -324,8 +328,7 @@ function EternalBirthReleasePost() {
         </p>
         <p>
           Every Common, Uncommon and Rare also comes as a Poké Ball pattern and a Master Ball pattern holo, which brings the full set to
-          393 cards. Our <Link to="/blog/eternal-birth-set-guide">set guide</Link> has every chase card, and our{' '}
-          <Link to="/blog/eternal-birth-card-origins">card origins guide</Link> matches every card to its English version.
+          393 cards.
         </p>
 
         <h2 id="faq">FAQ</h2>
@@ -350,7 +353,7 @@ function EternalBirthReleasePost() {
 
         <h2 id="our-take">Our take</h2>
         <p>
-          Eternal Birth is the starting point of the Chinese Scarlet & Violet series: Pokémon ex, the Paldea starters and
+          Eternal Birth is the starting point of the Chinese Scarlet & Violet series. It has Pokémon ex, the Paldea starters and
           both of Paldea's legendary Pokémon in one set. The Miraidon ex and Koraidon ex Special Art Rares are its lead chase cards.
         </p>
       </BlogPostLayout>

@@ -1,3 +1,4 @@
+import { Zh } from '~/components/blog/Zh'
 import { BuyStrip } from '~/components/blog/BlogShop'
 import { createFileRoute, Link } from '@tanstack/react-router'
 import blogCssUrl from '~/styles/blog.css?url'
@@ -59,11 +60,11 @@ const HIGHLIGHTS = ['137', '136', '142', '150', '154', '163']
 
 const SAMPLES = [
   { cn: '017/103 Pikachu', en: '30th Celebration 023', illus: 'Ken Sugimori' },
-  { cn: '126/103 Pikachu ex SAR', en: '30th Celebration 149', illus: 'kantaro' },
-  { cn: '134/103 Mewtwo ex FUR', en: '30th Celebration 157', illus: 'YOSHIROTTEN' },
-  { cn: '121/103 Ditto AR', en: 'Mega Promos 106', illus: 'Ounishi' },
-  { cn: '114/103 Nidorina AR', en: 'Mega Promos 101', illus: 'Taiga Kasai' },
-  { cn: '001/30th-P Bulbasaur', en: 'Mega Promos 037', illus: 'Saboteri' },
+  { cn: '126/103 Pikachu ex, Special Art Rare', en: '30th Celebration 149', illus: 'kantaro' },
+  { cn: '134/103 Mewtwo ex, Futuristic Rare', en: '30th Celebration 157', illus: 'YOSHIROTTEN' },
+  { cn: '121/103 Ditto, Art Rare', en: 'MEP Black Star Promos 106', illus: 'Ounishi' },
+  { cn: '114/103 Nidorina, Art Rare', en: 'MEP Black Star Promos 101', illus: 'Taiga Kasai' },
+  { cn: '001/30th-P Bulbasaur', en: 'MEP Black Star Promos 037', illus: 'Saboteri' },
 ]
 
 const TOC = [
@@ -82,11 +83,11 @@ const FAQ = [
   },
   {
     q: 'Is the Chinese 30th Celebration the same as the English set?',
-    a: 'Every Chinese card is in English too, but they are split differently. The Chinese set matches the Japanese 30th CELEBRATION number for number. English puts the 30 classics in a separate 30th Classic Collection, moves the Ditto and Nidorina Art Rares to Mega Promos, and adds 25 extra Pokémon cards to its main set.',
+    a: 'Every Chinese card is in English too, but they are split differently. The Chinese set matches the Japanese 30th CELEBRATION number for number. English puts the 30 classics in a separate 30th Classic Collection, has the Ditto and Nidorina Art Rares as MEP Black Star Promos, and adds 25 more Pokémon to its main set.',
   },
   {
     q: 'Is the Ditto Art Rare a promo in English?',
-    a: 'Yes. In English the Ditto 121/103 art is Mega Promos 106. In the Chinese set it is a regular Art Rare you can pull from packs.',
+    a: 'Yes. In English the Ditto 121/103 illustration is MEP Black Star Promos 106. In the Chinese set it is an Art Rare that comes out of booster packs.',
   },
   {
     q: 'Which classic is the oldest?',
@@ -157,7 +158,7 @@ function ThirtiethOriginsPost() {
         updated={status.liveAt}
         wide
         post={post}
-        lede="30th Celebration brings back 30 famous cards from the game's history. We traced each one back to where it first appeared and matched the rest of the set to English."
+        lede="30th Celebration brings back 30 famous cards from the game's history. We matched each one to the English card it first appeared on, and matched the rest of the set to the English release."
         cta={{
           heading: 'Explore 30th Celebration',
           body: 'See every card in the set, or read our set guide for every Pikachu, classic and promo in one place.',
@@ -168,10 +169,13 @@ function ThirtiethOriginsPost() {
         }}
       >
         <p>
-          The classic collection is the heart of 30th Celebration (set code 30thC): 30 cards from 1999 to 2023, reprinted in their original frames with a gold
-          glitter border. We matched each one to the English card it first appeared on.
-          For more on the set itself, see our <Link to="/blog/30th-celebration-release-news">30th Celebration release post</Link>{' '}
-          and the <Link to="/blog/30th-celebration-set-guide">30th Celebration set guide</Link>.
+          30th Celebration (<Zh>30周年庆典</Zh>, set code 30thC) released on September 16, 2026. Its last 30 cards, numbered 136 to
+          165, are classic cards from 1999 to 2023, reprinted in their original frames with a gold glitter border. We matched each
+          one to the English card it first appeared on.
+        </p>
+        <p>
+          Our <Link to="/blog/30th-celebration-release-news">release post</Link> covers what is new in the set, and our{' '}
+          <Link to="/blog/30th-celebration-set-guide">set guide</Link> shows every Pikachu, classic card and promo.
         </p>
 
         <nav className="toc" aria-label="In this guide">
@@ -188,8 +192,9 @@ function ThirtiethOriginsPost() {
         <h2 id="how-it-works">How 30th Celebration lines up</h2>
         <p>
           The Simplified Chinese set matches the Japanese 30th CELEBRATION card for card, with the same numbers from 001 to 165. The
-          English release has every Chinese card but splits them up differently: its 30th Celebration set has 128 numbered cards, including 25 cards
-          that are not in the Chinese set, the 30 classics are a separate 30th Classic Collection, and a few cards became Mega Promos.
+          English release has every Chinese card but splits them up differently. Its 30th Celebration main set has 128 cards, 25 more
+          than the Chinese main set. The 30 classics are a separate 30th Classic Collection, and a few cards are MEP Black Star
+          Promos.
         </p>
 
         <h2 id="eras">Classics by era</h2>
@@ -237,10 +242,10 @@ function ThirtiethOriginsPost() {
           </li>
           <li>
             <strong>Most are the regular version.</strong> Rayquaza-EX, Genesect-EX and the GX, V, VMAX and VSTAR cards reuse the
-            regular art, not the full arts. N is the exception, using the Noble Victories full art.
+            regular illustration, not the full art. N is the exception. It uses the Noble Victories full art.
           </li>
           <li>
-            <strong>Two newer rarities sneak in.</strong> Raikou is the Vivid Voltage Amazing Rare, and Magikarp is the Paldea Evolved
+            <strong>Two newer rarities are included.</strong> Raikou is the Vivid Voltage Amazing Rare, and Magikarp is the Paldea Evolved
             Illustration Rare.
           </li>
           <li>
@@ -248,8 +253,8 @@ function ThirtiethOriginsPost() {
             LEGEND.
           </li>
           <li>
-            <strong>M Gardevoir-EX got a small update.</strong> The original kept Japanese lettering for its attack name inside the art.
-            The new version spells it out as BRILLIANT ARROW.
+            <strong>M Gardevoir-EX has a small change.</strong> The original English card kept Japanese lettering for its attack name inside the
+            illustration. The new version spells it out as BRILLIANT ARROW.
           </li>
         </ul>
 
@@ -284,8 +289,8 @@ function ThirtiethOriginsPost() {
 
         <h2 id="rest-of-set">The rest of the set</h2>
         <p>
-          Outside the classics, the main set, Art Rares, Special Art Rares and Futuristic Rares share their art with the English 30th
-          Celebration release. A few examples:
+          Outside the classics, the main set, Art Rares, Special Art Rares and Futuristic Rares use the same illustrations as the
+          English 30th Celebration release. These are a few examples:
         </p>
         <div className="table-scroll" role="group" aria-labelledby="tbl-3" tabIndex={0}>
           <table className="data-table origins-table">
@@ -310,8 +315,8 @@ function ThirtiethOriginsPost() {
           </table>
         </div>
         <p>
-          Two Art Rares are worth knowing about. Ditto 121/103 and Nidorina 114/103 were released in English only as Mega Promos, while
-          here they come out of packs. All 33 Chinese promos are Mega Promos in English too.
+          Two Art Rares are worth knowing about. In English, the Ditto 121/103 and Nidorina 114/103 illustrations are only MEP Black
+          Star Promos, while here they come out of packs. All 33 Chinese promos are MEP Black Star Promos in English too.
         </p>
 
         <h2 id="faq">FAQ</h2>

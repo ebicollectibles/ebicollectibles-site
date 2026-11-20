@@ -1,3 +1,4 @@
+import { Zh } from '~/components/blog/Zh'
 import { rarityFullName } from '~/components/blog/RarityAbbr'
 import { BuyStrip } from '~/components/blog/BlogShop'
 import { createFileRoute, Link } from '@tanstack/react-router'
@@ -38,14 +39,14 @@ function Gallery({ cards, cols }: { cards: Card[]; cols: number }) {
 }
 
 const BLOCKS = [
-  { nos: '001 to 109', what: 'Pokémon, grouped by type', rarity: 'C, U, R, RR' },
-  { nos: '110 to 117', what: 'Items and Pokémon Tools', rarity: 'U' },
-  { nos: '118 to 125', what: 'Supporters', rarity: 'U' },
-  { nos: '126 to 128', what: 'Stadiums and Special Energy', rarity: 'U' },
-  { nos: '129 to 136', what: 'Art Rares', rarity: 'AR' },
-  { nos: '137 to 151', what: 'Super Rare full arts of ex and Supporters', rarity: 'SR' },
-  { nos: '152 to 159', what: 'Special Art Rares of ex and Supporters', rarity: 'SAR' },
-  { nos: '160 to 163', what: 'Gold Ultra Rares', rarity: 'UR' },
+  { nos: '001 to 109', what: 'Pokémon, grouped by type', rarity: 'Common, Uncommon, Rare, Double Rare' },
+  { nos: '110 to 117', what: 'Items and Pokémon Tools', rarity: 'Uncommon' },
+  { nos: '118 to 125', what: 'Supporters', rarity: 'Uncommon' },
+  { nos: '126 to 128', what: 'Stadiums and Special Energy', rarity: 'Uncommon' },
+  { nos: '129 to 136', what: 'Art Rares', rarity: 'Art Rare' },
+  { nos: '137 to 151', what: 'Super Rare full arts of ex and Supporters', rarity: 'Super Rare' },
+  { nos: '152 to 159', what: 'Special Art Rares of ex and Supporters', rarity: 'Special Art Rare' },
+  { nos: '160 to 163', what: 'Gold Ultra Rares', rarity: 'Ultra Rare' },
 ]
 
 // Pokémon China's two odds charts applied to one pack of each size. The
@@ -68,7 +69,7 @@ const LADDER = LADDER_NAMES.map((name) => ({
 
 const TOC = [
   { id: 'pack', label: 'What a pack holds' },
-  { id: 'gardevoir', label: 'The lead chase: Gardevoir ex' },
+  { id: 'gardevoir', label: 'Lead chase card: Gardevoir ex' },
   { id: 'special-art-rares', label: 'All 8 Special Art Rares' },
   { id: 'super-rares', label: 'All 15 Super Rares' },
   { id: 'ultra-rares', label: 'All 4 Ultra Rares' },
@@ -87,7 +88,7 @@ const FAQ = [
   },
   {
     q: 'How often does a pack hold a Super Rare or better?',
-    a: "About one 5-card pack in 27, or one 20-card pack in five, going by Pokémon China's print shares. Super Rares, Special Art Rares and Ultra Rares make up 0.73% of the 5-card print run and 1.00% of the 20-card print run.",
+    a: "About one 5-card pack in 27 holds one, or one 20-card pack in five, going by Pokémon China's print shares. Super Rares, Special Art Rares and Ultra Rares make up 0.73% of the 5-card print run and 1.00% of the 20-card print run.",
   },
   {
     q: 'Which Pokémon ex have no secret rare?',
@@ -95,7 +96,7 @@ const FAQ = [
   },
   {
     q: 'How many cards are in a Miracle Journey master set?',
-    a: '393: the 163 numbered cards plus a Poké Ball and a Master Ball pattern holo of each of the 115 Commons, Uncommons and Rares.',
+    a: 'A master set has 393 cards: the 163 numbered cards plus a Poké Ball and a Master Ball pattern holo of each of the 115 Commons, Uncommons and Rares.',
   },
 ]
 
@@ -170,10 +171,13 @@ function MiracleJourneySetGuide() {
         }}
       >
         <p>
-          Miracle Journey (CSV2C) is the Gardevoir set: 163 cards, sold in 5-card and 20-card packs. Our{' '}
-          <Link to="/blog/miracle-journey-release-news">release post</Link> covers what is new, and our{' '}
-          <Link to="/blog/miracle-journey-card-origins">card origins guide</Link> matches every card to English. Use this one to sort
-          your pulls or plan a master set.
+          Miracle Journey (<Zh>奇迹启程</Zh>, set code CSV2C) released on March 21, 2025. It is the Gardevoir set, the second of the
+          Chinese Scarlet & Violet series. It has 163 cards, 13 of them Pokémon ex, and it comes in 5-card and 20-card packs.
+        </p>
+        <p>
+          Our <Link to="/blog/miracle-journey-release-news">release post</Link> covers what is new, and our{' '}
+          <Link to="/blog/miracle-journey-card-origins">card origins guide</Link> matches every card to its English version. Use
+          this guide to sort your pulls or plan a master set.
         </p>
 
         <nav className="toc" aria-label="In this guide">
@@ -188,7 +192,7 @@ function MiracleJourneySetGuide() {
         </nav>
 
         <h2 id="pack">What a pack holds</h2>
-        <p>Pokémon China's odds charts for the 5-card and the 20-card pack, applied to one pack of each:</p>
+        <p>Pokémon China publishes an odds chart for the 5-card pack and one for the 20-card pack. Applied to one pack of each, they work out to roughly:</p>
         <div className="table-scroll" role="group" aria-labelledby="tbl-1" tabIndex={0}>
           <table className="data-table">
             <caption id="tbl-1" className="sr-only">What a pack holds</caption>
@@ -212,47 +216,47 @@ function MiracleJourneySetGuide() {
         </div>
         <p className="table-note">Averages from the official print shares, shown in brackets. They are not guarantees.</p>
         <p>
-          The top band holds 27 different cards. It averages about one every 27 of the 5-card packs, or one every five of the 20-card
-          packs. Card for card the 20-card pack is the richer one: 30% of its cards are holos, against 20% in the 5-card pack.
+          The top group holds 27 different cards. It averages about one every 27 of the 5-card packs, or one every five of the 20-card
+          packs. Card for card, the 20-card pack has more holos: 30% of its cards are holos, against 20% in the 5-card pack.
         </p>
 
-        <h2 id="gardevoir">The lead chase: Gardevoir ex</h2>
+        <h2 id="gardevoir">Lead chase card: Gardevoir ex</h2>
         <p>
-          Gardevoir is the cover Pokémon, and the Gardevoir ex Special Art Rare, 155/128, is the set's lead chase card. Gardevoir ex
+          Gardevoir is on the pack, and the Gardevoir ex Special Art Rare, 155/128, is the set's lead chase card. Gardevoir ex
           also has a Double Rare and a Super Rare.
         </p>
         <Gallery cards={['155', '055', '140'].map((n) => setData.cards.find((c) => c.number === `${n}/128`)!)} cols={3} />
 
         <h2 id="special-art-rares">All 8 Special Art Rares</h2>
-        <p>152 to 159: five Pokémon ex and three Supporters.</p>
+        <p>These are numbered 152 to 159. Five are Pokémon ex and three are Supporters.</p>
         <Gallery cards={lead(byRange(152, 159), ['155', '157', '152', '154'])} cols={4} />
 
         <BuyStrip />
 
         <h2 id="super-rares">All 15 Super Rares</h2>
-        <p>Full arts of eight Pokémon ex and seven Supporters, 137 to 151.</p>
+        <p>These are full arts of eight Pokémon ex and seven Supporters, numbered 137 to 151.</p>
         <Gallery cards={lead(byRange(137, 151), ['140', '145', '137', '138', '139', '146'])} cols={3} />
 
         <h2 id="ultra-rares">All 4 Ultra Rares</h2>
-        <p>The gold cards, 160 to 163.</p>
+        <p>These are the gold cards, numbered 160 to 163.</p>
         <Gallery cards={byRange(160, 163)} cols={4} />
 
         <h2 id="art-rares">All 8 Art Rares</h2>
-        <p>129 to 136. Ralts and Kirlia share an illustrator, Jiro Sasumo, with the Gardevoir ex Special Art Rare.</p>
+        <p>These are numbered 129 to 136. Ralts and Kirlia share an illustrator, Jiro Sasumo, with the Gardevoir ex Special Art Rare.</p>
         <Gallery cards={lead(byRange(129, 136), ['132', '133'])} cols={4} />
 
         <h2 id="ladders">One Pokémon, several rarities</h2>
-        <p>The Pokémon ex with a Special Art Rare, and every number they print at:</p>
+        <p>These are the Pokémon ex with a Special Art Rare, and the number of each version:</p>
         <div className="table-scroll" role="group" aria-labelledby="tbl-2" tabIndex={0}>
           <table className="data-table">
             <caption id="tbl-2" className="sr-only">One Pokémon, several rarities</caption>
             <thead>
               <tr>
                 <th scope="col">Pokémon</th>
-                <th scope="col">RR</th>
-                <th scope="col">SR</th>
-                <th scope="col">SAR</th>
-                <th scope="col">UR</th>
+                <th scope="col">Double Rare</th>
+                <th scope="col">Super Rare</th>
+                <th scope="col">Special Art Rare</th>
+                <th scope="col">Ultra Rare</th>
               </tr>
             </thead>
             <tbody>
@@ -274,13 +278,13 @@ function MiracleJourneySetGuide() {
         </p>
 
         <h2 id="double-rares">All 13 Pokémon ex</h2>
-        <p>The Double Rares from the main set. Meowscarada ex, Skeledirge ex and Quaquaval ex are the final forms of the Paldea starters.</p>
+        <p>These are the Double Rares from the main set. Meowscarada ex, Skeledirge ex and Quaquaval ex are the final forms of the Paldea starters.</p>
         <Gallery cards={lead(setData.cards.filter((c) => c.rarity === 'Double Rare (RR)'), ['055', '012', '021', '033', '030', '050', '081'])} cols={4} />
 
         <h2 id="numbering">How the numbers work</h2>
         <p>
           Every card has one number out of 128. The main set runs 001 to 128, and everything above is a secret rare. The rarer versions
-          of a card sit in the secret block at unrelated numbers, so match them by name.
+          of a card sit among the secret rares at unrelated numbers, so match them by name.
         </p>
         <div className="table-scroll" role="group" aria-labelledby="tbl-3" tabIndex={0}>
           <table className="data-table">
@@ -310,8 +314,8 @@ function MiracleJourneySetGuide() {
           and Rares, for 393 in total.
         </p>
         <p>
-          With one holo per 5-card pack and six per 20-card pack, the Master Ball holos and the 27 top-band cards take a long time to pull. Most collectors open
-          packs for fun and the lower rarities, then buy the big cards as singles. The{' '}
+          With one holo per 5-card pack and six per 20-card pack, the Master Ball holos and the 27 cards in the top group take a long time to pull. Most collectors open
+          packs for fun and the lower rarities, then buy the cards they still need as singles. The{' '}
           <Link to="/sets/chinese/miracle-journey-csv2">Miracle Journey card list</Link> lets you tick off what you have.
         </p>
 

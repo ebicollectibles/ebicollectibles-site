@@ -1,3 +1,4 @@
+import { Zh } from '~/components/blog/Zh'
 import { rarityFullName } from '~/components/blog/RarityAbbr'
 import { BuyStrip } from '~/components/blog/BlogShop'
 import { createFileRoute, Link } from '@tanstack/react-router'
@@ -15,6 +16,11 @@ type Card = (typeof setData.cards)[number]
 const byRange = (from: number, to: number) => setData.cards.filter((c) => c.pokemonIndex >= from && c.pokemonIndex <= to)
 const EXCLUSIVE = new Set<string>(setData.exclusiveCardNumbers)
 const short = (r: string) => r.match(/\(([^)]+)\)/)?.[1] ?? r
+// Most wanted cards first (by number out of 204), then the rest of the range in number order.
+const lead = (cards: Card[], first: string[]) => [
+  ...first.map((n) => cards.find((c) => c.number === `${n}/204`)!).filter(Boolean),
+  ...cards.filter((c) => !first.includes(c.number.slice(0, 3))),
+]
 
 function Gallery({ cards, cols }: { cards: Card[]; cols: number }) {
   return (
@@ -63,16 +69,16 @@ const BOXES = [
 ]
 
 const BLOCKS = [
-  { nos: '001 to 173', what: 'Pokémon, grouped by type', rarity: 'C, U, R, RR' },
-  { nos: '174 to 183', what: 'Items', rarity: 'U, 5 ACE' },
-  { nos: '184 to 190', what: 'Pokémon Tools', rarity: 'U, 3 ACE' },
-  { nos: '191 to 199', what: 'Supporters', rarity: 'U' },
-  { nos: '200 to 202', what: 'Stadiums', rarity: 'U' },
-  { nos: '203 to 204', what: 'Special Energy', rarity: 'ACE (Neo Upper), U (Mist)' },
-  { nos: '205 to 210', what: 'Art Rares', rarity: 'AR' },
-  { nos: '211 to 236', what: 'Super Rare full arts of 17 ex and 9 Supporters', rarity: 'SR' },
-  { nos: '237 to 250', what: 'Special Art Rares of 8 ex and 6 Supporters', rarity: 'SAR' },
-  { nos: '251 to 259', what: 'Gold Ultra Rares of 6 ex and 3 Trainers', rarity: 'UR' },
+  { nos: '001 to 173', what: 'Pokémon, grouped by type', rarity: 'Common, Uncommon, Rare, Double Rare' },
+  { nos: '174 to 183', what: 'Items', rarity: 'Uncommon, plus 5 ACE SPEC' },
+  { nos: '184 to 190', what: 'Pokémon Tools', rarity: 'Uncommon, plus 3 ACE SPEC' },
+  { nos: '191 to 199', what: 'Supporters', rarity: 'Uncommon' },
+  { nos: '200 to 202', what: 'Stadiums', rarity: 'Uncommon' },
+  { nos: '203 to 204', what: 'Special Energy', rarity: 'ACE SPEC (Neo Upper Energy), Uncommon (Mist Energy)' },
+  { nos: '205 to 210', what: 'Art Rares', rarity: 'Art Rare' },
+  { nos: '211 to 236', what: 'Super Rare full arts of 17 ex and 9 Supporters', rarity: 'Super Rare' },
+  { nos: '237 to 250', what: 'Special Art Rares of 8 ex and 6 Supporters', rarity: 'Special Art Rare' },
+  { nos: '251 to 259', what: 'Gold Ultra Rares of 6 ex and 3 Trainers', rarity: 'Ultra Rare' },
 ]
 
 const LADDER_NAMES = [
@@ -107,7 +113,7 @@ const TOC = [
 const FAQ = [
   {
     q: 'Should I buy the slim or the jumbo Blade Awakening box?',
-    a: 'For chase cards, jumbo. A jumbo box averages about 1.2 Super Rares, Special Art Rares or Ultra Rares against about 0.55 for a slim box, and its odds are better per card too. The slim box gives you more packs to open: 15 against 6.',
+    a: 'For the rarest cards, jumbo. A jumbo box averages about 1.2 Super Rares, Special Art Rares or Ultra Rares against about 0.55 for a slim box, and its odds are better per card too. The slim box gives you more packs to open: 15 against 6.',
   },
   {
     q: 'Do slim and jumbo packs have different cards?',
@@ -115,10 +121,10 @@ const FAQ = [
   },
   {
     q: 'What is the Chinese Exclusive in Blade Awakening?',
-    a: "Ciphermaniac's Codebreaking 245/204, a Special Art Rare. The Supporter's regular card and full art are in English too, but this Special Art Rare is not.",
+    a: "Ciphermaniac's Codebreaking 245/204, a Special Art Rare. Ciphermaniac's Codebreaking is in English as a Supporter and a full art, but not with this illustration.",
   },
   {
-    q: 'Which Pokémon ex reach the gold Ultra Rare tier?',
+    q: 'Which Pokémon ex have a gold Ultra Rare?',
     a: 'Six Paradox Pokémon: Iron Leaves ex, Gouging Fire ex, Walking Wake ex, Iron Crown ex, Iron Boulder ex and Raging Bolt ex. Greninja ex stops at Special Art Rare.',
   },
   {
@@ -194,10 +200,10 @@ function BladeAwakeningSetGuide() {
         updated={status.liveAt}
         wide
         post={post}
-        lede="Blade Awakening is the Tera Greninja ex set, with nine ACE SPEC cards and slim and jumbo boxes that have different odds. This guide helps you pick a box, shows every chase card, and explains what a 605-card master set takes."
+        lede="Blade Awakening is the Tera Greninja ex set, with nine ACE SPEC cards and slim and jumbo boxes that have different odds. This guide helps you pick a box, shows the most wanted cards, and explains what a 605-card master set takes."
         cta={{
           heading: 'Collect Blade Awakening',
-          body: 'Track every card on the full checklist, or pick up a box and start ripping.',
+          body: 'Track every card on the full checklist, or pick up a box.',
           links: [
             { to: '/sets/chinese/blade-awakening-csv7', label: 'See the full card list' },
             { to: '/products/$id', params: { id: 'pokemon-chinese-blade-awakening-jumbo-booster-box' }, label: 'Shop the jumbo box', variant: 'ghost' },
@@ -205,11 +211,14 @@ function BladeAwakeningSetGuide() {
         }}
       >
         <p>
-          Blade Awakening (CSV7C) is the Tera Greninja ex set: 259 cards, nine ACE SPEC cards, a Chinese Exclusive Ciphermaniac's Codebreaking
-          Special Art Rare, and slim and jumbo boxes with their own odds. Our{' '}
-          <Link to="/blog/blade-awakening-release-news">release post</Link> covers what is new, and our{' '}
-          <Link to="/blog/blade-awakening-card-origins">card origins guide</Link> matches every card to English. Use this one to
-          pick a box, sort your pulls or plan a master set.
+          Blade Awakening (<Zh>利刃猛醒</Zh>, set code CSV7C) released on January 16, 2026. It is the Tera Greninja ex set: 259 cards
+          with nine ACE SPEC cards and one Chinese Exclusive, the Ciphermaniac's Codebreaking Special Art Rare 245/204. It is sold in
+          slim and jumbo boxes, and each has its own odds.
+        </p>
+        <p>
+          Our <Link to="/blog/blade-awakening-release-news">release post</Link> covers what is new, and our{' '}
+          <Link to="/blog/blade-awakening-card-origins">card origins guide</Link> matches every card to its English version. Use
+          this guide to pick a box, sort your pulls or plan a master set.
         </p>
 
         <nav className="toc" aria-label="In this guide">
@@ -248,54 +257,54 @@ function BladeAwakeningSetGuide() {
         </div>
         <p className="table-note">Averages from the official print shares, not guarantees. Individual boxes vary.</p>
         <p>
-          The top band is 0.73% of slim cards and 1.00% of jumbo cards. That is about one Super Rare, Special Art Rare or Ultra Rare
-          every 27 slim packs, against one every 5 jumbo packs: about half of one per slim box on average, and more than one per jumbo box. If you
-          are chasing the big hits, jumbo is the stronger box.
+          The top group is 0.73% of slim cards and 1.00% of jumbo cards. That is about one Super Rare, Special Art Rare or Ultra Rare
+          every 27 slim packs, against one every 5 jumbo packs. A slim box averages about half of one, and a jumbo box averages more
+          than one. If you want those cards, jumbo is the stronger box.
         </p>
 
         <h2 id="special-art-rares">All 14 Special Art Rares</h2>
-        <p>Eight Pokémon ex, 237 to 244. Greninja ex 242 is the top chase.</p>
-        <Gallery cards={byRange(237, 244)} cols={4} />
-        <p>And six Supporters, 245 to 250. Ciphermaniac's Codebreaking 245 is the Chinese Exclusive.</p>
+        <p>Eight are Pokémon ex, numbered 237 to 244. Greninja ex 242/204 is the one most collectors want.</p>
+        <Gallery cards={lead(byRange(237, 244), ['242', '244', '239', '238'])} cols={4} />
+        <p>The other six are Supporters, numbered 245 to 250. Ciphermaniac's Codebreaking 245/204 is the Chinese Exclusive.</p>
         <Gallery cards={byRange(245, 250)} cols={3} />
 
         <BuyStrip />
 
         <h2 id="super-rares">All 26 Super Rares</h2>
-        <p>Full arts of 17 Pokémon ex and 9 Supporters. First the eight Paradox Pokémon:</p>
+        <p>These are full arts of 17 Pokémon ex and 9 Supporters. The eight Paradox Pokémon ex come first.</p>
         <Gallery cards={SR_EX.filter((c) => PARADOX.has(c.name))} cols={4} />
-        <p>The other nine Pokémon ex:</p>
+        <p>These are the other nine Pokémon ex.</p>
         <Gallery cards={SR_EX.filter((c) => !PARADOX.has(c.name))} cols={3} />
-        <p>And the nine Supporters, 228 to 236:</p>
+        <p>The nine Supporters are numbered 228 to 236.</p>
         <Gallery cards={byRange(228, 236)} cols={3} />
 
         <h2 id="ultra-rares">All 9 Ultra Rares</h2>
-        <p>The gold cards, 251 to 259: six Paradox Pokémon ex, then Earthen Vessel, Buddy-Buddy Poffin and Rescue Board.</p>
+        <p>These are the gold cards, numbered 251 to 259: six Paradox Pokémon ex, then Earthen Vessel, Buddy-Buddy Poffin and Rescue Board.</p>
         <Gallery cards={byRange(251, 259)} cols={3} />
 
         <h2 id="art-rares">All 6 Art Rares</h2>
-        <p>205 to 210, each a full illustration of a main-set Pokémon.</p>
+        <p>These are numbered 205 to 210. Each is a full illustration of a main-set Pokémon.</p>
         <Gallery cards={byRange(205, 210)} cols={3} />
 
         <h2 id="ace-spec">All 9 ACE SPEC cards</h2>
         <p>
-          ACE SPEC Rare is its own rarity, printed in the main set among the Trainers and Energy and pulled from the same odds band as
-          Double Rares. You can play only one ACE SPEC card per deck.
+          ACE SPEC Rare is its own rarity. The cards are printed in the main set among the Trainers and Energy, and they share a
+          rarity group with the Double Rares. You can play only one ACE SPEC card per deck.
         </p>
         <Gallery cards={ACE_CARDS} cols={3} />
 
         <h2 id="ladders">One Pokémon, several rarities</h2>
-        <p>The Pokémon ex with a Special Art Rare, and every number they print at:</p>
+        <p>These are the Pokémon ex with a Special Art Rare, and the number of each version.</p>
         <div className="table-scroll" role="group" aria-labelledby="tbl-2" tabIndex={0}>
           <table className="data-table">
             <caption id="tbl-2" className="sr-only">One Pokémon, several rarities</caption>
             <thead>
               <tr>
                 <th scope="col">Pokémon</th>
-                <th scope="col">RR</th>
-                <th scope="col">SR</th>
-                <th scope="col">SAR</th>
-                <th scope="col">UR</th>
+                <th scope="col">Double Rare</th>
+                <th scope="col">Super Rare</th>
+                <th scope="col">Special Art Rare</th>
+                <th scope="col">Ultra Rare</th>
               </tr>
             </thead>
             <tbody>
@@ -312,7 +321,7 @@ function BladeAwakeningSetGuide() {
         </div>
         <p className="table-note">
           Torterra ex, Magcargo ex, Incineroar ex, Luxray ex, Wugtrio ex, Iron Thorns ex, Scream Tail ex, Farigiraf ex and Scizor ex also
-          have Super Rares. Blaziken ex, Kyogre ex, Tapu Koko ex, Tyranitar ex and Lugia ex are Double Rare only.
+          have Super Rares. Blaziken ex, Kyogre ex, Tapu Koko ex, Tyranitar ex and Lugia ex come only as Double Rares.
         </p>
 
         <h2 id="numbering">How the numbers work</h2>
@@ -352,8 +361,8 @@ function BladeAwakeningSetGuide() {
           and Rares, for 605 in total, the same figure Pokémon China's chart gives.
         </p>
         <p>
-          The 173 Master Ball holos and the 49 top-band cards take the longest. Many collectors open boxes for fun and the lower
-          rarities, then buy the big cards as singles. The <Link to="/sets/chinese/blade-awakening-csv7">Blade Awakening card list</Link> lets you tick off what
+          The 173 Master Ball holos and the 49 Super Rares, Special Art Rares and Ultra Rares take the longest. Many collectors open
+          boxes for fun and the lower rarities, then buy the rarest cards as singles. The <Link to="/sets/chinese/blade-awakening-csv7">Blade Awakening card list</Link> lets you tick off what
           you have.
         </p>
 

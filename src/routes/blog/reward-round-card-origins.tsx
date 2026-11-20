@@ -1,3 +1,4 @@
+import { Zh } from '~/components/blog/Zh'
 import { chunk } from '~/lib/chunk'
 import { RarityAbbr, rarityFullName } from '~/components/blog/RarityAbbr'
 import { useId } from 'react'
@@ -240,15 +241,15 @@ const TOC = [
 const FAQ = [
   {
     q: 'Which English set is Reward Round?',
-    a: 'There is no single one. Most of its cards match Obsidian Flames (69), Paldea Evolved (41) and Paradox Rift (31), with the rest from six other English sources and three new arts.',
+    a: 'There is no single one. Most of its cards match Obsidian Flames (69), Paldea Evolved (41) and Paradox Rift (31), with the rest from six other English sources, plus three Chinese Exclusives.',
   },
   {
     q: 'Which cards are Chinese Exclusives?',
-    a: 'Three: the Maushold ex Special Art Rare 158/129 by Yoshimi Miyoshi, the Rika Special Art Rare 159/129 by kantaro, and the gold Gholdengo ex Ultra Rare 162/129 by 5ban Graphics. None of them has an English version.',
+    a: 'Three: the Maushold ex Special Art Rare 158/129 by Yoshimi Miyoshi, the Rika Special Art Rare 159/129 by kantaro, and the gold Gholdengo ex Ultra Rare 162/129 by 5ban Graphics. None of the three exists in English. English has a Rika Special Illustration Rare, Paradox Rift 258/182, also by kantaro, but with a different illustration.',
   },
   {
     q: 'Is the Gholdengo ex Special Art Rare the same as in English?',
-    a: 'Yes. 156/129 matches Paradox Rift 252/182 by Akira Komayama. Only the gold Ultra Rare is new, and it is one of the set\'s Chinese Exclusives.',
+    a: 'Yes. 156/129 matches Paradox Rift 252/182 by Akira Komayama. The gold Ultra Rare 162/129 is the one that does not exist in English, and it is one of the three Chinese Exclusives.',
   },
   {
     q: 'Are any Reward Round cards English promos?',
@@ -358,7 +359,7 @@ function RewardRoundOrigins() {
     '@type': 'FAQPage',
     mainEntity: FAQ.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
   }
-  // The gold Gholdengo ex first, then the two SARs.
+  // The gold Gholdengo ex first, then the two Special Art Rares.
   const fresh = ['162', '158', '159'].map((n) => rows.find((r) => r.cn === n)!)
 
   return (
@@ -380,9 +381,13 @@ function RewardRoundOrigins() {
         }}
       >
         <p>
-          Reward Round (set code CSV4C) does not follow one English set. Its 165 cards pull mostly from Obsidian Flames,
-          Paldea Evolved and Paradox Rift, with a handful from other Scarlet & Violet sets and promos, plus three Chinese Exclusives. For the chase
-          cards and box odds, see our <Link to="/blog/reward-round-set-guide">set guide</Link>.
+          Reward Round (<Zh>嘉奖回合</Zh>, set code CSV4C) released on July 18, 2025. It does not follow one English set. Its 165
+          cards match mostly Obsidian Flames, Paldea Evolved and Paradox Rift, with a handful from other Scarlet & Violet sets and
+          promos, plus three Chinese Exclusives.
+        </p>
+        <p>
+          Our <Link to="/blog/reward-round-release-news">release post</Link> covers what is new, and our{' '}
+          <Link to="/blog/reward-round-set-guide">set guide</Link> shows every secret rare and what a slim box holds.
         </p>
 
         <nav className="toc" aria-label="In this guide">
@@ -436,9 +441,10 @@ function RewardRoundOrigins() {
 
         <h2 id="patterns">Patterns worth knowing</h2>
         <p>
-          <strong>Three cards are Chinese Exclusives.</strong> There is no English gold Gholdengo ex, Maushold ex Special Art Rare or Rika
-          Special Art Rare. The English Gholdengo ex Special Art Rare, Maushold ex Super Rare and Rika Super Rare are all here too, so a
-          Chinese binder holds one more version of each.
+          <strong>Three cards are Chinese Exclusives.</strong> The gold Gholdengo ex Ultra Rare 162/129 and the Maushold ex Special Art
+          Rare 158/129 do not exist in English. English has a Rika Special Illustration Rare, Paradox Rift 258/182, but the Rika
+          Special Art Rare 159/129 is not in English with this illustration. The Gholdengo ex Special Art Rare, Maushold ex Super
+          Rare and Rika Super Rare that match English are all here too.
         </p>
         <ul className="card-grid cols-3">
           {fresh.map((r) => (
@@ -448,14 +454,14 @@ function RewardRoundOrigins() {
                 <figcaption>
                   <ChineseExclusiveBadge />
                   <strong>{r.name}</strong>
-                  {r.cn}/129 · <RarityAbbr code={r.rarity} /> · {r.illus}
+                  {r.cn}/129 · {rarityFullName(r.rarity)} · {r.illus}
                 </figcaption>
               </figure>
             </li>
           ))}
         </ul>
         <p>
-          <strong>The rest of the chase matches English.</strong> Gholdengo ex, Maushold ex, Golisopod ex and Tapu Koko ex
+          <strong>The other secret rares match English.</strong> Gholdengo ex, Maushold ex, Golisopod ex and Tapu Koko ex
           match Paradox Rift, Pidgeot ex and Revavroom ex match Obsidian Flames, and Slowking ex, Dedenne ex and Boss's Orders match
           Paldea Evolved. The exceptions are the Daisy's Help Super Rare, which matches 151, and the gold Nest Ball, which matches the
           original Scarlet & Violet set.
@@ -483,17 +489,18 @@ function RewardRoundOrigins() {
           </table>
         </div>
         <p>
-          <strong>Two promo arts.</strong> Spidops 005/129 and Annihilape ex 066/129 use art that English released as SV Black Star
-          Promos. Garganacl ex 075/129 matches Stellar Crown 089/142, the only English Garganacl ex.
+          <strong>Two cards match promos.</strong> Spidops 005/129 and Annihilape ex 066/129 use illustrations that English released as
+          SV Black Star Promos. Garganacl ex 075/129 matches Stellar Crown 089/142, the only English Garganacl ex.
         </p>
 
         <h2 id="secret-rares">All 36 secret rares</h2>
-        <p>Every card above 129, with its English twin. Highlighted rows are new.</p>
+        <p>This table lists every card above 129 with its English match. The highlighted rows are the Chinese Exclusives.</p>
         <OriginsTable list={SECRET} caption="Secret rares and the English card each one matches" />
 
         <BuyStrip />
 
         <h2 id="main-set">The 129-card main set</h2>
+        <p>This table lists every card from 001 to 129 with its English match.</p>
         <OriginsTable list={MAIN} caption="Main set cards and the English card each one matches" />
 
         <h2 id="faq">FAQ</h2>

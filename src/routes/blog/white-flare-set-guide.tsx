@@ -75,7 +75,7 @@ const BLOCKS = [
 
 const TOC = [
   { id: 'slim-vs-jumbo', label: 'Slim box or jumbo box' },
-  { id: 'top-chases', label: 'The Black White Rare and 7 SARs' },
+  { id: 'top-chases', label: 'The Black White Rare and 7 Special Art Rares' },
   { id: 'super-rares', label: 'All 8 Super Rares' },
   { id: 'art-rares', label: 'Art Rares to look for' },
   { id: 'ladders', label: 'One card, every rarity' },
@@ -99,7 +99,7 @@ const FAQ = [
   },
   {
     q: 'How rare is the Reshiram ex Black White Rare?',
-    a: 'Pokémon China groups it with the 8 Super Rares and 7 Special Art Rares, and that band turns up about once every 27 slim packs or every 5 jumbo packs. The chart does not give odds for the Black White Rare on its own.',
+    a: 'Pokémon China groups it with the 8 Super Rares and 7 Special Art Rares, and that group turns up about once every 27 slim packs or every 5 jumbo packs. The chart does not give odds for the Black White Rare on its own.',
   },
   {
     q: 'How many cards are in a White Flare master set?',
@@ -322,7 +322,7 @@ function WhiteFlareSetGuide() {
           Common, Uncommon and Rare cards, for 334 in total.
         </p>
         <p>
-          The Poké Ball holos come fastest, since they share the most common holo band. The Master Ball holos share a band with the 6 Double
+          The Poké Ball holos come fastest, since they share the most common holo group. The Master Ball holos share a group with the 6 Double
           Rares and 72 Art Rares, about 4.5 per slim box or 9 per jumbo box spread across 158 different cards, so they take a long time. The
           16 cards at Super Rare and above are harder still. The practical route is to open boxes for the lower tiers, then pick up the big cards as singles.
           The <Link to="/sets/chinese/white-flare-csv10-6">White Flare card list</Link> lets you tick off what you have. Its twin,{' '}

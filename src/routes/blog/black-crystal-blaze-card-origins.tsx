@@ -238,11 +238,11 @@ const TOC = [
 const FAQ = [
   {
     q: 'Which English set is Black Crystal Blaze?',
-    a: 'There is no single one. Most of its cards match Paradox Rift (73), Obsidian Flames (61) and Paldean Fates (18), with the rest from five other English sources and two new arts.',
+    a: 'There is no single one. Most of its cards match Paradox Rift (73), Obsidian Flames (61) and Paldean Fates (18). Ten more match five other English sources, and the last two are Chinese Exclusives.',
   },
   {
     q: 'Which cards are Chinese Exclusives?',
-    a: 'Two: the Larry Special Art Rare 157/129 by Kariya and the gold Defiance Band Ultra Rare 164/129 by inose yukie. Neither has an English version.',
+    a: 'Two: the Larry Special Art Rare 157/129 by Kariya and the gold Defiance Band Ultra Rare 164/129 by inose yukie. Neither card exists in English.',
   },
   {
     q: 'Is the Charizard ex Special Art Rare the same as in English?',
@@ -377,9 +377,13 @@ function BlackCrystalBlazeOrigins() {
         }}
       >
         <p>
-          Black Crystal Blaze (set code CSV5C) does not follow one English set. Its 164 cards pull mostly from Paradox Rift, Obsidian Flames and Paldean
-          Fates, with a handful from other Scarlet & Violet sets and promos, plus two Chinese Exclusives: the Larry Special Art Rare and the gold Defiance Band. For the chase cards and box odds, see our{' '}
-          <Link to="/blog/black-crystal-blaze-set-guide">set guide</Link>.
+          Black Crystal Blaze (set code CSV5C) released on September 12, 2025. It does not follow one English set. Most of its 164
+          cards match Paradox Rift, Obsidian Flames or Paldean Fates, ten match other Scarlet & Violet sets and promos, and two are
+          Chinese Exclusives: the Larry Special Art Rare and the gold Defiance Band. This guide maps every card.
+        </p>
+        <p>
+          Our <Link to="/blog/black-crystal-blaze-release-news">release post</Link> covers what is new, and our{' '}
+          <Link to="/blog/black-crystal-blaze-set-guide">set guide</Link> shows every secret rare and what each box holds.
         </p>
 
         <nav className="toc" aria-label="In this guide">
@@ -404,7 +408,7 @@ function BlackCrystalBlazeOrigins() {
                 <th scope="col">Obsidian Flames</th>
                 <th scope="col">Paldean Fates</th>
                 <th scope="col">Other</th>
-                <th scope="col">New</th>
+                <th scope="col">Chinese Exclusive</th>
                 <th scope="col">Total</th>
               </tr>
             </thead>
@@ -433,8 +437,9 @@ function BlackCrystalBlazeOrigins() {
 
         <h2 id="patterns">Patterns worth knowing</h2>
         <p>
-          <strong>Two cards are Chinese Exclusives.</strong> There is no English Larry Special Art Rare or gold Defiance Band. The English Larry
-          Super Rare is here too, so a Chinese binder holds one more version of Larry.
+          <strong>Two cards are Chinese Exclusives.</strong> The Larry Special Art Rare and the gold Defiance Band do not exist in English.
+          English has Larry as a Supporter and a full art, and Chinese prints both of those as well (121/129 and 148/129), so the Chinese
+          set has one more version of Larry. English has Defiance Band only as a regular Pokémon Tool.
         </p>
         <ul className="card-grid cols-2">
           {fresh.map((r) => (
@@ -444,16 +449,17 @@ function BlackCrystalBlazeOrigins() {
                 <figcaption>
                   <ChineseExclusiveBadge />
                   <strong>{r.name}</strong>
-                  {r.cn}/129 · <RarityAbbr code={r.rarity} /> · {r.illus}
+                  {r.cn}/129 · {rarityFullName(r.rarity)} · {r.illus}
                 </figcaption>
               </figure>
             </li>
           ))}
         </ul>
         <p>
-          <strong>The rest of the chase mostly comes from two sets.</strong> Charizard ex, Eiscue ex, Glimmora ex and Vespiquen ex match Obsidian Flames,
-          while Garchomp ex, Altaria ex, Hoopa ex and the other Pokémon ex match Paradox Rift. Clive's Super Rare and Special Art Rare match
-          Paldean Fates, and the gold Rare Candy matches the original Scarlet & Violet set.
+          <strong>The other secret rares mostly come from two sets.</strong> Among the secret rares, Charizard ex, Eiscue ex, Glimmora ex and
+          Vespiquen ex match Obsidian Flames, while Garchomp ex, Altaria ex, Hoopa ex, Armarouge ex, Toxtricity ex and Aegislash ex match
+          Paradox Rift. Clive's Super Rare and Special Art Rare match Paldean Fates, and the gold Rare Candy matches the original Scarlet &
+          Violet set.
         </p>
         <p>
           <strong>Three sets do most of the work.</strong> Every card's English source, from most cards to fewest:
@@ -478,17 +484,22 @@ function BlackCrystalBlazeOrigins() {
           </table>
         </div>
         <p>
-          <strong>Two promo arts.</strong> Cetitan 037/129 and Paldean Wooper 079/129 use art that English released as SV Black Star
-          Promos, and Scovillain ex 012/129 uses its Temporal Forces art.
+          <strong>Two cards match English promos.</strong> Cetitan 037/129 and Paldean Wooper 079/129 use illustrations that are SV Black
+          Star Promos in English, and Scovillain ex 012/129 uses its Temporal Forces illustration.
         </p>
 
         <h2 id="secret-rares">All 35 secret rares</h2>
-        <p>Every card above 129, with its English twin. Highlighted rows are new.</p>
+        <p>Every card above 129, with its English twin. The two highlighted rows are the Chinese Exclusives.</p>
         <OriginsTable list={SECRET} caption="Secret rares and the English card each one matches" />
 
         <BuyStrip />
 
         <h2 id="main-set">The 129-card main set</h2>
+        <p>
+          {MAIN.filter((r) => r.src === 'PAR').length} main-set cards match Paradox Rift, {MAIN.filter((r) => r.src === 'OBF').length} match
+          Obsidian Flames and {MAIN.filter((r) => r.src === 'PAF').length} match Paldean Fates. The other{' '}
+          {MAIN.filter((r) => !BIG3.includes(r.src)).length} match five other English sources.
+        </p>
         <OriginsTable list={MAIN} caption="Main set cards and the English card each one matches" />
 
         <h2 id="faq">FAQ</h2>

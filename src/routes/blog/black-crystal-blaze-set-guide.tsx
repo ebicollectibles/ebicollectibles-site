@@ -1,3 +1,4 @@
+import { Zh } from '~/components/blog/Zh'
 import { rarityFullName } from '~/components/blog/RarityAbbr'
 import { BuyStrip } from '~/components/blog/BlogShop'
 import { createFileRoute, Link } from '@tanstack/react-router'
@@ -15,7 +16,7 @@ type Card = (typeof setData.cards)[number]
 const byRange = (from: number, to: number) => setData.cards.filter((c) => c.pokemonIndex >= from && c.pokemonIndex <= to)
 const EXCLUSIVE = new Set<string>(setData.exclusiveCardNumbers)
 const short = (r: string) => r.match(/\(([^)]+)\)/)?.[1] ?? r
-// The data marks both Chinese Exclusives, the Larry SAR 157 and the gold Defiance Band 164.
+// The data marks both Chinese Exclusives, the Larry Special Art Rare 157 and the gold Defiance Band 164.
 const isExclusive = (c: Card) => EXCLUSIVE.has(c.number) || c.number === '164/129'
 // Most wanted cards first (by number out of 129), then the rest in number order.
 const lead = (cards: Card[], first: string[]) => [
@@ -43,22 +44,26 @@ function Gallery({ cards, cols }: { cards: Card[]; cols: number }) {
 }
 
 const BLOCKS = [
-  { nos: '001 to 113', what: 'Pokémon, grouped by type', rarity: 'C, U, R, RR' },
-  { nos: '114 to 129', what: 'Trainers and Energy', rarity: 'U (Larry is C)' },
-  { nos: '130 to 137', what: 'Art Rares', rarity: 'AR' },
-  { nos: '138 to 152', what: 'Super Rare full arts of ex and Supporters', rarity: 'SR' },
-  { nos: '153 to 160', what: 'Special Art Rares of ex and Supporters', rarity: 'SAR' },
-  { nos: '161 to 164', what: 'Gold Ultra Rares', rarity: 'UR' },
+  { nos: '001 to 113', what: 'Pokémon, grouped by type', rarity: 'Common, Uncommon, Rare, Double Rare' },
+  { nos: '114 to 129', what: 'Trainers and Energy', rarity: 'Uncommon (Larry is Common)' },
+  { nos: '130 to 137', what: 'Art Rares', rarity: 'Art Rare' },
+  { nos: '138 to 152', what: 'Super Rare full arts of ex and Supporters', rarity: 'Super Rare' },
+  { nos: '153 to 160', what: 'Special Art Rares of ex and Supporters', rarity: 'Special Art Rare' },
+  { nos: '161 to 164', what: 'Gold Ultra Rares', rarity: 'Ultra Rare' },
 ]
 
-// One slim box (15 packs of 5) with Pokémon China's 5-card odds applied.
-const BOX = [
-  { row: 'Cards', avg: '75 (15 packs of 5)' },
-  { row: 'Holos', avg: '15 (1 per pack)' },
-  { row: 'Common and Uncommon (80.00%)', avg: '60' },
-  { row: 'Poké Ball pattern holo and Rare (14.53%)', avg: 'about 11' },
-  { row: 'Double Rare, Art Rare and Master Ball pattern (4.74%)', avg: 'about 3 to 4' },
-  { row: 'Super Rare, Special Art Rare and Ultra Rare (0.73%)', avg: 'about 0.55' },
+// Averages from Pokémon China's two odds charts. Each share is of all
+// cards printed for that pack size, applied to the cards in one box.
+// Slim: 80.00%, 14.53%, 4.74%, 0.73%. Jumbo: 70.00%, 22.99%, 6.01%, 1.00%.
+const BOXES = [
+  { row: 'Packs per box', slim: '15', jumbo: '6' },
+  { row: 'Cards per pack', slim: '5 (1 holo)', jumbo: '20 (6 holo)' },
+  { row: 'Cards per box', slim: '75', jumbo: '120' },
+  { row: 'Holos per box', slim: '15', jumbo: '36' },
+  { row: 'Common and Uncommon', slim: '60', jumbo: '84' },
+  { row: 'Poké Ball pattern holo and Rare', slim: 'about 11', jumbo: 'about 28' },
+  { row: 'Double Rare, Art Rare and Master Ball pattern holo', slim: 'about 3 to 4', jumbo: 'about 7' },
+  { row: 'Super Rare, Special Art Rare and Ultra Rare', slim: 'about 0.55', jumbo: 'about 1.2' },
 ]
 
 const LADDER_NAMES = ['Charizard ex', 'Garchomp ex', 'Eiscue ex', 'Altaria ex']
@@ -69,7 +74,7 @@ const LADDER = LADDER_NAMES.map((name) => ({
 }))
 
 const TOC = [
-  { id: 'box', label: 'What a slim box holds' },
+  { id: 'box', label: 'Slim box vs jumbo box' },
   { id: 'special-art-rares', label: 'All 8 Special Art Rares' },
   { id: 'super-rares', label: 'All 15 Super Rares' },
   { id: 'ultra-rares', label: 'All 4 Ultra Rares' },
@@ -87,16 +92,16 @@ const FAQ = [
     a: 'The Larry Special Art Rare 157/129 and the gold Defiance Band Ultra Rare 164/129.',
   },
   {
-    q: 'How many Super Rares or better are in a slim box?',
-    a: 'About 0.55 on average, so most slim boxes do not have one. Over two boxes you would expect about one.',
+    q: 'How many Super Rares or better are in a box?',
+    a: 'A slim box averages about 0.55, so most slim boxes do not have one. A jumbo box averages about 1.2, so most jumbo boxes do.',
   },
   {
     q: 'Should I buy a slim or a jumbo box?',
-    a: 'A jumbo box has 120 cards and 36 holos against 75 cards and 15 holos in a slim box. Pokémon China only published odds for the 5-card pack, so the jumbo box is the safe pick for more holos, and the slim box for more packs to open.',
+    a: 'For Super Rares and above, the jumbo box. It averages about 1.2 Super Rares, Special Art Rares or Ultra Rares against about 0.55 for a slim box, and it has 36 holos against 15. The slim box gives you more packs to open: 15 against 6.',
   },
   {
     q: 'How many cards are in a Black Crystal Blaze master set?',
-    a: '394: the 164 numbered cards plus a Poké Ball and a Master Ball pattern holo of each of the 115 Commons, Uncommons and Rares.',
+    a: 'A master set is 394 cards: the 164 numbered cards plus a Poké Ball pattern holo and a Master Ball pattern holo of each of the 115 Commons, Uncommons and Rares.',
   },
 ]
 
@@ -166,7 +171,7 @@ function BlackCrystalBlazeSetGuide() {
         lede="Black Crystal Blaze is the Tera Charizard set, with two Chinese Exclusives and slim and jumbo boxes. This guide helps you pick a box, shows every chase card, and explains what a master set takes."
         cta={{
           heading: 'Collect Black Crystal Blaze',
-          body: 'Track every card on the full checklist, or pick up a box and start ripping.',
+          body: 'Track every card on the full checklist, or pick up a box.',
           links: [
             { to: '/sets/chinese/black-crystal-blaze-csv5', label: 'See the full card list' },
             { to: '/products/$id', params: { id: 'pokemon-chinese-black-crystal-blaze-jumbo-booster-box' }, label: 'Shop the jumbo box', variant: 'ghost' },
@@ -174,10 +179,14 @@ function BlackCrystalBlazeSetGuide() {
         }}
       >
         <p>
-          Black Crystal Blaze (CSV5C) is the Tera Charizard set: 164 cards, two Chinese Exclusives, and slim and jumbo boxes. Our{' '}
-          <Link to="/blog/black-crystal-blaze-release-news">release post</Link> covers what is new, and our{' '}
-          <Link to="/blog/black-crystal-blaze-card-origins">card origins guide</Link> matches every card to English. Use this one to sort
-          your pulls or plan a master set.
+          Black Crystal Blaze (<Zh>黑晶炽诚</Zh>, set code CSV5C) released on September 12, 2025. It is the Tera Charizard set: 164
+          cards sold in slim and jumbo boxes, with two Chinese Exclusives, the Larry Special Art Rare 157/129 and the gold Defiance Band
+          Ultra Rare 164/129.
+        </p>
+        <p>
+          Our <Link to="/blog/black-crystal-blaze-release-news">release post</Link> covers what is new, and our{' '}
+          <Link to="/blog/black-crystal-blaze-card-origins">card origins guide</Link> matches every card to its English version. Use
+          this guide to pick a box, sort your pulls or plan a master set.
         </p>
 
         <nav className="toc" aria-label="In this guide">
@@ -191,63 +200,69 @@ function BlackCrystalBlazeSetGuide() {
           </ol>
         </nav>
 
-        <h2 id="box">What a slim box holds</h2>
-        <p>Pokémon China's odds chart for the 5-card pack, applied to one 15-pack slim box:</p>
+        <h2 id="box">Slim box vs jumbo box</h2>
+        <p>
+          Both boxes pull from the same card list, but Pokémon China publishes a different odds chart for each pack size. Applied to
+          one box, the published shares work out to roughly this:
+        </p>
         <div className="table-scroll" role="group" aria-labelledby="tbl-1" tabIndex={0}>
           <table className="data-table">
-            <caption id="tbl-1" className="sr-only">What a slim box holds</caption>
+            <caption id="tbl-1" className="sr-only">Slim box vs jumbo box</caption>
             <thead>
               <tr>
-                <th scope="col">Per slim box</th>
-                <th scope="col">Average</th>
+                <th scope="col">Per box</th>
+                <th scope="col">Slim box</th>
+                <th scope="col">Jumbo box</th>
               </tr>
             </thead>
             <tbody>
-              {BOX.map((b) => (
+              {BOXES.map((b) => (
                 <tr key={b.row}>
                   <th scope="row">{b.row}</th>
-                  <td>{b.avg}</td>
+                  <td>{b.slim}</td>
+                  <td>{b.jumbo}</td>
                 </tr>
               ))}
             </tbody>
           </table>
         </div>
-        <p className="table-note">Averages from the official print shares, not guarantees.</p>
+        <p className="table-note">Averages from the official print shares, not guarantees. Individual boxes vary.</p>
         <p>
-          The top band holds 27 different cards and averages about one every 27 packs, so most slim boxes will not have one. A jumbo box
-          has 120 cards and 36 holos instead of 75 and 15. Pokémon China did not publish separate odds for the 20-card pack.
+          The top rarity group holds 27 different cards: the Super Rares, Special Art Rares and Ultra Rares. They are 0.73% of slim
+          cards, about one every 27 packs, so most slim boxes will not have one. They are 1.00% of jumbo cards, about one every 5
+          packs, so most jumbo boxes will have one.
         </p>
 
         <h2 id="special-art-rares">All 8 Special Art Rares</h2>
-        <p>153 to 160. Larry 157 is a Chinese Exclusive.</p>
+        <p>These are numbered 153 to 160: four Pokémon ex and four Supporters. Larry 157/129 is a Chinese Exclusive.</p>
         <Gallery cards={lead(byRange(153, 160), ['155', '157', '159', '160', '154', '156', '158'])} cols={4} />
 
         <BuyStrip />
 
         <h2 id="super-rares">All 15 Super Rares</h2>
-        <p>Full arts of ten Pokémon ex and five Supporters, 138 to 152.</p>
+        <p>These are full arts of ten Pokémon ex and five Supporters, numbered 138 to 152.</p>
         <Gallery cards={lead(byRange(138, 152), ['145', '151', '152', '148', '149', '140'])} cols={3} />
 
         <h2 id="ultra-rares">All 4 Ultra Rares</h2>
-        <p>The gold cards, 161 to 164. Defiance Band 164 is the second Chinese Exclusive.</p>
+        <p>These are the gold cards, numbered 161 to 164. Defiance Band 164/129 is the second Chinese Exclusive.</p>
         <Gallery cards={lead(byRange(161, 164), ['162', '161', '164'])} cols={4} />
 
         <h2 id="art-rares">All 8 Art Rares</h2>
-        <p>130 to 137.</p>
+        <p>These are numbered 130 to 137. Each one is a full illustration of a main-set Pokémon.</p>
         <Gallery cards={lead(byRange(130, 137), ['135', '136', '132', '133', '134', '137'])} cols={4} />
 
         <h2 id="ladders">One Pokémon, several rarities</h2>
-        <p>The Pokémon ex with a Special Art Rare, and every number they print at:</p>
+        <p>Four Pokémon ex have a Special Art Rare. These are the numbers each one prints at:</p>
         <div className="table-scroll" role="group" aria-labelledby="tbl-2" tabIndex={0}>
           <table className="data-table">
             <caption id="tbl-2" className="sr-only">One Pokémon, several rarities</caption>
             <thead>
               <tr>
                 <th scope="col">Pokémon</th>
-                <th scope="col">RR</th>
-                <th scope="col">SR</th>
-                <th scope="col">SAR</th>
-                <th scope="col">UR</th>
+                <th scope="col">Double Rare</th>
+                <th scope="col">Super Rare</th>
+                <th scope="col">Special Art Rare</th>
+                <th scope="col">Ultra Rare</th>
               </tr>
             </thead>
             <tbody>
@@ -265,12 +280,12 @@ function BlackCrystalBlazeSetGuide() {
         <p className="table-note">Armarouge ex, Vespiquen ex, Hoopa ex, Toxtricity ex, Glimmora ex and Aegislash ex also have Super Rares (139, 141 to 144 and 146).</p>
 
         <h2 id="double-rares">All 14 Pokémon ex</h2>
-        <p>The Double Rares from the main set.</p>
+        <p>These are the Double Rares from the main set.</p>
         <Gallery cards={lead(setData.cards.filter((c) => c.rarity === 'Double Rare (RR)'), ['075', '039', '028', '104', '069', '101'])} cols={4} />
 
         <h2 id="numbering">How the numbers work</h2>
         <p>
-          Every card has one number out of 129. The main set runs 001 to 129, and everything above is a secret rare. The rarer versions
+          Every card has one number out of 129. The main set runs 001 to 129, from Common to Double Rare, and everything above 129 is a secret rare. The rarer versions
           of a card sit in the secret block at unrelated numbers, so match them by name.
         </p>
         <div className="table-scroll" role="group" aria-labelledby="tbl-3" tabIndex={0}>
@@ -301,8 +316,9 @@ function BlackCrystalBlazeSetGuide() {
           and Rares, for 394 in total.
         </p>
         <p>
-          The Master Ball holos and the 27 top-band cards take a long time to pull. Most collectors open boxes for fun and the lower
-          rarities, then buy the big cards as singles. The <Link to="/sets/chinese/black-crystal-blaze-csv5">Black Crystal Blaze card list</Link> lets you tick off
+          The Master Ball holos share a rarity group with the Double Rares and Art Rares, about 3 to 4 cards per slim box or 7 per
+          jumbo box spread across 137 different cards, so they take a long time. The 27 cards in the top group are harder still. Most
+          collectors open boxes for fun and the lower rarities, then buy the cards they still need as singles. The <Link to="/sets/chinese/black-crystal-blaze-csv5">Black Crystal Blaze card list</Link> lets you tick off
           what you have.
         </p>
 

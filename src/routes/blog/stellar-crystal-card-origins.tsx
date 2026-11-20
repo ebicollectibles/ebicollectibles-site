@@ -1,5 +1,6 @@
 import { chunk } from '~/lib/chunk'
-import { RarityAbbr, rarityFullName } from '~/components/blog/RarityAbbr'
+import { Zh } from '~/components/blog/Zh'
+import { rarityFullName } from '~/components/blog/RarityAbbr'
 import { useId } from 'react'
 import { BuyStrip } from '~/components/blog/BlogShop'
 import { createFileRoute, Link } from '@tanstack/react-router'
@@ -16,7 +17,7 @@ const post = BLOG_POSTS.find((p) => p.slug === 'stellar-crystal-card-origins')!
 
 type Src = 'SSP' | 'SCR' | 'SFA' | 'TWM' | 'SVP' | 'PRE' | 'NEW'
 
-// Every Stellar Crystal card and the English card with the same art:
+// Every Stellar Crystal card and the English card with the same illustration:
 // [Chinese number, English set, English number, illustrator]. Each card's
 // art was compared with every English printing of the same name; where the
 // same art was printed more than once we list the first set it appeared in.
@@ -343,7 +344,7 @@ const FAQ = [
   },
   {
     q: 'Which card is the Chinese Exclusive?',
-    a: "The Lisia's Appeal Special Art Rare 257/208 by En Morikura, the only card with no English version. English has a Lisia's Appeal Special Illustration Rare in Surging Sparks, but with different art, and that one is not in the Chinese set.",
+    a: "The Lisia's Appeal Special Art Rare 257/208 by En Morikura. It is the only card in the set that is not in English with this illustration. English has a Lisia's Appeal Special Illustration Rare in Surging Sparks, 246/191, but with a different illustration, and that one is not in the Chinese set.",
   },
   {
     q: 'Is the Pikachu ex Special Art Rare the same as in English?',
@@ -351,7 +352,7 @@ const FAQ = [
   },
   {
     q: 'Are any Stellar Crystal cards English promos?',
-    a: 'Six: Pecharunt 127/208, Zacian ex 139/208, the Noctowl Art Rare 214/208, the Terapagos ex Super Rare 232/208, and the gold Cinderace ex 258/208 and Lapras ex 259/208 all use art English released as SV Black Star Promos.',
+    a: 'Six: Pecharunt 127/208, Zacian ex 139/208, the Noctowl Art Rare 214/208, the Terapagos ex Super Rare 232/208, and the gold Cinderace ex 258/208 and Lapras ex 259/208 all use illustrations that English released as SV Black Star Promos.',
   },
 ]
 
@@ -409,13 +410,11 @@ function OriginsTable({ list, caption }: { list: typeof rows; caption: string })
                 <th scope="row">{r.cn}</th>
                 <td>
                   {r.name}
-                  <span className="cell-sub">
-                    <RarityAbbr code={r.rarity} />
-                  </span>
+                  <span className="cell-sub">{RARITY_NAME[r.rarity] ?? r.rarity}</span>
                 </td>
                 <td>
                   {r.src === 'NEW' ? (
-                    <span className="cell-none">Chinese Exclusive, no English version</span>
+                    <span className="cell-none">Chinese Exclusive, not in English with this illustration</span>
                   ) : (
                     <>
                       {SET_NAME[r.src]} {r.en}
@@ -467,7 +466,7 @@ function StellarCrystalOrigins() {
         updated={status.liveAt}
         wide
         post={post}
-        lede="Stellar Crystal is mostly Surging Sparks and Stellar Crown, with a few surprises. We matched all 266 cards to English and found one Chinese Exclusive that does not exist in English."
+        lede="Stellar Crystal is mostly Surging Sparks and Stellar Crown. We matched all 266 cards to their English versions and found one Chinese Exclusive, an illustration that does not exist in English."
         cta={{
           heading: 'Collect Stellar Crystal',
           body: 'See every card on the full checklist and tick off what you have.',
@@ -475,11 +474,15 @@ function StellarCrystalOrigins() {
         }}
       >
         <p>
-          If you collect English, 265 of the 266 cards in Stellar Crystal (set code CSV9C) will look familiar. 160 match Surging Sparks and 79 match Stellar
-          Crown, with 10 from Shrouded Fable, 8 from Twilight Masquerade, 6 from SV Black Star Promos and 2 from Prismatic Evolutions. The
-          one new card is the Chinese Exclusive Lisia's Appeal Special Art Rare. The Chinese set mixes these sources freely, so the numbers never line up
-          with any one English set. For the chase cards and pack odds, see our{' '}
-          <Link to="/blog/stellar-crystal-set-guide">set guide</Link>.
+          Stellar Crystal (<Zh>星彩晶璃</Zh>, set code CSV9C) released on May 15, 2026. If you collect English, 265 of its 266 cards
+          will look familiar. 160 match Surging Sparks and 79 match Stellar Crown, with 10 from Shrouded Fable, 8 from Twilight
+          Masquerade, 6 from SV Black Star Promos and 2 from Prismatic Evolutions. The one new illustration is the Chinese Exclusive
+          Lisia's Appeal Special Art Rare. The Chinese set mixes these sources, so the numbers do not line up with any one English
+          set.
+        </p>
+        <p>
+          Our <Link to="/blog/stellar-crystal-release-news">release post</Link> covers what is new in the set, and our{' '}
+          <Link to="/blog/stellar-crystal-set-guide">set guide</Link> covers the secret rares and pack odds.
         </p>
 
         <nav className="toc" aria-label="In this guide">
@@ -514,7 +517,6 @@ function StellarCrystalOrigins() {
                 <tr key={t.tier}>
                   <th scope="row">
                     {RARITY_NAME[t.tier] ?? t.tier}
-                    <span className="cell-sub">{t.tier}</span>
                   </th>
                   <td>{t.ssp || '–'}</td>
                   <td>{t.scr || '–'}</td>
@@ -558,18 +560,21 @@ function StellarCrystalOrigins() {
           </table>
         </div>
         <p>
-          <strong>Pikachu is all Surging Sparks.</strong> Pikachu ex matches Surging Sparks at all four rarities, as do Alolan Exeggutor
-          ex, and Latias ex and Hydreigon ex at three. Galvantula ex and Hydrapple ex match Stellar Crown at all three rarities and
-          Terapagos ex at three of its four, as do the Lacey and Briar Special Art Rares, and Sinistcha ex matches Twilight Masquerade at every rarity.
+          <strong>Pikachu is all Surging Sparks.</strong> Pikachu ex and Alolan Exeggutor ex match Surging Sparks at all four of
+          their rarities, and Latias ex and Hydreigon ex match it at all three of theirs. Galvantula ex and Hydrapple ex match
+          Stellar Crown at all three rarities, and Terapagos ex matches it at three of its four. The Lacey and Briar Special Art
+          Rares also match Stellar Crown, and Sinistcha ex matches Twilight Masquerade at every rarity.
         </p>
         <p>
-          <strong>Three chase cards are English promos.</strong> The gold Cinderace ex 258/208 and Lapras ex 259/208 and the Terapagos ex
-          Super Rare 232/208 match SV Black Star Promos, not a main English set. So do the Noctowl Art Rare, Zacian ex and Pecharunt.
+          <strong>Three secret rares are English promos.</strong> The gold Cinderace ex 258/208 and Lapras ex 259/208 and the Terapagos ex
+          Super Rare 232/208 match SV Black Star Promos, not a main English set. So do the Noctowl Art Rare 214/208, Zacian ex
+          139/208 and Pecharunt 127/208.
         </p>
         <p>
-          <strong>One card is a Chinese Exclusive.</strong> English printed Lisia's Appeal as a Super Rare and as a Special Illustration Rare. Stellar
-          Crystal keeps the Super Rare by En Morikura but swaps the Special Art Rare for a new illustration, also by En Morikura, so the
-          English SIR is not in this set at all.
+          <strong>One card is a Chinese Exclusive.</strong> English has Lisia's Appeal as a full art (Surging Sparks 234/191) and as a
+          Special Illustration Rare (Surging Sparks 246/191). Stellar Crystal has the full art by En Morikura as its Super Rare
+          241/208. Its Special Art Rare 257/208 is a different illustration, also by En Morikura, and the English Special
+          Illustration Rare is not in this set.
         </p>
         <ul className="card-grid cols-2">
           {lisia.map((r) => (
@@ -579,7 +584,7 @@ function StellarCrystalOrigins() {
                 <figcaption>
                   {r.src === 'NEW' && <ChineseExclusiveBadge />}
                   <strong>{r.name}</strong>
-                  {r.cn}/208 · <RarityAbbr code={r.rarity} /> · {r.src === 'NEW' ? 'new art' : SET_NAME[r.src]}
+                  {r.cn}/208 · {RARITY_NAME[r.rarity] ?? r.rarity} · {r.src === 'NEW' ? 'Chinese Exclusive' : SET_NAME[r.src]}
                 </figcaption>
               </figure>
             </li>
@@ -587,12 +592,16 @@ function StellarCrystalOrigins() {
         </ul>
 
         <h2 id="secret-rares">All 58 secret rares</h2>
-        <p>Every card above 208, with its English twin. The highlighted row is new.</p>
+        <p>This table lists every card above 208 with the English card it matches. The highlighted row is the Chinese Exclusive.</p>
         <OriginsTable list={SECRET} caption="Secret rares and the English card each one matches" />
 
         <BuyStrip />
 
         <h2 id="main-set">The 208-card main set</h2>
+        <p>
+          {MAIN.filter((r) => r.src === 'SSP').length} main-set cards match Surging Sparks and{' '}
+          {MAIN.filter((r) => r.src === 'SCR').length} match Stellar Crown.
+        </p>
         <OriginsTable list={MAIN} caption="Main set cards and the English card each one matches" />
 
         <h2 id="faq">FAQ</h2>

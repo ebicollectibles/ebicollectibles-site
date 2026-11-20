@@ -337,7 +337,7 @@ const FAQ = [
   },
   {
     q: 'Which card is the Chinese Exclusive?',
-    a: "The Ciphermaniac's Codebreaking Special Art Rare 245/204 by Taira Akitsu. It has no English version, and every other card matches an English card.",
+    a: "The Ciphermaniac's Codebreaking Special Art Rare 245/204 by Taira Akitsu. It does not exist in English with this illustration. Every other card matches an English card.",
   },
   {
     q: 'Is the Greninja ex Special Art Rare the same as in English?',
@@ -471,10 +471,14 @@ function BladeAwakeningOrigins() {
         }}
       >
         <p>
-          173 of the 259 cards in Blade Awakening (set code CSV7C) match Temporal Forces and 68 match Twilight Masquerade. The other 17 come from Journey
-          Together, Stellar Crown, Prismatic Evolutions, Surging Sparks, Shrouded Fable and two promos. Just one card is new: the
-          Chinese Exclusive Ciphermaniac's Codebreaking Special Art Rare. For the chase cards and box odds, see our{' '}
-          <Link to="/blog/blade-awakening-set-guide">set guide</Link>.
+          Blade Awakening (set code CSV7C) released on January 16, 2026. Of its 259 cards, 173 match Temporal Forces and 68 match
+          Twilight Masquerade. The other 17 come from Journey Together, Stellar Crown, Prismatic Evolutions, Surging Sparks, Shrouded
+          Fable and two promos. Just one card is new: the Chinese Exclusive Ciphermaniac's Codebreaking Special Art Rare. This guide
+          matches every card to its English version.
+        </p>
+        <p>
+          Our <Link to="/blog/blade-awakening-release-news">release post</Link> covers what is new, and our{' '}
+          <Link to="/blog/blade-awakening-set-guide">set guide</Link> has the most wanted cards and the box odds.
         </p>
 
         <nav className="toc" aria-label="In this guide">
@@ -548,7 +552,7 @@ function BladeAwakeningOrigins() {
           </table>
         </div>
         <p>
-          <strong>The Paradox chase is Temporal Forces.</strong> Raging Bolt ex, Walking Wake ex, Gouging Fire ex, Iron Crown ex, Iron
+          <strong>The Paradox Pokémon ex are from Temporal Forces.</strong> Raging Bolt ex, Walking Wake ex, Gouging Fire ex, Iron Crown ex, Iron
           Leaves ex and Iron Boulder ex match Temporal Forces at every rarity, from Double Rare to gold. So do seven of the nine ACE SPEC
           cards and four of the six Supporter Special Art Rares.
         </p>
@@ -564,7 +568,7 @@ function BladeAwakeningOrigins() {
         </p>
         <p>
           <strong>One card is a Chinese Exclusive.</strong> English has Ciphermaniac's Codebreaking as a regular Supporter and a full art, both here too,
-          but no Special Illustration Rare. Pokémon China added this one specially.
+          but no Special Illustration Rare. The Special Art Rare 245/204 does not exist in English.
         </p>
         <ul className="card-grid cols-2">
           {rows
@@ -584,12 +588,12 @@ function BladeAwakeningOrigins() {
             ))}
         </ul>
         <p>
-          <strong>Two promo arts.</strong> Kyogre ex 060/204 uses art English released as SV Black Star Promo 178, and the Iron Thorns
-          Art Rare 206/204 matches SV Black Star Promo 098.
+          <strong>Two cards match promos.</strong> Kyogre ex 060/204 matches SV Black Star Promo 178, and the Iron Thorns Art Rare
+          206/204 matches SV Black Star Promo 098.
         </p>
 
         <h2 id="secret-rares">All 55 secret rares</h2>
-        <p>Every card above 204, with its English twin. The highlighted row is new.</p>
+        <p>This table lists every card above 204 with the English card it matches. The highlighted row is the Chinese Exclusive.</p>
         <OriginsTable list={SECRET} caption="Secret rares and the English card each one matches" />
 
         <BuyStrip />

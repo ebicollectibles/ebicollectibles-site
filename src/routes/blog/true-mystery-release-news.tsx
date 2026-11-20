@@ -15,7 +15,7 @@ const cardImg = (n: string) => `${R2_IMAGE_HOST}/Chinese/True%20Mystic/Cards/0${
 
 type Shown = { n: string; name: string; note: string }
 
-// The Chinese Exclusive: the Iron Hands ex SAR 152.
+// The Chinese Exclusive: the Iron Hands ex Special Art Rare 152.
 const CHINESE_EXCLUSIVE = new Set(['152'])
 
 function Grid({ cards, cols }: { cards: Shown[]; cols: number }) {
@@ -38,29 +38,29 @@ function Grid({ cards, cols }: { cards: Shown[]; cols: number }) {
 }
 
 const EXCLUSIVE = [
-  { n: '152', name: 'Iron Hands ex', note: 'SAR · Tonji Matsuno' },
+  { n: '152', name: 'Iron Hands ex', note: 'Special Art Rare · Tonji Matsuno' },
   { n: '051', name: 'Iron Hands ex', note: 'Double Rare · PLANETA Mochizuki' },
 ]
 
 const SAR = [
-  { n: '155', name: 'Roaring Moon ex', note: 'SAR · Ryota Murayama' },
-  { n: '153', name: 'Iron Valiant ex', note: 'SAR · kantaro' },
-  { n: '159', name: 'Tulip', note: 'SAR · AKIRA EGAWA' },
-  { n: '157', name: 'Geeta', note: 'SAR · DOM' },
-  { n: '156', name: "Professor Sada's Vitality", note: 'SAR · Ryota Murayama' },
-  { n: '158', name: "Professor Turo's Scenario", note: 'SAR · Atsushi Furusawa' },
+  { n: '153', name: 'Iron Valiant ex', note: 'Special Art Rare · kantaro' },
+  { n: '155', name: 'Roaring Moon ex', note: 'Special Art Rare · Ryota Murayama' },
+  { n: '159', name: 'Tulip', note: 'Special Art Rare · AKIRA EGAWA' },
+  { n: '157', name: 'Geeta', note: 'Special Art Rare · DOM' },
+  { n: '156', name: "Professor Sada's Vitality", note: 'Special Art Rare · Ryota Murayama' },
+  { n: '158', name: "Professor Turo's Scenario", note: 'Special Art Rare · Atsushi Furusawa' },
 ]
 
 const SUPER = [
-  { n: '144', name: 'Roaring Moon ex', note: 'Super Rare · takuyoa' },
   { n: '142', name: 'Iron Valiant ex', note: 'Super Rare · aky CG Works' },
+  { n: '144', name: 'Roaring Moon ex', note: 'Super Rare · takuyoa' },
   { n: '151', name: 'Tulip', note: 'Super Rare · Naoki Saito' },
   { n: '147', name: 'Geeta', note: 'Super Rare · kirisAki' },
 ]
 
 const ULTRA = [
-  { n: '161', name: 'Roaring Moon ex', note: 'Ultra Rare · takuyoa' },
   { n: '160', name: 'Iron Valiant ex', note: 'Ultra Rare · aky CG Works' },
+  { n: '161', name: 'Roaring Moon ex', note: 'Ultra Rare · takuyoa' },
   { n: '162', name: 'Counter Catcher', note: 'Ultra Rare · Toyste Beach' },
   { n: '163', name: 'Pal Pad', note: 'Ultra Rare · Studio Bora Inc.' },
 ]
@@ -77,17 +77,17 @@ const ART_RARES = [
 ]
 
 const BLOCKS = [
-  { nos: '001 to 113', what: 'Pokémon, grouped by type', rarity: 'C, U, R, RR' },
-  { nos: '114 to 128', what: 'Items, Pokémon Tools, Supporters and Stadiums', rarity: 'U (Geeta is R)' },
-  { nos: '129 to 136', what: 'Art Rares', rarity: 'AR' },
-  { nos: '137 to 151', what: 'Super Rare full arts of 9 ex and 6 Supporters', rarity: 'SR' },
-  { nos: '152 to 159', what: 'Special Art Rares of 4 ex and 4 Supporters', rarity: 'SAR' },
-  { nos: '160 to 163', what: 'Gold Ultra Rares', rarity: 'UR' },
+  { nos: '001 to 113', what: 'Pokémon, grouped by type', rarity: 'Common, Uncommon, Rare, Double Rare' },
+  { nos: '114 to 128', what: 'Items, Pokémon Tools, Supporters and Stadiums', rarity: 'Uncommon (Geeta is Rare)' },
+  { nos: '129 to 136', what: 'Art Rares', rarity: 'Art Rare' },
+  { nos: '137 to 151', what: 'Super Rare full arts of 9 ex and 6 Supporters', rarity: 'Super Rare' },
+  { nos: '152 to 159', what: 'Special Art Rares of 4 ex and 4 Supporters', rarity: 'Special Art Rare' },
+  { nos: '160 to 163', what: 'Gold Ultra Rares', rarity: 'Ultra Rare' },
 ]
 
 const TOC = [
   { id: 'slim-or-jumbo', label: 'Slim or jumbo?' },
-  { id: 'iron-hands', label: 'Chinese Exclusive: Iron Hands ex SAR' },
+  { id: 'iron-hands', label: 'Chinese Exclusive: Iron Hands ex' },
   { id: 'special-art-rares', label: 'Special Art Rares' },
   { id: 'super-rares', label: 'Super Rare full arts' },
   { id: 'ultra-rares', label: 'Gold Ultra Rares' },
@@ -103,11 +103,11 @@ const FAQ = [
   },
   {
     q: 'What is the Chinese Exclusive in True Mystery?',
-    a: 'The Iron Hands ex Special Art Rare 152/128 by Tonji Matsuno. It is new art for this set, and it has no English version.',
+    a: 'The Iron Hands ex Special Art Rare 152/128 by Tonji Matsuno. It is a new illustration for this set and does not exist in English.',
   },
   {
     q: 'What is the difference between the slim and jumbo boxes?',
-    a: 'A slim box has 15 packs of 5 cards, 75 cards with 15 holos. A jumbo box has 6 packs of 20 cards, 120 cards with 36 holos. Both pull from the same card list.',
+    a: 'A slim box has 15 packs of 5 cards, which is 75 cards with 15 holos. A jumbo box has 6 packs of 20 cards, which is 120 cards with 36 holos. Both pull from the same card list, but Pokémon China publishes a separate odds chart for each pack size.',
   },
   {
     q: 'What are the odds of pulling a Super Rare or better?',
@@ -115,7 +115,7 @@ const FAQ = [
   },
   {
     q: 'Where do the True Mystery illustrations come from?',
-    a: 'Mostly from Paradox Rift: 128 of its 163 cards match it. The rest come from Obsidian Flames (16), Paldean Fates (15), 151 (1) and an SV Black Star Promo (1), plus 2 cards with no English version.',
+    a: 'Mostly from Paradox Rift: 128 of its 163 cards match it. The rest come from Obsidian Flames (16), Paldean Fates (15), 151 (1) and an SV Black Star Promo (1). The Iron Hands ex Special Art Rare and the gold Pal Pad do not exist in English.',
     link: { to: '/sets/chinese/true-mystery-csv6', before: 'See every card on the ', label: 'True Mystery card list', after: '.' },
   },
   {
@@ -124,7 +124,7 @@ const FAQ = [
   },
   {
     q: 'How many cards are in True Mystery?',
-    a: '163 numbered cards: 128 in the main set and 35 secret rares, from Art Rare up to the four gold Ultra Rares.',
+    a: '163 numbered cards: 128 in the main set and 35 secret rares. Counting the Poké Ball and Master Ball pattern holos of every Common, Uncommon and Rare, there are 393 different cards.',
   },
 ]
 
@@ -195,7 +195,7 @@ function TrueMysteryReleasePost() {
         updated={status.liveAt}
         wide
         post={post}
-        lede="Iron Valiant takes the pack and the Paradox Pokémon take over the set. True Mystery brings Roaring Moon ex, Iron Valiant ex and a Chinese Exclusive Iron Hands ex Special Art Rare."
+        lede="Iron Valiant is on the pack of True Mystery, the Paradox Pokémon set. It brings Iron Valiant ex, Roaring Moon ex and a Chinese Exclusive Iron Hands ex Special Art Rare."
         cta={{
           heading: 'Shop True Mystery',
           body: 'Slim and jumbo booster boxes, plus the full checklist with every card.',
@@ -206,10 +206,14 @@ function TrueMysteryReleasePost() {
         }}
       >
         <p>
-          True Mystery (<Zh>真实玄虚</Zh>) released on November 7, 2025. It is the CSV6C set of the Chinese Scarlet & Violet series, and it is all
-          about the Paradox Pokémon from Area Zero: Ancient forms like Roaring Moon and Sandy Shocks, Future forms like Iron Valiant and
-          Iron Hands, and the Ancient and Future Trainer cards built to support them. Iron Valiant is on the pack, and the Iron Hands ex
-          Special Art Rare is the set's Chinese Exclusive.
+          True Mystery (<Zh>真实玄虚</Zh>, set code CSV6C) released on November 7, 2025. It is a main set of the Chinese Scarlet & Violet
+          series, built around the Paradox Pokémon from Area Zero: Ancient Pokémon like Roaring Moon and Sandy Shocks, Future Pokémon
+          like Iron Valiant and Iron Hands, and the Ancient and Future Trainer cards that support them. Iron Valiant is on the pack, and
+          the Iron Hands ex Special Art Rare is the set's Chinese Exclusive.
+        </p>
+        <p>
+          Our <Link to="/blog/true-mystery-set-guide">set guide</Link> shows every secret rare and each Pokémon ex at every rarity, and
+          our <Link to="/blog/true-mystery-card-origins">card origins guide</Link> matches every card to its English version.
         </p>
 
         <aside className="fact-box" aria-label="True Mystery key facts">
@@ -236,9 +240,9 @@ function TrueMysteryReleasePost() {
               <dt>Set size</dt>
               <dd>163 cards: 128 in the main set, 35 secret rares</dd>
               <dt>Chase cards</dt>
-              <dd>Roaring Moon ex SAR, Iron Valiant ex SAR, Iron Hands ex SAR</dd>
+              <dd>The Iron Valiant ex, Roaring Moon ex and Iron Hands ex Special Art Rares</dd>
               <dt>Chinese Exclusive</dt>
-              <dd>Iron Hands ex SAR 152/128</dd>
+              <dd>Iron Hands ex Special Art Rare 152/128</dd>
             </dl>
           </div>
         </aside>
@@ -279,25 +283,25 @@ function TrueMysteryReleasePost() {
           </li>
         </ul>
         <p>
-          Pokémon China published an odds chart for each pack size. Super Rares, Special Art Rares and Ultra Rares together are 0.73% of
-          slim-pack cards and 1.00% of jumbo-pack cards: about one every 27 slim packs, against one every 5 jumbo packs. That averages
+          Pokémon China publishes an odds chart for each pack size. Super Rares, Special Art Rares and Ultra Rares together are 0.73% of
+          slim-pack cards and 1.00% of jumbo-pack cards. That is about one every 27 slim packs against one every 5 jumbo packs, or
           about 0.55 per slim box and 1.2 per jumbo box. Every Common, Uncommon and Rare also comes as a Poké Ball pattern holo and a
           Master Ball pattern holo, 115 of each.
         </p>
 
-        <h2 id="iron-hands">Chinese Exclusive: Iron Hands ex SAR</h2>
+        <h2 id="iron-hands">Chinese Exclusive: Iron Hands ex</h2>
         <p>
-          Iron Hands ex 152/128 is the Chinese Exclusive, a Special Art Rare with no English version. Tonji Matsuno draws it in a
-          burst of yellow and blue light, mid-punch. English has Iron Hands ex in Paradox Rift, including its own Special Illustration
-          Rare, but not this art. The regular Double Rare by PLANETA Mochizuki is in the set too.
+          Iron Hands ex 152/128 is the Chinese Exclusive, a Special Art Rare that does not exist in English. Tonji Matsuno draws it
+          mid-strike in a burst of yellow and blue light. English has Iron Hands ex in Paradox Rift, including a Special Illustration
+          Rare, but not with this illustration. The regular Double Rare by PLANETA Mochizuki is in the set too.
         </p>
         <Grid cards={EXCLUSIVE} cols={2} />
 
         <h2 id="special-art-rares">Special Art Rares</h2>
         <p>
-          Eight Special Art Rares, 152 to 159. Roaring Moon ex by Ryota Murayama and Iron Valiant ex by kantaro head the Pokémon, with
-          Sandy Shocks ex and Iron Hands ex alongside. The Supporters are Tulip by AKIRA EGAWA, Geeta, Professor Sada's Vitality and
-          Professor Turo's Scenario.
+          There are eight Special Art Rares, numbered 152 to 159. The four Pokémon ex are Iron Valiant ex by kantaro, Roaring Moon ex by
+          Ryota Murayama, Sandy Shocks ex and Iron Hands ex. The four Supporters are Tulip by AKIRA EGAWA, Geeta, Professor Sada's
+          Vitality and Professor Turo's Scenario.
         </p>
         <Grid cards={SAR} cols={3} />
 
@@ -305,20 +309,20 @@ function TrueMysteryReleasePost() {
 
         <h2 id="super-rares">Super Rare full arts</h2>
         <p>
-          Fifteen Super Rares, 137 to 151: full arts of nine Pokémon ex, including Roaring Moon ex, Iron Valiant ex and Tyranitar ex, plus
-          six Supporters.
+          There are fifteen Super Rares, numbered 137 to 151. They are full arts of nine Pokémon ex, including Iron Valiant ex, Roaring
+          Moon ex and Tyranitar ex, and six Supporters.
         </p>
         <Grid cards={SUPER} cols={4} />
 
         <h2 id="ultra-rares">Gold Ultra Rares</h2>
         <p>
-          Four gold cards top the set, 160 to 163: Iron Valiant ex, Roaring Moon ex, Counter Catcher and Pal Pad. Pokémon China calls
-          the gold Pal Pad new. English has printed Pal Pad only as a regular Item, never in gold.
+          Four gold Ultra Rares top the set, numbered 160 to 163. They are Iron Valiant ex, Roaring Moon ex, Counter Catcher and Pal
+          Pad. The gold Pal Pad is new art. Pal Pad is a regular Item in English, and the gold card does not exist in English.
         </p>
         <Grid cards={ULTRA} cols={4} />
 
         <h2 id="art-rares">Art Rares</h2>
-        <p>Eight Art Rares, 129 to 136, give main-set Pokémon a full illustration. Espathra by AKIRA EGAWA is the pick of them.</p>
+        <p>There are eight Art Rares, numbered 129 to 136. Each one gives a main-set Pokémon a full illustration.</p>
         <Grid cards={ART_RARES} cols={4} />
 
         <h2 id="set-structure">How the set is numbered</h2>
@@ -347,10 +351,6 @@ function TrueMysteryReleasePost() {
             </tbody>
           </table>
         </div>
-        <p>
-          Our <Link to="/blog/true-mystery-set-guide">set guide</Link> has every secret rare and each Pokémon ex at every rarity,
-          and our <Link to="/blog/true-mystery-card-origins">card origins guide</Link> matches every card to its English version.
-        </p>
 
         <h2 id="faq">FAQ</h2>
         <div className="faq">
@@ -374,9 +374,9 @@ function TrueMysteryReleasePost() {
 
         <h2 id="our-take">Our take</h2>
         <p>
-          True Mystery is the Paradox set, and the Roaring Moon ex and Iron Valiant ex runs are the ones to chase, each from Double Rare
-          up to gold. The Iron Hands ex SAR is a card that does not exist in English. On the published odds, the jumbo box is
-          the better pick for hits as well as holos.
+          True Mystery is the Paradox set, and Iron Valiant ex and Roaring Moon ex are the two most wanted Pokémon. Each one runs from
+          Double Rare up to gold. The Iron Hands ex Special Art Rare is a card that does not exist in English. On the published odds,
+          the jumbo box is the better pick, both for holos and for Super Rares and above.
         </p>
       </BlogPostLayout>
     </>

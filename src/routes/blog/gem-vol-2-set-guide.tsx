@@ -185,7 +185,7 @@ function GemVol2SetGuide() {
         lede="Eevee and its eight evolutions fill Gem 2, with V and VMAX cards and four Chinese Exclusive full arts. This guide explains how the numbering works and what it really takes to finish the set."
         cta={{
           heading: 'Collect Gem Vol 2',
-          body: 'Track every card on the full checklist, or pick up a booster box and start ripping.',
+          body: 'Track every card on the full checklist, or pick up a booster box.',
           links: [
             { to: '/sets/chinese/gem-vol-2', label: 'See the full card list' },
             { to: '/products/$id', params: { id: 'pokemon-chinese-gem-volume-2-booster-box' }, label: 'Shop the booster box', variant: 'ghost' },
