@@ -332,6 +332,9 @@ export function Header({
             <Link role="menuitem" to="/shop" search={{ subcategory: 'Special Products' }} style={menuItemStyle}>
               Special Products
             </Link>
+            <Link role="menuitem" to="/shop" search={{ subcategory: 'Binder' }} style={menuItemStyle}>
+              Binders
+            </Link>
           </NavMenu>
           {SHOW_ACRYLICS && (
             <Link
@@ -505,6 +508,9 @@ export function Header({
           </Link>
           <Link to="/shop" search={{ subcategory: 'Special Products' }} style={{ color: '#5a6875', padding: '10px 0', borderBottom: '1px solid #f0f2f4' }}>
             Special Products
+          </Link>
+          <Link to="/shop" search={{ subcategory: 'Binder' }} style={{ color: '#5a6875', padding: '10px 0', borderBottom: '1px solid #f0f2f4' }}>
+            Binders
           </Link>
           {SHOW_ACRYLICS && (
             <Link

@@ -9,6 +9,7 @@ export type ProductSubcategory =
   | 'Figure'
   | 'Plush'
   | 'Special Products'
+  | 'Binder'
   | 'ETB Case'
   | 'Booster Box Case'
   | 'SPC Box Case'
@@ -21,7 +22,7 @@ export type ProductSubcategory =
 // series names, not a product type, and admin wants to keep adding new
 // ones without a code change each time.
 export const SUBCATEGORIES_BY_CATEGORY: Record<ProductCategory, ProductSubcategory[]> = {
-  'Chinese Pokémon Products': ['Booster Box', 'Blind Box', 'Figure', 'Plush', 'Special Products'],
+  'Chinese Pokémon Products': ['Booster Box', 'Blind Box', 'Figure', 'Plush', 'Special Products', 'Binder'],
   'Acrylic Cases': ['ETB Case', 'Booster Box Case', 'SPC Box Case', 'First Partner Case'],
 }
 

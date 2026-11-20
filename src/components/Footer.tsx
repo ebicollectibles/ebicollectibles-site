@@ -70,6 +70,11 @@ export function Footer() {
                 Special Products
               </Link>
             </li>
+            <li>
+              <Link to="/shop" search={{ subcategory: 'Binder' }}>
+                Binders
+              </Link>
+            </li>
             {SHOW_ACRYLICS && (
               <li>
                 <Link to="/shop" search={{ category: 'Acrylic Cases' }}>

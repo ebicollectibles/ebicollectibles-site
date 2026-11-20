@@ -263,7 +263,7 @@ function GemVol1SetGuide() {
 
         <h2 id="shiny">All 7 shiny-style cards</h2>
         <p>
-          Version 06 of every long run shows the Pokémon in its shiny colors, set in a star-sparkle frame. Sprigatito, Fuecoco, Quaxly and
+          Version 06 of every 9-card and 8-card run shows the Pokémon in its shiny colors, set in a star-sparkle frame. Sprigatito, Fuecoco, Quaxly and
           Pikachu get a different card here, with new attacks, and the three starters also have a different HP. Floragato, Crocalor and Quaxwell keep their base card's attacks.
         </p>
         <Gallery cards={SHINY} cols={4} />
