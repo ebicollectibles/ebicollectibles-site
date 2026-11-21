@@ -46,6 +46,7 @@ import { Route as BlogIndexRouteImport } from './routes/blog/index'
 import { Route as Blog30thCelebrationCardOriginsRouteImport } from './routes/blog/30th-celebration-card-origins'
 import { Route as Blog30thCelebrationReleaseNewsRouteImport } from './routes/blog/30th-celebration-release-news'
 import { Route as Blog30thCelebrationSetGuideRouteImport } from './routes/blog/30th-celebration-set-guide'
+import { Route as BlogAuraSeekerReleaseNewsRouteImport } from './routes/blog/aura-seeker-release-news'
 import { Route as BlogBlackBoltCardOriginsRouteImport } from './routes/blog/black-bolt-card-origins'
 import { Route as BlogBlackBoltSetGuideRouteImport } from './routes/blog/black-bolt-set-guide'
 import { Route as BlogBlackBoltWhiteFlareReleaseNewsRouteImport } from './routes/blog/black-bolt-white-flare-release-news'
@@ -76,6 +77,7 @@ import { Route as BlogFirstPartner30thVol2ReleaseNewsRouteImport } from './route
 import { Route as BlogFirstPartner30thVol3ReleaseNewsRouteImport } from './routes/blog/first-partner-30th-vol-3-release-news'
 import { Route as BlogFunismDittoPalmSizeWondersReleaseNewsRouteImport } from './routes/blog/funism-ditto-palm-size-wonders-release-news'
 import { Route as BlogFunismFirstPartnerMiniFiguresReleaseNewsRouteImport } from './routes/blog/funism-first-partner-mini-figures-release-news'
+import { Route as BlogFuturisticPikachuBoxReleaseNewsRouteImport } from './routes/blog/futuristic-pikachu-box-release-news'
 import { Route as BlogGemVol1CardOriginsRouteImport } from './routes/blog/gem-vol-1-card-origins'
 import { Route as BlogGemVol1ReleaseNewsRouteImport } from './routes/blog/gem-vol-1-release-news'
 import { Route as BlogGemVol1SetGuideRouteImport } from './routes/blog/gem-vol-1-set-guide'
@@ -98,10 +100,13 @@ import { Route as BlogGemVol7CardOriginsRouteImport } from './routes/blog/gem-vo
 import { Route as BlogGemVol7ReleaseNewsRouteImport } from './routes/blog/gem-vol-7-release-news'
 import { Route as BlogGemVol7SetGuideRouteImport } from './routes/blog/gem-vol-7-set-guide'
 import { Route as BlogGreninjaSylveonDisplaySetReleaseNewsRouteImport } from './routes/blog/greninja-sylveon-display-set-release-news'
+import { Route as BlogLillieNBattleBoxReleaseNewsRouteImport } from './routes/blog/lillie-n-battle-box-release-news'
+import { Route as BlogLisiaGiftBoxReleaseNewsRouteImport } from './routes/blog/lisia-gift-box-release-news'
 import { Route as BlogMiracleJourneyCardOriginsRouteImport } from './routes/blog/miracle-journey-card-origins'
 import { Route as BlogMiracleJourneyReleaseNewsRouteImport } from './routes/blog/miracle-journey-release-news'
 import { Route as BlogMiracleJourneySetGuideRouteImport } from './routes/blog/miracle-journey-set-guide'
 import { Route as BlogNuzzleCheeksPlushCardDisplayReleaseNewsRouteImport } from './routes/blog/nuzzle-cheeks-plush-card-display-release-news'
+import { Route as BlogOgerponMaskGiftBoxReleaseNewsRouteImport } from './routes/blog/ogerpon-mask-gift-box-release-news'
 import { Route as BlogPikachu30thPlushKeychainReleaseNewsRouteImport } from './routes/blog/pikachu-30th-plush-keychain-release-news'
 import { Route as BlogPikachuDreamPaintingFiguresReleaseNewsRouteImport } from './routes/blog/pikachu-dream-painting-figures-release-news'
 import { Route as BlogPikachuGiftBoxReleaseNewsRouteImport } from './routes/blog/pikachu-gift-box-release-news'
@@ -355,6 +360,12 @@ const Blog30thCelebrationSetGuideRoute =
     path: '/blog/30th-celebration-set-guide',
     getParentRoute: () => rootRouteImport,
   } as any)
+const BlogAuraSeekerReleaseNewsRoute =
+  BlogAuraSeekerReleaseNewsRouteImport.update({
+    id: '/blog/aura-seeker-release-news',
+    path: '/blog/aura-seeker-release-news',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const BlogBlackBoltCardOriginsRoute =
   BlogBlackBoltCardOriginsRouteImport.update({
     id: '/blog/black-bolt-card-origins',
@@ -534,6 +545,12 @@ const BlogFunismFirstPartnerMiniFiguresReleaseNewsRoute =
     path: '/blog/funism-first-partner-mini-figures-release-news',
     getParentRoute: () => rootRouteImport,
   } as any)
+const BlogFuturisticPikachuBoxReleaseNewsRoute =
+  BlogFuturisticPikachuBoxReleaseNewsRouteImport.update({
+    id: '/blog/futuristic-pikachu-box-release-news',
+    path: '/blog/futuristic-pikachu-box-release-news',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const BlogGemVol1CardOriginsRoute = BlogGemVol1CardOriginsRouteImport.update({
   id: '/blog/gem-vol-1-card-origins',
   path: '/blog/gem-vol-1-card-origins',
@@ -645,6 +662,18 @@ const BlogGreninjaSylveonDisplaySetReleaseNewsRoute =
     path: '/blog/greninja-sylveon-display-set-release-news',
     getParentRoute: () => rootRouteImport,
   } as any)
+const BlogLillieNBattleBoxReleaseNewsRoute =
+  BlogLillieNBattleBoxReleaseNewsRouteImport.update({
+    id: '/blog/lillie-n-battle-box-release-news',
+    path: '/blog/lillie-n-battle-box-release-news',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const BlogLisiaGiftBoxReleaseNewsRoute =
+  BlogLisiaGiftBoxReleaseNewsRouteImport.update({
+    id: '/blog/lisia-gift-box-release-news',
+    path: '/blog/lisia-gift-box-release-news',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const BlogMiracleJourneyCardOriginsRoute =
   BlogMiracleJourneyCardOriginsRouteImport.update({
     id: '/blog/miracle-journey-card-origins',
@@ -667,6 +696,12 @@ const BlogNuzzleCheeksPlushCardDisplayReleaseNewsRoute =
   BlogNuzzleCheeksPlushCardDisplayReleaseNewsRouteImport.update({
     id: '/blog/nuzzle-cheeks-plush-card-display-release-news',
     path: '/blog/nuzzle-cheeks-plush-card-display-release-news',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const BlogOgerponMaskGiftBoxReleaseNewsRoute =
+  BlogOgerponMaskGiftBoxReleaseNewsRouteImport.update({
+    id: '/blog/ogerpon-mask-gift-box-release-news',
+    path: '/blog/ogerpon-mask-gift-box-release-news',
     getParentRoute: () => rootRouteImport,
   } as any)
 const BlogPikachu30thPlushKeychainReleaseNewsRoute =
@@ -1063,6 +1098,7 @@ export interface FileRoutesByFullPath {
   '/blog/30th-celebration-card-origins': typeof Blog30thCelebrationCardOriginsRoute
   '/blog/30th-celebration-release-news': typeof Blog30thCelebrationReleaseNewsRoute
   '/blog/30th-celebration-set-guide': typeof Blog30thCelebrationSetGuideRoute
+  '/blog/aura-seeker-release-news': typeof BlogAuraSeekerReleaseNewsRoute
   '/blog/black-bolt-card-origins': typeof BlogBlackBoltCardOriginsRoute
   '/blog/black-bolt-set-guide': typeof BlogBlackBoltSetGuideRoute
   '/blog/black-bolt-white-flare-release-news': typeof BlogBlackBoltWhiteFlareReleaseNewsRoute
@@ -1093,6 +1129,7 @@ export interface FileRoutesByFullPath {
   '/blog/first-partner-30th-vol-3-release-news': typeof BlogFirstPartner30thVol3ReleaseNewsRoute
   '/blog/funism-ditto-palm-size-wonders-release-news': typeof BlogFunismDittoPalmSizeWondersReleaseNewsRoute
   '/blog/funism-first-partner-mini-figures-release-news': typeof BlogFunismFirstPartnerMiniFiguresReleaseNewsRoute
+  '/blog/futuristic-pikachu-box-release-news': typeof BlogFuturisticPikachuBoxReleaseNewsRoute
   '/blog/gem-vol-1-card-origins': typeof BlogGemVol1CardOriginsRoute
   '/blog/gem-vol-1-release-news': typeof BlogGemVol1ReleaseNewsRoute
   '/blog/gem-vol-1-set-guide': typeof BlogGemVol1SetGuideRoute
@@ -1115,10 +1152,13 @@ export interface FileRoutesByFullPath {
   '/blog/gem-vol-7-release-news': typeof BlogGemVol7ReleaseNewsRoute
   '/blog/gem-vol-7-set-guide': typeof BlogGemVol7SetGuideRoute
   '/blog/greninja-sylveon-display-set-release-news': typeof BlogGreninjaSylveonDisplaySetReleaseNewsRoute
+  '/blog/lillie-n-battle-box-release-news': typeof BlogLillieNBattleBoxReleaseNewsRoute
+  '/blog/lisia-gift-box-release-news': typeof BlogLisiaGiftBoxReleaseNewsRoute
   '/blog/miracle-journey-card-origins': typeof BlogMiracleJourneyCardOriginsRoute
   '/blog/miracle-journey-release-news': typeof BlogMiracleJourneyReleaseNewsRoute
   '/blog/miracle-journey-set-guide': typeof BlogMiracleJourneySetGuideRoute
   '/blog/nuzzle-cheeks-plush-card-display-release-news': typeof BlogNuzzleCheeksPlushCardDisplayReleaseNewsRoute
+  '/blog/ogerpon-mask-gift-box-release-news': typeof BlogOgerponMaskGiftBoxReleaseNewsRoute
   '/blog/pikachu-30th-plush-keychain-release-news': typeof BlogPikachu30thPlushKeychainReleaseNewsRoute
   '/blog/pikachu-dream-painting-figures-release-news': typeof BlogPikachuDreamPaintingFiguresReleaseNewsRoute
   '/blog/pikachu-gift-box-release-news': typeof BlogPikachuGiftBoxReleaseNewsRoute
@@ -1222,6 +1262,7 @@ export interface FileRoutesByTo {
   '/blog/30th-celebration-card-origins': typeof Blog30thCelebrationCardOriginsRoute
   '/blog/30th-celebration-release-news': typeof Blog30thCelebrationReleaseNewsRoute
   '/blog/30th-celebration-set-guide': typeof Blog30thCelebrationSetGuideRoute
+  '/blog/aura-seeker-release-news': typeof BlogAuraSeekerReleaseNewsRoute
   '/blog/black-bolt-card-origins': typeof BlogBlackBoltCardOriginsRoute
   '/blog/black-bolt-set-guide': typeof BlogBlackBoltSetGuideRoute
   '/blog/black-bolt-white-flare-release-news': typeof BlogBlackBoltWhiteFlareReleaseNewsRoute
@@ -1252,6 +1293,7 @@ export interface FileRoutesByTo {
   '/blog/first-partner-30th-vol-3-release-news': typeof BlogFirstPartner30thVol3ReleaseNewsRoute
   '/blog/funism-ditto-palm-size-wonders-release-news': typeof BlogFunismDittoPalmSizeWondersReleaseNewsRoute
   '/blog/funism-first-partner-mini-figures-release-news': typeof BlogFunismFirstPartnerMiniFiguresReleaseNewsRoute
+  '/blog/futuristic-pikachu-box-release-news': typeof BlogFuturisticPikachuBoxReleaseNewsRoute
   '/blog/gem-vol-1-card-origins': typeof BlogGemVol1CardOriginsRoute
   '/blog/gem-vol-1-release-news': typeof BlogGemVol1ReleaseNewsRoute
   '/blog/gem-vol-1-set-guide': typeof BlogGemVol1SetGuideRoute
@@ -1274,10 +1316,13 @@ export interface FileRoutesByTo {
   '/blog/gem-vol-7-release-news': typeof BlogGemVol7ReleaseNewsRoute
   '/blog/gem-vol-7-set-guide': typeof BlogGemVol7SetGuideRoute
   '/blog/greninja-sylveon-display-set-release-news': typeof BlogGreninjaSylveonDisplaySetReleaseNewsRoute
+  '/blog/lillie-n-battle-box-release-news': typeof BlogLillieNBattleBoxReleaseNewsRoute
+  '/blog/lisia-gift-box-release-news': typeof BlogLisiaGiftBoxReleaseNewsRoute
   '/blog/miracle-journey-card-origins': typeof BlogMiracleJourneyCardOriginsRoute
   '/blog/miracle-journey-release-news': typeof BlogMiracleJourneyReleaseNewsRoute
   '/blog/miracle-journey-set-guide': typeof BlogMiracleJourneySetGuideRoute
   '/blog/nuzzle-cheeks-plush-card-display-release-news': typeof BlogNuzzleCheeksPlushCardDisplayReleaseNewsRoute
+  '/blog/ogerpon-mask-gift-box-release-news': typeof BlogOgerponMaskGiftBoxReleaseNewsRoute
   '/blog/pikachu-30th-plush-keychain-release-news': typeof BlogPikachu30thPlushKeychainReleaseNewsRoute
   '/blog/pikachu-dream-painting-figures-release-news': typeof BlogPikachuDreamPaintingFiguresReleaseNewsRoute
   '/blog/pikachu-gift-box-release-news': typeof BlogPikachuGiftBoxReleaseNewsRoute
@@ -1382,6 +1427,7 @@ export interface FileRoutesById {
   '/blog/30th-celebration-card-origins': typeof Blog30thCelebrationCardOriginsRoute
   '/blog/30th-celebration-release-news': typeof Blog30thCelebrationReleaseNewsRoute
   '/blog/30th-celebration-set-guide': typeof Blog30thCelebrationSetGuideRoute
+  '/blog/aura-seeker-release-news': typeof BlogAuraSeekerReleaseNewsRoute
   '/blog/black-bolt-card-origins': typeof BlogBlackBoltCardOriginsRoute
   '/blog/black-bolt-set-guide': typeof BlogBlackBoltSetGuideRoute
   '/blog/black-bolt-white-flare-release-news': typeof BlogBlackBoltWhiteFlareReleaseNewsRoute
@@ -1412,6 +1458,7 @@ export interface FileRoutesById {
   '/blog/first-partner-30th-vol-3-release-news': typeof BlogFirstPartner30thVol3ReleaseNewsRoute
   '/blog/funism-ditto-palm-size-wonders-release-news': typeof BlogFunismDittoPalmSizeWondersReleaseNewsRoute
   '/blog/funism-first-partner-mini-figures-release-news': typeof BlogFunismFirstPartnerMiniFiguresReleaseNewsRoute
+  '/blog/futuristic-pikachu-box-release-news': typeof BlogFuturisticPikachuBoxReleaseNewsRoute
   '/blog/gem-vol-1-card-origins': typeof BlogGemVol1CardOriginsRoute
   '/blog/gem-vol-1-release-news': typeof BlogGemVol1ReleaseNewsRoute
   '/blog/gem-vol-1-set-guide': typeof BlogGemVol1SetGuideRoute
@@ -1434,10 +1481,13 @@ export interface FileRoutesById {
   '/blog/gem-vol-7-release-news': typeof BlogGemVol7ReleaseNewsRoute
   '/blog/gem-vol-7-set-guide': typeof BlogGemVol7SetGuideRoute
   '/blog/greninja-sylveon-display-set-release-news': typeof BlogGreninjaSylveonDisplaySetReleaseNewsRoute
+  '/blog/lillie-n-battle-box-release-news': typeof BlogLillieNBattleBoxReleaseNewsRoute
+  '/blog/lisia-gift-box-release-news': typeof BlogLisiaGiftBoxReleaseNewsRoute
   '/blog/miracle-journey-card-origins': typeof BlogMiracleJourneyCardOriginsRoute
   '/blog/miracle-journey-release-news': typeof BlogMiracleJourneyReleaseNewsRoute
   '/blog/miracle-journey-set-guide': typeof BlogMiracleJourneySetGuideRoute
   '/blog/nuzzle-cheeks-plush-card-display-release-news': typeof BlogNuzzleCheeksPlushCardDisplayReleaseNewsRoute
+  '/blog/ogerpon-mask-gift-box-release-news': typeof BlogOgerponMaskGiftBoxReleaseNewsRoute
   '/blog/pikachu-30th-plush-keychain-release-news': typeof BlogPikachu30thPlushKeychainReleaseNewsRoute
   '/blog/pikachu-dream-painting-figures-release-news': typeof BlogPikachuDreamPaintingFiguresReleaseNewsRoute
   '/blog/pikachu-gift-box-release-news': typeof BlogPikachuGiftBoxReleaseNewsRoute
@@ -1543,6 +1593,7 @@ export interface FileRouteTypes {
     | '/blog/30th-celebration-card-origins'
     | '/blog/30th-celebration-release-news'
     | '/blog/30th-celebration-set-guide'
+    | '/blog/aura-seeker-release-news'
     | '/blog/black-bolt-card-origins'
     | '/blog/black-bolt-set-guide'
     | '/blog/black-bolt-white-flare-release-news'
@@ -1573,6 +1624,7 @@ export interface FileRouteTypes {
     | '/blog/first-partner-30th-vol-3-release-news'
     | '/blog/funism-ditto-palm-size-wonders-release-news'
     | '/blog/funism-first-partner-mini-figures-release-news'
+    | '/blog/futuristic-pikachu-box-release-news'
     | '/blog/gem-vol-1-card-origins'
     | '/blog/gem-vol-1-release-news'
     | '/blog/gem-vol-1-set-guide'
@@ -1595,10 +1647,13 @@ export interface FileRouteTypes {
     | '/blog/gem-vol-7-release-news'
     | '/blog/gem-vol-7-set-guide'
     | '/blog/greninja-sylveon-display-set-release-news'
+    | '/blog/lillie-n-battle-box-release-news'
+    | '/blog/lisia-gift-box-release-news'
     | '/blog/miracle-journey-card-origins'
     | '/blog/miracle-journey-release-news'
     | '/blog/miracle-journey-set-guide'
     | '/blog/nuzzle-cheeks-plush-card-display-release-news'
+    | '/blog/ogerpon-mask-gift-box-release-news'
     | '/blog/pikachu-30th-plush-keychain-release-news'
     | '/blog/pikachu-dream-painting-figures-release-news'
     | '/blog/pikachu-gift-box-release-news'
@@ -1702,6 +1757,7 @@ export interface FileRouteTypes {
     | '/blog/30th-celebration-card-origins'
     | '/blog/30th-celebration-release-news'
     | '/blog/30th-celebration-set-guide'
+    | '/blog/aura-seeker-release-news'
     | '/blog/black-bolt-card-origins'
     | '/blog/black-bolt-set-guide'
     | '/blog/black-bolt-white-flare-release-news'
@@ -1732,6 +1788,7 @@ export interface FileRouteTypes {
     | '/blog/first-partner-30th-vol-3-release-news'
     | '/blog/funism-ditto-palm-size-wonders-release-news'
     | '/blog/funism-first-partner-mini-figures-release-news'
+    | '/blog/futuristic-pikachu-box-release-news'
     | '/blog/gem-vol-1-card-origins'
     | '/blog/gem-vol-1-release-news'
     | '/blog/gem-vol-1-set-guide'
@@ -1754,10 +1811,13 @@ export interface FileRouteTypes {
     | '/blog/gem-vol-7-release-news'
     | '/blog/gem-vol-7-set-guide'
     | '/blog/greninja-sylveon-display-set-release-news'
+    | '/blog/lillie-n-battle-box-release-news'
+    | '/blog/lisia-gift-box-release-news'
     | '/blog/miracle-journey-card-origins'
     | '/blog/miracle-journey-release-news'
     | '/blog/miracle-journey-set-guide'
     | '/blog/nuzzle-cheeks-plush-card-display-release-news'
+    | '/blog/ogerpon-mask-gift-box-release-news'
     | '/blog/pikachu-30th-plush-keychain-release-news'
     | '/blog/pikachu-dream-painting-figures-release-news'
     | '/blog/pikachu-gift-box-release-news'
@@ -1861,6 +1921,7 @@ export interface FileRouteTypes {
     | '/blog/30th-celebration-card-origins'
     | '/blog/30th-celebration-release-news'
     | '/blog/30th-celebration-set-guide'
+    | '/blog/aura-seeker-release-news'
     | '/blog/black-bolt-card-origins'
     | '/blog/black-bolt-set-guide'
     | '/blog/black-bolt-white-flare-release-news'
@@ -1891,6 +1952,7 @@ export interface FileRouteTypes {
     | '/blog/first-partner-30th-vol-3-release-news'
     | '/blog/funism-ditto-palm-size-wonders-release-news'
     | '/blog/funism-first-partner-mini-figures-release-news'
+    | '/blog/futuristic-pikachu-box-release-news'
     | '/blog/gem-vol-1-card-origins'
     | '/blog/gem-vol-1-release-news'
     | '/blog/gem-vol-1-set-guide'
@@ -1913,10 +1975,13 @@ export interface FileRouteTypes {
     | '/blog/gem-vol-7-release-news'
     | '/blog/gem-vol-7-set-guide'
     | '/blog/greninja-sylveon-display-set-release-news'
+    | '/blog/lillie-n-battle-box-release-news'
+    | '/blog/lisia-gift-box-release-news'
     | '/blog/miracle-journey-card-origins'
     | '/blog/miracle-journey-release-news'
     | '/blog/miracle-journey-set-guide'
     | '/blog/nuzzle-cheeks-plush-card-display-release-news'
+    | '/blog/ogerpon-mask-gift-box-release-news'
     | '/blog/pikachu-30th-plush-keychain-release-news'
     | '/blog/pikachu-dream-painting-figures-release-news'
     | '/blog/pikachu-gift-box-release-news'
@@ -2021,6 +2086,7 @@ export interface RootRouteChildren {
   Blog30thCelebrationCardOriginsRoute: typeof Blog30thCelebrationCardOriginsRoute
   Blog30thCelebrationReleaseNewsRoute: typeof Blog30thCelebrationReleaseNewsRoute
   Blog30thCelebrationSetGuideRoute: typeof Blog30thCelebrationSetGuideRoute
+  BlogAuraSeekerReleaseNewsRoute: typeof BlogAuraSeekerReleaseNewsRoute
   BlogBlackBoltCardOriginsRoute: typeof BlogBlackBoltCardOriginsRoute
   BlogBlackBoltSetGuideRoute: typeof BlogBlackBoltSetGuideRoute
   BlogBlackBoltWhiteFlareReleaseNewsRoute: typeof BlogBlackBoltWhiteFlareReleaseNewsRoute
@@ -2051,6 +2117,7 @@ export interface RootRouteChildren {
   BlogFirstPartner30thVol3ReleaseNewsRoute: typeof BlogFirstPartner30thVol3ReleaseNewsRoute
   BlogFunismDittoPalmSizeWondersReleaseNewsRoute: typeof BlogFunismDittoPalmSizeWondersReleaseNewsRoute
   BlogFunismFirstPartnerMiniFiguresReleaseNewsRoute: typeof BlogFunismFirstPartnerMiniFiguresReleaseNewsRoute
+  BlogFuturisticPikachuBoxReleaseNewsRoute: typeof BlogFuturisticPikachuBoxReleaseNewsRoute
   BlogGemVol1CardOriginsRoute: typeof BlogGemVol1CardOriginsRoute
   BlogGemVol1ReleaseNewsRoute: typeof BlogGemVol1ReleaseNewsRoute
   BlogGemVol1SetGuideRoute: typeof BlogGemVol1SetGuideRoute
@@ -2073,10 +2140,13 @@ export interface RootRouteChildren {
   BlogGemVol7ReleaseNewsRoute: typeof BlogGemVol7ReleaseNewsRoute
   BlogGemVol7SetGuideRoute: typeof BlogGemVol7SetGuideRoute
   BlogGreninjaSylveonDisplaySetReleaseNewsRoute: typeof BlogGreninjaSylveonDisplaySetReleaseNewsRoute
+  BlogLillieNBattleBoxReleaseNewsRoute: typeof BlogLillieNBattleBoxReleaseNewsRoute
+  BlogLisiaGiftBoxReleaseNewsRoute: typeof BlogLisiaGiftBoxReleaseNewsRoute
   BlogMiracleJourneyCardOriginsRoute: typeof BlogMiracleJourneyCardOriginsRoute
   BlogMiracleJourneyReleaseNewsRoute: typeof BlogMiracleJourneyReleaseNewsRoute
   BlogMiracleJourneySetGuideRoute: typeof BlogMiracleJourneySetGuideRoute
   BlogNuzzleCheeksPlushCardDisplayReleaseNewsRoute: typeof BlogNuzzleCheeksPlushCardDisplayReleaseNewsRoute
+  BlogOgerponMaskGiftBoxReleaseNewsRoute: typeof BlogOgerponMaskGiftBoxReleaseNewsRoute
   BlogPikachu30thPlushKeychainReleaseNewsRoute: typeof BlogPikachu30thPlushKeychainReleaseNewsRoute
   BlogPikachuDreamPaintingFiguresReleaseNewsRoute: typeof BlogPikachuDreamPaintingFiguresReleaseNewsRoute
   BlogPikachuGiftBoxReleaseNewsRoute: typeof BlogPikachuGiftBoxReleaseNewsRoute
@@ -2407,6 +2477,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof Blog30thCelebrationSetGuideRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/blog/aura-seeker-release-news': {
+      id: '/blog/aura-seeker-release-news'
+      path: '/blog/aura-seeker-release-news'
+      fullPath: '/blog/aura-seeker-release-news'
+      preLoaderRoute: typeof BlogAuraSeekerReleaseNewsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/blog/black-bolt-card-origins': {
       id: '/blog/black-bolt-card-origins'
       path: '/blog/black-bolt-card-origins'
@@ -2617,6 +2694,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BlogFunismFirstPartnerMiniFiguresReleaseNewsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/blog/futuristic-pikachu-box-release-news': {
+      id: '/blog/futuristic-pikachu-box-release-news'
+      path: '/blog/futuristic-pikachu-box-release-news'
+      fullPath: '/blog/futuristic-pikachu-box-release-news'
+      preLoaderRoute: typeof BlogFuturisticPikachuBoxReleaseNewsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/blog/gem-vol-1-card-origins': {
       id: '/blog/gem-vol-1-card-origins'
       path: '/blog/gem-vol-1-card-origins'
@@ -2771,6 +2855,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BlogGreninjaSylveonDisplaySetReleaseNewsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/blog/lillie-n-battle-box-release-news': {
+      id: '/blog/lillie-n-battle-box-release-news'
+      path: '/blog/lillie-n-battle-box-release-news'
+      fullPath: '/blog/lillie-n-battle-box-release-news'
+      preLoaderRoute: typeof BlogLillieNBattleBoxReleaseNewsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/lisia-gift-box-release-news': {
+      id: '/blog/lisia-gift-box-release-news'
+      path: '/blog/lisia-gift-box-release-news'
+      fullPath: '/blog/lisia-gift-box-release-news'
+      preLoaderRoute: typeof BlogLisiaGiftBoxReleaseNewsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/blog/miracle-journey-card-origins': {
       id: '/blog/miracle-journey-card-origins'
       path: '/blog/miracle-journey-card-origins'
@@ -2797,6 +2895,13 @@ declare module '@tanstack/react-router' {
       path: '/blog/nuzzle-cheeks-plush-card-display-release-news'
       fullPath: '/blog/nuzzle-cheeks-plush-card-display-release-news'
       preLoaderRoute: typeof BlogNuzzleCheeksPlushCardDisplayReleaseNewsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/ogerpon-mask-gift-box-release-news': {
+      id: '/blog/ogerpon-mask-gift-box-release-news'
+      path: '/blog/ogerpon-mask-gift-box-release-news'
+      fullPath: '/blog/ogerpon-mask-gift-box-release-news'
+      preLoaderRoute: typeof BlogOgerponMaskGiftBoxReleaseNewsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/blog/pikachu-30th-plush-keychain-release-news': {
@@ -3285,6 +3390,7 @@ const rootRouteChildren: RootRouteChildren = {
   Blog30thCelebrationCardOriginsRoute: Blog30thCelebrationCardOriginsRoute,
   Blog30thCelebrationReleaseNewsRoute: Blog30thCelebrationReleaseNewsRoute,
   Blog30thCelebrationSetGuideRoute: Blog30thCelebrationSetGuideRoute,
+  BlogAuraSeekerReleaseNewsRoute: BlogAuraSeekerReleaseNewsRoute,
   BlogBlackBoltCardOriginsRoute: BlogBlackBoltCardOriginsRoute,
   BlogBlackBoltSetGuideRoute: BlogBlackBoltSetGuideRoute,
   BlogBlackBoltWhiteFlareReleaseNewsRoute:
@@ -3322,6 +3428,8 @@ const rootRouteChildren: RootRouteChildren = {
     BlogFunismDittoPalmSizeWondersReleaseNewsRoute,
   BlogFunismFirstPartnerMiniFiguresReleaseNewsRoute:
     BlogFunismFirstPartnerMiniFiguresReleaseNewsRoute,
+  BlogFuturisticPikachuBoxReleaseNewsRoute:
+    BlogFuturisticPikachuBoxReleaseNewsRoute,
   BlogGemVol1CardOriginsRoute: BlogGemVol1CardOriginsRoute,
   BlogGemVol1ReleaseNewsRoute: BlogGemVol1ReleaseNewsRoute,
   BlogGemVol1SetGuideRoute: BlogGemVol1SetGuideRoute,
@@ -3345,11 +3453,15 @@ const rootRouteChildren: RootRouteChildren = {
   BlogGemVol7SetGuideRoute: BlogGemVol7SetGuideRoute,
   BlogGreninjaSylveonDisplaySetReleaseNewsRoute:
     BlogGreninjaSylveonDisplaySetReleaseNewsRoute,
+  BlogLillieNBattleBoxReleaseNewsRoute: BlogLillieNBattleBoxReleaseNewsRoute,
+  BlogLisiaGiftBoxReleaseNewsRoute: BlogLisiaGiftBoxReleaseNewsRoute,
   BlogMiracleJourneyCardOriginsRoute: BlogMiracleJourneyCardOriginsRoute,
   BlogMiracleJourneyReleaseNewsRoute: BlogMiracleJourneyReleaseNewsRoute,
   BlogMiracleJourneySetGuideRoute: BlogMiracleJourneySetGuideRoute,
   BlogNuzzleCheeksPlushCardDisplayReleaseNewsRoute:
     BlogNuzzleCheeksPlushCardDisplayReleaseNewsRoute,
+  BlogOgerponMaskGiftBoxReleaseNewsRoute:
+    BlogOgerponMaskGiftBoxReleaseNewsRoute,
   BlogPikachu30thPlushKeychainReleaseNewsRoute:
     BlogPikachu30thPlushKeychainReleaseNewsRoute,
   BlogPikachuDreamPaintingFiguresReleaseNewsRoute:

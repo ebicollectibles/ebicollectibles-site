@@ -6,7 +6,7 @@
 // the post itself.
 import { SITE_URL, R2_IMAGE_HOST } from '~/lib/gem-sets/constants'
 
-export type BlogPostSlug = 'chinese-pokemon-sets-in-order' | 'gem-vol-7-release-news' | 'gem-vol-7-set-guide' | 'gem-vol-7-card-origins' | 'gem-vol-6-release-news' | 'gem-vol-6-set-guide' | 'gem-vol-6-card-origins' | 'gem-vol-5-release-news' | 'gem-vol-5-set-guide' | 'gem-vol-5-card-origins' | 'gem-vol-4-release-news' | 'gem-vol-4-set-guide' | 'gem-vol-4-card-origins' | 'gem-vol-3-release-news' | 'gem-vol-3-set-guide' | 'gem-vol-3-card-origins' | 'gem-vol-2-release-news' | 'gem-vol-2-set-guide' | 'gem-vol-2-card-origins' | 'gem-vol-1-release-news' | 'gem-vol-1-set-guide' | 'gem-vol-1-card-origins' | '30th-celebration-release-news' | '30th-celebration-set-guide' | '30th-celebration-card-origins' | 'chasing-glory-release-news' | 'chasing-glory-set-guide' | 'chasing-glory-card-origins' | 'terastal-gathering-release-news' | 'terastal-gathering-set-guide' | 'terastal-gathering-card-origins' | 'reward-round-release-news' | 'reward-round-set-guide' | 'reward-round-card-origins' | 'fearless-terastal-release-news' | 'fearless-terastal-set-guide' | 'fearless-terastal-card-origins' | 'eternal-birth-release-news' | 'eternal-birth-set-guide' | 'eternal-birth-card-origins' | 'miracle-journey-release-news' | 'miracle-journey-set-guide' | 'miracle-journey-card-origins' | 'black-crystal-blaze-release-news' | 'black-crystal-blaze-set-guide' | 'black-crystal-blaze-card-origins' | 'black-bolt-white-flare-release-news' | 'black-bolt-set-guide' | 'black-bolt-card-origins' | 'white-flare-set-guide' | 'white-flare-card-origins' | 'true-mystery-release-news' | 'true-mystery-set-guide' | 'true-mystery-card-origins' | 'blade-awakening-release-news' | 'blade-awakening-set-guide' | 'blade-awakening-card-origins' | 'brilliant-fantasy-release-news' | 'brilliant-fantasy-set-guide' | 'brilliant-fantasy-card-origins' | 'stellar-crystal-release-news' | 'stellar-crystal-set-guide' | 'stellar-crystal-card-origins' | 'pikachu-dream-painting-figures-release-news' | 'funism-ditto-palm-size-wonders-release-news' | 'team-rocket-briefcase-release-news' | 'pikachu-gift-box-release-news' | 'day-night-gift-box-release-news' | 'greninja-sylveon-display-set-release-news' | 'charizard-figure-box-release-news' | 'nuzzle-cheeks-plush-card-display-release-news' | 'eevee-gift-box-release-news' | 'pikachu-30th-plush-keychain-release-news' | 'funism-first-partner-mini-figures-release-news' | 'first-partner-30th-vol-1-release-news' | 'first-partner-30th-vol-2-release-news' | 'first-partner-30th-vol-3-release-news'
+export type BlogPostSlug = 'chinese-pokemon-sets-in-order' | 'gem-vol-7-release-news' | 'gem-vol-7-set-guide' | 'gem-vol-7-card-origins' | 'gem-vol-6-release-news' | 'gem-vol-6-set-guide' | 'gem-vol-6-card-origins' | 'gem-vol-5-release-news' | 'gem-vol-5-set-guide' | 'gem-vol-5-card-origins' | 'gem-vol-4-release-news' | 'gem-vol-4-set-guide' | 'gem-vol-4-card-origins' | 'gem-vol-3-release-news' | 'gem-vol-3-set-guide' | 'gem-vol-3-card-origins' | 'gem-vol-2-release-news' | 'gem-vol-2-set-guide' | 'gem-vol-2-card-origins' | 'gem-vol-1-release-news' | 'gem-vol-1-set-guide' | 'gem-vol-1-card-origins' | '30th-celebration-release-news' | '30th-celebration-set-guide' | '30th-celebration-card-origins' | 'chasing-glory-release-news' | 'chasing-glory-set-guide' | 'chasing-glory-card-origins' | 'terastal-gathering-release-news' | 'terastal-gathering-set-guide' | 'terastal-gathering-card-origins' | 'reward-round-release-news' | 'reward-round-set-guide' | 'reward-round-card-origins' | 'fearless-terastal-release-news' | 'fearless-terastal-set-guide' | 'fearless-terastal-card-origins' | 'eternal-birth-release-news' | 'eternal-birth-set-guide' | 'eternal-birth-card-origins' | 'miracle-journey-release-news' | 'miracle-journey-set-guide' | 'miracle-journey-card-origins' | 'black-crystal-blaze-release-news' | 'black-crystal-blaze-set-guide' | 'black-crystal-blaze-card-origins' | 'black-bolt-white-flare-release-news' | 'black-bolt-set-guide' | 'black-bolt-card-origins' | 'white-flare-set-guide' | 'white-flare-card-origins' | 'true-mystery-release-news' | 'true-mystery-set-guide' | 'true-mystery-card-origins' | 'blade-awakening-release-news' | 'blade-awakening-set-guide' | 'blade-awakening-card-origins' | 'brilliant-fantasy-release-news' | 'brilliant-fantasy-set-guide' | 'brilliant-fantasy-card-origins' | 'stellar-crystal-release-news' | 'stellar-crystal-set-guide' | 'stellar-crystal-card-origins' | 'pikachu-dream-painting-figures-release-news' | 'funism-ditto-palm-size-wonders-release-news' | 'team-rocket-briefcase-release-news' | 'pikachu-gift-box-release-news' | 'day-night-gift-box-release-news' | 'greninja-sylveon-display-set-release-news' | 'charizard-figure-box-release-news' | 'nuzzle-cheeks-plush-card-display-release-news' | 'eevee-gift-box-release-news' | 'pikachu-30th-plush-keychain-release-news' | 'funism-first-partner-mini-figures-release-news' | 'first-partner-30th-vol-1-release-news' | 'first-partner-30th-vol-2-release-news' | 'first-partner-30th-vol-3-release-news' | 'aura-seeker-release-news' | 'futuristic-pikachu-box-release-news' | 'lisia-gift-box-release-news' | 'ogerpon-mask-gift-box-release-news' | 'lillie-n-battle-box-release-news'
 
 export interface BlogPostSummary {
   slug: BlogPostSlug
@@ -396,6 +396,90 @@ export const BLOG_POSTS: BlogPostSummary[] = [
     heroAlt: 'The First Partner Set Vol.3 box with the Torchic card on the front, and the Treecko and Mudkip cards behind it',
     glow1: 'rgb(246 150 70 / .30)',
     glow2: 'rgb(90 170 230 / .22)',
+  },
+  {
+    slug: 'aura-seeker-release-news',
+    path: '/blog/aura-seeker-release-news',
+    title: 'Aura Seeker (Japanese M7): Release Date, Mega Lucario Z ex and What Is Known So Far',
+    excerpt:
+      'The Japanese Pokémon TCG set Aura Seeker (M7) releases on November 27, 2026. This post covers what is known so far: the pack and box, the 78-card main set, Mega Lucario Z ex and the first Special Art Rare.',
+    seoTitle: 'Aura Seeker (Japanese M7): Release Date & Cards Revealed',
+    seoDescription:
+      'Japanese Pokémon TCG Aura Seeker (M7) releases November 27, 2026: 5 cards a pack, 30 packs a box, Mega Lucario Z ex and a Tetsuo Hara Special Art Rare.',
+    tag: 'New release',
+    date: '2026-11-27',
+    heroImage: `${SITE_URL}/assets/blog/aura-seeker-release-hero.webp`,
+    heroAlt: 'The Mega Lucario Z ex card standing in front of a Japanese Aura Seeker booster pack, which shows Mega Lucario Z on the front',
+    glow1: 'rgb(112 214 226 / .28)',
+    glow2: 'rgb(236 72 130 / .22)',
+  },
+  // Also add | 'futuristic-pikachu-box-release-news' to BlogPostSlug
+  {
+    slug: 'futuristic-pikachu-box-release-news',
+    path: '/blog/futuristic-pikachu-box-release-news',
+    title: 'Chinese 30th Celebration Futuristic Box: Two YOSHIROTTEN Pikachu ex Promos and Everything Inside',
+    excerpt:
+      "Pokémon China's 30th Celebration Futuristic Box released on September 16, 2026, alongside the 30th Celebration set. This post covers everything in it: two Pikachu ex promos by YOSHIROTTEN and a full set of accessories in the same design.",
+    seoTitle: 'Chinese 30th Celebration Futuristic Box: Pikachu ex Promos',
+    seoDescription:
+      'The Chinese Pokémon TCG 30th Celebration Futuristic Box: Pikachu ex 030/30th-P and 031/30th-P by YOSHIROTTEN, sleeves, a playmat, a deck box and more.',
+    tag: 'New release',
+    date: '2026-09-16',
+    heroImage: `${SITE_URL}/assets/blog/futuristic-pikachu-box-release-hero.webp`,
+    heroAlt: 'The 30th Celebration Futuristic Box with the two Pikachu ex promo cards by YOSHIROTTEN standing in front of it',
+    glow1: 'rgb(120 200 245 / .30)',
+    glow2: 'rgb(214 90 200 / .24)',
+  },
+  // Also add | 'lisia-gift-box-release-news' to BlogPostSlug
+  {
+    slug: 'lisia-gift-box-release-news',
+    path: '/blog/lisia-gift-box-release-news',
+    title: "Chinese Lisia's Shine Gift Box: Lisia's Appeal Promo, Altaria Plush and 13 Packs",
+    excerpt:
+      "Pokémon China's Lisia's Shine gift box released on August 7, 2026. This post covers everything in it: the Lisia's Appeal promo, an Altaria plush, a card display frame, a deck box, sleeves and 13 booster packs from three sets.",
+    seoTitle: "Chinese Lisia Gift Box: Lisia's Appeal Promo & Altaria Plush",
+    seoDescription:
+      "The Chinese Pokémon TCG Lisia's Shine gift box: Lisia's Appeal promo 352/SV-P, an Altaria plush, a display frame, a deck box and 13 booster packs.",
+    tag: 'New release',
+    date: '2026-08-07',
+    heroImage: `${SITE_URL}/assets/blog/lisia-gift-box-release-hero.webp`,
+    heroAlt: "The Lisia's Shine gift box with its Altaria plush, and the Lisia's Appeal promo card standing in front of it",
+    glow1: 'rgb(176 186 250 / .30)',
+    glow2: 'rgb(120 190 240 / .24)',
+  },
+  // Also add | 'ogerpon-mask-gift-box-release-news' to BlogPostSlug
+  {
+    slug: 'ogerpon-mask-gift-box-release-news',
+    path: '/blog/ogerpon-mask-gift-box-release-news',
+    title: 'Chinese Ogerpon Mask Gift Boxes: All Four Masks, the Kitakami Theme Pack and Everything Inside',
+    excerpt:
+      "Pokémon China's four Ogerpon mask gift boxes released on May 15, 2026. This post covers what is in each one: 6 booster packs, a new Kitakami theme pack with its own chase cards, and accessories in the box's mask.",
+    seoTitle: 'Chinese Ogerpon Mask Gift Boxes: Kitakami Pack & Contents',
+    seoDescription:
+      'The Chinese Pokémon TCG Ogerpon mask gift boxes: Teal, Hearthflame, Wellspring and Cornerstone, each with 6 packs, a Kitakami theme pack and accessories.',
+    tag: 'New release',
+    date: '2026-05-15',
+    heroImage: `${SITE_URL}/assets/blog/ogerpon-mask-gift-box-release-hero.webp`,
+    heroAlt: 'The four Ogerpon mask gift boxes in a row, with the Teal Mask Ogerpon ex card from the Kitakami theme pack in front',
+    glow1: 'rgb(120 210 150 / .30)',
+    glow2: 'rgb(200 60 80 / .22)',
+  },
+  // Also add | 'lillie-n-battle-box-release-news' to BlogPostSlug
+  {
+    slug: 'lillie-n-battle-box-release-news',
+    path: '/blog/lillie-n-battle-box-release-news',
+    title: 'Chinese Lillie and N Battle Set Boxes: 6 Chasing Glory Packs and Everything Inside',
+    excerpt:
+      "Pokémon China's Lillie and N battle set boxes released on July 16, 2026, alongside Chasing Glory. This post covers what is in each one: 6 Chasing Glory booster packs and a set of battle accessories in the Trainer's design.",
+    seoTitle: 'Chinese Lillie and N Battle Set Boxes: Contents & Release',
+    seoDescription:
+      'The Chinese Pokémon TCG Lillie and N battle set boxes: 6 Chasing Glory packs, sleeves, a deck box, a coin and dice in each, released July 16, 2026.',
+    tag: 'New release',
+    date: '2026-07-16',
+    heroImage: `${SITE_URL}/assets/blog/lillie-n-battle-box-release-hero.webp`,
+    heroAlt: 'The Lillie battle set box and the N battle set box side by side',
+    glow1: 'rgb(150 210 240 / .30)',
+    glow2: 'rgb(140 200 80 / .24)',
   },
   {
     slug: 'greninja-sylveon-display-set-release-news',
