@@ -396,7 +396,7 @@ export function GemSetPage({
               {raw.language} · {raw.series} series
             </div>
             <h1>
-              {raw.name}
+              {raw.name}{' '}
               <span>{config.titleSub ?? 'Complete card list & checklist'}</span>
             </h1>
             <p className="lede">{heroLede}</p>
