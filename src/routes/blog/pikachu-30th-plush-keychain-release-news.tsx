@@ -279,7 +279,7 @@ function Pikachu30thPlushKeychainPost() {
           Pokémon: Since 1996. The tags are not all the same. Each one has its own small Pikachu drawn on the 30, so the tag changes
           with the style.
         </p>
-        <figure style={{ margin: '24px auto 30px', maxWidth: 840 }}>
+        <figure style={{ margin: '24px auto 30px', maxWidth: 728 }}>
           <img
             src={img('tags')}
             alt="Eight 30 anniversary tags from different keychain styles side by side, each with a different Pikachu on the red 30"
