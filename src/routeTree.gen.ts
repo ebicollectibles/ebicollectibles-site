@@ -63,6 +63,7 @@ import { Route as BlogCharizardFigureBoxReleaseNewsRouteImport } from './routes/
 import { Route as BlogChasingGloryCardOriginsRouteImport } from './routes/blog/chasing-glory-card-origins'
 import { Route as BlogChasingGloryReleaseNewsRouteImport } from './routes/blog/chasing-glory-release-news'
 import { Route as BlogChasingGlorySetGuideRouteImport } from './routes/blog/chasing-glory-set-guide'
+import { Route as BlogChineseGemPackHitRatesRouteImport } from './routes/blog/chinese-gem-pack-hit-rates'
 import { Route as BlogChinesePokemonSetsInOrderRouteImport } from './routes/blog/chinese-pokemon-sets-in-order'
 import { Route as BlogCollect151FirstPartnerDisplaySetsReleaseNewsRouteImport } from './routes/blog/collect-151-first-partner-display-sets-release-news'
 import { Route as BlogDayNightGiftBoxReleaseNewsRouteImport } from './routes/blog/day-night-gift-box-release-news'
@@ -468,6 +469,12 @@ const BlogChasingGlorySetGuideRoute =
   BlogChasingGlorySetGuideRouteImport.update({
     id: '/blog/chasing-glory-set-guide',
     path: '/blog/chasing-glory-set-guide',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const BlogChineseGemPackHitRatesRoute =
+  BlogChineseGemPackHitRatesRouteImport.update({
+    id: '/blog/chinese-gem-pack-hit-rates',
+    path: '/blog/chinese-gem-pack-hit-rates',
     getParentRoute: () => rootRouteImport,
   } as any)
 const BlogChinesePokemonSetsInOrderRoute =
@@ -1182,6 +1189,7 @@ export interface FileRoutesByFullPath {
   '/blog/chasing-glory-card-origins': typeof BlogChasingGloryCardOriginsRoute
   '/blog/chasing-glory-release-news': typeof BlogChasingGloryReleaseNewsRoute
   '/blog/chasing-glory-set-guide': typeof BlogChasingGlorySetGuideRoute
+  '/blog/chinese-gem-pack-hit-rates': typeof BlogChineseGemPackHitRatesRoute
   '/blog/chinese-pokemon-sets-in-order': typeof BlogChinesePokemonSetsInOrderRoute
   '/blog/collect-151-first-partner-display-sets-release-news': typeof BlogCollect151FirstPartnerDisplaySetsReleaseNewsRoute
   '/blog/day-night-gift-box-release-news': typeof BlogDayNightGiftBoxReleaseNewsRoute
@@ -1355,6 +1363,7 @@ export interface FileRoutesByTo {
   '/blog/chasing-glory-card-origins': typeof BlogChasingGloryCardOriginsRoute
   '/blog/chasing-glory-release-news': typeof BlogChasingGloryReleaseNewsRoute
   '/blog/chasing-glory-set-guide': typeof BlogChasingGlorySetGuideRoute
+  '/blog/chinese-gem-pack-hit-rates': typeof BlogChineseGemPackHitRatesRoute
   '/blog/chinese-pokemon-sets-in-order': typeof BlogChinesePokemonSetsInOrderRoute
   '/blog/collect-151-first-partner-display-sets-release-news': typeof BlogCollect151FirstPartnerDisplaySetsReleaseNewsRoute
   '/blog/day-night-gift-box-release-news': typeof BlogDayNightGiftBoxReleaseNewsRoute
@@ -1529,6 +1538,7 @@ export interface FileRoutesById {
   '/blog/chasing-glory-card-origins': typeof BlogChasingGloryCardOriginsRoute
   '/blog/chasing-glory-release-news': typeof BlogChasingGloryReleaseNewsRoute
   '/blog/chasing-glory-set-guide': typeof BlogChasingGlorySetGuideRoute
+  '/blog/chinese-gem-pack-hit-rates': typeof BlogChineseGemPackHitRatesRoute
   '/blog/chinese-pokemon-sets-in-order': typeof BlogChinesePokemonSetsInOrderRoute
   '/blog/collect-151-first-partner-display-sets-release-news': typeof BlogCollect151FirstPartnerDisplaySetsReleaseNewsRoute
   '/blog/day-night-gift-box-release-news': typeof BlogDayNightGiftBoxReleaseNewsRoute
@@ -1704,6 +1714,7 @@ export interface FileRouteTypes {
     | '/blog/chasing-glory-card-origins'
     | '/blog/chasing-glory-release-news'
     | '/blog/chasing-glory-set-guide'
+    | '/blog/chinese-gem-pack-hit-rates'
     | '/blog/chinese-pokemon-sets-in-order'
     | '/blog/collect-151-first-partner-display-sets-release-news'
     | '/blog/day-night-gift-box-release-news'
@@ -1877,6 +1888,7 @@ export interface FileRouteTypes {
     | '/blog/chasing-glory-card-origins'
     | '/blog/chasing-glory-release-news'
     | '/blog/chasing-glory-set-guide'
+    | '/blog/chinese-gem-pack-hit-rates'
     | '/blog/chinese-pokemon-sets-in-order'
     | '/blog/collect-151-first-partner-display-sets-release-news'
     | '/blog/day-night-gift-box-release-news'
@@ -2050,6 +2062,7 @@ export interface FileRouteTypes {
     | '/blog/chasing-glory-card-origins'
     | '/blog/chasing-glory-release-news'
     | '/blog/chasing-glory-set-guide'
+    | '/blog/chinese-gem-pack-hit-rates'
     | '/blog/chinese-pokemon-sets-in-order'
     | '/blog/collect-151-first-partner-display-sets-release-news'
     | '/blog/day-night-gift-box-release-news'
@@ -2224,6 +2237,7 @@ export interface RootRouteChildren {
   BlogChasingGloryCardOriginsRoute: typeof BlogChasingGloryCardOriginsRoute
   BlogChasingGloryReleaseNewsRoute: typeof BlogChasingGloryReleaseNewsRoute
   BlogChasingGlorySetGuideRoute: typeof BlogChasingGlorySetGuideRoute
+  BlogChineseGemPackHitRatesRoute: typeof BlogChineseGemPackHitRatesRoute
   BlogChinesePokemonSetsInOrderRoute: typeof BlogChinesePokemonSetsInOrderRoute
   BlogCollect151FirstPartnerDisplaySetsReleaseNewsRoute: typeof BlogCollect151FirstPartnerDisplaySetsReleaseNewsRoute
   BlogDayNightGiftBoxReleaseNewsRoute: typeof BlogDayNightGiftBoxReleaseNewsRoute
@@ -2724,6 +2738,13 @@ declare module '@tanstack/react-router' {
       path: '/blog/chasing-glory-set-guide'
       fullPath: '/blog/chasing-glory-set-guide'
       preLoaderRoute: typeof BlogChasingGlorySetGuideRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/chinese-gem-pack-hit-rates': {
+      id: '/blog/chinese-gem-pack-hit-rates'
+      path: '/blog/chinese-gem-pack-hit-rates'
+      fullPath: '/blog/chinese-gem-pack-hit-rates'
+      preLoaderRoute: typeof BlogChineseGemPackHitRatesRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/blog/chinese-pokemon-sets-in-order': {
@@ -3602,6 +3623,7 @@ const rootRouteChildren: RootRouteChildren = {
   BlogChasingGloryCardOriginsRoute: BlogChasingGloryCardOriginsRoute,
   BlogChasingGloryReleaseNewsRoute: BlogChasingGloryReleaseNewsRoute,
   BlogChasingGlorySetGuideRoute: BlogChasingGlorySetGuideRoute,
+  BlogChineseGemPackHitRatesRoute: BlogChineseGemPackHitRatesRoute,
   BlogChinesePokemonSetsInOrderRoute: BlogChinesePokemonSetsInOrderRoute,
   BlogCollect151FirstPartnerDisplaySetsReleaseNewsRoute:
     BlogCollect151FirstPartnerDisplaySetsReleaseNewsRoute,
