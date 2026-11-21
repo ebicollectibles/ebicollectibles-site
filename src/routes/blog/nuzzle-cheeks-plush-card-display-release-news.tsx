@@ -85,8 +85,8 @@ const FAQ = [
     a: 'One pack of True Mystery (set code CSV6C) and one pack of Collect 151: Gathering (set code 151C). Pokémon China lists both as 5-card packs.',
   },
   {
-    q: 'Is it sold under other names?',
-    a: 'Yes. Pokémon China has no English name for it. The Chinese name translates as Nuzzle Cheeks Plush Toy Card Display Gift Box, and since each box holds one random plush it is also called a blind box.',
+    q: 'Is it sold under other names, like Rubbing Cheeks?',
+    a: 'Yes. Pokémon China has no English name for it, so shops translate it differently. 蹭蹭脸颊 can be read as Nuzzle Cheeks or Rubbing Cheeks, so the Rubbing Cheeks Plush Card Display Box is the same product. The full Chinese name translates as Nuzzle Cheeks Plush Toy Card Display Gift Box, and since each box holds one random plush it is also called a blind box.',
   },
 ]
 
