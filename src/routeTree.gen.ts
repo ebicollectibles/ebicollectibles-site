@@ -100,6 +100,7 @@ import { Route as BlogGemVol7CardOriginsRouteImport } from './routes/blog/gem-vo
 import { Route as BlogGemVol7ReleaseNewsRouteImport } from './routes/blog/gem-vol-7-release-news'
 import { Route as BlogGemVol7SetGuideRouteImport } from './routes/blog/gem-vol-7-set-guide'
 import { Route as BlogGreninjaSylveonDisplaySetReleaseNewsRouteImport } from './routes/blog/greninja-sylveon-display-set-release-news'
+import { Route as BlogJapanese30thCelebrationReleaseNewsRouteImport } from './routes/blog/japanese-30th-celebration-release-news'
 import { Route as BlogLillieNBattleBoxReleaseNewsRouteImport } from './routes/blog/lillie-n-battle-box-release-news'
 import { Route as BlogLisiaGiftBoxReleaseNewsRouteImport } from './routes/blog/lisia-gift-box-release-news'
 import { Route as BlogMiracleJourneyCardOriginsRouteImport } from './routes/blog/miracle-journey-card-origins'
@@ -116,6 +117,7 @@ import { Route as BlogRewardRoundSetGuideRouteImport } from './routes/blog/rewar
 import { Route as BlogStellarCrystalCardOriginsRouteImport } from './routes/blog/stellar-crystal-card-origins'
 import { Route as BlogStellarCrystalReleaseNewsRouteImport } from './routes/blog/stellar-crystal-release-news'
 import { Route as BlogStellarCrystalSetGuideRouteImport } from './routes/blog/stellar-crystal-set-guide'
+import { Route as BlogStormEmeraldaReleaseNewsRouteImport } from './routes/blog/storm-emeralda-release-news'
 import { Route as BlogTeamRocketBriefcaseReleaseNewsRouteImport } from './routes/blog/team-rocket-briefcase-release-news'
 import { Route as BlogTerastalGatheringCardOriginsRouteImport } from './routes/blog/terastal-gathering-card-origins'
 import { Route as BlogTerastalGatheringReleaseNewsRouteImport } from './routes/blog/terastal-gathering-release-news'
@@ -662,6 +664,12 @@ const BlogGreninjaSylveonDisplaySetReleaseNewsRoute =
     path: '/blog/greninja-sylveon-display-set-release-news',
     getParentRoute: () => rootRouteImport,
   } as any)
+const BlogJapanese30thCelebrationReleaseNewsRoute =
+  BlogJapanese30thCelebrationReleaseNewsRouteImport.update({
+    id: '/blog/japanese-30th-celebration-release-news',
+    path: '/blog/japanese-30th-celebration-release-news',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const BlogLillieNBattleBoxReleaseNewsRoute =
   BlogLillieNBattleBoxReleaseNewsRouteImport.update({
     id: '/blog/lillie-n-battle-box-release-news',
@@ -755,6 +763,12 @@ const BlogStellarCrystalSetGuideRoute =
   BlogStellarCrystalSetGuideRouteImport.update({
     id: '/blog/stellar-crystal-set-guide',
     path: '/blog/stellar-crystal-set-guide',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const BlogStormEmeraldaReleaseNewsRoute =
+  BlogStormEmeraldaReleaseNewsRouteImport.update({
+    id: '/blog/storm-emeralda-release-news',
+    path: '/blog/storm-emeralda-release-news',
     getParentRoute: () => rootRouteImport,
   } as any)
 const BlogTeamRocketBriefcaseReleaseNewsRoute =
@@ -1152,6 +1166,7 @@ export interface FileRoutesByFullPath {
   '/blog/gem-vol-7-release-news': typeof BlogGemVol7ReleaseNewsRoute
   '/blog/gem-vol-7-set-guide': typeof BlogGemVol7SetGuideRoute
   '/blog/greninja-sylveon-display-set-release-news': typeof BlogGreninjaSylveonDisplaySetReleaseNewsRoute
+  '/blog/japanese-30th-celebration-release-news': typeof BlogJapanese30thCelebrationReleaseNewsRoute
   '/blog/lillie-n-battle-box-release-news': typeof BlogLillieNBattleBoxReleaseNewsRoute
   '/blog/lisia-gift-box-release-news': typeof BlogLisiaGiftBoxReleaseNewsRoute
   '/blog/miracle-journey-card-origins': typeof BlogMiracleJourneyCardOriginsRoute
@@ -1168,6 +1183,7 @@ export interface FileRoutesByFullPath {
   '/blog/stellar-crystal-card-origins': typeof BlogStellarCrystalCardOriginsRoute
   '/blog/stellar-crystal-release-news': typeof BlogStellarCrystalReleaseNewsRoute
   '/blog/stellar-crystal-set-guide': typeof BlogStellarCrystalSetGuideRoute
+  '/blog/storm-emeralda-release-news': typeof BlogStormEmeraldaReleaseNewsRoute
   '/blog/team-rocket-briefcase-release-news': typeof BlogTeamRocketBriefcaseReleaseNewsRoute
   '/blog/terastal-gathering-card-origins': typeof BlogTerastalGatheringCardOriginsRoute
   '/blog/terastal-gathering-release-news': typeof BlogTerastalGatheringReleaseNewsRoute
@@ -1316,6 +1332,7 @@ export interface FileRoutesByTo {
   '/blog/gem-vol-7-release-news': typeof BlogGemVol7ReleaseNewsRoute
   '/blog/gem-vol-7-set-guide': typeof BlogGemVol7SetGuideRoute
   '/blog/greninja-sylveon-display-set-release-news': typeof BlogGreninjaSylveonDisplaySetReleaseNewsRoute
+  '/blog/japanese-30th-celebration-release-news': typeof BlogJapanese30thCelebrationReleaseNewsRoute
   '/blog/lillie-n-battle-box-release-news': typeof BlogLillieNBattleBoxReleaseNewsRoute
   '/blog/lisia-gift-box-release-news': typeof BlogLisiaGiftBoxReleaseNewsRoute
   '/blog/miracle-journey-card-origins': typeof BlogMiracleJourneyCardOriginsRoute
@@ -1332,6 +1349,7 @@ export interface FileRoutesByTo {
   '/blog/stellar-crystal-card-origins': typeof BlogStellarCrystalCardOriginsRoute
   '/blog/stellar-crystal-release-news': typeof BlogStellarCrystalReleaseNewsRoute
   '/blog/stellar-crystal-set-guide': typeof BlogStellarCrystalSetGuideRoute
+  '/blog/storm-emeralda-release-news': typeof BlogStormEmeraldaReleaseNewsRoute
   '/blog/team-rocket-briefcase-release-news': typeof BlogTeamRocketBriefcaseReleaseNewsRoute
   '/blog/terastal-gathering-card-origins': typeof BlogTerastalGatheringCardOriginsRoute
   '/blog/terastal-gathering-release-news': typeof BlogTerastalGatheringReleaseNewsRoute
@@ -1481,6 +1499,7 @@ export interface FileRoutesById {
   '/blog/gem-vol-7-release-news': typeof BlogGemVol7ReleaseNewsRoute
   '/blog/gem-vol-7-set-guide': typeof BlogGemVol7SetGuideRoute
   '/blog/greninja-sylveon-display-set-release-news': typeof BlogGreninjaSylveonDisplaySetReleaseNewsRoute
+  '/blog/japanese-30th-celebration-release-news': typeof BlogJapanese30thCelebrationReleaseNewsRoute
   '/blog/lillie-n-battle-box-release-news': typeof BlogLillieNBattleBoxReleaseNewsRoute
   '/blog/lisia-gift-box-release-news': typeof BlogLisiaGiftBoxReleaseNewsRoute
   '/blog/miracle-journey-card-origins': typeof BlogMiracleJourneyCardOriginsRoute
@@ -1497,6 +1516,7 @@ export interface FileRoutesById {
   '/blog/stellar-crystal-card-origins': typeof BlogStellarCrystalCardOriginsRoute
   '/blog/stellar-crystal-release-news': typeof BlogStellarCrystalReleaseNewsRoute
   '/blog/stellar-crystal-set-guide': typeof BlogStellarCrystalSetGuideRoute
+  '/blog/storm-emeralda-release-news': typeof BlogStormEmeraldaReleaseNewsRoute
   '/blog/team-rocket-briefcase-release-news': typeof BlogTeamRocketBriefcaseReleaseNewsRoute
   '/blog/terastal-gathering-card-origins': typeof BlogTerastalGatheringCardOriginsRoute
   '/blog/terastal-gathering-release-news': typeof BlogTerastalGatheringReleaseNewsRoute
@@ -1647,6 +1667,7 @@ export interface FileRouteTypes {
     | '/blog/gem-vol-7-release-news'
     | '/blog/gem-vol-7-set-guide'
     | '/blog/greninja-sylveon-display-set-release-news'
+    | '/blog/japanese-30th-celebration-release-news'
     | '/blog/lillie-n-battle-box-release-news'
     | '/blog/lisia-gift-box-release-news'
     | '/blog/miracle-journey-card-origins'
@@ -1663,6 +1684,7 @@ export interface FileRouteTypes {
     | '/blog/stellar-crystal-card-origins'
     | '/blog/stellar-crystal-release-news'
     | '/blog/stellar-crystal-set-guide'
+    | '/blog/storm-emeralda-release-news'
     | '/blog/team-rocket-briefcase-release-news'
     | '/blog/terastal-gathering-card-origins'
     | '/blog/terastal-gathering-release-news'
@@ -1811,6 +1833,7 @@ export interface FileRouteTypes {
     | '/blog/gem-vol-7-release-news'
     | '/blog/gem-vol-7-set-guide'
     | '/blog/greninja-sylveon-display-set-release-news'
+    | '/blog/japanese-30th-celebration-release-news'
     | '/blog/lillie-n-battle-box-release-news'
     | '/blog/lisia-gift-box-release-news'
     | '/blog/miracle-journey-card-origins'
@@ -1827,6 +1850,7 @@ export interface FileRouteTypes {
     | '/blog/stellar-crystal-card-origins'
     | '/blog/stellar-crystal-release-news'
     | '/blog/stellar-crystal-set-guide'
+    | '/blog/storm-emeralda-release-news'
     | '/blog/team-rocket-briefcase-release-news'
     | '/blog/terastal-gathering-card-origins'
     | '/blog/terastal-gathering-release-news'
@@ -1975,6 +1999,7 @@ export interface FileRouteTypes {
     | '/blog/gem-vol-7-release-news'
     | '/blog/gem-vol-7-set-guide'
     | '/blog/greninja-sylveon-display-set-release-news'
+    | '/blog/japanese-30th-celebration-release-news'
     | '/blog/lillie-n-battle-box-release-news'
     | '/blog/lisia-gift-box-release-news'
     | '/blog/miracle-journey-card-origins'
@@ -1991,6 +2016,7 @@ export interface FileRouteTypes {
     | '/blog/stellar-crystal-card-origins'
     | '/blog/stellar-crystal-release-news'
     | '/blog/stellar-crystal-set-guide'
+    | '/blog/storm-emeralda-release-news'
     | '/blog/team-rocket-briefcase-release-news'
     | '/blog/terastal-gathering-card-origins'
     | '/blog/terastal-gathering-release-news'
@@ -2140,6 +2166,7 @@ export interface RootRouteChildren {
   BlogGemVol7ReleaseNewsRoute: typeof BlogGemVol7ReleaseNewsRoute
   BlogGemVol7SetGuideRoute: typeof BlogGemVol7SetGuideRoute
   BlogGreninjaSylveonDisplaySetReleaseNewsRoute: typeof BlogGreninjaSylveonDisplaySetReleaseNewsRoute
+  BlogJapanese30thCelebrationReleaseNewsRoute: typeof BlogJapanese30thCelebrationReleaseNewsRoute
   BlogLillieNBattleBoxReleaseNewsRoute: typeof BlogLillieNBattleBoxReleaseNewsRoute
   BlogLisiaGiftBoxReleaseNewsRoute: typeof BlogLisiaGiftBoxReleaseNewsRoute
   BlogMiracleJourneyCardOriginsRoute: typeof BlogMiracleJourneyCardOriginsRoute
@@ -2156,6 +2183,7 @@ export interface RootRouteChildren {
   BlogStellarCrystalCardOriginsRoute: typeof BlogStellarCrystalCardOriginsRoute
   BlogStellarCrystalReleaseNewsRoute: typeof BlogStellarCrystalReleaseNewsRoute
   BlogStellarCrystalSetGuideRoute: typeof BlogStellarCrystalSetGuideRoute
+  BlogStormEmeraldaReleaseNewsRoute: typeof BlogStormEmeraldaReleaseNewsRoute
   BlogTeamRocketBriefcaseReleaseNewsRoute: typeof BlogTeamRocketBriefcaseReleaseNewsRoute
   BlogTerastalGatheringCardOriginsRoute: typeof BlogTerastalGatheringCardOriginsRoute
   BlogTerastalGatheringReleaseNewsRoute: typeof BlogTerastalGatheringReleaseNewsRoute
@@ -2855,6 +2883,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BlogGreninjaSylveonDisplaySetReleaseNewsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/blog/japanese-30th-celebration-release-news': {
+      id: '/blog/japanese-30th-celebration-release-news'
+      path: '/blog/japanese-30th-celebration-release-news'
+      fullPath: '/blog/japanese-30th-celebration-release-news'
+      preLoaderRoute: typeof BlogJapanese30thCelebrationReleaseNewsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/blog/lillie-n-battle-box-release-news': {
       id: '/blog/lillie-n-battle-box-release-news'
       path: '/blog/lillie-n-battle-box-release-news'
@@ -2965,6 +3000,13 @@ declare module '@tanstack/react-router' {
       path: '/blog/stellar-crystal-set-guide'
       fullPath: '/blog/stellar-crystal-set-guide'
       preLoaderRoute: typeof BlogStellarCrystalSetGuideRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/storm-emeralda-release-news': {
+      id: '/blog/storm-emeralda-release-news'
+      path: '/blog/storm-emeralda-release-news'
+      fullPath: '/blog/storm-emeralda-release-news'
+      preLoaderRoute: typeof BlogStormEmeraldaReleaseNewsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/blog/team-rocket-briefcase-release-news': {
@@ -3453,6 +3495,8 @@ const rootRouteChildren: RootRouteChildren = {
   BlogGemVol7SetGuideRoute: BlogGemVol7SetGuideRoute,
   BlogGreninjaSylveonDisplaySetReleaseNewsRoute:
     BlogGreninjaSylveonDisplaySetReleaseNewsRoute,
+  BlogJapanese30thCelebrationReleaseNewsRoute:
+    BlogJapanese30thCelebrationReleaseNewsRoute,
   BlogLillieNBattleBoxReleaseNewsRoute: BlogLillieNBattleBoxReleaseNewsRoute,
   BlogLisiaGiftBoxReleaseNewsRoute: BlogLisiaGiftBoxReleaseNewsRoute,
   BlogMiracleJourneyCardOriginsRoute: BlogMiracleJourneyCardOriginsRoute,
@@ -3473,6 +3517,7 @@ const rootRouteChildren: RootRouteChildren = {
   BlogStellarCrystalCardOriginsRoute: BlogStellarCrystalCardOriginsRoute,
   BlogStellarCrystalReleaseNewsRoute: BlogStellarCrystalReleaseNewsRoute,
   BlogStellarCrystalSetGuideRoute: BlogStellarCrystalSetGuideRoute,
+  BlogStormEmeraldaReleaseNewsRoute: BlogStormEmeraldaReleaseNewsRoute,
   BlogTeamRocketBriefcaseReleaseNewsRoute:
     BlogTeamRocketBriefcaseReleaseNewsRoute,
   BlogTerastalGatheringCardOriginsRoute: BlogTerastalGatheringCardOriginsRoute,

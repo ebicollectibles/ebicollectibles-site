@@ -6,7 +6,7 @@
 // the post itself.
 import { SITE_URL, R2_IMAGE_HOST } from '~/lib/gem-sets/constants'
 
-export type BlogPostSlug = 'chinese-pokemon-sets-in-order' | 'gem-vol-7-release-news' | 'gem-vol-7-set-guide' | 'gem-vol-7-card-origins' | 'gem-vol-6-release-news' | 'gem-vol-6-set-guide' | 'gem-vol-6-card-origins' | 'gem-vol-5-release-news' | 'gem-vol-5-set-guide' | 'gem-vol-5-card-origins' | 'gem-vol-4-release-news' | 'gem-vol-4-set-guide' | 'gem-vol-4-card-origins' | 'gem-vol-3-release-news' | 'gem-vol-3-set-guide' | 'gem-vol-3-card-origins' | 'gem-vol-2-release-news' | 'gem-vol-2-set-guide' | 'gem-vol-2-card-origins' | 'gem-vol-1-release-news' | 'gem-vol-1-set-guide' | 'gem-vol-1-card-origins' | '30th-celebration-release-news' | '30th-celebration-set-guide' | '30th-celebration-card-origins' | 'chasing-glory-release-news' | 'chasing-glory-set-guide' | 'chasing-glory-card-origins' | 'terastal-gathering-release-news' | 'terastal-gathering-set-guide' | 'terastal-gathering-card-origins' | 'reward-round-release-news' | 'reward-round-set-guide' | 'reward-round-card-origins' | 'fearless-terastal-release-news' | 'fearless-terastal-set-guide' | 'fearless-terastal-card-origins' | 'eternal-birth-release-news' | 'eternal-birth-set-guide' | 'eternal-birth-card-origins' | 'miracle-journey-release-news' | 'miracle-journey-set-guide' | 'miracle-journey-card-origins' | 'black-crystal-blaze-release-news' | 'black-crystal-blaze-set-guide' | 'black-crystal-blaze-card-origins' | 'black-bolt-white-flare-release-news' | 'black-bolt-set-guide' | 'black-bolt-card-origins' | 'white-flare-set-guide' | 'white-flare-card-origins' | 'true-mystery-release-news' | 'true-mystery-set-guide' | 'true-mystery-card-origins' | 'blade-awakening-release-news' | 'blade-awakening-set-guide' | 'blade-awakening-card-origins' | 'brilliant-fantasy-release-news' | 'brilliant-fantasy-set-guide' | 'brilliant-fantasy-card-origins' | 'stellar-crystal-release-news' | 'stellar-crystal-set-guide' | 'stellar-crystal-card-origins' | 'pikachu-dream-painting-figures-release-news' | 'funism-ditto-palm-size-wonders-release-news' | 'team-rocket-briefcase-release-news' | 'pikachu-gift-box-release-news' | 'day-night-gift-box-release-news' | 'greninja-sylveon-display-set-release-news' | 'charizard-figure-box-release-news' | 'nuzzle-cheeks-plush-card-display-release-news' | 'eevee-gift-box-release-news' | 'pikachu-30th-plush-keychain-release-news' | 'funism-first-partner-mini-figures-release-news' | 'first-partner-30th-vol-1-release-news' | 'first-partner-30th-vol-2-release-news' | 'first-partner-30th-vol-3-release-news' | 'aura-seeker-release-news' | 'futuristic-pikachu-box-release-news' | 'lisia-gift-box-release-news' | 'ogerpon-mask-gift-box-release-news' | 'lillie-n-battle-box-release-news'
+export type BlogPostSlug = 'chinese-pokemon-sets-in-order' | 'gem-vol-7-release-news' | 'gem-vol-7-set-guide' | 'gem-vol-7-card-origins' | 'gem-vol-6-release-news' | 'gem-vol-6-set-guide' | 'gem-vol-6-card-origins' | 'gem-vol-5-release-news' | 'gem-vol-5-set-guide' | 'gem-vol-5-card-origins' | 'gem-vol-4-release-news' | 'gem-vol-4-set-guide' | 'gem-vol-4-card-origins' | 'gem-vol-3-release-news' | 'gem-vol-3-set-guide' | 'gem-vol-3-card-origins' | 'gem-vol-2-release-news' | 'gem-vol-2-set-guide' | 'gem-vol-2-card-origins' | 'gem-vol-1-release-news' | 'gem-vol-1-set-guide' | 'gem-vol-1-card-origins' | '30th-celebration-release-news' | '30th-celebration-set-guide' | '30th-celebration-card-origins' | 'chasing-glory-release-news' | 'chasing-glory-set-guide' | 'chasing-glory-card-origins' | 'terastal-gathering-release-news' | 'terastal-gathering-set-guide' | 'terastal-gathering-card-origins' | 'reward-round-release-news' | 'reward-round-set-guide' | 'reward-round-card-origins' | 'fearless-terastal-release-news' | 'fearless-terastal-set-guide' | 'fearless-terastal-card-origins' | 'eternal-birth-release-news' | 'eternal-birth-set-guide' | 'eternal-birth-card-origins' | 'miracle-journey-release-news' | 'miracle-journey-set-guide' | 'miracle-journey-card-origins' | 'black-crystal-blaze-release-news' | 'black-crystal-blaze-set-guide' | 'black-crystal-blaze-card-origins' | 'black-bolt-white-flare-release-news' | 'black-bolt-set-guide' | 'black-bolt-card-origins' | 'white-flare-set-guide' | 'white-flare-card-origins' | 'true-mystery-release-news' | 'true-mystery-set-guide' | 'true-mystery-card-origins' | 'blade-awakening-release-news' | 'blade-awakening-set-guide' | 'blade-awakening-card-origins' | 'brilliant-fantasy-release-news' | 'brilliant-fantasy-set-guide' | 'brilliant-fantasy-card-origins' | 'stellar-crystal-release-news' | 'stellar-crystal-set-guide' | 'stellar-crystal-card-origins' | 'pikachu-dream-painting-figures-release-news' | 'funism-ditto-palm-size-wonders-release-news' | 'team-rocket-briefcase-release-news' | 'pikachu-gift-box-release-news' | 'day-night-gift-box-release-news' | 'greninja-sylveon-display-set-release-news' | 'charizard-figure-box-release-news' | 'nuzzle-cheeks-plush-card-display-release-news' | 'eevee-gift-box-release-news' | 'pikachu-30th-plush-keychain-release-news' | 'funism-first-partner-mini-figures-release-news' | 'first-partner-30th-vol-1-release-news' | 'first-partner-30th-vol-2-release-news' | 'first-partner-30th-vol-3-release-news' | 'aura-seeker-release-news' | 'futuristic-pikachu-box-release-news' | 'lisia-gift-box-release-news' | 'ogerpon-mask-gift-box-release-news' | 'lillie-n-battle-box-release-news' | 'japanese-30th-celebration-release-news' | 'storm-emeralda-release-news'
 
 export interface BlogPostSummary {
   slug: BlogPostSlug
@@ -480,6 +480,40 @@ export const BLOG_POSTS: BlogPostSummary[] = [
     heroAlt: 'The Lillie battle set box and the N battle set box side by side',
     glow1: 'rgb(150 210 240 / .30)',
     glow2: 'rgb(140 200 80 / .24)',
+  },
+  // Also add | 'japanese-30th-celebration-release-news' to BlogPostSlug
+  {
+    slug: 'japanese-30th-celebration-release-news',
+    path: '/blog/japanese-30th-celebration-release-news',
+    title: 'Japanese 30th Celebration (M6a): Pikachu ex, Futuristic Rares and Everything Released With It',
+    excerpt:
+      'The Japanese Pokémon TCG set 30th Celebration (M6a) released on September 16, 2026. This post covers the pack and box, Pikachu ex, the two Futuristic Rares, the 30 Pikachu cards, the 30 classic cards and the other products released with it.',
+    seoTitle: 'Japanese 30th Celebration (M6a): Release Date, Cards & Box',
+    seoDescription:
+      'Japanese Pokémon TCG 30th Celebration (M6a), released September 16, 2026: 6 holo cards a pack, 20 packs a box, Pikachu ex, Futuristic Rares and 173 cards.',
+    tag: 'New release',
+    date: '2026-09-16',
+    heroImage: `${SITE_URL}/assets/blog/japanese-30th-celebration-release-hero.webp`,
+    heroAlt: 'The Pikachu ex card standing in front of a Japanese 30th Celebration booster pack, which shows Pikachu, Mew and Mewtwo on the front',
+    glow1: 'rgb(244 200 66 / .28)',
+    glow2: 'rgb(90 150 230 / .22)',
+  },
+  // Also add | 'storm-emeralda-release-news' to BlogPostSlug
+  {
+    slug: 'storm-emeralda-release-news',
+    path: '/blog/storm-emeralda-release-news',
+    title: 'Storm Emeralda (Japanese M6): Release Date, Mega Rayquaza ex and the 113-Card List',
+    excerpt:
+      'The Japanese Pokémon TCG set Storm Emeralda (M6) released on July 31, 2026. This post covers the pack and box, the 113-card list, all four Mega Rayquaza ex cards and the other Special Art Rares.',
+    seoTitle: 'Storm Emeralda (Japanese M6): Mega Rayquaza ex & Card List',
+    seoDescription:
+      'Japanese Pokémon TCG Storm Emeralda (M6), released July 31, 2026: 5 cards a pack, 30 packs a box, 113 cards and four Mega Rayquaza ex versions.',
+    tag: 'New release',
+    date: '2026-07-31',
+    heroImage: `${SITE_URL}/assets/blog/storm-emeralda-release-hero.webp`,
+    heroAlt: 'The Mega Rayquaza ex card standing in front of a Japanese Storm Emeralda booster pack, which shows Mega Rayquaza on the front',
+    glow1: 'rgb(96 214 140 / .28)',
+    glow2: 'rgb(236 72 60 / .20)',
   },
   {
     slug: 'greninja-sylveon-display-set-release-news',
