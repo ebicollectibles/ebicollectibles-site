@@ -108,12 +108,18 @@ export function Footer() {
         </nav>
         <nav aria-labelledby="footer-elsewhere">
           <h2 id="footer-elsewhere" style={footerHeading}>
-            Elsewhere
+            Socials
           </h2>
           <ul className="ebi-footer-links" style={{ display: 'flex', flexDirection: 'column', gap: 2, margin: '10px 0 0', padding: 0, listStyle: 'none', fontSize: 13 }}>
             <li>
               <a href="https://www.instagram.com/ebicollectibles" target="_blank" rel="noopener noreferrer">
                 Instagram
+              <span className="sr-only"> (opens in a new tab)</span>
+              </a>
+            </li>
+            <li>
+              <a href="https://x.com/ebicollectibles" target="_blank" rel="noopener noreferrer">
+                X
               <span className="sr-only"> (opens in a new tab)</span>
               </a>
             </li>
