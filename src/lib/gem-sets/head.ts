@@ -18,6 +18,7 @@ export function buildGemSetHead(data: BuiltGemSetData, config: GemSetConfig) {
   return {
     meta: [
       { title: config.metaTitle },
+      ...(config.noindex ? [{ name: 'robots', content: 'noindex, nofollow' }] : []),
       { name: 'description', content: config.metaDescription },
       { property: 'og:title', content: config.ogTitle },
       { property: 'og:description', content: config.ogDescription },
@@ -85,7 +86,7 @@ export function buildGemSetJsonLd(raw: GemSetData, data: BuiltGemSetData, config
     itemListElement: [
       { '@type': 'ListItem', position: 1, name: 'Shop', item: `${SITE_URL}/shop` },
       { '@type': 'ListItem', position: 2, name: 'Sets', item: `${SITE_URL}/sets` },
-      { '@type': 'ListItem', position: 3, name: 'Chinese Sets', item: `${SITE_URL}/sets/chinese` },
+      { '@type': 'ListItem', position: 3, name: config.region?.listName ?? 'Chinese Sets', item: `${SITE_URL}${config.region?.path ?? '/sets/chinese'}` },
       { '@type': 'ListItem', position: 4, name: raw.name, item: `${SITE_URL}${config.routePath}` },
     ],
   }

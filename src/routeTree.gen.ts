@@ -156,6 +156,7 @@ import { Route as SetsChineseStellarCrystalCsv9RouteImport } from './routes/sets
 import { Route as SetsChineseTerastalGatheringCsv95RouteImport } from './routes/sets/chinese/terastal-gathering-csv9-5'
 import { Route as SetsChineseTrueMysteryCsv6RouteImport } from './routes/sets/chinese/true-mystery-csv6'
 import { Route as SetsChineseWhiteFlareCsv106RouteImport } from './routes/sets/chinese/white-flare-csv10-6'
+import { Route as SetsJapaneseIndexRouteImport } from './routes/sets/japanese/index'
 import { Route as AdminAffiliatesIdDashboardRouteImport } from './routes/admin/affiliates_.$id.dashboard'
 
 const IndexRoute = IndexRouteImport.update({
@@ -959,6 +960,11 @@ const SetsChineseWhiteFlareCsv106Route =
     path: '/sets/chinese/white-flare-csv10-6',
     getParentRoute: () => rootRouteImport,
   } as any)
+const SetsJapaneseIndexRoute = SetsJapaneseIndexRouteImport.update({
+  id: '/sets/japanese/',
+  path: '/sets/japanese/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AdminAffiliatesIdDashboardRoute =
   AdminAffiliatesIdDashboardRouteImport.update({
     id: '/admin/affiliates_/$id/dashboard',
@@ -1114,6 +1120,7 @@ export interface FileRoutesByFullPath {
   '/admin/customers/': typeof AdminCustomersIndexRoute
   '/admin/orders/': typeof AdminOrdersIndexRoute
   '/sets/chinese/': typeof SetsChineseIndexRoute
+  '/sets/japanese/': typeof SetsJapaneseIndexRoute
   '/admin/affiliates/$id/dashboard': typeof AdminAffiliatesIdDashboardRoute
 }
 export interface FileRoutesByTo {
@@ -1264,6 +1271,7 @@ export interface FileRoutesByTo {
   '/admin/customers': typeof AdminCustomersIndexRoute
   '/admin/orders': typeof AdminOrdersIndexRoute
   '/sets/chinese': typeof SetsChineseIndexRoute
+  '/sets/japanese': typeof SetsJapaneseIndexRoute
   '/admin/affiliates/$id/dashboard': typeof AdminAffiliatesIdDashboardRoute
 }
 export interface FileRoutesById {
@@ -1415,6 +1423,7 @@ export interface FileRoutesById {
   '/admin/customers/': typeof AdminCustomersIndexRoute
   '/admin/orders/': typeof AdminOrdersIndexRoute
   '/sets/chinese/': typeof SetsChineseIndexRoute
+  '/sets/japanese/': typeof SetsJapaneseIndexRoute
   '/admin/affiliates_/$id/dashboard': typeof AdminAffiliatesIdDashboardRoute
 }
 export interface FileRouteTypes {
@@ -1567,6 +1576,7 @@ export interface FileRouteTypes {
     | '/admin/customers/'
     | '/admin/orders/'
     | '/sets/chinese/'
+    | '/sets/japanese/'
     | '/admin/affiliates/$id/dashboard'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -1717,6 +1727,7 @@ export interface FileRouteTypes {
     | '/admin/customers'
     | '/admin/orders'
     | '/sets/chinese'
+    | '/sets/japanese'
     | '/admin/affiliates/$id/dashboard'
   id:
     | '__root__'
@@ -1867,6 +1878,7 @@ export interface FileRouteTypes {
     | '/admin/customers/'
     | '/admin/orders/'
     | '/sets/chinese/'
+    | '/sets/japanese/'
     | '/admin/affiliates_/$id/dashboard'
   fileRoutesById: FileRoutesById
 }
@@ -2018,6 +2030,7 @@ export interface RootRouteChildren {
   AdminCustomersIndexRoute: typeof AdminCustomersIndexRoute
   AdminOrdersIndexRoute: typeof AdminOrdersIndexRoute
   SetsChineseIndexRoute: typeof SetsChineseIndexRoute
+  SetsJapaneseIndexRoute: typeof SetsJapaneseIndexRoute
   AdminAffiliatesIdDashboardRoute: typeof AdminAffiliatesIdDashboardRoute
 }
 
@@ -3052,6 +3065,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SetsChineseWhiteFlareCsv106RouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/sets/japanese/': {
+      id: '/sets/japanese/'
+      path: '/sets/japanese'
+      fullPath: '/sets/japanese/'
+      preLoaderRoute: typeof SetsJapaneseIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/admin/affiliates_/$id/dashboard': {
       id: '/admin/affiliates_/$id/dashboard'
       path: '/admin/affiliates/$id/dashboard'
@@ -3218,6 +3238,7 @@ const rootRouteChildren: RootRouteChildren = {
   AdminCustomersIndexRoute: AdminCustomersIndexRoute,
   AdminOrdersIndexRoute: AdminOrdersIndexRoute,
   SetsChineseIndexRoute: SetsChineseIndexRoute,
+  SetsJapaneseIndexRoute: SetsJapaneseIndexRoute,
   AdminAffiliatesIdDashboardRoute: AdminAffiliatesIdDashboardRoute,
 }
 export const routeTree = rootRouteImport

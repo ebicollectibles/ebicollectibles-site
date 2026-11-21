@@ -102,6 +102,15 @@ export interface GemSetConfig {
   // tier — not true for a set like Black Bolt, whose fan mixes Special
   // Art Rares with its one Black White Rare.
   fanCaption?: string
+  // Which language section the set belongs to, for the breadcrumb and its
+  // structured data. Defaults to the Chinese section.
+  region?: { label: string; path: '/sets/chinese' | '/sets/japanese'; listName: string }
+  // Keep the page out of search results (robots noindex) while it is a
+  // draft. Draft pages are also left out of the sitemap and the sets index.
+  noindex?: boolean
+  // Overrides for the "Only in the Simplified Chinese release." line under
+  // the exclusives heading, for a set in another language.
+  exclusiveSub?: string
 }
 
 export interface BuiltGemSetData {

@@ -388,7 +388,7 @@ export function GemSetPage({
               <span aria-hidden="true">/</span>
               <Link to="/sets">Sets</Link>
               <span aria-hidden="true">/</span>
-              <Link to="/sets/chinese">Chinese</Link>
+              <Link to={config.region?.path ?? '/sets/chinese'}>{config.region?.label ?? 'Chinese'}</Link>
               <span aria-hidden="true">/</span>
               <span aria-current="page">{raw.name}</span>
             </nav>
@@ -670,7 +670,7 @@ export function GemSetPage({
               <section className="spotlight">
                 <div className="spotlight-head">
                   <h2 className="spotlight-tag">{exclusiveShown.length > 1 ? 'Chinese Exclusives' : 'Chinese Exclusive'}</h2>
-                  <p className="spotlight-sub">Only in the Simplified Chinese release.</p>
+                  <p className="spotlight-sub">{config.exclusiveSub ?? 'Only in the Simplified Chinese release.'}</p>
                 </div>
                 <div className="grid">
                   {exclusiveShown.map((c, i) => (
