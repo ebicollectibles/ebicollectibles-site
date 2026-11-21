@@ -77,6 +77,10 @@ const FAQ = [
     a: 'Pokémon China gives 2.08% for the secret, about 1 box in 48. The 6 regular designs are made in equal numbers, so each is about 1 box in 6.',
   },
   {
+    q: 'Does a sealed case have one of each design?',
+    a: 'Yes. A sealed case holds 6 boxes, one of each of the 6 regular designs.',
+  },
+  {
     q: 'How does the plush display the card?',
     a: 'The card goes into the display frame, and the plush has magnets that let it clip onto the frame, so it looks like it is hugging the card. Two plushes can also hug each other.',
   },
@@ -422,7 +426,7 @@ function NuzzleCheeksPlushPost() {
         <h2 id="odds">What are the odds of the secret Pawmi?</h2>
         <p>
           About 1 box in 48. Pokémon China says the 6 regular designs are made in equal numbers and gives the secret a 2.08% chance.
-          That leaves each regular design at about 1 box in 6.
+          That leaves each regular design at about 1 box in 6. A sealed case holds 6 boxes, one of each regular design.
         </p>
         <div className="table-scroll" role="group" aria-labelledby="tbl-odds" tabIndex={0}>
           <table className="data-table">
