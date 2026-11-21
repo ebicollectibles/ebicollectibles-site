@@ -312,7 +312,7 @@ export const BLOG_POSTS: BlogPostSummary[] = [
       'The Chinese Pokémon TCG Radiant Crystal Pikachu Gift Box releases December 4, 2026: Pikachu ex promo 489/SV-P, 21 booster packs, sleeves and a deck box.',
     tag: 'New release',
     date: '2026-11-20',
-    heroImage: `${SITE_URL}/assets/blog/pikachu-gift-box-release-hero-v1.webp`,
+    heroImage: `${SITE_URL}/assets/blog/pikachu-gift-box-radiant-crystal-hero.webp`,
     heroAlt: 'The pink Radiant Crystal Pikachu gift box with the Pikachu ex promo card standing in front of it',
     glow1: 'rgb(246 128 176 / .30)',
     glow2: 'rgb(246 206 60 / .22)',
