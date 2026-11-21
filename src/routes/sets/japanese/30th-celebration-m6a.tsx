@@ -100,7 +100,7 @@ const config: GemSetConfig = {
     'All 173 cards in the Japanese 30th Celebration (30th CELEBRATION, M6a): 30 Pikachu, Special Art Rares, 2 Futuristic Rares, 30 classic reprints and 8 basic Energy.',
   ogTitle: 'Pokémon 30th Celebration (M6a) Japanese Card List: All 173 Cards',
   ogDescription:
-    'All 173 cards in the Japanese 30th Celebration (30th CELEBRATION, M6a). Browse by Pokémon, filter by rarity and track which ones you own.',
+    'All 173 cards in the Japanese 30th Celebration (30th CELEBRATION, M6a). Browse by Pokémon and filter by rarity.',
 }
 
 export const Route = createFileRoute('/sets/japanese/30th-celebration-m6a')({

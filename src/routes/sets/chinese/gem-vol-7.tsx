@@ -44,7 +44,7 @@ const config: GemSetConfig = {
   metaDescription:
     'All 196 cards in Pokémon Gem Pack Vol. 7 (CBB7C), Simplified Chinese: 28 Pokémon in 7 versions each and the Chinese Exclusive Misty\'s Psyduck full art.',
   ogTitle: 'Pokémon Gem Pack Vol. 7 (Gem 7) Card List: All 196 Cards',
-  ogDescription: 'All 196 cards in Pokémon Gem Pack Vol. 7 (CBB7C). Browse by Pokémon, filter by rarity and track which ones you own.',
+  ogDescription: 'All 196 cards in Pokémon Gem Pack Vol. 7 (CBB7C). Browse by Pokémon and filter by rarity.',
 }
 
 export const Route = createFileRoute('/sets/chinese/gem-vol-7')({

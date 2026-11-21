@@ -74,7 +74,7 @@ const config: GemSetConfig = {
   metaDescription:
     'All 140 cards in Pokémon Gem Pack Vol. 2 (CBB2C), Simplified Chinese: Eevee and all 8 Eeveelutions with V and VMAX, plus 4 Chinese Exclusive full arts.',
   ogTitle: 'Pokémon Gem Pack Vol. 2 (Gem 2) Card List: All 140 Cards',
-  ogDescription: 'All 140 cards in Pokémon Gem Pack Vol. 2 (CBB2C). Browse by Pokémon, filter by rarity and track which ones you own.',
+  ogDescription: 'All 140 cards in Pokémon Gem Pack Vol. 2 (CBB2C). Browse by Pokémon and filter by rarity.',
 }
 
 export const Route = createFileRoute('/sets/chinese/gem-vol-2')({

@@ -72,7 +72,7 @@ const config: GemSetConfig = {
     'All 113 cards in Storm Emeralda (ストームエメラルダ, M6), the Japanese set behind the English Delta Reign, with Mega Rayquaza ex as a gold Mega Ultra Rare.',
   ogTitle: 'Pokémon Storm Emeralda (M6) Japanese Card List: All 113 Cards',
   ogDescription:
-    'All 113 cards in Storm Emeralda (ストームエメラルダ, M6), the Japanese set behind the English Delta Reign. Browse by Pokémon, filter by rarity and track which ones you own.',
+    'All 113 cards in Storm Emeralda (ストームエメラルダ, M6), the Japanese set behind the English Delta Reign. Browse by Pokémon and filter by rarity.',
 }
 
 export const Route = createFileRoute('/sets/japanese/storm-emeralda-m6')({

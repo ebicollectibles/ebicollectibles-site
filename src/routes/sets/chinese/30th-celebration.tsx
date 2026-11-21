@@ -106,9 +106,9 @@ const config: GemSetConfig = {
   ],
   faq: [
     { q: 'How many cards are in 30th Celebration?', a: '206 cards: 165 numbered set cards (the 103-card main set plus 62 secret rares: 20 Art Rares, 10 Special Art Rares, 2 Futuristic Rares and 30 classic reprints), 8 basic Energy and 33 promos.' },
-    { q: 'What are the chase cards?', a: "Mewtwo ex 134/103 and Mew ex 135/103, the set's only Futuristic Rares, a rarity made for this set. Pokémon China's odds chart puts them in its rarest band with the Special Art Rares. Ditto 121/103, an Art Rare, is another one to note: in English that art was only released as a promo, but here it comes out of booster packs." },
+    { q: 'What are the chase cards?', a: "Mewtwo ex 134/103 and Mew ex 135/103, the set's only Futuristic Rares, a rarity made for this set. Pokémon China's odds chart puts them in its rarest rarity group with the Special Art Rares. Ditto 121/103, an Art Rare, is another one to note: in English that art was only released as a promo, but here it comes out of booster packs." },
     { q: "What's 30th Celebration's rarity scheme?", a: 'Common, Rare, Pikachu Rare, Double Rare, Art Rare, Special Art Rare and Futuristic Rare. There is no Uncommon tier. The classic reprints, basic Energy and promos have no rarity tier.' },
-    { q: 'What is the Pikachu Rare tier?', a: "A run of 30 different Pikachu, numbered 017–046, each with its own art and a Pikachu-face holo pattern. It only exists in this set. Every pack has one, and Pokémon China's odds chart groups them with the Commons and basic Energy in its most common band." },
+    { q: 'What is the Pikachu Rare tier?', a: "A run of 30 different Pikachu, numbered 017–046, each with its own art, numbered 01/30 to 30/30 on the card. It only exists in this set. Every pack has one, and Pokémon China's odds chart groups them with the Commons and basic Energy in its most common rarity group." },
     { q: 'When did 30th Celebration release?', a: 'September 16, 2026.' },
     { q: 'What language are the cards in?', a: 'Simplified Chinese.' },
     { q: 'Where can I buy 30th Celebration?', a: 'EBI Collectibles carries 30th Celebration packs and boxes.' },
@@ -117,7 +117,7 @@ const config: GemSetConfig = {
   metaDescription:
     'All 206 cards in Pokémon 30th Celebration, Simplified Chinese: 30 Pikachu, Special Art Rares, 2 Futuristic Rares, 30 classic reprints and promos.',
   ogTitle: 'Pokémon TCG 30th Celebration Card List: All 206 Cards',
-  ogDescription: 'All 206 cards in Pokémon 30th Celebration (Simplified Chinese). Browse by Pokémon, filter by rarity and track which ones you own.',
+  ogDescription: 'All 206 cards in Pokémon 30th Celebration (Simplified Chinese). Browse by Pokémon and filter by rarity.',
 }
 
 export const Route = createFileRoute('/sets/chinese/30th-celebration')({

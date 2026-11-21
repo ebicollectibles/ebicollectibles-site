@@ -48,7 +48,7 @@ const config: GemSetConfig = {
   metaDescription:
     'All 196 cards in Pokémon Gem Pack Vol. 5 (CBB5C), Simplified Chinese: 28 Pokémon in 7 versions each and 4 Chinese Exclusive Pokémon Horizons full arts.',
   ogTitle: 'Pokémon Gem Pack Vol. 5 (Gem 5) Card List: All 196 Cards',
-  ogDescription: 'All 196 cards in Pokémon Gem Pack Vol. 5 (CBB5C). Browse by Pokémon, filter by rarity and track which ones you own.',
+  ogDescription: 'All 196 cards in Pokémon Gem Pack Vol. 5 (CBB5C). Browse by Pokémon and filter by rarity.',
 }
 
 export const Route = createFileRoute('/sets/chinese/gem-vol-5')({

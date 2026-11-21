@@ -74,7 +74,7 @@ const config: GemSetConfig = {
   metaDescription:
     'All 115 cards in Pokémon Gem Pack Vol. 1 (CBB1C), Simplified Chinese: the Paldea starters, Captain Pikachu and four Chinese Exclusive Horizons full arts.',
   ogTitle: 'Pokémon Gem Pack Vol. 1 (Gem 1) Card List: All 115 Cards',
-  ogDescription: 'All 115 cards in Pokémon Gem Pack Vol. 1 (CBB1C). Browse by Pokémon, filter by rarity and track which ones you own.',
+  ogDescription: 'All 115 cards in Pokémon Gem Pack Vol. 1 (CBB1C). Browse by Pokémon and filter by rarity.',
 }
 
 export const Route = createFileRoute('/sets/chinese/gem-vol-1')({

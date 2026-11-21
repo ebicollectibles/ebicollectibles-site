@@ -66,7 +66,7 @@ const config: GemSetConfig = {
     'Aura Seeker (ハドウシーカー, Hadou Seeker, M7) Japanese card list: the full 78-card main set led by Mega Lucario Z ex, plus the first secret rare shown.',
   ogTitle: 'Pokémon Aura Seeker (M7) Japanese Card List',
   ogDescription:
-    'Aura Seeker (ハドウシーカー, Hadou Seeker, M7): the full 78-card main set led by Mega Lucario Z ex, plus the first secret rare shown. Track which ones you own.',
+    'Aura Seeker (ハドウシーカー, Hadou Seeker, M7): the full 78-card main set led by Mega Lucario Z ex, plus the first secret rare shown.',
 }
 
 export const Route = createFileRoute('/sets/japanese/aura-seeker-m7')({

@@ -48,7 +48,7 @@ const config: GemSetConfig = {
   metaDescription:
     'All 196 cards in Pokémon Gem Pack Vol. 4 (CBB4C), Simplified Chinese: 28 Pokémon in 7 versions each, 28 full arts and the Chinese Exclusive Ponyta.',
   ogTitle: 'Pokémon Gem Pack Vol. 4 (Gem 4) Card List: All 196 Cards',
-  ogDescription: 'All 196 cards in Pokémon Gem Pack Vol. 4 (CBB4C). Browse by Pokémon, filter by rarity and track which ones you own.',
+  ogDescription: 'All 196 cards in Pokémon Gem Pack Vol. 4 (CBB4C). Browse by Pokémon and filter by rarity.',
 }
 
 export const Route = createFileRoute('/sets/chinese/gem-vol-4')({

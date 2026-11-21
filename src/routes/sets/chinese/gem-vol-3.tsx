@@ -74,7 +74,7 @@ const config: GemSetConfig = {
   metaDescription:
     'All 136 cards in Pokémon Gem Pack Vol. 3 (CBB3C), Simplified Chinese: 18 Pokémon, 9 Pokémon ex, Trainers, Energy and 5 Chinese Exclusive full arts.',
   ogTitle: 'Pokémon Gem Pack Vol. 3 (Gem 3) Card List: All 136 Cards',
-  ogDescription: 'All 136 cards in Pokémon Gem Pack Vol. 3 (CBB3C). Browse by Pokémon, filter by rarity and track which ones you own.',
+  ogDescription: 'All 136 cards in Pokémon Gem Pack Vol. 3 (CBB3C). Browse by Pokémon and filter by rarity.',
 }
 
 export const Route = createFileRoute('/sets/chinese/gem-vol-3')({
