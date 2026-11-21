@@ -294,7 +294,7 @@ function LisiaGiftBoxPost() {
         <p>
           The plush is Altaria with a blue head and neck and a body of white, fluffy cotton wings. Pokémon China does not give its size.
         </p>
-        <figure style={{ margin: '24px 0 30px' }}>
+        <figure style={{ margin: '24px auto 30px' }}>
           <img
             src={img('plush')}
             alt="Three views of the Altaria plush: on its own, holding the Lisia deck box between its cotton wings, and holding the card display frame with the Lisia's Appeal promo in it"

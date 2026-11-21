@@ -254,7 +254,7 @@ function PikachuDreamPaintingReleasePost() {
         </p>
         <FigureGrid figs={FIGURES} />
         <p className="table-note">These are our photos of the figures, each on its stand with its card. The number is the Pikachu number printed on the card.</p>
-        <figure style={{ margin: '28px 0' }}>
+        <figure style={{ margin: '28px auto' }}>
           <img
             src={`${SITE_URL}/assets/blog/pikachu-dream-painting-lineup.webp`}
             alt="All 12 regular Dream Painting Pikachu figures on their stands, as shown by Pokémon China"

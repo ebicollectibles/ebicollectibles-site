@@ -304,7 +304,7 @@ function FirstPartnerVol2Post() {
           <div key={r.id}>
             <h3 id={r.id}>{r.name}: {r.cards}</h3>
             <p>{r.text}</p>
-            <figure style={{ margin: '20px 0 28px' }}>
+            <figure style={{ margin: '20px auto 28px' }}>
               <img src={img(r.id)} alt={r.alt} loading="lazy" width={1400} height={r.height} style={{ width: '100%', height: 'auto', background: 'transparent', boxShadow: 'none' }} />
             </figure>
           </div>
@@ -343,7 +343,7 @@ function FirstPartnerVol2Post() {
             </figure>
           </li>
         </ul>
-        <figure style={{ margin: '24px 0 30px' }}>
+        <figure style={{ margin: '24px auto 30px' }}>
           <img src={img('frames-linked')} alt="Chikorita, Cyndaquil and Totodile in three display frames joined side by side, making one long Johto picture" loading="lazy" width={1400} height={800} style={{ width: '100%', height: 'auto', background: 'transparent', boxShadow: 'none' }} />
         </figure>
 

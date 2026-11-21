@@ -335,11 +335,11 @@ function OgerponMaskGiftBoxPost() {
             <figcaption>Some of the Pokémon holos.</figcaption>
           </figure>
         </div>
-        <figure style={{ margin: '24px 0' }}>
+        <figure style={{ margin: '24px auto' }}>
           <img src={img('kitakami-ex')} alt="Eight of the Pokémon ex holo cards in the Kitakami theme pack, all four Ogerpon ex, Hydrapple ex, Fezandipiti ex, Pecharunt ex and Bloodmoon Ursaluna ex" loading="lazy" width={1200} height={835} style={{ width: '100%', height: 'auto', background: '#fff', borderRadius: 10 }} />
           <figcaption>Some of the Pokémon ex holos. One comes in every pack.</figcaption>
         </figure>
-        <figure style={{ margin: '24px 0' }}>
+        <figure style={{ margin: '24px auto' }}>
           <img src={img('kitakami-trainers')} alt="Three Trainer holo cards from the Kitakami theme pack: Festival Grounds 039/040, Binding Mochi 033/040 and Briar 038/040" loading="lazy" width={1200} height={553} style={{ width: '100%', height: 'auto', background: '#fff', borderRadius: 10 }} />
           <figcaption>Festival Grounds, Binding Mochi and Briar, three of the Trainer holos.</figcaption>
         </figure>

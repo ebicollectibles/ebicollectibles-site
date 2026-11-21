@@ -233,7 +233,7 @@ function Pikachu30thPlushKeychainPost() {
           <Link to="/blog/pikachu-dream-painting-figures-release-news">Dream Painting Pikachu figures</Link>, which come in blind boxes,
           you know which Pikachu you are getting. Pokémon China does not mention a secret style.
         </p>
-        <figure style={{ margin: '28px 0' }}>
+        <figure style={{ margin: '28px auto' }}>
           <img
             src={img('full-set')}
             alt="All 30 Pikachu plush keychains sitting on white steps, each with a different expression and pose"
@@ -292,7 +292,7 @@ function Pikachu30thPlushKeychainPost() {
         <p>
           Our photo of the full set shows the 30 keychains arranged as the number 30.
         </p>
-        <figure style={{ margin: '24px 0 30px' }}>
+        <figure style={{ margin: '24px auto 30px' }}>
           <img
             src={img('formation')}
             alt="The 30 Pikachu plush keychains arranged on white steps to form the number 30"

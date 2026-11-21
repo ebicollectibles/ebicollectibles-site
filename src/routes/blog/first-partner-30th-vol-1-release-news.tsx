@@ -302,7 +302,7 @@ function FirstPartnerVol1Post() {
           <div key={r.id}>
             <h3 id={r.id}>{r.name}: {r.cards}</h3>
             <p>{r.text}</p>
-            <figure style={{ margin: '20px 0 28px' }}>
+            <figure style={{ margin: '20px auto 28px' }}>
               <img src={img(r.id)} alt={r.alt} loading="lazy" width={1400} height={r.height} style={{ width: '100%', height: 'auto', background: 'transparent', boxShadow: 'none' }} />
             </figure>
           </div>
@@ -341,7 +341,7 @@ function FirstPartnerVol1Post() {
             </figure>
           </li>
         </ul>
-        <figure style={{ margin: '24px 0 30px' }}>
+        <figure style={{ margin: '24px auto 30px' }}>
           <img src={img('frames-linked')} alt="Bulbasaur, Charmander and Squirtle in three display frames joined side by side, making one long Kanto picture" loading="lazy" width={1400} height={810} style={{ width: '100%', height: 'auto', background: 'transparent', boxShadow: 'none' }} />
         </figure>
 
