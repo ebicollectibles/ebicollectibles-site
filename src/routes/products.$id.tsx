@@ -56,7 +56,7 @@ export const Route = createFileRoute('/products/$id')({
     // price the listing deliberately hides). Display metadata only.
     const hasVisiblePrice = loaderData.price > 0 && !loaderData.hidePrice && !loaderData.notSellable
     const description = `${hasVisiblePrice ? `${formatMoney(loaderData.price)} — ` : ''}${loaderData.name}. Simplified Chinese Pokémon, verified before it ships. ${
-      loaderData.comingSoon ? 'Coming soon' : loaderData.stock > 0 ? 'In stock' : 'Currently sold out'
+      loaderData.comingSoon ? (loaderData.preorder ? 'Pre-orders open soon' : 'Coming soon') : loaderData.stock > 0 ? 'In stock' : 'Currently sold out'
     }, ships from Washington.`
     const url = `${SITE_URL}/products/${params.id}`
     const image = absoluteImageUrl(loaderData.img)
@@ -340,9 +340,9 @@ function ProductDetailPage() {
   // all of it; a variant's own hidePrice excludes just that one variant,
   // same as it does for its own dropdown option label.
   const hubPriceRange = notSellable ? getHubPriceRange(variants) : null
-  const badge = comingSoon ? 'Coming soon' : product.preorder ? 'Pre-order' : soldOut ? 'Sold out' : onSale ? 'Sale' : null
-  const badgeBg = comingSoon || soldOut ? '#5a6875' : product.preorder ? '#3f7a63' : '#a85b2c'
-  const stockLabel = comingSoon ? 'Coming soon' : soldOut ? 'Out of stock' : product.preorder ? 'Ships after release' : `${product.stock} in stock`
+  const badge = comingSoon ? (product.preorder ? 'Pre-order' : 'Coming soon') : product.preorder ? 'Pre-order' : soldOut ? 'Sold out' : onSale ? 'Sale' : null
+  const badgeBg = product.preorder && (comingSoon || !soldOut) ? '#3f7a63' : comingSoon || soldOut ? '#5a6875' : '#a85b2c'
+  const stockLabel = comingSoon ? (product.preorder ? 'Pre-orders open soon' : 'Coming soon') : soldOut ? 'Out of stock' : product.preorder ? 'Ships after release' : `${product.stock} in stock`
   const stockColor = comingSoon || soldOut ? '#5a6875' : '#3f7a63'
 
   return (

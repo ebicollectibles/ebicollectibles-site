@@ -73,7 +73,7 @@ export function AddToCartControl({
   // <= 0, not === 0 — see ProductCard.tsx's identical fix for why.
   const soldOut = !notSellable && product.stock <= 0
   const comingSoon = product.comingSoon === true
-  const btnLabel = comingSoon ? 'Coming soon' : notSellable ? 'Choose an option below' : soldOut ? 'Sold out' : product.preorder ? 'Pre-order' : 'Add to cart'
+  const btnLabel = comingSoon ? (product.preorder ? 'Pre-orders open soon' : 'Coming soon') : notSellable ? 'Choose an option below' : soldOut ? 'Sold out' : product.preorder ? 'Pre-order' : 'Add to cart'
   const atMaxStock = qtyInCart >= product.stock
 
   // Once added, the card settles into a persistent stepper instead of
