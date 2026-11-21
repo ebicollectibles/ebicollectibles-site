@@ -316,8 +316,8 @@ function ChineseGemPackHitRatesPost() {
             every three-star card is a Pok&eacute;mon full art.
           </li>
           <li>
-            <strong>Want one particular full art?</strong> Buying that card as a single is the sure way. Opening packs is for the fun of
-            it.
+            <strong>Chasing full arts?</strong> A whole box gives you the best run at one: 18 packs, 72 holo cards, and about one
+            three-star card on average. Vols. 4 to 7 are the ones where every three-star card is a Pok&eacute;mon.
           </li>
         </ul>
         <p>The rest of this guide shows where these numbers come from, volume by volume, using Pok&eacute;mon China&rsquo;s own odds charts.</p>
@@ -684,8 +684,8 @@ function ChineseGemPackHitRatesPost() {
         <h2 id="our-take">Our take</h2>
         <p>
           Gem Packs are an easy line to open: every card is a holo and every pack has a Rare or better. Go in expecting about one
-          three-star card per box, not a promised one. If a single full art is what you want, it is usually simpler to pick it up as a
-          single, and if you want Pokémon full arts only in the top tier, Vols. 4 to 7 have no Energy cards to share it with.
+          three-star card per box, not a promised one. If Pokémon full arts are what you are chasing, Vols. 4 to 7 are the ones to open:
+          they have no Energy cards sharing the top tier, so every three-star pull is a Pokémon.
         </p>
       </BlogPostLayout>
     </>
