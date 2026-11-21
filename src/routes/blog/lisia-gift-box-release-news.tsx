@@ -47,7 +47,7 @@ const FAQ = [
   },
   {
     q: "When was the Lisia's Shine gift box released?",
-    a: 'August 7, 2026, from 10:00 China time. Pokémon China announced it on July 17, 2026.',
+    a: 'August 7, 2026. Pokémon China announced it on July 17, 2026.',
   },
   {
     q: 'What promo card comes in the box?',
@@ -198,7 +198,7 @@ function LisiaGiftBoxPost() {
                 Lisia's Shine Exclusive Gift Box (<Zh>琉琪亚的闪耀专属礼盒</Zh>)
               </dd>
               <dt>Released</dt>
-              <dd>August 7, 2026, 10:00 China time</dd>
+              <dd>August 7, 2026</dd>
               <dt>Promo card</dt>
               <dd>Lisia's Appeal 352/SV-P, special illustration holo</dd>
               <dt>Set codes</dt>

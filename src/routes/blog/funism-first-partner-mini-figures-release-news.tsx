@@ -163,7 +163,7 @@ function FunismFirstPartnerReleasePost() {
         </p>
 
         <aside className="fact-box" aria-label="First Partner key facts">
-          <img src={`${IMG}-box-and-suitcase.webp`} alt="Funism First Partner box with the open suitcase, three Poké Balls and the Bulbasaur, Charmander and Squirtle figures" loading="lazy" width={881} height={909} />
+          <img src={`${IMG}-suitcase-box.webp`} alt="Funism First Partner box with the open suitcase, three Poké Balls and the Bulbasaur, Charmander and Squirtle figures" loading="lazy" width={881} height={909} />
           <div>
             <p className="fact-box-title">Key facts</p>
             <dl>

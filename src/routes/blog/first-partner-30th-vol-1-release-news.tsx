@@ -71,11 +71,11 @@ const TOC = [
 const FAQ = [
   {
     q: 'What is the Chinese First Partner Set Vol.1?',
-    a: 'An official Pokémon TCG blind box from Pokémon China for the 30th anniversary of Pokémon. Its Chinese name is 30周年庆典 最初的伙伴特别插画闪卡套装 Vol.1. Each box holds one random first partner holo card with a new illustration, an acrylic magnetic display frame and one Brilliant Fantasy booster pack.',
+    a: 'An official Pokémon TCG blind box from Pokémon China for Pokémon\'s 30th anniversary. Its Chinese name is 30周年庆典 最初的伙伴特别插画闪卡套装 Vol.1. Each box holds one random first partner holo card with a new illustration, an acrylic magnetic display frame and one Brilliant Fantasy booster pack.',
   },
   {
     q: 'When was the First Partner Set Vol.1 released?',
-    a: 'March 20, 2026, from 10:00 China time. Pokémon China announced it on February 9, 2026.',
+    a: 'March 20, 2026. Pokémon China announced it on February 9, 2026.',
   },
   {
     q: 'Which Pokémon are in Vol.1?',
@@ -185,9 +185,9 @@ function FirstPartnerVol1Post() {
       >
         <h2 id="what-it-is">What is the First Partner Set Vol.1?</h2>
         <p>
-          It is an official Simplified Chinese Pokémon TCG blind box from Pokémon China, made for the 30th anniversary of Pokémon. Its
+          It is an official Simplified Chinese Pokémon TCG blind box from Pokémon China, made for Pokémon's 30th anniversary. Its
           Chinese name is <Zh>30周年庆典 最初的伙伴特别插画闪卡套装 Vol.1</Zh>, which translates as 30th Celebration First Partner Special
-          Illustration Holo Card Set Vol.1. It went on sale on March 20, 2026, from 10:00 China time.
+          Illustration Holo Card Set Vol.1. It went on sale on March 20, 2026.
         </p>
         <p>
           Vol.1 has 9 new holo cards of the first partner Pokémon from Kanto, Sinnoh and Alola, and each box holds one of them at random.
@@ -205,7 +205,7 @@ function FirstPartnerVol1Post() {
                 First Partner Special Illustration Set Vol.1 (<Zh>30周年庆典 最初的伙伴特别插画闪卡套装 Vol.1</Zh>)
               </dd>
               <dt>Released</dt>
-              <dd>March 20, 2026, 10:00 China time</dd>
+              <dd>March 20, 2026</dd>
               <dt>Cards</dt>
               <dd>9 first partners from Kanto, Sinnoh and Alola, 1 per box</dd>
               <dt>Numbers</dt>

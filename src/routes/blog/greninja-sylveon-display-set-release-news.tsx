@@ -35,7 +35,7 @@ const FAQ = [
   },
   {
     q: 'When were the Greninja ex and Sylveon ex sets released?',
-    a: 'September 16, 2026, from 10:00 China time, the same day as the 30th Celebration set. Pokémon China announced them on August 26, 2026.',
+    a: 'September 16, 2026, the same day as the 30th Celebration set. Pokémon China announced them on August 26, 2026.',
   },
   {
     q: 'What promo cards come in the sets?',
@@ -187,7 +187,7 @@ function GreninjaSylveonDisplaySetPost() {
               <dt>Versions</dt>
               <dd>Greninja ex, Sylveon ex</dd>
               <dt>Released</dt>
-              <dd>September 16, 2026, 10:00 China time</dd>
+              <dd>September 16, 2026</dd>
               <dt>Promo cards</dt>
               <dd>Greninja ex 032/30th-P, Sylveon ex 033/30th-P</dd>
               <dt>Set code</dt>

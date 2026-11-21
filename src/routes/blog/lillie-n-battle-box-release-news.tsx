@@ -38,7 +38,7 @@ const FAQ = [
   },
   {
     q: 'When were the Lillie and N boxes released?',
-    a: 'July 16, 2026, from 10:00 China time, the same day as Chasing Glory. Pokémon China announced them on June 29, 2026.',
+    a: 'July 16, 2026, the same day as Chasing Glory. Pokémon China announced them on June 29, 2026.',
   },
   {
     q: 'Is there a promo card in the Lillie or N box?',
@@ -187,7 +187,7 @@ function LillieNBattleBoxPost() {
               <dt>Versions</dt>
               <dd>Lillie, N</dd>
               <dt>Released</dt>
-              <dd>July 16, 2026, 10:00 China time</dd>
+              <dd>July 16, 2026</dd>
               <dt>Set code</dt>
               <dd>CSV10C (the 6 packs inside)</dd>
               <dt>Booster packs</dt>

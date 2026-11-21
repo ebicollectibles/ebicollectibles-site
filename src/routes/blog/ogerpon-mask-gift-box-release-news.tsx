@@ -55,7 +55,7 @@ const FAQ = [
   },
   {
     q: 'When were the Ogerpon mask gift boxes released?',
-    a: 'May 15, 2026, from 10:00 China time, the same day as Stellar Crystal. Pokémon China announced them on April 17, 2026.',
+    a: 'May 15, 2026, the same day as Stellar Crystal. Pokémon China announced them on April 17, 2026.',
   },
   {
     q: 'What is the Kitakami theme pack?',
@@ -210,7 +210,7 @@ function OgerponMaskGiftBoxPost() {
               <dt>Versions</dt>
               <dd>Teal, Hearthflame, Wellspring, Cornerstone</dd>
               <dt>Released</dt>
-              <dd>May 15, 2026, 10:00 China time</dd>
+              <dd>May 15, 2026</dd>
               <dt>Set codes</dt>
               <dd>CSV8C and CSV9C (the 6 booster packs), csvNC (the theme pack)</dd>
               <dt>Booster packs</dt>

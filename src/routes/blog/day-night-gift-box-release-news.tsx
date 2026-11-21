@@ -38,7 +38,7 @@ const FAQ = [
   },
   {
     q: 'When was the Day & Night gift box released?',
-    a: 'September 16, 2026, from 10:00 China time, the same day as the 30th Celebration set. Pokémon China announced it on August 26, 2026.',
+    a: 'September 16, 2026, the same day as the 30th Celebration set. Pokémon China announced it on August 26, 2026.',
   },
   {
     q: 'What promo cards come in the Day & Night gift box?',
@@ -189,7 +189,7 @@ function DayNightGiftBoxPost() {
                 30th Celebration Collection Display Box: Espeon ex &amp; Umbreon ex (<Zh>30周年庆典 收藏展示礼盒</Zh>)
               </dd>
               <dt>Released</dt>
-              <dd>September 16, 2026, 10:00 China time</dd>
+              <dd>September 16, 2026</dd>
               <dt>Released with</dt>
               <dd>30th Celebration</dd>
               <dt>Promo cards</dt>

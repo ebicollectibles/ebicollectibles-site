@@ -59,7 +59,7 @@ const FAQ = [
   },
   {
     q: 'When was the Team Rocket briefcase released in China?',
-    a: 'July 16, 2026, at 10:00 China time. It released on the same day as the Chasing Glory expansion (CSV10C).',
+    a: 'July 16, 2026. It released on the same day as the Chasing Glory expansion (CSV10C).',
   },
   {
     q: 'What comes in the Team Rocket briefcase?',
@@ -212,7 +212,7 @@ function TeamRocketBriefcasePost() {
               <dt>Product</dt>
               <dd>Team Rocket's Grand Plan Exclusive Gift Box (<Zh>火箭队的宏图专属礼盒</Zh>)</dd>
               <dt>Released</dt>
-              <dd>July 16, 2026, 10:00 China time</dd>
+              <dd>July 16, 2026</dd>
               <dt>Released with</dt>
               <dd>Chasing Glory (CSV10C)</dd>
               <dt>Promo card</dt>

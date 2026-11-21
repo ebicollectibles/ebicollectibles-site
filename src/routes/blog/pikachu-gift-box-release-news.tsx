@@ -59,7 +59,7 @@ const FAQ = [
   },
   {
     q: 'When does the Radiant Crystal Pikachu gift box release?',
-    a: 'December 4, 2026, from 10:00 China time. Pokémon China announced it on November 20, 2026.',
+    a: 'December 4, 2026. Pokémon China announced it on November 20, 2026.',
   },
   {
     q: 'What is the promo card in the Pikachu gift box?',
@@ -227,7 +227,7 @@ function PikachuGiftBoxPost() {
                 Brilliant Crystal Shine: Pikachu Exclusive Gift Box (<Zh>璀璨晶耀 皮卡丘专属礼盒</Zh>)
               </dd>
               <dt>Releases</dt>
-              <dd>December 4, 2026, 10:00 China time</dd>
+              <dd>December 4, 2026</dd>
               <dt>Series</dt>
               <dd>Scarlet &amp; Violet</dd>
               <dt>Promo card</dt>

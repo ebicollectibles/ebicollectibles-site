@@ -72,11 +72,11 @@ const TOC = [
 const FAQ = [
   {
     q: 'What is the Chinese First Partner Set Vol.2?',
-    a: 'An official Pokémon TCG blind box from Pokémon China for the 30th anniversary of Pokémon. Its Chinese name is 30周年庆典 最初的伙伴特别插画闪卡套装 Vol.2. Each box holds one random first partner holo card with a new illustration, an acrylic magnetic display frame and one Stellar Crystal booster pack.',
+    a: 'An official Pokémon TCG blind box from Pokémon China for Pokémon\'s 30th anniversary. Its Chinese name is 30周年庆典 最初的伙伴特别插画闪卡套装 Vol.2. Each box holds one random first partner holo card with a new illustration, an acrylic magnetic display frame and one Stellar Crystal booster pack.',
   },
   {
     q: 'When was the First Partner Set Vol.2 released?',
-    a: 'June 19, 2026, from 10:00 China time. Pokémon China announced it on May 8, 2026.',
+    a: 'June 19, 2026. Pokémon China announced it on May 8, 2026.',
   },
   {
     q: 'Which Pokémon are in Vol.2?',
@@ -187,9 +187,9 @@ function FirstPartnerVol2Post() {
       >
         <h2 id="what-it-is">What is the First Partner Set Vol.2?</h2>
         <p>
-          It is an official Simplified Chinese Pokémon TCG blind box from Pokémon China, made for the 30th anniversary of Pokémon. Its
+          It is an official Simplified Chinese Pokémon TCG blind box from Pokémon China, made for Pokémon's 30th anniversary. Its
           Chinese name is <Zh>30周年庆典 最初的伙伴特别插画闪卡套装 Vol.2</Zh>, which translates as 30th Celebration First Partner Special
-          Illustration Holo Card Set Vol.2. It went on sale on June 19, 2026, from 10:00 China time.
+          Illustration Holo Card Set Vol.2. It went on sale on June 19, 2026.
         </p>
         <p>
           Vol.2 has 9 new holo cards of the first partner Pokémon from Johto, Unova and Galar, and each box holds one of them at random.
@@ -207,7 +207,7 @@ function FirstPartnerVol2Post() {
                 First Partner Special Illustration Set Vol.2 (<Zh>30周年庆典 最初的伙伴特别插画闪卡套装 Vol.2</Zh>)
               </dd>
               <dt>Released</dt>
-              <dd>June 19, 2026, 10:00 China time</dd>
+              <dd>June 19, 2026</dd>
               <dt>Cards</dt>
               <dd>9 first partners from Johto, Unova and Galar, 1 per box</dd>
               <dt>Numbers</dt>

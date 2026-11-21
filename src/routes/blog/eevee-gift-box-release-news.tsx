@@ -65,7 +65,7 @@ const FAQ = [
   },
   {
     q: 'When was the Eevee and Friends gift box released?',
-    a: 'June 12, 2026, from 10:00 China time, the same day as the Terastal Gathering set. Pokémon China announced it on May 25, 2026.',
+    a: 'June 12, 2026, the same day as the Terastal Gathering set. Pokémon China announced it on May 25, 2026.',
   },
   {
     q: 'What promo cards come in the Eevee and Friends gift box?',
@@ -221,7 +221,7 @@ function EeveeGiftBoxPost() {
                 Eevee and Friends Exclusive Gift Box (<Zh>伊布“们”的专属礼盒</Zh>)
               </dd>
               <dt>Released</dt>
-              <dd>June 12, 2026, 10:00 China time</dd>
+              <dd>June 12, 2026</dd>
               <dt>Series</dt>
               <dd>Scarlet &amp; Violet</dd>
               <dt>Set code</dt>

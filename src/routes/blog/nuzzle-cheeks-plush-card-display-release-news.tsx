@@ -62,7 +62,7 @@ const FAQ = [
   },
   {
     q: 'When was the Nuzzle Cheeks box released?',
-    a: 'December 19, 2025, from 10:00 China time. Pokémon China announced it on November 28, 2025.',
+    a: 'December 19, 2025. Pokémon China announced it on November 28, 2025.',
   },
   {
     q: 'Which Pokémon are in the Nuzzle Cheeks line?',
@@ -237,7 +237,7 @@ function NuzzleCheeksPlushPost() {
                 Nuzzle Cheeks Plush Toy Card Display Gift Box (<Zh>蹭蹭脸颊毛绒玩具卡牌展示礼盒</Zh>)
               </dd>
               <dt>Released</dt>
-              <dd>December 19, 2025, 10:00 China time</dd>
+              <dd>December 19, 2025</dd>
               <dt>Designs</dt>
               <dd>7: Pikachu, Raichu, Plusle, Minun, Pachirisu, Pawmot and a secret Pawmi</dd>
               <dt>Per box</dt>

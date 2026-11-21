@@ -72,11 +72,11 @@ const TOC = [
 const FAQ = [
   {
     q: 'What is the Chinese First Partner Set Vol.3?',
-    a: 'An official Pokémon TCG blind box from Pokémon China for the 30th anniversary of Pokémon. Its Chinese name is 30周年庆典 最初的伙伴特别插画闪卡套装 Vol.3. Each box holds one random first partner holo card with a new illustration, an acrylic magnetic display frame and one Chasing Glory booster pack.',
+    a: 'An official Pokémon TCG blind box from Pokémon China for Pokémon\'s 30th anniversary. Its Chinese name is 30周年庆典 最初的伙伴特别插画闪卡套装 Vol.3. Each box holds one random first partner holo card with a new illustration, an acrylic magnetic display frame and one Chasing Glory booster pack.',
   },
   {
     q: 'When was the First Partner Set Vol.3 released?',
-    a: 'August 7, 2026, from 10:00 China time. Pokémon China announced it on July 17, 2026.',
+    a: 'August 7, 2026. Pokémon China announced it on July 17, 2026.',
   },
   {
     q: 'Which Pokémon are in Vol.3?',
@@ -188,9 +188,9 @@ function FirstPartnerVol3Post() {
       >
         <h2 id="what-it-is">What is the First Partner Set Vol.3?</h2>
         <p>
-          It is an official Simplified Chinese Pokémon TCG blind box from Pokémon China, made for the 30th anniversary of Pokémon. Its
+          It is an official Simplified Chinese Pokémon TCG blind box from Pokémon China, made for Pokémon's 30th anniversary. Its
           Chinese name is <Zh>30周年庆典 最初的伙伴特别插画闪卡套装 Vol.3</Zh>, which translates as 30th Celebration First Partner Special
-          Illustration Holo Card Set Vol.3. It went on sale on August 7, 2026, from 10:00 China time.
+          Illustration Holo Card Set Vol.3. It went on sale on August 7, 2026.
         </p>
         <p>
           Vol.3 has 9 new holo cards of the first partner Pokémon from Hoenn, Kalos and Paldea, and each box holds one of them at random.
@@ -208,7 +208,7 @@ function FirstPartnerVol3Post() {
                 First Partner Special Illustration Set Vol.3 (<Zh>30周年庆典 最初的伙伴特别插画闪卡套装 Vol.3</Zh>)
               </dd>
               <dt>Released</dt>
-              <dd>August 7, 2026, 10:00 China time</dd>
+              <dd>August 7, 2026</dd>
               <dt>Cards</dt>
               <dd>9 first partners from Hoenn, Kalos and Paldea, 1 per box</dd>
               <dt>Numbers</dt>
