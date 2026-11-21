@@ -79,7 +79,7 @@ const FAQ = [
   },
   {
     q: 'What is the Pikachu gift box called in Chinese?',
-    a: '璀璨晶耀 皮卡丘专属礼盒. It translates roughly as Brilliant Crystal Shine: Pikachu Exclusive Gift Box. There is no official English name, so you will also see it called the Pikachu Exclusive Gift Box or the Stellar Pikachu Gift Box.',
+    a: '璀璨晶耀 皮卡丘专属礼盒. It translates roughly as Brilliant Crystal Shine: Pikachu Exclusive Gift Box. There is no official English name, so you will also see it called the Radiant Crystal Pikachu Gift Box, the Pikachu Exclusive Gift Box or the Stellar Pikachu Gift Box. It is not the older Radiant Energy Pikachu gift box from 2024.',
   },
   {
     q: 'Can I pre-order the Chinese Pikachu gift box?',
@@ -385,8 +385,12 @@ function PikachuGiftBoxPost() {
         <h2 id="names">What is it called?</h2>
         <p>
           Pokémon China calls it <Zh>璀璨晶耀 皮卡丘专属礼盒</Zh>. There is no official English name. A close translation is Brilliant
-          Crystal Shine: Pikachu Exclusive Gift Box, and we call it the Stellar Pikachu Gift Box for short. Other shops may list it as
-          the Chinese Pikachu Gift Box, the Pikachu Exclusive Gift Box or the Pikachu ex Gift Box. They are all the same product.
+          Crystal Shine: Pikachu Exclusive Gift Box, and we call it the Stellar Pikachu Gift Box for short. Other shops list it as the
+          Radiant Crystal Pikachu Gift Box, the Chinese Pikachu Gift Box, the Pikachu Exclusive Gift Box or the Pikachu ex Gift Box.
+          They are all the same product.
+        </p>
+        <p>
+          It is not the Radiant Energy Pikachu gift box from 2024, an older Simplified Chinese box with different packs and cards.
         </p>
 
         <h2 id="not-known">What Pokémon China has not said</h2>
