@@ -47,6 +47,13 @@ export const RARITY_CODE: Record<string, string> = {
   // for by this same set's own other tiers.
   'Shiny (S)': 'S',
   'Shiny Super Rare (SSR)': 'RRR',
+  // Japanese sets. Storm Emeralda's gold Mega Ultra Rare is its top tier,
+  // so it reuses the gold-card color hook (as Ultra Rare does). The
+  // Japanese 30th CELEBRATION prints no rarity mark on most main-set
+  // cards; like the unrated blocks above, that label is a neutral display
+  // bucket on Common's color, not a real tier.
+  'Mega Ultra Rare (MUR)': 'BWR',
+  'No Rarity Mark': 'C',
 }
 export const RARITY_SYMBOL: Record<string, string> = {
   Common: '●',
@@ -71,4 +78,6 @@ export const RARITY_SYMBOL: Record<string, string> = {
   'ACE SPEC Rare (ACE)': '❖',
   'Shiny (S)': '✶',
   'Shiny Super Rare (SSR)': '✶✶',
+  'Mega Ultra Rare (MUR)': '✧',
+  'No Rarity Mark': '○',
 }

@@ -111,6 +111,9 @@ export interface GemSetConfig {
   // Overrides for the "Only in the Simplified Chinese release." line under
   // the exclusives heading, for a set in another language.
   exclusiveSub?: string
+  // Overrides the "Complete card list & checklist" line under the title,
+  // for a set whose full list is not out yet.
+  titleSub?: string
 }
 
 export interface BuiltGemSetData {

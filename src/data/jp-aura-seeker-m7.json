@@ -1,0 +1,653 @@
+{
+  "name": "Hadou Seeker",
+  "slug": "aura-seeker-m7",
+  "code": "M7",
+  "series": "Japanese Mega Evolution",
+  "language": "Japanese",
+  "releaseDate": "2026-11-27",
+  "cardCount": 79,
+  "rarityOrder": [
+    "Common (C)",
+    "Uncommon (U)",
+    "Rare (R)",
+    "Double Rare (RR)",
+    "Special Art Rare (SAR)"
+  ],
+  "exclusiveCardNumbers": [],
+  "source": "Official Pokémon Card Game card database (pokemon-card.com/card-search, product 964) and pokemon-card.com/ex/m7 card list; English names translated (no official English release yet)",
+  "cards": [
+    {
+      "number": "001/078",
+      "pokemonIndex": 1,
+      "version": 1,
+      "name": "Bellsprout",
+      "rarity": "Common (C)",
+      "image": "https://www.pokemon-card.com/assets/images/card_images/large/M7/050856_P_MADATSUBOMI.jpg"
+    },
+    {
+      "number": "002/078",
+      "pokemonIndex": 2,
+      "version": 1,
+      "name": "Weepinbell",
+      "rarity": "Common (C)",
+      "image": "https://www.pokemon-card.com/assets/images/card_images/large/M7/050857_P_UTSUDON.jpg"
+    },
+    {
+      "number": "003/078",
+      "pokemonIndex": 3,
+      "version": 1,
+      "name": "Victreebel",
+      "rarity": "Uncommon (U)",
+      "image": "https://www.pokemon-card.com/assets/images/card_images/large/M7/050858_P_UTSUBOTTO.jpg"
+    },
+    {
+      "number": "004/078",
+      "pokemonIndex": 4,
+      "version": 1,
+      "name": "Yanma",
+      "rarity": "Common (C)",
+      "image": "https://www.pokemon-card.com/assets/images/card_images/large/M7/050859_P_YANYANMA.jpg"
+    },
+    {
+      "number": "005/078",
+      "pokemonIndex": 5,
+      "version": 1,
+      "name": "Yanmega",
+      "rarity": "Uncommon (U)",
+      "image": "https://www.pokemon-card.com/assets/images/card_images/large/M7/050860_P_MYANMA.jpg"
+    },
+    {
+      "number": "006/078",
+      "pokemonIndex": 6,
+      "version": 1,
+      "name": "Treecko",
+      "rarity": "Common (C)",
+      "image": "https://www.pokemon-card.com/assets/images/card_images/large/M7/050861_P_KIMORI.jpg"
+    },
+    {
+      "number": "007/078",
+      "pokemonIndex": 7,
+      "version": 1,
+      "name": "Grovyle",
+      "rarity": "Common (C)",
+      "image": "https://www.pokemon-card.com/assets/images/card_images/large/M7/050862_P_JIXYUPUTORU.jpg"
+    },
+    {
+      "number": "008/078",
+      "pokemonIndex": 8,
+      "version": 1,
+      "name": "Sceptile ex",
+      "rarity": "Double Rare (RR)",
+      "image": "https://www.pokemon-card.com/assets/images/card_images/large/M7/050863_P_JIXYUKAINIEKKUSU.jpg"
+    },
+    {
+      "number": "009/078",
+      "pokemonIndex": 9,
+      "version": 1,
+      "name": "Karrablast",
+      "rarity": "Common (C)",
+      "image": "https://www.pokemon-card.com/assets/images/card_images/large/M7/050864_P_KABURUMO.jpg"
+    },
+    {
+      "number": "010/078",
+      "pokemonIndex": 10,
+      "version": 1,
+      "name": "Shelmet",
+      "rarity": "Common (C)",
+      "image": "https://www.pokemon-card.com/assets/images/card_images/large/M7/050865_P_CHIXYOBOMAKI.jpg"
+    },
+    {
+      "number": "011/078",
+      "pokemonIndex": 11,
+      "version": 1,
+      "name": "Accelgor",
+      "rarity": "Uncommon (U)",
+      "image": "https://www.pokemon-card.com/assets/images/card_images/large/M7/050866_P_AGIRUDA.jpg"
+    },
+    {
+      "number": "012/078",
+      "pokemonIndex": 12,
+      "version": 1,
+      "name": "Vulpix",
+      "rarity": "Common (C)",
+      "image": "https://www.pokemon-card.com/assets/images/card_images/large/M7/050867_P_ROKON.jpg"
+    },
+    {
+      "number": "013/078",
+      "pokemonIndex": 13,
+      "version": 1,
+      "name": "Ninetales",
+      "rarity": "Uncommon (U)",
+      "image": "https://www.pokemon-card.com/assets/images/card_images/large/M7/050868_P_KIXYUUKON.jpg"
+    },
+    {
+      "number": "014/078",
+      "pokemonIndex": 14,
+      "version": 1,
+      "name": "Squirtle",
+      "rarity": "Common (C)",
+      "image": "https://www.pokemon-card.com/assets/images/card_images/large/M7/050869_P_ZENIGAME.jpg"
+    },
+    {
+      "number": "015/078",
+      "pokemonIndex": 15,
+      "version": 1,
+      "name": "Wartortle",
+      "rarity": "Common (C)",
+      "image": "https://www.pokemon-card.com/assets/images/card_images/large/M7/050870_P_KAMERU.jpg"
+    },
+    {
+      "number": "016/078",
+      "pokemonIndex": 16,
+      "version": 1,
+      "name": "Blastoise",
+      "rarity": "Rare (R)",
+      "image": "https://www.pokemon-card.com/assets/images/card_images/large/M7/050871_P_KAMEKKUSU.jpg"
+    },
+    {
+      "number": "017/078",
+      "pokemonIndex": 17,
+      "version": 1,
+      "name": "Wooper",
+      "rarity": "Common (C)",
+      "image": "https://www.pokemon-card.com/assets/images/card_images/large/M7/050872_P_UPA.jpg"
+    },
+    {
+      "number": "018/078",
+      "pokemonIndex": 18,
+      "version": 1,
+      "name": "Quagsire",
+      "rarity": "Uncommon (U)",
+      "image": "https://www.pokemon-card.com/assets/images/card_images/large/M7/050873_P_NUO.jpg"
+    },
+    {
+      "number": "019/078",
+      "pokemonIndex": 19,
+      "version": 1,
+      "name": "Buizel",
+      "rarity": "Common (C)",
+      "image": "https://www.pokemon-card.com/assets/images/card_images/large/M7/050874_P_BUIZERU.jpg"
+    },
+    {
+      "number": "020/078",
+      "pokemonIndex": 20,
+      "version": 1,
+      "name": "Floatzel ex",
+      "rarity": "Double Rare (RR)",
+      "image": "https://www.pokemon-card.com/assets/images/card_images/large/M7/050875_P_FUROZERUIEKKUSU.jpg"
+    },
+    {
+      "number": "021/078",
+      "pokemonIndex": 21,
+      "version": 1,
+      "name": "Cryogonal",
+      "rarity": "Common (C)",
+      "image": "https://www.pokemon-card.com/assets/images/card_images/large/M7/050876_P_FURIJIO.jpg"
+    },
+    {
+      "number": "022/078",
+      "pokemonIndex": 22,
+      "version": 1,
+      "name": "Oricorio",
+      "rarity": "Common (C)",
+      "image": "https://www.pokemon-card.com/assets/images/card_images/large/M7/050877_P_ODORIDORI.jpg"
+    },
+    {
+      "number": "023/078",
+      "pokemonIndex": 23,
+      "version": 1,
+      "name": "Pawmi",
+      "rarity": "Common (C)",
+      "image": "https://www.pokemon-card.com/assets/images/card_images/large/M7/050878_P_PAMO.jpg"
+    },
+    {
+      "number": "024/078",
+      "pokemonIndex": 24,
+      "version": 1,
+      "name": "Pawmo",
+      "rarity": "Common (C)",
+      "image": "https://www.pokemon-card.com/assets/images/card_images/large/M7/050879_P_PAMOTTO.jpg"
+    },
+    {
+      "number": "025/078",
+      "pokemonIndex": 25,
+      "version": 1,
+      "name": "Pawmot",
+      "rarity": "Rare (R)",
+      "image": "https://www.pokemon-card.com/assets/images/card_images/large/M7/050880_P_PAMOTTO.jpg"
+    },
+    {
+      "number": "026/078",
+      "pokemonIndex": 26,
+      "version": 1,
+      "name": "Natu",
+      "rarity": "Common (C)",
+      "image": "https://www.pokemon-card.com/assets/images/card_images/large/M7/050881_P_NEITEI.jpg"
+    },
+    {
+      "number": "027/078",
+      "pokemonIndex": 27,
+      "version": 1,
+      "name": "Xatu",
+      "rarity": "Uncommon (U)",
+      "image": "https://www.pokemon-card.com/assets/images/card_images/large/M7/050882_P_NEITEIO.jpg"
+    },
+    {
+      "number": "028/078",
+      "pokemonIndex": 28,
+      "version": 1,
+      "name": "Meditite",
+      "rarity": "Common (C)",
+      "image": "https://www.pokemon-card.com/assets/images/card_images/large/M7/050883_P_ASANAN.jpg"
+    },
+    {
+      "number": "029/078",
+      "pokemonIndex": 29,
+      "version": 1,
+      "name": "Medicham",
+      "rarity": "Uncommon (U)",
+      "image": "https://www.pokemon-card.com/assets/images/card_images/large/M7/050884_P_CHIXYAREMU.jpg"
+    },
+    {
+      "number": "030/078",
+      "pokemonIndex": 30,
+      "version": 1,
+      "name": "Mega Absol Z ex",
+      "rarity": "Double Rare (RR)",
+      "image": "https://www.pokemon-card.com/assets/images/card_images/large/M7/050885_P_MABUSORUZETTOIEKKUSU.jpg"
+    },
+    {
+      "number": "031/078",
+      "pokemonIndex": 31,
+      "version": 1,
+      "name": "Sigilyph ex",
+      "rarity": "Double Rare (RR)",
+      "image": "https://www.pokemon-card.com/assets/images/card_images/large/M7/050886_P_SHINBORAIEKKUSU.jpg"
+    },
+    {
+      "number": "032/078",
+      "pokemonIndex": 32,
+      "version": 1,
+      "name": "Meloetta",
+      "rarity": "Common (C)",
+      "image": "https://www.pokemon-card.com/assets/images/card_images/large/M7/050887_P_MEROETTA.jpg"
+    },
+    {
+      "number": "033/078",
+      "pokemonIndex": 33,
+      "version": 1,
+      "name": "Oranguru",
+      "rarity": "Rare (R)",
+      "image": "https://www.pokemon-card.com/assets/images/card_images/large/M7/050888_P_YAREYUTAN.jpg"
+    },
+    {
+      "number": "034/078",
+      "pokemonIndex": 34,
+      "version": 1,
+      "name": "Hatenna",
+      "rarity": "Common (C)",
+      "image": "https://www.pokemon-card.com/assets/images/card_images/large/M7/050889_P_MIBURIMU.jpg"
+    },
+    {
+      "number": "035/078",
+      "pokemonIndex": 35,
+      "version": 1,
+      "name": "Hattrem",
+      "rarity": "Common (C)",
+      "image": "https://www.pokemon-card.com/assets/images/card_images/large/M7/050890_P_TEBURIMU.jpg"
+    },
+    {
+      "number": "036/078",
+      "pokemonIndex": 36,
+      "version": 1,
+      "name": "Hatterene",
+      "rarity": "Uncommon (U)",
+      "image": "https://www.pokemon-card.com/assets/images/card_images/large/M7/050891_P_BURIMUON.jpg"
+    },
+    {
+      "number": "037/078",
+      "pokemonIndex": 37,
+      "version": 1,
+      "name": "Machop",
+      "rarity": "Common (C)",
+      "image": "https://www.pokemon-card.com/assets/images/card_images/large/M7/050892_P_WANRIKI.jpg"
+    },
+    {
+      "number": "038/078",
+      "pokemonIndex": 38,
+      "version": 1,
+      "name": "Machoke",
+      "rarity": "Common (C)",
+      "image": "https://www.pokemon-card.com/assets/images/card_images/large/M7/050893_P_GORIKI.jpg"
+    },
+    {
+      "number": "039/078",
+      "pokemonIndex": 39,
+      "version": 1,
+      "name": "Machamp",
+      "rarity": "Uncommon (U)",
+      "image": "https://www.pokemon-card.com/assets/images/card_images/large/M7/050894_P_KAIRIKI.jpg"
+    },
+    {
+      "number": "040/078",
+      "pokemonIndex": 40,
+      "version": 1,
+      "name": "Hitmontop",
+      "rarity": "Common (C)",
+      "image": "https://www.pokemon-card.com/assets/images/card_images/large/M7/050895_P_KAPOERA.jpg"
+    },
+    {
+      "number": "041/078",
+      "pokemonIndex": 41,
+      "version": 1,
+      "name": "Trapinch",
+      "rarity": "Common (C)",
+      "image": "https://www.pokemon-card.com/assets/images/card_images/large/M7/050896_P_NAKKURA.jpg"
+    },
+    {
+      "number": "042/078",
+      "pokemonIndex": 42,
+      "version": 1,
+      "name": "Barboach",
+      "rarity": "Common (C)",
+      "image": "https://www.pokemon-card.com/assets/images/card_images/large/M7/050897_P_DOJIXYOTCHI.jpg"
+    },
+    {
+      "number": "043/078",
+      "pokemonIndex": 43,
+      "version": 1,
+      "name": "Whiscash",
+      "rarity": "Uncommon (U)",
+      "image": "https://www.pokemon-card.com/assets/images/card_images/large/M7/050898_P_NAMAZUN.jpg"
+    },
+    {
+      "number": "044/078",
+      "pokemonIndex": 44,
+      "version": 1,
+      "name": "Riolu",
+      "rarity": "Common (C)",
+      "image": "https://www.pokemon-card.com/assets/images/card_images/large/M7/050899_P_RIORU.jpg"
+    },
+    {
+      "number": "045/078",
+      "pokemonIndex": 45,
+      "version": 1,
+      "name": "Throh",
+      "rarity": "Common (C)",
+      "image": "https://www.pokemon-card.com/assets/images/card_images/large/M7/050900_P_NAGEKI.jpg"
+    },
+    {
+      "number": "046/078",
+      "pokemonIndex": 46,
+      "version": 1,
+      "name": "Hawlucha",
+      "rarity": "Uncommon (U)",
+      "image": "https://www.pokemon-card.com/assets/images/card_images/large/M7/050901_P_RUCHIXYABURU.jpg"
+    },
+    {
+      "number": "047/078",
+      "pokemonIndex": 47,
+      "version": 1,
+      "name": "Falinks",
+      "rarity": "Uncommon (U)",
+      "image": "https://www.pokemon-card.com/assets/images/card_images/large/M7/050902_P_TAIRETSU.jpg"
+    },
+    {
+      "number": "048/078",
+      "pokemonIndex": 48,
+      "version": 1,
+      "name": "Kubfu",
+      "rarity": "Common (C)",
+      "image": "https://www.pokemon-card.com/assets/images/card_images/large/M7/050903_P_DAKUMA.jpg"
+    },
+    {
+      "number": "049/078",
+      "pokemonIndex": 49,
+      "version": 1,
+      "name": "Single Strike Urshifu",
+      "rarity": "Rare (R)",
+      "image": "https://www.pokemon-card.com/assets/images/card_images/large/M7/050904_P_ICHIGEKIURAOSU.jpg"
+    },
+    {
+      "number": "050/078",
+      "pokemonIndex": 50,
+      "version": 1,
+      "name": "Rapid Strike Urshifu",
+      "rarity": "Rare (R)",
+      "image": "https://www.pokemon-card.com/assets/images/card_images/large/M7/050905_P_RENGEKIURAOSU.jpg"
+    },
+    {
+      "number": "051/078",
+      "pokemonIndex": 51,
+      "version": 1,
+      "name": "Inkay",
+      "rarity": "Common (C)",
+      "image": "https://www.pokemon-card.com/assets/images/card_images/large/M7/050906_P_MAIKA.jpg"
+    },
+    {
+      "number": "052/078",
+      "pokemonIndex": 52,
+      "version": 1,
+      "name": "Malamar",
+      "rarity": "Uncommon (U)",
+      "image": "https://www.pokemon-card.com/assets/images/card_images/large/M7/050907_P_KARAMANERO.jpg"
+    },
+    {
+      "number": "053/078",
+      "pokemonIndex": 53,
+      "version": 1,
+      "name": "Glimmet",
+      "rarity": "Common (C)",
+      "image": "https://www.pokemon-card.com/assets/images/card_images/large/M7/050908_P_KIRAME.jpg"
+    },
+    {
+      "number": "054/078",
+      "pokemonIndex": 54,
+      "version": 1,
+      "name": "Mega Glimmora ex",
+      "rarity": "Double Rare (RR)",
+      "image": "https://www.pokemon-card.com/assets/images/card_images/large/M7/050909_P_MKIRAFURORUIEKKUSU.jpg"
+    },
+    {
+      "number": "055/078",
+      "pokemonIndex": 55,
+      "version": 1,
+      "name": "Ting-Lu",
+      "rarity": "Rare (R)",
+      "image": "https://www.pokemon-card.com/assets/images/card_images/large/M7/050910_P_DEINRU.jpg"
+    },
+    {
+      "number": "056/078",
+      "pokemonIndex": 56,
+      "version": 1,
+      "name": "Mawile",
+      "rarity": "Uncommon (U)",
+      "image": "https://www.pokemon-card.com/assets/images/card_images/large/M7/050911_P_KUCHITO.jpg"
+    },
+    {
+      "number": "057/078",
+      "pokemonIndex": 57,
+      "version": 1,
+      "name": "Mega Lucario Z ex",
+      "rarity": "Double Rare (RR)",
+      "image": "https://www.pokemon-card.com/assets/images/card_images/large/M7/050912_P_MRUKARIOZETTOIEKKUSU.jpg"
+    },
+    {
+      "number": "058/078",
+      "pokemonIndex": 58,
+      "version": 1,
+      "name": "Escavalier",
+      "rarity": "Uncommon (U)",
+      "image": "https://www.pokemon-card.com/assets/images/card_images/large/M7/050913_P_SHIXYUBARUGO.jpg"
+    },
+    {
+      "number": "059/078",
+      "pokemonIndex": 59,
+      "version": 1,
+      "name": "Togedemaru ex",
+      "rarity": "Double Rare (RR)",
+      "image": "https://www.pokemon-card.com/assets/images/card_images/large/M7/050914_P_TOGEDEMARUIEKKUSU.jpg"
+    },
+    {
+      "number": "060/078",
+      "pokemonIndex": 60,
+      "version": 1,
+      "name": "Varoom",
+      "rarity": "Common (C)",
+      "image": "https://www.pokemon-card.com/assets/images/card_images/large/M7/050915_P_BURORON.jpg"
+    },
+    {
+      "number": "061/078",
+      "pokemonIndex": 61,
+      "version": 1,
+      "name": "Revavroom",
+      "rarity": "Rare (R)",
+      "image": "https://www.pokemon-card.com/assets/images/card_images/large/M7/050916_P_BUROROROMU.jpg"
+    },
+    {
+      "number": "062/078",
+      "pokemonIndex": 62,
+      "version": 1,
+      "name": "Orthworm",
+      "rarity": "Common (C)",
+      "image": "https://www.pokemon-card.com/assets/images/card_images/large/M7/050917_P_MIMIZUZU.jpg"
+    },
+    {
+      "number": "063/078",
+      "pokemonIndex": 63,
+      "version": 1,
+      "name": "Vibrava",
+      "rarity": "Common (C)",
+      "image": "https://www.pokemon-card.com/assets/images/card_images/large/M7/050918_P_BIBURABA.jpg"
+    },
+    {
+      "number": "064/078",
+      "pokemonIndex": 64,
+      "version": 1,
+      "name": "Flygon",
+      "rarity": "Uncommon (U)",
+      "image": "https://www.pokemon-card.com/assets/images/card_images/large/M7/050919_P_FURAIGON.jpg"
+    },
+    {
+      "number": "065/078",
+      "pokemonIndex": 65,
+      "version": 1,
+      "name": "Gible",
+      "rarity": "Common (C)",
+      "image": "https://www.pokemon-card.com/assets/images/card_images/large/M7/050920_P_FUKAMARU.jpg"
+    },
+    {
+      "number": "066/078",
+      "pokemonIndex": 66,
+      "version": 1,
+      "name": "Gabite",
+      "rarity": "Common (C)",
+      "image": "https://www.pokemon-card.com/assets/images/card_images/large/M7/050921_P_GABAITO.jpg"
+    },
+    {
+      "number": "067/078",
+      "pokemonIndex": 67,
+      "version": 1,
+      "name": "Mega Garchomp Z ex",
+      "rarity": "Double Rare (RR)",
+      "image": "https://www.pokemon-card.com/assets/images/card_images/large/M7/050922_P_MGABURIASUZETTOIEKKUSU.jpg"
+    },
+    {
+      "number": "068/078",
+      "pokemonIndex": 68,
+      "version": 1,
+      "name": "Drampa",
+      "rarity": "Uncommon (U)",
+      "image": "https://www.pokemon-card.com/assets/images/card_images/large/M7/050923_P_JIJIRON.jpg"
+    },
+    {
+      "number": "069/078",
+      "pokemonIndex": 69,
+      "version": 1,
+      "name": "Meowth",
+      "rarity": "Common (C)",
+      "image": "https://www.pokemon-card.com/assets/images/card_images/large/M7/050924_P_NIXYASU.jpg"
+    },
+    {
+      "number": "070/078",
+      "pokemonIndex": 70,
+      "version": 1,
+      "name": "Persian",
+      "rarity": "Uncommon (U)",
+      "image": "https://www.pokemon-card.com/assets/images/card_images/large/M7/050925_P_PERUSHIAN.jpg"
+    },
+    {
+      "number": "071/078",
+      "pokemonIndex": 71,
+      "version": 1,
+      "name": "Kecleon",
+      "rarity": "Uncommon (U)",
+      "image": "https://www.pokemon-card.com/assets/images/card_images/large/M7/050926_P_KAKUREON.jpg"
+    },
+    {
+      "number": "072/078",
+      "pokemonIndex": 72,
+      "version": 1,
+      "name": "Munchlax",
+      "rarity": "Common (C)",
+      "image": "https://www.pokemon-card.com/assets/images/card_images/large/M7/050927_P_GONBE.jpg"
+    },
+    {
+      "number": "073/078",
+      "pokemonIndex": 73,
+      "version": 1,
+      "name": "Regigigas",
+      "rarity": "Rare (R)",
+      "image": "https://www.pokemon-card.com/assets/images/card_images/large/M7/050928_P_REJIGIGASU.jpg"
+    },
+    {
+      "number": "074/078",
+      "pokemonIndex": 74,
+      "version": 1,
+      "name": "Bond Sash",
+      "rarity": "Uncommon (U)",
+      "image": "https://www.pokemon-card.com/assets/images/card_images/large/M7/050929_T_KIZUNANOTASUKI.jpg"
+    },
+    {
+      "number": "075/078",
+      "pokemonIndex": 75,
+      "version": 1,
+      "name": "Korrina's Earnestness",
+      "rarity": "Uncommon (U)",
+      "image": "https://www.pokemon-card.com/assets/images/card_images/large/M7/050930_T_KORUNINOHONKI.jpg"
+    },
+    {
+      "number": "076/078",
+      "pokemonIndex": 76,
+      "version": 1,
+      "name": "Crasher Wake's Fervor",
+      "rarity": "Uncommon (U)",
+      "image": "https://www.pokemon-card.com/assets/images/card_images/large/M7/050931_T_MAKISHINONEKKETSU.jpg"
+    },
+    {
+      "number": "077/078",
+      "pokemonIndex": 77,
+      "version": 1,
+      "name": "Reporter",
+      "rarity": "Uncommon (U)",
+      "image": "https://www.pokemon-card.com/assets/images/card_images/large/M7/050932_T_REPOTA.jpg"
+    },
+    {
+      "number": "078/078",
+      "pokemonIndex": 78,
+      "version": 1,
+      "name": "Fight Arena",
+      "rarity": "Uncommon (U)",
+      "image": "https://www.pokemon-card.com/assets/images/card_images/large/M7/050933_T_FUAITOARINA.jpg"
+    },
+    {
+      "number": "113/078",
+      "pokemonIndex": 113,
+      "version": 1,
+      "name": "Crasher Wake's Fervor",
+      "rarity": "Special Art Rare (SAR)",
+      "image": "https://www.pokemon-card.com/ex/m7/assets/images/card/m7-113-m01h7.webp"
+    }
+  ],
+  "groupByName": true
+}

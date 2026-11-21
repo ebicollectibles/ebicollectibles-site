@@ -162,6 +162,9 @@ import { Route as SetsChineseTerastalGatheringCsv95RouteImport } from './routes/
 import { Route as SetsChineseTrueMysteryCsv6RouteImport } from './routes/sets/chinese/true-mystery-csv6'
 import { Route as SetsChineseWhiteFlareCsv106RouteImport } from './routes/sets/chinese/white-flare-csv10-6'
 import { Route as SetsJapaneseIndexRouteImport } from './routes/sets/japanese/index'
+import { Route as SetsJapanese30thCelebrationM6aRouteImport } from './routes/sets/japanese/30th-celebration-m6a'
+import { Route as SetsJapaneseAuraSeekerM7RouteImport } from './routes/sets/japanese/aura-seeker-m7'
+import { Route as SetsJapaneseStormEmeraldaM6RouteImport } from './routes/sets/japanese/storm-emeralda-m6'
 import { Route as AdminAffiliatesIdDashboardRouteImport } from './routes/admin/affiliates_.$id.dashboard'
 
 const IndexRoute = IndexRouteImport.update({
@@ -1000,6 +1003,24 @@ const SetsJapaneseIndexRoute = SetsJapaneseIndexRouteImport.update({
   path: '/sets/japanese/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SetsJapanese30thCelebrationM6aRoute =
+  SetsJapanese30thCelebrationM6aRouteImport.update({
+    id: '/sets/japanese/30th-celebration-m6a',
+    path: '/sets/japanese/30th-celebration-m6a',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const SetsJapaneseAuraSeekerM7Route =
+  SetsJapaneseAuraSeekerM7RouteImport.update({
+    id: '/sets/japanese/aura-seeker-m7',
+    path: '/sets/japanese/aura-seeker-m7',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const SetsJapaneseStormEmeraldaM6Route =
+  SetsJapaneseStormEmeraldaM6RouteImport.update({
+    id: '/sets/japanese/storm-emeralda-m6',
+    path: '/sets/japanese/storm-emeralda-m6',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const AdminAffiliatesIdDashboardRoute =
   AdminAffiliatesIdDashboardRouteImport.update({
     id: '/admin/affiliates_/$id/dashboard',
@@ -1156,6 +1177,9 @@ export interface FileRoutesByFullPath {
   '/sets/chinese/terastal-gathering-csv9-5': typeof SetsChineseTerastalGatheringCsv95Route
   '/sets/chinese/true-mystery-csv6': typeof SetsChineseTrueMysteryCsv6Route
   '/sets/chinese/white-flare-csv10-6': typeof SetsChineseWhiteFlareCsv106Route
+  '/sets/japanese/30th-celebration-m6a': typeof SetsJapanese30thCelebrationM6aRoute
+  '/sets/japanese/aura-seeker-m7': typeof SetsJapaneseAuraSeekerM7Route
+  '/sets/japanese/storm-emeralda-m6': typeof SetsJapaneseStormEmeraldaM6Route
   '/account/orders/': typeof AccountOrdersIndexRoute
   '/admin/customers/': typeof AdminCustomersIndexRoute
   '/admin/orders/': typeof AdminOrdersIndexRoute
@@ -1312,6 +1336,9 @@ export interface FileRoutesByTo {
   '/sets/chinese/terastal-gathering-csv9-5': typeof SetsChineseTerastalGatheringCsv95Route
   '/sets/chinese/true-mystery-csv6': typeof SetsChineseTrueMysteryCsv6Route
   '/sets/chinese/white-flare-csv10-6': typeof SetsChineseWhiteFlareCsv106Route
+  '/sets/japanese/30th-celebration-m6a': typeof SetsJapanese30thCelebrationM6aRoute
+  '/sets/japanese/aura-seeker-m7': typeof SetsJapaneseAuraSeekerM7Route
+  '/sets/japanese/storm-emeralda-m6': typeof SetsJapaneseStormEmeraldaM6Route
   '/account/orders': typeof AccountOrdersIndexRoute
   '/admin/customers': typeof AdminCustomersIndexRoute
   '/admin/orders': typeof AdminOrdersIndexRoute
@@ -1469,6 +1496,9 @@ export interface FileRoutesById {
   '/sets/chinese/terastal-gathering-csv9-5': typeof SetsChineseTerastalGatheringCsv95Route
   '/sets/chinese/true-mystery-csv6': typeof SetsChineseTrueMysteryCsv6Route
   '/sets/chinese/white-flare-csv10-6': typeof SetsChineseWhiteFlareCsv106Route
+  '/sets/japanese/30th-celebration-m6a': typeof SetsJapanese30thCelebrationM6aRoute
+  '/sets/japanese/aura-seeker-m7': typeof SetsJapaneseAuraSeekerM7Route
+  '/sets/japanese/storm-emeralda-m6': typeof SetsJapaneseStormEmeraldaM6Route
   '/account/orders/': typeof AccountOrdersIndexRoute
   '/admin/customers/': typeof AdminCustomersIndexRoute
   '/admin/orders/': typeof AdminOrdersIndexRoute
@@ -1627,6 +1657,9 @@ export interface FileRouteTypes {
     | '/sets/chinese/terastal-gathering-csv9-5'
     | '/sets/chinese/true-mystery-csv6'
     | '/sets/chinese/white-flare-csv10-6'
+    | '/sets/japanese/30th-celebration-m6a'
+    | '/sets/japanese/aura-seeker-m7'
+    | '/sets/japanese/storm-emeralda-m6'
     | '/account/orders/'
     | '/admin/customers/'
     | '/admin/orders/'
@@ -1783,6 +1816,9 @@ export interface FileRouteTypes {
     | '/sets/chinese/terastal-gathering-csv9-5'
     | '/sets/chinese/true-mystery-csv6'
     | '/sets/chinese/white-flare-csv10-6'
+    | '/sets/japanese/30th-celebration-m6a'
+    | '/sets/japanese/aura-seeker-m7'
+    | '/sets/japanese/storm-emeralda-m6'
     | '/account/orders'
     | '/admin/customers'
     | '/admin/orders'
@@ -1939,6 +1975,9 @@ export interface FileRouteTypes {
     | '/sets/chinese/terastal-gathering-csv9-5'
     | '/sets/chinese/true-mystery-csv6'
     | '/sets/chinese/white-flare-csv10-6'
+    | '/sets/japanese/30th-celebration-m6a'
+    | '/sets/japanese/aura-seeker-m7'
+    | '/sets/japanese/storm-emeralda-m6'
     | '/account/orders/'
     | '/admin/customers/'
     | '/admin/orders/'
@@ -2096,6 +2135,9 @@ export interface RootRouteChildren {
   SetsChineseTerastalGatheringCsv95Route: typeof SetsChineseTerastalGatheringCsv95Route
   SetsChineseTrueMysteryCsv6Route: typeof SetsChineseTrueMysteryCsv6Route
   SetsChineseWhiteFlareCsv106Route: typeof SetsChineseWhiteFlareCsv106Route
+  SetsJapanese30thCelebrationM6aRoute: typeof SetsJapanese30thCelebrationM6aRoute
+  SetsJapaneseAuraSeekerM7Route: typeof SetsJapaneseAuraSeekerM7Route
+  SetsJapaneseStormEmeraldaM6Route: typeof SetsJapaneseStormEmeraldaM6Route
   AccountOrdersIndexRoute: typeof AccountOrdersIndexRoute
   AdminCustomersIndexRoute: typeof AdminCustomersIndexRoute
   AdminOrdersIndexRoute: typeof AdminOrdersIndexRoute
@@ -3177,6 +3219,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SetsJapaneseIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/sets/japanese/30th-celebration-m6a': {
+      id: '/sets/japanese/30th-celebration-m6a'
+      path: '/sets/japanese/30th-celebration-m6a'
+      fullPath: '/sets/japanese/30th-celebration-m6a'
+      preLoaderRoute: typeof SetsJapanese30thCelebrationM6aRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sets/japanese/aura-seeker-m7': {
+      id: '/sets/japanese/aura-seeker-m7'
+      path: '/sets/japanese/aura-seeker-m7'
+      fullPath: '/sets/japanese/aura-seeker-m7'
+      preLoaderRoute: typeof SetsJapaneseAuraSeekerM7RouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sets/japanese/storm-emeralda-m6': {
+      id: '/sets/japanese/storm-emeralda-m6'
+      path: '/sets/japanese/storm-emeralda-m6'
+      fullPath: '/sets/japanese/storm-emeralda-m6'
+      preLoaderRoute: typeof SetsJapaneseStormEmeraldaM6RouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/admin/affiliates_/$id/dashboard': {
       id: '/admin/affiliates_/$id/dashboard'
       path: '/admin/affiliates/$id/dashboard'
@@ -3349,6 +3412,9 @@ const rootRouteChildren: RootRouteChildren = {
     SetsChineseTerastalGatheringCsv95Route,
   SetsChineseTrueMysteryCsv6Route: SetsChineseTrueMysteryCsv6Route,
   SetsChineseWhiteFlareCsv106Route: SetsChineseWhiteFlareCsv106Route,
+  SetsJapanese30thCelebrationM6aRoute: SetsJapanese30thCelebrationM6aRoute,
+  SetsJapaneseAuraSeekerM7Route: SetsJapaneseAuraSeekerM7Route,
+  SetsJapaneseStormEmeraldaM6Route: SetsJapaneseStormEmeraldaM6Route,
   AccountOrdersIndexRoute: AccountOrdersIndexRoute,
   AdminCustomersIndexRoute: AdminCustomersIndexRoute,
   AdminOrdersIndexRoute: AdminOrdersIndexRoute,
