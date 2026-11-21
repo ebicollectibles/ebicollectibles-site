@@ -47,6 +47,7 @@ const FAQ = [
   {
     q: 'How many booster packs are in the Day & Night gift box?',
     a: 'Fifteen 30th Celebration booster packs (set code 30thC) of 6 cards each, which is 90 cards.',
+    links: [{ to: '/sets/chinese/30th-celebration', label: '30th Celebration' }],
   },
   {
     q: 'Is the gift box the same as the Espeon or Umbreon deluxe deck set?',
@@ -61,6 +62,28 @@ const FAQ = [
     a: 'Yes. Pokémon China has no English name for it, so shops translate it differently. The Espeon ex & Umbreon ex Collection Box, the 30th Celebration Collection Display Box and the Day & Night Gift Box are the same product.',
   },
 ]
+// Card list links shown after an FAQ answer, and added to its JSON-LD text.
+type FaqLink = { to: string; label: string }
+const faqLinksText = (links?: readonly FaqLink[]) =>
+  links && links.length
+    ? ` See the card list for ${links.map((l) => l.label).join(', ').replace(/, ([^,]*)$/, ' and $1')}.`
+    : ''
+function FaqLinks({ links }: { links?: readonly FaqLink[] }) {
+  if (!links || !links.length) return null
+  return (
+    <>
+      {' '}See the card list for{' '}
+      {links.map((l, i) => (
+        <span key={l.to}>
+          {i > 0 && (i === links.length - 1 ? ' and ' : ', ')}
+          <Link to={l.to}>{l.label}</Link>
+        </span>
+      ))}
+      .
+    </>
+  )
+}
+
 
 export const Route = createFileRoute('/blog/day-night-gift-box-release-news')({
   loader: () => getBlogPostStatus({ data: post.slug }),
@@ -114,7 +137,7 @@ function DayNightGiftBoxPost() {
   const faqJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
-    mainEntity: FAQ.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
+    mainEntity: FAQ.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a + faqLinksText('links' in f ? f.links : undefined) } })),
   }
   const contentsJsonLd = {
     '@context': 'https://schema.org',
@@ -331,7 +354,10 @@ function DayNightGiftBoxPost() {
           {FAQ.map((f) => (
             <details key={f.q}>
               <summary>{f.q}</summary>
-              <p>{zh(f.a)}</p>
+              <p>
+                {zh(f.a)}
+                <FaqLinks links={'links' in f ? f.links : undefined} />
+              </p>
             </details>
           ))}
         </div>

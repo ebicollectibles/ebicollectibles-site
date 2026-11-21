@@ -74,6 +74,7 @@ const FAQ = [
   {
     q: 'How many booster packs are in the Eevee and Friends gift box?',
     a: `Fifteen Terastal Gathering booster packs (set code CSV9.5C) of ${CARDS_PER_PACK} cards each, which is ${PACKS * CARDS_PER_PACK} cards.`,
+    links: [{ to: '/sets/chinese/terastal-gathering-csv9-5', label: 'Terastal Gathering' }],
   },
   {
     q: 'What accessories come in the box?',
@@ -92,6 +93,28 @@ const FAQ = [
     a: 'Yes. Collectors often call it the Chinese SPC, after the English Prismatic Evolutions Super-Premium Collection, because its packs are Terastal Gathering, the Simplified Chinese counterpart to Prismatic Evolutions. Its contents are not the same as the English box. Pokémon China has no English name for it, so shops translate it differently. The Eevee Exclusive Premium Box, the Eevee Premium Gift Box and the Prismatic Eevee Gift Box are the same product.',
   },
 ]
+// Card list links shown after an FAQ answer, and added to its JSON-LD text.
+type FaqLink = { to: string; label: string }
+const faqLinksText = (links?: readonly FaqLink[]) =>
+  links && links.length
+    ? ` See the card list for ${links.map((l) => l.label).join(', ').replace(/, ([^,]*)$/, ' and $1')}.`
+    : ''
+function FaqLinks({ links }: { links?: readonly FaqLink[] }) {
+  if (!links || !links.length) return null
+  return (
+    <>
+      {' '}See the card list for{' '}
+      {links.map((l, i) => (
+        <span key={l.to}>
+          {i > 0 && (i === links.length - 1 ? ' and ' : ', ')}
+          <Link to={l.to}>{l.label}</Link>
+        </span>
+      ))}
+      .
+    </>
+  )
+}
+
 
 export const Route = createFileRoute('/blog/eevee-gift-box-release-news')({
   loader: () => getBlogPostStatus({ data: post.slug }),
@@ -145,7 +168,7 @@ function EeveeGiftBoxPost() {
   const faqJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
-    mainEntity: FAQ.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
+    mainEntity: FAQ.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a + faqLinksText('links' in f ? f.links : undefined) } })),
   }
   const contentsJsonLd = {
     '@context': 'https://schema.org',
@@ -364,7 +387,10 @@ function EeveeGiftBoxPost() {
           {FAQ.map((f) => (
             <details key={f.q}>
               <summary>{f.q}</summary>
-              <p>{zh(f.a)}</p>
+              <p>
+                {zh(f.a)}
+                <FaqLinks links={'links' in f ? f.links : undefined} />
+              </p>
             </details>
           ))}
         </div>

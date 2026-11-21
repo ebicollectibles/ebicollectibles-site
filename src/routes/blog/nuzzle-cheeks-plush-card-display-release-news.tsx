@@ -87,12 +87,35 @@ const FAQ = [
   {
     q: 'Which booster packs are inside?',
     a: 'One pack of True Mystery (set code CSV6C) and one pack of Collect 151: Gathering (set code 151C). Pokémon China lists both as 5-card packs.',
+    links: [{ to: '/sets/chinese/true-mystery-csv6', label: 'True Mystery' }, { to: '/sets/chinese/collect-151-gathering', label: 'Collect 151: Gathering' }],
   },
   {
     q: 'Is it sold under other names, like Rubbing Cheeks?',
     a: 'Yes. Pokémon China has no English name for it, so shops translate it differently. 蹭蹭脸颊 can be read as Nuzzle Cheeks or Rubbing Cheeks, so the Rubbing Cheeks Plush Card Display Box is the same product. The full Chinese name translates as Nuzzle Cheeks Plush Toy Card Display Gift Box, and since each box holds one random plush it is also called a blind box.',
   },
 ]
+// Card list links shown after an FAQ answer, and added to its JSON-LD text.
+type FaqLink = { to: string; label: string }
+const faqLinksText = (links?: readonly FaqLink[]) =>
+  links && links.length
+    ? ` See the card list for ${links.map((l) => l.label).join(', ').replace(/, ([^,]*)$/, ' and $1')}.`
+    : ''
+function FaqLinks({ links }: { links?: readonly FaqLink[] }) {
+  if (!links || !links.length) return null
+  return (
+    <>
+      {' '}See the card list for{' '}
+      {links.map((l, i) => (
+        <span key={l.to}>
+          {i > 0 && (i === links.length - 1 ? ' and ' : ', ')}
+          <Link to={l.to}>{l.label}</Link>
+        </span>
+      ))}
+      .
+    </>
+  )
+}
+
 
 export const Route = createFileRoute('/blog/nuzzle-cheeks-plush-card-display-release-news')({
   loader: () => getBlogPostStatus({ data: post.slug }),
@@ -149,7 +172,7 @@ function NuzzleCheeksPlushPost() {
   const faqJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
-    mainEntity: FAQ.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
+    mainEntity: FAQ.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a + faqLinksText('links' in f ? f.links : undefined) } })),
   }
   const contentsJsonLd = {
     '@context': 'https://schema.org',
@@ -469,7 +492,10 @@ function NuzzleCheeksPlushPost() {
           {FAQ.map((f) => (
             <details key={f.q}>
               <summary>{f.q}</summary>
-              <p>{zh(f.a)}</p>
+              <p>
+                {zh(f.a)}
+                <FaqLinks links={'links' in f ? f.links : undefined} />
+              </p>
             </details>
           ))}
         </div>

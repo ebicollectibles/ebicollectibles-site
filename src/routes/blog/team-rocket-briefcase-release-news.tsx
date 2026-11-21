@@ -72,6 +72,7 @@ const FAQ = [
   {
     q: 'How many booster packs are in the Team Rocket briefcase?',
     a: 'Six. They are 20-card Chasing Glory packs, which is one full Jumbo booster box and 120 cards in all.',
+    links: [{ to: '/sets/chinese/chasing-glory-csv10', label: 'Chasing Glory' }],
   },
   {
     q: 'Is this the same as the Japanese Team Rocket briefcase?',
@@ -86,6 +87,28 @@ const FAQ = [
     a: 'Simplified Chinese. The promo card and all six booster packs are from the Simplified Chinese release.',
   },
 ]
+// Card list links shown after an FAQ answer, and added to its JSON-LD text.
+type FaqLink = { to: string; label: string }
+const faqLinksText = (links?: readonly FaqLink[]) =>
+  links && links.length
+    ? ` See the card list for ${links.map((l) => l.label).join(', ').replace(/, ([^,]*)$/, ' and $1')}.`
+    : ''
+function FaqLinks({ links }: { links?: readonly FaqLink[] }) {
+  if (!links || !links.length) return null
+  return (
+    <>
+      {' '}See the card list for{' '}
+      {links.map((l, i) => (
+        <span key={l.to}>
+          {i > 0 && (i === links.length - 1 ? ' and ' : ', ')}
+          <Link to={l.to}>{l.label}</Link>
+        </span>
+      ))}
+      .
+    </>
+  )
+}
+
 
 export const Route = createFileRoute('/blog/team-rocket-briefcase-release-news')({
   loader: () => getBlogPostStatus({ data: post.slug }),
@@ -139,7 +162,7 @@ function TeamRocketBriefcasePost() {
   const faqJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
-    mainEntity: FAQ.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
+    mainEntity: FAQ.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a + faqLinksText('links' in f ? f.links : undefined) } })),
   }
   const contentsJsonLd = {
     '@context': 'https://schema.org',
@@ -421,7 +444,10 @@ function TeamRocketBriefcasePost() {
           {FAQ.map((f) => (
             <details key={f.q}>
               <summary>{f.q}</summary>
-              <p>{zh(f.a)}</p>
+              <p>
+                {zh(f.a)}
+                <FaqLinks links={'links' in f ? f.links : undefined} />
+              </p>
             </details>
           ))}
         </div>

@@ -71,7 +71,8 @@ const FAQ = [
   },
   {
     q: 'Which sets are the booster packs from?',
-    a: 'Blade Awakening, Brilliant Fantasy, Stellar Crystal, Terastal Gathering, Chasing Glory, Black Bolt and White Flare.',
+    a: 'Three packs from each of the seven Simplified Chinese Scarlet & Violet sets released in 2026.',
+    links: [{ to: '/sets/chinese/blade-awakening-csv7', label: 'Blade Awakening' }, { to: '/sets/chinese/brilliant-fantasy-csv8', label: 'Brilliant Fantasy' }, { to: '/sets/chinese/stellar-crystal-csv9', label: 'Stellar Crystal' }, { to: '/sets/chinese/terastal-gathering-csv9-5', label: 'Terastal Gathering' }, { to: '/sets/chinese/chasing-glory-csv10', label: 'Chasing Glory' }, { to: '/sets/chinese/black-bolt-csv10-5', label: 'Black Bolt' }, { to: '/sets/chinese/white-flare-csv10-6', label: 'White Flare' }],
   },
   {
     q: 'What accessories come in the Pikachu gift box?',
@@ -94,6 +95,28 @@ const FAQ = [
     a: 'Simplified Chinese. The promo card and all 21 booster packs are from the Simplified Chinese release.',
   },
 ]
+// Card list links shown after an FAQ answer, and added to its JSON-LD text.
+type FaqLink = { to: string; label: string }
+const faqLinksText = (links?: readonly FaqLink[]) =>
+  links && links.length
+    ? ` See the card list for ${links.map((l) => l.label).join(', ').replace(/, ([^,]*)$/, ' and $1')}.`
+    : ''
+function FaqLinks({ links }: { links?: readonly FaqLink[] }) {
+  if (!links || !links.length) return null
+  return (
+    <>
+      {' '}See the card list for{' '}
+      {links.map((l, i) => (
+        <span key={l.to}>
+          {i > 0 && (i === links.length - 1 ? ' and ' : ', ')}
+          <Link to={l.to}>{l.label}</Link>
+        </span>
+      ))}
+      .
+    </>
+  )
+}
+
 
 export const Route = createFileRoute('/blog/pikachu-gift-box-release-news')({
   loader: () => getBlogPostStatus({ data: post.slug }),
@@ -147,7 +170,7 @@ function PikachuGiftBoxPost() {
   const faqJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
-    mainEntity: FAQ.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
+    mainEntity: FAQ.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a + faqLinksText('links' in f ? f.links : undefined) } })),
   }
   const contentsJsonLd = {
     '@context': 'https://schema.org',
@@ -417,7 +440,10 @@ function PikachuGiftBoxPost() {
           {FAQ.map((f) => (
             <details key={f.q}>
               <summary>{f.q}</summary>
-              <p>{zh(f.a)}</p>
+              <p>
+                {zh(f.a)}
+                <FaqLinks links={'links' in f ? f.links : undefined} />
+              </p>
             </details>
           ))}
         </div>
