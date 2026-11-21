@@ -65,3 +65,9 @@ automated alert. When working with the owner, occasionally check recent daily
 Worker requests (Cloudflare GraphQL, `workersInvocationsAdaptive`) and tell
 them if any day has passed 50,000, and recommend Workers Paid ($5/month) before
 a big release if it is getting close.
+
+## Blog writing
+
+- No promises the owner did not ask for: no "we will update this post", "we
+  will email you", "check back" or similar. Only state commitments the owner
+  has made, in their words.
