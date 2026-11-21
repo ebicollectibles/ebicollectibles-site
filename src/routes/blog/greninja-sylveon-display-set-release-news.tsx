@@ -47,7 +47,7 @@ const FAQ = [
   },
   {
     q: 'Is the card display keychain the same in both sets?',
-    a: 'No. Each set has its own: the Greninja set comes with a light blue Greninja card holder and the Sylveon set with a pink Sylveon one. Both have a metal key ring, a clip and a wrist strap.',
+    a: 'No. Each set has its own: the Greninja set comes with a light blue Greninja card holder and the Sylveon set with a pink Sylveon one. Both have a metal key ring, a clip and a strap.',
   },
   {
     q: 'What language are the cards?',
@@ -148,8 +148,7 @@ function GreninjaSylveonDisplaySetPost() {
         </p>
         <p>
           Each set holds the same three things in its own Pokémon: a holo promo card with a new illustration, a card holder you can
-          clip to a bag or keys, and 3 packs of 30th Celebration. Pokémon China's idea is simple: put your favourite card in the holder
-          and take it with you.
+          clip to a bag or keys, and 3 packs of 30th Celebration.
         </p>
 
         <aside className="fact-box" aria-label="Greninja ex and Sylveon ex set key facts">
@@ -168,8 +167,10 @@ function GreninjaSylveonDisplaySetPost() {
               <dd>September 16, 2026, 10:00 China time</dd>
               <dt>Promo cards</dt>
               <dd>Greninja ex 032/30th-P, Sylveon ex 033/30th-P</dd>
+              <dt>Set code</dt>
+              <dd>30thC (the 3 packs inside)</dd>
               <dt>Booster packs</dt>
-              <dd>3 packs of 30th Celebration (set code 30thC), 6 cards each</dd>
+              <dd>3 packs of 30th Celebration, 6 cards each</dd>
               <dt>Extra</dt>
               <dd>Card display keychain</dd>
               <dt>Language</dt>
@@ -269,7 +270,7 @@ function GreninjaSylveonDisplaySetPost() {
         <h2 id="keychain">The card display keychain</h2>
         <p>
           Pokémon China calls it a card display sleeve, for showing off a favourite card. Each one is a card holder in the set's
-          Pokémon, with a metal key ring, a clip and a wrist strap printed with the 30th Celebration logo. The Greninja one is light
+          Pokémon, with a metal key ring, a clip and a strap printed with the 30th Celebration logo. The Greninja one is light
           blue and the Sylveon one is pink, and both carry the 30th anniversary Pikachu mark in the corner.
         </p>
         <p>
@@ -279,7 +280,7 @@ function GreninjaSylveonDisplaySetPost() {
         <ul className="card-grid cols-2">
           <li>
             <figure>
-              <img src={img('greninja-keychain')} alt="The Greninja card display keychain: a light blue card holder with a raised Greninja on the front, a metal key ring and clip, and a blue wrist strap" loading="lazy" width={700} height={881} style={{ aspectRatio: '4 / 5', objectFit: 'contain', background: '#fff' }} />
+              <img src={img('greninja-keychain')} alt="The Greninja card display keychain: a light blue card holder with a raised Greninja on the front, a metal key ring and clip, and a blue strap" loading="lazy" width={700} height={881} style={{ aspectRatio: '4 / 5', objectFit: 'contain', background: '#fff' }} />
               <figcaption>
                 <strong>Greninja keychain</strong>In the Greninja ex set
               </figcaption>
@@ -287,7 +288,7 @@ function GreninjaSylveonDisplaySetPost() {
           </li>
           <li>
             <figure>
-              <img src={img('sylveon-keychain')} alt="The Sylveon card display keychain: a pink card holder with a raised Sylveon on the front, a metal key ring and clip, and a pink wrist strap" loading="lazy" width={700} height={959} style={{ aspectRatio: '4 / 5', objectFit: 'contain', background: '#fff' }} />
+              <img src={img('sylveon-keychain')} alt="The Sylveon card display keychain: a pink card holder with a raised Sylveon on the front, a metal key ring and clip, and a pink strap" loading="lazy" width={700} height={959} style={{ aspectRatio: '4 / 5', objectFit: 'contain', background: '#fff' }} />
               <figcaption>
                 <strong>Sylveon keychain</strong>In the Sylveon ex set
               </figcaption>

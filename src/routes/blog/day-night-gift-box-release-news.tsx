@@ -317,8 +317,9 @@ function DayNightGiftBoxPost() {
             a coin, a paper playmat and 2 booster packs. These are for playing, not the collector box.
           </li>
           <li>
-            <strong>Card display sleeve sets, Greninja ex or Sylveon ex.</strong> A promo card with a new illustration, a display
-            sleeve and 3 booster packs.
+            <strong>Card display sleeve sets, Greninja ex or Sylveon ex.</strong> A promo card with a new illustration, a card display
+            keychain and 3 booster packs. Our{' '}
+            <Link to="/blog/greninja-sylveon-display-set-release-news">Greninja ex and Sylveon ex sets post</Link> covers them.
           </li>
           <li>
             <strong>30th Celebration accessories.</strong> Art sleeves, a deck box, a damage counter box and a coin album.
