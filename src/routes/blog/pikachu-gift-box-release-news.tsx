@@ -40,7 +40,7 @@ const CONTENTS = [
 ]
 
 const TOC = [
-  { id: 'what-it-is', label: 'What is the Chinese Pikachu gift box?' },
+  { id: 'what-it-is', label: 'What is the Radiant Crystal Pikachu gift box?' },
   { id: 'contents', label: 'What comes inside?' },
   { id: 'promo', label: 'The Pikachu ex promo card' },
   { id: 'packs', label: 'The 21 booster packs' },
@@ -54,11 +54,11 @@ const TOC = [
 
 const FAQ = [
   {
-    q: 'What is the Chinese Pikachu gift box?',
+    q: 'What is the Radiant Crystal Pikachu gift box?',
     a: 'An official Pokémon TCG gift box from Pokémon China, themed on Pikachu with the Stellar Tera Type. Its Chinese name is 璀璨晶耀 皮卡丘专属礼盒. It holds a Pikachu ex promo card, 21 booster packs, 64 sleeves, a deck box and a card display frame.',
   },
   {
-    q: 'When does the Pikachu gift box release in China?',
+    q: 'When does the Radiant Crystal Pikachu gift box release?',
     a: 'December 4, 2026, from 10:00 China time. Pokémon China announced it on November 20, 2026.',
   },
   {
@@ -79,14 +79,14 @@ const FAQ = [
   },
   {
     q: 'What is the Pikachu gift box called in Chinese?',
-    a: '璀璨晶耀 皮卡丘专属礼盒. It translates roughly as Brilliant Crystal Shine: Pikachu Exclusive Gift Box. There is no official English name, so you will also see it called the Radiant Crystal Pikachu Gift Box, the Pikachu Exclusive Gift Box or the Stellar Pikachu Gift Box. It is not the older Radiant Energy Pikachu gift box from 2024.',
+    a: '璀璨晶耀 皮卡丘专属礼盒. It translates roughly as Brilliant Crystal Shine: Pikachu Exclusive Gift Box. There is no official English name, most shops call it the Radiant Crystal Pikachu Gift Box. You may also see the Pikachu Exclusive Gift Box or the Stellar Pikachu Gift Box. It is not the older Radiant Energy Pikachu gift box from 2024.',
   },
   {
-    q: 'Can I pre-order the Chinese Pikachu gift box?',
+    q: 'Can I pre-order the Radiant Crystal Pikachu gift box?',
     a: 'We plan to open pre-orders at EBI Collectibles. Leave your email in the pre-orders section of this post and we will write to you as soon as they open. We will announce our price closer to the release date.',
   },
   {
-    q: 'How much will the Chinese Pikachu gift box cost?',
+    q: 'How much will the Radiant Crystal Pikachu gift box cost?',
     a: 'We have not set our price yet. We will announce it closer to the release date on December 4, 2026, and email everyone who signed up in the pre-orders section of this post.',
   },
   {
@@ -152,7 +152,7 @@ function PikachuGiftBoxPost() {
   const contentsJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'ItemList',
-    name: 'What comes in the Chinese Stellar Pikachu gift box',
+    name: 'What comes in the Chinese Radiant Crystal Pikachu gift box',
     numberOfItems: CONTENTS.length,
     itemListElement: CONTENTS.map((c, i) => ({ '@type': 'ListItem', position: i + 1, name: `${c.qty} x ${c.item}` })),
   }
@@ -166,7 +166,7 @@ function PikachuGiftBoxPost() {
         updated={status.liveAt}
         wide
         post={post}
-        lede="Pokémon China's new Pikachu gift box releases on December 4, 2026. This post covers everything in the Chinese Pikachu Exclusive Gift Box: the Stellar Pikachu ex promo, the 21 booster packs from this year's seven sets, and the matching accessories."
+        lede="Pokémon China's Radiant Crystal Pikachu gift box releases on December 4, 2026. This post covers everything in it: the Stellar Tera Pikachu ex promo, the 21 booster packs from this year's seven sets, and the matching accessories."
         cta={{
           heading: 'See the sets inside the box',
           body: 'Every one of the seven sets has a full card list and checklist.',
@@ -176,11 +176,12 @@ function PikachuGiftBoxPost() {
           ],
         }}
       >
-        <h2 id="what-it-is">What is the Chinese Pikachu gift box?</h2>
+        <h2 id="what-it-is">What is the Radiant Crystal Pikachu gift box?</h2>
         <p>
           It is an official Simplified Chinese Pokémon TCG gift box from Pokémon China, announced on November 20, 2026, and releasing on December 4,
           2026. Its Chinese name is <Zh>璀璨晶耀 皮卡丘专属礼盒</Zh>, which translates roughly as Brilliant Crystal Shine: Pikachu
-          Exclusive Gift Box. It is part of the Scarlet &amp; Violet series.
+          Exclusive Gift Box. Shops in the US sell it as the Radiant Crystal Pikachu Gift Box. It is part of the Scarlet &amp; Violet
+          series.
         </p>
         <p>
           The box is themed on Pikachu with the Stellar Tera Type, the crowned, jewelled Pikachu that is also on the Stellar Crystal pack.
@@ -192,7 +193,7 @@ function PikachuGiftBoxPost() {
           <strong>Pre-orders will be available at EBI Collectibles.</strong> <a href="#pre-orders">Get an email when they open</a>.
         </p>
 
-        <aside className="fact-box" aria-label="Stellar Pikachu gift box key facts">
+        <aside className="fact-box" aria-label="Radiant Crystal Pikachu gift box key facts">
           {/* Same card as in the promo section below, where it is described, so this copy is decorative */}
           <img src={img('pikachu-ex-promo')} alt="" loading="lazy" width={788} height={1100} />
           <div>
@@ -236,7 +237,7 @@ function PikachuGiftBoxPost() {
         <div className="table-scroll" role="group" aria-labelledby="tbl-contents" tabIndex={0}>
           <table className="data-table">
             <caption id="tbl-contents" className="sr-only">
-              Contents of the Stellar Pikachu gift box
+              Contents of the Radiant Crystal Pikachu gift box
             </caption>
             <thead>
               <tr>
@@ -298,7 +299,7 @@ function PikachuGiftBoxPost() {
         <div className="table-scroll" role="group" aria-labelledby="tbl-packs" tabIndex={0}>
           <table className="data-table">
             <caption id="tbl-packs" className="sr-only">
-              Booster packs in the Stellar Pikachu gift box
+              Booster packs in the Radiant Crystal Pikachu gift box
             </caption>
             <thead>
               <tr>
@@ -378,15 +379,15 @@ function PikachuGiftBoxPost() {
           the Pikachu on the box shine.
         </p>
         <figure style={{ margin: '28px auto', maxWidth: 640 }}>
-          <img src={img('box')} alt="The pink Stellar Pikachu gift box, closed, with Pikachu printed in gold across the lid" loading="lazy" width={1100} height={612} style={{ width: '100%', height: 'auto' }} />
+          <img src={img('box')} alt="The pink Radiant Crystal Pikachu gift box, closed, with Pikachu printed in gold across the lid" loading="lazy" width={1100} height={612} style={{ width: '100%', height: 'auto' }} />
           <figcaption>The gift box.</figcaption>
         </figure>
 
         <h2 id="names">What is it called?</h2>
         <p>
           Pokémon China calls it <Zh>璀璨晶耀 皮卡丘专属礼盒</Zh>. There is no official English name. A close translation is Brilliant
-          Crystal Shine: Pikachu Exclusive Gift Box, and we call it the Stellar Pikachu Gift Box for short. Other shops list it as the
-          Radiant Crystal Pikachu Gift Box, the Chinese Pikachu Gift Box, the Pikachu Exclusive Gift Box or the Pikachu ex Gift Box.
+          Crystal Shine: Pikachu Exclusive Gift Box. Most shops call it the Radiant Crystal Pikachu Gift Box, and so do we. You may also
+          see the Stellar Pikachu Gift Box, the Chinese Pikachu Gift Box, the Pikachu Exclusive Gift Box or the Pikachu ex Gift Box.
           They are all the same product.
         </p>
         <p>
@@ -401,7 +402,7 @@ function PikachuGiftBoxPost() {
 
         <h2 id="pre-orders">Pre-orders at EBI Collectibles</h2>
         <p>
-          We plan to open pre-orders for the Pikachu gift box here at EBI Collectibles. Leave your email below and we will write to
+          We plan to open pre-orders for the Radiant Crystal Pikachu gift box here at EBI Collectibles. Leave your email below and we will write to
           you as soon as they open. Orders ship from the US.
         </p>
         <p>We will announce our price closer to the release date on December 4, 2026.</p>

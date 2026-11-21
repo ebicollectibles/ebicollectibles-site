@@ -304,16 +304,16 @@ export const BLOG_POSTS: BlogPostSummary[] = [
   {
     slug: 'pikachu-gift-box-release-news',
     path: '/blog/pikachu-gift-box-release-news',
-    title: 'Chinese Pikachu Gift Box: Everything Inside, the Pikachu ex Promo and the Release Date',
+    title: 'Radiant Crystal Pikachu Gift Box (Chinese): Everything Inside, the Pikachu ex Promo and the Release Date',
     excerpt:
-      "Pokémon China's new Pikachu gift box releases on December 4, 2026. This post covers everything in the Chinese Pikachu Exclusive Gift Box: the Stellar Pikachu ex promo, the 21 booster packs from this year's seven sets, and the matching accessories.",
-    seoTitle: 'Chinese Pikachu Gift Box: Contents, Promo & Release Date',
+      "Pokémon China's Radiant Crystal Pikachu gift box releases on December 4, 2026. This post covers everything in it: the Stellar Tera Pikachu ex promo, the 21 booster packs from this year's seven sets, and the matching accessories.",
+    seoTitle: 'Radiant Crystal Pikachu Gift Box (Chinese): Contents & Release',
     seoDescription:
-      'The Chinese Pokémon TCG Pikachu Exclusive Gift Box releases December 4, 2026: Stellar Pikachu ex promo 489/SV-P, 21 booster packs, sleeves and a deck box.',
+      'The Chinese Pokémon TCG Radiant Crystal Pikachu Gift Box releases December 4, 2026: Pikachu ex promo 489/SV-P, 21 booster packs, sleeves and a deck box.',
     tag: 'New release',
     date: '2026-11-20',
     heroImage: `${SITE_URL}/assets/blog/pikachu-gift-box-release-hero-v1.webp`,
-    heroAlt: 'The pink Stellar Pikachu gift box with the Pikachu ex promo card standing in front of it',
+    heroAlt: 'The pink Radiant Crystal Pikachu gift box with the Pikachu ex promo card standing in front of it',
     glow1: 'rgb(246 128 176 / .30)',
     glow2: 'rgb(246 206 60 / .22)',
   },
