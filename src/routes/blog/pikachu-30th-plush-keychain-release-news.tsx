@@ -13,7 +13,7 @@ const post = BLOG_POSTS.find((p) => p.slug === 'pikachu-30th-plush-keychain-rele
 const img = (name: string) => `${SITE_URL}/assets/blog/pikachu-30th-plush-keychain-${name}.webp`
 const productId = (n: number) => `pokemon-chinese-pikachu-30th-celebration-plush-keychain-${n}`
 
-// The 30 styles, numbered as in our shop photos. Each line describes only what the photo shows.
+// The 30 styles, numbered as on the shop listings. Each line describes only what the photo shows.
 const STYLES: { n: number; look: string }[] = [
   { n: 1, look: 'Laughing, eyes shut, paws up by its cheeks' },
   { n: 2, look: 'Eyes shut, mouth open in a smile, sitting back' },
@@ -247,7 +247,7 @@ function Pikachu30thPlushKeychainPost() {
         <h2 id="styles">All 30 styles</h2>
         <p>
           All 30 are Pikachu. What changes is the face and the pose. Most sit up, a few lie down (styles 7,
-          16, 20 and 29) and two crouch side-on (styles 4 and 17). The numbers below are the ones on our shop listings.
+          16, 20 and 29) and two crouch side-on (styles 4 and 17). The style numbers below match our shop listings.
         </p>
         <ul className="card-grid cols-4">
           {STYLES.map((s) => (
@@ -269,7 +269,7 @@ function Pikachu30thPlushKeychainPost() {
             </li>
           ))}
         </ul>
-        <p className="table-note">These are our shop photos of the 30 styles. Each style has its own listing.</p>
+        <p className="table-note">All 30 styles. Each one has its own listing in our shop.</p>
 
         <BuyStrip />
 
@@ -290,7 +290,7 @@ function Pikachu30thPlushKeychainPost() {
           />
         </figure>
         <p>
-          Our photo of the full set shows the 30 keychains arranged as the number 30.
+          Laid out together, the full set of 30 keychains forms the number 30.
         </p>
         <figure style={{ margin: '24px auto 30px' }}>
           <img
