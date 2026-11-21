@@ -1,3 +1,4 @@
+import type { ReactNode } from 'react'
 import { Zh } from '~/components/blog/Zh'
 import { BuyStrip } from '~/components/blog/BlogShop'
 import { createFileRoute, Link } from '@tanstack/react-router'
@@ -50,14 +51,14 @@ const SAR = [
   { id: '0126', no: '126/103', name: 'Pikachu ex', note: 'Special Art Rare · kantaro' },
   { id: '0127', no: '127/103', name: 'Pikachu ex', note: 'Special Art Rare · kantaro' },
   { id: '0130', no: '130/103', name: 'Sylveon ex', note: 'Special Art Rare · You Iribi' },
-  { id: '0125', no: '125/103', name: 'Greninja ex', note: 'Special Art Rare' },
-  { id: '0133', no: '133/103', name: 'Salamence ex', note: 'Special Art Rare' },
-  { id: '0124', no: '124/103', name: 'Fuecoco ex', note: 'Special Art Rare' },
+  { id: '0125', no: '125/103', name: 'Greninja ex', note: 'Special Art Rare · GIDORA' },
+  { id: '0133', no: '133/103', name: 'Salamence ex', note: 'Special Art Rare · Ryota Murayama' },
+  { id: '0124', no: '124/103', name: 'Fuecoco ex', note: 'Special Art Rare · Atsushi Furusawa' },
 ]
 
 const CLASSICS = [
-  { id: '0137', no: '137/103', name: 'Charizard', note: 'Base Set, 1999' },
   { id: '0136', no: '136/103', name: 'Pikachu', note: 'Base Set, 1999' },
+  { id: '0137', no: '137/103', name: 'Charizard', note: 'Base Set, 1999' },
   { id: '0142', no: '142/103', name: 'Lugia', note: 'Aquapolis, 2003' },
   { id: '0138', no: '138/103', name: 'Misty', note: 'Gym Heroes, 2000' },
   { id: '0150', no: '150/103', name: 'Gengar', note: 'Triumphant, 2010' },
@@ -66,9 +67,9 @@ const CLASSICS = [
 
 const ART_RARES = [
   { id: '0121', no: '121/103', name: 'Ditto', note: 'Art Rare · Ounishi' },
-  { id: '0108', no: '108/103', name: 'Zapdos', note: 'Art Rare' },
-  { id: '0107', no: '107/103', name: 'Articuno', note: 'Art Rare' },
-  { id: '0105', no: '105/103', name: 'Moltres', note: 'Art Rare' },
+  { id: '0108', no: '108/103', name: 'Zapdos', note: 'Art Rare · mashu' },
+  { id: '0107', no: '107/103', name: 'Articuno', note: 'Art Rare · mashu' },
+  { id: '0105', no: '105/103', name: 'Moltres', note: 'Art Rare · mashu' },
   { id: '0106', no: '106/103', name: 'Lapras', note: 'Art Rare · Amelicart' },
   { id: '0122', no: '122/103', name: 'Hisuian Zorua', note: 'Art Rare · 0313' },
 ]
@@ -81,24 +82,34 @@ const BLOCKS = [
   { nos: '136 to 165', what: 'Classic collection: 30 famous cards from 1999 to 2023', rarity: 'Classic' },
 ]
 
-const PROMOS = [
-  { nos: '001 to 027/30th-P', what: 'First partner Pokémon from all nine generations', where: 'First Partner special illustration sets, Vol. 1 to 3' },
-  { nos: '028 to 029/30th-P', what: 'Espeon ex and Umbreon ex', where: 'Espeon ex and Umbreon ex collection box' },
-  { nos: '030 to 031/30th-P', what: 'Pikachu ex in Futuristic style', where: 'Futuristic collection box' },
-  { nos: '032 to 033/30th-P', what: 'Greninja ex and Sylveon ex', where: 'Card display sleeve sets' },
+const PROMOS: { nos: string; what: string; where: ReactNode }[] = [
+  { nos: '030 to 031/30th-P', what: 'Pikachu ex in Futuristic style, by YOSHIROTTEN', where: <Link to="/blog/futuristic-pikachu-box-release-news">Futuristic Box</Link> },
+  {
+    nos: '001 to 027/30th-P',
+    what: 'First partner Pokémon from all nine generations',
+    where: (
+      <>
+        <Link to="/blog/first-partner-30th-vol-1-release-news">First Partner Set Vol.1</Link>,{' '}
+        <Link to="/blog/first-partner-30th-vol-2-release-news">Vol.2</Link> and{' '}
+        <Link to="/blog/first-partner-30th-vol-3-release-news">Vol.3</Link>
+      </>
+    ),
+  },
+  { nos: '028 to 029/30th-P', what: 'Espeon ex and Umbreon ex', where: <Link to="/blog/day-night-gift-box-release-news">Day &amp; Night gift box</Link> },
+  { nos: '032 to 033/30th-P', what: 'Greninja ex and Sylveon ex', where: <Link to="/blog/greninja-sylveon-display-set-release-news">Greninja ex and Sylveon ex card display sets</Link> },
 ]
 
 const ODDS = [
-  { group: 'Common, Basic Energy and the 30 Pikachu', share: '89.83%' },
+  { group: 'The 30 Pikachu, Common and basic Energy', share: '89.83%' },
   { group: 'Rare, Double Rare, Art Rare and Classic', share: '9.17%' },
   { group: 'Special Art Rare, Futuristic Rare and 3 RGB mark cards', share: '1.00%' },
 ]
 
 const TOC = [
-  { id: 'futuristic', label: 'Most wanted: Futuristic Rares' },
-  { id: 'sar', label: 'Special Art Rares' },
-  { id: 'classics', label: '30 classic cards return' },
   { id: 'pikachu', label: '30 Pikachu, one in every pack' },
+  { id: 'sar', label: 'Special Art Rares' },
+  { id: 'futuristic', label: 'Futuristic Rares' },
+  { id: 'classics', label: '30 classic cards return' },
   { id: 'art-rares', label: 'Art Rares' },
   { id: 'how-the-set-works', label: 'How the set is built' },
   { id: 'booster-box', label: 'What is inside a booster box' },
@@ -122,11 +133,11 @@ const FAQ = [
   },
   {
     q: 'Is there really a Pikachu in every pack?',
-    a: 'Yes. Each pack has one of the 30 Pikachu cards, numbered 017 to 046, each drawn by a different illustrator.',
+    a: 'Yes. Pokémon China says every pack has one of the 30 Pikachu cards. They are numbered 017 to 046, and each one is drawn by a different illustrator.',
   },
   {
     q: 'Which cards are the most wanted?',
-    a: 'The two Futuristic Rares, Mewtwo ex 134/103 and Mew ex 135/103 by YOSHIROTTEN, the Pikachu ex Special Art Rares, and the classic Charizard 137/103.',
+    a: 'The two Pikachu ex Special Art Rares by kantaro, 126/103 and 127/103, the two Futuristic Rares by YOSHIROTTEN, Mewtwo ex 134/103 and Mew ex 135/103, and the classic Charizard 137/103.',
   },
   {
     q: 'What are the odds of pulling a Special Art Rare or better?',
@@ -134,7 +145,7 @@ const FAQ = [
   },
   {
     q: 'Where do the 30th Celebration illustrations come from?',
-    a: 'Every card in the Chinese set is also in English, but the English release splits them up differently. The 30 classic cards reprint famous English cards from 1999 to 2023, from Base Set Charizard and Pikachu to the Paldea Evolved Magikarp Illustration Rare.',
+    a: 'Every card in the Chinese set is also in English, but the English release splits them up differently. The 30 classic cards reprint famous English cards from 1999 to 2023, from the Base Set Pikachu and Charizard to the Paldea Evolved Magikarp Illustration Rare.',
     link: { to: '/sets/chinese/30th-celebration', before: 'See every card on the ', label: '30th Celebration card list', after: '.' },
   },
   {
@@ -210,7 +221,7 @@ function ThirtiethReleasePost() {
         updated={status.liveAt}
         wide
         post={post}
-        lede="The Pokémon TCG turns 30 with a set made to celebrate it: a different Pikachu in every pack, a new Futuristic Rare, and 30 famous cards from 1999 to 2023 back in their original frames."
+        lede="The Pokémon TCG turns 30 with a set made to celebrate it. Pikachu is on the pack, a different Pikachu is in every pack, and the set adds Pikachu ex Special Art Rares, a new Futuristic Rare and 30 famous cards from 1999 to 2023 in their original frames."
         cta={{
           heading: 'Shop 30th Celebration',
           body: 'Booster boxes, plus the full card list with every card.',
@@ -222,8 +233,9 @@ function ThirtiethReleasePost() {
       >
         <p>
           30th Celebration (<Zh>30周年庆典</Zh>, set code 30thC) released on September 16, 2026, the same day as the English and
-          Japanese versions. It marks 30 years of the Pokémon TCG with a 165-card set built around Pikachu. It has a new rarity
-          called Futuristic Rare, and 30 classic cards reprinted in their original frames.
+          Japanese versions. It marks 30 years of the Pokémon TCG with a 165-card set built around Pikachu, who is on the pack with
+          Mew and Mewtwo. Every card is a holo. It has a new rarity called Futuristic Rare, and 30 classic cards reprinted in their
+          original frames.
         </p>
         <p>
           Our <Link to="/blog/30th-celebration-set-guide">set guide</Link> shows every Pikachu, classic card and promo, and our{' '}
@@ -249,13 +261,13 @@ function ThirtiethReleasePost() {
               <dt>Released</dt>
               <dd>September 16, 2026, the same day as English and Japanese</dd>
               <dt>Pack</dt>
-              <dd>6 cards, all holo, with 1 Pikachu in every pack</dd>
+              <dd>6 cards, all holo, with 1 of the 30 Pikachu in every pack</dd>
               <dt>Booster box</dt>
               <dd>20 packs, 120 cards</dd>
               <dt>Set size</dt>
               <dd>165 cards: 103 in the main set, 62 secret rares</dd>
-              <dt>Chase cards</dt>
-              <dd>Mewtwo ex and Mew ex Futuristic Rares, classic Charizard</dd>
+              <dt>Most wanted</dt>
+              <dd>The Pikachu ex Special Art Rares, the Mewtwo ex and Mew ex Futuristic Rares, and the classic Charizard</dd>
             </dl>
           </div>
         </aside>
@@ -271,11 +283,28 @@ function ThirtiethReleasePost() {
           </ol>
         </nav>
 
-        <h2 id="futuristic">Most wanted: Futuristic Rares</h2>
+        <h2 id="pikachu">30 Pikachu, one in every pack</h2>
+        <p>
+          Pikachu is on the pack, and Pokémon China says every pack holds one of 30 Pikachu cards. They are numbered 017 to 046, and
+          each one was drawn by a different illustrator. Each card has its own illustration and is numbered 01/30 to 30/30 beside the
+          card number, so collecting all 30 is a set within the set.
+        </p>
+        <Grid cards={PIKACHU} cols={3} />
+
+        <h2 id="sar">Special Art Rares</h2>
+        <p>
+          The ten Special Art Rares are numbered 124 to 133, one for each Pokémon ex in the main set. The two Pikachu ex by kantaro,
+          126/103 and 127/103, are the most wanted. The others are Fuecoco ex, Greninja ex, Mewtwo ex, Mew ex, Sylveon ex, Gengar ex,
+          Jirachi ex and Salamence ex.
+        </p>
+        <Grid cards={SAR} cols={3} />
+
+        <h2 id="futuristic">Futuristic Rares</h2>
         <p>
           Futuristic Rare is a new rarity made for this set, and both cards are illustrated by YOSHIROTTEN. There are only two.
-          Mewtwo ex has the Photon Bullets attack, which does damage to each of your opponent's Pokémon ex. Mew ex has the Memory
-          Helix Ability, which lets it use the attacks of your Benched Pokémon.
+          Mewtwo ex has the Photon Bullets attack, which does 50 damage to each of your opponent's Pokémon ex. Mew ex has the Memory
+          Helix Ability, which lets it use the attacks of your Benched Pokémon. YOSHIROTTEN also drew two Pikachu ex promos in the same
+          style for the <Link to="/blog/futuristic-pikachu-box-release-news">Futuristic Box</Link>.
         </p>
         <ul className="card-grid cols-2">
           {FUTURISTIC.map((c) => (
@@ -291,19 +320,12 @@ function ThirtiethReleasePost() {
           ))}
         </ul>
 
-        <h2 id="sar">Special Art Rares</h2>
-        <p>
-          The ten Special Art Rares are numbered 124 to 133, one for each Pokémon ex in the main set. The two Pikachu ex by kantaro
-          are the most wanted. The others are Fuecoco ex, Greninja ex, Mewtwo ex, Mew ex, Sylveon ex, Gengar ex, Jirachi ex and
-          Salamence ex.
-        </p>
-        <Grid cards={SAR} cols={3} />
-
         <h2 id="classics">30 classic cards return</h2>
         <p>
           Numbers 136 to 165 bring back 30 famous cards from the game's history in their original-style frames, from the Base Set
-          Charizard and Pikachu of 1999 to the Paldea Evolved Magikarp of 2023. Each has a gold glitter border and a 30th anniversary
-          stamp, and Pokémon China notes that this is the first Simplified Chinese printing of the Base Set Charizard.
+          Pikachu and Charizard of 1999 to the Paldea Evolved Magikarp of 2023. Each has a gold glitter border and a 30th anniversary
+          stamp, and Pokémon China notes that this is the first Simplified Chinese printing of the Base Set Charizard. The{' '}
+          <Link to="/blog/charizard-figure-box-release-news">Charizard collector figure box</Link> is built around that card.
         </p>
         <Grid cards={CLASSICS} cols={3} />
         <p>
@@ -311,13 +333,6 @@ function ThirtiethReleasePost() {
         </p>
 
         <BuyStrip />
-
-        <h2 id="pikachu">30 Pikachu, one in every pack</h2>
-        <p>
-          Every pack holds one of 30 Pikachu cards, numbered 017 to 046, and each was drawn by a different illustrator. Each one has its
-          own illustration and a Pikachu-face holo pattern, so collecting all 30 is a set within the set.
-        </p>
-        <Grid cards={PIKACHU} cols={3} />
 
         <h2 id="art-rares">Art Rares</h2>
         <p>
@@ -353,12 +368,13 @@ function ThirtiethReleasePost() {
             </tbody>
           </table>
         </div>
-        <p className="table-note">Eight basic Energy cards and 33 promos sit outside the numbered set.</p>
+        <p className="table-note">Eight basic Energy cards and 33 promos sit outside the numbered set. The Energy cards come in packs, and the promos do not.</p>
 
         <h2 id="booster-box">What is inside a booster box</h2>
         <p>
           A box holds 20 packs of 6 holo cards, 120 cards in total, including 20 Pikachu. With 30 different Pikachu and random pulls, one
-          box will not complete the Pikachu set. Pokémon China publishes how much of the print run each group of rarities makes up:
+          box will not complete the Pikachu set. Pokémon China publishes how much of the print run each group of rarities makes up. The
+          top group also holds three cards marked with an RGB symbol.
         </p>
         <div className="table-scroll" role="group" aria-labelledby="tbl-2" tabIndex={0}>
           <table className="data-table">
@@ -396,7 +412,7 @@ function ThirtiethReleasePost() {
           <span id="promos">The 33 promos</span>
 
         </h2>
-        <p>There are thirty-three promos, numbered 001 to 033/30th-P. They come in the special products released with the set and are not in booster packs.</p>
+        <p>There are thirty-three promos, numbered 001 to 033/30th-P. They come in special products for the 30th anniversary and are not in booster packs.</p>
         <div className="table-scroll" role="group" aria-labelledby="tbl-3" tabIndex={0}>
           <table className="data-table">
             <caption id="tbl-3" className="sr-only">The 33 promos</caption>
@@ -456,8 +472,8 @@ function ThirtiethReleasePost() {
         <h2 id="our-take">Our take</h2>
         <p>
           30th Celebration is a set to open for the fun of it. Every card is a holo, every pack has a Pikachu, and the classic collection
-          puts famous cards from 1999 to 2023 in one set. If you only go after one card, make it a Futuristic Rare. If you like
-          completing runs, the 30 Pikachu are a good one to finish.
+          puts famous cards from 1999 to 2023 in one set. If you like completing runs, the 30 Pikachu are a good one to finish. If you
+          only go after one card, make it a Pikachu ex Special Art Rare or a Futuristic Rare.
         </p>
       </BlogPostLayout>
     </>

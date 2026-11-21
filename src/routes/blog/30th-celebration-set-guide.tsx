@@ -23,9 +23,14 @@ const PIKACHU = byRange(17, 46)
 const ART_RARES = byRange(104, 123)
 const SAR = lead(byRange(124, 133), ['126', '127', '130', '125'])
 const FUR = byRange(134, 135)
-const CLASSICS = lead(byRange(136, 165), ['137', '136', '142', '138', '150', '154', '141', '163'])
-const PROMOS = setData.cards.filter((c) => c.pokemonIndex > 1000)
-const MISSING = [...ART_RARES, ...SAR].filter((c) => !c.image)
+const CLASSICS = lead(byRange(136, 165), ['136', '137', '160', '142', '138', '150', '154', '141', '163'])
+// Pikachu leads: the two Pikachu ex promos (030 and 031) first, then the rest in number order.
+const PROMOS = [
+  ...setData.cards.filter((c) => c.pokemonIndex === 1030 || c.pokemonIndex === 1031),
+  ...setData.cards.filter((c) => c.pokemonIndex > 1000 && c.pokemonIndex !== 1030 && c.pokemonIndex !== 1031),
+]
+const MISSING_AR = ART_RARES.filter((c) => !c.image)
+const MISSING_SAR = SAR.filter((c) => !c.image)
 
 function Gallery({ cards, cols, label }: { cards: Card[]; cols: number; label?: (c: Card, i: number) => string }) {
   return (
@@ -51,31 +56,34 @@ const RARITY = [
   { name: 'Rare', where: 'Main set', count: 18 },
   { name: 'Double Rare', where: 'The Pokémon ex in the main set', count: 10 },
   { name: 'Art Rare', where: '104 to 123', count: 20 },
+  { name: 'Classic', where: '136 to 165', count: 30 },
   { name: 'Special Art Rare', where: '124 to 133', count: 10 },
   { name: 'Futuristic Rare', where: '134 to 135', count: 2 },
-  { name: 'Classic', where: '136 to 165', count: 30 },
 ]
 
 const BOX_AVERAGE = [
-  { group: 'Common, Basic Energy and the 30 Pikachu', share: '89.83%', perBox: 'about 108' },
+  { group: 'The 30 Pikachu, Common and basic Energy', share: '89.83%', perBox: 'about 108' },
   { group: 'Rare, Double Rare, Art Rare and Classic', share: '9.17%', perBox: 'about 11' },
   { group: 'Special Art Rare, Futuristic Rare and 3 RGB mark cards', share: '1.00%', perBox: 'about 1' },
 ]
 
 const PROMO_SOURCES: Record<string, string> = {
-  '028': 'Espeon ex and Umbreon ex collection box',
-  '029': 'Espeon ex and Umbreon ex collection box',
-  '030': 'Futuristic collection box',
-  '031': 'Futuristic collection box',
-  '032': 'Greninja ex card display sleeve set',
-  '033': 'Sylveon ex card display sleeve set',
+  '028': 'Day & Night gift box',
+  '029': 'Day & Night gift box',
+  '030': 'Futuristic Box',
+  '031': 'Futuristic Box',
+  '032': 'Greninja ex card display set',
+  '033': 'Sylveon ex card display set',
 }
+// Promos 001 to 027 run through the nine generations three at a time. Vol.1 has Kanto, Sinnoh and Alola,
+// Vol.2 has Johto, Unova and Galar, and Vol.3 has Hoenn, Kalos and Paldea.
+const firstPartnerVol = (n: number) => (Math.floor((n - 1) / 3) % 3) + 1
 
 const TOC = [
   { id: 'box-average', label: 'What an average box holds' },
-  { id: 'futuristic-sar', label: 'Futuristic and Special Art Rares' },
-  { id: 'classics', label: 'All 30 classic cards' },
   { id: 'pikachu', label: 'All 30 Pikachu' },
+  { id: 'futuristic-sar', label: 'Special Art Rares and Futuristic Rares' },
+  { id: 'classics', label: 'All 30 classic cards' },
   { id: 'art-rares', label: 'All 20 Art Rares' },
   { id: 'promos', label: 'All 33 promos' },
   { id: 'reading-a-card', label: 'Reading a 30th Celebration card' },
@@ -94,7 +102,7 @@ const FAQ = [
   },
   {
     q: 'Are the 33 promos in booster packs?',
-    a: 'No. They come in the special products around the set, such as the First Partner sets, the Espeon ex and Umbreon ex box, the Futuristic box and the display sleeve sets.',
+    a: 'No. They come in special products for the 30th anniversary: the First Partner Sets Vol.1 to Vol.3, the Day & Night gift box, the Futuristic Box and the Greninja ex and Sylveon ex card display sets.',
   },
   {
     q: 'How many boxes does a master set take?',
@@ -165,7 +173,7 @@ function ThirtiethSetGuide() {
         updated={status.liveAt}
         wide
         post={post}
-        lede="30th Celebration is the Pokémon TCG's 30th anniversary set: 165 holo cards, with a Pikachu in every pack. This guide explains how the set is numbered, shows every secret rare and promo, and tells you what a master set takes."
+        lede="30th Celebration is the Pokémon TCG's 30th anniversary set: 165 holo cards, with Pikachu on the pack and one of 30 different Pikachu in every pack. Use this guide to sort your pulls and plan a master set."
         cta={{
           heading: 'Collect 30th Celebration',
           body: 'See every card on the full card list, or pick up a booster box.',
@@ -177,7 +185,7 @@ function ThirtiethSetGuide() {
       >
         <p>
           30th Celebration (<Zh>30周年庆典</Zh>, set code 30thC) released on September 16, 2026. It is the Pokémon TCG's 30th
-          anniversary set: 165 numbered cards, all holo, with one of 30 different Pikachu in every pack.
+          anniversary set: 165 numbered cards, all holo, with Pikachu on the pack and one of 30 different Pikachu in every pack.
         </p>
         <p>
           Our <Link to="/blog/30th-celebration-release-news">release post</Link> covers what is new in the set, and our{' '}
@@ -224,10 +232,22 @@ function ThirtiethSetGuide() {
         </div>
         <p className="table-note">Averages, not guarantees. Individual boxes vary.</p>
 
-        <h2 id="futuristic-sar">Futuristic and Special Art Rares</h2>
-        <p>The two Futuristic Rares by YOSHIROTTEN are numbered 134 and 135. The ten Special Art Rares are numbered 124 to 133.</p>
-        <Gallery cards={FUR} cols={2} />
-        <Gallery cards={SAR} cols={4} />
+        <h2 id="pikachu">All 30 Pikachu</h2>
+        <p>
+          Pikachu is on the pack, and every pack has one of these 30 Pikachu. They are numbered 017 to 046, each was drawn by a
+          different illustrator, and each card shows its place in the run, from 01/30 to 30/30.
+        </p>
+        <Gallery cards={PIKACHU} cols={3} label={(c, i) => `${c.number} · ${i + 1} of 30`} />
+
+        <h2 id="futuristic-sar">Special Art Rares and Futuristic Rares</h2>
+        <p>
+          The ten Special Art Rares are numbered 124 to 133, and the two Pikachu ex by kantaro lead them. The two Futuristic Rares by
+          YOSHIROTTEN, Mewtwo ex and Mew ex, are numbered 134 and 135.
+        </p>
+        <Gallery cards={[...SAR, ...FUR]} cols={3} />
+        {MISSING_SAR.length > 0 && (
+          <p className="table-note">We do not have scans of these cards, so they are not shown: {MISSING_SAR.map((c) => `${c.name} ${c.number}`).join(', ')}.</p>
+        )}
 
         <h2 id="classics">All 30 classic cards</h2>
         <p>
@@ -238,17 +258,11 @@ function ThirtiethSetGuide() {
 
         <BuyStrip />
 
-        <h2 id="pikachu">All 30 Pikachu</h2>
-        <p>These are numbered 017 to 046. There is one in every pack, and each was drawn by a different illustrator.</p>
-        <Gallery cards={PIKACHU} cols={3} label={(c, i) => `${c.number} · ${i + 1} of 30`} />
-
         <h2 id="art-rares">All 20 Art Rares</h2>
         <p>These are numbered 104 to 123. Each one is a full illustration of a main-set Pokémon.</p>
         <Gallery cards={ART_RARES} cols={4} />
-        {MISSING.length > 0 && (
-          <p className="table-note">
-            Not shown yet, we are still sourcing scans: {MISSING.map((c) => `${c.name} ${c.number}`).join(', ')}.
-          </p>
+        {MISSING_AR.length > 0 && (
+          <p className="table-note">We do not have a scan of {MISSING_AR.map((c) => `${c.name} ${c.number}`).join(', ')}, so it is not shown.</p>
         )}
 
         {/* The anchor id sits on a span inside the heading: reader modes drop a heading whose own id
@@ -261,15 +275,21 @@ function ThirtiethSetGuide() {
 
         </h2>
         <p>
-          Promos 001 to 027 are the first partner Pokémon from all nine generations, from the three First Partner special illustration
-          sets. The six ex promos come from the products listed below.
+          The two Pikachu ex promos 030 and 031 by YOSHIROTTEN come in the{' '}
+          <Link to="/blog/futuristic-pikachu-box-release-news">Futuristic Box</Link>. Promos 001 to 027 are the first partner Pokémon from
+          all nine generations, from{' '}
+          <Link to="/blog/first-partner-30th-vol-1-release-news">First Partner Set Vol.1</Link>,{' '}
+          <Link to="/blog/first-partner-30th-vol-2-release-news">Vol.2</Link> and{' '}
+          <Link to="/blog/first-partner-30th-vol-3-release-news">Vol.3</Link>. Espeon ex and Umbreon ex come in the{' '}
+          <Link to="/blog/day-night-gift-box-release-news">Day &amp; Night gift box</Link>, and Greninja ex and Sylveon ex in the{' '}
+          <Link to="/blog/greninja-sylveon-display-set-release-news">Greninja ex and Sylveon ex card display sets</Link>.
         </p>
         <Gallery
           cards={PROMOS}
-          cols={4}
+          cols={3}
           label={(c) => {
             const n = c.number.slice(0, 3)
-            return PROMO_SOURCES[n] ? `${c.number} · ${PROMO_SOURCES[n]}` : `${c.number} · First Partner set`
+            return PROMO_SOURCES[n] ? `${c.number} · ${PROMO_SOURCES[n]}` : `${c.number} · First Partner Set Vol.${firstPartnerVol(+n)}`
           }}
         />
 
@@ -299,6 +319,10 @@ function ThirtiethSetGuide() {
             </tbody>
           </table>
         </div>
+        <p className="table-note">
+          The order follows Pokémon China's odds chart. The chart also lists the 8 basic Energy cards after the Commons, and 3 cards marked
+          with an RGB symbol after the Futuristic Rares.
+        </p>
 
         <h2 id="master-set">Chasing a master set</h2>
         <p>
@@ -313,7 +337,7 @@ function ThirtiethSetGuide() {
         </p>
         <p>
           So most collectors open a few boxes for fun, then pick up the Futuristic Rares, Special Art Rares and favorite classics as
-          singles. The <Link to="/sets/chinese/30th-celebration">30th Celebration card list</Link> makes it easy to track what you still need.
+          singles. The <Link to="/sets/chinese/30th-celebration">30th Celebration card list</Link> shows every card.
         </p>
 
         <h2 id="faq">FAQ</h2>

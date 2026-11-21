@@ -55,8 +55,8 @@ const ERAS = [
   { era: 'Sword & Shield and Scarlet & Violet', years: '2020 to 2023', count: CLASSICS.filter((c) => +c.cn >= 161).length },
 ]
 
-// Most wanted first, with at least one pick from each era.
-const HIGHLIGHTS = ['137', '136', '142', '150', '154', '163']
+// Pikachu first, then the most wanted, with at least one pick from each era.
+const HIGHLIGHTS = ['136', '137', '142', '150', '154', '163']
 
 const SAMPLES = [
   { cn: '017/103 Pikachu', en: '30th Celebration 023', illus: 'Ken Sugimori' },
@@ -79,7 +79,7 @@ const TOC = [
 const FAQ = [
   {
     q: 'Where do the 30th Celebration classic cards come from?',
-    a: 'Each of the 30 classic cards, 136 to 165, reprints a famous English card from the TCG’s history, from Base Set Charizard and Pikachu in 1999 to the Paldea Evolved Magikarp Illustration Rare in 2023.',
+    a: 'Each of the 30 classic cards, 136 to 165, reprints a famous English card from the TCG’s history, from the Base Set Pikachu and Charizard of 1999 to the Paldea Evolved Magikarp Illustration Rare of 2023.',
   },
   {
     q: 'Is the Chinese 30th Celebration the same as the English set?',
@@ -290,7 +290,7 @@ function ThirtiethOriginsPost() {
         <h2 id="rest-of-set">The rest of the set</h2>
         <p>
           Outside the classics, the main set, Art Rares, Special Art Rares and Futuristic Rares use the same illustrations as the
-          English 30th Celebration release. These are a few examples:
+          English 30th Celebration release, apart from two Art Rares that are promos in English. These are a few examples:
         </p>
         <div className="table-scroll" role="group" aria-labelledby="tbl-3" tabIndex={0}>
           <table className="data-table origins-table">
