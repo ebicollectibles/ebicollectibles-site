@@ -146,7 +146,7 @@ const FAQ: { q: string; a: string; link?: { to: '/sets/chinese'; before: string;
   },
   {
     q: 'Where can I find the card list for each set?',
-    a: 'Every entry on the timeline links to its full card list, where you can tick off the cards you own.',
+    a: 'Every entry on the timeline links to its full card list.',
     link: { to: '/sets/chinese', before: 'All of them are also on the ', label: 'Chinese sets page', after: '.' },
   },
 ]
@@ -312,7 +312,7 @@ function ChineseSetsTimelinePost() {
         lede={`A release timeline of the Simplified Chinese Pokémon TCG, oldest first: ${plural(SETS.length, 'set')} from ${formatDate(FIRST_STOP.date)} to ${formatDate(LAST_STOP.date)}, each with its set code, card count and full card list.`}
         cta={{
           heading: 'Explore the Chinese sets',
-          body: `Browse all ${num(SETS.length)} card lists and tick off what you have, or see what is in the shop.`,
+          body: `Browse all ${num(SETS.length)} card lists, or see what is in the shop.`,
           links: [
             { to: '/sets/chinese', label: 'See all Chinese sets' },
             { to: '/shop', label: 'Visit the shop', variant: 'ghost' },

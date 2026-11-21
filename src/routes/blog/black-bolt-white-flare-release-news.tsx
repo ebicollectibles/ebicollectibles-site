@@ -187,7 +187,7 @@ function BlackBoltWhiteFlareReleasePost() {
         lede={`Zekrom and Reshiram lead two sets that released on the same day and split ${UNOVA_TOTAL} Unova Pokémon between them. Each set also has one Chinese Exclusive: an N's Plan and a Hilda Special Art Rare.`}
         cta={{
           heading: 'Collect Black Bolt and White Flare',
-          body: 'Browse all 174 cards of each set on its checklist and tick off what you have.',
+          body: 'Browse all 174 cards of each set on its card list.',
           links: [
             { to: '/sets/chinese/black-bolt-csv10-5', label: 'Black Bolt card list' },
             { to: '/sets/chinese/white-flare-csv10-6', label: 'White Flare card list' },

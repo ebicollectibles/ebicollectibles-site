@@ -166,7 +166,7 @@ function MiracleJourneySetGuide() {
         lede="Miracle Journey has 35 secret rares behind a 128-card main set, and its slim and jumbo packs have different pull odds. This guide shows every chase card and how often you can expect to pull one."
         cta={{
           heading: 'Collect Miracle Journey',
-          body: 'Browse all 163 cards on the full checklist and tick off what you have.',
+          body: 'Browse all 163 cards on the full card list.',
           links: [{ to: '/sets/chinese/miracle-journey-csv2', label: 'See the full card list' }],
         }}
       >
@@ -316,7 +316,7 @@ function MiracleJourneySetGuide() {
         <p>
           With one holo per slim pack and six per jumbo pack, the Master Ball holos and the 27 cards in the top group take a long time to pull. Most collectors open
           packs for fun and the lower rarities, then buy the cards they still need as singles. The{' '}
-          <Link to="/sets/chinese/miracle-journey-csv2">Miracle Journey card list</Link> lets you tick off what you have.
+          <Link to="/sets/chinese/miracle-journey-csv2">Miracle Journey card list</Link> shows every card.
         </p>
 
         <h2 id="faq">FAQ</h2>

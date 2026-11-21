@@ -172,7 +172,7 @@ function GemVol2Post() {
         lede="The second Simplified Chinese Gem Pack is all about Eevee: 140 all-holo cards across Eevee and its eight evolutions, a V and VMAX for each, and four Chinese Exclusive full arts that join into one scene."
         cta={{
           heading: 'Shop Gem Vol 2',
-          body: 'Booster boxes, plus the full 140-card checklist with every version.',
+          body: 'Booster boxes, plus the full 140-card list with every version.',
           links: [
             { to: '/products/$id', params: { id: 'pokemon-chinese-gem-volume-2-booster-box' }, label: 'Shop the booster box' },
             { to: '/sets/chinese/gem-vol-2', label: 'See the full card list', variant: 'ghost' },

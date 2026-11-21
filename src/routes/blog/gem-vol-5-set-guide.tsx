@@ -139,7 +139,7 @@ function GemVol5SetGuide() {
         lede="Each of the 28 Pokémon comes in seven versions, from a common holo to a full art, and four of the full arts are Chinese Exclusive Pokémon Horizons cards. This guide shows how to tell the versions apart and what it really takes to finish the set."
         cta={{
           heading: 'Collect Gem Vol 5',
-          body: 'Track every card on the full checklist, or pick up a booster box.',
+          body: 'See every card on the full card list, or pick up a booster box.',
           links: [
             { to: '/sets/chinese/gem-vol-5', label: 'See the full card list' },
             { to: '/products/$id', params: { id: 'pokemon-chinese-gem-volume-5-booster-box' }, label: 'Shop the booster box', variant: 'ghost' },

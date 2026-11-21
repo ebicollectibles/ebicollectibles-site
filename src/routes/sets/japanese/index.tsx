@@ -42,7 +42,7 @@ function JapaneseSetsIndexPage() {
           </nav>
           <div className="eyebrow">Japanese · Pokémon TCG</div>
           <h1>Japanese Pokémon sets</h1>
-          <p className="lede">Full card lists for the Japanese sets we track. Browse by Pokémon, filter by rarity and track your own collection.</p>
+          <p className="lede">Full card lists for the Japanese sets we track. Browse by Pokémon and filter by rarity.</p>
         </div>
       </section>
 

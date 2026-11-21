@@ -116,7 +116,7 @@ function SetsIndexPage() {
           <div className="eyebrow">Simplified Chinese · Pokémon TCG</div>
           <h1>Simplified Chinese Pokémon sets</h1>
           <p className="lede">
-            Full card lists for every Simplified Chinese set we track. Browse by Pokémon, filter by rarity and track your own collection. Pick a set below to start.
+            Full card lists for every Simplified Chinese set we track. Browse by Pokémon and filter by rarity. Pick a set below to start.
           </p>
         </div>
       </section>

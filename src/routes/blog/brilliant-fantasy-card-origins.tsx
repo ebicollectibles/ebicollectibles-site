@@ -471,7 +471,7 @@ function BrilliantFantasyOrigins() {
         lede="Brilliant Fantasy draws mostly on four English sets at once. We matched all 264 cards to English and found one Chinese Exclusive that does not exist in English."
         cta={{
           heading: 'Collect Brilliant Fantasy',
-          body: 'See every card on the full checklist, or pick up a box.',
+          body: 'See every card on the full card list, or pick up a box.',
           links: [
             { to: '/sets/chinese/brilliant-fantasy-csv8', label: 'See the full card list' },
             { to: '/products/$id', params: { id: 'pokemon-chinese-brilliant-fantasy-jumbo-booster-box' }, label: 'Shop the jumbo box', variant: 'ghost' },

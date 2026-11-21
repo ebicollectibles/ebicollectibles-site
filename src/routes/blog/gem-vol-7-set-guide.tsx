@@ -144,7 +144,7 @@ function GemVol7SetGuide() {
         lede="Each of the 28 Pokémon comes in seven versions, from a common holo to a full art, and 19 of them are paired with a Trainer like Misty's Psyduck. This guide shows how to tell the versions apart and what it really takes to finish the set."
         cta={{
           heading: 'Collect Gem Vol 7',
-          body: 'Track every card on the full checklist, or pick up a booster box.',
+          body: 'See every card on the full card list, or pick up a booster box.',
           links: [
             { to: '/sets/chinese/gem-vol-7', label: 'See the full card list' },
             { to: '/products/$id', params: { id: 'pokemon-chinese-gem-volume-7-booster-box' }, label: 'Shop the booster box', variant: 'ghost' },

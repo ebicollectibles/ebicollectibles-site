@@ -168,7 +168,7 @@ function EternalBirthSetGuide() {
         lede="Eternal Birth has 40 secret rares behind a 127-card main set, and its 5-card slim and 20-card jumbo packs have different pull odds. This guide shows every chase card and how often you can expect to pull one."
         cta={{
           heading: 'Collect Eternal Birth',
-          body: 'Browse all 167 cards on the full checklist and tick off what you have.',
+          body: 'Browse all 167 cards on the full card list.',
           links: [{ to: '/sets/chinese/eternal-birth-csv1', label: 'See the full card list' }],
         }}
       >
@@ -317,7 +317,7 @@ function EternalBirthSetGuide() {
         </p>
         <p>
           With one holo per slim pack and six per jumbo pack, the Master Ball holos and the 32 cards in the top rarity group take a long time to
-          pull. The <Link to="/sets/chinese/eternal-birth-csv1">Eternal Birth card list</Link> lets you tick off what you have.
+          pull. The <Link to="/sets/chinese/eternal-birth-csv1">Eternal Birth card list</Link> shows every card.
         </p>
 
         <h2 id="faq">FAQ</h2>

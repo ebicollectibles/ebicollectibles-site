@@ -239,7 +239,7 @@ function BladeAwakeningReleasePost() {
         lede="Tera Greninja ex leads a 259-card set full of Ancient and Future Pokémon, with nine ACE SPEC cards and a Chinese Exclusive Ciphermaniac Special Art Rare."
         cta={{
           heading: 'Shop Blade Awakening',
-          body: 'Slim and jumbo booster boxes, plus the full checklist with every card.',
+          body: 'Slim and jumbo booster boxes, plus the full card list with every card.',
           links: [
             { to: '/products/$id', params: { id: 'pokemon-chinese-blade-awakening-jumbo-booster-box' }, label: 'Shop the jumbo box' },
             { to: '/products/$id', params: { id: 'pokemon-chinese-blade-awakening-slim-booster-box' }, label: 'Shop the slim box', variant: 'ghost' },

@@ -185,7 +185,7 @@ function GemVol1SetGuide() {
         lede="The first Gem Pack mixes 9-, 8- and 5-card runs, so the numbering takes a minute to learn. This guide explains it, shows the four Chinese Exclusive Horizons full arts, and works out what it takes to finish the set."
         cta={{
           heading: 'Collect Gem Vol 1',
-          body: 'Track every card on the full checklist and tick off what you have.',
+          body: 'See every card on the full card list.',
           links: [{ to: '/sets/chinese/gem-vol-1', label: 'See the full card list' }],
         }}
       >

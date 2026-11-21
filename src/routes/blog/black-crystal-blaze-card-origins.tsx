@@ -369,7 +369,7 @@ function BlackCrystalBlazeOrigins() {
         lede="Black Crystal Blaze mixes cards from several English sets into one. We matched all 164 cards to English and found two Chinese Exclusives that do not exist in English."
         cta={{
           heading: 'Collect Black Crystal Blaze',
-          body: 'See every card on the full checklist, or pick up a box.',
+          body: 'See every card on the full card list, or pick up a box.',
           links: [
             { to: '/sets/chinese/black-crystal-blaze-csv5', label: 'See the full card list' },
             { to: '/products/$id', params: { id: 'pokemon-chinese-black-crystal-blaze-jumbo-booster-box' }, label: 'Shop the jumbo box', variant: 'ghost' },

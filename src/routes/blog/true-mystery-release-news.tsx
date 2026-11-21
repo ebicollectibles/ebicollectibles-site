@@ -210,7 +210,7 @@ function TrueMysteryReleasePost() {
         lede="Iron Valiant is on the pack of True Mystery, the Paradox Pokémon set. It brings Iron Valiant ex, Roaring Moon ex and a Chinese Exclusive Iron Hands ex Special Art Rare."
         cta={{
           heading: 'Shop True Mystery',
-          body: 'Slim and jumbo booster boxes, plus the full checklist with every card.',
+          body: 'Slim and jumbo booster boxes, plus the full card list with every card.',
           links: [
             { to: '/products/$id', params: { id: 'pokemon-chinese-true-mystery-jumbo-booster-box' }, label: 'Shop the jumbo box' },
             { to: '/products/$id', params: { id: 'pokemon-chinese-true-mystery-slim-booster-box' }, label: 'Shop the slim box', variant: 'ghost' },

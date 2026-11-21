@@ -204,7 +204,7 @@ function RewardRoundReleasePost() {
         lede="Gholdengo takes the cover of the fourth Chinese Scarlet & Violet set, and it brings three Chinese Exclusives: a gold Gholdengo ex Ultra Rare and Special Art Rares of Maushold ex and Rika."
         cta={{
           heading: 'Shop Reward Round',
-          body: 'Slim booster boxes, plus the full checklist with every card.',
+          body: 'Slim booster boxes, plus the full card list with every card.',
           links: [
             { to: '/products/$id', params: { id: 'pokemon-chinese-reward-round-booster-box' }, label: 'Shop the slim box' },
             { to: '/sets/chinese/reward-round-csv4', label: 'See the full card list', variant: 'ghost' },

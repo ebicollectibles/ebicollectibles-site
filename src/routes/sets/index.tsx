@@ -30,10 +30,10 @@ const breadcrumbJsonLd = {
 export const Route = createFileRoute('/sets/')({
   head: () => ({
     meta: [
-      { title: 'Pokémon TCG Sets by Language: Card Lists and Checklists | EBI Collectibles' },
-      { name: 'description', content: 'Full card lists, rarities and checklists for the Pokémon TCG sets we track, sorted by language, starting with Simplified Chinese.' },
-      { property: 'og:title', content: 'Pokémon TCG Sets by Language: Card Lists and Checklists' },
-      { property: 'og:description', content: 'Full card lists, rarities and checklists for the Pokémon TCG sets we track, sorted by language, starting with Simplified Chinese.' },
+      { title: 'Pokémon TCG Sets by Language: Card Lists | EBI Collectibles' },
+      { name: 'description', content: 'Full card lists and rarities for the Pokémon TCG sets we track, sorted by language, starting with Simplified Chinese.' },
+      { property: 'og:title', content: 'Pokémon TCG Sets by Language: Card Lists' },
+      { property: 'og:description', content: 'Full card lists and rarities for the Pokémon TCG sets we track, sorted by language, starting with Simplified Chinese.' },
       { property: 'og:image', content: `${SITE_URL}/assets/share/sets.jpg` },
       { property: 'og:image:width', content: '1200' },
       { property: 'og:image:height', content: '630' },
@@ -64,7 +64,7 @@ function SetsHubPage() {
           </nav>
           <div className="eyebrow">Pokémon TCG</div>
           <h1>Pokémon sets</h1>
-          <p className="lede">Full card lists for the Pokémon sets we track. Pick a language to browse its sets and track your collection.</p>
+          <p className="lede">Full card lists for the Pokémon sets we track. Pick a language to browse its sets.</p>
         </div>
       </section>
 

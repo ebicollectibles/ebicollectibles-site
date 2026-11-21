@@ -182,7 +182,7 @@ function GemVol1Post() {
         lede="The first Simplified Chinese Gem Pack starts with the Paldea starters: 115 all-holo cards across Sprigatito, Fuecoco, Quaxly, their middle evolutions and Captain Pikachu, with four Chinese Exclusive Pokémon Horizons full arts."
         cta={{
           heading: 'Collect Gem Vol 1',
-          body: 'Browse all 115 cards on the full checklist and tick off what you have.',
+          body: 'Browse all 115 cards on the full card list.',
           links: [{ to: '/sets/chinese/gem-vol-1', label: 'See the full card list' }],
         }}
       >

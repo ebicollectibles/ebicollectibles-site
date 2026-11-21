@@ -206,7 +206,7 @@ function MiracleJourneyReleasePost() {
         lede="Gardevoir takes the cover of the second Chinese Scarlet & Violet set, and the final forms of the three Paldea starters arrive as Pokémon ex. The Gardevoir ex Special Art Rare leads its 35 secret rares."
         cta={{
           heading: 'Collect Miracle Journey',
-          body: 'Browse all 163 cards on the full checklist and tick off what you have.',
+          body: 'Browse all 163 cards on the full card list.',
           links: [{ to: '/sets/chinese/miracle-journey-csv2', label: 'See the full card list' }],
         }}
       >

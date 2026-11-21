@@ -216,7 +216,7 @@ function BrilliantFantasyReleasePost() {
         lede="Milotic takes the cover of Brilliant Fantasy, the Kitakami set with four Ogerpon ex and the Loyal Three, plus a Chinese Exclusive Carmine Special Art Rare."
         cta={{
           heading: 'Shop Brilliant Fantasy',
-          body: 'Slim and jumbo booster boxes, plus the full checklist with every card.',
+          body: 'Slim and jumbo booster boxes, plus the full card list with every card.',
           links: [
             { to: '/products/$id', params: { id: 'pokemon-chinese-brilliant-fantasy-jumbo-booster-box' }, label: 'Shop the jumbo box' },
             { to: '/products/$id', params: { id: 'pokemon-chinese-brilliant-fantasy-slim-booster-box' }, label: 'Shop the slim box', variant: 'ghost' },

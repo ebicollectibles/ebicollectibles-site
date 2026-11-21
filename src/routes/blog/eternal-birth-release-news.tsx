@@ -202,7 +202,7 @@ function EternalBirthReleasePost() {
         lede="Eternal Birth is the set that moved the Simplified Chinese game from Sword & Shield to Scarlet & Violet, with Miraidon on the pack. It comes in a 5-card slim pack and a 20-card jumbo pack, and Miraidon ex and Koraidon ex are the cards collectors look for first."
         cta={{
           heading: 'Collect Eternal Birth',
-          body: 'Browse all 167 cards on the full checklist and tick off what you have.',
+          body: 'Browse all 167 cards on the full card list.',
           links: [{ to: '/sets/chinese/eternal-birth-csv1', label: 'See the full card list' }],
         }}
       >

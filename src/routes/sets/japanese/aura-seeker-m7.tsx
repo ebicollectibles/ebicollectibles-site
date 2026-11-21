@@ -36,7 +36,7 @@ const config: GemSetConfig = {
   glow2: 'rgb(60 40 120 / .25)',
   region: { label: 'Japanese', path: '/sets/japanese', listName: 'Japanese Sets' },
   noindex: true,
-  titleSub: 'Partial card list & checklist',
+  titleSub: 'Partial card list',
   heroLede:
     'The full Aura Seeker (M7) card list is not out yet. This page shows 79 cards: the complete 78-card main set and the one secret rare shown so far, the Crasher Wake\'s Fervor Special Art Rare 113/078. Mega Lucario Z ex leads the main set. Tap any card for a closer look.',
   pokemonFact: '73',

@@ -31,6 +31,8 @@ export function RarityTag({ rarity }: { rarity: string }) {
 // inside another button): the card itself, which opens the detail dialog,
 // and a small "owned" toggle over the image's top-right corner, which
 // flips the checklist state without opening anything.
+import { COLLECTION_CHECKLIST } from '~/lib/gem-sets/features'
+
 export function CardThumb({
   card,
   dimmed,
@@ -78,9 +80,9 @@ export function CardThumb({
         )}
         {!showName && !card.image && <span className="sr-only">{card.name}</span>}
       </button>
-      <button type="button" className="own-toggle" aria-pressed={have} aria-label={haveLabel(card)} title={have ? 'In your collection' : 'Mark as owned'} onClick={() => onToggleHave(card.id)}>
+      {COLLECTION_CHECKLIST && (<button type="button" className="own-toggle" aria-pressed={have} aria-label={haveLabel(card)} title={have ? 'In your collection' : 'Mark as owned'} onClick={() => onToggleHave(card.id)}>
         <span aria-hidden="true">{have ? '✓' : '+'}</span>
-      </button>
+      </button>)}
     </div>
   )
 }

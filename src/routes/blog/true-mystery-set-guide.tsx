@@ -171,7 +171,7 @@ function TrueMysterySetGuide() {
         lede="True Mystery is the Paradox set, with Iron Valiant on the pack. This guide helps you choose between slim and jumbo boxes, shows every secret rare, and explains how the 163 card numbers fit together."
         cta={{
           heading: 'Collect True Mystery',
-          body: 'Track every card on the full checklist, or pick up a box.',
+          body: 'See every card on the full card list, or pick up a box.',
           links: [
             { to: '/sets/chinese/true-mystery-csv6', label: 'See the full card list' },
             { to: '/products/$id', params: { id: 'pokemon-chinese-true-mystery-jumbo-booster-box' }, label: 'Shop the jumbo box', variant: 'ghost' },
@@ -327,8 +327,7 @@ function TrueMysterySetGuide() {
         </p>
         <p>
           The 35 secret rares and the Master Ball pattern holos take the longest. Many collectors open boxes for fun and the main
-          set, then buy the Special Art Rares and gold cards they still need as singles. The <Link to="/sets/chinese/true-mystery-csv6">True Mystery card list</Link> lets you tick off
-          what you have.
+          set, then buy the Special Art Rares and gold cards they still need as singles. The <Link to="/sets/chinese/true-mystery-csv6">True Mystery card list</Link> shows every card.
         </p>
 
         <h2 id="faq">FAQ</h2>

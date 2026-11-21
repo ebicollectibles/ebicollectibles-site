@@ -203,7 +203,7 @@ function FearlessTerastalReleasePost() {
         lede="Tera Arcanine ex takes the cover of the third Chinese Scarlet & Violet set, and the four Treasures of Ruin arrive as Pokémon ex. It also brings one Chinese Exclusive: an Arcanine ex Special Art Rare."
         cta={{
           heading: 'Collect Fearless Terastal',
-          body: 'Browse all 165 cards on the full checklist and tick off what you have.',
+          body: 'Browse all 165 cards on the full card list.',
           links: [{ to: '/sets/chinese/fearless-terastal-csv3', label: 'See the full card list' }],
         }}
       >

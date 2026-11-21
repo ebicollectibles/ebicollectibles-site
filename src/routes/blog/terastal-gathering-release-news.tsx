@@ -187,7 +187,7 @@ function TerastalGatheringReleasePost() {
         lede="Eevee and all eight Eeveelutions arrive as Stellar Tera ex in China's take on Prismatic Evolutions, with a few cards that never came in an English booster pack."
         cta={{
           heading: 'Shop Terastal Gathering',
-          body: 'Booster boxes, plus the full checklist with every card.',
+          body: 'Booster boxes, plus the full card list with every card.',
           links: [
             { to: '/products/$id', params: { id: 'pokemon-chinese-terastal-gathering-booster-box' }, label: 'Shop the booster box' },
             { to: '/sets/chinese/terastal-gathering-csv9-5', label: 'See the full card list', variant: 'ghost' },
@@ -343,7 +343,7 @@ function TerastalGatheringReleasePost() {
         <p>
           Every Common, Uncommon and Rare also comes as a Poké Ball pattern and a Master Ball pattern holo, and Pokémon China notes they
           use a special finish in this set. With those, there are 601 different cards to collect. The{' '}
-          <Link to="/blog/terastal-gathering-set-guide">set guide</Link> covers the full checklist.
+          <Link to="/blog/terastal-gathering-set-guide">set guide</Link> covers the full card list.
         </p>
 
         <h2 id="faq">FAQ</h2>

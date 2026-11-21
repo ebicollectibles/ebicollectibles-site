@@ -190,7 +190,7 @@ function StellarCrystalSetGuide() {
         lede="Stellar Crystal is the Stellar Tera set, with Pikachu on the pack and Terapagos ex. This guide helps you choose between slim and jumbo packs, shows every secret rare, and explains what a 620-card master set takes."
         cta={{
           heading: 'Collect Stellar Crystal',
-          body: 'Track every card on the full checklist and tick off what you have.',
+          body: 'See every card on the full card list.',
           links: [{ to: '/sets/chinese/stellar-crystal-csv9', label: 'See the full card list' }],
         }}
       >
@@ -341,7 +341,7 @@ function StellarCrystalSetGuide() {
           The Poké Ball holos come quickly, since they are in the most common holo group. The Master Ball holos share a group with the
           Double Rares, Art Rares and ACE SPEC cards. That group averages about one card every 4 slim packs, or 1.4 per jumbo pack,
           spread across 214 different cards, so they take a long time. The 52 Super Rares, Special Art Rares and Ultra Rares are
-          harder still. Most collectors open packs for fun and for the lower rarities, then buy the rarest cards as singles. The <Link to="/sets/chinese/stellar-crystal-csv9">Stellar Crystal card list</Link> lets you tick off what you have.
+          harder still. Most collectors open packs for fun and for the lower rarities, then buy the rarest cards as singles. The <Link to="/sets/chinese/stellar-crystal-csv9">Stellar Crystal card list</Link> shows every card.
         </p>
 
         <h2 id="faq">FAQ</h2>

@@ -463,7 +463,7 @@ function BladeAwakeningOrigins() {
         lede="Blade Awakening is mostly Temporal Forces and Twilight Masquerade, plus a few cards from six other English sources and one Chinese Exclusive that does not exist in English. We matched all 259 cards to English."
         cta={{
           heading: 'Collect Blade Awakening',
-          body: 'See every card on the full checklist, or pick up a box.',
+          body: 'See every card on the full card list, or pick up a box.',
           links: [
             { to: '/sets/chinese/blade-awakening-csv7', label: 'See the full card list' },
             { to: '/products/$id', params: { id: 'pokemon-chinese-blade-awakening-jumbo-booster-box' }, label: 'Shop the jumbo box', variant: 'ghost' },

@@ -364,7 +364,7 @@ function MiracleJourneyOrigins() {
         lede="Miracle Journey is built mostly from Paldea Evolved and the first Scarlet & Violet set, with cards from four other English sources mixed in. We matched all 163 cards to English, and every one has an English version."
         cta={{
           heading: 'Collect Miracle Journey',
-          body: 'Browse all 163 cards on the full checklist and tick off what you have.',
+          body: 'Browse all 163 cards on the full card list.',
           links: [{ to: '/sets/chinese/miracle-journey-csv2', label: 'See the full card list' }],
         }}
       >

@@ -192,7 +192,7 @@ function BrilliantFantasySetGuide() {
         lede="Brilliant Fantasy is the Kitakami set, with Milotic on the pack and every Ogerpon mask. This guide helps you choose between slim and jumbo boxes, shows the most wanted cards, and explains what a 616-card master set takes."
         cta={{
           heading: 'Collect Brilliant Fantasy',
-          body: 'Track every card on the full checklist, or pick up a box.',
+          body: 'See every card on the full card list, or pick up a box.',
           links: [
             { to: '/sets/chinese/brilliant-fantasy-csv8', label: 'See the full card list' },
             { to: '/products/$id', params: { id: 'pokemon-chinese-brilliant-fantasy-jumbo-booster-box' }, label: 'Shop the jumbo box', variant: 'ghost' },
@@ -351,7 +351,7 @@ function BrilliantFantasySetGuide() {
           The Poké Ball holos come quickly, since they share the most common holo rarity group. The Master Ball holos share a rarity
           group with the Double Rares, which averages about 4 cards per slim box or 8 per jumbo box across 213 different cards, so they take a long time. The
           51 Super Rares, Special Art Rares and Ultra Rares are harder still. The practical route is to open boxes for fun and the
-          lower rarities, then pick up the rarest cards as singles. The <Link to="/sets/chinese/brilliant-fantasy-csv8">Brilliant Fantasy card list</Link> lets you tick off what you have.
+          lower rarities, then pick up the rarest cards as singles. The <Link to="/sets/chinese/brilliant-fantasy-csv8">Brilliant Fantasy card list</Link> shows every card.
         </p>
 
         <h2 id="faq">FAQ</h2>

@@ -376,7 +376,7 @@ function TrueMysteryOrigins() {
         lede="True Mystery, with Iron Valiant on the pack, is mostly Paradox Rift, with cards from four other English sources and two that do not exist in English. One of those two is the Chinese Exclusive Iron Hands ex. We matched all 163 cards to English."
         cta={{
           heading: 'Collect True Mystery',
-          body: 'See every card on the full checklist, or pick up a box.',
+          body: 'See every card on the full card list, or pick up a box.',
           links: [
             { to: '/sets/chinese/true-mystery-csv6', label: 'See the full card list' },
             { to: '/products/$id', params: { id: 'pokemon-chinese-true-mystery-jumbo-booster-box' }, label: 'Shop the jumbo box', variant: 'ghost' },

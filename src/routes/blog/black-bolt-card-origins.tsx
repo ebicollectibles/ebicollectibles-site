@@ -364,7 +364,7 @@ function BlackBoltOrigins() {
         lede="Chinese Black Bolt is close to English Black Bolt, with a few differences. We matched all 174 cards to English, including the ones borrowed from White Flare and the one Chinese Exclusive that does not exist in English."
         cta={{
           heading: 'Collect Black Bolt',
-          body: 'See every card on the full checklist, or pick up a box.',
+          body: 'See every card on the full card list, or pick up a box.',
           links: [
             { to: '/sets/chinese/black-bolt-csv10-5', label: 'See the full card list' },
             { to: '/products/$id', params: { id: 'pokemon-chinese-black-bolt-jumbo-booster-box' }, label: 'Shop the jumbo box', variant: 'ghost' },

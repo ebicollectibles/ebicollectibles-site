@@ -171,7 +171,7 @@ function FearlessTerastalSetGuide() {
         lede="Fearless Terastal has Tera Arcanine ex on the pack and 35 secret rares behind a 130-card main set, and its slim and jumbo packs have different pull odds. This guide shows every chase card and how often you can expect to pull one."
         cta={{
           heading: 'Collect Fearless Terastal',
-          body: 'Browse all 165 cards on the full checklist and tick off what you have.',
+          body: 'Browse all 165 cards on the full card list.',
           links: [{ to: '/sets/chinese/fearless-terastal-csv3', label: 'See the full card list' }],
         }}
       >
@@ -321,7 +321,7 @@ function FearlessTerastalSetGuide() {
         <p>
           With one holo per slim pack and six per jumbo pack, the Master Ball holos and the 27 cards in the top
           rarity group take a long time to pull. Most collectors open packs for fun and the lower rarities, then buy the rarest cards as singles. The{' '}
-          <Link to="/sets/chinese/fearless-terastal-csv3">Fearless Terastal card list</Link> lets you tick off what you have.
+          <Link to="/sets/chinese/fearless-terastal-csv3">Fearless Terastal card list</Link> shows every card.
         </p>
 
         <h2 id="faq">FAQ</h2>

@@ -173,7 +173,7 @@ function WhiteFlareSetGuide() {
         lede="White Flare is the Reshiram half of a twin release, sold in slim and jumbo boxes with different odds. This guide helps you pick a box, shows every chase card, and explains what a full set takes."
         cta={{
           heading: 'Collect White Flare',
-          body: 'Track every card on the full checklist, or pick up a box.',
+          body: 'See every card on the full card list, or pick up a box.',
           links: [
             { to: '/sets/chinese/white-flare-csv10-6', label: 'See the full card list' },
             { to: '/products/$id', params: { id: 'pokemon-chinese-white-flare-jumbo-booster-box' }, label: 'Shop the jumbo box', variant: 'ghost' },
@@ -325,7 +325,7 @@ function WhiteFlareSetGuide() {
           The Poké Ball holos come fastest, since they share the most common holo group. The Master Ball holos share a group with the 6 Double
           Rares and 72 Art Rares, about 4.5 per slim box or 9 per jumbo box spread across 158 different cards, so they take a long time. The
           16 cards at Super Rare and above are harder still. The practical route is to open boxes for the lower tiers, then pick up the big cards as singles.
-          The <Link to="/sets/chinese/white-flare-csv10-6">White Flare card list</Link> lets you tick off what you have. Its twin,{' '}
+          The <Link to="/sets/chinese/white-flare-csv10-6">White Flare card list</Link> shows every card. Its twin,{' '}
           <Link to="/blog/black-bolt-set-guide">Black Bolt</Link>, is a separate 174-card set with its own Pokémon.
         </p>
 

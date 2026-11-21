@@ -203,7 +203,7 @@ function BladeAwakeningSetGuide() {
         lede="Blade Awakening is the Tera Greninja ex set, with nine ACE SPEC cards and slim and jumbo boxes that have different odds. This guide helps you pick a box, shows the most wanted cards, and explains what a 605-card master set takes."
         cta={{
           heading: 'Collect Blade Awakening',
-          body: 'Track every card on the full checklist, or pick up a box.',
+          body: 'See every card on the full card list, or pick up a box.',
           links: [
             { to: '/sets/chinese/blade-awakening-csv7', label: 'See the full card list' },
             { to: '/products/$id', params: { id: 'pokemon-chinese-blade-awakening-jumbo-booster-box' }, label: 'Shop the jumbo box', variant: 'ghost' },
@@ -362,8 +362,7 @@ function BladeAwakeningSetGuide() {
         </p>
         <p>
           The 173 Master Ball holos and the 49 Super Rares, Special Art Rares and Ultra Rares take the longest. Many collectors open
-          boxes for fun and the lower rarities, then buy the rarest cards as singles. The <Link to="/sets/chinese/blade-awakening-csv7">Blade Awakening card list</Link> lets you tick off what
-          you have.
+          boxes for fun and the lower rarities, then buy the rarest cards as singles. The <Link to="/sets/chinese/blade-awakening-csv7">Blade Awakening card list</Link> shows every card.
         </p>
 
         <h2 id="faq">FAQ</h2>

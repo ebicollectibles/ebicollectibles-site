@@ -170,7 +170,7 @@ function GemVol7Post() {
         lede="Psyduck fronts the seventh Simplified Chinese Gem Pack: 28 Pokémon, seven cards each, every card a holo, and the Chinese Exclusive Misty's Psyduck full art by Cona Nitanda, drawn for this set."
         cta={{
           heading: 'Shop Gem Vol 7',
-          body: 'Booster boxes, plus the full 196-card checklist with every version.',
+          body: 'Booster boxes, plus the full 196-card list with every version.',
           links: [
             { to: '/products/$id', params: { id: 'pokemon-chinese-gem-volume-7-booster-box' }, label: 'Shop the booster box' },
             { to: '/sets/chinese/gem-vol-7', label: 'See the full card list', variant: 'ghost' },

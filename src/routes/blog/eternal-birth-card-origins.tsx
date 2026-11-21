@@ -369,7 +369,7 @@ function EternalBirthOrigins() {
         lede="Eternal Birth follows the first English Scarlet & Violet set closely, with cards from six other English sources mixed in. We matched all 167 cards to English, and every one has an English version."
         cta={{
           heading: 'Collect Eternal Birth',
-          body: 'Browse all 167 cards on the full checklist and tick off what you have.',
+          body: 'Browse all 167 cards on the full card list.',
           links: [{ to: '/sets/chinese/eternal-birth-csv1', label: 'See the full card list' }],
         }}
       >

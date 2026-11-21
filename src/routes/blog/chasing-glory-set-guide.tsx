@@ -202,7 +202,7 @@ function ChasingGlorySetGuide() {
         lede="Chasing Glory is the Trainer's Pokémon set, led by Team Rocket and sold in slim and jumbo boxes. This guide helps you pick a box, shows every chase card, and lists which Trainer owns which Pokémon."
         cta={{
           heading: 'Collect Chasing Glory',
-          body: 'Track every card on the full checklist, or pick up a box.',
+          body: 'See every card on the full card list, or pick up a box.',
           links: [
             { to: '/sets/chinese/chasing-glory-csv10', label: 'See the full card list' },
             { to: '/products/$id', params: { id: 'pokemon-chinese-chasing-glory-jumbo-booster-box' }, label: 'Shop the jumbo box', variant: 'ghost' },
@@ -371,7 +371,7 @@ function ChasingGlorySetGuide() {
           The Poké Ball holos come fastest, since they share the most common holo group. The Master Ball holos share the Double Rare group,
           about 4 per slim box or 8 per jumbo box spread across 228 different cards in that group, so they take a long time. The 59 top-group
           cards are harder still. Like most sets, the practical route is to open boxes for fun and the lower tiers, then pick up the big
-          cards as singles. The <Link to="/sets/chinese/chasing-glory-csv10">Chasing Glory card list</Link> lets you tick off what you have.
+          cards as singles. The <Link to="/sets/chinese/chasing-glory-csv10">Chasing Glory card list</Link> shows every card.
         </p>
 
         <h2 id="faq">FAQ</h2>

@@ -168,7 +168,7 @@ function ThirtiethSetGuide() {
         lede="30th Celebration is the Pokémon TCG's 30th anniversary set: 165 holo cards, with a Pikachu in every pack. This guide explains how the set is numbered, shows every secret rare and promo, and tells you what a master set takes."
         cta={{
           heading: 'Collect 30th Celebration',
-          body: 'Track every card on the full checklist, or pick up a booster box.',
+          body: 'See every card on the full card list, or pick up a booster box.',
           links: [
             { to: '/sets/chinese/30th-celebration', label: 'See the full card list' },
             { to: '/products/$id', params: { id: 'pokemon-chinese-30th-celebration-booster-box' }, label: 'Shop the booster box', variant: 'ghost' },

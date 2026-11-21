@@ -190,7 +190,7 @@ function GemVol3Post() {
         lede="Gengar fronts the third Simplified Chinese Gem Pack: 136 all-holo cards of Pokémon that come out at night, nine Pokémon ex, and five Chinese Exclusive full arts."
         cta={{
           heading: 'Shop Gem Vol 3',
-          body: 'Booster boxes, plus the full 136-card checklist with every version.',
+          body: 'Booster boxes, plus the full 136-card list with every version.',
           links: [
             { to: '/products/$id', params: { id: 'pokemon-chinese-gem-volume-3-booster-box' }, label: 'Shop the booster box' },
             { to: '/sets/chinese/gem-vol-3', label: 'See the full card list', variant: 'ghost' },

@@ -485,7 +485,7 @@ function ChasingGloryOrigins() {
         lede="Chasing Glory pairs Trainers with their Pokémon, and almost every card has an English twin. We matched all 287, and found one Chinese Exclusive."
         cta={{
           heading: 'Collect Chasing Glory',
-          body: 'See every card on the full checklist, or pick up a box.',
+          body: 'See every card on the full card list, or pick up a box.',
           links: [
             { to: '/sets/chinese/chasing-glory-csv10', label: 'See the full card list' },
             { to: '/products/$id', params: { id: 'pokemon-chinese-chasing-glory-jumbo-booster-box' }, label: 'Shop the jumbo box', variant: 'ghost' },

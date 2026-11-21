@@ -373,7 +373,7 @@ function RewardRoundOrigins() {
         lede="Reward Round mixes cards from several English sets into one. We matched all 165 cards to English and found three Chinese Exclusives that do not exist in English."
         cta={{
           heading: 'Collect Reward Round',
-          body: 'See every card on the full checklist, or pick up a slim box.',
+          body: 'See every card on the full card list, or pick up a slim box.',
           links: [
             { to: '/sets/chinese/reward-round-csv4', label: 'See the full card list' },
             { to: '/products/$id', params: { id: 'pokemon-chinese-reward-round-booster-box' }, label: 'Shop the slim box', variant: 'ghost' },

@@ -172,7 +172,7 @@ function TerastalGatheringSetGuide() {
         lede="Terastal Gathering is the Stellar Eeveelution set, with 34 Special Art Rares in 10-card packs. This guide shows every Eeveelution and chase card, what a box holds on average, and what a master set takes."
         cta={{
           heading: 'Collect Terastal Gathering',
-          body: 'Track every card on the full checklist, or pick up a box.',
+          body: 'See every card on the full card list, or pick up a box.',
           links: [
             { to: '/sets/chinese/terastal-gathering-csv9-5', label: 'See the full card list' },
             { to: '/products/$id', params: { id: 'pokemon-chinese-terastal-gathering-booster-box' }, label: 'Shop the booster box', variant: 'ghost' },
@@ -316,7 +316,7 @@ function TerastalGatheringSetGuide() {
           Double Rares and ACE SPECs, about 13 cards a box spread across 379 different cards, so both take many boxes, and Pokémon China
           ranks the Master Ball holos as the rarest in that group. For the Special Art Rares and gold cards, most collectors
           open a few boxes for fun, then buy the cards they still need as singles. The{' '}
-          <Link to="/sets/chinese/terastal-gathering-csv9-5">Terastal Gathering card list</Link> lets you tick off what you have.
+          <Link to="/sets/chinese/terastal-gathering-csv9-5">Terastal Gathering card list</Link> shows every card.
         </p>
 
         <h2 id="faq">FAQ</h2>

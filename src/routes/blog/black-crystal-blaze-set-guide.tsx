@@ -171,7 +171,7 @@ function BlackCrystalBlazeSetGuide() {
         lede="Black Crystal Blaze is the Tera Charizard set, with two Chinese Exclusives and slim and jumbo boxes. This guide helps you pick a box, shows every chase card, and explains what a master set takes."
         cta={{
           heading: 'Collect Black Crystal Blaze',
-          body: 'Track every card on the full checklist, or pick up a box.',
+          body: 'See every card on the full card list, or pick up a box.',
           links: [
             { to: '/sets/chinese/black-crystal-blaze-csv5', label: 'See the full card list' },
             { to: '/products/$id', params: { id: 'pokemon-chinese-black-crystal-blaze-jumbo-booster-box' }, label: 'Shop the jumbo box', variant: 'ghost' },
@@ -318,8 +318,7 @@ function BlackCrystalBlazeSetGuide() {
         <p>
           The Master Ball holos share a rarity group with the Double Rares and Art Rares, about 3 to 4 cards per slim box or 7 per
           jumbo box spread across 137 different cards, so they take a long time. The 27 cards in the top group are harder still. Most
-          collectors open boxes for fun and the lower rarities, then buy the cards they still need as singles. The <Link to="/sets/chinese/black-crystal-blaze-csv5">Black Crystal Blaze card list</Link> lets you tick off
-          what you have.
+          collectors open boxes for fun and the lower rarities, then buy the cards they still need as singles. The <Link to="/sets/chinese/black-crystal-blaze-csv5">Black Crystal Blaze card list</Link> shows every card.
         </p>
 
         <h2 id="faq">FAQ</h2>

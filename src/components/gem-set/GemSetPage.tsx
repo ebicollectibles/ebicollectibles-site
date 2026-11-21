@@ -4,6 +4,7 @@ import type { BlogGuideLink } from '~/server/blog-status'
 import { SITE_URL } from '~/lib/gem-sets/constants'
 import { cardLinkQuery } from '~/lib/gem-sets/card-search'
 import { buildGemSetJsonLd, safeJsonLd } from '~/lib/gem-sets/head'
+import { COLLECTION_CHECKLIST } from '~/lib/gem-sets/features'
 import { RARITY_CODE, RARITY_SYMBOL } from '~/lib/gem-sets/rarity'
 import type { BuiltGemSetData, Card, GemSetConfig, GemSetData } from '~/lib/gem-sets/types'
 import { cardAlt, cardNumber, rarityName } from '~/lib/gem-sets/alt'
@@ -397,7 +398,7 @@ export function GemSetPage({
             </div>
             <h1>
               {raw.name}{' '}
-              <span>{config.titleSub ?? 'Complete card list & checklist'}</span>
+              <span>{config.titleSub ?? (COLLECTION_CHECKLIST ? 'Complete card list & checklist' : 'Complete card list')}</span>
             </h1>
             <p className="lede">{heroLede}</p>
             <dl className="facts">
@@ -546,7 +547,7 @@ export function GemSetPage({
                 ['grid', 'All cards'],
                 ['ladder', 'By Pokémon'],
                 ...(hasAnyExclusive ? ([['exclusives', 'Chinese Exclusives']] as const) : []),
-                ['list', 'Checklist'],
+                ...(COLLECTION_CHECKLIST ? ([['list', 'Checklist']] as const) : []),
               ] as const
             ).map(([v, label]) => (
               <button key={v} type="button" aria-pressed={view === v} onClick={() => setView(v)}>
@@ -558,7 +559,7 @@ export function GemSetPage({
             <span role="status">
               <b>{shown.length}</b> of {raw.cardCount} cards<span className="sr-only"> shown</span>
             </span>
-            {view !== 'list' && (
+            {COLLECTION_CHECKLIST && view !== 'list' && (
               <span className="progress">
                 <i aria-hidden="true">
                   <s style={{ width: `${ownedPct}%` }} />
@@ -857,7 +858,7 @@ export function GemSetPage({
                   </button>
                 ))}
               </div>
-              <button
+              {COLLECTION_CHECKLIST && (<button
                 type="button"
                 className="btn have-btn"
                 aria-pressed={have.has(openCard.id)}
@@ -870,7 +871,7 @@ export function GemSetPage({
                 ) : (
                   'I have this card'
                 )}
-              </button>
+              </button>)}
               <div className="lb-actions">
                 {config.productId ? (
                   <Link className="btn btn-dark" to="/products/$id" params={{ id: config.productId }}>

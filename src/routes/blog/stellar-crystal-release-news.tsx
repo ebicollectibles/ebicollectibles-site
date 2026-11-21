@@ -201,7 +201,7 @@ function StellarCrystalReleasePost() {
         lede="Stellar Tera Pikachu is on the pack of Stellar Crystal, the Terapagos set, and the set has one Chinese Exclusive: a Lisia's Appeal Special Art Rare."
         cta={{
           heading: 'Collect Stellar Crystal',
-          body: 'Browse all 266 cards on the full checklist and tick off what you have.',
+          body: 'Browse all 266 cards on the full card list.',
           links: [{ to: '/sets/chinese/stellar-crystal-csv9', label: 'See the full card list' }],
         }}
       >

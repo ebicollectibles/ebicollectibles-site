@@ -169,7 +169,7 @@ function RewardRoundSetGuide() {
         lede="Reward Round is the Gholdengo set, with three Chinese Exclusives. This guide shows every chase card, what a slim box holds on average, and what a master set takes."
         cta={{
           heading: 'Collect Reward Round',
-          body: 'Track every card on the full checklist, or pick up a slim box.',
+          body: 'See every card on the full card list, or pick up a slim box.',
           links: [
             { to: '/sets/chinese/reward-round-csv4', label: 'See the full card list' },
             { to: '/products/$id', params: { id: 'pokemon-chinese-reward-round-booster-box' }, label: 'Shop the slim box', variant: 'ghost' },
@@ -322,8 +322,7 @@ function RewardRoundSetGuide() {
         <p>
           With one holo per slim pack, the Master Ball holos take a long time to pull, since they share a rarity group with the Double
           Rares and Art Rares. The 28 cards in the top rarity group take longer still. Most
-          collectors open boxes for fun and the lower rarities, then buy the rarest cards as singles. The <Link to="/sets/chinese/reward-round-csv4">Reward Round card list</Link> lets
-          you tick off what you have.
+          collectors open boxes for fun and the lower rarities, then buy the rarest cards as singles. The <Link to="/sets/chinese/reward-round-csv4">Reward Round card list</Link> shows every card.
         </p>
 
         <h2 id="faq">FAQ</h2>
