@@ -159,8 +159,7 @@ function FunismFirstPartnerReleasePost() {
         </p>
         <p>
           It is sold as a blind box, and the box is printed to look like a brown suitcase with a carry handle. Inside is a smaller
-          brown suitcase that opens to show three Poké Balls in a black tray, and three figures. Charmander is on the
-          front of every box.
+          brown suitcase that opens to show three Poké Balls in a black tray, and three figures.
         </p>
 
         <aside className="fact-box" aria-label="First Partner key facts">

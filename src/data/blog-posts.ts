@@ -344,7 +344,7 @@ export const BLOG_POSTS: BlogPostSummary[] = [
       'Funism First Partner Pokémon figures: all 27 starters from Kanto to Paldea, three per suitcase blind box, and a display of nine boxes. Released July 2026.',
     tag: 'New release',
     date: '2026-07-10',
-    heroImage: `${SITE_URL}/assets/blog/funism-first-partner-release-hero.webp`,
+    heroImage: `${SITE_URL}/assets/blog/funism-first-partner-series-hero.webp`,
     heroAlt: 'Funism First Partner suitcase box with Charmander on the front, the open suitcase with three Poké Balls, and the Bulbasaur, Charmander and Squirtle figures',
     glow1: 'rgb(246 164 86 / .28)',
     glow2: 'rgb(150 104 66 / .24)',
