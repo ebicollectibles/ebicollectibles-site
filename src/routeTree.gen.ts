@@ -66,6 +66,7 @@ import { Route as BlogChasingGlorySetGuideRouteImport } from './routes/blog/chas
 import { Route as BlogChinesePokemonSetsInOrderRouteImport } from './routes/blog/chinese-pokemon-sets-in-order'
 import { Route as BlogCollect151FirstPartnerDisplaySetsReleaseNewsRouteImport } from './routes/blog/collect-151-first-partner-display-sets-release-news'
 import { Route as BlogDayNightGiftBoxReleaseNewsRouteImport } from './routes/blog/day-night-gift-box-release-news'
+import { Route as BlogEeveeDreamPaintingFiguresReleaseNewsRouteImport } from './routes/blog/eevee-dream-painting-figures-release-news'
 import { Route as BlogEeveeGiftBoxReleaseNewsRouteImport } from './routes/blog/eevee-gift-box-release-news'
 import { Route as BlogEspeonUmbreonDeluxeDeckReleaseNewsRouteImport } from './routes/blog/espeon-umbreon-deluxe-deck-release-news'
 import { Route as BlogEternalBirthCardOriginsRouteImport } from './routes/blog/eternal-birth-card-origins'
@@ -484,6 +485,12 @@ const BlogDayNightGiftBoxReleaseNewsRoute =
   BlogDayNightGiftBoxReleaseNewsRouteImport.update({
     id: '/blog/day-night-gift-box-release-news',
     path: '/blog/day-night-gift-box-release-news',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const BlogEeveeDreamPaintingFiguresReleaseNewsRoute =
+  BlogEeveeDreamPaintingFiguresReleaseNewsRouteImport.update({
+    id: '/blog/eevee-dream-painting-figures-release-news',
+    path: '/blog/eevee-dream-painting-figures-release-news',
     getParentRoute: () => rootRouteImport,
   } as any)
 const BlogEeveeGiftBoxReleaseNewsRoute =
@@ -1171,6 +1178,7 @@ export interface FileRoutesByFullPath {
   '/blog/chinese-pokemon-sets-in-order': typeof BlogChinesePokemonSetsInOrderRoute
   '/blog/collect-151-first-partner-display-sets-release-news': typeof BlogCollect151FirstPartnerDisplaySetsReleaseNewsRoute
   '/blog/day-night-gift-box-release-news': typeof BlogDayNightGiftBoxReleaseNewsRoute
+  '/blog/eevee-dream-painting-figures-release-news': typeof BlogEeveeDreamPaintingFiguresReleaseNewsRoute
   '/blog/eevee-gift-box-release-news': typeof BlogEeveeGiftBoxReleaseNewsRoute
   '/blog/espeon-umbreon-deluxe-deck-release-news': typeof BlogEspeonUmbreonDeluxeDeckReleaseNewsRoute
   '/blog/eternal-birth-card-origins': typeof BlogEternalBirthCardOriginsRoute
@@ -1342,6 +1350,7 @@ export interface FileRoutesByTo {
   '/blog/chinese-pokemon-sets-in-order': typeof BlogChinesePokemonSetsInOrderRoute
   '/blog/collect-151-first-partner-display-sets-release-news': typeof BlogCollect151FirstPartnerDisplaySetsReleaseNewsRoute
   '/blog/day-night-gift-box-release-news': typeof BlogDayNightGiftBoxReleaseNewsRoute
+  '/blog/eevee-dream-painting-figures-release-news': typeof BlogEeveeDreamPaintingFiguresReleaseNewsRoute
   '/blog/eevee-gift-box-release-news': typeof BlogEeveeGiftBoxReleaseNewsRoute
   '/blog/espeon-umbreon-deluxe-deck-release-news': typeof BlogEspeonUmbreonDeluxeDeckReleaseNewsRoute
   '/blog/eternal-birth-card-origins': typeof BlogEternalBirthCardOriginsRoute
@@ -1514,6 +1523,7 @@ export interface FileRoutesById {
   '/blog/chinese-pokemon-sets-in-order': typeof BlogChinesePokemonSetsInOrderRoute
   '/blog/collect-151-first-partner-display-sets-release-news': typeof BlogCollect151FirstPartnerDisplaySetsReleaseNewsRoute
   '/blog/day-night-gift-box-release-news': typeof BlogDayNightGiftBoxReleaseNewsRoute
+  '/blog/eevee-dream-painting-figures-release-news': typeof BlogEeveeDreamPaintingFiguresReleaseNewsRoute
   '/blog/eevee-gift-box-release-news': typeof BlogEeveeGiftBoxReleaseNewsRoute
   '/blog/espeon-umbreon-deluxe-deck-release-news': typeof BlogEspeonUmbreonDeluxeDeckReleaseNewsRoute
   '/blog/eternal-birth-card-origins': typeof BlogEternalBirthCardOriginsRoute
@@ -1687,6 +1697,7 @@ export interface FileRouteTypes {
     | '/blog/chinese-pokemon-sets-in-order'
     | '/blog/collect-151-first-partner-display-sets-release-news'
     | '/blog/day-night-gift-box-release-news'
+    | '/blog/eevee-dream-painting-figures-release-news'
     | '/blog/eevee-gift-box-release-news'
     | '/blog/espeon-umbreon-deluxe-deck-release-news'
     | '/blog/eternal-birth-card-origins'
@@ -1858,6 +1869,7 @@ export interface FileRouteTypes {
     | '/blog/chinese-pokemon-sets-in-order'
     | '/blog/collect-151-first-partner-display-sets-release-news'
     | '/blog/day-night-gift-box-release-news'
+    | '/blog/eevee-dream-painting-figures-release-news'
     | '/blog/eevee-gift-box-release-news'
     | '/blog/espeon-umbreon-deluxe-deck-release-news'
     | '/blog/eternal-birth-card-origins'
@@ -2029,6 +2041,7 @@ export interface FileRouteTypes {
     | '/blog/chinese-pokemon-sets-in-order'
     | '/blog/collect-151-first-partner-display-sets-release-news'
     | '/blog/day-night-gift-box-release-news'
+    | '/blog/eevee-dream-painting-figures-release-news'
     | '/blog/eevee-gift-box-release-news'
     | '/blog/espeon-umbreon-deluxe-deck-release-news'
     | '/blog/eternal-birth-card-origins'
@@ -2201,6 +2214,7 @@ export interface RootRouteChildren {
   BlogChinesePokemonSetsInOrderRoute: typeof BlogChinesePokemonSetsInOrderRoute
   BlogCollect151FirstPartnerDisplaySetsReleaseNewsRoute: typeof BlogCollect151FirstPartnerDisplaySetsReleaseNewsRoute
   BlogDayNightGiftBoxReleaseNewsRoute: typeof BlogDayNightGiftBoxReleaseNewsRoute
+  BlogEeveeDreamPaintingFiguresReleaseNewsRoute: typeof BlogEeveeDreamPaintingFiguresReleaseNewsRoute
   BlogEeveeGiftBoxReleaseNewsRoute: typeof BlogEeveeGiftBoxReleaseNewsRoute
   BlogEspeonUmbreonDeluxeDeckReleaseNewsRoute: typeof BlogEspeonUmbreonDeluxeDeckReleaseNewsRoute
   BlogEternalBirthCardOriginsRoute: typeof BlogEternalBirthCardOriginsRoute
@@ -2717,6 +2731,13 @@ declare module '@tanstack/react-router' {
       path: '/blog/day-night-gift-box-release-news'
       fullPath: '/blog/day-night-gift-box-release-news'
       preLoaderRoute: typeof BlogDayNightGiftBoxReleaseNewsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/eevee-dream-painting-figures-release-news': {
+      id: '/blog/eevee-dream-painting-figures-release-news'
+      path: '/blog/eevee-dream-painting-figures-release-news'
+      fullPath: '/blog/eevee-dream-painting-figures-release-news'
+      preLoaderRoute: typeof BlogEeveeDreamPaintingFiguresReleaseNewsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/blog/eevee-gift-box-release-news': {
@@ -3564,6 +3585,8 @@ const rootRouteChildren: RootRouteChildren = {
   BlogCollect151FirstPartnerDisplaySetsReleaseNewsRoute:
     BlogCollect151FirstPartnerDisplaySetsReleaseNewsRoute,
   BlogDayNightGiftBoxReleaseNewsRoute: BlogDayNightGiftBoxReleaseNewsRoute,
+  BlogEeveeDreamPaintingFiguresReleaseNewsRoute:
+    BlogEeveeDreamPaintingFiguresReleaseNewsRoute,
   BlogEeveeGiftBoxReleaseNewsRoute: BlogEeveeGiftBoxReleaseNewsRoute,
   BlogEspeonUmbreonDeluxeDeckReleaseNewsRoute:
     BlogEspeonUmbreonDeluxeDeckReleaseNewsRoute,

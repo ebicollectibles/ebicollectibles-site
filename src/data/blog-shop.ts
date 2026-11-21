@@ -66,6 +66,12 @@ const SET_PRODUCTS: Record<string, string[]> = {
   'first-partner-30th-vol-3': [
     'pokemon-chinese-first-partner-30th-celebration-vol3',
   ],
+  'eevee-dream-painting-figures': [
+    'pokemon-chinese-eevee-friends-dream-painting-figures-espeon',
+    'pokemon-chinese-eevee-friends-dream-painting-figures-flareon',
+    'pokemon-chinese-eevee-friends-dream-painting-figures-blind-box',
+    'pokemon-chinese-eevee-friends-dream-painting-figures-leafeon',
+  ],
   'pikachu-dream-painting-figures': [
     'pokemon-chinese-pikachu-30th-celebration-figures-blind-box',
     'pokemon-chinese-pikachu-30th-celebration-figures-blind-box-case',
