@@ -561,7 +561,7 @@ export const BLOG_POSTS: BlogPostSummary[] = [
       'The Chinese Pokémon TCG 30th Celebration Espeon ex and Umbreon ex deluxe deck sets: the decks, metal deck boxes, playmats, coins and 2 packs each.',
     tag: 'New release',
     date: '2026-09-16',
-    heroImage: `${SITE_URL}/assets/blog/espeon-umbreon-deluxe-deck-release-hero.webp`,
+    heroImage: `${SITE_URL}/assets/blog/espeon-umbreon-deluxe-deck-centred-hero.webp`,
     heroAlt: 'The Espeon and Umbreon deluxe deck set boxes side by side',
     glow1: 'rgb(230 160 230 / .30)',
     glow2: 'rgb(90 110 220 / .24)',
