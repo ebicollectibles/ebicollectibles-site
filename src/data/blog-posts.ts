@@ -6,7 +6,7 @@
 // the post itself.
 import { SITE_URL, R2_IMAGE_HOST } from '~/lib/gem-sets/constants'
 
-export type BlogPostSlug = 'chinese-pokemon-sets-in-order' | 'gem-vol-7-release-news' | 'gem-vol-7-set-guide' | 'gem-vol-7-card-origins' | 'gem-vol-6-release-news' | 'gem-vol-6-set-guide' | 'gem-vol-6-card-origins' | 'gem-vol-5-release-news' | 'gem-vol-5-set-guide' | 'gem-vol-5-card-origins' | 'gem-vol-4-release-news' | 'gem-vol-4-set-guide' | 'gem-vol-4-card-origins' | 'gem-vol-3-release-news' | 'gem-vol-3-set-guide' | 'gem-vol-3-card-origins' | 'gem-vol-2-release-news' | 'gem-vol-2-set-guide' | 'gem-vol-2-card-origins' | 'gem-vol-1-release-news' | 'gem-vol-1-set-guide' | 'gem-vol-1-card-origins' | '30th-celebration-release-news' | '30th-celebration-set-guide' | '30th-celebration-card-origins' | 'chasing-glory-release-news' | 'chasing-glory-set-guide' | 'chasing-glory-card-origins' | 'terastal-gathering-release-news' | 'terastal-gathering-set-guide' | 'terastal-gathering-card-origins' | 'reward-round-release-news' | 'reward-round-set-guide' | 'reward-round-card-origins' | 'fearless-terastal-release-news' | 'fearless-terastal-set-guide' | 'fearless-terastal-card-origins' | 'eternal-birth-release-news' | 'eternal-birth-set-guide' | 'eternal-birth-card-origins' | 'miracle-journey-release-news' | 'miracle-journey-set-guide' | 'miracle-journey-card-origins' | 'black-crystal-blaze-release-news' | 'black-crystal-blaze-set-guide' | 'black-crystal-blaze-card-origins' | 'black-bolt-white-flare-release-news' | 'black-bolt-set-guide' | 'black-bolt-card-origins' | 'white-flare-set-guide' | 'white-flare-card-origins' | 'true-mystery-release-news' | 'true-mystery-set-guide' | 'true-mystery-card-origins' | 'blade-awakening-release-news' | 'blade-awakening-set-guide' | 'blade-awakening-card-origins' | 'brilliant-fantasy-release-news' | 'brilliant-fantasy-set-guide' | 'brilliant-fantasy-card-origins' | 'stellar-crystal-release-news' | 'stellar-crystal-set-guide' | 'stellar-crystal-card-origins' | 'pikachu-dream-painting-figures-release-news' | 'funism-ditto-palm-size-wonders-release-news' | 'team-rocket-briefcase-release-news' | 'pikachu-gift-box-release-news' | 'day-night-gift-box-release-news' | 'greninja-sylveon-display-set-release-news' | 'charizard-figure-box-release-news' | 'nuzzle-cheeks-plush-card-display-release-news'
+export type BlogPostSlug = 'chinese-pokemon-sets-in-order' | 'gem-vol-7-release-news' | 'gem-vol-7-set-guide' | 'gem-vol-7-card-origins' | 'gem-vol-6-release-news' | 'gem-vol-6-set-guide' | 'gem-vol-6-card-origins' | 'gem-vol-5-release-news' | 'gem-vol-5-set-guide' | 'gem-vol-5-card-origins' | 'gem-vol-4-release-news' | 'gem-vol-4-set-guide' | 'gem-vol-4-card-origins' | 'gem-vol-3-release-news' | 'gem-vol-3-set-guide' | 'gem-vol-3-card-origins' | 'gem-vol-2-release-news' | 'gem-vol-2-set-guide' | 'gem-vol-2-card-origins' | 'gem-vol-1-release-news' | 'gem-vol-1-set-guide' | 'gem-vol-1-card-origins' | '30th-celebration-release-news' | '30th-celebration-set-guide' | '30th-celebration-card-origins' | 'chasing-glory-release-news' | 'chasing-glory-set-guide' | 'chasing-glory-card-origins' | 'terastal-gathering-release-news' | 'terastal-gathering-set-guide' | 'terastal-gathering-card-origins' | 'reward-round-release-news' | 'reward-round-set-guide' | 'reward-round-card-origins' | 'fearless-terastal-release-news' | 'fearless-terastal-set-guide' | 'fearless-terastal-card-origins' | 'eternal-birth-release-news' | 'eternal-birth-set-guide' | 'eternal-birth-card-origins' | 'miracle-journey-release-news' | 'miracle-journey-set-guide' | 'miracle-journey-card-origins' | 'black-crystal-blaze-release-news' | 'black-crystal-blaze-set-guide' | 'black-crystal-blaze-card-origins' | 'black-bolt-white-flare-release-news' | 'black-bolt-set-guide' | 'black-bolt-card-origins' | 'white-flare-set-guide' | 'white-flare-card-origins' | 'true-mystery-release-news' | 'true-mystery-set-guide' | 'true-mystery-card-origins' | 'blade-awakening-release-news' | 'blade-awakening-set-guide' | 'blade-awakening-card-origins' | 'brilliant-fantasy-release-news' | 'brilliant-fantasy-set-guide' | 'brilliant-fantasy-card-origins' | 'stellar-crystal-release-news' | 'stellar-crystal-set-guide' | 'stellar-crystal-card-origins' | 'pikachu-dream-painting-figures-release-news' | 'funism-ditto-palm-size-wonders-release-news' | 'team-rocket-briefcase-release-news' | 'pikachu-gift-box-release-news' | 'day-night-gift-box-release-news' | 'greninja-sylveon-display-set-release-news' | 'charizard-figure-box-release-news' | 'nuzzle-cheeks-plush-card-display-release-news' | 'eevee-gift-box-release-news'
 
 export interface BlogPostSummary {
   slug: BlogPostSlug
@@ -300,6 +300,22 @@ export const BLOG_POSTS: BlogPostSummary[] = [
     heroAlt: 'The Pikachu plush hugging its promo card in a clear display frame, in front of the round Nuzzle Cheeks box',
     glow1: 'rgb(250 208 70 / .30)',
     glow2: 'rgb(110 170 230 / .22)',
+  },
+  {
+    slug: 'eevee-gift-box-release-news',
+    path: '/blog/eevee-gift-box-release-news',
+    title: 'Chinese Eevee and Friends Gift Box: Espeon ex and Umbreon ex Promos, 15 Terastal Gathering Packs and Everything Inside',
+    excerpt:
+      "Pokémon China's Eevee and Friends gift box released on June 12, 2026, alongside Terastal Gathering. This post covers everything in it: the Espeon ex and Umbreon ex promos, the 15 booster packs, the playmat, the deck box and the rest of the accessories.",
+    seoTitle: 'Chinese Eevee & Friends Gift Box: Espeon ex, Umbreon ex & Contents',
+    seoDescription:
+      'The Chinese Pokémon TCG Eevee and Friends gift box: Espeon ex and Umbreon ex promos, 15 Terastal Gathering packs (China’s Prismatic Evolutions) and accessories.',
+    tag: 'New release',
+    date: '2026-06-12',
+    heroImage: `${SITE_URL}/assets/blog/eevee-gift-box-release-hero.webp`,
+    heroAlt: 'The white Eevee and Friends gift box with the Espeon ex and Umbreon ex promo cards side by side in front of it',
+    glow1: 'rgb(240 200 130 / .28)',
+    glow2: 'rgb(196 160 232 / .25)',
   },
   {
     slug: 'greninja-sylveon-display-set-release-news',
