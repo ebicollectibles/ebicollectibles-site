@@ -71,3 +71,10 @@ a big release if it is getting close.
 - No promises the owner did not ask for: no "we will update this post", "we
   will email you", "check back" or similar. Only state commitments the owner
   has made, in their words.
+
+## PokéNews Discord channel
+
+- Never post to the PokéNews Discord channel on your own. Only post there what
+  the owner explicitly hands over for it, one post at a time. Publishing a blog
+  post does not mean it goes to PokéNews.
+- The webhook URL is a secret: never put it in the repository.
