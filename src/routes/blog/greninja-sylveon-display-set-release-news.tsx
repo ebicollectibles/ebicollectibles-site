@@ -14,7 +14,7 @@ const img = (name: string) => `${SITE_URL}/assets/blog/greninja-sylveon-display-
 // Pokémon China's contents list. Each set holds the same three things, in its own Pokémon.
 const CONTENTS = [
   { item: 'Pokémon ex holo promo card', qty: '1', note: 'Greninja ex 032/30th-P or Sylveon ex 033/30th-P' },
-  { item: 'Card display keychain', qty: '1', note: 'A card holder in the same Pokémon, with a key ring and strap' },
+  { item: 'Card display keychain', qty: '1', note: 'A card holder in the same Pokémon, with a key ring, clip and strap' },
   { item: '30th Celebration booster packs', qty: '3', note: 'Set code 30thC, 6 cards each, 18 cards in all' },
 ]
 
@@ -47,7 +47,7 @@ const FAQ = [
   },
   {
     q: 'Is the card display keychain the same in both sets?',
-    a: 'No. Each set has its own: the Greninja set comes with a blue Greninja card holder and the Sylveon set with a pink Sylveon one. Both have a key ring and a strap.',
+    a: 'No. Each set has its own: the Greninja set comes with a light blue Greninja card holder and the Sylveon set with a pink Sylveon one. Both have a metal key ring, a clip and a wrist strap.',
   },
   {
     q: 'What language are the cards?',
@@ -154,7 +154,7 @@ function GreninjaSylveonDisplaySetPost() {
 
         <aside className="fact-box" aria-label="Greninja ex and Sylveon ex set key facts">
           {/* Same cards as in the promo section below, where they are described, so this copy is decorative */}
-          <img src={img('sylveon-ex-promo')} alt="" loading="lazy" width={445} height={622} />
+          <img src={img('sylveon-ex-promo')} alt="" loading="lazy" width={788} height={1100} />
           <div>
             <p className="fact-box-title">Key facts</p>
             <dl>
@@ -217,7 +217,7 @@ function GreninjaSylveonDisplaySetPost() {
         <ul className="card-grid cols-2">
           <li>
             <figure>
-              <img src={img('greninja-box')} alt="The Greninja ex set: a hanging box with a 30th Celebration pack, the Greninja ex promo and a blue Greninja card holder behind a window" loading="lazy" width={900} height={726} style={{ background: 'transparent', boxShadow: 'none' }} />
+              <img src={img('greninja-box')} alt="The Greninja ex set: a hanging box with a 30th Celebration pack, the Greninja ex promo and a blue Greninja card holder behind a window" loading="lazy" width={1100} height={883} style={{ background: 'transparent', boxShadow: 'none' }} />
               <figcaption>
                 <strong>Greninja ex set</strong>Blue box
               </figcaption>
@@ -225,7 +225,7 @@ function GreninjaSylveonDisplaySetPost() {
           </li>
           <li>
             <figure>
-              <img src={img('sylveon-box')} alt="The Sylveon ex set: a hanging box with a 30th Celebration pack, the Sylveon ex promo and a pink Sylveon card holder behind a window" loading="lazy" width={900} height={726} style={{ background: 'transparent', boxShadow: 'none' }} />
+              <img src={img('sylveon-box')} alt="The Sylveon ex set: a hanging box with a 30th Celebration pack, the Sylveon ex promo and a pink Sylveon card holder behind a window" loading="lazy" width={1100} height={883} style={{ background: 'transparent', boxShadow: 'none' }} />
               <figcaption>
                 <strong>Sylveon ex set</strong>Silver box
               </figcaption>
@@ -246,7 +246,7 @@ function GreninjaSylveonDisplaySetPost() {
         <ul className="card-grid cols-2">
           <li>
             <figure>
-              <img src={img('greninja-ex-promo')} alt="Greninja ex 032/30th-P promo: Greninja in a swirl of water" loading="lazy" width={445} height={622} style={{ background: 'transparent', boxShadow: 'none' }} />
+              <img src={img('greninja-ex-promo')} alt="Greninja ex 032/30th-P promo: Greninja in a swirl of water" loading="lazy" width={788} height={1100} style={{ background: 'transparent', boxShadow: 'none' }} />
               <figcaption>
                 <strong>Greninja ex</strong>032/30th-P · Promo
               </figcaption>
@@ -254,7 +254,7 @@ function GreninjaSylveonDisplaySetPost() {
           </li>
           <li>
             <figure>
-              <img src={img('sylveon-ex-promo')} alt="Sylveon ex 033/30th-P promo: Sylveon among bubbles with its ribbons trailing" loading="lazy" width={445} height={622} style={{ background: 'transparent', boxShadow: 'none' }} />
+              <img src={img('sylveon-ex-promo')} alt="Sylveon ex 033/30th-P promo: Sylveon among bubbles with its ribbons trailing" loading="lazy" width={788} height={1100} style={{ background: 'transparent', boxShadow: 'none' }} />
               <figcaption>
                 <strong>Sylveon ex</strong>033/30th-P · Promo
               </figcaption>
@@ -268,13 +268,32 @@ function GreninjaSylveonDisplaySetPost() {
 
         <h2 id="keychain">The card display keychain</h2>
         <p>
-          Pokémon China calls it a card display sleeve. It is a hard card holder shaped and printed in the set's Pokémon, with a metal
-          key ring and a strap, so you can carry a card around with you. The Greninja one is blue and the Sylveon one is pink.
+          Pokémon China calls it a card display sleeve, for showing off a favourite card. Each one is a card holder in the set's
+          Pokémon, with a metal key ring, a clip and a wrist strap printed with the 30th Celebration logo. The Greninja one is light
+          blue and the Sylveon one is pink, and both carry the 30th anniversary Pikachu mark in the corner.
         </p>
-        <figure style={{ margin: '28px auto', maxWidth: 320 }}>
-          <img src={img('greninja-keychain')} alt="The Greninja card display keychain: a blue card holder printed with Greninja, with a metal key ring and a light blue strap" loading="lazy" width={427} height={536} style={{ width: '100%', height: 'auto' }} />
-          <figcaption>The Greninja card display keychain.</figcaption>
-        </figure>
+        <p>
+          The Pokémon on the front is raised, so it stands out from the holder. Pokémon China does not say what the holder is made of
+          or how the card goes in.
+        </p>
+        <ul className="card-grid cols-2">
+          <li>
+            <figure>
+              <img src={img('greninja-keychain')} alt="The Greninja card display keychain: a light blue card holder with a raised Greninja on the front, a metal key ring and clip, and a blue wrist strap" loading="lazy" width={700} height={881} style={{ aspectRatio: '4 / 5', objectFit: 'contain', background: '#fff' }} />
+              <figcaption>
+                <strong>Greninja keychain</strong>In the Greninja ex set
+              </figcaption>
+            </figure>
+          </li>
+          <li>
+            <figure>
+              <img src={img('sylveon-keychain')} alt="The Sylveon card display keychain: a pink card holder with a raised Sylveon on the front, a metal key ring and clip, and a pink wrist strap" loading="lazy" width={700} height={959} style={{ aspectRatio: '4 / 5', objectFit: 'contain', background: '#fff' }} />
+              <figcaption>
+                <strong>Sylveon keychain</strong>In the Sylveon ex set
+              </figcaption>
+            </figure>
+          </li>
+        </ul>
 
         <h2 id="packs">The 3 booster packs</h2>
         <p>

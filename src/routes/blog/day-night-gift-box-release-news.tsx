@@ -242,7 +242,7 @@ function DayNightGiftBoxPost() {
         <ul className="card-grid cols-2">
           <li>
             <figure>
-              <img src={img('espeon-ex-promo')} alt="Espeon ex 028/30th-P promo: Espeon sitting on a balcony by day beside Eevee, with a 30 in the sky" loading="lazy" width={445} height={622} style={{ background: 'transparent', boxShadow: 'none' }} />
+              <img src={img('espeon-ex-promo')} alt="Espeon ex 028/30th-P promo: Espeon sitting on a balcony by day beside Eevee, with a 30 in the sky" loading="lazy" width={788} height={1100} style={{ background: 'transparent', boxShadow: 'none' }} />
               <figcaption>
                 <strong>Espeon ex</strong>028/30th-P · Promo
               </figcaption>
@@ -250,7 +250,7 @@ function DayNightGiftBoxPost() {
           </li>
           <li>
             <figure>
-              <img src={img('umbreon-ex-promo')} alt="Umbreon ex 029/30th-P promo: Umbreon sitting on a balcony at night beside Eevee, with fireworks and a 30 in the sky" loading="lazy" width={445} height={622} style={{ background: 'transparent', boxShadow: 'none' }} />
+              <img src={img('umbreon-ex-promo')} alt="Umbreon ex 029/30th-P promo: Umbreon sitting on a balcony at night beside Eevee, with fireworks and a 30 in the sky" loading="lazy" width={788} height={1100} style={{ background: 'transparent', boxShadow: 'none' }} />
               <figcaption>
                 <strong>Umbreon ex</strong>029/30th-P · Promo
               </figcaption>
@@ -279,10 +279,10 @@ function DayNightGiftBoxPost() {
           The two fridge magnets carry the same theme. One shows Espeon and other Pokémon celebrating by day, and the other shows
           Umbreon and others celebrating by night. Each is built from three layers of illustration, which gives it a 3D look.
         </p>
-        <ul className="card-grid cols-2">
+        <ul className="card-grid cols-3">
           <li>
             <figure>
-              <img src={img('display-frame')} alt="The two-card display frame holding the Espeon ex and Umbreon ex promos, light on the left and dark on the right" loading="lazy" width={553} height={410} style={{ aspectRatio: '4 / 3', objectFit: 'contain', background: '#fff' }} />
+              <img src={img('display-frame')} alt="The two-card display frame holding the Espeon ex and Umbreon ex promos, light on the left and dark on the right" loading="lazy" width={1000} height={740} style={{ aspectRatio: '4 / 3', objectFit: 'contain', background: '#fff' }} />
               <figcaption>
                 <strong>Display frame</strong>Holds both promos
               </figcaption>
@@ -290,9 +290,17 @@ function DayNightGiftBoxPost() {
           </li>
           <li>
             <figure>
-              <img src={img('magnet')} alt="The day celebration fridge magnet: Espeon, Pikachu and other Pokémon celebrating in bright daylight" loading="lazy" width={556} height={326} style={{ aspectRatio: '4 / 3', objectFit: 'contain', background: '#fff' }} />
+              <img src={img('magnet')} alt="The day celebration fridge magnet: Espeon, Pikachu and other Pokémon celebrating in bright daylight" loading="lazy" width={1000} height={583} style={{ aspectRatio: '4 / 3', objectFit: 'contain', background: '#fff' }} />
               <figcaption>
-                <strong>Day magnet</strong>One of the two magnets
+                <strong>Day magnet</strong>Espeon by day
+              </figcaption>
+            </figure>
+          </li>
+          <li>
+            <figure>
+              <img src={img('night-magnet')} alt="The night celebration fridge magnet: Umbreon and Pikachu dancing on a stage with Mewtwo, Gengar, Greninja and other Pokémon under fireworks" loading="lazy" width={1000} height={578} style={{ aspectRatio: '4 / 3', objectFit: 'contain', background: '#fff' }} />
+              <figcaption>
+                <strong>Night magnet</strong>Umbreon by night
               </figcaption>
             </figure>
           </li>
