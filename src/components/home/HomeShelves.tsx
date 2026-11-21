@@ -1,4 +1,3 @@
-import * as React from 'react'
 import { Link } from '@tanstack/react-router'
 import { ProductCard } from '~/components/ProductCard'
 import { ResponsiveImage } from '~/components/ResponsiveImage'
@@ -63,7 +62,8 @@ const SHELVES: Collection[] = [
 
 const GUIDES: BlogPostSlug[] = ['chinese-gem-pack-hit-rates', 'chinese-pokemon-sets-in-order', 'black-bolt-white-flare-release-news']
 
-const SHELF_SIZE = 12
+const SHELF_SIZE = 8
+const PHONE_SIZE = 4
 
 // Buyable first, then pre-orders and coming soon, then sold out, so a
 // shelf never opens on a dead end. Within each group the admin's own Best
@@ -87,14 +87,26 @@ function sortForShelf(list: Product[]): Product[] {
     .map((x) => x.p)
 }
 
-function Shelf({ id, title, blurb, products, link }: { id: string; title: string; blurb?: string; products: Product[]; link?: ShopLink }) {
-  const railRef = React.useRef<HTMLUListElement>(null)
-  const scroll = (dir: 1 | -1) => {
-    const el = railRef.current
-    if (el) el.scrollBy({ left: dir * el.clientWidth * 0.85, behavior: 'smooth' })
-  }
+// One collection: up to 8 products in the site's usual 4-across grid (two
+// rows), 4 of them on phones (two rows of 2), then a button to the rest.
+function Shelf({
+  id,
+  title,
+  blurb,
+  products,
+  total,
+  link,
+}: {
+  id: string
+  title: string
+  blurb?: string
+  products: Product[]
+  total?: number
+  link?: { to: string; search?: Record<string, unknown> }
+}) {
   if (products.length === 0) return null
   const headingId = `hv2-${id}`
+  const count = total ?? products.length
   return (
     <section className="hv2-section" aria-labelledby={headingId}>
       <div className="hv2-head">
@@ -102,27 +114,22 @@ function Shelf({ id, title, blurb, products, link }: { id: string; title: string
           <h2 id={headingId}>{title}</h2>
           {blurb && <p>{blurb}</p>}
         </div>
-        <div className="hv2-head-actions">
-          <button type="button" className="hv2-arrow" onClick={() => scroll(-1)} aria-label={`Scroll ${title} left`}>
-            ‹
-          </button>
-          <button type="button" className="hv2-arrow" onClick={() => scroll(1)} aria-label={`Scroll ${title} right`}>
-            ›
-          </button>
-          {link && (
-            <Link to="/shop" search={link.search as never} className="hv2-seeall">
-              See all<span className="sr-only"> {title}</span> →
-            </Link>
-          )}
-        </div>
       </div>
-      <ul className="hv2-rail" ref={railRef}>
-        {products.map((p) => (
-          <li key={p.id}>
+      <div className="ebi-arrivals-grid hv2-grid">
+        {products.slice(0, SHELF_SIZE).map((p, i) => (
+          <div key={p.id} className={link && i >= PHONE_SIZE ? 'hv2-cell hv2-desktop-only' : 'hv2-cell'}>
             <ProductCard product={p} variant="compact" />
-          </li>
+          </div>
         ))}
-      </ul>
+      </div>
+      {link && (
+        <div className="hv2-more">
+          <Link to={link.to as never} search={link.search as never} className="ebi-btn-dark hv2-more-btn">
+            See all {count > PHONE_SIZE ? `${count} ` : ''}
+            {title}
+          </Link>
+        </div>
+      )}
     </section>
   )
 }
@@ -132,7 +139,8 @@ export function HomeShelves({ products }: { products: Product[] }) {
   // switch). Not rankProducts: that also drops anything hidden from Best
   // Selling, which would empty the binders and cases shelves.
   const eligible = products.filter((p) => !p.hideFromShopGrid && (SHOW_ACRYLICS || p.category !== 'Acrylic Cases'))
-  const bestSelling = sortForShelf(rankProducts(products, 'bestSellingRank').filter((p) => p.bestSellingRank != null)).slice(0, 8)
+  const bestSellingAll = rankProducts(products, 'bestSellingRank')
+  const bestSelling = sortForShelf(bestSellingAll.filter((p) => p.bestSellingRank != null))
   const onSale = sortForShelf(eligible.filter((p) => p.compareAtPrice != null && p.compareAtPrice > p.price && p.stock > 0 && !p.notSellable))
   const newAndUpcoming = rankProducts(products, 'newAndUpcomingRank').filter((p) => p.newAndUpcomingRank != null)
 
@@ -179,32 +187,15 @@ export function HomeShelves({ products }: { products: Product[] }) {
         <Shelf id="sale" title="On sale now" blurb="Marked down while stock lasts." products={onSale} />
       )}
 
-      {bestSelling.length > 0 && (
-        <section className="hv2-section" aria-labelledby="hv2-best">
-          <div className="hv2-head">
-            <div>
-              <h2 id="hv2-best">Best Selling</h2>
-            </div>
-            <div className="hv2-head-actions">
-              <Link to="/best-selling" className="hv2-seeall">
-                See all<span className="sr-only"> best selling products</span> →
-              </Link>
-            </div>
-          </div>
-          <div className="ebi-arrivals-grid hv2-grid">
-            {bestSelling.map((p, i) => (
-              <ProductCard key={p.id} product={p} variant="compact" priority={i < 4} />
-            ))}
-          </div>
-        </section>
-      )}
+      <Shelf id="best" title="Best Selling" products={bestSelling} total={bestSellingAll.length} link={{ to: '/best-selling' }} />
 
-      {SHELVES.map((s) => (
-        <Shelf key={s.key} id={s.key} title={s.title} blurb={s.blurb} products={sortForShelf(eligible.filter(s.match)).slice(0, SHELF_SIZE)} link={s.link} />
-      ))}
+      {SHELVES.map((s) => {
+        const items = sortForShelf(eligible.filter(s.match))
+        return <Shelf key={s.key} id={s.key} title={s.title} blurb={s.blurb} products={items} total={items.length} link={{ to: '/shop', search: s.link.search }} />
+      })}
 
       {newAndUpcoming.length > 0 && (
-        <Shelf id="new" title="New & Upcoming" blurb="Just landed, pre-orders and what's next from China." products={newAndUpcoming.slice(0, SHELF_SIZE)} />
+        <Shelf id="new" title="New & Upcoming" blurb="Just landed, pre-orders and what's next from China." products={newAndUpcoming} total={newAndUpcoming.length} link={{ to: '/new-and-upcoming' }} />
       )}
 
       {guides.length > 0 && (

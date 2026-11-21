@@ -15,24 +15,15 @@
   border: 1px solid #131b28; border-radius: 2px; padding: 8px 14px; margin-left: 4px; white-space: nowrap;
 }
 .hv2-seeall:hover { background: #131b28; color: #fff; }
-.hv2-arrow {
-  width: 36px; height: 36px; border: 1px solid #c9ced5; background: #fff; border-radius: 2px;
-  font-size: 20px; line-height: 1; color: #131b28; cursor: pointer;
-}
-.hv2-arrow:hover { border-color: #131b28; }
 
-/* Swipeable shelf */
-.hv2-rail {
-  list-style: none; margin: 0; padding: 0;
-  display: flex; background: #fff; border: 1px solid #e3e6ea; border-top: 0;
-  overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: thin;
-  overscroll-behavior-x: contain;
+.hv2-grid { background: transparent; gap: 0; border: 0; border-left: 1px solid #e3e6ea; }
+.hv2-cell { display: flex; border-right: 1px solid #e3e6ea; border-bottom: 1px solid #e3e6ea; }
+.hv2-cell > article { flex: 1; min-width: 0; }
+.hv2-more { text-align: center; margin-top: 22px; }
+.hv2-more-btn {
+  display: inline-block; background: #131b28; color: #fff; border-radius: 2px;
+  padding: 13px 26px; font-size: 13px; font-weight: 600; text-decoration: none;
 }
-.hv2-rail > li { flex: 0 0 20%; scroll-snap-align: start; display: flex; }
-.hv2-rail > li + li { border-left: 1px solid #e3e6ea; }
-.hv2-rail > li > article { flex: 1; min-width: 0; }
-
-.hv2-grid { background: #e3e6ea; border: 1px solid #e3e6ea; border-top: 0; }
 
 /* Category tiles */
 .hv2-tiles { list-style: none; margin: 0; padding: 18px 0 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
@@ -77,20 +68,17 @@
 .hv2-email-form button:disabled { opacity: 0.6; cursor: default; }
 
 @media (max-width: 1024px) {
-  .hv2-rail > li { flex-basis: 29%; }
   .hv2-tiles { grid-template-columns: repeat(3, 1fr); }
   .hv2-guides { grid-template-columns: repeat(2, 1fr); }
 }
 
 @media (max-width: 700px) {
+  .hv2-desktop-only { display: none; }
   .hv2 { padding: 0 16px 8px; }
   .hv2-section { padding-top: 40px; }
   .hv2-head h2 { font-size: 23px; }
   .hv2-head p { font-size: 13px; }
-  .hv2-arrow { display: none; }
   .hv2-seeall { padding: 7px 11px; font-size: 12.5px; margin-left: 0; }
-  /* Two cards and a peek of the third, so it reads as swipeable. */
-  .hv2-rail > li { flex-basis: 43%; }
   .hv2-tiles { grid-template-columns: repeat(2, 1fr); gap: 8px; padding-top: 14px; }
   .hv2-tile { flex-direction: column; align-items: flex-start; gap: 10px; padding: 10px; }
   .hv2-tile-img { flex-basis: auto; width: 100%; height: 110px; }
