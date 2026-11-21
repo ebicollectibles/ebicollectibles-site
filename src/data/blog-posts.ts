@@ -281,7 +281,7 @@ export const BLOG_POSTS: BlogPostSummary[] = [
     tag: 'New release',
     date: '2026-09-16',
     heroImage: `${SITE_URL}/assets/blog/greninja-sylveon-display-set-release-hero-v1.webp`,
-    heroAlt: 'The Greninja ex and Sylveon ex sets side by side, with their two promo cards in front',
+    heroAlt: 'The Greninja ex set in front of the Sylveon ex set, with both card display keychains showing through the windows',
     glow1: 'rgb(240 150 190 / .30)',
     glow2: 'rgb(90 150 230 / .25)',
   },
