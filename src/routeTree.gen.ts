@@ -64,8 +64,10 @@ import { Route as BlogChasingGloryCardOriginsRouteImport } from './routes/blog/c
 import { Route as BlogChasingGloryReleaseNewsRouteImport } from './routes/blog/chasing-glory-release-news'
 import { Route as BlogChasingGlorySetGuideRouteImport } from './routes/blog/chasing-glory-set-guide'
 import { Route as BlogChinesePokemonSetsInOrderRouteImport } from './routes/blog/chinese-pokemon-sets-in-order'
+import { Route as BlogCollect151FirstPartnerDisplaySetsReleaseNewsRouteImport } from './routes/blog/collect-151-first-partner-display-sets-release-news'
 import { Route as BlogDayNightGiftBoxReleaseNewsRouteImport } from './routes/blog/day-night-gift-box-release-news'
 import { Route as BlogEeveeGiftBoxReleaseNewsRouteImport } from './routes/blog/eevee-gift-box-release-news'
+import { Route as BlogEspeonUmbreonDeluxeDeckReleaseNewsRouteImport } from './routes/blog/espeon-umbreon-deluxe-deck-release-news'
 import { Route as BlogEternalBirthCardOriginsRouteImport } from './routes/blog/eternal-birth-card-origins'
 import { Route as BlogEternalBirthReleaseNewsRouteImport } from './routes/blog/eternal-birth-release-news'
 import { Route as BlogEternalBirthSetGuideRouteImport } from './routes/blog/eternal-birth-set-guide'
@@ -101,8 +103,11 @@ import { Route as BlogGemVol7ReleaseNewsRouteImport } from './routes/blog/gem-vo
 import { Route as BlogGemVol7SetGuideRouteImport } from './routes/blog/gem-vol-7-set-guide'
 import { Route as BlogGreninjaSylveonDisplaySetReleaseNewsRouteImport } from './routes/blog/greninja-sylveon-display-set-release-news'
 import { Route as BlogJapanese30thCelebrationReleaseNewsRouteImport } from './routes/blog/japanese-30th-celebration-release-news'
+import { Route as BlogJourneyGiftBoxesReleaseNewsRouteImport } from './routes/blog/journey-gift-boxes-release-news'
 import { Route as BlogLillieNBattleBoxReleaseNewsRouteImport } from './routes/blog/lillie-n-battle-box-release-news'
 import { Route as BlogLisiaGiftBoxReleaseNewsRouteImport } from './routes/blog/lisia-gift-box-release-news'
+import { Route as BlogMasterStrategyDeckCharizardGardevoirMiraidonReleaseNewsRouteImport } from './routes/blog/master-strategy-deck-charizard-gardevoir-miraidon-release-news'
+import { Route as BlogMasterStrategyDeckRagingBoltDragapultGholdengoReleaseNewsRouteImport } from './routes/blog/master-strategy-deck-raging-bolt-dragapult-gholdengo-release-news'
 import { Route as BlogMiracleJourneyCardOriginsRouteImport } from './routes/blog/miracle-journey-card-origins'
 import { Route as BlogMiracleJourneyReleaseNewsRouteImport } from './routes/blog/miracle-journey-release-news'
 import { Route as BlogMiracleJourneySetGuideRouteImport } from './routes/blog/miracle-journey-set-guide'
@@ -469,6 +474,12 @@ const BlogChinesePokemonSetsInOrderRoute =
     path: '/blog/chinese-pokemon-sets-in-order',
     getParentRoute: () => rootRouteImport,
   } as any)
+const BlogCollect151FirstPartnerDisplaySetsReleaseNewsRoute =
+  BlogCollect151FirstPartnerDisplaySetsReleaseNewsRouteImport.update({
+    id: '/blog/collect-151-first-partner-display-sets-release-news',
+    path: '/blog/collect-151-first-partner-display-sets-release-news',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const BlogDayNightGiftBoxReleaseNewsRoute =
   BlogDayNightGiftBoxReleaseNewsRouteImport.update({
     id: '/blog/day-night-gift-box-release-news',
@@ -479,6 +490,12 @@ const BlogEeveeGiftBoxReleaseNewsRoute =
   BlogEeveeGiftBoxReleaseNewsRouteImport.update({
     id: '/blog/eevee-gift-box-release-news',
     path: '/blog/eevee-gift-box-release-news',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const BlogEspeonUmbreonDeluxeDeckReleaseNewsRoute =
+  BlogEspeonUmbreonDeluxeDeckReleaseNewsRouteImport.update({
+    id: '/blog/espeon-umbreon-deluxe-deck-release-news',
+    path: '/blog/espeon-umbreon-deluxe-deck-release-news',
     getParentRoute: () => rootRouteImport,
   } as any)
 const BlogEternalBirthCardOriginsRoute =
@@ -670,6 +687,12 @@ const BlogJapanese30thCelebrationReleaseNewsRoute =
     path: '/blog/japanese-30th-celebration-release-news',
     getParentRoute: () => rootRouteImport,
   } as any)
+const BlogJourneyGiftBoxesReleaseNewsRoute =
+  BlogJourneyGiftBoxesReleaseNewsRouteImport.update({
+    id: '/blog/journey-gift-boxes-release-news',
+    path: '/blog/journey-gift-boxes-release-news',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const BlogLillieNBattleBoxReleaseNewsRoute =
   BlogLillieNBattleBoxReleaseNewsRouteImport.update({
     id: '/blog/lillie-n-battle-box-release-news',
@@ -682,6 +705,22 @@ const BlogLisiaGiftBoxReleaseNewsRoute =
     path: '/blog/lisia-gift-box-release-news',
     getParentRoute: () => rootRouteImport,
   } as any)
+const BlogMasterStrategyDeckCharizardGardevoirMiraidonReleaseNewsRoute =
+  BlogMasterStrategyDeckCharizardGardevoirMiraidonReleaseNewsRouteImport.update(
+    {
+      id: '/blog/master-strategy-deck-charizard-gardevoir-miraidon-release-news',
+      path: '/blog/master-strategy-deck-charizard-gardevoir-miraidon-release-news',
+      getParentRoute: () => rootRouteImport,
+    } as any,
+  )
+const BlogMasterStrategyDeckRagingBoltDragapultGholdengoReleaseNewsRoute =
+  BlogMasterStrategyDeckRagingBoltDragapultGholdengoReleaseNewsRouteImport.update(
+    {
+      id: '/blog/master-strategy-deck-raging-bolt-dragapult-gholdengo-release-news',
+      path: '/blog/master-strategy-deck-raging-bolt-dragapult-gholdengo-release-news',
+      getParentRoute: () => rootRouteImport,
+    } as any,
+  )
 const BlogMiracleJourneyCardOriginsRoute =
   BlogMiracleJourneyCardOriginsRouteImport.update({
     id: '/blog/miracle-journey-card-origins',
@@ -1130,8 +1169,10 @@ export interface FileRoutesByFullPath {
   '/blog/chasing-glory-release-news': typeof BlogChasingGloryReleaseNewsRoute
   '/blog/chasing-glory-set-guide': typeof BlogChasingGlorySetGuideRoute
   '/blog/chinese-pokemon-sets-in-order': typeof BlogChinesePokemonSetsInOrderRoute
+  '/blog/collect-151-first-partner-display-sets-release-news': typeof BlogCollect151FirstPartnerDisplaySetsReleaseNewsRoute
   '/blog/day-night-gift-box-release-news': typeof BlogDayNightGiftBoxReleaseNewsRoute
   '/blog/eevee-gift-box-release-news': typeof BlogEeveeGiftBoxReleaseNewsRoute
+  '/blog/espeon-umbreon-deluxe-deck-release-news': typeof BlogEspeonUmbreonDeluxeDeckReleaseNewsRoute
   '/blog/eternal-birth-card-origins': typeof BlogEternalBirthCardOriginsRoute
   '/blog/eternal-birth-release-news': typeof BlogEternalBirthReleaseNewsRoute
   '/blog/eternal-birth-set-guide': typeof BlogEternalBirthSetGuideRoute
@@ -1167,8 +1208,11 @@ export interface FileRoutesByFullPath {
   '/blog/gem-vol-7-set-guide': typeof BlogGemVol7SetGuideRoute
   '/blog/greninja-sylveon-display-set-release-news': typeof BlogGreninjaSylveonDisplaySetReleaseNewsRoute
   '/blog/japanese-30th-celebration-release-news': typeof BlogJapanese30thCelebrationReleaseNewsRoute
+  '/blog/journey-gift-boxes-release-news': typeof BlogJourneyGiftBoxesReleaseNewsRoute
   '/blog/lillie-n-battle-box-release-news': typeof BlogLillieNBattleBoxReleaseNewsRoute
   '/blog/lisia-gift-box-release-news': typeof BlogLisiaGiftBoxReleaseNewsRoute
+  '/blog/master-strategy-deck-charizard-gardevoir-miraidon-release-news': typeof BlogMasterStrategyDeckCharizardGardevoirMiraidonReleaseNewsRoute
+  '/blog/master-strategy-deck-raging-bolt-dragapult-gholdengo-release-news': typeof BlogMasterStrategyDeckRagingBoltDragapultGholdengoReleaseNewsRoute
   '/blog/miracle-journey-card-origins': typeof BlogMiracleJourneyCardOriginsRoute
   '/blog/miracle-journey-release-news': typeof BlogMiracleJourneyReleaseNewsRoute
   '/blog/miracle-journey-set-guide': typeof BlogMiracleJourneySetGuideRoute
@@ -1296,8 +1340,10 @@ export interface FileRoutesByTo {
   '/blog/chasing-glory-release-news': typeof BlogChasingGloryReleaseNewsRoute
   '/blog/chasing-glory-set-guide': typeof BlogChasingGlorySetGuideRoute
   '/blog/chinese-pokemon-sets-in-order': typeof BlogChinesePokemonSetsInOrderRoute
+  '/blog/collect-151-first-partner-display-sets-release-news': typeof BlogCollect151FirstPartnerDisplaySetsReleaseNewsRoute
   '/blog/day-night-gift-box-release-news': typeof BlogDayNightGiftBoxReleaseNewsRoute
   '/blog/eevee-gift-box-release-news': typeof BlogEeveeGiftBoxReleaseNewsRoute
+  '/blog/espeon-umbreon-deluxe-deck-release-news': typeof BlogEspeonUmbreonDeluxeDeckReleaseNewsRoute
   '/blog/eternal-birth-card-origins': typeof BlogEternalBirthCardOriginsRoute
   '/blog/eternal-birth-release-news': typeof BlogEternalBirthReleaseNewsRoute
   '/blog/eternal-birth-set-guide': typeof BlogEternalBirthSetGuideRoute
@@ -1333,8 +1379,11 @@ export interface FileRoutesByTo {
   '/blog/gem-vol-7-set-guide': typeof BlogGemVol7SetGuideRoute
   '/blog/greninja-sylveon-display-set-release-news': typeof BlogGreninjaSylveonDisplaySetReleaseNewsRoute
   '/blog/japanese-30th-celebration-release-news': typeof BlogJapanese30thCelebrationReleaseNewsRoute
+  '/blog/journey-gift-boxes-release-news': typeof BlogJourneyGiftBoxesReleaseNewsRoute
   '/blog/lillie-n-battle-box-release-news': typeof BlogLillieNBattleBoxReleaseNewsRoute
   '/blog/lisia-gift-box-release-news': typeof BlogLisiaGiftBoxReleaseNewsRoute
+  '/blog/master-strategy-deck-charizard-gardevoir-miraidon-release-news': typeof BlogMasterStrategyDeckCharizardGardevoirMiraidonReleaseNewsRoute
+  '/blog/master-strategy-deck-raging-bolt-dragapult-gholdengo-release-news': typeof BlogMasterStrategyDeckRagingBoltDragapultGholdengoReleaseNewsRoute
   '/blog/miracle-journey-card-origins': typeof BlogMiracleJourneyCardOriginsRoute
   '/blog/miracle-journey-release-news': typeof BlogMiracleJourneyReleaseNewsRoute
   '/blog/miracle-journey-set-guide': typeof BlogMiracleJourneySetGuideRoute
@@ -1463,8 +1512,10 @@ export interface FileRoutesById {
   '/blog/chasing-glory-release-news': typeof BlogChasingGloryReleaseNewsRoute
   '/blog/chasing-glory-set-guide': typeof BlogChasingGlorySetGuideRoute
   '/blog/chinese-pokemon-sets-in-order': typeof BlogChinesePokemonSetsInOrderRoute
+  '/blog/collect-151-first-partner-display-sets-release-news': typeof BlogCollect151FirstPartnerDisplaySetsReleaseNewsRoute
   '/blog/day-night-gift-box-release-news': typeof BlogDayNightGiftBoxReleaseNewsRoute
   '/blog/eevee-gift-box-release-news': typeof BlogEeveeGiftBoxReleaseNewsRoute
+  '/blog/espeon-umbreon-deluxe-deck-release-news': typeof BlogEspeonUmbreonDeluxeDeckReleaseNewsRoute
   '/blog/eternal-birth-card-origins': typeof BlogEternalBirthCardOriginsRoute
   '/blog/eternal-birth-release-news': typeof BlogEternalBirthReleaseNewsRoute
   '/blog/eternal-birth-set-guide': typeof BlogEternalBirthSetGuideRoute
@@ -1500,8 +1551,11 @@ export interface FileRoutesById {
   '/blog/gem-vol-7-set-guide': typeof BlogGemVol7SetGuideRoute
   '/blog/greninja-sylveon-display-set-release-news': typeof BlogGreninjaSylveonDisplaySetReleaseNewsRoute
   '/blog/japanese-30th-celebration-release-news': typeof BlogJapanese30thCelebrationReleaseNewsRoute
+  '/blog/journey-gift-boxes-release-news': typeof BlogJourneyGiftBoxesReleaseNewsRoute
   '/blog/lillie-n-battle-box-release-news': typeof BlogLillieNBattleBoxReleaseNewsRoute
   '/blog/lisia-gift-box-release-news': typeof BlogLisiaGiftBoxReleaseNewsRoute
+  '/blog/master-strategy-deck-charizard-gardevoir-miraidon-release-news': typeof BlogMasterStrategyDeckCharizardGardevoirMiraidonReleaseNewsRoute
+  '/blog/master-strategy-deck-raging-bolt-dragapult-gholdengo-release-news': typeof BlogMasterStrategyDeckRagingBoltDragapultGholdengoReleaseNewsRoute
   '/blog/miracle-journey-card-origins': typeof BlogMiracleJourneyCardOriginsRoute
   '/blog/miracle-journey-release-news': typeof BlogMiracleJourneyReleaseNewsRoute
   '/blog/miracle-journey-set-guide': typeof BlogMiracleJourneySetGuideRoute
@@ -1631,8 +1685,10 @@ export interface FileRouteTypes {
     | '/blog/chasing-glory-release-news'
     | '/blog/chasing-glory-set-guide'
     | '/blog/chinese-pokemon-sets-in-order'
+    | '/blog/collect-151-first-partner-display-sets-release-news'
     | '/blog/day-night-gift-box-release-news'
     | '/blog/eevee-gift-box-release-news'
+    | '/blog/espeon-umbreon-deluxe-deck-release-news'
     | '/blog/eternal-birth-card-origins'
     | '/blog/eternal-birth-release-news'
     | '/blog/eternal-birth-set-guide'
@@ -1668,8 +1724,11 @@ export interface FileRouteTypes {
     | '/blog/gem-vol-7-set-guide'
     | '/blog/greninja-sylveon-display-set-release-news'
     | '/blog/japanese-30th-celebration-release-news'
+    | '/blog/journey-gift-boxes-release-news'
     | '/blog/lillie-n-battle-box-release-news'
     | '/blog/lisia-gift-box-release-news'
+    | '/blog/master-strategy-deck-charizard-gardevoir-miraidon-release-news'
+    | '/blog/master-strategy-deck-raging-bolt-dragapult-gholdengo-release-news'
     | '/blog/miracle-journey-card-origins'
     | '/blog/miracle-journey-release-news'
     | '/blog/miracle-journey-set-guide'
@@ -1797,8 +1856,10 @@ export interface FileRouteTypes {
     | '/blog/chasing-glory-release-news'
     | '/blog/chasing-glory-set-guide'
     | '/blog/chinese-pokemon-sets-in-order'
+    | '/blog/collect-151-first-partner-display-sets-release-news'
     | '/blog/day-night-gift-box-release-news'
     | '/blog/eevee-gift-box-release-news'
+    | '/blog/espeon-umbreon-deluxe-deck-release-news'
     | '/blog/eternal-birth-card-origins'
     | '/blog/eternal-birth-release-news'
     | '/blog/eternal-birth-set-guide'
@@ -1834,8 +1895,11 @@ export interface FileRouteTypes {
     | '/blog/gem-vol-7-set-guide'
     | '/blog/greninja-sylveon-display-set-release-news'
     | '/blog/japanese-30th-celebration-release-news'
+    | '/blog/journey-gift-boxes-release-news'
     | '/blog/lillie-n-battle-box-release-news'
     | '/blog/lisia-gift-box-release-news'
+    | '/blog/master-strategy-deck-charizard-gardevoir-miraidon-release-news'
+    | '/blog/master-strategy-deck-raging-bolt-dragapult-gholdengo-release-news'
     | '/blog/miracle-journey-card-origins'
     | '/blog/miracle-journey-release-news'
     | '/blog/miracle-journey-set-guide'
@@ -1963,8 +2027,10 @@ export interface FileRouteTypes {
     | '/blog/chasing-glory-release-news'
     | '/blog/chasing-glory-set-guide'
     | '/blog/chinese-pokemon-sets-in-order'
+    | '/blog/collect-151-first-partner-display-sets-release-news'
     | '/blog/day-night-gift-box-release-news'
     | '/blog/eevee-gift-box-release-news'
+    | '/blog/espeon-umbreon-deluxe-deck-release-news'
     | '/blog/eternal-birth-card-origins'
     | '/blog/eternal-birth-release-news'
     | '/blog/eternal-birth-set-guide'
@@ -2000,8 +2066,11 @@ export interface FileRouteTypes {
     | '/blog/gem-vol-7-set-guide'
     | '/blog/greninja-sylveon-display-set-release-news'
     | '/blog/japanese-30th-celebration-release-news'
+    | '/blog/journey-gift-boxes-release-news'
     | '/blog/lillie-n-battle-box-release-news'
     | '/blog/lisia-gift-box-release-news'
+    | '/blog/master-strategy-deck-charizard-gardevoir-miraidon-release-news'
+    | '/blog/master-strategy-deck-raging-bolt-dragapult-gholdengo-release-news'
     | '/blog/miracle-journey-card-origins'
     | '/blog/miracle-journey-release-news'
     | '/blog/miracle-journey-set-guide'
@@ -2130,8 +2199,10 @@ export interface RootRouteChildren {
   BlogChasingGloryReleaseNewsRoute: typeof BlogChasingGloryReleaseNewsRoute
   BlogChasingGlorySetGuideRoute: typeof BlogChasingGlorySetGuideRoute
   BlogChinesePokemonSetsInOrderRoute: typeof BlogChinesePokemonSetsInOrderRoute
+  BlogCollect151FirstPartnerDisplaySetsReleaseNewsRoute: typeof BlogCollect151FirstPartnerDisplaySetsReleaseNewsRoute
   BlogDayNightGiftBoxReleaseNewsRoute: typeof BlogDayNightGiftBoxReleaseNewsRoute
   BlogEeveeGiftBoxReleaseNewsRoute: typeof BlogEeveeGiftBoxReleaseNewsRoute
+  BlogEspeonUmbreonDeluxeDeckReleaseNewsRoute: typeof BlogEspeonUmbreonDeluxeDeckReleaseNewsRoute
   BlogEternalBirthCardOriginsRoute: typeof BlogEternalBirthCardOriginsRoute
   BlogEternalBirthReleaseNewsRoute: typeof BlogEternalBirthReleaseNewsRoute
   BlogEternalBirthSetGuideRoute: typeof BlogEternalBirthSetGuideRoute
@@ -2167,8 +2238,11 @@ export interface RootRouteChildren {
   BlogGemVol7SetGuideRoute: typeof BlogGemVol7SetGuideRoute
   BlogGreninjaSylveonDisplaySetReleaseNewsRoute: typeof BlogGreninjaSylveonDisplaySetReleaseNewsRoute
   BlogJapanese30thCelebrationReleaseNewsRoute: typeof BlogJapanese30thCelebrationReleaseNewsRoute
+  BlogJourneyGiftBoxesReleaseNewsRoute: typeof BlogJourneyGiftBoxesReleaseNewsRoute
   BlogLillieNBattleBoxReleaseNewsRoute: typeof BlogLillieNBattleBoxReleaseNewsRoute
   BlogLisiaGiftBoxReleaseNewsRoute: typeof BlogLisiaGiftBoxReleaseNewsRoute
+  BlogMasterStrategyDeckCharizardGardevoirMiraidonReleaseNewsRoute: typeof BlogMasterStrategyDeckCharizardGardevoirMiraidonReleaseNewsRoute
+  BlogMasterStrategyDeckRagingBoltDragapultGholdengoReleaseNewsRoute: typeof BlogMasterStrategyDeckRagingBoltDragapultGholdengoReleaseNewsRoute
   BlogMiracleJourneyCardOriginsRoute: typeof BlogMiracleJourneyCardOriginsRoute
   BlogMiracleJourneyReleaseNewsRoute: typeof BlogMiracleJourneyReleaseNewsRoute
   BlogMiracleJourneySetGuideRoute: typeof BlogMiracleJourneySetGuideRoute
@@ -2631,6 +2705,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BlogChinesePokemonSetsInOrderRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/blog/collect-151-first-partner-display-sets-release-news': {
+      id: '/blog/collect-151-first-partner-display-sets-release-news'
+      path: '/blog/collect-151-first-partner-display-sets-release-news'
+      fullPath: '/blog/collect-151-first-partner-display-sets-release-news'
+      preLoaderRoute: typeof BlogCollect151FirstPartnerDisplaySetsReleaseNewsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/blog/day-night-gift-box-release-news': {
       id: '/blog/day-night-gift-box-release-news'
       path: '/blog/day-night-gift-box-release-news'
@@ -2643,6 +2724,13 @@ declare module '@tanstack/react-router' {
       path: '/blog/eevee-gift-box-release-news'
       fullPath: '/blog/eevee-gift-box-release-news'
       preLoaderRoute: typeof BlogEeveeGiftBoxReleaseNewsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/espeon-umbreon-deluxe-deck-release-news': {
+      id: '/blog/espeon-umbreon-deluxe-deck-release-news'
+      path: '/blog/espeon-umbreon-deluxe-deck-release-news'
+      fullPath: '/blog/espeon-umbreon-deluxe-deck-release-news'
+      preLoaderRoute: typeof BlogEspeonUmbreonDeluxeDeckReleaseNewsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/blog/eternal-birth-card-origins': {
@@ -2890,6 +2978,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BlogJapanese30thCelebrationReleaseNewsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/blog/journey-gift-boxes-release-news': {
+      id: '/blog/journey-gift-boxes-release-news'
+      path: '/blog/journey-gift-boxes-release-news'
+      fullPath: '/blog/journey-gift-boxes-release-news'
+      preLoaderRoute: typeof BlogJourneyGiftBoxesReleaseNewsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/blog/lillie-n-battle-box-release-news': {
       id: '/blog/lillie-n-battle-box-release-news'
       path: '/blog/lillie-n-battle-box-release-news'
@@ -2902,6 +2997,20 @@ declare module '@tanstack/react-router' {
       path: '/blog/lisia-gift-box-release-news'
       fullPath: '/blog/lisia-gift-box-release-news'
       preLoaderRoute: typeof BlogLisiaGiftBoxReleaseNewsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/master-strategy-deck-charizard-gardevoir-miraidon-release-news': {
+      id: '/blog/master-strategy-deck-charizard-gardevoir-miraidon-release-news'
+      path: '/blog/master-strategy-deck-charizard-gardevoir-miraidon-release-news'
+      fullPath: '/blog/master-strategy-deck-charizard-gardevoir-miraidon-release-news'
+      preLoaderRoute: typeof BlogMasterStrategyDeckCharizardGardevoirMiraidonReleaseNewsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/master-strategy-deck-raging-bolt-dragapult-gholdengo-release-news': {
+      id: '/blog/master-strategy-deck-raging-bolt-dragapult-gholdengo-release-news'
+      path: '/blog/master-strategy-deck-raging-bolt-dragapult-gholdengo-release-news'
+      fullPath: '/blog/master-strategy-deck-raging-bolt-dragapult-gholdengo-release-news'
+      preLoaderRoute: typeof BlogMasterStrategyDeckRagingBoltDragapultGholdengoReleaseNewsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/blog/miracle-journey-card-origins': {
@@ -3452,8 +3561,12 @@ const rootRouteChildren: RootRouteChildren = {
   BlogChasingGloryReleaseNewsRoute: BlogChasingGloryReleaseNewsRoute,
   BlogChasingGlorySetGuideRoute: BlogChasingGlorySetGuideRoute,
   BlogChinesePokemonSetsInOrderRoute: BlogChinesePokemonSetsInOrderRoute,
+  BlogCollect151FirstPartnerDisplaySetsReleaseNewsRoute:
+    BlogCollect151FirstPartnerDisplaySetsReleaseNewsRoute,
   BlogDayNightGiftBoxReleaseNewsRoute: BlogDayNightGiftBoxReleaseNewsRoute,
   BlogEeveeGiftBoxReleaseNewsRoute: BlogEeveeGiftBoxReleaseNewsRoute,
+  BlogEspeonUmbreonDeluxeDeckReleaseNewsRoute:
+    BlogEspeonUmbreonDeluxeDeckReleaseNewsRoute,
   BlogEternalBirthCardOriginsRoute: BlogEternalBirthCardOriginsRoute,
   BlogEternalBirthReleaseNewsRoute: BlogEternalBirthReleaseNewsRoute,
   BlogEternalBirthSetGuideRoute: BlogEternalBirthSetGuideRoute,
@@ -3497,8 +3610,13 @@ const rootRouteChildren: RootRouteChildren = {
     BlogGreninjaSylveonDisplaySetReleaseNewsRoute,
   BlogJapanese30thCelebrationReleaseNewsRoute:
     BlogJapanese30thCelebrationReleaseNewsRoute,
+  BlogJourneyGiftBoxesReleaseNewsRoute: BlogJourneyGiftBoxesReleaseNewsRoute,
   BlogLillieNBattleBoxReleaseNewsRoute: BlogLillieNBattleBoxReleaseNewsRoute,
   BlogLisiaGiftBoxReleaseNewsRoute: BlogLisiaGiftBoxReleaseNewsRoute,
+  BlogMasterStrategyDeckCharizardGardevoirMiraidonReleaseNewsRoute:
+    BlogMasterStrategyDeckCharizardGardevoirMiraidonReleaseNewsRoute,
+  BlogMasterStrategyDeckRagingBoltDragapultGholdengoReleaseNewsRoute:
+    BlogMasterStrategyDeckRagingBoltDragapultGholdengoReleaseNewsRoute,
   BlogMiracleJourneyCardOriginsRoute: BlogMiracleJourneyCardOriginsRoute,
   BlogMiracleJourneyReleaseNewsRoute: BlogMiracleJourneyReleaseNewsRoute,
   BlogMiracleJourneySetGuideRoute: BlogMiracleJourneySetGuideRoute,

@@ -6,7 +6,7 @@
 // the post itself.
 import { SITE_URL, R2_IMAGE_HOST } from '~/lib/gem-sets/constants'
 
-export type BlogPostSlug = 'chinese-pokemon-sets-in-order' | 'gem-vol-7-release-news' | 'gem-vol-7-set-guide' | 'gem-vol-7-card-origins' | 'gem-vol-6-release-news' | 'gem-vol-6-set-guide' | 'gem-vol-6-card-origins' | 'gem-vol-5-release-news' | 'gem-vol-5-set-guide' | 'gem-vol-5-card-origins' | 'gem-vol-4-release-news' | 'gem-vol-4-set-guide' | 'gem-vol-4-card-origins' | 'gem-vol-3-release-news' | 'gem-vol-3-set-guide' | 'gem-vol-3-card-origins' | 'gem-vol-2-release-news' | 'gem-vol-2-set-guide' | 'gem-vol-2-card-origins' | 'gem-vol-1-release-news' | 'gem-vol-1-set-guide' | 'gem-vol-1-card-origins' | '30th-celebration-release-news' | '30th-celebration-set-guide' | '30th-celebration-card-origins' | 'chasing-glory-release-news' | 'chasing-glory-set-guide' | 'chasing-glory-card-origins' | 'terastal-gathering-release-news' | 'terastal-gathering-set-guide' | 'terastal-gathering-card-origins' | 'reward-round-release-news' | 'reward-round-set-guide' | 'reward-round-card-origins' | 'fearless-terastal-release-news' | 'fearless-terastal-set-guide' | 'fearless-terastal-card-origins' | 'eternal-birth-release-news' | 'eternal-birth-set-guide' | 'eternal-birth-card-origins' | 'miracle-journey-release-news' | 'miracle-journey-set-guide' | 'miracle-journey-card-origins' | 'black-crystal-blaze-release-news' | 'black-crystal-blaze-set-guide' | 'black-crystal-blaze-card-origins' | 'black-bolt-white-flare-release-news' | 'black-bolt-set-guide' | 'black-bolt-card-origins' | 'white-flare-set-guide' | 'white-flare-card-origins' | 'true-mystery-release-news' | 'true-mystery-set-guide' | 'true-mystery-card-origins' | 'blade-awakening-release-news' | 'blade-awakening-set-guide' | 'blade-awakening-card-origins' | 'brilliant-fantasy-release-news' | 'brilliant-fantasy-set-guide' | 'brilliant-fantasy-card-origins' | 'stellar-crystal-release-news' | 'stellar-crystal-set-guide' | 'stellar-crystal-card-origins' | 'pikachu-dream-painting-figures-release-news' | 'funism-ditto-palm-size-wonders-release-news' | 'team-rocket-briefcase-release-news' | 'pikachu-gift-box-release-news' | 'day-night-gift-box-release-news' | 'greninja-sylveon-display-set-release-news' | 'charizard-figure-box-release-news' | 'nuzzle-cheeks-plush-card-display-release-news' | 'eevee-gift-box-release-news' | 'pikachu-30th-plush-keychain-release-news' | 'funism-first-partner-mini-figures-release-news' | 'first-partner-30th-vol-1-release-news' | 'first-partner-30th-vol-2-release-news' | 'first-partner-30th-vol-3-release-news' | 'aura-seeker-release-news' | 'futuristic-pikachu-box-release-news' | 'lisia-gift-box-release-news' | 'ogerpon-mask-gift-box-release-news' | 'lillie-n-battle-box-release-news' | 'japanese-30th-celebration-release-news' | 'storm-emeralda-release-news'
+export type BlogPostSlug = 'chinese-pokemon-sets-in-order' | 'gem-vol-7-release-news' | 'gem-vol-7-set-guide' | 'gem-vol-7-card-origins' | 'gem-vol-6-release-news' | 'gem-vol-6-set-guide' | 'gem-vol-6-card-origins' | 'gem-vol-5-release-news' | 'gem-vol-5-set-guide' | 'gem-vol-5-card-origins' | 'gem-vol-4-release-news' | 'gem-vol-4-set-guide' | 'gem-vol-4-card-origins' | 'gem-vol-3-release-news' | 'gem-vol-3-set-guide' | 'gem-vol-3-card-origins' | 'gem-vol-2-release-news' | 'gem-vol-2-set-guide' | 'gem-vol-2-card-origins' | 'gem-vol-1-release-news' | 'gem-vol-1-set-guide' | 'gem-vol-1-card-origins' | '30th-celebration-release-news' | '30th-celebration-set-guide' | '30th-celebration-card-origins' | 'chasing-glory-release-news' | 'chasing-glory-set-guide' | 'chasing-glory-card-origins' | 'terastal-gathering-release-news' | 'terastal-gathering-set-guide' | 'terastal-gathering-card-origins' | 'reward-round-release-news' | 'reward-round-set-guide' | 'reward-round-card-origins' | 'fearless-terastal-release-news' | 'fearless-terastal-set-guide' | 'fearless-terastal-card-origins' | 'eternal-birth-release-news' | 'eternal-birth-set-guide' | 'eternal-birth-card-origins' | 'miracle-journey-release-news' | 'miracle-journey-set-guide' | 'miracle-journey-card-origins' | 'black-crystal-blaze-release-news' | 'black-crystal-blaze-set-guide' | 'black-crystal-blaze-card-origins' | 'black-bolt-white-flare-release-news' | 'black-bolt-set-guide' | 'black-bolt-card-origins' | 'white-flare-set-guide' | 'white-flare-card-origins' | 'true-mystery-release-news' | 'true-mystery-set-guide' | 'true-mystery-card-origins' | 'blade-awakening-release-news' | 'blade-awakening-set-guide' | 'blade-awakening-card-origins' | 'brilliant-fantasy-release-news' | 'brilliant-fantasy-set-guide' | 'brilliant-fantasy-card-origins' | 'stellar-crystal-release-news' | 'stellar-crystal-set-guide' | 'stellar-crystal-card-origins' | 'pikachu-dream-painting-figures-release-news' | 'funism-ditto-palm-size-wonders-release-news' | 'team-rocket-briefcase-release-news' | 'pikachu-gift-box-release-news' | 'day-night-gift-box-release-news' | 'greninja-sylveon-display-set-release-news' | 'charizard-figure-box-release-news' | 'nuzzle-cheeks-plush-card-display-release-news' | 'eevee-gift-box-release-news' | 'pikachu-30th-plush-keychain-release-news' | 'funism-first-partner-mini-figures-release-news' | 'first-partner-30th-vol-1-release-news' | 'first-partner-30th-vol-2-release-news' | 'first-partner-30th-vol-3-release-news' | 'aura-seeker-release-news' | 'futuristic-pikachu-box-release-news' | 'lisia-gift-box-release-news' | 'ogerpon-mask-gift-box-release-news' | 'lillie-n-battle-box-release-news' | 'japanese-30th-celebration-release-news' | 'storm-emeralda-release-news' | 'master-strategy-deck-raging-bolt-dragapult-gholdengo-release-news' | 'master-strategy-deck-charizard-gardevoir-miraidon-release-news' | 'espeon-umbreon-deluxe-deck-release-news' | 'journey-gift-boxes-release-news' | 'collect-151-first-partner-display-sets-release-news'
 
 export interface BlogPostSummary {
   slug: BlogPostSlug
@@ -514,6 +514,91 @@ export const BLOG_POSTS: BlogPostSummary[] = [
     heroAlt: 'The Mega Rayquaza ex card standing in front of a Japanese Storm Emeralda booster pack, which shows Mega Rayquaza on the front',
     glow1: 'rgb(96 214 140 / .28)',
     glow2: 'rgb(236 72 60 / .20)',
+  },
+  // Also add | 'master-strategy-deck-raging-bolt-dragapult-gholdengo-release-news' to BlogPostSlug
+  {
+    slug: 'master-strategy-deck-raging-bolt-dragapult-gholdengo-release-news',
+    path: '/blog/master-strategy-deck-raging-bolt-dragapult-gholdengo-release-news',
+    title: 'Chinese Master Strategy Deck Building Sets: Raging Bolt ex, Dragapult ex and Gholdengo ex Decks and Everything Inside',
+    excerpt:
+      "Pokémon China's second series of Master Strategy deck building sets released on July 16, 2026, alongside Chasing Glory. This post covers what is in each one: a ready-built Raging Bolt ex, Dragapult ex or Gholdengo ex deck, a 15-card upgrade pack, 4 Chasing Glory packs and a set of battle accessories.",
+    seoTitle: 'Chinese Master Strategy Decks: Raging Bolt, Dragapult, Gholdengo',
+    seoDescription:
+      'The Chinese Pokémon TCG Master Strategy deck sets: full Raging Bolt ex, Dragapult ex and Gholdengo ex deck lists, 4 Chasing Glory packs each.',
+    tag: 'New release',
+    date: '2026-07-16',
+    heroImage: `${SITE_URL}/assets/blog/master-strategy-deck-2-release-hero.webp`,
+    heroAlt: 'The Dragapult ex and Gholdengo ex Master Strategy deck building set boxes behind the Raging Bolt ex set',
+    glow1: 'rgb(180 160 240 / .30)',
+    glow2: 'rgb(240 200 80 / .22)',
+  },
+  // Also add | 'master-strategy-deck-charizard-gardevoir-miraidon-release-news' to BlogPostSlug
+  {
+    slug: 'master-strategy-deck-charizard-gardevoir-miraidon-release-news',
+    path: '/blog/master-strategy-deck-charizard-gardevoir-miraidon-release-news',
+    title: 'Chinese Master Strategy Deck Building Sets: Charizard ex, Gardevoir ex and Miraidon ex Decks and Everything Inside',
+    excerpt:
+      "Pokémon China's Master Strategy deck building sets released on January 16, 2026, alongside Blade Awakening. This post covers what is in each one: a ready-built Charizard ex, Gardevoir ex or Miraidon ex deck, a 15-card upgrade pack, 4 Blade Awakening packs and a set of battle accessories.",
+    seoTitle: 'Chinese Master Strategy Decks: Charizard, Gardevoir, Miraidon',
+    seoDescription:
+      'The Chinese Pokémon TCG Master Strategy deck sets: full Charizard ex, Gardevoir ex and Miraidon ex deck lists, 4 Blade Awakening packs each.',
+    tag: 'New release',
+    date: '2026-01-16',
+    heroImage: `${SITE_URL}/assets/blog/master-strategy-deck-1-release-hero.webp`,
+    heroAlt: 'The Gardevoir ex and Miraidon ex Master Strategy deck building set boxes behind the Charizard ex set',
+    glow1: 'rgb(255 170 70 / .30)',
+    glow2: 'rgb(150 120 230 / .22)',
+  },
+  // Also add | 'espeon-umbreon-deluxe-deck-release-news' to BlogPostSlug
+  {
+    slug: 'espeon-umbreon-deluxe-deck-release-news',
+    path: '/blog/espeon-umbreon-deluxe-deck-release-news',
+    title: 'Chinese Espeon ex and Umbreon ex Deluxe Deck Sets: The Decks, Metal Deck Boxes and Everything Inside',
+    excerpt:
+      "Pokémon China's Espeon ex and Umbreon ex deluxe deck sets released on September 16, 2026, alongside 30th Celebration. This post covers what is in each one: a ready-to-play deck, a metal deck box, a playmat, a coin, two guides and 2 booster packs.",
+    seoTitle: 'Chinese Espeon ex & Umbreon ex Deluxe Deck Sets: Contents',
+    seoDescription:
+      'The Chinese Pokémon TCG 30th Celebration Espeon ex and Umbreon ex deluxe deck sets: the decks, metal deck boxes, playmats, coins and 2 packs each.',
+    tag: 'New release',
+    date: '2026-09-16',
+    heroImage: `${SITE_URL}/assets/blog/espeon-umbreon-deluxe-deck-release-hero.webp`,
+    heroAlt: 'The Espeon and Umbreon deluxe deck set boxes side by side',
+    glow1: 'rgb(230 160 230 / .30)',
+    glow2: 'rgb(90 110 220 / .24)',
+  },
+  // Also add | 'journey-gift-boxes-release-news' to BlogPostSlug
+  {
+    slug: 'journey-gift-boxes-release-news',
+    path: '/blog/journey-gift-boxes-release-news',
+    title: 'Chinese Journey Gift Boxes: Venusaur, Charizard, Blastoise and Gardevoir, Theme Packs and Everything Inside',
+    excerpt:
+      "Pokémon China's Journey gift boxes released on June 13, 2025, in four designs: Venusaur, Charizard, Blastoise and Gardevoir. This post covers what is in each one: 6 Journey theme packs, 6 booster packs and a set of accessories in the box's Pokémon.",
+    seoTitle: 'Chinese Journey Gift Boxes: Charizard, Venusaur & More',
+    seoDescription:
+      'The Chinese Pokémon TCG Journey gift boxes: 6 Journey theme packs, 6 booster packs, sleeves and dice in Venusaur, Charizard, Blastoise or Gardevoir.',
+    tag: 'New release',
+    date: '2025-06-13',
+    heroImage: `${SITE_URL}/assets/blog/journey-gift-boxes-release-hero.webp`,
+    heroAlt: 'The Venusaur, Gardevoir and Blastoise Journey gift boxes behind the Charizard box',
+    glow1: 'rgb(255 150 70 / .28)',
+    glow2: 'rgb(80 190 170 / .22)',
+  },
+  // Also add | 'collect-151-first-partner-display-sets-release-news' to BlogPostSlug
+  {
+    slug: 'collect-151-first-partner-display-sets-release-news',
+    path: '/blog/collect-151-first-partner-display-sets-release-news',
+    title: 'Chinese Collect 151 First Partner Display Sets: Bulbasaur, Charmander and Squirtle Promos and Everything Inside',
+    excerpt:
+      "Pokémon China's Collect 151 First Partner display sets released on August 22, 2025, in three versions: Bulbasaur, Charmander and Squirtle. This post covers what is in each one: a holo promo with a new illustration, a display frame and 3 Collect 151 packs.",
+    seoTitle: 'Chinese 151 First Partner Sets: Bulbasaur, Charmander, Squirtle',
+    seoDescription:
+      'The Chinese Pokémon TCG Collect 151 First Partner display sets: new Bulbasaur, Charmander and Squirtle holo promos, a display frame and 3 packs.',
+    tag: 'New release',
+    date: '2025-08-22',
+    heroImage: `${SITE_URL}/assets/blog/collect-151-first-partner-display-release-hero.webp`,
+    heroAlt: 'The Bulbasaur and Squirtle First Partner display sets behind the Charmander set',
+    glow1: 'rgb(120 200 240 / .28)',
+    glow2: 'rgb(240 110 80 / .22)',
   },
   {
     slug: 'greninja-sylveon-display-set-release-news',
