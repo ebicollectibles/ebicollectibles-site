@@ -295,16 +295,16 @@ function BlackBoltWhiteFlareReleasePost() {
         <h2 id="pokemon-ex">Twelve Pokémon ex</h2>
         <p>
           Each set has six Pokémon ex, and every one comes as a Double Rare, a Super Rare and a Special Art Rare. Black Bolt has{' '}
-          {list(exNames('bb'))}. Here are its six Special Art Rares:
+          {list(exNames('bb'))}. Its six Special Art Rares are shown below.
         </p>
         <Grid picks={BB_SAR} cols={3} />
-        <p>White Flare has {list(exNames('wf'))}. Its six Special Art Rares:</p>
+        <p>White Flare has {list(exNames('wf'))}. Its six Special Art Rares are shown below.</p>
         <Grid picks={WF_SAR} cols={3} />
 
         <h2 id="art-rares">An Art Rare for every Pokémon</h2>
         <p>
           Every Pokémon that is not a Pokémon ex gets an Art Rare, so each set has 72 of them, 144 across the pair. They are numbered
-          087 to 158 in the same order as the main set. Here are the first three from each set: Snivy, Servine and Pansage in Black
+          087 to 158 in the same order as the main set. The first three from each set are shown below: Snivy, Servine and Pansage in Black
           Bolt, and Sewaddle, Swadloon and Leavanny in White Flare.
         </p>
         <Grid picks={FIRST_ART_RARES} cols={3} />

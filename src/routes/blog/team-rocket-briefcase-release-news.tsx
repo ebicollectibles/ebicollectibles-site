@@ -216,7 +216,7 @@ function TeamRocketBriefcasePost() {
         </nav>
 
         <h2 id="contents">What comes inside?</h2>
-        <p>Seven things, going by Pokémon China's own contents list:</p>
+        <p>Pokémon China lists seven items in the briefcase:</p>
         <div className="table-scroll" role="group" aria-labelledby="tbl-contents" tabIndex={0}>
           <table className="data-table">
             <caption id="tbl-contents" className="sr-only">
