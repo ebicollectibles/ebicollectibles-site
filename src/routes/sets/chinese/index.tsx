@@ -34,10 +34,10 @@ function formatReleaseDate(iso: string): string {
   return d.toLocaleDateString('en-US', { month: 'short', year: 'numeric' })
 }
 
-// Display order for the series sections below — officially-licensed lines
-// first, Chen's own Gem Set branding last. A series not listed here (a
-// future one-off) still renders, just after all of these.
-const SERIES_ORDER = ['Chinese Scarlet & Violet', '30th Anniversary Special Set', 'Gem Set']
+// Display order for the series sections below: Gem Set first (the owner's
+// call), then the Scarlet & Violet sets and 30th Anniversary. A series not
+// listed here (a future one-off) still renders, just after all of these.
+const SERIES_ORDER = ['Gem Set', 'Chinese Scarlet & Violet', '30th Anniversary Special Set']
 const SERIES_LABEL: Record<string, string> = {
   'Chinese Scarlet & Violet': 'Chinese Scarlet & Violet',
   '30th Anniversary Special Set': '30th Anniversary',

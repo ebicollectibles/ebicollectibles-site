@@ -88,8 +88,8 @@ const FAQ = [
     a: 'Simplified Chinese. The two promo cards and all 15 booster packs are from the Simplified Chinese release.',
   },
   {
-    q: 'Is the Eevee and Friends gift box sold under other names?',
-    a: 'Yes. Pokémon China has no English name for it, so shops translate it differently. The Eevee Exclusive Premium Box, the Eevee Premium Gift Box and the Prismatic Eevee Gift Box are the same product.',
+    q: 'Is this the Chinese SPC, and is it sold under other names?',
+    a: 'Yes. Collectors often call it the Chinese SPC, after the English Prismatic Evolutions Super-Premium Collection, because its packs are Terastal Gathering, the Simplified Chinese counterpart to Prismatic Evolutions. Its contents are not the same as the English box. Pokémon China has no English name for it, so shops translate it differently. The Eevee Exclusive Premium Box, the Eevee Premium Gift Box and the Prismatic Eevee Gift Box are the same product.',
   },
 ]
 
