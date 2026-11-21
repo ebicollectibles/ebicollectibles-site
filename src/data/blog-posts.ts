@@ -63,10 +63,10 @@ export const BLOG_POSTS: BlogPostSummary[] = [
   {
     slug: 'true-mystery-release-news',
     path: '/blog/true-mystery-release-news',
-    title: 'True Mystery Is Here: Iron Valiant, Roaring Moon and a Chinese Exclusive Iron Hands ex',
+    title: 'True Mystery Is Here: Iron Valiant ex, Roaring Moon ex and a Chinese Exclusive Iron Hands ex Special Art Rare',
     excerpt:
-      'True Mystery (CSV6C) brings the Paradox Pokémon to Simplified Chinese, with Iron Valiant on the pack and slim and jumbo boxes. Its Chinese Exclusive is an Iron Hands ex Special Art Rare.',
-    seoTitle: 'Pokémon True Mystery (CSV6C): Iron Hands ex & Release Info',
+      'True Mystery (set code CSV6C) brings the Paradox Pokémon to Simplified Chinese, with Iron Valiant on the pack and slim and jumbo boxes. Its Chinese Exclusive is an Iron Hands ex Special Art Rare.',
+    seoTitle: 'Pokémon True Mystery (CSV6C): Iron Valiant ex & Release Info',
     seoDescription:
       'Pokémon TCG True Mystery (CSV6C) in Simplified Chinese: Iron Valiant on the pack, slim and jumbo boxes, and a Chinese Exclusive Iron Hands ex Special Art Rare.',
     tag: 'New release',
@@ -81,10 +81,10 @@ export const BLOG_POSTS: BlogPostSummary[] = [
     path: '/blog/true-mystery-set-guide',
     title: 'True Mystery Set Guide: Slim vs Jumbo, Every Chase Card and the Paradox Runs',
     excerpt:
-      "True Mystery (CSV6C) is the Paradox set, sold in slim and jumbo boxes. This guide helps you pick a box, shows every secret rare, and explains how the 163 card numbers fit together.",
+      'True Mystery (set code CSV6C) is the Paradox set, with Iron Valiant on the pack. This guide helps you choose between slim and jumbo boxes and plan a 393-card master set.',
     seoTitle: 'Pokémon True Mystery (CSV6C) Set Guide: Chase Cards & Box Odds',
     seoDescription:
-      'Pokémon TCG True Mystery (CSV6C) set guide: slim vs jumbo box odds, every Special Art Rare and Super Rare, and how the 163 cards are numbered.',
+      'Pokémon TCG True Mystery (CSV6C) is the Paradox set, with Iron Valiant on the pack. This guide compares slim and jumbo boxes and shows what a 393-card master set takes.',
     tag: 'Set guide',
     date: '2025-11-07',
     heroImage: `${SITE_URL}/assets/blog/true-mystery-guide-hero-v10.webp`,
@@ -97,7 +97,7 @@ export const BLOG_POSTS: BlogPostSummary[] = [
     path: '/blog/true-mystery-card-origins',
     title: 'Where Every True Mystery Card Comes From',
     excerpt:
-      'All 163 True Mystery (CSV6C) cards matched to their English versions: 128 from Paradox Rift, 16 from Obsidian Flames, 15 from Paldean Fates, 2 from other sources and 2 that do not exist in English.',
+      'All 163 True Mystery (set code CSV6C) cards matched to their English versions: 128 from Paradox Rift, 16 from Obsidian Flames, 15 from Paldean Fates, 2 from other sources and 2 that do not exist in English.',
     seoTitle: 'Pokémon True Mystery (CSV6C) Card Origins: English Art Matches',
     seoDescription:
       'All 163 Pokémon TCG True Mystery (CSV6C) cards matched to English: 128 from Paradox Rift, 16 from Obsidian Flames and 15 from Paldean Fates.',
@@ -536,8 +536,8 @@ export const BLOG_POSTS: BlogPostSummary[] = [
       'Pokémon TCG Reward Round (CSV4C) has Gholdengo on the pack and three Chinese Exclusives: a gold Gholdengo ex and Special Art Rares of Maushold ex and Rika.',
     tag: 'New release',
     date: '2025-07-18',
-    heroImage: `${SITE_URL}/assets/blog/reward-round-release-hero-v10.webp`,
-    heroAlt: 'Reward Round slim and jumbo booster packs with the Chinese-exclusive Maushold ex Special Art Rare in front',
+    heroImage: `${SITE_URL}/assets/blog/reward-round-release-hero.webp`,
+    heroAlt: 'Reward Round slim and jumbo booster packs with the Gholdengo ex Special Art Rare in front and the Maushold ex Special Art Rare behind',
     glow1: 'rgb(46 123 134 / .30)',
     glow2: 'rgb(251 213 114 / .25)',
   },
@@ -552,8 +552,8 @@ export const BLOG_POSTS: BlogPostSummary[] = [
       'Pokémon TCG Reward Round (CSV4C) is the 165-card Gholdengo set. This guide shows every Special Art Rare and what a 15-pack slim box holds on average.',
     tag: 'Set guide',
     date: '2025-07-18',
-    heroImage: `${SITE_URL}/assets/blog/reward-round-guide-hero-v10.webp`,
-    heroAlt: 'The Chinese-exclusive Maushold ex Special Art Rare in an EBI display case above five Special Art Rares and the gold Gholdengo ex',
+    heroImage: `${SITE_URL}/assets/blog/reward-round-guide-hero.webp`,
+    heroAlt: 'The Gholdengo ex Special Art Rare in an EBI display case above six more Reward Round Special Art Rares',
     glow1: 'rgb(46 123 134 / .30)',
     glow2: 'rgb(251 213 114 / .25)',
   },
@@ -584,8 +584,8 @@ export const BLOG_POSTS: BlogPostSummary[] = [
       'Pokémon TCG Fearless Terastal (CSV3C) in Simplified Chinese has Tera Arcanine ex on the pack and a Chinese Exclusive Arcanine ex Special Art Rare.',
     tag: 'New release',
     date: '2025-05-16',
-    heroImage: `${SITE_URL}/assets/blog/fearless-terastal-release-hero-v1.webp`,
-    heroAlt: 'Fearless Terastal banner: the 5-card and 20-card booster packs with the Arcanine ex Special Art Rare and the gold Ting-Lu ex',
+    heroImage: `${SITE_URL}/assets/blog/fearless-terastal-release-hero.webp`,
+    heroAlt: 'Fearless Terastal banner: the slim and jumbo booster packs with the Arcanine ex Special Art Rare and the gold Ting-Lu ex',
     glow1: 'rgb(214 96 40 / .30)',
     glow2: 'rgb(64 130 170 / .25)',
   },
@@ -594,10 +594,10 @@ export const BLOG_POSTS: BlogPostSummary[] = [
     path: '/blog/fearless-terastal-set-guide',
     title: 'Fearless Terastal Set Guide: Every Chase Card and the Pull Odds',
     excerpt:
-      'Fearless Terastal (set code CSV3C) has 35 secret rares behind a 130-card main set, and its 5-card and 20-card packs have different pull odds. This guide shows every chase card and how often you can expect to pull one.',
+      'Fearless Terastal (set code CSV3C) has Tera Arcanine ex on the pack and 35 secret rares behind a 130-card main set. This guide shows every chase card and the pull odds for the slim and jumbo packs.',
     seoTitle: 'Pokémon Fearless Terastal (CSV3C) Set Guide: Chase Cards & Odds',
     seoDescription:
-      'Pokémon TCG Fearless Terastal (CSV3C) has 165 cards and one Chinese Exclusive. This guide shows every Special Art Rare and the official pull odds.',
+      'Pokémon TCG Fearless Terastal (CSV3C) has 165 cards, with Tera Arcanine ex on the pack and a Chinese Exclusive Arcanine ex Special Art Rare. This guide shows every Special Art Rare and the official pull odds.',
     tag: 'Set guide',
     date: '2025-05-16',
     heroImage: `${SITE_URL}/assets/blog/fearless-terastal-guide-hero-v1.webp`,
@@ -626,14 +626,14 @@ export const BLOG_POSTS: BlogPostSummary[] = [
     path: '/blog/eternal-birth-release-news',
     title: 'Eternal Birth Is Here: Miraidon ex Opens Chinese Scarlet & Violet',
     excerpt:
-      'Eternal Birth (set code CSV1C) is the first Chinese Scarlet & Violet set, with Miraidon on the pack and Pokémon ex in Simplified Chinese. It comes in a 5-card and a 20-card pack, and Miraidon ex and Koraidon ex are its lead chase cards.',
+      'Eternal Birth (set code CSV1C) is the first Chinese Scarlet & Violet set, with Miraidon on the pack and Pokémon ex in Simplified Chinese. It comes in a 5-card slim pack and a 20-card jumbo pack, and Miraidon ex and Koraidon ex are its lead chase cards.',
     seoTitle: 'Pokémon Eternal Birth (CSV1C): Miraidon ex & Release Info',
     seoDescription:
       'Pokémon TCG Eternal Birth (set code CSV1C) is the first Chinese Scarlet & Violet set, released January 17, 2025. Miraidon ex and Koraidon ex lead it.',
     tag: 'New release',
     date: '2025-01-17',
-    heroImage: `${SITE_URL}/assets/blog/eternal-birth-release-hero-v1.webp`,
-    heroAlt: 'Eternal Birth banner: the 5-card and 20-card booster packs with the Koraidon ex and Miriam Special Art Rares',
+    heroImage: `${SITE_URL}/assets/blog/eternal-birth-release-hero.webp`,
+    heroAlt: 'Eternal Birth banner: the slim and jumbo booster packs with the Koraidon ex and Miriam Special Art Rares',
     glow1: 'rgb(98 78 190 / .30)',
     glow2: 'rgb(230 200 60 / .25)',
   },
@@ -642,7 +642,7 @@ export const BLOG_POSTS: BlogPostSummary[] = [
     path: '/blog/eternal-birth-set-guide',
     title: 'Eternal Birth Set Guide: Every Chase Card and the Pull Odds',
     excerpt:
-      'Eternal Birth (set code CSV1C) has 40 secret rares behind a 127-card main set, and its 5-card and 20-card packs have different pull odds. This guide shows every chase card and how often you can expect to pull one.',
+      'Eternal Birth (set code CSV1C) has 40 secret rares behind a 127-card main set, and its 5-card slim and 20-card jumbo packs have different pull odds. This guide shows every chase card and how often you can expect to pull one.',
     seoTitle: 'Pokémon Eternal Birth (CSV1C) Set Guide: Chase Cards & Odds',
     seoDescription:
       'Pokémon TCG Eternal Birth (set code CSV1C) has 167 cards and 40 secret rares. This guide shows every chase card and the official pull odds.',
@@ -680,8 +680,8 @@ export const BLOG_POSTS: BlogPostSummary[] = [
       'Pokémon TCG Miracle Journey (set code CSV2C) released March 21, 2025 in Simplified Chinese. Gardevoir is on the pack and Gardevoir ex leads the set.',
     tag: 'New release',
     date: '2025-03-21',
-    heroImage: `${SITE_URL}/assets/blog/miracle-journey-release-hero-v1.webp`,
-    heroAlt: "Miracle Journey banner: the 5-card and 20-card booster packs with the Gardevoir ex Special Art Rare and the Erika's Invitation Super Rare",
+    heroImage: `${SITE_URL}/assets/blog/miracle-journey-release-hero.webp`,
+    heroAlt: "Miracle Journey banner: the slim and jumbo booster packs with the Gardevoir ex Special Art Rare and the Erika's Invitation Super Rare",
     glow1: 'rgb(226 110 170 / .30)',
     glow2: 'rgb(70 160 90 / .25)',
   },
@@ -690,7 +690,7 @@ export const BLOG_POSTS: BlogPostSummary[] = [
     path: '/blog/miracle-journey-set-guide',
     title: 'Miracle Journey Set Guide: Every Chase Card and the Pull Odds',
     excerpt:
-      'Miracle Journey (set code CSV2C) has 35 secret rares behind a 128-card main set, and its 5-card and 20-card packs have different pull odds. This guide shows every chase card and how often you can expect to pull one.',
+      'Miracle Journey (set code CSV2C) has 35 secret rares behind a 128-card main set, and its slim and jumbo packs have different pull odds. This guide shows every chase card and how often you can expect to pull one.',
     seoTitle: 'Pokémon Miracle Journey (CSV2C) Set Guide: Chase Cards & Odds',
     seoDescription:
       'Pokémon TCG Miracle Journey (set code CSV2C) has 163 cards and 35 secret rares. This guide shows every chase card and the official pull odds.',

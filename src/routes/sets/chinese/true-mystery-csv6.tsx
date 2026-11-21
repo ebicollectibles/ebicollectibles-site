@@ -62,7 +62,7 @@ const config: GemSetConfig = {
   ],
   faq: [
     { q: "How many cards are in True Mystery?", a: "163 cards: a 128-card main set with 113 Pokémon and 15 Trainer cards, plus 35 secret rares (8 Art Rare, 15 Super Rare, 8 Special Art Rare and 4 Ultra Rare)." },
-    { q: "What are the chase cards?", a: "The top tier is Ultra Rare, with 4 gold cards including Roaring Moon ex 161/128. The Iron Hands ex Special Art Rare 152/128 is this set's Chinese Exclusive." },
+    { q: "What are the chase cards?", a: "Iron Valiant ex, the Pokémon on the pack, has a Special Art Rare 153/128. The top tier is Ultra Rare, with 4 gold cards including Iron Valiant ex 160/128 and Roaring Moon ex 161/128. The Iron Hands ex Special Art Rare 152/128 is this set's Chinese Exclusive." },
     { q: "What's True Mystery's rarity scheme?", a: "An 8-tier scheme: Common, Uncommon, Rare, Double Rare, Art Rare, Super Rare, Special Art Rare and Ultra Rare, from most common to rarest." },
     { q: "When did True Mystery release?", a: "November 7, 2025." },
     { q: "What language are the cards in?", a: "Simplified Chinese." },
@@ -70,10 +70,10 @@ const config: GemSetConfig = {
   ],
   metaTitle: "Pokémon True Mystery (CSV6C) Card List: All 163 Cards | EBI Collectibles",
   metaDescription:
-    "All 163 cards in Pokémon True Mystery (CSV6C), the Simplified Chinese Paradox set, from Roaring Moon ex to the Chinese Exclusive Iron Hands ex.",
+    "All 163 cards in Pokémon True Mystery (CSV6C), the Simplified Chinese Paradox set, with Iron Valiant on the pack, Roaring Moon ex and a Chinese Exclusive Iron Hands ex.",
   ogTitle: "Pokémon True Mystery (CSV6C) Card List: All 163 Cards",
   ogDescription:
-    "All 163 cards in Pokémon True Mystery (CSV6C), the Simplified Chinese Paradox set, from Roaring Moon ex to the Chinese Exclusive Iron Hands ex.",
+    "All 163 cards in Pokémon True Mystery (CSV6C), the Simplified Chinese Paradox set, with Iron Valiant on the pack, Roaring Moon ex and a Chinese Exclusive Iron Hands ex.",
 }
 
 export const Route = createFileRoute('/sets/chinese/true-mystery-csv6')({

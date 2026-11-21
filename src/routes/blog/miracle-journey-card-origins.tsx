@@ -350,8 +350,8 @@ function MiracleJourneyOrigins() {
     '@type': 'FAQPage',
     mainEntity: FAQ.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
   }
-  // Jiro Sasumo's three-card Gardevoir line.
-  const gardevoir = ['132', '133', '155'].map((n) => rows.find((r) => r.cn === n)!)
+  // Jiro Sasumo's three-card Gardevoir line, the Gardevoir ex Special Art Rare first.
+  const gardevoir = ['155', '132', '133'].map((n) => rows.find((r) => r.cn === n)!)
 
   return (
     <>
@@ -429,8 +429,8 @@ function MiracleJourneyOrigins() {
         <p>
           The cards of Gardevoir, the Pokémon on the pack, all match the first Scarlet & Violet set. Ralts 053, Kirlia 054 and Gardevoir ex 055 match
           084/198, 085/198 and 086/198, and the Gardevoir ex Super Rare 140 matches 228/198. The three cards by Jiro Sasumo match too:
-          the Ralts and Kirlia Art Rares and the Gardevoir ex Special Art Rare, which shows Gardevoir on a sofa holding a ball of yarn
-          beside a woman knitting.
+          the Gardevoir ex Special Art Rare 155, which shows Gardevoir on a sofa holding a ball of yarn beside a woman knitting, and
+          the Ralts and Kirlia Art Rares 132 and 133.
         </p>
         <ul className="card-grid cols-3">
           {gardevoir.map((r) => (

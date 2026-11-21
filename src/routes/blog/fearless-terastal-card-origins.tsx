@@ -233,7 +233,7 @@ const SET_COUNTS = (Object.keys(SET_NAME) as Src[])
 
 const TOC = [
   { id: 'at-a-glance', label: 'At a glance' },
-  { id: 'exclusive', label: 'Chinese Exclusive: Arcanine ex' },
+  { id: 'exclusive', label: 'Arcanine ex and its Chinese Exclusive' },
   { id: 'patterns', label: 'Patterns worth knowing' },
   { id: 'secret-rares', label: `All ${SECRET.length} secret rares` },
   { id: 'main-set', label: `The ${MAIN.length}-card main set` },
@@ -243,11 +243,11 @@ const TOC = [
 const FAQ = [
   {
     q: 'Which English set is Fearless Terastal?',
-    a: `There is no single one. Most of its cards match Paldea Evolved (${count('PAL')}), Obsidian Flames (${count('OBF')}) and Scarlet & Violet (${count('SVI')}), with the rest from SV Black Star Promos, 151 and Paradox Rift, plus one Chinese Exclusive.`,
+    a: `There is no single one. Paldea Evolved matches ${count('PAL')} of its 165 cards, Obsidian Flames matches ${count('OBF')} and Scarlet & Violet matches ${count('SVI')}. The other ${count('SVP') + count('MEW') + count('PAR')} come from SV Black Star Promos, 151 and Paradox Rift, and one card is new, the set's Chinese Exclusive.`,
   },
   {
     q: 'What is the Chinese Exclusive in Fearless Terastal?',
-    a: 'The Arcanine ex Special Art Rare 155/130, illustrated by Gemi. English has Tera Arcanine ex as a Double Rare and a full art in Scarlet & Violet, but this illustration does not exist in English.',
+    a: 'The Arcanine ex Special Art Rare 155/130, illustrated by Gemi. Arcanine is the pack Pokémon. English has Tera Arcanine ex as a Double Rare and a full art in Scarlet & Violet, and both are in this set too, but the Special Art Rare illustration does not exist in English.',
   },
   {
     q: 'Is the Iono Special Art Rare the same as in English?',
@@ -255,7 +255,7 @@ const FAQ = [
   },
   {
     q: 'Are any Fearless Terastal cards English promos?',
-    a: 'Five: Arcanine 017/130 matches SVP 011, Ampharos ex 050/130 matches SVP 016, Mimikyu ex 063/130 matches SVP 004, Espathra 065/130 matches SVP 010 and Cyclizar 113/130 matches SVP 096.',
+    a: 'Five: Arcanine 017/130 matches SV Black Star Promo 011, Ampharos ex 050/130 matches promo 016, Mimikyu ex 063/130 matches promo 004, Espathra 065/130 matches promo 010, and Cyclizar 113/130 matches promo 096.',
   },
 ]
 
@@ -361,7 +361,7 @@ function FearlessTerastalOrigins() {
     '@type': 'FAQPage',
     mainEntity: FAQ.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
   }
-  // The Chinese Exclusive Special Art Rare, with the two Arcanine ex that match English cards.
+  // The pack Pokémon: the Chinese Exclusive Special Art Rare, then the two Arcanine ex that match English cards.
   const arcanine = ['155', '018', '141'].map((n) => rows.find((r) => r.cn === n)!)
 
   return (
@@ -438,12 +438,12 @@ function FearlessTerastalOrigins() {
           matches Special Illustration Rare, and Ultra Rare matches the gold Hyper Rare.
         </p>
 
-        <h2 id="exclusive">Chinese Exclusive: Arcanine ex</h2>
+        <h2 id="exclusive">Arcanine ex and its Chinese Exclusive</h2>
         <p>
-          English has Tera Arcanine ex twice, both in the first Scarlet & Violet set: the Double Rare 032/198 and the full art
-          224/198. Both are in Fearless Terastal, as 018/130 and 141/130. The Special Art Rare 155/130, illustrated by Gemi, is the
-          extra one. It shows the crystal Arcanine roaring under its red Tera Jewel crown, and this illustration does not exist in
-          English.
+          Tera Arcanine is the pack Pokémon. English has Tera Arcanine ex twice, both in the first Scarlet & Violet set: the Double
+          Rare 032/198 and the full art 224/198. Both are in Fearless Terastal, as 018/130 and 141/130. The Special Art Rare 155/130,
+          illustrated by Gemi, is the extra one. It shows the crystal Arcanine with its head up under its red Tera Jewel crown, and
+          this illustration does not exist in English.
         </p>
         <ul className="card-grid cols-3">
           {arcanine.map((r) => (
@@ -459,7 +459,7 @@ function FearlessTerastalOrigins() {
                 <figcaption>
                   {r.src === 'NEW' && <ChineseExclusiveBadge />}
                   <strong>{r.name}</strong>
-                  {r.cn}/130 · {rarityFullName(r.rarity)} · {r.src === 'NEW' ? r.illus : `${SET_NAME[r.src]} ${r.en}`}
+                  {r.cn}/130 · {rarityFullName(r.rarity)} · {r.src === 'NEW' ? `New art by ${r.illus}` : `${SET_NAME[r.src]} ${r.en}`}
                 </figcaption>
               </figure>
             </li>
@@ -467,6 +467,13 @@ function FearlessTerastalOrigins() {
         </ul>
 
         <h2 id="patterns">Patterns worth knowing</h2>
+        <p>
+          <strong>The pack Pokémon is from Scarlet & Violet.</strong> The Arcanine ex Double Rare and Super Rare match the first
+          Scarlet & Violet set, and so do both versions of Gyarados ex, the second Tera Pokémon ex. The third, Forretress ex, matches
+          Paldea Evolved at both rarities.
+          Houndoom ex, Melmetal ex and Klawf ex match Obsidian Flames, which otherwise supplies only Commons and Uncommons plus the
+          Ryme Super Rare.
+        </p>
         <p>
           <strong>Paldea Evolved does most of the work.</strong> It supplies {count('PAL')} of the 165 cards, including the four
           Treasures of Ruin at every rarity, the Grusha, Iono and Giacomo Special Art Rares, and all eight Art Rares except Mabosstiff,
@@ -492,16 +499,11 @@ function FearlessTerastalOrigins() {
           </table>
         </div>
         <p>
-          <strong>The Tera Pokémon ex come from two sets.</strong> Arcanine ex and Gyarados ex match Scarlet & Violet, and Forretress ex
-          matches Paldea Evolved. Houndoom ex, Melmetal ex and Klawf ex match Obsidian Flames, which otherwise supplies only Commons and
-          Uncommons plus the Ryme Super Rare.
-        </p>
-        <p>
           <strong>Five cards match promos.</strong> Arcanine 017/130, Ampharos ex 050/130, Mimikyu ex 063/130, Espathra 065/130 and Cyclizar
           113/130 use illustrations that English released as SV Black Star Promos.
         </p>
         <p>
-          <strong>A few cards from later sets.</strong> Latios 058/130, Morpeko 086/130 and the gold Reversal Energy 165/130 match
+          <strong>Seven cards match 151 and Paradox Rift.</strong> Latios 058/130, Morpeko 086/130 and the gold Reversal Energy 165/130 match
           Paradox Rift. Protective Goggles, Big Air Balloon and both versions of Bill's Transfer match 151.
         </p>
 

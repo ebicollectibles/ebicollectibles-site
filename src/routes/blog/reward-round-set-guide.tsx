@@ -60,7 +60,7 @@ const BOX = [
   { row: 'Holos', avg: '15 (1 per pack)' },
   { row: 'Common and Uncommon (80.00%)', avg: '60' },
   { row: 'Poké Ball pattern holo and Rare (14.53%)', avg: 'about 11' },
-  { row: 'Double Rare, Art Rare and Master Ball pattern (4.74%)', avg: 'about 3 to 4' },
+  { row: 'Double Rare, Art Rare and Master Ball pattern holo (4.74%)', avg: 'about 3 to 4' },
   { row: 'Super Rare, Special Art Rare and Ultra Rare (0.73%)', avg: 'about 0.55' },
 ]
 
@@ -198,7 +198,10 @@ function RewardRoundSetGuide() {
         </nav>
 
         <h2 id="box">What a slim box holds</h2>
-        <p>Pokémon China publishes an odds chart for the 5-card pack. Applied to one 15-pack slim box, it works out to roughly:</p>
+        <p>
+          Pokémon China publishes an odds chart for each pack size. We carry the slim box, so this guide uses the slim chart. Applied
+          to one 15-pack slim box, it works out to roughly:
+        </p>
         <div className="table-scroll" role="group" aria-labelledby="tbl-1" tabIndex={0}>
           <table className="data-table">
             <caption id="tbl-1" className="sr-only">What a slim box holds</caption>
@@ -220,26 +223,36 @@ function RewardRoundSetGuide() {
         </div>
         <p className="table-note">Averages from the official print shares, not guarantees.</p>
         <p>
-          The top group holds 28 different cards and averages about one in every 27 packs, so most slim boxes will not have one. The
-          20-card jumbo pack holds six holos, against one in a slim pack.
+          The top rarity group holds 28 different cards and averages about one in every 27 slim packs, so most slim boxes will not have
+          one. The 20-card jumbo pack holds six holos, against one in a slim pack, and its chart is better at every holo level. The
+          top group is 1.00% of jumbo cards against 0.73% of slim cards, about one in every 5 jumbo packs.
         </p>
 
         <h2 id="special-art-rares">All 9 Special Art Rares</h2>
-        <p>These are numbered 153 to 161: six Pokémon ex and three Supporters. Maushold ex 158/129 and Rika 159/129 are Chinese Exclusives.</p>
+        <p>
+          These are numbered 153 to 161: six Pokémon ex and three Supporters. Gholdengo ex 156/129, the pack Pokémon, is the one most
+          collectors want. Maushold ex 158/129 and Rika 159/129 are Chinese Exclusives.
+        </p>
         <Gallery cards={lead(byRange(153, 161), ['156', '158', '159', '157', '154', '161'])} cols={3} />
 
         <BuyStrip />
 
         <h2 id="super-rares">All 15 Super Rares</h2>
         <p>These are the full arts of ten Pokémon ex and five Supporters, numbered 138 to 152.</p>
-        <Gallery cards={lead(byRange(138, 152), ['146', '144', '150', '149', '152', '151'])} cols={3} />
+        <Gallery cards={lead(byRange(138, 152), ['144', '146', '147', '149', '152', '150'])} cols={3} />
 
         <h2 id="ultra-rares">All 4 Ultra Rares</h2>
-        <p>These are the gold cards, numbered 162 to 165. Gholdengo ex 162/129 is the third Chinese Exclusive.</p>
+        <p>
+          These are the gold cards, numbered 162 to 165. Gholdengo ex 162/129, the pack Pokémon in gold, is a Chinese Exclusive and does
+          not exist in English.
+        </p>
         <Gallery cards={byRange(162, 165)} cols={4} />
 
         <h2 id="art-rares">All 8 Art Rares</h2>
-        <p>These are numbered 130 to 137. Each one gives a main-set Pokémon a full illustration.</p>
+        <p>
+          These are numbered 130 to 137. Each one gives a main-set Pokémon a full illustration. Gimmighoul 133/129 is the Pokémon
+          Gholdengo evolves from.
+        </p>
         <Gallery cards={lead(byRange(130, 137), ['133', '136', '137', '132', '131'])} cols={4} />
 
         <h2 id="ladders">One Pokémon, several rarities</h2>
@@ -272,7 +285,7 @@ function RewardRoundSetGuide() {
 
         <h2 id="double-rares">All 14 Pokémon ex</h2>
         <p>These are the Double Rares from the main set.</p>
-        <Gallery cards={lead(setData.cards.filter((c) => c.rarity === 'Double Rare (RR)'), ['092', '101', '089', '114', '032', '058'])} cols={4} />
+        <Gallery cards={lead(setData.cards.filter((c) => c.rarity === 'Double Rare (RR)'), ['089', '101', '114', '092', '032', '058'])} cols={4} />
 
         <h2 id="numbering">How the numbers work</h2>
         <p>
@@ -307,7 +320,8 @@ function RewardRoundSetGuide() {
           and Rares, for 395 in total.
         </p>
         <p>
-          With one holo per slim pack, the Master Ball holos and the 28 cards in the top rarity group take a long time to pull. Most
+          With one holo per slim pack, the Master Ball holos take a long time to pull, since they share a rarity group with the Double
+          Rares and Art Rares. The 28 cards in the top rarity group take longer still. Most
           collectors open boxes for fun and the lower rarities, then buy the rarest cards as singles. The <Link to="/sets/chinese/reward-round-csv4">Reward Round card list</Link> lets
           you tick off what you have.
         </p>

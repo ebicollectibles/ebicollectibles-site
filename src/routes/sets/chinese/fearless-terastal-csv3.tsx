@@ -57,7 +57,7 @@ const config: GemSetConfig = {
   ],
   faq: [
     { q: "How many cards are in Fearless Terastal?", a: "165 cards: a 130-card main set with 114 Pokémon, 15 Trainer cards and 1 Special Energy, plus 35 secret rares (8 Art Rare, 15 Super Rare, 8 Special Art Rare and 4 Ultra Rare)." },
-    { q: "What are the chase cards?", a: "The top tier is Ultra Rare, with 4 gold cards led by Chien-Pao ex 162/130 and Ting-Lu ex 163/130. The set has one Chinese Exclusive: the Arcanine ex Special Art Rare, 155/130." },
+    { q: "What are the chase cards?", a: "Arcanine ex, the Pokémon on the pack, has a Special Art Rare 155/130, and it is the set's one Chinese Exclusive. The top tier is Ultra Rare, with 4 gold cards including Chien-Pao ex 162/130 and Ting-Lu ex 163/130." },
     { q: "What's Fearless Terastal's rarity scheme?", a: "An 8-tier scheme: Common, Uncommon, Rare, Double Rare, Art Rare, Super Rare, Special Art Rare and Ultra Rare, from most common to rarest." },
     { q: "When did Fearless Terastal release?", a: "May 16, 2025." },
     { q: "What language are the cards in?", a: "Simplified Chinese." },

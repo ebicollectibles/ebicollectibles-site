@@ -241,19 +241,19 @@ const TOC = [
 const FAQ = [
   {
     q: 'Which English set is Reward Round?',
-    a: 'There is no single one. Most of its cards match Obsidian Flames (69), Paldea Evolved (41) and Paradox Rift (31), with the rest from six other English sources, plus three Chinese Exclusives.',
-  },
-  {
-    q: 'Which cards are Chinese Exclusives?',
-    a: 'Three: the Maushold ex Special Art Rare 158/129 by Yoshimi Miyoshi, the Rika Special Art Rare 159/129 by kantaro, and the gold Gholdengo ex Ultra Rare 162/129 by 5ban Graphics. None of the three exists in English. English has a Rika Special Illustration Rare, Paradox Rift 258/182, also by kantaro, but with a different illustration.',
+    a: 'There is no single one. Obsidian Flames matches 69 of its 165 cards, Paldea Evolved matches 41 and Paradox Rift matches 31. The other 21 come from six English sources, and three cards are new, the Chinese Exclusives.',
   },
   {
     q: 'Is the Gholdengo ex Special Art Rare the same as in English?',
-    a: 'Yes. 156/129 matches Paradox Rift 252/182 by Akira Komayama. The gold Ultra Rare 162/129 is the one that does not exist in English, and it is one of the three Chinese Exclusives.',
+    a: 'Yes. 156/129 matches Paradox Rift 252/182 by Akira Komayama. The Double Rare 089/129 and Super Rare 144/129 match Paradox Rift too, and so does the Gimmighoul Art Rare 133/129, also by Akira Komayama. The gold Ultra Rare 162/129 is the one that does not exist in English, and it is one of the three Chinese Exclusives.',
+  },
+  {
+    q: 'Which cards are Chinese Exclusives?',
+    a: 'Three: the gold Gholdengo ex Ultra Rare 162/129 by 5ban Graphics, the Maushold ex Special Art Rare 158/129 by Yoshimi Miyoshi and the Rika Special Art Rare 159/129 by kantaro. None of the three exists in English. English has a Rika Special Illustration Rare, Paradox Rift 258/182, also by kantaro, but with a different illustration.',
   },
   {
     q: 'Are any Reward Round cards English promos?',
-    a: 'Two: Spidops 005/129 matches SVP 009 and Annihilape ex 066/129 matches SVP 032.',
+    a: 'Two: Spidops 005/129 matches SV Black Star Promo 009, and Annihilape ex 066/129 matches SV Black Star Promo 032.',
   },
 ]
 
@@ -461,10 +461,10 @@ function RewardRoundOrigins() {
           ))}
         </ul>
         <p>
-          <strong>The other secret rares match English.</strong> Gholdengo ex, Maushold ex, Golisopod ex and Tapu Koko ex
-          match Paradox Rift, Pidgeot ex and Revavroom ex match Obsidian Flames, and Slowking ex, Dedenne ex and Boss's Orders match
-          Paldea Evolved. The exceptions are the Daisy's Help Super Rare, which matches 151, and the gold Nest Ball, which matches the
-          original Scarlet & Violet set.
+          <strong>The other 33 secret rares match English.</strong> The Gholdengo ex Double Rare, Super Rare and Special Art Rare
+          all match Paradox Rift, and so does the Gimmighoul Art Rare. In all, Paradox Rift matches 14 of the 36 secret rares,
+          Obsidian Flames matches 9 and Paldea Evolved matches 8. The two exceptions are the Daisy's Help Super Rare, which matches
+          151, and the gold Nest Ball, which matches the original Scarlet & Violet set.
         </p>
         <p>
           <strong>Three sets do most of the work.</strong> Every card's English source, from most cards to fewest:

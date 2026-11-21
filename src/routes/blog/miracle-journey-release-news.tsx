@@ -39,36 +39,41 @@ const GARDEVOIR = [
 ]
 
 const STARTERS = [
-  { n: '012', name: 'Meowscarada ex', note: 'Double Rare' },
-  { n: '021', name: 'Skeledirge ex', note: 'Double Rare' },
-  { n: '033', name: 'Quaquaval ex', note: 'Double Rare' },
+  { n: '012', name: 'Meowscarada ex', note: 'Double Rare · 5ban Graphics' },
+  { n: '021', name: 'Skeledirge ex', note: 'Double Rare · 5ban Graphics' },
+  { n: '033', name: 'Quaquaval ex', note: 'Double Rare · 5ban Graphics' },
 ]
 
 const MORE_EX = [
-  { n: '055', name: 'Gardevoir ex', note: 'Double Rare' },
-  { n: '030', name: 'Greninja ex', note: 'Double Rare' },
-  { n: '050', name: 'Miraidon ex', note: 'Double Rare' },
-  { n: '081', name: 'Koraidon ex', note: 'Double Rare' },
+  { n: '055', name: 'Gardevoir ex', note: 'Double Rare · N-DESIGN Inc.' },
+  { n: '030', name: 'Greninja ex', note: 'Double Rare · takuyoa' },
+  { n: '050', name: 'Miraidon ex', note: 'Double Rare · 5ban Graphics' },
+  { n: '081', name: 'Koraidon ex', note: 'Double Rare · aky CG Works' },
+  { n: '079', name: 'Lycanroc ex', note: 'Double Rare · kawayoo' },
+  { n: '085', name: 'Paldean Clodsire ex', note: 'Double Rare · PLANETA Mochizuki' },
+  { n: '096', name: 'Mabosstiff ex', note: 'Double Rare · PLANETA Mochizuki' },
+  { n: '099', name: 'Copperajah ex', note: 'Double Rare · Uta' },
+  { n: '105', name: 'Squawkabilly ex', note: 'Double Rare · PLANETA Mochizuki' },
+  { n: '107', name: 'Grafaiai ex', note: 'Double Rare · aky CG Works' },
 ]
 
+// All eight, Gardevoir ex first: the five Pokémon ex, then the three Supporters.
 const SARS = [
+  { n: '155', name: 'Gardevoir ex', note: 'Special Art Rare · Jiro Sasumo' },
   { n: '152', name: 'Meowscarada ex', note: 'Special Art Rare · Kouki Saitou' },
   { n: '153', name: 'Skeledirge ex', note: 'Special Art Rare · kantaro' },
   { n: '154', name: 'Quaquaval ex', note: 'Special Art Rare · Souichirou Gunjima' },
   { n: '156', name: 'Squawkabilly ex', note: 'Special Art Rare · Amelicart' },
-]
-
-const SUPPORTERS = [
   { n: '157', name: "Erika's Invitation", note: 'Special Art Rare · Cona Nitanda' },
   { n: '158', name: 'Dendra', note: 'Special Art Rare · GIDORA' },
   { n: '159', name: 'Saguaro', note: 'Special Art Rare · Sanosuke Sakuma' },
 ]
 
 const ULTRA_RARES = [
-  { n: '160', name: 'Meowscarada ex', note: 'Ultra Rare' },
-  { n: '161', name: 'Skeledirge ex', note: 'Ultra Rare' },
-  { n: '162', name: 'Quaquaval ex', note: 'Ultra Rare' },
-  { n: '163', name: 'Artazon', note: 'Ultra Rare' },
+  { n: '160', name: 'Meowscarada ex', note: 'Ultra Rare · 5ban Graphics' },
+  { n: '161', name: 'Skeledirge ex', note: 'Ultra Rare · 5ban Graphics' },
+  { n: '162', name: 'Quaquaval ex', note: 'Ultra Rare · 5ban Graphics' },
+  { n: '163', name: 'Artazon', note: 'Ultra Rare · Oswaldo KATO' },
 ]
 
 const ART_RARES = [
@@ -82,8 +87,9 @@ const ART_RARES = [
   { n: '136', name: 'Flamigo', note: 'Art Rare · Shibuzoh.' },
 ]
 
-// Pokémon China's two odds charts, for the 5-card and the 20-card pack, in the
-// bands they use. The per-pack average is the print share times the pack size.
+// Pokémon China's two odds charts, for the slim (5-card) and the jumbo (20-card)
+// pack, in the rarity groups they use. The per-pack average is the print share
+// times the pack size.
 const ODDS = [
   { band: 'Common and Uncommon (non-holo)', s5: '80.00%', p5: '4', s20: '70.00%', p20: '14' },
   { band: 'Poké Ball pattern holo and Rare', s5: '14.53%', p5: 'about 0.73', s20: '22.99%', p20: 'about 4.6' },
@@ -92,13 +98,13 @@ const ODDS = [
 ]
 
 const TOC = [
+  { id: 'packs-and-odds', label: 'Slim or jumbo? Packs and pull odds' },
   { id: 'gardevoir', label: 'Gardevoir ex and its Special Art Rare' },
   { id: 'starters', label: 'The Paldea starters as Pokémon ex' },
   { id: 'pokemon-ex', label: 'All 13 Pokémon ex' },
   { id: 'special-art-rares', label: 'Special Art Rares' },
   { id: 'ultra-rares', label: 'Gold Ultra Rares' },
   { id: 'art-rares', label: 'Art Rares' },
-  { id: 'packs-and-odds', label: 'Packs and pull odds' },
   { id: 'faq', label: 'FAQ' },
 ]
 
@@ -108,12 +114,16 @@ const FAQ = [
     a: 'March 21, 2025, in mainland China. It is a Simplified Chinese release.',
   },
   {
-    q: 'What is in a Miracle Journey pack?',
-    a: 'The 5-card pack has 4 non-holo cards and 1 holo. The 20-card pack has 14 non-holo cards and 6 holos.',
+    q: 'Who is on the Miracle Journey pack?',
+    a: 'Gardevoir. Gardevoir ex comes as a Double Rare, a Super Rare and a Special Art Rare. The Special Art Rare is by Jiro Sasumo, who also drew the Art Rares of Ralts and Kirlia.',
+  },
+  {
+    q: 'What is the difference between the slim and jumbo Miracle Journey packs?',
+    a: 'A slim pack has 5 cards: 4 non-holo and 1 holo. A jumbo pack has 20 cards: 14 non-holo and 6 holo. The card list is the same, but the jumbo pack has better published odds for every holo rarity group.',
   },
   {
     q: 'What are the odds of pulling a Super Rare or better?',
-    a: "Super Rares, Special Art Rares and Ultra Rares make up 0.73% of the 5-card print run, going by Pokémon China's print shares. That averages about one in every 27 packs. In the 20-card pack they make up 1.00%, about one in every five packs.",
+    a: "Super Rares, Special Art Rares and Ultra Rares make up 0.73% of slim-pack cards and 1.00% of jumbo-pack cards, going by Pokémon China's print shares. That averages about one in every 27 slim packs and about one in every 5 jumbo packs.",
   },
   {
     q: 'How many cards are in Miracle Journey?',
@@ -221,10 +231,10 @@ function MiracleJourneyReleasePost() {
               <dd>CSV2C</dd>
               <dt>Released</dt>
               <dd>March 21, 2025</dd>
-              <dt>5-card pack</dt>
-              <dd>4 non-holo cards, 1 holo</dd>
-              <dt>20-card pack</dt>
-              <dd>14 non-holo cards, 6 holo</dd>
+              <dt>Slim pack</dt>
+              <dd>5 cards, 1 holo</dd>
+              <dt>Jumbo pack</dt>
+              <dd>20 cards, 6 holo</dd>
               <dt>Set size</dt>
               <dd>163 cards: 128 in the main set, 35 secret rares</dd>
               <dt>On the pack</dt>
@@ -243,6 +253,68 @@ function MiracleJourneyReleasePost() {
             ))}
           </ol>
         </nav>
+
+        <h2 id="packs-and-odds">Slim or jumbo? Packs and pull odds</h2>
+        <p>
+          Miracle Journey comes in two pack sizes with the same card list. The slim pack is 5 cards with one holo. The jumbo pack is
+          20 cards with six holos. Pokémon China published an odds chart for each, and the jumbo pack is better at every holo level.
+        </p>
+        <ul className="card-grid cols-2">
+          <li>
+            <figure>
+              <img src={`${BLOG_SITE_URL}/assets/blog/miracle-journey-slim-pack.webp`} alt="Miracle Journey slim pack, 5 cards" loading="lazy" width={600} height={1127} style={{ background: 'transparent', boxShadow: 'none' }} />
+              <figcaption>
+                <strong>Slim pack</strong>5 cards · 1 holo
+              </figcaption>
+            </figure>
+          </li>
+          <li>
+            <figure>
+              <img src={`${BLOG_SITE_URL}/assets/blog/miracle-journey-jumbo-pack.webp`} alt="Miracle Journey jumbo pack, 20 cards" loading="lazy" width={600} height={1196} style={{ background: 'transparent', boxShadow: 'none' }} />
+              <figcaption>
+                <strong>Jumbo pack</strong>20 cards · 6 holo
+              </figcaption>
+            </figure>
+          </li>
+        </ul>
+        <p>
+          The charts give each rarity group's share of the print run. Multiplying a share by the pack size gives the average number of
+          those cards per pack.
+        </p>
+        <div className="table-scroll" role="group" aria-labelledby="tbl-1" tabIndex={0}>
+          <table className="data-table">
+            <caption id="tbl-1" className="sr-only">Packs and pull odds</caption>
+            <thead>
+              <tr>
+                <th scope="col">Rarity group</th>
+                <th scope="col">Slim pack: share of print</th>
+                <th scope="col">Per slim pack</th>
+                <th scope="col">Jumbo pack: share of print</th>
+                <th scope="col">Per jumbo pack</th>
+              </tr>
+            </thead>
+            <tbody>
+              {ODDS.map((o) => (
+                <tr key={o.band}>
+                  <th scope="row">{o.band}</th>
+                  <td>{o.s5}</td>
+                  <td>{o.p5}</td>
+                  <td>{o.s20}</td>
+                  <td>{o.p20}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <p className="table-note">Averages from the two official charts. Individual packs vary.</p>
+        <p>
+          In the top group that works out to about one Super Rare, Special Art Rare or Ultra Rare in every 27 slim packs, or one in
+          every 5 jumbo packs.
+        </p>
+        <p>
+          Every Common, Uncommon and Rare also comes as a Poké Ball pattern and a Master Ball pattern holo, which brings the full set to
+          393 cards.
+        </p>
 
         <h2 id="gardevoir">Gardevoir ex and its Special Art Rare</h2>
         <p>
@@ -270,24 +342,24 @@ function MiracleJourneyReleasePost() {
 
         <h2 id="pokemon-ex">All 13 Pokémon ex</h2>
         <p>
-          The main set has 13 Pokémon ex, all Double Rares. Besides Gardevoir ex and the three starters, there are Greninja ex,
-          Miraidon ex, Koraidon ex, Lycanroc ex, Paldean Clodsire ex, Mabosstiff ex, Copperajah ex, Squawkabilly ex and Grafaiai ex.
-          Squawkabilly ex has the Squawk and Seize Ability: once during your first turn, you may discard your hand and draw 6 cards.
+          The main set has 13 Pokémon ex, all Double Rares. The three starters are shown above. The other ten are Gardevoir ex,
+          Greninja ex, Miraidon ex, Koraidon ex, Lycanroc ex, Paldean Clodsire ex, Mabosstiff ex, Copperajah ex, Squawkabilly ex and
+          Grafaiai ex. Squawkabilly ex has the Squawk and Seize Ability: once during your first turn, you may discard your hand and
+          draw 6 cards.
         </p>
         <Grid cards={MORE_EX} cols={4} />
 
         <h2 id="special-art-rares">Special Art Rares</h2>
         <p>
-          The set has eight Special Art Rares, numbered 152 to 159. Five are Pokémon ex and three are Supporters. Skeledirge ex walks down a shopping street
-          beside a Trainer, and a green Squawkabilly ex perches on a tiled rooftop.
+          The set has eight Special Art Rares, numbered 152 to 159. Five are Pokémon ex and three are Supporters. Gardevoir ex leads
+          them. Skeledirge ex walks down a shopping street beside a Trainer, and a green Squawkabilly ex perches on a tiled rooftop.
         </p>
-        <Grid cards={SARS} cols={4} />
         <p>
           The three Supporters are Erika's Invitation, Dendra and Saguaro. Erika, in a yellow kimono, looks down at something cupped
           in her hands. Dendra grins beside a running tap, and Saguaro washes his hands at a kitchen sink with a Jigglypuff next to
           him.
         </p>
-        <Grid cards={SUPPORTERS} cols={3} />
+        <Grid cards={SARS} cols={4} />
 
         <BuyStrip />
 
@@ -301,65 +373,6 @@ function MiracleJourneyReleasePost() {
           cave and a herd of Paldean Tauros stands under a low sun.
         </p>
         <Grid cards={ART_RARES} cols={4} />
-
-        <h2 id="packs-and-odds">Packs and pull odds</h2>
-        <ul className="card-grid cols-2">
-          <li>
-            <figure>
-              <img src={`${BLOG_SITE_URL}/assets/blog/miracle-journey-slim-pack.webp`} alt="Miracle Journey slim pack, 5 cards" loading="lazy" width={600} height={1127} style={{ background: 'transparent', boxShadow: 'none' }} />
-              <figcaption>
-                <strong>Slim pack</strong>5 cards · 1 holo
-              </figcaption>
-            </figure>
-          </li>
-          <li>
-            <figure>
-              <img src={`${BLOG_SITE_URL}/assets/blog/miracle-journey-jumbo-pack.webp`} alt="Miracle Journey jumbo pack, 20 cards" loading="lazy" width={600} height={1196} style={{ background: 'transparent', boxShadow: 'none' }} />
-              <figcaption>
-                <strong>Jumbo pack</strong>20 cards · 6 holo
-              </figcaption>
-            </figure>
-          </li>
-        </ul>
-        <p>
-          Miracle Journey came in two pack sizes with the same card list: a 5-card slim pack with one holo and a 20-card jumbo pack with six holos. Pokémon China publishes an odds
-          chart for each one. The charts give each rarity group's share of the print run, and multiplying a share by the pack size
-          gives the average number of those cards per pack:
-        </p>
-        <div className="table-scroll" role="group" aria-labelledby="tbl-1" tabIndex={0}>
-          <table className="data-table">
-            <caption id="tbl-1" className="sr-only">Packs and pull odds</caption>
-            <thead>
-              <tr>
-                <th scope="col">Rarity group</th>
-                <th scope="col">5-card pack: share of print</th>
-                <th scope="col">Per 5-card pack</th>
-                <th scope="col">20-card pack: share of print</th>
-                <th scope="col">Per 20-card pack</th>
-              </tr>
-            </thead>
-            <tbody>
-              {ODDS.map((o) => (
-                <tr key={o.band}>
-                  <th scope="row">{o.band}</th>
-                  <td>{o.s5}</td>
-                  <td>{o.p5}</td>
-                  <td>{o.s20}</td>
-                  <td>{o.p20}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-        <p className="table-note">Averages from the two official charts. Individual packs vary.</p>
-        <p>
-          In the top group that works out to about one Super Rare, Special Art Rare or Ultra Rare in every 27 of the 5-card packs, or
-          one in every five of the 20-card packs.
-        </p>
-        <p>
-          Every Common, Uncommon and Rare also comes as a Poké Ball pattern and a Master Ball pattern holo, which brings the full set to
-          393 cards.
-        </p>
 
         <h2 id="faq">FAQ</h2>
         <div className="faq">

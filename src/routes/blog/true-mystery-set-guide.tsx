@@ -67,7 +67,7 @@ const BLOCKS = [
   { nos: '160 to 163', what: 'Gold Ultra Rares', rarity: 'Ultra Rare' },
 ]
 
-const LADDER_NAMES = ['Roaring Moon ex', 'Iron Valiant ex', 'Iron Hands ex', 'Sandy Shocks ex']
+const LADDER_NAMES = ['Iron Valiant ex', 'Roaring Moon ex', 'Sandy Shocks ex', 'Iron Hands ex']
 const TIERS = ['Double Rare (RR)', 'Super Rare (SR)', 'Special Art Rare (SAR)', 'Ultra Rare (UR)'] as const
 const LADDER = LADDER_NAMES.map((name) => ({
   name,
@@ -97,7 +97,7 @@ const FAQ = [
   },
   {
     q: 'Which Pokémon ex have a gold Ultra Rare?',
-    a: 'Two: Roaring Moon ex (096, 144, 155 and 161) and Iron Valiant ex (066, 142, 153 and 160). Each has a Double Rare, Super Rare, Special Art Rare and gold Ultra Rare.',
+    a: 'Two: Iron Valiant ex (066, 142, 153 and 160) and Roaring Moon ex (096, 144, 155 and 161). Each has a Double Rare, Super Rare, Special Art Rare and gold Ultra Rare.',
   },
   {
     q: 'How many secret rares are in True Mystery?',
@@ -168,7 +168,7 @@ function TrueMysterySetGuide() {
         updated={status.liveAt}
         wide
         post={post}
-        lede="True Mystery is the Paradox set, sold in slim and jumbo boxes. This guide helps you pick a box, shows every secret rare, and explains how the 163 card numbers fit together."
+        lede="True Mystery is the Paradox set, with Iron Valiant on the pack. This guide helps you choose between slim and jumbo boxes, shows every secret rare, and explains how the 163 card numbers fit together."
         cta={{
           heading: 'Collect True Mystery',
           body: 'Track every card on the full checklist, or pick up a box.',
@@ -179,8 +179,9 @@ function TrueMysterySetGuide() {
         }}
       >
         <p>
-          True Mystery (<Zh>真实玄虚</Zh>, set code CSV6C) released on November 7, 2025. It is the Paradox Pokémon set: 163 cards sold
-          in slim and jumbo boxes, with one Chinese Exclusive, the Iron Hands ex Special Art Rare 152/128.
+          True Mystery (<Zh>真实玄虚</Zh>, set code CSV6C) released on November 7, 2025. It is the Paradox Pokémon set, with Iron
+          Valiant on the pack: 163 cards sold in slim and jumbo boxes, with one Chinese Exclusive, the Iron Hands ex Special Art Rare
+          152/128.
         </p>
         <p>
           Our <Link to="/blog/true-mystery-release-news">release post</Link> covers what is new, and our{' '}
@@ -235,11 +236,11 @@ function TrueMysterySetGuide() {
 
         <h2 id="special-art-rares">All 8 Special Art Rares</h2>
         <p>
-          These are numbered 152 to 159. The four Pokémon ex are Iron Hands ex, Iron Valiant ex, Sandy Shocks ex and Roaring Moon ex,
+          These are numbered 152 to 159. The four Pokémon ex are Iron Valiant ex, Roaring Moon ex, Sandy Shocks ex and Iron Hands ex,
           and the four Supporters are Professor Sada's Vitality, Geeta, Professor Turo's Scenario and Tulip. Iron Hands ex 152/128 is
           the Chinese Exclusive.
         </p>
-        <Gallery cards={lead(byRange(152, 159), ['153', '155', '152'])} cols={4} />
+        <Gallery cards={lead(byRange(152, 159), ['153', '155', '154'])} cols={4} />
 
         <BuyStrip />
 

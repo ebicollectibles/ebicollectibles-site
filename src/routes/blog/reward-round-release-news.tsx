@@ -38,14 +38,13 @@ function Grid({ cards, cols }: { cards: Shown[]; cols: number }) {
 }
 
 const GHOLDENGO = [
-  { n: '089', name: 'Gholdengo ex', note: 'Double Rare' },
-  { n: '144', name: 'Gholdengo ex', note: 'Super Rare' },
+  { n: '162', name: 'Gholdengo ex', note: 'Ultra Rare · 5ban Graphics' },
   { n: '156', name: 'Gholdengo ex', note: 'Special Art Rare · Akira Komayama' },
-  { n: '162', name: 'Gholdengo ex', note: 'Ultra Rare' },
+  { n: '144', name: 'Gholdengo ex', note: 'Super Rare · takuyoa' },
+  { n: '089', name: 'Gholdengo ex', note: 'Double Rare · takuyoa' },
 ]
 
 const EXCLUSIVES = [
-  { n: '162', name: 'Gholdengo ex', note: 'Ultra Rare · 5ban Graphics' },
   { n: '158', name: 'Maushold ex', note: 'Special Art Rare · Yoshimi Miyoshi' },
   { n: '159', name: 'Rika', note: 'Special Art Rare · kantaro' },
 ]
@@ -53,10 +52,16 @@ const EXCLUSIVES = [
 const SAR = [
   { n: '157', name: 'Pidgeot ex', note: 'Special Art Rare · Jerky' },
   { n: '154', name: 'Tapu Koko ex', note: 'Special Art Rare · Jerky' },
-  { n: '161', name: "Boss's Orders", note: 'Special Art Rare · hncl' },
   { n: '153', name: 'Golisopod ex', note: 'Special Art Rare · Oku' },
-  { n: '160', name: 'Parasol Lady', note: 'Special Art Rare · En Morikura' },
   { n: '155', name: 'Revavroom ex', note: 'Special Art Rare · Souichirou Gunjima' },
+  { n: '161', name: "Boss's Orders", note: 'Special Art Rare · hncl' },
+  { n: '160', name: 'Parasol Lady', note: 'Special Art Rare · En Morikura' },
+]
+
+const ULTRA = [
+  { n: '163', name: 'Nest Ball', note: 'Ultra Rare · Toyste Beach' },
+  { n: '164', name: 'Luxurious Cape', note: 'Ultra Rare · Toyste Beach' },
+  { n: '165', name: 'Beach Court', note: 'Ultra Rare · Oswaldo KATO' },
 ]
 
 const ART_RARES = [
@@ -66,19 +71,22 @@ const ART_RARES = [
   { n: '132', name: 'Palafin', note: 'Art Rare · Akira Komayama' },
   { n: '131', name: 'Wimpod', note: 'Art Rare · Oku' },
   { n: '135', name: 'Varoom', note: 'Art Rare · Souichirou Gunjima' },
+  { n: '130', name: 'Bramblin', note: 'Art Rare · sowsow' },
+  { n: '134', name: 'Nacli', note: 'Art Rare · Ryota Murayama' },
 ]
 
-// Pokémon China's odds chart for the 5-card pack, in the rarity groups it uses.
+// Pokémon China's two odds charts, one per pack size. Shares are of all
+// cards printed for that pack size, grouped into the bands the chart uses.
 const ODDS = [
-  { band: 'Common and Uncommon (non-holo)', share: '80.00%', box: '60' },
-  { band: 'Poké Ball pattern holo and Rare', share: '14.53%', box: 'about 11' },
-  { band: 'Double Rare, Art Rare and Master Ball pattern holo', share: '4.74%', box: 'about 3 to 4' },
-  { band: 'Super Rare, Special Art Rare and Ultra Rare', share: '0.73%', box: 'about 0.55' },
+  { band: 'Common and Uncommon (non-holo)', slim: '80.00%', jumbo: '70.00%' },
+  { band: 'Poké Ball pattern holo and Rare', slim: '14.53%', jumbo: '22.99%' },
+  { band: 'Double Rare, Art Rare and Master Ball pattern holo', slim: '4.74%', jumbo: '6.01%' },
+  { band: 'Super Rare, Special Art Rare and Ultra Rare', slim: '0.73%', jumbo: '1.00%' },
 ]
 
 const TOC = [
+  { id: 'gholdengo', label: 'Gholdengo ex, the cover star' },
   { id: 'exclusives', label: 'Chinese Exclusives: Gholdengo ex, Maushold ex and Rika' },
-  { id: 'gholdengo', label: 'Gholdengo, the cover star' },
   { id: 'special-art-rares', label: 'Special Art Rares' },
   { id: 'ultra-rares', label: 'Gold Ultra Rares' },
   { id: 'art-rares', label: 'Art Rares' },
@@ -92,12 +100,16 @@ const FAQ = [
     a: 'July 18, 2025, in mainland China. It is a Simplified Chinese release.',
   },
   {
+    q: 'Who is on the Reward Round pack?',
+    a: 'Gholdengo. Gholdengo ex comes as a Double Rare, a Super Rare, a Special Art Rare by Akira Komayama and a gold Ultra Rare. The gold Ultra Rare is new and does not exist in English. Akira Komayama also drew the Art Rare of its pre-evolution, Gimmighoul.',
+  },
+  {
     q: 'What are the Chinese Exclusives in Reward Round?',
     a: 'Three: the gold Gholdengo ex Ultra Rare 162/129, the Maushold ex Special Art Rare 158/129 and the Rika Special Art Rare 159/129. None of the three exists in English. English has a Rika Special Illustration Rare in Paradox Rift, but with a different illustration.',
   },
   {
-    q: 'What is in a Reward Round pack?',
-    a: 'The slim pack has 5 cards, 4 non-holo and 1 holo. Pokémon China also sells a 20-card jumbo pack with 6 holos.',
+    q: 'What is the difference between the slim and jumbo Reward Round packs?',
+    a: 'A slim pack has 5 cards: 4 non-holo and 1 holo. A jumbo pack has 20 cards: 14 non-holo and 6 holo. The card list is the same, but the jumbo pack has better published odds for every holo rarity group.',
   },
   {
     q: 'How many packs are in a slim booster box?',
@@ -105,11 +117,11 @@ const FAQ = [
   },
   {
     q: 'What are the odds of pulling a Super Rare or better?',
-    a: "Super Rares, Special Art Rares and Ultra Rares make up 0.73% of the 5-card print run, going by Pokémon China's print shares. That averages about 0.55 per 15-pack slim box, or one in every 27 packs.",
+    a: "Super Rares, Special Art Rares and Ultra Rares make up 0.73% of slim-pack cards and 1.00% of jumbo-pack cards, going by Pokémon China's print shares. That averages about 0.55 per 15-pack slim box (one in every 27 slim packs) and one in every 5 jumbo packs.",
   },
   {
     q: 'Where do the Reward Round illustrations come from?',
-    a: 'From several English sets at once. Most of its cards match Obsidian Flames (69), Paldea Evolved (41) and Paradox Rift (31), and three Chinese Exclusives do not exist in English.',
+    a: 'Mostly from three English sets. Obsidian Flames matches 69 of its 165 cards, Paldea Evolved matches 41 and Paradox Rift matches 31. The other 21 come from six English sources, and three cards are the new Chinese Exclusives.',
     link: { to: '/sets/chinese/reward-round-csv4', before: 'See every card on the ', label: 'Reward Round card list', after: '.' },
   },
   {
@@ -227,7 +239,7 @@ function RewardRoundReleasePost() {
               <dt>Released</dt>
               <dd>July 18, 2025</dd>
               <dt>Slim pack</dt>
-              <dd>5 cards, 1 holo. 15 packs per box</dd>
+              <dd>5 cards, 1 holo. 15 packs per slim box</dd>
               <dt>Jumbo pack</dt>
               <dd>20 cards, 6 holo</dd>
               <dt>Set size</dt>
@@ -249,26 +261,28 @@ function RewardRoundReleasePost() {
           </ol>
         </nav>
 
-        <h2 id="exclusives">Chinese Exclusives: Gholdengo ex, Maushold ex and Rika</h2>
+        <h2 id="gholdengo">Gholdengo ex, the cover star</h2>
         <p>
-          Three secret rares do not exist in English: the gold Gholdengo ex Ultra Rare, a Maushold ex Special Art Rare of the mouse
-          family at home, and a Rika Special Art Rare of the Elite Four member holding up a Poké Ball beside her Clodsire. English has
-          a Rika Special Illustration Rare in Paradox Rift, but it uses a different illustration.
-        </p>
-        <Grid cards={EXCLUSIVES} cols={3} />
-
-        <h2 id="gholdengo">Gholdengo, the cover star</h2>
-        <p>
-          Gholdengo ex draws you an extra card every turn with its ability, two if it is in the Active Spot, and its attack discards any
-          number of basic Energy from your hand for 50 damage each. Build up a hand, then cash it in. It appears at four rarities in the
-          set, and the gold Ultra Rare is the one that does not exist in English.
+          Gholdengo is the pack Pokémon. Gholdengo ex is a Stage 1 Metal Pokémon with 260 HP. Once during your turn, its Ability draws a
+          card, or two if it is in the Active Spot, and its attack discards any number of basic Energy from your hand for 50 damage
+          each. Build up a hand, then cash it in. It comes at four rarities. The gold Ultra Rare is new and does not exist in English,
+          and the Special Art Rare by Akira Komayama matches English.
         </p>
         <Grid cards={GHOLDENGO} cols={4} />
 
+        <h2 id="exclusives">Chinese Exclusives: Gholdengo ex, Maushold ex and Rika</h2>
+        <p>
+          Three secret rares do not exist in English. The first is the gold Gholdengo ex Ultra Rare shown above. The other two are
+          Special Art Rares. Maushold ex shows the mouse family playing at home, and Rika shows the Elite Four member holding up a Poké
+          Ball, with her partner Clodsire behind her. English has a Rika Special Illustration Rare in Paradox Rift, but it uses a
+          different illustration.
+        </p>
+        <Grid cards={EXCLUSIVES} cols={2} />
+
         <h2 id="special-art-rares">Special Art Rares</h2>
         <p>
-          There are nine Special Art Rares, numbered 153 to 161: six Pokémon ex, including the Chinese Exclusive Maushold ex, and three Supporters,
-          including the Chinese Exclusive Rika.
+          There are nine Special Art Rares, numbered 153 to 161: six Pokémon ex and three Supporters. Gholdengo ex and the Chinese
+          Exclusives Maushold ex and Rika are shown above. These are the other six.
         </p>
         <Grid cards={SAR} cols={3} />
 
@@ -277,20 +291,21 @@ function RewardRoundReleasePost() {
         <h2 id="ultra-rares">Gold Ultra Rares</h2>
         <p>
           Four gold cards top the set, numbered 162 to 165: Gholdengo ex, Nest Ball, Luxurious Cape and the Beach Court Stadium. Gholdengo ex is
-          the only Pokémon among them.
+          the only Pokémon among them and is shown above.
         </p>
+        <Grid cards={ULTRA} cols={3} />
 
         <h2 id="art-rares">Art Rares</h2>
         <p>
-          Eight Art Rares, numbered 130 to 137, give main-set Pokémon a full illustration, including Akira Komayama's Palafin and Gimmighoul and
-          Jerky's Pidgey and Pidgeotto.
+          Eight Art Rares, numbered 130 to 137, give main-set Pokémon a full illustration. Gimmighoul, the Pokémon Gholdengo evolves
+          from, is by Akira Komayama, who also drew Palafin and the Gholdengo ex Special Art Rare. Jerky drew Pidgey and Pidgeotto.
         </p>
         <Grid cards={ART_RARES} cols={3} />
 
         <h2 id="packs-and-odds">Slim and jumbo packs</h2>
         <p>
-          Reward Round came in a slim 5-card pack with one holo and a jumbo 20-card pack with six holos. We carry the slim booster box: 15
-          packs, 75 cards, 15 holos. This is Pokémon China's odds chart for the 5-card pack, applied to one slim box:
+          Reward Round came in two pack sizes with the same card list. The slim pack is 5 cards with one holo. The jumbo pack is 20
+          cards with six holos. Pokémon China published an odds chart for each, and the jumbo pack is better at every holo level.
         </p>
         <ul className="card-grid cols-2">
           <li>
@@ -315,26 +330,31 @@ function RewardRoundReleasePost() {
             <caption id="tbl-1" className="sr-only">Slim and jumbo packs</caption>
             <thead>
               <tr>
-                <th scope="col">Rarity group</th>
                 <th scope="col">Share of print</th>
-                <th scope="col">Per slim box</th>
+                <th scope="col">Slim</th>
+                <th scope="col">Jumbo</th>
               </tr>
             </thead>
             <tbody>
               {ODDS.map((o) => (
                 <tr key={o.band}>
                   <th scope="row">{o.band}</th>
-                  <td>{o.share}</td>
-                  <td>{o.box}</td>
+                  <td>{o.slim}</td>
+                  <td>{o.jumbo}</td>
                 </tr>
               ))}
             </tbody>
           </table>
         </div>
-        <p className="table-note">Averages from the official 5-card chart. Individual boxes vary.</p>
+        <p className="table-note">From Pokémon China's odds chart for each pack size.</p>
         <p>
-          Every Common, Uncommon and Rare also comes as a Poké Ball pattern and a Master Ball pattern holo, which brings the full set to
-          395 cards. Our <Link to="/blog/reward-round-set-guide">set guide</Link> covers what a master set takes.
+          We carry the slim booster box: 15 packs, 75 cards and 15 holos. Applied to one slim box, the chart works out to about 11
+          Poké Ball pattern holos and Rares, about 3 to 4 cards from the Double Rare rarity group and about 0.55 Super Rares or better,
+          one in every 27 slim packs. In jumbo packs, the top group comes about once every 5 packs.
+        </p>
+        <p>
+          Every Common, Uncommon and Rare also comes as a Poké Ball pattern holo and a Master Ball pattern holo, 115 of each. The card
+          is the same, only the holo pattern changes, which brings the full set to 395 cards. Our <Link to="/blog/reward-round-set-guide">set guide</Link> covers what a master set takes.
         </p>
 
         <h2 id="faq">FAQ</h2>

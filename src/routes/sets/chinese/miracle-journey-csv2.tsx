@@ -60,7 +60,7 @@ const config: GemSetConfig = {
   ],
   faq: [
     { q: "How many cards are in Miracle Journey?", a: "163 cards: a 128-card main set with 109 Pokémon, 18 Trainer cards and 1 Special Energy, plus 35 secret rares (8 Art Rare, 15 Super Rare, 8 Special Art Rare and 4 Ultra Rare)." },
-    { q: "What are the chase cards?", a: "The top tier is Ultra Rare, with 4 gold cards: Meowscarada ex 160/128, Skeledirge ex 161/128, Quaquaval ex 162/128 and Artazon 163/128. The pack's cover Pokémon has a Special Art Rare, Gardevoir ex 155/128." },
+    { q: "What are the chase cards?", a: "Gardevoir ex, the Pokémon on the pack, has a Special Art Rare 155/128. The top tier is Ultra Rare, with 4 gold cards: Meowscarada ex 160/128, Skeledirge ex 161/128, Quaquaval ex 162/128 and Artazon 163/128." },
     { q: "What's Miracle Journey's rarity scheme?", a: "An 8-tier scheme: Common, Uncommon, Rare, Double Rare, Art Rare, Super Rare, Special Art Rare and Ultra Rare, from most common to rarest." },
     { q: "When did Miracle Journey release?", a: "March 21, 2025." },
     { q: "What language are the cards in?", a: "Simplified Chinese." },

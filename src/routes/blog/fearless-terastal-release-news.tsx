@@ -39,14 +39,14 @@ function Grid({ cards, cols }: { cards: Shown[]; cols: number }) {
 
 const ARCANINE = [
   { n: '155', name: 'Arcanine ex', note: 'Special Art Rare · Gemi' },
-  { n: '018', name: 'Arcanine ex', note: 'Double Rare' },
-  { n: '141', name: 'Arcanine ex', note: 'Super Rare' },
+  { n: '018', name: 'Arcanine ex', note: 'Double Rare · 5ban Graphics' },
+  { n: '141', name: 'Arcanine ex', note: 'Super Rare · 5ban Graphics' },
 ]
 
 const TERA = [
-  { n: '018', name: 'Arcanine ex', note: 'Double Rare' },
-  { n: '005', name: 'Forretress ex', note: 'Double Rare' },
-  { n: '033', name: 'Gyarados ex', note: 'Double Rare' },
+  { n: '018', name: 'Arcanine ex', note: 'Double Rare · 5ban Graphics' },
+  { n: '005', name: 'Forretress ex', note: 'Double Rare · 5ban Graphics' },
+  { n: '033', name: 'Gyarados ex', note: 'Double Rare · 5ban Graphics' },
 ]
 
 const TREASURES = [
@@ -63,9 +63,9 @@ const SUPPORTERS = [
 ]
 
 const ULTRA_RARES = [
-  { n: '162', name: 'Chien-Pao ex', note: 'Ultra Rare' },
-  { n: '163', name: 'Ting-Lu ex', note: 'Ultra Rare' },
-  { n: '164', name: 'Superior Energy Retrieval', note: 'Ultra Rare' },
+  { n: '162', name: 'Chien-Pao ex', note: 'Ultra Rare · aky CG Works' },
+  { n: '163', name: 'Ting-Lu ex', note: 'Ultra Rare · 5ban Graphics' },
+  { n: '164', name: 'Superior Energy Retrieval', note: 'Ultra Rare · Studio Bora Inc.' },
   { n: '165', name: 'Reversal Energy', note: 'Ultra Rare' },
 ]
 
@@ -90,13 +90,14 @@ const ODDS = [
 ]
 
 const TOC = [
-  { id: 'exclusive', label: 'Chinese Exclusive: Arcanine ex' },
+  { id: 'slim-or-jumbo', label: 'Slim or jumbo?' },
+  { id: 'exclusive', label: 'Arcanine ex and its Chinese Exclusive' },
   { id: 'tera', label: 'Tera Pokémon ex' },
   { id: 'treasures', label: 'The four Treasures of Ruin' },
   { id: 'special-art-rares', label: 'Special Art Rares' },
   { id: 'ultra-rares', label: 'Gold Ultra Rares' },
   { id: 'art-rares', label: 'Art Rares' },
-  { id: 'packs-and-odds', label: 'Packs and pull odds' },
+  { id: 'packs-and-odds', label: 'Pull odds' },
   { id: 'faq', label: 'FAQ' },
 ]
 
@@ -106,20 +107,24 @@ const FAQ = [
     a: 'May 16, 2025, in mainland China. It is a Simplified Chinese release.',
   },
   {
+    q: 'Who is on the Fearless Terastal pack?',
+    a: 'Tera Arcanine. Arcanine ex comes as a Double Rare, a Super Rare and a Special Art Rare. The Special Art Rare by Gemi is the set\'s Chinese Exclusive.',
+  },
+  {
     q: 'What is the Chinese Exclusive in Fearless Terastal?',
     a: 'The Arcanine ex Special Art Rare 155/130, illustrated by Gemi. English has Tera Arcanine ex as a Double Rare and a full art, but this illustration does not exist in English.',
   },
   {
-    q: 'What is in a Fearless Terastal pack?',
-    a: 'The 5-card pack has 4 non-holo cards and 1 holo. The 20-card pack has 14 non-holo cards and 6 holos.',
+    q: 'What is the difference between the slim and jumbo Fearless Terastal packs?',
+    a: 'A slim pack has 5 cards: 4 non-holo and 1 holo. A jumbo pack has 20 cards: 14 non-holo and 6 holo. The card list is the same, but the jumbo pack has better published odds for every holo rarity group.',
   },
   {
     q: 'What are the odds of pulling a Super Rare or better?',
-    a: "Super Rares, Special Art Rares and Ultra Rares make up 0.73% of the 5-card print run, going by Pokémon China's print shares. That averages about one in every 27 packs. In the 20-card pack they make up 1.00%, about one in every five packs.",
+    a: "Super Rares, Special Art Rares and Ultra Rares make up 0.73% of slim-pack cards and 1.00% of jumbo-pack cards, going by Pokémon China's print shares. That averages about one in every 27 slim packs, or one in every 5 jumbo packs.",
   },
   {
     q: 'Where do the Fearless Terastal illustrations come from?',
-    a: 'From several English sets at once. Most of its cards match Paldea Evolved (96), Obsidian Flames (34) and Scarlet & Violet (22), and one card, the Arcanine ex Special Art Rare, does not exist in English.',
+    a: 'Mostly from three English sets. Paldea Evolved matches 96 of its 165 cards, Obsidian Flames matches 34 and Scarlet & Violet matches 22. The other 12 come from three English sources, and one card, the Arcanine ex Special Art Rare, does not exist in English.',
     link: { to: '/sets/chinese/fearless-terastal-csv3', before: 'See every card on the ', label: 'Fearless Terastal card list', after: '.' },
   },
   {
@@ -223,12 +228,14 @@ function FearlessTerastalReleasePost() {
               <dd>CSV3C</dd>
               <dt>Released</dt>
               <dd>May 16, 2025</dd>
-              <dt>5-card pack</dt>
-              <dd>4 non-holo cards, 1 holo</dd>
-              <dt>20-card pack</dt>
-              <dd>14 non-holo cards, 6 holo</dd>
+              <dt>Slim pack</dt>
+              <dd>5 cards, 1 holo</dd>
+              <dt>Jumbo pack</dt>
+              <dd>20 cards, 6 holo</dd>
               <dt>Set size</dt>
               <dd>165 cards: 130 in the main set, 35 secret rares</dd>
+              <dt>Chase cards</dt>
+              <dd>The Special Art Rares of Arcanine ex, the four Treasures of Ruin and Iono</dd>
               <dt>Chinese Exclusive</dt>
               <dd>Arcanine ex Special Art Rare 155/130</dd>
             </dl>
@@ -246,11 +253,41 @@ function FearlessTerastalReleasePost() {
           </ol>
         </nav>
 
-        <h2 id="exclusive">Chinese Exclusive: Arcanine ex</h2>
+        <h2 id="slim-or-jumbo">Slim or jumbo?</h2>
         <p>
-          One secret rare does not exist in English: the Arcanine ex Special Art Rare, 155/130, illustrated by Gemi. It shows the
-          Terastallized Arcanine roaring, its body cut like crystal, with a red Tera Jewel crown on its head and dark tree trunks
-          behind it. The Double Rare and Super Rare versions match English cards, so this is the set's one Chinese Exclusive.
+          Fearless Terastal comes in two pack sizes with the same card list. The slim pack is 5 cards with one holo. The jumbo pack is
+          20 cards with six holos. Pokémon China published an odds chart for each, and the jumbo pack is better at every holo level.
+          Super Rares, Special Art Rares and Ultra Rares are 1.00% of jumbo cards against 0.73% of slim cards. That works out to about
+          one of those cards every 5 jumbo packs, against one every 27 slim packs.
+        </p>
+        <ul className="card-grid cols-2">
+          <li>
+            <figure>
+              <img src={`${BLOG_SITE_URL}/assets/blog/fearless-terastal-slim-pack.webp`} alt="Fearless Terastal slim pack, 5 cards" loading="lazy" width={600} height={1127} style={{ background: 'transparent', boxShadow: 'none' }} />
+              <figcaption>
+                <strong>Slim pack</strong>5 cards · 1 holo
+              </figcaption>
+            </figure>
+          </li>
+          <li>
+            <figure>
+              <img src={`${BLOG_SITE_URL}/assets/blog/fearless-terastal-jumbo-pack.webp`} alt="Fearless Terastal jumbo pack, 20 cards" loading="lazy" width={600} height={1196} style={{ background: 'transparent', boxShadow: 'none' }} />
+              <figcaption>
+                <strong>Jumbo pack</strong>20 cards · 6 holo
+              </figcaption>
+            </figure>
+          </li>
+        </ul>
+        <p>
+          The full numbers are in <a href="#packs-and-odds">Pull odds</a> below.
+        </p>
+
+        <h2 id="exclusive">Arcanine ex and its Chinese Exclusive</h2>
+        <p>
+          Tera Arcanine is the pack Pokémon. Arcanine ex comes at three rarities, and the Special Art Rare, 155/130, illustrated by Gemi,
+          is the one card in the set that does not exist in English. It shows the Terastallized Arcanine with its head up and its mouth
+          open, its body cut like crystal, with a red Tera Jewel crown on its head and dark tree trunks behind it. The Double Rare and
+          Super Rare match English cards, so the Special Art Rare is the set's one Chinese Exclusive.
         </p>
         <Grid cards={ARCANINE} cols={3} />
 
@@ -273,9 +310,9 @@ function FearlessTerastalReleasePost() {
 
         <h2 id="special-art-rares">Special Art Rares</h2>
         <p>
-          There are eight Special Art Rares, numbered 154 to 161: five Pokémon ex, including the Chinese Exclusive Arcanine ex, and three Supporters. Iono
-          holds up plates of desserts, Grusha is seen through a window behind snow-covered branches, and Giacomo stands behind a set
-          of DJ decks.
+          There are eight Special Art Rares, numbered 154 to 161: five Pokémon ex and three Supporters. The five Pokémon ex, the
+          Chinese Exclusive Arcanine ex and the four Treasures of Ruin, are shown above. Iono holds up a plate of pancakes and a cup of
+          ice cream, Grusha is seen through a window behind snow-covered branches, and Giacomo stands behind a set of DJ decks.
         </p>
         <Grid cards={SUPPORTERS} cols={3} />
 
@@ -294,40 +331,21 @@ function FearlessTerastalReleasePost() {
         </p>
         <Grid cards={ART_RARES} cols={4} />
 
-        <h2 id="packs-and-odds">Packs and pull odds</h2>
-        <ul className="card-grid cols-2">
-          <li>
-            <figure>
-              <img src={`${BLOG_SITE_URL}/assets/blog/fearless-terastal-slim-pack.webp`} alt="Fearless Terastal slim pack, 5 cards" loading="lazy" width={600} height={1127} style={{ background: 'transparent', boxShadow: 'none' }} />
-              <figcaption>
-                <strong>Slim pack</strong>5 cards · 1 holo
-              </figcaption>
-            </figure>
-          </li>
-          <li>
-            <figure>
-              <img src={`${BLOG_SITE_URL}/assets/blog/fearless-terastal-jumbo-pack.webp`} alt="Fearless Terastal jumbo pack, 20 cards" loading="lazy" width={600} height={1196} style={{ background: 'transparent', boxShadow: 'none' }} />
-              <figcaption>
-                <strong>Jumbo pack</strong>20 cards · 6 holo
-              </figcaption>
-            </figure>
-          </li>
-        </ul>
+        <h2 id="packs-and-odds">Pull odds</h2>
         <p>
-          Fearless Terastal came in two pack sizes with the same card list: a 5-card slim pack with one holo and a 20-card jumbo pack with six holos. Pokémon China publishes an odds
-          chart for each one. The charts give each rarity group's share of the print run, and multiplying a share by the pack size
-          gives the average number of those cards per pack:
+          Pokémon China publishes an odds chart for each pack size. The charts give each rarity group's share of the print run, and
+          multiplying a share by the pack size gives the average number of those cards per pack.
         </p>
         <div className="table-scroll" role="group" aria-labelledby="tbl-1" tabIndex={0}>
           <table className="data-table">
-            <caption id="tbl-1" className="sr-only">Packs and pull odds</caption>
+            <caption id="tbl-1" className="sr-only">Pull odds</caption>
             <thead>
               <tr>
                 <th scope="col">Rarity group</th>
-                <th scope="col">5-card pack: share of print</th>
-                <th scope="col">Per 5-card pack</th>
-                <th scope="col">20-card pack: share of print</th>
-                <th scope="col">Per 20-card pack</th>
+                <th scope="col">Slim pack: share of print</th>
+                <th scope="col">Per slim pack</th>
+                <th scope="col">Jumbo pack: share of print</th>
+                <th scope="col">Per jumbo pack</th>
               </tr>
             </thead>
             <tbody>
@@ -345,8 +363,8 @@ function FearlessTerastalReleasePost() {
         </div>
         <p className="table-note">Averages from the two official charts. Individual packs vary.</p>
         <p>
-          In the top group that works out to about one Super Rare, Special Art Rare or Ultra Rare in every 27 of the 5-card packs, or
-          one in every five of the 20-card packs.
+          In the top rarity group that works out to about one Super Rare, Special Art Rare or Ultra Rare in every 27 slim packs, or one
+          in every 5 jumbo packs.
         </p>
         <p>
           Every Common, Uncommon and Rare also comes as a Poké Ball pattern and a Master Ball pattern holo, which brings the full set to
@@ -375,8 +393,8 @@ function FearlessTerastalReleasePost() {
 
         <h2 id="our-take">Our take</h2>
         <p>
-          Fearless Terastal gathers the Treasures of Ruin, Iono and three Tera Pokémon ex in one set, and the Arcanine ex Special
-          Art Rare gives it a card of its own. If you only chase one card, make it that one.
+          Fearless Terastal gathers Tera Arcanine ex, the Treasures of Ruin and Iono in one set, and the Arcanine ex Special Art Rare
+          gives it a card of its own. If you only want one card from this set, make it that one.
         </p>
       </BlogPostLayout>
     </>

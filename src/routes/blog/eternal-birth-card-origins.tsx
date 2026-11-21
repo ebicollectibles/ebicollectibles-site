@@ -243,7 +243,7 @@ const TOC = [
 const FAQ = [
   {
     q: 'Which English set is Eternal Birth?',
-    a: `Mostly the first Scarlet & Violet set, which matches ${count('SVI')} of the 167 cards. The rest match Paldea Evolved (${count('PAL')}), Obsidian Flames (${count('OBF')}), 151 (${count('MEW')}), SV Black Star Promos (${count('SVP')}), Paradox Rift (${count('PAR')}) and Paldean Fates (${count('PAF')}).`,
+    a: `Mostly the first Scarlet & Violet set, which matches ${count('SVI')} of the 167 cards. Paldea Evolved matches ${count('PAL')} and Obsidian Flames matches ${count('OBF')}, with ${count('MEW')} more from 151. The other ${count('SVP') + count('PAR') + count('PAF')} come from SV Black Star Promos, Paradox Rift and Paldean Fates.`,
   },
   {
     q: 'Are the Miraidon ex and Koraidon ex Special Art Rares the same as in English?',

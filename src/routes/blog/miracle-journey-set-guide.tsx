@@ -88,7 +88,7 @@ const FAQ = [
   },
   {
     q: 'How often does a pack hold a Super Rare or better?',
-    a: "About one 5-card pack in 27 holds one, or one 20-card pack in five, going by Pokémon China's print shares. Super Rares, Special Art Rares and Ultra Rares make up 0.73% of the 5-card print run and 1.00% of the 20-card print run.",
+    a: "About one slim pack in 27 holds one, or one jumbo pack in 5, going by Pokémon China's print shares. Super Rares, Special Art Rares and Ultra Rares make up 0.73% of slim-pack cards and 1.00% of jumbo-pack cards.",
   },
   {
     q: 'Which Pokémon ex have no secret rare?',
@@ -163,7 +163,7 @@ function MiracleJourneySetGuide() {
         updated={status.liveAt}
         wide
         post={post}
-        lede="Miracle Journey has 35 secret rares behind a 128-card main set, and its 5-card and 20-card packs have different pull odds. This guide shows every chase card and how often you can expect to pull one."
+        lede="Miracle Journey has 35 secret rares behind a 128-card main set, and its slim and jumbo packs have different pull odds. This guide shows every chase card and how often you can expect to pull one."
         cta={{
           heading: 'Collect Miracle Journey',
           body: 'Browse all 163 cards on the full checklist and tick off what you have.',
@@ -172,7 +172,7 @@ function MiracleJourneySetGuide() {
       >
         <p>
           Miracle Journey (<Zh>奇迹启程</Zh>, set code CSV2C) released on March 21, 2025. It is the Gardevoir set, the second of the
-          Chinese Scarlet & Violet series. It has 163 cards, 13 of them Pokémon ex, and it comes in 5-card and 20-card packs.
+          Chinese Scarlet & Violet series. It has 163 cards, 13 of them Pokémon ex, and it comes in slim 5-card and jumbo 20-card packs.
         </p>
         <p>
           Our <Link to="/blog/miracle-journey-release-news">release post</Link> covers what is new, and our{' '}
@@ -192,15 +192,15 @@ function MiracleJourneySetGuide() {
         </nav>
 
         <h2 id="pack">What a pack holds</h2>
-        <p>Pokémon China publishes an odds chart for the 5-card pack and one for the 20-card pack. Applied to one pack of each, they work out to roughly:</p>
+        <p>Pokémon China publishes an odds chart for the slim pack and one for the jumbo pack. Applied to one pack of each, they work out to roughly as follows.</p>
         <div className="table-scroll" role="group" aria-labelledby="tbl-1" tabIndex={0}>
           <table className="data-table">
             <caption id="tbl-1" className="sr-only">What a pack holds</caption>
             <thead>
               <tr>
                 <th scope="col">Per pack</th>
-                <th scope="col">5-card pack</th>
-                <th scope="col">20-card pack</th>
+                <th scope="col">Slim pack</th>
+                <th scope="col">Jumbo pack</th>
               </tr>
             </thead>
             <tbody>
@@ -216,8 +216,8 @@ function MiracleJourneySetGuide() {
         </div>
         <p className="table-note">Averages from the official print shares, shown in brackets. They are not guarantees.</p>
         <p>
-          The top group holds 27 different cards. It averages about one every 27 of the 5-card packs, or one every five of the 20-card
-          packs. Card for card, the 20-card pack has more holos: 30% of its cards are holos, against 20% in the 5-card pack.
+          The top group holds 27 different cards. It averages about one every 27 slim packs, or one every 5 jumbo packs. Card for card,
+          the jumbo pack has more holos: 30% of its cards are holos, against 20% in the slim pack.
         </p>
 
         <h2 id="gardevoir">Lead chase card: Gardevoir ex</h2>
@@ -314,7 +314,7 @@ function MiracleJourneySetGuide() {
           and Rares, for 393 in total.
         </p>
         <p>
-          With one holo per 5-card pack and six per 20-card pack, the Master Ball holos and the 27 cards in the top group take a long time to pull. Most collectors open
+          With one holo per slim pack and six per jumbo pack, the Master Ball holos and the 27 cards in the top group take a long time to pull. Most collectors open
           packs for fun and the lower rarities, then buy the cards they still need as singles. The{' '}
           <Link to="/sets/chinese/miracle-journey-csv2">Miracle Journey card list</Link> lets you tick off what you have.
         </p>

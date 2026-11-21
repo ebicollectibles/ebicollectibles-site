@@ -74,7 +74,7 @@ const LADDER = LADDER_NAMES.map((name) => ({
 
 const TOC = [
   { id: 'pack', label: 'What a pack holds' },
-  { id: 'exclusive', label: 'Chinese Exclusive: Arcanine ex' },
+  { id: 'exclusive', label: 'Arcanine ex and its Chinese Exclusive' },
   { id: 'special-art-rares', label: 'All 8 Special Art Rares' },
   { id: 'super-rares', label: 'All 15 Super Rares' },
   { id: 'ultra-rares', label: 'All 4 Ultra Rares' },
@@ -93,7 +93,7 @@ const FAQ = [
   },
   {
     q: 'How often does a pack hold a Super Rare or better?',
-    a: "About one 5-card pack in 27, or one 20-card pack in five, going by Pokémon China's print shares. Super Rares, Special Art Rares and Ultra Rares make up 0.73% of the 5-card print run and 1.00% of the 20-card print run.",
+    a: "About one slim pack in 27, or one jumbo pack in 5, going by Pokémon China's print shares. Super Rares, Special Art Rares and Ultra Rares make up 0.73% of slim-pack cards and 1.00% of jumbo-pack cards.",
   },
   {
     q: 'Which Pokémon ex have no secret rare?',
@@ -168,7 +168,7 @@ function FearlessTerastalSetGuide() {
         updated={status.liveAt}
         wide
         post={post}
-        lede="Fearless Terastal has 35 secret rares behind a 130-card main set, and its 5-card and 20-card packs have different pull odds. This guide shows every chase card and how often you can expect to pull one."
+        lede="Fearless Terastal has Tera Arcanine ex on the pack and 35 secret rares behind a 130-card main set, and its slim and jumbo packs have different pull odds. This guide shows every chase card and how often you can expect to pull one."
         cta={{
           heading: 'Collect Fearless Terastal',
           body: 'Browse all 165 cards on the full checklist and tick off what you have.',
@@ -176,8 +176,9 @@ function FearlessTerastalSetGuide() {
         }}
       >
         <p>
-          Fearless Terastal (<Zh>无畏太晶</Zh>, set code CSV3C) released on May 16, 2025. It is the Tera Arcanine set: 165 cards in
-          5-card and 20-card packs, with 35 secret rares and one Chinese Exclusive, the Arcanine ex Special Art Rare 155/130.
+          Fearless Terastal (<Zh>无畏太晶</Zh>, set code CSV3C) released on May 16, 2025. It is the Tera Arcanine set, with 165 cards
+          in 5-card slim packs and 20-card jumbo packs. It has 35 secret rares and one Chinese Exclusive, the Arcanine ex Special Art
+          Rare 155/130.
         </p>
         <p>
           Our <Link to="/blog/fearless-terastal-release-news">release post</Link> covers what is new, and our{' '}
@@ -197,15 +198,15 @@ function FearlessTerastalSetGuide() {
         </nav>
 
         <h2 id="pack">What a pack holds</h2>
-        <p>Pokémon China publishes one odds chart for the 5-card pack and another for the 20-card pack. Applied to one pack of each, they work out to roughly:</p>
+        <p>Pokémon China publishes one odds chart for the 5-card slim pack and another for the 20-card jumbo pack. The table applies each chart to one pack.</p>
         <div className="table-scroll" role="group" aria-labelledby="tbl-1" tabIndex={0}>
           <table className="data-table">
             <caption id="tbl-1" className="sr-only">What a pack holds</caption>
             <thead>
               <tr>
                 <th scope="col">Per pack</th>
-                <th scope="col">5-card pack</th>
-                <th scope="col">20-card pack</th>
+                <th scope="col">Slim pack</th>
+                <th scope="col">Jumbo pack</th>
               </tr>
             </thead>
             <tbody>
@@ -221,19 +222,19 @@ function FearlessTerastalSetGuide() {
         </div>
         <p className="table-note">Averages from the official print shares, shown in brackets. They are not guarantees.</p>
         <p>
-          The top group holds 27 different cards. It averages about one in every 27 of the 5-card packs, or one in every five of the
-          20-card packs. Card for card the 20-card pack is the richer one: 30% of its cards are holos, against 20% in the 5-card pack.
+          The top rarity group holds 27 different cards. It averages about one in every 27 slim packs, or one in every 5 jumbo packs.
+          Card for card the jumbo pack is the richer one: 30% of its cards are holos, against 20% in the slim pack.
         </p>
 
-        <h2 id="exclusive">Chinese Exclusive: Arcanine ex</h2>
+        <h2 id="exclusive">Arcanine ex and its Chinese Exclusive</h2>
         <p>
-          The Arcanine ex Special Art Rare, 155/130, is the one card here that does not exist in English. Arcanine ex also has a Double Rare
-          and a Super Rare, and both of those match English cards.
+          Tera Arcanine is the pack Pokémon, and Arcanine ex comes at three rarities. The Special Art Rare, 155/130, is the one card
+          here that does not exist in English. The Double Rare and the Super Rare both match English cards.
         </p>
         <Gallery cards={['155', '018', '141'].map((n) => setData.cards.find((c) => c.number === `${n}/130`)!)} cols={3} />
 
         <h2 id="special-art-rares">All 8 Special Art Rares</h2>
-        <p>These are numbered 154 to 161: five Pokémon ex and three Supporters. Arcanine ex 155/130 is the Chinese Exclusive.</p>
+        <p>These are numbered 154 to 161: five Pokémon ex and three Supporters. Arcanine ex 155/130, the pack Pokémon, is the Chinese Exclusive.</p>
         <Gallery cards={lead(byRange(154, 161), ['155', '160', '157', '158'])} cols={4} />
 
         <BuyStrip />
@@ -318,7 +319,7 @@ function FearlessTerastalSetGuide() {
           and Rares, for 397 in total.
         </p>
         <p>
-          With one holo per 5-card pack and six per 20-card pack, the Master Ball holos and the 27 cards in the top
+          With one holo per slim pack and six per jumbo pack, the Master Ball holos and the 27 cards in the top
           rarity group take a long time to pull. Most collectors open packs for fun and the lower rarities, then buy the rarest cards as singles. The{' '}
           <Link to="/sets/chinese/fearless-terastal-csv3">Fearless Terastal card list</Link> lets you tick off what you have.
         </p>

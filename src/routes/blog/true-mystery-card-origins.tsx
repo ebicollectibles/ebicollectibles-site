@@ -252,8 +252,8 @@ const FAQ = [
     a: 'The Iron Hands ex Special Art Rare 152/128 by Tonji Matsuno. Iron Hands ex is in English, but not with this illustration. The gold Pal Pad Ultra Rare 163/128 does not exist in English either, where Pal Pad is a regular Item. It is new art, not a Chinese Exclusive.',
   },
   {
-    q: 'Is the Roaring Moon ex Special Art Rare the same as in English?',
-    a: 'Yes. 155/128 matches Paradox Rift 251/182 by Ryota Murayama, and the gold 161/128 matches Paradox Rift 262/182.',
+    q: 'Is the Iron Valiant ex Special Art Rare the same as in English?',
+    a: 'Yes. 153/128 matches Paradox Rift 249/182 by kantaro, and the gold 160/128 matches Paradox Rift 261/182. Roaring Moon ex matches Paradox Rift the same way: 155/128 is 251/182 and the gold 161/128 is 262/182.',
   },
   {
     q: 'Are any True Mystery cards English promos?',
@@ -373,7 +373,7 @@ function TrueMysteryOrigins() {
         updated={status.liveAt}
         wide
         post={post}
-        lede="True Mystery is mostly Paradox Rift, with cards from four other English sources and two that do not exist in English. One of those two is the Chinese Exclusive Iron Hands ex. We matched all 163 cards to English."
+        lede="True Mystery, with Iron Valiant on the pack, is mostly Paradox Rift, with cards from four other English sources and two that do not exist in English. One of those two is the Chinese Exclusive Iron Hands ex. We matched all 163 cards to English."
         cta={{
           heading: 'Collect True Mystery',
           body: 'See every card on the full checklist, or pick up a box.',
@@ -467,7 +467,7 @@ function TrueMysteryOrigins() {
         </div>
         <p>
           <strong>Nearly every secret rare is from Paradox Rift.</strong> Every Art Rare, every Pokémon ex Super Rare except Tyranitar ex,
-          the Roaring Moon ex, Iron Valiant ex and Sandy Shocks ex Special Art Rares, and the gold Roaring Moon ex, Iron Valiant ex and
+          the Iron Valiant ex, Roaring Moon ex and Sandy Shocks ex Special Art Rares, and the gold Iron Valiant ex, Roaring Moon ex and
           Counter Catcher match Paradox Rift cards.
         </p>
         <p>

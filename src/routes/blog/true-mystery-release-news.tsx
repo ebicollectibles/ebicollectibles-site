@@ -37,14 +37,21 @@ function Grid({ cards, cols }: { cards: Shown[]; cols: number }) {
   )
 }
 
+const IRON_VALIANT = [
+  { n: '153', name: 'Iron Valiant ex', note: 'Special Art Rare · kantaro' },
+  { n: '160', name: 'Iron Valiant ex', note: 'Ultra Rare · aky CG Works' },
+  { n: '142', name: 'Iron Valiant ex', note: 'Super Rare · aky CG Works' },
+  { n: '066', name: 'Iron Valiant ex', note: 'Double Rare · aky CG Works' },
+]
+
 const EXCLUSIVE = [
   { n: '152', name: 'Iron Hands ex', note: 'Special Art Rare · Tonji Matsuno' },
   { n: '051', name: 'Iron Hands ex', note: 'Double Rare · PLANETA Mochizuki' },
 ]
 
 const SAR = [
-  { n: '153', name: 'Iron Valiant ex', note: 'Special Art Rare · kantaro' },
   { n: '155', name: 'Roaring Moon ex', note: 'Special Art Rare · Ryota Murayama' },
+  { n: '154', name: 'Sandy Shocks ex', note: 'Special Art Rare · Toshinao Aoki' },
   { n: '159', name: 'Tulip', note: 'Special Art Rare · AKIRA EGAWA' },
   { n: '157', name: 'Geeta', note: 'Special Art Rare · DOM' },
   { n: '156', name: "Professor Sada's Vitality", note: 'Special Art Rare · Ryota Murayama' },
@@ -87,6 +94,7 @@ const BLOCKS = [
 
 const TOC = [
   { id: 'slim-or-jumbo', label: 'Slim or jumbo?' },
+  { id: 'iron-valiant', label: 'Iron Valiant ex' },
   { id: 'iron-hands', label: 'Chinese Exclusive: Iron Hands ex' },
   { id: 'special-art-rares', label: 'Special Art Rares' },
   { id: 'super-rares', label: 'Super Rare full arts' },
@@ -102,12 +110,16 @@ const FAQ = [
     a: 'November 7, 2025, in mainland China. It is a Simplified Chinese release.',
   },
   {
+    q: 'Who is on the True Mystery pack?',
+    a: 'Iron Valiant, a Future Paradox Pokémon. Iron Valiant ex comes as a Double Rare, a Super Rare, a Special Art Rare by kantaro and a gold Ultra Rare. The set is built around Ancient and Future Paradox Pokémon and the Trainer cards that support them.',
+  },
+  {
     q: 'What is the Chinese Exclusive in True Mystery?',
     a: 'The Iron Hands ex Special Art Rare 152/128 by Tonji Matsuno. It is a new illustration for this set and does not exist in English.',
   },
   {
-    q: 'What is the difference between the slim and jumbo boxes?',
-    a: 'A slim box has 15 packs of 5 cards, which is 75 cards with 15 holos. A jumbo box has 6 packs of 20 cards, which is 120 cards with 36 holos. Both pull from the same card list, but Pokémon China publishes a separate odds chart for each pack size.',
+    q: 'What is the difference between the slim and jumbo True Mystery packs?',
+    a: 'A slim pack has 5 cards: 4 non-holo and 1 holo. A jumbo pack has 20 cards: 14 non-holo and 6 holo. A slim box holds 15 packs and a jumbo box holds 6. The card list is the same, but the jumbo pack has better published odds for every holo rarity group.',
   },
   {
     q: 'What are the odds of pulling a Super Rare or better?',
@@ -117,10 +129,6 @@ const FAQ = [
     q: 'Where do the True Mystery illustrations come from?',
     a: 'Mostly from Paradox Rift: 128 of its 163 cards match it. The rest come from Obsidian Flames (16), Paldean Fates (15), 151 (1) and an SV Black Star Promo (1). The Iron Hands ex Special Art Rare and the gold Pal Pad do not exist in English.',
     link: { to: '/sets/chinese/true-mystery-csv6', before: 'See every card on the ', label: 'True Mystery card list', after: '.' },
-  },
-  {
-    q: 'Who is on the True Mystery pack?',
-    a: 'Iron Valiant, a Future Paradox Pokémon. The set is built around Ancient and Future Paradox Pokémon and the Trainer cards that support them.',
   },
   {
     q: 'How many cards are in True Mystery?',
@@ -244,7 +252,7 @@ function TrueMysteryReleasePost() {
               <dt>Set size</dt>
               <dd>163 cards: 128 in the main set, 35 secret rares</dd>
               <dt>Chase cards</dt>
-              <dd>The Iron Valiant ex, Roaring Moon ex and Iron Hands ex Special Art Rares</dd>
+              <dd>The Special Art Rares of Iron Valiant ex, Roaring Moon ex and Iron Hands ex, and the gold Iron Valiant ex and Roaring Moon ex</dd>
               <dt>Chinese Exclusive</dt>
               <dd>Iron Hands ex Special Art Rare 152/128</dd>
             </dl>
@@ -293,6 +301,14 @@ function TrueMysteryReleasePost() {
           Master Ball pattern holo, 115 of each.
         </p>
 
+        <h2 id="iron-valiant">Iron Valiant ex</h2>
+        <p>
+          Iron Valiant is the pack Pokémon. Iron Valiant ex is a Basic Psychic Pokémon with 220 HP. When it moves from your Bench to
+          the Active Spot, its Ability lets you put 2 damage counters on one of your opponent's Pokémon. It comes at four rarities, from
+          Double Rare to gold Ultra Rare, and the Special Art Rare by kantaro is the one most collectors want.
+        </p>
+        <Grid cards={IRON_VALIANT} cols={4} />
+
         <h2 id="iron-hands">Chinese Exclusive: Iron Hands ex</h2>
         <p>
           Iron Hands ex 152/128 is the Chinese Exclusive, a Special Art Rare that does not exist in English. Tonji Matsuno draws it
@@ -303,9 +319,10 @@ function TrueMysteryReleasePost() {
 
         <h2 id="special-art-rares">Special Art Rares</h2>
         <p>
-          There are eight Special Art Rares, numbered 152 to 159. The four Pokémon ex are Iron Valiant ex by kantaro, Roaring Moon ex by
-          Ryota Murayama, Sandy Shocks ex and Iron Hands ex. The four Supporters are Tulip by AKIRA EGAWA, Geeta, Professor Sada's
-          Vitality and Professor Turo's Scenario.
+          There are eight Special Art Rares, numbered 152 to 159: four Pokémon ex and four Supporters. Iron Valiant ex and Iron Hands
+          ex are shown above. The other two Pokémon ex are Roaring Moon ex by Ryota Murayama and Sandy Shocks ex by Toshinao Aoki. The
+          Supporters are Tulip by AKIRA EGAWA, Geeta by DOM, Professor Sada's Vitality by Ryota Murayama and Professor Turo's Scenario
+          by Atsushi Furusawa.
         </p>
         <Grid cards={SAR} cols={3} />
 
@@ -314,7 +331,7 @@ function TrueMysteryReleasePost() {
         <h2 id="super-rares">Super Rare full arts</h2>
         <p>
           There are fifteen Super Rares, numbered 137 to 151. They are full arts of nine Pokémon ex, including Iron Valiant ex, Roaring
-          Moon ex and Tyranitar ex, and six Supporters.
+          Moon ex and Tyranitar ex, and six Supporters. Four of them are shown below.
         </p>
         <Grid cards={SUPER} cols={4} />
 
