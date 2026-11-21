@@ -342,11 +342,7 @@ function Pikachu30thPlushKeychainPost() {
         <h2 id="our-take">Our take</h2>
         <p>
           These are simple: one Pikachu, 30 moods. Because you choose the style, they work well as a gift for someone who has a
-          favourite Pikachu face, and the changing tag gives each one a small extra detail. Styles 15, 17, 18 and 22 each have their
-          own listing: <Link to="/products/$id" params={{ id: productId(15) }}>style 15</Link>,{' '}
-          <Link to="/products/$id" params={{ id: productId(17) }}>style 17</Link>,{' '}
-          <Link to="/products/$id" params={{ id: productId(18) }}>style 18</Link> and{' '}
-          <Link to="/products/$id" params={{ id: productId(22) }}>style 22</Link>.
+          favourite Pikachu face, and the changing tag gives each one a small extra detail.
         </p>
       </BlogPostLayout>
     </>
