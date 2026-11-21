@@ -200,7 +200,7 @@ function CharizardFigureBoxPost() {
         </nav>
 
         <h2 id="contents">What comes inside?</h2>
-        <p>Three things, going by Pokémon China's own contents list:</p>
+        <p>Pokémon China lists three items in the box:</p>
         <div className="table-scroll" role="group" aria-labelledby="tbl-contents" tabIndex={0}>
           <table className="data-table">
             <caption id="tbl-contents" className="sr-only">

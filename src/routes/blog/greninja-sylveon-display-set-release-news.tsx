@@ -11,7 +11,7 @@ const post = BLOG_POSTS.find((p) => p.slug === 'greninja-sylveon-display-set-rel
 
 const img = (name: string) => `${SITE_URL}/assets/blog/greninja-sylveon-display-set-${name}.webp`
 
-// Pokémon China's contents list. Each set holds the same three things, in its own Pokémon.
+// Pokémon China's contents list. Each set holds the same three items, in its own Pokémon.
 const CONTENTS = [
   { item: 'Pokémon ex holo promo card', qty: '1', note: 'Greninja ex 032/30th-P or Sylveon ex 033/30th-P' },
   { item: 'Card display keychain', qty: '1', note: 'A card holder in the same Pokémon, with a key ring, clip and strap' },
@@ -147,7 +147,7 @@ function GreninjaSylveonDisplaySetPost() {
           Display Sleeve Set. One version is Greninja ex and the other is Sylveon ex.
         </p>
         <p>
-          Each set holds the same three things in its own Pokémon: a holo promo card with a new illustration, a card holder you can
+          Each set holds the same three items in its own Pokémon: a holo promo card with a new illustration, a card holder you can
           clip to a bag or keys, and 3 packs of 30th Celebration.
         </p>
 
@@ -191,7 +191,7 @@ function GreninjaSylveonDisplaySetPost() {
         </nav>
 
         <h2 id="contents">What comes inside?</h2>
-        <p>Three things in each set, going by Pokémon China's own contents list:</p>
+        <p>Pokémon China lists three items in each set:</p>
         <div className="table-scroll" role="group" aria-labelledby="tbl-contents" tabIndex={0}>
           <table className="data-table">
             <caption id="tbl-contents" className="sr-only">

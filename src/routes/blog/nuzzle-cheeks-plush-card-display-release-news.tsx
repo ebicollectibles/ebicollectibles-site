@@ -239,7 +239,7 @@ function NuzzleCheeksPlushPost() {
         </nav>
 
         <h2 id="contents">What comes in a box?</h2>
-        <p>Six things, going by Pokémon China's own contents list:</p>
+        <p>Pokémon China lists six items in each box:</p>
         <div className="table-scroll" role="group" aria-labelledby="tbl-contents" tabIndex={0}>
           <table className="data-table">
             <caption id="tbl-contents" className="sr-only">
