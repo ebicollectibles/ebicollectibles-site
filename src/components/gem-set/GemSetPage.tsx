@@ -848,16 +848,23 @@ export function GemSetPage({
                   {raw.name} · {raw.code}
                 </dd>
               </dl>
-              <h3 className="sib-h" id="gem-set-lb-versions">
-                All {openGroup?.cards.length ?? 1} versions
-              </h3>
-              <div className="sibs" role="group" aria-labelledby="gem-set-lb-versions">
-                {(openGroup?.cards ?? []).map((sib, i) => (
-                  <button key={sib.id} type="button" aria-current={sib.id === openCard.id} aria-label={`Version ${i + 1}, ${cardNumber(sib)}, ${rarityName(sib.rarity)}`} onClick={() => open(sib.id)}>
-                    {sib.image ? <img src={sib.image} alt="" width={300} height={419} /> : <span className="sib-ph" aria-hidden="true" />}
-                  </button>
-                ))}
-              </div>
+              {/* Only when there is more than one version to pick between: a
+                  single version would just repeat the card above, stretched
+                  across the whole column. */}
+              {(openGroup?.cards.length ?? 0) > 1 && (
+                <>
+                  <h3 className="sib-h" id="gem-set-lb-versions">
+                    All {openGroup!.cards.length} versions
+                  </h3>
+                  <div className="sibs" role="group" aria-labelledby="gem-set-lb-versions">
+                    {openGroup!.cards.map((sib, i) => (
+                      <button key={sib.id} type="button" aria-current={sib.id === openCard.id} aria-label={`Version ${i + 1}, ${cardNumber(sib)}, ${rarityName(sib.rarity)}`} onClick={() => open(sib.id)}>
+                        {sib.image ? <img src={sib.image} alt="" width={300} height={419} /> : <span className="sib-ph" aria-hidden="true" />}
+                      </button>
+                    ))}
+                  </div>
+                </>
+              )}
               {COLLECTION_CHECKLIST && (<button
                 type="button"
                 className="btn have-btn"
