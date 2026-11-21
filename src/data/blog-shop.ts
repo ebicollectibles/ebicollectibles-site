@@ -33,6 +33,39 @@ const SET_PRODUCTS: Record<string, string[]> = {
     'pokemon-chinese-funism-ditto-palmsize-wonders-blind-box',
     'pokemon-chinese-funism-ditto-palmsize-wonders-blind-box-case',
   ],
+  'pikachu-30th-plush-keychain': [
+    'pokemon-chinese-pikachu-30th-celebration-plush-keychain',
+    'pokemon-chinese-pikachu-30th-celebration-plush-keychain-15',
+    'pokemon-chinese-pikachu-30th-celebration-plush-keychain-17',
+    'pokemon-chinese-pikachu-30th-celebration-plush-keychain-18',
+    'pokemon-chinese-pikachu-30th-celebration-plush-keychain-22',
+  ],
+  'day-night-gift-box': [
+    'pokemon-chinese-day-night-ex-gift-box',
+  ],
+  'greninja-sylveon-display-set': [
+    'pokemon-chinese-sylveon-ex-keychain-box',
+    'pokemon-chinese-greninja-ex-keychain-box',
+  ],
+  'charizard-figure-box': [
+    'pokemon-chinese-charizard-30th-celebration-figure-box',
+  ],
+  'nuzzle-cheeks-plush-card-display': [
+    'pokemon-chinese-nuzzle-cheeks-plush-card-display-blind-box',
+    'pokemon-chinese-nuzzle-cheeks-plush-card-display-blind-box-case',
+  ],
+  'eevee-gift-box': [
+    'pokemon-chinese-eevees-exclusive-premium-box',
+  ],
+  'first-partner-30th-vol-1': [
+    'pokemon-chinese-first-partner-30th-celebration-vol1',
+  ],
+  'first-partner-30th-vol-2': [
+    'pokemon-chinese-first-partner-30th-celebration-vol2',
+  ],
+  'first-partner-30th-vol-3': [
+    'pokemon-chinese-first-partner-30th-celebration-vol3',
+  ],
   'pikachu-dream-painting-figures': [
     'pokemon-chinese-pikachu-30th-celebration-figures-blind-box',
     'pokemon-chinese-pikachu-30th-celebration-figures-blind-box-case',

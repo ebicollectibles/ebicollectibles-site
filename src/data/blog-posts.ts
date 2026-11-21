@@ -6,7 +6,7 @@
 // the post itself.
 import { SITE_URL, R2_IMAGE_HOST } from '~/lib/gem-sets/constants'
 
-export type BlogPostSlug = 'chinese-pokemon-sets-in-order' | 'gem-vol-7-release-news' | 'gem-vol-7-set-guide' | 'gem-vol-7-card-origins' | 'gem-vol-6-release-news' | 'gem-vol-6-set-guide' | 'gem-vol-6-card-origins' | 'gem-vol-5-release-news' | 'gem-vol-5-set-guide' | 'gem-vol-5-card-origins' | 'gem-vol-4-release-news' | 'gem-vol-4-set-guide' | 'gem-vol-4-card-origins' | 'gem-vol-3-release-news' | 'gem-vol-3-set-guide' | 'gem-vol-3-card-origins' | 'gem-vol-2-release-news' | 'gem-vol-2-set-guide' | 'gem-vol-2-card-origins' | 'gem-vol-1-release-news' | 'gem-vol-1-set-guide' | 'gem-vol-1-card-origins' | '30th-celebration-release-news' | '30th-celebration-set-guide' | '30th-celebration-card-origins' | 'chasing-glory-release-news' | 'chasing-glory-set-guide' | 'chasing-glory-card-origins' | 'terastal-gathering-release-news' | 'terastal-gathering-set-guide' | 'terastal-gathering-card-origins' | 'reward-round-release-news' | 'reward-round-set-guide' | 'reward-round-card-origins' | 'fearless-terastal-release-news' | 'fearless-terastal-set-guide' | 'fearless-terastal-card-origins' | 'eternal-birth-release-news' | 'eternal-birth-set-guide' | 'eternal-birth-card-origins' | 'miracle-journey-release-news' | 'miracle-journey-set-guide' | 'miracle-journey-card-origins' | 'black-crystal-blaze-release-news' | 'black-crystal-blaze-set-guide' | 'black-crystal-blaze-card-origins' | 'black-bolt-white-flare-release-news' | 'black-bolt-set-guide' | 'black-bolt-card-origins' | 'white-flare-set-guide' | 'white-flare-card-origins' | 'true-mystery-release-news' | 'true-mystery-set-guide' | 'true-mystery-card-origins' | 'blade-awakening-release-news' | 'blade-awakening-set-guide' | 'blade-awakening-card-origins' | 'brilliant-fantasy-release-news' | 'brilliant-fantasy-set-guide' | 'brilliant-fantasy-card-origins' | 'stellar-crystal-release-news' | 'stellar-crystal-set-guide' | 'stellar-crystal-card-origins' | 'pikachu-dream-painting-figures-release-news' | 'funism-ditto-palm-size-wonders-release-news' | 'team-rocket-briefcase-release-news' | 'pikachu-gift-box-release-news' | 'day-night-gift-box-release-news' | 'greninja-sylveon-display-set-release-news' | 'charizard-figure-box-release-news' | 'nuzzle-cheeks-plush-card-display-release-news' | 'eevee-gift-box-release-news'
+export type BlogPostSlug = 'chinese-pokemon-sets-in-order' | 'gem-vol-7-release-news' | 'gem-vol-7-set-guide' | 'gem-vol-7-card-origins' | 'gem-vol-6-release-news' | 'gem-vol-6-set-guide' | 'gem-vol-6-card-origins' | 'gem-vol-5-release-news' | 'gem-vol-5-set-guide' | 'gem-vol-5-card-origins' | 'gem-vol-4-release-news' | 'gem-vol-4-set-guide' | 'gem-vol-4-card-origins' | 'gem-vol-3-release-news' | 'gem-vol-3-set-guide' | 'gem-vol-3-card-origins' | 'gem-vol-2-release-news' | 'gem-vol-2-set-guide' | 'gem-vol-2-card-origins' | 'gem-vol-1-release-news' | 'gem-vol-1-set-guide' | 'gem-vol-1-card-origins' | '30th-celebration-release-news' | '30th-celebration-set-guide' | '30th-celebration-card-origins' | 'chasing-glory-release-news' | 'chasing-glory-set-guide' | 'chasing-glory-card-origins' | 'terastal-gathering-release-news' | 'terastal-gathering-set-guide' | 'terastal-gathering-card-origins' | 'reward-round-release-news' | 'reward-round-set-guide' | 'reward-round-card-origins' | 'fearless-terastal-release-news' | 'fearless-terastal-set-guide' | 'fearless-terastal-card-origins' | 'eternal-birth-release-news' | 'eternal-birth-set-guide' | 'eternal-birth-card-origins' | 'miracle-journey-release-news' | 'miracle-journey-set-guide' | 'miracle-journey-card-origins' | 'black-crystal-blaze-release-news' | 'black-crystal-blaze-set-guide' | 'black-crystal-blaze-card-origins' | 'black-bolt-white-flare-release-news' | 'black-bolt-set-guide' | 'black-bolt-card-origins' | 'white-flare-set-guide' | 'white-flare-card-origins' | 'true-mystery-release-news' | 'true-mystery-set-guide' | 'true-mystery-card-origins' | 'blade-awakening-release-news' | 'blade-awakening-set-guide' | 'blade-awakening-card-origins' | 'brilliant-fantasy-release-news' | 'brilliant-fantasy-set-guide' | 'brilliant-fantasy-card-origins' | 'stellar-crystal-release-news' | 'stellar-crystal-set-guide' | 'stellar-crystal-card-origins' | 'pikachu-dream-painting-figures-release-news' | 'funism-ditto-palm-size-wonders-release-news' | 'team-rocket-briefcase-release-news' | 'pikachu-gift-box-release-news' | 'day-night-gift-box-release-news' | 'greninja-sylveon-display-set-release-news' | 'charizard-figure-box-release-news' | 'nuzzle-cheeks-plush-card-display-release-news' | 'eevee-gift-box-release-news' | 'pikachu-30th-plush-keychain-release-news' | 'funism-first-partner-mini-figures-release-news' | 'first-partner-30th-vol-1-release-news' | 'first-partner-30th-vol-2-release-news' | 'first-partner-30th-vol-3-release-news'
 
 export interface BlogPostSummary {
   slug: BlogPostSlug
@@ -316,6 +316,86 @@ export const BLOG_POSTS: BlogPostSummary[] = [
     heroAlt: 'The white Eevee and Friends gift box with the Espeon ex and Umbreon ex promo cards side by side in front of it',
     glow1: 'rgb(240 200 130 / .28)',
     glow2: 'rgb(196 160 232 / .25)',
+  },
+  {
+    slug: 'pikachu-30th-plush-keychain-release-news',
+    path: '/blog/pikachu-30th-plush-keychain-release-news',
+    title: 'Pokémon 30th Anniversary Pikachu Plush Keychains: All 30 Styles and How They Are Sold',
+    excerpt:
+      'Pokémon China released 30 plush Pikachu keychains for the 30th anniversary on September 16, 2026. Every style has its own expression and pose, each comes with its own version of the 30 tag, and you choose the one you want.',
+    seoTitle: 'Pikachu 30th Anniversary Plush Keychain: All 30 Styles',
+    seoDescription:
+      'The Chinese Pokémon 30th anniversary Pikachu plush keychains: 30 styles, each with its own face, pose and 30 tag, sold as chosen styles from September 16, 2026.',
+    tag: 'New release',
+    date: '2026-09-16',
+    heroImage: `${SITE_URL}/assets/blog/pikachu-30th-plush-keychain-release-hero.webp`,
+    heroAlt: 'Three 30th anniversary Pikachu plush keychains: a waving Pikachu in front, a sleepy Pikachu and a sitting Pikachu behind, each with its 30 tag',
+    glow1: 'rgb(246 206 60 / .30)',
+    glow2: 'rgb(222 185 97 / .25)',
+  },
+  {
+    slug: 'funism-first-partner-mini-figures-release-news',
+    path: '/blog/funism-first-partner-mini-figures-release-news',
+    title: 'Funism First Partner Figures: All 27 Starters, Three to a Suitcase',
+    excerpt:
+      "Funism's First Partner set has 27 small figures, the three first partner Pokémon from all nine generations. Each blind box is shaped like a suitcase and holds three figures with three Poké Balls.",
+    seoTitle: 'Funism First Partner Blind Box: All 27 Pokémon Starters',
+    seoDescription:
+      'Funism First Partner Pokémon figures: all 27 starters from Kanto to Paldea, three per suitcase blind box, and a display of nine boxes. Released July 2026.',
+    tag: 'New release',
+    date: '2026-07-10',
+    heroImage: `${SITE_URL}/assets/blog/funism-first-partner-release-hero.webp`,
+    heroAlt: 'Funism First Partner suitcase box with Charmander on the front, the open suitcase with three Poké Balls, and the Bulbasaur, Charmander and Squirtle figures',
+    glow1: 'rgb(246 164 86 / .28)',
+    glow2: 'rgb(150 104 66 / .24)',
+  },
+  {
+    slug: 'first-partner-30th-vol-1-release-news',
+    path: '/blog/first-partner-30th-vol-1-release-news',
+    title: 'Chinese First Partner Set Vol.1: 9 Kanto, Sinnoh and Alola Cards, the Display Frame and What Is Inside',
+    excerpt:
+      "Pokémon China's First Partner Set Vol.1 released on March 20, 2026. Each blind box holds one of 9 new first partner cards from Kanto, Sinnoh and Alola, a magnetic acrylic display frame and a Brilliant Fantasy booster pack.",
+    seoTitle: 'Chinese First Partner Set Vol.1: All 9 Cards, Odds & Contents',
+    seoDescription:
+      'The Chinese Pokémon TCG First Partner Set Vol.1 blind box: one of 9 new Kanto, Sinnoh and Alola first partner cards, a display frame and a Brilliant Fantasy pack.',
+    tag: 'New release',
+    date: '2026-03-20',
+    heroImage: `${SITE_URL}/assets/blog/first-partner-30th-vol-1-release-hero.webp`,
+    heroAlt: 'The First Partner Set Vol.1 box with the Bulbasaur card on the front, and the Charmander and Squirtle cards behind it',
+    glow1: 'rgb(132 204 112 / .30)',
+    glow2: 'rgb(240 120 70 / .22)',
+  },
+  {
+    slug: 'first-partner-30th-vol-2-release-news',
+    path: '/blog/first-partner-30th-vol-2-release-news',
+    title: 'Chinese First Partner Set Vol.2: 9 Johto, Unova and Galar Cards, the Display Frame and What Is Inside',
+    excerpt:
+      "Pokémon China's First Partner Set Vol.2 released on June 19, 2026. Each blind box holds one of 9 new first partner cards from Johto, Unova and Galar, a magnetic acrylic display frame and a Stellar Crystal booster pack.",
+    seoTitle: 'Chinese First Partner Set Vol.2: All 9 Cards, Odds & Contents',
+    seoDescription:
+      'The Chinese Pokémon TCG First Partner Set Vol.2 blind box: one of 9 new Johto, Unova and Galar first partner cards, a display frame and a Stellar Crystal pack.',
+    tag: 'New release',
+    date: '2026-06-19',
+    heroImage: `${SITE_URL}/assets/blog/first-partner-30th-vol-2-release-hero.webp`,
+    heroAlt: 'The First Partner Set Vol.2 box with the Totodile card on the front, and the Chikorita and Cyndaquil cards behind it',
+    glow1: 'rgb(92 178 236 / .30)',
+    glow2: 'rgb(240 160 60 / .22)',
+  },
+  {
+    slug: 'first-partner-30th-vol-3-release-news',
+    path: '/blog/first-partner-30th-vol-3-release-news',
+    title: 'Chinese First Partner Set Vol.3: 9 Hoenn, Kalos and Paldea Cards, the Display Frame and What Is Inside',
+    excerpt:
+      "Pokémon China's First Partner Set Vol.3 released on August 7, 2026. Each blind box holds one of 9 new first partner cards from Hoenn, Kalos and Paldea, a magnetic acrylic display frame and a Chasing Glory booster pack.",
+    seoTitle: 'Chinese First Partner Set Vol.3: All 9 Cards, Odds & Contents',
+    seoDescription:
+      'The Chinese Pokémon TCG First Partner Set Vol.3 blind box: one of 9 new Hoenn, Kalos and Paldea first partner cards, a display frame and a Chasing Glory pack.',
+    tag: 'New release',
+    date: '2026-08-07',
+    heroImage: `${SITE_URL}/assets/blog/first-partner-30th-vol-3-release-hero.webp`,
+    heroAlt: 'The First Partner Set Vol.3 box with the Torchic card on the front, and the Treecko and Mudkip cards behind it',
+    glow1: 'rgb(246 150 70 / .30)',
+    glow2: 'rgb(90 170 230 / .22)',
   },
   {
     slug: 'greninja-sylveon-display-set-release-news',

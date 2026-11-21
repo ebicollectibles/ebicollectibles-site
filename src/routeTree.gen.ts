@@ -71,7 +71,11 @@ import { Route as BlogEternalBirthSetGuideRouteImport } from './routes/blog/eter
 import { Route as BlogFearlessTerastalCardOriginsRouteImport } from './routes/blog/fearless-terastal-card-origins'
 import { Route as BlogFearlessTerastalReleaseNewsRouteImport } from './routes/blog/fearless-terastal-release-news'
 import { Route as BlogFearlessTerastalSetGuideRouteImport } from './routes/blog/fearless-terastal-set-guide'
+import { Route as BlogFirstPartner30thVol1ReleaseNewsRouteImport } from './routes/blog/first-partner-30th-vol-1-release-news'
+import { Route as BlogFirstPartner30thVol2ReleaseNewsRouteImport } from './routes/blog/first-partner-30th-vol-2-release-news'
+import { Route as BlogFirstPartner30thVol3ReleaseNewsRouteImport } from './routes/blog/first-partner-30th-vol-3-release-news'
 import { Route as BlogFunismDittoPalmSizeWondersReleaseNewsRouteImport } from './routes/blog/funism-ditto-palm-size-wonders-release-news'
+import { Route as BlogFunismFirstPartnerMiniFiguresReleaseNewsRouteImport } from './routes/blog/funism-first-partner-mini-figures-release-news'
 import { Route as BlogGemVol1CardOriginsRouteImport } from './routes/blog/gem-vol-1-card-origins'
 import { Route as BlogGemVol1ReleaseNewsRouteImport } from './routes/blog/gem-vol-1-release-news'
 import { Route as BlogGemVol1SetGuideRouteImport } from './routes/blog/gem-vol-1-set-guide'
@@ -98,6 +102,7 @@ import { Route as BlogMiracleJourneyCardOriginsRouteImport } from './routes/blog
 import { Route as BlogMiracleJourneyReleaseNewsRouteImport } from './routes/blog/miracle-journey-release-news'
 import { Route as BlogMiracleJourneySetGuideRouteImport } from './routes/blog/miracle-journey-set-guide'
 import { Route as BlogNuzzleCheeksPlushCardDisplayReleaseNewsRouteImport } from './routes/blog/nuzzle-cheeks-plush-card-display-release-news'
+import { Route as BlogPikachu30thPlushKeychainReleaseNewsRouteImport } from './routes/blog/pikachu-30th-plush-keychain-release-news'
 import { Route as BlogPikachuDreamPaintingFiguresReleaseNewsRouteImport } from './routes/blog/pikachu-dream-painting-figures-release-news'
 import { Route as BlogPikachuGiftBoxReleaseNewsRouteImport } from './routes/blog/pikachu-gift-box-release-news'
 import { Route as BlogRewardRoundCardOriginsRouteImport } from './routes/blog/reward-round-card-origins'
@@ -496,10 +501,34 @@ const BlogFearlessTerastalSetGuideRoute =
     path: '/blog/fearless-terastal-set-guide',
     getParentRoute: () => rootRouteImport,
   } as any)
+const BlogFirstPartner30thVol1ReleaseNewsRoute =
+  BlogFirstPartner30thVol1ReleaseNewsRouteImport.update({
+    id: '/blog/first-partner-30th-vol-1-release-news',
+    path: '/blog/first-partner-30th-vol-1-release-news',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const BlogFirstPartner30thVol2ReleaseNewsRoute =
+  BlogFirstPartner30thVol2ReleaseNewsRouteImport.update({
+    id: '/blog/first-partner-30th-vol-2-release-news',
+    path: '/blog/first-partner-30th-vol-2-release-news',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const BlogFirstPartner30thVol3ReleaseNewsRoute =
+  BlogFirstPartner30thVol3ReleaseNewsRouteImport.update({
+    id: '/blog/first-partner-30th-vol-3-release-news',
+    path: '/blog/first-partner-30th-vol-3-release-news',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const BlogFunismDittoPalmSizeWondersReleaseNewsRoute =
   BlogFunismDittoPalmSizeWondersReleaseNewsRouteImport.update({
     id: '/blog/funism-ditto-palm-size-wonders-release-news',
     path: '/blog/funism-ditto-palm-size-wonders-release-news',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const BlogFunismFirstPartnerMiniFiguresReleaseNewsRoute =
+  BlogFunismFirstPartnerMiniFiguresReleaseNewsRouteImport.update({
+    id: '/blog/funism-first-partner-mini-figures-release-news',
+    path: '/blog/funism-first-partner-mini-figures-release-news',
     getParentRoute: () => rootRouteImport,
   } as any)
 const BlogGemVol1CardOriginsRoute = BlogGemVol1CardOriginsRouteImport.update({
@@ -635,6 +664,12 @@ const BlogNuzzleCheeksPlushCardDisplayReleaseNewsRoute =
   BlogNuzzleCheeksPlushCardDisplayReleaseNewsRouteImport.update({
     id: '/blog/nuzzle-cheeks-plush-card-display-release-news',
     path: '/blog/nuzzle-cheeks-plush-card-display-release-news',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const BlogPikachu30thPlushKeychainReleaseNewsRoute =
+  BlogPikachu30thPlushKeychainReleaseNewsRouteImport.update({
+    id: '/blog/pikachu-30th-plush-keychain-release-news',
+    path: '/blog/pikachu-30th-plush-keychain-release-news',
     getParentRoute: () => rootRouteImport,
   } as any)
 const BlogPikachuDreamPaintingFiguresReleaseNewsRoute =
@@ -1032,7 +1067,11 @@ export interface FileRoutesByFullPath {
   '/blog/fearless-terastal-card-origins': typeof BlogFearlessTerastalCardOriginsRoute
   '/blog/fearless-terastal-release-news': typeof BlogFearlessTerastalReleaseNewsRoute
   '/blog/fearless-terastal-set-guide': typeof BlogFearlessTerastalSetGuideRoute
+  '/blog/first-partner-30th-vol-1-release-news': typeof BlogFirstPartner30thVol1ReleaseNewsRoute
+  '/blog/first-partner-30th-vol-2-release-news': typeof BlogFirstPartner30thVol2ReleaseNewsRoute
+  '/blog/first-partner-30th-vol-3-release-news': typeof BlogFirstPartner30thVol3ReleaseNewsRoute
   '/blog/funism-ditto-palm-size-wonders-release-news': typeof BlogFunismDittoPalmSizeWondersReleaseNewsRoute
+  '/blog/funism-first-partner-mini-figures-release-news': typeof BlogFunismFirstPartnerMiniFiguresReleaseNewsRoute
   '/blog/gem-vol-1-card-origins': typeof BlogGemVol1CardOriginsRoute
   '/blog/gem-vol-1-release-news': typeof BlogGemVol1ReleaseNewsRoute
   '/blog/gem-vol-1-set-guide': typeof BlogGemVol1SetGuideRoute
@@ -1059,6 +1098,7 @@ export interface FileRoutesByFullPath {
   '/blog/miracle-journey-release-news': typeof BlogMiracleJourneyReleaseNewsRoute
   '/blog/miracle-journey-set-guide': typeof BlogMiracleJourneySetGuideRoute
   '/blog/nuzzle-cheeks-plush-card-display-release-news': typeof BlogNuzzleCheeksPlushCardDisplayReleaseNewsRoute
+  '/blog/pikachu-30th-plush-keychain-release-news': typeof BlogPikachu30thPlushKeychainReleaseNewsRoute
   '/blog/pikachu-dream-painting-figures-release-news': typeof BlogPikachuDreamPaintingFiguresReleaseNewsRoute
   '/blog/pikachu-gift-box-release-news': typeof BlogPikachuGiftBoxReleaseNewsRoute
   '/blog/reward-round-card-origins': typeof BlogRewardRoundCardOriginsRoute
@@ -1183,7 +1223,11 @@ export interface FileRoutesByTo {
   '/blog/fearless-terastal-card-origins': typeof BlogFearlessTerastalCardOriginsRoute
   '/blog/fearless-terastal-release-news': typeof BlogFearlessTerastalReleaseNewsRoute
   '/blog/fearless-terastal-set-guide': typeof BlogFearlessTerastalSetGuideRoute
+  '/blog/first-partner-30th-vol-1-release-news': typeof BlogFirstPartner30thVol1ReleaseNewsRoute
+  '/blog/first-partner-30th-vol-2-release-news': typeof BlogFirstPartner30thVol2ReleaseNewsRoute
+  '/blog/first-partner-30th-vol-3-release-news': typeof BlogFirstPartner30thVol3ReleaseNewsRoute
   '/blog/funism-ditto-palm-size-wonders-release-news': typeof BlogFunismDittoPalmSizeWondersReleaseNewsRoute
+  '/blog/funism-first-partner-mini-figures-release-news': typeof BlogFunismFirstPartnerMiniFiguresReleaseNewsRoute
   '/blog/gem-vol-1-card-origins': typeof BlogGemVol1CardOriginsRoute
   '/blog/gem-vol-1-release-news': typeof BlogGemVol1ReleaseNewsRoute
   '/blog/gem-vol-1-set-guide': typeof BlogGemVol1SetGuideRoute
@@ -1210,6 +1254,7 @@ export interface FileRoutesByTo {
   '/blog/miracle-journey-release-news': typeof BlogMiracleJourneyReleaseNewsRoute
   '/blog/miracle-journey-set-guide': typeof BlogMiracleJourneySetGuideRoute
   '/blog/nuzzle-cheeks-plush-card-display-release-news': typeof BlogNuzzleCheeksPlushCardDisplayReleaseNewsRoute
+  '/blog/pikachu-30th-plush-keychain-release-news': typeof BlogPikachu30thPlushKeychainReleaseNewsRoute
   '/blog/pikachu-dream-painting-figures-release-news': typeof BlogPikachuDreamPaintingFiguresReleaseNewsRoute
   '/blog/pikachu-gift-box-release-news': typeof BlogPikachuGiftBoxReleaseNewsRoute
   '/blog/reward-round-card-origins': typeof BlogRewardRoundCardOriginsRoute
@@ -1335,7 +1380,11 @@ export interface FileRoutesById {
   '/blog/fearless-terastal-card-origins': typeof BlogFearlessTerastalCardOriginsRoute
   '/blog/fearless-terastal-release-news': typeof BlogFearlessTerastalReleaseNewsRoute
   '/blog/fearless-terastal-set-guide': typeof BlogFearlessTerastalSetGuideRoute
+  '/blog/first-partner-30th-vol-1-release-news': typeof BlogFirstPartner30thVol1ReleaseNewsRoute
+  '/blog/first-partner-30th-vol-2-release-news': typeof BlogFirstPartner30thVol2ReleaseNewsRoute
+  '/blog/first-partner-30th-vol-3-release-news': typeof BlogFirstPartner30thVol3ReleaseNewsRoute
   '/blog/funism-ditto-palm-size-wonders-release-news': typeof BlogFunismDittoPalmSizeWondersReleaseNewsRoute
+  '/blog/funism-first-partner-mini-figures-release-news': typeof BlogFunismFirstPartnerMiniFiguresReleaseNewsRoute
   '/blog/gem-vol-1-card-origins': typeof BlogGemVol1CardOriginsRoute
   '/blog/gem-vol-1-release-news': typeof BlogGemVol1ReleaseNewsRoute
   '/blog/gem-vol-1-set-guide': typeof BlogGemVol1SetGuideRoute
@@ -1362,6 +1411,7 @@ export interface FileRoutesById {
   '/blog/miracle-journey-release-news': typeof BlogMiracleJourneyReleaseNewsRoute
   '/blog/miracle-journey-set-guide': typeof BlogMiracleJourneySetGuideRoute
   '/blog/nuzzle-cheeks-plush-card-display-release-news': typeof BlogNuzzleCheeksPlushCardDisplayReleaseNewsRoute
+  '/blog/pikachu-30th-plush-keychain-release-news': typeof BlogPikachu30thPlushKeychainReleaseNewsRoute
   '/blog/pikachu-dream-painting-figures-release-news': typeof BlogPikachuDreamPaintingFiguresReleaseNewsRoute
   '/blog/pikachu-gift-box-release-news': typeof BlogPikachuGiftBoxReleaseNewsRoute
   '/blog/reward-round-card-origins': typeof BlogRewardRoundCardOriginsRoute
@@ -1488,7 +1538,11 @@ export interface FileRouteTypes {
     | '/blog/fearless-terastal-card-origins'
     | '/blog/fearless-terastal-release-news'
     | '/blog/fearless-terastal-set-guide'
+    | '/blog/first-partner-30th-vol-1-release-news'
+    | '/blog/first-partner-30th-vol-2-release-news'
+    | '/blog/first-partner-30th-vol-3-release-news'
     | '/blog/funism-ditto-palm-size-wonders-release-news'
+    | '/blog/funism-first-partner-mini-figures-release-news'
     | '/blog/gem-vol-1-card-origins'
     | '/blog/gem-vol-1-release-news'
     | '/blog/gem-vol-1-set-guide'
@@ -1515,6 +1569,7 @@ export interface FileRouteTypes {
     | '/blog/miracle-journey-release-news'
     | '/blog/miracle-journey-set-guide'
     | '/blog/nuzzle-cheeks-plush-card-display-release-news'
+    | '/blog/pikachu-30th-plush-keychain-release-news'
     | '/blog/pikachu-dream-painting-figures-release-news'
     | '/blog/pikachu-gift-box-release-news'
     | '/blog/reward-round-card-origins'
@@ -1639,7 +1694,11 @@ export interface FileRouteTypes {
     | '/blog/fearless-terastal-card-origins'
     | '/blog/fearless-terastal-release-news'
     | '/blog/fearless-terastal-set-guide'
+    | '/blog/first-partner-30th-vol-1-release-news'
+    | '/blog/first-partner-30th-vol-2-release-news'
+    | '/blog/first-partner-30th-vol-3-release-news'
     | '/blog/funism-ditto-palm-size-wonders-release-news'
+    | '/blog/funism-first-partner-mini-figures-release-news'
     | '/blog/gem-vol-1-card-origins'
     | '/blog/gem-vol-1-release-news'
     | '/blog/gem-vol-1-set-guide'
@@ -1666,6 +1725,7 @@ export interface FileRouteTypes {
     | '/blog/miracle-journey-release-news'
     | '/blog/miracle-journey-set-guide'
     | '/blog/nuzzle-cheeks-plush-card-display-release-news'
+    | '/blog/pikachu-30th-plush-keychain-release-news'
     | '/blog/pikachu-dream-painting-figures-release-news'
     | '/blog/pikachu-gift-box-release-news'
     | '/blog/reward-round-card-origins'
@@ -1790,7 +1850,11 @@ export interface FileRouteTypes {
     | '/blog/fearless-terastal-card-origins'
     | '/blog/fearless-terastal-release-news'
     | '/blog/fearless-terastal-set-guide'
+    | '/blog/first-partner-30th-vol-1-release-news'
+    | '/blog/first-partner-30th-vol-2-release-news'
+    | '/blog/first-partner-30th-vol-3-release-news'
     | '/blog/funism-ditto-palm-size-wonders-release-news'
+    | '/blog/funism-first-partner-mini-figures-release-news'
     | '/blog/gem-vol-1-card-origins'
     | '/blog/gem-vol-1-release-news'
     | '/blog/gem-vol-1-set-guide'
@@ -1817,6 +1881,7 @@ export interface FileRouteTypes {
     | '/blog/miracle-journey-release-news'
     | '/blog/miracle-journey-set-guide'
     | '/blog/nuzzle-cheeks-plush-card-display-release-news'
+    | '/blog/pikachu-30th-plush-keychain-release-news'
     | '/blog/pikachu-dream-painting-figures-release-news'
     | '/blog/pikachu-gift-box-release-news'
     | '/blog/reward-round-card-origins'
@@ -1942,7 +2007,11 @@ export interface RootRouteChildren {
   BlogFearlessTerastalCardOriginsRoute: typeof BlogFearlessTerastalCardOriginsRoute
   BlogFearlessTerastalReleaseNewsRoute: typeof BlogFearlessTerastalReleaseNewsRoute
   BlogFearlessTerastalSetGuideRoute: typeof BlogFearlessTerastalSetGuideRoute
+  BlogFirstPartner30thVol1ReleaseNewsRoute: typeof BlogFirstPartner30thVol1ReleaseNewsRoute
+  BlogFirstPartner30thVol2ReleaseNewsRoute: typeof BlogFirstPartner30thVol2ReleaseNewsRoute
+  BlogFirstPartner30thVol3ReleaseNewsRoute: typeof BlogFirstPartner30thVol3ReleaseNewsRoute
   BlogFunismDittoPalmSizeWondersReleaseNewsRoute: typeof BlogFunismDittoPalmSizeWondersReleaseNewsRoute
+  BlogFunismFirstPartnerMiniFiguresReleaseNewsRoute: typeof BlogFunismFirstPartnerMiniFiguresReleaseNewsRoute
   BlogGemVol1CardOriginsRoute: typeof BlogGemVol1CardOriginsRoute
   BlogGemVol1ReleaseNewsRoute: typeof BlogGemVol1ReleaseNewsRoute
   BlogGemVol1SetGuideRoute: typeof BlogGemVol1SetGuideRoute
@@ -1969,6 +2038,7 @@ export interface RootRouteChildren {
   BlogMiracleJourneyReleaseNewsRoute: typeof BlogMiracleJourneyReleaseNewsRoute
   BlogMiracleJourneySetGuideRoute: typeof BlogMiracleJourneySetGuideRoute
   BlogNuzzleCheeksPlushCardDisplayReleaseNewsRoute: typeof BlogNuzzleCheeksPlushCardDisplayReleaseNewsRoute
+  BlogPikachu30thPlushKeychainReleaseNewsRoute: typeof BlogPikachu30thPlushKeychainReleaseNewsRoute
   BlogPikachuDreamPaintingFiguresReleaseNewsRoute: typeof BlogPikachuDreamPaintingFiguresReleaseNewsRoute
   BlogPikachuGiftBoxReleaseNewsRoute: typeof BlogPikachuGiftBoxReleaseNewsRoute
   BlogRewardRoundCardOriginsRoute: typeof BlogRewardRoundCardOriginsRoute
@@ -2470,11 +2540,39 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BlogFearlessTerastalSetGuideRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/blog/first-partner-30th-vol-1-release-news': {
+      id: '/blog/first-partner-30th-vol-1-release-news'
+      path: '/blog/first-partner-30th-vol-1-release-news'
+      fullPath: '/blog/first-partner-30th-vol-1-release-news'
+      preLoaderRoute: typeof BlogFirstPartner30thVol1ReleaseNewsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/first-partner-30th-vol-2-release-news': {
+      id: '/blog/first-partner-30th-vol-2-release-news'
+      path: '/blog/first-partner-30th-vol-2-release-news'
+      fullPath: '/blog/first-partner-30th-vol-2-release-news'
+      preLoaderRoute: typeof BlogFirstPartner30thVol2ReleaseNewsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/first-partner-30th-vol-3-release-news': {
+      id: '/blog/first-partner-30th-vol-3-release-news'
+      path: '/blog/first-partner-30th-vol-3-release-news'
+      fullPath: '/blog/first-partner-30th-vol-3-release-news'
+      preLoaderRoute: typeof BlogFirstPartner30thVol3ReleaseNewsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/blog/funism-ditto-palm-size-wonders-release-news': {
       id: '/blog/funism-ditto-palm-size-wonders-release-news'
       path: '/blog/funism-ditto-palm-size-wonders-release-news'
       fullPath: '/blog/funism-ditto-palm-size-wonders-release-news'
       preLoaderRoute: typeof BlogFunismDittoPalmSizeWondersReleaseNewsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/funism-first-partner-mini-figures-release-news': {
+      id: '/blog/funism-first-partner-mini-figures-release-news'
+      path: '/blog/funism-first-partner-mini-figures-release-news'
+      fullPath: '/blog/funism-first-partner-mini-figures-release-news'
+      preLoaderRoute: typeof BlogFunismFirstPartnerMiniFiguresReleaseNewsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/blog/gem-vol-1-card-origins': {
@@ -2657,6 +2755,13 @@ declare module '@tanstack/react-router' {
       path: '/blog/nuzzle-cheeks-plush-card-display-release-news'
       fullPath: '/blog/nuzzle-cheeks-plush-card-display-release-news'
       preLoaderRoute: typeof BlogNuzzleCheeksPlushCardDisplayReleaseNewsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/pikachu-30th-plush-keychain-release-news': {
+      id: '/blog/pikachu-30th-plush-keychain-release-news'
+      path: '/blog/pikachu-30th-plush-keychain-release-news'
+      fullPath: '/blog/pikachu-30th-plush-keychain-release-news'
+      preLoaderRoute: typeof BlogPikachu30thPlushKeychainReleaseNewsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/blog/pikachu-dream-painting-figures-release-news': {
@@ -3144,8 +3249,16 @@ const rootRouteChildren: RootRouteChildren = {
   BlogFearlessTerastalCardOriginsRoute: BlogFearlessTerastalCardOriginsRoute,
   BlogFearlessTerastalReleaseNewsRoute: BlogFearlessTerastalReleaseNewsRoute,
   BlogFearlessTerastalSetGuideRoute: BlogFearlessTerastalSetGuideRoute,
+  BlogFirstPartner30thVol1ReleaseNewsRoute:
+    BlogFirstPartner30thVol1ReleaseNewsRoute,
+  BlogFirstPartner30thVol2ReleaseNewsRoute:
+    BlogFirstPartner30thVol2ReleaseNewsRoute,
+  BlogFirstPartner30thVol3ReleaseNewsRoute:
+    BlogFirstPartner30thVol3ReleaseNewsRoute,
   BlogFunismDittoPalmSizeWondersReleaseNewsRoute:
     BlogFunismDittoPalmSizeWondersReleaseNewsRoute,
+  BlogFunismFirstPartnerMiniFiguresReleaseNewsRoute:
+    BlogFunismFirstPartnerMiniFiguresReleaseNewsRoute,
   BlogGemVol1CardOriginsRoute: BlogGemVol1CardOriginsRoute,
   BlogGemVol1ReleaseNewsRoute: BlogGemVol1ReleaseNewsRoute,
   BlogGemVol1SetGuideRoute: BlogGemVol1SetGuideRoute,
@@ -3174,6 +3287,8 @@ const rootRouteChildren: RootRouteChildren = {
   BlogMiracleJourneySetGuideRoute: BlogMiracleJourneySetGuideRoute,
   BlogNuzzleCheeksPlushCardDisplayReleaseNewsRoute:
     BlogNuzzleCheeksPlushCardDisplayReleaseNewsRoute,
+  BlogPikachu30thPlushKeychainReleaseNewsRoute:
+    BlogPikachu30thPlushKeychainReleaseNewsRoute,
   BlogPikachuDreamPaintingFiguresReleaseNewsRoute:
     BlogPikachuDreamPaintingFiguresReleaseNewsRoute,
   BlogPikachuGiftBoxReleaseNewsRoute: BlogPikachuGiftBoxReleaseNewsRoute,
