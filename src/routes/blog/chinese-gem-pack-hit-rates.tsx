@@ -109,7 +109,7 @@ const CHASE_TABLE = [
 ]
 
 const TOC = [
-  { id: 'short-answer', label: 'The short answer' },
+  { id: 'short-answer', label: 'The short answer, in plain English' },
   { id: 'pack', label: 'What every pack guarantees' },
   { id: 'odds', label: 'Official odds for Vol. 1 to 7' },
   { id: 'pack-and-box', label: 'Pack and box facts, volume by volume' },
@@ -283,7 +283,7 @@ function ChineseGemPackHitRatesPost() {
         updated={status.liveAt}
         wide
         post={post}
-        lede="Every Simplified Chinese Gem Pack holds 4 holo cards, and one of them is always Rare or better. That is the only guarantee. Pokémon China does not promise a full art per box: going by its own odds charts, a box averages about 1.3 three-star cards, and in Vols. 1 to 3 some of those are Energy cards."
+        lede="Every Chinese Gem Pack has 4 shiny cards, and one of them is always a star card. That is the only guarantee. A box usually has about one full art, but Pokémon China does not promise one, and in the first three volumes that top card can be an Energy."
         cta={{
           heading: 'Shop Gem Pack booster boxes',
           body: 'Sealed Simplified Chinese Gem Pack booster boxes, newest volume first.',
@@ -297,25 +297,30 @@ function ChineseGemPackHitRatesPost() {
           ],
         }}
       >
-        <h2 id="short-answer">The short answer</h2>
+        <h2 id="short-answer">The short answer, in plain English</h2>
         <ul>
           <li>
-            <strong>Per pack:</strong> 4 cards, all holo. Three are Common (●) or Uncommon (◆), and one is Rare (★), Double Rare (★★)
-            or Triple Rare (★★★).
+            <strong>Every pack has 4 shiny cards.</strong> One of the 4 is always a &ldquo;star&rdquo; card, the kind with one, two or
+            three stars printed by the card number.
           </li>
           <li>
-            <strong>Per box:</strong> Pokémon China makes no box guarantee. A box averages about 1.3 three-star Triple Rares in every
-            volume, so some boxes have one, some have more and some may have none.
+            <strong>Most of the time that star card has one star.</strong> The full arts are the three-star cards, and you get one in
+            about 1 pack out of every 14 (about 1 in 12 in Vols. 1 and 2).
           </li>
           <li>
-            <strong>The guaranteed card</strong> is a Rare about 70% of the time. It is a three-star card only about 7% of the time in
-            Vols. 3 to 7 and about 9% in Vols. 1 and 2.
+            <strong>A box is not guaranteed a full art.</strong> On average a box has about one, but some boxes have two or more and
+            some have none. Pok&eacute;mon China does not promise any.
           </li>
           <li>
-            <strong>Holo Energy:</strong> in Vols. 1 to 3, six Energy cards sit in the three-star tier with the full arts, so a
-            three-star pull can be an Energy. Vols. 4 to 7 have no Energy cards, and every three-star card is a Pokémon full art.
+            <strong>Vols. 1 to 3 only:</strong> a three-star card can be an Energy card in place of a Pok&eacute;mon. From Vol. 4 on,
+            every three-star card is a Pok&eacute;mon full art.
+          </li>
+          <li>
+            <strong>Want one particular full art?</strong> Buying that card as a single is the sure way. Opening packs is for the fun of
+            it.
           </li>
         </ul>
+        <p>The rest of this guide shows where these numbers come from, volume by volume, using Pok&eacute;mon China&rsquo;s own odds charts.</p>
 
         <aside className="fact-box" aria-label="Gem Pack key facts">
           <img
