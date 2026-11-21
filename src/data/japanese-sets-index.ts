@@ -1,7 +1,6 @@
-// Japanese set card lists. While a set here is a draft (`draft: true`), its
-// page is noindex, it is left out of the sitemap, and nothing on the site
-// links to it; the Japanese index page itself is noindex until the owner
-// switches the section on.
+// Japanese set card lists, shown on /sets/japanese and in the sitemap.
+// `draft: true` keeps a set out of both (its own page should then also set
+// noindex in its config).
 
 export interface JapaneseSetSummary {
   slug: string
@@ -37,7 +36,7 @@ export const JAPANESE_SETS: JapaneseSetSummary[] = [
     packImage: { src: '/assets/sets/packs/jp-storm-emeralda-m6.webp', w: 376, h: 760 },
     glow1: 'rgb(28 120 82 / .30)',
     glow2: 'rgb(70 150 170 / .24)',
-    draft: true,
+    draft: false,
   },
   {
     slug: '30th-celebration-m6a',
@@ -54,7 +53,7 @@ export const JAPANESE_SETS: JapaneseSetSummary[] = [
     packImage: { src: '/assets/sets/packs/jp-30th-celebration-m6a.webp', w: 376, h: 760 },
     glow1: 'rgb(222 185 97 / .30)',
     glow2: 'rgb(90 45 5 / .25)',
-    draft: true,
+    draft: false,
   },
   {
     slug: 'aura-seeker-m7',
@@ -73,6 +72,9 @@ export const JAPANESE_SETS: JapaneseSetSummary[] = [
     packImage: { src: '/assets/sets/packs/jp-aura-seeker-m7.webp', w: 376, h: 760 },
     glow1: 'rgb(40 90 180 / .30)',
     glow2: 'rgb(60 40 120 / .25)',
-    draft: true,
+    draft: false,
   },
 ]
+
+/** Sets that are switched on: listed and in the sitemap. */
+export const LIVE_JAPANESE_SETS = JAPANESE_SETS.filter((s) => !s.draft)

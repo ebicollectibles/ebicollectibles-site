@@ -373,6 +373,9 @@ export function Header({
             <Link role="menuitem" to="/sets/chinese" style={menuItemStyle}>
               Simplified Chinese
             </Link>
+            <Link role="menuitem" to="/sets/japanese" style={menuItemStyle}>
+              Japanese
+            </Link>
           </NavMenu>
           <Link to="/blog" style={{ color: navColor(pathname.startsWith('/blog')), padding: '4px 0' }}>
             Blog
@@ -521,8 +524,11 @@ export function Header({
               Acrylics
             </Link>
           )}
-          <Link to="/sets/chinese" style={{ color: navColor(pathname.startsWith('/sets')), padding: '10px 0', borderBottom: '1px solid #f0f2f4' }}>
+          <Link to="/sets/chinese" style={{ color: navColor(pathname.startsWith('/sets') && !pathname.startsWith('/sets/japanese')), padding: '10px 0', borderBottom: '1px solid #f0f2f4' }}>
             Set Lists: Simplified Chinese
+          </Link>
+          <Link to="/sets/japanese" style={{ color: navColor(pathname.startsWith('/sets/japanese')), padding: '10px 0', borderBottom: '1px solid #f0f2f4' }}>
+            Set Lists: Japanese
           </Link>
           <Link to="/blog" style={{ color: navColor(pathname.startsWith('/blog')), padding: '10px 0', borderBottom: '1px solid #f0f2f4' }}>
             Blog

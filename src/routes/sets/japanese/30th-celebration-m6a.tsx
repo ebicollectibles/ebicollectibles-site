@@ -8,8 +8,7 @@ import type { GemSetConfig, GemSetData, RawCard } from '~/lib/gem-sets/types'
 import { GemSetPage } from '~/components/gem-set/GemSetPage'
 import { getBlogGuidesFor } from '~/server/blog-status'
 
-// Draft Japanese set page: noindex, left out of the sitemap and of every
-// listing (see src/data/japanese-sets-index.ts). Built on the shared Gem
+// Japanese set page, listed on /sets/japanese and in the sitemap. Built on the shared Gem
 // Set engine; this file only supplies the set's data and editorial config.
 //
 // The Japanese 30th CELEBRATION (M6a), from the official Japanese card
@@ -66,7 +65,6 @@ const config: GemSetConfig = {
   glow1: 'rgb(222 185 97 / .30)',
   glow2: 'rgb(90 45 5 / .25)',
   region: { label: 'Japanese', path: '/sets/japanese', listName: 'Japanese Sets' },
-  noindex: true,
   heroLede:
     'All 173 cards in the Japanese 30th Celebration (M6a), led by 30 different Pikachu: the 103-card main set (100 Pokémon plus 3 Trainers), 20 Art Rares, 10 Special Art Rares, 2 Futuristic Rares, 30 classic reprints and 8 basic Energy. Tap any card for a closer look and every other printing beside it.',
   pokemonFact: '100',

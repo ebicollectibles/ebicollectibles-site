@@ -5,7 +5,7 @@
 
 const SITE_URL = 'https://ebicollectibles.com'
 
-const STATIC_PATHS = ['', '/shop', '/best-selling', '/new-and-upcoming', '/sets', '/sets/chinese', '/shipping-policy', '/refund-policy', '/privacy', '/cookie-policy', '/terms-of-service']
+const STATIC_PATHS = ['', '/shop', '/best-selling', '/new-and-upcoming', '/sets', '/sets/chinese', '/sets/japanese', '/shipping-policy', '/refund-policy', '/privacy', '/cookie-policy', '/terms-of-service']
 
 function xmlEscape(s: string): string {
   return s.replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]!)
@@ -16,6 +16,7 @@ export async function handleSitemapRequest(): Promise<Response> {
   const { products } = await import('~/lib/db/schema')
   const { eq } = await import('drizzle-orm')
   const { GEM_SETS } = await import('~/data/gem-sets-index')
+  const { LIVE_JAPANESE_SETS } = await import('~/data/japanese-sets-index')
   const db = getDb()
 
   const rows = await db
@@ -44,6 +45,7 @@ export async function handleSitemapRequest(): Promise<Response> {
     // sitemap entirely despite being full, content-rich, indexable pages
     // (reachable from /sets, just never previously declared here).
     ...GEM_SETS.map((s) => `<url><loc>${xmlEscape(`${SITE_URL}${s.path}`)}</loc></url>`),
+    ...LIVE_JAPANESE_SETS.map((s) => `<url><loc>${xmlEscape(`${SITE_URL}${s.path}`)}</loc></url>`),
     // Blog: only posts switched live in /admin/blog, plus the list once any are.
     ...blogUrls,
   ].join('')

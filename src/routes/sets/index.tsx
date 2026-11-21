@@ -2,12 +2,12 @@ import * as React from 'react'
 import { createFileRoute, Link } from '@tanstack/react-router'
 import setsIndexCssUrl from '~/styles/sets-index.css?url'
 import { GEM_SETS } from '~/data/gem-sets-index'
+import { LIVE_JAPANESE_SETS } from '~/data/japanese-sets-index'
 import { SITE_URL } from '~/lib/gem-sets/constants'
 import { safeJsonLd } from '~/lib/gem-sets/head'
 
 // Hub for every language we track. Each language has its own list at
-// /sets/<language> (only Simplified Chinese today; Japanese will sit beside
-// it at /sets/japanese), and every set page lives under its language.
+// /sets/<language>, and every set page lives under its language.
 const LANGUAGES = [
   {
     to: '/sets/chinese' as const,
@@ -16,7 +16,14 @@ const LANGUAGES = [
     tagline: 'Gem Packs, the Chinese Scarlet & Violet sets, 30th Celebration and Collect 151.',
     sets: GEM_SETS,
   },
-]
+  {
+    to: '/sets/japanese' as const,
+    name: 'Japanese Pokémon sets',
+    label: 'Japanese',
+    tagline: 'The Japanese Mega Evolution sets: Storm Emeralda, 30th Celebration and Aura Seeker.',
+    sets: [...LIVE_JAPANESE_SETS].sort((a, b) => b.releaseDate.localeCompare(a.releaseDate)),
+  },
+].filter((l) => l.sets.length > 0)
 
 const breadcrumbJsonLd = {
   '@context': 'https://schema.org',
@@ -31,9 +38,9 @@ export const Route = createFileRoute('/sets/')({
   head: () => ({
     meta: [
       { title: 'Pokémon TCG Sets by Language: Card Lists | EBI Collectibles' },
-      { name: 'description', content: 'Full card lists and rarities for the Pokémon TCG sets we track, sorted by language, starting with Simplified Chinese.' },
+      { name: 'description', content: 'Full card lists and rarities for the Pokémon TCG sets we track, sorted by language: Simplified Chinese and Japanese.' },
       { property: 'og:title', content: 'Pokémon TCG Sets by Language: Card Lists' },
-      { property: 'og:description', content: 'Full card lists and rarities for the Pokémon TCG sets we track, sorted by language, starting with Simplified Chinese.' },
+      { property: 'og:description', content: 'Full card lists and rarities for the Pokémon TCG sets we track, sorted by language: Simplified Chinese and Japanese.' },
       { property: 'og:image', content: `${SITE_URL}/assets/share/sets.jpg` },
       { property: 'og:image:width', content: '1200' },
       { property: 'og:image:height', content: '630' },

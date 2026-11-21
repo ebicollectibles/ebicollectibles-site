@@ -8,8 +8,7 @@ import type { GemSetConfig, GemSetData } from '~/lib/gem-sets/types'
 import { GemSetPage } from '~/components/gem-set/GemSetPage'
 import { getBlogGuidesFor } from '~/server/blog-status'
 
-// Draft Japanese set page: noindex, left out of the sitemap and of every
-// listing (see src/data/japanese-sets-index.ts). Built on the shared Gem
+// Japanese set page, listed on /sets/japanese and in the sitemap. Built on the shared Gem
 // Set engine; this file only supplies the set's data and editorial config.
 //
 // Storm Emeralda (M6) is the Japanese set behind the English Delta Reign.
@@ -38,7 +37,6 @@ const config: GemSetConfig = {
   glow1: 'rgb(28 120 82 / .30)',
   glow2: 'rgb(70 150 170 / .24)',
   region: { label: 'Japanese', path: '/sets/japanese', listName: 'Japanese Sets' },
-  noindex: true,
   heroLede:
     'All 113 cards in Storm Emeralda (M6), the Japanese set behind the English Delta Reign. The 76-card main set has 62 Pokémon, 8 Trainer cards and three Legendary Stadiums that each join across two cards. Secret rares run from 077 to 113: Art Rares, Super Rares, Special Art Rares and a gold Mega Ultra Rare Mega Rayquaza ex. Tap any card for a closer look and its other printings.',
   pokemonFact: '62',

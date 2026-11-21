@@ -8,8 +8,7 @@ import type { GemSetConfig, GemSetData } from '~/lib/gem-sets/types'
 import { GemSetPage } from '~/components/gem-set/GemSetPage'
 import { getBlogGuidesFor } from '~/server/blog-status'
 
-// Draft Japanese set page: noindex, left out of the sitemap and of every
-// listing (see src/data/japanese-sets-index.ts). Built on the shared Gem
+// Japanese set page, listed on /sets/japanese and in the sitemap. Built on the shared Gem
 // Set engine; this file only supplies the set's data and editorial config.
 //
 // Aura Seeker (M7), officially 拡張パック「ハドウシーカー」 (Hadou Seeker).
@@ -35,7 +34,6 @@ const config: GemSetConfig = {
   glow1: 'rgb(40 90 180 / .30)',
   glow2: 'rgb(60 40 120 / .25)',
   region: { label: 'Japanese', path: '/sets/japanese', listName: 'Japanese Sets' },
-  noindex: true,
   titleSub: 'Partial card list',
   heroLede:
     'The full Aura Seeker (M7) card list is not out yet. This page shows 79 cards: the complete 78-card main set and the one secret rare shown so far, the Crasher Wake\'s Fervor Special Art Rare 113/078. Mega Lucario Z ex leads the main set. Tap any card for a closer look.',

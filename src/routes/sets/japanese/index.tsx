@@ -1,10 +1,9 @@
 import { createFileRoute, Link } from '@tanstack/react-router'
 import setsIndexCssUrl from '~/styles/sets-index.css?url'
-import { JAPANESE_SETS } from '~/data/japanese-sets-index'
+import { LIVE_JAPANESE_SETS } from '~/data/japanese-sets-index'
 import { R2_IMAGE_HOST, SITE_URL } from '~/lib/gem-sets/constants'
 
-// Japanese section of the set lists. Kept out of search results and the
-// sitemap, and not linked from /sets, until the owner turns it on.
+// Japanese section of the set lists, linked from /sets and the header.
 
 function formatReleaseDate(iso: string): string {
   const d = new Date(`${iso}T00:00:00`)
@@ -15,8 +14,9 @@ export const Route = createFileRoute('/sets/japanese/')({
   head: () => ({
     meta: [
       { title: 'Pokémon TCG Japanese Sets: Every Card List | EBI Collectibles' },
-      { name: 'robots', content: 'noindex, nofollow' },
-      { name: 'description', content: 'Card lists for Japanese Pokémon TCG sets.' },
+      { name: 'description', content: 'Card lists for Japanese Pokémon TCG sets: Storm Emeralda (M6), 30th Celebration (M6a) and Aura Seeker (M7), with every card and rarity.' },
+      { property: 'og:title', content: 'Pokémon TCG Japanese Sets: Every Card List' },
+      { property: 'og:url', content: `${SITE_URL}/sets/japanese` },
     ],
     links: [
       { rel: 'stylesheet', href: setsIndexCssUrl },
@@ -28,7 +28,7 @@ export const Route = createFileRoute('/sets/japanese/')({
 })
 
 function JapaneseSetsIndexPage() {
-  const sets = [...JAPANESE_SETS].sort((a, b) => b.releaseDate.localeCompare(a.releaseDate))
+  const sets = [...LIVE_JAPANESE_SETS].sort((a, b) => b.releaseDate.localeCompare(a.releaseDate))
   return (
     <div className="gem-sets-index">
       <section className="hero">
