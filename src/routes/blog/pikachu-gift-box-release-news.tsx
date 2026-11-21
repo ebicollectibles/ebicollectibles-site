@@ -87,7 +87,7 @@ const FAQ = [
   },
   {
     q: 'How much will the Radiant Crystal Pikachu gift box cost?',
-    a: 'We have not set our price yet. We will announce it closer to the release date on December 4, 2026, and email everyone who signed up in the pre-orders section of this post.',
+    a: 'We have not set our price yet. We will announce it closer to the release date on December 4, 2026.',
   },
   {
     q: 'What language are the cards?',
@@ -397,7 +397,7 @@ function PikachuGiftBoxPost() {
         <h2 id="not-known">What Pokémon China has not said</h2>
         <p>
           The announcement gives the release date and the full contents. It does not say how many boxes are being made, and it does not
-          say which stores will sell it. We will update this post if that changes.
+          say which stores will sell it.
         </p>
 
         <h2 id="pre-orders">Pre-orders at EBI Collectibles</h2>
