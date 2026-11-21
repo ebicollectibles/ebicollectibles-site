@@ -78,3 +78,10 @@ a big release if it is getting close.
   the owner explicitly hands over for it, one post at a time. Publishing a blog
   post does not mean it goes to PokéNews.
 - The webhook URL is a secret: never put it in the repository.
+
+## Prices
+
+- The price customers see and pay comes from Square. The site's own stored
+  price is never used for Square-linked products, so price changes are made in
+  Square only. The site's "compare at" (was) price is still set on the site,
+  since Square has no equivalent; it drives the Sale badge.
