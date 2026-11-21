@@ -14,6 +14,7 @@ import { Route as BestSellingRouteImport } from './routes/best-selling'
 import { Route as CartRouteImport } from './routes/cart'
 import { Route as CheckoutRouteImport } from './routes/checkout'
 import { Route as CookiePolicyRouteImport } from './routes/cookie-policy'
+import { Route as HomePreviewRouteImport } from './routes/home-preview'
 import { Route as NewAndUpcomingRouteImport } from './routes/new-and-upcoming'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as RefundPolicyRouteImport } from './routes/refund-policy'
@@ -205,6 +206,11 @@ const CheckoutRoute = CheckoutRouteImport.update({
 const CookiePolicyRoute = CookiePolicyRouteImport.update({
   id: '/cookie-policy',
   path: '/cookie-policy',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HomePreviewRoute = HomePreviewRouteImport.update({
+  id: '/home-preview',
+  path: '/home-preview',
   getParentRoute: () => rootRouteImport,
 } as any)
 const NewAndUpcomingRoute = NewAndUpcomingRouteImport.update({
@@ -1143,6 +1149,7 @@ export interface FileRoutesByFullPath {
   '/cart': typeof CartRoute
   '/checkout': typeof CheckoutRoute
   '/cookie-policy': typeof CookiePolicyRoute
+  '/home-preview': typeof HomePreviewRoute
   '/new-and-upcoming': typeof NewAndUpcomingRoute
   '/privacy': typeof PrivacyRoute
   '/refund-policy': typeof RefundPolicyRoute
@@ -1317,6 +1324,7 @@ export interface FileRoutesByTo {
   '/cart': typeof CartRoute
   '/checkout': typeof CheckoutRoute
   '/cookie-policy': typeof CookiePolicyRoute
+  '/home-preview': typeof HomePreviewRoute
   '/new-and-upcoming': typeof NewAndUpcomingRoute
   '/privacy': typeof PrivacyRoute
   '/refund-policy': typeof RefundPolicyRoute
@@ -1492,6 +1500,7 @@ export interface FileRoutesById {
   '/cart': typeof CartRoute
   '/checkout': typeof CheckoutRoute
   '/cookie-policy': typeof CookiePolicyRoute
+  '/home-preview': typeof HomePreviewRoute
   '/new-and-upcoming': typeof NewAndUpcomingRoute
   '/privacy': typeof PrivacyRoute
   '/refund-policy': typeof RefundPolicyRoute
@@ -1668,6 +1677,7 @@ export interface FileRouteTypes {
     | '/cart'
     | '/checkout'
     | '/cookie-policy'
+    | '/home-preview'
     | '/new-and-upcoming'
     | '/privacy'
     | '/refund-policy'
@@ -1842,6 +1852,7 @@ export interface FileRouteTypes {
     | '/cart'
     | '/checkout'
     | '/cookie-policy'
+    | '/home-preview'
     | '/new-and-upcoming'
     | '/privacy'
     | '/refund-policy'
@@ -2016,6 +2027,7 @@ export interface FileRouteTypes {
     | '/cart'
     | '/checkout'
     | '/cookie-policy'
+    | '/home-preview'
     | '/new-and-upcoming'
     | '/privacy'
     | '/refund-policy'
@@ -2191,6 +2203,7 @@ export interface RootRouteChildren {
   CartRoute: typeof CartRoute
   CheckoutRoute: typeof CheckoutRoute
   CookiePolicyRoute: typeof CookiePolicyRoute
+  HomePreviewRoute: typeof HomePreviewRoute
   NewAndUpcomingRoute: typeof NewAndUpcomingRoute
   PrivacyRoute: typeof PrivacyRoute
   RefundPolicyRoute: typeof RefundPolicyRoute
@@ -2395,6 +2408,13 @@ declare module '@tanstack/react-router' {
       path: '/cookie-policy'
       fullPath: '/cookie-policy'
       preLoaderRoute: typeof CookiePolicyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/home-preview': {
+      id: '/home-preview'
+      path: '/home-preview'
+      fullPath: '/home-preview'
+      preLoaderRoute: typeof HomePreviewRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/new-and-upcoming': {
@@ -3575,6 +3595,7 @@ const rootRouteChildren: RootRouteChildren = {
   CartRoute: CartRoute,
   CheckoutRoute: CheckoutRoute,
   CookiePolicyRoute: CookiePolicyRoute,
+  HomePreviewRoute: HomePreviewRoute,
   NewAndUpcomingRoute: NewAndUpcomingRoute,
   PrivacyRoute: PrivacyRoute,
   RefundPolicyRoute: RefundPolicyRoute,
