@@ -257,14 +257,12 @@ function BrilliantFantasySetGuide() {
 
         <h2 id="special-art-rares">All 14 Special Art Rares</h2>
         <p>
-          These are numbered 242 to 255. The first two are Milotic ex 244/207, the pack Pokémon, and Carmine 255/207, the Chinese
-          Exclusive.
+          Ten are Pokémon ex, numbered 242 to 251. Milotic ex 244/207, the pack Pokémon, is the one most collectors want. After it come
+          the four Ogerpon ex masks by Yano Keiji, then Pecharunt ex and the Loyal Three by kantaro, and Bloodmoon Ursaluna ex.
         </p>
-        <Gallery cards={pick([244, 255])} cols={2} />
-        <p>The next eight are from Kitakami: the four Ogerpon ex masks by Yano Keiji, then Pecharunt ex and the Loyal Three by kantaro.</p>
-        <Gallery cards={pick([242, 245, 243, 246, 250, 249, 248, 247])} cols={4} />
-        <p>The last four are Kieran, Bloodmoon Ursaluna ex, Perrin and Cassiopeia.</p>
-        <Gallery cards={pick([254, 251, 253, 252])} cols={4} />
+        <Gallery cards={pick([244, 242, 245, 243, 246, 250, 247, 248, 249, 251])} cols={4} />
+        <p>The other four are Supporters, numbered 252 to 255. Carmine 255/207 is the Chinese Exclusive.</p>
+        <Gallery cards={pick([252, 253, 254, 255])} cols={4} />
 
         <BuyStrip />
 
@@ -272,8 +270,8 @@ function BrilliantFantasySetGuide() {
         <p>These are full arts of 18 Pokémon ex, numbered 214 to 231, and 10 Supporters, numbered 232 to 241.</p>
         <Gallery
           cards={pick([
-            217, 214, 227, 240, 239, 231, 220, 215, 223, 226, 225, 224, 229, 218, 238, 234, 216, 219, 221, 222, 228, 230, 232, 233, 235,
-            236, 237, 241,
+            217, 214, 227, 231, 220, 215, 223, 226, 225, 224, 229, 218, 216, 219, 221, 222, 228, 230, 239, 240, 238, 234, 232, 233,
+            235, 236, 237, 241,
           ])}
           cols={4}
         />
@@ -350,8 +348,8 @@ function BrilliantFantasySetGuide() {
           Common, Uncommon and Rare cards, for 616 in total.
         </p>
         <p>
-          The Poké Ball holos come quickly, since they share the most common holo group. The Master Ball holos share the Double Rare
-          group, which averages about 4 cards per slim box or 8 per jumbo box across 213 different cards, so they take a long time. The
+          The Poké Ball holos come quickly, since they share the most common holo rarity group. The Master Ball holos share a rarity
+          group with the Double Rares, which averages about 4 cards per slim box or 8 per jumbo box across 213 different cards, so they take a long time. The
           51 Super Rares, Special Art Rares and Ultra Rares are harder still. The practical route is to open boxes for fun and the
           lower rarities, then pick up the rarest cards as singles. The <Link to="/sets/chinese/brilliant-fantasy-csv8">Brilliant Fantasy card list</Link> lets you tick off what you have.
         </p>

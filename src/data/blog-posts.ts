@@ -159,16 +159,16 @@ export const BLOG_POSTS: BlogPostSummary[] = [
   {
     slug: 'brilliant-fantasy-release-news',
     path: '/blog/brilliant-fantasy-release-news',
-    title: 'Brilliant Fantasy Is Here: Milotic, Every Ogerpon Mask and a Chinese Exclusive Carmine Special Art Rare',
+    title: 'Brilliant Fantasy Is Here: Milotic ex, Every Ogerpon Mask and a Chinese Exclusive Carmine Special Art Rare',
     excerpt:
       'Brilliant Fantasy (set code CSV8C) is the Kitakami set, with Milotic on the pack and all four Ogerpon ex. Its Chinese Exclusive is a Carmine Special Art Rare with a new illustration.',
-    seoTitle: 'Pokémon Brilliant Fantasy (CSV8C): Milotic, Carmine & Release Info',
+    seoTitle: 'Pokémon Brilliant Fantasy (CSV8C): Milotic ex & Release Info',
     seoDescription:
       'Pokémon TCG Brilliant Fantasy (CSV8C) is the Kitakami set, with Milotic on the pack and all four Ogerpon ex. Its Chinese Exclusive is a Carmine Special Art Rare.',
     tag: 'New release',
     date: '2026-03-13',
-    heroImage: `${SITE_URL}/assets/blog/brilliant-fantasy-release-hero-v10.webp`,
-    heroAlt: 'Brilliant Fantasy slim and jumbo booster packs with the Carmine Special Art Rare in front',
+    heroImage: `${SITE_URL}/assets/blog/brilliant-fantasy-release-hero.webp`,
+    heroAlt: 'Brilliant Fantasy jumbo and slim booster packs with the Milotic ex Special Art Rare in front and the Carmine Special Art Rare behind',
     glow1: 'rgb(56 13 40 / .30)',
     glow2: 'rgb(64 155 148 / .25)',
   },
@@ -178,13 +178,13 @@ export const BLOG_POSTS: BlogPostSummary[] = [
     title: 'Brilliant Fantasy Set Guide: Slim vs Jumbo, Every Chase Card and the Ogerpon Run',
     excerpt:
       "Brilliant Fantasy (set code CSV8C) is the Kitakami set, with Milotic on the pack and every Ogerpon mask. This guide helps you choose between slim and jumbo boxes and plan a 616-card master set.",
-    seoTitle: 'Brilliant Fantasy (CSV8C) Set Guide: Chase Cards & Box Odds',
+    seoTitle: 'Pokémon Brilliant Fantasy (CSV8C) Set Guide: Chase Cards & Box Odds',
     seoDescription:
       'Pokémon TCG Brilliant Fantasy (CSV8C) is the Kitakami set. This guide compares slim and jumbo boxes and shows what a 616-card master set takes.',
     tag: 'Set guide',
     date: '2026-03-13',
-    heroImage: `${SITE_URL}/assets/blog/brilliant-fantasy-guide-hero-v10.webp`,
-    heroAlt: 'The Carmine Special Art Rare in an EBI display case above six Brilliant Fantasy Special Art Rares',
+    heroImage: `${SITE_URL}/assets/blog/brilliant-fantasy-guide-hero.webp`,
+    heroAlt: 'The Milotic ex Special Art Rare in an EBI display case, with six more Brilliant Fantasy Special Art Rares below it',
     glow1: 'rgb(56 13 40 / .30)',
     glow2: 'rgb(64 155 148 / .25)',
   },
@@ -194,7 +194,7 @@ export const BLOG_POSTS: BlogPostSummary[] = [
     title: 'Where Every Brilliant Fantasy Card Comes From',
     excerpt:
       'All 264 cards in Brilliant Fantasy (set code CSV8C) matched to English. 109 match Twilight Masquerade, 76 match Shrouded Fable, and one is a Chinese Exclusive.',
-    seoTitle: 'Brilliant Fantasy (CSV8C) Card Origins: English Art Matches',
+    seoTitle: 'Pokémon Brilliant Fantasy (CSV8C) Card Origins: English Art Matches',
     seoDescription:
       'All 264 Pokémon TCG Brilliant Fantasy (CSV8C) cards matched to English. 109 match Twilight Masquerade, 76 match Shrouded Fable, and one is a Chinese Exclusive.',
     tag: 'Collecting guide',

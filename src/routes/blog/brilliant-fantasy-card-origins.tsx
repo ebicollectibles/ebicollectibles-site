@@ -339,19 +339,19 @@ const TOC = [
 const FAQ = [
   {
     q: 'Which English set is Brilliant Fantasy?',
-    a: 'There is no single one. Most of its cards match Twilight Masquerade (109) and Shrouded Fable (76), with 38 from Surging Sparks, 32 from Stellar Crown, 8 from four other English sources and one Chinese Exclusive.',
+    a: 'There is no single one. Twilight Masquerade matches 109 of its 264 cards and Shrouded Fable matches 76, with 38 more from Surging Sparks and 32 from Stellar Crown. The other 8 come from four English sources, and one card is new, the set\'s Chinese Exclusive.',
+  },
+  {
+    q: 'Is the Milotic ex Special Art Rare the same as in English?',
+    a: 'Yes. 244/207 matches Surging Sparks 237/191 by Kuroimori. The Double Rare and Super Rare match Surging Sparks too, and so does the Feebas Art Rare 209/207, also by Kuroimori.',
   },
   {
     q: 'Which card is the Chinese Exclusive?',
     a: 'The Carmine Special Art Rare 255/207 by OKACHEKE. It does not exist in English with this illustration. English has a Carmine Special Illustration Rare in Twilight Masquerade with a different illustration, and that one is not in the Chinese set.',
   },
   {
-    q: 'Is the Milotic ex Special Art Rare the same as in English?',
-    a: 'Yes. 244/207 matches Surging Sparks 237/191 by Kuroimori, and the Feebas Art Rare 209/207 matches Surging Sparks 198/191 by the same artist.',
-  },
-  {
     q: 'Are any Brilliant Fantasy cards English promos?',
-    a: 'Two: Xerneas ex 088/207 matches SV Black Star Promo 179 and Dialga ex 141/207 matches SV Black Star Promo 180.',
+    a: 'Two: Xerneas ex 088/207 matches SV Black Star Promo 179, and Dialga ex 141/207 matches SV Black Star Promo 180.',
   },
 ]
 
@@ -457,7 +457,8 @@ function BrilliantFantasyOrigins() {
     '@type': 'FAQPage',
     mainEntity: FAQ.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
   }
-  const carmine = rows.filter((r) => r.name === 'Carmine' && (r.rarity === 'SAR' || r.rarity === 'SR'))
+  // The Chinese Exclusive Special Art Rare first, then the Super Rare it sits beside.
+  const carmine = rows.filter((r) => r.name === 'Carmine' && (r.rarity === 'SAR' || r.rarity === 'SR')).reverse()
 
   return (
     <>
@@ -536,7 +537,7 @@ function BrilliantFantasyOrigins() {
         </div>
         <p className="table-note">
           Rarity is the Chinese rarity. Art Rare matches English Illustration Rare, Super Rare matches Ultra Rare, Special Art Rare
-          matches Special Illustration Rare, and Ultra Rare matches the gold Hyper Rare.
+          matches Special Illustration Rare, Ultra Rare matches the gold Hyper Rare, and ACE SPEC Rare is the same in both.
         </p>
 
         <h2 id="patterns">Patterns worth knowing</h2>
@@ -564,14 +565,14 @@ function BrilliantFantasyOrigins() {
           </table>
         </div>
         <p>
-          <strong>The Kitakami cards come from two sets.</strong> The four Ogerpon ex, Bloodmoon Ursaluna ex, Kieran, Carmine's Super
-          Rare and Perrin match Twilight Masquerade. Okidogi ex, Munkidori ex, Fezandipiti ex, Pecharunt ex and the Cassiopeia Special Art
-          Rare match Shrouded Fable.
-        </p>
-        <p>
           <strong>The pack Pokémon is from Surging Sparks.</strong> Milotic ex at all three rarities, the Feebas Art Rare, the Larvesta
           Art Rare and the gold Gravity Mountain and Jet Energy all match Surging Sparks. Stellar Crown supplies the Medicham ex, Orthworm
           ex and Kofu Super Rares and the gold Bravery Charm.
+        </p>
+        <p>
+          <strong>The Kitakami cards come from two sets.</strong> The four Ogerpon ex, Bloodmoon Ursaluna ex, Kieran, Perrin and the
+          Carmine Super Rare match Twilight Masquerade. Okidogi ex, Munkidori ex, Fezandipiti ex, Pecharunt ex and Cassiopeia match
+          Shrouded Fable.
         </p>
         <p>
           <strong>One card is a Chinese Exclusive.</strong> English has Carmine as a full art and as a Special Illustration Rare.
@@ -586,16 +587,16 @@ function BrilliantFantasyOrigins() {
                 <figcaption>
                   {r.src === 'NEW' && <ChineseExclusiveBadge />}
                   <strong>{r.name}</strong>
-                  {r.cn}/207 · <RarityAbbr code={r.rarity} /> · {r.src === 'NEW' ? 'new art' : SET_NAME[r.src]}
+                  {r.cn}/207 · <RarityAbbr code={r.rarity} /> · {r.src === 'NEW' ? 'New art' : `${SET_NAME[r.src]} ${r.en}`}
                 </figcaption>
               </figure>
             </li>
           ))}
         </ul>
         <p>
-          <strong>Two cards match promos, and one gold card matches a later set.</strong> Xerneas ex 088/207 and Dialga ex 141/207
-          match SV Black Star Promos. The gold Jamming Tower 262/207 matches Destined Rivals, and Foongus, Amoonguss ex and Reshiram ex match
-          Journey Together.
+          <strong>Eight cards come from four other sources.</strong> Xerneas ex 088/207 and Dialga ex 141/207 match SV Black Star
+          Promos 179 and 180. Foongus, Amoonguss ex and Reshiram ex match Journey Together, Slugma and Magcargo match Temporal Forces,
+          and the gold Jamming Tower 262/207 matches Destined Rivals.
         </p>
 
         <h2 id="secret-rares">All 57 secret rares</h2>

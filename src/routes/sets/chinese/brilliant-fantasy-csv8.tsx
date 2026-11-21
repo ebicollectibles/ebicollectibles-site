@@ -62,7 +62,7 @@ const config: GemSetConfig = {
   ],
   faq: [
     { q: "How many cards are in Brilliant Fantasy?", a: "264 cards: a 207-card main set with 172 Pokémon, 33 Trainer cards and 2 Special Energy (9 of them ACE SPEC cards), plus 57 secret rares (6 Art Rare, 28 Super Rare, 14 Special Art Rare and 9 Ultra Rare)." },
-    { q: "What are the chase cards?", a: "The top tier is Ultra Rare, with 9 gold cards including Teal Mask Ogerpon ex 256/207 and Pecharunt ex 257/207. The Carmine Special Art Rare 255/207 is this set's Chinese Exclusive." },
+    { q: "What are the chase cards?", a: "Milotic ex, the Pokémon on the pack, has a Special Art Rare 244/207. The top tier is Ultra Rare, with 9 gold cards including Teal Mask Ogerpon ex 256/207 and Pecharunt ex 257/207. The Carmine Special Art Rare 255/207 is this set's Chinese Exclusive." },
     { q: "What's Brilliant Fantasy's rarity scheme?", a: "A 9-tier scheme: Common, Uncommon, Rare, Double Rare, Art Rare, ACE SPEC Rare, Super Rare, Special Art Rare and Ultra Rare, from most common to rarest." },
     { q: "What is an ACE SPEC card?", a: "A one-per-deck Trainer or Energy card printed in a pink frame. Brilliant Fantasy has 9 of them, all in the main set at their own collector numbers." },
     { q: "When did Brilliant Fantasy release?", a: "March 13, 2026." },
@@ -71,10 +71,10 @@ const config: GemSetConfig = {
   ],
   metaTitle: "Pokémon Brilliant Fantasy (CSV8C) Card List: All 264 Cards | EBI Collectibles",
   metaDescription:
-    "All 264 cards in Pokémon Brilliant Fantasy (CSV8C), the Simplified Chinese Kitakami set, with four Ogerpon ex and a Chinese Exclusive Carmine.",
+    "All 264 cards in Pokémon Brilliant Fantasy (CSV8C), the Simplified Chinese Kitakami set, with Milotic on the pack, four Ogerpon ex and a Chinese Exclusive Carmine.",
   ogTitle: "Pokémon Brilliant Fantasy (CSV8C) Card List: All 264 Cards",
   ogDescription:
-    "All 264 cards in Pokémon Brilliant Fantasy (CSV8C), the Simplified Chinese Kitakami set, with four Ogerpon ex and a Chinese Exclusive Carmine.",
+    "All 264 cards in Pokémon Brilliant Fantasy (CSV8C), the Simplified Chinese Kitakami set, with Milotic on the pack, four Ogerpon ex and a Chinese Exclusive Carmine.",
 }
 
 export const Route = createFileRoute('/sets/chinese/brilliant-fantasy-csv8')({

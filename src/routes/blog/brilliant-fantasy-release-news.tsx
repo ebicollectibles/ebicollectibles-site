@@ -37,26 +37,39 @@ function Grid({ cards, cols }: { cards: Shown[]; cols: number }) {
   )
 }
 
+const MILOTIC = [
+  { n: '244', name: 'Milotic ex', note: 'Special Art Rare · Kuroimori' },
+  { n: '217', name: 'Milotic ex', note: 'Super Rare · N-DESIGN Inc.' },
+  { n: '057', name: 'Milotic ex', note: 'Double Rare · hncl' },
+]
+
 const CARMINE = [
   { n: '255', name: 'Carmine', note: 'Special Art Rare · OKACHEKE' },
   { n: '240', name: 'Carmine', note: 'Super Rare · kantaro' },
 ]
 
-const SAR = [
-  { n: '244', name: 'Milotic ex', note: 'Special Art Rare · Kuroimori' },
+const SAR_POKEMON = [
   { n: '242', name: 'Teal Mask Ogerpon ex', note: 'Special Art Rare · Yano Keiji' },
-  { n: '250', name: 'Pecharunt ex', note: 'Special Art Rare · kantaro' },
-  { n: '254', name: 'Kieran', note: 'Special Art Rare · Teeziro' },
-  { n: '251', name: 'Bloodmoon Ursaluna ex', note: 'Special Art Rare · MINAMINAMI Take' },
   { n: '245', name: 'Wellspring Mask Ogerpon ex', note: 'Special Art Rare · Yano Keiji' },
+  { n: '243', name: 'Hearthflame Mask Ogerpon ex', note: 'Special Art Rare · Yano Keiji' },
+  { n: '246', name: 'Cornerstone Mask Ogerpon ex', note: 'Special Art Rare · Yano Keiji' },
+  { n: '250', name: 'Pecharunt ex', note: 'Special Art Rare · kantaro' },
+  { n: '247', name: 'Okidogi ex', note: 'Special Art Rare · kantaro' },
+  { n: '248', name: 'Munkidori ex', note: 'Special Art Rare · kantaro' },
+  { n: '249', name: 'Fezandipiti ex', note: 'Special Art Rare · kantaro' },
+]
+
+const SAR_OTHERS = [
+  { n: '251', name: 'Bloodmoon Ursaluna ex', note: 'Special Art Rare · MINAMINAMI Take' },
+  { n: '254', name: 'Kieran', note: 'Special Art Rare · Teeziro' },
   { n: '253', name: 'Perrin', note: 'Special Art Rare · GIDORA' },
   { n: '252', name: 'Cassiopeia', note: 'Special Art Rare · burari' },
 ]
 
 const ULTRA = [
-  { n: '256', name: 'Teal Mask Ogerpon ex', note: 'Ultra Rare' },
-  { n: '257', name: 'Pecharunt ex', note: 'Ultra Rare' },
-  { n: '258', name: 'Bloodmoon Ursaluna ex', note: 'Ultra Rare' },
+  { n: '256', name: 'Teal Mask Ogerpon ex', note: 'Ultra Rare · 5ban Graphics' },
+  { n: '257', name: 'Pecharunt ex', note: 'Ultra Rare · aky CG Works' },
+  { n: '258', name: 'Bloodmoon Ursaluna ex', note: 'Ultra Rare · aky CG Works' },
 ]
 
 const ART_RARES = [
@@ -88,6 +101,7 @@ const BLOCKS = [
 
 const TOC = [
   { id: 'slim-or-jumbo', label: 'Slim or jumbo?' },
+  { id: 'milotic', label: 'Milotic ex' },
   { id: 'carmine', label: 'Chinese Exclusive: Carmine' },
   { id: 'special-art-rares', label: 'Special Art Rares' },
   { id: 'ultra-rares', label: 'Gold Ultra Rares' },
@@ -102,12 +116,16 @@ const FAQ = [
     a: 'March 13, 2026, in mainland China. It is a Simplified Chinese release.',
   },
   {
+    q: 'Who is on the Brilliant Fantasy pack?',
+    a: 'Milotic. Milotic ex comes as a Double Rare, a Super Rare and a Special Art Rare. The Special Art Rare is by Kuroimori, who also drew the Art Rare of its pre-evolution, Feebas.',
+  },
+  {
     q: 'What is the Chinese Exclusive in Brilliant Fantasy?',
-    a: 'Carmine 255/207, a Special Art Rare by OKACHEKE showing Carmine and Kieran eating watermelon in the sun. English has a Carmine Special Illustration Rare, but not with this illustration.',
+    a: 'Carmine 255/207, a Special Art Rare by OKACHEKE that shows Carmine and Kieran sitting together with slices of watermelon. English has a Carmine Special Illustration Rare, but not with this illustration.',
   },
   {
     q: 'What is the difference between the slim and jumbo Brilliant Fantasy packs?',
-    a: 'A slim pack has 5 cards: 4 non-holo and 1 holo. A jumbo pack has 20 cards: 14 non-holo and 6 holo. The card list is the same, and Pokémon China published a better odds chart for the jumbo pack.',
+    a: 'A slim pack has 5 cards: 4 non-holo and 1 holo. A jumbo pack has 20 cards: 14 non-holo and 6 holo. The card list is the same, but the jumbo pack has better published odds for every holo rarity group.',
   },
   {
     q: 'What are the odds of pulling a Super Rare or better?',
@@ -115,12 +133,8 @@ const FAQ = [
   },
   {
     q: 'Where do the Brilliant Fantasy illustrations come from?',
-    a: 'From four English sets at once. Most of its cards match Twilight Masquerade (109) and Shrouded Fable (76), with 38 from Surging Sparks, 32 from Stellar Crown, 8 from four other English sources and one Chinese Exclusive.',
+    a: 'Mostly from four English sets. Twilight Masquerade matches 109 of its 264 cards and Shrouded Fable matches 76, with 38 more from Surging Sparks and 32 from Stellar Crown. The other 8 come from four English sources, and one card is the new Chinese Exclusive.',
     link: { to: '/sets/chinese/brilliant-fantasy-csv8', before: 'See every card on the ', label: 'Brilliant Fantasy card list', after: '.' },
-  },
-  {
-    q: 'Who is on the Brilliant Fantasy pack?',
-    a: 'Milotic. Its Pokémon ex comes as a Double Rare, a Super Rare and a Special Art Rare by Kuroimori, and its pre-evolution Feebas gets an Art Rare by the same artist.',
   },
   {
     q: 'How many cards are in Brilliant Fantasy?',
@@ -264,8 +278,9 @@ function BrilliantFantasyReleasePost() {
         <h2 id="slim-or-jumbo">Slim or jumbo?</h2>
         <p>
           Brilliant Fantasy comes in two pack sizes with the same card list. The slim pack is 5 cards with one holo. The jumbo pack is
-          20 cards with six holos. Pokémon China published a separate odds chart for each, and the jumbo pack is better at every holo
-          level.
+          20 cards with six holos. Pokémon China published an odds chart for each, and the jumbo pack is better at every holo level.
+          Super Rares, Special Art Rares and Ultra Rares are 1.00% of jumbo cards against 0.73% of slim cards. That works out to about
+          one of those cards every 5 jumbo packs, against one every 27 slim packs.
         </p>
         <ul className="card-grid cols-2">
           <li>
@@ -286,26 +301,36 @@ function BrilliantFantasyReleasePost() {
           </li>
         </ul>
         <p>
-          A slim box is 15 packs, 75 cards and 15 holos. A jumbo box is 6 packs, 120 cards and 36 holos. The top rarity group (Super Rare,
-          Special Art Rare and Ultra Rare) is 1.00% of jumbo cards against 0.73% of slim cards, so a jumbo box averages about 1.2 of
-          them and a slim box about 0.55. The full odds are further down.
+          A jumbo box (6 packs, 120 cards, 36 holos) averages about 1.2 Super Rares, Special Art Rares or Ultra Rares. A slim box (15
+          packs, 75 cards, 15 holos) averages about half of one. The full numbers are in{' '}
+          <a href="#set-and-odds">How the set is built, and the odds</a> below.
         </p>
+
+        <h2 id="milotic">Milotic ex</h2>
+        <p>
+          Milotic is the pack Pokémon. Milotic ex is a Stage 1 Water Pokémon with 270 HP, and its Ability stops all damage and effects
+          from attacks by your opponent's Tera Pokémon. It comes at three rarities, and the Special Art Rare by Kuroimori is the one
+          most collectors want. Kuroimori also drew the Feebas Art Rare.
+        </p>
+        <Grid cards={MILOTIC} cols={3} />
 
         <h2 id="carmine">Chinese Exclusive: Carmine</h2>
         <p>
-          Carmine 255/207 is a Special Art Rare with a new illustration by OKACHEKE. Carmine and her brother Kieran sit side by side
-          in the sun eating watermelon. English has a Carmine Special Illustration Rare with a different illustration, and that one is
-          not in this set. The Carmine Super Rare by kantaro is in this set too.
+          Carmine 255/207 is a Special Art Rare with a new illustration by OKACHEKE. It shows Carmine and her brother Kieran sitting
+          side by side in bright sunlight, each with a slice of watermelon. English has a Carmine Special Illustration Rare with a
+          different illustration, and that one is not in this set. The Carmine Super Rare by kantaro is in this set too.
         </p>
         <Grid cards={CARMINE} cols={2} />
 
         <h2 id="special-art-rares">Special Art Rares</h2>
         <p>
-          There are fourteen Special Art Rares, numbered 242 to 255: ten Pokémon ex and four Supporters. Milotic ex by Kuroimori matches the pack. The four
-          Ogerpon ex are a matching set by Yano Keiji, and kantaro drew Okidogi ex, Munkidori ex, Fezandipiti ex and Pecharunt ex as
-          another.
+          There are fourteen Special Art Rares, numbered 242 to 255: ten Pokémon ex and four Supporters. Milotic ex and Carmine are
+          shown above. The four Ogerpon ex are a matching set by Yano Keiji, and kantaro drew Pecharunt ex, Okidogi ex, Munkidori ex
+          and Fezandipiti ex as another.
         </p>
-        <Grid cards={SAR} cols={4} />
+        <Grid cards={SAR_POKEMON} cols={4} />
+        <p>The other four are Bloodmoon Ursaluna ex and the Supporters Kieran, Perrin and Cassiopeia.</p>
+        <Grid cards={SAR_OTHERS} cols={4} />
 
         <BuyStrip />
 
@@ -374,13 +399,13 @@ function BrilliantFantasyReleasePost() {
         </div>
         <p className="table-note">From Pokémon China's odds chart for each pack size.</p>
         <p>
-          In packs, that is roughly one Super Rare, Special Art Rare or Ultra Rare in every 27 slim packs, against one in every 5
-          jumbo packs. Per box, a slim box averages about 4 cards from the Double Rare group and a jumbo box about 8.
+          Applied to one box, a slim box averages about 10 Poké Ball pattern holos and Rares, about 4 cards from the Double Rare rarity
+          group and about 0.55 Super Rares or better. A jumbo box averages about 26 to 27, about 8 and about 1.2.
         </p>
         <p>
           Every Common, Uncommon and Rare also comes as a Poké Ball pattern holo and a Master Ball pattern holo, 176 of each. The card is
-          the same, only the holo pattern changes, which brings a true master set to 616 cards. The Master Ball versions share the Double Rare
-          group, so they take a long time to collect.
+          the same, only the holo pattern changes, which brings a true master set to 616 cards. The Master Ball versions share a rarity
+          group with the Double Rares, so they take a long time to collect.
         </p>
 
         <h2 id="faq">FAQ</h2>
