@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from '@tanstack/react-router'
 import setsIndexCssUrl from '~/styles/sets-index.css?url'
 import { GEM_SETS } from '~/data/gem-sets-index'
+import { SET_PACK_IMAGES } from '~/data/set-pack-images'
 import { R2_IMAGE_HOST, SITE_URL } from '~/lib/gem-sets/constants'
 import { safeJsonLd } from '~/lib/gem-sets/head'
 
@@ -134,12 +135,17 @@ function SetsIndexPage() {
               <ul className="grid">
                 {sets.map((s) => {
                   const priority = cardIndex++ < 8
+                  const pack = SET_PACK_IMAGES[s.slug]
                   return (
                     <li key={s.slug}>
                     <Link className="card" to={s.path}>
-                      <div className="card-art" style={{ '--glow-1': s.glow1, '--glow-2': s.glow2 } as React.CSSProperties}>
+                      <div className={pack ? 'card-art card-art--pack' : 'card-art'} style={{ '--glow-1': s.glow1, '--glow-2': s.glow2 } as React.CSSProperties}>
                         {s.preorder && <span className="card-preorder">Preorder</span>}
-                        <img src={s.heroImage} alt={s.heroAlt} loading={priority ? undefined : 'lazy'} width={300} height={419} />
+                        {pack ? (
+                          <img src={`/assets/sets/packs/${s.slug}.webp`} alt={`${s.name} booster pack`} loading={priority ? undefined : 'lazy'} width={pack.w} height={pack.h} />
+                        ) : (
+                          <img src={s.heroImage} alt={s.heroAlt} loading={priority ? undefined : 'lazy'} width={300} height={419} />
+                        )}
                       </div>
                       <div className="card-body">
                         <span className="card-series">{s.code}</span>
