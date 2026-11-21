@@ -6,7 +6,7 @@
 // the post itself.
 import { SITE_URL, R2_IMAGE_HOST } from '~/lib/gem-sets/constants'
 
-export type BlogPostSlug = 'chinese-pokemon-sets-in-order' | 'gem-vol-7-release-news' | 'gem-vol-7-set-guide' | 'gem-vol-7-card-origins' | 'gem-vol-6-release-news' | 'gem-vol-6-set-guide' | 'gem-vol-6-card-origins' | 'gem-vol-5-release-news' | 'gem-vol-5-set-guide' | 'gem-vol-5-card-origins' | 'gem-vol-4-release-news' | 'gem-vol-4-set-guide' | 'gem-vol-4-card-origins' | 'gem-vol-3-release-news' | 'gem-vol-3-set-guide' | 'gem-vol-3-card-origins' | 'gem-vol-2-release-news' | 'gem-vol-2-set-guide' | 'gem-vol-2-card-origins' | 'gem-vol-1-release-news' | 'gem-vol-1-set-guide' | 'gem-vol-1-card-origins' | '30th-celebration-release-news' | '30th-celebration-set-guide' | '30th-celebration-card-origins' | 'chasing-glory-release-news' | 'chasing-glory-set-guide' | 'chasing-glory-card-origins' | 'terastal-gathering-release-news' | 'terastal-gathering-set-guide' | 'terastal-gathering-card-origins' | 'reward-round-release-news' | 'reward-round-set-guide' | 'reward-round-card-origins' | 'fearless-terastal-release-news' | 'fearless-terastal-set-guide' | 'fearless-terastal-card-origins' | 'eternal-birth-release-news' | 'eternal-birth-set-guide' | 'eternal-birth-card-origins' | 'miracle-journey-release-news' | 'miracle-journey-set-guide' | 'miracle-journey-card-origins' | 'black-crystal-blaze-release-news' | 'black-crystal-blaze-set-guide' | 'black-crystal-blaze-card-origins' | 'black-bolt-white-flare-release-news' | 'black-bolt-set-guide' | 'black-bolt-card-origins' | 'white-flare-set-guide' | 'white-flare-card-origins' | 'true-mystery-release-news' | 'true-mystery-set-guide' | 'true-mystery-card-origins' | 'blade-awakening-release-news' | 'blade-awakening-set-guide' | 'blade-awakening-card-origins' | 'brilliant-fantasy-release-news' | 'brilliant-fantasy-set-guide' | 'brilliant-fantasy-card-origins' | 'stellar-crystal-release-news' | 'stellar-crystal-set-guide' | 'stellar-crystal-card-origins' | 'pikachu-dream-painting-figures-release-news' | 'funism-ditto-palm-size-wonders-release-news' | 'team-rocket-briefcase-release-news' | 'pikachu-gift-box-release-news' | 'day-night-gift-box-release-news' | 'greninja-sylveon-display-set-release-news'
+export type BlogPostSlug = 'chinese-pokemon-sets-in-order' | 'gem-vol-7-release-news' | 'gem-vol-7-set-guide' | 'gem-vol-7-card-origins' | 'gem-vol-6-release-news' | 'gem-vol-6-set-guide' | 'gem-vol-6-card-origins' | 'gem-vol-5-release-news' | 'gem-vol-5-set-guide' | 'gem-vol-5-card-origins' | 'gem-vol-4-release-news' | 'gem-vol-4-set-guide' | 'gem-vol-4-card-origins' | 'gem-vol-3-release-news' | 'gem-vol-3-set-guide' | 'gem-vol-3-card-origins' | 'gem-vol-2-release-news' | 'gem-vol-2-set-guide' | 'gem-vol-2-card-origins' | 'gem-vol-1-release-news' | 'gem-vol-1-set-guide' | 'gem-vol-1-card-origins' | '30th-celebration-release-news' | '30th-celebration-set-guide' | '30th-celebration-card-origins' | 'chasing-glory-release-news' | 'chasing-glory-set-guide' | 'chasing-glory-card-origins' | 'terastal-gathering-release-news' | 'terastal-gathering-set-guide' | 'terastal-gathering-card-origins' | 'reward-round-release-news' | 'reward-round-set-guide' | 'reward-round-card-origins' | 'fearless-terastal-release-news' | 'fearless-terastal-set-guide' | 'fearless-terastal-card-origins' | 'eternal-birth-release-news' | 'eternal-birth-set-guide' | 'eternal-birth-card-origins' | 'miracle-journey-release-news' | 'miracle-journey-set-guide' | 'miracle-journey-card-origins' | 'black-crystal-blaze-release-news' | 'black-crystal-blaze-set-guide' | 'black-crystal-blaze-card-origins' | 'black-bolt-white-flare-release-news' | 'black-bolt-set-guide' | 'black-bolt-card-origins' | 'white-flare-set-guide' | 'white-flare-card-origins' | 'true-mystery-release-news' | 'true-mystery-set-guide' | 'true-mystery-card-origins' | 'blade-awakening-release-news' | 'blade-awakening-set-guide' | 'blade-awakening-card-origins' | 'brilliant-fantasy-release-news' | 'brilliant-fantasy-set-guide' | 'brilliant-fantasy-card-origins' | 'stellar-crystal-release-news' | 'stellar-crystal-set-guide' | 'stellar-crystal-card-origins' | 'pikachu-dream-painting-figures-release-news' | 'funism-ditto-palm-size-wonders-release-news' | 'team-rocket-briefcase-release-news' | 'pikachu-gift-box-release-news' | 'day-night-gift-box-release-news' | 'greninja-sylveon-display-set-release-news' | 'charizard-figure-box-release-news' | 'nuzzle-cheeks-plush-card-display-release-news'
 
 export interface BlogPostSummary {
   slug: BlogPostSlug
@@ -268,6 +268,38 @@ export const BLOG_POSTS: BlogPostSummary[] = [
     heroAlt: 'Dream Painting Pikachu figure blind box with the secret classic Pikachu figure and card 136/103 in front',
     glow1: 'rgb(246 206 60 / .30)',
     glow2: 'rgb(222 185 97 / .25)',
+  },
+  {
+    slug: 'charizard-figure-box-release-news',
+    path: '/blog/charizard-figure-box-release-news',
+    title: 'Chinese Charizard Collector Figure Box: The Figure, the Jumbo Card and 15 Packs',
+    excerpt:
+      "Pokémon China's Charizard collector figure box released on September 16, 2026, alongside 30th Celebration. This post covers everything in it: a Charizard figure made from the classic card, a jumbo Charizard card and 15 booster packs.",
+    seoTitle: 'Chinese Charizard 30th Celebration Figure Box: Jumbo Card & Contents',
+    seoDescription:
+      'The Chinese Pokémon TCG 30th Celebration Charizard figure box: a Charizard figure, a jumbo Charizard 137/103 card and 15 booster packs.',
+    tag: 'New release',
+    date: '2026-09-16',
+    heroImage: `${SITE_URL}/assets/blog/charizard-figure-box-release-hero.webp`,
+    heroAlt: 'The Charizard collector figure box with the Charizard figure and its jumbo card standing in front of it',
+    glow1: 'rgb(246 150 70 / .30)',
+    glow2: 'rgb(150 30 30 / .30)',
+  },
+  {
+    slug: 'nuzzle-cheeks-plush-card-display-release-news',
+    path: '/blog/nuzzle-cheeks-plush-card-display-release-news',
+    title: 'Chinese Nuzzle Cheeks Plush Card Display Blind Box: All 7 Plushes, Promo Cards and Odds',
+    excerpt:
+      "Pokémon China's Nuzzle Cheeks plush card display box released on December 19, 2025. Each box holds one random Electric-type plush, its promo card, a card display frame and 2 booster packs, and about 1 box in 48 has the secret Pawmi.",
+    seoTitle: 'Chinese Nuzzle Cheeks Plush Blind Box: Promos, Secret & Odds',
+    seoDescription:
+      'The Chinese Pokémon TCG Nuzzle Cheeks plush card display box: 6 Electric-type plushes and a secret Pawmi, each with its own promo card, plus 2 packs.',
+    tag: 'New release',
+    date: '2025-12-19',
+    heroImage: `${SITE_URL}/assets/blog/nuzzle-cheeks-plush-release-hero.webp`,
+    heroAlt: 'The Pikachu plush hugging its promo card in a clear display frame, in front of the round Nuzzle Cheeks box',
+    glow1: 'rgb(250 208 70 / .30)',
+    glow2: 'rgb(110 170 230 / .22)',
   },
   {
     slug: 'greninja-sylveon-display-set-release-news',

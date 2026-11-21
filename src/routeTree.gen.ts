@@ -58,6 +58,7 @@ import { Route as BlogBladeAwakeningSetGuideRouteImport } from './routes/blog/bl
 import { Route as BlogBrilliantFantasyCardOriginsRouteImport } from './routes/blog/brilliant-fantasy-card-origins'
 import { Route as BlogBrilliantFantasyReleaseNewsRouteImport } from './routes/blog/brilliant-fantasy-release-news'
 import { Route as BlogBrilliantFantasySetGuideRouteImport } from './routes/blog/brilliant-fantasy-set-guide'
+import { Route as BlogCharizardFigureBoxReleaseNewsRouteImport } from './routes/blog/charizard-figure-box-release-news'
 import { Route as BlogChasingGloryCardOriginsRouteImport } from './routes/blog/chasing-glory-card-origins'
 import { Route as BlogChasingGloryReleaseNewsRouteImport } from './routes/blog/chasing-glory-release-news'
 import { Route as BlogChasingGlorySetGuideRouteImport } from './routes/blog/chasing-glory-set-guide'
@@ -95,6 +96,7 @@ import { Route as BlogGreninjaSylveonDisplaySetReleaseNewsRouteImport } from './
 import { Route as BlogMiracleJourneyCardOriginsRouteImport } from './routes/blog/miracle-journey-card-origins'
 import { Route as BlogMiracleJourneyReleaseNewsRouteImport } from './routes/blog/miracle-journey-release-news'
 import { Route as BlogMiracleJourneySetGuideRouteImport } from './routes/blog/miracle-journey-set-guide'
+import { Route as BlogNuzzleCheeksPlushCardDisplayReleaseNewsRouteImport } from './routes/blog/nuzzle-cheeks-plush-card-display-release-news'
 import { Route as BlogPikachuDreamPaintingFiguresReleaseNewsRouteImport } from './routes/blog/pikachu-dream-painting-figures-release-news'
 import { Route as BlogPikachuGiftBoxReleaseNewsRouteImport } from './routes/blog/pikachu-gift-box-release-news'
 import { Route as BlogRewardRoundCardOriginsRouteImport } from './routes/blog/reward-round-card-origins'
@@ -414,6 +416,12 @@ const BlogBrilliantFantasySetGuideRoute =
     path: '/blog/brilliant-fantasy-set-guide',
     getParentRoute: () => rootRouteImport,
   } as any)
+const BlogCharizardFigureBoxReleaseNewsRoute =
+  BlogCharizardFigureBoxReleaseNewsRouteImport.update({
+    id: '/blog/charizard-figure-box-release-news',
+    path: '/blog/charizard-figure-box-release-news',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const BlogChasingGloryCardOriginsRoute =
   BlogChasingGloryCardOriginsRouteImport.update({
     id: '/blog/chasing-glory-card-origins',
@@ -613,6 +621,12 @@ const BlogMiracleJourneySetGuideRoute =
   BlogMiracleJourneySetGuideRouteImport.update({
     id: '/blog/miracle-journey-set-guide',
     path: '/blog/miracle-journey-set-guide',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const BlogNuzzleCheeksPlushCardDisplayReleaseNewsRoute =
+  BlogNuzzleCheeksPlushCardDisplayReleaseNewsRouteImport.update({
+    id: '/blog/nuzzle-cheeks-plush-card-display-release-news',
+    path: '/blog/nuzzle-cheeks-plush-card-display-release-news',
     getParentRoute: () => rootRouteImport,
   } as any)
 const BlogPikachuDreamPaintingFiguresReleaseNewsRoute =
@@ -992,6 +1006,7 @@ export interface FileRoutesByFullPath {
   '/blog/brilliant-fantasy-card-origins': typeof BlogBrilliantFantasyCardOriginsRoute
   '/blog/brilliant-fantasy-release-news': typeof BlogBrilliantFantasyReleaseNewsRoute
   '/blog/brilliant-fantasy-set-guide': typeof BlogBrilliantFantasySetGuideRoute
+  '/blog/charizard-figure-box-release-news': typeof BlogCharizardFigureBoxReleaseNewsRoute
   '/blog/chasing-glory-card-origins': typeof BlogChasingGloryCardOriginsRoute
   '/blog/chasing-glory-release-news': typeof BlogChasingGloryReleaseNewsRoute
   '/blog/chasing-glory-set-guide': typeof BlogChasingGlorySetGuideRoute
@@ -1029,6 +1044,7 @@ export interface FileRoutesByFullPath {
   '/blog/miracle-journey-card-origins': typeof BlogMiracleJourneyCardOriginsRoute
   '/blog/miracle-journey-release-news': typeof BlogMiracleJourneyReleaseNewsRoute
   '/blog/miracle-journey-set-guide': typeof BlogMiracleJourneySetGuideRoute
+  '/blog/nuzzle-cheeks-plush-card-display-release-news': typeof BlogNuzzleCheeksPlushCardDisplayReleaseNewsRoute
   '/blog/pikachu-dream-painting-figures-release-news': typeof BlogPikachuDreamPaintingFiguresReleaseNewsRoute
   '/blog/pikachu-gift-box-release-news': typeof BlogPikachuGiftBoxReleaseNewsRoute
   '/blog/reward-round-card-origins': typeof BlogRewardRoundCardOriginsRoute
@@ -1139,6 +1155,7 @@ export interface FileRoutesByTo {
   '/blog/brilliant-fantasy-card-origins': typeof BlogBrilliantFantasyCardOriginsRoute
   '/blog/brilliant-fantasy-release-news': typeof BlogBrilliantFantasyReleaseNewsRoute
   '/blog/brilliant-fantasy-set-guide': typeof BlogBrilliantFantasySetGuideRoute
+  '/blog/charizard-figure-box-release-news': typeof BlogCharizardFigureBoxReleaseNewsRoute
   '/blog/chasing-glory-card-origins': typeof BlogChasingGloryCardOriginsRoute
   '/blog/chasing-glory-release-news': typeof BlogChasingGloryReleaseNewsRoute
   '/blog/chasing-glory-set-guide': typeof BlogChasingGlorySetGuideRoute
@@ -1176,6 +1193,7 @@ export interface FileRoutesByTo {
   '/blog/miracle-journey-card-origins': typeof BlogMiracleJourneyCardOriginsRoute
   '/blog/miracle-journey-release-news': typeof BlogMiracleJourneyReleaseNewsRoute
   '/blog/miracle-journey-set-guide': typeof BlogMiracleJourneySetGuideRoute
+  '/blog/nuzzle-cheeks-plush-card-display-release-news': typeof BlogNuzzleCheeksPlushCardDisplayReleaseNewsRoute
   '/blog/pikachu-dream-painting-figures-release-news': typeof BlogPikachuDreamPaintingFiguresReleaseNewsRoute
   '/blog/pikachu-gift-box-release-news': typeof BlogPikachuGiftBoxReleaseNewsRoute
   '/blog/reward-round-card-origins': typeof BlogRewardRoundCardOriginsRoute
@@ -1287,6 +1305,7 @@ export interface FileRoutesById {
   '/blog/brilliant-fantasy-card-origins': typeof BlogBrilliantFantasyCardOriginsRoute
   '/blog/brilliant-fantasy-release-news': typeof BlogBrilliantFantasyReleaseNewsRoute
   '/blog/brilliant-fantasy-set-guide': typeof BlogBrilliantFantasySetGuideRoute
+  '/blog/charizard-figure-box-release-news': typeof BlogCharizardFigureBoxReleaseNewsRoute
   '/blog/chasing-glory-card-origins': typeof BlogChasingGloryCardOriginsRoute
   '/blog/chasing-glory-release-news': typeof BlogChasingGloryReleaseNewsRoute
   '/blog/chasing-glory-set-guide': typeof BlogChasingGlorySetGuideRoute
@@ -1324,6 +1343,7 @@ export interface FileRoutesById {
   '/blog/miracle-journey-card-origins': typeof BlogMiracleJourneyCardOriginsRoute
   '/blog/miracle-journey-release-news': typeof BlogMiracleJourneyReleaseNewsRoute
   '/blog/miracle-journey-set-guide': typeof BlogMiracleJourneySetGuideRoute
+  '/blog/nuzzle-cheeks-plush-card-display-release-news': typeof BlogNuzzleCheeksPlushCardDisplayReleaseNewsRoute
   '/blog/pikachu-dream-painting-figures-release-news': typeof BlogPikachuDreamPaintingFiguresReleaseNewsRoute
   '/blog/pikachu-gift-box-release-news': typeof BlogPikachuGiftBoxReleaseNewsRoute
   '/blog/reward-round-card-origins': typeof BlogRewardRoundCardOriginsRoute
@@ -1436,6 +1456,7 @@ export interface FileRouteTypes {
     | '/blog/brilliant-fantasy-card-origins'
     | '/blog/brilliant-fantasy-release-news'
     | '/blog/brilliant-fantasy-set-guide'
+    | '/blog/charizard-figure-box-release-news'
     | '/blog/chasing-glory-card-origins'
     | '/blog/chasing-glory-release-news'
     | '/blog/chasing-glory-set-guide'
@@ -1473,6 +1494,7 @@ export interface FileRouteTypes {
     | '/blog/miracle-journey-card-origins'
     | '/blog/miracle-journey-release-news'
     | '/blog/miracle-journey-set-guide'
+    | '/blog/nuzzle-cheeks-plush-card-display-release-news'
     | '/blog/pikachu-dream-painting-figures-release-news'
     | '/blog/pikachu-gift-box-release-news'
     | '/blog/reward-round-card-origins'
@@ -1583,6 +1605,7 @@ export interface FileRouteTypes {
     | '/blog/brilliant-fantasy-card-origins'
     | '/blog/brilliant-fantasy-release-news'
     | '/blog/brilliant-fantasy-set-guide'
+    | '/blog/charizard-figure-box-release-news'
     | '/blog/chasing-glory-card-origins'
     | '/blog/chasing-glory-release-news'
     | '/blog/chasing-glory-set-guide'
@@ -1620,6 +1643,7 @@ export interface FileRouteTypes {
     | '/blog/miracle-journey-card-origins'
     | '/blog/miracle-journey-release-news'
     | '/blog/miracle-journey-set-guide'
+    | '/blog/nuzzle-cheeks-plush-card-display-release-news'
     | '/blog/pikachu-dream-painting-figures-release-news'
     | '/blog/pikachu-gift-box-release-news'
     | '/blog/reward-round-card-origins'
@@ -1730,6 +1754,7 @@ export interface FileRouteTypes {
     | '/blog/brilliant-fantasy-card-origins'
     | '/blog/brilliant-fantasy-release-news'
     | '/blog/brilliant-fantasy-set-guide'
+    | '/blog/charizard-figure-box-release-news'
     | '/blog/chasing-glory-card-origins'
     | '/blog/chasing-glory-release-news'
     | '/blog/chasing-glory-set-guide'
@@ -1767,6 +1792,7 @@ export interface FileRouteTypes {
     | '/blog/miracle-journey-card-origins'
     | '/blog/miracle-journey-release-news'
     | '/blog/miracle-journey-set-guide'
+    | '/blog/nuzzle-cheeks-plush-card-display-release-news'
     | '/blog/pikachu-dream-painting-figures-release-news'
     | '/blog/pikachu-gift-box-release-news'
     | '/blog/reward-round-card-origins'
@@ -1878,6 +1904,7 @@ export interface RootRouteChildren {
   BlogBrilliantFantasyCardOriginsRoute: typeof BlogBrilliantFantasyCardOriginsRoute
   BlogBrilliantFantasyReleaseNewsRoute: typeof BlogBrilliantFantasyReleaseNewsRoute
   BlogBrilliantFantasySetGuideRoute: typeof BlogBrilliantFantasySetGuideRoute
+  BlogCharizardFigureBoxReleaseNewsRoute: typeof BlogCharizardFigureBoxReleaseNewsRoute
   BlogChasingGloryCardOriginsRoute: typeof BlogChasingGloryCardOriginsRoute
   BlogChasingGloryReleaseNewsRoute: typeof BlogChasingGloryReleaseNewsRoute
   BlogChasingGlorySetGuideRoute: typeof BlogChasingGlorySetGuideRoute
@@ -1915,6 +1942,7 @@ export interface RootRouteChildren {
   BlogMiracleJourneyCardOriginsRoute: typeof BlogMiracleJourneyCardOriginsRoute
   BlogMiracleJourneyReleaseNewsRoute: typeof BlogMiracleJourneyReleaseNewsRoute
   BlogMiracleJourneySetGuideRoute: typeof BlogMiracleJourneySetGuideRoute
+  BlogNuzzleCheeksPlushCardDisplayReleaseNewsRoute: typeof BlogNuzzleCheeksPlushCardDisplayReleaseNewsRoute
   BlogPikachuDreamPaintingFiguresReleaseNewsRoute: typeof BlogPikachuDreamPaintingFiguresReleaseNewsRoute
   BlogPikachuGiftBoxReleaseNewsRoute: typeof BlogPikachuGiftBoxReleaseNewsRoute
   BlogRewardRoundCardOriginsRoute: typeof BlogRewardRoundCardOriginsRoute
@@ -2324,6 +2352,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BlogBrilliantFantasySetGuideRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/blog/charizard-figure-box-release-news': {
+      id: '/blog/charizard-figure-box-release-news'
+      path: '/blog/charizard-figure-box-release-news'
+      fullPath: '/blog/charizard-figure-box-release-news'
+      preLoaderRoute: typeof BlogCharizardFigureBoxReleaseNewsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/blog/chasing-glory-card-origins': {
       id: '/blog/chasing-glory-card-origins'
       path: '/blog/chasing-glory-card-origins'
@@ -2581,6 +2616,13 @@ declare module '@tanstack/react-router' {
       path: '/blog/miracle-journey-set-guide'
       fullPath: '/blog/miracle-journey-set-guide'
       preLoaderRoute: typeof BlogMiracleJourneySetGuideRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/nuzzle-cheeks-plush-card-display-release-news': {
+      id: '/blog/nuzzle-cheeks-plush-card-display-release-news'
+      path: '/blog/nuzzle-cheeks-plush-card-display-release-news'
+      fullPath: '/blog/nuzzle-cheeks-plush-card-display-release-news'
+      preLoaderRoute: typeof BlogNuzzleCheeksPlushCardDisplayReleaseNewsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/blog/pikachu-dream-painting-figures-release-news': {
@@ -3047,6 +3089,8 @@ const rootRouteChildren: RootRouteChildren = {
   BlogBrilliantFantasyCardOriginsRoute: BlogBrilliantFantasyCardOriginsRoute,
   BlogBrilliantFantasyReleaseNewsRoute: BlogBrilliantFantasyReleaseNewsRoute,
   BlogBrilliantFantasySetGuideRoute: BlogBrilliantFantasySetGuideRoute,
+  BlogCharizardFigureBoxReleaseNewsRoute:
+    BlogCharizardFigureBoxReleaseNewsRoute,
   BlogChasingGloryCardOriginsRoute: BlogChasingGloryCardOriginsRoute,
   BlogChasingGloryReleaseNewsRoute: BlogChasingGloryReleaseNewsRoute,
   BlogChasingGlorySetGuideRoute: BlogChasingGlorySetGuideRoute,
@@ -3086,6 +3130,8 @@ const rootRouteChildren: RootRouteChildren = {
   BlogMiracleJourneyCardOriginsRoute: BlogMiracleJourneyCardOriginsRoute,
   BlogMiracleJourneyReleaseNewsRoute: BlogMiracleJourneyReleaseNewsRoute,
   BlogMiracleJourneySetGuideRoute: BlogMiracleJourneySetGuideRoute,
+  BlogNuzzleCheeksPlushCardDisplayReleaseNewsRoute:
+    BlogNuzzleCheeksPlushCardDisplayReleaseNewsRoute,
   BlogPikachuDreamPaintingFiguresReleaseNewsRoute:
     BlogPikachuDreamPaintingFiguresReleaseNewsRoute,
   BlogPikachuGiftBoxReleaseNewsRoute: BlogPikachuGiftBoxReleaseNewsRoute,
