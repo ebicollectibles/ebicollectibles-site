@@ -476,7 +476,7 @@ export const BLOG_POSTS: BlogPostSummary[] = [
       'The Chinese Pokémon TCG Lillie and N battle set boxes: 6 Chasing Glory packs, sleeves, a deck box, a coin and dice in each, released July 16, 2026.',
     tag: 'New release',
     date: '2026-07-16',
-    heroImage: `${SITE_URL}/assets/blog/lillie-n-battle-box-release-hero.webp`,
+    heroImage: `${SITE_URL}/assets/blog/lillie-n-battle-box-stacked-hero.webp`,
     heroAlt: 'The Lillie battle set box and the N battle set box side by side',
     glow1: 'rgb(150 210 240 / .30)',
     glow2: 'rgb(140 200 80 / .24)',
