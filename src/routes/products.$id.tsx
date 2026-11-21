@@ -259,7 +259,16 @@ function ProductDetailPage() {
     if (!product) return []
     const own = photosOf(product, undefined)
     if (!notSellable) return own
-    return [...own, ...variants.flatMap((v) => photosOf(v, v.id))]
+    // A hub can lead with the same photo one of its variants uses (e.g. the
+    // sealed box shot). Show it once, in the hub's position, tagged with
+    // that variant so picking the option still jumps to it.
+    const variantPhotos = variants.flatMap((v) => photosOf(v, v.id))
+    const merged = own.map((o) => {
+      const match = variantPhotos.find((v) => v.url === o.url)
+      return match ? { ...o, variantId: match.variantId } : o
+    })
+    const shown = new Set(merged.map((o) => o.url))
+    return [...merged, ...variantPhotos.filter((v) => !shown.has(v.url))]
   }, [product, notSellable, variants])
 
   const [selectedImageIndex, setSelectedImageIndex] = React.useState(0)
