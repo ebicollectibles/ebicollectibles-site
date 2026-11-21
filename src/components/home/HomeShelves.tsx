@@ -3,6 +3,7 @@ import { Link } from '@tanstack/react-router'
 import { ProductCard } from '~/components/ProductCard'
 import { ResponsiveImage } from '~/components/ResponsiveImage'
 import { rankProducts, type Product } from '~/lib/products'
+import { SHOW_ACRYLICS } from '~/lib/feature-flags'
 import { BLOG_POSTS, type BlogPostSlug } from '~/data/blog-posts'
 
 // Draft homepage layout (see routes/home-preview.tsx): shop-by-category
@@ -127,10 +128,11 @@ function Shelf({ id, title, blurb, products, link }: { id: string; title: string
 }
 
 export function HomeShelves({ products }: { products: Product[] }) {
-  // Same eligibility as every other grid on the site (hideFromShopGrid,
-  // the acrylics switch); rankProducts applies it, ranked order is ignored.
-  const eligible = rankProducts(products, 'bestSellingRank')
-  const bestSelling = sortForShelf(eligible.filter((p) => p.bestSellingRank != null)).slice(0, 8)
+  // Same eligibility as the shop grid (hideFromShopGrid, the acrylics
+  // switch). Not rankProducts: that also drops anything hidden from Best
+  // Selling, which would empty the binders and cases shelves.
+  const eligible = products.filter((p) => !p.hideFromShopGrid && (SHOW_ACRYLICS || p.category !== 'Acrylic Cases'))
+  const bestSelling = sortForShelf(rankProducts(products, 'bestSellingRank').filter((p) => p.bestSellingRank != null)).slice(0, 8)
   const onSale = sortForShelf(eligible.filter((p) => p.compareAtPrice != null && p.compareAtPrice > p.price && p.stock > 0 && !p.notSellable))
   const newAndUpcoming = rankProducts(products, 'newAndUpcomingRank').filter((p) => p.newAndUpcomingRank != null)
 
