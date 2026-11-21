@@ -4,6 +4,7 @@ import { BLOG_POSTS, blogShareImage } from './blog-posts'
 import { GEM_SETS } from './gem-sets-index'
 import { JAPANESE_SETS } from './japanese-sets-index'
 import shareProductIds from './share-products.json'
+import shareProductOverrides from './share-product-overrides.json'
 
 // Link previews (og:image) point at wide JPG cards in public/assets/share.
 // A missing file would mean a blank preview wherever the page is shared.
@@ -21,6 +22,9 @@ describe('link preview images', () => {
   })
   it('exist for every product listed in share-products.json', () => {
     expect((shareProductIds as string[]).map((id) => `public/assets/share/product-${id}.jpg`).filter((f) => !existsSync(f))).toEqual([])
+  })
+  it('exist for every product share image override', () => {
+    expect(Object.values(shareProductOverrides as Record<string, string>).map((f) => `public/assets/share/${f}`).filter((f) => !existsSync(f))).toEqual([])
   })
   it('exist for the site, shop, binders shelf, set index and blog index', () => {
     expect(['site', 'shop', 'shop-binders', 'sets', 'blog'].map((n) => `public/assets/share/${n}.jpg`).filter((f) => !existsSync(f))).toEqual([])

@@ -12,6 +12,9 @@ import { FLAT_SHIPPING_RATE, formatMoney, getHubPriceRange, getHubVariants, type
 import { RETURN_POLICY_CATEGORY_URL, SHIPPING_HANDLING_MAX_DAYS, SHIPPING_HANDLING_MIN_DAYS, SHIPS_TO_COUNTRY } from '~/lib/policy'
 import { getProduct } from '~/server/products'
 import shareProductIds from '~/data/share-products.json'
+// A product whose share image was redone under a new file name (assets are
+// cached for a year, so a changed image needs a new name).
+import shareProductOverrides from '~/data/share-product-overrides.json'
 import { getBlogGuidesFor } from '~/server/blog-status'
 import { BlogGuideLinks } from '~/components/blog/BlogGuideLinks'
 
@@ -60,7 +63,12 @@ export const Route = createFileRoute('/products/$id')({
     }, ships from Washington.`
     const url = `${SITE_URL}/products/${params.id}`
     const image = absoluteImageUrl(loaderData.img)
-    const shareImage = (shareProductIds as string[]).includes(params.id) ? `${SITE_URL}/assets/share/product-${params.id}.jpg` : null
+    const shareOverride = (shareProductOverrides as Record<string, string>)[params.id]
+    const shareImage = shareOverride
+      ? `${SITE_URL}/assets/share/${shareOverride}`
+      : (shareProductIds as string[]).includes(params.id)
+        ? `${SITE_URL}/assets/share/product-${params.id}.jpg`
+        : null
 
     return {
       meta: [
