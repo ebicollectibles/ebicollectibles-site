@@ -214,6 +214,8 @@
   &.is-wide .card-grid.cols-3 { gap: 26px 22px; margin-block: 26px 32px; }
   .card-grid.cols-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 22px 16px; }
   .card-grid.cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 26px 26px; max-width: 560px; margin-inline: auto; }
+  /* One card or product on its own: centred, at about the size it has in a two-column row */
+  .card-grid.cols-1 { grid-template-columns: minmax(0, 1fr); max-width: 280px; margin-inline: auto; }
   @media (max-width: 640px) { .card-grid.cols-4 { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
   @media (max-width: 480px) { .card-grid.cols-4 { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 

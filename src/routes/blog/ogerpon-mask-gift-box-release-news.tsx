@@ -325,7 +325,7 @@ function OgerponMaskGiftBoxPost() {
           </table>
         </div>
         <p className="table-note">Percentages are the ones Pokémon China publishes for each slot. Cards within each group are made in equal numbers.</p>
-        <div style={{ display: 'flex', gap: 24, alignItems: 'flex-start', flexWrap: 'wrap', margin: '24px 0' }}>
+        <div style={{ display: 'flex', gap: 24, alignItems: 'flex-start', flexWrap: 'wrap', margin: '24px auto' }}>
           <figure style={{ margin: 0, flex: '0 0 180px' }}>
             <img src={img('kitakami-pack')} alt="The Kitakami theme pack: a green pack with the four Ogerpon mask symbols" loading="lazy" width={472} height={800} style={{ width: '100%', height: 'auto', background: 'transparent', boxShadow: 'none' }} />
             <figcaption>Kitakami theme pack</figcaption>
@@ -388,7 +388,7 @@ function OgerponMaskGiftBoxPost() {
           <Link to="/blog/brilliant-fantasy-release-news">Brilliant Fantasy</Link> and{' '}
           <Link to="/blog/stellar-crystal-release-news">Stellar Crystal</Link> posts cover both sets.
         </p>
-        <ul className="card-grid cols-4" style={{ maxWidth: 420 }}>
+        <ul className="card-grid cols-2" style={{ maxWidth: 420 }}>
           <li>
             <figure>
               <img src={img('brilliant-fantasy-pack')} alt="A Brilliant Fantasy 20-card booster pack with Milotic on the front" loading="lazy" width={351} height={700} style={{ background: 'transparent', boxShadow: 'none' }} />

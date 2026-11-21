@@ -302,7 +302,7 @@ function AuraSeekerPost() {
           hand. Its attack does 120 damage, plus 120 more if your opponent's Active Pokémon is a Pokémon ex. As a Mega Evolution ex, it
           gives up 3 Prize cards when it is Knocked Out.
         </p>
-        <ul className="card-grid cols-2">
+        <ul className="card-grid cols-1">
           <li>
             <figure>
               <img src={img('mega-lucario-z-ex')} alt="Mega Lucario Z ex 057/078: Mega Lucario Z lunging forward with a fist out, blue tassels swirling, on a pink and green background" loading="lazy" width={788} height={1100} style={{ background: 'transparent', boxShadow: 'none' }} />
@@ -324,7 +324,7 @@ function AuraSeekerPost() {
           fists rising behind him. The card is a Supporter: you choose one of your Water Pokémon in play and shuffle it, with every card
           attached to it, back into your deck. The same Supporter is also in the main set as 076/078, an Uncommon illustrated by GOSSAN.
         </p>
-        <ul className="card-grid cols-2">
+        <ul className="card-grid cols-1">
           <li>
             <figure>
               <img src={img('crasher-wakes-fervor-sar')} alt="Crasher Wake's Fervor 113/078 Special Art Rare by Tetsuo Hara: Crasher Wake in his mask lunging forward with one hand reaching out, pale fists behind him" loading="lazy" width={788} height={1100} style={{ background: 'transparent', boxShadow: 'none' }} />

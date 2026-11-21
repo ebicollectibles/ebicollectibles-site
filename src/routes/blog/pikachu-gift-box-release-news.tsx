@@ -302,7 +302,7 @@ function PikachuGiftBoxPost() {
           It is a Lightning-type Tera Pokémon ex with 200 HP. Its Ability keeps it in play with 10 HP if an attack would Knock it Out
           from full HP. Its attack does 300 damage and makes you discard three Energy from it.
         </p>
-        <ul className="card-grid cols-2">
+        <ul className="card-grid cols-1">
           <li>
             <figure>
               <img src={img('pikachu-ex-promo')} alt="Pikachu ex 489/SV-P promo card: Stellar Tera Pikachu smiling with its arms out on a magenta background" loading="lazy" width={788} height={1100} style={{ background: 'transparent', boxShadow: 'none' }} />
