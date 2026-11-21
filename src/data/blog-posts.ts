@@ -296,7 +296,7 @@ export const BLOG_POSTS: BlogPostSummary[] = [
       'The Chinese Pokémon TCG Nuzzle Cheeks plush card display box: 6 Electric-type plushes and a secret Pawmi, each with its own promo card, plus 2 packs.',
     tag: 'New release',
     date: '2025-12-19',
-    heroImage: `${SITE_URL}/assets/blog/nuzzle-cheeks-plush-release-hero.webp`,
+    heroImage: `${SITE_URL}/assets/blog/nuzzle-cheeks-plush-blind-box-hero.webp`,
     heroAlt: 'The Pikachu plush hugging its promo card in a clear display frame, in front of the round Nuzzle Cheeks box',
     glow1: 'rgb(250 208 70 / .30)',
     glow2: 'rgb(110 170 230 / .22)',
