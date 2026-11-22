@@ -65,6 +65,15 @@ const entry: ServerEntry = {
     const normalized = withNormalizedQueryString(request)
     if (normalized) return normalized
     const url = new URL(request.url)
+    // Some AI tools ask for pages as Markdown only (Accept: text/markdown).
+    // There's no Markdown version, and answering 406 gives them nothing, so
+    // they get the normal HTML page like everyone else.
+    const accept = request.headers.get('accept') ?? ''
+    if (request.method === 'GET' && /text\/markdown/i.test(accept) && !/text\/html|\*\/\*/i.test(accept)) {
+      const headers = new Headers(request.headers)
+      headers.set('accept', 'text/html')
+      request = new Request(request, { headers })
+    }
     if (request.method === 'POST' && url.pathname === '/api/webhooks/square') {
       return handleSquareWebhook(request)
     }
