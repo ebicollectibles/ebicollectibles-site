@@ -109,19 +109,21 @@ function emailFooterHtml(listFooterHtml = ''): string {
           <p style="${BODY_FONT}font-size:13px;margin:12px 0 0;">
             <a href="${SITE_URL}/shop" style="${strongLink}">Shop &rarr;</a>
           </p>
-          <p style="${BODY_FONT}font-size:12.5px;margin:8px 0 0;">
+          <div style="${MONO_FONT}font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:${MUTED};margin:20px 0 0;">Socials</div>
+          <p style="${BODY_FONT}font-size:12.5px;margin:6px 0 0;">
             <a href="https://www.instagram.com/ebicollectibles" style="${strongLink}">Instagram</a>
             &nbsp;&middot;&nbsp;
             <a href="https://x.com/ebicollectibles" style="${strongLink}">X</a>
           </p>
-          <p style="${BODY_FONT}font-size:11.5px;color:${MUTED};margin:10px 0 0;">
+          <div style="${MONO_FONT}font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:${MUTED};margin:16px 0 0;">Policies</div>
+          <p style="${BODY_FONT}font-size:11.5px;color:${MUTED};margin:6px 0 0;">
             <a href="${SITE_URL}/shipping-policy" style="${policyLink}">Shipping</a>
             &nbsp;&middot;&nbsp;
             <a href="${SITE_URL}/refund-policy" style="${policyLink}">Refunds</a>
             &nbsp;&middot;&nbsp;
             <a href="${SITE_URL}/privacy" style="${policyLink}">Privacy</a>
           </p>
-          <p style="${BODY_FONT}font-size:10.5px;line-height:1.5;color:${MUTED};margin:10px 0 0;">&copy; ${year} EBI Collectibles &middot; Not affiliated with, or endorsed by, any card publisher.</p>${listFooterHtml}
+          <p style="${BODY_FONT}font-size:10.5px;line-height:1.5;color:${MUTED};margin:20px 0 0;">&copy; ${year} EBI Collectibles &middot; Not affiliated with, or endorsed by, any card publisher.</p>${listFooterHtml}
         </td>
       </tr>`
 }
