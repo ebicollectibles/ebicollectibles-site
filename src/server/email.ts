@@ -18,6 +18,8 @@ const SURFACE = '#f6f7f8'
 const GREEN = '#3f7a63'
 
 const LOGO_URL = 'https://ebicollectibles.com/assets/ebi-logo.jpg'
+// The wide lockup (mark + COLLECTIBLES) used on the blog banners, in Ink.
+const WIDE_LOGO_URL = 'https://ebicollectibles.com/assets/ebi-logo-wide-ink.png'
 // Web fonts load where the client allows it (Apple Mail, iOS); Gmail and
 // Outlook fall back to Helvetica/Arial and the system mono.
 const HEAD_FONT = "font-family:'Archivo','Helvetica Neue',Helvetica,Arial,sans-serif;"
@@ -82,7 +84,9 @@ function totalsHtml(rows: Array<{ label: string; value: string; strong?: boolean
       return `<tr><td style="${BODY_FONT}${style}">${row.label}</td><td align="right" style="${BODY_FONT}${style}text-align:right;white-space:nowrap;">${row.value}</td></tr>`
     })
     .join('')
-  return `<table role="presentation" width="100%" cellpadding="0" cellspacing="0">${out}</table>`
+  // A compact block on the right, like a receipt, rather than labels and
+  // amounts at opposite edges of the card.
+  return `<table role="presentation" width="100%" cellpadding="0" cellspacing="0"><tr><td align="right"><table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:280px;">${out}</table></td></tr></table>`
 }
 
 // Kept deliberately short compared to a bigger storefront's email footer —
@@ -102,12 +106,13 @@ function emailFooterHtml(listFooterHtml = ''): string {
       <tr>
         <td align="center" bgcolor="${SURFACE}" style="padding:28px 36px 30px;background:${SURFACE};text-align:center;">
           <img src="${LOGO_URL}" width="44" height="44" alt="EBI Collectibles" style="display:inline-block;width:44px;height:44px;border:0;mix-blend-mode:multiply;">
-          <p style="${BODY_FONT}font-size:12.5px;margin:12px 0 0;">
+          <p style="${BODY_FONT}font-size:13px;margin:12px 0 0;">
+            <a href="${SITE_URL}/shop" style="${strongLink}">Shop &rarr;</a>
+          </p>
+          <p style="${BODY_FONT}font-size:12.5px;margin:8px 0 0;">
             <a href="https://www.instagram.com/ebicollectibles" style="${strongLink}">Instagram</a>
             &nbsp;&middot;&nbsp;
             <a href="https://x.com/ebicollectibles" style="${strongLink}">X</a>
-            &nbsp;&middot;&nbsp;
-            <a href="${SITE_URL}/shop" style="${strongLink}">Shop</a>
           </p>
           <p style="${BODY_FONT}font-size:11.5px;color:${MUTED};margin:10px 0 0;">
             <a href="${SITE_URL}/shipping-policy" style="${policyLink}">Shipping</a>
@@ -182,8 +187,7 @@ function emailShell(opts: {
       <tr>
         <td class="px" style="padding:22px 36px;border-bottom:1px solid ${BORDER};">
           <table role="presentation" width="100%" cellpadding="0" cellspacing="0"><tr>
-            <td style="vertical-align:middle;"><img src="${LOGO_URL}" width="52" height="52" alt="EBI Collectibles" style="display:block;width:52px;height:52px;border:0;"></td>
-            <td align="right" style="vertical-align:middle;${MONO_FONT}font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:${MUTED};">ebicollectibles.com</td>
+            <td style="vertical-align:middle;"><img src="${WIDE_LOGO_URL}" width="171" height="44" alt="EBI Collectibles" style="display:block;width:171px;height:44px;border:0;"></td>
           </tr></table>
         </td>
       </tr>
@@ -916,14 +920,24 @@ export async function sendNotifyMeAlertEmail(data: NotifyMeAlertData): Promise<E
 
 // Small grey box under the "Track" button: carrier as the label, tracking
 // number in mono, linked to the carrier's own tracking page when we know it.
-function trackingBoxHtml(carrier: string | null, trackingNumber: string | null, trackingUrl: string | null): string {
-  if (!trackingNumber) return ''
-  const number = escapeHtml(trackingNumber)
-  const value = trackingUrl ? `<a href="${trackingUrl}" style="color:${INK};text-decoration:underline;">${number}</a>` : number
-  const label = carrier && carrier !== 'Other' ? `${escapeHtml(carrier)} &middot; Tracking number` : 'Tracking number'
+// One tidy card for a shipment: carrier and tracking number (linked to the
+// carrier), with a small "Track package" button under it. Used instead of a
+// full-width button, which repeated what the tracking number already says.
+function shipmentCardHtml(carrier: string | null, trackingNumber: string | null, trackingUrl: string | null, buttonUrl: string | null): string {
+  const label = carrier && carrier !== 'Other' ? `${escapeHtml(carrier)} &middot; Tracking` : 'Tracking'
+  const number = trackingNumber ? escapeHtml(trackingNumber) : null
+  const numberHtml = number
+    ? `<div style="${MONO_FONT}font-size:15px;color:${INK};padding-top:7px;letter-spacing:.05em;word-break:break-all;">${
+        trackingUrl ? `<a href="${trackingUrl}" style="color:${INK};text-decoration:none;">${number}</a>` : number
+      }</div>`
+    : ''
+  const button = buttonUrl
+    ? `<table role="presentation" cellpadding="0" cellspacing="0" style="margin-top:16px;"><tr><td bgcolor="${INK}" style="background:${INK};border-radius:3px;"><a href="${buttonUrl}" style="display:inline-block;padding:10px 18px;white-space:nowrap;${BODY_FONT}font-size:13px;font-weight:700;color:#ffffff;text-decoration:none;">Track package &rarr;</a></td></tr></table>`
+    : ''
+  if (!numberHtml && !button) return ''
   return section(
-    `<table role="presentation" width="100%" cellpadding="0" cellspacing="0" bgcolor="${SURFACE}" style="background:${SURFACE};border-radius:6px;"><tr><td style="padding:14px 18px;">${monoLabel(label)}<div style="${MONO_FONT}font-size:13.5px;color:${INK};padding-top:6px;letter-spacing:.04em;word-break:break-all;">${value}</div></td></tr></table>`,
-    16,
+    `<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border:1px solid ${BORDER};border-radius:6px;"><tr><td style="padding:18px 20px;">${monoLabel(label)}${numberHtml}${button}</td></tr></table>`,
+    24,
   )
 }
 
@@ -984,8 +998,7 @@ export async function sendShipmentEmail(order: ShipmentEmailData): Promise<Email
     badgeColor: GREEN,
     heading,
     intro,
-    primaryButton: { label: 'Track your order', url: orderUrl },
-    afterButtonHtml: trackingBoxHtml(order.carrier, order.trackingNumber, trackingUrl),
+    afterButtonHtml: shipmentCardHtml(order.carrier, order.trackingNumber, trackingUrl, orderUrl),
     bodyHtml,
   })
 
@@ -998,7 +1011,7 @@ export async function sendShipmentEmail(order: ShipmentEmailData): Promise<Email
     '',
     address ? `Ship to:\n${address.replace(/<br>/g, '\n')}` : null,
     '',
-    `Track your order: ${orderUrl}`,
+    `Track package: ${orderUrl}`,
   ]
     .filter((line) => line !== null)
     .join('\n')
@@ -1094,8 +1107,7 @@ export async function sendMarketplaceShipmentEmail(order: MarketplaceShipmentEma
     badgeColor: GREEN,
     heading,
     intro,
-    primaryButton: trackingUrl ? { label: 'Track your order', url: trackingUrl } : undefined,
-    afterButtonHtml: trackingBoxHtml(order.carrier, order.trackingNumber, trackingUrl),
+    afterButtonHtml: shipmentCardHtml(order.carrier, order.trackingNumber, trackingUrl, trackingUrl),
     bodyHtml,
   })
 

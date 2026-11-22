@@ -102,7 +102,7 @@ export function OrderDetail({ order, view, banner }: { order: OrderDetailView | 
           {fulfillmentLabel[order.fulfillmentStatus] ?? order.fulfillmentStatus}
         </span>
       </div>
-      <div style={{ marginTop: 4, fontSize: 12, color: '#5a6875' }}>{new Date(order.createdAt).toLocaleString()}</div>
+      <div style={{ marginTop: 4, fontSize: 12, color: '#5a6875' }}>{new Date(order.createdAt).toLocaleString('en-US', { dateStyle: 'medium', timeStyle: 'short' })}</div>
 
       {order.hasPreorder && (
         <div
@@ -214,7 +214,8 @@ export function OrderDetail({ order, view, banner }: { order: OrderDetailView | 
         ))}
       </div>
 
-      <div style={{ marginTop: 20, paddingTop: 16, borderTop: '1px solid #e3e6ea', display: 'flex', flexDirection: 'column', gap: 4 }}>
+      <div style={{ marginTop: 20, paddingTop: 16, borderTop: '1px solid #e3e6ea' }}>
+      <div style={{ maxWidth: 300, marginLeft: 'auto', display: 'flex', flexDirection: 'column', gap: 4 }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 12.5, color: '#131b28' }}>
           <span>Subtotal</span>
           <span>{formatMoney(order.subtotal)}</span>
@@ -245,6 +246,7 @@ export function OrderDetail({ order, view, banner }: { order: OrderDetailView | 
             <span style={{ fontFamily: "'IBM Plex Mono', monospace" }}>-{formatMoney(order.totalRefunded)}</span>
           </div>
         )}
+      </div>
       </div>
 
       {view === 'account' && order.paymentMethodSummary && (
