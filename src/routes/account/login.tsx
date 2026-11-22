@@ -9,7 +9,13 @@ import { PasswordInput } from '~/components/PasswordInput'
 import { DiscordIcon } from '~/components/DiscordIcon'
 import { GoogleIcon } from '~/components/GoogleIcon'
 
-const searchSchema = z.object({ error: z.string().optional() })
+const searchSchema = z.object({ error: z.string().optional(), redirect: z.string().optional() })
+
+// Where to go after signing in. Only this site's own account pages, so a
+// crafted ?redirect= can't bounce someone to another site.
+function afterLoginPath(redirect: string | undefined): string {
+  return redirect && /^\/account\/[A-Za-z0-9/_-]*$/.test(redirect) ? redirect : '/account/orders'
+}
 
 export const Route = createFileRoute('/account/login')({
   validateSearch: searchSchema,
@@ -116,7 +122,7 @@ function LoginPage() {
     await setActive!({ session: sessionId })
     await syncClerkUser()
     await router.invalidate()
-    navigate({ to: '/account/orders' })
+    navigate({ href: afterLoginPath(search.redirect) })
   }
 
   const submit = async (e: React.FormEvent) => {
@@ -164,7 +170,7 @@ function LoginPage() {
       await signIn.authenticateWithRedirect({
         strategy: 'oauth_google',
         redirectUrl: '/sso-callback',
-        redirectUrlComplete: '/account/orders',
+        redirectUrlComplete: afterLoginPath(search.redirect),
       })
     } catch (err) {
       setError(clerkErrorMessage(err, 'Google sign-in is not available right now.'))
@@ -180,7 +186,7 @@ function LoginPage() {
       await signIn.authenticateWithRedirect({
         strategy: 'oauth_discord',
         redirectUrl: '/sso-callback',
-        redirectUrlComplete: '/account/orders',
+        redirectUrlComplete: afterLoginPath(search.redirect),
       })
     } catch (err) {
       setError(clerkErrorMessage(err, 'Discord sign-in is not available right now.'))

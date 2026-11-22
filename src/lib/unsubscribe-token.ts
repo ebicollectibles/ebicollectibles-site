@@ -10,13 +10,13 @@
 
 const enc = new TextEncoder()
 
-function toB64Url(bytes: Uint8Array): string {
+export function toB64Url(bytes: Uint8Array): string {
   let s = ''
   for (const b of bytes) s += String.fromCharCode(b)
   return btoa(s).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '')
 }
 
-function fromB64Url(s: string): Uint8Array | null {
+export function fromB64Url(s: string): Uint8Array | null {
   if (!/^[A-Za-z0-9_-]*$/.test(s)) return null
   try {
     const bin = atob(s.replace(/-/g, '+').replace(/_/g, '/') + '='.repeat((4 - (s.length % 4)) % 4))
@@ -26,14 +26,14 @@ function fromB64Url(s: string): Uint8Array | null {
   }
 }
 
-async function hmac(secret: string, message: string): Promise<Uint8Array> {
+export async function hmac(secret: string, message: string): Promise<Uint8Array> {
   const key = await crypto.subtle.importKey('raw', enc.encode(secret), { name: 'HMAC', hash: 'SHA-256' }, false, ['sign'])
   const sig = await crypto.subtle.sign('HMAC', key, enc.encode(message))
   // 16 bytes (128 bits) is plenty against guessing and keeps links short.
   return new Uint8Array(sig).slice(0, 16)
 }
 
-function timingSafeEqual(a: Uint8Array, b: Uint8Array): boolean {
+export function timingSafeEqual(a: Uint8Array, b: Uint8Array): boolean {
   if (a.length !== b.length) return false
   let diff = 0
   for (let i = 0; i < a.length; i++) diff |= a[i] ^ b[i]

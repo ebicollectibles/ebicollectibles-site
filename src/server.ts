@@ -107,6 +107,16 @@ const entry: ServerEntry = {
       return handleSitemapRequest()
     }
     const response = await startFetch(request, opts)
+    // Emailed order links (/orders/<id>?k=...) carry their key in the URL:
+    // never cache the page anywhere, keep it out of search, and don't send
+    // the address on to sites linked from it (carrier tracking pages).
+    if (url.pathname.startsWith('/orders/')) {
+      const secured = withSecurityHeaders(response)
+      secured.headers.set('Cache-Control', 'private, no-store')
+      secured.headers.set('X-Robots-Tag', 'noindex, nofollow')
+      secured.headers.set('Referrer-Policy', 'no-referrer')
+      return secured
+    }
     return withSecurityHeaders(response)
   },
 }

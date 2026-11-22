@@ -33,10 +33,11 @@ export const getCurrentCustomer = createServerFn({ method: 'GET' }).handler(asyn
   return (userRows[0] as { id: string; email: string; name: string | null } | undefined) ?? null
 })
 
-/** Redirects to the login page — use in route `beforeLoad` for account pages. */
-export async function requireCustomer() {
+/** Redirects to the login page — use in route `beforeLoad` for account pages.
+ * `returnTo` (an /account/ path) is where login sends them back to. */
+export async function requireCustomer(returnTo?: string) {
   if (!(await getCurrentCustomer())) {
-    throw redirect({ to: '/account/login' })
+    throw redirect({ to: '/account/login', search: returnTo ? { redirect: returnTo } : {} })
   }
 }
 

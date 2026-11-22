@@ -3,6 +3,7 @@
 
 import { carrierTrackingUrl } from '~/lib/carriers'
 import { formatMoney } from '~/lib/products'
+import { orderViewUrl } from './order-link'
 
 // Shared visual language for every transactional email — same palette as
 // the site itself (see src/styles/app.css :root), same header/footer shell,
@@ -221,7 +222,7 @@ export async function sendOrderConfirmationEmail(order: OrderEmailData): Promise
     </tr>`
 
   const address = formatAddress(order)
-  const orderUrl = `${SITE_URL}/account/orders/${order.orderId}`
+  const orderUrl = await orderViewUrl(order.orderId)
 
   const bodyHtml = `
     ${itemsTableHtml(order.items)}
@@ -357,7 +358,7 @@ export async function sendOrderCancellationEmail(order: OrderCancellationEmailDa
       <td style="padding:4px 0;font-size:${strong ? '14px' : '12.5px'};font-weight:${strong ? '700' : '400'};color:${strong ? INK : MUTED};text-align:right;${strong ? `border-top:1px solid ${INK};padding-top:10px;` : ''}">${value}</td>
     </tr>`
 
-  const orderUrl = `${SITE_URL}/account/orders/${order.orderId}`
+  const orderUrl = await orderViewUrl(order.orderId)
 
   const bodyHtml = `
     ${itemsTableHtml(order.items)}
@@ -602,7 +603,7 @@ export async function sendShippingDelayEmail(data: DelayEmailData): Promise<Emai
   const from = process.env.ORDER_FROM_EMAIL
   if (!apiKey || !from || !data.email) return { status: 'skipped' }
 
-  const orderUrl = `${SITE_URL}/account/orders/${data.orderId}`
+  const orderUrl = await orderViewUrl(data.orderId)
   const messageHtml = escapeHtml(data.message).replace(/\n/g, '<br>')
 
   const bodyHtml = `
