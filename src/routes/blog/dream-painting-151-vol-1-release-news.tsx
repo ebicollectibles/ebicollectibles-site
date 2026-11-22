@@ -64,6 +64,7 @@ const TOC = [
   { id: 'secret', label: 'What is the secret figure?' },
   { id: 'in-the-box', label: 'What comes in a box?' },
   { id: 'odds', label: 'What are the odds of the secret figure?' },
+  { id: 'vol-2', label: 'Vol.2: the Water figure set' },
   { id: 'faq', label: 'FAQ' },
 ]
 
@@ -366,6 +367,14 @@ function DreamPainting151ReleasePost() {
         <p>
           Twelve random boxes, one for each regular design, have about an 8% chance of holding the secret. Twelve boxes will not always
           give you all twelve regulars, since each box is random.
+        </p>
+
+        <h2 id="vol-2">Vol.2: the Water figure set</h2>
+        <p>
+          The second Dream Painting set, the{' '}
+          <Link to="/blog/dream-painting-water-vol-2-release-news">Dream Painting Water figure set</Link>, went on sale in China on April 24,
+          2026. Fans and shops call it Vol.2. It has 12 Water-type figures and a secret Wailord, and each box comes with 2 Brilliant Fantasy
+          packs instead of Collect 151 packs.
         </p>
 
         <h2 id="faq">FAQ</h2>
