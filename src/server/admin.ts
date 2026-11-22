@@ -854,6 +854,7 @@ async function shipOneOrder(
       return { productName: item.productName, qty: line.qty, unitPrice: item.unitPrice, img: item.img }
     })
     const sendResult = await sendShipmentEmail({
+      orderId: order.id,
       orderNo: order.orderNo,
       email: order.email,
       firstName: order.firstName,
@@ -968,6 +969,7 @@ async function sendTestShipmentEmailForOrder(
   const isFinalShipment = computeFulfillmentStatus(allItems, [...priorShippedItems, ...items]) === 'shipped'
 
   const sendResult = await sendShipmentEmail({
+    orderId: order.id,
     orderNo: order.orderNo,
     email: testEmail,
     firstName: order.firstName,

@@ -5,43 +5,118 @@ import { carrierTrackingUrl } from '~/lib/carriers'
 import { formatMoney } from '~/lib/products'
 import { orderViewUrl } from './order-link'
 
-// Shared visual language for every transactional email — same palette as
-// the site itself (see src/styles/app.css :root), same header/footer shell,
-// same items-table shape — so order confirmation and shipment emails read
-// as one consistent system rather than two different designs. Table-based
-// layout throughout (no flex/grid) since Outlook's rendering engine doesn't
-// support either.
+// Shared visual language for every email — same palette as the site itself
+// (see src/styles/app.css :root), same header/footer shell, same item-row
+// shape — so every email reads as one consistent system. Table-based layout
+// throughout (no flex/grid) since Outlook's rendering engine doesn't support
+// either; inline styles only, the <style> block in <head> just tightens the
+// side padding and headline size on phones where the client allows it.
 const INK = '#131b28'
 const MUTED = '#5a6875'
 const BORDER = '#e3e6ea'
 const SURFACE = '#f6f7f8'
 const GREEN = '#3f7a63'
 
+const LOGO_URL = 'https://ebicollectibles.com/assets/ebi-logo.jpg'
+// Web fonts load where the client allows it (Apple Mail, iOS); Gmail and
+// Outlook fall back to Helvetica/Arial and the system mono.
+const HEAD_FONT = "font-family:'Archivo','Helvetica Neue',Helvetica,Arial,sans-serif;"
+const BODY_FONT = "font-family:'Inter','Helvetica Neue',Helvetica,Arial,sans-serif;"
+const MONO_FONT = "font-family:'IBM Plex Mono',SFMono-Regular,Menlo,Consolas,monospace;"
+
+// Small spaced uppercase mono label: the email's status line above the
+// headline, and the section labels ("In this order", "Ship to").
+function monoLabel(text: string, color: string = MUTED): string {
+  return `<div style="${MONO_FONT}font-size:11px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:${color};">${text}</div>`
+}
+
+// One vertical block with a gap above it — padding on a cell rather than
+// margins, which Outlook ignores on tables.
+function section(html: string, top: number): string {
+  return `<table role="presentation" width="100%" cellpadding="0" cellspacing="0"><tr><td style="padding-top:${top}px;">${html}</td></tr></table>`
+}
+
+function fullWidthButton(label: string, url: string): string {
+  return `<table role="presentation" width="100%" cellpadding="0" cellspacing="0"><tr><td align="center" bgcolor="${INK}" style="background:${INK};border-radius:4px;"><a href="${url}" style="display:block;padding:16px 20px;${BODY_FONT}font-size:15px;font-weight:700;color:#ffffff;text-decoration:none;text-align:center;">${label}</a></td></tr></table>`
+}
+
+function inlineButton(label: string, url: string): string {
+  return `<table role="presentation" cellpadding="0" cellspacing="0"><tr><td bgcolor="${INK}" style="background:${INK};border-radius:3px;"><a href="${url}" style="display:inline-block;padding:14px 26px;white-space:nowrap;${BODY_FONT}font-size:14px;font-weight:700;color:#ffffff;text-decoration:none;">${label}</a></td></tr></table>`
+}
+
+function paragraph(html: string, opts: { size?: number; color?: string } = {}): string {
+  return `<p style="${BODY_FONT}font-size:${opts.size ?? 15}px;line-height:1.6;color:${opts.color ?? MUTED};margin:0;">${html}</p>`
+}
+
+// Light grey rounded box with mono-labelled cells side by side (ship-to
+// and payment method on the confirmation, the amount on store credit).
+function detailsBoxHtml(cells: Array<{ label: string; valueHtml: string; large?: boolean }>): string {
+  if (cells.length === 0) return ''
+  const width = Math.floor(100 / cells.length)
+  const tds = cells
+    .map(
+      (cell) =>
+        `<td width="${width}%" style="padding:16px 18px;vertical-align:top;">${monoLabel(cell.label)}<div style="${cell.large ? `${HEAD_FONT}font-size:24px;font-weight:800;` : `${BODY_FONT}font-size:13.5px;line-height:1.6;`}color:${INK};padding-top:8px;">${cell.valueHtml}</div></td>`,
+    )
+    .join('')
+  return `<table role="presentation" width="100%" cellpadding="0" cellspacing="0" bgcolor="${SURFACE}" style="background:${SURFACE};border-radius:6px;"><tr>${tds}</tr></table>`
+}
+
+// Tinted notice box (pre-order terms, refund amount, combined shipping).
+const NOTICE_GREEN = { bg: '#eaf2ee', border: '#c7ddd1' }
+const NOTICE_AMBER = { bg: '#fdf3ec', border: '#e6c4a8' }
+function noticeHtml(html: string, tone: { bg: string; border: string }): string {
+  return `<table role="presentation" width="100%" cellpadding="0" cellspacing="0" bgcolor="${tone.bg}" style="background:${tone.bg};border:1px solid ${tone.border};border-radius:6px;"><tr><td style="padding:12px 16px;"><p style="${BODY_FONT}font-size:13px;line-height:1.6;color:${INK};margin:0;">${html}</p></td></tr></table>`
+}
+
+// Totals under the items: the last strong row (the total) gets the bold
+// type and the ink rule above it.
+function totalsHtml(rows: Array<{ label: string; value: string; strong?: boolean } | null>): string {
+  const out = rows
+    .filter((row): row is { label: string; value: string; strong?: boolean } => row !== null)
+    .map((row, i, all) => {
+      const afterStrong = i > 0 && all[i - 1].strong
+      const style = row.strong
+        ? `font-size:16px;font-weight:800;color:${INK};padding:12px 0 4px;border-top:1px solid ${INK};`
+        : `font-size:13.5px;font-weight:400;color:${MUTED};padding:${afterStrong ? 8 : 4}px 0 4px;`
+      return `<tr><td style="${BODY_FONT}${style}">${row.label}</td><td align="right" style="${BODY_FONT}${style}text-align:right;white-space:nowrap;">${row.value}</td></tr>`
+    })
+    .join('')
+  return `<table role="presentation" width="100%" cellpadding="0" cellspacing="0">${out}</table>`
+}
+
 // Kept deliberately short compared to a bigger storefront's email footer —
 // no unsubscribe line (every email through this shell is transactional,
 // triggered by something the recipient did, not a marketing list they
 // opted into) and no physical mailing address (not published anywhere
-// else on the site either). Just the policy links and the one real social
-// presence that exists, matching Footer.tsx's own "Elsewhere"/"Help"
-// sections rather than inventing anything not already true of the site.
-function emailFooterHtml(): string {
+// else on the site either). Just the policy links, the shop and the real
+// social presence, matching Footer.tsx's own "Elsewhere"/"Help" sections
+// rather than inventing anything not already true of the site. List emails
+// add their address + Unsubscribe lines (marketingEmailExtras) inside the
+// same grey block, right under the copyright line.
+function emailFooterHtml(listFooterHtml = ''): string {
   const year = new Date().getFullYear()
+  const strongLink = `color:${INK};text-decoration:none;font-weight:600;`
+  const policyLink = `color:${MUTED};text-decoration:underline;`
   return `
       <tr>
-        <td style="padding:20px 32px 28px;border-top:1px solid ${BORDER};text-align:center;">
-          <p style="font-size:11.5px;color:${MUTED};margin:0 0 10px;">
-            <a href="${SITE_URL}/shipping-policy" style="color:${MUTED};text-decoration:underline;">Shipping Policy</a>
+        <td align="center" bgcolor="${SURFACE}" style="padding:28px 36px 30px;background:${SURFACE};text-align:center;">
+          <img src="${LOGO_URL}" width="44" height="44" alt="EBI Collectibles" style="display:inline-block;width:44px;height:44px;border:0;mix-blend-mode:multiply;">
+          <p style="${BODY_FONT}font-size:12.5px;margin:12px 0 0;">
+            <a href="https://www.instagram.com/ebicollectibles" style="${strongLink}">Instagram</a>
             &nbsp;&middot;&nbsp;
-            <a href="${SITE_URL}/refund-policy" style="color:${MUTED};text-decoration:underline;">Refund Policy</a>
+            <a href="https://x.com/ebicollectibles" style="${strongLink}">X</a>
             &nbsp;&middot;&nbsp;
-            <a href="${SITE_URL}/privacy" style="color:${MUTED};text-decoration:underline;">Privacy Policy</a>
+            <a href="${SITE_URL}/shop" style="${strongLink}">Shop</a>
           </p>
-          <p style="font-size:11.5px;color:${MUTED};margin:0 0 10px;">
-            <a href="https://www.instagram.com/ebicollectibles" style="color:${MUTED};text-decoration:underline;">Instagram</a>
+          <p style="${BODY_FONT}font-size:11.5px;color:${MUTED};margin:10px 0 0;">
+            <a href="${SITE_URL}/shipping-policy" style="${policyLink}">Shipping</a>
             &nbsp;&middot;&nbsp;
-            <a href="https://x.com/ebicollectibles" style="color:${MUTED};text-decoration:underline;">X</a>
+            <a href="${SITE_URL}/refund-policy" style="${policyLink}">Refunds</a>
+            &nbsp;&middot;&nbsp;
+            <a href="${SITE_URL}/privacy" style="${policyLink}">Privacy</a>
           </p>
-          <p style="font-size:10.5px;color:${MUTED};margin:0;">&copy; ${year} EBI Collectibles &middot; Not affiliated with, or endorsed by, any card publisher.</p>
+          <p style="${BODY_FONT}font-size:10.5px;line-height:1.5;color:${MUTED};margin:10px 0 0;">&copy; ${year} EBI Collectibles &middot; Not affiliated with, or endorsed by, any card publisher.</p>${listFooterHtml}
         </td>
       </tr>`
 }
@@ -58,17 +133,15 @@ function emailFooterHtml(): string {
 export async function marketingEmailExtras(email: string): Promise<{ footerHtml: string; footerText: string; headers: Record<string, string> }> {
   const { BUSINESS_LEGAL_NAME, BUSINESS_POSTAL_ADDRESS } = await import('~/lib/business')
   if (!BUSINESS_POSTAL_ADDRESS) throw new Error('Set BUSINESS_POSTAL_ADDRESS in src/lib/business.ts before sending list emails.')
-  const { unsubscribePageUrl, oneClickUnsubscribeUrl } = await import('./unsubscribe')
-  const [pageUrl, oneClickUrl] = await Promise.all([unsubscribePageUrl(email), oneClickUnsubscribeUrl(email)])
+  const { unsubscribePageUrl, oneClickUnsubscribeUrl, preferencesPageUrl } = await import('./unsubscribe')
+  const [pageUrl, oneClickUrl, prefsUrl] = await Promise.all([unsubscribePageUrl(email), oneClickUnsubscribeUrl(email), preferencesPageUrl(email)])
   const esc = (s: string) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+  // Lines only, no row of its own: emailShell drops these inside the grey
+  // footer block, right under the copyright line, so they read as one footer.
   const footerHtml = `
-      <tr>
-        <td style="padding:0 32px 24px;text-align:center;">
-          <p style="font-size:10px;line-height:1.6;color:${MUTED};margin:0;">${esc(BUSINESS_LEGAL_NAME)} - ${esc(BUSINESS_POSTAL_ADDRESS)}</p>
-          <p style="font-size:10px;line-height:1.6;color:${MUTED};margin:0;">Don't want emails like these? <a href="${pageUrl}" style="color:${MUTED};text-decoration:underline;">Unsubscribe</a></p>
-        </td>
-      </tr>`
-  const footerText = `${BUSINESS_LEGAL_NAME} - ${BUSINESS_POSTAL_ADDRESS}\nDon't want emails like these? Unsubscribe: ${pageUrl}`
+          <p style="${BODY_FONT}font-size:8px;line-height:1.5;color:#7b8690;margin:12px 0 0;-webkit-text-size-adjust:none;">${esc(BUSINESS_LEGAL_NAME)} - ${esc(BUSINESS_POSTAL_ADDRESS)}</p>
+          <p style="${BODY_FONT}font-size:8px;line-height:1.5;color:#7b8690;margin:0;-webkit-text-size-adjust:none;"><a href="${prefsUrl}" style="color:#7b8690;text-decoration:underline;">Update preferences</a> &middot; <a href="${pageUrl}" style="color:#7b8690;text-decoration:underline;">Unsubscribe</a></p>`
+  const footerText = `${BUSINESS_LEGAL_NAME} - ${BUSINESS_POSTAL_ADDRESS}\nUpdate preferences: ${prefsUrl}\nUnsubscribe: ${pageUrl}`
   return {
     footerHtml,
     footerText,
@@ -76,26 +149,60 @@ export async function marketingEmailExtras(email: string): Promise<{ footerHtml:
   }
 }
 
-function emailShell(opts: { badgeLabel: string; badgeColor: string; heading: string; intro: string; bodyHtml: string; listFooterHtml?: string }): string {
-  return `
-  <div style="background:${SURFACE};padding:32px 16px;font-family:Helvetica,Arial,sans-serif;">
-    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:560px;margin:0 auto;background:#ffffff;border:1px solid ${BORDER};border-radius:6px;overflow:hidden;">
+// The one shell every email goes through: white header bar with the logo,
+// the status label + headline + intro, then (optionally) a lead block and
+// the primary button straight under the intro, then the body, then the grey
+// footer. `heading`, `intro`, `leadHtml`, `afterButtonHtml` and `bodyHtml`
+// are raw HTML — callers escape anything user/DB-provided before passing it.
+function emailShell(opts: {
+  badgeLabel?: string
+  badgeColor?: string
+  heading: string
+  intro: string
+  leadHtml?: string
+  primaryButton?: { label: string; url: string; inline?: boolean }
+  afterButtonHtml?: string
+  bodyHtml?: string
+  listFooterHtml?: string
+}): string {
+  const button = opts.primaryButton
+    ? section(opts.primaryButton.inline ? inlineButton(opts.primaryButton.label, opts.primaryButton.url) : fullWidthButton(opts.primaryButton.label, opts.primaryButton.url), 24)
+    : ''
+  return `<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@700;800&family=IBM+Plex+Mono:wght@500&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<style>@media (max-width:600px){.px{padding-left:22px!important;padding-right:22px!important}.h1{font-size:26px!important}}</style>
+</head>
+<body style="margin:0;padding:0;background:${SURFACE};">
+  <div style="background:${SURFACE};padding:28px 12px;${BODY_FONT}">
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:580px;margin:0 auto;background:#ffffff;border:1px solid ${BORDER};border-radius:8px;overflow:hidden;">
       <tr>
-        <td style="background:${INK};padding:22px 32px;">
-          <span style="font-size:13px;font-weight:700;letter-spacing:0.1em;color:#ffffff;text-transform:uppercase;">EBI Collectibles</span>
+        <td class="px" style="padding:22px 36px;border-bottom:1px solid ${BORDER};">
+          <table role="presentation" width="100%" cellpadding="0" cellspacing="0"><tr>
+            <td style="vertical-align:middle;"><img src="${LOGO_URL}" width="52" height="52" alt="EBI Collectibles" style="display:block;width:52px;height:52px;border:0;"></td>
+            <td align="right" style="vertical-align:middle;${MONO_FONT}font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:${MUTED};">ebicollectibles.com</td>
+          </tr></table>
         </td>
       </tr>
       <tr>
-        <td style="padding:32px;">
-          <span style="display:inline-block;font-size:10px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:${opts.badgeColor};border:1px solid ${opts.badgeColor};border-radius:2px;padding:4px 9px;">${opts.badgeLabel}</span>
-          <h1 style="font-size:21px;margin:14px 0 4px;color:${INK};">${opts.heading}</h1>
-          <p style="font-size:13.5px;color:${MUTED};margin:0 0 24px;">${opts.intro}</p>
-          ${opts.bodyHtml}
+        <td class="px" style="padding:34px 36px 34px;">
+          ${opts.badgeLabel ? monoLabel(opts.badgeLabel, opts.badgeColor ?? MUTED) : ''}
+          <h1 class="h1" style="${HEAD_FONT}font-size:30px;line-height:1.12;letter-spacing:-.02em;font-weight:800;color:${INK};margin:${opts.badgeLabel ? 12 : 0}px 0 0;">${opts.heading}</h1>
+          ${section(paragraph(opts.intro), 12)}
+          ${opts.leadHtml ?? ''}
+          ${button}
+          ${opts.afterButtonHtml ?? ''}
+          ${opts.bodyHtml ?? ''}
         </td>
       </tr>
-      ${emailFooterHtml()}${opts.listFooterHtml ?? ''}
+      ${emailFooterHtml(opts.listFooterHtml ?? '')}
     </table>
-  </div>`
+  </div>
+</body>
+</html>`
 }
 
 function formatAddress(order: {
@@ -120,46 +227,40 @@ function formatAddress(order: {
   return address || null
 }
 
-function itemThumbnailHtml(item: OrderEmailItem): string {
-  const img = item.img
-    ? `<img src="${escapeHtml(item.img)}" width="36" height="36" alt="" style="display:block;width:36px;height:36px;object-fit:contain;border:1px solid ${BORDER};border-radius:3px;background:${SURFACE};">`
-    : `<div style="width:36px;height:36px;border:1px solid ${BORDER};border-radius:3px;background:${SURFACE};"></div>`
-  return `
-    <table role="presentation" cellpadding="0" cellspacing="0">
-      <tr>
-        <td style="width:36px;">${img}</td>
-        <td style="padding-left:10px;font-size:13.5px;color:${INK};">${escapeHtml(item.productName)}</td>
-      </tr>
-    </table>`
-}
-
+// One row per item: 62px white tile for the photo (product photos are shot
+// on white, so the tile keeps them from floating on the page), name, a
+// "Qty n" meta line, and the line price on the right when showPrice.
 function itemsTableHtml(items: OrderEmailItem[], opts: { showPrice?: boolean } = {}): string {
   const showPrice = opts.showPrice ?? true
+  const cell = `border-bottom:1px solid ${BORDER};vertical-align:middle;`
 
   const rows = items
-    .map(
-      (item) => `
+    .map((item) => {
+      const img = item.img
+        ? `<img src="${escapeHtml(item.img)}" width="56" height="56" alt="" style="display:block;width:56px;height:56px;object-fit:contain;border:0;">`
+        : '&nbsp;'
+      return `
         <tr>
-          <td style="padding:10px 0;border-bottom:1px solid ${BORDER};">${itemThumbnailHtml(item)}</td>
-          <td style="padding:10px 0;border-bottom:1px solid ${BORDER};font-size:13.5px;color:${MUTED};text-align:center;white-space:nowrap;">${item.qty}</td>
-          ${showPrice ? `<td style="padding:10px 0;border-bottom:1px solid ${BORDER};font-size:13.5px;color:${INK};text-align:right;white-space:nowrap;">${formatMoney(item.unitPrice * item.qty)}</td>` : ''}
-        </tr>`,
-    )
+          <td width="76" style="width:76px;padding:12px 0;${cell}">
+            <table role="presentation" cellpadding="0" cellspacing="0"><tr>
+              <td width="62" height="62" align="center" valign="middle" bgcolor="#ffffff" style="width:62px;height:62px;background:#ffffff;border:1px solid ${BORDER};border-radius:4px;text-align:center;vertical-align:middle;">${img}</td>
+            </tr></table>
+          </td>
+          <td style="padding:12px 10px;${cell}">
+            <div style="${BODY_FONT}font-size:14px;font-weight:600;color:${INK};line-height:1.35;">${escapeHtml(item.productName)}</div>
+            <div style="${BODY_FONT}font-size:12.5px;color:${MUTED};padding-top:3px;">Qty ${item.qty}</div>
+          </td>
+          ${showPrice ? `<td align="right" style="padding:12px 0;${cell}white-space:nowrap;text-align:right;"><div style="${BODY_FONT}font-size:14px;font-weight:700;color:${INK};">${formatMoney(item.unitPrice * item.qty)}</div></td>` : ''}
+        </tr>`
+    })
     .join('')
 
-  return `
-    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:20px;">
-      <tr>
-        <td style="padding:0 0 8px;border-bottom:1px solid ${INK};font-size:10px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:${MUTED};">Item</td>
-        <td style="padding:0 0 8px;border-bottom:1px solid ${INK};font-size:10px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:${MUTED};text-align:center;">Qty</td>
-        ${showPrice ? `<td style="padding:0 0 8px;border-bottom:1px solid ${INK};font-size:10px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:${MUTED};text-align:right;">Price</td>` : ''}
-      </tr>
-      ${rows}
-    </table>`
+  return `<table role="presentation" width="100%" cellpadding="0" cellspacing="0">${rows}</table>`
 }
 
-function labelValueBlock(label: string, valueHtml: string): string {
-  return `<p style="font-size:10px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:${MUTED};margin:0 0 4px;">${label}</p><p style="font-size:13.5px;color:${INK};margin:0 0 20px;">${valueHtml}</p>`
+// Section label + item rows, as one block.
+function itemsSectionHtml(label: string, items: OrderEmailItem[], opts: { showPrice?: boolean } = {}): string {
+  return section(`${monoLabel(label)}${section(itemsTableHtml(items, opts), 6)}`, 30)
 }
 
 interface OrderEmailItem {
@@ -215,41 +316,49 @@ export async function sendOrderConfirmationEmail(order: OrderEmailData): Promise
 
   if (!apiKey || !from || !order.email) return { status: 'skipped' }
 
-  const summaryRow = (label: string, value: string, strong = false) => `
-    <tr>
-      <td style="padding:4px 0;font-size:${strong ? '14px' : '12.5px'};font-weight:${strong ? '700' : '400'};color:${strong ? INK : MUTED};${strong ? `border-top:1px solid ${INK};padding-top:10px;` : ''}">${label}</td>
-      <td style="padding:4px 0;font-size:${strong ? '14px' : '12.5px'};font-weight:${strong ? '700' : '400'};color:${strong ? INK : MUTED};text-align:right;${strong ? `border-top:1px solid ${INK};padding-top:10px;` : ''}">${value}</td>
-    </tr>`
-
   const address = formatAddress(order)
   const orderUrl = await orderViewUrl(order.orderId)
 
+  const detailCells = [
+    address ? { label: 'Ship to', valueHtml: address } : null,
+    order.paymentMethodSummary ? { label: 'Payment method', valueHtml: escapeHtml(order.paymentMethodSummary) } : null,
+  ].filter((cell) => cell !== null)
+
   const bodyHtml = `
-    ${itemsTableHtml(order.items)}
-    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:24px;">
-      ${summaryRow('Subtotal', formatMoney(order.subtotal))}
-      ${summaryRow('Shipping', formatMoney(order.shippingCost))}
-      ${order.tax > 0 ? summaryRow('Tax', formatMoney(order.tax)) : ''}
-      ${summaryRow('Total', formatMoney(order.total), true)}
-    </table>
+    ${itemsSectionHtml('In this order', order.items)}
+    ${section(
+      totalsHtml([
+        { label: 'Subtotal', value: formatMoney(order.subtotal) },
+        { label: 'Shipping', value: formatMoney(order.shippingCost) },
+        order.tax > 0 ? { label: 'Tax', value: formatMoney(order.tax) } : null,
+        { label: 'Total', value: formatMoney(order.total), strong: true },
+      ]),
+      14,
+    )}
     ${
       order.combineWithOrderNo != null
-        ? `<div style="margin-top:4px;margin-bottom:20px;padding:12px 16px;background:#eaf2ee;border:1px solid #c7ddd1;border-radius:2px;">
-             <p style="font-size:13px;line-height:1.6;color:${INK};margin:0;">You chose free shipping on this order by waiting for it to ship together with order <strong>#EBI-${order.combineWithOrderNo}</strong>. It'll ship once that one does.</p>
-           </div>`
+        ? section(
+            noticeHtml(
+              `You chose free shipping on this order by waiting for it to ship together with order <strong>#EBI-${order.combineWithOrderNo}</strong>. It'll ship once that one does.`,
+              NOTICE_GREEN,
+            ),
+            20,
+          )
         : ''
     }
-    ${address ? labelValueBlock('Ship to', address) : ''}
-    ${order.paymentMethodSummary ? labelValueBlock('Payment method', escapeHtml(order.paymentMethodSummary)) : ''}
+    ${detailCells.length ? section(detailsBoxHtml(detailCells), 28) : ''}
     ${
       order.hasPreorder
-        ? `<div style="margin-top:4px;margin-bottom:20px;padding:12px 16px;background:#fdf3ec;border:1px solid #e6c4a8;border-radius:2px;">
-             <p style="font-size:13px;line-height:1.6;color:${INK};margin:0;">This order includes a pre-order item, charged in full today. Cancellations before shipment are subject to a 5% fee. See our <a href="${SITE_URL}/refund-policy" style="color:${INK};font-weight:600;">Refund Policy</a> for details.</p>
-           </div>`
+        ? section(
+            noticeHtml(
+              `This order includes a pre-order item, charged in full today. Cancellations before shipment are subject to a 5% fee. See our <a href="${SITE_URL}/refund-policy" style="color:${INK};font-weight:600;">Refund Policy</a> for details.`,
+              NOTICE_AMBER,
+            ),
+            20,
+          )
         : ''
     }
-    <a href="${orderUrl}" style="display:inline-block;background:${INK};color:#ffffff;font-size:13px;font-weight:700;text-decoration:none;padding:12px 22px;border-radius:3px;">View your order</a>
-    <p style="font-size:12.5px;color:${MUTED};margin:20px 0 0;">Questions about this order? Email us at <a href="mailto:eastblueinternational@gmail.com" style="color:${MUTED};">eastblueinternational@gmail.com</a>.</p>
+    ${section(paragraph(`Questions about this order? Email us at <a href="mailto:eastblueinternational@gmail.com" style="color:${MUTED};">eastblueinternational@gmail.com</a>.`, { size: 13 }), 24)}
   `
 
   const html = emailShell({
@@ -257,6 +366,7 @@ export async function sendOrderConfirmationEmail(order: OrderEmailData): Promise
     badgeColor: GREEN,
     heading: `Thanks for your order${order.firstName ? `, ${escapeHtml(order.firstName)}` : ''}!`,
     intro: `Order #EBI-${order.orderNo} is confirmed — here's what's in it.`,
+    primaryButton: { label: 'View your order', url: orderUrl },
     bodyHtml,
   })
 
@@ -352,38 +462,42 @@ export async function sendOrderCancellationEmail(order: OrderCancellationEmailDa
 
   if (!apiKey || !from || !order.email) return { status: 'skipped' }
 
-  const summaryRow = (label: string, value: string, strong = false) => `
-    <tr>
-      <td style="padding:4px 0;font-size:${strong ? '14px' : '12.5px'};font-weight:${strong ? '700' : '400'};color:${strong ? INK : MUTED};${strong ? `border-top:1px solid ${INK};padding-top:10px;` : ''}">${label}</td>
-      <td style="padding:4px 0;font-size:${strong ? '14px' : '12.5px'};font-weight:${strong ? '700' : '400'};color:${strong ? INK : MUTED};text-align:right;${strong ? `border-top:1px solid ${INK};padding-top:10px;` : ''}">${value}</td>
-    </tr>`
-
   const orderUrl = await orderViewUrl(order.orderId)
 
   const bodyHtml = `
-    ${itemsTableHtml(order.items)}
-    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:24px;">
-      ${summaryRow('Subtotal', formatMoney(order.subtotal))}
-      ${summaryRow('Shipping', formatMoney(order.shippingCost))}
-      ${order.tax > 0 ? summaryRow('Tax', formatMoney(order.tax)) : ''}
-      ${summaryRow('Order total', formatMoney(order.total), true)}
-      ${order.cancellationFee > 0 ? summaryRow('Cancellation fee', `-${formatMoney(order.cancellationFee)}`) : ''}
-    </table>
-    <div style="margin-top:4px;margin-bottom:20px;padding:12px 16px;background:#eaf2ee;border:1px solid #c7ddd1;border-radius:2px;">
-      <p style="font-size:13px;line-height:1.6;color:${INK};margin:0;"><strong>${formatMoney(order.refundedAmount)} has been refunded</strong> to your original payment method${
-        order.cancellationFee > 0 ? ', after the cancellation fee shown above' : ''
-      }. Refunds typically take 5–10 business days to appear on your statement, depending on your bank.</p>
-    </div>
+    ${itemsSectionHtml('In this order', order.items)}
+    ${section(
+      totalsHtml([
+        { label: 'Subtotal', value: formatMoney(order.subtotal) },
+        { label: 'Shipping', value: formatMoney(order.shippingCost) },
+        order.tax > 0 ? { label: 'Tax', value: formatMoney(order.tax) } : null,
+        { label: 'Order total', value: formatMoney(order.total), strong: true },
+        order.cancellationFee > 0 ? { label: 'Cancellation fee', value: `-${formatMoney(order.cancellationFee)}` } : null,
+      ]),
+      14,
+    )}
+    ${section(
+      noticeHtml(
+        `<strong>${formatMoney(order.refundedAmount)} has been refunded</strong> to your original payment method${
+          order.cancellationFee > 0 ? ', after the cancellation fee shown above' : ''
+        }. Refunds typically take 5–10 business days to appear on your statement, depending on your bank.`,
+        NOTICE_GREEN,
+      ),
+      20,
+    )}
     ${
       order.creditRestored > 0
-        ? `<div style="margin-top:4px;margin-bottom:20px;padding:12px 16px;background:#eaf2ee;border:1px solid #c7ddd1;border-radius:2px;">
-      <p style="font-size:13px;line-height:1.6;color:${INK};margin:0;"><strong>${formatMoney(order.creditRestored)} in store credit has been restored</strong> to your account and is ready to use on a future order.</p>
-    </div>`
+        ? section(
+            noticeHtml(
+              `<strong>${formatMoney(order.creditRestored)} in store credit has been restored</strong> to your account and is ready to use on a future order.`,
+              NOTICE_GREEN,
+            ),
+            12,
+          )
         : ''
     }
-    ${order.paymentMethodSummary ? labelValueBlock('Refunded to', escapeHtml(order.paymentMethodSummary)) : ''}
-    <a href="${orderUrl}" style="display:inline-block;background:${INK};color:#ffffff;font-size:13px;font-weight:700;text-decoration:none;padding:12px 22px;border-radius:3px;">View your order</a>
-    <p style="font-size:12.5px;color:${MUTED};margin:20px 0 0;">Questions about this cancellation? Email us at <a href="mailto:eastblueinternational@gmail.com" style="color:${MUTED};">eastblueinternational@gmail.com</a>.</p>
+    ${order.paymentMethodSummary ? section(detailsBoxHtml([{ label: 'Refunded to', valueHtml: escapeHtml(order.paymentMethodSummary) }]), 20) : ''}
+    ${section(paragraph(`Questions about this cancellation? Email us at <a href="mailto:eastblueinternational@gmail.com" style="color:${MUTED};">eastblueinternational@gmail.com</a>.`, { size: 13 }), 24)}
   `
 
   const html = emailShell({
@@ -391,6 +505,7 @@ export async function sendOrderCancellationEmail(order: OrderCancellationEmailDa
     badgeColor: AMBER,
     heading: `Order #EBI-${order.orderNo} has been cancelled`,
     intro: `${order.firstName ? `Hi ${escapeHtml(order.firstName)} — ` : ''}here's a summary of what was cancelled and refunded.`,
+    primaryButton: { label: 'View your order', url: orderUrl },
     bodyHtml,
   })
 
@@ -467,10 +582,9 @@ export async function sendStoreCreditEmail(data: StoreCreditEmailData): Promise<
   // can go stale by the time they read the email (another grant, another
   // order). The button sends them to log in and see the real, current
   // balance on /account/orders instead of trusting a snapshot.
-  const bodyHtml = `
-    ${labelValueBlock('Amount added', formatMoney(data.amount))}
-    <p style="font-size:13px;color:${MUTED};margin:0 0 24px;">It'll apply automatically at your next checkout — no code needed.</p>
-    <a href="${LOGIN_URL}" style="display:inline-block;background:${INK};color:#ffffff;font-size:13px;font-weight:700;text-decoration:none;padding:12px 22px;border-radius:3px;">Log in to your account</a>
+  const leadHtml = `
+    ${section(detailsBoxHtml([{ label: 'Amount added', valueHtml: formatMoney(data.amount), large: true }]), 24)}
+    ${section(paragraph(`It'll apply automatically at your next checkout — no code needed.`, { size: 13.5 }), 14)}
   `
 
   const html = emailShell({
@@ -478,7 +592,8 @@ export async function sendStoreCreditEmail(data: StoreCreditEmailData): Promise<
     badgeColor: GREEN,
     heading: `You've got store credit${data.name ? `, ${escapeHtml(data.name)}` : ''}!`,
     intro: `From EBI Collectibles — ${formatMoney(data.amount)} has been added to your account.`,
-    bodyHtml,
+    leadHtml,
+    primaryButton: { label: 'Log in to your account', url: LOGIN_URL },
   })
 
   const text = [
@@ -534,10 +649,9 @@ export async function sendPendingStoreCreditEmail(data: PendingStoreCreditEmailD
 
   const signupUrl = `${SITE_URL}/account/signup?email=${encodeURIComponent(data.email)}`
 
-  const bodyHtml = `
-    ${labelValueBlock('Amount set aside', formatMoney(data.amount))}
-    <p style="font-size:13px;color:${MUTED};margin:0 0 24px;">Create a free account with this email address and it'll be added to your balance automatically — no code needed, it'll just be there.</p>
-    <a href="${signupUrl}" style="display:inline-block;background:${INK};color:#ffffff;font-size:13px;font-weight:700;text-decoration:none;padding:12px 22px;border-radius:3px;">Create your account</a>
+  const leadHtml = `
+    ${section(detailsBoxHtml([{ label: 'Amount set aside', valueHtml: formatMoney(data.amount), large: true }]), 24)}
+    ${section(paragraph(`Create a free account with this email address and it'll be added to your balance automatically — no code needed, it'll just be there.`, { size: 13.5 }), 14)}
   `
 
   const html = emailShell({
@@ -545,7 +659,8 @@ export async function sendPendingStoreCreditEmail(data: PendingStoreCreditEmailD
     badgeColor: GREEN,
     heading: `You've got store credit waiting!`,
     intro: `From EBI Collectibles — ${formatMoney(data.amount)} is set aside for you at ${escapeHtml(data.email)}.`,
-    bodyHtml,
+    leadHtml,
+    primaryButton: { label: 'Create your account', url: signupUrl },
   })
 
   const text = [
@@ -606,17 +721,18 @@ export async function sendShippingDelayEmail(data: DelayEmailData): Promise<Emai
   const orderUrl = await orderViewUrl(data.orderId)
   const messageHtml = escapeHtml(data.message).replace(/\n/g, '<br>')
 
-  const bodyHtml = `
-    <p style="font-size:13.5px;color:${INK};line-height:1.6;margin:0 0 20px;">${messageHtml}</p>
-    ${itemsTableHtml(data.items, { showPrice: false })}
-    <a href="${orderUrl}" style="display:inline-block;background:${INK};color:#ffffff;font-size:13px;font-weight:700;text-decoration:none;padding:12px 22px;border-radius:3px;">View your order</a>
-  `
+  // The admin's own explanation leads, right under the intro that points
+  // to it ("here's what's going on"), then the button.
+  const leadHtml = section(paragraph(messageHtml, { size: 14.5, color: INK }), 18)
+  const bodyHtml = itemsSectionHtml('In this order', data.items, { showPrice: false })
 
   const html = emailShell({
     badgeLabel: 'Order update',
     badgeColor: AMBER,
     heading: `An update on your order${data.firstName ? `, ${escapeHtml(data.firstName)}` : ''}`,
     intro: `Order #EBI-${data.orderNo} hasn't shipped yet — here's what's going on.`,
+    leadHtml,
+    primaryButton: { label: 'View your order', url: orderUrl },
     bodyHtml,
   })
 
@@ -677,17 +793,15 @@ export async function sendCheckoutIssueEmail(data: CheckoutIssueEmailData): Prom
   const shopUrl = `${SITE_URL}/shop`
   const messageHtml = escapeHtml(data.message).replace(/\n/g, '<br>')
 
-  const bodyHtml = `
-    <p style="font-size:13.5px;color:${INK};line-height:1.6;margin:0 0 24px;">${messageHtml}</p>
-    <a href="${shopUrl}" style="display:inline-block;background:${INK};color:#ffffff;font-size:13px;font-weight:700;text-decoration:none;padding:12px 22px;border-radius:3px;">Shop again</a>
-  `
+  const leadHtml = section(paragraph(messageHtml, { size: 14.5, color: INK }), 18)
 
   const html = emailShell({
     badgeLabel: 'Checkout issue resolved',
     badgeColor: GREEN,
     heading: `Sorry about that${data.firstName ? `, ${escapeHtml(data.firstName)}` : ''}`,
     intro: `We noticed your checkout didn't go through recently — here's what happened.`,
-    bodyHtml,
+    leadHtml,
+    primaryButton: { label: 'Shop again', url: shopUrl },
   })
 
   const text = [
@@ -746,17 +860,21 @@ export async function sendNotifyMeAlertEmail(data: NotifyMeAlertData): Promise<E
   // Unsubscribe link and the one-click headers (CAN-SPAM, Gmail/Yahoo).
   const extras = await marketingEmailExtras(data.email)
 
-  const bodyHtml = `
-    ${itemThumbnailHtml({ productName: data.productName, qty: 1, unitPrice: data.price, img: data.productImg })}
-    <a href="${productUrl}" style="display:inline-block;background:${INK};color:#ffffff;font-size:13px;font-weight:700;text-decoration:none;padding:12px 22px;border-radius:3px;">Shop now</a>
-  `
+  // Product photo large, on its white tile (photos are shot on white).
+  const leadHtml = data.productImg
+    ? section(
+        `<table role="presentation" width="100%" cellpadding="0" cellspacing="0" bgcolor="#ffffff" style="background:#ffffff;border:1px solid ${BORDER};border-radius:8px;"><tr><td align="center" style="padding:4px;"><img src="${escapeHtml(data.productImg)}" width="500" alt="${escapeHtml(data.productName)}" style="display:block;width:100%;max-width:500px;height:auto;margin:0 auto;border:0;"></td></tr></table>`,
+        22,
+      )
+    : ''
 
   const html = emailShell({
     badgeLabel: 'Now available',
     badgeColor: GREEN,
     heading: `${escapeHtml(data.productName)} is here!`,
     intro: `You asked to be notified — it's live now.`,
-    bodyHtml,
+    leadHtml,
+    primaryButton: { label: 'Shop now', url: productUrl, inline: true },
     listFooterHtml: extras.footerHtml,
   })
 
@@ -796,7 +914,23 @@ export async function sendNotifyMeAlertEmail(data: NotifyMeAlertData): Promise<E
   return { status: 'sent', resendId: sentJson?.id }
 }
 
+// Small grey box under the "Track" button: carrier as the label, tracking
+// number in mono, linked to the carrier's own tracking page when we know it.
+function trackingBoxHtml(carrier: string | null, trackingNumber: string | null, trackingUrl: string | null): string {
+  if (!trackingNumber) return ''
+  const number = escapeHtml(trackingNumber)
+  const value = trackingUrl ? `<a href="${trackingUrl}" style="color:${INK};text-decoration:underline;">${number}</a>` : number
+  const label = carrier && carrier !== 'Other' ? `${escapeHtml(carrier)} &middot; Tracking number` : 'Tracking number'
+  return section(
+    `<table role="presentation" width="100%" cellpadding="0" cellspacing="0" bgcolor="${SURFACE}" style="background:${SURFACE};border-radius:6px;"><tr><td style="padding:14px 18px;">${monoLabel(label)}<div style="${MONO_FONT}font-size:13.5px;color:${INK};padding-top:6px;letter-spacing:.04em;word-break:break-all;">${value}</div></td></tr></table>`,
+    16,
+  )
+}
+
 interface ShipmentEmailData {
+  // The site order this shipment belongs to — the "Track your order" button
+  // opens it through the signed order link (see order-link.ts).
+  orderId: string
   orderNo: number
   email: string | null
   firstName: string | null
@@ -828,18 +962,13 @@ export async function sendShipmentEmail(order: ShipmentEmailData): Promise<Email
   if (!apiKey || !from || !order.email) return { status: 'skipped' }
 
   const trackingUrl = carrierTrackingUrl(order.carrier, order.trackingNumber)
-  const trackingValue = order.trackingNumber
-    ? trackingUrl
-      ? `<a href="${trackingUrl}" style="color:${GREEN};font-weight:600;">${escapeHtml(order.trackingNumber)}</a>`
-      : escapeHtml(order.trackingNumber)
-    : null
+  const orderUrl = await orderViewUrl(order.orderId)
 
   const address = formatAddress(order)
 
   const bodyHtml = `
-    ${itemsTableHtml(order.items, { showPrice: false })}
-    ${trackingValue ? labelValueBlock('Tracking number', trackingValue) : ''}
-    ${address ? labelValueBlock('Ship to', address) : ''}
+    ${itemsSectionHtml('In this package', order.items, { showPrice: false })}
+    ${address ? section(detailsBoxHtml([{ label: 'Ship to', valueHtml: address }]), 28) : ''}
   `
 
   const badgeLabel = order.isFinalShipment ? 'Shipped' : 'Partially shipped'
@@ -850,7 +979,15 @@ export async function sendShipmentEmail(order: ShipmentEmailData): Promise<Email
     ? `Order #EBI-${order.orderNo} has shipped.`
     : `This is one shipment from order #EBI-${order.orderNo} — the rest is still on its way separately.`
 
-  const html = emailShell({ badgeLabel, badgeColor: GREEN, heading, intro, bodyHtml })
+  const html = emailShell({
+    badgeLabel,
+    badgeColor: GREEN,
+    heading,
+    intro,
+    primaryButton: { label: 'Track your order', url: orderUrl },
+    afterButtonHtml: trackingBoxHtml(order.carrier, order.trackingNumber, trackingUrl),
+    bodyHtml,
+  })
 
   const itemsLine = order.items.map((item) => `${item.qty}× ${item.productName}`).join(', ')
   const text = [
@@ -860,6 +997,8 @@ export async function sendShipmentEmail(order: ShipmentEmailData): Promise<Email
     trackingUrl ?? null,
     '',
     address ? `Ship to:\n${address.replace(/<br>/g, '\n')}` : null,
+    '',
+    `Track your order: ${orderUrl}`,
   ]
     .filter((line) => line !== null)
     .join('\n')
@@ -926,18 +1065,12 @@ export async function sendMarketplaceShipmentEmail(order: MarketplaceShipmentEma
   if (!apiKey || !from || !order.email) return { status: 'skipped' }
 
   const trackingUrl = carrierTrackingUrl(order.carrier, order.trackingNumber)
-  const trackingValue = order.trackingNumber
-    ? trackingUrl
-      ? `<a href="${trackingUrl}" style="color:${GREEN};font-weight:600;">${escapeHtml(order.trackingNumber)}</a>`
-      : escapeHtml(order.trackingNumber)
-    : null
 
   const address = formatAddress(order)
 
   const bodyHtml = `
-    ${itemsTableHtml(order.items, { showPrice: false })}
-    ${trackingValue ? labelValueBlock('Tracking number', trackingValue) : ''}
-    ${address ? labelValueBlock('Ship to', address) : ''}
+    ${itemsSectionHtml('In this package', order.items, { showPrice: false })}
+    ${address ? section(detailsBoxHtml([{ label: 'Ship to', valueHtml: address }]), 28) : ''}
   `
 
   const sourceName = escapeHtml(order.sourceName)
@@ -953,7 +1086,18 @@ export async function sendMarketplaceShipmentEmail(order: MarketplaceShipmentEma
       ? `This is one shipment from order ${escapeHtml(order.referenceId)} — the rest is still on its way separately.`
       : 'This is one shipment from your order — the rest is still on its way separately.'
 
-  const html = emailShell({ badgeLabel, badgeColor: GREEN, heading, intro, bodyHtml })
+  // Marketplace orders aren't site orders, so there's no order page to link
+  // to: the main button goes straight to the carrier's tracking page, when
+  // the carrier has one.
+  const html = emailShell({
+    badgeLabel,
+    badgeColor: GREEN,
+    heading,
+    intro,
+    primaryButton: trackingUrl ? { label: 'Track your order', url: trackingUrl } : undefined,
+    afterButtonHtml: trackingBoxHtml(order.carrier, order.trackingNumber, trackingUrl),
+    bodyHtml,
+  })
 
   const itemsLine = order.items.map((item) => `${item.qty}× ${item.productName}`).join(', ')
   const text = [
@@ -999,6 +1143,14 @@ export async function sendMarketplaceShipmentEmail(order: MarketplaceShipmentEma
   return { status: 'sent', resendId: sentJson?.id }
 }
 
+// The one-time code, big and in mono, in the grey box.
+function codeBoxHtml(code: string): string {
+  return section(
+    `<table role="presentation" width="100%" cellpadding="0" cellspacing="0" bgcolor="${SURFACE}" style="background:${SURFACE};border-radius:6px;"><tr><td align="center" style="padding:20px 16px;${MONO_FONT}font-size:34px;font-weight:500;letter-spacing:.2em;color:${INK};text-align:center;">${escapeHtml(code)}</td></tr></table>`,
+    24,
+  )
+}
+
 // Unlike sendOrderConfirmationEmail, this throws on failure — there's no
 // other way for the customer to get the code, so the caller (signup/login)
 // should surface the error instead of silently leaving them stuck.
@@ -1011,14 +1163,11 @@ export async function sendVerificationCodeEmail(opts: { email: string; code: str
     throw new Error('Email sending is not configured.')
   }
 
-  const html = `
-  <div style="font-family:Helvetica,Arial,sans-serif;max-width:480px;margin:0 auto;padding:24px 20px;">
-    <div style="font-size:12px;letter-spacing:0.08em;text-transform:uppercase;color:#5a6875;font-weight:700;">EBI Collectibles</div>
-    <h1 style="font-size:20px;margin:12px 0 4px;color:#131b28;">Verify your email</h1>
-    <p style="font-size:13.5px;color:#5a6875;margin:0 0 20px;">Enter this code to finish setting up your account. It expires in 15 minutes.</p>
-    <div style="font-family:'Courier New',monospace;font-size:32px;font-weight:700;letter-spacing:0.2em;color:#131b28;background:#f6f7f8;padding:16px 20px;text-align:center;border-radius:4px;">${opts.code}</div>
-    <p style="font-size:12px;color:#5a6875;margin:20px 0 0;">If you didn't request this, you can ignore this email.</p>
-  </div>`
+  const html = emailShell({
+    heading: 'Verify your email',
+    intro: 'Enter this code to finish setting up your account. It expires in 15 minutes.',
+    leadHtml: `${codeBoxHtml(opts.code)}${section(paragraph(`If you didn't request this, you can ignore this email.`, { size: 13 }), 20)}`,
+  })
 
   const text = `Your EBI Collectibles verification code is ${opts.code}. It expires in 15 minutes.`
 
@@ -1051,14 +1200,11 @@ export async function sendPasswordResetCodeEmail(opts: { email: string; code: st
     throw new Error('Email sending is not configured.')
   }
 
-  const html = `
-  <div style="font-family:Helvetica,Arial,sans-serif;max-width:480px;margin:0 auto;padding:24px 20px;">
-    <div style="font-size:12px;letter-spacing:0.08em;text-transform:uppercase;color:#5a6875;font-weight:700;">EBI Collectibles</div>
-    <h1 style="font-size:20px;margin:12px 0 4px;color:#131b28;">Reset your password</h1>
-    <p style="font-size:13.5px;color:#5a6875;margin:0 0 20px;">Enter this code to set a new password. It expires in 15 minutes.</p>
-    <div style="font-family:'Courier New',monospace;font-size:32px;font-weight:700;letter-spacing:0.2em;color:#131b28;background:#f6f7f8;padding:16px 20px;text-align:center;border-radius:4px;">${opts.code}</div>
-    <p style="font-size:12px;color:#5a6875;margin:20px 0 0;">If you didn't request this, you can ignore this email — your password won't change.</p>
-  </div>`
+  const html = emailShell({
+    heading: 'Reset your password',
+    intro: 'Enter this code to set a new password. It expires in 15 minutes.',
+    leadHtml: `${codeBoxHtml(opts.code)}${section(paragraph(`If you didn't request this, you can ignore this email — your password won't change.`, { size: 13 }), 20)}`,
+  })
 
   const text = `Your EBI Collectibles password reset code is ${opts.code}. It expires in 15 minutes.`
 

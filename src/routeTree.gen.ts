@@ -14,6 +14,7 @@ import { Route as BestSellingRouteImport } from './routes/best-selling'
 import { Route as CartRouteImport } from './routes/cart'
 import { Route as CheckoutRouteImport } from './routes/checkout'
 import { Route as CookiePolicyRouteImport } from './routes/cookie-policy'
+import { Route as EmailPreferencesRouteImport } from './routes/email-preferences'
 import { Route as HomePreviewRouteImport } from './routes/home-preview'
 import { Route as NewAndUpcomingRouteImport } from './routes/new-and-upcoming'
 import { Route as PrivacyRouteImport } from './routes/privacy'
@@ -208,6 +209,11 @@ const CheckoutRoute = CheckoutRouteImport.update({
 const CookiePolicyRoute = CookiePolicyRouteImport.update({
   id: '/cookie-policy',
   path: '/cookie-policy',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EmailPreferencesRoute = EmailPreferencesRouteImport.update({
+  id: '/email-preferences',
+  path: '/email-preferences',
   getParentRoute: () => rootRouteImport,
 } as any)
 const HomePreviewRoute = HomePreviewRouteImport.update({
@@ -1161,6 +1167,7 @@ export interface FileRoutesByFullPath {
   '/cart': typeof CartRoute
   '/checkout': typeof CheckoutRoute
   '/cookie-policy': typeof CookiePolicyRoute
+  '/email-preferences': typeof EmailPreferencesRoute
   '/home-preview': typeof HomePreviewRoute
   '/new-and-upcoming': typeof NewAndUpcomingRoute
   '/privacy': typeof PrivacyRoute
@@ -1338,6 +1345,7 @@ export interface FileRoutesByTo {
   '/cart': typeof CartRoute
   '/checkout': typeof CheckoutRoute
   '/cookie-policy': typeof CookiePolicyRoute
+  '/email-preferences': typeof EmailPreferencesRoute
   '/home-preview': typeof HomePreviewRoute
   '/new-and-upcoming': typeof NewAndUpcomingRoute
   '/privacy': typeof PrivacyRoute
@@ -1516,6 +1524,7 @@ export interface FileRoutesById {
   '/cart': typeof CartRoute
   '/checkout': typeof CheckoutRoute
   '/cookie-policy': typeof CookiePolicyRoute
+  '/email-preferences': typeof EmailPreferencesRoute
   '/home-preview': typeof HomePreviewRoute
   '/new-and-upcoming': typeof NewAndUpcomingRoute
   '/privacy': typeof PrivacyRoute
@@ -1695,6 +1704,7 @@ export interface FileRouteTypes {
     | '/cart'
     | '/checkout'
     | '/cookie-policy'
+    | '/email-preferences'
     | '/home-preview'
     | '/new-and-upcoming'
     | '/privacy'
@@ -1872,6 +1882,7 @@ export interface FileRouteTypes {
     | '/cart'
     | '/checkout'
     | '/cookie-policy'
+    | '/email-preferences'
     | '/home-preview'
     | '/new-and-upcoming'
     | '/privacy'
@@ -2049,6 +2060,7 @@ export interface FileRouteTypes {
     | '/cart'
     | '/checkout'
     | '/cookie-policy'
+    | '/email-preferences'
     | '/home-preview'
     | '/new-and-upcoming'
     | '/privacy'
@@ -2227,6 +2239,7 @@ export interface RootRouteChildren {
   CartRoute: typeof CartRoute
   CheckoutRoute: typeof CheckoutRoute
   CookiePolicyRoute: typeof CookiePolicyRoute
+  EmailPreferencesRoute: typeof EmailPreferencesRoute
   HomePreviewRoute: typeof HomePreviewRoute
   NewAndUpcomingRoute: typeof NewAndUpcomingRoute
   PrivacyRoute: typeof PrivacyRoute
@@ -2434,6 +2447,13 @@ declare module '@tanstack/react-router' {
       path: '/cookie-policy'
       fullPath: '/cookie-policy'
       preLoaderRoute: typeof CookiePolicyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/email-preferences': {
+      id: '/email-preferences'
+      path: '/email-preferences'
+      fullPath: '/email-preferences'
+      preLoaderRoute: typeof EmailPreferencesRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/home-preview': {
@@ -3635,6 +3655,7 @@ const rootRouteChildren: RootRouteChildren = {
   CartRoute: CartRoute,
   CheckoutRoute: CheckoutRoute,
   CookiePolicyRoute: CookiePolicyRoute,
+  EmailPreferencesRoute: EmailPreferencesRoute,
   HomePreviewRoute: HomePreviewRoute,
   NewAndUpcomingRoute: NewAndUpcomingRoute,
   PrivacyRoute: PrivacyRoute,
