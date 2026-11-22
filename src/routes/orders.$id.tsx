@@ -50,7 +50,7 @@ function OrderLinkPage() {
         <div style={{ fontSize: 13, lineHeight: 1.5, color: '#5a6875', marginTop: 3 }}>
           {res.hasAccount
             ? 'Order history, tracking and store credit, all in your account.'
-            : 'Create a free account with the email you ordered with. This order and any past ones are added automatically.'}
+            : 'Create a free account with the email you ordered with, and this order and any past ones are added automatically.'}
         </div>
       </div>
       {res.hasAccount ? (
@@ -58,9 +58,14 @@ function OrderLinkPage() {
           Sign in
         </Link>
       ) : (
-        <Link to="/account/signup" style={btn}>
-          Create account
-        </Link>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 14, flexWrap: 'wrap' }}>
+          <Link to="/account/signup" style={btn}>
+            Create account
+          </Link>
+          <Link to="/account/login" search={{ redirect: '/account/orders' }} style={{ fontSize: 13, fontWeight: 600, color: '#131b28' }}>
+            Have one? Sign in
+          </Link>
+        </div>
       )}
     </div>
   )

@@ -75,10 +75,20 @@ export const getOrderByLink = createServerFn({ method: 'GET' })
       combineWithOrderStatus = anchor?.fulfillmentStatus ?? null
     }
 
+    // An account can exist under the order's email even when this order
+    // was placed as a guest, so check by email too (shown as Sign in).
+    let hasAccount = !!order.userId
+    if (!hasAccount && order.email) {
+      const { users } = await import('~/lib/db/schema')
+      const { sql } = await import('drizzle-orm')
+      const [u] = await db.select({ id: users.id }).from(users).where(sql`lower(${users.email}) = lower(${order.email})`).limit(1)
+      hasAccount = !!u
+    }
+
     // Listed field by field (never ...order) so nothing private rides along.
     return {
       status: 'ok' as const,
-      hasAccount: !!order.userId,
+      hasAccount,
       order: {
         id: order.id,
         orderNo: order.orderNo,
