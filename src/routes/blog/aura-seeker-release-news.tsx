@@ -171,7 +171,7 @@ function AuraSeekerPost() {
         updated={status.liveAt}
         wide
         post={post}
-        lede="The Japanese Pokémon TCG set Aura Seeker (M7) releases on November 27, 2026. This post covers what is known so far: the pack and box, the 78-card main set, Mega Lucario Z ex and the first Special Art Rare."
+        lede="The Japanese Pokémon TCG set Aura Seeker (M7) releases on November 27, 2026. This post covers what we know so far: the pack and box, the 78-card main set, Mega Lucario Z ex and the first Special Art Rare."
         cta={{
           heading: 'More new releases',
           body: 'See what is new and what is coming up at EBI Collectibles.',
