@@ -15,7 +15,7 @@ export const Route = createFileRoute('/orders/$id')({
     if (res.status === 'owner') throw redirect({ to: '/account/orders/$id', params: { id: res.id } })
     return res
   },
-  head: () => ({ meta: [{ title: 'Your order | EBI Collectibles' }, { name: 'robots', content: 'noindex, nofollow' }] }),
+  head: () => ({ meta: [{ title: 'Your order | EBI Collectibles' }, { name: 'robots', content: 'noindex, nofollow' }, { name: 'referrer', content: 'no-referrer' }] }),
   component: OrderLinkPage,
 })
 
