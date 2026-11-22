@@ -35,6 +35,13 @@ function withSecurityHeaders(response: Response): Response {
   // Report-only: browsers report what this policy would block and block
   // nothing. See src/server/csp.ts.
   headers.set('Content-Security-Policy-Report-Only', CSP_REPORT_ONLY)
+  // Lets Google show a large image preview (the picture beside a result,
+  // and in Discover). Google combines this with each page's own robots
+  // meta tag, so a noindex page stays noindex. Pages that set their own
+  // X-Robots-Tag keep it.
+  if (!headers.has('X-Robots-Tag') && (headers.get('content-type') ?? '').includes('text/html')) {
+    headers.set('X-Robots-Tag', 'max-image-preview:large')
+  }
   return new Response(response.body, { status: response.status, statusText: response.statusText, headers })
 }
 
