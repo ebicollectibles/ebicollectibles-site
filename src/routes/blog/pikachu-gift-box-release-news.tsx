@@ -84,11 +84,11 @@ const FAQ = [
   },
   {
     q: 'Can I pre-order the Radiant Crystal Pikachu gift box?',
-    a: 'We plan to open pre-orders at EBI Collectibles. Leave your email in the pre-orders section of this post and we will write to you as soon as they open. We will announce our price closer to the release date.',
+    a: 'We plan to open pre-orders at EBI Collectibles. Join the email list in the pre-orders section of this post to be notified when they open. Our price is not set yet.',
   },
   {
     q: 'How much will the Radiant Crystal Pikachu gift box cost?',
-    a: 'We have not set our price yet. We will announce it closer to the release date on December 4, 2026.',
+    a: 'Our price is not set yet. The box releases on December 4, 2026.',
   },
   {
     q: 'What language are the cards?',
@@ -425,10 +425,10 @@ function PikachuGiftBoxPost() {
 
         <h2 id="pre-orders">Pre-orders at EBI Collectibles</h2>
         <p>
-          We plan to open pre-orders for the Radiant Crystal Pikachu gift box here at EBI Collectibles. Leave your email below and we will write to
-          you as soon as they open. Orders ship from the US.
+          We plan to open pre-orders for the Radiant Crystal Pikachu gift box here at EBI Collectibles. Join the email list below to be notified when
+          they open. Orders ship from the US.
         </p>
-        <p>We will announce our price closer to the release date on December 4, 2026.</p>
+        <p>Our price is not set yet. The box releases on December 4, 2026.</p>
         <BlogEmailSignup
           heading="Get an email when pre-orders open"
           body="One email when the Pikachu gift box is ready to pre-order."
