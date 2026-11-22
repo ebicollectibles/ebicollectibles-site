@@ -37,6 +37,8 @@ function emailFooterHtml(): string {
           </p>
           <p style="font-size:11.5px;color:${MUTED};margin:0 0 10px;">
             <a href="https://www.instagram.com/ebicollectibles" style="color:${MUTED};text-decoration:underline;">Instagram</a>
+            &nbsp;&middot;&nbsp;
+            <a href="https://x.com/ebicollectibles" style="color:${MUTED};text-decoration:underline;">X</a>
           </p>
           <p style="font-size:10.5px;color:${MUTED};margin:0;">&copy; ${year} EBI Collectibles &middot; Not affiliated with, or endorsed by, any card publisher.</p>
         </td>
