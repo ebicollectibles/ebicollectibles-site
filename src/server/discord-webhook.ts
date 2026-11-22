@@ -71,12 +71,11 @@ export async function sendDropnotifyAlert(product: DropnotifyAlertProduct, trigg
 
   // The price customers pay comes from Square; the site's stored price is
   // never used for Square-linked products (it can be 0 or out of date).
-  // Read it live, and show the site's was-price beside it when on sale.
+  // Read it live.
   let price = product.price
-  let wasPrice: number | null = null
   try {
     const [row] = await db
-      .select({ squareVariationId: productsTable.squareVariationId, compareAtPrice: productsTable.compareAtPrice })
+      .select({ squareVariationId: productsTable.squareVariationId })
       .from(productsTable)
       .where(eq(productsTable.id, product.id))
       .limit(1)
@@ -85,7 +84,6 @@ export async function sendDropnotifyAlert(product: DropnotifyAlertProduct, trigg
       const live = (await getSquareCatalogPrices([row.squareVariationId]))[row.squareVariationId]
       if (typeof live === 'number' && live > 0) price = live
     }
-    if (row?.compareAtPrice != null && row.compareAtPrice > price) wasPrice = row.compareAtPrice
   } catch (err) {
     console.error('DropNotify: could not read the live Square price, using the stored one:', err)
   }
@@ -93,7 +91,8 @@ export async function sendDropnotifyAlert(product: DropnotifyAlertProduct, trigg
     await logAttempt('skipped', 'No price set (Square has no fixed price for this product)')
     return
   }
-  const priceText = wasPrice ? `~~$${wasPrice.toFixed(2)}~~ **$${price.toFixed(2)}**` : `**$${price.toFixed(2)}**`
+  // Just the price people pay; the owner doesn't want a crossed-out was-price here.
+  const priceText = `**$${price.toFixed(2)}**`
 
   const productUrl = `${SITE_URL}/products/${product.id}?ref=${DROPNOTIFY_REF_CODE}`
   const timestamp = new Date().toLocaleString('en-US', {
