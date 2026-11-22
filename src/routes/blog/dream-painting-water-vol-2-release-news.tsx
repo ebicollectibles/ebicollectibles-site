@@ -71,7 +71,6 @@ const TOC = [
   { id: 'in-the-box', label: 'What comes in a box?' },
   { id: 'odds', label: 'What are the odds of the secret figure?' },
   { id: 'vol-1', label: 'How Vol.2 compares with Vol.1' },
-  { id: 'japan', label: 'The Japanese release' },
   { id: 'faq', label: 'FAQ' },
 ]
 
@@ -406,13 +405,6 @@ function DreamPaintingWaterReleasePost() {
           Pokémon China has since used the same idea for the{' '}
           <Link to="/blog/eevee-dream-painting-figures-release-news">Dream Painting Eevee &amp; Friends figures</Link> and the{' '}
           <Link to="/blog/pikachu-dream-painting-figures-release-news">Dream Painting Pikachu figures</Link>.
-        </p>
-
-        <h2 id="japan">The Japanese release</h2>
-        <p>
-          A Japanese version, <span lang="ja">カードイラストフィギュアコレクション みずべのポケモン</span>, went on sale on Pokémon Center
-          Online in Japan on August 27, 2026, at ¥1,800 including tax. Pokémon Center Online lists a figure, a display stand and a card in
-          each box, with no booster packs. According to 52poke, the Japanese cards keep their original Japanese collector numbers.
         </p>
 
         <h2 id="faq">FAQ</h2>
