@@ -457,9 +457,7 @@ function ChineseGemPackHitRatesPost() {
                     </Link>
                   </td>
                   <td>4, all holo</td>
-                  <td>
-                    {p.box} ({p.boxNote})
-                  </td>
+                  <td>{p.box}</td>
                   <td>
                     {p.perPack} (1 in {p.oneIn})
                   </td>
@@ -470,8 +468,7 @@ function ChineseGemPackHitRatesPost() {
           </table>
         </div>
         <p className="table-note">
-          Averages, not guarantees. Pokémon China gives the box size for Vol. 1 only; the others are the boxes we stock. Tap a
-          volume or its card count for the full card list.
+          Averages, not guarantees. Tap a volume or its card count for the full card list.
         </p>
 
         <h2 id="top-slot">What the fourth card turns out to be</h2>
