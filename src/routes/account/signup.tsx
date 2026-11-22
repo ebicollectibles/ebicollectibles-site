@@ -181,6 +181,12 @@ function SignupPage() {
         </Link>
       </p>
 
+      {/* Clerk's bot check for sign-ups shows its "verify you're human" box
+          here when the invisible check isn't sure. Without this element a
+          visitor who needs that box gets stuck silently after tapping
+          Google, Discord or Create account. */}
+      <div id="clerk-captcha" style={{ display: 'flex', justifyContent: 'center', marginBottom: 10 }} />
+
       <button type="button" onClick={continueWithGoogle} disabled={googleBusy || discordBusy || !isLoaded} style={googleBtn}>
         <GoogleIcon />
         {googleBusy ? 'Redirecting…' : 'Continue with Google'}

@@ -100,30 +100,23 @@ function totalsHtml(rows: Array<{ label: string; value: string; strong?: boolean
 // same grey block, right under the copyright line.
 function emailFooterHtml(listFooterHtml = ''): string {
   const year = new Date().getFullYear()
-  const strongLink = `color:${INK};text-decoration:none;font-weight:600;`
-  const policyLink = `color:${MUTED};text-decoration:underline;`
+  // One type scale for the whole footer: small mono labels, 12px links.
+  const head = `${MONO_FONT}font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;color:${MUTED};margin:0 0 6px;`
+  const link = `color:${INK};text-decoration:none;font-weight:600;`
+  const quiet = `color:${MUTED};text-decoration:none;font-weight:500;`
+  const row = `${BODY_FONT}font-size:12px;line-height:1.5;margin:0;`
+  const dot = `<span style="color:#b6bec7;">&nbsp;&nbsp;&middot;&nbsp;&nbsp;</span>`
   return `
       <tr>
-        <td align="center" bgcolor="${SURFACE}" style="padding:28px 36px 30px;background:${SURFACE};text-align:center;">
+        <td align="center" bgcolor="${SURFACE}" style="padding:30px 36px 30px;background:${SURFACE};text-align:center;">
           <img src="${WIDE_LOGO_URL}" width="132" height="34" alt="EBI Collectibles" style="display:inline-block;width:132px;height:34px;border:0;">
-          <p style="${BODY_FONT}font-size:13px;margin:12px 0 0;">
-            <a href="${SITE_URL}/shop" style="${strongLink}">Shop &rarr;</a>
-          </p>
-          <div style="${MONO_FONT}font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:${MUTED};margin:20px 0 0;">Socials</div>
-          <p style="${BODY_FONT}font-size:12.5px;margin:6px 0 0;">
-            <a href="https://www.instagram.com/ebicollectibles" style="${strongLink}">Instagram</a>
-            &nbsp;&middot;&nbsp;
-            <a href="https://x.com/ebicollectibles" style="${strongLink}">X</a>
-          </p>
-          <div style="${MONO_FONT}font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:${MUTED};margin:16px 0 0;">Policies</div>
-          <p style="${BODY_FONT}font-size:11.5px;color:${MUTED};margin:6px 0 0;">
-            <a href="${SITE_URL}/shipping-policy" style="${policyLink}">Shipping</a>
-            &nbsp;&middot;&nbsp;
-            <a href="${SITE_URL}/refund-policy" style="${policyLink}">Refunds</a>
-            &nbsp;&middot;&nbsp;
-            <a href="${SITE_URL}/privacy" style="${policyLink}">Privacy</a>
-          </p>
-          <p style="${BODY_FONT}font-size:10.5px;line-height:1.5;color:${MUTED};margin:20px 0 0;">&copy; ${year} EBI Collectibles &middot; Not affiliated with, or endorsed by, any card publisher.</p>${listFooterHtml}
+          <p style="${row}margin-top:14px;"><a href="${SITE_URL}/shop" style="${link}">Shop now &rarr;</a></p>
+          <p style="${head}margin-top:22px;">Socials</p>
+          <p style="${row}"><a href="https://www.instagram.com/ebicollectibles" style="${link}">Instagram</a>${dot}<a href="https://x.com/ebicollectibles" style="${link}">X</a></p>
+          <p style="${head}margin-top:18px;">Policies</p>
+          <p style="${row}"><a href="${SITE_URL}/shipping-policy" style="${quiet}">Shipping</a>${dot}<a href="${SITE_URL}/refund-policy" style="${quiet}">Refunds</a>${dot}<a href="${SITE_URL}/privacy" style="${quiet}">Privacy</a></p>
+          <table role="presentation" cellpadding="0" cellspacing="0" align="center" style="margin:22px auto 0;"><tr><td width="48" style="border-top:1px solid ${BORDER};font-size:0;line-height:0;">&nbsp;</td></tr></table>
+          <p style="${BODY_FONT}font-size:10px;line-height:1.6;color:${MUTED};margin:16px 0 0;">&copy; ${year} EBI Collectibles &middot; Not affiliated with, or endorsed by, any card publisher.</p>${listFooterHtml}
         </td>
       </tr>`
 }
@@ -137,6 +130,13 @@ function emailFooterHtml(listFooterHtml = ''): string {
 // own one-click Unsubscribe button (required for bulk senders).
 // Throws while BUSINESS_POSTAL_ADDRESS is empty: CAN-SPAM requires a
 // postal address in commercial email, so a list email can't go out without.
+// Email apps turn street addresses into blue map links. A zero-width
+// non-joiner after each digit and comma breaks their address detection
+// without changing what anyone sees.
+function noAutoLink(text: string): string {
+  return text.replace(/([0-9,])/g, '$1&zwnj;')
+}
+
 export async function marketingEmailExtras(email: string): Promise<{ footerHtml: string; footerText: string; headers: Record<string, string> }> {
   const { BUSINESS_LEGAL_NAME, BUSINESS_POSTAL_ADDRESS } = await import('~/lib/business')
   if (!BUSINESS_POSTAL_ADDRESS) throw new Error('Set BUSINESS_POSTAL_ADDRESS in src/lib/business.ts before sending list emails.')
@@ -146,7 +146,7 @@ export async function marketingEmailExtras(email: string): Promise<{ footerHtml:
   // Lines only, no row of its own: emailShell drops these inside the grey
   // footer block, right under the copyright line, so they read as one footer.
   const footerHtml = `
-          <p style="${BODY_FONT}font-size:8px;line-height:1.5;color:#7b8690;margin:12px 0 0;-webkit-text-size-adjust:none;">${esc(BUSINESS_LEGAL_NAME)} - ${esc(BUSINESS_POSTAL_ADDRESS)}</p>
+          <p style="${BODY_FONT}font-size:8px;line-height:1.5;color:#7b8690;margin:12px 0 0;-webkit-text-size-adjust:none;">${esc(BUSINESS_LEGAL_NAME)} - <span style="color:#7b8690;text-decoration:none;">${noAutoLink(esc(BUSINESS_POSTAL_ADDRESS))}</span></p>
           <p style="${BODY_FONT}font-size:8px;line-height:1.5;color:#7b8690;margin:0;-webkit-text-size-adjust:none;"><a href="${prefsUrl}" style="color:#7b8690;text-decoration:underline;">Update preferences</a> &middot; <a href="${pageUrl}" style="color:#7b8690;text-decoration:underline;">Unsubscribe</a></p>`
   const footerText = `${BUSINESS_LEGAL_NAME} - ${BUSINESS_POSTAL_ADDRESS}\nUpdate preferences: ${prefsUrl}\nUnsubscribe: ${pageUrl}`
   return {
@@ -181,7 +181,7 @@ function emailShell(opts: {
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@700;800&family=IBM+Plex+Mono:wght@500&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-<style>@media (max-width:600px){.px{padding-left:22px!important;padding-right:22px!important}.h1{font-size:26px!important}}</style>
+<style>a[x-apple-data-detectors]{color:inherit!important;text-decoration:none!important;font-size:inherit!important;font-weight:inherit!important}@media (max-width:600px){.px{padding-left:22px!important;padding-right:22px!important}.h1{font-size:26px!important}}</style>
 </head>
 <body style="margin:0;padding:0;background:${SURFACE};">
   <div style="background:${SURFACE};padding:28px 12px;${BODY_FONT}">
