@@ -56,6 +56,7 @@ import {
   searchSquareCatalogItems,
 } from './square'
 import { upsertSubscriber } from './subscribers'
+import { trafficSourceKey } from '~/lib/traffic-source'
 
 // Base object (not yet refined) so adminUpdateProduct can still .extend() it
 // with originalId — z.object().refine() returns a ZodEffects, which has no
@@ -1687,10 +1688,44 @@ export const adminSendMarketplaceShipmentTest = createServerFn({ method: 'POST' 
     return { ok: true }
   })
 
+// Each link with what it led to: new email sign-ups and paid orders whose
+// saved UTM tags match the link's (see lib/traffic-source.ts). Only counts
+// visitors who allowed marketing cookies, and only from when tracking began.
+// Links that share the same three UTM tags share the same numbers.
 export const adminListShortLinks = createServerFn({ method: 'GET' }).handler(async () => {
   await assertAdmin()
   const db = getDb()
-  return db.select().from(shortLinks).orderBy(desc(shortLinks.createdAt))
+  const [links, signupRows, orderRows] = await Promise.all([
+    db.select().from(shortLinks).orderBy(desc(shortLinks.createdAt)),
+    db
+      .select({
+        source: subscriberEvents.utmSource,
+        medium: subscriberEvents.utmMedium,
+        campaign: subscriberEvents.utmCampaign,
+        count: sql<number>`count(*)::int`,
+      })
+      .from(subscriberEvents)
+      .where(and(eq(subscriberEvents.type, 'subscribed'), isNotNull(subscriberEvents.utmSource)))
+      .groupBy(subscriberEvents.utmSource, subscriberEvents.utmMedium, subscriberEvents.utmCampaign),
+    db
+      .select({
+        source: orders.utmSource,
+        medium: orders.utmMedium,
+        campaign: orders.utmCampaign,
+        count: sql<number>`count(*)::int`,
+        sales: sql<number>`coalesce(sum(${orders.total}), 0)::float8`,
+      })
+      .from(orders)
+      .where(and(eq(orders.paymentStatus, 'paid'), isNotNull(orders.utmSource)))
+      .groupBy(orders.utmSource, orders.utmMedium, orders.utmCampaign),
+  ])
+  const signups = new Map(signupRows.map((r) => [trafficSourceKey(r.source, r.medium, r.campaign), Number(r.count)]))
+  const sales = new Map(orderRows.map((r) => [trafficSourceKey(r.source, r.medium, r.campaign), { orders: Number(r.count), sales: Number(r.sales) }]))
+  return links.map((l) => {
+    const key = trafficSourceKey(l.utmSource, l.utmMedium, l.utmCampaign)
+    const s = l.utmSource ? sales.get(key) : undefined
+    return { ...l, signups: l.utmSource ? (signups.get(key) ?? 0) : 0, orders: s?.orders ?? 0, sales: s?.sales ?? 0 }
+  })
 })
 
 // Lowercase/digits/hyphens only — keeps every /links/{slug} link readable

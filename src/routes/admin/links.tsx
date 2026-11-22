@@ -255,6 +255,9 @@ function AdminLinksPage() {
                 <th style={th}>Destination</th>
                 <th style={th}>UTM</th>
                 <th style={th}>Clicks</th>
+                <th style={th}>Sign-ups</th>
+                <th style={th}>Orders</th>
+                <th style={th}>Sales</th>
                 <th style={th}>Created</th>
                 <th style={th}></th>
               </tr>
@@ -270,6 +273,9 @@ function AdminLinksPage() {
                     {[link.utmSource, link.utmMedium, link.utmCampaign].filter(Boolean).join(' / ') || '—'}
                   </td>
                   <td style={{ ...td, fontFamily: "'IBM Plex Mono', monospace", fontWeight: 500 }}>{link.clickCount}</td>
+                  <td style={{ ...td, fontFamily: "'IBM Plex Mono', monospace" }}>{link.signups}</td>
+                  <td style={{ ...td, fontFamily: "'IBM Plex Mono', monospace" }}>{link.orders}</td>
+                  <td style={{ ...td, fontFamily: "'IBM Plex Mono', monospace" }}>{link.sales > 0 ? `$${link.sales.toFixed(2)}` : '—'}</td>
                   <td style={{ ...td, fontSize: 12, color: '#5a6875' }}>{new Date(link.createdAt).toLocaleDateString()}</td>
                   <td style={{ ...td, textAlign: 'right', whiteSpace: 'nowrap' }}>
                     <span style={{ position: 'relative', display: 'inline-block' }}>

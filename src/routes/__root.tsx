@@ -16,6 +16,7 @@ import { isAdminAuthenticated } from '~/server/admin-auth'
 import { hasMyAffiliate } from '~/server/affiliate-dashboard'
 import { isMaintenanceMode } from '~/server/maintenance'
 import { AFFILIATE_REF_COOKIE } from '~/lib/affiliate-ref'
+import { TRAFFIC_SOURCE_COOKIE, TRAFFIC_SOURCE_MAX_AGE, encodeTrafficSource, trafficSourceFromSearch } from '~/lib/traffic-source'
 import appCss from '~/styles/app.css?url'
 
 // Not secret — a GA4 measurement ID is meant to be visible in the page
@@ -126,6 +127,16 @@ function RootDocument({ children }: { children: React.ReactNode }) {
     const code = ref?.trim().toLowerCase()
     if (!code) return
     document.cookie = `${AFFILIATE_REF_COOKIE}=${encodeURIComponent(code)}; path=/; max-age=${14 * 24 * 60 * 60}; samesite=lax`
+  }, [href, cookieConsent?.marketing])
+  // Same rule for the UTM tags our tracked links add (see
+  // lib/traffic-source.ts): marketing consent only, last tracked link wins,
+  // and a visit without UTM tags leaves the saved source alone. Read back
+  // server-side when someone joins the email list or places an order.
+  React.useEffect(() => {
+    if (!cookieConsent?.marketing) return
+    const source = trafficSourceFromSearch(window.location.search)
+    if (!source) return
+    document.cookie = `${TRAFFIC_SOURCE_COOKIE}=${encodeURIComponent(encodeTrafficSource(source))}; path=/; max-age=${TRAFFIC_SOURCE_MAX_AGE}; samesite=lax`
   }, [href, cookieConsent?.marketing])
   // /admin is never gated — the operator needs it working precisely during
   // a maintenance window (running the migration, checking things over)

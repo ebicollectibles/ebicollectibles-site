@@ -1,5 +1,6 @@
 import { createServerFn } from '@tanstack/react-start'
 import { z } from 'zod'
+import type { TrafficSource } from '~/lib/traffic-source'
 
 // Db/schema import is dynamic (not top-level) — same reasoning as
 // customer-auth.ts/admin-auth.ts: keeps the Postgres driver out of the
@@ -19,6 +20,8 @@ export async function upsertSubscriber(
   email: string,
   source: string,
   firstName?: string | null,
+  // Tracked link the person arrived through, if any (lib/traffic-source.ts).
+  traffic?: TrafficSource | null,
 ): Promise<boolean> {
   const { subscribers, subscriberEvents } = await import('~/lib/db/schema')
   const { sql } = await import('drizzle-orm')
@@ -37,10 +40,29 @@ export async function upsertSubscriber(
     .returning({ id: subscribers.id })
 
   if (row) {
-    await db.insert(subscriberEvents).values({ email, type: 'subscribed', source })
+    await db.insert(subscriberEvents).values({
+      email,
+      type: 'subscribed',
+      source,
+      utmSource: traffic?.source ?? null,
+      utmMedium: traffic?.medium ?? null,
+      utmCampaign: traffic?.campaign ?? null,
+    })
   }
   // True when this call changed something: a new subscriber or a resubscribe.
   return !!row
+}
+
+// The visitor's saved tracked-link source, or null. Never throws: a missing
+// or broken cookie just means no source, and the sign-up goes ahead.
+async function readTrafficSource(): Promise<TrafficSource | null> {
+  try {
+    const { getCookie } = await import('@tanstack/react-start/server')
+    const { TRAFFIC_SOURCE_COOKIE, decodeTrafficSource } = await import('~/lib/traffic-source')
+    return decodeTrafficSource(getCookie(TRAFFIC_SOURCE_COOKIE))
+  } catch {
+    return null
+  }
 }
 
 export const subscribeToNewsletter = createServerFn({ method: 'POST' })
@@ -52,7 +74,8 @@ export const subscribeToNewsletter = createServerFn({ method: 'POST' })
     const { getDb } = await import('~/lib/db/client')
     const db = getDb()
     const email = data.email.trim().toLowerCase()
-    const changed = await upsertSubscriber(db, email, data.source ?? 'homepage')
+    const traffic = await readTrafficSource()
+    const changed = await upsertSubscriber(db, email, data.source ?? 'homepage', null, traffic)
     // Someone already on the list who signs up on a blog post changes
     // nothing above, so their interest in that post would go unrecorded.
     // Log it once as a 'requested' event, which is what the admin page's
@@ -65,7 +88,15 @@ export const subscribeToNewsletter = createServerFn({ method: 'POST' })
         .from(subscriberEvents)
         .where(and(eq(subscriberEvents.email, email), eq(subscriberEvents.source, data.source)))
         .limit(1)
-      if (!seen) await db.insert(subscriberEvents).values({ email, type: 'requested', source: data.source })
+      if (!seen)
+        await db.insert(subscriberEvents).values({
+          email,
+          type: 'requested',
+          source: data.source,
+          utmSource: traffic?.source ?? null,
+          utmMedium: traffic?.medium ?? null,
+          utmCampaign: traffic?.campaign ?? null,
+        })
     }
     return { ok: true }
   })

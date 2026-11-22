@@ -28,6 +28,7 @@ import { resolveHiAkShippingRate } from './shippo'
 import { upsertSubscriber } from './subscribers'
 import { computeAffiliateCommission, computeAffiliateLineCommissions, resolveAffiliateAttribution } from './affiliates'
 import { AFFILIATE_REF_COOKIE } from '~/lib/affiliate-ref'
+import { TRAFFIC_SOURCE_COOKIE, decodeTrafficSource } from '~/lib/traffic-source'
 
 const placeOrderSchema = z.object({
   lines: z.array(z.object({ productId: z.string(), qty: z.number().int().positive() })).min(1),
@@ -166,6 +167,14 @@ export const placeOrder = createServerFn({ method: 'POST' })
     const db = getDb()
 
     const affiliateAttribution = await resolveAffiliateAttribution(getCookie(AFFILIATE_REF_COOKIE), data.contact.email)
+    // Tracked link the shopper arrived through (lib/traffic-source.ts).
+    // Advisory only: a missing or broken cookie is just "no source".
+    let traffic: ReturnType<typeof decodeTrafficSource> = null
+    try {
+      traffic = decodeTrafficSource(getCookie(TRAFFIC_SOURCE_COOKIE))
+    } catch {
+      traffic = null
+    }
 
     // Guest checkout under an email that already has an account still gets
     // linked to it — same trust reasoning as linking past guest orders at
@@ -517,6 +526,9 @@ export const placeOrder = createServerFn({ method: 'POST' })
           orderNo,
           userId,
           checkoutMode,
+          utmSource: traffic?.source ?? null,
+          utmMedium: traffic?.medium ?? null,
+          utmCampaign: traffic?.campaign ?? null,
           email: data.contact.email,
           phone: data.contact.phone || null,
           firstName: data.contact.firstName,
@@ -581,7 +593,7 @@ export const placeOrder = createServerFn({ method: 'POST' })
       }
 
       if (data.emailOptIn && data.contact.email) {
-        await upsertSubscriber(tx, data.contact.email.trim().toLowerCase(), 'checkout', data.contact.firstName)
+        await upsertSubscriber(tx, data.contact.email.trim().toLowerCase(), 'checkout', data.contact.firstName, traffic)
       }
 
       return {

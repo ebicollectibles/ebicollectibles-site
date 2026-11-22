@@ -252,6 +252,11 @@ export const orders = pgTable('orders', {
   // already has an account still gets linked, but checkoutMode still
   // records that it happened while logged out).
   checkoutMode: text('checkout_mode').notNull().default('guest'), // guest | account
+  // UTM tags of the tracked link the shopper arrived through, when they
+  // allowed marketing cookies (see lib/traffic-source.ts). Null otherwise.
+  utmSource: text('utm_source'),
+  utmMedium: text('utm_medium'),
+  utmCampaign: text('utm_campaign'),
   email: text('email'),
   phone: text('phone'),
   firstName: text('first_name'),
@@ -771,6 +776,11 @@ export const subscriberEvents = pgTable('subscriber_events', {
   email: text('email').notNull(),
   type: text('type').notNull(), // 'subscribed' | 'unsubscribed'
   source: text('source'), // set for 'subscribed' events only ('homepage' | 'checkout' | 'admin')
+  // UTM tags of the tracked link the visitor arrived through, when they
+  // allowed marketing cookies (see lib/traffic-source.ts). Null otherwise.
+  utmSource: text('utm_source'),
+  utmMedium: text('utm_medium'),
+  utmCampaign: text('utm_campaign'),
   createdAt: timestamp('created_at', { withTimezone: true }).notNull().defaultNow(),
 })
 
