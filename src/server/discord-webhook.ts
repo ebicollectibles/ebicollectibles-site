@@ -69,6 +69,32 @@ export async function sendDropnotifyAlert(product: DropnotifyAlertProduct, trigg
     return
   }
 
+  // The price customers pay comes from Square; the site's stored price is
+  // never used for Square-linked products (it can be 0 or out of date).
+  // Read it live, and show the site's was-price beside it when on sale.
+  let price = product.price
+  let wasPrice: number | null = null
+  try {
+    const [row] = await db
+      .select({ squareVariationId: productsTable.squareVariationId, compareAtPrice: productsTable.compareAtPrice })
+      .from(productsTable)
+      .where(eq(productsTable.id, product.id))
+      .limit(1)
+    if (row?.squareVariationId) {
+      const { getSquareCatalogPrices } = await import('./square')
+      const live = (await getSquareCatalogPrices([row.squareVariationId]))[row.squareVariationId]
+      if (typeof live === 'number' && live > 0) price = live
+    }
+    if (row?.compareAtPrice != null && row.compareAtPrice > price) wasPrice = row.compareAtPrice
+  } catch (err) {
+    console.error('DropNotify: could not read the live Square price, using the stored one:', err)
+  }
+  if (!(price > 0)) {
+    await logAttempt('skipped', 'No price set (Square has no fixed price for this product)')
+    return
+  }
+  const priceText = wasPrice ? `~~$${wasPrice.toFixed(2)}~~ **$${price.toFixed(2)}**` : `**$${price.toFixed(2)}**`
+
   const productUrl = `${SITE_URL}/products/${product.id}?ref=${DROPNOTIFY_REF_CODE}`
   const timestamp = new Date().toLocaleString('en-US', {
     timeZone: 'America/Los_Angeles',
@@ -82,7 +108,7 @@ export async function sendDropnotifyAlert(product: DropnotifyAlertProduct, trigg
     // Green when in stock — matches the 🟢/🔴 availability field below.
     color: 0x2ecc71,
     fields: [
-      { name: 'Price', value: `**${'$' + product.price.toFixed(2)}**`, inline: true },
+      { name: 'Price', value: priceText, inline: true },
       { name: 'Availability', value: product.stock > 0 ? '🟢 In Stock' : '🔴 Out of Stock', inline: true },
       { name: 'Total Stock', value: String(Math.max(0, product.stock)), inline: true },
       // No dedicated SKU column on products — the id slug is the closest
