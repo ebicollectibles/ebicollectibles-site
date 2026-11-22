@@ -239,7 +239,7 @@ function NuzzleCheeksPlushPost() {
               <dt>Released</dt>
               <dd>December 19, 2025</dd>
               <dt>Designs</dt>
-              <dd>7: Pikachu, Raichu, Plusle, Minun, Pachirisu, Pawmot and a secret Pawmi</dd>
+              <dd>6 + 1 secret (Pawmi)</dd>
               <dt>Per box</dt>
               <dd>1 random plush, its promo card, a card display frame, a metal tin, 2 booster packs</dd>
               <dt>Promo cards</dt>

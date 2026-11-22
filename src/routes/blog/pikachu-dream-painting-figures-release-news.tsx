@@ -223,7 +223,7 @@ function PikachuDreamPaintingReleasePost() {
               <dt>Released</dt>
               <dd>September 16, 2026</dd>
               <dt>Designs</dt>
-              <dd>13: 12 regular, 1 secret</dd>
+              <dd>12 + 1 secret</dd>
               <dt>Per box</dt>
               <dd>1 random figure, its matching card, a display stand, 1 30th Celebration pack (6 cards)</dd>
               <dt>Secret odds</dt>

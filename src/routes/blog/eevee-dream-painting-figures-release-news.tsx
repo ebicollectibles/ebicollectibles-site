@@ -222,7 +222,7 @@ function EeveeDreamPaintingReleasePost() {
               <dt>Released</dt>
               <dd>August 7, 2026</dd>
               <dt>Designs</dt>
-              <dd>10: 9 regular, 1 secret</dd>
+              <dd>9 + 1 secret</dd>
               <dt>Per box</dt>
               <dd>1 random figure, its matching card, 1 Terastal Gathering booster pack</dd>
               <dt>Set code</dt>

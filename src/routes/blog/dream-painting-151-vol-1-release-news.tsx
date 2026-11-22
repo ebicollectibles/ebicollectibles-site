@@ -219,7 +219,7 @@ function DreamPainting151ReleasePost() {
               <dt>Released</dt>
               <dd>November 28, 2025</dd>
               <dt>Designs</dt>
-              <dd>13: 12 regular, 1 secret</dd>
+              <dd>12 + 1 secret</dd>
               <dt>Per box</dt>
               <dd>1 random figure, its matching Poké Ball holo card, 2 Collect 151: Journey packs (5 cards each)</dd>
               <dt>Set code</dt>
