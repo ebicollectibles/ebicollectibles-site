@@ -264,7 +264,7 @@ export const BLOG_POSTS: BlogPostSummary[] = [
       'Pokémon Dream Painting Pikachu blind box: 12 figures based on 30th Celebration Pikachu cards, each with its card, a stand and a pack, and a 1 in 144 secret.',
     tag: 'New release',
     date: '2026-09-16',
-    heroImage: `${SITE_URL}/assets/blog/pikachu-dream-painting-figures-release-hero-v10.webp`,
+    heroImage: `${SITE_URL}/assets/blog/pikachu-dream-painting-figures-release-hero-v11.webp`,
     heroAlt: 'Dream Painting Pikachu figure blind box with the secret classic Pikachu figure and card 136/103 in front',
     glow1: 'rgb(246 206 60 / .30)',
     glow2: 'rgb(222 185 97 / .25)',
