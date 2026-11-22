@@ -36,7 +36,7 @@ function FigureGrid({ figs }: { figs: Fig[] }) {
         <li key={f.key}>
           <figure>
             <img
-              src={figImg(f.key)}
+              src={figImg(`${f.key}-v2`)}
               alt={`Dream Painting ${f.name} figure on its stand in front of ${f.set} card ${f.card}`}
               loading="lazy"
               width={600}
@@ -163,7 +163,7 @@ function EeveeDreamPaintingReleasePost() {
       '@type': 'ListItem',
       position: i + 1,
       name: `${f.name} figure, from ${f.set} card ${f.card} by ${f.illus}`,
-      image: figImg(f.key),
+      image: figImg(`${f.key}-v2`),
     })),
   }
   const faqJsonLd = {

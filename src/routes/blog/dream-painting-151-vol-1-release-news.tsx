@@ -39,7 +39,7 @@ function FigureGrid({ figs }: { figs: Fig[] }) {
         <li key={f.key}>
           <figure>
             <img
-              src={img(f.key)}
+              src={img(`${f.key}-v2`)}
               alt={`Collect 151 Dream Painting ${f.name} figure on its stand in front of Collect 151 card ${f.card}/151`}
               loading="lazy"
               width={400}
@@ -156,7 +156,7 @@ function DreamPainting151ReleasePost() {
       '@type': 'ListItem',
       position: i + 1,
       name: `${f.name} figure, from the Collect 151 card ${f.card}/151 illustration by ${f.illus}`,
-      image: img(f.key),
+      image: img(`${f.key}-v2`),
     })),
   }
   const faqJsonLd = {
