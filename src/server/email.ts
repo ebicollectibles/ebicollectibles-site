@@ -105,7 +105,7 @@ function emailFooterHtml(listFooterHtml = ''): string {
   return `
       <tr>
         <td align="center" bgcolor="${SURFACE}" style="padding:28px 36px 30px;background:${SURFACE};text-align:center;">
-          <img src="${LOGO_URL}" width="44" height="44" alt="EBI Collectibles" style="display:inline-block;width:44px;height:44px;border:0;mix-blend-mode:multiply;">
+          <img src="${WIDE_LOGO_URL}" width="132" height="34" alt="EBI Collectibles" style="display:inline-block;width:132px;height:34px;border:0;">
           <p style="${BODY_FONT}font-size:13px;margin:12px 0 0;">
             <a href="${SITE_URL}/shop" style="${strongLink}">Shop &rarr;</a>
           </p>
