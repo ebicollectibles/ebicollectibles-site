@@ -139,8 +139,8 @@ export async function marketingEmailExtras(email: string): Promise<{ footerHtml:
   // Lines only, no row of its own: emailShell drops these inside the grey
   // footer block, right under the copyright line, so they read as one footer.
   const footerHtml = `
-          <p style="${BODY_FONT}font-size:10px;line-height:1.6;color:${MUTED};margin:14px 0 0;">${esc(BUSINESS_LEGAL_NAME)} - ${esc(BUSINESS_POSTAL_ADDRESS)}</p>
-          <p style="${BODY_FONT}font-size:10px;line-height:1.6;color:${MUTED};margin:0;">Don't want emails like these? <a href="${pageUrl}" style="color:${MUTED};text-decoration:underline;">Unsubscribe</a></p>`
+          <p style="${BODY_FONT}font-size:8px;line-height:1.5;color:#7b8690;margin:12px 0 0;-webkit-text-size-adjust:none;">${esc(BUSINESS_LEGAL_NAME)} - ${esc(BUSINESS_POSTAL_ADDRESS)}</p>
+          <p style="${BODY_FONT}font-size:8px;line-height:1.5;color:#7b8690;margin:0;-webkit-text-size-adjust:none;">Don't want emails like these? <a href="${pageUrl}" style="color:#7b8690;text-decoration:underline;">Unsubscribe</a></p>`
   const footerText = `${BUSINESS_LEGAL_NAME} - ${BUSINESS_POSTAL_ADDRESS}\nDon't want emails like these? Unsubscribe: ${pageUrl}`
   return {
     footerHtml,
