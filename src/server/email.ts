@@ -62,9 +62,9 @@ export async function marketingEmailExtras(email: string): Promise<{ footerHtml:
   const esc = (s: string) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
   const footerHtml = `
       <tr>
-        <td style="padding:18px 32px 26px;text-align:center;">
-          <p style="font-size:11.5px;line-height:1.6;color:${MUTED};margin:0;">${esc(BUSINESS_LEGAL_NAME)} - ${esc(BUSINESS_POSTAL_ADDRESS)}</p>
-          <p style="font-size:11.5px;line-height:1.6;color:${MUTED};margin:0;">Don't want emails like these? <a href="${pageUrl}" style="color:${MUTED};text-decoration:underline;">Unsubscribe</a></p>
+        <td style="padding:0 32px 24px;text-align:center;">
+          <p style="font-size:10px;line-height:1.6;color:${MUTED};margin:0;">${esc(BUSINESS_LEGAL_NAME)} - ${esc(BUSINESS_POSTAL_ADDRESS)}</p>
+          <p style="font-size:10px;line-height:1.6;color:${MUTED};margin:0;">Don't want emails like these? <a href="${pageUrl}" style="color:${MUTED};text-decoration:underline;">Unsubscribe</a></p>
         </td>
       </tr>`
   const footerText = `${BUSINESS_LEGAL_NAME} - ${BUSINESS_POSTAL_ADDRESS}\nDon't want emails like these? Unsubscribe: ${pageUrl}`
