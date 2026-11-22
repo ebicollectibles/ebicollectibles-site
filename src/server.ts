@@ -86,7 +86,8 @@ const entry: ServerEntry = {
     // pages moved to /sets/chinese/. The owner chose to retire them rather
     // than redirect, so they answer 410 Gone and Google drops them. See
     // lib/old-set-paths.ts.
-    if ((request.method === 'GET' || request.method === 'HEAD') && isRemovedOldSetPath(url.pathname)) {
+    // /hello-world/ is a leftover from an old WordPress site on this domain.
+    if ((request.method === 'GET' || request.method === 'HEAD') && (isRemovedOldSetPath(url.pathname) || /^\/hello-world\/?$/.test(url.pathname))) {
       return withSecurityHeaders(
         new Response(request.method === 'HEAD' ? null : REMOVED_PAGE_HTML, {
           status: 410,
