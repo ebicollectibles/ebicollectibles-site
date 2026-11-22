@@ -1,6 +1,7 @@
 import * as React from 'react'
 import { Link } from '@tanstack/react-router'
 import { SHOW_ACRYLICS } from '~/lib/feature-flags'
+import { InstagramIcon, XIcon } from '~/components/SocialIcons'
 import { useCookiePreferencesUI } from '~/components/CookieConsent'
 
 const footerHeading: React.CSSProperties = {
@@ -112,13 +113,15 @@ export function Footer() {
           </h2>
           <ul className="ebi-footer-links" style={{ display: 'flex', flexDirection: 'column', gap: 2, margin: '10px 0 0', padding: 0, listStyle: 'none', fontSize: 13 }}>
             <li>
-              <a href="https://www.instagram.com/ebicollectibles" target="_blank" rel="noopener noreferrer">
+              <a href="https://www.instagram.com/ebicollectibles" target="_blank" rel="noopener noreferrer" style={{ display: 'inline-flex', alignItems: 'center', gap: 8 }}>
+                <InstagramIcon />
                 Instagram
               <span className="sr-only"> (opens in a new tab)</span>
               </a>
             </li>
             <li>
-              <a href="https://x.com/ebicollectibles" target="_blank" rel="noopener noreferrer">
+              <a href="https://x.com/ebicollectibles" target="_blank" rel="noopener noreferrer" style={{ display: 'inline-flex', alignItems: 'center', gap: 8 }}>
+                <XIcon />
                 X
               <span className="sr-only"> (opens in a new tab)</span>
               </a>

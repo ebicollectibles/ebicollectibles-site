@@ -27,7 +27,6 @@ const isSpecial = (p: Product) => p.subcategory === 'Special Products'
 const isBlind = (p: Product) => p.subcategory === 'Blind Box'
 const isFigure = (p: Product) => p.subcategory === 'Figure' || p.subcategory === 'Plush'
 const isBinder = (p: Product) => p.subcategory === 'Binder'
-const isAcrylic = (p: Product) => p.category === 'Acrylic Cases'
 
 const TILES: Collection[] = [
   { key: 'gem', title: 'Gem Packs', blurb: 'Vol. 1 to 7', match: isGem, link: { search: { q: 'Gem' } } },
@@ -37,7 +36,6 @@ const TILES: Collection[] = [
   { key: 'blind', title: 'Blind Boxes', blurb: 'Figures and plush displays', match: isBlind, link: { search: { subcategory: 'Blind Box' } } },
   { key: 'figure', title: 'Figures & Plush', blurb: 'Collector figures', match: isFigure, link: { search: { subcategories: ['Figure', 'Plush'] } } },
   { key: 'binder', title: 'Binders', blurb: 'Official card binders', match: isBinder, link: { search: { subcategory: 'Binder' } } },
-  { key: 'acrylic', title: 'Acrylic Cases', blurb: 'Display protection', match: isAcrylic, link: { search: { category: 'Acrylic Cases' } } },
 ]
 
 const SHELVES: Collection[] = [
@@ -53,9 +51,9 @@ const SHELVES: Collection[] = [
   },
   {
     key: 'accessories',
-    title: 'Binders & Acrylic Cases',
-    blurb: 'Keep cards and sealed boxes safe.',
-    match: (p) => isBinder(p) || isAcrylic(p),
+    title: 'Binders',
+    blurb: 'Official card binders.',
+    match: (p) => isBinder(p),
     link: { search: { subcategory: 'Binder' } },
   },
 ]
