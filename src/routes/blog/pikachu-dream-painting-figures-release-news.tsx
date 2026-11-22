@@ -247,10 +247,10 @@ function PikachuDreamPaintingReleasePost() {
 
         <h2 id="lineup">All 12 regular Pikachu figures</h2>
         <p>
-          Each 30th Celebration Pikachu card was drawn by a different illustrator, so no two figures share a style. Some stay close to
-          the card, like Shinji Kanda's Pikachu, which has the card's hatching lines painted onto the figure. Others reach past the card:
-          Tomokazu Komiya's Pikachu trails a red streamer out to the side, and Kazuki Minami's Pikachu swings its tail out past the
-          card edge. Atsuko Nishida, Pikachu's original designer, and Ken Sugimori each have one of the 12.
+          Each figure is based on one of the 30th Celebration Pikachu cards, and each of those cards has a different illustrator.
+          Shinji Kanda's Pikachu has the card's hatching lines painted on. Tomokazu Komiya's has a red streamer off to the side, and
+          Kazuki Minami's has its tail out past the card edge. Atsuko Nishida, who designed Pikachu, and Ken Sugimori each drew one of
+          the 12.
         </p>
         <FigureGrid figs={FIGURES} />
         <p className="table-note">These are our photos of the figures, each on its stand with its card. The number is the Pikachu number printed on the card.</p>
