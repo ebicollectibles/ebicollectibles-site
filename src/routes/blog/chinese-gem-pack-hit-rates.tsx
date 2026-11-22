@@ -445,10 +445,17 @@ function ChineseGemPackHitRatesPost() {
             <tbody>
               {PACKS.map((p) => (
                 <tr key={p.vol}>
-                  <th scope="row">{p.vol}</th>
+                  <th scope="row">
+                    <Link to={CARD_LIST[p.vol as Vol]}>Vol. {p.vol}</Link>
+                  </th>
                   <td>{p.code}</td>
                   <td>{p.released}</td>
-                  <td>{p.cards}</td>
+                  <td>
+                    <Link to={CARD_LIST[p.vol as Vol]}>
+                      {p.cards}
+                      <span className="sr-only"> cards: Gem Vol. {p.vol} card list</span>
+                    </Link>
+                  </td>
                   <td>4, all holo</td>
                   <td>
                     {p.box} ({p.boxNote})
@@ -463,7 +470,8 @@ function ChineseGemPackHitRatesPost() {
           </table>
         </div>
         <p className="table-note">
-          Averages, not guarantees. Pokémon China gives the box size for Vol. 1 only; the others are the boxes we stock.
+          Averages, not guarantees. Pokémon China gives the box size for Vol. 1 only; the others are the boxes we stock. Tap a
+          volume or its card count for the full card list.
         </p>
 
         <h2 id="top-slot">What the fourth card turns out to be</h2>
