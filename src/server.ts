@@ -5,6 +5,7 @@ import { handleSquareWebhook } from './server/square-webhook'
 import { handleResendWebhook } from './server/resend-webhook'
 import { handleSitemapRequest } from './server/sitemap'
 import { CSP_REPORT_ONLY, CSP_REPORT_PATH, handleCspReport } from './server/csp'
+import { REMOVED_PAGE_HTML, isRemovedOldSetPath } from './lib/old-set-paths'
 
 const startFetch = createStartHandler(defaultStreamHandler)
 
@@ -80,6 +81,18 @@ const entry: ServerEntry = {
     }
     if (request.method === 'POST' && url.pathname === CSP_REPORT_PATH) {
       return handleCspReport(request)
+    }
+    // Old set addresses (/sets/gem-vol-4?card=...) from before the set
+    // pages moved to /sets/chinese/. The owner chose to retire them rather
+    // than redirect, so they answer 410 Gone and Google drops them. See
+    // lib/old-set-paths.ts.
+    if ((request.method === 'GET' || request.method === 'HEAD') && isRemovedOldSetPath(url.pathname)) {
+      return withSecurityHeaders(
+        new Response(request.method === 'HEAD' ? null : REMOVED_PAGE_HTML, {
+          status: 410,
+          headers: { 'content-type': 'text/html; charset=utf-8', 'x-robots-tag': 'noindex', 'cache-control': 'public, max-age=3600' },
+        }),
+      )
     }
     // Enumerates live published products from the DB — a static public/
     // file would go stale the moment a product is added or unpublished.
