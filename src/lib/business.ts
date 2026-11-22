@@ -8,4 +8,4 @@
 // marketingEmailExtras in server/email.ts, which refuses to build a footer
 // without it.
 export const BUSINESS_LEGAL_NAME = 'EBI Collectibles'
-export const BUSINESS_POSTAL_ADDRESS: string | null = null
+export const BUSINESS_POSTAL_ADDRESS: string | null = '17701 108th Ave SE Ste 202, Renton, WA 98055'
