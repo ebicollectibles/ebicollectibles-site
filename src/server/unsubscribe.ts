@@ -56,6 +56,34 @@ async function setUnsubscribed(email: string): Promise<void> {
     .where(and(eq(subscribers.email, email), isNull(subscribers.unsubscribedAt)))
     .returning({ id: subscribers.id })
   if (row) await db.insert(subscriberEvents).values({ email, type: 'unsubscribed', source: 'unsubscribe-link' })
+  await cancelPendingNotifyMe(email)
+}
+
+// Notify-me alerts carry the same Unsubscribe link, so unsubscribing also
+// cancels every alert this address is still waiting on (logged as
+// 'canceled', the same as cancelling on the product page). Alerts already
+// sent are history and stay as they are.
+async function pendingNotifyMe(email: string) {
+  const { getDb } = await import('~/lib/db/client')
+  const { notifyMeSignups, users, products } = await import('~/lib/db/schema')
+  const { and, eq, isNull, sql } = await import('drizzle-orm')
+  return getDb()
+    .select({ id: notifyMeSignups.id, userId: notifyMeSignups.userId, productId: notifyMeSignups.productId, productName: products.name })
+    .from(notifyMeSignups)
+    .innerJoin(users, eq(notifyMeSignups.userId, users.id))
+    .innerJoin(products, eq(notifyMeSignups.productId, products.id))
+    .where(and(sql`lower(${users.email}) = lower(${email})`, isNull(notifyMeSignups.notifiedAt)))
+}
+
+async function cancelPendingNotifyMe(email: string): Promise<void> {
+  const { getDb } = await import('~/lib/db/client')
+  const { notifyMeSignups, notifyMeEvents } = await import('~/lib/db/schema')
+  const { inArray } = await import('drizzle-orm')
+  const pending = await pendingNotifyMe(email)
+  if (!pending.length) return
+  const db = getDb()
+  await db.delete(notifyMeSignups).where(inArray(notifyMeSignups.id, pending.map((p) => p.id)))
+  await db.insert(notifyMeEvents).values(pending.map((p) => ({ userId: p.userId, email, productId: p.productId, productName: p.productName, type: 'canceled' })))
 }
 
 async function isSubscribed(email: string): Promise<boolean> {
@@ -67,7 +95,7 @@ async function isSubscribed(email: string): Promise<boolean> {
     .from(subscribers)
     .where(and(eq(subscribers.email, email), isNull(subscribers.unsubscribedAt)))
     .limit(1)
-  return !!row
+  return !!row || (await pendingNotifyMe(email)).length > 0
 }
 
 const tokenInput = z.object({ token: z.string().max(600) })

@@ -75,7 +75,7 @@ export async function marketingEmailExtras(email: string): Promise<{ footerHtml:
   }
 }
 
-function emailShell(opts: { badgeLabel: string; badgeColor: string; heading: string; intro: string; bodyHtml: string }): string {
+function emailShell(opts: { badgeLabel: string; badgeColor: string; heading: string; intro: string; bodyHtml: string; listFooterHtml?: string }): string {
   return `
   <div style="background:${SURFACE};padding:32px 16px;font-family:Helvetica,Arial,sans-serif;">
     <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:560px;margin:0 auto;background:#ffffff;border:1px solid ${BORDER};border-radius:6px;overflow:hidden;">
@@ -92,7 +92,7 @@ function emailShell(opts: { badgeLabel: string; badgeColor: string; heading: str
           ${opts.bodyHtml}
         </td>
       </tr>
-      ${emailFooterHtml()}
+      ${emailFooterHtml()}${opts.listFooterHtml ?? ''}
     </table>
   </div>`
 }
@@ -741,6 +741,9 @@ export async function sendNotifyMeAlertEmail(data: NotifyMeAlertData): Promise<E
   if (!apiKey || !from) return { status: 'skipped' }
 
   const productUrl = `${SITE_URL}/products/${data.productId}`
+  // A product announcement, so it's sent as a list email: postal address,
+  // Unsubscribe link and the one-click headers (CAN-SPAM, Gmail/Yahoo).
+  const extras = await marketingEmailExtras(data.email)
 
   const bodyHtml = `
     ${itemThumbnailHtml({ productName: data.productName, qty: 1, unitPrice: data.price, img: data.productImg })}
@@ -753,6 +756,7 @@ export async function sendNotifyMeAlertEmail(data: NotifyMeAlertData): Promise<E
     heading: `${escapeHtml(data.productName)} is here!`,
     intro: `You asked to be notified — it's live now.`,
     bodyHtml,
+    listFooterHtml: extras.footerHtml,
   })
 
   const text = [
@@ -760,6 +764,8 @@ export async function sendNotifyMeAlertEmail(data: NotifyMeAlertData): Promise<E
     `You asked to be notified — it's live now at ${formatMoney(data.price)}.`,
     '',
     `Shop now: ${productUrl}`,
+    '',
+    extras.footerText,
   ].join('\n')
 
   const res = await fetch('https://api.resend.com/emails', {
@@ -774,6 +780,7 @@ export async function sendNotifyMeAlertEmail(data: NotifyMeAlertData): Promise<E
       subject: `${data.productName} is now available`,
       html,
       text,
+      headers: extras.headers,
     }),
   })
 
