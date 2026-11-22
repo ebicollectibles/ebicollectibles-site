@@ -346,37 +346,9 @@ export function Header({
               Acrylics
             </Link>
           )}
-          <NavMenu
-            id="ebi-nav-sets"
-            closeKey={locationHref}
-            triggerStyle={(open) => ({
-              background: 'transparent',
-              border: 0,
-              padding: '4px 0',
-              font: 'inherit',
-              color: navColor(pathname.startsWith('/sets') || open),
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: 5,
-              cursor: 'pointer',
-              whiteSpace: 'nowrap',
-            })}
-            label={(open) => (
-              <>
-                Set Lists
-                <span aria-hidden="true" style={{ fontSize: 9, color: '#5a6875' }}>
-                  {open ? '▴' : '▾'}
-                </span>
-              </>
-            )}
-          >
-            <Link role="menuitem" to="/sets/chinese" style={menuItemStyle}>
-              Simplified Chinese
-            </Link>
-            <Link role="menuitem" to="/sets/japanese" style={menuItemStyle}>
-              Japanese
-            </Link>
-          </NavMenu>
+          <Link to="/sets" style={{ color: navColor(pathname.startsWith('/sets')), padding: '4px 0', whiteSpace: 'nowrap' }}>
+            Set Lists
+          </Link>
           <Link to="/blog" style={{ color: navColor(pathname.startsWith('/blog')), padding: '4px 0' }}>
             Blog
           </Link>
@@ -524,11 +496,8 @@ export function Header({
               Acrylics
             </Link>
           )}
-          <Link to="/sets/chinese" style={{ color: navColor(pathname.startsWith('/sets') && !pathname.startsWith('/sets/japanese')), padding: '10px 0', borderBottom: '1px solid #f0f2f4' }}>
-            Set Lists: Simplified Chinese
-          </Link>
-          <Link to="/sets/japanese" style={{ color: navColor(pathname.startsWith('/sets/japanese')), padding: '10px 0', borderBottom: '1px solid #f0f2f4' }}>
-            Set Lists: Japanese
+          <Link to="/sets" style={{ color: navColor(pathname.startsWith('/sets')), padding: '10px 0', borderBottom: '1px solid #f0f2f4' }}>
+            Set Lists
           </Link>
           <Link to="/blog" style={{ color: navColor(pathname.startsWith('/blog')), padding: '10px 0', borderBottom: '1px solid #f0f2f4' }}>
             Blog

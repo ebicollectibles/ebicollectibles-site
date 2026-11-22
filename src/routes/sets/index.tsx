@@ -8,20 +8,26 @@ import { safeJsonLd } from '~/lib/gem-sets/head'
 
 // Hub for every language we track. Each language has its own list at
 // /sets/<language>, and every set page lives under its language.
+const byNewest = <T extends { releaseDate: string }>(sets: T[]) => [...sets].sort((a, b) => b.releaseDate.localeCompare(a.releaseDate))
+
 const LANGUAGES = [
   {
     to: '/sets/chinese' as const,
     name: 'Simplified Chinese Pokémon sets',
     label: 'Simplified Chinese',
+    native: '简体中文',
+    flagline: 'Chinese Pokémon TCG',
     tagline: 'Gem Packs, the Chinese Scarlet & Violet sets, 30th Celebration and Collect 151.',
-    sets: GEM_SETS,
+    sets: byNewest(GEM_SETS),
   },
   {
     to: '/sets/japanese' as const,
     name: 'Japanese Pokémon sets',
     label: 'Japanese',
+    native: '日本語',
+    flagline: 'Japanese Pokémon TCG',
     tagline: 'The Japanese Mega Evolution sets: Storm Emeralda, 30th Celebration and Aura Seeker.',
-    sets: [...LIVE_JAPANESE_SETS].sort((a, b) => b.releaseDate.localeCompare(a.releaseDate)),
+    sets: byNewest(LIVE_JAPANESE_SETS),
   },
 ].filter((l) => l.sets.length > 0)
 
@@ -76,29 +82,42 @@ function SetsHubPage() {
       </section>
 
       <div className="wrap page-main">
-        <section className="series">
-          <ul className="grid">
-            {LANGUAGES.map((l) => (
+        <ul className="lang-grid">
+          {LANGUAGES.map((l) => {
+            const fan = l.sets.slice(0, 3)
+            const more = l.sets.length - 4
+            return (
               <li key={l.to}>
-              <Link className="card" to={l.to}>
-                <div className="card-art" style={{ '--glow-1': l.sets[0].glow1, '--glow-2': l.sets[0].glow2 } as React.CSSProperties}>
-                  <img src={l.sets[0].heroImage} alt={l.sets[0].heroAlt} width={300} height={419} />
-                </div>
-                <div className="card-body">
-                  <span className="card-series">{l.label}</span>
-                  <h2 className="card-name">{l.name}</h2>
-                  <p className="card-tagline">{l.tagline}</p>
-                  <div className="card-meta">
-                    <span>
-                      <b>{l.sets.length}</b> card lists
+                <Link className="lang-card" to={l.to}>
+                  <div className="lang-art" style={{ '--glow-1': fan[0].glow1, '--glow-2': fan[0].glow2 } as React.CSSProperties}>
+                    <span className="lang-native" aria-hidden="true">
+                      {l.native}
+                    </span>
+                    <div className={`lang-fan lang-fan--${fan.length}`}>
+                      {fan.map((s, i) => (
+                        <img key={s.slug} src={s.heroImage} alt={i === 0 ? s.heroAlt : ''} width={300} height={419} loading={i === 0 ? 'eager' : 'lazy'} />
+                      ))}
+                    </div>
+                  </div>
+                  <div className="lang-body">
+                    <span className="lang-kicker">{l.flagline}</span>
+                    <h2 className="lang-name">{l.label}</h2>
+                    <p className="lang-tagline">{l.tagline}</p>
+                    <ul className="lang-chips" aria-label={`Some ${l.label} sets`}>
+                      {l.sets.slice(0, 4).map((s) => (
+                        <li key={s.slug}>{s.name}</li>
+                      ))}
+                      {more > 0 && <li className="more">+{more} more</li>}
+                    </ul>
+                    <span className="lang-cta">
+                      Browse {l.sets.length} {l.label} set{l.sets.length === 1 ? '' : 's'} <span aria-hidden="true">&rarr;</span>
                     </span>
                   </div>
-                </div>
-              </Link>
+                </Link>
               </li>
-            ))}
-          </ul>
-        </section>
+            )
+          })}
+        </ul>
       </div>
     </div>
   )
