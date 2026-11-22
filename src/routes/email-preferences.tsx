@@ -60,6 +60,14 @@ function PreferencesPage() {
   const [busy, setBusy] = React.useState<string | null>(null)
   const [status, setStatus] = React.useState<{ text: string; error?: boolean } | null>(null)
   const [confirmAll, setConfirmAll] = React.useState(false)
+  // Remove is two quick taps: the first turns the button into "Confirm",
+  // which goes back to "Remove" on its own after a few seconds.
+  const [armed, setArmed] = React.useState<string | null>(null)
+  React.useEffect(() => {
+    if (!armed) return
+    const id = setTimeout(() => setArmed(null), 3500)
+    return () => clearTimeout(id)
+  }, [armed])
 
   React.useEffect(() => {
     if (!status || status.error) return
@@ -201,12 +209,23 @@ function PreferencesPage() {
                   </Link>
                   <button
                     type="button"
-                    style={{ ...ghostBtn, opacity: busy === `alert:${a.id}` ? 0.5 : 1 }}
+                    style={{
+                      ...ghostBtn,
+                      minWidth: 92,
+                      transition: 'background .15s, color .15s, border-color .15s',
+                      ...(armed === a.id ? { background: RUST, borderColor: RUST, color: '#fff' } : {}),
+                      opacity: busy === `alert:${a.id}` ? 0.5 : 1,
+                    }}
                     disabled={!!busy}
-                    onClick={() => removeAlert(a.id, a.productName)}
-                    aria-label={`Remove the alert for ${a.productName}`}
+                    onClick={() => {
+                      if (armed === a.id) {
+                        setArmed(null)
+                        removeAlert(a.id, a.productName)
+                      } else setArmed(a.id)
+                    }}
+                    aria-label={armed === a.id ? `Confirm removing the alert for ${a.productName}` : `Remove the alert for ${a.productName}`}
                   >
-                    Remove
+                    {armed === a.id ? 'Confirm' : 'Remove'}
                   </button>
                 </li>
               ))}
