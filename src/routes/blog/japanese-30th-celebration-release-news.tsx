@@ -1,5 +1,4 @@
 import * as React from 'react'
-import { BlogEmailSignup } from '~/components/blog/BlogEmailSignup'
 import { createFileRoute, Link } from '@tanstack/react-router'
 import blogCssUrl from '~/styles/blog.css?url'
 import { BLOG_POSTS, BLOG_SITE_URL, blogSeoDescription, blogSeoTitle, blogShareImage } from '~/data/blog-posts'
@@ -64,7 +63,6 @@ const TOC = [
   { id: 'card-list', label: 'Card count and rarities' },
   { id: 'released-with', label: 'What else came out' },
   { id: 'other-versions', label: 'The Chinese and English versions' },
-  { id: 'email', label: 'Get an email when it is listed' },
   { id: 'faq', label: 'FAQ' },
 ]
 
@@ -608,17 +606,6 @@ function Japanese30thCelebrationPost() {
           There is also an English set called 30th Celebration. It is not on the Japanese official pages, but the English card list on
           Limitless TCG has 191 cards, so it is put together differently from the Japanese set.
         </p>
-
-        <h2 id="email">Get an email when it is listed</h2>
-        <p>
-          The Japanese 30th Celebration is not in our shop. Leave your email below to hear when it is listed. No stock or dates are
-          confirmed.
-        </p>
-        <BlogEmailSignup
-          heading="Get an email when it's listed"
-          body="One email when Japanese 30th Celebration is listed in our shop."
-          source="blog-japanese-30th-celebration"
-        />
 
         <h2 id="faq">FAQ</h2>
         <div className="faq">

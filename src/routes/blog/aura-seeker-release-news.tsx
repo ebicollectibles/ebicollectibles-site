@@ -1,5 +1,4 @@
 import * as React from 'react'
-import { BlogEmailSignup } from '~/components/blog/BlogEmailSignup'
 import { createFileRoute } from '@tanstack/react-router'
 import blogCssUrl from '~/styles/blog.css?url'
 import { BLOG_POSTS, BLOG_SITE_URL, blogSeoDescription, blogSeoTitle, blogShareImage } from '~/data/blog-posts'
@@ -59,7 +58,6 @@ const TOC = [
   { id: 'card-list', label: 'The card list so far' },
   { id: 'names', label: 'What is it called?' },
   { id: 'not-known', label: 'What has not been announced' },
-  { id: 'email', label: 'Get an email when it is listed' },
   { id: 'faq', label: 'FAQ' },
 ]
 
@@ -451,10 +449,6 @@ function AuraSeekerPost() {
           The main set is fully shown, but the secret rares are not. Only one, 113/078, has been revealed, and the number of secret rares
           and their pull rates have not been announced.
         </p>
-
-        <h2 id="email">Get an email when it is listed</h2>
-        <p>Aura Seeker is not in our shop. Leave your email below to hear when it is listed. No stock or dates are confirmed.</p>
-        <BlogEmailSignup heading="Get an email when it's listed" body="One email when Japanese Aura Seeker is listed in our shop." source="blog-aura-seeker" />
 
         <h2 id="faq">FAQ</h2>
         <div className="faq">

@@ -1,5 +1,4 @@
 import * as React from 'react'
-import { BlogEmailSignup } from '~/components/blog/BlogEmailSignup'
 import { createFileRoute, Link } from '@tanstack/react-router'
 import blogCssUrl from '~/styles/blog.css?url'
 import { BLOG_POSTS, BLOG_SITE_URL, blogSeoDescription, blogSeoTitle, blogShareImage } from '~/data/blog-posts'
@@ -62,7 +61,6 @@ const TOC = [
   { id: 'stadiums', label: 'Two-card Legendary Stadiums' },
   { id: 'card-list', label: 'Card count and rarities' },
   { id: 'english', label: 'Storm Emeralda and Delta Reign' },
-  { id: 'email', label: 'Get an email when it is listed' },
   { id: 'faq', label: 'FAQ' },
 ]
 
@@ -530,10 +528,6 @@ function StormEmeraldaPost() {
         <p>
           The trainer card names in this post are the names these cards have in Delta Reign, from the Limitless TCG card list.
         </p>
-
-        <h2 id="email">Get an email when it is listed</h2>
-        <p>Storm Emeralda is not in our shop. Leave your email below to hear when it is listed. No stock or dates are confirmed.</p>
-        <BlogEmailSignup heading="Get an email when it's listed" body="One email when Japanese Storm Emeralda is listed in our shop." source="blog-storm-emeralda" />
 
         <h2 id="faq">FAQ</h2>
         <div className="faq">
