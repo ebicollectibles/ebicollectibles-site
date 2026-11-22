@@ -133,15 +133,15 @@ function emailFooterHtml(listFooterHtml = ''): string {
 export async function marketingEmailExtras(email: string): Promise<{ footerHtml: string; footerText: string; headers: Record<string, string> }> {
   const { BUSINESS_LEGAL_NAME, BUSINESS_POSTAL_ADDRESS } = await import('~/lib/business')
   if (!BUSINESS_POSTAL_ADDRESS) throw new Error('Set BUSINESS_POSTAL_ADDRESS in src/lib/business.ts before sending list emails.')
-  const { unsubscribePageUrl, oneClickUnsubscribeUrl } = await import('./unsubscribe')
-  const [pageUrl, oneClickUrl] = await Promise.all([unsubscribePageUrl(email), oneClickUnsubscribeUrl(email)])
+  const { unsubscribePageUrl, oneClickUnsubscribeUrl, preferencesPageUrl } = await import('./unsubscribe')
+  const [pageUrl, oneClickUrl, prefsUrl] = await Promise.all([unsubscribePageUrl(email), oneClickUnsubscribeUrl(email), preferencesPageUrl(email)])
   const esc = (s: string) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
   // Lines only, no row of its own: emailShell drops these inside the grey
   // footer block, right under the copyright line, so they read as one footer.
   const footerHtml = `
           <p style="${BODY_FONT}font-size:8px;line-height:1.5;color:#7b8690;margin:12px 0 0;-webkit-text-size-adjust:none;">${esc(BUSINESS_LEGAL_NAME)} - ${esc(BUSINESS_POSTAL_ADDRESS)}</p>
-          <p style="${BODY_FONT}font-size:8px;line-height:1.5;color:#7b8690;margin:0;-webkit-text-size-adjust:none;">Don't want emails like these? <a href="${pageUrl}" style="color:#7b8690;text-decoration:underline;">Unsubscribe</a></p>`
-  const footerText = `${BUSINESS_LEGAL_NAME} - ${BUSINESS_POSTAL_ADDRESS}\nDon't want emails like these? Unsubscribe: ${pageUrl}`
+          <p style="${BODY_FONT}font-size:8px;line-height:1.5;color:#7b8690;margin:0;-webkit-text-size-adjust:none;"><a href="${prefsUrl}" style="color:#7b8690;text-decoration:underline;">Update preferences</a> &middot; <a href="${pageUrl}" style="color:#7b8690;text-decoration:underline;">Unsubscribe</a></p>`
+  const footerText = `${BUSINESS_LEGAL_NAME} - ${BUSINESS_POSTAL_ADDRESS}\nUpdate preferences: ${prefsUrl}\nUnsubscribe: ${pageUrl}`
   return {
     footerHtml,
     footerText,

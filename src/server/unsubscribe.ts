@@ -35,6 +35,11 @@ export async function emailFromUnsubscribeToken(token: string | null | undefined
   }
 }
 
+/** "Update preferences" link for the email footer. */
+export async function preferencesPageUrl(email: string): Promise<string> {
+  return `${SITE_URL}/email-preferences?t=${encodeURIComponent(await unsubscribeToken(email))}`
+}
+
 /** Page link for the email footer. */
 export async function unsubscribePageUrl(email: string): Promise<string> {
   return `${SITE_URL}/unsubscribe?t=${encodeURIComponent(await unsubscribeToken(email))}`
@@ -45,7 +50,15 @@ export async function oneClickUnsubscribeUrl(email: string): Promise<string> {
   return `${SITE_URL}/api/unsubscribe?t=${encodeURIComponent(await unsubscribeToken(email))}`
 }
 
+// Unsubscribe from everything list-like: the email list and every product
+// alert still waiting. Order and shipping emails aren't affected.
 async function setUnsubscribed(email: string): Promise<void> {
+  await leaveList(email, 'unsubscribe-link')
+  await cancelPendingNotifyMe(email)
+}
+
+/** Just the email list (new releases and restocks); product alerts stay. */
+async function leaveList(email: string, source: string): Promise<void> {
   const { getDb } = await import('~/lib/db/client')
   const { subscribers, subscriberEvents } = await import('~/lib/db/schema')
   const { and, eq, isNull, sql } = await import('drizzle-orm')
@@ -55,8 +68,7 @@ async function setUnsubscribed(email: string): Promise<void> {
     .set({ unsubscribedAt: sql`now()` })
     .where(and(eq(subscribers.email, email), isNull(subscribers.unsubscribedAt)))
     .returning({ id: subscribers.id })
-  if (row) await db.insert(subscriberEvents).values({ email, type: 'unsubscribed', source: 'unsubscribe-link' })
-  await cancelPendingNotifyMe(email)
+  if (row) await db.insert(subscriberEvents).values({ email, type: 'unsubscribed', source })
 }
 
 // Notify-me alerts carry the same Unsubscribe link, so unsubscribing also
@@ -68,7 +80,7 @@ async function pendingNotifyMe(email: string) {
   const { notifyMeSignups, users, products } = await import('~/lib/db/schema')
   const { and, eq, isNull, sql } = await import('drizzle-orm')
   return getDb()
-    .select({ id: notifyMeSignups.id, userId: notifyMeSignups.userId, productId: notifyMeSignups.productId, productName: products.name })
+    .select({ id: notifyMeSignups.id, userId: notifyMeSignups.userId, productId: notifyMeSignups.productId, productName: products.name, img: products.img })
     .from(notifyMeSignups)
     .innerJoin(users, eq(notifyMeSignups.userId, users.id))
     .innerJoin(products, eq(notifyMeSignups.productId, products.id))
@@ -140,3 +152,79 @@ export async function handleOneClickUnsubscribe(request: Request): Promise<Respo
   if (email) await setUnsubscribed(email)
   return new Response(email ? 'Unsubscribed' : 'Invalid link', { status: email ? 200 : 400, headers: { 'content-type': 'text/plain; charset=utf-8' } })
 }
+
+// --- Email preferences page (/email-preferences) ---
+// Same signed token as the Unsubscribe link, so it opens without signing in
+// and only ever shows or changes the address it was made for.
+
+async function isOnList(email: string): Promise<boolean> {
+  const { getDb } = await import('~/lib/db/client')
+  const { subscribers } = await import('~/lib/db/schema')
+  const { and, eq, isNull } = await import('drizzle-orm')
+  const [row] = await getDb()
+    .select({ id: subscribers.id })
+    .from(subscribers)
+    .where(and(eq(subscribers.email, email), isNull(subscribers.unsubscribedAt)))
+    .limit(1)
+  return !!row
+}
+
+async function preferencesFor(email: string) {
+  const [list, alerts] = await Promise.all([isOnList(email), pendingNotifyMe(email)])
+  return {
+    valid: true as const,
+    email,
+    list,
+    alerts: alerts.map((a) => ({ id: a.id, productId: a.productId, productName: a.productName, img: a.img })),
+  }
+}
+
+export const getEmailPreferences = createServerFn({ method: 'GET' })
+  .validator(tokenInput)
+  .handler(async ({ data }) => {
+    const email = await emailFromUnsubscribeToken(data.token)
+    if (!email) return { valid: false as const }
+    return preferencesFor(email)
+  })
+
+export const setListPreference = createServerFn({ method: 'POST' })
+  .validator(tokenInput.extend({ on: z.boolean() }))
+  .handler(async ({ data }) => {
+    const email = await emailFromUnsubscribeToken(data.token)
+    if (!email) throw new Error('This link is not valid.')
+    if (data.on) {
+      const { getDb } = await import('~/lib/db/client')
+      const { upsertSubscriber } = await import('./subscribers')
+      await upsertSubscriber(getDb(), email, 'preferences-page')
+    } else {
+      await leaveList(email, 'preferences-page')
+    }
+    return preferencesFor(email)
+  })
+
+export const removeAlertWithToken = createServerFn({ method: 'POST' })
+  .validator(tokenInput.extend({ signupId: z.string().uuid() }))
+  .handler(async ({ data }) => {
+    const email = await emailFromUnsubscribeToken(data.token)
+    if (!email) throw new Error('This link is not valid.')
+    // Only an alert that belongs to this token's address.
+    const alert = (await pendingNotifyMe(email)).find((a) => a.id === data.signupId)
+    if (alert) {
+      const { getDb } = await import('~/lib/db/client')
+      const { notifyMeSignups, notifyMeEvents } = await import('~/lib/db/schema')
+      const { eq } = await import('drizzle-orm')
+      const db = getDb()
+      await db.delete(notifyMeSignups).where(eq(notifyMeSignups.id, alert.id))
+      await db.insert(notifyMeEvents).values({ userId: alert.userId, email, productId: alert.productId, productName: alert.productName, type: 'canceled' })
+    }
+    return preferencesFor(email)
+  })
+
+export const unsubscribeAllWithToken = createServerFn({ method: 'POST' })
+  .validator(tokenInput)
+  .handler(async ({ data }) => {
+    const email = await emailFromUnsubscribeToken(data.token)
+    if (!email) throw new Error('This link is not valid.')
+    await setUnsubscribed(email)
+    return preferencesFor(email)
+  })
