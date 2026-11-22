@@ -925,7 +925,10 @@ export async function sendNotifyMeAlertEmail(data: NotifyMeAlertData): Promise<E
 // One tidy card for a shipment: carrier and tracking number (linked to the
 // carrier), with a small "Track package" button under it. Used instead of a
 // full-width button, which repeated what the tracking number already says.
-function shipmentCardHtml(carrier: string | null, trackingNumber: string | null, trackingUrl: string | null, buttonUrl: string | null): string {
+function shipmentCardHtml(carrier: string | null, trackingNumber: string | null, trackingUrl: string | null, orderUrl: string | null): string {
+  // "Track package" opens the carrier's own tracking page; the site's order
+  // page is the quieter link under it (or the button, if there's no carrier link).
+  const buttonUrl = trackingUrl ?? orderUrl
   const label = carrier && carrier !== 'Other' ? `${escapeHtml(carrier)} &middot; Tracking` : 'Tracking'
   const number = trackingNumber ? escapeHtml(trackingNumber) : null
   const numberHtml = number
@@ -936,9 +939,13 @@ function shipmentCardHtml(carrier: string | null, trackingNumber: string | null,
   const button = buttonUrl
     ? `<table role="presentation" cellpadding="0" cellspacing="0" style="margin-top:16px;"><tr><td bgcolor="${INK}" style="background:${INK};border-radius:3px;"><a href="${buttonUrl}" style="display:inline-block;padding:10px 18px;white-space:nowrap;${BODY_FONT}font-size:13px;font-weight:700;color:#ffffff;text-decoration:none;">Track package &rarr;</a></td></tr></table>`
     : ''
+  const orderLink =
+    orderUrl && trackingUrl
+      ? `<p style="${BODY_FONT}font-size:12.5px;margin:12px 0 0;"><a href="${orderUrl}" style="color:${MUTED};text-decoration:underline;">View order details &rarr;</a></p>`
+      : ''
   if (!numberHtml && !button) return ''
   return section(
-    `<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border:1px solid ${BORDER};border-radius:6px;"><tr><td style="padding:18px 20px;">${monoLabel(label)}${numberHtml}${button}</td></tr></table>`,
+    `<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border:1px solid ${BORDER};border-radius:6px;"><tr><td style="padding:18px 20px;">${monoLabel(label)}${numberHtml}${button}${orderLink}</td></tr></table>`,
     24,
   )
 }
@@ -1013,7 +1020,7 @@ export async function sendShipmentEmail(order: ShipmentEmailData): Promise<Email
     '',
     address ? `Ship to:\n${address.replace(/<br>/g, '\n')}` : null,
     '',
-    `Track package: ${orderUrl}`,
+    `View order details: ${orderUrl}`,
   ]
     .filter((line) => line !== null)
     .join('\n')
@@ -1109,7 +1116,7 @@ export async function sendMarketplaceShipmentEmail(order: MarketplaceShipmentEma
     badgeColor: GREEN,
     heading,
     intro,
-    afterButtonHtml: shipmentCardHtml(order.carrier, order.trackingNumber, trackingUrl, trackingUrl),
+    afterButtonHtml: shipmentCardHtml(order.carrier, order.trackingNumber, trackingUrl, null),
     bodyHtml,
   })
 
