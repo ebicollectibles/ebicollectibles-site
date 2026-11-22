@@ -22,6 +22,7 @@ import { Route as ShippingPolicyRouteImport } from './routes/shipping-policy'
 import { Route as ShopRouteImport } from './routes/shop'
 import { Route as SsoCallbackRouteImport } from './routes/sso-callback'
 import { Route as TermsOfServiceRouteImport } from './routes/terms-of-service'
+import { Route as UnsubscribeRouteImport } from './routes/unsubscribe'
 import { Route as AccountIndexRouteImport } from './routes/account/index'
 import { Route as AccountAffiliateRouteImport } from './routes/account/affiliate'
 import { Route as AccountForgotPasswordRouteImport } from './routes/account/forgot-password'
@@ -246,6 +247,11 @@ const SsoCallbackRoute = SsoCallbackRouteImport.update({
 const TermsOfServiceRoute = TermsOfServiceRouteImport.update({
   id: '/terms-of-service',
   path: '/terms-of-service',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const UnsubscribeRoute = UnsubscribeRouteImport.update({
+  id: '/unsubscribe',
+  path: '/unsubscribe',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AccountIndexRoute = AccountIndexRouteImport.update({
@@ -1157,6 +1163,7 @@ export interface FileRoutesByFullPath {
   '/shop': typeof ShopRoute
   '/sso-callback': typeof SsoCallbackRoute
   '/terms-of-service': typeof TermsOfServiceRoute
+  '/unsubscribe': typeof UnsubscribeRoute
   '/account/affiliate': typeof AccountAffiliateRoute
   '/account/forgot-password': typeof AccountForgotPasswordRoute
   '/account/login': typeof AccountLoginRoute
@@ -1332,6 +1339,7 @@ export interface FileRoutesByTo {
   '/shop': typeof ShopRoute
   '/sso-callback': typeof SsoCallbackRoute
   '/terms-of-service': typeof TermsOfServiceRoute
+  '/unsubscribe': typeof UnsubscribeRoute
   '/account/affiliate': typeof AccountAffiliateRoute
   '/account/forgot-password': typeof AccountForgotPasswordRoute
   '/account/login': typeof AccountLoginRoute
@@ -1508,6 +1516,7 @@ export interface FileRoutesById {
   '/shop': typeof ShopRoute
   '/sso-callback': typeof SsoCallbackRoute
   '/terms-of-service': typeof TermsOfServiceRoute
+  '/unsubscribe': typeof UnsubscribeRoute
   '/account/affiliate': typeof AccountAffiliateRoute
   '/account/forgot-password': typeof AccountForgotPasswordRoute
   '/account/login': typeof AccountLoginRoute
@@ -1685,6 +1694,7 @@ export interface FileRouteTypes {
     | '/shop'
     | '/sso-callback'
     | '/terms-of-service'
+    | '/unsubscribe'
     | '/account/affiliate'
     | '/account/forgot-password'
     | '/account/login'
@@ -1860,6 +1870,7 @@ export interface FileRouteTypes {
     | '/shop'
     | '/sso-callback'
     | '/terms-of-service'
+    | '/unsubscribe'
     | '/account/affiliate'
     | '/account/forgot-password'
     | '/account/login'
@@ -2035,6 +2046,7 @@ export interface FileRouteTypes {
     | '/shop'
     | '/sso-callback'
     | '/terms-of-service'
+    | '/unsubscribe'
     | '/account/affiliate'
     | '/account/forgot-password'
     | '/account/login'
@@ -2211,6 +2223,7 @@ export interface RootRouteChildren {
   ShopRoute: typeof ShopRoute
   SsoCallbackRoute: typeof SsoCallbackRoute
   TermsOfServiceRoute: typeof TermsOfServiceRoute
+  UnsubscribeRoute: typeof UnsubscribeRoute
   AccountAffiliateRoute: typeof AccountAffiliateRoute
   AccountForgotPasswordRoute: typeof AccountForgotPasswordRoute
   AccountLoginRoute: typeof AccountLoginRoute
@@ -2464,6 +2477,13 @@ declare module '@tanstack/react-router' {
       path: '/terms-of-service'
       fullPath: '/terms-of-service'
       preLoaderRoute: typeof TermsOfServiceRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/unsubscribe': {
+      id: '/unsubscribe'
+      path: '/unsubscribe'
+      fullPath: '/unsubscribe'
+      preLoaderRoute: typeof UnsubscribeRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/account/': {
@@ -3603,6 +3623,7 @@ const rootRouteChildren: RootRouteChildren = {
   ShopRoute: ShopRoute,
   SsoCallbackRoute: SsoCallbackRoute,
   TermsOfServiceRoute: TermsOfServiceRoute,
+  UnsubscribeRoute: UnsubscribeRoute,
   AccountAffiliateRoute: AccountAffiliateRoute,
   AccountForgotPasswordRoute: AccountForgotPasswordRoute,
   AccountLoginRoute: AccountLoginRoute,

@@ -6,6 +6,7 @@ import { handleResendWebhook } from './server/resend-webhook'
 import { handleSitemapRequest } from './server/sitemap'
 import { CSP_REPORT_ONLY, CSP_REPORT_PATH, handleCspReport } from './server/csp'
 import { REMOVED_PAGE_HTML, isRemovedOldSetPath } from './lib/old-set-paths'
+import { handleOneClickUnsubscribe } from './server/unsubscribe'
 
 const startFetch = createStartHandler(defaultStreamHandler)
 
@@ -78,6 +79,11 @@ const entry: ServerEntry = {
       return new Response('google-site-verification: googlebf98bffc1bcc2bc8.html', {
         headers: { 'content-type': 'text/html; charset=utf-8' },
       })
+    }
+    // Gmail/Yahoo one-click unsubscribe from a list email (RFC 8058). See
+    // server/unsubscribe.ts.
+    if (request.method === 'POST' && url.pathname === '/api/unsubscribe') {
+      return handleOneClickUnsubscribe(request)
     }
     if (request.method === 'POST' && url.pathname === CSP_REPORT_PATH) {
       return handleCspReport(request)

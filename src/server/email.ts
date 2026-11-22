@@ -43,6 +43,36 @@ function emailFooterHtml(): string {
       </tr>`
 }
 
+// Extra footer lines and headers for LIST emails only (restock and new
+// release emails sent to subscribers), never order or shipping emails.
+// Laid out like the big senders do it, centered:
+//   EBI Collectibles - <postal address>
+//   Don't want emails like these? Unsubscribe
+// plus the List-Unsubscribe headers that make Gmail and Yahoo show their
+// own one-click Unsubscribe button (required for bulk senders).
+// Throws while BUSINESS_POSTAL_ADDRESS is empty: CAN-SPAM requires a
+// postal address in commercial email, so a list email can't go out without.
+export async function marketingEmailExtras(email: string): Promise<{ footerHtml: string; footerText: string; headers: Record<string, string> }> {
+  const { BUSINESS_LEGAL_NAME, BUSINESS_POSTAL_ADDRESS } = await import('~/lib/business')
+  if (!BUSINESS_POSTAL_ADDRESS) throw new Error('Set BUSINESS_POSTAL_ADDRESS in src/lib/business.ts before sending list emails.')
+  const { unsubscribePageUrl, oneClickUnsubscribeUrl } = await import('./unsubscribe')
+  const [pageUrl, oneClickUrl] = await Promise.all([unsubscribePageUrl(email), oneClickUnsubscribeUrl(email)])
+  const esc = (s: string) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+  const footerHtml = `
+      <tr>
+        <td style="padding:18px 32px 26px;text-align:center;">
+          <p style="font-size:11.5px;line-height:1.6;color:${MUTED};margin:0;">${esc(BUSINESS_LEGAL_NAME)} - ${esc(BUSINESS_POSTAL_ADDRESS)}</p>
+          <p style="font-size:11.5px;line-height:1.6;color:${MUTED};margin:0;">Don't want emails like these? <a href="${pageUrl}" style="color:${MUTED};text-decoration:underline;">Unsubscribe</a></p>
+        </td>
+      </tr>`
+  const footerText = `${BUSINESS_LEGAL_NAME} - ${BUSINESS_POSTAL_ADDRESS}\nDon't want emails like these? Unsubscribe: ${pageUrl}`
+  return {
+    footerHtml,
+    footerText,
+    headers: { 'List-Unsubscribe': `<${oneClickUrl}>`, 'List-Unsubscribe-Post': 'List-Unsubscribe=One-Click' },
+  }
+}
+
 function emailShell(opts: { badgeLabel: string; badgeColor: string; heading: string; intro: string; bodyHtml: string }): string {
   return `
   <div style="background:${SURFACE};padding:32px 16px;font-family:Helvetica,Arial,sans-serif;">
