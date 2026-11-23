@@ -8,7 +8,18 @@ import { subscribeToNewsletter } from '~/server/subscribers'
  * (for example "blog-pikachu-gift-box") so the people who asked about one
  * product can be found and emailed when it opens.
  */
-export function BlogEmailSignup({ heading, body, source }: { heading: string; body: string; source: string }) {
+export function BlogEmailSignup({
+  heading,
+  body,
+  source,
+  doneText = "You're on the list. We'll email you when it opens.",
+}: {
+  heading: string
+  body: string
+  source: string
+  /** Shown after signing up; the default fits a pre-order box. */
+  doneText?: string
+}) {
   const [email, setEmail] = React.useState('')
   const [state, setState] = React.useState<'idle' | 'submitting' | 'done' | 'error'>('idle')
   const id = React.useId()
@@ -32,7 +43,7 @@ export function BlogEmailSignup({ heading, body, source }: { heading: string; bo
       </div>
       {state === 'done' ? (
         <p role="status" className="signup-done">
-          You're on the list. We'll email you when it opens.
+          {doneText}
         </p>
       ) : (
         <form onSubmit={submit}>

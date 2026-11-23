@@ -1,4 +1,5 @@
 import { Zh, zh } from '~/components/blog/Zh'
+import { BlogEmailSignup } from '~/components/blog/BlogEmailSignup'
 import { createFileRoute, Link } from '@tanstack/react-router'
 import blogCssUrl from '~/styles/blog.css?url'
 import { BLOG_POSTS, BLOG_SITE_URL, blogSeoDescription, blogSeoTitle, blogShareImage } from '~/data/blog-posts'
@@ -326,6 +327,8 @@ function ShanghaiGoldCardsPost() {
           In China, Pokémon China's Trainers' 30th Anniversary Celebration campaign set out to collect 300,000 cards at shops. It hit
           the goal on November 6.
         </p>
+
+        <BlogEmailSignup heading="Get more news like this" body="Join our email list." source="blog-shanghai-gold-cards" doneText="You're on the list." />
 
         <h2 id="at-ebi">30th Celebration at EBI Collectibles</h2>
         <p>
