@@ -202,44 +202,37 @@ The official event poster, then the same poster with its Chinese text translated
         </p>
 
         <h2 id="gold-math">The gold, by the numbers</h2>
-        <p>
-          These are rough estimates based on the reported 999 purity and 30 g per card. Pokémon China has not given any of these
-          figures.
-        </p>
-        <ul>
-          <li>
-            <strong>Purity.</strong> 999 means 99.9% gold. A 30 g card holds about 0.03 g of anything else, roughly a grain of rice.
-          </li>
-          <li>
-            <strong>Weight.</strong> All 30 cards together weigh about 900 g, or 2 pounds. Each card is just under one troy ounce, the
-            unit gold is priced in.
-          </li>
-          <li>
-            <strong>Thickness.</strong> At normal card size, 30 g of gold is about 0.28 mm thick, close to a normal printed card at
-            about 0.3 mm. It would just weigh about 17 times more.
-          </li>
-        </ul>
-        <p>What the gold alone is worth at late November 2026 prices:</p>
-        <div className="table-scroll" role="group" aria-labelledby="tbl-gold-value" tabIndex={0}>
+        <p>Rough estimates from the reported 999 purity and 30 g per card. Pokémon China has not given these figures.</p>
+        <div className="table-scroll" role="group" aria-labelledby="tbl-gold" tabIndex={0}>
           <table className="data-table">
-            <caption id="tbl-gold-value" className="sr-only">
-              Estimated gold value of one card and of all 30 cards
+            <caption id="tbl-gold" className="sr-only">
+              Estimated purity, weight and gold value of one gold card and of all 30
             </caption>
             <thead>
               <tr>
-                <th scope="col">Gold price used</th>
+                <th scope="col"></th>
                 <th scope="col">One card</th>
                 <th scope="col">All 30 cards</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <th scope="row">China, about ¥755 a gram (Nov 21)</th>
+                <th scope="row">Purity</th>
+                <td>99.9% gold</td>
+                <td>99.9% gold</td>
+              </tr>
+              <tr>
+                <th scope="row">Weight</th>
+                <td>30 g (just under 1 oz)</td>
+                <td>900 g (about 2 lb)</td>
+              </tr>
+              <tr>
+                <th scope="row">Gold value in China (¥755/g, Nov 21)</th>
                 <td>about ¥22,650</td>
                 <td>about ¥680,000</td>
               </tr>
               <tr>
-                <th scope="row">US, about $3,620 an ounce (Nov 23)</th>
+                <th scope="row">Gold value in US dollars ($3,620/oz, Nov 23)</th>
                 <td>about $3,500</td>
                 <td>about $105,000</td>
               </tr>
@@ -247,10 +240,8 @@ The official event poster, then the same poster with its Chinese text translated
           </table>
         </div>
         <p>
-          A figure of about ¥600,000 has been widely shared for the set. That works out to about ¥667 a gram, a little below the
-          Shanghai price, and it is for all 30 cards together, not one card. Gold also moves a lot: at January's high of about ¥1,256 a
-          gram, the set would have held over ¥1.1 million in gold. As one-of-a-kind 30th anniversary pieces, the cards would be worth
-          far more to collectors than the metal.
+          The widely shared ¥600,000 figure is for all 30 cards, not one. Gold prices change daily, and as one-of-a-kind pieces the
+          cards would be worth far more to collectors than the gold.
         </p>
 
         <h2 id="pikachu-cards">The Pikachu cards behind the designs</h2>
