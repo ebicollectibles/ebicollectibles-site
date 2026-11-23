@@ -557,10 +557,13 @@ export const emailEvents = pgTable('email_events', {
   id: uuid('id').primaryKey().defaultRandom(),
   orderId: uuid('order_id').references(() => orders.id, { onDelete: 'set null' }),
   email: text('email'),
-  type: text('type').notNull(), // order_confirmation | shipment_notice | store_credit_issued | shipping_delay | notify_me_alert | order_cancellation
+  type: text('type').notNull(), // order_confirmation | shipment_notice | store_credit_issued | shipping_delay | notify_me_alert | order_cancellation | partial_refund
   status: text('status').notNull(), // sent | failed | skipped (no email on file / sending not configured)
   errorMessage: text('error_message'),
   resendId: text('resend_id'),
+  // Set only on 'partial_refund' rows: which refund the email was about, so
+  // the admin order page can show "sent" next to that one refund.
+  refundEventId: uuid('refund_event_id').references(() => refundEvents.id, { onDelete: 'set null' }),
   deliveredAt: timestamp('delivered_at', { withTimezone: true }),
   openedAt: timestamp('opened_at', { withTimezone: true }),
   clickedAt: timestamp('clicked_at', { withTimezone: true }),

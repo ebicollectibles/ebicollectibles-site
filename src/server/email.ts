@@ -562,6 +562,104 @@ export async function sendOrderCancellationEmail(order: OrderCancellationEmailDa
   return { status: 'sent', resendId: sentJson?.id }
 }
 
+export interface PartialRefundEmailData {
+  orderId: string
+  orderNo: number
+  email: string | null
+  firstName: string | null
+  amount: number
+  // Already in its customer-facing form (customerRefundReason in
+  // lib/refunds.ts). Null for a refund made in Square's dashboard with no
+  // reason: the email then just leaves the reason out.
+  reason: string | null
+  paymentMethodSummary: string | null
+  items: OrderEmailItem[]
+}
+
+// Only ever sent from the admin order page's "Send refund email" button
+// (adminSendPartialRefundEmail), never automatically when a refund lands.
+export async function sendPartialRefundEmail(data: PartialRefundEmailData): Promise<EmailSendResult> {
+  const apiKey = process.env.RESEND_API_KEY
+  const from = process.env.ORDER_FROM_EMAIL
+  if (!apiKey || !from || !data.email) return { status: 'skipped' }
+
+  const orderUrl = await orderViewUrl(data.orderId)
+  const amount = formatMoney(data.amount)
+  const statementNote = 'It usually shows on your statement in 2–10 business days, depending on your bank.'
+
+  const leadHtml = `
+    ${data.reason ? section(`${monoLabel('Reason')}${section(paragraph(escapeHtml(data.reason).replace(/\n/g, '<br>'), { size: 14.5, color: INK }), 6)}`, 22) : ''}
+    ${section(
+      detailsBoxHtml([
+        ...(data.paymentMethodSummary ? [{ label: 'Refunded to', valueHtml: escapeHtml(data.paymentMethodSummary) }] : []),
+        { label: 'Amount', valueHtml: `<strong>${amount}</strong>` },
+        { label: 'Order', valueHtml: `#EBI-${data.orderNo}` },
+      ]),
+      22,
+    )}
+    ${section(paragraph(statementNote, { size: 13.5 }), 14)}
+  `
+  const bodyHtml = `
+    ${itemsSectionHtml('In this order', data.items, { showPrice: false })}
+    ${section(paragraph(`Questions about this refund? Email us at <a href="mailto:eastblueinternational@gmail.com" style="color:${MUTED};">eastblueinternational@gmail.com</a>.`, { size: 13 }), 24)}
+  `
+
+  const html = emailShell({
+    badgeLabel: 'Partial refund',
+    badgeColor: GREEN,
+    heading: `We've refunded ${amount}`,
+    intro: `${data.firstName ? `Hi ${escapeHtml(data.firstName)}, w` : 'W'}e've refunded part of order #EBI-${data.orderNo} to your ${data.paymentMethodSummary ? 'card' : 'original payment method'}.`,
+    leadHtml,
+    primaryButton: { label: 'View your order', url: orderUrl },
+    bodyHtml,
+  })
+
+  const text = [
+    `We've refunded ${amount}`,
+    `${data.firstName ? `Hi ${data.firstName}, w` : 'W'}e've refunded part of order #EBI-${data.orderNo} to your ${data.paymentMethodSummary ? 'card' : 'original payment method'}.`,
+    '',
+    data.reason ? `Reason: ${data.reason}` : null,
+    data.paymentMethodSummary ? `Refunded to: ${data.paymentMethodSummary}` : null,
+    `Amount: ${amount}`,
+    `Order: #EBI-${data.orderNo}`,
+    '',
+    statementNote,
+    '',
+    'In this order:',
+    ...data.items.map((item) => `${item.qty}x ${item.productName}`),
+    '',
+    `View your order: ${orderUrl}`,
+    'Questions about this refund? Email us at eastblueinternational@gmail.com.',
+  ]
+    .filter((line) => line !== null)
+    .join('\n')
+
+  const res = await fetch('https://api.resend.com/emails', {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${apiKey}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      from,
+      to: data.email,
+      subject: `Partial refund — #EBI-${data.orderNo}`,
+      html,
+      text,
+    }),
+  })
+
+  if (!res.ok) {
+    const json = await res.json().catch(() => null)
+    const error = json?.message || `HTTP ${res.status}`
+    console.error(`Failed to send partial refund email for order ${data.orderNo}:`, error)
+    return { status: 'failed', error }
+  }
+
+  const sentJson = await res.json().catch(() => null)
+  return { status: 'sent', resendId: sentJson?.id }
+}
+
 // Same best-effort, return-a-result contract as sendOrderConfirmationEmail —
 // called right after admin issues store credit (see server/store-credit.ts).
 // Only for a fresh grant, never for a deduction/correction or an automatic

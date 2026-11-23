@@ -513,7 +513,7 @@ function monthLabel(month: string): string {
 async function downloadAffiliateStatementPdf(
   affiliate: { name: string; code: string },
   month: string,
-  orders: Array<{ orderNo: number; createdAt: Date | string; subtotal: number; affiliateCommissionRate: number | null; affiliateCommission: number | null; refunded: boolean }>,
+  orders: Array<{ orderNo: number; createdAt: Date | string; subtotal: number; affiliateCommissionRate: number | null; affiliateCommission: number | null; refunded: boolean; partlyRefunded?: boolean }>,
 ) {
   const [{ default: jsPDF }, { default: autoTable }] = await Promise.all([import('jspdf'), import('jspdf-autotable')])
   const doc = new jsPDF()
@@ -531,7 +531,7 @@ async function downloadAffiliateStatementPdf(
       new Date(o.createdAt).toLocaleDateString(),
       money(o.subtotal),
       o.affiliateCommissionRate != null ? `${o.affiliateCommissionRate}%` : '—',
-      o.refunded ? 'Refunded — excluded' : money(o.affiliateCommission ?? 0),
+      o.refunded ? 'Refunded — excluded' : o.partlyRefunded ? `${money(o.affiliateCommission ?? 0)} (after refund)` : money(o.affiliateCommission ?? 0),
     ]),
   })
 
@@ -699,6 +699,11 @@ function AffiliateOrdersTable({ orders }: { orders: Awaited<ReturnType<typeof ad
                   <span style={{ fontSize: 11.5, color: '#3f7a63' }}>Paid</span>
                 ) : (
                   <span style={{ fontSize: 11.5, color: '#5a6875' }}>Owed</span>
+                )}
+                {o.partlyRefunded && (
+                  <span style={{ display: 'block', fontSize: 11, color: '#a85b2c' }}>
+                    {money(o.refundedAmount)} refunded, was {money(o.originalCommission ?? 0)}
+                  </span>
                 )}
               </td>
             </tr>

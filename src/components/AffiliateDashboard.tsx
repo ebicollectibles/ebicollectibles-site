@@ -37,6 +37,8 @@ export type AffiliateDashboardData = {
     commissionRate: number | null
     paid: boolean
     refunded: boolean
+    // Some of the order was refunded, so commission was reduced in proportion.
+    partlyRefunded?: boolean
     items: Array<{ productName: string; productImg?: string; unitPrice: number; qty: number; commissionRate: number | null; commission: number }>
   }>
 }
@@ -291,6 +293,7 @@ export function AffiliateDashboardView({ affiliate, heading = 'Affiliate' }: { a
                       <td style={{ ...td, fontFamily: "'IBM Plex Mono', monospace" }}>{formatMoney(o.commission)}</td>
                       <td style={{ ...td, color: o.refunded ? '#5a6875' : o.paid ? '#3f7a63' : '#a85b2c' }}>
                         {o.refunded ? 'Refunded' : o.paid ? 'Paid' : 'Owed'}
+                        {o.partlyRefunded && <span style={{ display: 'block', fontSize: 11, color: '#5a6875' }}>Part refunded</span>}
                       </td>
                     </tr>
                     {expanded && o.items.length > 0 && (

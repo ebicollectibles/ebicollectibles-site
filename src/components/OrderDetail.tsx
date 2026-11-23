@@ -23,6 +23,9 @@ export interface OrderDetailView {
   creditApplied: Money
   total: Money
   totalRefunded: Money
+  // Completed refunds only: date, amount, and the reason given (null for a
+  // refund made in Square's dashboard without one). See customerRefundList.
+  refunds?: { createdAt: string | Date; amount: Money; reason: string | null }[]
   paymentMethodSummary?: string | null
   firstName: string | null
   lastName: string | null
@@ -248,6 +251,25 @@ export function OrderDetail({ order, view, banner }: { order: OrderDetailView | 
         )}
       </div>
       </div>
+
+      {order.refunds && order.refunds.length > 0 && (
+        <div style={{ marginTop: 16, paddingTop: 16, borderTop: '1px solid #e3e6ea' }}>
+          <div style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 10.5, letterSpacing: '0.1em', textTransform: 'uppercase', color: '#5a6875' }}>
+            Refunds
+          </div>
+          <div style={{ marginTop: 10, display: 'flex', flexDirection: 'column', gap: 12 }}>
+            {order.refunds.map((r, i) => (
+              <div key={i}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', gap: 12, fontSize: 13.5, color: '#131b28' }}>
+                  <span>{new Date(r.createdAt).toLocaleDateString('en-US', { dateStyle: 'medium' })}</span>
+                  <span style={{ fontFamily: "'IBM Plex Mono', monospace", fontWeight: 600, color: '#8a4a26' }}>{formatMoney(r.amount)}</span>
+                </div>
+                {r.reason && <div style={{ marginTop: 2, fontSize: 12.5, color: '#5a6875', lineHeight: 1.5, overflowWrap: 'anywhere' }}>{r.reason}</div>}
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
 
       {view === 'account' && order.paymentMethodSummary && (
         <div style={{ marginTop: 16, paddingTop: 16, borderTop: '1px solid #e3e6ea' }}>

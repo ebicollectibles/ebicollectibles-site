@@ -1,0 +1,2 @@
+ALTER TABLE "email_events" ADD COLUMN IF NOT EXISTS "refund_event_id" uuid;--> statement-breakpoint
+ALTER TABLE "email_events" ADD CONSTRAINT "email_events_refund_event_id_refund_events_id_fk" FOREIGN KEY ("refund_event_id") REFERENCES "public"."refund_events"("id") ON DELETE set null ON UPDATE no action;

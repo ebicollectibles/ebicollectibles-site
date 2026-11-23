@@ -35,13 +35,16 @@ import {
 import { CARRIERS } from '~/lib/carriers'
 import { PRODUCT_CATEGORIES, SUBCATEGORIES_BY_CATEGORY, ALL_SUBCATEGORIES, isValidGtin13, GOOGLE_CONDITIONS } from '~/lib/products'
 import { buildShipmentsByOrder, computeFulfillmentStatus, groupBy, remainingQtyByItem } from '~/lib/shipments'
+import { computeRefundable, customerRefundReason, isCancellationRefund, REFUND_REASON_MAX_LENGTH, validatePartialRefund } from '~/lib/refunds'
 import { assertAdmin } from './admin-auth'
 import { buildAffiliateDashboard } from './affiliate-dashboard'
+import { adjustCommission, completedRefundTotals } from './affiliate-refunds'
 import {
   sendCheckoutIssueEmail,
   sendMarketplaceShipmentEmail,
   sendNotifyMeAlertEmail,
   sendOrderCancellationEmail,
+  sendPartialRefundEmail,
   sendShipmentEmail,
   sendShippingDelayEmail,
   type EmailSendResult,
@@ -507,12 +510,26 @@ export const adminGetOrder = createServerFn({ method: 'GET' })
       .where(eq(orderStatusEvents.orderId, data.id))
       .orderBy(asc(orderStatusEvents.createdAt))
     const refunds = await db
-      .select({ amount: refundEvents.amount, status: refundEvents.status, createdAt: refundEvents.createdAt })
+      .select({
+        id: refundEvents.id,
+        squareRefundId: refundEvents.squareRefundId,
+        amount: refundEvents.amount,
+        status: refundEvents.status,
+        reason: refundEvents.reason,
+        createdAt: refundEvents.createdAt,
+      })
       .from(refundEvents)
       .where(eq(refundEvents.orderId, data.id))
       .orderBy(desc(refundEvents.createdAt))
     const emails = await db
-      .select({ type: emailEvents.type, status: emailEvents.status, errorMessage: emailEvents.errorMessage, createdAt: emailEvents.createdAt })
+      .select({
+        type: emailEvents.type,
+        status: emailEvents.status,
+        errorMessage: emailEvents.errorMessage,
+        refundEventId: emailEvents.refundEventId,
+        email: emailEvents.email,
+        createdAt: emailEvents.createdAt,
+      })
       .from(emailEvents)
       .where(eq(emailEvents.orderId, data.id))
       .orderBy(asc(emailEvents.createdAt))
@@ -803,6 +820,123 @@ export const adminSendCancellationEmailTest = createServerFn({ method: 'POST' })
       items: allItems.map((i) => ({ productName: i.productName, qty: i.qty, unitPrice: i.unitPrice, img: i.img })),
     })
 
+    if (sendResult.status !== 'sent') throw new Error(sendResult.error || `Test send ${sendResult.status}.`)
+    return { ok: true }
+  })
+
+// Refunds part of what the customer paid by card. Unlike
+// adminCancelAndRefundOrder this never cancels the order or touches
+// fulfillment, and it never restores store credit itself. Same contract
+// with the refund webhook as the full refund: this only asks Square for the
+// refund; square-webhook.ts records it in refund_events (with the reason we
+// send Square, which is what the customer later sees) and the order page
+// shows it once that arrives, usually within seconds.
+//
+// The cap is recomputed here from refund_events, never taken from the
+// client. PENDING refunds count as already refunded so one that is still
+// settling can't be refunded again; Square also rejects any refund past the
+// payment's own remaining amount, as a second backstop. attemptId is made by
+// the page each time the admin confirms, so a double-submitted request for
+// one confirmation reaches Square with the same idempotency key and is the
+// same refund, not two.
+export const adminPartialRefundOrder = createServerFn({ method: 'POST' })
+  .validator(
+    z.object({
+      orderId: z.string().uuid(),
+      amount: z.string().max(20),
+      reason: z.string().max(REFUND_REASON_MAX_LENGTH + 50),
+      attemptId: z.string().uuid(),
+    }),
+  )
+  .handler(async ({ data }) => {
+    await assertAdmin()
+    const db = getDb()
+    const [order] = await db.select().from(orders).where(eq(orders.id, data.orderId)).limit(1)
+    if (!order) throw new Error('Order not found.')
+    if (!order.squarePaymentId) throw new Error('This order has no Square card payment to refund.')
+
+    const refunds = await db
+      .select({ amount: refundEvents.amount, status: refundEvents.status })
+      .from(refundEvents)
+      .where(eq(refundEvents.orderId, order.id))
+    const { remainingCents } = computeRefundable(order, refunds)
+    const checked = validatePartialRefund({ amount: data.amount, reason: data.reason, remainingCents })
+    if ('error' in checked) throw new Error(checked.error)
+
+    const result = await refundSquarePayment({
+      squarePaymentId: order.squarePaymentId,
+      amount: checked.cents / 100,
+      orderNo: order.orderNo,
+      reason: checked.reason,
+      idempotencyKey: `prf${order.orderNo}-${data.attemptId.replace(/-/g, '')}`.slice(0, 45),
+    })
+    if (result.status === 'failed') throw new Error(result.error || 'Refund failed.')
+
+    return { ok: true, amountCents: checked.cents, squareRefundId: result.squareRefundId ?? null, refundStatus: result.refundStatus ?? null }
+  })
+
+async function loadPartialRefundEmail(db: ReturnType<typeof getDb>, orderId: string, refundEventId: string) {
+  const [order] = await db.select().from(orders).where(eq(orders.id, orderId)).limit(1)
+  if (!order) throw new Error('Order not found.')
+  const [refund] = await db
+    .select()
+    .from(refundEvents)
+    .where(and(eq(refundEvents.id, refundEventId), eq(refundEvents.orderId, orderId)))
+    .limit(1)
+  if (!refund) throw new Error('Refund not found on this order.')
+  if (refund.status !== 'COMPLETED' || refund.amount == null) throw new Error("This refund hasn't completed in Square yet.")
+  if (isCancellationRefund(refund.reason)) throw new Error('This refund came from Cancel & refund, which already sends the cancellation email.')
+  const items = await db.select().from(orderItems).where(eq(orderItems.orderId, orderId))
+  return {
+    order,
+    refund,
+    emailData: {
+      orderId: order.id,
+      orderNo: order.orderNo,
+      firstName: order.firstName,
+      amount: refund.amount,
+      reason: customerRefundReason(refund.reason),
+      paymentMethodSummary: order.paymentMethodSummary,
+      items: items.map((i) => ({ productName: i.productName, qty: i.qty, unitPrice: i.unitPrice, img: i.img })),
+    },
+  }
+}
+
+// Sends the partial refund email for one completed refund to the order's
+// email. Only from the admin's button, never automatic. Logged to
+// email_events with the refund's id so the page can show it was sent and
+// when; sending again is allowed (the page asks first).
+export const adminSendPartialRefundEmail = createServerFn({ method: 'POST' })
+  .validator(z.object({ orderId: z.string().uuid(), refundEventId: z.string().uuid() }))
+  .handler(async ({ data }) => {
+    await assertAdmin()
+    const db = getDb()
+    const { order, refund, emailData } = await loadPartialRefundEmail(db, data.orderId, data.refundEventId)
+    if (!order.email) throw new Error('This order has no email address.')
+
+    const sendResult = await sendPartialRefundEmail({ ...emailData, email: order.email })
+    await db.insert(emailEvents).values({
+      orderId: order.id,
+      email: order.email,
+      type: 'partial_refund',
+      status: sendResult.status,
+      errorMessage: sendResult.error ?? null,
+      resendId: sendResult.resendId ?? null,
+      refundEventId: refund.id,
+    })
+    if (sendResult.status !== 'sent') throw new Error(sendResult.error || `Send ${sendResult.status}.`)
+    return { ok: true }
+  })
+
+// Same email to an address the admin types in, for checking it first.
+// Logs nothing and changes nothing.
+export const adminSendPartialRefundEmailTest = createServerFn({ method: 'POST' })
+  .validator(z.object({ orderId: z.string().uuid(), refundEventId: z.string().uuid(), testEmail: z.string().email() }))
+  .handler(async ({ data }) => {
+    await assertAdmin()
+    const db = getDb()
+    const { emailData } = await loadPartialRefundEmail(db, data.orderId, data.refundEventId)
+    const sendResult = await sendPartialRefundEmail({ ...emailData, email: data.testEmail })
     if (sendResult.status !== 'sent') throw new Error(sendResult.error || `Test send ${sendResult.status}.`)
     return { ok: true }
   })
@@ -2090,22 +2224,13 @@ export const adminListAffiliates = createServerFn({ method: 'GET' }).handler(asy
   const contactsByAffiliate = groupBy(contactRows, (r) => r.affiliateId)
 
   const attributedOrders = await db
-    .select({ affiliateId: orders.affiliateId, orderId: orders.id, affiliateCommission: orders.affiliateCommission, paidAt: orders.affiliateCommissionPaidAt })
+    .select({ affiliateId: orders.affiliateId, orderId: orders.id, subtotal: orders.subtotal, affiliateCommission: orders.affiliateCommission, paidAt: orders.affiliateCommissionPaidAt })
     .from(orders)
     .where(isNotNull(orders.affiliateId))
 
-  // An order with a completed refund never counts toward what's owed —
-  // never pay commission on money that was given back. It still shows up
-  // in adminListAffiliateOrders' per-order breakdown, flagged, rather than
-  // silently vanishing from the numbers.
-  const refundedIds =
-    attributedOrders.length === 0
-      ? []
-      : await db
-          .select({ orderId: refundEvents.orderId })
-          .from(refundEvents)
-          .where(and(eq(refundEvents.status, 'COMPLETED'), inArray(refundEvents.orderId, attributedOrders.map((o) => o.orderId))))
-  const refundedSet = new Set(refundedIds.map((r) => r.orderId))
+  // Refunds reduce commission by the share of the subtotal refunded (see
+  // commissionAfterRefunds); a fully refunded order earns nothing.
+  const refundTotals = await completedRefundTotals(db, attributedOrders.map((o) => o.orderId))
 
   const byAffiliate = groupBy(attributedOrders, (o) => o.affiliateId!)
 
@@ -2115,10 +2240,10 @@ export const adminListAffiliates = createServerFn({ method: 'GET' }).handler(asy
     let paidCommission = 0
     let owedCommission = 0
     for (const o of orderRows) {
-      const commission = Number(o.affiliateCommission ?? 0)
+      const { commission } = adjustCommission(o, refundTotals.get(o.orderId) ?? 0)
       totalCommission += commission
       if (o.paidAt) paidCommission += commission
-      else if (!refundedSet.has(o.orderId)) owedCommission += commission
+      else owedCommission += commission
     }
     const scoped = scopedByAffiliate.get(affiliate.id) ?? []
     const contacts = contactsByAffiliate.get(affiliate.id) ?? []
@@ -2154,13 +2279,12 @@ export const adminListAffiliateOrders = createServerFn({ method: 'GET' })
       .orderBy(desc(orders.createdAt))
     if (orderRows.length === 0) return []
 
-    const refundedIds = await db
-      .select({ orderId: refundEvents.orderId })
-      .from(refundEvents)
-      .where(and(eq(refundEvents.status, 'COMPLETED'), inArray(refundEvents.orderId, orderRows.map((o) => o.id))))
-    const refundedSet = new Set(refundedIds.map((r) => r.orderId))
-
-    return orderRows.map((o) => ({ ...o, refunded: refundedSet.has(o.id) }))
+    const refundTotals = await completedRefundTotals(db, orderRows.map((o) => o.id))
+    // affiliateCommission is what's earned after refunds; originalCommission is what the order earned when placed.
+    return orderRows.map((o) => {
+      const adj = adjustCommission(o, refundTotals.get(o.id) ?? 0)
+      return { ...o, affiliateCommission: o.affiliateCommission == null ? null : adj.commission, originalCommission: o.affiliateCommission, refundedAmount: adj.refundedAmount, refunded: adj.refunded, partlyRefunded: adj.partlyRefunded }
+    })
   })
 
 // Read-only preview of exactly what this affiliate sees on their own
@@ -2253,21 +2377,15 @@ export const adminMarkAffiliateCommissionPaid = createServerFn({ method: 'POST' 
     await assertAdmin()
     const db = getDb()
     const candidates = await db
-      .select({ id: orders.id })
+      .select({ id: orders.id, subtotal: orders.subtotal, affiliateCommission: orders.affiliateCommission })
       .from(orders)
       .where(and(eq(orders.affiliateId, data.affiliateId), isNotNull(orders.affiliateCommission), isNull(orders.affiliateCommissionPaidAt)))
     if (candidates.length === 0) return { markedCount: 0 }
 
-    // Same rule as adminListAffiliates' owed total — a refunded order was
-    // never counted as owed, so it must never be swept up into "paid" here
-    // either (that would make owed go negative and silently hide that this
-    // order shouldn't have been part of the payout in the first place).
-    const refundedIds = await db
-      .select({ orderId: refundEvents.orderId })
-      .from(refundEvents)
-      .where(and(eq(refundEvents.status, 'COMPLETED'), inArray(refundEvents.orderId, candidates.map((o) => o.id))))
-    const refundedSet = new Set(refundedIds.map((r) => r.orderId))
-    const payableIds = candidates.map((o) => o.id).filter((id) => !refundedSet.has(id))
+    // Same rule as adminListAffiliates' owed total: an order whose
+    // commission refunds took to $0 has nothing to pay, so it isn't marked.
+    const refundTotals = await completedRefundTotals(db, candidates.map((o) => o.id))
+    const payableIds = candidates.filter((o) => adjustCommission(o, refundTotals.get(o.id) ?? 0).commission > 0).map((o) => o.id)
     if (payableIds.length === 0) return { markedCount: 0 }
 
     const updated = await db
@@ -2295,7 +2413,7 @@ export const adminMarkAffiliateCommissionPaidForMonth = createServerFn({ method:
     const monthEnd = new Date(Date.UTC(year, month, 1))
 
     const candidates = await db
-      .select({ id: orders.id })
+      .select({ id: orders.id, subtotal: orders.subtotal, affiliateCommission: orders.affiliateCommission })
       .from(orders)
       .where(
         and(
@@ -2308,12 +2426,8 @@ export const adminMarkAffiliateCommissionPaidForMonth = createServerFn({ method:
       )
     if (candidates.length === 0) return { markedCount: 0 }
 
-    const refundedIds = await db
-      .select({ orderId: refundEvents.orderId })
-      .from(refundEvents)
-      .where(and(eq(refundEvents.status, 'COMPLETED'), inArray(refundEvents.orderId, candidates.map((o) => o.id))))
-    const refundedSet = new Set(refundedIds.map((r) => r.orderId))
-    const payableIds = candidates.map((o) => o.id).filter((id) => !refundedSet.has(id))
+    const refundTotals = await completedRefundTotals(db, candidates.map((o) => o.id))
+    const payableIds = candidates.filter((o) => adjustCommission(o, refundTotals.get(o.id) ?? 0).commission > 0).map((o) => o.id)
     if (payableIds.length === 0) return { markedCount: 0 }
 
     const updated = await db

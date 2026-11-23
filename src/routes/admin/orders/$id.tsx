@@ -7,7 +7,10 @@ import {
   adminCreateShipment,
   adminGetOrder,
   adminLinkCombineOrder,
+  adminPartialRefundOrder,
   adminSendCancellationEmailTest,
+  adminSendPartialRefundEmail,
+  adminSendPartialRefundEmailTest,
   adminSendShipmentTest,
   adminUnlinkCombineOrder,
   adminUpdateOrderStatus,
@@ -17,6 +20,7 @@ import { formatMoney } from '~/lib/products'
 import { CARRIERS, carrierTrackingUrl } from '~/lib/carriers'
 import { remainingQtyByItem } from '~/lib/shipments'
 import { STORE_CREDIT_REASONS } from '~/lib/store-credit'
+import { centsToDollarString, commissionAfterRefunds, computeRefundable, customerRefundReason, isCancellationRefund, parseRefundAmount, REFUND_REASON_MAX_LENGTH, validatePartialRefund } from '~/lib/refunds'
 
 export const Route = createFileRoute('/admin/orders/$id')({
   beforeLoad: () => requireAdmin(),
@@ -244,6 +248,7 @@ const emailTypeLabel: Record<string, string> = {
   order_confirmation: 'Confirmation',
   shipment_notice: 'Shipped email',
   order_cancellation: 'Cancellation email',
+  partial_refund: 'Refund email',
 }
 
 const emailStatusColor: Record<string, string> = {
@@ -260,6 +265,240 @@ const tagStyle: React.CSSProperties = {
   border: '1px solid #cfd4da',
   borderRadius: 2,
   padding: '2px 6px',
+}
+
+type AdminOrder = NonNullable<Awaited<ReturnType<typeof adminGetOrder>>>
+
+const smallButton = (disabled: boolean, tone: 'plain' | 'danger' = 'plain'): React.CSSProperties => ({
+  background: 'none',
+  border: `1px solid ${tone === 'danger' ? '#a85b2c' : '#cfd4da'}`,
+  borderRadius: 2,
+  padding: '7px 12px',
+  fontSize: 11,
+  color: tone === 'danger' ? '#a85b2c' : '#131b28',
+  fontWeight: tone === 'danger' ? 600 : 400,
+  cursor: disabled ? 'default' : 'pointer',
+  opacity: disabled ? 0.5 : 1,
+})
+
+const refundStatusColor: Record<string, string> = {
+  COMPLETED: '#3f7a63',
+  PENDING: '#3a6ea5',
+  FAILED: '#a85b2c',
+  REJECTED: '#a85b2c',
+}
+
+// Partial refunds (amount + customer-facing reason) and, per completed
+// refund, the button-only refund email. The refund itself is recorded by
+// the Square webhook, so a refund just requested here is held in
+// `requested` (and taken off the refundable amount) until its row shows up
+// in order.refunds — otherwise the stale max would invite a second refund
+// in the few seconds before the webhook lands.
+function RefundsPanel({ order }: { order: AdminOrder }) {
+  const router = useRouter()
+  const [amount, setAmount] = React.useState('')
+  const [reason, setReason] = React.useState('')
+  const [busy, setBusy] = React.useState(false)
+  const [message, setMessage] = React.useState<{ ok: boolean; text: string } | null>(null)
+  const [requested, setRequested] = React.useState<Array<{ squareRefundId: string | null; cents: number; at: Date }>>([])
+  const [testEmail, setTestEmail] = React.useState('eastblueinternational@gmail.com')
+  const [emailBusy, setEmailBusy] = React.useState<string | null>(null)
+  const [emailMessage, setEmailMessage] = React.useState<Record<string, { ok: boolean; text: string }>>({})
+
+  const known = new Set(order.refunds.map((r) => r.squareRefundId))
+  const stillWaiting = requested.filter((r) => !r.squareRefundId || !known.has(r.squareRefundId))
+  const { chargedCents, refundedCents, remainingCents: recordedRemaining } = computeRefundable(order, order.refunds)
+  const remainingCents = Math.max(0, recordedRemaining - stillWaiting.reduce((t, r) => t + r.cents, 0))
+  const hasPayment = !!order.squarePaymentId
+  const canRefund = hasPayment && remainingCents > 0
+
+  if (!hasPayment && order.refunds.length === 0) return null
+
+  const submit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    setMessage(null)
+    const checked = validatePartialRefund({ amount, reason, remainingCents })
+    if ('error' in checked) {
+      setMessage({ ok: false, text: checked.error })
+      return
+    }
+    const amountText = centsToDollarString(checked.cents)
+    const creditNote =
+      order.creditApplied > 0 && refundedCents === 0 && stillWaiting.length === 0 && checked.cents === chargedCents
+        ? ` This is the whole card charge, so the webhook will also return the ${formatMoney(order.creditApplied)} store credit used on this order.`
+        : ''
+    if (!confirm(`Refund ${amountText} to the customer's card via Square? This can't be undone from here. The order is not cancelled.${creditNote}`)) return
+    setBusy(true)
+    try {
+      const res = await adminPartialRefundOrder({ data: { orderId: order.id, amount, reason, attemptId: crypto.randomUUID() } })
+      setRequested((prev) => [...prev, { squareRefundId: res.squareRefundId, cents: res.amountCents, at: new Date() }])
+      setMessage({
+        ok: true,
+        text: `Square accepted a refund of ${centsToDollarString(res.amountCents)}${res.refundStatus ? ` (${res.refundStatus.toLowerCase()})` : ''}. It shows in the list below once Square confirms it, usually within a few seconds.`,
+      })
+      setAmount('')
+      setReason('')
+      // Webhook usually lands within seconds; one delayed refresh picks it up.
+      setTimeout(() => router.invalidate(), 4000)
+    } catch (err) {
+      setMessage({ ok: false, text: err instanceof Error ? err.message : 'Refund failed.' })
+    } finally {
+      setBusy(false)
+    }
+  }
+
+  const sendEmail = async (refundId: string, test: boolean) => {
+    const key = `${refundId}:${test ? 'test' : 'real'}`
+    if (!test) {
+      const prior = order.emails.filter((e) => e.type === 'partial_refund' && e.refundEventId === refundId && e.status === 'sent')
+      const last = prior[prior.length - 1]
+      const question = last
+        ? `A refund email for this refund already went to ${last.email ?? 'the customer'} on ${new Date(last.createdAt).toLocaleString()}. Send it again to ${order.email}?`
+        : `Send the refund email to ${order.email}?`
+      if (!confirm(question)) return
+    } else if (!testEmail.trim()) {
+      return
+    }
+    setEmailBusy(key)
+    setEmailMessage((m) => ({ ...m, [refundId]: { ok: true, text: '' } }))
+    try {
+      if (test) {
+        await adminSendPartialRefundEmailTest({ data: { orderId: order.id, refundEventId: refundId, testEmail: testEmail.trim() } })
+        setEmailMessage((m) => ({ ...m, [refundId]: { ok: true, text: `Test sent to ${testEmail.trim()}. Nothing was logged.` } }))
+      } else {
+        await adminSendPartialRefundEmail({ data: { orderId: order.id, refundEventId: refundId } })
+        setEmailMessage((m) => ({ ...m, [refundId]: { ok: true, text: `Sent to ${order.email}.` } }))
+        await router.invalidate()
+      }
+    } catch (err) {
+      setEmailMessage((m) => ({ ...m, [refundId]: { ok: false, text: err instanceof Error ? err.message : 'Send failed.' } }))
+      if (!test) await router.invalidate()
+    } finally {
+      setEmailBusy(null)
+    }
+  }
+
+  const parsedPreview = parseRefundAmount(amount)
+  const buttonLabel = 'cents' in parsedPreview ? `Refund ${centsToDollarString(parsedPreview.cents)}` : 'Refund'
+  const label: React.CSSProperties = { fontFamily: "'IBM Plex Mono', monospace", fontSize: 10.5, letterSpacing: '0.1em', textTransform: 'uppercase', color: '#5a6875' }
+  const input: React.CSSProperties = { padding: '8px 10px', border: '1px solid #cfd4da', borderRadius: 2, fontSize: 13, fontFamily: 'inherit' }
+
+  return (
+    <div style={{ marginTop: 18, border: '1px solid #e3e6ea', borderRadius: 4, padding: 18 }}>
+      <div style={label}>Refunds</div>
+      <div style={{ marginTop: 8, fontSize: 12.5, color: '#131b28' }}>
+        Paid by card {centsToDollarString(chargedCents)}
+        {order.creditApplied > 0 && <span style={{ color: '#5a6875' }}> (plus {formatMoney(order.creditApplied)} store credit, not refundable here)</span>}
+        {' · '}Refunded or pending {centsToDollarString(refundedCents)}
+        {stillWaiting.length > 0 && <span style={{ color: '#3a6ea5' }}> + {centsToDollarString(stillWaiting.reduce((t, r) => t + r.cents, 0))} waiting on Square</span>}
+        {' · '}
+        <b>Refundable {centsToDollarString(remainingCents)}</b>
+      </div>
+
+      {order.refunds.length > 0 && (
+        <div style={{ marginTop: 12, display: 'flex', flexDirection: 'column', gap: 10 }}>
+          {order.refunds.map((r) => {
+            const sent = order.emails.filter((e) => e.type === 'partial_refund' && e.refundEventId === r.id)
+            const shown = customerRefundReason(r.reason)
+            const msg = emailMessage[r.id]
+            return (
+              <div key={r.id} style={{ padding: '10px 12px', background: '#f6f7f8', borderRadius: 2 }}>
+                <div style={{ display: 'flex', alignItems: 'baseline', gap: 10, flexWrap: 'wrap', fontSize: 12.5 }}>
+                  <span style={{ fontFamily: "'IBM Plex Mono', monospace", fontWeight: 600 }}>{r.amount != null ? formatMoney(r.amount) : '—'}</span>
+                  <span style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 10.5, textTransform: 'uppercase', color: refundStatusColor[r.status ?? ''] ?? '#5a6875' }}>
+                    {r.status ?? 'unknown'}
+                  </span>
+                  <span style={{ color: '#5a6875', fontSize: 11.5 }}>{new Date(r.createdAt).toLocaleString()}</span>
+                </div>
+                <div style={{ marginTop: 3, fontSize: 12, color: '#5a6875', overflowWrap: 'anywhere' }}>
+                  {shown ? (
+                    <>
+                      Customer sees: <span style={{ color: '#131b28' }}>{shown}</span>
+                    </>
+                  ) : (
+                    'No reason (customer sees the amount and date only)'
+                  )}
+                </div>
+                {sent.length > 0 && (
+                  <div style={{ marginTop: 4, fontSize: 11, color: '#5a6875' }}>
+                    {sent.map((e, i) => (
+                      <div key={i}>
+                        <span style={{ color: emailStatusColor[e.status] ?? '#5a6875' }}>Refund email {e.status}</span>
+                        {e.email ? ` to ${e.email}` : ''} — {new Date(e.createdAt).toLocaleString()}
+                        {e.status === 'failed' && e.errorMessage ? ` (${e.errorMessage})` : ''}
+                      </div>
+                    ))}
+                  </div>
+                )}
+                {r.status === 'COMPLETED' && isCancellationRefund(r.reason) && (
+                  <div style={{ marginTop: 4, fontSize: 11, color: '#5a6875' }}>Made by Cancel &amp; refund, which sends its own cancellation email.</div>
+                )}
+                {r.status === 'COMPLETED' && !isCancellationRefund(r.reason) && (
+                  <div style={{ marginTop: 8, display: 'flex', gap: 8, flexWrap: 'wrap', alignItems: 'center' }}>
+                    {order.email && (
+                      <button type="button" disabled={emailBusy !== null} onClick={() => sendEmail(r.id, false)} style={smallButton(emailBusy !== null)}>
+                        {emailBusy === `${r.id}:real` ? 'Sending…' : sent.some((e) => e.status === 'sent') ? 'Send refund email again' : 'Send refund email'}
+                      </button>
+                    )}
+                    <button type="button" disabled={emailBusy !== null} onClick={() => sendEmail(r.id, true)} style={smallButton(emailBusy !== null)}>
+                      {emailBusy === `${r.id}:test` ? 'Sending test…' : 'Send test to me'}
+                    </button>
+                    {msg?.text && <span style={{ fontSize: 11, color: msg.ok ? '#3f7a63' : '#a85b2c' }}>{msg.text}</span>}
+                  </div>
+                )}
+              </div>
+            )
+          })}
+          {order.refunds.some((r) => r.status === 'COMPLETED' && !isCancellationRefund(r.reason)) && (
+            <label style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: 11, color: '#5a6875' }}>
+              Test emails go to
+              <input type="email" value={testEmail} onChange={(e) => setTestEmail(e.target.value)} style={{ ...input, padding: '6px 8px', fontSize: 11.5, width: 220 }} />
+            </label>
+          )}
+        </div>
+      )}
+
+      {!hasPayment ? (
+        <p style={{ marginTop: 12, fontSize: 12, color: '#5a6875' }}>No Square card payment on this order, so there's nothing to refund here.</p>
+      ) : !canRefund ? (
+        <p style={{ marginTop: 12, fontSize: 12, color: '#5a6875' }}>Nothing left to refund to the card on this order.</p>
+      ) : (
+        <form onSubmit={submit} style={{ marginTop: 14, paddingTop: 14, borderTop: '1px solid #f0f2f4', display: 'flex', flexDirection: 'column', gap: 10 }}>
+          <div style={label}>Partial refund</div>
+          <label style={{ display: 'flex', flexDirection: 'column', gap: 4, fontSize: 12, color: '#131b28' }}>
+            Amount in dollars (up to {centsToDollarString(remainingCents)})
+            <input
+              inputMode="decimal"
+              placeholder="e.g. 12.50"
+              value={amount}
+              onChange={(e) => setAmount(e.target.value)}
+              style={{ ...input, maxWidth: 200 }}
+            />
+          </label>
+          <label style={{ display: 'flex', flexDirection: 'column', gap: 4, fontSize: 12, color: '#131b28' }}>
+            Reason — the customer sees this on their order page and in the refund email
+            <textarea
+              value={reason}
+              onChange={(e) => setReason(e.target.value)}
+              maxLength={REFUND_REASON_MAX_LENGTH}
+              rows={2}
+              placeholder="e.g. One card arrived with a creased corner."
+              style={{ ...input, resize: 'vertical' }}
+            />
+            <span style={{ fontSize: 10.5, color: '#5a6875' }}>
+              {reason.trim().length}/{REFUND_REASON_MAX_LENGTH}. Doesn't cancel the order or change shipping. No email goes out until you send one below.
+            </span>
+          </label>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 10, flexWrap: 'wrap' }}>
+            <button type="submit" disabled={busy} style={smallButton(busy, 'danger')}>
+              {busy ? 'Refunding…' : buttonLabel}
+            </button>
+          </div>
+        </form>
+      )}
+      {message && <p style={{ marginTop: 8, fontSize: 11.5, color: message.ok ? '#3f7a63' : '#a85b2c' }}>{message.text}</p>}
+    </div>
+  )
 }
 
 // Keyed by order id so moving from one order to another (order-to-order
@@ -689,6 +928,12 @@ function AdminOrderDetail() {
                   {' '}
                   — ${order.affiliateCommission.toFixed(2)} commission
                   {order.affiliateCommissionRate != null && ` (${order.affiliateCommissionRate}%)`}
+                  {(() => {
+                    const refunded = order.refunds.filter((r) => r.status === 'COMPLETED').reduce((t, r) => t + Number(r.amount ?? 0), 0)
+                    if (refunded <= 0) return null
+                    const left = commissionAfterRefunds(order.affiliateCommission, order.subtotal, refunded)
+                    return <span style={{ color: '#a85b2c' }}>{` · $${left.toFixed(2)} after refunds`}</span>
+                  })()}
                 </>
               )}
               {order.affiliateCommission != null && (
@@ -1123,6 +1368,8 @@ function AdminOrderDetail() {
           </div>
         )}
       </div>
+
+      <RefundsPanel order={order} />
     </div>
   )
 }

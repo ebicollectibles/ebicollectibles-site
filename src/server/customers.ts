@@ -1,5 +1,6 @@
 import { createServerFn } from '@tanstack/react-start'
 import { z } from 'zod'
+import { customerRefundList } from '~/lib/refunds'
 import { buildShipmentsByOrder } from '~/lib/shipments'
 import { getCurrentUserId } from './customer-auth'
 import type { getDb } from '~/lib/db/client'
@@ -212,5 +213,5 @@ export const getMyOrder = createServerFn({ method: 'GET' })
       combineWithOrderStatus = anchor?.fulfillmentStatus ?? null
     }
 
-    return { ...order, items, shipments: orderShipments, totalRefunded, combineWithOrderNo, combineWithOrderStatus }
+    return { ...order, items, shipments: orderShipments, totalRefunded, refunds: customerRefundList(refunds), combineWithOrderNo, combineWithOrderStatus }
   })

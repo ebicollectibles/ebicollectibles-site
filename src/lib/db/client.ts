@@ -67,7 +67,9 @@ function toCamelRow(row: Record<string, unknown>): Record<string, unknown> {
 // schema declares these with `mode: 'number'` and converts them for every
 // other query path in the app, so these raw reads convert the same fields
 // by hand to match what the rest of the app expects.
-const NUMERIC_FIELDS = new Set(['subtotal', 'shippingCost', 'tax', 'total', 'creditApplied', 'unitPrice'])
+// refund_events.amount too: without it a refunded order's total summed as
+// 0 + "5.00" = "05.00" and the account order pages failed on formatMoney.
+const NUMERIC_FIELDS = new Set(['subtotal', 'shippingCost', 'tax', 'total', 'creditApplied', 'unitPrice', 'amount'])
 
 function coerceNumerics(row: Record<string, unknown>): Record<string, unknown> {
   for (const field of NUMERIC_FIELDS) {

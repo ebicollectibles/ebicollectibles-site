@@ -442,11 +442,16 @@ export async function refundSquarePayment(opts: {
   amount: number
   orderNo: number
   reason?: string
+  // Optional per-attempt key from the caller. The partial refund form makes
+  // one each time the admin confirms, so a double-submitted or retried
+  // request for that same confirmation is the same refund to Square, not a
+  // second one. Omitted, every call gets a fresh key as before.
+  idempotencyKey?: string
 }): Promise<RefundResult> {
   const { accessToken, baseUrl } = squareConfig()
   if (!accessToken) throw new Error('Square is not configured (SQUARE_ACCESS_TOKEN missing).')
 
-  const idempotencyKey = freshIdempotencyKey('rfnd', opts.orderNo)
+  const idempotencyKey = opts.idempotencyKey ?? freshIdempotencyKey('rfnd', opts.orderNo)
   const body = JSON.stringify({
     idempotency_key: idempotencyKey,
     amount_money: { amount: Math.round(opts.amount * 100), currency: 'USD' },

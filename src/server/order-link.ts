@@ -1,6 +1,7 @@
 import { createServerFn } from '@tanstack/react-start'
 import { z } from 'zod'
 import { makeOrderLinkToken, verifyOrderLinkToken } from '~/lib/order-link-token'
+import { customerRefundList } from '~/lib/refunds'
 import { buildShipmentsByOrder } from '~/lib/shipments'
 import { getCurrentUserId } from './customer-auth'
 
@@ -104,6 +105,8 @@ export const getOrderByLink = createServerFn({ method: 'GET' })
         creditApplied: order.creditApplied,
         total: order.total,
         totalRefunded: refunds.filter((r) => r.status === 'COMPLETED').reduce((t, r) => t + (r.amount ?? 0), 0),
+        // Date, amount and reason only (customerRefundList), no Square ids.
+        refunds: customerRefundList(refunds),
         firstName: order.firstName,
         lastName: order.lastName,
         street: order.street,
