@@ -274,16 +274,57 @@ function ShanghaiGoldCardsPost() {
           cards would be worth far more to collectors than the gold.
         </p>
 
-        <h2 id="other-events">Part of a year of 30th anniversary events</h2>
+        <h2 id="other-events">Other 30th anniversary events</h2>
+        <p>Shanghai is one of several big 30th anniversary events in Asia this year. The PokéXciting! tour stops are free.</p>
+        <div className="table-scroll" role="group" aria-labelledby="tbl-events" tabIndex={0}>
+          <table className="data-table">
+            <caption id="tbl-events" className="sr-only">
+              Other Pokémon 30th anniversary events in Asia, with where and when
+            </caption>
+            <thead>
+              <tr>
+                <th scope="col">Event</th>
+                <th scope="col">Where</th>
+                <th scope="col">When</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">PokéXciting! tour</th>
+                <td>Kuala Lumpur</td>
+                <td>Sep 12–13, 2026</td>
+              </tr>
+              <tr>
+                <th scope="row">PokéXciting! tour</th>
+                <td>Taipei</td>
+                <td>Oct 10–11, 2026</td>
+              </tr>
+              <tr>
+                <th scope="row">PokéXciting! tour</th>
+                <td>Singapore</td>
+                <td>Nov 7–8, 2026</td>
+              </tr>
+              <tr>
+                <th scope="row">PokéXciting! tour</th>
+                <td>Manila</td>
+                <td>Jan 23–24, 2027</td>
+              </tr>
+              <tr>
+                <th scope="row">PokéXciting! tour</th>
+                <td>Bangkok</td>
+                <td>Feb 13–14, 2027</td>
+              </tr>
+              <tr>
+                <th scope="row">Pokémon Mega Festa 2026</th>
+                <td>Seoul</td>
+                <td>May–June 2026</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
         <p>
-          The Shanghai Finale caps a year of 30th anniversary events across Asia. The free PokéXciting! tour has visited Kuala Lumpur
-          (September 12 to 13), Taipei (October 10 to 11) and Singapore (November 7 to 8), and heads to Manila (January 23 to 24, 2027)
-          and Bangkok (February 13 to 14, 2027). The Kuala Lumpur stop had a Pokémon drone show over the Petronas Twin Towers. In Seoul,
-          Pokémon Mega Festa 2026 ran from May to June and was billed as the franchise's largest event yet.
-        </p>
-        <p>
-          In China, Pokémon China's Trainers' 30th Anniversary Celebration campaign set out to collect 300,000 cards at shops. On
-          November 6, Pokémon China said the goal had been reached and that it "will advance the previously planned celebration."
+          In China, Pokémon China's Trainers' 30th Anniversary Celebration campaign set out to collect 300,000 cards at shops. It hit
+          the goal on November 6.
         </p>
 
         <h2 id="at-ebi">30th Celebration at EBI Collectibles</h2>
