@@ -27,11 +27,11 @@ const PIKACHU_CARDS = [
 ]
 
 const TOC = [
-  { id: 'what-it-is', label: 'What is the Shanghai Finale?' },
-  { id: 'activities', label: 'What is on at the event?' },
   { id: 'gold-cards', label: 'The 30 pure gold cards' },
   { id: 'photos', label: 'What photos shared online show' },
   { id: 'gold-value', label: 'How much gold is that?' },
+  { id: 'what-it-is', label: 'What is the Shanghai Finale?' },
+  { id: 'activities', label: 'What is on at the event?' },
   { id: 'pikachu-cards', label: 'The 30 Pikachu cards in 30th Celebration' },
   { id: 'real-gold', label: 'Real gold cards and gold-colored cards' },
   { id: 'other-news', label: 'Other 30th anniversary news from Pokémon China' },
@@ -165,15 +165,37 @@ function ShanghaiGoldCardsPost() {
           ],
         }}
       >
-        <h2 id="what-it-is">What is the Shanghai Finale?</h2>
+        <figure className="poster-pair" style={{ margin: '0 0 28px' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
+            <img
+              src={img('event-poster')}
+              alt="The official Pokémon 30th Anniversary Shanghai Finale poster in Chinese: Pikachu in a white hat and tuxedo and Totodile in a bow tie run out of a splash of water, with a shark Pokémon and Cramorant on either side, the Shanghai skyline behind them, the dates across the top and the four activities listed along the bottom"
+              width={813}
+              height={1186}
+              style={{ width: '100%', height: 'auto', borderRadius: 10 }}
+            />
+            <img
+              src={img('event-poster-en')}
+              alt="The same poster with its Chinese text translated into English: Shanghai, Nov 28, 2026 to Jan 3, 2027, some activities end Dec 27, 2026, and the four activities, including the Pokémon Card Art Illustration Exhibition with 30 pure gold cards on display"
+              width={1626}
+              height={2372}
+              style={{ width: '100%', height: 'auto', borderRadius: 10 }}
+            />
+          </div>
+          <figcaption>
+            Left: the official event poster. Right: the same poster with its Chinese text translated into English by EBI Collectibles.
+            ©Pokémon/Nintendo/Creatures/GAME FREAK
+          </figcaption>
+        </figure>
+
+        <h2 id="gold-cards">The 30 pure gold cards</h2>
         <p>
-          The Pokémon 30th Anniversary Shanghai Finale (<Zh>宝可梦30周年上海盛典</Zh>) is an event from Pokémon China for the 30th
-          anniversary of Pokémon. Going by the official poster, it runs from Saturday, November 28, 2026 to Sunday, January 3, 2027.
-          Some activities end earlier, on December 27, 2026.
+          The line for the card art exhibition ends with <Zh>还有30张足金卡牌展出哦</Zh>, which means "30 pure gold cards will also be
+          on display." <Zh>足金</Zh> is the term Chinese jewelers use for pure gold.
         </p>
         <p>
-          The poster shows Pikachu in a tuxedo and Totodile in a bow tie, with Cramorant, a shark Pokémon and the Shanghai skyline
-          behind them. One line on it stands out for card collectors: 30 pure gold cards will be on display.
+          That is all the poster says about them. It does not say what the cards show, how they are made or how much gold is in each
+          one.
         </p>
 
         <aside className="fact-box" aria-label="Shanghai Finale key facts">
@@ -211,38 +233,6 @@ function ShanghaiGoldCardsPost() {
           </ol>
         </nav>
 
-        <h2 id="activities">What is on at the event?</h2>
-        <p>The poster lists four activities:</p>
-        <ol>
-          {ACTIVITIES.map((a) => (
-            <li key={a.name}>
-              <strong>{a.name}</strong> (<Zh>{a.zh}</Zh>). {a.text}
-            </li>
-          ))}
-        </ol>
-        <p>The poster does not say which activities end on December 27.</p>
-        <figure style={{ margin: '28px auto', maxWidth: 520 }}>
-          <img
-            src={img('event-poster')}
-            alt="The official Pokémon 30th Anniversary Shanghai Finale poster: Pikachu in a white hat and tuxedo and Totodile in a bow tie run out of a splash of water, with a shark Pokémon and Cramorant on either side, the Shanghai skyline behind them, the dates across the top and the four activities listed in Chinese along the bottom"
-            loading="lazy"
-            width={813}
-            height={1186}
-            style={{ width: '100%', height: 'auto', borderRadius: 10 }}
-          />
-          <figcaption>The official event poster. ©Pokémon/Nintendo/Creatures/GAME FREAK</figcaption>
-        </figure>
-
-        <h2 id="gold-cards">The 30 pure gold cards</h2>
-        <p>
-          The line for the card art exhibition ends with <Zh>还有30张足金卡牌展出哦</Zh>, which means "30 pure gold cards will also be
-          on display." <Zh>足金</Zh> is the term Chinese jewelers use for pure gold.
-        </p>
-        <p>
-          That is all the poster says about them. It does not say what the cards show, how they are made or how much gold is in each
-          one.
-        </p>
-
         <h2 id="photos">What photos shared online show</h2>
         <p>
           Photos shared online show cards mounted with a label that reads "Pokémon Trading Card Game 30th CELEBRATION 999 Gold Card".
@@ -262,6 +252,27 @@ function ShanghaiGoldCardsPost() {
         </p>
         <p>None of these numbers are official. The weight comes from photos, and the price of gold changes every day.</p>
 
+        <h2 id="what-it-is">What is the Shanghai Finale?</h2>
+        <p>
+          The Pokémon 30th Anniversary Shanghai Finale (<Zh>宝可梦30周年上海盛典</Zh>) is an event from Pokémon China for the 30th
+          anniversary of Pokémon. Going by the official poster, it runs from Saturday, November 28, 2026 to Sunday, January 3, 2027.
+          Some activities end earlier, on December 27, 2026.
+        </p>
+        <p>
+          The poster shows Pikachu in a tuxedo and Totodile in a bow tie, with Cramorant, a shark Pokémon and the Shanghai skyline
+          behind them. One line on it stands out for card collectors: 30 pure gold cards will be on display.
+        </p>
+
+        <h2 id="activities">What is on at the event?</h2>
+        <p>The poster lists four activities:</p>
+        <ol>
+          {ACTIVITIES.map((a) => (
+            <li key={a.name}>
+              <strong>{a.name}</strong> (<Zh>{a.zh}</Zh>). {a.text}
+            </li>
+          ))}
+        </ol>
+        <p>The poster does not say which activities end on December 27.</p>
         <h2 id="pikachu-cards">The 30 Pikachu cards in 30th Celebration</h2>
         <p>
           The 30th Celebration expansion released on September 16, 2026, in China and around the world. It has 30 different Pikachu
