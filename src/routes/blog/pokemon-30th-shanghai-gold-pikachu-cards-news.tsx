@@ -438,11 +438,6 @@ The official event poster, then the same poster with its Chinese text translated
           ))}
         </div>
 
-        <h2 id="our-take">Our take</h2>
-        <p>
-          The poster confirms 30 pure gold cards. The details that make them stand out, the Pikachu designs and the 30 g weight, come
-          from photos shared online, not from Pokémon China.
-        </p>
       </BlogPostLayout>
     </>
   )
