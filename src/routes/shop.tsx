@@ -2,7 +2,7 @@ import * as React from 'react'
 import { createFileRoute, Link } from '@tanstack/react-router'
 import { ProductCard } from '~/components/ProductCard'
 import { useCart } from '~/lib/cart-context'
-import { PRODUCT_CATEGORIES, SUBCATEGORIES_BY_CATEGORY, type ProductCategory, type ProductSubcategory } from '~/lib/products'
+import { getInStockVariant, PRODUCT_CATEGORIES, SUBCATEGORIES_BY_CATEGORY, type ProductCategory, type ProductSubcategory } from '~/lib/products'
 import { SHOW_ACRYLICS } from '~/lib/feature-flags'
 import { searchText, shopSearchSchema } from '~/lib/shop-search'
 
@@ -138,7 +138,8 @@ function ShopPage() {
         if (query && !p.name.toLowerCase().includes(query)) return false
         if (subcategories.length && !subcategories.includes(p.subcategory)) return false
         // <= 0, not === 0 — see ProductCard.tsx's identical fix for why.
-        if (inStockOnly && p.stock <= 0) return false
+        // A sold-out item with another variant in stock still counts (getInStockVariant).
+        if (inStockOnly && p.stock <= 0 && !getInStockVariant(p, products)) return false
         if (p.price > maxPrice) return false
         return true
       })

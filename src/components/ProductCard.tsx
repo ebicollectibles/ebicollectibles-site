@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { Link } from '@tanstack/react-router'
-import { formatMoney, getHubPriceRange, getHubVariants, type Product } from '~/lib/products'
+import { formatMoney, getHubPriceRange, getHubVariants, getInStockVariant, type Product } from '~/lib/products'
 import { ResponsiveImage } from '~/components/ResponsiveImage'
 import { AddToCartControl } from '~/components/AddToCartControl'
 import { useCart } from '~/lib/cart-context'
@@ -24,19 +24,27 @@ export function ProductCard({
   // <= 0, not === 0 — a Square-linked item can report negative stock
   // (oversold across another channel sharing the same Square inventory),
   // and that still means sold out here, not "available."
-  const soldOut = !notSellable && product.stock <= 0
-  const onSale = product.compareAtPrice != null && product.compareAtPrice > product.price
+  const ownSoldOut = !notSellable && product.stock <= 0
+  const { products: allProducts } = useCart()
+  // A sold-out product with another variant in stock (e.g. the new
+  // briefcase is gone but a damaged-packaging one is left) stays on the
+  // grid as available: the card shows that variant's price and sends the
+  // shopper to its page.
+  const inStockVariant = ownSoldOut && !product.comingSoon ? getInStockVariant(product, allProducts) : undefined
+  const soldOut = ownSoldOut && !inStockVariant
+  const shown = inStockVariant ?? product
+  const linkId = shown.id
+  const onSale = shown.compareAtPrice != null && shown.compareAtPrice > shown.price
   // Price is "to be announced" when none has been set yet, or when admin
   // explicitly hid it (hidePrice overrides even a price synced live from a
   // linked Square item) — a coming-soon item with a real, shown price
   // displays it like any other product.
-  const priceKnown = product.price > 0 && !product.hidePrice
+  const priceKnown = shown.price > 0 && !shown.hidePrice
   // A notSellable hub has no price of its own — same reasoning as the
   // product detail page's hubPriceRange (see products.$id.tsx), reusing
   // the same shared helpers so a hub's card always agrees with its own
   // page. Pulls the full catalog from CartProvider rather than a prop,
   // since every page that renders a ProductCard already sits inside it.
-  const { products: allProducts } = useCart()
   const hubVariants = notSellable ? getHubVariants(product, allProducts) : []
   const hubPriceRange = notSellable && comingSoon ? getHubPriceRange(hubVariants) : null
   const badge = comingSoon ? (product.preorder ? 'Pre-order' : 'Coming soon') : product.preorder ? 'Pre-order' : soldOut ? 'Sold out' : onSale ? 'Sale' : null
@@ -55,7 +63,7 @@ export function ProductCard({
     <article style={{ background: '#ffffff', padding, display: 'flex', flexDirection: 'column' }}>
       <Link
         to="/products/$id"
-        params={{ id: product.id }}
+        params={{ id: linkId }}
         style={{ display: 'contents', color: 'inherit', textDecoration: 'none' }}
       >
       <div style={{ position: 'relative', aspectRatio: '1 / 1', background: '#f6f7f8', overflow: 'hidden' }}>
@@ -160,17 +168,42 @@ export function ProductCard({
           <>
             {onSale && (
               <span style={{ fontSize: priceFontSize - 3, color: '#5a6875', textDecoration: 'line-through' }}>
-                {formatMoney(product.compareAtPrice!)}
+                {formatMoney(shown.compareAtPrice!)}
               </span>
             )}
             <span style={{ fontSize: priceFontSize, fontWeight: 600, color: comingSoon ? '#5a6875' : '#131b28' }}>
-              {formatMoney(product.price)}
+              {formatMoney(shown.price)}
             </span>
+            {inStockVariant?.variantLabel && (
+              <span style={{ fontSize: priceFontSize - 4, color: '#5a6875' }}>{inStockVariant.variantLabel}</span>
+            )}
           </>
         )}
       </div>
       </Link>
-      {notSellable && !comingSoon ? (
+      {inStockVariant ? (
+        <Link
+          to="/products/$id"
+          params={{ id: inStockVariant.id }}
+          style={{
+            marginTop: buttonMarginTop,
+            width: '100%',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            border: '1px solid #131b28',
+            background: '#131b28',
+            color: '#ffffff',
+            borderRadius: 2,
+            padding: buttonPadding,
+            fontSize: 12.5,
+            fontWeight: 600,
+            textDecoration: 'none',
+          }}
+        >
+          View options
+        </Link>
+      ) : notSellable && !comingSoon ? (
         // A live hub has nothing of its own to add to cart — AddToCartControl
         // would just render a dead "Choose an option below" button here,
         // which is misleading on a card (there's no dropdown "below" it to

@@ -142,6 +142,16 @@ export function getHubVariants(product: Product, allProducts: Product[]): Produc
   )
 }
 
+// For a sold-out product: the first other variant in its group (by
+// variantSortOrder) that can be bought right now, if any. Used by
+// ProductCard so a listing stays "in stock" while any variant is.
+export function getInStockVariant(product: Product, allProducts: Product[]): Product | undefined {
+  if (!product.variantGroupId) return undefined
+  return allProducts
+    .filter((p) => p.id !== product.id && p.variantGroupId === product.variantGroupId && !p.notSellable && !p.comingSoon && p.stock > 0)
+    .sort((a, b) => (a.variantSortOrder ?? Infinity) - (b.variantSortOrder ?? Infinity))[0]
+}
+
 // Price range across a hub's variants — a single number when they all cost
 // the same, a {min,max} spread otherwise, null when none of them have a
 // visible price yet (new line, or every one has its own hidePrice set).
