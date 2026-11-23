@@ -6,7 +6,7 @@
 // the post itself.
 import { SITE_URL, R2_IMAGE_HOST } from '~/lib/gem-sets/constants'
 
-export type BlogPostSlug = 'chinese-pokemon-sets-in-order' | 'gem-vol-7-release-news' | 'gem-vol-7-set-guide' | 'gem-vol-7-card-origins' | 'gem-vol-6-release-news' | 'gem-vol-6-set-guide' | 'gem-vol-6-card-origins' | 'gem-vol-5-release-news' | 'gem-vol-5-set-guide' | 'gem-vol-5-card-origins' | 'gem-vol-4-release-news' | 'gem-vol-4-set-guide' | 'gem-vol-4-card-origins' | 'gem-vol-3-release-news' | 'gem-vol-3-set-guide' | 'gem-vol-3-card-origins' | 'gem-vol-2-release-news' | 'gem-vol-2-set-guide' | 'gem-vol-2-card-origins' | 'gem-vol-1-release-news' | 'gem-vol-1-set-guide' | 'gem-vol-1-card-origins' | '30th-celebration-release-news' | '30th-celebration-set-guide' | '30th-celebration-card-origins' | 'chasing-glory-release-news' | 'chasing-glory-set-guide' | 'chasing-glory-card-origins' | 'terastal-gathering-release-news' | 'terastal-gathering-set-guide' | 'terastal-gathering-card-origins' | 'reward-round-release-news' | 'reward-round-set-guide' | 'reward-round-card-origins' | 'fearless-terastal-release-news' | 'fearless-terastal-set-guide' | 'fearless-terastal-card-origins' | 'eternal-birth-release-news' | 'eternal-birth-set-guide' | 'eternal-birth-card-origins' | 'miracle-journey-release-news' | 'miracle-journey-set-guide' | 'miracle-journey-card-origins' | 'black-crystal-blaze-release-news' | 'black-crystal-blaze-set-guide' | 'black-crystal-blaze-card-origins' | 'black-bolt-white-flare-release-news' | 'black-bolt-set-guide' | 'black-bolt-card-origins' | 'white-flare-set-guide' | 'white-flare-card-origins' | 'true-mystery-release-news' | 'true-mystery-set-guide' | 'true-mystery-card-origins' | 'blade-awakening-release-news' | 'blade-awakening-set-guide' | 'blade-awakening-card-origins' | 'brilliant-fantasy-release-news' | 'brilliant-fantasy-set-guide' | 'brilliant-fantasy-card-origins' | 'stellar-crystal-release-news' | 'stellar-crystal-set-guide' | 'stellar-crystal-card-origins' | 'pikachu-dream-painting-figures-release-news' | 'funism-ditto-palm-size-wonders-release-news' | 'team-rocket-briefcase-release-news' | 'pikachu-gift-box-release-news' | 'day-night-gift-box-release-news' | 'greninja-sylveon-display-set-release-news' | 'charizard-figure-box-release-news' | 'nuzzle-cheeks-plush-card-display-release-news' | 'eevee-gift-box-release-news' | 'pikachu-30th-plush-keychain-release-news' | 'funism-first-partner-mini-figures-release-news' | 'first-partner-30th-vol-1-release-news' | 'first-partner-30th-vol-2-release-news' | 'first-partner-30th-vol-3-release-news' | 'aura-seeker-release-news' | 'pokemon-30th-shanghai-gold-pikachu-cards-news' | '30th-celebration-pikachu-cards-artists' | 'futuristic-pikachu-box-release-news' | 'lisia-gift-box-release-news' | 'ogerpon-mask-gift-box-release-news' | 'lillie-n-battle-box-release-news' | 'japanese-30th-celebration-release-news' | 'storm-emeralda-release-news' | 'master-strategy-deck-raging-bolt-dragapult-gholdengo-release-news' | 'master-strategy-deck-charizard-gardevoir-miraidon-release-news' | 'espeon-umbreon-deluxe-deck-release-news' | 'journey-gift-boxes-release-news' | 'collect-151-first-partner-display-sets-release-news' | 'eevee-dream-painting-figures-release-news' | 'dream-painting-151-vol-1-release-news' | 'dream-painting-water-vol-2-release-news' | 'chinese-gem-pack-hit-rates'
+export type BlogPostSlug = 'chinese-pokemon-sets-in-order' | 'gem-vol-7-release-news' | 'gem-vol-7-set-guide' | 'gem-vol-7-card-origins' | 'gem-vol-6-release-news' | 'gem-vol-6-set-guide' | 'gem-vol-6-card-origins' | 'gem-vol-5-release-news' | 'gem-vol-5-set-guide' | 'gem-vol-5-card-origins' | 'gem-vol-4-release-news' | 'gem-vol-4-set-guide' | 'gem-vol-4-card-origins' | 'gem-vol-3-release-news' | 'gem-vol-3-set-guide' | 'gem-vol-3-card-origins' | 'gem-vol-2-release-news' | 'gem-vol-2-set-guide' | 'gem-vol-2-card-origins' | 'gem-vol-1-release-news' | 'gem-vol-1-set-guide' | 'gem-vol-1-card-origins' | '30th-celebration-release-news' | '30th-celebration-set-guide' | '30th-celebration-card-origins' | 'chasing-glory-release-news' | 'chasing-glory-set-guide' | 'chasing-glory-card-origins' | 'terastal-gathering-release-news' | 'terastal-gathering-set-guide' | 'terastal-gathering-card-origins' | 'reward-round-release-news' | 'reward-round-set-guide' | 'reward-round-card-origins' | 'fearless-terastal-release-news' | 'fearless-terastal-set-guide' | 'fearless-terastal-card-origins' | 'eternal-birth-release-news' | 'eternal-birth-set-guide' | 'eternal-birth-card-origins' | 'miracle-journey-release-news' | 'miracle-journey-set-guide' | 'miracle-journey-card-origins' | 'black-crystal-blaze-release-news' | 'black-crystal-blaze-set-guide' | 'black-crystal-blaze-card-origins' | 'black-bolt-white-flare-release-news' | 'black-bolt-set-guide' | 'black-bolt-card-origins' | 'white-flare-set-guide' | 'white-flare-card-origins' | 'true-mystery-release-news' | 'true-mystery-set-guide' | 'true-mystery-card-origins' | 'blade-awakening-release-news' | 'blade-awakening-set-guide' | 'blade-awakening-card-origins' | 'brilliant-fantasy-release-news' | 'brilliant-fantasy-set-guide' | 'brilliant-fantasy-card-origins' | 'stellar-crystal-release-news' | 'stellar-crystal-set-guide' | 'stellar-crystal-card-origins' | 'pikachu-dream-painting-figures-release-news' | 'funism-ditto-palm-size-wonders-release-news' | 'team-rocket-briefcase-release-news' | 'pikachu-gift-box-release-news' | 'day-night-gift-box-release-news' | 'greninja-sylveon-display-set-release-news' | 'charizard-figure-box-release-news' | 'nuzzle-cheeks-plush-card-display-release-news' | 'eevee-gift-box-release-news' | 'pikachu-30th-plush-keychain-release-news' | 'funism-first-partner-mini-figures-release-news' | 'first-partner-30th-vol-1-release-news' | 'first-partner-30th-vol-2-release-news' | 'first-partner-30th-vol-3-release-news' | 'aura-seeker-release-news' | 'pokemon-30th-shanghai-gold-pikachu-cards-news' | '30th-celebration-pikachu-cards-artists' | 'futuristic-pikachu-box-release-news' | 'lisia-gift-box-release-news' | 'ogerpon-mask-gift-box-release-news' | 'lillie-n-battle-box-release-news' | 'japanese-30th-celebration-release-news' | 'storm-emeralda-release-news' | 'master-strategy-deck-raging-bolt-dragapult-gholdengo-release-news' | 'master-strategy-deck-charizard-gardevoir-miraidon-release-news' | 'espeon-umbreon-deluxe-deck-release-news' | 'journey-gift-boxes-release-news' | 'collect-151-first-partner-display-sets-release-news' | 'eevee-dream-painting-figures-release-news' | 'dream-painting-151-vol-1-release-news' | 'dream-painting-water-vol-2-release-news' | 'chinese-gem-pack-hit-rates' | 'collect-151-journey-release-news' | 'collect-151-hope-release-news' | 'collect-151-surprise-release-news' | 'collect-151-gathering-release-news' | 'collect-151-set-guide' | 'collect-151-card-origins'
 
 export interface BlogPostSummary {
   slug: BlogPostSlug
@@ -616,6 +616,102 @@ export const BLOG_POSTS: BlogPostSummary[] = [
     heroAlt: 'The Venusaur, Gardevoir and Blastoise Journey gift boxes behind the Charizard box',
     glow1: 'rgb(255 150 70 / .28)',
     glow2: 'rgb(80 190 170 / .22)',
+  },
+  {
+    slug: 'collect-151-journey-release-news',
+    path: '/blog/collect-151-journey-release-news',
+    title: 'Collect 151: Journey Is Here: All 151 Kanto Pokémon and a Pikachu Art Rare',
+    excerpt:
+      'Collect 151: Journey is the first of four Collect 151 releases. It brings the 151 original Kanto Pokémon to Simplified Chinese in Pokédex order, with Pikachu on the pack and its own Pikachu Art Rare.',
+    seoTitle: 'Pokémon Collect 151: Journey (151C): Release Info & Pikachu AR',
+    seoDescription:
+      'Chinese Pokémon TCG Collect 151: Journey (151C), out January 17, 2025: all 151 Kanto Pokémon, Mew ex, Shiny cards and the Journey Pikachu Art Rare.',
+    tag: 'New release',
+    date: '2025-01-17',
+    heroImage: `${SITE_URL}/assets/blog/collect-151-journey-release-hero-v1.webp`,
+    heroAlt: 'The Collect 151: Journey booster pack with the Journey Pikachu Art Rare in front',
+    glow1: 'rgb(120 190 90 / .30)',
+    glow2: 'rgb(34 20 16 / .25)',
+  },
+  {
+    slug: 'collect-151-hope-release-news',
+    path: '/blog/collect-151-hope-release-news',
+    title: 'Collect 151: Hope Is Here: A Second Pikachu Art Rare and More Water, Dragon and Colorless Holos',
+    excerpt:
+      'Collect 151: Hope is the second Collect 151 release, with Psyduck and Pikachu on the pack. It has the same card list as Journey, a new Pikachu Art Rare, and more Water, Dragon and Colorless pattern holos.',
+    seoTitle: 'Pokémon Collect 151: Hope (151C): Release Info & Pikachu AR',
+    seoDescription:
+      'Chinese Pokémon TCG Collect 151: Hope (151C), out April 18, 2025: the Hope Pikachu Art Rare, boosted pattern holo types, coin sets and pack sizes.',
+    tag: 'New release',
+    date: '2025-04-18',
+    heroImage: `${SITE_URL}/assets/blog/collect-151-hope-release-hero-v1.webp`,
+    heroAlt: 'The Collect 151: Hope booster pack with the Hope Pikachu Art Rare in front',
+    glow1: 'rgb(90 170 220 / .30)',
+    glow2: 'rgb(34 20 16 / .25)',
+  },
+  {
+    slug: 'collect-151-surprise-release-news',
+    path: '/blog/collect-151-surprise-release-news',
+    title: 'Collect 151: Surprise Is Here: Mew ex and Alakazam ex Special Art Rares and a Gengar Pikachu',
+    excerpt:
+      'Collect 151: Surprise is the third Collect 151 release, with Gengar and Pikachu on the pack. It has three cards of its own: a Pikachu Art Rare and the Mew ex and Alakazam ex Special Art Rares.',
+    seoTitle: 'Pokémon Collect 151: Surprise (151C): Mew ex SAR & Release Info',
+    seoDescription:
+      'Chinese Pokémon TCG Collect 151: Surprise (151C), out July 18, 2025: the Mew ex and Alakazam ex Special Art Rares, a Pikachu Art Rare and pack sizes.',
+    tag: 'New release',
+    date: '2025-07-18',
+    heroImage: `${SITE_URL}/assets/blog/collect-151-surprise-release-hero-v1.webp`,
+    heroAlt: 'The Collect 151: Surprise booster pack with the Surprise Pikachu Art Rare in front and the Mew ex and Alakazam ex Special Art Rares behind',
+    glow1: 'rgb(150 110 210 / .30)',
+    glow2: 'rgb(34 20 16 / .25)',
+  },
+  {
+    slug: 'collect-151-gathering-release-news',
+    path: '/blog/collect-151-gathering-release-news',
+    title: 'Collect 151: Gathering Is Here: A Zapdos ex Special Art Rare and the Last Pikachu Art Rare',
+    excerpt:
+      'Collect 151: Gathering is the fourth and last Collect 151 release, with Pikachu, Vulpix and Cubone on the pack. Its own cards are a Pikachu Art Rare and the Zapdos ex Special Art Rare.',
+    seoTitle: 'Pokémon Collect 151: Gathering (151C): Zapdos ex SAR & Release Info',
+    seoDescription:
+      'Chinese Pokémon TCG Collect 151: Gathering (151C), out October 17, 2025: the Zapdos ex Special Art Rare, the last Pikachu Art Rare and boosted holo types.',
+    tag: 'New release',
+    date: '2025-10-17',
+    heroImage: `${SITE_URL}/assets/blog/collect-151-gathering-release-hero-v1.webp`,
+    heroAlt: 'The Collect 151: Gathering booster pack with the Gathering Pikachu Art Rare in front and the Zapdos ex Special Art Rare behind',
+    glow1: 'rgb(240 200 70 / .30)',
+    glow2: 'rgb(34 20 16 / .25)',
+  },
+  {
+    slug: 'collect-151-set-guide',
+    path: '/blog/collect-151-set-guide',
+    title: 'Collect 151 Set Guide: Journey, Hope, Surprise, Gathering and Which Has Which Chase Card',
+    excerpt:
+      'Collect 151 is one 192-card set sold in four releases: Journey, Hope, Surprise and Gathering. This guide explains how they differ, shows which release has which chase card, and covers what a master set takes.',
+    seoTitle: 'Pokémon Collect 151 (151C) Set Guide: Chase Cards by Release',
+    seoDescription:
+      'Chinese Pokémon TCG Collect 151 (151C) set guide: how Journey, Hope, Surprise and Gathering differ, every Special Art Rare and Pikachu Art Rare, and the master set.',
+    tag: 'Set guide',
+    date: '2025-10-17',
+    heroImage: `${SITE_URL}/assets/blog/collect-151-guide-hero-v1.webp`,
+    heroAlt: 'The Gathering Pikachu Art Rare in an EBI display case beside the Mew ex, Alakazam ex and Zapdos ex Special Art Rares',
+    glow1: 'rgb(86 147 90 / .30)',
+    glow2: 'rgb(34 20 16 / .25)',
+  },
+  {
+    slug: 'collect-151-card-origins',
+    path: '/blog/collect-151-card-origins',
+    title: 'Where Every Collect 151 Card Comes From',
+    excerpt:
+      'All 192 Collect 151 cards matched to Japanese and English: 166 from Pokémon Card 151 (English 151), 22 from Shiny Treasure ex (English Paldean Fates), and 4 new Pikachu Art Rares.',
+    seoTitle: 'Pokémon Collect 151 (151C) Card Origins: Japanese & English Matches',
+    seoDescription:
+      'All 192 Pokémon TCG Collect 151 (151C) cards matched to Japanese SV2a and Shiny Treasure ex, and to English 151 and Paldean Fates, plus 4 new Pikachu ARs.',
+    tag: 'Collecting guide',
+    date: '2025-10-17',
+    heroImage: `${SITE_URL}/assets/blog/collect-151-origins-hero-v1.webp`,
+    heroAlt: 'Collect 151 Hope, Gathering and Surprise packs linked to tiles for Pokémon Card 151, Shiny Treasure ex and four new Pikachu Art Rares',
+    glow1: 'rgb(86 147 90 / .30)',
+    glow2: 'rgb(60 90 70 / .30)',
   },
   // Also add | 'collect-151-first-partner-display-sets-release-news' to BlogPostSlug
   {

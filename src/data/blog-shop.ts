@@ -105,9 +105,19 @@ const SHARED_RELEASE_POST: Record<string, string> = {
   'white-flare': 'black-bolt-white-flare-release-news',
 }
 
+// Releases that share one card list, and so one set guide and one card
+// origins post. Each release keeps its own release post.
+const SHARED_GUIDE_KEY: Record<string, string> = {
+  'collect-151-journey': 'collect-151',
+  'collect-151-hope': 'collect-151',
+  'collect-151-surprise': 'collect-151',
+  'collect-151-gathering': 'collect-151',
+}
+
 /** Slugs of the posts about one set key, in display order: release news, set guide, card origins. */
 export function blogPostSlugsForSetKey(key: string): string[] {
-  return [SHARED_RELEASE_POST[key] ?? `${key}-release-news`, `${key}-set-guide`, `${key}-card-origins`]
+  const guide = SHARED_GUIDE_KEY[key] ?? key
+  return [SHARED_RELEASE_POST[key] ?? `${key}-release-news`, `${guide}-set-guide`, `${guide}-card-origins`]
 }
 
 export function blogShopProductIds(slug: string): string[] {
