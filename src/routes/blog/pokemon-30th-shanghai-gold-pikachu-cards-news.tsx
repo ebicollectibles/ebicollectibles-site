@@ -21,9 +21,12 @@ const ACTIVITIES = [
 
 // Three of the 30 Pikachu cards in the Simplified Chinese 30th Celebration set.
 const PIKACHU_CARDS = [
-  { file: 'pikachu-030', no: '030/103', of: '14/30', illus: 'OKACHEKE', alt: 'Pikachu 030/103 from 30th Celebration: Pikachu leaning on a wooden balcony rail and smiling, illustrated by OKACHEKE' },
-  { file: 'pikachu-031', no: '031/103', of: '15/30', illus: 'Yuu Nishida', alt: 'Pikachu 031/103 from 30th Celebration: Pikachu leaping out of a burst of lightning in a forest, illustrated by Yuu Nishida' },
-  { file: 'pikachu-041', no: '041/103', of: '25/30', illus: 'Atsuko Nishida', alt: 'Pikachu 041/103 from 30th Celebration: Pikachu running through a green meadow with mountains behind it, illustrated by Atsuko Nishida' },
+  { file: 'pikachu-034', w: 300, h: 419, no: '034/103', of: '18/30', illus: 'Shinji Kanda', alt: 'Pikachu 034/103 (18/30) from 30th Celebration: Pikachu in a bright rainbow burst of color, illustrated by Shinji Kanda' },
+  { file: 'pikachu-021', w: 300, h: 419, no: '021/103', of: '05/30', illus: 'Asako Ito', alt: 'Pikachu 021/103 (05/30) from 30th Celebration: a crochet-style Pikachu napping on the grass, illustrated by Asako Ito' },
+  { file: 'pikachu-024', w: 300, h: 419, no: '024/103', of: '08/30', illus: 'DOM', alt: 'Pikachu 024/103 (08/30) from 30th Celebration: Pikachu glowing with lightning at night, illustrated by DOM' },
+  { file: 'pikachu-036', w: 300, h: 419, no: '036/103', of: '20/30', illus: 'Akira', alt: 'Pikachu 036/103 (20/30) from 30th Celebration: Pikachu running through a field under a bright sky, illustrated by Akira' },
+  { file: 'pikachu-017', w: 300, h: 419, no: '017/103', of: '01/30', illus: 'Ken Sugimori', alt: 'Pikachu 017/103 (01/30) from 30th Celebration: a round, classic-style Pikachu standing in a forest with lightning, illustrated by Ken Sugimori' },
+  { file: 'pikachu-030', w: 788, h: 1100, no: '030/103', of: '14/30', illus: 'OKACHEKE', alt: 'Pikachu 030/103 (14/30) from 30th Celebration: Pikachu leaning on a wooden balcony rail and smiling, illustrated by OKACHEKE' },
 ]
 
 const FAQ = [
@@ -201,6 +204,29 @@ The official event poster, then the same poster with its Chinese text translated
           whether the gold cards will ever be sold.
         </p>
 
+        <h2 id="pikachu-cards">The Pikachu cards behind the designs</h2>
+        <p>
+          The 30th Celebration expansion released on September 16, 2026, in China and around the world. It has 30 different Pikachu
+          cards, each by a different illustrator, and every pack has one. These six are among the most sought-after, shown in the Simplified Chinese set.
+        </p>
+        <ul className="card-grid cols-3">
+          {PIKACHU_CARDS.map((c) => (
+            <li key={c.no}>
+              <figure>
+                <img src={img(c.file)} alt={c.alt} loading="lazy" width={c.w} height={c.h} style={{ background: 'transparent', boxShadow: 'none' }} />
+                <figcaption>
+                  <strong>Pikachu</strong>
+                  {c.of} · {c.no} · Illus. {c.illus}
+                </figcaption>
+              </figure>
+            </li>
+          ))}
+        </ul>
+        <p>
+          Our <Link to="/blog/30th-celebration-set-guide">30th Celebration set guide</Link> covers the whole set, and the{' '}
+          <Link to="/blog/30th-celebration-release-news">30th Celebration release news</Link> covers the pack and the box.
+        </p>
+
         <h2 id="gold-math">The gold, by the numbers</h2>
         <p>Rough estimates from the reported 999 purity and 30 g per card. Pokémon China has not given these figures.</p>
         <div className="table-scroll" role="group" aria-labelledby="tbl-gold" tabIndex={0}>
@@ -242,29 +268,6 @@ The official event poster, then the same poster with its Chinese text translated
         <p>
           The widely shared ¥600,000 figure is for all 30 cards, not one. Gold prices change daily, and as one-of-a-kind pieces the
           cards would be worth far more to collectors than the gold.
-        </p>
-
-        <h2 id="pikachu-cards">The Pikachu cards behind the designs</h2>
-        <p>
-          The 30th Celebration expansion released on September 16, 2026, in China and around the world. It has 30 different Pikachu
-          cards, each by a different illustrator, and every pack has one. These are three of them from the Simplified Chinese set.
-        </p>
-        <ul className="card-grid cols-3">
-          {PIKACHU_CARDS.map((c) => (
-            <li key={c.no}>
-              <figure>
-                <img src={img(c.file)} alt={c.alt} loading="lazy" width={788} height={1100} style={{ background: 'transparent', boxShadow: 'none' }} />
-                <figcaption>
-                  <strong>Pikachu</strong>
-                  {c.no} · Illus. {c.illus}
-                </figcaption>
-              </figure>
-            </li>
-          ))}
-        </ul>
-        <p>
-          Our <Link to="/blog/30th-celebration-set-guide">30th Celebration set guide</Link> covers the whole set, and the{' '}
-          <Link to="/blog/30th-celebration-release-news">30th Celebration release news</Link> covers the pack and the box.
         </p>
 
         <h2 id="other-events">Part of a year of 30th anniversary events</h2>
