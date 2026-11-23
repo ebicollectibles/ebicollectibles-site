@@ -517,13 +517,23 @@ function ProductDetailPage() {
             {product.name}
           </h1>
           {notSellable && !comingSoon ? (
-            selectedVariant && (
+            selectedVariant ? (
               <div style={{ display: 'flex', alignItems: 'baseline', gap: 12, marginTop: 18, flexWrap: 'wrap' }}>
                 <span style={{ fontSize: 26, fontWeight: 700, color: '#131b28' }}>{formatMoney(selectedVariant.price)}</span>
                 <span style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 12, color: selectedVariant.stock <= 0 ? '#5a6875' : '#3f7a63' }}>
                   {selectedVariant.stock <= 0 ? 'Out of stock' : `${selectedVariant.stock} in stock`}
                 </span>
               </div>
+            ) : (
+              // Before a pick: the range across the options, like the shop card.
+              !product.hidePrice &&
+              hubPriceRange && (
+                <div style={{ display: 'flex', alignItems: 'baseline', gap: 12, marginTop: 18, flexWrap: 'wrap' }}>
+                  <span style={{ fontSize: 26, fontWeight: 700, color: '#131b28' }}>
+                    {hubPriceRange.min === hubPriceRange.max ? formatMoney(hubPriceRange.min) : `${formatMoney(hubPriceRange.min)}–${formatMoney(hubPriceRange.max)}`}
+                  </span>
+                </div>
+              )
             )
           ) : notSellable && comingSoon ? (
             <div style={{ display: 'flex', alignItems: 'baseline', gap: 12, marginTop: 18, flexWrap: 'wrap' }}>

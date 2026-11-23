@@ -48,7 +48,7 @@ export function ProductCard({
   // page. Pulls the full catalog from CartProvider rather than a prop,
   // since every page that renders a ProductCard already sits inside it.
   const hubVariants = notSellable ? getHubVariants(product, allProducts) : []
-  const hubPriceRange = notSellable && comingSoon ? getHubPriceRange(hubVariants) : null
+  const hubPriceRange = notSellable ? getHubPriceRange(hubVariants) : null
   const badge = comingSoon ? (product.preorder ? 'Pre-order' : 'Coming soon') : product.preorder ? 'Pre-order' : soldOut ? 'Sold out' : onSale ? 'Sale' : null
   const badgeBg = product.preorder && !soldOut ? '#3f7a63' : comingSoon || soldOut ? '#5a6875' : '#a85b2c'
 
@@ -147,9 +147,13 @@ export function ProductCard({
           card had a price line and the one next to it didn't.
           visibility:hidden keeps the same layout height without showing
           anything. */}
-      <div style={{ display: 'flex', alignItems: 'baseline', gap: 8, marginTop: 10, visibility: notSellable && !comingSoon ? 'hidden' : 'visible' }}>
-        {notSellable && !comingSoon ? (
+      <div style={{ display: 'flex', alignItems: 'baseline', gap: 8, marginTop: 10, visibility: notSellable && !comingSoon && hubPriceRange == null ? 'hidden' : 'visible' }}>
+        {notSellable && !comingSoon && (product.hidePrice || hubPriceRange == null) ? (
           <span style={{ fontSize: priceFontSize, fontWeight: 600 }}>&nbsp;</span>
+        ) : notSellable && !comingSoon && hubPriceRange ? (
+          <span style={{ fontSize: priceFontSize, fontWeight: 600, color: '#131b28' }}>
+            {hubPriceRange.min === hubPriceRange.max ? formatMoney(hubPriceRange.min) : `${formatMoney(hubPriceRange.min)}–${formatMoney(hubPriceRange.max)}`}
+          </span>
         ) : notSellable ? (
           product.hidePrice || hubPriceRange == null ? (
             <span style={{ fontSize: priceFontSize - 2, fontWeight: 500, color: '#5a6875' }}>
