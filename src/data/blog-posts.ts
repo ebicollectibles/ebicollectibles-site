@@ -401,10 +401,10 @@ export const BLOG_POSTS: BlogPostSummary[] = [
   {
     slug: 'pokemon-30th-shanghai-gold-pikachu-cards-news',
     path: '/blog/pokemon-30th-shanghai-gold-pikachu-cards-news',
-    title: 'Pokémon China Will Show 30 Pure Gold Cards at the 30th Anniversary Shanghai Finale',
+    title: "Pokémon China Reveals 30 Pure Gold Cards for Pokémon's 30th Anniversary",
     excerpt:
-      "Pokémon China's 30th Anniversary Shanghai Finale runs from November 28, 2026 to January 3, 2027, and the official poster says 30 pure gold cards will be on display. This post covers what we know so far.",
-    seoTitle: 'Pokémon 30th Shanghai Finale: 30 Pure Gold Cards on Display',
+      "Pokémon China will display 30 pure gold cards at the Pokémon 30th Anniversary Shanghai Finale, running November 28, 2026 to January 3, 2027.",
+    seoTitle: 'Pokémon China Reveals 30 Pure Gold Cards for the 30th Anniversary',
     seoDescription:
       "Pokémon China's 30th Anniversary Shanghai Finale runs Nov 28, 2026 to Jan 3, 2027, with 30 pure gold cards on display at its card art exhibition.",
     tag: 'News',

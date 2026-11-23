@@ -26,21 +26,6 @@ const PIKACHU_CARDS = [
   { file: 'pikachu-041', no: '041/103', of: '25/30', illus: 'Atsuko Nishida', alt: 'Pikachu 041/103 from 30th Celebration: Pikachu running through a green meadow with mountains behind it, illustrated by Atsuko Nishida' },
 ]
 
-const TOC = [
-  { id: 'gold-cards', label: 'The 30 pure gold cards' },
-  { id: 'what-it-is', label: 'What is the Shanghai Finale?' },
-  { id: 'activities', label: 'What is on at the event?' },
-  { id: 'pikachu-cards', label: 'The 30 Pikachu cards in 30th Celebration' },
-  { id: 'real-gold', label: 'Real gold cards and gold-colored cards' },
-  { id: 'gold-value', label: 'How much gold is that?' },
-  { id: 'gold-math', label: 'The gold math, in plain English' },
-  { id: 'other-events', label: 'Other 30th anniversary events in Asia' },
-  { id: 'other-news', label: 'Other 30th anniversary news from Pokémon China' },
-  { id: 'not-known', label: 'What has not been announced' },
-  { id: 'at-ebi', label: '30th Celebration at EBI Collectibles' },
-  { id: 'faq', label: 'FAQ' },
-]
-
 const FAQ = [
   {
     q: 'What is the Pokémon 30th Anniversary Shanghai Finale?',
@@ -156,7 +141,7 @@ function ShanghaiGoldCardsPost() {
         updated={status.liveAt}
         wide
         post={post}
-        lede="Pokémon China is holding a 30th anniversary event in Shanghai from November 28, 2026 to January 3, 2027. The official poster says 30 pure gold cards will be on display. This post covers what we know so far."
+        lede="Pokémon China will display 30 pure gold cards at the Pokémon 30th Anniversary Shanghai Finale, from November 28, 2026 to January 3, 2027."
         cta={{
           heading: 'Shop 30th Celebration',
           body: 'The booster box, the Dream Painting Pikachu figures and the Pikachu 30th plush keychains.',
@@ -166,14 +151,19 @@ function ShanghaiGoldCardsPost() {
           ],
         }}
       >
-        <h2 id="gold-cards">The 30 pure gold cards</h2>
         <p>
-          The line for the card art exhibition ends with <Zh>还有30张足金卡牌展出哦</Zh>, which means "30 pure gold cards will also be
-          on display." <Zh>足金</Zh> is the term Chinese jewelers use for pure gold.
+          <strong>SHANGHAI, November 23, 2026</strong> — Pokémon China will put 30 pure gold cards on display at the Pokémon 30th
+          Anniversary Shanghai Finale (<Zh>宝可梦30周年上海盛典</Zh>), its big end-of-year celebration of Pokémon's 30th anniversary. The
+          event runs from Saturday, November 28, 2026 to Sunday, January 3, 2027.
         </p>
         <p>
-          That is all the poster says about them. It does not say what the cards show, how they are made or how much gold is in each
-          one.
+          The official event poster lists the cards as part of the Pokémon Card Art Illustration Exhibition:{' '}
+          <Zh>还有30张足金卡牌展出哦</Zh>, "30 pure gold cards will also be on display." <Zh>足金</Zh> is the term used in China for pure
+          gold.
+        </p>
+        <p>
+          Photos shared online show gold Pikachu cards marked "999" and "30g", with designs that match the 30 Pikachu cards in the 30th
+          Celebration expansion. Pokémon China has not confirmed the designs or the weight.
         </p>
 
         <figure className="poster-pair">
@@ -197,53 +187,7 @@ function ShanghaiGoldCardsPost() {
 The official event poster, then the same poster with its Chinese text translated into English.</figcaption>
         </figure>
 
-        <aside className="fact-box" aria-label="Shanghai Finale key facts">
-          {/* Same card as in the Pikachu section below, where it is described, so this copy is decorative */}
-          <img src={img('pikachu-031')} alt="" loading="lazy" width={788} height={1100} />
-          <div>
-            <p className="fact-box-title">Key facts</p>
-            <dl>
-              <dt>Event</dt>
-              <dd>
-                Pokémon 30th Anniversary Shanghai Finale (<Zh>宝可梦30周年上海盛典</Zh>)
-              </dd>
-              <dt>Dates</dt>
-              <dd>November 28, 2026 (Saturday) to January 3, 2027 (Sunday)</dd>
-              <dt>Early end</dt>
-              <dd>Some activities end December 27, 2026</dd>
-              <dt>City</dt>
-              <dd>Shanghai, China</dd>
-              <dt>Gold cards</dt>
-              <dd>30 pure gold cards on display</dd>
-              <dt>Venue and tickets</dt>
-              <dd>Not announced</dd>
-            </dl>
-          </div>
-        </aside>
-
-        <nav className="toc" aria-label="In this article">
-          <p className="toc-title">In this article</p>
-          <ol>
-            {TOC.map((t) => (
-              <li key={t.id}>
-                <a href={`#${t.id}`}>{t.label}</a>
-              </li>
-            ))}
-          </ol>
-        </nav>
-
-        <h2 id="what-it-is">What is the Shanghai Finale?</h2>
-        <p>
-          The Pokémon 30th Anniversary Shanghai Finale (<Zh>宝可梦30周年上海盛典</Zh>) is an event from Pokémon China for the 30th
-          anniversary of Pokémon. Going by the official poster, it runs from Saturday, November 28, 2026 to Sunday, January 3, 2027.
-          Some activities end earlier, on December 27, 2026.
-        </p>
-        <p>
-          The poster shows Pikachu in a tuxedo and Totodile in a bow tie, with Cramorant, a shark Pokémon and the Shanghai skyline
-          behind them. One line on it stands out for card collectors: 30 pure gold cards will be on display.
-        </p>
-
-        <h2 id="activities">What is on at the event?</h2>
+        <h2 id="event">What else is at the Shanghai Finale</h2>
         <p>The poster lists four activities:</p>
         <ol>
           {ACTIVITIES.map((a) => (
@@ -252,73 +196,30 @@ The official event poster, then the same poster with its Chinese text translated
             </li>
           ))}
         </ol>
-        <p>The poster does not say which activities end on December 27.</p>
-        <h2 id="pikachu-cards">The 30 Pikachu cards in 30th Celebration</h2>
         <p>
-          The 30th Celebration expansion released on September 16, 2026, in China and around the world. It has 30 different Pikachu
-          cards, each by a different illustrator, and every pack has one. These are three of them from the Simplified Chinese set.
-        </p>
-        <ul className="card-grid cols-3">
-          {PIKACHU_CARDS.map((c) => (
-            <li key={c.no}>
-              <figure>
-                <img src={img(c.file)} alt={c.alt} loading="lazy" width={788} height={1100} style={{ background: 'transparent', boxShadow: 'none' }} />
-                <figcaption>
-                  <strong>Pikachu</strong>
-                  {c.no} · Illus. {c.illus}
-                </figcaption>
-              </figure>
-            </li>
-          ))}
-        </ul>
-        <p>
-          Our <Link to="/blog/30th-celebration-set-guide">30th Celebration set guide</Link> covers the whole set, and the{' '}
-          <Link to="/blog/30th-celebration-release-news">30th Celebration release news</Link> covers the pack and the box.
+          Some activities end early, on December 27, 2026. Pokémon China has not yet announced the venue, tickets or reservations, or
+          whether the gold cards will ever be sold.
         </p>
 
-        <h2 id="real-gold">Real gold cards and gold-colored cards</h2>
+        <h2 id="gold-math">The gold, by the numbers</h2>
+        <p>
+          These are rough estimates based on the reported 999 purity and 30 g per card. Pokémon China has not given any of these
+          figures.
+        </p>
         <ul>
           <li>
-            <strong>Gold-plated metal cards sold online.</strong> These "Pokémon cards" are unlicensed. They are not official products.
+            <strong>Purity.</strong> 999 means 99.9% gold. A 30 g card holds about 0.03 g of anything else, roughly a grain of rice.
           </li>
           <li>
-            <strong>Gold cards in booster packs.</strong> Official gold-colored cards in sets are printed cards. The gold is a printed
-            finish, not real gold.
+            <strong>Weight.</strong> All 30 cards together weigh about 900 g, or 2 pounds. Each card is just under one troy ounce, the
+            unit gold is priced in.
           </li>
           <li>
-            <strong>Real gold.</strong> The only earlier real gold Pokémon card that is widely known is the pure gold Pikachu card made
-            in Japan in 2016. It was sold by reservation.
+            <strong>Thickness.</strong> At normal card size, 30 g of gold is about 0.28 mm thick, close to a normal printed card at
+            about 0.3 mm. It would just weigh about 17 times more.
           </li>
         </ul>
-
-        <h2 id="gold-value">How much gold is that?</h2>
-        <p>
-          A widely shared post puts the gold value at about ¥600,000, based on gold prices on November 23. That figure only works for
-          all 30 cards together.
-        </p>
-        <p>
-          If each card weighs 30 g, as reported, then 30 cards hold 900 g of gold. ¥600,000 for 900 g is about
-          ¥667 per gram. So ¥600,000 is a figure for the whole set of 30, not for one card.
-        </p>
-        <p>None of these numbers are official. The weight comes from photos, and the price of gold changes every day.</p>
-
-        <h2 id="gold-math">The gold math, in plain English</h2>
-        <p>
-          Pokémon China has not given these numbers. They start from the reported 30 g per card and the 999 on the label, so treat them
-          as rough estimates.
-        </p>
-
-        <h3>How pure is 999 gold?</h3>
-        <p>
-          999 means 99.9% gold. A 30 g card would be almost entirely gold, with about 0.03 g of anything else, roughly the weight of a
-          grain of rice. All 30 cards together would weigh 900 g, about 2 pounds.
-        </p>
-        <p>
-          Gold is usually priced by the troy ounce, which is 31.1 g. One 30 g card is just under one troy ounce of gold.
-        </p>
-
-        <h3>What is the gold worth?</h3>
-        <p>This is the value of the gold alone, at late November 2026 prices. Gold prices change every day.</p>
+        <p>What the gold alone is worth at late November 2026 prices:</p>
         <div className="table-scroll" role="group" aria-labelledby="tbl-gold-value" tabIndex={0}>
           <table className="data-table">
             <caption id="tbl-gold-value" className="sr-only">
@@ -346,56 +247,52 @@ The official event poster, then the same poster with its Chinese text translated
           </table>
         </div>
         <p>
-          The ¥600,000 figure that has been shared is a little lower than this. It works out to about ¥667 a gram, so it probably used
-          a lower gold price.
-        </p>
-        <p>
-          Gold was much more expensive earlier this year. At its January high of about ¥1,256 a gram, the 30 cards would have held over
-          ¥1.1 million in gold.
-        </p>
-        <p>
-          The gold is only the starting point. A one-of-a-kind set made by Pokémon China for its 30th anniversary would be worth far
-          more to a collector than the metal. Nothing has been said about selling them, though.
+          A figure of about ¥600,000 has been widely shared for the set. That works out to about ¥667 a gram, a little below the
+          Shanghai price, and it is for all 30 cards together, not one card. Gold also moves a lot: at January's high of about ¥1,256 a
+          gram, the set would have held over ¥1.1 million in gold. As one-of-a-kind 30th anniversary pieces, the cards would be worth
+          far more to collectors than the metal.
         </p>
 
-        <h3>How thick would a gold card be?</h3>
+        <h2 id="pikachu-cards">The Pikachu cards behind the designs</h2>
         <p>
-          Gold is very dense. If a 30 g gold card is the size of a normal card, it would be about 0.28 mm thick. A normal printed card
-          is about 0.3 mm, so the gold card would look about as thin. It would just be much heavier: a normal card weighs under 2 g, so
-          a gold one would weigh about 17 times more.
+          The 30th Celebration expansion released on September 16, 2026, in China and around the world. It has 30 different Pikachu
+          cards, each by a different illustrator, and every pack has one. These are three of them from the Simplified Chinese set.
         </p>
-        <p>This assumes a flat card at normal size. Pokémon China has not said how big or thick the cards are.</p>
-
-        <h2 id="other-events">Other 30th anniversary events in Asia</h2>
-        <p>
-          Shanghai is not the only big 30th anniversary event in Asia. Of the ones we found, it is the only one called a finale.
-        </p>
-        <ul>
-          <li>
-            <strong>PokéXciting! tour.</strong> A free two-day celebration in five cities: Kuala Lumpur (September 12 to 13, 2026),
-            Taipei (October 10 to 11), Singapore (November 7 to 8), Manila (January 23 to 24, 2027) and Bangkok (February 13 to 14,
-            2027). Kuala Lumpur had a Pokémon drone show over the Petronas Twin Towers, a night stage with a city-colored PokéXciting!
-            Pikachu, photo spots and a Pokémon Center pop-up store. Each stop also has Pokémon GO bonuses, including its own colored
-            Pikachu.
-          </li>
-          <li>
-            <strong>Pokémon Mega Festa 2026, Seoul.</strong> Billed as the franchise's largest event yet, it ran from May to June
-            2026. It included a Pokémon forest garden at Seoul Forest, a Ditto playground, pop-up stores, a Pokémon Run and a Pokémon
-            Sports Day with card game qualifiers.
-          </li>
+        <ul className="card-grid cols-3">
+          {PIKACHU_CARDS.map((c) => (
+            <li key={c.no}>
+              <figure>
+                <img src={img(c.file)} alt={c.alt} loading="lazy" width={788} height={1100} style={{ background: 'transparent', boxShadow: 'none' }} />
+                <figcaption>
+                  <strong>Pikachu</strong>
+                  {c.no} · Illus. {c.illus}
+                </figcaption>
+              </figure>
+            </li>
+          ))}
         </ul>
-
-        <h2 id="other-news">Other 30th anniversary news from Pokémon China</h2>
         <p>
-          Pokémon China also runs a campaign on pokemon.cn called the Trainers' 30th Anniversary Celebration. Its goal is to collect
-          300,000 cards at shops from September 24 to December 31, 2026. On November 6, 2026, Pokémon China said the 300,000 goal had
-          been reached and that it "will advance the previously planned celebration."
+          Our <Link to="/blog/30th-celebration-set-guide">30th Celebration set guide</Link> covers the whole set, and the{' '}
+          <Link to="/blog/30th-celebration-release-news">30th Celebration release news</Link> covers the pack and the box.
         </p>
 
-        <h2 id="not-known">What has not been announced</h2>
+        <h2 id="real-gold">Real gold, and the fakes</h2>
         <p>
-          The poster does not give the exact venue in Shanghai, and nothing has been announced about tickets or reservations. There is
-          also no word on whether the gold cards will ever be sold. The poster presents them as an exhibition display.
+          Real gold Pokémon cards are rare. The best known earlier one is the pure gold Pikachu card made in Japan in 2016 and sold by
+          reservation. The gold cards found in booster packs are printed, with a gold finish rather than real gold. The gold-plated metal
+          "Pokémon cards" sold online are unlicensed and are not official products.
+        </p>
+
+        <h2 id="other-events">Part of a year of 30th anniversary events</h2>
+        <p>
+          The Shanghai Finale caps a year of 30th anniversary events across Asia. The free PokéXciting! tour has visited Kuala Lumpur
+          (September 12 to 13), Taipei (October 10 to 11) and Singapore (November 7 to 8), and heads to Manila (January 23 to 24, 2027)
+          and Bangkok (February 13 to 14, 2027). The Kuala Lumpur stop had a Pokémon drone show over the Petronas Twin Towers. In Seoul,
+          Pokémon Mega Festa 2026 ran from May to June and was billed as the franchise's largest event yet.
+        </p>
+        <p>
+          In China, Pokémon China's Trainers' 30th Anniversary Celebration campaign set out to collect 300,000 cards at shops. On
+          November 6, Pokémon China said the goal had been reached and that it "will advance the previously planned celebration."
         </p>
 
         <h2 id="at-ebi">30th Celebration at EBI Collectibles</h2>
