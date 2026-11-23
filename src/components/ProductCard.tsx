@@ -35,6 +35,8 @@ export function ProductCard({
   const shown = inStockVariant ?? product
   const linkId = shown.id
   const onSale = shown.compareAtPrice != null && shown.compareAtPrice > shown.price
+  // Price range across the group's buyable options (e.g. $249.99–$299.99).
+  const variantRange = inStockVariant ? getHubPriceRange(allProducts.filter((p) => p.variantGroupId === product.variantGroupId && !p.notSellable && !p.comingSoon)) : null
   // Price is "to be announced" when none has been set yet, or when admin
   // explicitly hid it (hidePrice overrides even a price synced live from a
   // linked Square item) — a coming-soon item with a real, shown price
@@ -165,6 +167,11 @@ export function ProductCard({
             Price to be announced
           </span>
         ) : (
+          variantRange && variantRange.min !== variantRange.max ? (
+            <span style={{ fontSize: priceFontSize, fontWeight: 600, color: '#131b28' }}>
+              {formatMoney(variantRange.min)}–{formatMoney(variantRange.max)}
+            </span>
+          ) : (
           <>
             {onSale && (
               <span style={{ fontSize: priceFontSize - 3, color: '#5a6875', textDecoration: 'line-through' }}>
@@ -174,10 +181,8 @@ export function ProductCard({
             <span style={{ fontSize: priceFontSize, fontWeight: 600, color: comingSoon ? '#5a6875' : '#131b28' }}>
               {formatMoney(shown.price)}
             </span>
-            {inStockVariant?.variantLabel && (
-              <span style={{ fontSize: priceFontSize - 4, color: '#5a6875' }}>{inStockVariant.variantLabel}</span>
-            )}
           </>
+          )
         )}
       </div>
       </Link>
