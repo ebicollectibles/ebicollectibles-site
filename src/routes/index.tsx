@@ -2,7 +2,7 @@ import { Zh } from '~/components/blog/Zh'
 import * as React from 'react'
 import { createFileRoute, Link } from '@tanstack/react-router'
 import { ProductCard } from '~/components/ProductCard'
-import { AnniversaryCountdown } from '~/components/AnniversaryCountdown'
+import { BlackFridayBanner } from '~/components/home/BlackFridayBanner'
 import { useCart } from '~/lib/cart-context'
 import { rankProducts } from '~/lib/products'
 import { subscribeToNewsletter, getMySubscriptionStatus } from '~/server/subscribers'
@@ -95,7 +95,7 @@ function HomePage() {
           off, this keeps one real h1 on the page for screen readers and
           reader modes (headings then run h1 > h2 as on every other page). */}
       {!SHOW_HERO && <h1 className="sr-only">EBI Collectibles: sealed Simplified Chinese Pokémon cards, figures and blind boxes</h1>}
-      <AnniversaryCountdown />
+      <BlackFridayBanner />
       {SHOW_HERO && (
       <section style={{ borderBottom: '1px solid #e3e6ea', background: '#f6f7f8' }}>
         <div

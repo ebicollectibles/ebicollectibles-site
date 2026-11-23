@@ -168,6 +168,18 @@ export function getHubSale(variants: Product[]): { onSale: boolean; wasPrice: nu
   return { onSale, wasPrice: uniform ? first.compareAtPrice! : null }
 }
 
+// What the shop's sale view (?sale=true) lists: a product marked down
+// itself, an option listing with any option marked down, or a sold-out
+// product whose in-stock variant is marked down (the card shows that one).
+export function isOnSale(p: Product, allProducts: Product[]): boolean {
+  const own = (x: Product) => x.price > 0 && !x.hidePrice && x.compareAtPrice != null && x.compareAtPrice > x.price
+  if (p.comingSoon) return false
+  if (p.notSellable) return !p.hidePrice && getHubSale(getHubVariants(p, allProducts)).onSale
+  if (own(p)) return true
+  const alt = p.stock <= 0 ? getInStockVariant(p, allProducts) : undefined
+  return !!alt && own(alt)
+}
+
 // Price range across a hub's variants — a single number when they all cost
 // the same, a {min,max} spread otherwise, null when none of them have a
 // visible price yet (new line, or every one has its own hidePrice set).

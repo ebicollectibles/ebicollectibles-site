@@ -15,6 +15,13 @@ const subcategory = z.enum(ALL_SUBCATEGORIES as [string, ...string[]])
 // differently from the requested URL); read it through searchText().
 const looseText = z.union([z.string(), z.number()]).optional().catch(undefined)
 
+// Same shape as preorder above: only `true` or absent.
+const saleFlag = z
+  .union([z.boolean(), z.string()])
+  .optional()
+  .catch(undefined)
+  .transform((v) => (v === true || v === 'true' ? true : undefined))
+
 export const shopSearchSchema = z.object({
   category: z.enum(PRODUCT_CATEGORIES).optional().catch(undefined),
   subcategory: subcategory.optional().catch(undefined),
@@ -54,6 +61,8 @@ export const shopSearchSchema = z.object({
     .optional()
     .catch(undefined)
     .transform((v) => (v === true || v === 'true' ? true : undefined)),
+  // Show only marked-down items (see isOnSale), e.g. from the homepage sale banner.
+  sale: saleFlag,
 })
 
 export type ShopSearch = z.infer<typeof shopSearchSchema>

@@ -2,7 +2,7 @@ import * as React from 'react'
 import { createFileRoute, Link } from '@tanstack/react-router'
 import { ProductCard } from '~/components/ProductCard'
 import { useCart } from '~/lib/cart-context'
-import { getInStockVariant, PRODUCT_CATEGORIES, SUBCATEGORIES_BY_CATEGORY, type ProductCategory, type ProductSubcategory } from '~/lib/products'
+import { getInStockVariant, isOnSale, PRODUCT_CATEGORIES, SUBCATEGORIES_BY_CATEGORY, type ProductCategory, type ProductSubcategory } from '~/lib/products'
 import { SHOW_ACRYLICS } from '~/lib/feature-flags'
 import { searchText, shopSearchSchema } from '~/lib/shop-search'
 
@@ -22,7 +22,8 @@ export const Route = createFileRoute('/shop')({
       match.search.subcategory ||
       (match.search.category ? categoryLabel(match.search.category) : undefined) ||
       (match.search.variantGroup ? 'Full Collection' : undefined) ||
-      (match.search.preorder ? 'Pre-orders' : undefined)
+      (match.search.preorder ? 'Pre-orders' : undefined) ||
+      (match.search.sale ? 'On Sale' : undefined)
     // The Binders link from the menu gets its own preview: a plural title
     // and a card showing the binders in place of the generic shop one.
     const binders = match.search.subcategory === 'Binder' && !match.search.subcategories?.length
@@ -135,6 +136,7 @@ function ShopPage() {
         if (p.hideFromShopGrid) return false
         if (!SHOW_ACRYLICS && p.category === 'Acrylic Cases') return false
         if (search.preorder && !p.preorder) return false
+        if (search.sale && !isOnSale(p, products)) return false
         if (query && !p.name.toLowerCase().includes(query)) return false
         if (subcategories.length && !subcategories.includes(p.subcategory)) return false
         // <= 0, not === 0 — see ProductCard.tsx's identical fix for why.
@@ -188,6 +190,8 @@ function ShopPage() {
       ? `Results for "${searchQuery}"`
       : search.preorder && subcategories.length === 0
         ? 'Pre-orders'
+        : search.sale && subcategories.length === 0
+        ? 'On Sale'
         : matchedCategory
           ? categoryLabel(matchedCategory)
           : subcategories.length === 1
