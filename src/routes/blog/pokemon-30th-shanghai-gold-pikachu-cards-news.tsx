@@ -194,9 +194,7 @@ function ShanghaiGoldCardsPost() {
             />
           </div>
           <figcaption>
-            The official event poster, then the same poster with its Chinese text translated into English by EBI Collectibles.
-            ©Pokémon/Nintendo/Creatures/GAME FREAK
-          </figcaption>
+The official event poster, then the same poster with its Chinese text translated into English.</figcaption>
         </figure>
 
         <aside className="fact-box" aria-label="Shanghai Finale key facts">
