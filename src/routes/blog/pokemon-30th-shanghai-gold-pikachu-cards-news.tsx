@@ -169,26 +169,30 @@ function ShanghaiGoldCardsPost() {
           gold cards, which are made of gold.
         </p>
 
-        <figure className="poster-pair">
+        <div className="poster-pair">
           <div className="poster-pair-grid">
-            <img
-              src={img('event-poster')}
-              alt="The official Pokémon 30th Anniversary Shanghai Finale poster in Chinese: Pikachu in a white hat and tuxedo and Totodile in a bow tie run out of a splash of water, with a shark Pokémon and Cramorant on either side, the Shanghai skyline behind them, the dates across the top and the four activities listed along the bottom"
-              width={813}
-              height={1186}
-              style={{ width: '100%', height: 'auto', borderRadius: 10 }}
-            />
-            <img
-              src={img('event-poster-en')}
-              alt="The same poster with its Chinese text translated into English: Shanghai, Nov 28, 2026 to Jan 3, 2027, some activities end Dec 27, 2026, and the four activities, including the Pokémon Card Art Illustration Exhibition with 30 pure gold cards on display"
-              width={1626}
-              height={2372}
-              style={{ width: '100%', height: 'auto', borderRadius: 10 }}
-            />
+            <figure>
+              <img
+                src={img('event-poster')}
+                alt="The official Pokémon 30th Anniversary Shanghai Finale poster in Chinese: Pikachu in a white hat and tuxedo and Totodile in a bow tie run out of a splash of water, with a shark Pokémon and Cramorant on either side, the Shanghai skyline behind them, the dates across the top and the four activities listed along the bottom"
+                width={813}
+                height={1186}
+                style={{ width: '100%', height: 'auto', borderRadius: 10 }}
+              />
+              <figcaption>Chinese poster</figcaption>
+            </figure>
+            <figure>
+              <img
+                src={img('event-poster-en')}
+                alt="The same poster with its Chinese text translated into English: Shanghai, Nov 28, 2026 to Jan 3, 2027, some activities end Dec 27, 2026, and the four activities, including the Pokémon Card Art Illustration Exhibition with 30 pure gold cards on display"
+                width={1626}
+                height={2372}
+                style={{ width: '100%', height: 'auto', borderRadius: 10 }}
+              />
+              <figcaption>English poster</figcaption>
+            </figure>
           </div>
-          <figcaption>
-The official event poster, then the same poster with its Chinese text translated into English.</figcaption>
-        </figure>
+        </div>
 
         <h2 id="event">What else is at the Shanghai Finale</h2>
         <p>The poster lists four activities:</p>
