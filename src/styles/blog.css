@@ -534,3 +534,7 @@
     .post-card:hover { transform: none; }
   }
 }
+
+/* Original and translated poster: side by side, stacked on phones (original first) */
+.poster-pair-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+@media (max-width: 640px) { .poster-pair-grid { grid-template-columns: 1fr; gap: 14px; } }

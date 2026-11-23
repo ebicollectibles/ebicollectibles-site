@@ -166,7 +166,7 @@ function ShanghaiGoldCardsPost() {
         }}
       >
         <figure className="poster-pair" style={{ margin: '0 0 28px' }}>
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
+          <div className="poster-pair-grid">
             <img
               src={img('event-poster')}
               alt="The official Pokémon 30th Anniversary Shanghai Finale poster in Chinese: Pikachu in a white hat and tuxedo and Totodile in a bow tie run out of a splash of water, with a shark Pokémon and Cramorant on either side, the Shanghai skyline behind them, the dates across the top and the four activities listed along the bottom"
@@ -183,7 +183,7 @@ function ShanghaiGoldCardsPost() {
             />
           </div>
           <figcaption>
-            Left: the official event poster. Right: the same poster with its Chinese text translated into English by EBI Collectibles.
+            The official event poster, then the same poster with its Chinese text translated into English by EBI Collectibles.
             ©Pokémon/Nintendo/Creatures/GAME FREAK
           </figcaption>
         </figure>
