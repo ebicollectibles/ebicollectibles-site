@@ -65,7 +65,7 @@ const FAQ = [
   },
   {
     q: 'Where in Shanghai is the event, and do you need a ticket?',
-    a: 'The poster does not give the venue. Nothing has been announced about tickets or reservations.',
+    a: 'The card art exhibition is at the Lafayette Cultural & Art Center, 323 Fuxing Middle Road, Huangpu District, from November 28 to December 27, 2026. Entry is free, but you must book ahead. Bookings open in batches, the first on November 25 at 3:00 pm China time.',
   },
 ]
 
@@ -131,7 +131,8 @@ function ShanghaiGoldCardsPost() {
     startDate: '2026-11-28',
     endDate: '2027-01-03',
     eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
-    location: { '@type': 'Place', name: 'Shanghai', address: { '@type': 'PostalAddress', addressLocality: 'Shanghai', addressCountry: 'CN' } },
+    location: { '@type': 'Place', name: 'Lafayette Cultural & Art Center', address: { '@type': 'PostalAddress', streetAddress: '323 Fuxing Middle Road, Huangpu District', addressLocality: 'Shanghai', addressCountry: 'CN' } },
+    isAccessibleForFree: true,
     organizer: { '@type': 'Organization', name: 'Pokémon China' },
     image: img('event-poster'),
   }
@@ -211,10 +212,38 @@ function ShanghaiGoldCardsPost() {
             </li>
           ))}
         </ol>
+        <p>Some activities end early, on December 27, 2026.</p>
+
+        <h2 id="visit">Visiting the card art exhibition</h2>
         <p>
-          Some activities end early, on December 27, 2026. Pokémon China has not yet announced the venue, tickets or reservations, or
-          whether the gold cards will ever be sold.
+          Pokémon China shared the details on November 23. The exhibition, where the gold cards are shown, is free, but you need to
+          book ahead.
         </p>
+        <ul>
+          <li>
+            <strong>Dates.</strong> November 28 to December 27, 2026.
+          </li>
+          <li>
+            <strong>Venue.</strong> Lafayette Cultural & Art Center (<Zh>拉法耶文化艺术中心</Zh>), 323 Fuxing Middle Road, Huangpu District,
+            Shanghai.
+          </li>
+          <li>
+            <strong>Getting there.</strong> Metro Lines 10 and 13, Xintiandi station, Exit 2.
+          </li>
+          <li>
+            <strong>Floors.</strong> 1F Pokémon Waters, 1.5F Dream Forest, 2F Pikachu Art Gallery and 3F Charizard Valley, with
+            workshops and a shop on B1.
+          </li>
+          <li>
+            <strong>Booking.</strong> Bookings open in batches at 3:00 pm China time: November 25 (for November 28 to December 4),
+            December 2 (December 5 to 11), December 9 (December 12 to 18) and December 16 (December 19 to 27).
+          </li>
+          <li>
+            <strong>Free workshops.</strong> Make a celebration ribbon for your own Pokémon plush, make a sand-art keychain, or try a
+            traditional glass silver-engraving class. Kits are limited.
+          </li>
+        </ul>
+        <p>Pokémon China has not said whether the gold cards will ever be sold.</p>
 
         <h2 id="pikachu-cards">The Pikachu cards behind the designs</h2>
         <p>
