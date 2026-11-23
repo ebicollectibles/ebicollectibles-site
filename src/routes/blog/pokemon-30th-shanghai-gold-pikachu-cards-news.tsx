@@ -221,8 +221,8 @@ The official event poster, then the same poster with its Chinese text translated
           </div>
         </aside>
 
-        <nav className="toc" aria-label="In this guide">
-          <p className="toc-title">In this guide</p>
+        <nav className="toc" aria-label="In this article">
+          <p className="toc-title">In this article</p>
           <ol>
             {TOC.map((t) => (
               <li key={t.id}>
