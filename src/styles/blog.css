@@ -536,5 +536,8 @@
 }
 
 /* Original and translated poster: side by side, stacked on phones (original first) */
-.poster-pair-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.ebi-blog .prose > .poster-pair { margin: 8px auto 32px; }
+.ebi-blog.is-wide .prose > .poster-pair { max-width: 1000px; }
+.ebi-blog .poster-pair figcaption { text-align: center; }
+.poster-pair-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
 @media (max-width: 640px) { .poster-pair-grid { grid-template-columns: 1fr; gap: 14px; } }

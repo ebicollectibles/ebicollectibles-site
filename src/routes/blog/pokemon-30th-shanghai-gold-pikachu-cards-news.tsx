@@ -28,13 +28,13 @@ const PIKACHU_CARDS = [
 
 const TOC = [
   { id: 'gold-cards', label: 'The 30 pure gold cards' },
-  { id: 'photos', label: 'What photos shared online show' },
   { id: 'gold-value', label: 'How much gold is that?' },
   { id: 'what-it-is', label: 'What is the Shanghai Finale?' },
   { id: 'activities', label: 'What is on at the event?' },
   { id: 'pikachu-cards', label: 'The 30 Pikachu cards in 30th Celebration' },
   { id: 'real-gold', label: 'Real gold cards and gold-colored cards' },
-  { id: 'gold-math', label: 'The nerdy math: purity, weight and value' },
+  { id: 'gold-math', label: 'The gold math, in plain English' },
+  { id: 'other-events', label: 'Other 30th anniversary events in Asia' },
   { id: 'other-news', label: 'Other 30th anniversary news from Pokémon China' },
   { id: 'not-known', label: 'What has not been announced' },
   { id: 'at-ebi', label: '30th Celebration at EBI Collectibles' },
@@ -166,7 +166,17 @@ function ShanghaiGoldCardsPost() {
           ],
         }}
       >
-        <figure className="poster-pair" style={{ margin: '0 0 28px' }}>
+        <h2 id="gold-cards">The 30 pure gold cards</h2>
+        <p>
+          The line for the card art exhibition ends with <Zh>还有30张足金卡牌展出哦</Zh>, which means "30 pure gold cards will also be
+          on display." <Zh>足金</Zh> is the term Chinese jewelers use for pure gold.
+        </p>
+        <p>
+          That is all the poster says about them. It does not say what the cards show, how they are made or how much gold is in each
+          one.
+        </p>
+
+        <figure className="poster-pair">
           <div className="poster-pair-grid">
             <img
               src={img('event-poster')}
@@ -188,16 +198,6 @@ function ShanghaiGoldCardsPost() {
             ©Pokémon/Nintendo/Creatures/GAME FREAK
           </figcaption>
         </figure>
-
-        <h2 id="gold-cards">The 30 pure gold cards</h2>
-        <p>
-          The line for the card art exhibition ends with <Zh>还有30张足金卡牌展出哦</Zh>, which means "30 pure gold cards will also be
-          on display." <Zh>足金</Zh> is the term Chinese jewelers use for pure gold.
-        </p>
-        <p>
-          That is all the poster says about them. It does not say what the cards show, how they are made or how much gold is in each
-          one.
-        </p>
 
         <aside className="fact-box" aria-label="Shanghai Finale key facts">
           {/* Same card as in the Pikachu section below, where it is described, so this copy is decorative */}
@@ -234,24 +234,16 @@ function ShanghaiGoldCardsPost() {
           </ol>
         </nav>
 
-        <h2 id="photos">What photos shared online show</h2>
-        <p>
-          Photos shared online show cards mounted with a label that reads "Pokémon Trading Card Game 30th CELEBRATION 999 Gold Card".
-          A display board in the photos reads <Zh>999足金卡牌</Zh> 30g, which means "999 pure gold card, 30 g". The card designs in
-          the photos appear to match the 30 Pikachu illustrations from the 30th Celebration set.
-        </p>
-        <p>None of this is on the official poster, so treat it as reported, not confirmed.</p>
-
         <h2 id="gold-value">How much gold is that?</h2>
         <p>
           A widely shared post puts the gold value at about ¥600,000, based on gold prices on November 23. That figure only works for
           all 30 cards together.
         </p>
         <p>
-          If each card is 30 g, as the display board in the photos says, then 30 cards hold 900 g of gold. ¥600,000 for 900 g is about
+          If each card weighs 30 g, as reported, then 30 cards hold 900 g of gold. ¥600,000 for 900 g is about
           ¥667 per gram. So ¥600,000 is a figure for the whole set of 30, not for one card.
         </p>
-        <p>None of these numbers are official. The weight comes from photos, and the price of gold changes every day. <a href="#gold-math">The nerdy math</a> section below works through purity, weight and value in detail.</p>
+        <p>None of these numbers are official. The weight comes from photos, and the price of gold changes every day. <a href="#gold-math">The gold math</a> section below goes through it in more detail.</p>
 
         <h2 id="what-it-is">What is the Shanghai Finale?</h2>
         <p>
@@ -312,109 +304,88 @@ function ShanghaiGoldCardsPost() {
           </li>
         </ul>
 
-        <h2 id="gold-math">The nerdy math: purity, weight and value</h2>
+        <h2 id="gold-math">The gold math, in plain English</h2>
         <p>
-          Pokémon China has not published any of these numbers. Everything below starts from the label in the photos shared online,{' '}
-          <Zh>999足金卡牌 30g</Zh>, and works it through. Treat it as a back-of-the-envelope estimate, not an official figure.
+          Pokémon China has not given these numbers. They start from the reported 30 g per card and the 999 on the label, so treat them
+          as rough estimates.
         </p>
 
-        <h3>What 999 pure gold means</h3>
+        <h3>How pure is 999 gold?</h3>
         <p>
-          <Zh>足金</Zh> is the Chinese jewelry term for pure gold, and the 999 on the label means 999 parts per thousand, or 99.9%
-          gold. At that purity a 30 g card holds about 29.97 g of gold and about 0.03 g of anything else. Across all 30 cards that is
-          about 899 g of gold.
+          999 means 99.9% gold. A 30 g card would be almost entirely gold, with about 0.03 g of anything else, roughly the weight of a
+          grain of rice. All 30 cards together would weigh 900 g, about 2 pounds.
+        </p>
+        <p>
+          Gold is usually priced by the troy ounce, which is 31.1 g. One 30 g card is just under one troy ounce of gold.
         </p>
 
-        <div className="table-scroll" role="group" aria-labelledby="tbl-gold-weight" tabIndex={0}>
+        <h3>What is the gold worth?</h3>
+        <p>This is the value of the gold alone, at late November 2026 prices. Gold prices change every day.</p>
+        <div className="table-scroll" role="group" aria-labelledby="tbl-gold-value" tabIndex={0}>
           <table className="data-table">
-            <caption id="tbl-gold-weight" className="sr-only">
-              Gold weight of one card and of all 30 cards, in grams and troy ounces
+            <caption id="tbl-gold-value" className="sr-only">
+              Estimated gold value of one card and of all 30 cards
             </caption>
             <thead>
               <tr>
-                <th scope="col"></th>
+                <th scope="col">Gold price used</th>
                 <th scope="col">One card</th>
                 <th scope="col">All 30 cards</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <th scope="row">Weight on the label</th>
-                <td>30 g</td>
-                <td>900 g (about 2 lb)</td>
-              </tr>
-              <tr>
-                <th scope="row">Gold at 99.9%</th>
-                <td>29.97 g</td>
-                <td>899.1 g</td>
-              </tr>
-              <tr>
-                <th scope="row">Troy ounces</th>
-                <td>0.96 oz t</td>
-                <td>28.9 oz t</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <p>Gold is priced in troy ounces. One troy ounce is 31.1035 g, a little heavier than an everyday ounce.</p>
-
-        <h3>How much is the gold worth?</h3>
-        <p>
-          These are melt values: what the gold alone is worth at the market price. Prices move every day, so the figures below are
-          for late November 2026.
-        </p>
-        <div className="table-scroll" role="group" aria-labelledby="tbl-gold-value" tabIndex={0}>
-          <table className="data-table">
-            <caption id="tbl-gold-value" className="sr-only">
-              Estimated gold value of one card and of all 30 cards at three gold prices
-            </caption>
-            <thead>
-              <tr>
-                <th scope="col">Gold price</th>
-                <th scope="col">One card (30 g)</th>
-                <th scope="col">All 30 (900 g)</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <th scope="row">Shanghai Gold Exchange Au9999, ¥755 per gram (Nov 21, 2026)</th>
+                <th scope="row">China, about ¥755 a gram (Nov 21)</th>
                 <td>about ¥22,650</td>
                 <td>about ¥680,000</td>
               </tr>
               <tr>
-                <th scope="row">¥667 per gram (what the widely shared ¥600,000 figure works out to)</th>
-                <td>about ¥20,000</td>
-                <td>about ¥600,000</td>
-              </tr>
-              <tr>
-                <th scope="row">International spot, $3,622.70 per troy ounce (Nov 23, 2026)</th>
-                <td>about $3,490</td>
-                <td>about $104,800</td>
+                <th scope="row">US, about $3,620 an ounce (Nov 23)</th>
+                <td>about $3,500</td>
+                <td>about $105,000</td>
               </tr>
             </tbody>
           </table>
         </div>
         <p>
-          The Shanghai price gives a higher total than the ¥600,000 figure that has been shared, so that figure may have used a
-          different or lower price. Gold also swings a lot. Au9999 touched about ¥1,256 per gram on January 29, 2026, and at that price
-          the 30 cards would have held about ¥1.13 million in gold.
+          The ¥600,000 figure that has been shared is a little lower than this. It works out to about ¥667 a gram, so it probably used
+          a lower gold price.
         </p>
         <p>
-          The gold is only the floor. A one-off set made by Pokémon China for its 30th anniversary would be worth far more to a
-          collector than its weight in gold, but nothing has been announced about selling them, so there is no real price to compare.
+          Gold was much more expensive earlier this year. At its January high of about ¥1,256 a gram, the 30 cards would have held over
+          ¥1.1 million in gold.
+        </p>
+        <p>
+          The gold is only the starting point. A one-of-a-kind set made by Pokémon China for its 30th anniversary would be worth far
+          more to a collector than the metal. Nothing has been said about selling them, though.
         </p>
 
-        <h3>How thick would a 30 g gold card be?</h3>
+        <h3>How thick would a gold card be?</h3>
         <p>
-          Gold weighs 19.32 g per cubic centimeter, so 30 g of it takes up about 1.55 cm³. Spread over a standard card face of 63 × 88
-          mm, that is a sheet about 0.28 mm thick. That is roughly as thick as an ordinary printed card, which is around 0.3 mm. If the
-          cards are standard size, they would look and feel about as thin as a normal card, just far heavier: an ordinary card weighs
-          under 2 g, so each gold one is around 16 to 17 times heavier.
+          Gold is very dense. If a 30 g gold card is the size of a normal card, it would be about 0.28 mm thick. A normal printed card
+          is about 0.3 mm, so the gold card would look about as thin. It would just be much heavier: a normal card weighs under 2 g, so
+          a gold one would weigh about 17 times more.
         </p>
+        <p>This assumes a flat card at normal size. Pokémon China has not said how big or thick the cards are.</p>
+
+        <h2 id="other-events">Other 30th anniversary events in Asia</h2>
         <p>
-          This assumes a flat, solid card at standard size. The photos show the cards mounted in display frames, and Pokémon China has
-          not given their size or thickness.
+          Shanghai is not the only big 30th anniversary event in Asia. Of the ones we found, it is the only one called a finale.
         </p>
+        <ul>
+          <li>
+            <strong>PokéXciting! tour.</strong> A free two-day celebration in five cities: Kuala Lumpur (September 12 to 13, 2026),
+            Taipei (October 10 to 11), Singapore (November 7 to 8), Manila (January 23 to 24, 2027) and Bangkok (February 13 to 14,
+            2027). Kuala Lumpur had a Pokémon drone show over the Petronas Twin Towers, a night stage with a city-colored PokéXciting!
+            Pikachu, photo spots and a Pokémon Center pop-up store. Each stop also has Pokémon GO bonuses, including its own colored
+            Pikachu.
+          </li>
+          <li>
+            <strong>Pokémon Mega Festa 2026, Seoul.</strong> Billed as the franchise's largest event yet, it ran from May to June
+            2026. It included a Pokémon forest garden at Seoul Forest, a Ditto playground, pop-up stores, a Pokémon Run and a Pokémon
+            Sports Day with card game qualifiers.
+          </li>
+        </ul>
 
         <h2 id="other-news">Other 30th anniversary news from Pokémon China</h2>
         <p>
