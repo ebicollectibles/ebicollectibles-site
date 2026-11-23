@@ -28,11 +28,11 @@ const PIKACHU_CARDS = [
 
 const TOC = [
   { id: 'gold-cards', label: 'The 30 pure gold cards' },
-  { id: 'gold-value', label: 'How much gold is that?' },
   { id: 'what-it-is', label: 'What is the Shanghai Finale?' },
   { id: 'activities', label: 'What is on at the event?' },
   { id: 'pikachu-cards', label: 'The 30 Pikachu cards in 30th Celebration' },
   { id: 'real-gold', label: 'Real gold cards and gold-colored cards' },
+  { id: 'gold-value', label: 'How much gold is that?' },
   { id: 'gold-math', label: 'The gold math, in plain English' },
   { id: 'other-events', label: 'Other 30th anniversary events in Asia' },
   { id: 'other-news', label: 'Other 30th anniversary news from Pokémon China' },
@@ -232,17 +232,6 @@ The official event poster, then the same poster with its Chinese text translated
           </ol>
         </nav>
 
-        <h2 id="gold-value">How much gold is that?</h2>
-        <p>
-          A widely shared post puts the gold value at about ¥600,000, based on gold prices on November 23. That figure only works for
-          all 30 cards together.
-        </p>
-        <p>
-          If each card weighs 30 g, as reported, then 30 cards hold 900 g of gold. ¥600,000 for 900 g is about
-          ¥667 per gram. So ¥600,000 is a figure for the whole set of 30, not for one card.
-        </p>
-        <p>None of these numbers are official. The weight comes from photos, and the price of gold changes every day. <a href="#gold-math">The gold math</a> section below goes through it in more detail.</p>
-
         <h2 id="what-it-is">What is the Shanghai Finale?</h2>
         <p>
           The Pokémon 30th Anniversary Shanghai Finale (<Zh>宝可梦30周年上海盛典</Zh>) is an event from Pokémon China for the 30th
@@ -301,6 +290,17 @@ The official event poster, then the same poster with its Chinese text translated
             in Japan in 2016. It was sold by reservation.
           </li>
         </ul>
+
+        <h2 id="gold-value">How much gold is that?</h2>
+        <p>
+          A widely shared post puts the gold value at about ¥600,000, based on gold prices on November 23. That figure only works for
+          all 30 cards together.
+        </p>
+        <p>
+          If each card weighs 30 g, as reported, then 30 cards hold 900 g of gold. ¥600,000 for 900 g is about
+          ¥667 per gram. So ¥600,000 is a figure for the whole set of 30, not for one card.
+        </p>
+        <p>None of these numbers are official. The weight comes from photos, and the price of gold changes every day.</p>
 
         <h2 id="gold-math">The gold math, in plain English</h2>
         <p>

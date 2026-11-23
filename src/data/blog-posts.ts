@@ -409,7 +409,7 @@ export const BLOG_POSTS: BlogPostSummary[] = [
       "Pokémon China's 30th Anniversary Shanghai Finale runs Nov 28, 2026 to Jan 3, 2027, with 30 pure gold cards on display at its card art exhibition.",
     tag: 'News',
     date: '2026-11-23',
-    heroImage: `${SITE_URL}/assets/blog/shanghai-gold-pikachu-cards-news-hero.webp`,
+    heroImage: `${SITE_URL}/assets/blog/shanghai-gold-pikachu-cards-news-hero-v2.webp`,
     heroAlt: 'Three Simplified Chinese 30th Celebration Pikachu cards fanned out on a dark background with a warm gold glow',
     glow1: 'rgb(232 192 96 / .30)',
     glow2: 'rgb(246 206 60 / .20)',
