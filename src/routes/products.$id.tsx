@@ -520,6 +520,9 @@ function ProductDetailPage() {
           {notSellable && !comingSoon ? (
             selectedVariant ? (
               <div style={{ display: 'flex', alignItems: 'baseline', gap: 12, marginTop: 18, flexWrap: 'wrap' }}>
+                {selectedVariant.compareAtPrice != null && selectedVariant.compareAtPrice > selectedVariant.price && (
+                  <span style={{ fontSize: 18, color: '#5a6875', textDecoration: 'line-through' }}>{formatMoney(selectedVariant.compareAtPrice)}</span>
+                )}
                 <span style={{ fontSize: 26, fontWeight: 700, color: '#131b28' }}>{formatMoney(selectedVariant.price)}</span>
                 <span style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 12, color: selectedVariant.stock <= 0 ? '#5a6875' : '#3f7a63' }}>
                   {selectedVariant.stock <= 0 ? 'Out of stock' : `${selectedVariant.stock} in stock`}
