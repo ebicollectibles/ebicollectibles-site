@@ -123,6 +123,7 @@ import { Route as BlogOgerponMaskGiftBoxReleaseNewsRouteImport } from './routes/
 import { Route as BlogPikachu30thPlushKeychainReleaseNewsRouteImport } from './routes/blog/pikachu-30th-plush-keychain-release-news'
 import { Route as BlogPikachuDreamPaintingFiguresReleaseNewsRouteImport } from './routes/blog/pikachu-dream-painting-figures-release-news'
 import { Route as BlogPikachuGiftBoxReleaseNewsRouteImport } from './routes/blog/pikachu-gift-box-release-news'
+import { Route as BlogPokemon30thShanghaiGoldPikachuCardsNewsRouteImport } from './routes/blog/pokemon-30th-shanghai-gold-pikachu-cards-news'
 import { Route as BlogRewardRoundCardOriginsRouteImport } from './routes/blog/reward-round-card-origins'
 import { Route as BlogRewardRoundReleaseNewsRouteImport } from './routes/blog/reward-round-release-news'
 import { Route as BlogRewardRoundSetGuideRouteImport } from './routes/blog/reward-round-set-guide'
@@ -816,6 +817,12 @@ const BlogPikachuGiftBoxReleaseNewsRoute =
     path: '/blog/pikachu-gift-box-release-news',
     getParentRoute: () => rootRouteImport,
   } as any)
+const BlogPokemon30thShanghaiGoldPikachuCardsNewsRoute =
+  BlogPokemon30thShanghaiGoldPikachuCardsNewsRouteImport.update({
+    id: '/blog/pokemon-30th-shanghai-gold-pikachu-cards-news',
+    path: '/blog/pokemon-30th-shanghai-gold-pikachu-cards-news',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const BlogRewardRoundCardOriginsRoute =
   BlogRewardRoundCardOriginsRouteImport.update({
     id: '/blog/reward-round-card-origins',
@@ -1280,6 +1287,7 @@ export interface FileRoutesByFullPath {
   '/blog/pikachu-30th-plush-keychain-release-news': typeof BlogPikachu30thPlushKeychainReleaseNewsRoute
   '/blog/pikachu-dream-painting-figures-release-news': typeof BlogPikachuDreamPaintingFiguresReleaseNewsRoute
   '/blog/pikachu-gift-box-release-news': typeof BlogPikachuGiftBoxReleaseNewsRoute
+  '/blog/pokemon-30th-shanghai-gold-pikachu-cards-news': typeof BlogPokemon30thShanghaiGoldPikachuCardsNewsRoute
   '/blog/reward-round-card-origins': typeof BlogRewardRoundCardOriginsRoute
   '/blog/reward-round-release-news': typeof BlogRewardRoundReleaseNewsRoute
   '/blog/reward-round-set-guide': typeof BlogRewardRoundSetGuideRoute
@@ -1459,6 +1467,7 @@ export interface FileRoutesByTo {
   '/blog/pikachu-30th-plush-keychain-release-news': typeof BlogPikachu30thPlushKeychainReleaseNewsRoute
   '/blog/pikachu-dream-painting-figures-release-news': typeof BlogPikachuDreamPaintingFiguresReleaseNewsRoute
   '/blog/pikachu-gift-box-release-news': typeof BlogPikachuGiftBoxReleaseNewsRoute
+  '/blog/pokemon-30th-shanghai-gold-pikachu-cards-news': typeof BlogPokemon30thShanghaiGoldPikachuCardsNewsRoute
   '/blog/reward-round-card-origins': typeof BlogRewardRoundCardOriginsRoute
   '/blog/reward-round-release-news': typeof BlogRewardRoundReleaseNewsRoute
   '/blog/reward-round-set-guide': typeof BlogRewardRoundSetGuideRoute
@@ -1639,6 +1648,7 @@ export interface FileRoutesById {
   '/blog/pikachu-30th-plush-keychain-release-news': typeof BlogPikachu30thPlushKeychainReleaseNewsRoute
   '/blog/pikachu-dream-painting-figures-release-news': typeof BlogPikachuDreamPaintingFiguresReleaseNewsRoute
   '/blog/pikachu-gift-box-release-news': typeof BlogPikachuGiftBoxReleaseNewsRoute
+  '/blog/pokemon-30th-shanghai-gold-pikachu-cards-news': typeof BlogPokemon30thShanghaiGoldPikachuCardsNewsRoute
   '/blog/reward-round-card-origins': typeof BlogRewardRoundCardOriginsRoute
   '/blog/reward-round-release-news': typeof BlogRewardRoundReleaseNewsRoute
   '/blog/reward-round-set-guide': typeof BlogRewardRoundSetGuideRoute
@@ -1820,6 +1830,7 @@ export interface FileRouteTypes {
     | '/blog/pikachu-30th-plush-keychain-release-news'
     | '/blog/pikachu-dream-painting-figures-release-news'
     | '/blog/pikachu-gift-box-release-news'
+    | '/blog/pokemon-30th-shanghai-gold-pikachu-cards-news'
     | '/blog/reward-round-card-origins'
     | '/blog/reward-round-release-news'
     | '/blog/reward-round-set-guide'
@@ -1999,6 +2010,7 @@ export interface FileRouteTypes {
     | '/blog/pikachu-30th-plush-keychain-release-news'
     | '/blog/pikachu-dream-painting-figures-release-news'
     | '/blog/pikachu-gift-box-release-news'
+    | '/blog/pokemon-30th-shanghai-gold-pikachu-cards-news'
     | '/blog/reward-round-card-origins'
     | '/blog/reward-round-release-news'
     | '/blog/reward-round-set-guide'
@@ -2178,6 +2190,7 @@ export interface FileRouteTypes {
     | '/blog/pikachu-30th-plush-keychain-release-news'
     | '/blog/pikachu-dream-painting-figures-release-news'
     | '/blog/pikachu-gift-box-release-news'
+    | '/blog/pokemon-30th-shanghai-gold-pikachu-cards-news'
     | '/blog/reward-round-card-origins'
     | '/blog/reward-round-release-news'
     | '/blog/reward-round-set-guide'
@@ -2358,6 +2371,7 @@ export interface RootRouteChildren {
   BlogPikachu30thPlushKeychainReleaseNewsRoute: typeof BlogPikachu30thPlushKeychainReleaseNewsRoute
   BlogPikachuDreamPaintingFiguresReleaseNewsRoute: typeof BlogPikachuDreamPaintingFiguresReleaseNewsRoute
   BlogPikachuGiftBoxReleaseNewsRoute: typeof BlogPikachuGiftBoxReleaseNewsRoute
+  BlogPokemon30thShanghaiGoldPikachuCardsNewsRoute: typeof BlogPokemon30thShanghaiGoldPikachuCardsNewsRoute
   BlogRewardRoundCardOriginsRoute: typeof BlogRewardRoundCardOriginsRoute
   BlogRewardRoundReleaseNewsRoute: typeof BlogRewardRoundReleaseNewsRoute
   BlogRewardRoundSetGuideRoute: typeof BlogRewardRoundSetGuideRoute
@@ -3226,6 +3240,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BlogPikachuGiftBoxReleaseNewsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/blog/pokemon-30th-shanghai-gold-pikachu-cards-news': {
+      id: '/blog/pokemon-30th-shanghai-gold-pikachu-cards-news'
+      path: '/blog/pokemon-30th-shanghai-gold-pikachu-cards-news'
+      fullPath: '/blog/pokemon-30th-shanghai-gold-pikachu-cards-news'
+      preLoaderRoute: typeof BlogPokemon30thShanghaiGoldPikachuCardsNewsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/blog/reward-round-card-origins': {
       id: '/blog/reward-round-card-origins'
       path: '/blog/reward-round-card-origins'
@@ -3803,6 +3824,8 @@ const rootRouteChildren: RootRouteChildren = {
   BlogPikachuDreamPaintingFiguresReleaseNewsRoute:
     BlogPikachuDreamPaintingFiguresReleaseNewsRoute,
   BlogPikachuGiftBoxReleaseNewsRoute: BlogPikachuGiftBoxReleaseNewsRoute,
+  BlogPokemon30thShanghaiGoldPikachuCardsNewsRoute:
+    BlogPokemon30thShanghaiGoldPikachuCardsNewsRoute,
   BlogRewardRoundCardOriginsRoute: BlogRewardRoundCardOriginsRoute,
   BlogRewardRoundReleaseNewsRoute: BlogRewardRoundReleaseNewsRoute,
   BlogRewardRoundSetGuideRoute: BlogRewardRoundSetGuideRoute,

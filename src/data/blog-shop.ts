@@ -84,6 +84,13 @@ const SET_PRODUCTS: Record<string, string[]> = {
     'pokemon-chinese-pikachu-30th-celebration-figures-blind-box',
     'pokemon-chinese-pikachu-30th-celebration-figures-blind-box-case',
   ],
+  // A news post, not tied to one set: keyed by its full slug. Listed last so
+  // these products still resolve to their own set's posts first.
+  'pokemon-30th-shanghai-gold-pikachu-cards-news': [
+    'pokemon-chinese-30th-celebration-booster-box',
+    'pokemon-chinese-pikachu-30th-celebration-figures-blind-box',
+    'pokemon-chinese-pikachu-30th-celebration-plush-keychain',
+  ],
 }
 
 // A release post that covers more than one set. Each set's own page and
