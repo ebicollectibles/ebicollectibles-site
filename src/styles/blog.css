@@ -542,3 +542,17 @@
 .ebi-blog .poster-pair figcaption { text-align: center; margin-top: 8px; font-weight: 600; }
 .poster-pair-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
 @media (max-width: 640px) { .poster-pair-grid { grid-template-columns: 1fr; gap: 32px; } }
+
+/* A card beside a short note about it, one per row (the 30 Pikachu and their artists). */
+.ebi-blog .prose ol.artist-list { list-style: none; padding: 0; margin: 24px auto 34px; display: grid; gap: 26px; }
+.ebi-blog .prose .artist-list > li { display: grid; grid-template-columns: 150px minmax(0, 1fr); gap: 20px; align-items: start; margin: 0; }
+.ebi-blog .artist-list img { display: block; width: 150px; height: auto; aspect-ratio: 300/419; border-radius: 6px; box-shadow: var(--shadow); }
+.ebi-blog .prose .artist-list h3 { font-family: var(--f-display); font-weight: 800; font-size: 19px; line-height: 1.25; margin: 2px 0 4px; color: var(--ink); }
+.ebi-blog .prose .artist-list .artist-num { font-family: var(--f-mono); font-size: 12px; letter-spacing: .04em; color: var(--slate); margin: 0 0 8px; }
+.ebi-blog .prose .artist-list p:last-child { margin-bottom: 0; }
+@media (max-width: 480px) {
+  .ebi-blog .prose .artist-list > li { grid-template-columns: 110px minmax(0, 1fr); gap: 14px; }
+  .ebi-blog .artist-list img { width: 110px; }
+  .ebi-blog .prose .artist-list h3 { font-size: 17px; }
+  .ebi-blog .prose .artist-list p { font-size: 15.5px; line-height: 1.6; }
+}

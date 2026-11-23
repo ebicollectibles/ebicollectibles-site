@@ -47,6 +47,7 @@ import { Route as AdminShopOrderRouteImport } from './routes/admin/shop-order'
 import { Route as AdminSubscribersRouteImport } from './routes/admin/subscribers'
 import { Route as BlogIndexRouteImport } from './routes/blog/index'
 import { Route as Blog30thCelebrationCardOriginsRouteImport } from './routes/blog/30th-celebration-card-origins'
+import { Route as Blog30thCelebrationPikachuCardsArtistsRouteImport } from './routes/blog/30th-celebration-pikachu-cards-artists'
 import { Route as Blog30thCelebrationReleaseNewsRouteImport } from './routes/blog/30th-celebration-release-news'
 import { Route as Blog30thCelebrationSetGuideRouteImport } from './routes/blog/30th-celebration-set-guide'
 import { Route as BlogAuraSeekerReleaseNewsRouteImport } from './routes/blog/aura-seeker-release-news'
@@ -377,6 +378,12 @@ const Blog30thCelebrationCardOriginsRoute =
   Blog30thCelebrationCardOriginsRouteImport.update({
     id: '/blog/30th-celebration-card-origins',
     path: '/blog/30th-celebration-card-origins',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const Blog30thCelebrationPikachuCardsArtistsRoute =
+  Blog30thCelebrationPikachuCardsArtistsRouteImport.update({
+    id: '/blog/30th-celebration-pikachu-cards-artists',
+    path: '/blog/30th-celebration-pikachu-cards-artists',
     getParentRoute: () => rootRouteImport,
   } as any)
 const Blog30thCelebrationReleaseNewsRoute =
@@ -1211,6 +1218,7 @@ export interface FileRoutesByFullPath {
   '/admin/shop-order': typeof AdminShopOrderRoute
   '/admin/subscribers': typeof AdminSubscribersRoute
   '/blog/30th-celebration-card-origins': typeof Blog30thCelebrationCardOriginsRoute
+  '/blog/30th-celebration-pikachu-cards-artists': typeof Blog30thCelebrationPikachuCardsArtistsRoute
   '/blog/30th-celebration-release-news': typeof Blog30thCelebrationReleaseNewsRoute
   '/blog/30th-celebration-set-guide': typeof Blog30thCelebrationSetGuideRoute
   '/blog/aura-seeker-release-news': typeof BlogAuraSeekerReleaseNewsRoute
@@ -1391,6 +1399,7 @@ export interface FileRoutesByTo {
   '/admin/shop-order': typeof AdminShopOrderRoute
   '/admin/subscribers': typeof AdminSubscribersRoute
   '/blog/30th-celebration-card-origins': typeof Blog30thCelebrationCardOriginsRoute
+  '/blog/30th-celebration-pikachu-cards-artists': typeof Blog30thCelebrationPikachuCardsArtistsRoute
   '/blog/30th-celebration-release-news': typeof Blog30thCelebrationReleaseNewsRoute
   '/blog/30th-celebration-set-guide': typeof Blog30thCelebrationSetGuideRoute
   '/blog/aura-seeker-release-news': typeof BlogAuraSeekerReleaseNewsRoute
@@ -1572,6 +1581,7 @@ export interface FileRoutesById {
   '/admin/shop-order': typeof AdminShopOrderRoute
   '/admin/subscribers': typeof AdminSubscribersRoute
   '/blog/30th-celebration-card-origins': typeof Blog30thCelebrationCardOriginsRoute
+  '/blog/30th-celebration-pikachu-cards-artists': typeof Blog30thCelebrationPikachuCardsArtistsRoute
   '/blog/30th-celebration-release-news': typeof Blog30thCelebrationReleaseNewsRoute
   '/blog/30th-celebration-set-guide': typeof Blog30thCelebrationSetGuideRoute
   '/blog/aura-seeker-release-news': typeof BlogAuraSeekerReleaseNewsRoute
@@ -1754,6 +1764,7 @@ export interface FileRouteTypes {
     | '/admin/shop-order'
     | '/admin/subscribers'
     | '/blog/30th-celebration-card-origins'
+    | '/blog/30th-celebration-pikachu-cards-artists'
     | '/blog/30th-celebration-release-news'
     | '/blog/30th-celebration-set-guide'
     | '/blog/aura-seeker-release-news'
@@ -1934,6 +1945,7 @@ export interface FileRouteTypes {
     | '/admin/shop-order'
     | '/admin/subscribers'
     | '/blog/30th-celebration-card-origins'
+    | '/blog/30th-celebration-pikachu-cards-artists'
     | '/blog/30th-celebration-release-news'
     | '/blog/30th-celebration-set-guide'
     | '/blog/aura-seeker-release-news'
@@ -2114,6 +2126,7 @@ export interface FileRouteTypes {
     | '/admin/shop-order'
     | '/admin/subscribers'
     | '/blog/30th-celebration-card-origins'
+    | '/blog/30th-celebration-pikachu-cards-artists'
     | '/blog/30th-celebration-release-news'
     | '/blog/30th-celebration-set-guide'
     | '/blog/aura-seeker-release-news'
@@ -2295,6 +2308,7 @@ export interface RootRouteChildren {
   AdminShopOrderRoute: typeof AdminShopOrderRoute
   AdminSubscribersRoute: typeof AdminSubscribersRoute
   Blog30thCelebrationCardOriginsRoute: typeof Blog30thCelebrationCardOriginsRoute
+  Blog30thCelebrationPikachuCardsArtistsRoute: typeof Blog30thCelebrationPikachuCardsArtistsRoute
   Blog30thCelebrationReleaseNewsRoute: typeof Blog30thCelebrationReleaseNewsRoute
   Blog30thCelebrationSetGuideRoute: typeof Blog30thCelebrationSetGuideRoute
   BlogAuraSeekerReleaseNewsRoute: typeof BlogAuraSeekerReleaseNewsRoute
@@ -2706,6 +2720,13 @@ declare module '@tanstack/react-router' {
       path: '/blog/30th-celebration-card-origins'
       fullPath: '/blog/30th-celebration-card-origins'
       preLoaderRoute: typeof Blog30thCelebrationCardOriginsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/30th-celebration-pikachu-cards-artists': {
+      id: '/blog/30th-celebration-pikachu-cards-artists'
+      path: '/blog/30th-celebration-pikachu-cards-artists'
+      fullPath: '/blog/30th-celebration-pikachu-cards-artists'
+      preLoaderRoute: typeof Blog30thCelebrationPikachuCardsArtistsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/blog/30th-celebration-release-news': {
@@ -3727,6 +3748,8 @@ const rootRouteChildren: RootRouteChildren = {
   AdminShopOrderRoute: AdminShopOrderRoute,
   AdminSubscribersRoute: AdminSubscribersRoute,
   Blog30thCelebrationCardOriginsRoute: Blog30thCelebrationCardOriginsRoute,
+  Blog30thCelebrationPikachuCardsArtistsRoute:
+    Blog30thCelebrationPikachuCardsArtistsRoute,
   Blog30thCelebrationReleaseNewsRoute: Blog30thCelebrationReleaseNewsRoute,
   Blog30thCelebrationSetGuideRoute: Blog30thCelebrationSetGuideRoute,
   BlogAuraSeekerReleaseNewsRoute: BlogAuraSeekerReleaseNewsRoute,

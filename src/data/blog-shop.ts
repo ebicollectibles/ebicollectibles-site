@@ -91,6 +91,11 @@ const SET_PRODUCTS: Record<string, string[]> = {
     'pokemon-chinese-pikachu-30th-celebration-figures-blind-box',
     'pokemon-chinese-pikachu-30th-celebration-plush-keychain',
   ],
+  '30th-celebration-pikachu-cards-artists': [
+    'pokemon-chinese-30th-celebration-booster-box',
+    'pokemon-chinese-pikachu-30th-celebration-figures-blind-box',
+    'pokemon-chinese-pikachu-30th-celebration-plush-keychain',
+  ],
 }
 
 // A release post that covers more than one set. Each set's own page and
