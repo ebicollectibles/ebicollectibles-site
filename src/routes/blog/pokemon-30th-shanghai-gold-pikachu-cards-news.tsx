@@ -56,6 +56,10 @@ const FAQ = [
     a: 'No. A widely shared post puts the gold value at about ¥600,000, based on gold prices on November 23. That only adds up for all 30 cards together, at about ¥667 per gram. It is not an official figure.',
   },
   {
+    q: 'How can I get more news like this?',
+    a: 'Join the email list in the More Pokémon China news section of this post.',
+  },
+  {
     q: 'Can you buy the gold cards?',
     a: 'Nothing has been announced. The poster presents them as an exhibition display.',
   },
@@ -168,6 +172,9 @@ function ShanghaiGoldCardsPost() {
         <p>
           The banner above is our illustration: printed 30th Celebration Pikachu cards with a gold border added. It is not a photo of the
           gold cards, which are made of gold.
+        </p>
+        <p>
+          <strong>Want more Pokémon China news like this?</strong> <a href="#news-signup">Join our email list</a>.
         </p>
 
         <div className="poster-pair">
@@ -328,6 +335,8 @@ function ShanghaiGoldCardsPost() {
           the goal on November 6.
         </p>
 
+        <h2 id="news-signup">More Pokémon China news</h2>
+        <p>Join our email list below to get more news like this.</p>
         <BlogEmailSignup heading="Get more news like this" body="Join our email list." source="blog-shanghai-gold-cards" doneText="You're on the list." />
 
         <h2 id="at-ebi">30th Celebration at EBI Collectibles</h2>
