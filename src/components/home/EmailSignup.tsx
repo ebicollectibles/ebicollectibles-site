@@ -23,7 +23,7 @@ export function EmailSignup({ status }: { status: { loggedIn: boolean; email?: s
     e.preventDefault()
     setState('submitting')
     try {
-      await subscribeToNewsletter({ data: { email } })
+      await subscribeToNewsletter({ data: { email, pageSearch: window.location.search.slice(0, 500) } })
       setState('done')
       if (!status.loggedIn) {
         setTimeout(() => {

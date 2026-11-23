@@ -69,12 +69,23 @@ export const subscribeToNewsletter = createServerFn({ method: 'POST' })
   // `source` says which form the signup came from. Only the home page and
   // blog post forms ("blog-<name>") are accepted, so the field can't be
   // used to write arbitrary text into the subscriber list.
-  .validator(z.object({ email: z.string().trim().email(), source: z.string().regex(/^blog-[a-z0-9-]{1,48}$/).optional() }))
+  .validator(
+    z.object({
+      email: z.string().trim().email(),
+      source: z.string().regex(/^blog-[a-z0-9-]{1,48}$/).optional(),
+      // The query string of the page the form is on. A tracked link lands
+      // there with its UTM tags, so this credits the sign-up to that link
+      // even when the visitor declined the cookie banner (no ebi_src cookie).
+      // Read once at submit time, never stored on the device.
+      pageSearch: z.string().max(500).optional(),
+    }),
+  )
   .handler(async ({ data }) => {
     const { getDb } = await import('~/lib/db/client')
     const db = getDb()
     const email = data.email.trim().toLowerCase()
-    const traffic = await readTrafficSource()
+    const { trafficSourceFromSearch } = await import('~/lib/traffic-source')
+    const traffic = (await readTrafficSource()) ?? (data.pageSearch ? trafficSourceFromSearch(data.pageSearch) : null)
     const changed = await upsertSubscriber(db, email, data.source ?? 'homepage', null, traffic)
     // Someone already on the list who signs up on a blog post changes
     // nothing above, so their interest in that post would go unrecorded.

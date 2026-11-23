@@ -72,7 +72,7 @@ function HomePage() {
     e.preventDefault()
     setSubscribeState('submitting')
     try {
-      await subscribeToNewsletter({ data: { email: subscribeEmail } })
+      await subscribeToNewsletter({ data: { email: subscribeEmail, pageSearch: window.location.search.slice(0, 500) } })
       setSubscribeState('done')
       // A logged-in visitor's "done" reflects their real account, so it
       // stays. A guest gets a brief, seamless confirmation and then the

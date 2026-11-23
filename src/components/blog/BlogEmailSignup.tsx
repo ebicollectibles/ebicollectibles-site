@@ -28,7 +28,7 @@ export function BlogEmailSignup({
     e.preventDefault()
     setState('submitting')
     try {
-      await subscribeToNewsletter({ data: { email, source } })
+      await subscribeToNewsletter({ data: { email, source, pageSearch: window.location.search.slice(0, 500) } })
       setState('done')
     } catch {
       setState('error')
