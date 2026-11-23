@@ -59,10 +59,6 @@ const FAQ = [
     q: 'Where in Shanghai is the event, and do you need a ticket?',
     a: 'The poster does not give the venue. Nothing has been announced about tickets or reservations.',
   },
-  {
-    q: 'Are the gold metal Pokémon cards sold online official?',
-    a: 'No. The gold-plated metal "Pokémon cards" sold online are unlicensed. They are not official Pokémon products.',
-  },
 ]
 
 export const Route = createFileRoute('/blog/pokemon-30th-shanghai-gold-pikachu-cards-news')({
@@ -164,6 +160,10 @@ function ShanghaiGoldCardsPost() {
         <p>
           Photos shared online show gold Pikachu cards marked "999" and "30g", with designs that match the 30 Pikachu cards in the 30th
           Celebration expansion. Pokémon China has not confirmed the designs or the weight.
+        </p>
+        <p>
+          The banner above is our illustration: printed 30th Celebration Pikachu cards with a gold border added. It is not a photo of the
+          gold cards, which are made of gold.
         </p>
 
         <figure className="poster-pair">
@@ -274,13 +274,6 @@ The official event poster, then the same poster with its Chinese text translated
         <p>
           Our <Link to="/blog/30th-celebration-set-guide">30th Celebration set guide</Link> covers the whole set, and the{' '}
           <Link to="/blog/30th-celebration-release-news">30th Celebration release news</Link> covers the pack and the box.
-        </p>
-
-        <h2 id="real-gold">Real gold, and the fakes</h2>
-        <p>
-          Real gold Pokémon cards are rare. The best known earlier one is the pure gold Pikachu card made in Japan in 2016 and sold by
-          reservation. The gold cards found in booster packs are printed, with a gold finish rather than real gold. The gold-plated metal
-          "Pokémon cards" sold online are unlicensed and are not official products.
         </p>
 
         <h2 id="other-events">Part of a year of 30th anniversary events</h2>

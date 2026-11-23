@@ -410,7 +410,7 @@ export const BLOG_POSTS: BlogPostSummary[] = [
     tag: 'News',
     date: '2026-11-23',
     heroImage: `${SITE_URL}/assets/blog/shanghai-gold-pikachu-cards-news-hero-v3.webp`,
-    heroAlt: 'Three Simplified Chinese 30th Celebration Pikachu cards fanned out on a dark background with a warm gold glow',
+    heroAlt: 'Illustration: three printed Simplified Chinese 30th Celebration Pikachu cards with gold borders added, led by Pikachu 01/30, beside the headline 30 Pure Gold Pikachu Cards',
     glow1: 'rgb(232 192 96 / .30)',
     glow2: 'rgb(246 206 60 / .20)',
   },
