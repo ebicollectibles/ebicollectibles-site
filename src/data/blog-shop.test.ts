@@ -10,9 +10,14 @@ describe('blog posts linked from set and product pages', () => {
   it('uses the set\'s own release post everywhere else', () => {
     expect(blogPostSlugsForSetKey('gem-vol-7')).toEqual(['gem-vol-7-release-news', 'gem-vol-7-set-guide', 'gem-vol-7-card-origins'])
   })
+  it('uses one shared set guide and card origins post for the four Collect 151 releases', () => {
+    expect(blogPostSlugsForSetKey('collect-151-surprise')).toEqual(['collect-151-surprise-release-news', 'collect-151-set-guide', 'collect-151-card-origins'])
+    expect(blogSetKeyForSetPath('/sets/chinese/collect-151-hope')).toBe('collect-151-hope')
+  })
   it('points at posts that exist', () => {
     const known = new Set<string>(BLOG_POSTS.map((p) => p.slug))
-    for (const key of ['black-bolt', 'white-flare']) expect(blogPostSlugsForSetKey(key).filter((s) => !known.has(s))).toEqual([])
+    const keys = ['black-bolt', 'white-flare', 'collect-151-journey', 'collect-151-hope', 'collect-151-surprise', 'collect-151-gathering']
+    for (const key of keys) expect(blogPostSlugsForSetKey(key).filter((s) => !known.has(s))).toEqual([])
   })
   it('still resolves a set page and a product to their own set', () => {
     expect(blogSetKeyForSetPath('/sets/chinese/black-bolt-csv10-5')).toBe('black-bolt')

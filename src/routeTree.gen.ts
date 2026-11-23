@@ -68,7 +68,13 @@ import { Route as BlogChasingGloryReleaseNewsRouteImport } from './routes/blog/c
 import { Route as BlogChasingGlorySetGuideRouteImport } from './routes/blog/chasing-glory-set-guide'
 import { Route as BlogChineseGemPackHitRatesRouteImport } from './routes/blog/chinese-gem-pack-hit-rates'
 import { Route as BlogChinesePokemonSetsInOrderRouteImport } from './routes/blog/chinese-pokemon-sets-in-order'
+import { Route as BlogCollect151CardOriginsRouteImport } from './routes/blog/collect-151-card-origins'
 import { Route as BlogCollect151FirstPartnerDisplaySetsReleaseNewsRouteImport } from './routes/blog/collect-151-first-partner-display-sets-release-news'
+import { Route as BlogCollect151GatheringReleaseNewsRouteImport } from './routes/blog/collect-151-gathering-release-news'
+import { Route as BlogCollect151HopeReleaseNewsRouteImport } from './routes/blog/collect-151-hope-release-news'
+import { Route as BlogCollect151JourneyReleaseNewsRouteImport } from './routes/blog/collect-151-journey-release-news'
+import { Route as BlogCollect151SetGuideRouteImport } from './routes/blog/collect-151-set-guide'
+import { Route as BlogCollect151SurpriseReleaseNewsRouteImport } from './routes/blog/collect-151-surprise-release-news'
 import { Route as BlogDayNightGiftBoxReleaseNewsRouteImport } from './routes/blog/day-night-gift-box-release-news'
 import { Route as BlogDreamPainting151Vol1ReleaseNewsRouteImport } from './routes/blog/dream-painting-151-vol-1-release-news'
 import { Route as BlogDreamPaintingWaterVol2ReleaseNewsRouteImport } from './routes/blog/dream-painting-water-vol-2-release-news'
@@ -504,10 +510,45 @@ const BlogChinesePokemonSetsInOrderRoute =
     path: '/blog/chinese-pokemon-sets-in-order',
     getParentRoute: () => rootRouteImport,
   } as any)
+const BlogCollect151CardOriginsRoute =
+  BlogCollect151CardOriginsRouteImport.update({
+    id: '/blog/collect-151-card-origins',
+    path: '/blog/collect-151-card-origins',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const BlogCollect151FirstPartnerDisplaySetsReleaseNewsRoute =
   BlogCollect151FirstPartnerDisplaySetsReleaseNewsRouteImport.update({
     id: '/blog/collect-151-first-partner-display-sets-release-news',
     path: '/blog/collect-151-first-partner-display-sets-release-news',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const BlogCollect151GatheringReleaseNewsRoute =
+  BlogCollect151GatheringReleaseNewsRouteImport.update({
+    id: '/blog/collect-151-gathering-release-news',
+    path: '/blog/collect-151-gathering-release-news',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const BlogCollect151HopeReleaseNewsRoute =
+  BlogCollect151HopeReleaseNewsRouteImport.update({
+    id: '/blog/collect-151-hope-release-news',
+    path: '/blog/collect-151-hope-release-news',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const BlogCollect151JourneyReleaseNewsRoute =
+  BlogCollect151JourneyReleaseNewsRouteImport.update({
+    id: '/blog/collect-151-journey-release-news',
+    path: '/blog/collect-151-journey-release-news',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const BlogCollect151SetGuideRoute = BlogCollect151SetGuideRouteImport.update({
+  id: '/blog/collect-151-set-guide',
+  path: '/blog/collect-151-set-guide',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BlogCollect151SurpriseReleaseNewsRoute =
+  BlogCollect151SurpriseReleaseNewsRouteImport.update({
+    id: '/blog/collect-151-surprise-release-news',
+    path: '/blog/collect-151-surprise-release-news',
     getParentRoute: () => rootRouteImport,
   } as any)
 const BlogDayNightGiftBoxReleaseNewsRoute =
@@ -1232,7 +1273,13 @@ export interface FileRoutesByFullPath {
   '/blog/chasing-glory-set-guide': typeof BlogChasingGlorySetGuideRoute
   '/blog/chinese-gem-pack-hit-rates': typeof BlogChineseGemPackHitRatesRoute
   '/blog/chinese-pokemon-sets-in-order': typeof BlogChinesePokemonSetsInOrderRoute
+  '/blog/collect-151-card-origins': typeof BlogCollect151CardOriginsRoute
   '/blog/collect-151-first-partner-display-sets-release-news': typeof BlogCollect151FirstPartnerDisplaySetsReleaseNewsRoute
+  '/blog/collect-151-gathering-release-news': typeof BlogCollect151GatheringReleaseNewsRoute
+  '/blog/collect-151-hope-release-news': typeof BlogCollect151HopeReleaseNewsRoute
+  '/blog/collect-151-journey-release-news': typeof BlogCollect151JourneyReleaseNewsRoute
+  '/blog/collect-151-set-guide': typeof BlogCollect151SetGuideRoute
+  '/blog/collect-151-surprise-release-news': typeof BlogCollect151SurpriseReleaseNewsRoute
   '/blog/day-night-gift-box-release-news': typeof BlogDayNightGiftBoxReleaseNewsRoute
   '/blog/dream-painting-151-vol-1-release-news': typeof BlogDreamPainting151Vol1ReleaseNewsRoute
   '/blog/dream-painting-water-vol-2-release-news': typeof BlogDreamPaintingWaterVol2ReleaseNewsRoute
@@ -1412,7 +1459,13 @@ export interface FileRoutesByTo {
   '/blog/chasing-glory-set-guide': typeof BlogChasingGlorySetGuideRoute
   '/blog/chinese-gem-pack-hit-rates': typeof BlogChineseGemPackHitRatesRoute
   '/blog/chinese-pokemon-sets-in-order': typeof BlogChinesePokemonSetsInOrderRoute
+  '/blog/collect-151-card-origins': typeof BlogCollect151CardOriginsRoute
   '/blog/collect-151-first-partner-display-sets-release-news': typeof BlogCollect151FirstPartnerDisplaySetsReleaseNewsRoute
+  '/blog/collect-151-gathering-release-news': typeof BlogCollect151GatheringReleaseNewsRoute
+  '/blog/collect-151-hope-release-news': typeof BlogCollect151HopeReleaseNewsRoute
+  '/blog/collect-151-journey-release-news': typeof BlogCollect151JourneyReleaseNewsRoute
+  '/blog/collect-151-set-guide': typeof BlogCollect151SetGuideRoute
+  '/blog/collect-151-surprise-release-news': typeof BlogCollect151SurpriseReleaseNewsRoute
   '/blog/day-night-gift-box-release-news': typeof BlogDayNightGiftBoxReleaseNewsRoute
   '/blog/dream-painting-151-vol-1-release-news': typeof BlogDreamPainting151Vol1ReleaseNewsRoute
   '/blog/dream-painting-water-vol-2-release-news': typeof BlogDreamPaintingWaterVol2ReleaseNewsRoute
@@ -1593,7 +1646,13 @@ export interface FileRoutesById {
   '/blog/chasing-glory-set-guide': typeof BlogChasingGlorySetGuideRoute
   '/blog/chinese-gem-pack-hit-rates': typeof BlogChineseGemPackHitRatesRoute
   '/blog/chinese-pokemon-sets-in-order': typeof BlogChinesePokemonSetsInOrderRoute
+  '/blog/collect-151-card-origins': typeof BlogCollect151CardOriginsRoute
   '/blog/collect-151-first-partner-display-sets-release-news': typeof BlogCollect151FirstPartnerDisplaySetsReleaseNewsRoute
+  '/blog/collect-151-gathering-release-news': typeof BlogCollect151GatheringReleaseNewsRoute
+  '/blog/collect-151-hope-release-news': typeof BlogCollect151HopeReleaseNewsRoute
+  '/blog/collect-151-journey-release-news': typeof BlogCollect151JourneyReleaseNewsRoute
+  '/blog/collect-151-set-guide': typeof BlogCollect151SetGuideRoute
+  '/blog/collect-151-surprise-release-news': typeof BlogCollect151SurpriseReleaseNewsRoute
   '/blog/day-night-gift-box-release-news': typeof BlogDayNightGiftBoxReleaseNewsRoute
   '/blog/dream-painting-151-vol-1-release-news': typeof BlogDreamPainting151Vol1ReleaseNewsRoute
   '/blog/dream-painting-water-vol-2-release-news': typeof BlogDreamPaintingWaterVol2ReleaseNewsRoute
@@ -1775,7 +1834,13 @@ export interface FileRouteTypes {
     | '/blog/chasing-glory-set-guide'
     | '/blog/chinese-gem-pack-hit-rates'
     | '/blog/chinese-pokemon-sets-in-order'
+    | '/blog/collect-151-card-origins'
     | '/blog/collect-151-first-partner-display-sets-release-news'
+    | '/blog/collect-151-gathering-release-news'
+    | '/blog/collect-151-hope-release-news'
+    | '/blog/collect-151-journey-release-news'
+    | '/blog/collect-151-set-guide'
+    | '/blog/collect-151-surprise-release-news'
     | '/blog/day-night-gift-box-release-news'
     | '/blog/dream-painting-151-vol-1-release-news'
     | '/blog/dream-painting-water-vol-2-release-news'
@@ -1955,7 +2020,13 @@ export interface FileRouteTypes {
     | '/blog/chasing-glory-set-guide'
     | '/blog/chinese-gem-pack-hit-rates'
     | '/blog/chinese-pokemon-sets-in-order'
+    | '/blog/collect-151-card-origins'
     | '/blog/collect-151-first-partner-display-sets-release-news'
+    | '/blog/collect-151-gathering-release-news'
+    | '/blog/collect-151-hope-release-news'
+    | '/blog/collect-151-journey-release-news'
+    | '/blog/collect-151-set-guide'
+    | '/blog/collect-151-surprise-release-news'
     | '/blog/day-night-gift-box-release-news'
     | '/blog/dream-painting-151-vol-1-release-news'
     | '/blog/dream-painting-water-vol-2-release-news'
@@ -2135,7 +2206,13 @@ export interface FileRouteTypes {
     | '/blog/chasing-glory-set-guide'
     | '/blog/chinese-gem-pack-hit-rates'
     | '/blog/chinese-pokemon-sets-in-order'
+    | '/blog/collect-151-card-origins'
     | '/blog/collect-151-first-partner-display-sets-release-news'
+    | '/blog/collect-151-gathering-release-news'
+    | '/blog/collect-151-hope-release-news'
+    | '/blog/collect-151-journey-release-news'
+    | '/blog/collect-151-set-guide'
+    | '/blog/collect-151-surprise-release-news'
     | '/blog/day-night-gift-box-release-news'
     | '/blog/dream-painting-151-vol-1-release-news'
     | '/blog/dream-painting-water-vol-2-release-news'
@@ -2316,7 +2393,13 @@ export interface RootRouteChildren {
   BlogChasingGlorySetGuideRoute: typeof BlogChasingGlorySetGuideRoute
   BlogChineseGemPackHitRatesRoute: typeof BlogChineseGemPackHitRatesRoute
   BlogChinesePokemonSetsInOrderRoute: typeof BlogChinesePokemonSetsInOrderRoute
+  BlogCollect151CardOriginsRoute: typeof BlogCollect151CardOriginsRoute
   BlogCollect151FirstPartnerDisplaySetsReleaseNewsRoute: typeof BlogCollect151FirstPartnerDisplaySetsReleaseNewsRoute
+  BlogCollect151GatheringReleaseNewsRoute: typeof BlogCollect151GatheringReleaseNewsRoute
+  BlogCollect151HopeReleaseNewsRoute: typeof BlogCollect151HopeReleaseNewsRoute
+  BlogCollect151JourneyReleaseNewsRoute: typeof BlogCollect151JourneyReleaseNewsRoute
+  BlogCollect151SetGuideRoute: typeof BlogCollect151SetGuideRoute
+  BlogCollect151SurpriseReleaseNewsRoute: typeof BlogCollect151SurpriseReleaseNewsRoute
   BlogDayNightGiftBoxReleaseNewsRoute: typeof BlogDayNightGiftBoxReleaseNewsRoute
   BlogDreamPainting151Vol1ReleaseNewsRoute: typeof BlogDreamPainting151Vol1ReleaseNewsRoute
   BlogDreamPaintingWaterVol2ReleaseNewsRoute: typeof BlogDreamPaintingWaterVol2ReleaseNewsRoute
@@ -2855,11 +2938,53 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BlogChinesePokemonSetsInOrderRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/blog/collect-151-card-origins': {
+      id: '/blog/collect-151-card-origins'
+      path: '/blog/collect-151-card-origins'
+      fullPath: '/blog/collect-151-card-origins'
+      preLoaderRoute: typeof BlogCollect151CardOriginsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/blog/collect-151-first-partner-display-sets-release-news': {
       id: '/blog/collect-151-first-partner-display-sets-release-news'
       path: '/blog/collect-151-first-partner-display-sets-release-news'
       fullPath: '/blog/collect-151-first-partner-display-sets-release-news'
       preLoaderRoute: typeof BlogCollect151FirstPartnerDisplaySetsReleaseNewsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/collect-151-gathering-release-news': {
+      id: '/blog/collect-151-gathering-release-news'
+      path: '/blog/collect-151-gathering-release-news'
+      fullPath: '/blog/collect-151-gathering-release-news'
+      preLoaderRoute: typeof BlogCollect151GatheringReleaseNewsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/collect-151-hope-release-news': {
+      id: '/blog/collect-151-hope-release-news'
+      path: '/blog/collect-151-hope-release-news'
+      fullPath: '/blog/collect-151-hope-release-news'
+      preLoaderRoute: typeof BlogCollect151HopeReleaseNewsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/collect-151-journey-release-news': {
+      id: '/blog/collect-151-journey-release-news'
+      path: '/blog/collect-151-journey-release-news'
+      fullPath: '/blog/collect-151-journey-release-news'
+      preLoaderRoute: typeof BlogCollect151JourneyReleaseNewsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/collect-151-set-guide': {
+      id: '/blog/collect-151-set-guide'
+      path: '/blog/collect-151-set-guide'
+      fullPath: '/blog/collect-151-set-guide'
+      preLoaderRoute: typeof BlogCollect151SetGuideRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/collect-151-surprise-release-news': {
+      id: '/blog/collect-151-surprise-release-news'
+      path: '/blog/collect-151-surprise-release-news'
+      fullPath: '/blog/collect-151-surprise-release-news'
+      preLoaderRoute: typeof BlogCollect151SurpriseReleaseNewsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/blog/day-night-gift-box-release-news': {
@@ -3750,8 +3875,16 @@ const rootRouteChildren: RootRouteChildren = {
   BlogChasingGlorySetGuideRoute: BlogChasingGlorySetGuideRoute,
   BlogChineseGemPackHitRatesRoute: BlogChineseGemPackHitRatesRoute,
   BlogChinesePokemonSetsInOrderRoute: BlogChinesePokemonSetsInOrderRoute,
+  BlogCollect151CardOriginsRoute: BlogCollect151CardOriginsRoute,
   BlogCollect151FirstPartnerDisplaySetsReleaseNewsRoute:
     BlogCollect151FirstPartnerDisplaySetsReleaseNewsRoute,
+  BlogCollect151GatheringReleaseNewsRoute:
+    BlogCollect151GatheringReleaseNewsRoute,
+  BlogCollect151HopeReleaseNewsRoute: BlogCollect151HopeReleaseNewsRoute,
+  BlogCollect151JourneyReleaseNewsRoute: BlogCollect151JourneyReleaseNewsRoute,
+  BlogCollect151SetGuideRoute: BlogCollect151SetGuideRoute,
+  BlogCollect151SurpriseReleaseNewsRoute:
+    BlogCollect151SurpriseReleaseNewsRoute,
   BlogDayNightGiftBoxReleaseNewsRoute: BlogDayNightGiftBoxReleaseNewsRoute,
   BlogDreamPainting151Vol1ReleaseNewsRoute:
     BlogDreamPainting151Vol1ReleaseNewsRoute,
