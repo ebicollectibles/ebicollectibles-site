@@ -25,7 +25,7 @@ const PIKACHU_CARDS = [
   { file: 'pikachu-034', w: 300, h: 419, no: '034/103', of: '18/30', illus: 'Shinji Kanda', alt: 'Pikachu 034/103 (18/30) from 30th Celebration: Pikachu in a bright rainbow burst of color, illustrated by Shinji Kanda' },
   { file: 'pikachu-021', w: 300, h: 419, no: '021/103', of: '05/30', illus: 'Asako Ito', alt: 'Pikachu 021/103 (05/30) from 30th Celebration: a crochet-style Pikachu napping on the grass, illustrated by Asako Ito' },
   { file: 'pikachu-024', w: 300, h: 419, no: '024/103', of: '08/30', illus: 'DOM', alt: 'Pikachu 024/103 (08/30) from 30th Celebration: Pikachu glowing with lightning at night, illustrated by DOM' },
-  { file: 'pikachu-036', w: 300, h: 419, no: '036/103', of: '20/30', illus: 'Akira', alt: 'Pikachu 036/103 (20/30) from 30th Celebration: Pikachu running through a field under a bright sky, illustrated by Akira' },
+  { file: 'pikachu-036', w: 300, h: 419, no: '036/103', of: '20/30', illus: 'Akira Komayama', alt: 'Pikachu 036/103 (20/30) from 30th Celebration: Pikachu running through a field under a bright sky, illustrated by Akira Komayama' },
   { file: 'pikachu-017', w: 300, h: 419, no: '017/103', of: '01/30', illus: 'Ken Sugimori', alt: 'Pikachu 017/103 (01/30) from 30th Celebration: a round, classic-style Pikachu standing in a forest with lightning, illustrated by Ken Sugimori' },
   { file: 'pikachu-030', w: 788, h: 1100, no: '030/103', of: '14/30', illus: 'OKACHEKE', alt: 'Pikachu 030/103 (14/30) from 30th Celebration: Pikachu leaning on a wooden balcony rail and smiling, illustrated by OKACHEKE' },
 ]

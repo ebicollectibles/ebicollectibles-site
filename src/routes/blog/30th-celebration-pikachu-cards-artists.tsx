@@ -305,7 +305,7 @@ const PIKACHU: PikachuCard[] = [
     note: (
       <>
         Pikachu dives face-first into a pile of grapes, strawberries and other fruit, all drawn with thick black outlines and bold
-        color. Kiyotaka Oshiyama is also known as an anime director.
+        color.
       </>
     ),
   },
