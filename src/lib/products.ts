@@ -152,6 +152,22 @@ export function getInStockVariant(product: Product, allProducts: Product[]): Pro
     .sort((a, b) => (a.variantSortOrder ?? Infinity) - (b.variantSortOrder ?? Infinity))[0]
 }
 
+// A hub's sale state from its variants: onSale when any visible option is
+// marked down, and wasPrice (the crossed-out price) only when every option
+// has the same price and the same was price, so one strikethrough is true
+// for all of them.
+export function getHubSale(variants: Product[]): { onSale: boolean; wasPrice: number | null } {
+  const priced = variants.filter((v) => v.price > 0 && !v.hidePrice)
+  const onSale = priced.some((v) => v.compareAtPrice != null && v.compareAtPrice > v.price)
+  const first = priced[0]
+  const uniform =
+    first != null &&
+    first.compareAtPrice != null &&
+    first.compareAtPrice > first.price &&
+    priced.every((v) => v.price === first.price && v.compareAtPrice === first.compareAtPrice)
+  return { onSale, wasPrice: uniform ? first.compareAtPrice! : null }
+}
+
 // Price range across a hub's variants — a single number when they all cost
 // the same, a {min,max} spread otherwise, null when none of them have a
 // visible price yet (new line, or every one has its own hidePrice set).

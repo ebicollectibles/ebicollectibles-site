@@ -8,7 +8,7 @@ import { ProductCard } from '~/components/ProductCard'
 import { ResponsiveImage, thumbSrcSet } from '~/components/ResponsiveImage'
 import { trackEvent } from '~/lib/analytics'
 import { useCart } from '~/lib/cart-context'
-import { FLAT_SHIPPING_RATE, formatMoney, getHubPriceRange, getHubVariants, type Product } from '~/lib/products'
+import { FLAT_SHIPPING_RATE, formatMoney, getHubPriceRange, getHubSale, getHubVariants, type Product } from '~/lib/products'
 import { RETURN_POLICY_CATEGORY_URL, SHIPPING_HANDLING_MAX_DAYS, SHIPPING_HANDLING_MIN_DAYS, SHIPS_TO_COUNTRY } from '~/lib/policy'
 import { getProduct } from '~/server/products'
 import shareProductIds from '~/data/share-products.json'
@@ -357,7 +357,8 @@ function ProductDetailPage() {
   // all of it; a variant's own hidePrice excludes just that one variant,
   // same as it does for its own dropdown option label.
   const hubPriceRange = notSellable ? getHubPriceRange(variants) : null
-  const badge = comingSoon ? (product.preorder ? 'Pre-order' : 'Coming soon') : product.preorder ? 'Pre-order' : soldOut ? 'Sold out' : onSale ? 'Sale' : null
+  const hubSale = notSellable && !comingSoon && !product.hidePrice ? getHubSale(variants) : { onSale: false, wasPrice: null }
+  const badge = comingSoon ? (product.preorder ? 'Pre-order' : 'Coming soon') : product.preorder ? 'Pre-order' : soldOut ? 'Sold out' : onSale || hubSale.onSale ? 'Sale' : null
   const badgeBg = product.preorder && (comingSoon || !soldOut) ? '#3f7a63' : comingSoon || soldOut ? '#5a6875' : '#a85b2c'
   const stockLabel = comingSoon ? (product.preorder ? 'Pre-orders open soon' : 'Coming soon') : soldOut ? 'Out of stock' : product.preorder ? 'Ships after release' : `${product.stock} in stock`
   const stockColor = comingSoon || soldOut ? '#5a6875' : '#3f7a63'
@@ -529,6 +530,9 @@ function ProductDetailPage() {
               !product.hidePrice &&
               hubPriceRange && (
                 <div style={{ display: 'flex', alignItems: 'baseline', gap: 12, marginTop: 18, flexWrap: 'wrap' }}>
+                  {hubSale.wasPrice != null && (
+                    <span style={{ fontSize: 18, color: '#5a6875', textDecoration: 'line-through' }}>{formatMoney(hubSale.wasPrice)}</span>
+                  )}
                   <span style={{ fontSize: 26, fontWeight: 700, color: '#131b28' }}>
                     {hubPriceRange.min === hubPriceRange.max ? formatMoney(hubPriceRange.min) : `${formatMoney(hubPriceRange.min)}–${formatMoney(hubPriceRange.max)}`}
                   </span>

@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { Link } from '@tanstack/react-router'
-import { formatMoney, getHubPriceRange, getHubVariants, getInStockVariant, type Product } from '~/lib/products'
+import { formatMoney, getHubPriceRange, getHubSale, getHubVariants, getInStockVariant, type Product } from '~/lib/products'
 import { ResponsiveImage } from '~/components/ResponsiveImage'
 import { AddToCartControl } from '~/components/AddToCartControl'
 import { useCart } from '~/lib/cart-context'
@@ -49,7 +49,8 @@ export function ProductCard({
   // since every page that renders a ProductCard already sits inside it.
   const hubVariants = notSellable ? getHubVariants(product, allProducts) : []
   const hubPriceRange = notSellable ? getHubPriceRange(hubVariants) : null
-  const badge = comingSoon ? (product.preorder ? 'Pre-order' : 'Coming soon') : product.preorder ? 'Pre-order' : soldOut ? 'Sold out' : onSale ? 'Sale' : null
+  const hubSale = notSellable && !comingSoon && !product.hidePrice ? getHubSale(hubVariants) : { onSale: false, wasPrice: null }
+  const badge = comingSoon ? (product.preorder ? 'Pre-order' : 'Coming soon') : product.preorder ? 'Pre-order' : soldOut ? 'Sold out' : onSale || hubSale.onSale ? 'Sale' : null
   const badgeBg = product.preorder && !soldOut ? '#3f7a63' : comingSoon || soldOut ? '#5a6875' : '#a85b2c'
 
   const compact = variant === 'compact'
@@ -151,9 +152,14 @@ export function ProductCard({
         {notSellable && !comingSoon && (product.hidePrice || hubPriceRange == null) ? (
           <span style={{ fontSize: priceFontSize, fontWeight: 600 }}>&nbsp;</span>
         ) : notSellable && !comingSoon && hubPriceRange ? (
+          <>
+          {hubSale.wasPrice != null && (
+            <span style={{ fontSize: priceFontSize - 3, color: '#5a6875', textDecoration: 'line-through' }}>{formatMoney(hubSale.wasPrice)}</span>
+          )}
           <span style={{ fontSize: priceFontSize, fontWeight: 600, color: '#131b28' }}>
             {hubPriceRange.min === hubPriceRange.max ? formatMoney(hubPriceRange.min) : `${formatMoney(hubPriceRange.min)}–${formatMoney(hubPriceRange.max)}`}
           </span>
+          </>
         ) : notSellable ? (
           product.hidePrice || hubPriceRange == null ? (
             <span style={{ fontSize: priceFontSize - 2, fontWeight: 500, color: '#5a6875' }}>
