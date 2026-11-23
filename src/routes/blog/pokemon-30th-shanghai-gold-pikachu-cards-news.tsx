@@ -34,6 +34,7 @@ const TOC = [
   { id: 'activities', label: 'What is on at the event?' },
   { id: 'pikachu-cards', label: 'The 30 Pikachu cards in 30th Celebration' },
   { id: 'real-gold', label: 'Real gold cards and gold-colored cards' },
+  { id: 'gold-math', label: 'The nerdy math: purity, weight and value' },
   { id: 'other-news', label: 'Other 30th anniversary news from Pokémon China' },
   { id: 'not-known', label: 'What has not been announced' },
   { id: 'at-ebi', label: '30th Celebration at EBI Collectibles' },
@@ -250,7 +251,7 @@ function ShanghaiGoldCardsPost() {
           If each card is 30 g, as the display board in the photos says, then 30 cards hold 900 g of gold. ¥600,000 for 900 g is about
           ¥667 per gram. So ¥600,000 is a figure for the whole set of 30, not for one card.
         </p>
-        <p>None of these numbers are official. The weight comes from photos, and the price of gold changes every day.</p>
+        <p>None of these numbers are official. The weight comes from photos, and the price of gold changes every day. <a href="#gold-math">The nerdy math</a> section below works through purity, weight and value in detail.</p>
 
         <h2 id="what-it-is">What is the Shanghai Finale?</h2>
         <p>
@@ -310,6 +311,110 @@ function ShanghaiGoldCardsPost() {
             in Japan in 2016. It was sold by reservation.
           </li>
         </ul>
+
+        <h2 id="gold-math">The nerdy math: purity, weight and value</h2>
+        <p>
+          Pokémon China has not published any of these numbers. Everything below starts from the label in the photos shared online,{' '}
+          <Zh>999足金卡牌 30g</Zh>, and works it through. Treat it as a back-of-the-envelope estimate, not an official figure.
+        </p>
+
+        <h3>What 999 pure gold means</h3>
+        <p>
+          <Zh>足金</Zh> is the Chinese jewelry term for pure gold, and the 999 on the label means 999 parts per thousand, or 99.9%
+          gold. At that purity a 30 g card holds about 29.97 g of gold and about 0.03 g of anything else. Across all 30 cards that is
+          about 899 g of gold.
+        </p>
+
+        <div className="table-scroll" role="group" aria-labelledby="tbl-gold-weight" tabIndex={0}>
+          <table className="data-table">
+            <caption id="tbl-gold-weight" className="sr-only">
+              Gold weight of one card and of all 30 cards, in grams and troy ounces
+            </caption>
+            <thead>
+              <tr>
+                <th scope="col"></th>
+                <th scope="col">One card</th>
+                <th scope="col">All 30 cards</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">Weight on the label</th>
+                <td>30 g</td>
+                <td>900 g (about 2 lb)</td>
+              </tr>
+              <tr>
+                <th scope="row">Gold at 99.9%</th>
+                <td>29.97 g</td>
+                <td>899.1 g</td>
+              </tr>
+              <tr>
+                <th scope="row">Troy ounces</th>
+                <td>0.96 oz t</td>
+                <td>28.9 oz t</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p>Gold is priced in troy ounces. One troy ounce is 31.1035 g, a little heavier than an everyday ounce.</p>
+
+        <h3>How much is the gold worth?</h3>
+        <p>
+          These are melt values: what the gold alone is worth at the market price. Prices move every day, so the figures below are
+          for late November 2026.
+        </p>
+        <div className="table-scroll" role="group" aria-labelledby="tbl-gold-value" tabIndex={0}>
+          <table className="data-table">
+            <caption id="tbl-gold-value" className="sr-only">
+              Estimated gold value of one card and of all 30 cards at three gold prices
+            </caption>
+            <thead>
+              <tr>
+                <th scope="col">Gold price</th>
+                <th scope="col">One card (30 g)</th>
+                <th scope="col">All 30 (900 g)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">Shanghai Gold Exchange Au9999, ¥755 per gram (Nov 21, 2026)</th>
+                <td>about ¥22,650</td>
+                <td>about ¥680,000</td>
+              </tr>
+              <tr>
+                <th scope="row">¥667 per gram (what the widely shared ¥600,000 figure works out to)</th>
+                <td>about ¥20,000</td>
+                <td>about ¥600,000</td>
+              </tr>
+              <tr>
+                <th scope="row">International spot, $3,622.70 per troy ounce (Nov 23, 2026)</th>
+                <td>about $3,490</td>
+                <td>about $104,800</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p>
+          The Shanghai price gives a higher total than the ¥600,000 figure that has been shared, so that figure may have used a
+          different or lower price. Gold also swings a lot. Au9999 touched about ¥1,256 per gram on January 29, 2026, and at that price
+          the 30 cards would have held about ¥1.13 million in gold.
+        </p>
+        <p>
+          The gold is only the floor. A one-off set made by Pokémon China for its 30th anniversary would be worth far more to a
+          collector than its weight in gold, but nothing has been announced about selling them, so there is no real price to compare.
+        </p>
+
+        <h3>How thick would a 30 g gold card be?</h3>
+        <p>
+          Gold weighs 19.32 g per cubic centimeter, so 30 g of it takes up about 1.55 cm³. Spread over a standard card face of 63 × 88
+          mm, that is a sheet about 0.28 mm thick. That is roughly as thick as an ordinary printed card, which is around 0.3 mm. If the
+          cards are standard size, they would look and feel about as thin as a normal card, just far heavier: an ordinary card weighs
+          under 2 g, so each gold one is around 16 to 17 times heavier.
+        </p>
+        <p>
+          This assumes a flat, solid card at standard size. The photos show the cards mounted in display frames, and Pokémon China has
+          not given their size or thickness.
+        </p>
 
         <h2 id="other-news">Other 30th anniversary news from Pokémon China</h2>
         <p>
