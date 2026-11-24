@@ -10,7 +10,8 @@ import { searchText, shopSearchSchema } from '~/lib/shop-search'
 // so the filter panel and product-visibility check can't drift apart.
 const VISIBLE_CATEGORIES = PRODUCT_CATEGORIES.filter((cat) => SHOW_ACRYLICS || cat !== 'Acrylic Cases')
 
-const categoryLabel = (cat: ProductCategory) => (cat === 'Chinese Pokémon Products' ? 'Pokemon (Simplified Chinese)' : cat)
+const categoryLabel = (cat: ProductCategory) =>
+  cat === 'Chinese Pokémon Products' ? 'Pokemon (Simplified Chinese)' : cat === 'Japanese Pokémon Products' ? 'Pokemon (Japanese)' : cat
 
 const SITE_URL = 'https://ebicollectibles.com'
 
@@ -135,6 +136,9 @@ function ShopPage() {
         // homepage sections.
         if (p.hideFromShopGrid) return false
         if (!SHOW_ACRYLICS && p.category === 'Acrylic Cases') return false
+        // Chinese and Japanese share product types (both have Booster
+        // Boxes), so a category link filters by the category itself too.
+        if (search.category && p.category !== search.category) return false
         if (search.preorder && !p.preorder) return false
         if (search.sale && !isOnSale(p, products)) return false
         if (query && !p.name.toLowerCase().includes(query)) return false
@@ -174,11 +178,15 @@ function ShopPage() {
   // of this category" (e.g. landing via the "All Pokemon (Chinese)" link
   // seeds all 5 Chinese Pokémon subcategories) — show the category label
   // rather than joining every subcategory name together.
-  const matchedCategory = PRODUCT_CATEGORIES.find(
-    (cat) =>
-      subcategories.length === SUBCATEGORIES_BY_CATEGORY[cat].length &&
-      subcategories.every((s) => SUBCATEGORIES_BY_CATEGORY[cat].includes(s)),
-  )
+  const sameAsCategory = (cat: ProductCategory) =>
+    subcategories.length === SUBCATEGORIES_BY_CATEGORY[cat].length && subcategories.every((s) => SUBCATEGORIES_BY_CATEGORY[cat].includes(s))
+  // The arrival category wins; otherwise only the multi-type categories are
+  // guessed from the ticked boxes (Japanese's short list would otherwise
+  // match a plain "Booster Box" pick).
+  const matchedCategory =
+    search.category && sameAsCategory(search.category)
+      ? search.category
+      : PRODUCT_CATEGORIES.find((cat) => cat !== 'Japanese Pokémon Products' && sameAsCategory(cat))
 
   const collectionHub = variantGroup ? products.find((p) => p.variantGroupId === variantGroup && p.notSellable) : undefined
 
@@ -205,13 +213,13 @@ function ShopPage() {
       <div style={monoLabel}>Filter</div>
       <div style={{ marginTop: 20 }}>
         <div style={{ fontSize: 12.5, fontWeight: 700, letterSpacing: '0.02em', marginBottom: 10 }}>Product type</div>
-        {VISIBLE_CATEGORIES.map((cat) => (
+        {(search.category ? [search.category] : VISIBLE_CATEGORIES.filter((c) => c !== 'Japanese Pokémon Products')).map((cat) => (
           <div key={cat} style={{ marginBottom: 14 }}>
             <div style={{ fontSize: 11, fontWeight: 700, color: '#5a6875', textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: 4 }}>
               {cat}
             </div>
             {SUBCATEGORIES_BY_CATEGORY[cat].map((s) => {
-              const count = products.filter((p) => p.subcategory === s && !p.hideFromShopGrid).length
+              const count = products.filter((p) => p.subcategory === s && !p.hideFromShopGrid && (!search.category || p.category === search.category)).length
               return (
                 <label
                   key={s}

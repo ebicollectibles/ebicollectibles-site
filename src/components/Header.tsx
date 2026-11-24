@@ -317,6 +317,9 @@ export function Header({
             <Link role="menuitem" to="/shop" search={{ category: 'Chinese Pokémon Products' }} style={menuItemStyle}>
               All Pokemon (Chinese)
             </Link>
+            <Link role="menuitem" to="/shop" search={{ category: 'Japanese Pokémon Products' }} style={menuItemStyle}>
+              All Pokemon (Japanese)
+            </Link>
             <Link role="menuitem" to="/shop" search={{ preorder: true }} style={menuItemStyle}>
               Preorders
             </Link>
@@ -468,6 +471,9 @@ export function Header({
           </Link>
           <Link to="/shop" search={{ category: 'Chinese Pokémon Products' }} style={{ color: navColor(pathname === '/shop'), padding: '10px 0', borderBottom: '1px solid #f0f2f4' }}>
             All Pokemon (Chinese)
+          </Link>
+          <Link to="/shop" search={{ category: 'Japanese Pokémon Products' }} style={{ color: '#5a6875', padding: '10px 0', borderBottom: '1px solid #f0f2f4' }}>
+            All Pokemon (Japanese)
           </Link>
           <Link to="/shop" search={{ preorder: true }} style={{ color: '#5a6875', padding: '10px 0', borderBottom: '1px solid #f0f2f4' }}>
             Preorders

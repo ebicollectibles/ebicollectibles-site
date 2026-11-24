@@ -52,6 +52,11 @@ export function Footer() {
               </Link>
             </li>
             <li>
+              <Link to="/shop" search={{ category: 'Japanese Pokémon Products' }}>
+                All Pokemon (Japanese)
+              </Link>
+            </li>
+            <li>
               <Link to="/shop" search={{ subcategory: 'Booster Box' }}>
                 Booster Boxes
               </Link>

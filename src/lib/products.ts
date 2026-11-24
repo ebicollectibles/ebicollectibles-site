@@ -1,6 +1,6 @@
 import { SHOW_ACRYLICS } from './feature-flags'
 
-export const PRODUCT_CATEGORIES = ['Chinese Pokémon Products', 'Acrylic Cases'] as const
+export const PRODUCT_CATEGORIES = ['Chinese Pokémon Products', 'Japanese Pokémon Products', 'Acrylic Cases'] as const
 export type ProductCategory = (typeof PRODUCT_CATEGORIES)[number]
 
 export type ProductSubcategory =
@@ -23,10 +23,13 @@ export type ProductSubcategory =
 // ones without a code change each time.
 export const SUBCATEGORIES_BY_CATEGORY: Record<ProductCategory, ProductSubcategory[]> = {
   'Chinese Pokémon Products': ['Booster Box', 'Blind Box', 'Figure', 'Plush', 'Special Products', 'Binder'],
+  // Same product types as Chinese; the shop filters this one by category
+  // (/shop?category=Japanese…), so it never mixes in Chinese boxes.
+  'Japanese Pokémon Products': ['Booster Box', 'Special Products'],
   'Acrylic Cases': ['ETB Case', 'Booster Box Case', 'SPC Box Case', 'First Partner Case'],
 }
 
-export const ALL_SUBCATEGORIES: ProductSubcategory[] = Object.values(SUBCATEGORIES_BY_CATEGORY).flat()
+export const ALL_SUBCATEGORIES: ProductSubcategory[] = [...new Set(Object.values(SUBCATEGORIES_BY_CATEGORY).flat())]
 
 export interface Product {
   id: string
