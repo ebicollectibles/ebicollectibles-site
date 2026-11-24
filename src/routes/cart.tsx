@@ -331,10 +331,13 @@ function CartPage() {
               )}
               <div style={{ marginTop: 10 }}>
                 <ExpressApplePayButton
-                  disabled={mixedPreorder && !preorderAgreed}
+                  // Not disabled: a disabled button gives no feedback on tap.
+                  // blockedMessage below explains what to tick instead.
                   blockedMessage={
                     cartHasPreorder && !preorderAgreed
-                      ? 'Please check the box confirming you understand the pre-order terms before using Express Apple Pay.'
+                      ? mixedPreorder
+                        ? 'Please tick the box above confirming the in-stock items will wait and ship with the pre-order item, then use Apple Pay.'
+                        : 'Please tick the box above confirming the pre-order terms, then use Apple Pay.'
                       : shipChoicePending
                         ? 'Please choose whether to ship now or wait and ship with your pending pre-order, above.'
                         : undefined
