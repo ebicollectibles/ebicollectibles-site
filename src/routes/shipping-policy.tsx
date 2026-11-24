@@ -37,7 +37,9 @@ function ShippingPolicyPage() {
         <div>
           <h2 style={{ fontSize: 18, fontWeight: 700, margin: '0 0 10px' }}>Shipping</h2>
           <p style={{ fontSize: 14.5, lineHeight: 1.65, color: '#131b28', margin: 0, maxWidth: '65ch' }}>
-            We currently ship within the United States only. All orders ship flat-rate ($10.00). In-stock orders
+            We currently ship within the United States only. Alaska and Hawaii can't be checked out on the site
+            yet; email us and we'll sort out your order directly. All orders ship flat-rate ($10.00), and each
+            order is charged its own shipping. In-stock orders
             ship within {SHIPPING_HANDLING_MIN_DAYS}-{SHIPPING_HANDLING_MAX_DAYS} business days. Carrier is
             selected by us for the safest, fastest route to your address, and we don't offer carrier choice at
             checkout. Every order ships with tracking, emailed the moment it goes out.
