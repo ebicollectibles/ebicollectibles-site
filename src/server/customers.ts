@@ -145,7 +145,10 @@ export const hasPendingOrder = createServerFn({ method: 'GET' })
     // server/orders.ts), so neither direction is offered any more.
     void mismatched
     const combineCandidate = null
-    return { waived: !data.hasPreorder && matchingRows.length > 0, mismatchedPending: false, combineCandidate }
+    // Adding onto an earlier order is switched off entirely (see
+    // resolveFreeShippingOverride in server/orders.ts).
+    void matchingRows
+    return { waived: false, mismatchedPending: false, combineCandidate }
   })
 
 // Same check as hasPendingOrder, but by typed email instead of a signed-in
@@ -158,10 +161,13 @@ export const hasPendingOrder = createServerFn({ method: 'GET' })
 // email with an existing account gets linked to it without being told) —
 // surfacing it as a prompt here doesn't expose anything that wasn't already
 // implicitly true of how guest checkout works.
+const ALLOW_GUEST_COMBINE_PROMPT = false
 export const hasPendingOrderForEmail = createServerFn({ method: 'GET' })
   .validator(z.object({ email: z.string().trim().email(), hasPreorder: z.boolean() }))
   .handler(async ({ data }) => {
-    if (data.hasPreorder) return false
+    // Switched off with the shipping waiver (see hasPendingOrder above), so
+    // guests are no longer asked to sign in to combine shipping.
+    if (data.hasPreorder || !ALLOW_GUEST_COMBINE_PROMPT) return false
     const { getDb } = await import('~/lib/db/client')
     const { orders, users } = await import('~/lib/db/schema')
     const { and, eq, sql } = await import('drizzle-orm')

@@ -88,7 +88,12 @@ const placeOrderSchema = z.object({
 // Not for pre-orders: new items can no longer be added onto a pre-order
 // that's already been placed (owner's call, Nov 2026). A pre-order only
 // ships with in-stock items bought in the same cart.
+// Switched off entirely (owner's call, Nov 2026): a new order is never added
+// onto an earlier one, so every order pays its own shipping and ships on its
+// own. Admin can still link orders by hand from the order page.
+const ALLOW_ADDING_ONTO_PENDING_ORDERS = false
 async function resolveFreeShippingOverride(sessionUserId: string | null, hasPreorder: boolean): Promise<number | undefined> {
+  if (!ALLOW_ADDING_ONTO_PENDING_ORDERS) return undefined
   if (!sessionUserId || hasPreorder) return undefined
   const db = getDb()
   const [pending] = await db
@@ -148,6 +153,7 @@ async function resolveMismatchedTypeShippingWaiver(sessionUserId: string | null,
 // an earlier order, and nothing is linked onto a pending pre-order (see
 // resolveFreeShippingOverride).
 async function resolveAutoCombineLink(sessionUserId: string | null, hasPreorder: boolean): Promise<string | undefined> {
+  if (!ALLOW_ADDING_ONTO_PENDING_ORDERS) return undefined
   if (!sessionUserId || hasPreorder) return undefined
   const db = getDb()
   const [pending] = await db
