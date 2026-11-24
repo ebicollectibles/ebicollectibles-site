@@ -15,9 +15,9 @@ export const WHILE_YOU_WAIT_IDS = [
   'pokemon-chinese-30th-celebration-booster-box',
 ]
 
-// Off for customers until the owner approves the look (see
-// routes/preview-while-you-wait.tsx, which renders both versions).
-export const SHOW_WHILE_YOU_WAIT = false
+// On (owner approved Nov 2026). routes/preview-while-you-wait.tsx shows it
+// without needing a pre-order in the cart.
+export const SHOW_WHILE_YOU_WAIT = true
 
 const CSS = `
 .wyw { margin-top: 40px; }
@@ -46,12 +46,12 @@ export function WhileYouWait({ mode }: { mode: 'cart' | 'after' }) {
   return (
     <section className={`wyw${mode === 'after' ? ' wyw--after' : ''}`} aria-labelledby={`wyw-${mode}`}>
       <style>{CSS}</style>
-      <div className="wyw-eyebrow">{mode === 'cart' ? 'Add to your order' : 'While you wait'}</div>
-      <h2 id={`wyw-${mode}`}>{mode === 'cart' ? 'Ships with your pre-order' : 'Something to open while you wait'}</h2>
+      <div className="wyw-eyebrow">{mode === 'cart' ? 'Add to your order' : 'Ships with your pre-order'}</div>
+      <h2 id={`wyw-${mode}`}>{mode === 'cart' ? 'Ships with your pre-order' : 'Add to your pre-order'}</h2>
       <p className="wyw-note">
         {mode === 'cart'
           ? 'In stock now. Anything you add here goes in the same box as your pre-order and ships together with it.'
-          : `In stock now. A new order ships in ${days} business days, separate from your pre-order.`}
+          : `In stock now. Signed in to your account? Add these to your cart and at checkout choose to ship them with your pre-order: no extra shipping. Otherwise a new order ships in ${days} business days.`}
       </p>
       <ul className="wyw-row">
         {picks.map((p) => (

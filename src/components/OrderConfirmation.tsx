@@ -1,5 +1,6 @@
 import { Link } from '@tanstack/react-router'
 import { ALL_DELAYED_SHIPMENT_WARNING, DELAYED_SHIPMENT_WARNING } from '~/lib/order-math'
+import { SHOW_WHILE_YOU_WAIT, WhileYouWait } from '~/components/WhileYouWait'
 
 // Shared by the regular checkout form and express Apple Pay checkout (from
 // the cart page) — same order, same confirmation, regardless of how it was
@@ -144,6 +145,7 @@ export function OrderConfirmation({
       >
         Back to the catalogue
       </Link>
+      {SHOW_WHILE_YOU_WAIT && hasPreorder && <WhileYouWait mode="after" />}
     </section>
   )
 }

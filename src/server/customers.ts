@@ -140,11 +140,11 @@ export const hasPendingOrder = createServerFn({ method: 'GET' })
     // — the combineWithOrderId link itself now gets set automatically
     // regardless (see resolveAutoCombineLink in server/orders.ts), with or
     // without this opt-in.
-    // Joining a pending pre-order, or adding a pre-order onto a pending
-    // order, is switched off (see resolveFreeShippingOverride in
-    // server/orders.ts), so neither direction is offered any more.
-    void mismatched
-    const combineCandidate = null
+    // Adding a pre-order onto a pending order stays off (see
+    // resolveFreeShippingOverride in server/orders.ts).
+    // Exception, switched back on: an in-stock cart may wait for an unshipped
+    // pre-order (see ALLOW_JOINING_PENDING_PREORDER in server/orders.ts).
+    const combineCandidate = !data.hasPreorder && mismatched ? { id: mismatched.id, orderNo: mismatched.orderNo } : null
     // Adding onto an earlier order is switched off entirely (see
     // resolveFreeShippingOverride in server/orders.ts).
     void matchingRows

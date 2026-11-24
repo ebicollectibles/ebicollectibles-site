@@ -39,7 +39,7 @@ function ShippingPolicyPage() {
           <p style={{ fontSize: 14.5, lineHeight: 1.65, color: '#131b28', margin: 0, maxWidth: '65ch' }}>
             We currently ship within the United States only. Alaska and Hawaii can't be checked out on the site
             yet; email us and we'll sort out your order directly. All orders ship flat-rate ($10.00), and each
-            order is charged its own shipping. In-stock orders
+            order is charged its own shipping, except as described for pre-orders below. In-stock orders
             ship within {SHIPPING_HANDLING_MIN_DAYS}-{SHIPPING_HANDLING_MAX_DAYS} business days. Carrier is
             selected by us for the safest, fastest route to your address, and we don't offer carrier choice at
             checkout. Every order ships with tracking, emailed the moment it goes out.
@@ -52,6 +52,11 @@ function ShippingPolicyPage() {
             Pre-order items are charged in full at checkout. If an order has both a pre-order item and in-stock
             items, you confirm at checkout that the whole order, including the in-stock items, will wait and ship
             together once the pre-order item arrives. To get in-stock items sooner, place them as a separate order.
+          </p>
+          <p style={{ fontSize: 14.5, lineHeight: 1.65, color: '#131b28', margin: '16px 0 0', maxWidth: '65ch' }}>
+            Already placed a pre-order? While signed in to the same account, you can place an in-stock order and
+            choose at checkout to ship it with your unshipped pre-order. That order has no shipping charge and
+            ships together with the pre-order once it arrives.
           </p>
           <p style={{ fontSize: 14.5, lineHeight: 1.65, color: '#131b28', margin: '16px 0 0', maxWidth: '65ch' }}>
             Release and ship dates are estimates provided by the manufacturer or distributor and may change

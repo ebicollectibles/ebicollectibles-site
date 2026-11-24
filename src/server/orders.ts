@@ -119,10 +119,12 @@ async function resolveFreeShippingOverride(sessionUserId: string | null, hasPreo
 // a stale or tampered id just silently gets no discount, never an error,
 // so a direct API call can't use this to force a free-shipping order with
 // no real anchor behind it.
-// Switched off: in-stock items can no longer be attached to a pending
-// pre-order placed earlier (see resolveFreeShippingOverride). Kept so the
-// option can come back by deleting the early return.
-const ALLOW_JOINING_PENDING_PREORDER = false
+// On (owner's call, Nov 2026): a signed-in customer with an unshipped
+// pre-order can place an in-stock order that waits and ships with it, with
+// no second shipping charge, if they pick that option at checkout. Only in
+// that direction, and only onto a pre-order: adding onto a regular order
+// stays off (ALLOW_ADDING_ONTO_PENDING_ORDERS).
+const ALLOW_JOINING_PENDING_PREORDER = true
 async function resolveMismatchedTypeShippingWaiver(sessionUserId: string | null, requestedOrderId: string | undefined): Promise<string | undefined> {
   if (!ALLOW_JOINING_PENDING_PREORDER) return undefined
   if (!sessionUserId || !requestedOrderId) return undefined
