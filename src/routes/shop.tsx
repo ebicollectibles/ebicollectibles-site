@@ -32,7 +32,11 @@ export const Route = createFileRoute('/shop')({
     const description = binders
       ? 'Official Pokémon China card binders, from the Psyduck Mini Binder to the 30th Celebration 9-pocket zip binder. Ships from the US.'
       : label
-        ? `Shop ${label} — Simplified Chinese Pokémon, verified before it ships.`
+        ? match.search.category === 'Japanese Pokémon Products'
+          ? `Shop ${label} — Japanese Pokémon booster boxes and pre-orders.`
+          : match.search.preorder && !match.search.category
+            ? 'Pokémon pre-orders at EBI Collectibles: price shown up front, charged at checkout, shipped after release.'
+            : `Shop ${label} — Simplified Chinese Pokémon, verified before it ships.`
         : 'Shop the full EBI Collectibles catalog — Simplified Chinese Pokémon booster boxes, blind boxes, plush, figures, and more, verified before it ships.'
     // Every category/subcategory/price/search filter is just client-side UX
     // on top of the same underlying catalog, not distinct content — so,
@@ -340,7 +344,13 @@ function ShopPage() {
 
   return (
     <section style={{ maxWidth: 1240, margin: '0 auto', padding: '40px 20px 80px' }}>
-      <div style={monoLabel}>Shop / Simplified Chinese</div>
+      <div style={monoLabel}>
+        {search.category === 'Japanese Pokémon Products'
+          ? 'Shop / Japanese'
+          : search.category === 'Chinese Pokémon Products' || !(search.preorder || search.sale)
+            ? 'Shop / Simplified Chinese'
+            : 'Shop'}
+      </div>
       <h1 style={{ fontSize: 38, letterSpacing: '-0.025em', fontWeight: 700, margin: '10px 0 0' }}>{shopTitle}</h1>
 
       <div
