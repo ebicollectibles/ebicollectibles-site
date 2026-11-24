@@ -46,11 +46,11 @@ export function WhileYouWait({ mode }: { mode: 'cart' | 'after' }) {
   return (
     <section className={`wyw${mode === 'after' ? ' wyw--after' : ''}`} aria-labelledby={`wyw-${mode}`}>
       <style>{CSS}</style>
-      <div className="wyw-eyebrow">While you wait</div>
-      <h2 id={`wyw-${mode}`}>{mode === 'cart' ? 'In stock now' : 'Something to open while you wait'}</h2>
+      <div className="wyw-eyebrow">{mode === 'cart' ? 'Add to your order' : 'While you wait'}</div>
+      <h2 id={`wyw-${mode}`}>{mode === 'cart' ? 'Ships with your pre-order' : 'Something to open while you wait'}</h2>
       <p className="wyw-note">
         {mode === 'cart'
-          ? `Added to this order, these ship together with your pre-order once it arrives. Want them sooner? Check out your pre-order first, then order these on their own. In-stock orders ship in ${days} business days.`
+          ? 'In stock now. Anything you add here goes in the same box as your pre-order and ships together with it.'
           : `In stock now. A new order ships in ${days} business days, separate from your pre-order.`}
       </p>
       <ul className="wyw-row">

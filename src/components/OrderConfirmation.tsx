@@ -1,6 +1,5 @@
 import { Link } from '@tanstack/react-router'
 import { ALL_DELAYED_SHIPMENT_WARNING, DELAYED_SHIPMENT_WARNING } from '~/lib/order-math'
-import { SHOW_WHILE_YOU_WAIT, WhileYouWait } from '~/components/WhileYouWait'
 
 // Shared by the regular checkout form and express Apple Pay checkout (from
 // the cart page) — same order, same confirmation, regardless of how it was
@@ -12,10 +11,7 @@ export function OrderConfirmation({
   hasDelayedShipment,
   mixedDelayedShipment,
   combineWithOrderNo,
-  forcePicks = false,
 }: {
-  /** Preview page only: show the in-stock picks while SHOW_WHILE_YOU_WAIT is off. */
-  forcePicks?: boolean
   orderNo: number
   paymentStatus: string
   // True if ANY line was a pre-order at order time (see hasPreorder in
@@ -148,7 +144,6 @@ export function OrderConfirmation({
       >
         Back to the catalogue
       </Link>
-      {(SHOW_WHILE_YOU_WAIT || forcePicks) && hasPreorder && <WhileYouWait mode="after" />}
     </section>
   )
 }
