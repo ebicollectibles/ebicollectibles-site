@@ -426,7 +426,7 @@ export const BLOG_POSTS: BlogPostSummary[] = [
       "Pokémon China's 30 pure gold Pikachu cards: 999 gold, 30g each, every one in its own case. Free to see in Shanghai, Nov 28 to Dec 27.",
     tag: 'News',
     date: '2026-11-23',
-    heroImage: `${SITE_URL}/assets/blog/shanghai-gold-pikachu-cards-news-hero-v5.webp`,
+    heroImage: `${SITE_URL}/assets/blog/shanghai-gold-pikachu-cards-news-hero-v6.webp`,
     heroAlt: "The real 999 gold Pikachu 01/30 card by Ken Sugimori in its display case, which reads 999 Gold Card at the top and has a plate under the card showing 30g and 999‰, beside the headline 30 Pikachu Cards Made of Real Gold",
     glow1: 'rgb(232 192 96 / .30)',
     glow2: 'rgb(246 206 60 / .20)',
