@@ -50,6 +50,8 @@ import { Route as Blog30thCelebrationCardOriginsRouteImport } from './routes/blo
 import { Route as Blog30thCelebrationPikachuCardsArtistsRouteImport } from './routes/blog/30th-celebration-pikachu-cards-artists'
 import { Route as Blog30thCelebrationReleaseNewsRouteImport } from './routes/blog/30th-celebration-release-news'
 import { Route as Blog30thCelebrationSetGuideRouteImport } from './routes/blog/30th-celebration-set-guide'
+import { Route as BlogAreChinesePokemonCardsRealRouteImport } from './routes/blog/are-chinese-pokemon-cards-real'
+import { Route as BlogAreChinesePokemonCardsTournamentLegalRouteImport } from './routes/blog/are-chinese-pokemon-cards-tournament-legal'
 import { Route as BlogAuraSeekerReleaseNewsRouteImport } from './routes/blog/aura-seeker-release-news'
 import { Route as BlogBlackBoltCardOriginsRouteImport } from './routes/blog/black-bolt-card-origins'
 import { Route as BlogBlackBoltSetGuideRouteImport } from './routes/blog/black-bolt-set-guide'
@@ -71,6 +73,7 @@ import { Route as BlogChineseExclusivePokemonCardsRouteImport } from './routes/b
 import { Route as BlogChineseGemPackHitRatesRouteImport } from './routes/blog/chinese-gem-pack-hit-rates'
 import { Route as BlogChinesePokemonSetEnglishEquivalentsRouteImport } from './routes/blog/chinese-pokemon-set-english-equivalents'
 import { Route as BlogChinesePokemonSetsInOrderRouteImport } from './routes/blog/chinese-pokemon-sets-in-order'
+import { Route as BlogChineseVsEnglishPokemonCardsRouteImport } from './routes/blog/chinese-vs-english-pokemon-cards'
 import { Route as BlogCollect151CardOriginsRouteImport } from './routes/blog/collect-151-card-origins'
 import { Route as BlogCollect151FirstPartnerDisplaySetsReleaseNewsRouteImport } from './routes/blog/collect-151-first-partner-display-sets-release-news'
 import { Route as BlogCollect151GatheringReleaseNewsRouteImport } from './routes/blog/collect-151-gathering-release-news'
@@ -136,6 +139,7 @@ import { Route as BlogPokemon30thShanghaiGoldPikachuCardsNewsRouteImport } from 
 import { Route as BlogRewardRoundCardOriginsRouteImport } from './routes/blog/reward-round-card-origins'
 import { Route as BlogRewardRoundReleaseNewsRouteImport } from './routes/blog/reward-round-release-news'
 import { Route as BlogRewardRoundSetGuideRouteImport } from './routes/blog/reward-round-set-guide'
+import { Route as BlogSimplifiedVsTraditionalChinesePokemonCardsRouteImport } from './routes/blog/simplified-vs-traditional-chinese-pokemon-cards'
 import { Route as BlogStellarCrystalCardOriginsRouteImport } from './routes/blog/stellar-crystal-card-origins'
 import { Route as BlogStellarCrystalReleaseNewsRouteImport } from './routes/blog/stellar-crystal-release-news'
 import { Route as BlogStellarCrystalSetGuideRouteImport } from './routes/blog/stellar-crystal-set-guide'
@@ -407,6 +411,18 @@ const Blog30thCelebrationSetGuideRoute =
     path: '/blog/30th-celebration-set-guide',
     getParentRoute: () => rootRouteImport,
   } as any)
+const BlogAreChinesePokemonCardsRealRoute =
+  BlogAreChinesePokemonCardsRealRouteImport.update({
+    id: '/blog/are-chinese-pokemon-cards-real',
+    path: '/blog/are-chinese-pokemon-cards-real',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const BlogAreChinesePokemonCardsTournamentLegalRoute =
+  BlogAreChinesePokemonCardsTournamentLegalRouteImport.update({
+    id: '/blog/are-chinese-pokemon-cards-tournament-legal',
+    path: '/blog/are-chinese-pokemon-cards-tournament-legal',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const BlogAuraSeekerReleaseNewsRoute =
   BlogAuraSeekerReleaseNewsRouteImport.update({
     id: '/blog/aura-seeker-release-news',
@@ -530,6 +546,12 @@ const BlogChinesePokemonSetsInOrderRoute =
   BlogChinesePokemonSetsInOrderRouteImport.update({
     id: '/blog/chinese-pokemon-sets-in-order',
     path: '/blog/chinese-pokemon-sets-in-order',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const BlogChineseVsEnglishPokemonCardsRoute =
+  BlogChineseVsEnglishPokemonCardsRouteImport.update({
+    id: '/blog/chinese-vs-english-pokemon-cards',
+    path: '/blog/chinese-vs-english-pokemon-cards',
     getParentRoute: () => rootRouteImport,
   } as any)
 const BlogCollect151CardOriginsRoute =
@@ -903,6 +925,12 @@ const BlogRewardRoundSetGuideRoute = BlogRewardRoundSetGuideRouteImport.update({
   path: '/blog/reward-round-set-guide',
   getParentRoute: () => rootRouteImport,
 } as any)
+const BlogSimplifiedVsTraditionalChinesePokemonCardsRoute =
+  BlogSimplifiedVsTraditionalChinesePokemonCardsRouteImport.update({
+    id: '/blog/simplified-vs-traditional-chinese-pokemon-cards',
+    path: '/blog/simplified-vs-traditional-chinese-pokemon-cards',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const BlogStellarCrystalCardOriginsRoute =
   BlogStellarCrystalCardOriginsRouteImport.update({
     id: '/blog/stellar-crystal-card-origins',
@@ -1282,6 +1310,8 @@ export interface FileRoutesByFullPath {
   '/blog/30th-celebration-pikachu-cards-artists': typeof Blog30thCelebrationPikachuCardsArtistsRoute
   '/blog/30th-celebration-release-news': typeof Blog30thCelebrationReleaseNewsRoute
   '/blog/30th-celebration-set-guide': typeof Blog30thCelebrationSetGuideRoute
+  '/blog/are-chinese-pokemon-cards-real': typeof BlogAreChinesePokemonCardsRealRoute
+  '/blog/are-chinese-pokemon-cards-tournament-legal': typeof BlogAreChinesePokemonCardsTournamentLegalRoute
   '/blog/aura-seeker-release-news': typeof BlogAuraSeekerReleaseNewsRoute
   '/blog/black-bolt-card-origins': typeof BlogBlackBoltCardOriginsRoute
   '/blog/black-bolt-set-guide': typeof BlogBlackBoltSetGuideRoute
@@ -1303,6 +1333,7 @@ export interface FileRoutesByFullPath {
   '/blog/chinese-gem-pack-hit-rates': typeof BlogChineseGemPackHitRatesRoute
   '/blog/chinese-pokemon-set-english-equivalents': typeof BlogChinesePokemonSetEnglishEquivalentsRoute
   '/blog/chinese-pokemon-sets-in-order': typeof BlogChinesePokemonSetsInOrderRoute
+  '/blog/chinese-vs-english-pokemon-cards': typeof BlogChineseVsEnglishPokemonCardsRoute
   '/blog/collect-151-card-origins': typeof BlogCollect151CardOriginsRoute
   '/blog/collect-151-first-partner-display-sets-release-news': typeof BlogCollect151FirstPartnerDisplaySetsReleaseNewsRoute
   '/blog/collect-151-gathering-release-news': typeof BlogCollect151GatheringReleaseNewsRoute
@@ -1368,6 +1399,7 @@ export interface FileRoutesByFullPath {
   '/blog/reward-round-card-origins': typeof BlogRewardRoundCardOriginsRoute
   '/blog/reward-round-release-news': typeof BlogRewardRoundReleaseNewsRoute
   '/blog/reward-round-set-guide': typeof BlogRewardRoundSetGuideRoute
+  '/blog/simplified-vs-traditional-chinese-pokemon-cards': typeof BlogSimplifiedVsTraditionalChinesePokemonCardsRoute
   '/blog/stellar-crystal-card-origins': typeof BlogStellarCrystalCardOriginsRoute
   '/blog/stellar-crystal-release-news': typeof BlogStellarCrystalReleaseNewsRoute
   '/blog/stellar-crystal-set-guide': typeof BlogStellarCrystalSetGuideRoute
@@ -1472,6 +1504,8 @@ export interface FileRoutesByTo {
   '/blog/30th-celebration-pikachu-cards-artists': typeof Blog30thCelebrationPikachuCardsArtistsRoute
   '/blog/30th-celebration-release-news': typeof Blog30thCelebrationReleaseNewsRoute
   '/blog/30th-celebration-set-guide': typeof Blog30thCelebrationSetGuideRoute
+  '/blog/are-chinese-pokemon-cards-real': typeof BlogAreChinesePokemonCardsRealRoute
+  '/blog/are-chinese-pokemon-cards-tournament-legal': typeof BlogAreChinesePokemonCardsTournamentLegalRoute
   '/blog/aura-seeker-release-news': typeof BlogAuraSeekerReleaseNewsRoute
   '/blog/black-bolt-card-origins': typeof BlogBlackBoltCardOriginsRoute
   '/blog/black-bolt-set-guide': typeof BlogBlackBoltSetGuideRoute
@@ -1493,6 +1527,7 @@ export interface FileRoutesByTo {
   '/blog/chinese-gem-pack-hit-rates': typeof BlogChineseGemPackHitRatesRoute
   '/blog/chinese-pokemon-set-english-equivalents': typeof BlogChinesePokemonSetEnglishEquivalentsRoute
   '/blog/chinese-pokemon-sets-in-order': typeof BlogChinesePokemonSetsInOrderRoute
+  '/blog/chinese-vs-english-pokemon-cards': typeof BlogChineseVsEnglishPokemonCardsRoute
   '/blog/collect-151-card-origins': typeof BlogCollect151CardOriginsRoute
   '/blog/collect-151-first-partner-display-sets-release-news': typeof BlogCollect151FirstPartnerDisplaySetsReleaseNewsRoute
   '/blog/collect-151-gathering-release-news': typeof BlogCollect151GatheringReleaseNewsRoute
@@ -1558,6 +1593,7 @@ export interface FileRoutesByTo {
   '/blog/reward-round-card-origins': typeof BlogRewardRoundCardOriginsRoute
   '/blog/reward-round-release-news': typeof BlogRewardRoundReleaseNewsRoute
   '/blog/reward-round-set-guide': typeof BlogRewardRoundSetGuideRoute
+  '/blog/simplified-vs-traditional-chinese-pokemon-cards': typeof BlogSimplifiedVsTraditionalChinesePokemonCardsRoute
   '/blog/stellar-crystal-card-origins': typeof BlogStellarCrystalCardOriginsRoute
   '/blog/stellar-crystal-release-news': typeof BlogStellarCrystalReleaseNewsRoute
   '/blog/stellar-crystal-set-guide': typeof BlogStellarCrystalSetGuideRoute
@@ -1663,6 +1699,8 @@ export interface FileRoutesById {
   '/blog/30th-celebration-pikachu-cards-artists': typeof Blog30thCelebrationPikachuCardsArtistsRoute
   '/blog/30th-celebration-release-news': typeof Blog30thCelebrationReleaseNewsRoute
   '/blog/30th-celebration-set-guide': typeof Blog30thCelebrationSetGuideRoute
+  '/blog/are-chinese-pokemon-cards-real': typeof BlogAreChinesePokemonCardsRealRoute
+  '/blog/are-chinese-pokemon-cards-tournament-legal': typeof BlogAreChinesePokemonCardsTournamentLegalRoute
   '/blog/aura-seeker-release-news': typeof BlogAuraSeekerReleaseNewsRoute
   '/blog/black-bolt-card-origins': typeof BlogBlackBoltCardOriginsRoute
   '/blog/black-bolt-set-guide': typeof BlogBlackBoltSetGuideRoute
@@ -1684,6 +1722,7 @@ export interface FileRoutesById {
   '/blog/chinese-gem-pack-hit-rates': typeof BlogChineseGemPackHitRatesRoute
   '/blog/chinese-pokemon-set-english-equivalents': typeof BlogChinesePokemonSetEnglishEquivalentsRoute
   '/blog/chinese-pokemon-sets-in-order': typeof BlogChinesePokemonSetsInOrderRoute
+  '/blog/chinese-vs-english-pokemon-cards': typeof BlogChineseVsEnglishPokemonCardsRoute
   '/blog/collect-151-card-origins': typeof BlogCollect151CardOriginsRoute
   '/blog/collect-151-first-partner-display-sets-release-news': typeof BlogCollect151FirstPartnerDisplaySetsReleaseNewsRoute
   '/blog/collect-151-gathering-release-news': typeof BlogCollect151GatheringReleaseNewsRoute
@@ -1749,6 +1788,7 @@ export interface FileRoutesById {
   '/blog/reward-round-card-origins': typeof BlogRewardRoundCardOriginsRoute
   '/blog/reward-round-release-news': typeof BlogRewardRoundReleaseNewsRoute
   '/blog/reward-round-set-guide': typeof BlogRewardRoundSetGuideRoute
+  '/blog/simplified-vs-traditional-chinese-pokemon-cards': typeof BlogSimplifiedVsTraditionalChinesePokemonCardsRoute
   '/blog/stellar-crystal-card-origins': typeof BlogStellarCrystalCardOriginsRoute
   '/blog/stellar-crystal-release-news': typeof BlogStellarCrystalReleaseNewsRoute
   '/blog/stellar-crystal-set-guide': typeof BlogStellarCrystalSetGuideRoute
@@ -1855,6 +1895,8 @@ export interface FileRouteTypes {
     | '/blog/30th-celebration-pikachu-cards-artists'
     | '/blog/30th-celebration-release-news'
     | '/blog/30th-celebration-set-guide'
+    | '/blog/are-chinese-pokemon-cards-real'
+    | '/blog/are-chinese-pokemon-cards-tournament-legal'
     | '/blog/aura-seeker-release-news'
     | '/blog/black-bolt-card-origins'
     | '/blog/black-bolt-set-guide'
@@ -1876,6 +1918,7 @@ export interface FileRouteTypes {
     | '/blog/chinese-gem-pack-hit-rates'
     | '/blog/chinese-pokemon-set-english-equivalents'
     | '/blog/chinese-pokemon-sets-in-order'
+    | '/blog/chinese-vs-english-pokemon-cards'
     | '/blog/collect-151-card-origins'
     | '/blog/collect-151-first-partner-display-sets-release-news'
     | '/blog/collect-151-gathering-release-news'
@@ -1941,6 +1984,7 @@ export interface FileRouteTypes {
     | '/blog/reward-round-card-origins'
     | '/blog/reward-round-release-news'
     | '/blog/reward-round-set-guide'
+    | '/blog/simplified-vs-traditional-chinese-pokemon-cards'
     | '/blog/stellar-crystal-card-origins'
     | '/blog/stellar-crystal-release-news'
     | '/blog/stellar-crystal-set-guide'
@@ -2045,6 +2089,8 @@ export interface FileRouteTypes {
     | '/blog/30th-celebration-pikachu-cards-artists'
     | '/blog/30th-celebration-release-news'
     | '/blog/30th-celebration-set-guide'
+    | '/blog/are-chinese-pokemon-cards-real'
+    | '/blog/are-chinese-pokemon-cards-tournament-legal'
     | '/blog/aura-seeker-release-news'
     | '/blog/black-bolt-card-origins'
     | '/blog/black-bolt-set-guide'
@@ -2066,6 +2112,7 @@ export interface FileRouteTypes {
     | '/blog/chinese-gem-pack-hit-rates'
     | '/blog/chinese-pokemon-set-english-equivalents'
     | '/blog/chinese-pokemon-sets-in-order'
+    | '/blog/chinese-vs-english-pokemon-cards'
     | '/blog/collect-151-card-origins'
     | '/blog/collect-151-first-partner-display-sets-release-news'
     | '/blog/collect-151-gathering-release-news'
@@ -2131,6 +2178,7 @@ export interface FileRouteTypes {
     | '/blog/reward-round-card-origins'
     | '/blog/reward-round-release-news'
     | '/blog/reward-round-set-guide'
+    | '/blog/simplified-vs-traditional-chinese-pokemon-cards'
     | '/blog/stellar-crystal-card-origins'
     | '/blog/stellar-crystal-release-news'
     | '/blog/stellar-crystal-set-guide'
@@ -2235,6 +2283,8 @@ export interface FileRouteTypes {
     | '/blog/30th-celebration-pikachu-cards-artists'
     | '/blog/30th-celebration-release-news'
     | '/blog/30th-celebration-set-guide'
+    | '/blog/are-chinese-pokemon-cards-real'
+    | '/blog/are-chinese-pokemon-cards-tournament-legal'
     | '/blog/aura-seeker-release-news'
     | '/blog/black-bolt-card-origins'
     | '/blog/black-bolt-set-guide'
@@ -2256,6 +2306,7 @@ export interface FileRouteTypes {
     | '/blog/chinese-gem-pack-hit-rates'
     | '/blog/chinese-pokemon-set-english-equivalents'
     | '/blog/chinese-pokemon-sets-in-order'
+    | '/blog/chinese-vs-english-pokemon-cards'
     | '/blog/collect-151-card-origins'
     | '/blog/collect-151-first-partner-display-sets-release-news'
     | '/blog/collect-151-gathering-release-news'
@@ -2321,6 +2372,7 @@ export interface FileRouteTypes {
     | '/blog/reward-round-card-origins'
     | '/blog/reward-round-release-news'
     | '/blog/reward-round-set-guide'
+    | '/blog/simplified-vs-traditional-chinese-pokemon-cards'
     | '/blog/stellar-crystal-card-origins'
     | '/blog/stellar-crystal-release-news'
     | '/blog/stellar-crystal-set-guide'
@@ -2426,6 +2478,8 @@ export interface RootRouteChildren {
   Blog30thCelebrationPikachuCardsArtistsRoute: typeof Blog30thCelebrationPikachuCardsArtistsRoute
   Blog30thCelebrationReleaseNewsRoute: typeof Blog30thCelebrationReleaseNewsRoute
   Blog30thCelebrationSetGuideRoute: typeof Blog30thCelebrationSetGuideRoute
+  BlogAreChinesePokemonCardsRealRoute: typeof BlogAreChinesePokemonCardsRealRoute
+  BlogAreChinesePokemonCardsTournamentLegalRoute: typeof BlogAreChinesePokemonCardsTournamentLegalRoute
   BlogAuraSeekerReleaseNewsRoute: typeof BlogAuraSeekerReleaseNewsRoute
   BlogBlackBoltCardOriginsRoute: typeof BlogBlackBoltCardOriginsRoute
   BlogBlackBoltSetGuideRoute: typeof BlogBlackBoltSetGuideRoute
@@ -2447,6 +2501,7 @@ export interface RootRouteChildren {
   BlogChineseGemPackHitRatesRoute: typeof BlogChineseGemPackHitRatesRoute
   BlogChinesePokemonSetEnglishEquivalentsRoute: typeof BlogChinesePokemonSetEnglishEquivalentsRoute
   BlogChinesePokemonSetsInOrderRoute: typeof BlogChinesePokemonSetsInOrderRoute
+  BlogChineseVsEnglishPokemonCardsRoute: typeof BlogChineseVsEnglishPokemonCardsRoute
   BlogCollect151CardOriginsRoute: typeof BlogCollect151CardOriginsRoute
   BlogCollect151FirstPartnerDisplaySetsReleaseNewsRoute: typeof BlogCollect151FirstPartnerDisplaySetsReleaseNewsRoute
   BlogCollect151GatheringReleaseNewsRoute: typeof BlogCollect151GatheringReleaseNewsRoute
@@ -2512,6 +2567,7 @@ export interface RootRouteChildren {
   BlogRewardRoundCardOriginsRoute: typeof BlogRewardRoundCardOriginsRoute
   BlogRewardRoundReleaseNewsRoute: typeof BlogRewardRoundReleaseNewsRoute
   BlogRewardRoundSetGuideRoute: typeof BlogRewardRoundSetGuideRoute
+  BlogSimplifiedVsTraditionalChinesePokemonCardsRoute: typeof BlogSimplifiedVsTraditionalChinesePokemonCardsRoute
   BlogStellarCrystalCardOriginsRoute: typeof BlogStellarCrystalCardOriginsRoute
   BlogStellarCrystalReleaseNewsRoute: typeof BlogStellarCrystalReleaseNewsRoute
   BlogStellarCrystalSetGuideRoute: typeof BlogStellarCrystalSetGuideRoute
@@ -2867,6 +2923,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof Blog30thCelebrationSetGuideRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/blog/are-chinese-pokemon-cards-real': {
+      id: '/blog/are-chinese-pokemon-cards-real'
+      path: '/blog/are-chinese-pokemon-cards-real'
+      fullPath: '/blog/are-chinese-pokemon-cards-real'
+      preLoaderRoute: typeof BlogAreChinesePokemonCardsRealRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/are-chinese-pokemon-cards-tournament-legal': {
+      id: '/blog/are-chinese-pokemon-cards-tournament-legal'
+      path: '/blog/are-chinese-pokemon-cards-tournament-legal'
+      fullPath: '/blog/are-chinese-pokemon-cards-tournament-legal'
+      preLoaderRoute: typeof BlogAreChinesePokemonCardsTournamentLegalRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/blog/aura-seeker-release-news': {
       id: '/blog/aura-seeker-release-news'
       path: '/blog/aura-seeker-release-news'
@@ -3012,6 +3082,13 @@ declare module '@tanstack/react-router' {
       path: '/blog/chinese-pokemon-sets-in-order'
       fullPath: '/blog/chinese-pokemon-sets-in-order'
       preLoaderRoute: typeof BlogChinesePokemonSetsInOrderRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/chinese-vs-english-pokemon-cards': {
+      id: '/blog/chinese-vs-english-pokemon-cards'
+      path: '/blog/chinese-vs-english-pokemon-cards'
+      fullPath: '/blog/chinese-vs-english-pokemon-cards'
+      preLoaderRoute: typeof BlogChineseVsEnglishPokemonCardsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/blog/collect-151-card-origins': {
@@ -3467,6 +3544,13 @@ declare module '@tanstack/react-router' {
       path: '/blog/reward-round-set-guide'
       fullPath: '/blog/reward-round-set-guide'
       preLoaderRoute: typeof BlogRewardRoundSetGuideRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/simplified-vs-traditional-chinese-pokemon-cards': {
+      id: '/blog/simplified-vs-traditional-chinese-pokemon-cards'
+      path: '/blog/simplified-vs-traditional-chinese-pokemon-cards'
+      fullPath: '/blog/simplified-vs-traditional-chinese-pokemon-cards'
+      preLoaderRoute: typeof BlogSimplifiedVsTraditionalChinesePokemonCardsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/blog/stellar-crystal-card-origins': {
@@ -3939,6 +4023,9 @@ const rootRouteChildren: RootRouteChildren = {
     Blog30thCelebrationPikachuCardsArtistsRoute,
   Blog30thCelebrationReleaseNewsRoute: Blog30thCelebrationReleaseNewsRoute,
   Blog30thCelebrationSetGuideRoute: Blog30thCelebrationSetGuideRoute,
+  BlogAreChinesePokemonCardsRealRoute: BlogAreChinesePokemonCardsRealRoute,
+  BlogAreChinesePokemonCardsTournamentLegalRoute:
+    BlogAreChinesePokemonCardsTournamentLegalRoute,
   BlogAuraSeekerReleaseNewsRoute: BlogAuraSeekerReleaseNewsRoute,
   BlogBlackBoltCardOriginsRoute: BlogBlackBoltCardOriginsRoute,
   BlogBlackBoltSetGuideRoute: BlogBlackBoltSetGuideRoute,
@@ -3963,6 +4050,7 @@ const rootRouteChildren: RootRouteChildren = {
   BlogChinesePokemonSetEnglishEquivalentsRoute:
     BlogChinesePokemonSetEnglishEquivalentsRoute,
   BlogChinesePokemonSetsInOrderRoute: BlogChinesePokemonSetsInOrderRoute,
+  BlogChineseVsEnglishPokemonCardsRoute: BlogChineseVsEnglishPokemonCardsRoute,
   BlogCollect151CardOriginsRoute: BlogCollect151CardOriginsRoute,
   BlogCollect151FirstPartnerDisplaySetsReleaseNewsRoute:
     BlogCollect151FirstPartnerDisplaySetsReleaseNewsRoute,
@@ -4050,6 +4138,8 @@ const rootRouteChildren: RootRouteChildren = {
   BlogRewardRoundCardOriginsRoute: BlogRewardRoundCardOriginsRoute,
   BlogRewardRoundReleaseNewsRoute: BlogRewardRoundReleaseNewsRoute,
   BlogRewardRoundSetGuideRoute: BlogRewardRoundSetGuideRoute,
+  BlogSimplifiedVsTraditionalChinesePokemonCardsRoute:
+    BlogSimplifiedVsTraditionalChinesePokemonCardsRoute,
   BlogStellarCrystalCardOriginsRoute: BlogStellarCrystalCardOriginsRoute,
   BlogStellarCrystalReleaseNewsRoute: BlogStellarCrystalReleaseNewsRoute,
   BlogStellarCrystalSetGuideRoute: BlogStellarCrystalSetGuideRoute,

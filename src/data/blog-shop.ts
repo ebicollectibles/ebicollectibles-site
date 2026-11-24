@@ -104,6 +104,25 @@ const SET_PRODUCTS: Record<string, string[]> = {
     'pokemon-chinese-pikachu-30th-celebration-figures-blind-box',
     'pokemon-chinese-pikachu-30th-celebration-plush-keychain',
   ],
+  // Evergreen explainers, keyed by their full slug, listed last so these
+  // products still resolve to their own set's posts first.
+  'are-chinese-pokemon-cards-real': [
+    'pokemon-chinese-black-bolt-slim-booster-box',
+    'pokemon-chinese-white-flare-slim-booster-box',
+  ],
+  'simplified-vs-traditional-chinese-pokemon-cards': [
+    'pokemon-chinese-30th-celebration-booster-box',
+    'pokemon-chinese-gem-volume-7-booster-box',
+  ],
+  'chinese-vs-english-pokemon-cards': [
+    'pokemon-chinese-30th-celebration-booster-box',
+    'pokemon-chinese-gem-volume-7-booster-box',
+    'pokemon-chinese-chasing-glory-slim-booster-box',
+  ],
+  'are-chinese-pokemon-cards-tournament-legal': [
+    'pokemon-chinese-blade-awakening-slim-booster-box',
+    'pokemon-chinese-blade-awakening-jumbo-booster-box',
+  ],
 }
 
 // A release post that covers more than one set. Each set's own page and
