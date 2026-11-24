@@ -6,7 +6,7 @@
 // the post itself.
 import { SITE_URL, R2_IMAGE_HOST } from '~/lib/gem-sets/constants'
 
-export type BlogPostSlug = 'chinese-pokemon-sets-in-order' | 'gem-vol-7-release-news' | 'gem-vol-7-set-guide' | 'gem-vol-7-card-origins' | 'gem-vol-6-release-news' | 'gem-vol-6-set-guide' | 'gem-vol-6-card-origins' | 'gem-vol-5-release-news' | 'gem-vol-5-set-guide' | 'gem-vol-5-card-origins' | 'gem-vol-4-release-news' | 'gem-vol-4-set-guide' | 'gem-vol-4-card-origins' | 'gem-vol-3-release-news' | 'gem-vol-3-set-guide' | 'gem-vol-3-card-origins' | 'gem-vol-2-release-news' | 'gem-vol-2-set-guide' | 'gem-vol-2-card-origins' | 'gem-vol-1-release-news' | 'gem-vol-1-set-guide' | 'gem-vol-1-card-origins' | '30th-celebration-release-news' | '30th-celebration-set-guide' | '30th-celebration-card-origins' | 'chasing-glory-release-news' | 'chasing-glory-set-guide' | 'chasing-glory-card-origins' | 'terastal-gathering-release-news' | 'terastal-gathering-set-guide' | 'terastal-gathering-card-origins' | 'reward-round-release-news' | 'reward-round-set-guide' | 'reward-round-card-origins' | 'fearless-terastal-release-news' | 'fearless-terastal-set-guide' | 'fearless-terastal-card-origins' | 'eternal-birth-release-news' | 'eternal-birth-set-guide' | 'eternal-birth-card-origins' | 'miracle-journey-release-news' | 'miracle-journey-set-guide' | 'miracle-journey-card-origins' | 'black-crystal-blaze-release-news' | 'black-crystal-blaze-set-guide' | 'black-crystal-blaze-card-origins' | 'black-bolt-white-flare-release-news' | 'black-bolt-set-guide' | 'black-bolt-card-origins' | 'white-flare-set-guide' | 'white-flare-card-origins' | 'true-mystery-release-news' | 'true-mystery-set-guide' | 'true-mystery-card-origins' | 'blade-awakening-release-news' | 'blade-awakening-set-guide' | 'blade-awakening-card-origins' | 'brilliant-fantasy-release-news' | 'brilliant-fantasy-set-guide' | 'brilliant-fantasy-card-origins' | 'stellar-crystal-release-news' | 'stellar-crystal-set-guide' | 'stellar-crystal-card-origins' | 'pikachu-dream-painting-figures-release-news' | 'funism-ditto-palm-size-wonders-release-news' | 'team-rocket-briefcase-release-news' | 'pikachu-gift-box-release-news' | 'day-night-gift-box-release-news' | 'greninja-sylveon-display-set-release-news' | 'charizard-figure-box-release-news' | 'nuzzle-cheeks-plush-card-display-release-news' | 'eevee-gift-box-release-news' | 'pikachu-30th-plush-keychain-release-news' | 'funism-first-partner-mini-figures-release-news' | 'first-partner-30th-vol-1-release-news' | 'first-partner-30th-vol-2-release-news' | 'first-partner-30th-vol-3-release-news' | 'aura-seeker-release-news' | 'pokemon-30th-shanghai-gold-pikachu-cards-news' | '30th-celebration-pikachu-cards-artists' | 'futuristic-pikachu-box-release-news' | 'lisia-gift-box-release-news' | 'ogerpon-mask-gift-box-release-news' | 'lillie-n-battle-box-release-news' | 'japanese-30th-celebration-release-news' | 'storm-emeralda-release-news' | 'master-strategy-deck-raging-bolt-dragapult-gholdengo-release-news' | 'master-strategy-deck-charizard-gardevoir-miraidon-release-news' | 'espeon-umbreon-deluxe-deck-release-news' | 'journey-gift-boxes-release-news' | 'collect-151-first-partner-display-sets-release-news' | 'eevee-dream-painting-figures-release-news' | 'dream-painting-151-vol-1-release-news' | 'dream-painting-water-vol-2-release-news' | 'chinese-gem-pack-hit-rates' | 'collect-151-journey-release-news' | 'collect-151-hope-release-news' | 'collect-151-surprise-release-news' | 'collect-151-gathering-release-news' | 'collect-151-set-guide' | 'collect-151-card-origins'
+export type BlogPostSlug = 'chinese-pokemon-sets-in-order' | 'gem-vol-7-release-news' | 'gem-vol-7-set-guide' | 'gem-vol-7-card-origins' | 'gem-vol-6-release-news' | 'gem-vol-6-set-guide' | 'gem-vol-6-card-origins' | 'gem-vol-5-release-news' | 'gem-vol-5-set-guide' | 'gem-vol-5-card-origins' | 'gem-vol-4-release-news' | 'gem-vol-4-set-guide' | 'gem-vol-4-card-origins' | 'gem-vol-3-release-news' | 'gem-vol-3-set-guide' | 'gem-vol-3-card-origins' | 'gem-vol-2-release-news' | 'gem-vol-2-set-guide' | 'gem-vol-2-card-origins' | 'gem-vol-1-release-news' | 'gem-vol-1-set-guide' | 'gem-vol-1-card-origins' | '30th-celebration-release-news' | '30th-celebration-set-guide' | '30th-celebration-card-origins' | 'chasing-glory-release-news' | 'chasing-glory-set-guide' | 'chasing-glory-card-origins' | 'terastal-gathering-release-news' | 'terastal-gathering-set-guide' | 'terastal-gathering-card-origins' | 'reward-round-release-news' | 'reward-round-set-guide' | 'reward-round-card-origins' | 'fearless-terastal-release-news' | 'fearless-terastal-set-guide' | 'fearless-terastal-card-origins' | 'eternal-birth-release-news' | 'eternal-birth-set-guide' | 'eternal-birth-card-origins' | 'miracle-journey-release-news' | 'miracle-journey-set-guide' | 'miracle-journey-card-origins' | 'black-crystal-blaze-release-news' | 'black-crystal-blaze-set-guide' | 'black-crystal-blaze-card-origins' | 'black-bolt-white-flare-release-news' | 'black-bolt-set-guide' | 'black-bolt-card-origins' | 'white-flare-set-guide' | 'white-flare-card-origins' | 'true-mystery-release-news' | 'true-mystery-set-guide' | 'true-mystery-card-origins' | 'blade-awakening-release-news' | 'blade-awakening-set-guide' | 'blade-awakening-card-origins' | 'brilliant-fantasy-release-news' | 'brilliant-fantasy-set-guide' | 'brilliant-fantasy-card-origins' | 'stellar-crystal-release-news' | 'stellar-crystal-set-guide' | 'stellar-crystal-card-origins' | 'pikachu-dream-painting-figures-release-news' | 'funism-ditto-palm-size-wonders-release-news' | 'team-rocket-briefcase-release-news' | 'pikachu-gift-box-release-news' | 'day-night-gift-box-release-news' | 'greninja-sylveon-display-set-release-news' | 'charizard-figure-box-release-news' | 'nuzzle-cheeks-plush-card-display-release-news' | 'eevee-gift-box-release-news' | 'pikachu-30th-plush-keychain-release-news' | 'funism-first-partner-mini-figures-release-news' | 'first-partner-30th-vol-1-release-news' | 'first-partner-30th-vol-2-release-news' | 'first-partner-30th-vol-3-release-news' | 'aura-seeker-release-news' | 'pokemon-30th-shanghai-gold-pikachu-cards-news' | '30th-celebration-pikachu-cards-artists' | 'futuristic-pikachu-box-release-news' | 'lisia-gift-box-release-news' | 'ogerpon-mask-gift-box-release-news' | 'lillie-n-battle-box-release-news' | 'japanese-30th-celebration-release-news' | 'storm-emeralda-release-news' | 'master-strategy-deck-raging-bolt-dragapult-gholdengo-release-news' | 'master-strategy-deck-charizard-gardevoir-miraidon-release-news' | 'espeon-umbreon-deluxe-deck-release-news' | 'journey-gift-boxes-release-news' | 'collect-151-first-partner-display-sets-release-news' | 'eevee-dream-painting-figures-release-news' | 'dream-painting-151-vol-1-release-news' | 'dream-painting-water-vol-2-release-news' | 'chinese-gem-pack-hit-rates' | 'collect-151-journey-release-news' | 'collect-151-hope-release-news' | 'collect-151-surprise-release-news' | 'collect-151-gathering-release-news' | 'collect-151-set-guide' | 'collect-151-card-origins' | 'are-chinese-pokemon-cards-real' | 'simplified-vs-traditional-chinese-pokemon-cards' | 'chinese-vs-english-pokemon-cards' | 'are-chinese-pokemon-cards-tournament-legal'
 
 export interface BlogPostSummary {
   slug: BlogPostSlug
@@ -778,6 +778,70 @@ export const BLOG_POSTS: BlogPostSummary[] = [
     heroAlt: 'The Dream Painting Water figure set blind box with Starmie on the front and the secret Wailord figure on its stand beside it',
     glow1: 'rgb(120 196 246 / .30)',
     glow2: 'rgb(90 140 220 / .22)',
+  },
+  {
+    slug: 'are-chinese-pokemon-cards-real',
+    path: '/blog/are-chinese-pokemon-cards-real',
+    title: 'Are Chinese Pokémon Cards Real? What Official Simplified Chinese Cards Are',
+    excerpt:
+      'Simplified Chinese Pokémon cards are official, made for mainland China and on sale there since October 28, 2022. What they are, who makes them, and five checks from Pokémon China’s own pages.',
+    seoTitle: 'Are Chinese Pokémon Cards Real? Official Simplified Chinese TCG',
+    seoDescription:
+      'Yes: Simplified Chinese Pokémon cards are official, sold in mainland China since October 2022. Who makes them and how to check a card, from official sources.',
+    tag: 'Collecting guide',
+    date: '2026-11-24',
+    heroImage: `${SITE_URL}/assets/blog/are-chinese-pokemon-cards-real-hero.webp`,
+    heroAlt: 'Are Chinese Pokémon Cards Real? banner: the Simplified Chinese Black Bolt and White Flare booster packs side by side',
+    glow1: 'rgb(246 206 60 / .24)',
+    glow2: 'rgb(58 70 96 / .32)',
+  },
+  {
+    slug: 'simplified-vs-traditional-chinese-pokemon-cards',
+    path: '/blog/simplified-vs-traditional-chinese-pokemon-cards',
+    title: 'Simplified vs Traditional Chinese Pokémon Cards: How to Tell Them Apart',
+    excerpt:
+      'Simplified and Traditional Chinese Pokémon cards are two separate official versions. How to tell them apart by script, set code and holo, and where each one can be played.',
+    seoTitle: 'Simplified vs Traditional Chinese Pokémon Cards: How to Tell',
+    seoDescription:
+      'Simplified Chinese Pokémon cards say 宝可梦, Traditional Chinese say 寶可夢. Set codes, holos, products and tournament rules compared, from official sources.',
+    tag: 'Collecting guide',
+    date: '2026-11-24',
+    heroImage: `${SITE_URL}/assets/blog/simplified-vs-traditional-chinese-pokemon-cards-hero.webp`,
+    heroAlt: 'Simplified vs Traditional Chinese banner: the word Pokémon written 宝可梦 in Simplified Chinese beside 寶可夢 in Traditional Chinese',
+    glow1: 'rgb(120 200 230 / .26)',
+    glow2: 'rgb(246 206 60 / .20)',
+  },
+  {
+    slug: 'chinese-vs-english-pokemon-cards',
+    path: '/blog/chinese-vs-english-pokemon-cards',
+    title: 'Chinese vs English Pokémon Cards: What Is Actually Different',
+    excerpt:
+      'Simplified Chinese Pokémon cards come in their own sets, in slim, jumbo and Gem Packs, with different rarity names and Chinese Exclusive cards. What changes from English, set by set.',
+    seoTitle: 'Chinese vs English Pokémon Cards: Sets, Packs & Rarities Compared',
+    seoDescription:
+      'How Simplified Chinese Pokémon cards differ from English: their own sets, slim, jumbo and Gem Packs, rarity names and Chinese Exclusive cards.',
+    tag: 'Collecting guide',
+    date: '2026-11-24',
+    heroImage: `${SITE_URL}/assets/blog/chinese-vs-english-pokemon-cards-hero.webp`,
+    heroAlt: 'Chinese vs English Pokémon Cards banner: the Simplified Chinese 30th Celebration pack in front of a Gem Pack Vol. 7 pack and a Chasing Glory pack',
+    glow1: 'rgb(240 120 160 / .24)',
+    glow2: 'rgb(222 185 97 / .26)',
+  },
+  {
+    slug: 'are-chinese-pokemon-cards-tournament-legal',
+    path: '/blog/are-chinese-pokemon-cards-tournament-legal',
+    title: 'Can You Play Chinese Pokémon Cards in Tournaments?',
+    excerpt:
+      'What the Play! Pokémon TCG Tournament Handbook, Pokémon China and Pokémon’s Hong Kong site say about card languages, quoted word for word: where Chinese cards are legal and where they are not.',
+    seoTitle: 'Are Chinese Pokémon Cards Tournament Legal? The Official Rules',
+    seoDescription:
+      'Are Chinese Pokémon cards tournament legal? The Play! Pokémon handbook’s language rules, the exceptions, and the rules in mainland China, Hong Kong and Macau.',
+    tag: 'Collecting guide',
+    date: '2026-11-24',
+    heroImage: `${SITE_URL}/assets/blog/chinese-pokemon-cards-tournament-legal-hero.webp`,
+    heroAlt: 'Can You Play Chinese Cards in Tournaments? banner: the Simplified Chinese Blade Awakening pack in front of Stellar Crystal and Chasing Glory packs',
+    glow1: 'rgb(110 200 150 / .24)',
+    glow2: 'rgb(30 80 160 / .30)',
   },
   {
     slug: 'chinese-gem-pack-hit-rates',
