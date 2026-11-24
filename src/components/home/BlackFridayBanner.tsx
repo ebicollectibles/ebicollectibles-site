@@ -143,9 +143,6 @@ export function BlackFridayBanner() {
             <Link to="/shop" search={{ sale: true }} className="bf-btn">
               Shop the sale →
             </Link>
-            <Link to="/shop" search={{ sale: true, subcategory: 'Booster Box' }} className="bf-btn2">
-              Booster boxes on sale
-            </Link>
           </div>
         </div>
       </div>

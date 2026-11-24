@@ -306,6 +306,41 @@ interface OrderEmailData {
   // checkout, which reads like a pricing mistake rather than the free
   // shipping they just picked.
   combineWithOrderNo?: number
+  // Whether the order is on a customer account (signed in, or a guest email
+  // that matches one). Only then can a later in-stock order be set to ship
+  // with this pre-order, so the add-on prompt below only offers that here.
+  hasAccount?: boolean
+}
+
+// A soft "buy something else" prompt at the end of the confirmation. On a
+// pre-order it points at adding in-stock items that ship with it (owner
+// wants pre-order buyers to add more); otherwise at what's new. Facts only:
+// the ship-with option exists only for account orders (see
+// ALLOW_JOINING_PENDING_PREORDER in server/orders.ts).
+function addOnPrompt(order: OrderEmailData): { label: string; body: string; button: string; url: string } {
+  const utm = (c: string) => `utm_source=email&utm_medium=order_confirmation&utm_campaign=${c}`
+  if (order.hasPreorder && order.hasAccount) {
+    return {
+      label: 'Before your pre-order ships',
+      body: 'Want to add something to the box? Sign in, add any in-stock item to your cart, and at checkout choose to ship it with this order. No extra shipping.',
+      button: 'Shop in-stock boxes',
+      url: `${SITE_URL}/shop?subcategory=Booster%20Box&${utm('preorder_addon')}`,
+    }
+  }
+  if (order.hasPreorder) {
+    return {
+      label: 'While you wait',
+      body: 'Something to open before your pre-order arrives? In-stock orders ship in 1–2 business days.',
+      button: 'Shop in-stock boxes',
+      url: `${SITE_URL}/shop?subcategory=Booster%20Box&${utm('preorder_wait')}`,
+    }
+  }
+  return {
+    label: 'Coming up',
+    body: 'See the newest arrivals and open pre-orders.',
+    button: "See what's new",
+    url: `${SITE_URL}/new-and-upcoming?${utm('whats_new')}`,
+  }
 }
 
 // resendId is the Resend-assigned email id from a real send — kept so a
@@ -324,6 +359,7 @@ export async function sendOrderConfirmationEmail(order: OrderEmailData): Promise
 
   const address = formatAddress(order)
   const orderUrl = await orderViewUrl(order.orderId)
+  const addOn = addOnPrompt(order)
 
   const detailCells = [
     address ? { label: 'Ship to', valueHtml: address } : null,
@@ -364,6 +400,10 @@ export async function sendOrderConfirmationEmail(order: OrderEmailData): Promise
           )
         : ''
     }
+    ${section(
+      `${monoLabel(addOn.label)}${section(paragraph(addOn.body, { size: 14, color: INK }), 8)}${section(inlineButton(addOn.button, addOn.url), 14)}`,
+      28,
+    )}
     ${section(paragraph(`Questions about this order? Email us at <a href="mailto:eastblueinternational@gmail.com" style="color:${MUTED};">eastblueinternational@gmail.com</a>.`, { size: 13 }), 24)}
   `
 
@@ -397,6 +437,9 @@ export async function sendOrderConfirmationEmail(order: OrderEmailData): Promise
       : null,
     '',
     `View your order: ${orderUrl}`,
+    '',
+    `${addOn.body} ${addOn.button}: ${addOn.url}`,
+    '',
     'Questions about this order? Email us at eastblueinternational@gmail.com.',
   ]
     .filter((line) => line !== null)

@@ -222,10 +222,10 @@ export function HomeV2({ products, live }: { products: Product[]; live: Record<s
     // Only pre-orders that can actually be placed; "opens soon" items stay out
     // of the band so it never shows a row of disabled buttons.
     const preorders = eligible.filter((p) => p.preorder && !p.comingSoon && !p.notSellable)
-    // New & Upcoming as admin ranks it, without anything the pre-order band or
-    // the top of Best sellers already shows, so a product isn't repeated.
-    const seen = new Set([...preorders.map((p) => p.id), ...best.slice(0, 8).map((p) => p.id)])
-    const fresh = rankProducts(products, 'newAndUpcomingRank').filter((p) => p.newAndUpcomingRank != null && !seen.has(p.id))
+    // New & Upcoming as admin ranks it, without what the top of Best sellers
+    // already shows. Pre-orders stay in (owner wants Aura Seeker leading it).
+    const seen = new Set(best.slice(0, 8).map((p) => p.id))
+    const fresh = rankProducts(products, 'newAndUpcomingRank').filter((p) => p.newAndUpcomingRank != null && (p.preorder || !seen.has(p.id)))
     return { eligible, sale, saleCount, best, preorders, fresh }
   }, [products])
 

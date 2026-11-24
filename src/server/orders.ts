@@ -679,6 +679,7 @@ export const placeOrder = createServerFn({ method: 'POST' })
         items: result.lineDetails.map((l) => ({ productName: l.name, qty: l.qty, unitPrice: l.unitPrice, img: l.img })),
         hasPreorder,
         combineWithOrderNo,
+        hasAccount: !!userId,
       })
       await db.insert(emailEvents).values({
         orderId: result.orderId,
