@@ -123,6 +123,24 @@ const SET_PRODUCTS: Record<string, string[]> = {
     'pokemon-chinese-blade-awakening-slim-booster-box',
     'pokemon-chinese-blade-awakening-jumbo-booster-box',
   ],
+  // The slim vs jumbo guide sells every set's slim and jumbo boxes, newest set
+  // first. Listed last so each box still resolves to its own set's posts.
+  'chinese-pokemon-slim-vs-jumbo': [
+    'pokemon-chinese-black-bolt-slim-booster-box',
+    'pokemon-chinese-black-bolt-jumbo-booster-box',
+    'pokemon-chinese-white-flare-slim-booster-box',
+    'pokemon-chinese-white-flare-jumbo-booster-box',
+    'pokemon-chinese-chasing-glory-slim-booster-box',
+    'pokemon-chinese-chasing-glory-jumbo-booster-box',
+    'pokemon-chinese-brilliant-fantasy-slim-booster-box',
+    'pokemon-chinese-brilliant-fantasy-jumbo-booster-box',
+    'pokemon-chinese-blade-awakening-slim-booster-box',
+    'pokemon-chinese-blade-awakening-jumbo-booster-box',
+    'pokemon-chinese-true-mystery-slim-booster-box',
+    'pokemon-chinese-true-mystery-jumbo-booster-box',
+    'pokemon-chinese-black-crystal-blaze-booster-box',
+    'pokemon-chinese-black-crystal-blaze-jumbo-booster-box',
+  ],
 }
 
 // A release post that covers more than one set. Each set's own page and

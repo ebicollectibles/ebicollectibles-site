@@ -6,7 +6,7 @@
 // the post itself.
 import { SITE_URL, R2_IMAGE_HOST } from '~/lib/gem-sets/constants'
 
-export type BlogPostSlug = 'chinese-pokemon-sets-in-order' | 'are-chinese-pokemon-cards-real' | 'simplified-vs-traditional-chinese-pokemon-cards' | 'chinese-vs-english-pokemon-cards' | 'are-chinese-pokemon-cards-tournament-legal' | 'chinese-exclusive-pokemon-cards' | 'what-is-a-gem-pack' | 'chinese-pokemon-set-english-equivalents' | 'gem-vol-7-release-news' | 'gem-vol-7-set-guide' | 'gem-vol-7-card-origins' | 'gem-vol-6-release-news' | 'gem-vol-6-set-guide' | 'gem-vol-6-card-origins' | 'gem-vol-5-release-news' | 'gem-vol-5-set-guide' | 'gem-vol-5-card-origins' | 'gem-vol-4-release-news' | 'gem-vol-4-set-guide' | 'gem-vol-4-card-origins' | 'gem-vol-3-release-news' | 'gem-vol-3-set-guide' | 'gem-vol-3-card-origins' | 'gem-vol-2-release-news' | 'gem-vol-2-set-guide' | 'gem-vol-2-card-origins' | 'gem-vol-1-release-news' | 'gem-vol-1-set-guide' | 'gem-vol-1-card-origins' | '30th-celebration-release-news' | '30th-celebration-set-guide' | '30th-celebration-card-origins' | 'chasing-glory-release-news' | 'chasing-glory-set-guide' | 'chasing-glory-card-origins' | 'terastal-gathering-release-news' | 'terastal-gathering-set-guide' | 'terastal-gathering-card-origins' | 'reward-round-release-news' | 'reward-round-set-guide' | 'reward-round-card-origins' | 'fearless-terastal-release-news' | 'fearless-terastal-set-guide' | 'fearless-terastal-card-origins' | 'eternal-birth-release-news' | 'eternal-birth-set-guide' | 'eternal-birth-card-origins' | 'miracle-journey-release-news' | 'miracle-journey-set-guide' | 'miracle-journey-card-origins' | 'black-crystal-blaze-release-news' | 'black-crystal-blaze-set-guide' | 'black-crystal-blaze-card-origins' | 'black-bolt-white-flare-release-news' | 'black-bolt-set-guide' | 'black-bolt-card-origins' | 'white-flare-set-guide' | 'white-flare-card-origins' | 'true-mystery-release-news' | 'true-mystery-set-guide' | 'true-mystery-card-origins' | 'blade-awakening-release-news' | 'blade-awakening-set-guide' | 'blade-awakening-card-origins' | 'brilliant-fantasy-release-news' | 'brilliant-fantasy-set-guide' | 'brilliant-fantasy-card-origins' | 'stellar-crystal-release-news' | 'stellar-crystal-set-guide' | 'stellar-crystal-card-origins' | 'pikachu-dream-painting-figures-release-news' | 'funism-ditto-palm-size-wonders-release-news' | 'team-rocket-briefcase-release-news' | 'pikachu-gift-box-release-news' | 'day-night-gift-box-release-news' | 'greninja-sylveon-display-set-release-news' | 'charizard-figure-box-release-news' | 'nuzzle-cheeks-plush-card-display-release-news' | 'eevee-gift-box-release-news' | 'pikachu-30th-plush-keychain-release-news' | 'funism-first-partner-mini-figures-release-news' | 'first-partner-30th-vol-1-release-news' | 'first-partner-30th-vol-2-release-news' | 'first-partner-30th-vol-3-release-news' | 'aura-seeker-release-news' | 'pokemon-30th-shanghai-gold-pikachu-cards-news' | '30th-celebration-pikachu-cards-artists' | 'futuristic-pikachu-box-release-news' | 'lisia-gift-box-release-news' | 'ogerpon-mask-gift-box-release-news' | 'lillie-n-battle-box-release-news' | 'japanese-30th-celebration-release-news' | 'storm-emeralda-release-news' | 'master-strategy-deck-raging-bolt-dragapult-gholdengo-release-news' | 'master-strategy-deck-charizard-gardevoir-miraidon-release-news' | 'espeon-umbreon-deluxe-deck-release-news' | 'journey-gift-boxes-release-news' | 'collect-151-first-partner-display-sets-release-news' | 'eevee-dream-painting-figures-release-news' | 'dream-painting-151-vol-1-release-news' | 'dream-painting-water-vol-2-release-news' | 'chinese-gem-pack-hit-rates' | 'collect-151-journey-release-news' | 'collect-151-hope-release-news' | 'collect-151-surprise-release-news' | 'collect-151-gathering-release-news' | 'collect-151-set-guide' | 'collect-151-card-origins'
+export type BlogPostSlug = 'chinese-pokemon-sets-in-order' | 'how-to-read-chinese-pokemon-cards' | 'chinese-pokemon-card-rarities' | 'chinese-pokemon-slim-vs-jumbo' | 'are-chinese-pokemon-cards-real' | 'simplified-vs-traditional-chinese-pokemon-cards' | 'chinese-vs-english-pokemon-cards' | 'are-chinese-pokemon-cards-tournament-legal' | 'chinese-exclusive-pokemon-cards' | 'what-is-a-gem-pack' | 'chinese-pokemon-set-english-equivalents' | 'gem-vol-7-release-news' | 'gem-vol-7-set-guide' | 'gem-vol-7-card-origins' | 'gem-vol-6-release-news' | 'gem-vol-6-set-guide' | 'gem-vol-6-card-origins' | 'gem-vol-5-release-news' | 'gem-vol-5-set-guide' | 'gem-vol-5-card-origins' | 'gem-vol-4-release-news' | 'gem-vol-4-set-guide' | 'gem-vol-4-card-origins' | 'gem-vol-3-release-news' | 'gem-vol-3-set-guide' | 'gem-vol-3-card-origins' | 'gem-vol-2-release-news' | 'gem-vol-2-set-guide' | 'gem-vol-2-card-origins' | 'gem-vol-1-release-news' | 'gem-vol-1-set-guide' | 'gem-vol-1-card-origins' | '30th-celebration-release-news' | '30th-celebration-set-guide' | '30th-celebration-card-origins' | 'chasing-glory-release-news' | 'chasing-glory-set-guide' | 'chasing-glory-card-origins' | 'terastal-gathering-release-news' | 'terastal-gathering-set-guide' | 'terastal-gathering-card-origins' | 'reward-round-release-news' | 'reward-round-set-guide' | 'reward-round-card-origins' | 'fearless-terastal-release-news' | 'fearless-terastal-set-guide' | 'fearless-terastal-card-origins' | 'eternal-birth-release-news' | 'eternal-birth-set-guide' | 'eternal-birth-card-origins' | 'miracle-journey-release-news' | 'miracle-journey-set-guide' | 'miracle-journey-card-origins' | 'black-crystal-blaze-release-news' | 'black-crystal-blaze-set-guide' | 'black-crystal-blaze-card-origins' | 'black-bolt-white-flare-release-news' | 'black-bolt-set-guide' | 'black-bolt-card-origins' | 'white-flare-set-guide' | 'white-flare-card-origins' | 'true-mystery-release-news' | 'true-mystery-set-guide' | 'true-mystery-card-origins' | 'blade-awakening-release-news' | 'blade-awakening-set-guide' | 'blade-awakening-card-origins' | 'brilliant-fantasy-release-news' | 'brilliant-fantasy-set-guide' | 'brilliant-fantasy-card-origins' | 'stellar-crystal-release-news' | 'stellar-crystal-set-guide' | 'stellar-crystal-card-origins' | 'pikachu-dream-painting-figures-release-news' | 'funism-ditto-palm-size-wonders-release-news' | 'team-rocket-briefcase-release-news' | 'pikachu-gift-box-release-news' | 'day-night-gift-box-release-news' | 'greninja-sylveon-display-set-release-news' | 'charizard-figure-box-release-news' | 'nuzzle-cheeks-plush-card-display-release-news' | 'eevee-gift-box-release-news' | 'pikachu-30th-plush-keychain-release-news' | 'funism-first-partner-mini-figures-release-news' | 'first-partner-30th-vol-1-release-news' | 'first-partner-30th-vol-2-release-news' | 'first-partner-30th-vol-3-release-news' | 'aura-seeker-release-news' | 'pokemon-30th-shanghai-gold-pikachu-cards-news' | '30th-celebration-pikachu-cards-artists' | 'futuristic-pikachu-box-release-news' | 'lisia-gift-box-release-news' | 'ogerpon-mask-gift-box-release-news' | 'lillie-n-battle-box-release-news' | 'japanese-30th-celebration-release-news' | 'storm-emeralda-release-news' | 'master-strategy-deck-raging-bolt-dragapult-gholdengo-release-news' | 'master-strategy-deck-charizard-gardevoir-miraidon-release-news' | 'espeon-umbreon-deluxe-deck-release-news' | 'journey-gift-boxes-release-news' | 'collect-151-first-partner-display-sets-release-news' | 'eevee-dream-painting-figures-release-news' | 'dream-painting-151-vol-1-release-news' | 'dream-painting-water-vol-2-release-news' | 'chinese-gem-pack-hit-rates' | 'collect-151-journey-release-news' | 'collect-151-hope-release-news' | 'collect-151-surprise-release-news' | 'collect-151-gathering-release-news' | 'collect-151-set-guide' | 'collect-151-card-origins'
 
 export interface BlogPostSummary {
   slug: BlogPostSlug
@@ -906,6 +906,54 @@ export const BLOG_POSTS: BlogPostSummary[] = [
     heroAlt: 'Gem Pack Hit Rates banner: a fan of seven Gem Pack booster packs, Vol. 1 to Vol. 7, with the Vol. 7 Psyduck pack in front',
     glow1: 'rgb(222 4 123 / .26)',
     glow2: 'rgb(58 110 165 / .30)',
+  },
+  {
+    slug: 'how-to-read-chinese-pokemon-cards',
+    path: '/blog/how-to-read-chinese-pokemon-cards',
+    title: 'How to Read a Chinese Pokémon Card: Names, Numbers, Set Codes and Rarity Marks',
+    excerpt:
+      'A labelled walkthrough of a real Simplified Chinese card, Kirlia 054/128 from Miracle Journey: the name, HP, type, attacks, regulation mark, set code, collector number, rarity mark and illustrator, with the Chinese words you will see.',
+    seoTitle: 'How to Read Chinese Pokémon Cards: Set Codes, Numbers & Rarity',
+    seoDescription:
+      'How to read a Simplified Chinese Pokémon card: name, HP, attacks, set code such as CSV2C, collector number, rarity mark, regulation mark and illustrator, labelled.',
+    tag: 'Collecting guide',
+    date: '2026-11-24',
+    heroImage: `${SITE_URL}/assets/blog/how-to-read-chinese-pokemon-cards-hero.webp`,
+    heroAlt: 'How to Read a Chinese Card banner: the Simplified Chinese Gardevoir ex from Miracle Journey in front of Ralts and Kirlia',
+    glow1: 'rgb(226 110 170 / .28)',
+    glow2: 'rgb(70 160 90 / .22)',
+  },
+  {
+    slug: 'chinese-pokemon-card-rarities',
+    path: '/blog/chinese-pokemon-card-rarities',
+    title: 'Chinese Pokémon Card Rarities Explained: C, U, R, RR, AR, SR, SAR, UR and More',
+    excerpt:
+      'Every rarity in the Simplified Chinese Pokémon TCG sets, from Common to Ultra Rare, plus ACE SPEC, Black White Rare, Shiny, Pikachu Rare, Futuristic Rare and the Gem Pack star marks, with example cards and counts for every set.',
+    seoTitle: 'Chinese Pokémon Card Rarity Symbols Explained: C to SAR and UR',
+    seoDescription:
+      'What the rarity symbols on Simplified Chinese Pokémon cards mean: C, U, R, RR, AR, SR, SAR, UR, ACE, BWR, Shiny, Gem Pack stars, with example cards and set counts.',
+    tag: 'Collecting guide',
+    date: '2026-11-24',
+    heroImage: `${SITE_URL}/assets/blog/chinese-pokemon-card-rarities-hero.webp`,
+    heroAlt: 'Chinese Card Rarities banner: the gold Gholdengo ex Ultra Rare from Reward Round in front of the Revavroom ex and Maushold ex Double Rares',
+    glow1: 'rgb(232 192 96 / .28)',
+    glow2: 'rgb(110 90 40 / .25)',
+  },
+  {
+    slug: 'chinese-pokemon-slim-vs-jumbo',
+    path: '/blog/chinese-pokemon-slim-vs-jumbo',
+    title: 'Slim vs Jumbo: The Two Pack Sizes in Chinese Pokémon Sets',
+    excerpt:
+      'Simplified Chinese Pokémon expansions come in a 5-card slim pack with 1 holo and a 20-card jumbo pack with 6 or 7 holos. What each pack and box holds, which sets have both, and how the official odds differ.',
+    seoTitle: 'Chinese Pokémon Slim vs Jumbo Packs: Cards, Holos and Odds',
+    seoDescription:
+      'Chinese Pokémon slim vs jumbo: a 5-card slim pack has 1 holo, a 20-card jumbo pack has 6 or 7. Box contents, which sets have both, and the official odds.',
+    tag: 'Collecting guide',
+    date: '2026-11-24',
+    heroImage: `${SITE_URL}/assets/blog/chinese-pokemon-slim-vs-jumbo-hero.webp`,
+    heroAlt: 'Slim vs Jumbo Packs banner: the Chasing Glory 5-card slim pack and 20-card jumbo pack side by side',
+    glow1: 'rgb(71 118 121 / .30)',
+    glow2: 'rgb(216 123 115 / .25)',
   },
   {
     slug: 'greninja-sylveon-display-set-release-news',

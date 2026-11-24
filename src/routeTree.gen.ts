@@ -71,8 +71,10 @@ import { Route as BlogChasingGloryReleaseNewsRouteImport } from './routes/blog/c
 import { Route as BlogChasingGlorySetGuideRouteImport } from './routes/blog/chasing-glory-set-guide'
 import { Route as BlogChineseExclusivePokemonCardsRouteImport } from './routes/blog/chinese-exclusive-pokemon-cards'
 import { Route as BlogChineseGemPackHitRatesRouteImport } from './routes/blog/chinese-gem-pack-hit-rates'
+import { Route as BlogChinesePokemonCardRaritiesRouteImport } from './routes/blog/chinese-pokemon-card-rarities'
 import { Route as BlogChinesePokemonSetEnglishEquivalentsRouteImport } from './routes/blog/chinese-pokemon-set-english-equivalents'
 import { Route as BlogChinesePokemonSetsInOrderRouteImport } from './routes/blog/chinese-pokemon-sets-in-order'
+import { Route as BlogChinesePokemonSlimVsJumboRouteImport } from './routes/blog/chinese-pokemon-slim-vs-jumbo'
 import { Route as BlogChineseVsEnglishPokemonCardsRouteImport } from './routes/blog/chinese-vs-english-pokemon-cards'
 import { Route as BlogCollect151CardOriginsRouteImport } from './routes/blog/collect-151-card-origins'
 import { Route as BlogCollect151FirstPartnerDisplaySetsReleaseNewsRouteImport } from './routes/blog/collect-151-first-partner-display-sets-release-news'
@@ -121,6 +123,7 @@ import { Route as BlogGemVol7CardOriginsRouteImport } from './routes/blog/gem-vo
 import { Route as BlogGemVol7ReleaseNewsRouteImport } from './routes/blog/gem-vol-7-release-news'
 import { Route as BlogGemVol7SetGuideRouteImport } from './routes/blog/gem-vol-7-set-guide'
 import { Route as BlogGreninjaSylveonDisplaySetReleaseNewsRouteImport } from './routes/blog/greninja-sylveon-display-set-release-news'
+import { Route as BlogHowToReadChinesePokemonCardsRouteImport } from './routes/blog/how-to-read-chinese-pokemon-cards'
 import { Route as BlogJapanese30thCelebrationReleaseNewsRouteImport } from './routes/blog/japanese-30th-celebration-release-news'
 import { Route as BlogJourneyGiftBoxesReleaseNewsRouteImport } from './routes/blog/journey-gift-boxes-release-news'
 import { Route as BlogLillieNBattleBoxReleaseNewsRouteImport } from './routes/blog/lillie-n-battle-box-release-news'
@@ -536,6 +539,12 @@ const BlogChineseGemPackHitRatesRoute =
     path: '/blog/chinese-gem-pack-hit-rates',
     getParentRoute: () => rootRouteImport,
   } as any)
+const BlogChinesePokemonCardRaritiesRoute =
+  BlogChinesePokemonCardRaritiesRouteImport.update({
+    id: '/blog/chinese-pokemon-card-rarities',
+    path: '/blog/chinese-pokemon-card-rarities',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const BlogChinesePokemonSetEnglishEquivalentsRoute =
   BlogChinesePokemonSetEnglishEquivalentsRouteImport.update({
     id: '/blog/chinese-pokemon-set-english-equivalents',
@@ -546,6 +555,12 @@ const BlogChinesePokemonSetsInOrderRoute =
   BlogChinesePokemonSetsInOrderRouteImport.update({
     id: '/blog/chinese-pokemon-sets-in-order',
     path: '/blog/chinese-pokemon-sets-in-order',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const BlogChinesePokemonSlimVsJumboRoute =
+  BlogChinesePokemonSlimVsJumboRouteImport.update({
+    id: '/blog/chinese-pokemon-slim-vs-jumbo',
+    path: '/blog/chinese-pokemon-slim-vs-jumbo',
     getParentRoute: () => rootRouteImport,
   } as any)
 const BlogChineseVsEnglishPokemonCardsRoute =
@@ -812,6 +827,12 @@ const BlogGreninjaSylveonDisplaySetReleaseNewsRoute =
   BlogGreninjaSylveonDisplaySetReleaseNewsRouteImport.update({
     id: '/blog/greninja-sylveon-display-set-release-news',
     path: '/blog/greninja-sylveon-display-set-release-news',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const BlogHowToReadChinesePokemonCardsRoute =
+  BlogHowToReadChinesePokemonCardsRouteImport.update({
+    id: '/blog/how-to-read-chinese-pokemon-cards',
+    path: '/blog/how-to-read-chinese-pokemon-cards',
     getParentRoute: () => rootRouteImport,
   } as any)
 const BlogJapanese30thCelebrationReleaseNewsRoute =
@@ -1331,8 +1352,10 @@ export interface FileRoutesByFullPath {
   '/blog/chasing-glory-set-guide': typeof BlogChasingGlorySetGuideRoute
   '/blog/chinese-exclusive-pokemon-cards': typeof BlogChineseExclusivePokemonCardsRoute
   '/blog/chinese-gem-pack-hit-rates': typeof BlogChineseGemPackHitRatesRoute
+  '/blog/chinese-pokemon-card-rarities': typeof BlogChinesePokemonCardRaritiesRoute
   '/blog/chinese-pokemon-set-english-equivalents': typeof BlogChinesePokemonSetEnglishEquivalentsRoute
   '/blog/chinese-pokemon-sets-in-order': typeof BlogChinesePokemonSetsInOrderRoute
+  '/blog/chinese-pokemon-slim-vs-jumbo': typeof BlogChinesePokemonSlimVsJumboRoute
   '/blog/chinese-vs-english-pokemon-cards': typeof BlogChineseVsEnglishPokemonCardsRoute
   '/blog/collect-151-card-origins': typeof BlogCollect151CardOriginsRoute
   '/blog/collect-151-first-partner-display-sets-release-news': typeof BlogCollect151FirstPartnerDisplaySetsReleaseNewsRoute
@@ -1381,6 +1404,7 @@ export interface FileRoutesByFullPath {
   '/blog/gem-vol-7-release-news': typeof BlogGemVol7ReleaseNewsRoute
   '/blog/gem-vol-7-set-guide': typeof BlogGemVol7SetGuideRoute
   '/blog/greninja-sylveon-display-set-release-news': typeof BlogGreninjaSylveonDisplaySetReleaseNewsRoute
+  '/blog/how-to-read-chinese-pokemon-cards': typeof BlogHowToReadChinesePokemonCardsRoute
   '/blog/japanese-30th-celebration-release-news': typeof BlogJapanese30thCelebrationReleaseNewsRoute
   '/blog/journey-gift-boxes-release-news': typeof BlogJourneyGiftBoxesReleaseNewsRoute
   '/blog/lillie-n-battle-box-release-news': typeof BlogLillieNBattleBoxReleaseNewsRoute
@@ -1525,8 +1549,10 @@ export interface FileRoutesByTo {
   '/blog/chasing-glory-set-guide': typeof BlogChasingGlorySetGuideRoute
   '/blog/chinese-exclusive-pokemon-cards': typeof BlogChineseExclusivePokemonCardsRoute
   '/blog/chinese-gem-pack-hit-rates': typeof BlogChineseGemPackHitRatesRoute
+  '/blog/chinese-pokemon-card-rarities': typeof BlogChinesePokemonCardRaritiesRoute
   '/blog/chinese-pokemon-set-english-equivalents': typeof BlogChinesePokemonSetEnglishEquivalentsRoute
   '/blog/chinese-pokemon-sets-in-order': typeof BlogChinesePokemonSetsInOrderRoute
+  '/blog/chinese-pokemon-slim-vs-jumbo': typeof BlogChinesePokemonSlimVsJumboRoute
   '/blog/chinese-vs-english-pokemon-cards': typeof BlogChineseVsEnglishPokemonCardsRoute
   '/blog/collect-151-card-origins': typeof BlogCollect151CardOriginsRoute
   '/blog/collect-151-first-partner-display-sets-release-news': typeof BlogCollect151FirstPartnerDisplaySetsReleaseNewsRoute
@@ -1575,6 +1601,7 @@ export interface FileRoutesByTo {
   '/blog/gem-vol-7-release-news': typeof BlogGemVol7ReleaseNewsRoute
   '/blog/gem-vol-7-set-guide': typeof BlogGemVol7SetGuideRoute
   '/blog/greninja-sylveon-display-set-release-news': typeof BlogGreninjaSylveonDisplaySetReleaseNewsRoute
+  '/blog/how-to-read-chinese-pokemon-cards': typeof BlogHowToReadChinesePokemonCardsRoute
   '/blog/japanese-30th-celebration-release-news': typeof BlogJapanese30thCelebrationReleaseNewsRoute
   '/blog/journey-gift-boxes-release-news': typeof BlogJourneyGiftBoxesReleaseNewsRoute
   '/blog/lillie-n-battle-box-release-news': typeof BlogLillieNBattleBoxReleaseNewsRoute
@@ -1720,8 +1747,10 @@ export interface FileRoutesById {
   '/blog/chasing-glory-set-guide': typeof BlogChasingGlorySetGuideRoute
   '/blog/chinese-exclusive-pokemon-cards': typeof BlogChineseExclusivePokemonCardsRoute
   '/blog/chinese-gem-pack-hit-rates': typeof BlogChineseGemPackHitRatesRoute
+  '/blog/chinese-pokemon-card-rarities': typeof BlogChinesePokemonCardRaritiesRoute
   '/blog/chinese-pokemon-set-english-equivalents': typeof BlogChinesePokemonSetEnglishEquivalentsRoute
   '/blog/chinese-pokemon-sets-in-order': typeof BlogChinesePokemonSetsInOrderRoute
+  '/blog/chinese-pokemon-slim-vs-jumbo': typeof BlogChinesePokemonSlimVsJumboRoute
   '/blog/chinese-vs-english-pokemon-cards': typeof BlogChineseVsEnglishPokemonCardsRoute
   '/blog/collect-151-card-origins': typeof BlogCollect151CardOriginsRoute
   '/blog/collect-151-first-partner-display-sets-release-news': typeof BlogCollect151FirstPartnerDisplaySetsReleaseNewsRoute
@@ -1770,6 +1799,7 @@ export interface FileRoutesById {
   '/blog/gem-vol-7-release-news': typeof BlogGemVol7ReleaseNewsRoute
   '/blog/gem-vol-7-set-guide': typeof BlogGemVol7SetGuideRoute
   '/blog/greninja-sylveon-display-set-release-news': typeof BlogGreninjaSylveonDisplaySetReleaseNewsRoute
+  '/blog/how-to-read-chinese-pokemon-cards': typeof BlogHowToReadChinesePokemonCardsRoute
   '/blog/japanese-30th-celebration-release-news': typeof BlogJapanese30thCelebrationReleaseNewsRoute
   '/blog/journey-gift-boxes-release-news': typeof BlogJourneyGiftBoxesReleaseNewsRoute
   '/blog/lillie-n-battle-box-release-news': typeof BlogLillieNBattleBoxReleaseNewsRoute
@@ -1916,8 +1946,10 @@ export interface FileRouteTypes {
     | '/blog/chasing-glory-set-guide'
     | '/blog/chinese-exclusive-pokemon-cards'
     | '/blog/chinese-gem-pack-hit-rates'
+    | '/blog/chinese-pokemon-card-rarities'
     | '/blog/chinese-pokemon-set-english-equivalents'
     | '/blog/chinese-pokemon-sets-in-order'
+    | '/blog/chinese-pokemon-slim-vs-jumbo'
     | '/blog/chinese-vs-english-pokemon-cards'
     | '/blog/collect-151-card-origins'
     | '/blog/collect-151-first-partner-display-sets-release-news'
@@ -1966,6 +1998,7 @@ export interface FileRouteTypes {
     | '/blog/gem-vol-7-release-news'
     | '/blog/gem-vol-7-set-guide'
     | '/blog/greninja-sylveon-display-set-release-news'
+    | '/blog/how-to-read-chinese-pokemon-cards'
     | '/blog/japanese-30th-celebration-release-news'
     | '/blog/journey-gift-boxes-release-news'
     | '/blog/lillie-n-battle-box-release-news'
@@ -2110,8 +2143,10 @@ export interface FileRouteTypes {
     | '/blog/chasing-glory-set-guide'
     | '/blog/chinese-exclusive-pokemon-cards'
     | '/blog/chinese-gem-pack-hit-rates'
+    | '/blog/chinese-pokemon-card-rarities'
     | '/blog/chinese-pokemon-set-english-equivalents'
     | '/blog/chinese-pokemon-sets-in-order'
+    | '/blog/chinese-pokemon-slim-vs-jumbo'
     | '/blog/chinese-vs-english-pokemon-cards'
     | '/blog/collect-151-card-origins'
     | '/blog/collect-151-first-partner-display-sets-release-news'
@@ -2160,6 +2195,7 @@ export interface FileRouteTypes {
     | '/blog/gem-vol-7-release-news'
     | '/blog/gem-vol-7-set-guide'
     | '/blog/greninja-sylveon-display-set-release-news'
+    | '/blog/how-to-read-chinese-pokemon-cards'
     | '/blog/japanese-30th-celebration-release-news'
     | '/blog/journey-gift-boxes-release-news'
     | '/blog/lillie-n-battle-box-release-news'
@@ -2304,8 +2340,10 @@ export interface FileRouteTypes {
     | '/blog/chasing-glory-set-guide'
     | '/blog/chinese-exclusive-pokemon-cards'
     | '/blog/chinese-gem-pack-hit-rates'
+    | '/blog/chinese-pokemon-card-rarities'
     | '/blog/chinese-pokemon-set-english-equivalents'
     | '/blog/chinese-pokemon-sets-in-order'
+    | '/blog/chinese-pokemon-slim-vs-jumbo'
     | '/blog/chinese-vs-english-pokemon-cards'
     | '/blog/collect-151-card-origins'
     | '/blog/collect-151-first-partner-display-sets-release-news'
@@ -2354,6 +2392,7 @@ export interface FileRouteTypes {
     | '/blog/gem-vol-7-release-news'
     | '/blog/gem-vol-7-set-guide'
     | '/blog/greninja-sylveon-display-set-release-news'
+    | '/blog/how-to-read-chinese-pokemon-cards'
     | '/blog/japanese-30th-celebration-release-news'
     | '/blog/journey-gift-boxes-release-news'
     | '/blog/lillie-n-battle-box-release-news'
@@ -2499,8 +2538,10 @@ export interface RootRouteChildren {
   BlogChasingGlorySetGuideRoute: typeof BlogChasingGlorySetGuideRoute
   BlogChineseExclusivePokemonCardsRoute: typeof BlogChineseExclusivePokemonCardsRoute
   BlogChineseGemPackHitRatesRoute: typeof BlogChineseGemPackHitRatesRoute
+  BlogChinesePokemonCardRaritiesRoute: typeof BlogChinesePokemonCardRaritiesRoute
   BlogChinesePokemonSetEnglishEquivalentsRoute: typeof BlogChinesePokemonSetEnglishEquivalentsRoute
   BlogChinesePokemonSetsInOrderRoute: typeof BlogChinesePokemonSetsInOrderRoute
+  BlogChinesePokemonSlimVsJumboRoute: typeof BlogChinesePokemonSlimVsJumboRoute
   BlogChineseVsEnglishPokemonCardsRoute: typeof BlogChineseVsEnglishPokemonCardsRoute
   BlogCollect151CardOriginsRoute: typeof BlogCollect151CardOriginsRoute
   BlogCollect151FirstPartnerDisplaySetsReleaseNewsRoute: typeof BlogCollect151FirstPartnerDisplaySetsReleaseNewsRoute
@@ -2549,6 +2590,7 @@ export interface RootRouteChildren {
   BlogGemVol7ReleaseNewsRoute: typeof BlogGemVol7ReleaseNewsRoute
   BlogGemVol7SetGuideRoute: typeof BlogGemVol7SetGuideRoute
   BlogGreninjaSylveonDisplaySetReleaseNewsRoute: typeof BlogGreninjaSylveonDisplaySetReleaseNewsRoute
+  BlogHowToReadChinesePokemonCardsRoute: typeof BlogHowToReadChinesePokemonCardsRoute
   BlogJapanese30thCelebrationReleaseNewsRoute: typeof BlogJapanese30thCelebrationReleaseNewsRoute
   BlogJourneyGiftBoxesReleaseNewsRoute: typeof BlogJourneyGiftBoxesReleaseNewsRoute
   BlogLillieNBattleBoxReleaseNewsRoute: typeof BlogLillieNBattleBoxReleaseNewsRoute
@@ -3070,6 +3112,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BlogChineseGemPackHitRatesRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/blog/chinese-pokemon-card-rarities': {
+      id: '/blog/chinese-pokemon-card-rarities'
+      path: '/blog/chinese-pokemon-card-rarities'
+      fullPath: '/blog/chinese-pokemon-card-rarities'
+      preLoaderRoute: typeof BlogChinesePokemonCardRaritiesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/blog/chinese-pokemon-set-english-equivalents': {
       id: '/blog/chinese-pokemon-set-english-equivalents'
       path: '/blog/chinese-pokemon-set-english-equivalents'
@@ -3082,6 +3131,13 @@ declare module '@tanstack/react-router' {
       path: '/blog/chinese-pokemon-sets-in-order'
       fullPath: '/blog/chinese-pokemon-sets-in-order'
       preLoaderRoute: typeof BlogChinesePokemonSetsInOrderRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/chinese-pokemon-slim-vs-jumbo': {
+      id: '/blog/chinese-pokemon-slim-vs-jumbo'
+      path: '/blog/chinese-pokemon-slim-vs-jumbo'
+      fullPath: '/blog/chinese-pokemon-slim-vs-jumbo'
+      preLoaderRoute: typeof BlogChinesePokemonSlimVsJumboRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/blog/chinese-vs-english-pokemon-cards': {
@@ -3418,6 +3474,13 @@ declare module '@tanstack/react-router' {
       path: '/blog/greninja-sylveon-display-set-release-news'
       fullPath: '/blog/greninja-sylveon-display-set-release-news'
       preLoaderRoute: typeof BlogGreninjaSylveonDisplaySetReleaseNewsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/how-to-read-chinese-pokemon-cards': {
+      id: '/blog/how-to-read-chinese-pokemon-cards'
+      path: '/blog/how-to-read-chinese-pokemon-cards'
+      fullPath: '/blog/how-to-read-chinese-pokemon-cards'
+      preLoaderRoute: typeof BlogHowToReadChinesePokemonCardsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/blog/japanese-30th-celebration-release-news': {
@@ -4047,9 +4110,11 @@ const rootRouteChildren: RootRouteChildren = {
   BlogChasingGlorySetGuideRoute: BlogChasingGlorySetGuideRoute,
   BlogChineseExclusivePokemonCardsRoute: BlogChineseExclusivePokemonCardsRoute,
   BlogChineseGemPackHitRatesRoute: BlogChineseGemPackHitRatesRoute,
+  BlogChinesePokemonCardRaritiesRoute: BlogChinesePokemonCardRaritiesRoute,
   BlogChinesePokemonSetEnglishEquivalentsRoute:
     BlogChinesePokemonSetEnglishEquivalentsRoute,
   BlogChinesePokemonSetsInOrderRoute: BlogChinesePokemonSetsInOrderRoute,
+  BlogChinesePokemonSlimVsJumboRoute: BlogChinesePokemonSlimVsJumboRoute,
   BlogChineseVsEnglishPokemonCardsRoute: BlogChineseVsEnglishPokemonCardsRoute,
   BlogCollect151CardOriginsRoute: BlogCollect151CardOriginsRoute,
   BlogCollect151FirstPartnerDisplaySetsReleaseNewsRoute:
@@ -4112,6 +4177,7 @@ const rootRouteChildren: RootRouteChildren = {
   BlogGemVol7SetGuideRoute: BlogGemVol7SetGuideRoute,
   BlogGreninjaSylveonDisplaySetReleaseNewsRoute:
     BlogGreninjaSylveonDisplaySetReleaseNewsRoute,
+  BlogHowToReadChinesePokemonCardsRoute: BlogHowToReadChinesePokemonCardsRoute,
   BlogJapanese30thCelebrationReleaseNewsRoute:
     BlogJapanese30thCelebrationReleaseNewsRoute,
   BlogJourneyGiftBoxesReleaseNewsRoute: BlogJourneyGiftBoxesReleaseNewsRoute,
