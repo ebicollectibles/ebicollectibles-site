@@ -266,7 +266,7 @@ function AdminLinksPage() {
               {links.map((link) => (
                 <tr key={link.id}>
                   <td style={{ ...td, fontFamily: "'IBM Plex Mono', monospace", fontWeight: 600 }}>/links/{link.slug}</td>
-                  <td style={{ ...td, maxWidth: 260, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', color: '#5a6875' }}>
+                  <td style={{ ...td, minWidth: 200, maxWidth: 320, overflowWrap: 'anywhere', color: '#5a6875' }}>
                     {link.destinationPath}
                   </td>
                   <td style={{ ...td, fontSize: 11.5, color: '#5a6875' }}>
