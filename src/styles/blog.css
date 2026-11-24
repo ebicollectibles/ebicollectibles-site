@@ -562,3 +562,13 @@
   .ebi-blog .prose .artist-list h3 { font-size: 17px; }
   .ebi-blog .prose .artist-list p { font-size: 15.5px; line-height: 1.6; }
 }
+
+/* Gold cards news post: at-a-glance strip under the lead, tinted with the post's own gold glow. */
+.ebi-blog .prose > .stat-row.gold-glance { list-style: none; padding: 0; margin: 8px auto 30px; gap: 10px; grid-template-columns: repeat(5, minmax(0, 1fr)); }
+.ebi-blog .gold-glance .stat { margin: 0; padding: 14px 14px 12px; border-top: 3px solid var(--glow-1); background: linear-gradient(180deg, var(--glow-1), transparent 75%), var(--surface); }
+.ebi-blog .gold-glance .stat-num { font-size: 24px; }
+.ebi-blog .gold-glance .stat-label { font-size: 13px; line-height: 1.35; margin-top: 6px; color: var(--ink-2); }
+@media (max-width: 640px) {
+  .ebi-blog .prose > .stat-row.gold-glance { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .ebi-blog .gold-glance .stat:last-child { grid-column: 1 / -1; }
+}

@@ -12,6 +12,15 @@ const post = BLOG_POSTS.find((p) => p.slug === 'pokemon-30th-shanghai-gold-pikac
 
 const img = (name: string) => `${SITE_URL}/assets/blog/shanghai-gold-pikachu-cards-${name}.webp`
 
+// At-a-glance strip under the dateline lead. Facts from Pokémon China's reveal images and event details.
+const GLANCE = [
+  { num: '999', label: 'Gold (99.9%)' },
+  { num: '30g', label: 'Each card' },
+  { num: '30', label: 'Cards, one per design' },
+  { num: 'Free', label: 'In Shanghai, with a booking' },
+  { num: 'Nov 28', label: 'To Dec 27, 2026' },
+]
+
 // The four activities on the official event poster, in its order.
 const ACTIVITIES = [
   { name: 'Pokémon meet-and-greet', zh: '宝可梦们来啦', text: 'Take photos with nearly 30 different Pokémon.' },
@@ -33,7 +42,11 @@ const PIKACHU_CARDS = [
 const FAQ = [
   {
     q: 'What is the 999 Gold Card?',
-    a: "A run of 30 Pikachu cards made of 999 pure gold (99.9%), 30g each, from Pokémon China for Pokémon's 30th anniversary. Each case reads \"Pokémon Trading Card Game 30th CELEBRATION / 999 Gold Card\". TheGamer calls it the 999 Gold Card Collection.",
+    a: "A run of 30 Pikachu cards made of 999 pure gold (99.9%), 30g each, from Pokémon China for Pokémon's 30th anniversary. Each one sits in its own case marked \"999 Gold Card\". TheGamer calls it the 999 Gold Card Collection.",
+  },
+  {
+    q: 'What does each gold card come in?',
+    a: 'Its own clear display case. In Pokémon China\'s close-up, the case reads "Pokémon Trading Card Game 30th CELEBRATION / 999 Gold Card" across the top, and a plate under the card reads 宝可梦集换式卡牌游戏 30周年庆典, 30g and 999‰.',
   },
   {
     q: 'Are the gold cards Pikachu cards?',
@@ -142,7 +155,7 @@ function ShanghaiGoldCardsPost() {
         updated={status.liveAt}
         wide
         post={post}
-        lede="Pokémon China has revealed 30 Pikachu cards made of 999 pure gold, 30g each, one for every Pikachu design in the 30th Celebration set. They go on display free in Shanghai from November 28 to December 27, 2026."
+        lede="Pokémon China has made 30 Pikachu cards out of real gold. Each one is 999 gold, weighs 30g and sits in its own display case. All 30 go on show, free, in Shanghai from November 28 to December 27, 2026."
         cta={{
           heading: 'Shop 30th Celebration',
           body: 'The booster box, the Dream Painting Pikachu figures and the Pikachu 30th plush keychains.',
@@ -154,20 +167,29 @@ function ShanghaiGoldCardsPost() {
       >
         <p>
           <strong>SHANGHAI, November 23, 2026</strong> — Pokémon China has revealed the 999 Gold Card: 30 Pikachu cards made of pure
-          gold for Pokémon's 30th anniversary. Each card is 99.9% gold and weighs 30g, and together they cover all 30 Pikachu
-          designs from the 30th Celebration expansion.
+          gold for Pokémon's 30th anniversary. There is one for each of the 30 Pikachu designs in the 30th Celebration expansion.
         </p>
         <p>
-          The cards go on display at the Pokémon Card Art Illustration Exhibition in Shanghai, part of the Pokémon 30th Anniversary
-          Shanghai Finale (<Zh>宝可梦30周年上海盛典</Zh>). Entry is free with a booking, from November 28 to December 27, 2026, at the
-          Lafayette Cultural & Art Center.
+          Every card is 99.9% gold and weighs 30g. All 30 will be on show at the Pokémon Card Art Illustration Exhibition, part of
+          the Pokémon 30th Anniversary Shanghai Finale (<Zh>宝可梦30周年上海盛典</Zh>).
         </p>
         <p>
-          The cards are not for sale. TheGamer reports they are not available to the public, and there is no sign they will be.
+          They are not for sale. TheGamer reports they are not available to the public, and there is no sign they will be.
         </p>
         <p>
-          <strong>Want more Pokémon China news like this?</strong> <a href="#news-signup">Join our email list</a>.
+          <strong>
+            Want more Pokémon China news like this? <a href="#news-signup">Join our email list</a>.
+          </strong>
         </p>
+
+        <ul className="stat-row gold-glance" aria-label="The gold cards at a glance">
+          {GLANCE.map((g) => (
+            <li key={g.num} className="stat">
+              <div className="stat-num">{g.num}</div>
+              <div className="stat-label">{g.label}</div>
+            </li>
+          ))}
+        </ul>
 
         <figure className="news-photo">
           <img
@@ -181,6 +203,16 @@ function ShanghaiGoldCardsPost() {
             gold card, 30g). Image: Pokémon China
           </figcaption>
         </figure>
+
+        <h2 id="case">Every card in its own case</h2>
+        <p>
+          Pokémon China's close-up shows how each card is displayed. The gold Pikachu sits in its own clear case. Across the top,
+          under the 30th Celebration Pikachu logo, the case reads "Pokémon Trading Card Game 30th CELEBRATION / 999 Gold Card".
+        </p>
+        <p>
+          Under the card is a plate with the specs: <Zh>宝可梦集换式卡牌游戏 30周年庆典</Zh> (Pokémon Trading Card Game 30th
+          Celebration), a weight of 30g and a gold content of 999‰, which is 99.9% gold.
+        </p>
         <figure className="news-photo is-single">
           <img
             src={img('gold-0130')}
@@ -190,16 +222,12 @@ function ShanghaiGoldCardsPost() {
             loading="lazy"
           />
           <figcaption>
-            Pikachu 01/30 (017/103, Illus. Ken Sugimori). The case reads "Pokémon Trading Card Game 30th CELEBRATION / 999 Gold
-            Card", and the plate below the card reads <Zh>宝可梦集换式卡牌游戏 30周年庆典</Zh> · 30g · 999‰. Image: Pokémon China
+            Pikachu 01/30 (017/103, Illus. Ken Sugimori) in its case, with the 30g · 999‰ plate under the card. Image: Pokémon China
           </figcaption>
         </figure>
-
         <p>
-          Pokémon China's reveal images show each card in a clear case marked "999 Gold Card", with a plate giving the weight, 30g,
-          and the purity, 999‰ (99.9% gold). The official event poster lists them as part of the card art exhibition:{' '}
-          <Zh>还有30张足金卡牌展出哦</Zh>, "30 pure gold cards will also be on display." <Zh>足金</Zh> is the term used in China for pure
-          gold.
+          The official event poster lists the cards as part of the card art exhibition: <Zh>还有30张足金卡牌展出哦</Zh>, "30 pure
+          gold cards will also be on display." <Zh>足金</Zh> is the term used in China for pure gold.
         </p>
 
         <div className="poster-pair">
@@ -227,11 +255,8 @@ function ShanghaiGoldCardsPost() {
           </div>
         </div>
 
-        <h2 id="visit">Visiting the card art exhibition</h2>
-        <p>
-          Pokémon China shared the details on November 23. The exhibition, where the gold cards are on display, is free, but you
-          need to book ahead.
-        </p>
+        <h2 id="visit">See them free in Shanghai</h2>
+        <p>Entry to the exhibition is free, but you need to book ahead. Pokémon China shared the details on November 23.</p>
         <ul>
           <li>
             <strong>Dates.</strong> November 28 to December 27, 2026.
@@ -257,7 +282,7 @@ function ShanghaiGoldCardsPost() {
           </li>
         </ul>
 
-        <h2 id="event">What else is at the Shanghai Finale</h2>
+        <h2 id="event">Also at the Shanghai Finale</h2>
         <p>The poster lists four activities:</p>
         <ol>
           {ACTIVITIES.map((a) => (
@@ -268,11 +293,11 @@ function ShanghaiGoldCardsPost() {
         </ol>
         <p>Some activities end early, on December 27, 2026.</p>
 
-        <h2 id="pikachu-cards">The 30 Pikachu designs</h2>
+        <h2 id="pikachu-cards">30 Pikachu, 30 artists</h2>
         <p>
-          The gold cards carry the 30 Pikachu designs from the 30th Celebration expansion, which released on September 16, 2026, in
-          China and around the world. Each of its 30 Pikachu cards is by a different illustrator, and every pack has one. The gold
-          card in the close-up is Pikachu 01/30 by Ken Sugimori. Here are six of the printed cards from the Simplified Chinese set.
+          The gold cards carry the 30 Pikachu designs from the 30th Celebration expansion, released on September 16, 2026, in China
+          and around the world. Each design is by a different illustrator, and every pack has one Pikachu. The gold card in the
+          close-up is Pikachu 01/30 by Ken Sugimori. Here are six of the printed cards from the Simplified Chinese set.
         </p>
         <ul className="card-grid cols-3">
           {PIKACHU_CARDS.map((c) => (
@@ -294,7 +319,7 @@ function ShanghaiGoldCardsPost() {
         </p>
 
         <h2 id="gold-math">The gold, by the numbers</h2>
-        <p>Based on the 999 purity and 30g per card shown in Pokémon China's images. Gold values are rough, at recent prices.</p>
+        <p>From the 999 purity and 30g weight in Pokémon China's images. Gold values are rough, at recent prices.</p>
         <div className="table-scroll" role="group" aria-labelledby="tbl-gold" tabIndex={0}>
           <table className="data-table">
             <caption id="tbl-gold" className="sr-only">
@@ -319,21 +344,14 @@ function ShanghaiGoldCardsPost() {
                 <td>900g (about 2 lb)</td>
               </tr>
               <tr>
-                <th scope="row">Gold value in China (¥755/g, Nov 21)</th>
-                <td>about ¥22,650</td>
-                <td>about ¥680,000</td>
-              </tr>
-              <tr>
-                <th scope="row">Gold value in US dollars ($3,620/oz, Nov 23)</th>
-                <td>about $3,500</td>
-                <td>about $105,000</td>
+                <th scope="row">Gold value (¥755/g Nov 21, $3,620/oz Nov 23)</th>
+                <td>about ¥22,650 / $3,500</td>
+                <td>about ¥680,000 / $105,000</td>
               </tr>
             </tbody>
           </table>
         </div>
-        <p>
-          The widely shared ¥600,000 figure is for all 30 cards, not one. Gold prices change daily.
-        </p>
+        <p>The widely shared ¥600,000 figure is for all 30 cards, not one. Gold prices change daily.</p>
 
         <h2 id="other-events">Other 30th anniversary events</h2>
         <p>Shanghai is one of several big 30th anniversary events in Asia this year. The PokéXciting! tour stops are free.</p>
