@@ -17,6 +17,7 @@ import { Route as CookiePolicyRouteImport } from './routes/cookie-policy'
 import { Route as EmailPreferencesRouteImport } from './routes/email-preferences'
 import { Route as HomePreviewRouteImport } from './routes/home-preview'
 import { Route as NewAndUpcomingRouteImport } from './routes/new-and-upcoming'
+import { Route as PreviewWhileYouWaitRouteImport } from './routes/preview-while-you-wait'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as RefundPolicyRouteImport } from './routes/refund-policy'
 import { Route as ShippingPolicyRouteImport } from './routes/shipping-policy'
@@ -243,6 +244,11 @@ const HomePreviewRoute = HomePreviewRouteImport.update({
 const NewAndUpcomingRoute = NewAndUpcomingRouteImport.update({
   id: '/new-and-upcoming',
   path: '/new-and-upcoming',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PreviewWhileYouWaitRoute = PreviewWhileYouWaitRouteImport.update({
+  id: '/preview-while-you-wait',
+  path: '/preview-while-you-wait',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PrivacyRoute = PrivacyRouteImport.update({
@@ -1301,6 +1307,7 @@ export interface FileRoutesByFullPath {
   '/email-preferences': typeof EmailPreferencesRoute
   '/home-preview': typeof HomePreviewRoute
   '/new-and-upcoming': typeof NewAndUpcomingRoute
+  '/preview-while-you-wait': typeof PreviewWhileYouWaitRoute
   '/privacy': typeof PrivacyRoute
   '/refund-policy': typeof RefundPolicyRoute
   '/shipping-policy': typeof ShippingPolicyRoute
@@ -1498,6 +1505,7 @@ export interface FileRoutesByTo {
   '/email-preferences': typeof EmailPreferencesRoute
   '/home-preview': typeof HomePreviewRoute
   '/new-and-upcoming': typeof NewAndUpcomingRoute
+  '/preview-while-you-wait': typeof PreviewWhileYouWaitRoute
   '/privacy': typeof PrivacyRoute
   '/refund-policy': typeof RefundPolicyRoute
   '/shipping-policy': typeof ShippingPolicyRoute
@@ -1696,6 +1704,7 @@ export interface FileRoutesById {
   '/email-preferences': typeof EmailPreferencesRoute
   '/home-preview': typeof HomePreviewRoute
   '/new-and-upcoming': typeof NewAndUpcomingRoute
+  '/preview-while-you-wait': typeof PreviewWhileYouWaitRoute
   '/privacy': typeof PrivacyRoute
   '/refund-policy': typeof RefundPolicyRoute
   '/shipping-policy': typeof ShippingPolicyRoute
@@ -1895,6 +1904,7 @@ export interface FileRouteTypes {
     | '/email-preferences'
     | '/home-preview'
     | '/new-and-upcoming'
+    | '/preview-while-you-wait'
     | '/privacy'
     | '/refund-policy'
     | '/shipping-policy'
@@ -2092,6 +2102,7 @@ export interface FileRouteTypes {
     | '/email-preferences'
     | '/home-preview'
     | '/new-and-upcoming'
+    | '/preview-while-you-wait'
     | '/privacy'
     | '/refund-policy'
     | '/shipping-policy'
@@ -2289,6 +2300,7 @@ export interface FileRouteTypes {
     | '/email-preferences'
     | '/home-preview'
     | '/new-and-upcoming'
+    | '/preview-while-you-wait'
     | '/privacy'
     | '/refund-policy'
     | '/shipping-policy'
@@ -2487,6 +2499,7 @@ export interface RootRouteChildren {
   EmailPreferencesRoute: typeof EmailPreferencesRoute
   HomePreviewRoute: typeof HomePreviewRoute
   NewAndUpcomingRoute: typeof NewAndUpcomingRoute
+  PreviewWhileYouWaitRoute: typeof PreviewWhileYouWaitRoute
   PrivacyRoute: typeof PrivacyRoute
   RefundPolicyRoute: typeof RefundPolicyRoute
   ShippingPolicyRoute: typeof ShippingPolicyRoute
@@ -2732,6 +2745,13 @@ declare module '@tanstack/react-router' {
       path: '/new-and-upcoming'
       fullPath: '/new-and-upcoming'
       preLoaderRoute: typeof NewAndUpcomingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/preview-while-you-wait': {
+      id: '/preview-while-you-wait'
+      path: '/preview-while-you-wait'
+      fullPath: '/preview-while-you-wait'
+      preLoaderRoute: typeof PreviewWhileYouWaitRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/privacy': {
@@ -4055,6 +4075,7 @@ const rootRouteChildren: RootRouteChildren = {
   EmailPreferencesRoute: EmailPreferencesRoute,
   HomePreviewRoute: HomePreviewRoute,
   NewAndUpcomingRoute: NewAndUpcomingRoute,
+  PreviewWhileYouWaitRoute: PreviewWhileYouWaitRoute,
   PrivacyRoute: PrivacyRoute,
   RefundPolicyRoute: RefundPolicyRoute,
   ShippingPolicyRoute: ShippingPolicyRoute,

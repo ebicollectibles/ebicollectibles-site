@@ -4,6 +4,7 @@ import { ExpressApplePayButton } from '~/components/ExpressApplePayButton'
 import { OrderConfirmation } from '~/components/OrderConfirmation'
 import { ShipTogetherChoice } from '~/components/ShipTogetherChoice'
 import { useCombineShippingChoice } from '~/lib/use-combine-shipping'
+import { SHOW_WHILE_YOU_WAIT, WhileYouWait } from '~/components/WhileYouWait'
 import { useCart } from '~/lib/cart-context'
 import {
   ALL_DELAYED_SHIPMENT_WARNING,
@@ -358,6 +359,7 @@ function CartPage() {
               )}
             </div>
           </div>
+          {SHOW_WHILE_YOU_WAIT && cartHasPreorder && <WhileYouWait mode="cart" />}
         </>
       )}
     </section>
