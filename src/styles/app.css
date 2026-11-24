@@ -215,6 +215,9 @@ body {
   -webkit-font-smoothing: antialiased;
   -webkit-text-size-adjust: 100%;
   overflow-x: hidden;
+  /* clip, not hidden: hidden turns html/body into scroll containers, which
+     stops the sticky header from sticking. Older browsers keep hidden. */
+  overflow-x: clip;
 }
 
 img {
