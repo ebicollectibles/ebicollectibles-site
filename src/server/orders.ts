@@ -85,8 +85,11 @@ const placeOrderSchema = z.object({
 // hasPreorder must match the pending order's own snapshot — see the comment
 // on hasPendingOrder for why a pre-order and an in-stock order can never
 // meaningfully combine into one box.
+// Not for pre-orders: new items can no longer be added onto a pre-order
+// that's already been placed (owner's call, Nov 2026). A pre-order only
+// ships with in-stock items bought in the same cart.
 async function resolveFreeShippingOverride(sessionUserId: string | null, hasPreorder: boolean): Promise<number | undefined> {
-  if (!sessionUserId) return undefined
+  if (!sessionUserId || hasPreorder) return undefined
   const db = getDb()
   const [pending] = await db
     .select({ id: orders.id })
@@ -111,7 +114,12 @@ async function resolveFreeShippingOverride(sessionUserId: string | null, hasPreo
 // a stale or tampered id just silently gets no discount, never an error,
 // so a direct API call can't use this to force a free-shipping order with
 // no real anchor behind it.
+// Switched off: in-stock items can no longer be attached to a pending
+// pre-order placed earlier (see resolveFreeShippingOverride). Kept so the
+// option can come back by deleting the early return.
+const ALLOW_JOINING_PENDING_PREORDER = false
 async function resolveMismatchedTypeShippingWaiver(sessionUserId: string | null, requestedOrderId: string | undefined): Promise<string | undefined> {
+  if (!ALLOW_JOINING_PENDING_PREORDER) return undefined
   if (!sessionUserId || !requestedOrderId) return undefined
   const db = getDb()
   const [anchor] = await db
@@ -136,13 +144,16 @@ async function resolveMismatchedTypeShippingWaiver(sessionUserId: string | null,
 // Picks whichever pending order was created most recently when more than
 // one exists on the account — harmless either way, since this is advisory
 // only.
-async function resolveAutoCombineLink(sessionUserId: string | null): Promise<string | undefined> {
-  if (!sessionUserId) return undefined
+// Pre-orders are left out on both sides: a new pre-order is never linked to
+// an earlier order, and nothing is linked onto a pending pre-order (see
+// resolveFreeShippingOverride).
+async function resolveAutoCombineLink(sessionUserId: string | null, hasPreorder: boolean): Promise<string | undefined> {
+  if (!sessionUserId || hasPreorder) return undefined
   const db = getDb()
   const [pending] = await db
     .select({ id: orders.id })
     .from(orders)
-    .where(and(eq(orders.userId, sessionUserId), eq(orders.fulfillmentStatus, 'pending')))
+    .where(and(eq(orders.userId, sessionUserId), eq(orders.fulfillmentStatus, 'pending'), eq(orders.hasPreorder, false)))
     .orderBy(desc(orders.createdAt))
     .limit(1)
   return pending?.id
@@ -232,7 +243,7 @@ export const placeOrder = createServerFn({ method: 'POST' })
           }).then((rate) => rate ?? undefined)
         : resolveFreeShippingOverride(sessionUserId, hasPreorder),
       hasPreorder || isHiAk ? Promise.resolve(undefined) : resolveMismatchedTypeShippingWaiver(sessionUserId, data.combineWithOrderId),
-      resolveAutoCombineLink(sessionUserId),
+      resolveAutoCombineLink(sessionUserId, hasPreorder),
     ])
     // The link itself is always whatever resolveAutoCombineLink found —
     // except an explicitly-consented mismatched-type anchor wins over it,

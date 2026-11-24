@@ -140,8 +140,12 @@ export const hasPendingOrder = createServerFn({ method: 'GET' })
     // — the combineWithOrderId link itself now gets set automatically
     // regardless (see resolveAutoCombineLink in server/orders.ts), with or
     // without this opt-in.
-    const combineCandidate = !data.hasPreorder && mismatched ? { id: mismatched.id, orderNo: mismatched.orderNo } : null
-    return { waived: matchingRows.length > 0, mismatchedPending: mismatchedRows.length > 0, combineCandidate }
+    // Joining a pending pre-order, or adding a pre-order onto a pending
+    // order, is switched off (see resolveFreeShippingOverride in
+    // server/orders.ts), so neither direction is offered any more.
+    void mismatched
+    const combineCandidate = null
+    return { waived: !data.hasPreorder && matchingRows.length > 0, mismatchedPending: false, combineCandidate }
   })
 
 // Same check as hasPendingOrder, but by typed email instead of a signed-in
@@ -157,6 +161,7 @@ export const hasPendingOrder = createServerFn({ method: 'GET' })
 export const hasPendingOrderForEmail = createServerFn({ method: 'GET' })
   .validator(z.object({ email: z.string().trim().email(), hasPreorder: z.boolean() }))
   .handler(async ({ data }) => {
+    if (data.hasPreorder) return false
     const { getDb } = await import('~/lib/db/client')
     const { orders, users } = await import('~/lib/db/schema')
     const { and, eq, sql } = await import('drizzle-orm')
