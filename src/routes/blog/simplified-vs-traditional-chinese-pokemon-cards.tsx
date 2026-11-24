@@ -121,6 +121,8 @@ export const Route = createFileRoute('/blog/simplified-vs-traditional-chinese-po
 })
 
 const TOC = [
+  { id: 'short-answer', label: 'The short answer' },
+  { id: 'tips', label: "Tips if you don't read Chinese" },
   { id: 'at-a-glance', label: 'Side by side' },
   { id: 'script', label: 'Check how Pokémon is written' },
   { id: 'codes', label: 'Check the set code' },
@@ -165,7 +167,7 @@ function SimplifiedVsTraditionalPost() {
         updated={status.liveAt}
         wide
         post={post}
-        lede="Simplified and Traditional Chinese Pokémon cards are two separate official versions of the game. The quickest way to tell them apart is how Pokémon is written: 宝可梦 in Simplified Chinese, 寶可夢 in Traditional Chinese."
+        lede="Simplified and Traditional are two ways of writing the same Chinese language. Simplified Chinese cards are made for mainland China. Traditional Chinese cards are made for Taiwan, Hong Kong and Macau. They are two separate official versions of the game, with different sets."
         cta={{
           heading: 'Browse the Simplified Chinese sets',
           body: `Full card lists for ${num(SETS.length)} Simplified Chinese sets.`,
@@ -175,12 +177,53 @@ function SimplifiedVsTraditionalPost() {
           ],
         }}
       >
+        <h2 id="short-answer">The short answer</h2>
+        <ul>
+          <li>
+            <strong>Simplified Chinese</strong> is the way Chinese is written in mainland China. Many characters have fewer strokes.
+            Pokémon is written <Zh>宝可梦</Zh>.
+          </li>
+          <li>
+            <strong>Traditional Chinese</strong> is the older, fuller way of writing the same characters, used in Taiwan, Hong Kong and
+            Macau. Pokémon is written <span lang="zh-Hant">寶可夢</span>.
+          </li>
+          <li>
+            <strong>On cards,</strong> they are two different official versions. Simplified Chinese cards come from Pokémon China
+            (pokemon.cn). Traditional Chinese cards have their own official site, the Trainers Website at asia.pokemon-card.com.
+          </li>
+          <li>
+            <strong>The fastest check:</strong> Simplified Chinese set codes end in C, like {MAIN[MAIN.length - 1].code}. Traditional
+            Chinese products use the Japanese codes, like {TC_MATCHES[0].code}.
+          </li>
+        </ul>
+
+        <h2 id="tips">Tips if you don't read Chinese</h2>
         <p>
-          Simplified Chinese cards are made for mainland China. Pokémon China announces them on pokemon.cn and put the first ones on sale
-          there on {formatDate('2022-10-28')}. Traditional Chinese cards have their own official site, the Trainers Website at
-          asia.pokemon-card.com, with pages for Taiwan and for Hong Kong. The two versions differ in script, set codes, products and
-          tournament rules.
+          If you don't read Chinese, the two can look almost the same at first. That's fine. You don't need to read a word to tell them apart. These checks work by sight.
         </p>
+        <ol>
+          <li>
+            <strong>Traditional looks denser.</strong> Traditional characters keep more strokes, so a line of text looks darker, busier
+            and more packed. Simplified text looks lighter, with more white space inside each character.
+          </li>
+          <li>
+            <strong>Look at the word Pokémon.</strong> It is on every pack and box. In <Zh>宝可梦</Zh> the first character is a small
+            roof over a simple shape. In <span lang="zh-Hant">寶可夢</span> the same character is crammed with strokes, and the last
+            character is taller and boxier.
+          </li>
+          <li>
+            <strong>Find the set code.</strong> It is printed along the bottom edge of every card. A code ending in C is Simplified Chinese.
+          </li>
+          <li>
+            <strong>Don't rely on Pokémon names.</strong> Some names are written the same in both. Pikachu is <Zh>皮卡丘</Zh> either
+            way.
+          </li>
+          <li>
+            <strong>Compare a few common characters.</strong> The game's name, printed on packaging, has two easy pairs:{' '}
+            <Zh>换</Zh> and <span lang="zh-Hant">換</span> (exchange), <Zh>戏</Zh> and <span lang="zh-Hant">戲</span> (game). In each
+            pair, the Traditional one has more strokes.
+          </li>
+        </ol>
 
         <nav className="toc" aria-label="In this article">
           <p className="toc-title">In this article</p>
