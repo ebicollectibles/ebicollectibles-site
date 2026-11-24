@@ -132,18 +132,33 @@ function ShanghaiGoldCardsPost() {
     '@type': 'FAQPage',
     mainEntity: FAQ.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
   }
+  // The card art exhibition where the gold cards are shown (its venue and dates
+  // are from Pokémon China's Nov 23 announcement). Entry is free with a booking.
   const eventJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'Event',
-    name: 'Pokémon 30th Anniversary Shanghai Finale',
-    alternateName: '宝可梦30周年上海盛典',
+    name: 'Pokémon Card Art Illustration Exhibition (Pokémon 30th Anniversary Shanghai Finale)',
+    alternateName: '宝可梦卡牌艺术插画展',
+    description:
+      'Free exhibition at the Pokémon 30th Anniversary Shanghai Finale, where Pokémon China shows 30 Pikachu cards made of 999 gold, 30g each. Booking required.',
+    url: 'https://www.pokemon.cn/tcg/campaign/24810.html',
     startDate: '2026-11-28',
-    endDate: '2027-01-03',
+    endDate: '2026-12-27',
+    eventStatus: 'https://schema.org/EventScheduled',
     eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
     location: { '@type': 'Place', name: 'Lafayette Cultural & Art Center', address: { '@type': 'PostalAddress', streetAddress: '323 Fuxing Middle Road, Huangpu District', addressLocality: 'Shanghai', addressCountry: 'CN' } },
     isAccessibleForFree: true,
-    organizer: { '@type': 'Organization', name: 'Pokémon China' },
-    image: img('event-poster'),
+    offers: {
+      '@type': 'Offer',
+      price: 0,
+      priceCurrency: 'CNY',
+      availability: 'https://schema.org/InStock',
+      url: 'https://www.pokemon.cn/tcg/campaign/24810.html',
+      validFrom: '2026-11-25T15:00:00+08:00',
+    },
+    organizer: { '@type': 'Organization', name: 'Pokémon China', url: 'https://www.pokemon.cn/' },
+    performer: { '@type': 'Organization', name: 'Pokémon China', url: 'https://www.pokemon.cn/' },
+    image: [img('gold-30'), img('event-poster')],
   }
 
   return (
