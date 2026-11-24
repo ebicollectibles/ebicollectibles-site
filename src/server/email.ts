@@ -357,7 +357,7 @@ export async function sendOrderConfirmationEmail(order: OrderEmailData): Promise
       order.hasPreorder
         ? section(
             noticeHtml(
-              `This order includes a pre-order item, charged in full today. Cancellations before shipment are subject to a 5% fee. See our <a href="${SITE_URL}/refund-policy" style="color:${INK};font-weight:600;">Refund Policy</a> for details.`,
+              `This order includes a pre-order item, charged in full today. Any in-stock items in this order ship together with it once the pre-order item arrives. Cancellations before shipment are subject to a 5% fee. See our <a href="${SITE_URL}/refund-policy" style="color:${INK};font-weight:600;">Refund Policy</a> for details.`,
               NOTICE_AMBER,
             ),
             20,
@@ -393,7 +393,7 @@ export async function sendOrderConfirmationEmail(order: OrderEmailData): Promise
     address ? `Ship to:\n${address.replace(/<br>/g, '\n')}` : null,
     order.paymentMethodSummary ? `Payment method: ${order.paymentMethodSummary}` : null,
     order.hasPreorder
-      ? `\nThis order includes a pre-order item, charged in full today. Cancellations before shipment are subject to a 5% fee. See our Refund Policy for details: ${SITE_URL}/refund-policy`
+      ? `\nThis order includes a pre-order item, charged in full today. Any in-stock items in this order ship together with it once the pre-order item arrives. Cancellations before shipment are subject to a 5% fee. See our Refund Policy for details: ${SITE_URL}/refund-policy`
       : null,
     '',
     `View your order: ${orderUrl}`,
