@@ -47,9 +47,9 @@ function ShippingPolicyPage() {
         <div>
           <h2 style={{ fontSize: 18, fontWeight: 700, margin: '0 0 10px' }}>Pre-orders &amp; delayed items</h2>
           <p style={{ fontSize: 14.5, lineHeight: 1.65, color: '#131b28', margin: 0, maxWidth: '65ch' }}>
-            Pre-order items are charged in full at checkout and ship separately from any in-stock items in the
-            same order. For this reason, a cart that mixes a pre-order with an in-stock item can't be checked out
-            together.
+            Pre-order items are charged in full at checkout. If an order has both a pre-order item and in-stock
+            items, you confirm at checkout that the whole order, including the in-stock items, will wait and ship
+            together once the pre-order item arrives. To get in-stock items sooner, place them as a separate order.
           </p>
           <p style={{ fontSize: 14.5, lineHeight: 1.65, color: '#131b28', margin: '16px 0 0', maxWidth: '65ch' }}>
             Release and ship dates are estimates provided by the manufacturer or distributor and may change

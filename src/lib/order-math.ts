@@ -45,7 +45,7 @@ export function findUnorderableLine(
 // preorder-agreement checkbox checked — see MIXED_PREORDER_INFO for the
 // always-visible explanation of the (now non-blocking) alternative.
 export const MIXED_PREORDER_ERROR =
-  'Your cart mixes pre-order and in-stock items — check the box below to keep it as one order, or check out in two orders instead.'
+  'Your cart has a pre-order item and in-stock items. Check the box below to confirm everything will ship together once the pre-order item arrives.'
 
 // Shown as soon as the cart is mixed, regardless of whether the checkbox is
 // checked yet — explains both paths rather than presenting the mix as a
@@ -56,7 +56,7 @@ export const MIXED_PREORDER_ERROR =
 // (see preorderAcknowledged in server/orders.ts, which now gates this
 // instead of unconditionally rejecting it).
 export const MIXED_PREORDER_INFO =
-  'Your cart mixes a pre-order item with in-stock item(s). By default these ship separately — check out in two orders to get the in-stock item(s) sooner. Or check the box below to keep it as one order instead; everything will ship together once the pre-order item arrives.'
+  'Heads up: your cart has a pre-order item. Everything in this order, including the in-stock items, will wait and ship together once the pre-order item arrives. To get the in-stock items sooner, check them out as a separate order.'
 
 // A pre-order product ships on its own later date, separate from anything
 // in stock now — mixing the two in one order means either checking out in

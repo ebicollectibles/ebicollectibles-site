@@ -306,7 +306,7 @@ function CartPage() {
                     </Link>
                     .{' '}
                     {mixedPreorder
-                      ? "I understand this order includes a pre-order item, charged in full today, and that the entire order — including the in-stock item(s) — will ship together once the pre-order item becomes available."
+                      ? "I understand this order includes a pre-order item, charged in full today, and that the in-stock item(s) will wait and ship together with it once the pre-order item arrives."
                       : 'I understand this order includes a pre-order item, charged in full today.'}{' '}
                     Cancellations before shipment are subject to a <strong>5% cancellation fee</strong>.
                   </span>
