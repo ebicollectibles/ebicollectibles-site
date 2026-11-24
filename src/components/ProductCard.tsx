@@ -162,8 +162,8 @@ export function ProductCard({
           </>
         ) : notSellable ? (
           product.hidePrice || hubPriceRange == null ? (
-            <span style={{ fontSize: priceFontSize - 2, fontWeight: 500, color: '#5a6875' }}>
-              Price to be announced
+            <span style={{ fontSize: priceFontSize, fontWeight: 600, color: '#5a6875', whiteSpace: 'nowrap' }}>
+              Price TBA
             </span>
           ) : hubPriceRange.min === hubPriceRange.max ? (
             <span style={{ fontSize: priceFontSize, fontWeight: 600, color: '#5a6875' }}>{formatMoney(hubPriceRange.min)}</span>
