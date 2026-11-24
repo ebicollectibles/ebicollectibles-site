@@ -22,8 +22,11 @@ export function AddToCartControl({
   qtyBtnWidth = 40,
   maxWidth,
   marginTop,
+  shortLabels = false,
 }: {
   product: Product
+  /** Product cards are narrow on phones: one-line button labels there. */
+  shortLabels?: boolean
   padding?: number
   fontSize?: number
   qtyBtnWidth?: number
@@ -73,7 +76,7 @@ export function AddToCartControl({
   // <= 0, not === 0 — see ProductCard.tsx's identical fix for why.
   const soldOut = !notSellable && product.stock <= 0
   const comingSoon = product.comingSoon === true
-  const btnLabel = comingSoon ? (product.preorder ? 'Pre-orders open soon' : 'Coming soon') : notSellable ? 'Choose an option below' : soldOut ? 'Sold out' : product.preorder ? 'Pre-order' : 'Add to cart'
+  const btnLabel = comingSoon ? (product.preorder ? (shortLabels ? 'Opening soon' : 'Pre-orders open soon') : 'Coming soon') : notSellable ? 'Choose an option below' : soldOut ? 'Sold out' : product.preorder ? 'Pre-order' : 'Add to cart'
   const atMaxStock = qtyInCart >= product.stock
 
   // Once added, the card settles into a persistent stepper instead of
@@ -176,6 +179,7 @@ export function AddToCartControl({
         padding,
         fontSize,
         fontWeight: 600,
+        whiteSpace: 'nowrap',
         cursor: disabledState ? 'not-allowed' : 'pointer',
         opacity: disabledState ? 0.45 : 1,
       }}

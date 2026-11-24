@@ -173,8 +173,10 @@ export function ProductCard({
             </span>
           )
         ) : comingSoon && !priceKnown ? (
-          <span style={{ fontSize: priceFontSize - 2, fontWeight: 500, color: '#5a6875' }}>
-            Price to be announced
+          // Short so it stays on one line in a phone's two-column grid and
+          // the price rows line up across the row.
+          <span style={{ fontSize: priceFontSize, fontWeight: 600, color: '#5a6875', whiteSpace: 'nowrap' }}>
+            Price TBA
           </span>
         ) : (
           variantRange && variantRange.min !== variantRange.max ? (
@@ -246,7 +248,7 @@ export function ProductCard({
           View options{hubVariants.length > 0 ? ` (${hubVariants.length})` : ''}
         </Link>
       ) : (
-        <AddToCartControl product={product} padding={buttonPadding} marginTop={buttonMarginTop} />
+        <AddToCartControl product={product} padding={buttonPadding} marginTop={buttonMarginTop} shortLabels />
       )}
     </article>
   )
