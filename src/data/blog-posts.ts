@@ -401,16 +401,16 @@ export const BLOG_POSTS: BlogPostSummary[] = [
   {
     slug: '30th-celebration-pikachu-cards-artists',
     path: '/blog/30th-celebration-pikachu-cards-artists',
-    title: 'All 30 Pikachu in 30th Celebration and the Artists Who Drew Them',
+    title: 'All 30 Pikachu Cards in Pokémon 30th Celebration and the Artists Behind Them',
     excerpt:
-      'Every 30th Celebration pack has one of 30 different Pikachu, each by a different artist. Here are all 30, from Ken Sugimori to Atsuko Nishida, with a little about each card and its artist.',
-    seoTitle: 'All 30 Pikachu in Pokémon 30th Celebration and Their Artists',
+      'One Pikachu in every pack, 30 artists, 30 completely different takes. Here are all 30 Pikachu Rares in Pokémon TCG 30th Celebration, from Ken Sugimori’s redrawn Jungle classic to a Pikachu by its original designer, Atsuko Nishida, plus how they are numbered in Japanese, Chinese and the other languages.',
+    seoTitle: 'All 30 Pikachu Cards in Pokémon 30th Celebration & Their Artists',
     seoDescription:
-      'All 30 Pikachu cards in Pokémon TCG 30th Celebration (017 to 046), each with its illustrator, from Ken Sugimori to Atsuko Nishida, and a note on the art.',
+      'All 30 Pikachu Rares in Pokémon TCG 30th Celebration, 023 to 052/128 in English: who drew each one, the story behind the art, and the Japanese and Chinese numbers.',
     tag: 'Set guide',
     date: '2026-11-23',
-    heroImage: `${SITE_URL}/assets/blog/pikachu-30-artists-hero-v1.webp`,
-    heroAlt: 'The Ken Sugimori Pikachu 01/30 from 30th Celebration in front, with Pikachu 15/30 and 25/30 behind it, beside the headline 30 Pikachu, 30 Artists',
+    heroImage: `${SITE_URL}/assets/blog/pikachu-30-artists-hero-v2.webp`,
+    heroAlt: 'The English Pikachu 01/30 by Ken Sugimori from 30th Celebration in front, with Pikachu 15/30 and 25/30 behind it, beside the headline 30 Pikachus, 30 Artists',
     glow1: 'rgb(246 206 60 / .28)',
     glow2: 'rgb(90 45 5 / .40)',
   },
