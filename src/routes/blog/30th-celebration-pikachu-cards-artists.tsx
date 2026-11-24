@@ -14,343 +14,464 @@ const asset = (name: string) => `${SITE_URL}/assets/blog/pikachu-30-artists-${na
 /** The English card scan, by English set number (23 to 52). */
 const img = (no: number) => asset(`en-${String(no).padStart(3, '0')}`)
 
+interface Move {
+  /** 'Ability' for an Ability; attacks leave this out */
+  kind?: 'Ability'
+  name: string
+  /** Damage as printed, e.g. "20", "40×" or "10+" */
+  damage?: string
+  /** Effect text as printed */
+  text?: string
+}
+
 interface PikachuCard {
   /** English set number, out of 128 */
   no: number
   illus: string
-  /** What the art shows, for the image alt text */
-  art: string
-  note: ReactNode
+  hp: number
+  moves: Move[]
+  /** Checked facts about the artist, each with its source in the Sources list */
+  bio: ReactNode
 }
 
 // The 30 Pikachu in the English 30th Celebration set (30C), 023/128 to 052/128.
-// Each card also carries a Pikachu badge from 01/30 to 30/30. Illustrator names
-// and attack names are as printed on the English cards.
+// Each card also carries a Pikachu badge from 01/30 to 30/30. Illustrator, HP,
+// Abilities and attacks are from TCGdex's English card data
+// (api.tcgdex.net/v2/en/cards/30th-023 and so on). Card counts are from TCGdex's
+// illustrator data, checked November 24, 2026: physical TCG cards only (sets in
+// the "Pokémon TCG Pocket" series left out), promos and reprints included.
+// "Earliest expansion" is the oldest set among those credits by TCGdex's
+// release date, leaving out promo sets, McDonald's Collections and trainer kits.
+// Do not add descriptions of the artwork here unless an official source gives them.
 const PIKACHU: PikachuCard[] = [
   {
     no: 23,
     illus: 'Ken Sugimori',
-    art: 'a round, classic-style Pikachu standing in a green forest with small bolts of lightning around it',
-    note: (
+    hp: 70,
+    moves: [{ name: 'Thunder Shock', damage: '20', text: "Flip a coin. If heads, your opponent's Active Pokémon is now Paralyzed." }],
+    bio: (
       <>
-        Where else could it start? Sugimori, whose art defined the very first Pokémon games, redraws his own Pikachu from Jungle
-        (60/64, 1999): the same chubby, old-school Pikachu in the same forest, with the same little bolts crackling around it.
-        Put the two side by side and 27 years fall away.
+        Pokémon's "Creators of Pikachu" profile calls Sugimori one of the founding members of GAME FREAK, in charge of the
+        official character design for Pokémon Red and Pokémon Green. TCGdex credits him on 1,119 English cards, going back to Base
+        Set (1999). One of them is the Jungle Pikachu, 60/64, from 1999.
       </>
     ),
   },
   {
     no: 24,
     illus: 'danciao',
-    art: 'Pikachu charging forward in a burst of red and gold electricity as rocks break apart around it',
-    note: (
+    hp: 70,
+    moves: [{ name: 'Volt Tackle', damage: '80', text: 'This Pokémon also does 30 damage to itself.' }],
+    bio: (
       <>
-        Pikachu comes straight at you in a blast of red and gold electricity, with the ground breaking apart under it. The attack
-        is Volt Tackle, and the art looks exactly like one. Easily one of the loudest cards of the 30.
+        TCGdex credits danciao on 17 English cards, going back to Twilight Masquerade (2024). This is the only Pikachu among them.
       </>
     ),
   },
   {
     no: 25,
     illus: 'satoma',
-    art: 'Pikachu sitting on a teal stool in a sunny garden full of flowers',
-    note: (
-      <>
-        The opposite mood: Pikachu perched on a little teal stool in a sunny garden. satoma's soft, washed-out colors give it the
-        feel of a watercolor you would hang in a kitchen.
-      </>
-    ),
+    hp: 70,
+    moves: [
+      {
+        name: 'Spark',
+        damage: '20',
+        text: "This attack also does 20 damage to 1 of your opponent's Benched Pokémon. (Don't apply Weakness and Resistance for Benched Pokémon.)",
+      },
+    ],
+    bio: <>TCGdex credits satoma on 31 English cards, going back to Obsidian Flames (2023). This is the only Pikachu among them.</>,
   },
   {
     no: 26,
     illus: 'Takeshi Nakamura',
-    art: 'Pikachu hanging upside down into the frame and looking straight at the viewer, with blue sky behind it',
-    note: (
+    hp: 70,
+    moves: [{ name: 'Peer At', text: 'Your opponent reveals their hand.' }],
+    bio: (
       <>
-        Pikachu drops into the frame upside down and stares right at you. The attack is Peer At, which makes your opponent show
-        you their hand. Card and art in perfect agreement.
+        TCGdex credits Takeshi Nakamura on 30 English cards, going back to Obsidian Flames (2023). This is the only Pikachu among
+        them.
       </>
     ),
   },
   {
     no: 27,
     illus: 'Asako Ito',
-    art: 'a crochet-style Pikachu napping on the grass',
-    note: (
+    hp: 80,
+    moves: [{ name: 'Nap', text: 'Heal 30 damage from this Pokémon.' }],
+    bio: (
       <>
-        Look closely: this Pikachu is yarn. Asako Ito crochets Pokémon by hand, and her cards are photos of her handmade pieces.
-        Here it dozes in the grass, and the attack is, of course, Nap.
+        TheGamer reports that Asako Ito crochets Pokémon in the amigurumi style for her card art. TCGdex credits her on 37 English cards, going back to Poliwag in Sun &amp; Moon (2017). This is the only Pikachu among them.
       </>
     ),
   },
   {
     no: 28,
     illus: 'sowsow',
-    art: 'Pikachu sitting among soft pillows holding a Poké Ball, with a Ditto on a cushion beside it',
-    note: (
-      <>
-        Pikachu sits in a nest of pillows hugging a Poké Ball, with a Ditto on the next cushion and a picture frame on the wall.
-        Pastel, hand-drawn and about as cozy as a card gets. Its Ability is Lonely Gaze, and its attack is Pika Ball.
-      </>
-    ),
+    hp: 60,
+    moves: [
+      {
+        kind: 'Ability',
+        name: 'Lonely Gaze',
+        text: "As long as this Pokémon is in the Active Spot, attacks used by your opponent's Active Pokémon do 20 less damage (before applying Weakness and Resistance).",
+      },
+      { name: 'Pika Ball', damage: '20' },
+    ],
+    bio: <>TCGdex credits sowsow on 112 English cards, going back to Forbidden Light (2018). This is the only Pikachu among them.</>,
   },
   {
     no: 29,
     illus: 'James Turner',
-    art: 'a flat, sticker-style Pikachu bouncing past a Poké Ball on a teal background dotted with flowers',
-    note: (
+    hp: 60,
+    moves: [
+      {
+        name: 'Find a Friend',
+        text: 'Search your deck for a Pokémon, reveal it, and put it into your hand. Then, shuffle your deck.',
+      },
+    ],
+    bio: (
       <>
-        Thick outlines, flat bright color, a Poké Ball and a scatter of flowers: you can spot a James Turner card from across the
-        room. Turner is a Game Freak artist who has designed Pokémon for the main games. The attack, Find a Friend, searches your
-        deck for a Pokémon.
+        At GAME FREAK, Turner designed Pokémon including Vanillite, Golett, Vullaby and Phantump, and was art director on Pokémon
+        Sword and Shield. He left in 2022 and co-founded All Possible Futures, the studio behind The Plucky Squire. In August 2026
+        he announced a new role as Creative Director of Pokémon Art and Design at The Pokémon Company International (Video Games
+        Chronicle, Nintendo Life). TCGdex credits him on 6 English cards, the earliest Pansear in Next Destinies (2012).
       </>
     ),
   },
   {
     no: 30,
     illus: 'DOM',
-    art: 'Pikachu glowing with lightning as it races through a city at night',
-    note: <>Pikachu tears through a city at night, wrapped in purple and yellow lightning. The attack is Mach Bolt. All speed, all glow.</>,
+    hp: 60,
+    moves: [{ name: 'Mach Bolt', damage: '30' }],
+    bio: (
+      <>
+        TCGdex credits DOM on 50 English cards, going back to Brilliant Stars (2022). They include two earlier Pikachu promos, SVP
+        225 and MEP 093.
+      </>
+    ),
   },
   {
     no: 31,
     illus: 'Atsushi Furusawa',
-    art: 'Pikachu sitting on a cluttered desk beside an old computer, books and pens, looking over its shoulder',
-    note: (
+    hp: 50,
+    moves: [{ name: 'Gnaw', damage: '10' }],
+    bio: (
       <>
-        Seen from behind, Pikachu sits on a cluttered desk next to an old computer, books and pens, and glances back like you
-        caught it at something. The attack is Gnaw. Keep an eye on those cables.
+        Pokémon.com's roundup of Sword &amp; Shield artist debuts says Furusawa first appeared with a Lapras in Chilling Reign. It
+        singles out his Lost Origin Trainer Gallery card, "featuring a Pikachu napping with its Trainer beneath a tree." TCGdex
+        lists that card as TG05 and credits him on 55 English cards in all.
       </>
     ),
   },
   {
     no: 32,
     illus: 'Tomokazu Komiya',
-    art: 'Pikachu tumbling past a giant pink broom through a rainy, swirling scene',
-    note: (
+    hp: 50,
+    moves: [{ name: 'Scurry About', text: 'Switch this Pokémon with 1 of your Benched Pokémon.' }],
+    bio: (
       <>
-        Pikachu tumbles past a giant pink broom through a swirl of rain. It is the strangest card of the 30, and that is the point.
-        Tomokazu Komiya has drawn Pokémon cards for decades, and his offbeat style is unmistakable. The attack is Scurry About.
+        In a conversation published for the Pokémon TCG Illustration Contest 2022, where he was a judge, Komiya said he started
+        working on the Pokémon TCG in 1996, at the age of 25. The same page says he has also worked on Pokémon Center merchandise.
+        TCGdex credits him on 254 English cards, going back to Neo Genesis (2000). This is the only Pikachu among them.
       </>
     ),
   },
   {
     no: 33,
     illus: 'Narumi Sato',
-    art: 'Pikachu peeking out from a bush of pink flowers in bright sunlight',
-    note: (
+    hp: 60,
+    moves: [
+      {
+        kind: 'Ability',
+        name: 'Keep Hidden',
+        text: "As long as this Pokémon is on your Bench, prevent all damage from and effects of attacks from your opponent's Pokémon done to this Pokémon.",
+      },
+      { name: 'Tiny Charge', damage: '10' },
+    ],
+    bio: (
       <>
-        Pikachu peeks out of a bush of pink flowers in bright sun. Its Ability is Keep Hidden, which protects it from damage on
-        the Bench. The art is the Ability.
+        Pokémon.com says Narumi Sato took second place in the first Pokémon Card Game Illustration Grand Prix, run by Creatures
+        Inc. in 2019, and that her first card came out in Shining Fates. TCGdex credits her on 52 English cards, including a
+        Pikachu in Pokémon GO (028, 2022).
       </>
     ),
   },
   {
     no: 34,
     illus: 'USGMEN',
-    art: 'a flat, cut-out style Pikachu hopping across a green lawn next to a tree stump',
-    note: (
+    hp: 70,
+    moves: [
+      {
+        name: 'Pika Chain',
+        damage: '40×',
+        text: 'This attack does 40 damage for each of your Pikachu and Pikachu ex in play.',
+      },
+    ],
+    bio: (
       <>
-        A flat, paper cut-out Pikachu hops across a green lawn by a tree stump. Simple shapes, bold outline, very modern. The
-        attack is Pika Chain.
+        Pokémon.com's 2023 artist debuts article says USGMEN was already known on social media before joining the TCG, with "a
+        pair of dots for eyes and a straight line forming the face" as their biggest motif. Their first card was the Mew ex Special
+        Illustration Rare in Paldean Fates (232). TCGdex credits USGMEN on 6 English cards.
       </>
     ),
   },
   {
     no: 35,
     illus: 'Susumu Maeya',
-    art: 'Pikachu rolling on its back in a carpet of red and orange autumn leaves',
-    note: (
+    hp: 60,
+    moves: [{ name: 'Rollout', damage: '30' }],
+    bio: (
       <>
-        Pikachu rolls on its back in a carpet of red and orange leaves, eyes shut, grinning. The attack is Rollout. If any card in
-        the set captures the pure fun of being Pikachu, it is this one.
+        TCGdex credits Susumu Maeya on 19 English cards, going back to Temporal Forces (2024). This is the only Pikachu among them.
       </>
     ),
   },
   {
     no: 36,
     illus: 'OKACHEKE',
-    art: 'Pikachu leaning over a wooden railing and smiling',
-    note: (
+    hp: 70,
+    moves: [{ name: 'Slight Intrusion', damage: '40', text: 'This Pokémon also does 10 damage to itself.' }],
+    bio: (
       <>
-        Pikachu hauls itself over a wooden banister with a big grin, caught mid-climb. The attack is Slight Intrusion, which is
-        exactly what this looks like. Warm wood and soft light give it a homey, painted feel.
+        OKACHEKE's first cards came out in Chilling Reign, according to Pokémon.com, and he was one of the TCG artists invited to
+        the 2025 Pokémon World Championships. Pokémon's set announcement revealed this Pikachu together with the ones by Yuu Nishida
+        and Atsuko Nishida. TCGdex credits
+        him on 72 English cards, including Pikachu in Paldea Evolved (062) and Paldean Fates (018).
       </>
     ),
   },
   {
     no: 37,
     illus: 'Yuu Nishida',
-    art: 'Pikachu leaping toward the viewer with a happy shout, its tail crackling against a bright green background',
-    note: (
+    hp: 70,
+    moves: [
+      {
+        name: 'Energized Tail',
+        text: 'Search your deck for an Energy card, reveal it, and put it into your hand. Then, shuffle your deck.',
+      },
+      { name: 'Pika Punch', damage: '30' },
+    ],
+    bio: (
       <>
-        Pikachu leaps at you with a happy shout, tail crackling against bright green and blue. The attacks are Energized Tail and
-        Pika Punch. Sunny, bold and one of the most cheerful cards in the set.
+        One of the three Pikachu shown in Pokémon's set announcement, with the ones by OKACHEKE and Atsuko Nishida. TCGdex credits
+        Yuu Nishida on 77 English cards, going back to Shining Fates (2021), including a Pikachu in Paldean Fates (131).
       </>
     ),
   },
   {
     no: 38,
     illus: 'Tetsu Kayama',
-    art: 'a determined Pikachu crouching under big leaves with its cheeks sparking',
-    note: (
+    hp: 60,
+    moves: [
+      {
+        name: 'Targeted Spark',
+        text: "This attack does 20 damage to 1 of your opponent's Pokémon. (Don't apply Weakness and Resistance for Benched Pokémon.)",
+      },
+    ],
+    bio: (
       <>
-        No smiles here. Pikachu crouches under big leaves, brow furrowed, cheeks sparking, ready for a fight. The attack is
-        Targeted Spark. One of the few serious faces of the 30.
+        Pokémon.com's 2023 artist debuts article says Tetsu Kayama debuted in Obsidian Flames with Lunatone and Solrock, and
+        describes a "pointillism-like dotted style" across Kayama's cards. TCGdex credits Tetsu Kayama on 29 English cards.
       </>
     ),
   },
   {
     no: 39,
     illus: 'Teeziro',
-    art: 'a tiny Pikachu resting at the doorstep of an old house with wooden doors, surrounded by trees and plants',
-    note: (
+    hp: 70,
+    moves: [
+      {
+        name: 'Iron Tail',
+        damage: '20×',
+        text: 'Flip a coin until you get tails. This attack does 20 damage for each heads.',
+      },
+    ],
+    bio: (
       <>
-        Find the Pikachu. It is the small yellow spot on the doorstep of an old house with tall wooden doors, half hidden by trees.
-        Teeziro lets the painted scene do the talking. The attack is Iron Tail.
+        Pokémon.com says Teeziro debuted in Chilling Reign and drew two Trainer Gallery cards in Silver Tempest. TCGdex credits
+        Teeziro on 95 English cards. This is the only Pikachu among them.
       </>
     ),
   },
   {
     no: 40,
     illus: 'Shinji Kanda',
-    art: 'Pikachu cheering with its arms up in a bright burst of rainbow patterns and flowers',
-    note: (
+    hp: 80,
+    moves: [
+      {
+        name: 'Overwriting Bolt',
+        damage: '10',
+        text: "The Defending Pokémon's Weakness is now Lightning until the end of your next turn. (Apply Weakness as ×2.)",
+      },
+    ],
+    bio: (
       <>
-        Pikachu throws its arms up in an explosion of rainbow patterns, flowers and dots, with something new in every corner. That
-        level of detail is Shinji Kanda's signature. The attack is Overwriting Bolt.
+        Shinji Kanda's first card came out in Brilliant Stars, according to Pokémon.com, which singles out the Giratina and Ariados
+        from Lost Origin. TCGdex credits Kanda on 32 English cards. This is the only Pikachu among them.
       </>
     ),
   },
   {
     no: 41,
     illus: 'Rianti Hidayat',
-    art: 'Pikachu hanging from a tree branch with a big smile, framed by jungle leaves',
-    note: (
+    hp: 60,
+    moves: [
+      { name: 'Hang Down', damage: '10' },
+      { name: 'Zap Kick', damage: '40' },
+    ],
+    bio: (
       <>
-        Pikachu dangles from a branch with a huge open-mouthed smile, framed by jungle leaves. Its first attack is called Hang
-        Down. Its second is Zap Kick.
+        TCGdex credits Rianti Hidayat on 12 English cards, going back to Brilliant Stars (2022). This is the only Pikachu among
+        them.
       </>
     ),
   },
   {
     no: 42,
     illus: 'Akira Komayama',
-    art: 'Pikachu running through tall pink grass under a bright blue sky',
-    note: (
+    hp: 60,
+    moves: [
+      {
+        name: 'Charge-Up Dash',
+        text: 'Flip a coin until you get tails. Search your deck for an amount of Basic Lightning Energy up to the number of heads and attach it to this Pokémon. Then, shuffle your deck.',
+      },
+      { name: 'Pika Bolt', damage: '50' },
+    ],
+    bio: (
       <>
-        Pikachu sprints through tall pink grass under a streaked blue sky, and the first attack, Charge-Up Dash, could be the
-        caption. Akira Komayama is a long-time card illustrator with a clean, bright, anime-like style.
+        TCGdex credits Akira Komayama on 259 English cards, going back to Call of Legends (2011). They include a Pikachu in Next
+        Destinies (39, 2012) and the promo SM206.
       </>
     ),
   },
   {
     no: 43,
     illus: 'OOYAMA',
-    art: 'a crayon-style drawing of Pikachu lounging on a beach with palm trees, a boat and a smiling sun',
-    note: (
-      <>
-        Drawn like a kid's crayon picture: Pikachu lounging on a beach with palm trees, a little boat and a smiling sun. The attack
-        is Tropical Vibes, and it puts Pikachu to sleep. Relatable.
-      </>
-    ),
+    hp: 70,
+    moves: [{ name: 'Tropical Vibes', text: 'This Pokémon is now Asleep. Draw cards until you have 6 cards in your hand.' }],
+    bio: <>TCGdex credits OOYAMA on 27 English cards, going back to BREAKpoint (2016). This is the only Pikachu among them.</>,
   },
   {
     no: 44,
     illus: 'akagi',
-    art: 'Pikachu bursting out of a swirl of after-images',
-    note: (
-      <>
-        Pikachu bursts out of a swirl of after-images, like a photo of something too fast to catch. The attack is Agility, and it
-        could not be anything else.
-      </>
-    ),
+    hp: 60,
+    moves: [
+      {
+        name: 'Agility',
+        damage: '10',
+        text: "Flip a coin. If heads, during your opponent's next turn, prevent all damage from and effects of attacks done to this Pokémon.",
+      },
+    ],
+    bio: <>TCGdex credits akagi on 33 English cards, going back to Paldean Fates (2024). This is the only Pikachu among them.</>,
   },
   {
     no: 45,
     illus: 'Naoyo Kimura',
-    art: 'Pikachu walking past white snowball flowers under an evening sky',
-    note: (
+    hp: 60,
+    moves: [
+      { name: 'Nighttime Stroll', text: 'Draw a card.' },
+      { name: 'Static Shock', damage: '20' },
+    ],
+    bio: (
       <>
-        Pikachu strolls past round white flowers under a deep blue evening sky. The first attack is Nighttime Stroll. A quiet,
-        lovely card.
+        TCGdex credits Naoyo Kimura on 268 English cards, going back to Neo Genesis (2000). They include Pikachu in Neo Genesis
+        (70, 2000), Cosmic Eclipse (66, 2019) and 151 (025, 2023).
       </>
     ),
   },
   {
     no: 46,
     illus: 'svlt',
-    art: 'Pikachu sitting on a mossy rock in the breeze next to pink flowers',
-    note: (
-      <>
-        Pikachu sits on a mossy rock with its eyes half shut in the breeze, beside a patch of pink flowers. The soft greens do most
-        of the work. The attacks are Get Some Air and Smash Kick.
-      </>
-    ),
+    hp: 60,
+    moves: [
+      { name: 'Get Some Air', text: 'This Pokémon recovers from all Special Conditions.' },
+      { name: 'Smash Kick', damage: '20' },
+    ],
+    bio: <>TCGdex credits svlt on 11 English cards, going back to Stellar Crown (2024). This is the only Pikachu among them.</>,
   },
   {
     no: 47,
     illus: 'Atsuko Nishida',
-    art: 'Pikachu skipping through a sunny meadow with hills behind it',
-    note: (
+    hp: 70,
+    moves: [{ name: 'Play Rough', damage: '10+', text: 'Flip a coin. If heads, this attack does 20 more damage.' }],
+    bio: (
       <>
-        The big one for history buffs. Atsuko Nishida first designed Pikachu at Game Freak, and 30 years on, here is her Pikachu
-        skipping through a sunny meadow with green hills behind it. The attack is Play Rough.
+        Nishida was a character designer for Pokémon Red and Pokémon Green. In Pokémon's "Creators of Pikachu" profile she says, "I
+        designed Pikachu and Raichu," and Sugimori says she also designed Bulbasaur, Charmander and Squirtle. This Pikachu was one
+        of the three shown in Pokémon's set announcement. TCGdex credits her on 419 English cards, going back to Team Rocket (2000),
+        including Pikachu in Expedition (124, 2002) and Generations (26, 2016).
       </>
     ),
   },
   {
     no: 48,
     illus: 'KIYOTAKA OSHIYAMA',
-    art: 'Pikachu diving face-first into a pile of grapes, strawberries and other fruit, drawn with thick black outlines',
-    note: (
+    hp: 70,
+    moves: [{ name: 'Store Up', text: 'Put up to 2 Basic Energy cards from your discard pile into your hand.' }],
+    bio: (
       <>
-        Pikachu dives face-first into a heap of grapes, strawberries and other fruit, all thick black outlines and bold color. The
-        attack is Store Up. Yes, it is.
+        Pokémon.com says KIYOTAKA OSHIYAMA debuted in Battle Styles. TCGdex credits him on 31 English cards, going back to Rapid
+        Strike Urshifu VMAX in that set (2021). This is the only Pikachu among them.
       </>
     ),
   },
   {
     no: 49,
     illus: 'Nurikabe',
-    art: 'a close, painted portrait of Pikachu with a sly smile against a dark, sparkling background',
-    note: (
-      <>
-        A close, glowing portrait with a sly little smile against a dark, sparkling backdrop. It reads more like an oil painting
-        than a cartoon. The attack is Fighting Lightning.
-      </>
-    ),
+    hp: 80,
+    moves: [
+      {
+        name: 'Fighting Lightning',
+        damage: '20+',
+        text: "If your opponent's Active Pokémon is a Pokémon ex, this attack does 80 more damage.",
+      },
+    ],
+    bio: <>TCGdex credits Nurikabe on 25 English cards, going back to Brilliant Stars (2022). This is the only Pikachu among them.</>,
   },
   {
     no: 50,
     illus: 'Shimaris Yukichi',
-    art: 'Pikachu sitting in a meadow with its cheeks full and its eyes squeezed shut, surrounded by berries',
-    note: (
+    hp: 80,
+    moves: [{ name: 'Satisfied Spark', damage: '100' }],
+    bio: (
       <>
-        Pikachu sits in a meadow with its cheeks stuffed and its eyes squeezed shut, surrounded by berries. The attack is
-        Satisfied Spark, and you can tell. Soft, storybook and one of the sweetest of the 30.
+        Shimaris Yukichi was one of the TCG artists invited to the 2025 Pokémon World Championships. TCGdex credits Shimaris
+        Yukichi on 26 English cards, going back to Temporal Forces (2024). This is the only Pikachu among them.
       </>
     ),
   },
   {
     no: 51,
     illus: 'nagimiso',
-    art: 'Pikachu diving down out of the sky in a crackle of lightning',
-    note: (
+    hp: 70,
+    moves: [
+      {
+        name: 'Lightning Crash',
+        text: "Discard all Lightning Energy from this Pokémon, and this attack does 90 damage to 1 of your opponent's Pokémon. (Don't apply Weakness and Resistance for Benched Pokémon.)",
+      },
+    ],
+    bio: (
       <>
-        Pikachu dives out of a starry sky in a crackle of green and yellow lightning. Sharp angles, comic-book energy. The attack is
-        Lightning Crash.
+        TCGdex credits nagimiso on 166 English cards, going back to Double Crisis (2015), including a Pikachu in Unbroken Bonds (54,
+        2019).
       </>
     ),
   },
   {
     no: 52,
     illus: 'Kazuki Minami',
-    art: 'Pikachu winding up a punch as the background shatters into streaks of light',
-    note: (
+    hp: 70,
+    moves: [
+      {
+        name: 'Angry Bolt',
+        damage: '10+',
+        text: 'This attack does 10 more damage for each damage counter on this Pokémon.',
+      },
+    ],
+    bio: (
       <>
-        Pikachu winds up a punch as the background shatters into streaks of light. The attack is Angry Bolt, and it closes the run
-        of 30 with a bang.
+        Kazuki Minami won the grand prize in the Pokémon TCG Illustration Contest 2024 with a Pikachu, which Pokémon describes as
+        "unwinding with a yawn and stretch on a bright sunny day." The winning art was released as a promo card, listed by TCGdex
+        as Pikachu SVP 214. TCGdex credits Minami on 4 English cards in all.
       </>
     ),
   },
@@ -405,6 +526,7 @@ const TOC = [
   { id: 'gold', label: 'The gold Pikachu cards in Shanghai' },
   { id: 'at-ebi', label: 'The Chinese version at EBI Collectibles' },
   { id: 'faq', label: 'FAQ' },
+  { id: 'sources', label: 'Sources' },
 ]
 
 const FAQ = [
@@ -414,15 +536,15 @@ const FAQ = [
   },
   {
     q: 'Is there a Pikachu in every pack?',
-    a: 'Yes. Every 30th Celebration booster pack has one of the 30, and it is foil.',
+    a: 'Yes. Pokémon says every 30th Celebration booster pack has one of the 30 Pikachu cards, and that every card in the set is foil.',
   },
   {
     q: 'Who drew the 30 Pikachu cards?',
-    a: '30 different illustrators, one per card. They include Ken Sugimori, whose art defined the first Pokémon games, Atsuko Nishida, who first designed Pikachu, and long-time card artists like Tomokazu Komiya, Akira Komayama and Shinji Kanda.',
+    a: '30 different illustrators, one per card. They include Ken Sugimori, a founding member of GAME FREAK; Atsuko Nishida, who designed Pikachu for Pokémon Red and Pokémon Green; Tomokazu Komiya, who has drawn for the Pokémon TCG since 1996; and James Turner, who designed Pokémon at GAME FREAK and is now Creative Director of Pokémon Art and Design at The Pokémon Company International.',
   },
   {
     q: 'Which Pikachu is 01/30?',
-    a: 'Ken Sugimori\'s, numbered 023/128 in English. It is a redraw of his Pikachu from the Jungle set (60/64), from 1999.',
+    a: "Ken Sugimori's, numbered 023/128 in English. It has 70 HP and the attack Thunder Shock. TCGdex also credits Sugimori with the Jungle Pikachu, 60/64, from 1999.",
   },
   {
     q: 'Where is the artist name on the card?',
@@ -433,17 +555,48 @@ const FAQ = [
     a: 'They have their own rarity, Pikachu Rare.',
   },
   {
-    q: 'Can you get all 30 from a few packs?',
-    a: 'Not reliably. Each pack has one Pikachu at random, so doubles turn up long before the 30th new one. Most collectors finish the run by trading or buying singles.',
-  },
-  {
     q: 'What languages was 30th Celebration printed in?',
-    a: '12: English, French, German, Italian, Spanish, Portuguese, Japanese, Korean, Traditional Chinese, Simplified Chinese, Thai and Indonesian. It launched worldwide on September 16, 2026, the first Pokémon TCG expansion to release on the same day around the world.',
+    a: '12: English, French, German, Italian, Spanish, Portuguese, Japanese, Korean, Traditional Chinese, Simplified Chinese, Thai and Indonesian. It launched worldwide on September 16, 2026. Pokémon says it is the first Pokémon TCG expansion to have a simultaneous global release.',
   },
   {
     q: 'Are the Pikachu the same in every language?',
     a: 'The 30 illustrations and artists are the same, and so is the 01/30 to 30/30 badge. The set number changes: 023 to 052/128 in English and the other European languages, 017 to 046/103 in Japanese, Korean and Chinese, and 023 to 052/130 in Thai and Indonesian.',
   },
+]
+
+const SOURCES: { label: string; href: string }[] = [
+  { label: 'TCGdex English card data (card text, illustrators and card counts)', href: 'https://api.tcgdex.net/v2/en/cards/30th-023' },
+  { label: 'TCGdex illustrator data', href: 'https://api.tcgdex.net/v2/en/illustrators' },
+  { label: 'Pokémon.com: Get Ready for Pokémon TCG: 30th Celebration', href: 'https://www.pokemon.com/us/news/get-ready-for-pokemon-tcg-30th-celebration' },
+  {
+    label: 'Pokémon.com: Look at Electrifying Pikachu Cards from Pokémon TCG: 30th Celebration',
+    href: 'https://www.pokemon.com/us/news/look-at-electrifying-pikachu-cards-from-pokemon-tcg-30th-celebration',
+  },
+  { label: 'Pokémon.com: Creator Profile: The Creators of Pikachu', href: 'https://www.pokemon.com/us/news/creator-profile-the-creators-of-pikachu' },
+  { label: 'Pokémon.com: Pokémon TCG: Sword & Shield Series Artist Debuts', href: 'https://www.pokemon.com/us/news/pokemon-tcg-sword-shield-series-artist-debuts' },
+  { label: 'Pokémon.com: Pokémon TCG: Scarlet & Violet 2023 Artist Debuts', href: 'https://www.pokemon.com/us/news/pokemon-tcg-scarlet-violet-2023-artist-debuts' },
+  {
+    label: 'Pokémon.com: Pokémon Trading Card Game Illustration Contest 2024 Winners Promo Cards',
+    href: 'https://www.pokemon.com/us/pokemon-news/pokemon-trading-card-game-illustration-contest-2024-winners-promo-cards',
+  },
+  {
+    label: 'Pokémon TCG Illustration Contest 2022: a conversation with Kouki Saitou and Tomokazu Komiya',
+    href: 'https://ptcgic-cr.com/2022/en/column/article-6/',
+  },
+  { label: '2025 Pokémon World Championships: Special Guests', href: 'https://worlds.2025.pokemon.com/en-us/experience/special-guests/' },
+  {
+    label: 'Video Games Chronicle: James Turner has rejoined the franchise',
+    href: 'https://videogameschronicle.com/news/james-turner-the-first-westerner-to-design-a-pokemon-has-rejoined-the-franchise/',
+  },
+  {
+    label: 'Nintendo Life: James Turner starts new role at The Pokémon Company International',
+    href: 'https://www.nintendolife.com/news/2026/08/pokemon-artist-and-plucky-squire-dev-james-turner-starts-new-role-at-the-pokemon-company-international',
+  },
+  { label: 'TheGamer: Asako Ito’s crochet designs', href: 'https://www.thegamer.com/pokemon-tcg-asako-ito-crochet-designs/' },
+  { label: 'Pokémon Card Game official card search (Japanese)', href: 'https://www.pokemon-card.com/' },
+  { label: 'Pokémon TCG Asia official card search (Traditional Chinese, Thai, Indonesian)', href: 'https://asia.pokemon-card.com/' },
+  { label: 'Pokémon Card Game official site (Korean)', href: 'https://pokemoncard.co.kr/' },
+  { label: 'Pokémon China official site (Simplified Chinese)', href: 'https://www.pokemon.cn/' },
 ]
 
 export const Route = createFileRoute('/blog/30th-celebration-pikachu-cards-artists')({
@@ -522,7 +675,7 @@ function PikachuArtistsPost() {
         updated={status.liveAt}
         wide
         post={post}
-        lede="Open a pack of 30th Celebration and one thing is guaranteed: a Pikachu. Which Pikachu is the fun part. There are 30 of them, each drawn by a different artist, and here is every one."
+        lede="Every 30th Celebration booster pack has one of 30 Pikachu cards, and each of the 30 was drawn by a different artist. Here is every one, with its numbers, its attacks and who drew it."
         cta={{
           heading: 'Shop 30th Celebration',
           body: 'The Simplified Chinese booster box, the Dream Painting Pikachu figures and the Pikachu 30th plush keychains.',
@@ -533,14 +686,14 @@ function PikachuArtistsPost() {
         }}
       >
         <p>
-          30th Celebration is the Pokémon TCG's 30th birthday set, and it went big. It launched on September 16, 2026, the first
-          expansion ever to release on the same day around the world, and Pikachu is the star of the show. Every booster pack has
-          one of 30 foil Pikachu cards.
+          30th Celebration launched on September 16, 2026. Pokémon says it is the first Pokémon TCG expansion to have a simultaneous
+          global release, that every card in it is foil, and that every booster pack has one of 30 Pikachu cards, each with a
+          different illustration.
         </p>
         <p>
-          What makes them worth chasing is who drew them. Ken Sugimori is here, and so is Atsuko Nishida, the artist who first
-          designed Pikachu. So are card veterans like Tomokazu Komiya and Akira Komayama, a Game Freak designer, a crochet artist and
-          a wave of newer names. Thirty artists, one little yellow mouse, and no two alike.
+          The 30 artists include Ken Sugimori, a founding member of GAME FREAK, and Atsuko Nishida, who designed Pikachu for Pokémon
+          Red and Pokémon Green. Tomokazu Komiya has drawn for the Pokémon TCG since 1996, James Turner designed Pokémon at GAME
+          FREAK, and Kazuki Minami won the Pokémon TCG Illustration Contest 2024 with a Pikachu.
         </p>
 
         <nav className="toc" aria-label="In this article">
@@ -557,17 +710,14 @@ function PikachuArtistsPost() {
         <h2 id="about">How the 30 Pikachu work</h2>
         <p>
           In the English set, the 30 Pikachu are cards 023/128 to 052/128, set code 30C. Right next to the number, each one has a
-          small Pikachu badge showing its place in the run, from 01/30 to 30/30. It is the quickest way to tell them apart, and the
-          number most collectors go by.
+          small Pikachu badge showing its place in the run, from 01/30 to 30/30. Their rarity is Pikachu Rare, and the artist's
+          name is printed at the bottom left, after "Illus.".
         </p>
         <p>
-          All 30 share one frame: a giant Pikachu face behind the attack text, with the "30" printed in its red cheeks. They also get
-          a rarity all to themselves, Pikachu Rare. The artist's name sits at the bottom left, after "Illus.".
-        </p>
-        <p>
-          A fun detail to look for as you go: a lot of the attack names describe the art. A napping Pikachu knows Nap, the one
-          hiding in the flowers has Keep Hidden, and the one diving into a pile of fruit uses Store Up. The notes below point out the
-          best ones.
+          Each card below shows its HP, Abilities and attacks as printed on the English card, then a note on the artist. Card counts
+          come from TCGdex's English card database, checked on November 24, 2026. They count Pokémon TCG cards only, not Pokémon TCG
+          Pocket, and include promos and reprints. The set named after "going back to" is the earliest expansion among those cards,
+          not counting promos.
         </p>
 
         {GROUPS.map((g) => (
@@ -578,7 +728,7 @@ function PikachuArtistsPost() {
                 <li key={c.no}>
                   <img
                     src={img(c.no)}
-                    alt={`Pikachu ${num(c.no)}/128 (${of30(c.no)}/30) from 30th Celebration: ${c.art}, illustrated by ${c.illus}`}
+                    alt={`Pikachu ${num(c.no)}/128 (${of30(c.no)}/30) from 30th Celebration, illustrated by ${c.illus}`}
                     loading="lazy"
                     width={400}
                     height={550}
@@ -586,9 +736,21 @@ function PikachuArtistsPost() {
                   <div>
                     <h3>{c.illus}</h3>
                     <p className="artist-num">
-                      Pikachu {of30(c.no)}/30 · {num(c.no)}/128
+                      Pikachu {of30(c.no)}/30 · {num(c.no)}/128 · {c.hp} HP
                     </p>
-                    <p>{c.note}</p>
+                    <p>
+                      {c.moves.map((m, i) => (
+                        <span key={m.name}>
+                          {i > 0 && <br />}
+                          <strong>
+                            {m.kind === 'Ability' ? `Ability: ${m.name}` : m.name}
+                            {m.damage ? ` · ${m.damage} damage` : ''}
+                          </strong>
+                          {m.text ? `. ${m.text}` : ''}
+                        </span>
+                      ))}
+                    </p>
+                    <p>{c.bio}</p>
                   </div>
                 </li>
               ))}
@@ -603,8 +765,10 @@ function PikachuArtistsPost() {
           badge are the same in all of them. The set number is what changes.
         </p>
         <p>
-          The Japanese, Korean and Chinese sets have 103 cards in the main set, and their Pikachu run from 017 to 046. The English set
-          adds more Pokémon ahead of them, so the same Pikachu start at 023. Thai and Indonesian follow the English order, out of 130.
+          In Japanese, Korean, Traditional Chinese and Simplified Chinese, the 30 Pikachu are 017 to 046, out of 103. In English and
+          the five other European languages they are 023 to 052, out of 128, and in Thai and Indonesian 023 to 052, out of 130. The
+          European numbers are from TCGdex's French, German, Italian, Spanish and Portuguese card data, and each of those
+          languages uses its own translated set name.
         </p>
         <div className="table-scroll" role="group" aria-labelledby="tbl-languages" tabIndex={0}>
           <table className="data-table">
@@ -705,6 +869,15 @@ function PikachuArtistsPost() {
             </details>
           ))}
         </div>
+
+        <h2 id="sources">Sources</h2>
+        <ul>
+          {SOURCES.map((src) => (
+            <li key={src.href}>
+              <a href={src.href}>{src.label}</a>
+            </li>
+          ))}
+        </ul>
       </BlogPostLayout>
     </>
   )

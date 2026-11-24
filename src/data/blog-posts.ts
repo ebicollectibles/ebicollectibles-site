@@ -403,10 +403,10 @@ export const BLOG_POSTS: BlogPostSummary[] = [
     path: '/blog/30th-celebration-pikachu-cards-artists',
     title: 'All 30 Pikachu Cards in Pokémon 30th Celebration and the Artists Behind Them',
     excerpt:
-      'One Pikachu in every pack, 30 artists, 30 completely different takes. Here are all 30 Pikachu Rares in Pokémon TCG 30th Celebration, from Ken Sugimori’s redrawn Jungle classic to a Pikachu by its original designer, Atsuko Nishida, plus how they are numbered in Japanese, Chinese and the other languages.',
+      'One Pikachu in every pack, 30 artists, 30 different illustrations. Here are all 30 Pikachu Rares in Pokémon TCG 30th Celebration, with their attacks and the artists who drew them, from Ken Sugimori to Atsuko Nishida, who designed Pikachu for Pokémon Red and Green, plus how they are numbered in Japanese, Chinese and the other languages.',
     seoTitle: 'All 30 Pikachu Cards in Pokémon 30th Celebration & Their Artists',
     seoDescription:
-      'All 30 Pikachu Rares in Pokémon TCG 30th Celebration, 023 to 052/128 in English: who drew each one, the story behind the art, and the Japanese and Chinese numbers.',
+      'All 30 Pikachu Rares in Pokémon TCG 30th Celebration, 023 to 052/128 in English: who drew each one, their attacks, and the Japanese and Chinese numbers.',
     tag: 'Set guide',
     date: '2026-11-23',
     heroImage: `${SITE_URL}/assets/blog/pikachu-30-artists-hero-v2.webp`,
