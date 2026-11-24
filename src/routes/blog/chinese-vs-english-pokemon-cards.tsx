@@ -53,17 +53,6 @@ const RARITIES = [
   { cn: 'Ultra Rare (UR)', en: 'Hyper Rare (the gold cards)' },
 ]
 
-const SOURCES = [
-  { href: 'https://asia.pokemon-card.com/my/archives/3956/', label: 'Pokémon Trading Card Game Trainers Website (Asia, English): Pokémon Trading Card Game: Scarlet & Violet' },
-  { href: 'https://www.pokemon.cn/tcg/product/15582.html', label: 'Pokémon China: 萌力闪耀，如获至“宝”宝可梦卡牌 宝石包即将登场！ (Gem Pack product page)' },
-  { href: 'https://www.pokemon.cn/tcg/product/16377.html', label: 'Pokémon China: 宝可梦卡牌简中版特有？！卡牌工艺设计介绍来啦~ (October 12, 2022)' },
-  { href: 'https://www.pokemon.cn/tcg-about/', label: 'Pokémon China: 宝可梦卡牌玩法指引 (card guide)' },
-  { href: 'https://www.pokemon.cn/tcg-rules-regulation/', label: 'Pokémon China: 赛制 (formats), updated November 16, 2026' },
-  {
-    href: 'https://www.pokemon.com/static-assets/content-assets/cms2/pdf/play-pokemon/rules/play-pokemon-tcg-tournament-handbook-en.pdf',
-    label: 'Play! Pokémon TCG Tournament Handbook, English version, last revision September 1, 2026',
-  },
-]
 
 const FAQ = [
   {
@@ -129,7 +118,6 @@ const TOC = [
   { id: 'exclusives', label: 'Chinese Exclusives' },
   { id: 'cards', label: 'On the card itself' },
   { id: 'faq', label: 'FAQ' },
-  { id: 'sources', label: 'Sources' },
 ]
 
 function ChineseVsEnglishPost() {
@@ -361,15 +349,6 @@ function ChineseVsEnglishPost() {
             </details>
           ))}
         </div>
-
-        <h2 id="sources">Sources</h2>
-        <ul>
-          {SOURCES.map((s) => (
-            <li key={s.href}>
-              <a href={s.href}>{zh(s.label)}</a>
-            </li>
-          ))}
-        </ul>
       </BlogPostLayout>
     </>
   )

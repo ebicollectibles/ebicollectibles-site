@@ -9,7 +9,7 @@ import { safeJsonLd } from '~/lib/gem-sets/head'
 const post = BLOG_POSTS.find((p) => p.slug === 'are-chinese-pokemon-cards-tournament-legal')!
 
 // ---------------------------------------------------------------------------
-// Every rule here is quoted from an official document, listed in SOURCES:
+// Every rule here is quoted from an official document:
 // the Play! Pokémon TCG Tournament Handbook (English and Brazilian Portuguese
 // versions, both last revised September 1, 2026), Pokémon China's tournament
 // rules (赛场规则 Ver.3.0.0) and notices, and the Hong Kong Trainers Website.
@@ -37,16 +37,6 @@ const EXTRA = [
   { region: 'Puerto Rico', langs: 'English, Spanish' },
 ]
 
-const SOURCES = [
-  { href: HANDBOOK_EN, label: `Play! Pokémon TCG Tournament Handbook, English version, last revision ${HANDBOOK_DATE}, sections 2, 2.1, 2.3 and 4` },
-  { href: HANDBOOK_BR, label: 'Manual dos Torneios de Pokémon Estampas Ilustradas, versão em português do Brasil, última revisão 1 de setembro de 2026, seção 2.3' },
-  {
-    href: 'https://asia.pokemon-card.com/hk-en/archives/6203/',
-    label: 'Pokémon Trading Card Game Trainers Website, Hong Kong: Regarding the use of English cards in events in Hong Kong and Macau from October 1st, 2024 onwards',
-  },
-  { href: 'https://www.pokemon.cn/tcg/event/20889.html', label: 'Pokémon China: 2026宝可梦世界锦标赛卡牌项目参赛资格 (March 9, 2026)' },
-  { href: 'https://www.pokemon.cn/tcg-rules-regulation/', label: 'Pokémon China: 赛制 (formats), updated November 16, 2026' },
-]
 
 const FAQ = [
   {
@@ -120,7 +110,6 @@ const TOC = [
   { id: 'mixing', label: 'Mixed language decks and card backs' },
   { id: 'china', label: 'Mainland China, Hong Kong and Macau' },
   { id: 'faq', label: 'FAQ' },
-  { id: 'sources', label: 'Sources' },
 ]
 
 function TournamentLegalPost() {
@@ -373,22 +362,6 @@ function TournamentLegalPost() {
             </details>
           ))}
         </div>
-
-        <h2 id="sources">Sources</h2>
-        <ul>
-          {SOURCES.map((s) => (
-            <li key={s.href}>
-              <a href={s.href}>{zh(s.label)}</a>
-            </li>
-          ))}
-          <li>
-            Pokémon China: <Zh>宝可梦集换式卡牌游戏 赛场规则</Zh> Ver.3.0.0, last updated July 8, 2024, section 6.2
-          </li>
-          <li>
-            Pokémon China: Gem Pack product pages on pokemon.cn, on playing with Gem Pack cards, as cited in our{' '}
-            <Link to="/blog/chinese-gem-pack-hit-rates">Gem Pack hit rates guide</Link>
-          </li>
-        </ul>
       </BlogPostLayout>
     </>
   )

@@ -13,7 +13,7 @@ const post = BLOG_POSTS.find((p) => p.slug === 'are-chinese-pokemon-cards-real')
 // Set facts are read from the set registry (gem-sets-index.ts), so the counts
 // and examples here follow the card lists as sets are added.
 //
-// Everything else is from official sources, listed in SOURCES at the bottom:
+// Everything else is from official sources:
 // Pokémon China's launch posts (pokemon.cn, September and October 2022), its
 // card guide and format pages, its tournament rules (Ver.3.0.0) and the
 // Play! Pokémon TCG Tournament Handbook (revised September 1, 2026).
@@ -35,30 +35,6 @@ const EXAMPLES = [MAIN[0], MAIN[MAIN.length - 1], GEMS[0], bySlug('30th-celebrat
 
 const LAUNCH = '2022-10-28'
 
-const SOURCES = [
-  {
-    href: 'https://www.pokemon.cn/tcg/product/16368.html',
-    label: 'Pokémon China: 横空出世！宝可梦卡牌简中版正式发售！ (October 28, 2022), the launch announcement',
-  },
-  {
-    href: 'https://www.pokemon.cn/tcg/other/17201.html',
-    label: 'Pokémon China: 玩简体中文版是怎样的体验？ 宝可梦卡牌介绍来了！ (September 28, 2022)',
-  },
-  {
-    href: 'https://www.pokemon.cn/tcg/product/16377.html',
-    label: 'Pokémon China: 宝可梦卡牌简中版特有？！卡牌工艺设计介绍来啦~ (October 12, 2022), on the embossed logo and random holo',
-  },
-  { href: 'https://www.pokemon.cn/tcg-about/', label: 'Pokémon China: 宝可梦卡牌玩法指引 (card guide), on the parts of a card and the card back' },
-  { href: 'https://www.pokemon.cn/tcg-rules-regulation/', label: 'Pokémon China: 赛制 (formats), updated November 16, 2026' },
-  {
-    href: 'https://www.pokemon.cn/tcg/event/20889.html',
-    label: 'Pokémon China: 2026宝可梦世界锦标赛卡牌项目参赛资格 (March 9, 2026), which names 宝可梦（上海）',
-  },
-  {
-    href: 'https://www.pokemon.com/static-assets/content-assets/cms2/pdf/play-pokemon/rules/play-pokemon-tcg-tournament-handbook-en.pdf',
-    label: 'Play! Pokémon TCG Tournament Handbook, English version, last revision September 1, 2026, section 2',
-  },
-]
 
 const FAQ = [
   {
@@ -127,7 +103,6 @@ const TOC = [
   { id: 'check', label: 'Five checks you can make' },
   { id: 'rules', label: 'What the official rules say about fakes' },
   { id: 'faq', label: 'FAQ' },
-  { id: 'sources', label: 'Sources' },
 ]
 
 function AreChineseCardsRealPost() {
@@ -308,18 +283,6 @@ function AreChineseCardsRealPost() {
             </details>
           ))}
         </div>
-
-        <h2 id="sources">Sources</h2>
-        <ul>
-          {SOURCES.map((s) => (
-            <li key={s.href}>
-              <a href={s.href}>{zh(s.label)}</a>
-            </li>
-          ))}
-          <li>
-            Pokémon China: <Zh>宝可梦集换式卡牌游戏 赛场规则</Zh> Ver.3.0.0, last updated July 8, 2024, sections 6.2 and 6.5
-          </li>
-        </ul>
       </BlogPostLayout>
     </>
   )

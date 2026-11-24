@@ -14,7 +14,7 @@ const post = BLOG_POSTS.find((p) => p.slug === 'simplified-vs-traditional-chines
 // Simplified Chinese set facts come from the set registry (gem-sets-index.ts)
 // and the Japanese set codes from japanese-sets-index.ts. Everything about
 // Traditional Chinese is from Pokémon's own Traditional Chinese Trainers
-// Website (asia.pokemon-card.com), checked November 24, 2026; see SOURCES.
+// Website (asia.pokemon-card.com), checked November 24, 2026.
 // ---------------------------------------------------------------------------
 
 function formatDate(iso: string): string {
@@ -37,28 +37,6 @@ const TC_MATCHES = [
   .map((m) => ({ ...m, jp: JAPANESE_SETS.find((j) => j.code.toUpperCase() === m.code) }))
   .filter((m) => m.jp)
 
-const SOURCES = [
-  { href: 'https://www.pokemon.cn/tcg/product/16368.html', label: 'Pokémon China: 横空出世！宝可梦卡牌简中版正式发售！ (October 28, 2022)' },
-  {
-    href: 'https://www.pokemon.cn/tcg/product/16377.html',
-    label: 'Pokémon China: 宝可梦卡牌简中版特有？！卡牌工艺设计介绍来啦~ (October 12, 2022)',
-  },
-  { href: 'https://www.pokemon.cn/tcg-home/', label: 'Pokémon China: trading card game home page' },
-  { href: 'https://asia.pokemon-card.com/tw/', label: 'Pokémon Trading Card Game Trainers Website, Taiwan: 寶可夢集換式卡牌遊戲官方主頁' },
-  { href: 'https://asia.pokemon-card.com/tw/products/', label: 'Pokémon Trading Card Game Trainers Website, Taiwan: 商品資訊 (product list)' },
-  {
-    href: 'https://asia.pokemon-card.com/hk-en/archives/6203/',
-    label: 'Pokémon Trading Card Game Trainers Website, Hong Kong: Regarding the use of English cards in events in Hong Kong and Macau from October 1st, 2024 onwards',
-  },
-  {
-    href: 'https://asia.pokemon-card.com/hk/wp-content/uploads/sites/3/2023/08/hk_news_Pokemon_Card_Game_Floor_Rule_Asia-Ver1.0.pdf',
-    label: 'Pokémon Trading Card Game Trainers Website, Hong Kong: 寶可夢集換式卡牌遊戲 賽場規則 Ver.Asia-1.0 (September 1, 2023)',
-  },
-  {
-    href: 'https://www.pokemon.cn/tcg/event/20889.html',
-    label: 'Pokémon China: 2026宝可梦世界锦标赛卡牌项目参赛资格 (March 9, 2026)',
-  },
-]
 
 const FAQ = [
   {
@@ -130,7 +108,6 @@ const TOC = [
   { id: 'sets', label: 'Different sets and products' },
   { id: 'play', label: 'Where each one can be played' },
   { id: 'faq', label: 'FAQ' },
-  { id: 'sources', label: 'Sources' },
 ]
 
 function SimplifiedVsTraditionalPost() {
@@ -390,18 +367,6 @@ function SimplifiedVsTraditionalPost() {
             </details>
           ))}
         </div>
-
-        <h2 id="sources">Sources</h2>
-        <ul>
-          {SOURCES.map((s) => (
-            <li key={s.href}>
-              <a href={s.href}>{zh(s.label)}</a>
-            </li>
-          ))}
-          <li>
-            Pokémon China: <Zh>宝可梦集换式卡牌游戏 赛场规则</Zh> Ver.3.0.0, last updated July 8, 2024, section 6.2
-          </li>
-        </ul>
       </BlogPostLayout>
     </>
   )

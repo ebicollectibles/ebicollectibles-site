@@ -113,7 +113,6 @@ const TOC = [
   { id: 'patterns', label: 'Poké Ball and Master Ball pattern holos' },
   { id: 'counts', label: 'Cards at each rarity, set by set' },
   { id: 'faq', label: 'FAQ' },
-  { id: 'sources', label: 'Sources' },
 ]
 
 const MAIN_EXPANSIONS = MAIN.filter((s) => /^CSV\d+C$/.test(s.code))
@@ -481,23 +480,6 @@ function ChineseCardRaritiesPost() {
             </details>
           ))}
         </div>
-
-        <h2 id="sources">Sources</h2>
-        <ul>
-          <li>
-            <a href="https://www.pokemon.cn/tcg/product/15556.html">Pokémon China: Miracle Journey product page</a> and{' '}
-            <a href="https://www.pokemon.cn/tcg/product/15488.html">Reward Round product page</a> (card images in the rarity mark
-            close-ups)
-          </li>
-          <li>
-            <a href="https://www.pokemon.cn/tcg/product/20012.html">Pokémon China: Chasing Glory product page</a> (odds chart and its
-            footnote on the Poké Ball and Master Ball pattern holos)
-          </li>
-          <li>
-            <a href="https://www.pokemon.cn/tcg/product/15582.html">Pokémon China: Gem Pack Vol. 1 product page</a> and{' '}
-            <a href="https://www.pokemon.cn/tcg/product/15518.html">Gem Pack Vol. 2 product page</a> (Gem Pack rarity marks)
-          </li>
-        </ul>
       </BlogPostLayout>
     </>
   )

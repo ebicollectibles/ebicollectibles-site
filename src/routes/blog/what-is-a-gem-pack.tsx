@@ -33,15 +33,6 @@ const TOTAL_EXCLUSIVES = VOLS.reduce((n, v) => n + v.exclusiveCount, 0)
 
 // Pokémon China's product page for each volume. Every fact on this page
 // about what a pack holds comes from these.
-const SOURCES = [
-  { vol: 1, href: 'https://www.pokemon.cn/tcg/product/15582.html' },
-  { vol: 2, href: 'https://www.pokemon.cn/tcg/product/15518.html' },
-  { vol: 3, href: 'https://www.pokemon.cn/tcg/product/15431.html' },
-  { vol: 4, href: 'https://www.pokemon.cn/tcg/product/20382.html' },
-  { vol: 5, href: 'https://www.pokemon.cn/tcg/product/21078.html' },
-  { vol: 6, href: 'https://www.pokemon.cn/tcg/product/23048.html' },
-  { vol: 7, href: 'https://www.pokemon.cn/tcg/product/24281.html' },
-]
 
 const TOC = [
   { id: 'in-a-pack', label: 'What is in a Gem Pack' },
@@ -50,7 +41,6 @@ const TOC = [
   { id: 'volumes', label: 'Every volume so far' },
   { id: 'boxes', label: 'Packs and boxes' },
   { id: 'faq', label: 'FAQ' },
-  { id: 'sources', label: 'Sources' },
 ]
 
 const FAQ = [
@@ -346,15 +336,6 @@ function WhatIsAGemPackPost() {
             </details>
           ))}
         </div>
-
-        <h2 id="sources">Sources</h2>
-        <ul>
-          {SOURCES.map((s) => (
-            <li key={s.href}>
-              <a href={s.href}>Pokémon China, Gem Pack Vol. {s.vol} product page</a>
-            </li>
-          ))}
-        </ul>
       </BlogPostLayout>
     </>
   )

@@ -105,7 +105,6 @@ const TOC = [
   { id: 'per-box', label: 'Top cards per box, with the maths' },
   { id: 'other-sizes', label: 'Sets with other pack sizes' },
   { id: 'faq', label: 'FAQ' },
-  { id: 'sources', label: 'Sources' },
 ]
 
 const FAQ = [
@@ -495,32 +494,6 @@ function SlimVsJumboPost() {
             </details>
           ))}
         </div>
-
-        <h2 id="sources">Sources</h2>
-        <p>Pokémon China product pages, for each set&rsquo;s pack sizes and odds charts:</p>
-        <ul>
-          {[
-            ['Eternal Birth', 'https://www.pokemon.cn/tcg/product/15585.html'],
-            ['Miracle Journey', 'https://www.pokemon.cn/tcg/product/15556.html'],
-            ['Fearless Terastal', 'https://www.pokemon.cn/tcg/product/15519.html'],
-            ['Reward Round', 'https://www.pokemon.cn/tcg/product/15488.html'],
-            ['Black Crystal Blaze', 'https://www.pokemon.cn/tcg/product/15453.html'],
-            ['True Mystery', 'https://www.pokemon.cn/tcg/17555.html'],
-            ['Blade Awakening', 'https://www.pokemon.cn/tcg/product/19812.html'],
-            ['Brilliant Fantasy', 'https://www.pokemon.cn/tcg/product/20627.html'],
-            ['Stellar Crystal', 'https://www.pokemon.cn/tcg/product/21383.html'],
-            ['Terastal Gathering', 'https://www.pokemon.cn/tcg/product/21997.html'],
-            ['Chasing Glory', 'https://www.pokemon.cn/tcg/product/20012.html'],
-            ['Black Bolt and White Flare', 'https://www.pokemon.cn/tcg/product/24290.html'],
-            ['Collect 151: Hope', 'https://www.pokemon.cn/tcg/product/15541.html'],
-            ['Collect 151: Surprise and Gathering', 'https://www.pokemon.cn/tcg/product/15486.html'],
-            ['Collect 151: Journey products', 'https://www.pokemon.cn/tcg/product/15688.html'],
-          ].map(([label, href]) => (
-            <li key={href}>
-              <a href={href}>{label}</a>
-            </li>
-          ))}
-        </ul>
       </BlogPostLayout>
     </>
   )

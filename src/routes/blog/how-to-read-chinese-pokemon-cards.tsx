@@ -52,7 +52,6 @@ const TOC = [
   { id: 'other-numbers', label: 'Gem Pack and promo numbers' },
   { id: 'words', label: 'Chinese words you will see on cards' },
   { id: 'faq', label: 'FAQ' },
-  { id: 'sources', label: 'Sources' },
 ]
 
 const FAQ = [
@@ -411,18 +410,6 @@ function HowToReadChineseCardsPost() {
             </details>
           ))}
         </div>
-
-        <h2 id="sources">Sources</h2>
-        <ul>
-          <li>
-            <a href="https://www.pokemon.cn/tcg/product/15556.html">Pokémon China: Miracle Journey product page</a> (card images of
-            Kirlia, Ralts, Gardevoir ex and the rarity mark close-ups)
-          </li>
-          <li>
-            <a href="https://www.pokemon.cn/tcg/product/15488.html">Pokémon China: Reward Round product page</a> (card images used in
-            the rarity mark close-ups)
-          </li>
-        </ul>
       </BlogPostLayout>
     </>
   )
