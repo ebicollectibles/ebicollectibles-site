@@ -2,7 +2,6 @@ import * as React from 'react'
 import { Link } from '@tanstack/react-router'
 import { ProductCard } from '~/components/ProductCard'
 import { ResponsiveImage } from '~/components/ResponsiveImage'
-import { GEM_SETS } from '~/data/gem-sets-index'
 import { SHOW_ACRYLICS } from '~/lib/feature-flags'
 import { SHIPPING_HANDLING_MAX_DAYS, SHIPPING_HANDLING_MIN_DAYS } from '~/lib/policy'
 import { FLAT_SHIPPING_RATE, formatMoney, isOnSale, rankProducts, type Product } from '~/lib/products'
@@ -13,8 +12,7 @@ import { HomeGuides } from './HomeGuides'
 // Homepage body (routes/index.tsx). Order, top to
 // bottom: sale banner (in the route), a sticky row of category chips, a
 // trust strip, shop by set, the biggest markdowns, best sellers, the
-// non-card categories, new & upcoming, pre-orders, a short "why Simplified
-// Chinese" explainer, the blog, and the restock email band (in the route).
+// non-card categories, new & upcoming, pre-orders, the blog, and the restock email band (in the route).
 // Everything product-related is worked out from the live catalog.
 
 type ShopSearch = Record<string, unknown>
@@ -212,66 +210,6 @@ function PreorderBand({ items }: { items: Product[] }) {
   )
 }
 
-function WhyChinese() {
-  // Counted from the /sets index, so it stays right as sets are added.
-  // Same numbers and definition as the "sets in order" blog post.
-  const withExclusive = GEM_SETS.filter((s) => s.exclusiveCount > 0).length
-  const totalExclusives = GEM_SETS.reduce((n, s) => n + s.exclusiveCount, 0)
-  const gemVolumes = GEM_SETS.filter((s) => s.series === 'Gem Set').length
-  const points = [
-    {
-      n: '01',
-      title: 'Chinese Exclusive cards',
-      body: `Art only printed in the Simplified Chinese release. Our card lists flag ${totalExclusives} of them, across ${withExclusive} sets.`,
-      link: { label: 'Browse the card lists', to: '/sets/chinese' },
-    },
-    {
-      n: '02',
-      title: 'Gem Packs',
-      body: `Four cards a pack. Our hit-rate guide covers all ${gemVolumes} volumes, from Pokémon China's own odds charts.`,
-      link: { label: 'Gem Pack hit rates', href: '/blog/chinese-gem-pack-hit-rates' },
-    },
-    {
-      n: '03',
-      title: 'Sets in order',
-      body: 'Every Simplified Chinese set in release order, with set codes, dates and card counts.',
-      link: { label: 'See the timeline', href: '/blog/chinese-pokemon-sets-in-order' },
-    },
-  ]
-  return (
-    <section className="hp2-section" aria-labelledby="hp2-why">
-      <div className="hp2-wrap">
-        <div className="hp2-why">
-          <div className="hp2-why-intro">
-            <div className="hp2-eyebrow">简体中文 · Simplified Chinese</div>
-            <h2 id="hp2-why">Why collect Simplified Chinese?</h2>
-          </div>
-          <ol className="hp2-why-list">
-            {points.map((pt) => (
-              <li key={pt.n}>
-                <span className="hp2-why-n" aria-hidden="true">
-                  {pt.n}
-                </span>
-                <b>{pt.title}</b>
-                <span>{pt.body}</span>
-                {'to' in pt.link ? (
-                  <Link to={pt.link.to as never} className="hp2-why-link">
-                    {pt.link.label} →
-                  </Link>
-                ) : (
-                  <a href={pt.link.href} className="hp2-why-link">
-                    {pt.link.label} →
-                  </a>
-                )}
-              </li>
-            ))}
-          </ol>
-        </div>
-      </div>
-    </section>
-  )
-}
-
 export function HomeV2({ products, live }: { products: Product[]; live: Record<string, string> }) {
   const data = React.useMemo(() => {
     const eligible = eligibleFor(products)
@@ -326,7 +264,6 @@ export function HomeV2({ products, live }: { products: Product[]; live: Record<s
         seeAll={{ label: 'See all', to: '/new-and-upcoming' }}
       />
       <PreorderBand items={data.preorders} />
-      <WhyChinese />
       <HomeGuides live={live} />
     </div>
   )

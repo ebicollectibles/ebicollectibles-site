@@ -9,8 +9,8 @@ import { getMySubscriptionStatus } from '~/server/subscribers'
 import { getBlogLiveMap } from '~/server/blog-status'
 
 // Homepage: sale banner, category chips, trust strip, shop by set, sale,
-// best sellers, other categories, new & upcoming, pre-orders, the "why
-// Simplified Chinese" explainer, the blog and the restock email band.
+// best sellers, other categories, new & upcoming, pre-orders,
+// the blog and the restock email band.
 // Everything product-related comes from the live catalog (components/home/HomeV2).
 export const Route = createFileRoute('/')({
   loader: async () => {
