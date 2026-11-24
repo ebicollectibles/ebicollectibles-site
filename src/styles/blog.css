@@ -542,6 +542,12 @@
 .ebi-blog .poster-pair figcaption { text-align: center; margin-top: 8px; font-weight: 600; }
 .poster-pair-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
 @media (max-width: 640px) { .poster-pair-grid { grid-template-columns: 1fr; gap: 32px; } }
+/* Captioned news photos (official images): full width, or narrower for a single portrait image. */
+.ebi-blog .prose > .news-photo { margin: 8px auto 32px; }
+.ebi-blog.is-wide .prose > .news-photo { max-width: 1000px; }
+.ebi-blog .prose > .news-photo.is-single { max-width: 420px; }
+.ebi-blog .news-photo img { display: block; width: 100%; height: auto; border-radius: 10px; }
+.ebi-blog .news-photo figcaption { margin-top: 10px; font-size: 13.5px; line-height: 1.45; color: var(--slate); text-align: center; }
 
 /* A card beside a short note about it, one per row (the 30 Pikachu and their artists). */
 .ebi-blog .prose ol.artist-list { list-style: none; padding: 0; margin: 24px auto 34px; display: grid; gap: 26px; }

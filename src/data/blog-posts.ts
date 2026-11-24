@@ -418,16 +418,16 @@ export const BLOG_POSTS: BlogPostSummary[] = [
   {
     slug: 'pokemon-30th-shanghai-gold-pikachu-cards-news',
     path: '/blog/pokemon-30th-shanghai-gold-pikachu-cards-news',
-    title: "Pokémon China Reveals 30 Pure Gold Cards for Pokémon's 30th Anniversary",
+    title: "Pokémon China's 30 Pure Gold Pikachu Cards: 999 Gold, 30g, On Display in Shanghai",
     excerpt:
-      "Pokémon China will display 30 pure gold cards at the Pokémon 30th Anniversary Shanghai Finale, running November 28, 2026 to January 3, 2027.",
-    seoTitle: 'Pokémon China Reveals 30 Pure Gold Cards for the 30th Anniversary',
+      'Pokémon China has revealed 30 Pikachu cards made of 999 pure gold, 30g each, one for every Pikachu design in 30th Celebration. They are on display free in Shanghai from November 28 to December 27, 2026.',
+    seoTitle: 'Chinese 30th Gold Cards: 30 Pure Gold Pikachu Cards, 999 Gold, 30g',
     seoDescription:
-      "Pokémon China's 30th Anniversary Shanghai Finale runs Nov 28, 2026 to Jan 3, 2027, with 30 pure gold cards on display at its card art exhibition.",
+      "Pokémon China's 30 pure gold Pikachu cards: 999 gold, 30g each, all 30 Pikachu designs from 30th Celebration. Free to see in Shanghai, Nov 28 to Dec 27.",
     tag: 'News',
     date: '2026-11-23',
-    heroImage: `${SITE_URL}/assets/blog/shanghai-gold-pikachu-cards-news-hero-v3.webp`,
-    heroAlt: 'Illustration: three printed Simplified Chinese 30th Celebration Pikachu cards with gold borders added, led by Pikachu 01/30, beside the headline 30 Pure Gold Pikachu Cards',
+    heroImage: `${SITE_URL}/assets/blog/shanghai-gold-pikachu-cards-news-hero-v4.webp`,
+    heroAlt: "The real 999 gold Pikachu 01/30 card by Ken Sugimori from Pokémon China's reveal image, beside the headline 30 Pure Gold Pikachu Cards",
     glow1: 'rgb(232 192 96 / .30)',
     glow2: 'rgb(246 206 60 / .20)',
   },
