@@ -80,6 +80,14 @@ const SET_PRODUCTS: Record<string, string[]> = {
     'pokemon-chinese-gem-volume-3-booster-box',
     'pokemon-chinese-gem-volume-2-booster-box',
   ],
+  'what-is-a-gem-pack': [
+    'pokemon-chinese-gem-volume-7-booster-box',
+    'pokemon-chinese-gem-volume-6-booster-box',
+    'pokemon-chinese-gem-volume-5-booster-box',
+    'pokemon-chinese-gem-volume-4-booster-box',
+    'pokemon-chinese-gem-volume-3-booster-box',
+    'pokemon-chinese-gem-volume-2-booster-box',
+  ],
   'pikachu-dream-painting-figures': [
     'pokemon-chinese-pikachu-30th-celebration-figures-blind-box',
     'pokemon-chinese-pikachu-30th-celebration-figures-blind-box-case',

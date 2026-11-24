@@ -67,7 +67,9 @@ import { Route as BlogCharizardFigureBoxReleaseNewsRouteImport } from './routes/
 import { Route as BlogChasingGloryCardOriginsRouteImport } from './routes/blog/chasing-glory-card-origins'
 import { Route as BlogChasingGloryReleaseNewsRouteImport } from './routes/blog/chasing-glory-release-news'
 import { Route as BlogChasingGlorySetGuideRouteImport } from './routes/blog/chasing-glory-set-guide'
+import { Route as BlogChineseExclusivePokemonCardsRouteImport } from './routes/blog/chinese-exclusive-pokemon-cards'
 import { Route as BlogChineseGemPackHitRatesRouteImport } from './routes/blog/chinese-gem-pack-hit-rates'
+import { Route as BlogChinesePokemonSetEnglishEquivalentsRouteImport } from './routes/blog/chinese-pokemon-set-english-equivalents'
 import { Route as BlogChinesePokemonSetsInOrderRouteImport } from './routes/blog/chinese-pokemon-sets-in-order'
 import { Route as BlogCollect151CardOriginsRouteImport } from './routes/blog/collect-151-card-origins'
 import { Route as BlogCollect151FirstPartnerDisplaySetsReleaseNewsRouteImport } from './routes/blog/collect-151-first-partner-display-sets-release-news'
@@ -145,6 +147,7 @@ import { Route as BlogTerastalGatheringSetGuideRouteImport } from './routes/blog
 import { Route as BlogTrueMysteryCardOriginsRouteImport } from './routes/blog/true-mystery-card-origins'
 import { Route as BlogTrueMysteryReleaseNewsRouteImport } from './routes/blog/true-mystery-release-news'
 import { Route as BlogTrueMysterySetGuideRouteImport } from './routes/blog/true-mystery-set-guide'
+import { Route as BlogWhatIsAGemPackRouteImport } from './routes/blog/what-is-a-gem-pack'
 import { Route as BlogWhiteFlareCardOriginsRouteImport } from './routes/blog/white-flare-card-origins'
 import { Route as BlogWhiteFlareSetGuideRouteImport } from './routes/blog/white-flare-set-guide'
 import { Route as BlogsIndexRouteImport } from './routes/blogs/index'
@@ -505,10 +508,22 @@ const BlogChasingGlorySetGuideRoute =
     path: '/blog/chasing-glory-set-guide',
     getParentRoute: () => rootRouteImport,
   } as any)
+const BlogChineseExclusivePokemonCardsRoute =
+  BlogChineseExclusivePokemonCardsRouteImport.update({
+    id: '/blog/chinese-exclusive-pokemon-cards',
+    path: '/blog/chinese-exclusive-pokemon-cards',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const BlogChineseGemPackHitRatesRoute =
   BlogChineseGemPackHitRatesRouteImport.update({
     id: '/blog/chinese-gem-pack-hit-rates',
     path: '/blog/chinese-gem-pack-hit-rates',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const BlogChinesePokemonSetEnglishEquivalentsRoute =
+  BlogChinesePokemonSetEnglishEquivalentsRouteImport.update({
+    id: '/blog/chinese-pokemon-set-english-equivalents',
+    path: '/blog/chinese-pokemon-set-english-equivalents',
     getParentRoute: () => rootRouteImport,
   } as any)
 const BlogChinesePokemonSetsInOrderRoute =
@@ -953,6 +968,11 @@ const BlogTrueMysterySetGuideRoute = BlogTrueMysterySetGuideRouteImport.update({
   path: '/blog/true-mystery-set-guide',
   getParentRoute: () => rootRouteImport,
 } as any)
+const BlogWhatIsAGemPackRoute = BlogWhatIsAGemPackRouteImport.update({
+  id: '/blog/what-is-a-gem-pack',
+  path: '/blog/what-is-a-gem-pack',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const BlogWhiteFlareCardOriginsRoute =
   BlogWhiteFlareCardOriginsRouteImport.update({
     id: '/blog/white-flare-card-origins',
@@ -1279,7 +1299,9 @@ export interface FileRoutesByFullPath {
   '/blog/chasing-glory-card-origins': typeof BlogChasingGloryCardOriginsRoute
   '/blog/chasing-glory-release-news': typeof BlogChasingGloryReleaseNewsRoute
   '/blog/chasing-glory-set-guide': typeof BlogChasingGlorySetGuideRoute
+  '/blog/chinese-exclusive-pokemon-cards': typeof BlogChineseExclusivePokemonCardsRoute
   '/blog/chinese-gem-pack-hit-rates': typeof BlogChineseGemPackHitRatesRoute
+  '/blog/chinese-pokemon-set-english-equivalents': typeof BlogChinesePokemonSetEnglishEquivalentsRoute
   '/blog/chinese-pokemon-sets-in-order': typeof BlogChinesePokemonSetsInOrderRoute
   '/blog/collect-151-card-origins': typeof BlogCollect151CardOriginsRoute
   '/blog/collect-151-first-partner-display-sets-release-news': typeof BlogCollect151FirstPartnerDisplaySetsReleaseNewsRoute
@@ -1357,6 +1379,7 @@ export interface FileRoutesByFullPath {
   '/blog/true-mystery-card-origins': typeof BlogTrueMysteryCardOriginsRoute
   '/blog/true-mystery-release-news': typeof BlogTrueMysteryReleaseNewsRoute
   '/blog/true-mystery-set-guide': typeof BlogTrueMysterySetGuideRoute
+  '/blog/what-is-a-gem-pack': typeof BlogWhatIsAGemPackRoute
   '/blog/white-flare-card-origins': typeof BlogWhiteFlareCardOriginsRoute
   '/blog/white-flare-set-guide': typeof BlogWhiteFlareSetGuideRoute
   '/blogs/$': typeof BlogsSplatRoute
@@ -1466,7 +1489,9 @@ export interface FileRoutesByTo {
   '/blog/chasing-glory-card-origins': typeof BlogChasingGloryCardOriginsRoute
   '/blog/chasing-glory-release-news': typeof BlogChasingGloryReleaseNewsRoute
   '/blog/chasing-glory-set-guide': typeof BlogChasingGlorySetGuideRoute
+  '/blog/chinese-exclusive-pokemon-cards': typeof BlogChineseExclusivePokemonCardsRoute
   '/blog/chinese-gem-pack-hit-rates': typeof BlogChineseGemPackHitRatesRoute
+  '/blog/chinese-pokemon-set-english-equivalents': typeof BlogChinesePokemonSetEnglishEquivalentsRoute
   '/blog/chinese-pokemon-sets-in-order': typeof BlogChinesePokemonSetsInOrderRoute
   '/blog/collect-151-card-origins': typeof BlogCollect151CardOriginsRoute
   '/blog/collect-151-first-partner-display-sets-release-news': typeof BlogCollect151FirstPartnerDisplaySetsReleaseNewsRoute
@@ -1544,6 +1569,7 @@ export interface FileRoutesByTo {
   '/blog/true-mystery-card-origins': typeof BlogTrueMysteryCardOriginsRoute
   '/blog/true-mystery-release-news': typeof BlogTrueMysteryReleaseNewsRoute
   '/blog/true-mystery-set-guide': typeof BlogTrueMysterySetGuideRoute
+  '/blog/what-is-a-gem-pack': typeof BlogWhatIsAGemPackRoute
   '/blog/white-flare-card-origins': typeof BlogWhiteFlareCardOriginsRoute
   '/blog/white-flare-set-guide': typeof BlogWhiteFlareSetGuideRoute
   '/blogs/$': typeof BlogsSplatRoute
@@ -1654,7 +1680,9 @@ export interface FileRoutesById {
   '/blog/chasing-glory-card-origins': typeof BlogChasingGloryCardOriginsRoute
   '/blog/chasing-glory-release-news': typeof BlogChasingGloryReleaseNewsRoute
   '/blog/chasing-glory-set-guide': typeof BlogChasingGlorySetGuideRoute
+  '/blog/chinese-exclusive-pokemon-cards': typeof BlogChineseExclusivePokemonCardsRoute
   '/blog/chinese-gem-pack-hit-rates': typeof BlogChineseGemPackHitRatesRoute
+  '/blog/chinese-pokemon-set-english-equivalents': typeof BlogChinesePokemonSetEnglishEquivalentsRoute
   '/blog/chinese-pokemon-sets-in-order': typeof BlogChinesePokemonSetsInOrderRoute
   '/blog/collect-151-card-origins': typeof BlogCollect151CardOriginsRoute
   '/blog/collect-151-first-partner-display-sets-release-news': typeof BlogCollect151FirstPartnerDisplaySetsReleaseNewsRoute
@@ -1732,6 +1760,7 @@ export interface FileRoutesById {
   '/blog/true-mystery-card-origins': typeof BlogTrueMysteryCardOriginsRoute
   '/blog/true-mystery-release-news': typeof BlogTrueMysteryReleaseNewsRoute
   '/blog/true-mystery-set-guide': typeof BlogTrueMysterySetGuideRoute
+  '/blog/what-is-a-gem-pack': typeof BlogWhatIsAGemPackRoute
   '/blog/white-flare-card-origins': typeof BlogWhiteFlareCardOriginsRoute
   '/blog/white-flare-set-guide': typeof BlogWhiteFlareSetGuideRoute
   '/blogs/$': typeof BlogsSplatRoute
@@ -1843,7 +1872,9 @@ export interface FileRouteTypes {
     | '/blog/chasing-glory-card-origins'
     | '/blog/chasing-glory-release-news'
     | '/blog/chasing-glory-set-guide'
+    | '/blog/chinese-exclusive-pokemon-cards'
     | '/blog/chinese-gem-pack-hit-rates'
+    | '/blog/chinese-pokemon-set-english-equivalents'
     | '/blog/chinese-pokemon-sets-in-order'
     | '/blog/collect-151-card-origins'
     | '/blog/collect-151-first-partner-display-sets-release-news'
@@ -1921,6 +1952,7 @@ export interface FileRouteTypes {
     | '/blog/true-mystery-card-origins'
     | '/blog/true-mystery-release-news'
     | '/blog/true-mystery-set-guide'
+    | '/blog/what-is-a-gem-pack'
     | '/blog/white-flare-card-origins'
     | '/blog/white-flare-set-guide'
     | '/blogs/$'
@@ -2030,7 +2062,9 @@ export interface FileRouteTypes {
     | '/blog/chasing-glory-card-origins'
     | '/blog/chasing-glory-release-news'
     | '/blog/chasing-glory-set-guide'
+    | '/blog/chinese-exclusive-pokemon-cards'
     | '/blog/chinese-gem-pack-hit-rates'
+    | '/blog/chinese-pokemon-set-english-equivalents'
     | '/blog/chinese-pokemon-sets-in-order'
     | '/blog/collect-151-card-origins'
     | '/blog/collect-151-first-partner-display-sets-release-news'
@@ -2108,6 +2142,7 @@ export interface FileRouteTypes {
     | '/blog/true-mystery-card-origins'
     | '/blog/true-mystery-release-news'
     | '/blog/true-mystery-set-guide'
+    | '/blog/what-is-a-gem-pack'
     | '/blog/white-flare-card-origins'
     | '/blog/white-flare-set-guide'
     | '/blogs/$'
@@ -2217,7 +2252,9 @@ export interface FileRouteTypes {
     | '/blog/chasing-glory-card-origins'
     | '/blog/chasing-glory-release-news'
     | '/blog/chasing-glory-set-guide'
+    | '/blog/chinese-exclusive-pokemon-cards'
     | '/blog/chinese-gem-pack-hit-rates'
+    | '/blog/chinese-pokemon-set-english-equivalents'
     | '/blog/chinese-pokemon-sets-in-order'
     | '/blog/collect-151-card-origins'
     | '/blog/collect-151-first-partner-display-sets-release-news'
@@ -2295,6 +2332,7 @@ export interface FileRouteTypes {
     | '/blog/true-mystery-card-origins'
     | '/blog/true-mystery-release-news'
     | '/blog/true-mystery-set-guide'
+    | '/blog/what-is-a-gem-pack'
     | '/blog/white-flare-card-origins'
     | '/blog/white-flare-set-guide'
     | '/blogs/$'
@@ -2405,7 +2443,9 @@ export interface RootRouteChildren {
   BlogChasingGloryCardOriginsRoute: typeof BlogChasingGloryCardOriginsRoute
   BlogChasingGloryReleaseNewsRoute: typeof BlogChasingGloryReleaseNewsRoute
   BlogChasingGlorySetGuideRoute: typeof BlogChasingGlorySetGuideRoute
+  BlogChineseExclusivePokemonCardsRoute: typeof BlogChineseExclusivePokemonCardsRoute
   BlogChineseGemPackHitRatesRoute: typeof BlogChineseGemPackHitRatesRoute
+  BlogChinesePokemonSetEnglishEquivalentsRoute: typeof BlogChinesePokemonSetEnglishEquivalentsRoute
   BlogChinesePokemonSetsInOrderRoute: typeof BlogChinesePokemonSetsInOrderRoute
   BlogCollect151CardOriginsRoute: typeof BlogCollect151CardOriginsRoute
   BlogCollect151FirstPartnerDisplaySetsReleaseNewsRoute: typeof BlogCollect151FirstPartnerDisplaySetsReleaseNewsRoute
@@ -2483,6 +2523,7 @@ export interface RootRouteChildren {
   BlogTrueMysteryCardOriginsRoute: typeof BlogTrueMysteryCardOriginsRoute
   BlogTrueMysteryReleaseNewsRoute: typeof BlogTrueMysteryReleaseNewsRoute
   BlogTrueMysterySetGuideRoute: typeof BlogTrueMysterySetGuideRoute
+  BlogWhatIsAGemPackRoute: typeof BlogWhatIsAGemPackRoute
   BlogWhiteFlareCardOriginsRoute: typeof BlogWhiteFlareCardOriginsRoute
   BlogWhiteFlareSetGuideRoute: typeof BlogWhiteFlareSetGuideRoute
   BlogsSplatRoute: typeof BlogsSplatRoute
@@ -2945,11 +2986,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BlogChasingGlorySetGuideRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/blog/chinese-exclusive-pokemon-cards': {
+      id: '/blog/chinese-exclusive-pokemon-cards'
+      path: '/blog/chinese-exclusive-pokemon-cards'
+      fullPath: '/blog/chinese-exclusive-pokemon-cards'
+      preLoaderRoute: typeof BlogChineseExclusivePokemonCardsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/blog/chinese-gem-pack-hit-rates': {
       id: '/blog/chinese-gem-pack-hit-rates'
       path: '/blog/chinese-gem-pack-hit-rates'
       fullPath: '/blog/chinese-gem-pack-hit-rates'
       preLoaderRoute: typeof BlogChineseGemPackHitRatesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/chinese-pokemon-set-english-equivalents': {
+      id: '/blog/chinese-pokemon-set-english-equivalents'
+      path: '/blog/chinese-pokemon-set-english-equivalents'
+      fullPath: '/blog/chinese-pokemon-set-english-equivalents'
+      preLoaderRoute: typeof BlogChinesePokemonSetEnglishEquivalentsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/blog/chinese-pokemon-sets-in-order': {
@@ -3491,6 +3546,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BlogTrueMysterySetGuideRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/blog/what-is-a-gem-pack': {
+      id: '/blog/what-is-a-gem-pack'
+      path: '/blog/what-is-a-gem-pack'
+      fullPath: '/blog/what-is-a-gem-pack'
+      preLoaderRoute: typeof BlogWhatIsAGemPackRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/blog/white-flare-card-origins': {
       id: '/blog/white-flare-card-origins'
       path: '/blog/white-flare-card-origins'
@@ -3896,7 +3958,10 @@ const rootRouteChildren: RootRouteChildren = {
   BlogChasingGloryCardOriginsRoute: BlogChasingGloryCardOriginsRoute,
   BlogChasingGloryReleaseNewsRoute: BlogChasingGloryReleaseNewsRoute,
   BlogChasingGlorySetGuideRoute: BlogChasingGlorySetGuideRoute,
+  BlogChineseExclusivePokemonCardsRoute: BlogChineseExclusivePokemonCardsRoute,
   BlogChineseGemPackHitRatesRoute: BlogChineseGemPackHitRatesRoute,
+  BlogChinesePokemonSetEnglishEquivalentsRoute:
+    BlogChinesePokemonSetEnglishEquivalentsRoute,
   BlogChinesePokemonSetsInOrderRoute: BlogChinesePokemonSetsInOrderRoute,
   BlogCollect151CardOriginsRoute: BlogCollect151CardOriginsRoute,
   BlogCollect151FirstPartnerDisplaySetsReleaseNewsRoute:
@@ -3997,6 +4062,7 @@ const rootRouteChildren: RootRouteChildren = {
   BlogTrueMysteryCardOriginsRoute: BlogTrueMysteryCardOriginsRoute,
   BlogTrueMysteryReleaseNewsRoute: BlogTrueMysteryReleaseNewsRoute,
   BlogTrueMysterySetGuideRoute: BlogTrueMysterySetGuideRoute,
+  BlogWhatIsAGemPackRoute: BlogWhatIsAGemPackRoute,
   BlogWhiteFlareCardOriginsRoute: BlogWhiteFlareCardOriginsRoute,
   BlogWhiteFlareSetGuideRoute: BlogWhiteFlareSetGuideRoute,
   BlogsSplatRoute: BlogsSplatRoute,
