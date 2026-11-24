@@ -83,7 +83,13 @@ export function HomeSets({ products }: { products: Product[] }) {
             const img = SET_PACK_IMAGES[set.slug]
             return (
               <li key={set.slug} className="hp2-set">
-                <Link to="/shop" search={{ q: query }} className="hp2-set-main">
+                {/* One box in stock: go straight to it rather than a one-result search. */}
+                <Link
+                  {...(boxes.length === 1
+                    ? { to: '/products/$id' as const, params: { id: String(boxes[0].id) } }
+                    : { to: '/shop' as const, search: { q: query } })}
+                  className="hp2-set-main"
+                >
                   <span className="hp2-set-art">
                     <img
                       src={`/assets/sets/packs/${set.slug}.webp`}
