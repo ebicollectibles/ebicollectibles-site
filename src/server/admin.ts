@@ -2437,3 +2437,65 @@ export const adminMarkAffiliateCommissionPaidForMonth = createServerFn({ method:
       .returning({ id: orders.id })
     return { markedCount: updated.length }
   })
+
+// --- List emails (src/emails/campaigns.ts) ---
+// Sent only from the admin Subscribers page: a test copy to the shop's own
+// address first, then everyone still subscribed who hasn't been sent this
+// campaign yet (logged in email_events as type 'campaign:<id>', so pressing
+// Send twice never emails anyone twice).
+const CAMPAIGN_TEST_RECIPIENT = 'eastblueinternational@gmail.com'
+
+export const adminCampaignStatus = createServerFn({ method: 'GET' }).handler(async () => {
+  await assertAdmin()
+  const { CAMPAIGNS } = await import('~/emails/campaigns')
+  const db = getDb()
+  const [active] = await db.select({ n: sql<number>`count(*)::int` }).from(subscribers).where(isNull(subscribers.unsubscribedAt))
+  const out = []
+  for (const c of CAMPAIGNS) {
+    const [sent] = await db
+      .select({ n: sql<number>`count(distinct ${emailEvents.email})::int` })
+      .from(emailEvents)
+      .where(and(eq(emailEvents.type, `campaign:${c.id}`), eq(emailEvents.status, 'sent')))
+    const [unsub] = await db
+      .select({ n: sql<number>`count(*)::int` })
+      .from(subscriberEvents)
+      .where(and(eq(subscriberEvents.type, 'unsubscribed'), eq(subscriberEvents.utmCampaign, c.id)))
+    out.push({ id: c.id, label: c.label, subject: c.subject, sent: sent?.n ?? 0, unsubscribed: unsub?.n ?? 0 })
+  }
+  return { activeSubscribers: active?.n ?? 0, testRecipient: CAMPAIGN_TEST_RECIPIENT, campaigns: out }
+})
+
+export const adminSendCampaign = createServerFn({ method: 'POST' })
+  .validator(z.object({ campaignId: z.string(), mode: z.enum(['test', 'all']) }))
+  .handler(async ({ data }) => {
+    await assertAdmin()
+    const { campaignById } = await import('~/emails/campaigns')
+    const { sendCampaignEmails } = await import('./email')
+    const campaign = campaignById(data.campaignId)
+    if (!campaign) throw new Error('Unknown email.')
+    const db = getDb()
+    if (data.mode === 'test') {
+      const [r] = await sendCampaignEmails({ ...campaign, subject: `[TEST] ${campaign.subject}` }, [CAMPAIGN_TEST_RECIPIENT])
+      return { mode: 'test' as const, sent: r?.status === 'sent' ? 1 : 0, failed: r?.status === 'failed' ? 1 : 0, error: r?.error }
+    }
+    const type = `campaign:${campaign.id}`
+    const already = await db
+      .select({ email: emailEvents.email })
+      .from(emailEvents)
+      .where(and(eq(emailEvents.type, type), eq(emailEvents.status, 'sent')))
+    const done = new Set(already.map((r) => (r.email ?? '').toLowerCase()))
+    const list = await db.select({ email: subscribers.email }).from(subscribers).where(isNull(subscribers.unsubscribedAt))
+    const recipients = [...new Set(list.map((r) => r.email.trim()).filter((e) => e && !done.has(e.toLowerCase())))]
+    if (recipients.length === 0) return { mode: 'all' as const, sent: 0, failed: 0, skippedAlreadySent: done.size }
+    const results = await sendCampaignEmails(campaign, recipients)
+    await db.insert(emailEvents).values(
+      results.map((r) => ({ email: r.email, type, status: r.status, errorMessage: r.error ?? null, resendId: r.resendId ?? null })),
+    )
+    return {
+      mode: 'all' as const,
+      sent: results.filter((r) => r.status === 'sent').length,
+      failed: results.filter((r) => r.status === 'failed').length,
+      skippedAlreadySent: done.size,
+      error: results.find((r) => r.error)?.error,
+    }
+  })

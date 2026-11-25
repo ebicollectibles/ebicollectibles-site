@@ -1388,3 +1388,48 @@ export async function sendPasswordResetCodeEmail(opts: { email: string; code: st
 function escapeHtml(s: string): string {
   return s.replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]!)
 }
+
+// List emails (src/emails/campaigns.ts) to many subscribers at once. Uses
+// Resend's batch endpoint, up to 100 emails per call, so a send to the
+// whole list stays within the Worker's per-request subrequest limit. Each
+// email gets that person's own footer: postal address, Update preferences
+// and Unsubscribe links tagged with the campaign id (so an unsubscribe shows
+// which email it came from), plus the one-click List-Unsubscribe headers.
+export async function sendCampaignEmails(
+  campaign: { id: string; subject: string; html: string; text: string },
+  recipients: string[],
+): Promise<Array<{ email: string; status: 'sent' | 'failed' | 'skipped'; resendId?: string; error?: string }>> {
+  const apiKey = process.env.RESEND_API_KEY
+  const from = process.env.ORDER_FROM_EMAIL
+  if (!apiKey || !from) return recipients.map((email) => ({ email, status: 'skipped' as const }))
+  const results: Array<{ email: string; status: 'sent' | 'failed' | 'skipped'; resendId?: string; error?: string }> = []
+  for (let i = 0; i < recipients.length; i += 100) {
+    const chunk = recipients.slice(i, i + 100)
+    const payload = await Promise.all(
+      chunk.map(async (to) => {
+        const extras = await marketingEmailExtras(to, campaign.id)
+        return {
+          from,
+          to,
+          subject: campaign.subject,
+          html: campaign.html.replace('{{LIST_FOOTER}}', extras.footerHtml),
+          text: campaign.text.replace('{{LIST_FOOTER_TEXT}}', extras.footerText),
+          headers: extras.headers,
+        }
+      }),
+    )
+    const res = await fetch('https://api.resend.com/emails/batch', {
+      method: 'POST',
+      headers: { Authorization: `Bearer ${apiKey}`, 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+    })
+    const json = (await res.json().catch(() => null)) as { data?: Array<{ id: string }>; message?: string } | null
+    if (!res.ok) {
+      const error = json?.message || `HTTP ${res.status}`
+      for (const email of chunk) results.push({ email, status: 'failed', error })
+      continue
+    }
+    chunk.forEach((email, j) => results.push({ email, status: 'sent', resendId: json?.data?.[j]?.id }))
+  }
+  return results
+}

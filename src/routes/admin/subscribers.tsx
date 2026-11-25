@@ -2,7 +2,7 @@ import * as React from 'react'
 import { createFileRoute, useNavigate, useRouter } from '@tanstack/react-router'
 import { AdminNav } from '~/components/AdminNav'
 import { requireAdmin } from '~/server/admin-auth'
-import { adminListSubscribers, adminListSubscriberEvents, adminUnsubscribe, adminResubscribe } from '~/server/admin'
+import { adminListSubscribers, adminListSubscriberEvents, adminUnsubscribe, adminResubscribe, adminCampaignStatus, adminSendCampaign } from '~/server/admin'
 
 const SUBSCRIBERS_PER_PAGE = 30
 const EVENTS_PER_PAGE = 30
@@ -10,8 +10,8 @@ const EVENTS_PER_PAGE = 30
 export const Route = createFileRoute('/admin/subscribers')({
   beforeLoad: () => requireAdmin(),
   loader: async () => {
-    const [subscribers, events] = await Promise.all([adminListSubscribers(), adminListSubscriberEvents()])
-    return { subscribers, events }
+    const [subscribers, events, campaigns] = await Promise.all([adminListSubscribers(), adminListSubscriberEvents(), adminCampaignStatus()])
+    return { subscribers, events, campaigns }
   },
   component: AdminSubscribersPage,
 })
@@ -55,7 +55,7 @@ const eventColor: Record<string, string> = {
 function AdminSubscribersPage() {
   const navigate = useNavigate()
   const router = useRouter()
-  const { subscribers, events } = Route.useLoaderData()
+  const { subscribers, events, campaigns } = Route.useLoaderData()
   const [subPage, setSubPage] = React.useState(1)
   const [eventPage, setEventPage] = React.useState(1)
   const [updatingEmail, setUpdatingEmail] = React.useState<string | null>(null)
@@ -110,6 +110,8 @@ function AdminSubscribersPage() {
           {activeCount} active · {subscribers.length} total
         </span>
       </div>
+
+      <CampaignPanel status={campaigns} onDone={() => router.invalidate()} />
 
       {subscribers.length === 0 && <p style={{ fontSize: 13.5, color: '#131b28', marginTop: 16 }}>No subscribers yet.</p>}
 
@@ -333,5 +335,65 @@ function AdminSubscribersPage() {
         </div>
       )}
     </div>
+  )
+}
+
+// Send a list email from src/emails/campaigns.ts: a test copy to the shop's
+// own address first, then everyone still subscribed (never twice).
+function CampaignPanel({ status, onDone }: { status: Awaited<ReturnType<typeof adminCampaignStatus>>; onDone: () => void }) {
+  const [busy, setBusy] = React.useState<string | null>(null)
+  const [note, setNote] = React.useState<Record<string, string>>({})
+  const [tested, setTested] = React.useState<Record<string, boolean>>({})
+  const run = async (id: string, mode: 'test' | 'all') => {
+    if (mode === 'all' && !window.confirm(`Send this email to ${status.activeSubscribers} subscribers now? People who already got it are skipped.`)) return
+    setBusy(`${id}:${mode}`)
+    try {
+      const r = await adminSendCampaign({ data: { campaignId: id, mode } })
+      if (mode === 'test') setTested((t) => ({ ...t, [id]: r.sent > 0 }))
+      setNote((n) => ({
+        ...n,
+        [id]:
+          mode === 'test'
+            ? r.sent ? `Test sent to ${status.testRecipient}. Check it, then send to everyone.` : `Test failed: ${r.error ?? 'unknown error'}`
+            : `Sent to ${r.sent}${r.failed ? `, ${r.failed} failed (${r.error ?? 'error'})` : ''}${r.skippedAlreadySent ? `. Skipped ${r.skippedAlreadySent} already sent.` : '.'}`,
+      }))
+      onDone()
+    } catch (e) {
+      setNote((n) => ({ ...n, [id]: e instanceof Error ? e.message : 'Something went wrong.' }))
+    } finally {
+      setBusy(null)
+    }
+  }
+  const btn: React.CSSProperties = { fontSize: 12.5, fontWeight: 600, padding: '8px 14px', borderRadius: 2, cursor: 'pointer', fontFamily: 'inherit' }
+  return (
+    <section aria-labelledby="campaigns-title" style={{ marginTop: 28, border: '1px solid #e3e6ea', borderRadius: 4, padding: '16px 18px' }}>
+      <h2 id="campaigns-title" style={{ fontSize: 15, fontWeight: 700, margin: '0 0 4px' }}>List emails</h2>
+      <p style={{ fontSize: 12.5, color: '#5a6875', margin: '0 0 12px' }}>
+        Send a test to {status.testRecipient} first. Each subscriber gets their own unsubscribe link, and unsubscribes from an email show below as &ldquo;from email&rdquo;.
+      </p>
+      {status.campaigns.map((c) => (
+        <div key={c.id} style={{ borderTop: '1px solid #f0f2f4', paddingTop: 12, marginTop: 4 }}>
+          <div style={{ fontSize: 13.5, fontWeight: 600 }}>{c.label}</div>
+          <div style={{ fontSize: 12, color: '#5a6875', marginTop: 2 }}>
+            Subject: {c.subject} · Sent to {c.sent} · Unsubscribed from it: {c.unsubscribed}
+          </div>
+          <div style={{ display: 'flex', gap: 8, marginTop: 10, flexWrap: 'wrap' }}>
+            <button type="button" disabled={!!busy} onClick={() => run(c.id, 'test')} style={{ ...btn, background: '#fff', border: '1px solid #131b28', color: '#131b28' }}>
+              {busy === `${c.id}:test` ? 'Sending…' : 'Send test to me'}
+            </button>
+            <button
+              type="button"
+              disabled={!!busy || !tested[c.id]}
+              title={tested[c.id] ? '' : 'Send a test first'}
+              onClick={() => run(c.id, 'all')}
+              style={{ ...btn, background: '#131b28', border: '1px solid #131b28', color: '#fff', opacity: tested[c.id] ? 1 : 0.4 }}
+            >
+              {busy === `${c.id}:all` ? 'Sending…' : `Send to all ${status.activeSubscribers}`}
+            </button>
+          </div>
+          {note[c.id] && <p style={{ fontSize: 12.5, color: '#3f7a63', margin: '8px 0 0' }}>{note[c.id]}</p>}
+        </div>
+      ))}
+    </section>
   )
 }
