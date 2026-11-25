@@ -160,6 +160,11 @@ function CartPage() {
                   <div style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 13, color: '#131b28', marginTop: 6 }}>
                     {formatMoney(line.product.price)}
                   </div>
+                  {line.product.preorder && line.product.restockNote && (
+                    <div style={{ fontSize: 12.5, fontWeight: 600, color: '#a85b2c', marginTop: 6 }}>
+                      Pre-order · {line.product.restockNote}
+                    </div>
+                  )}
                   <div style={{ flex: 1, minHeight: 14 }} />
                   <div style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
                     <div style={{ display: 'flex', alignItems: 'center', border: '1px solid #cfd4da', borderRadius: 4 }}>

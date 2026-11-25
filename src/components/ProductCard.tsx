@@ -108,6 +108,29 @@ export function ProductCard({
             {product.placeholder || 'product shot'}
           </div>
         )}
+        {product.preorder && !comingSoon && product.restockNote && (
+          // Admin's ship-timing message for a pre-order (e.g. "Ships the first
+          // week of December"), over the photo so it doesn't change the card's
+          // height and the row stays lined up.
+          <div
+            style={{
+              position: 'absolute',
+              left: 0,
+              right: 0,
+              bottom: 0,
+              fontFamily: "'IBM Plex Mono', monospace",
+              fontSize: 9.5,
+              letterSpacing: '0.08em',
+              textTransform: 'uppercase',
+              textAlign: 'center',
+              padding: '5px 8px',
+              background: 'rgba(19,27,40,0.86)',
+              color: '#ffffff',
+            }}
+          >
+            {product.restockNote}
+          </div>
+        )}
         {badge && (
           <div
             style={{
