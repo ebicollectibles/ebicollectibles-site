@@ -1346,7 +1346,7 @@ export const adminListSubscriberEvents = createServerFn({ method: 'GET' }).handl
   await assertAdmin()
   const db = getDb()
   return db
-    .select({ id: subscriberEvents.id, email: subscriberEvents.email, type: subscriberEvents.type, source: subscriberEvents.source, createdAt: subscriberEvents.createdAt })
+    .select({ id: subscriberEvents.id, email: subscriberEvents.email, type: subscriberEvents.type, source: subscriberEvents.source, utmCampaign: subscriberEvents.utmCampaign, createdAt: subscriberEvents.createdAt })
     .from(subscriberEvents)
     .orderBy(desc(subscriberEvents.createdAt))
 })

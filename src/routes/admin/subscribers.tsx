@@ -281,6 +281,9 @@ function AdminSubscribersPage() {
                 {' — '}
                 {e.email}
                 {e.source && <span style={{ color: '#5a6875' }}> ({labelFor(e.source)})</span>}
+                {e.type === 'unsubscribed' && e.utmCampaign && (
+                  <span style={{ color: '#a85b2c' }}> · from email: {e.utmCampaign}</span>
+                )}
               </span>
               <span style={{ color: '#5a6875', fontFamily: "'IBM Plex Mono', monospace", fontSize: 11.5, whiteSpace: 'nowrap' }}>
                 {new Date(e.createdAt).toLocaleString()}

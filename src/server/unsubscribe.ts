@@ -35,30 +35,39 @@ export async function emailFromUnsubscribeToken(token: string | null | undefined
   }
 }
 
+// Which email an unsubscribe came from: a short campaign name added to the
+// footer links (e.g. "aura-seeker-preorder") and saved on the unsubscribe
+// event (subscriber_events.utm_campaign), so admin can see which emails make
+// people leave. Not part of the signed token, so it only labels, never
+// grants anything.
+export const CAMPAIGN_RE = /^[a-z0-9][a-z0-9-]{0,63}$/
+const campaignQuery = (campaign?: string) => (campaign && CAMPAIGN_RE.test(campaign) ? `&c=${campaign}` : '')
+export const campaignInput = z.string().regex(CAMPAIGN_RE).optional().catch(undefined)
+
 /** "Update preferences" link for the email footer. */
-export async function preferencesPageUrl(email: string): Promise<string> {
-  return `${SITE_URL}/email-preferences?t=${encodeURIComponent(await unsubscribeToken(email))}`
+export async function preferencesPageUrl(email: string, campaign?: string): Promise<string> {
+  return `${SITE_URL}/email-preferences?t=${encodeURIComponent(await unsubscribeToken(email))}${campaignQuery(campaign)}`
 }
 
 /** Page link for the email footer. */
-export async function unsubscribePageUrl(email: string): Promise<string> {
-  return `${SITE_URL}/unsubscribe?t=${encodeURIComponent(await unsubscribeToken(email))}`
+export async function unsubscribePageUrl(email: string, campaign?: string): Promise<string> {
+  return `${SITE_URL}/unsubscribe?t=${encodeURIComponent(await unsubscribeToken(email))}${campaignQuery(campaign)}`
 }
 
 /** One-click endpoint for the List-Unsubscribe header. */
-export async function oneClickUnsubscribeUrl(email: string): Promise<string> {
-  return `${SITE_URL}/api/unsubscribe?t=${encodeURIComponent(await unsubscribeToken(email))}`
+export async function oneClickUnsubscribeUrl(email: string, campaign?: string): Promise<string> {
+  return `${SITE_URL}/api/unsubscribe?t=${encodeURIComponent(await unsubscribeToken(email))}${campaignQuery(campaign)}`
 }
 
 // Unsubscribe from everything list-like: the email list and every product
 // alert still waiting. Order and shipping emails aren't affected.
-async function setUnsubscribed(email: string): Promise<void> {
-  await leaveList(email, 'unsubscribe-link')
+async function setUnsubscribed(email: string, campaign?: string): Promise<void> {
+  await leaveList(email, 'unsubscribe-link', campaign)
   await cancelPendingNotifyMe(email)
 }
 
 /** Just the email list (new releases and restocks); product alerts stay. */
-async function leaveList(email: string, source: string): Promise<void> {
+async function leaveList(email: string, source: string, campaign?: string): Promise<void> {
   const { getDb } = await import('~/lib/db/client')
   const { subscribers, subscriberEvents } = await import('~/lib/db/schema')
   const { and, eq, isNull, sql } = await import('drizzle-orm')
@@ -68,7 +77,7 @@ async function leaveList(email: string, source: string): Promise<void> {
     .set({ unsubscribedAt: sql`now()` })
     .where(and(eq(subscribers.email, email), isNull(subscribers.unsubscribedAt)))
     .returning({ id: subscribers.id })
-  if (row) await db.insert(subscriberEvents).values({ email, type: 'unsubscribed', source })
+  if (row) await db.insert(subscriberEvents).values({ email, type: 'unsubscribed', source, utmCampaign: campaign ?? null })
 }
 
 // Notify-me alerts carry the same Unsubscribe link, so unsubscribing also
@@ -110,7 +119,7 @@ async function isSubscribed(email: string): Promise<boolean> {
   return !!row || (await pendingNotifyMe(email)).length > 0
 }
 
-const tokenInput = z.object({ token: z.string().max(600) })
+const tokenInput = z.object({ token: z.string().max(600), c: campaignInput })
 
 // What the /unsubscribe page shows before anything changes. Opening the
 // link never unsubscribes on its own: email security scanners open every
@@ -128,7 +137,7 @@ export const unsubscribeWithToken = createServerFn({ method: 'POST' })
   .handler(async ({ data }) => {
     const email = await emailFromUnsubscribeToken(data.token)
     if (!email) throw new Error('This unsubscribe link is not valid.')
-    await setUnsubscribed(email)
+    await setUnsubscribed(email, data.c)
     return { ok: true }
   })
 
@@ -147,9 +156,10 @@ export const resubscribeWithToken = createServerFn({ method: 'POST' })
 // with body "List-Unsubscribe=One-Click". 200 when done (also when already
 // unsubscribed), 400 for a token that doesn't verify, which changes nothing.
 export async function handleOneClickUnsubscribe(request: Request): Promise<Response> {
-  const token = new URL(request.url).searchParams.get('t')
-  const email = await emailFromUnsubscribeToken(token)
-  if (email) await setUnsubscribed(email)
+  const url = new URL(request.url)
+  const email = await emailFromUnsubscribeToken(url.searchParams.get('t'))
+  const c = url.searchParams.get('c') ?? undefined
+  if (email) await setUnsubscribed(email, c && CAMPAIGN_RE.test(c) ? c : undefined)
   return new Response(email ? 'Unsubscribed' : 'Invalid link', { status: email ? 200 : 400, headers: { 'content-type': 'text/plain; charset=utf-8' } })
 }
 
@@ -197,7 +207,7 @@ export const setListPreference = createServerFn({ method: 'POST' })
       const { upsertSubscriber } = await import('./subscribers')
       await upsertSubscriber(getDb(), email, 'preferences-page')
     } else {
-      await leaveList(email, 'preferences-page')
+      await leaveList(email, 'preferences-page', data.c)
     }
     return preferencesFor(email)
   })
@@ -225,6 +235,6 @@ export const unsubscribeAllWithToken = createServerFn({ method: 'POST' })
   .handler(async ({ data }) => {
     const email = await emailFromUnsubscribeToken(data.token)
     if (!email) throw new Error('This link is not valid.')
-    await setUnsubscribed(email)
+    await setUnsubscribed(email, data.c)
     return preferencesFor(email)
   })

@@ -8,7 +8,7 @@ import { getEmailPreferences, removeAlertWithToken, setListPreference, unsubscri
 // sign-in and only shows or changes the address it was made for. Opening it
 // changes nothing; every change is a deliberate click.
 export const Route = createFileRoute('/email-preferences')({
-  validateSearch: z.object({ t: z.string().max(600).optional().catch(undefined) }),
+  validateSearch: z.object({ t: z.string().max(600).optional().catch(undefined), c: z.string().max(64).optional().catch(undefined) }),
   loaderDeps: ({ search }) => ({ t: search.t }),
   loader: ({ deps }) => (deps.t ? getEmailPreferences({ data: { token: deps.t } }) : Promise.resolve({ valid: false as const })),
   head: () => ({
@@ -55,7 +55,7 @@ type Prefs = { valid: true; email: string; list: boolean; alerts: { id: string; 
 
 function PreferencesPage() {
   const loaded = Route.useLoaderData()
-  const { t } = Route.useSearch()
+  const { t, c } = Route.useSearch()
   const [prefs, setPrefs] = React.useState<Prefs | null>(loaded.valid ? (loaded as Prefs) : null)
   const [busy, setBusy] = React.useState<string | null>(null)
   const [status, setStatus] = React.useState<{ text: string; error?: boolean } | null>(null)
@@ -96,7 +96,7 @@ function PreferencesPage() {
 
   const token = t
   const toggleList = () =>
-    run('list', () => setListPreference({ data: { token, on: !prefs.list } }) as Promise<Prefs>, prefs.list ? 'Turned off. You won’t get release and restock emails.' : 'You’re on the list.', {
+    run('list', () => setListPreference({ data: { token, c, on: !prefs.list } }) as Promise<Prefs>, prefs.list ? 'Turned off. You won’t get release and restock emails.' : 'You’re on the list.', {
       ...prefs,
       list: !prefs.list,
     })
@@ -106,7 +106,7 @@ function PreferencesPage() {
       alerts: prefs.alerts.filter((a) => a.id !== id),
     })
   const unsubscribeAll = () =>
-    run('all', () => unsubscribeAllWithToken({ data: { token } }) as Promise<Prefs>, 'You’re unsubscribed from everything.').then(() => setConfirmAll(false))
+    run('all', () => unsubscribeAllWithToken({ data: { token, c } }) as Promise<Prefs>, 'You’re unsubscribed from everything.').then(() => setConfirmAll(false))
 
   const nothingOn = !prefs.list && prefs.alerts.length === 0
 

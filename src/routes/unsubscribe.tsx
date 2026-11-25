@@ -9,7 +9,7 @@ import { getUnsubscribeState, resubscribeWithToken, unsubscribeWithToken } from 
 // unsubscribe people by accident. Gmail's own one-click button goes to
 // /api/unsubscribe instead (server.ts).
 export const Route = createFileRoute('/unsubscribe')({
-  validateSearch: z.object({ t: z.string().max(600).optional().catch(undefined) }),
+  validateSearch: z.object({ t: z.string().max(600).optional().catch(undefined), c: z.string().max(64).optional().catch(undefined) }),
   loaderDeps: ({ search }) => ({ t: search.t }),
   loader: ({ deps }) => (deps.t ? getUnsubscribeState({ data: { token: deps.t } }) : Promise.resolve({ valid: false as const })),
   head: () => ({
@@ -57,7 +57,7 @@ type View = 'confirm' | 'done' | 'resubscribed'
 
 function UnsubscribePage() {
   const state = Route.useLoaderData()
-  const { t } = Route.useSearch()
+  const { t, c } = Route.useSearch()
   const [view, setView] = React.useState<View>(state.valid && !state.subscribed ? 'done' : 'confirm')
   const [busy, setBusy] = React.useState(false)
   const [error, setError] = React.useState<string | null>(null)
@@ -67,7 +67,7 @@ function UnsubscribePage() {
     setBusy(true)
     setError(null)
     try {
-      await fn({ data: { token: t } })
+      await fn({ data: { token: t, c } })
       setView(next)
     } catch {
       setError('Something went wrong. Please try again.')

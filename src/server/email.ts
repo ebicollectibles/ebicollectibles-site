@@ -137,11 +137,11 @@ function noAutoLink(text: string): string {
   return text.replace(/([0-9,])/g, '$1&zwnj;')
 }
 
-export async function marketingEmailExtras(email: string): Promise<{ footerHtml: string; footerText: string; headers: Record<string, string> }> {
+export async function marketingEmailExtras(email: string, campaign?: string): Promise<{ footerHtml: string; footerText: string; headers: Record<string, string> }> {
   const { BUSINESS_LEGAL_NAME, BUSINESS_POSTAL_ADDRESS } = await import('~/lib/business')
   if (!BUSINESS_POSTAL_ADDRESS) throw new Error('Set BUSINESS_POSTAL_ADDRESS in src/lib/business.ts before sending list emails.')
   const { unsubscribePageUrl, oneClickUnsubscribeUrl, preferencesPageUrl } = await import('./unsubscribe')
-  const [pageUrl, oneClickUrl, prefsUrl] = await Promise.all([unsubscribePageUrl(email), oneClickUnsubscribeUrl(email), preferencesPageUrl(email)])
+  const [pageUrl, oneClickUrl, prefsUrl] = await Promise.all([unsubscribePageUrl(email, campaign), oneClickUnsubscribeUrl(email, campaign), preferencesPageUrl(email, campaign)])
   const esc = (s: string) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
   // Lines only, no row of its own: emailShell drops these inside the grey
   // footer block, right under the copyright line, so they read as one footer.
@@ -999,7 +999,7 @@ export async function sendNotifyMeAlertEmail(data: NotifyMeAlertData): Promise<E
   const productUrl = `${SITE_URL}/products/${data.productId}`
   // A product announcement, so it's sent as a list email: postal address,
   // Unsubscribe link and the one-click headers (CAN-SPAM, Gmail/Yahoo).
-  const extras = await marketingEmailExtras(data.email)
+  const extras = await marketingEmailExtras(data.email, 'restock-alert')
 
   // Product photo large, on its white tile (photos are shot on white).
   const leadHtml = data.productImg
