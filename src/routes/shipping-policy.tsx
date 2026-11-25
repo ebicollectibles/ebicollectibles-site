@@ -54,7 +54,8 @@ function ShippingPolicyPage() {
             together once the pre-order item arrives. To get in-stock items sooner, place them as a separate order.
           </p>
           <p style={{ fontSize: 14.5, lineHeight: 1.65, color: '#131b28', margin: '16px 0 0', maxWidth: '65ch' }}>
-            Already placed a pre-order? While signed in to the same account, you can place an in-stock order and
+            Already placed a pre-order? Signed in to the account with the email you ordered with (creating one with
+            that email works too), you can place an in-stock order and
             choose at checkout to ship it with your unshipped pre-order. That order has no shipping charge and
             ships together with the pre-order once it arrives.
           </p>

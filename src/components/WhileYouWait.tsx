@@ -1,7 +1,6 @@
 import * as React from 'react'
 import { ProductCard } from '~/components/ProductCard'
 import { useCart } from '~/lib/cart-context'
-import { SHIPPING_HANDLING_MAX_DAYS, SHIPPING_HANDLING_MIN_DAYS } from '~/lib/policy'
 
 // In-stock picks shown to someone buying a pre-order: in the cart (they can
 // add them to the same order, which then waits and ships together) and on
@@ -42,7 +41,6 @@ export function WhileYouWait({ mode }: { mode: 'cart' | 'after' }) {
     (p): p is NonNullable<typeof p> => !!p && p.stock > 0 && !p.comingSoon && !p.notSellable && !p.preorder && (mode === 'after' || !inCart.has(p.id)),
   )
   if (picks.length === 0) return null
-  const days = `${SHIPPING_HANDLING_MIN_DAYS}–${SHIPPING_HANDLING_MAX_DAYS}`
   return (
     <section className={`wyw${mode === 'after' ? ' wyw--after' : ''}`} aria-labelledby={`wyw-${mode}`}>
       <style>{CSS}</style>
@@ -51,7 +49,7 @@ export function WhileYouWait({ mode }: { mode: 'cart' | 'after' }) {
       <p className="wyw-note">
         {mode === 'cart'
           ? 'In stock now. Anything you add here goes in the same box as your pre-order and ships together with it.'
-          : `In stock now. Signed in to your account? Add these to your cart and at checkout choose to ship them with your pre-order: no extra shipping. Otherwise a new order ships in ${days} business days.`}
+          : 'In stock now. Sign in or create an account with the email you used for this order, add these to your cart, and at checkout choose to ship them with your pre-order. No extra shipping.'}
       </p>
       <ul className="wyw-row">
         {picks.map((p) => (

@@ -314,25 +314,19 @@ interface OrderEmailData {
 
 // A soft "buy something else" prompt at the end of the confirmation. On a
 // pre-order it points at adding in-stock items that ship with it (owner
-// wants pre-order buyers to add more); otherwise at what's new. Facts only:
-// the ship-with option exists only for account orders (see
-// ALLOW_JOINING_PENDING_PREORDER in server/orders.ts).
+// wants pre-order buyers to add more); otherwise at what's new. See
+// ALLOW_JOINING_PENDING_PREORDER in server/orders.ts.
 function addOnPrompt(order: OrderEmailData): { label: string; body: string; button: string; url: string } {
   const utm = (c: string) => `utm_source=email&utm_medium=order_confirmation&utm_campaign=${c}`
-  if (order.hasPreorder && order.hasAccount) {
+  if (order.hasPreorder) {
+    // Works for guests too: creating an account with the same email claims
+    // this order (linkGuestOrders in server/customers.ts).
+    const email = order.email ? ` (<strong>${escapeHtml(order.email)}</strong>)` : ''
     return {
       label: 'Before your pre-order ships',
-      body: 'Want to add something to the box? Sign in, add any in-stock item to your cart, and at checkout choose to ship it with this order. No extra shipping.',
+      body: `Want to add something to the box? Sign in or create an account with this email${email}, add any in-stock item to your cart, and at checkout choose to ship it with this order. No extra shipping.`,
       button: 'Shop in-stock boxes',
       url: `${SITE_URL}/shop?subcategory=Booster%20Box&${utm('preorder_addon')}`,
-    }
-  }
-  if (order.hasPreorder) {
-    return {
-      label: 'While you wait',
-      body: 'Something to open before your pre-order arrives? In-stock orders ship in 1–2 business days.',
-      button: 'Shop in-stock boxes',
-      url: `${SITE_URL}/shop?subcategory=Booster%20Box&${utm('preorder_wait')}`,
     }
   }
   return {
@@ -438,7 +432,7 @@ export async function sendOrderConfirmationEmail(order: OrderEmailData): Promise
     '',
     `View your order: ${orderUrl}`,
     '',
-    `${addOn.body} ${addOn.button}: ${addOn.url}`,
+    `${addOn.body.replace(/<[^>]+>/g, '')} ${addOn.button}: ${addOn.url}`,
     '',
     'Questions about this order? Email us at eastblueinternational@gmail.com.',
   ]
