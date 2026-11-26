@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { createFileRoute } from '@tanstack/react-router'
+import { createFileRoute, Link } from '@tanstack/react-router'
 import blogCssUrl from '~/styles/blog.css?url'
 import { BLOG_POSTS, BLOG_SITE_URL, blogSeoDescription, blogSeoTitle, blogShareImage } from '~/data/blog-posts'
 import { BlogPostLayout } from '~/components/blog/BlogPostLayout'
@@ -10,6 +10,8 @@ import { SITE_URL } from '~/lib/gem-sets/constants'
 const post = BLOG_POSTS.find((p) => p.slug === 'aura-seeker-release-news')!
 
 const img = (name: string) => `${SITE_URL}/assets/blog/aura-seeker-${name}.webp`
+/** A secret rare scan, shared with the set page (public/assets/sets/cards/jp-m7/). */
+const card = (no: string) => `${SITE_URL}/assets/sets/cards/jp-m7/${no}.webp`
 
 /** A Japanese snippet in English copy, marked so screen readers pronounce it in Japanese. */
 function Ja({ children }: { children: React.ReactNode }) {
@@ -29,13 +31,35 @@ const CONTENTS = [
   { item: 'Booster box', qty: '30 packs', note: '150 cards in all' },
 ]
 
-// The main set's rarities, counted from the official card database (78 cards).
+// Every rarity in the 114-card set. 001-078 are counted from the official card
+// database; the secret rares 079-114 are checked against three card list sites.
 const RARITIES = [
-  { rarity: 'Common', count: 38 },
-  { rarity: 'Uncommon', count: 24 },
-  { rarity: 'Rare', count: 8 },
-  { rarity: 'Double Rare', count: 8 },
+  { rarity: 'Common', numbers: '001–072 (mixed)', count: 38 },
+  { rarity: 'Uncommon', numbers: '003–078 (mixed)', count: 24 },
+  { rarity: 'Rare', numbers: '016–073 (mixed)', count: 8 },
+  { rarity: 'Double Rare', numbers: '008–067 (mixed)', count: 8 },
+  { rarity: 'Art Rare', numbers: '079–090', count: 12 },
+  { rarity: 'Super Rare', numbers: '091–107', count: 17 },
+  { rarity: 'Special Art Rare', numbers: '108–113', count: 6 },
+  { rarity: 'Mega Ultra Rare', numbers: '114', count: 1 },
 ]
+
+// The 36 secret rares. Trainer and Energy names are unofficial translations.
+const SECRET_RARES = [
+  ['079', 'Bellsprout', 'Art Rare'], ['080', 'Ninetales', 'Art Rare'], ['081', 'Blastoise', 'Art Rare'],
+  ['082', 'Buizel', 'Art Rare'], ['083', 'Oranguru', 'Art Rare'], ['084', 'Hatterene', 'Art Rare'],
+  ['085', 'Riolu', 'Art Rare'], ['086', 'Hawlucha', 'Art Rare'], ['087', 'Falinks', 'Art Rare'],
+  ['088', 'Glimmet', 'Art Rare'], ['089', 'Persian', 'Art Rare'], ['090', 'Regigigas', 'Art Rare'],
+  ['091', 'Sceptile ex', 'Super Rare'], ['092', 'Floatzel ex', 'Super Rare'], ['093', 'Mega Absol Z ex', 'Super Rare'],
+  ['094', 'Sigilyph ex', 'Super Rare'], ['095', 'Mega Glimmora ex', 'Super Rare'], ['096', 'Mega Lucario Z ex', 'Super Rare'],
+  ['097', 'Togedemaru ex', 'Super Rare'], ['098', 'Mega Garchomp Z ex', 'Super Rare'], ['099', 'Pokégear 3.0', 'Super Rare'],
+  ['100', 'Bond Sash', 'Super Rare'], ['101', "Korrina's Earnestness", 'Super Rare'], ['102', "Crasher Wake's Fervor", 'Super Rare'],
+  ['103', 'Reporter', 'Super Rare'], ['104', 'Fight Arena', 'Super Rare'], ['105', 'Telepathic Psychic Energy', 'Super Rare'],
+  ['106', 'Shadowy Darkness Energy', 'Super Rare'], ['107', 'Magnetic Metal Energy', 'Super Rare'],
+  ['108', 'Mega Absol Z ex', 'Special Art Rare'], ['109', 'Sigilyph ex', 'Special Art Rare'], ['110', 'Mega Lucario Z ex', 'Special Art Rare'],
+  ['111', 'Mega Garchomp Z ex', 'Special Art Rare'], ['112', "Korrina's Earnestness", 'Special Art Rare'], ['113', "Crasher Wake's Fervor", 'Special Art Rare'],
+  ['114', 'Mega Lucario Z ex', 'Mega Ultra Rare'],
+].map(([no, name, rarity]) => ({ no: `${no}/078`, name, rarity }))
 
 // The eight Double Rares in the main set. English names are unofficial where marked in the post.
 const DOUBLE_RARES = [
@@ -53,9 +77,9 @@ const TOC = [
   { id: 'what-it-is', label: 'What is Aura Seeker?' },
   { id: 'contents', label: "What's in a pack and a box?" },
   { id: 'mega-lucario', label: 'Mega Lucario Z ex' },
-  { id: 'secret-rare', label: 'The first Special Art Rare: Crasher Wake' },
-  { id: 'more-cards', label: 'Other cards revealed' },
-  { id: 'card-list', label: 'The card list so far' },
+  { id: 'secret-rares', label: 'The 36 secret rares' },
+  { id: 'more-cards', label: 'Other main set cards' },
+  { id: 'card-list', label: 'Full card list by rarity' },
   { id: 'names', label: 'What is it called?' },
   { id: 'not-known', label: 'What has not been announced' },
   { id: 'faq', label: 'FAQ' },
@@ -64,7 +88,7 @@ const TOC = [
 const FAQ = [
   {
     q: 'What is Aura Seeker?',
-    a: 'A Japanese Pokémon TCG expansion in the MEGA series, set code M7. Its Japanese name is 拡張パック「ハドウシーカー」. The main set has 78 cards, led by Mega Lucario Z ex.',
+    a: 'A Japanese Pokémon TCG expansion in the MEGA series, set code M7. Its Japanese name is 拡張パック「ハドウシーカー」. It has 114 cards, led by Mega Lucario Z ex.',
   },
   {
     q: 'When does Aura Seeker release in Japan?',
@@ -76,11 +100,15 @@ const FAQ = [
   },
   {
     q: 'How many cards are in Aura Seeker?',
-    a: 'The main set has 78 cards, numbered 001/078 to 078/078, and all 78 are on the official card database. Secret rares are numbered after 078. Only one has been shown so far, 113/078, and the total has not been announced.',
+    a: '114 cards. The main set is 78 cards, numbered 001/078 to 078/078. The other 36 are secret rares, numbered 079/078 to 114/078: 12 Art Rares, 17 Super Rares, 6 Special Art Rares and 1 Mega Ultra Rare.',
   },
   {
-    q: 'What is the Special Art Rare revealed so far?',
-    a: "Crasher Wake's Fervor 113/078, a Supporter card illustrated by manga artist Tetsuo Hara. The card name is an unofficial translation of マキシの熱血.",
+    q: 'What is the rarest card in Aura Seeker?',
+    a: 'The gold Mega Ultra Rare Mega Lucario Z ex, 114/078. It is the only Mega Ultra Rare in the set.',
+  },
+  {
+    q: 'What are the Special Art Rares?',
+    a: "Six cards, 108/078 to 113/078: Mega Absol Z ex, Sigilyph ex, Mega Lucario Z ex, Mega Garchomp Z ex, Korrina's Earnestness and Crasher Wake's Fervor. Crasher Wake's Fervor is illustrated by manga artist Tetsuo Hara.",
   },
   {
     q: 'Is Mega Lucario Z ex on the pack?',
@@ -88,7 +116,7 @@ const FAQ = [
   },
   {
     q: 'Are the English card names official?',
-    a: 'The Pokémon names are their official English names. The trainer card names, and the "Mega ... Z ex" styling, are unofficial translations of the Japanese and may differ if the cards come out in English.',
+    a: 'The Pokémon names are their official English names. The Trainer and Energy card names, and the "Mega ... Z ex" styling, are unofficial translations of the Japanese and may differ when the cards come out in English.',
   },
   {
     q: 'What language are the cards?',
@@ -171,12 +199,13 @@ function AuraSeekerPost() {
         updated={status.liveAt}
         wide
         post={post}
-        lede="The Japanese Pokémon TCG set Aura Seeker (M7) releases on November 27, 2026. This post covers what we know so far: the pack and box, the 78-card main set, Mega Lucario Z ex and the first Special Art Rare."
+        lede="The Japanese Pokémon TCG set Aura Seeker (M7) releases on November 27, 2026. The full card list is out: 114 cards, with 36 secret rares and a gold Mega Ultra Rare Mega Lucario Z ex. Here are the pack and box, the chase cards and every secret rare."
         cta={{
-          heading: 'More new releases',
-          body: 'See what is new and what is coming up at EBI Collectibles.',
+          heading: 'Aura Seeker card list',
+          body: 'Browse all 114 cards, filter by rarity and tap any card for a closer look.',
           links: [
-            { to: '/new-and-upcoming', label: 'See new and upcoming releases' },
+            { to: '/sets/japanese/aura-seeker-m7', label: 'See the full card list' },
+            { to: '/new-and-upcoming', label: 'See new and upcoming releases', variant: 'ghost' },
             { to: '/blog', label: 'Read more release news', variant: 'ghost' },
           ],
         }}
@@ -188,12 +217,12 @@ function AuraSeekerPost() {
         </p>
         <p>
           The set is led by Mega Lucario Z ex, which is on the front of the booster pack and the box. Its Ability shares the set's
-          name. The main set has 78 cards, and all of them are on the official card database. One secret rare has been shown so far: a
-          Special Art Rare of the Supporter Crasher Wake's Fervor, illustrated by manga artist Tetsuo Hara.
+          name. The set has 114 cards: a 78-card main set and 36 secret rares. The top card is a gold Mega Ultra Rare Mega Lucario Z
+          ex, and one of the six Special Art Rares, Crasher Wake's Fervor, is illustrated by manga artist Tetsuo Hara.
         </p>
         <p>
-          The Pokémon names in this post are their official English names. The trainer card names and the "Mega ... Z ex" names are
-          unofficial translations of the Japanese.
+          The Pokémon names in this post are their official English names. The Trainer and Energy card names and the "Mega ... Z ex"
+          names are unofficial translations of the Japanese.
         </p>
 
         <aside className="fact-box" aria-label="Aura Seeker key facts">
@@ -216,18 +245,22 @@ function AuraSeekerPost() {
               <dd>5 cards</dd>
               <dt>Box</dt>
               <dd>30 packs</dd>
+              <dt>Cards</dt>
+              <dd>114 in all</dd>
               <dt>Main set</dt>
-              <dd>78 cards</dd>
+              <dd>78 cards (001–078)</dd>
               <dt>Secret rares</dt>
-              <dd>1 shown so far (113/078), total not announced</dd>
+              <dd>36 cards (079–114)</dd>
+              <dt>Top card</dt>
+              <dd>Mega Lucario Z ex, Mega Ultra Rare 114/078</dd>
               <dt>Language</dt>
               <dd>Japanese</dd>
             </dl>
           </div>
         </aside>
 
-        <nav className="toc" aria-label="In this guide">
-          <p className="toc-title">In this guide</p>
+        <nav className="toc" aria-label="Contents">
+          <p className="toc-title">Contents</p>
           <ol>
             {TOC.map((t) => (
               <li key={t.id}>
@@ -300,6 +333,10 @@ function AuraSeekerPost() {
           hand. Its attack does 120 damage, plus 120 more if your opponent's Active Pokémon is a Pokémon ex. As a Mega Evolution ex, it
           gives up 3 Prize cards when it is Knocked Out.
         </p>
+        <p>
+          It is printed four times in the set: the Double Rare 057/078, a Super Rare 096/078, a Special Art Rare 110/078 and the gold
+          Mega Ultra Rare 114/078.
+        </p>
         <ul className="card-grid cols-1">
           <li>
             <figure>
@@ -311,16 +348,44 @@ function AuraSeekerPost() {
           </li>
         </ul>
 
-        <h2 id="secret-rare">The first Special Art Rare: Crasher Wake</h2>
+        <h2 id="secret-rares">The 36 secret rares</h2>
         <p>
-          The one secret rare shown so far is Crasher Wake's Fervor 113/078, a Special Art Rare (<Ja>マキシの熱血</Ja> in Japanese; the
-          English card name is an unofficial translation). The official product page says it is illustrated by manga artist Tetsuo
-          Hara, and his name is on the card.
+          Aura Seeker has 36 secret rares, numbered 079/078 to 114/078: 12 Art Rares, 17 Super Rares, 6 Special Art Rares and one Mega
+          Ultra Rare. The full list is in the <a href="#card-list">card list</a> below.
+        </p>
+        <p>
+          The Mega Ultra Rare is a gold Mega Lucario Z ex, 114/078, the only one in the set. Mega Lucario Z ex also has a Special Art
+          Rare, 110/078, which shows Mega Lucario Z mid-leap over grassy rocks.
+        </p>
+        <ul className="card-grid cols-2">
+          <li>
+            <figure>
+              <img src={card('114')} alt="Mega Lucario Z ex 114/078 Mega Ultra Rare: the whole card in gold, with Mega Lucario Z etched into the gold" loading="lazy" width={480} height={670} style={{ background: 'transparent', boxShadow: 'none' }} />
+              <figcaption>
+                <strong>Mega Lucario Z ex</strong>114/078 · Mega Ultra Rare
+              </figcaption>
+            </figure>
+          </li>
+          <li>
+            <figure>
+              <img src={card('110')} alt="Mega Lucario Z ex 110/078 Special Art Rare: Mega Lucario Z mid-leap over grassy rocks with its blue tassels flying" loading="lazy" width={480} height={670} style={{ background: 'transparent', boxShadow: 'none' }} />
+              <figcaption>
+                <strong>Mega Lucario Z ex</strong>110/078 · Special Art Rare
+              </figcaption>
+            </figure>
+          </li>
+        </ul>
+        <h3>Crasher Wake's Fervor by Tetsuo Hara</h3>
+        <p>
+          Crasher Wake's Fervor 113/078 is a Special Art Rare (<Ja>マキシの熱血</Ja> in Japanese; the English card name is an
+          unofficial translation). The official product page says it is illustrated by manga artist Tetsuo Hara, and his name is on
+          the card.
         </p>
         <p>
           The illustration shows Crasher Wake in his mask, lunging toward you with one hand reaching out and the other raised, and pale
           fists rising behind him. The card is a Supporter: you choose one of your Water Pokémon in play and shuffle it, with every card
-          attached to it, back into your deck. The same Supporter is also in the main set as 076/078, an Uncommon illustrated by GOSSAN.
+          attached to it, back into your deck. The same Supporter is also in the main set as 076/078, an Uncommon illustrated by GOSSAN,
+          and as the Super Rare 102/078.
         </p>
         <ul className="card-grid cols-1">
           <li>
@@ -332,8 +397,52 @@ function AuraSeekerPost() {
             </figure>
           </li>
         </ul>
+        <h3>The other Special Art Rares</h3>
+        <p>
+          The other four Special Art Rares are Mega Absol Z ex 108/078, Sigilyph ex 109/078, Mega Garchomp Z ex 111/078 and the
+          Supporter Korrina's Earnestness 112/078.
+        </p>
+        <ul className="card-grid cols-2">
+          <li>
+            <figure>
+              <img src={card('108')} alt="Mega Absol Z ex 108/078 Special Art Rare: Mega Absol Z, dark blue, against a red and purple forest" loading="lazy" width={480} height={670} style={{ background: 'transparent', boxShadow: 'none' }} />
+              <figcaption>
+                <strong>Mega Absol Z ex</strong>108/078 · Special Art Rare
+              </figcaption>
+            </figure>
+          </li>
+          <li>
+            <figure>
+              <img src={card('109')} alt="Sigilyph ex 109/078 Special Art Rare: Sigilyph with its wings spread over swirling clouds and red rock" loading="lazy" width={480} height={670} style={{ background: 'transparent', boxShadow: 'none' }} />
+              <figcaption>
+                <strong>Sigilyph ex</strong>109/078 · Special Art Rare
+              </figcaption>
+            </figure>
+          </li>
+          <li>
+            <figure>
+              <img src={card('111')} alt="Mega Garchomp Z ex 111/078 Special Art Rare: Mega Garchomp Z diving forward with its red fins spread" loading="lazy" width={480} height={670} style={{ background: 'transparent', boxShadow: 'none' }} />
+              <figcaption>
+                <strong>Mega Garchomp Z ex</strong>111/078 · Special Art Rare
+              </figcaption>
+            </figure>
+          </li>
+          <li>
+            <figure>
+              <img src={card('112')} alt="Korrina's Earnestness 112/078 Special Art Rare: Korrina reaching toward a burst of light in bright rainbow colours" loading="lazy" width={480} height={670} style={{ background: 'transparent', boxShadow: 'none' }} />
+              <figcaption>
+                <strong>Korrina's Earnestness</strong>112/078 · Special Art Rare
+              </figcaption>
+            </figure>
+          </li>
+        </ul>
+        <p>
+          The 17 Super Rares are full-art versions of all eight Double Rare ex, the six Trainer cards from the main set (Pokégear 3.0,
+          Bond Sash, Korrina's Earnestness, Crasher Wake's Fervor, Reporter and Fight Arena) and three Special Energy cards. The 12 Art
+          Rares are Pokémon from the main set, from Bellsprout to Regigigas, including Blastoise, Hatterene and Riolu.
+        </p>
 
-        <h2 id="more-cards">Other cards revealed</h2>
+        <h2 id="more-cards">Other main set cards</h2>
         <p>
           Mega Lucario Z ex is one of three "Z ex" Mega Evolutions in the main set. Floatzel ex is built to go with Crasher Wake's
           Fervor.
@@ -382,18 +491,19 @@ function AuraSeekerPost() {
           </li>
         </ul>
 
-        <h2 id="card-list">The card list so far</h2>
+        <h2 id="card-list">Full card list by rarity</h2>
         <p>
-          All 78 main set cards are on the official card database. Counted by rarity, the main set has:
+          Aura Seeker has 114 cards. The main set, 001 to 078, is on the official card database. Counted by rarity:
         </p>
         <div className="table-scroll" role="group" aria-labelledby="tbl-rarities" tabIndex={0}>
           <table className="data-table">
             <caption id="tbl-rarities" className="sr-only">
-              Aura Seeker main set cards by rarity
+              Aura Seeker cards by rarity
             </caption>
             <thead>
               <tr>
                 <th scope="col">Rarity</th>
+                <th scope="col">Numbers</th>
                 <th scope="col">Cards</th>
               </tr>
             </thead>
@@ -401,6 +511,7 @@ function AuraSeekerPost() {
               {RARITIES.map((r) => (
                 <tr key={r.rarity}>
                   <th scope="row">{r.rarity}</th>
+                  <td>{r.numbers}</td>
                   <td>{r.count}</td>
                 </tr>
               ))}
@@ -433,9 +544,32 @@ function AuraSeekerPost() {
             </tbody>
           </table>
         </div>
+        <p>The 36 secret rares are:</p>
+        <div className="table-scroll" role="group" aria-labelledby="tbl-secret" tabIndex={0}>
+          <table className="data-table">
+            <caption id="tbl-secret" className="sr-only">
+              Aura Seeker secret rares, 079/078 to 114/078
+            </caption>
+            <thead>
+              <tr>
+                <th scope="col">Number</th>
+                <th scope="col">Card</th>
+                <th scope="col">Rarity</th>
+              </tr>
+            </thead>
+            <tbody>
+              {SECRET_RARES.map((c) => (
+                <tr key={c.no}>
+                  <td>{c.no}</td>
+                  <th scope="row">{c.name}</th>
+                  <td>{c.rarity}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
         <p>
-          Secret rares are numbered after 078. Crasher Wake's Fervor is 113/078, so the numbering runs to at least 113, but the official
-          card list does not show cards 079 to 112 yet.
+          See every card, with pictures, on our <Link to="/sets/japanese/aura-seeker-m7">Aura Seeker card list</Link>.
         </p>
 
         <h2 id="names">What is it called?</h2>
@@ -446,8 +580,8 @@ function AuraSeekerPost() {
 
         <h2 id="not-known">What has not been announced</h2>
         <p>
-          The main set is fully shown, but the secret rares are not. Only one, 113/078, has been revealed, and the number of secret rares
-          and their pull rates have not been announced.
+          The full card list is out, but pull rates for the secret rares have not been announced. The official English names of the
+          Trainer and Energy cards will not be known until the cards are printed in English.
         </p>
 
         <h2 id="faq">FAQ</h2>
@@ -460,11 +594,6 @@ function AuraSeekerPost() {
           ))}
         </div>
 
-        <h2 id="our-take">Our take</h2>
-        <p>
-          Mega Lucario Z ex leads the set and is on every pack, and the first secret rare is a Crasher Wake illustrated by Tetsuo Hara.
-          The rest of the secret rares have not been shown.
-        </p>
       </BlogPostLayout>
     </>
   )

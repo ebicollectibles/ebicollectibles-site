@@ -482,12 +482,12 @@ export const BLOG_POSTS: BlogPostSummary[] = [
   {
     slug: 'aura-seeker-release-news',
     path: '/blog/aura-seeker-release-news',
-    title: 'Aura Seeker (Japanese M7): Release Date, Mega Lucario Z ex and What We Know So Far',
+    title: 'Aura Seeker (Japanese M7): Release Date, Full Card List and Secret Rares',
     excerpt:
-      'The Japanese Pokémon TCG set Aura Seeker (M7) releases on November 27, 2026. This post covers what we know so far: the pack and box, the 78-card main set, Mega Lucario Z ex and the first Special Art Rare.',
-    seoTitle: 'Aura Seeker (Japanese M7): Release Date & Cards Revealed',
+      'The Japanese Pokémon TCG set Aura Seeker (M7) releases on November 27, 2026. The full card list is out: 114 cards, with 36 secret rares and a gold Mega Ultra Rare Mega Lucario Z ex.',
+    seoTitle: 'Aura Seeker (Japanese M7): Full Card List & Secret Rares',
     seoDescription:
-      'Japanese Pokémon TCG Aura Seeker (M7) releases November 27, 2026: 5 cards a pack, 30 packs a box, Mega Lucario Z ex and a Tetsuo Hara Special Art Rare.',
+      'Japanese Aura Seeker (M7), out November 27, 2026: all 114 cards, the 36 secret rares and the gold Mega Ultra Rare Mega Lucario Z ex.',
     tag: 'New release',
     date: '2026-11-27',
     heroImage: `${SITE_URL}/assets/blog/aura-seeker-release-hero.webp`,
