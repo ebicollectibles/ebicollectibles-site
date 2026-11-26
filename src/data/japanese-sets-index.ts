@@ -62,13 +62,12 @@ export const JAPANESE_SETS: JapaneseSetSummary[] = [
     nameJa: '拡張パック「ハドウシーカー」',
     series: 'Japanese Mega Evolution',
     code: 'M7',
-    // Cards known so far: the 78-card main set and the one secret rare
-    // shown (113/078). The full list is not out yet.
-    cardCount: 79,
+    // 78-card main set plus 36 secret rares (079-114).
+    cardCount: 114,
     releaseDate: '2026-11-27',
-    tagline: 'Mega Lucario Z ex leads; full list not out yet',
-    heroImage: 'https://www.pokemon-card.com/assets/images/card_images/large/M7/050912_P_MRUKARIOZETTOIEKKUSU.jpg',
-    heroAlt: 'Mega Lucario Z ex 057/078, Double Rare',
+    tagline: 'Mega Lucario Z ex leads, with a gold Mega Ultra Rare',
+    heroImage: '/assets/sets/cards/jp-m7/110.webp',
+    heroAlt: 'Mega Lucario Z ex 110/078, Special Art Rare',
     packImage: { src: '/assets/sets/packs/jp-aura-seeker-m7.webp', w: 376, h: 760 },
     glow1: 'rgb(40 90 180 / .30)',
     glow2: 'rgb(60 40 120 / .25)',

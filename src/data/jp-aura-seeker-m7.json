@@ -5,16 +5,19 @@
   "series": "Japanese Mega Evolution",
   "language": "Japanese",
   "releaseDate": "2026-11-27",
-  "cardCount": 79,
+  "cardCount": 114,
   "rarityOrder": [
     "Common (C)",
     "Uncommon (U)",
     "Rare (R)",
     "Double Rare (RR)",
-    "Special Art Rare (SAR)"
+    "Art Rare (AR)",
+    "Super Rare (SR)",
+    "Special Art Rare (SAR)",
+    "Mega Ultra Rare (MUR)"
   ],
   "exclusiveCardNumbers": [],
-  "source": "Official Pokémon Card Game card database (pokemon-card.com/card-search, product 964) and pokemon-card.com/ex/m7 card list; English names translated (no official English release yet)",
+  "source": "Official Pokémon Card Game card database (pokemon-card.com/card-search, product 964) for 001-078 and pokemon-card.com/ex/m7 for 113; secret rares 079-114 cross-checked against PokeBeach, Bill's Archive and TCG Watchtower; English names translated (no official English release yet)",
   "cards": [
     {
       "number": "001/078",
@@ -641,12 +644,292 @@
       "image": "https://www.pokemon-card.com/assets/images/card_images/large/M7/050933_T_FUAITOARINA.jpg"
     },
     {
+      "number": "079/078",
+      "pokemonIndex": 79,
+      "version": 1,
+      "name": "Bellsprout",
+      "rarity": "Art Rare (AR)",
+      "image": "/assets/sets/cards/jp-m7/079.webp"
+    },
+    {
+      "number": "080/078",
+      "pokemonIndex": 80,
+      "version": 1,
+      "name": "Ninetales",
+      "rarity": "Art Rare (AR)",
+      "image": "/assets/sets/cards/jp-m7/080.webp"
+    },
+    {
+      "number": "081/078",
+      "pokemonIndex": 81,
+      "version": 1,
+      "name": "Blastoise",
+      "rarity": "Art Rare (AR)",
+      "image": "/assets/sets/cards/jp-m7/081.webp"
+    },
+    {
+      "number": "082/078",
+      "pokemonIndex": 82,
+      "version": 1,
+      "name": "Buizel",
+      "rarity": "Art Rare (AR)",
+      "image": "/assets/sets/cards/jp-m7/082.webp"
+    },
+    {
+      "number": "083/078",
+      "pokemonIndex": 83,
+      "version": 1,
+      "name": "Oranguru",
+      "rarity": "Art Rare (AR)",
+      "image": "/assets/sets/cards/jp-m7/083.webp"
+    },
+    {
+      "number": "084/078",
+      "pokemonIndex": 84,
+      "version": 1,
+      "name": "Hatterene",
+      "rarity": "Art Rare (AR)",
+      "image": "/assets/sets/cards/jp-m7/084.webp"
+    },
+    {
+      "number": "085/078",
+      "pokemonIndex": 85,
+      "version": 1,
+      "name": "Riolu",
+      "rarity": "Art Rare (AR)",
+      "image": "/assets/sets/cards/jp-m7/085.webp"
+    },
+    {
+      "number": "086/078",
+      "pokemonIndex": 86,
+      "version": 1,
+      "name": "Hawlucha",
+      "rarity": "Art Rare (AR)",
+      "image": "/assets/sets/cards/jp-m7/086.webp"
+    },
+    {
+      "number": "087/078",
+      "pokemonIndex": 87,
+      "version": 1,
+      "name": "Falinks",
+      "rarity": "Art Rare (AR)",
+      "image": "/assets/sets/cards/jp-m7/087.webp"
+    },
+    {
+      "number": "088/078",
+      "pokemonIndex": 88,
+      "version": 1,
+      "name": "Glimmet",
+      "rarity": "Art Rare (AR)",
+      "image": "/assets/sets/cards/jp-m7/088.webp"
+    },
+    {
+      "number": "089/078",
+      "pokemonIndex": 89,
+      "version": 1,
+      "name": "Persian",
+      "rarity": "Art Rare (AR)",
+      "image": "/assets/sets/cards/jp-m7/089.webp"
+    },
+    {
+      "number": "090/078",
+      "pokemonIndex": 90,
+      "version": 1,
+      "name": "Regigigas",
+      "rarity": "Art Rare (AR)",
+      "image": "/assets/sets/cards/jp-m7/090.webp"
+    },
+    {
+      "number": "091/078",
+      "pokemonIndex": 91,
+      "version": 1,
+      "name": "Sceptile ex",
+      "rarity": "Super Rare (SR)",
+      "image": "/assets/sets/cards/jp-m7/091.webp"
+    },
+    {
+      "number": "092/078",
+      "pokemonIndex": 92,
+      "version": 1,
+      "name": "Floatzel ex",
+      "rarity": "Super Rare (SR)",
+      "image": "/assets/sets/cards/jp-m7/092.webp"
+    },
+    {
+      "number": "093/078",
+      "pokemonIndex": 93,
+      "version": 1,
+      "name": "Mega Absol Z ex",
+      "rarity": "Super Rare (SR)",
+      "image": "/assets/sets/cards/jp-m7/093.webp"
+    },
+    {
+      "number": "094/078",
+      "pokemonIndex": 94,
+      "version": 1,
+      "name": "Sigilyph ex",
+      "rarity": "Super Rare (SR)",
+      "image": "/assets/sets/cards/jp-m7/094.webp"
+    },
+    {
+      "number": "095/078",
+      "pokemonIndex": 95,
+      "version": 1,
+      "name": "Mega Glimmora ex",
+      "rarity": "Super Rare (SR)",
+      "image": "/assets/sets/cards/jp-m7/095.webp"
+    },
+    {
+      "number": "096/078",
+      "pokemonIndex": 96,
+      "version": 1,
+      "name": "Mega Lucario Z ex",
+      "rarity": "Super Rare (SR)",
+      "image": "/assets/sets/cards/jp-m7/096.webp"
+    },
+    {
+      "number": "097/078",
+      "pokemonIndex": 97,
+      "version": 1,
+      "name": "Togedemaru ex",
+      "rarity": "Super Rare (SR)",
+      "image": "/assets/sets/cards/jp-m7/097.webp"
+    },
+    {
+      "number": "098/078",
+      "pokemonIndex": 98,
+      "version": 1,
+      "name": "Mega Garchomp Z ex",
+      "rarity": "Super Rare (SR)",
+      "image": "/assets/sets/cards/jp-m7/098.webp"
+    },
+    {
+      "number": "099/078",
+      "pokemonIndex": 99,
+      "version": 1,
+      "name": "Pokégear 3.0",
+      "rarity": "Super Rare (SR)",
+      "image": "/assets/sets/cards/jp-m7/099.webp"
+    },
+    {
+      "number": "100/078",
+      "pokemonIndex": 100,
+      "version": 1,
+      "name": "Bond Sash",
+      "rarity": "Super Rare (SR)",
+      "image": "/assets/sets/cards/jp-m7/100.webp"
+    },
+    {
+      "number": "101/078",
+      "pokemonIndex": 101,
+      "version": 1,
+      "name": "Korrina's Earnestness",
+      "rarity": "Super Rare (SR)",
+      "image": "/assets/sets/cards/jp-m7/101.webp"
+    },
+    {
+      "number": "102/078",
+      "pokemonIndex": 102,
+      "version": 1,
+      "name": "Crasher Wake's Fervor",
+      "rarity": "Super Rare (SR)",
+      "image": "/assets/sets/cards/jp-m7/102.webp"
+    },
+    {
+      "number": "103/078",
+      "pokemonIndex": 103,
+      "version": 1,
+      "name": "Reporter",
+      "rarity": "Super Rare (SR)",
+      "image": "/assets/sets/cards/jp-m7/103.webp"
+    },
+    {
+      "number": "104/078",
+      "pokemonIndex": 104,
+      "version": 1,
+      "name": "Fight Arena",
+      "rarity": "Super Rare (SR)",
+      "image": "/assets/sets/cards/jp-m7/104.webp"
+    },
+    {
+      "number": "105/078",
+      "pokemonIndex": 105,
+      "version": 1,
+      "name": "Telepathic Psychic Energy",
+      "rarity": "Super Rare (SR)",
+      "image": "/assets/sets/cards/jp-m7/105.webp"
+    },
+    {
+      "number": "106/078",
+      "pokemonIndex": 106,
+      "version": 1,
+      "name": "Shadowy Darkness Energy",
+      "rarity": "Super Rare (SR)",
+      "image": "/assets/sets/cards/jp-m7/106.webp"
+    },
+    {
+      "number": "107/078",
+      "pokemonIndex": 107,
+      "version": 1,
+      "name": "Magnetic Metal Energy",
+      "rarity": "Super Rare (SR)",
+      "image": "/assets/sets/cards/jp-m7/107.webp"
+    },
+    {
+      "number": "108/078",
+      "pokemonIndex": 108,
+      "version": 1,
+      "name": "Mega Absol Z ex",
+      "rarity": "Special Art Rare (SAR)",
+      "image": "/assets/sets/cards/jp-m7/108.webp"
+    },
+    {
+      "number": "109/078",
+      "pokemonIndex": 109,
+      "version": 1,
+      "name": "Sigilyph ex",
+      "rarity": "Special Art Rare (SAR)",
+      "image": "/assets/sets/cards/jp-m7/109.webp"
+    },
+    {
+      "number": "110/078",
+      "pokemonIndex": 110,
+      "version": 1,
+      "name": "Mega Lucario Z ex",
+      "rarity": "Special Art Rare (SAR)",
+      "image": "/assets/sets/cards/jp-m7/110.webp"
+    },
+    {
+      "number": "111/078",
+      "pokemonIndex": 111,
+      "version": 1,
+      "name": "Mega Garchomp Z ex",
+      "rarity": "Special Art Rare (SAR)",
+      "image": "/assets/sets/cards/jp-m7/111.webp"
+    },
+    {
+      "number": "112/078",
+      "pokemonIndex": 112,
+      "version": 1,
+      "name": "Korrina's Earnestness",
+      "rarity": "Special Art Rare (SAR)",
+      "image": "/assets/sets/cards/jp-m7/112.webp"
+    },
+    {
       "number": "113/078",
       "pokemonIndex": 113,
       "version": 1,
       "name": "Crasher Wake's Fervor",
       "rarity": "Special Art Rare (SAR)",
       "image": "https://www.pokemon-card.com/ex/m7/assets/images/card/m7-113-m01h7.webp"
+    },
+    {
+      "number": "114/078",
+      "pokemonIndex": 114,
+      "version": 1,
+      "name": "Mega Lucario Z ex",
+      "rarity": "Mega Ultra Rare (MUR)",
+      "image": "/assets/sets/cards/jp-m7/114.webp"
     }
   ],
   "groupByName": true
