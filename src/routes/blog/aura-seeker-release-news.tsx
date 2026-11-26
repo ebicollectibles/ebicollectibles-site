@@ -271,7 +271,6 @@ function AuraSeekerPost() {
         </nav>
 
         <h2 id="contents">What's in a pack and a box?</h2>
-        <p>Going by the official product page and Pokémon Center Online's box listing:</p>
         <div className="table-scroll" role="group" aria-labelledby="tbl-contents" tabIndex={0}>
           <table className="data-table">
             <caption id="tbl-contents" className="sr-only">
@@ -378,8 +377,7 @@ function AuraSeekerPost() {
         <h3>Crasher Wake's Fervor by Tetsuo Hara</h3>
         <p>
           Crasher Wake's Fervor 113/078 is a Special Art Rare (<Ja>マキシの熱血</Ja> in Japanese; the English card name is an
-          unofficial translation). The official product page says it is illustrated by manga artist Tetsuo Hara, and his name is on
-          the card.
+          unofficial translation). It is illustrated by manga artist Tetsuo Hara.
         </p>
         <p>
           The illustration shows Crasher Wake in his mask, lunging toward you with one hand reaching out and the other raised, and pale
@@ -493,7 +491,7 @@ function AuraSeekerPost() {
 
         <h2 id="card-list">Full card list by rarity</h2>
         <p>
-          Aura Seeker has 114 cards. The main set, 001 to 078, is on the official card database. Counted by rarity:
+          Aura Seeker has 114 cards. Counted by rarity:
         </p>
         <div className="table-scroll" role="group" aria-labelledby="tbl-rarities" tabIndex={0}>
           <table className="data-table">
