@@ -147,7 +147,7 @@ export async function marketingEmailExtras(email: string, campaign?: string): Pr
   // footer block, right under the copyright line, so they read as one footer.
   const footerHtml = `
           <p style="${BODY_FONT}font-size:8px;line-height:1.5;color:#7b8690;margin:12px 0 0;-webkit-text-size-adjust:none;">${esc(BUSINESS_LEGAL_NAME)} - <span style="color:#7b8690;text-decoration:none;">${noAutoLink(esc(BUSINESS_POSTAL_ADDRESS))}</span></p>
-          <p style="${BODY_FONT}font-size:10px;line-height:1.6;color:#7b8690;margin:6px 0 0;-webkit-text-size-adjust:none;"><a href="${prefsUrl}" style="color:#5a6875;font-weight:600;text-decoration:none;">Update&nbsp;preferences</a>&nbsp;&nbsp;&middot;&nbsp;&nbsp;<a href="${pageUrl}" style="color:#5a6875;font-weight:600;text-decoration:none;">Unsubscribe</a></p>`
+          <p style="${BODY_FONT}font-size:8px;line-height:1.5;color:#7b8690;margin:0;-webkit-text-size-adjust:none;"><a href="${prefsUrl}" style="color:#7b8690;"><span style="text-decoration:underline;">Update</span> <span style="text-decoration:underline;">preferences</span></a> &middot; <a href="${pageUrl}" style="color:#7b8690;text-decoration:underline;">Unsubscribe</a></p>`
   const footerText = `${BUSINESS_LEGAL_NAME} - ${BUSINESS_POSTAL_ADDRESS}\nUpdate preferences: ${prefsUrl}\nUnsubscribe: ${pageUrl}`
   return {
     footerHtml,
