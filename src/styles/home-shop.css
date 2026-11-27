@@ -277,20 +277,25 @@ a.hp2-trust-item:hover b { text-decoration: underline; }
 .hp2-contest-eyebrow { font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #ffd23f; }
 .hp2-contest-head h2 { margin: 8px 0 0; font-size: 30px; letter-spacing: -0.02em; line-height: 1.1; }
 .hp2-contest-k { font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; letter-spacing: 0.14em; text-transform: uppercase; color: #9aa6b4; }
-.hp2-contest-prizes-row { margin-top: 24px; display: grid; grid-template-columns: 1.2fr 1fr; gap: 28px; align-items: center; }
-.hp2-contest-photo { border-radius: 8px; overflow: hidden; background: #fff; }
-.hp2-contest-photo img { width: 100%; height: auto; display: block; }
-.hp2-contest-list { list-style: none; margin: 14px 0 0; padding: 0; display: flex; flex-direction: column; gap: 12px; }
-.hp2-contest-list li { display: flex; flex-direction: column; gap: 3px; padding: 14px 16px; border: 1px solid rgba(255, 255, 255, 0.16); border-radius: 8px; background: rgba(255, 255, 255, 0.04); }
-.hp2-contest-list b { font-family: 'IBM Plex Mono', monospace; font-size: 11.5px; letter-spacing: 0.1em; text-transform: uppercase; color: #ffd23f; }
-.hp2-contest-list span { font-size: 17px; font-weight: 700; line-height: 1.3; }
+.hp2-contest-sub { display: block; margin-top: 26px; }
+.hp2-contest-podium { list-style: none; margin: 12px 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.hp2-contest-podium li { border-radius: 8px; overflow: hidden; background: #fff; color: #131b28; display: flex; flex-direction: column; }
+.hp2-contest-photo { aspect-ratio: 1 / 1; background: #fff; overflow: hidden; }
+.hp2-contest-photo img { width: 100%; height: 100%; object-fit: contain; display: block; }
+.hp2-contest-photo.is-wide { aspect-ratio: 4 / 3; border-radius: 6px; }
+.hp2-contest-cap { padding: 14px 16px 16px; display: flex; flex-direction: column; gap: 4px; }
+.hp2-contest-cap b { font-family: 'IBM Plex Mono', monospace; font-size: 11.5px; letter-spacing: 0.1em; text-transform: uppercase; color: #a85b2c; }
+.hp2-contest-cap span { font-size: 15px; font-weight: 700; line-height: 1.3; }
 .hp2-contest-grid { list-style: none; margin: 16px 0 0; padding: 0; display: grid; grid-template-columns: 1fr; gap: 16px; }
 .hp2-contest-grid > li { border: 1px solid rgba(255, 255, 255, 0.16); border-radius: 8px; padding: 20px 22px; background: rgba(255, 255, 255, 0.04); }
+.hp2-contest-first { display: grid; grid-template-columns: 220px 1fr; gap: 20px; align-items: center; }
 .hp2-contest-big { margin: 10px 0 0; font-size: 19px; font-weight: 700; line-height: 1.25; }
 .hp2-contest-grid p:not(.hp2-contest-big) { margin: 8px 0 0; font-size: 13.5px; line-height: 1.55; color: #c9d1da; }
 @media (max-width: 900px) {
-  .hp2-contest-prizes-row { grid-template-columns: 1fr; gap: 18px; }
-  .hp2-contest-list span { font-size: 15px; }
+  .hp2-contest-podium { grid-template-columns: 1fr 1fr 1fr; gap: 10px; }
+  .hp2-contest-cap { padding: 10px 10px 12px; }
+  .hp2-contest-cap span { font-size: 12.5px; }
   .hp2-contest-grid { grid-template-columns: 1fr; }
+  .hp2-contest-first { grid-template-columns: 1fr; }
   .hp2-contest-head h2 { font-size: 25px; }
 }
