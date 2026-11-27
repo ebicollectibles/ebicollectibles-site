@@ -19,7 +19,9 @@ const GREEN = '#3f7a63'
 
 const LOGO_URL = 'https://ebicollectibles.com/assets/ebi-logo.jpg'
 // The wide lockup (mark + COLLECTIBLES) used on the blog banners, in Ink.
-const WIDE_LOGO_URL = 'https://ebicollectibles.com/assets/ebi-logo-wide-ink.png'
+// The ink logo on its own white tile, so it stays visible when Gmail or
+// Apple Mail switches an email to dark mode.
+const WIDE_LOGO_URL = 'https://ebicollectibles.com/assets/email/ebi-logo-email.png'
 // Web fonts load where the client allows it (Apple Mail, iOS); Gmail and
 // Outlook fall back to Helvetica/Arial and the system mono.
 const HEAD_FONT = "font-family:'Archivo','Helvetica Neue',Helvetica,Arial,sans-serif;"
@@ -109,7 +111,7 @@ function emailFooterHtml(listFooterHtml = ''): string {
   return `
       <tr>
         <td align="center" bgcolor="#ffffff" style="padding:30px 36px 30px;background:#ffffff;border-top:1px solid ${BORDER};text-align:center;">
-          <img src="${WIDE_LOGO_URL}" width="171" height="44" alt="EBI Collectibles" style="display:inline-block;width:171px;height:44px;border:0;">
+          <img src="${WIDE_LOGO_URL}" width="181" height="54" alt="EBI Collectibles" style="display:inline-block;width:181px;height:54px;border:0;">
           <p style="${row}margin-top:14px;"><a href="${SITE_URL}/shop" style="${link}">Shop now &rarr;</a></p>
           <p style="${head}margin-top:22px;">Socials</p>
           <p style="${row}"><a href="https://www.instagram.com/ebicollectibles" style="${link}">Instagram</a>${dot}<a href="https://x.com/ebicollectibles" style="${link}">X</a></p>
@@ -189,7 +191,7 @@ function emailShell(opts: {
       <tr>
         <td class="px" style="padding:22px 36px;border-bottom:1px solid ${BORDER};">
           <table role="presentation" width="100%" cellpadding="0" cellspacing="0"><tr>
-            <td style="vertical-align:middle;"><img src="${WIDE_LOGO_URL}" width="171" height="44" alt="EBI Collectibles" style="display:block;width:171px;height:44px;border:0;"></td>
+            <td style="vertical-align:middle;"><img src="${WIDE_LOGO_URL}" width="181" height="54" alt="EBI Collectibles" style="display:block;width:181px;height:54px;border:0;"></td>
           </tr></table>
         </td>
       </tr>
