@@ -3,12 +3,6 @@ import { CONTEST_ENDS_LABEL, CONTEST_PRIZES, contestLive } from '~/lib/contest'
 
 // The Black Friday Promotion, in full, on the homepage (#promotion). The
 // announcement bar and the sale banner link here. Hidden once it ends.
-const PRIZE_IMAGES: Record<string, { src: string; alt: string }> = {
-  '1st place': { src: '/assets/home/promo-prize-1st.webp', alt: 'Pokémon TCG 30th Celebration Pokémon Center Elite Trainer Box' },
-  '2nd place': { src: '/assets/home/promo-prize-2nd.webp', alt: 'Pokémon TCG 30th Celebration Elite Trainer Box' },
-  '3rd place': { src: '/assets/home/promo-prize-3rd.webp', alt: 'Pokémon TCG 30th Celebration Booster Bundle' },
-}
-
 export function HomeContest() {
   if (!contestLive()) return null
   return (
@@ -19,21 +13,26 @@ export function HomeContest() {
           <h2 id="contest-h">Shop the sale, win prizes</h2>
         </div>
 
-        <span className="hp2-contest-k hp2-contest-sub">Top spender prizes</span>
-        <ol className="hp2-contest-podium">
-          {CONTEST_PRIZES.map((p) => {
-            const img = PRIZE_IMAGES[p.place]
-            return (
-              <li key={p.place}>
-                <div className="hp2-contest-photo">{img && <img src={img.src} alt={img.alt} loading="lazy" />}</div>
-                <div className="hp2-contest-cap">
+        <div className="hp2-contest-prizes-row">
+          <div className="hp2-contest-photo is-wide">
+            <img
+              src="/assets/home/promo-prizes-photo.webp"
+              alt="The three prizes in acrylic cases: a 30th Celebration Booster Bundle on top of a 30th Celebration Pokémon Center Elite Trainer Box and a 30th Celebration Elite Trainer Box"
+              loading="lazy"
+            />
+          </div>
+          <div>
+            <span className="hp2-contest-k">Top spender prizes</span>
+            <ol className="hp2-contest-list">
+              {CONTEST_PRIZES.map((p) => (
+                <li key={p.place}>
                   <b>{p.place}</b>
                   <span>{p.prize}</span>
-                </div>
-              </li>
-            )
-          })}
-        </ol>
+                </li>
+              ))}
+            </ol>
+          </div>
+        </div>
 
         <ul className="hp2-contest-grid">
           <li className="hp2-contest-packs">
