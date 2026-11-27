@@ -1,0 +1,659 @@
+{
+ "name": "Brilliant Counterattack",
+ "slug": "cs25",
+ "code": "CS2.5C",
+ "series": "Chinese Sword & Shield",
+ "language": "Simplified Chinese",
+ "releaseDate": "2023-09-29",
+ "cardCount": 79,
+ "rarityOrder": [
+  "Common (C)",
+  "Uncommon (U)",
+  "Rare (R)",
+  "Double Rare (RR)",
+  "Triple Rare (RRR)",
+  "Amazing Rare (A)",
+  "Shiny (S)",
+  "Super Rare (SR)",
+  "Shiny Super Rare (SSR)",
+  "Hyper Rare (HR)",
+  "Ultra Rare (UR)"
+ ],
+ "exclusiveCardNumbers": [],
+ "source": "Official Pokemon China card database via duanxr/PTCG-CHS-Datasets (commit 76c1f52); English names from Bulbapedia",
+ "groupByName": true,
+ "cards": [
+  {
+   "number": "001/059",
+   "pokemonIndex": 1,
+   "version": 1,
+   "name": "Celebi",
+   "rarity": "Amazing Rare (A)",
+   "image": null
+  },
+  {
+   "number": "002/059",
+   "pokemonIndex": 2,
+   "version": 1,
+   "name": "Seedot",
+   "rarity": "Common (C)",
+   "image": null
+  },
+  {
+   "number": "003/059",
+   "pokemonIndex": 3,
+   "version": 1,
+   "name": "Nuzleaf",
+   "rarity": "Common (C)",
+   "image": null
+  },
+  {
+   "number": "004/059",
+   "pokemonIndex": 4,
+   "version": 1,
+   "name": "Shiftry",
+   "rarity": "Uncommon (U)",
+   "image": null
+  },
+  {
+   "number": "005/059",
+   "pokemonIndex": 5,
+   "version": 1,
+   "name": "Flareon",
+   "rarity": "Uncommon (U)",
+   "image": null
+  },
+  {
+   "number": "006/059",
+   "pokemonIndex": 6,
+   "version": 1,
+   "name": "Torchic",
+   "rarity": "Common (C)",
+   "image": null
+  },
+  {
+   "number": "007/059",
+   "pokemonIndex": 7,
+   "version": 1,
+   "name": "Combusken",
+   "rarity": "Common (C)",
+   "image": null
+  },
+  {
+   "number": "008/059",
+   "pokemonIndex": 8,
+   "version": 1,
+   "name": "Blaziken",
+   "rarity": "Rare (R)",
+   "image": null
+  },
+  {
+   "number": "009/059",
+   "pokemonIndex": 9,
+   "version": 1,
+   "name": "Talonflame V",
+   "rarity": "Double Rare (RR)",
+   "image": null
+  },
+  {
+   "number": "010/059",
+   "pokemonIndex": 10,
+   "version": 1,
+   "name": "Vaporeon",
+   "rarity": "Uncommon (U)",
+   "image": null
+  },
+  {
+   "number": "011/059",
+   "pokemonIndex": 11,
+   "version": 1,
+   "name": "Oshawott",
+   "rarity": "Common (C)",
+   "image": null
+  },
+  {
+   "number": "012/059",
+   "pokemonIndex": 12,
+   "version": 1,
+   "name": "Dewott",
+   "rarity": "Common (C)",
+   "image": null
+  },
+  {
+   "number": "013/059",
+   "pokemonIndex": 13,
+   "version": 1,
+   "name": "Samurott",
+   "rarity": "Uncommon (U)",
+   "image": null
+  },
+  {
+   "number": "014/059",
+   "pokemonIndex": 14,
+   "version": 1,
+   "name": "Jolteon",
+   "rarity": "Uncommon (U)",
+   "image": null
+  },
+  {
+   "number": "015/059",
+   "pokemonIndex": 15,
+   "version": 1,
+   "name": "Electrike",
+   "rarity": "Common (C)",
+   "image": null
+  },
+  {
+   "number": "016/059",
+   "pokemonIndex": 16,
+   "version": 1,
+   "name": "Manectric",
+   "rarity": "Uncommon (U)",
+   "image": null
+  },
+  {
+   "number": "017/059",
+   "pokemonIndex": 17,
+   "version": 1,
+   "name": "Duskull",
+   "rarity": "Common (C)",
+   "image": null
+  },
+  {
+   "number": "018/059",
+   "pokemonIndex": 18,
+   "version": 1,
+   "name": "Dusclops",
+   "rarity": "Uncommon (U)",
+   "image": null
+  },
+  {
+   "number": "019/059",
+   "pokemonIndex": 19,
+   "version": 1,
+   "name": "Dusknoir",
+   "rarity": "Rare (R)",
+   "image": null
+  },
+  {
+   "number": "020/059",
+   "pokemonIndex": 20,
+   "version": 1,
+   "name": "Mimikyu",
+   "rarity": "Uncommon (U)",
+   "image": null
+  },
+  {
+   "number": "021/059",
+   "pokemonIndex": 21,
+   "version": 1,
+   "name": "Galarian Cursola V",
+   "rarity": "Double Rare (RR)",
+   "image": null
+  },
+  {
+   "number": "022/059",
+   "pokemonIndex": 22,
+   "version": 1,
+   "name": "Machop",
+   "rarity": "Common (C)",
+   "image": null
+  },
+  {
+   "number": "023/059",
+   "pokemonIndex": 23,
+   "version": 1,
+   "name": "Machoke",
+   "rarity": "Uncommon (U)",
+   "image": null
+  },
+  {
+   "number": "024/059",
+   "pokemonIndex": 24,
+   "version": 1,
+   "name": "Machamp",
+   "rarity": "Rare (R)",
+   "image": null
+  },
+  {
+   "number": "025/059",
+   "pokemonIndex": 25,
+   "version": 1,
+   "name": "Galarian Sirfetch'd V",
+   "rarity": "Double Rare (RR)",
+   "image": null
+  },
+  {
+   "number": "026/059",
+   "pokemonIndex": 26,
+   "version": 1,
+   "name": "Galarian Zigzagoon",
+   "rarity": "Common (C)",
+   "image": null
+  },
+  {
+   "number": "027/059",
+   "pokemonIndex": 27,
+   "version": 1,
+   "name": "Galarian Linoone",
+   "rarity": "Common (C)",
+   "image": null
+  },
+  {
+   "number": "028/059",
+   "pokemonIndex": 28,
+   "version": 1,
+   "name": "Galarian Obstagoon",
+   "rarity": "Rare (R)",
+   "image": null
+  },
+  {
+   "number": "029/059",
+   "pokemonIndex": 29,
+   "version": 1,
+   "name": "Yveltal",
+   "rarity": "Amazing Rare (A)",
+   "image": null
+  },
+  {
+   "number": "030/059",
+   "pokemonIndex": 30,
+   "version": 1,
+   "name": "Jirachi",
+   "rarity": "Amazing Rare (A)",
+   "image": null
+  },
+  {
+   "number": "031/059",
+   "pokemonIndex": 31,
+   "version": 1,
+   "name": "Klink",
+   "rarity": "Common (C)",
+   "image": null
+  },
+  {
+   "number": "032/059",
+   "pokemonIndex": 32,
+   "version": 1,
+   "name": "Klang",
+   "rarity": "Common (C)",
+   "image": null
+  },
+  {
+   "number": "033/059",
+   "pokemonIndex": 33,
+   "version": 1,
+   "name": "Klinklang",
+   "rarity": "Uncommon (U)",
+   "image": null
+  },
+  {
+   "number": "034/059",
+   "pokemonIndex": 34,
+   "version": 1,
+   "name": "Aegislash V",
+   "rarity": "Double Rare (RR)",
+   "image": null
+  },
+  {
+   "number": "035/059",
+   "pokemonIndex": 35,
+   "version": 1,
+   "name": "Aegislash VMAX",
+   "rarity": "Triple Rare (RRR)",
+   "image": null
+  },
+  {
+   "number": "036/059",
+   "pokemonIndex": 36,
+   "version": 1,
+   "name": "Cufant",
+   "rarity": "Common (C)",
+   "image": null
+  },
+  {
+   "number": "037/059",
+   "pokemonIndex": 37,
+   "version": 1,
+   "name": "Copperajah",
+   "rarity": "Rare (R)",
+   "image": null
+  },
+  {
+   "number": "038/059",
+   "pokemonIndex": 38,
+   "version": 1,
+   "name": "Ditto V",
+   "rarity": "Double Rare (RR)",
+   "image": null
+  },
+  {
+   "number": "039/059",
+   "pokemonIndex": 39,
+   "version": 1,
+   "name": "Ditto VMAX",
+   "rarity": "Triple Rare (RRR)",
+   "image": null
+  },
+  {
+   "number": "040/059",
+   "pokemonIndex": 40,
+   "version": 1,
+   "name": "Eevee",
+   "rarity": "Common (C)",
+   "image": null
+  },
+  {
+   "number": "041/059",
+   "pokemonIndex": 41,
+   "version": 1,
+   "name": "Lugia",
+   "rarity": "Rare (R)",
+   "image": null
+  },
+  {
+   "number": "042/059",
+   "pokemonIndex": 42,
+   "version": 1,
+   "name": "Taillow",
+   "rarity": "Common (C)",
+   "image": null
+  },
+  {
+   "number": "043/059",
+   "pokemonIndex": 43,
+   "version": 1,
+   "name": "Swellow",
+   "rarity": "Common (C)",
+   "image": null
+  },
+  {
+   "number": "044/059",
+   "pokemonIndex": 44,
+   "version": 1,
+   "name": "Togekiss V",
+   "rarity": "Double Rare (RR)",
+   "image": null
+  },
+  {
+   "number": "045/059",
+   "pokemonIndex": 45,
+   "version": 1,
+   "name": "Togekiss VMAX",
+   "rarity": "Triple Rare (RRR)",
+   "image": null
+  },
+  {
+   "number": "046/059",
+   "pokemonIndex": 46,
+   "version": 1,
+   "name": "Quick Ball",
+   "rarity": "Uncommon (U)",
+   "image": null
+  },
+  {
+   "number": "047/059",
+   "pokemonIndex": 47,
+   "version": 1,
+   "name": "Turbo Patch",
+   "rarity": "Uncommon (U)",
+   "image": null
+  },
+  {
+   "number": "048/059",
+   "pokemonIndex": 48,
+   "version": 1,
+   "name": "Rusted Sword",
+   "rarity": "Uncommon (U)",
+   "image": null
+  },
+  {
+   "number": "049/059",
+   "pokemonIndex": 49,
+   "version": 1,
+   "name": "Rusted Shield",
+   "rarity": "Uncommon (U)",
+   "image": null
+  },
+  {
+   "number": "050/059",
+   "pokemonIndex": 50,
+   "version": 1,
+   "name": "Memory Capsule",
+   "rarity": "Uncommon (U)",
+   "image": null
+  },
+  {
+   "number": "051/059",
+   "pokemonIndex": 51,
+   "version": 1,
+   "name": "Beauty",
+   "rarity": "Uncommon (U)",
+   "image": null
+  },
+  {
+   "number": "052/059",
+   "pokemonIndex": 52,
+   "version": 1,
+   "name": "Sordward & Shielbert",
+   "rarity": "Common (C)",
+   "image": null
+  },
+  {
+   "number": "053/059",
+   "pokemonIndex": 53,
+   "version": 1,
+   "name": "Professor's Research",
+   "rarity": "Uncommon (U)",
+   "image": null
+  },
+  {
+   "number": "054/059",
+   "pokemonIndex": 54,
+   "version": 1,
+   "name": "Ball Guy",
+   "rarity": "Uncommon (U)",
+   "image": null
+  },
+  {
+   "number": "055/059",
+   "pokemonIndex": 55,
+   "version": 1,
+   "name": "Boss's Orders",
+   "rarity": "Uncommon (U)",
+   "image": null
+  },
+  {
+   "number": "056/059",
+   "pokemonIndex": 56,
+   "version": 1,
+   "name": "Rose",
+   "rarity": "Uncommon (U)",
+   "image": null
+  },
+  {
+   "number": "057/059",
+   "pokemonIndex": 57,
+   "version": 1,
+   "name": "Rose Tower",
+   "rarity": "Uncommon (U)",
+   "image": null
+  },
+  {
+   "number": "058/059",
+   "pokemonIndex": 58,
+   "version": 1,
+   "name": "Aromatic",
+   "rarity": "Uncommon (U)",
+   "image": null
+  },
+  {
+   "number": "059/059",
+   "pokemonIndex": 59,
+   "version": 1,
+   "name": "Coating",
+   "rarity": "Uncommon (U)",
+   "image": null
+  },
+  {
+   "number": "060/059",
+   "pokemonIndex": 60,
+   "version": 1,
+   "name": "Cufant",
+   "rarity": "Shiny (S)",
+   "image": null
+  },
+  {
+   "number": "061/059",
+   "pokemonIndex": 61,
+   "version": 1,
+   "name": "Copperajah",
+   "rarity": "Shiny (S)",
+   "image": null
+  },
+  {
+   "number": "062/059",
+   "pokemonIndex": 62,
+   "version": 1,
+   "name": "Talonflame V",
+   "rarity": "Super Rare (SR)",
+   "image": null
+  },
+  {
+   "number": "063/059",
+   "pokemonIndex": 63,
+   "version": 1,
+   "name": "Galarian Cursola V",
+   "rarity": "Super Rare (SR)",
+   "image": null
+  },
+  {
+   "number": "064/059",
+   "pokemonIndex": 64,
+   "version": 1,
+   "name": "Galarian Sirfetch'd V",
+   "rarity": "Super Rare (SR)",
+   "image": null
+  },
+  {
+   "number": "065/059",
+   "pokemonIndex": 65,
+   "version": 1,
+   "name": "Aegislash V",
+   "rarity": "Super Rare (SR)",
+   "image": null
+  },
+  {
+   "number": "066/059",
+   "pokemonIndex": 66,
+   "version": 1,
+   "name": "Togekiss V",
+   "rarity": "Super Rare (SR)",
+   "image": null
+  },
+  {
+   "number": "067/059",
+   "pokemonIndex": 67,
+   "version": 1,
+   "name": "Beauty",
+   "rarity": "Super Rare (SR)",
+   "image": null
+  },
+  {
+   "number": "068/059",
+   "pokemonIndex": 68,
+   "version": 1,
+   "name": "Professor's Research",
+   "rarity": "Super Rare (SR)",
+   "image": null
+  },
+  {
+   "number": "069/059",
+   "pokemonIndex": 69,
+   "version": 1,
+   "name": "Ball Guy",
+   "rarity": "Super Rare (SR)",
+   "image": null
+  },
+  {
+   "number": "070/059",
+   "pokemonIndex": 70,
+   "version": 1,
+   "name": "Boss's Orders",
+   "rarity": "Super Rare (SR)",
+   "image": null
+  },
+  {
+   "number": "071/059",
+   "pokemonIndex": 71,
+   "version": 1,
+   "name": "Rose",
+   "rarity": "Super Rare (SR)",
+   "image": null
+  },
+  {
+   "number": "072/059",
+   "pokemonIndex": 72,
+   "version": 1,
+   "name": "Ditto V",
+   "rarity": "Shiny Super Rare (SSR)",
+   "image": null
+  },
+  {
+   "number": "073/059",
+   "pokemonIndex": 73,
+   "version": 1,
+   "name": "Ditto VMAX",
+   "rarity": "Shiny Super Rare (SSR)",
+   "image": null
+  },
+  {
+   "number": "074/059",
+   "pokemonIndex": 74,
+   "version": 1,
+   "name": "Aegislash VMAX",
+   "rarity": "Hyper Rare (HR)",
+   "image": null
+  },
+  {
+   "number": "075/059",
+   "pokemonIndex": 75,
+   "version": 1,
+   "name": "Togekiss VMAX",
+   "rarity": "Hyper Rare (HR)",
+   "image": null
+  },
+  {
+   "number": "076/059",
+   "pokemonIndex": 76,
+   "version": 1,
+   "name": "Beauty",
+   "rarity": "Hyper Rare (HR)",
+   "image": null
+  },
+  {
+   "number": "077/059",
+   "pokemonIndex": 77,
+   "version": 1,
+   "name": "Rose",
+   "rarity": "Hyper Rare (HR)",
+   "image": null
+  },
+  {
+   "number": "078/059",
+   "pokemonIndex": 78,
+   "version": 1,
+   "name": "Turbo Patch",
+   "rarity": "Ultra Rare (UR)",
+   "image": null
+  },
+  {
+   "number": "079/059",
+   "pokemonIndex": 79,
+   "version": 1,
+   "name": "Memory Capsule",
+   "rarity": "Ultra Rare (UR)",
+   "image": null
+  }
+ ]
+}

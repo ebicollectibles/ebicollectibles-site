@@ -180,14 +180,21 @@ import { Route as SetsChinese30thCelebrationRouteImport } from './routes/sets/ch
 import { Route as SetsChineseBlackBoltCsv105RouteImport } from './routes/sets/chinese/black-bolt-csv10-5'
 import { Route as SetsChineseBlackCrystalBlazeCsv5RouteImport } from './routes/sets/chinese/black-crystal-blaze-csv5'
 import { Route as SetsChineseBladeAwakeningCsv7RouteImport } from './routes/sets/chinese/blade-awakening-csv7'
+import { Route as SetsChineseBrilliantCounterattackCs25RouteImport } from './routes/sets/chinese/brilliant-counterattack-cs2-5'
 import { Route as SetsChineseBrilliantFantasyCsv8RouteImport } from './routes/sets/chinese/brilliant-fantasy-csv8'
 import { Route as SetsChineseChasingGloryCsv10RouteImport } from './routes/sets/chinese/chasing-glory-csv10'
 import { Route as SetsChineseCollect151GatheringRouteImport } from './routes/sets/chinese/collect-151-gathering'
 import { Route as SetsChineseCollect151HopeRouteImport } from './routes/sets/chinese/collect-151-hope'
 import { Route as SetsChineseCollect151JourneyRouteImport } from './routes/sets/chinese/collect-151-journey'
 import { Route as SetsChineseCollect151SurpriseRouteImport } from './routes/sets/chinese/collect-151-surprise'
+import { Route as SetsChineseDynamaxClashFlameCs1bRouteImport } from './routes/sets/chinese/dynamax-clash-flame-cs1b'
+import { Route as SetsChineseDynamaxClashThunderCs1aRouteImport } from './routes/sets/chinese/dynamax-clash-thunder-cs1a'
+import { Route as SetsChineseDynamaxTacticsCs15RouteImport } from './routes/sets/chinese/dynamax-tactics-cs1-5'
 import { Route as SetsChineseEternalBirthCsv1RouteImport } from './routes/sets/chinese/eternal-birth-csv1'
 import { Route as SetsChineseFearlessTerastalCsv3RouteImport } from './routes/sets/chinese/fearless-terastal-csv3'
+import { Route as SetsChineseFlameDanceOfTheEndCs45RouteImport } from './routes/sets/chinese/flame-dance-of-the-end-cs4-5'
+import { Route as SetsChineseGallantGalaxyBraveCs5bRouteImport } from './routes/sets/chinese/gallant-galaxy-brave-cs5b'
+import { Route as SetsChineseGallantGalaxyCharmCs5aRouteImport } from './routes/sets/chinese/gallant-galaxy-charm-cs5a'
 import { Route as SetsChineseGemVol1RouteImport } from './routes/sets/chinese/gem-vol-1'
 import { Route as SetsChineseGemVol2RouteImport } from './routes/sets/chinese/gem-vol-2'
 import { Route as SetsChineseGemVol3RouteImport } from './routes/sets/chinese/gem-vol-3'
@@ -195,11 +202,22 @@ import { Route as SetsChineseGemVol4RouteImport } from './routes/sets/chinese/ge
 import { Route as SetsChineseGemVol5RouteImport } from './routes/sets/chinese/gem-vol-5'
 import { Route as SetsChineseGemVol6RouteImport } from './routes/sets/chinese/gem-vol-6'
 import { Route as SetsChineseGemVol7RouteImport } from './routes/sets/chinese/gem-vol-7'
+import { Route as SetsChineseMarineShadowBanishCs6bRouteImport } from './routes/sets/chinese/marine-shadow-banish-cs6b'
+import { Route as SetsChineseMarineShadowRoarCs6aRouteImport } from './routes/sets/chinese/marine-shadow-roar-cs6a'
 import { Route as SetsChineseMiracleJourneyCsv2RouteImport } from './routes/sets/chinese/miracle-journey-csv2'
+import { Route as SetsChineseOvershadowedRadianceCs55RouteImport } from './routes/sets/chinese/overshadowed-radiance-cs5-5'
+import { Route as SetsChinesePolychromaticGatheringFriendsCs4aRouteImport } from './routes/sets/chinese/polychromatic-gathering-friends-cs4a'
+import { Route as SetsChinesePolychromaticGatheringOriginCs4bRouteImport } from './routes/sets/chinese/polychromatic-gathering-origin-cs4b'
+import { Route as SetsChinesePrimordialArtsOvergrowCs3aRouteImport } from './routes/sets/chinese/primordial-arts-overgrow-cs3a'
+import { Route as SetsChinesePrimordialArtsTorrentCs3bRouteImport } from './routes/sets/chinese/primordial-arts-torrent-cs3b'
 import { Route as SetsChineseRewardRoundCsv4RouteImport } from './routes/sets/chinese/reward-round-csv4'
+import { Route as SetsChineseScorchingSkiesCs35RouteImport } from './routes/sets/chinese/scorching-skies-cs3-5'
 import { Route as SetsChineseStellarCrystalCsv9RouteImport } from './routes/sets/chinese/stellar-crystal-csv9'
 import { Route as SetsChineseTerastalGatheringCsv95RouteImport } from './routes/sets/chinese/terastal-gathering-csv9-5'
 import { Route as SetsChineseTrueMysteryCsv6RouteImport } from './routes/sets/chinese/true-mystery-csv6'
+import { Route as SetsChineseVictoryLodestarCs65RouteImport } from './routes/sets/chinese/victory-lodestar-cs6-5'
+import { Route as SetsChineseVividPortrayalsIndigoCs2bRouteImport } from './routes/sets/chinese/vivid-portrayals-indigo-cs2b'
+import { Route as SetsChineseVividPortrayalsObsidianCs2aRouteImport } from './routes/sets/chinese/vivid-portrayals-obsidian-cs2a'
 import { Route as SetsChineseWhiteFlareCsv106RouteImport } from './routes/sets/chinese/white-flare-csv10-6'
 import { Route as SetsJapaneseIndexRouteImport } from './routes/sets/japanese/index'
 import { Route as SetsJapanese30thCelebrationM6aRouteImport } from './routes/sets/japanese/30th-celebration-m6a'
@@ -1155,6 +1173,12 @@ const SetsChineseBladeAwakeningCsv7Route =
     path: '/sets/chinese/blade-awakening-csv7',
     getParentRoute: () => rootRouteImport,
   } as any)
+const SetsChineseBrilliantCounterattackCs25Route =
+  SetsChineseBrilliantCounterattackCs25RouteImport.update({
+    id: '/sets/chinese/brilliant-counterattack-cs2-5',
+    path: '/sets/chinese/brilliant-counterattack-cs2-5',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const SetsChineseBrilliantFantasyCsv8Route =
   SetsChineseBrilliantFantasyCsv8RouteImport.update({
     id: '/sets/chinese/brilliant-fantasy-csv8',
@@ -1191,6 +1215,24 @@ const SetsChineseCollect151SurpriseRoute =
     path: '/sets/chinese/collect-151-surprise',
     getParentRoute: () => rootRouteImport,
   } as any)
+const SetsChineseDynamaxClashFlameCs1bRoute =
+  SetsChineseDynamaxClashFlameCs1bRouteImport.update({
+    id: '/sets/chinese/dynamax-clash-flame-cs1b',
+    path: '/sets/chinese/dynamax-clash-flame-cs1b',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const SetsChineseDynamaxClashThunderCs1aRoute =
+  SetsChineseDynamaxClashThunderCs1aRouteImport.update({
+    id: '/sets/chinese/dynamax-clash-thunder-cs1a',
+    path: '/sets/chinese/dynamax-clash-thunder-cs1a',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const SetsChineseDynamaxTacticsCs15Route =
+  SetsChineseDynamaxTacticsCs15RouteImport.update({
+    id: '/sets/chinese/dynamax-tactics-cs1-5',
+    path: '/sets/chinese/dynamax-tactics-cs1-5',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const SetsChineseEternalBirthCsv1Route =
   SetsChineseEternalBirthCsv1RouteImport.update({
     id: '/sets/chinese/eternal-birth-csv1',
@@ -1201,6 +1243,24 @@ const SetsChineseFearlessTerastalCsv3Route =
   SetsChineseFearlessTerastalCsv3RouteImport.update({
     id: '/sets/chinese/fearless-terastal-csv3',
     path: '/sets/chinese/fearless-terastal-csv3',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const SetsChineseFlameDanceOfTheEndCs45Route =
+  SetsChineseFlameDanceOfTheEndCs45RouteImport.update({
+    id: '/sets/chinese/flame-dance-of-the-end-cs4-5',
+    path: '/sets/chinese/flame-dance-of-the-end-cs4-5',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const SetsChineseGallantGalaxyBraveCs5bRoute =
+  SetsChineseGallantGalaxyBraveCs5bRouteImport.update({
+    id: '/sets/chinese/gallant-galaxy-brave-cs5b',
+    path: '/sets/chinese/gallant-galaxy-brave-cs5b',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const SetsChineseGallantGalaxyCharmCs5aRoute =
+  SetsChineseGallantGalaxyCharmCs5aRouteImport.update({
+    id: '/sets/chinese/gallant-galaxy-charm-cs5a',
+    path: '/sets/chinese/gallant-galaxy-charm-cs5a',
     getParentRoute: () => rootRouteImport,
   } as any)
 const SetsChineseGemVol1Route = SetsChineseGemVol1RouteImport.update({
@@ -1238,16 +1298,64 @@ const SetsChineseGemVol7Route = SetsChineseGemVol7RouteImport.update({
   path: '/sets/chinese/gem-vol-7',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SetsChineseMarineShadowBanishCs6bRoute =
+  SetsChineseMarineShadowBanishCs6bRouteImport.update({
+    id: '/sets/chinese/marine-shadow-banish-cs6b',
+    path: '/sets/chinese/marine-shadow-banish-cs6b',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const SetsChineseMarineShadowRoarCs6aRoute =
+  SetsChineseMarineShadowRoarCs6aRouteImport.update({
+    id: '/sets/chinese/marine-shadow-roar-cs6a',
+    path: '/sets/chinese/marine-shadow-roar-cs6a',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const SetsChineseMiracleJourneyCsv2Route =
   SetsChineseMiracleJourneyCsv2RouteImport.update({
     id: '/sets/chinese/miracle-journey-csv2',
     path: '/sets/chinese/miracle-journey-csv2',
     getParentRoute: () => rootRouteImport,
   } as any)
+const SetsChineseOvershadowedRadianceCs55Route =
+  SetsChineseOvershadowedRadianceCs55RouteImport.update({
+    id: '/sets/chinese/overshadowed-radiance-cs5-5',
+    path: '/sets/chinese/overshadowed-radiance-cs5-5',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const SetsChinesePolychromaticGatheringFriendsCs4aRoute =
+  SetsChinesePolychromaticGatheringFriendsCs4aRouteImport.update({
+    id: '/sets/chinese/polychromatic-gathering-friends-cs4a',
+    path: '/sets/chinese/polychromatic-gathering-friends-cs4a',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const SetsChinesePolychromaticGatheringOriginCs4bRoute =
+  SetsChinesePolychromaticGatheringOriginCs4bRouteImport.update({
+    id: '/sets/chinese/polychromatic-gathering-origin-cs4b',
+    path: '/sets/chinese/polychromatic-gathering-origin-cs4b',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const SetsChinesePrimordialArtsOvergrowCs3aRoute =
+  SetsChinesePrimordialArtsOvergrowCs3aRouteImport.update({
+    id: '/sets/chinese/primordial-arts-overgrow-cs3a',
+    path: '/sets/chinese/primordial-arts-overgrow-cs3a',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const SetsChinesePrimordialArtsTorrentCs3bRoute =
+  SetsChinesePrimordialArtsTorrentCs3bRouteImport.update({
+    id: '/sets/chinese/primordial-arts-torrent-cs3b',
+    path: '/sets/chinese/primordial-arts-torrent-cs3b',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const SetsChineseRewardRoundCsv4Route =
   SetsChineseRewardRoundCsv4RouteImport.update({
     id: '/sets/chinese/reward-round-csv4',
     path: '/sets/chinese/reward-round-csv4',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const SetsChineseScorchingSkiesCs35Route =
+  SetsChineseScorchingSkiesCs35RouteImport.update({
+    id: '/sets/chinese/scorching-skies-cs3-5',
+    path: '/sets/chinese/scorching-skies-cs3-5',
     getParentRoute: () => rootRouteImport,
   } as any)
 const SetsChineseStellarCrystalCsv9Route =
@@ -1266,6 +1374,24 @@ const SetsChineseTrueMysteryCsv6Route =
   SetsChineseTrueMysteryCsv6RouteImport.update({
     id: '/sets/chinese/true-mystery-csv6',
     path: '/sets/chinese/true-mystery-csv6',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const SetsChineseVictoryLodestarCs65Route =
+  SetsChineseVictoryLodestarCs65RouteImport.update({
+    id: '/sets/chinese/victory-lodestar-cs6-5',
+    path: '/sets/chinese/victory-lodestar-cs6-5',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const SetsChineseVividPortrayalsIndigoCs2bRoute =
+  SetsChineseVividPortrayalsIndigoCs2bRouteImport.update({
+    id: '/sets/chinese/vivid-portrayals-indigo-cs2b',
+    path: '/sets/chinese/vivid-portrayals-indigo-cs2b',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const SetsChineseVividPortrayalsObsidianCs2aRoute =
+  SetsChineseVividPortrayalsObsidianCs2aRouteImport.update({
+    id: '/sets/chinese/vivid-portrayals-obsidian-cs2a',
+    path: '/sets/chinese/vivid-portrayals-obsidian-cs2a',
     getParentRoute: () => rootRouteImport,
   } as any)
 const SetsChineseWhiteFlareCsv106Route =
@@ -1472,14 +1598,21 @@ export interface FileRoutesByFullPath {
   '/sets/chinese/black-bolt-csv10-5': typeof SetsChineseBlackBoltCsv105Route
   '/sets/chinese/black-crystal-blaze-csv5': typeof SetsChineseBlackCrystalBlazeCsv5Route
   '/sets/chinese/blade-awakening-csv7': typeof SetsChineseBladeAwakeningCsv7Route
+  '/sets/chinese/brilliant-counterattack-cs2-5': typeof SetsChineseBrilliantCounterattackCs25Route
   '/sets/chinese/brilliant-fantasy-csv8': typeof SetsChineseBrilliantFantasyCsv8Route
   '/sets/chinese/chasing-glory-csv10': typeof SetsChineseChasingGloryCsv10Route
   '/sets/chinese/collect-151-gathering': typeof SetsChineseCollect151GatheringRoute
   '/sets/chinese/collect-151-hope': typeof SetsChineseCollect151HopeRoute
   '/sets/chinese/collect-151-journey': typeof SetsChineseCollect151JourneyRoute
   '/sets/chinese/collect-151-surprise': typeof SetsChineseCollect151SurpriseRoute
+  '/sets/chinese/dynamax-clash-flame-cs1b': typeof SetsChineseDynamaxClashFlameCs1bRoute
+  '/sets/chinese/dynamax-clash-thunder-cs1a': typeof SetsChineseDynamaxClashThunderCs1aRoute
+  '/sets/chinese/dynamax-tactics-cs1-5': typeof SetsChineseDynamaxTacticsCs15Route
   '/sets/chinese/eternal-birth-csv1': typeof SetsChineseEternalBirthCsv1Route
   '/sets/chinese/fearless-terastal-csv3': typeof SetsChineseFearlessTerastalCsv3Route
+  '/sets/chinese/flame-dance-of-the-end-cs4-5': typeof SetsChineseFlameDanceOfTheEndCs45Route
+  '/sets/chinese/gallant-galaxy-brave-cs5b': typeof SetsChineseGallantGalaxyBraveCs5bRoute
+  '/sets/chinese/gallant-galaxy-charm-cs5a': typeof SetsChineseGallantGalaxyCharmCs5aRoute
   '/sets/chinese/gem-vol-1': typeof SetsChineseGemVol1Route
   '/sets/chinese/gem-vol-2': typeof SetsChineseGemVol2Route
   '/sets/chinese/gem-vol-3': typeof SetsChineseGemVol3Route
@@ -1487,11 +1620,22 @@ export interface FileRoutesByFullPath {
   '/sets/chinese/gem-vol-5': typeof SetsChineseGemVol5Route
   '/sets/chinese/gem-vol-6': typeof SetsChineseGemVol6Route
   '/sets/chinese/gem-vol-7': typeof SetsChineseGemVol7Route
+  '/sets/chinese/marine-shadow-banish-cs6b': typeof SetsChineseMarineShadowBanishCs6bRoute
+  '/sets/chinese/marine-shadow-roar-cs6a': typeof SetsChineseMarineShadowRoarCs6aRoute
   '/sets/chinese/miracle-journey-csv2': typeof SetsChineseMiracleJourneyCsv2Route
+  '/sets/chinese/overshadowed-radiance-cs5-5': typeof SetsChineseOvershadowedRadianceCs55Route
+  '/sets/chinese/polychromatic-gathering-friends-cs4a': typeof SetsChinesePolychromaticGatheringFriendsCs4aRoute
+  '/sets/chinese/polychromatic-gathering-origin-cs4b': typeof SetsChinesePolychromaticGatheringOriginCs4bRoute
+  '/sets/chinese/primordial-arts-overgrow-cs3a': typeof SetsChinesePrimordialArtsOvergrowCs3aRoute
+  '/sets/chinese/primordial-arts-torrent-cs3b': typeof SetsChinesePrimordialArtsTorrentCs3bRoute
   '/sets/chinese/reward-round-csv4': typeof SetsChineseRewardRoundCsv4Route
+  '/sets/chinese/scorching-skies-cs3-5': typeof SetsChineseScorchingSkiesCs35Route
   '/sets/chinese/stellar-crystal-csv9': typeof SetsChineseStellarCrystalCsv9Route
   '/sets/chinese/terastal-gathering-csv9-5': typeof SetsChineseTerastalGatheringCsv95Route
   '/sets/chinese/true-mystery-csv6': typeof SetsChineseTrueMysteryCsv6Route
+  '/sets/chinese/victory-lodestar-cs6-5': typeof SetsChineseVictoryLodestarCs65Route
+  '/sets/chinese/vivid-portrayals-indigo-cs2b': typeof SetsChineseVividPortrayalsIndigoCs2bRoute
+  '/sets/chinese/vivid-portrayals-obsidian-cs2a': typeof SetsChineseVividPortrayalsObsidianCs2aRoute
   '/sets/chinese/white-flare-csv10-6': typeof SetsChineseWhiteFlareCsv106Route
   '/sets/japanese/30th-celebration-m6a': typeof SetsJapanese30thCelebrationM6aRoute
   '/sets/japanese/aura-seeker-m7': typeof SetsJapaneseAuraSeekerM7Route
@@ -1671,14 +1815,21 @@ export interface FileRoutesByTo {
   '/sets/chinese/black-bolt-csv10-5': typeof SetsChineseBlackBoltCsv105Route
   '/sets/chinese/black-crystal-blaze-csv5': typeof SetsChineseBlackCrystalBlazeCsv5Route
   '/sets/chinese/blade-awakening-csv7': typeof SetsChineseBladeAwakeningCsv7Route
+  '/sets/chinese/brilliant-counterattack-cs2-5': typeof SetsChineseBrilliantCounterattackCs25Route
   '/sets/chinese/brilliant-fantasy-csv8': typeof SetsChineseBrilliantFantasyCsv8Route
   '/sets/chinese/chasing-glory-csv10': typeof SetsChineseChasingGloryCsv10Route
   '/sets/chinese/collect-151-gathering': typeof SetsChineseCollect151GatheringRoute
   '/sets/chinese/collect-151-hope': typeof SetsChineseCollect151HopeRoute
   '/sets/chinese/collect-151-journey': typeof SetsChineseCollect151JourneyRoute
   '/sets/chinese/collect-151-surprise': typeof SetsChineseCollect151SurpriseRoute
+  '/sets/chinese/dynamax-clash-flame-cs1b': typeof SetsChineseDynamaxClashFlameCs1bRoute
+  '/sets/chinese/dynamax-clash-thunder-cs1a': typeof SetsChineseDynamaxClashThunderCs1aRoute
+  '/sets/chinese/dynamax-tactics-cs1-5': typeof SetsChineseDynamaxTacticsCs15Route
   '/sets/chinese/eternal-birth-csv1': typeof SetsChineseEternalBirthCsv1Route
   '/sets/chinese/fearless-terastal-csv3': typeof SetsChineseFearlessTerastalCsv3Route
+  '/sets/chinese/flame-dance-of-the-end-cs4-5': typeof SetsChineseFlameDanceOfTheEndCs45Route
+  '/sets/chinese/gallant-galaxy-brave-cs5b': typeof SetsChineseGallantGalaxyBraveCs5bRoute
+  '/sets/chinese/gallant-galaxy-charm-cs5a': typeof SetsChineseGallantGalaxyCharmCs5aRoute
   '/sets/chinese/gem-vol-1': typeof SetsChineseGemVol1Route
   '/sets/chinese/gem-vol-2': typeof SetsChineseGemVol2Route
   '/sets/chinese/gem-vol-3': typeof SetsChineseGemVol3Route
@@ -1686,11 +1837,22 @@ export interface FileRoutesByTo {
   '/sets/chinese/gem-vol-5': typeof SetsChineseGemVol5Route
   '/sets/chinese/gem-vol-6': typeof SetsChineseGemVol6Route
   '/sets/chinese/gem-vol-7': typeof SetsChineseGemVol7Route
+  '/sets/chinese/marine-shadow-banish-cs6b': typeof SetsChineseMarineShadowBanishCs6bRoute
+  '/sets/chinese/marine-shadow-roar-cs6a': typeof SetsChineseMarineShadowRoarCs6aRoute
   '/sets/chinese/miracle-journey-csv2': typeof SetsChineseMiracleJourneyCsv2Route
+  '/sets/chinese/overshadowed-radiance-cs5-5': typeof SetsChineseOvershadowedRadianceCs55Route
+  '/sets/chinese/polychromatic-gathering-friends-cs4a': typeof SetsChinesePolychromaticGatheringFriendsCs4aRoute
+  '/sets/chinese/polychromatic-gathering-origin-cs4b': typeof SetsChinesePolychromaticGatheringOriginCs4bRoute
+  '/sets/chinese/primordial-arts-overgrow-cs3a': typeof SetsChinesePrimordialArtsOvergrowCs3aRoute
+  '/sets/chinese/primordial-arts-torrent-cs3b': typeof SetsChinesePrimordialArtsTorrentCs3bRoute
   '/sets/chinese/reward-round-csv4': typeof SetsChineseRewardRoundCsv4Route
+  '/sets/chinese/scorching-skies-cs3-5': typeof SetsChineseScorchingSkiesCs35Route
   '/sets/chinese/stellar-crystal-csv9': typeof SetsChineseStellarCrystalCsv9Route
   '/sets/chinese/terastal-gathering-csv9-5': typeof SetsChineseTerastalGatheringCsv95Route
   '/sets/chinese/true-mystery-csv6': typeof SetsChineseTrueMysteryCsv6Route
+  '/sets/chinese/victory-lodestar-cs6-5': typeof SetsChineseVictoryLodestarCs65Route
+  '/sets/chinese/vivid-portrayals-indigo-cs2b': typeof SetsChineseVividPortrayalsIndigoCs2bRoute
+  '/sets/chinese/vivid-portrayals-obsidian-cs2a': typeof SetsChineseVividPortrayalsObsidianCs2aRoute
   '/sets/chinese/white-flare-csv10-6': typeof SetsChineseWhiteFlareCsv106Route
   '/sets/japanese/30th-celebration-m6a': typeof SetsJapanese30thCelebrationM6aRoute
   '/sets/japanese/aura-seeker-m7': typeof SetsJapaneseAuraSeekerM7Route
@@ -1871,14 +2033,21 @@ export interface FileRoutesById {
   '/sets/chinese/black-bolt-csv10-5': typeof SetsChineseBlackBoltCsv105Route
   '/sets/chinese/black-crystal-blaze-csv5': typeof SetsChineseBlackCrystalBlazeCsv5Route
   '/sets/chinese/blade-awakening-csv7': typeof SetsChineseBladeAwakeningCsv7Route
+  '/sets/chinese/brilliant-counterattack-cs2-5': typeof SetsChineseBrilliantCounterattackCs25Route
   '/sets/chinese/brilliant-fantasy-csv8': typeof SetsChineseBrilliantFantasyCsv8Route
   '/sets/chinese/chasing-glory-csv10': typeof SetsChineseChasingGloryCsv10Route
   '/sets/chinese/collect-151-gathering': typeof SetsChineseCollect151GatheringRoute
   '/sets/chinese/collect-151-hope': typeof SetsChineseCollect151HopeRoute
   '/sets/chinese/collect-151-journey': typeof SetsChineseCollect151JourneyRoute
   '/sets/chinese/collect-151-surprise': typeof SetsChineseCollect151SurpriseRoute
+  '/sets/chinese/dynamax-clash-flame-cs1b': typeof SetsChineseDynamaxClashFlameCs1bRoute
+  '/sets/chinese/dynamax-clash-thunder-cs1a': typeof SetsChineseDynamaxClashThunderCs1aRoute
+  '/sets/chinese/dynamax-tactics-cs1-5': typeof SetsChineseDynamaxTacticsCs15Route
   '/sets/chinese/eternal-birth-csv1': typeof SetsChineseEternalBirthCsv1Route
   '/sets/chinese/fearless-terastal-csv3': typeof SetsChineseFearlessTerastalCsv3Route
+  '/sets/chinese/flame-dance-of-the-end-cs4-5': typeof SetsChineseFlameDanceOfTheEndCs45Route
+  '/sets/chinese/gallant-galaxy-brave-cs5b': typeof SetsChineseGallantGalaxyBraveCs5bRoute
+  '/sets/chinese/gallant-galaxy-charm-cs5a': typeof SetsChineseGallantGalaxyCharmCs5aRoute
   '/sets/chinese/gem-vol-1': typeof SetsChineseGemVol1Route
   '/sets/chinese/gem-vol-2': typeof SetsChineseGemVol2Route
   '/sets/chinese/gem-vol-3': typeof SetsChineseGemVol3Route
@@ -1886,11 +2055,22 @@ export interface FileRoutesById {
   '/sets/chinese/gem-vol-5': typeof SetsChineseGemVol5Route
   '/sets/chinese/gem-vol-6': typeof SetsChineseGemVol6Route
   '/sets/chinese/gem-vol-7': typeof SetsChineseGemVol7Route
+  '/sets/chinese/marine-shadow-banish-cs6b': typeof SetsChineseMarineShadowBanishCs6bRoute
+  '/sets/chinese/marine-shadow-roar-cs6a': typeof SetsChineseMarineShadowRoarCs6aRoute
   '/sets/chinese/miracle-journey-csv2': typeof SetsChineseMiracleJourneyCsv2Route
+  '/sets/chinese/overshadowed-radiance-cs5-5': typeof SetsChineseOvershadowedRadianceCs55Route
+  '/sets/chinese/polychromatic-gathering-friends-cs4a': typeof SetsChinesePolychromaticGatheringFriendsCs4aRoute
+  '/sets/chinese/polychromatic-gathering-origin-cs4b': typeof SetsChinesePolychromaticGatheringOriginCs4bRoute
+  '/sets/chinese/primordial-arts-overgrow-cs3a': typeof SetsChinesePrimordialArtsOvergrowCs3aRoute
+  '/sets/chinese/primordial-arts-torrent-cs3b': typeof SetsChinesePrimordialArtsTorrentCs3bRoute
   '/sets/chinese/reward-round-csv4': typeof SetsChineseRewardRoundCsv4Route
+  '/sets/chinese/scorching-skies-cs3-5': typeof SetsChineseScorchingSkiesCs35Route
   '/sets/chinese/stellar-crystal-csv9': typeof SetsChineseStellarCrystalCsv9Route
   '/sets/chinese/terastal-gathering-csv9-5': typeof SetsChineseTerastalGatheringCsv95Route
   '/sets/chinese/true-mystery-csv6': typeof SetsChineseTrueMysteryCsv6Route
+  '/sets/chinese/victory-lodestar-cs6-5': typeof SetsChineseVictoryLodestarCs65Route
+  '/sets/chinese/vivid-portrayals-indigo-cs2b': typeof SetsChineseVividPortrayalsIndigoCs2bRoute
+  '/sets/chinese/vivid-portrayals-obsidian-cs2a': typeof SetsChineseVividPortrayalsObsidianCs2aRoute
   '/sets/chinese/white-flare-csv10-6': typeof SetsChineseWhiteFlareCsv106Route
   '/sets/japanese/30th-celebration-m6a': typeof SetsJapanese30thCelebrationM6aRoute
   '/sets/japanese/aura-seeker-m7': typeof SetsJapaneseAuraSeekerM7Route
@@ -2072,14 +2252,21 @@ export interface FileRouteTypes {
     | '/sets/chinese/black-bolt-csv10-5'
     | '/sets/chinese/black-crystal-blaze-csv5'
     | '/sets/chinese/blade-awakening-csv7'
+    | '/sets/chinese/brilliant-counterattack-cs2-5'
     | '/sets/chinese/brilliant-fantasy-csv8'
     | '/sets/chinese/chasing-glory-csv10'
     | '/sets/chinese/collect-151-gathering'
     | '/sets/chinese/collect-151-hope'
     | '/sets/chinese/collect-151-journey'
     | '/sets/chinese/collect-151-surprise'
+    | '/sets/chinese/dynamax-clash-flame-cs1b'
+    | '/sets/chinese/dynamax-clash-thunder-cs1a'
+    | '/sets/chinese/dynamax-tactics-cs1-5'
     | '/sets/chinese/eternal-birth-csv1'
     | '/sets/chinese/fearless-terastal-csv3'
+    | '/sets/chinese/flame-dance-of-the-end-cs4-5'
+    | '/sets/chinese/gallant-galaxy-brave-cs5b'
+    | '/sets/chinese/gallant-galaxy-charm-cs5a'
     | '/sets/chinese/gem-vol-1'
     | '/sets/chinese/gem-vol-2'
     | '/sets/chinese/gem-vol-3'
@@ -2087,11 +2274,22 @@ export interface FileRouteTypes {
     | '/sets/chinese/gem-vol-5'
     | '/sets/chinese/gem-vol-6'
     | '/sets/chinese/gem-vol-7'
+    | '/sets/chinese/marine-shadow-banish-cs6b'
+    | '/sets/chinese/marine-shadow-roar-cs6a'
     | '/sets/chinese/miracle-journey-csv2'
+    | '/sets/chinese/overshadowed-radiance-cs5-5'
+    | '/sets/chinese/polychromatic-gathering-friends-cs4a'
+    | '/sets/chinese/polychromatic-gathering-origin-cs4b'
+    | '/sets/chinese/primordial-arts-overgrow-cs3a'
+    | '/sets/chinese/primordial-arts-torrent-cs3b'
     | '/sets/chinese/reward-round-csv4'
+    | '/sets/chinese/scorching-skies-cs3-5'
     | '/sets/chinese/stellar-crystal-csv9'
     | '/sets/chinese/terastal-gathering-csv9-5'
     | '/sets/chinese/true-mystery-csv6'
+    | '/sets/chinese/victory-lodestar-cs6-5'
+    | '/sets/chinese/vivid-portrayals-indigo-cs2b'
+    | '/sets/chinese/vivid-portrayals-obsidian-cs2a'
     | '/sets/chinese/white-flare-csv10-6'
     | '/sets/japanese/30th-celebration-m6a'
     | '/sets/japanese/aura-seeker-m7'
@@ -2271,14 +2469,21 @@ export interface FileRouteTypes {
     | '/sets/chinese/black-bolt-csv10-5'
     | '/sets/chinese/black-crystal-blaze-csv5'
     | '/sets/chinese/blade-awakening-csv7'
+    | '/sets/chinese/brilliant-counterattack-cs2-5'
     | '/sets/chinese/brilliant-fantasy-csv8'
     | '/sets/chinese/chasing-glory-csv10'
     | '/sets/chinese/collect-151-gathering'
     | '/sets/chinese/collect-151-hope'
     | '/sets/chinese/collect-151-journey'
     | '/sets/chinese/collect-151-surprise'
+    | '/sets/chinese/dynamax-clash-flame-cs1b'
+    | '/sets/chinese/dynamax-clash-thunder-cs1a'
+    | '/sets/chinese/dynamax-tactics-cs1-5'
     | '/sets/chinese/eternal-birth-csv1'
     | '/sets/chinese/fearless-terastal-csv3'
+    | '/sets/chinese/flame-dance-of-the-end-cs4-5'
+    | '/sets/chinese/gallant-galaxy-brave-cs5b'
+    | '/sets/chinese/gallant-galaxy-charm-cs5a'
     | '/sets/chinese/gem-vol-1'
     | '/sets/chinese/gem-vol-2'
     | '/sets/chinese/gem-vol-3'
@@ -2286,11 +2491,22 @@ export interface FileRouteTypes {
     | '/sets/chinese/gem-vol-5'
     | '/sets/chinese/gem-vol-6'
     | '/sets/chinese/gem-vol-7'
+    | '/sets/chinese/marine-shadow-banish-cs6b'
+    | '/sets/chinese/marine-shadow-roar-cs6a'
     | '/sets/chinese/miracle-journey-csv2'
+    | '/sets/chinese/overshadowed-radiance-cs5-5'
+    | '/sets/chinese/polychromatic-gathering-friends-cs4a'
+    | '/sets/chinese/polychromatic-gathering-origin-cs4b'
+    | '/sets/chinese/primordial-arts-overgrow-cs3a'
+    | '/sets/chinese/primordial-arts-torrent-cs3b'
     | '/sets/chinese/reward-round-csv4'
+    | '/sets/chinese/scorching-skies-cs3-5'
     | '/sets/chinese/stellar-crystal-csv9'
     | '/sets/chinese/terastal-gathering-csv9-5'
     | '/sets/chinese/true-mystery-csv6'
+    | '/sets/chinese/victory-lodestar-cs6-5'
+    | '/sets/chinese/vivid-portrayals-indigo-cs2b'
+    | '/sets/chinese/vivid-portrayals-obsidian-cs2a'
     | '/sets/chinese/white-flare-csv10-6'
     | '/sets/japanese/30th-celebration-m6a'
     | '/sets/japanese/aura-seeker-m7'
@@ -2470,14 +2686,21 @@ export interface FileRouteTypes {
     | '/sets/chinese/black-bolt-csv10-5'
     | '/sets/chinese/black-crystal-blaze-csv5'
     | '/sets/chinese/blade-awakening-csv7'
+    | '/sets/chinese/brilliant-counterattack-cs2-5'
     | '/sets/chinese/brilliant-fantasy-csv8'
     | '/sets/chinese/chasing-glory-csv10'
     | '/sets/chinese/collect-151-gathering'
     | '/sets/chinese/collect-151-hope'
     | '/sets/chinese/collect-151-journey'
     | '/sets/chinese/collect-151-surprise'
+    | '/sets/chinese/dynamax-clash-flame-cs1b'
+    | '/sets/chinese/dynamax-clash-thunder-cs1a'
+    | '/sets/chinese/dynamax-tactics-cs1-5'
     | '/sets/chinese/eternal-birth-csv1'
     | '/sets/chinese/fearless-terastal-csv3'
+    | '/sets/chinese/flame-dance-of-the-end-cs4-5'
+    | '/sets/chinese/gallant-galaxy-brave-cs5b'
+    | '/sets/chinese/gallant-galaxy-charm-cs5a'
     | '/sets/chinese/gem-vol-1'
     | '/sets/chinese/gem-vol-2'
     | '/sets/chinese/gem-vol-3'
@@ -2485,11 +2708,22 @@ export interface FileRouteTypes {
     | '/sets/chinese/gem-vol-5'
     | '/sets/chinese/gem-vol-6'
     | '/sets/chinese/gem-vol-7'
+    | '/sets/chinese/marine-shadow-banish-cs6b'
+    | '/sets/chinese/marine-shadow-roar-cs6a'
     | '/sets/chinese/miracle-journey-csv2'
+    | '/sets/chinese/overshadowed-radiance-cs5-5'
+    | '/sets/chinese/polychromatic-gathering-friends-cs4a'
+    | '/sets/chinese/polychromatic-gathering-origin-cs4b'
+    | '/sets/chinese/primordial-arts-overgrow-cs3a'
+    | '/sets/chinese/primordial-arts-torrent-cs3b'
     | '/sets/chinese/reward-round-csv4'
+    | '/sets/chinese/scorching-skies-cs3-5'
     | '/sets/chinese/stellar-crystal-csv9'
     | '/sets/chinese/terastal-gathering-csv9-5'
     | '/sets/chinese/true-mystery-csv6'
+    | '/sets/chinese/victory-lodestar-cs6-5'
+    | '/sets/chinese/vivid-portrayals-indigo-cs2b'
+    | '/sets/chinese/vivid-portrayals-obsidian-cs2a'
     | '/sets/chinese/white-flare-csv10-6'
     | '/sets/japanese/30th-celebration-m6a'
     | '/sets/japanese/aura-seeker-m7'
@@ -2670,14 +2904,21 @@ export interface RootRouteChildren {
   SetsChineseBlackBoltCsv105Route: typeof SetsChineseBlackBoltCsv105Route
   SetsChineseBlackCrystalBlazeCsv5Route: typeof SetsChineseBlackCrystalBlazeCsv5Route
   SetsChineseBladeAwakeningCsv7Route: typeof SetsChineseBladeAwakeningCsv7Route
+  SetsChineseBrilliantCounterattackCs25Route: typeof SetsChineseBrilliantCounterattackCs25Route
   SetsChineseBrilliantFantasyCsv8Route: typeof SetsChineseBrilliantFantasyCsv8Route
   SetsChineseChasingGloryCsv10Route: typeof SetsChineseChasingGloryCsv10Route
   SetsChineseCollect151GatheringRoute: typeof SetsChineseCollect151GatheringRoute
   SetsChineseCollect151HopeRoute: typeof SetsChineseCollect151HopeRoute
   SetsChineseCollect151JourneyRoute: typeof SetsChineseCollect151JourneyRoute
   SetsChineseCollect151SurpriseRoute: typeof SetsChineseCollect151SurpriseRoute
+  SetsChineseDynamaxClashFlameCs1bRoute: typeof SetsChineseDynamaxClashFlameCs1bRoute
+  SetsChineseDynamaxClashThunderCs1aRoute: typeof SetsChineseDynamaxClashThunderCs1aRoute
+  SetsChineseDynamaxTacticsCs15Route: typeof SetsChineseDynamaxTacticsCs15Route
   SetsChineseEternalBirthCsv1Route: typeof SetsChineseEternalBirthCsv1Route
   SetsChineseFearlessTerastalCsv3Route: typeof SetsChineseFearlessTerastalCsv3Route
+  SetsChineseFlameDanceOfTheEndCs45Route: typeof SetsChineseFlameDanceOfTheEndCs45Route
+  SetsChineseGallantGalaxyBraveCs5bRoute: typeof SetsChineseGallantGalaxyBraveCs5bRoute
+  SetsChineseGallantGalaxyCharmCs5aRoute: typeof SetsChineseGallantGalaxyCharmCs5aRoute
   SetsChineseGemVol1Route: typeof SetsChineseGemVol1Route
   SetsChineseGemVol2Route: typeof SetsChineseGemVol2Route
   SetsChineseGemVol3Route: typeof SetsChineseGemVol3Route
@@ -2685,11 +2926,22 @@ export interface RootRouteChildren {
   SetsChineseGemVol5Route: typeof SetsChineseGemVol5Route
   SetsChineseGemVol6Route: typeof SetsChineseGemVol6Route
   SetsChineseGemVol7Route: typeof SetsChineseGemVol7Route
+  SetsChineseMarineShadowBanishCs6bRoute: typeof SetsChineseMarineShadowBanishCs6bRoute
+  SetsChineseMarineShadowRoarCs6aRoute: typeof SetsChineseMarineShadowRoarCs6aRoute
   SetsChineseMiracleJourneyCsv2Route: typeof SetsChineseMiracleJourneyCsv2Route
+  SetsChineseOvershadowedRadianceCs55Route: typeof SetsChineseOvershadowedRadianceCs55Route
+  SetsChinesePolychromaticGatheringFriendsCs4aRoute: typeof SetsChinesePolychromaticGatheringFriendsCs4aRoute
+  SetsChinesePolychromaticGatheringOriginCs4bRoute: typeof SetsChinesePolychromaticGatheringOriginCs4bRoute
+  SetsChinesePrimordialArtsOvergrowCs3aRoute: typeof SetsChinesePrimordialArtsOvergrowCs3aRoute
+  SetsChinesePrimordialArtsTorrentCs3bRoute: typeof SetsChinesePrimordialArtsTorrentCs3bRoute
   SetsChineseRewardRoundCsv4Route: typeof SetsChineseRewardRoundCsv4Route
+  SetsChineseScorchingSkiesCs35Route: typeof SetsChineseScorchingSkiesCs35Route
   SetsChineseStellarCrystalCsv9Route: typeof SetsChineseStellarCrystalCsv9Route
   SetsChineseTerastalGatheringCsv95Route: typeof SetsChineseTerastalGatheringCsv95Route
   SetsChineseTrueMysteryCsv6Route: typeof SetsChineseTrueMysteryCsv6Route
+  SetsChineseVictoryLodestarCs65Route: typeof SetsChineseVictoryLodestarCs65Route
+  SetsChineseVividPortrayalsIndigoCs2bRoute: typeof SetsChineseVividPortrayalsIndigoCs2bRoute
+  SetsChineseVividPortrayalsObsidianCs2aRoute: typeof SetsChineseVividPortrayalsObsidianCs2aRoute
   SetsChineseWhiteFlareCsv106Route: typeof SetsChineseWhiteFlareCsv106Route
   SetsJapanese30thCelebrationM6aRoute: typeof SetsJapanese30thCelebrationM6aRoute
   SetsJapaneseAuraSeekerM7Route: typeof SetsJapaneseAuraSeekerM7Route
@@ -3901,6 +4153,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SetsChineseBladeAwakeningCsv7RouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/sets/chinese/brilliant-counterattack-cs2-5': {
+      id: '/sets/chinese/brilliant-counterattack-cs2-5'
+      path: '/sets/chinese/brilliant-counterattack-cs2-5'
+      fullPath: '/sets/chinese/brilliant-counterattack-cs2-5'
+      preLoaderRoute: typeof SetsChineseBrilliantCounterattackCs25RouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/sets/chinese/brilliant-fantasy-csv8': {
       id: '/sets/chinese/brilliant-fantasy-csv8'
       path: '/sets/chinese/brilliant-fantasy-csv8'
@@ -3943,6 +4202,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SetsChineseCollect151SurpriseRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/sets/chinese/dynamax-clash-flame-cs1b': {
+      id: '/sets/chinese/dynamax-clash-flame-cs1b'
+      path: '/sets/chinese/dynamax-clash-flame-cs1b'
+      fullPath: '/sets/chinese/dynamax-clash-flame-cs1b'
+      preLoaderRoute: typeof SetsChineseDynamaxClashFlameCs1bRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sets/chinese/dynamax-clash-thunder-cs1a': {
+      id: '/sets/chinese/dynamax-clash-thunder-cs1a'
+      path: '/sets/chinese/dynamax-clash-thunder-cs1a'
+      fullPath: '/sets/chinese/dynamax-clash-thunder-cs1a'
+      preLoaderRoute: typeof SetsChineseDynamaxClashThunderCs1aRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sets/chinese/dynamax-tactics-cs1-5': {
+      id: '/sets/chinese/dynamax-tactics-cs1-5'
+      path: '/sets/chinese/dynamax-tactics-cs1-5'
+      fullPath: '/sets/chinese/dynamax-tactics-cs1-5'
+      preLoaderRoute: typeof SetsChineseDynamaxTacticsCs15RouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/sets/chinese/eternal-birth-csv1': {
       id: '/sets/chinese/eternal-birth-csv1'
       path: '/sets/chinese/eternal-birth-csv1'
@@ -3955,6 +4235,27 @@ declare module '@tanstack/react-router' {
       path: '/sets/chinese/fearless-terastal-csv3'
       fullPath: '/sets/chinese/fearless-terastal-csv3'
       preLoaderRoute: typeof SetsChineseFearlessTerastalCsv3RouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sets/chinese/flame-dance-of-the-end-cs4-5': {
+      id: '/sets/chinese/flame-dance-of-the-end-cs4-5'
+      path: '/sets/chinese/flame-dance-of-the-end-cs4-5'
+      fullPath: '/sets/chinese/flame-dance-of-the-end-cs4-5'
+      preLoaderRoute: typeof SetsChineseFlameDanceOfTheEndCs45RouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sets/chinese/gallant-galaxy-brave-cs5b': {
+      id: '/sets/chinese/gallant-galaxy-brave-cs5b'
+      path: '/sets/chinese/gallant-galaxy-brave-cs5b'
+      fullPath: '/sets/chinese/gallant-galaxy-brave-cs5b'
+      preLoaderRoute: typeof SetsChineseGallantGalaxyBraveCs5bRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sets/chinese/gallant-galaxy-charm-cs5a': {
+      id: '/sets/chinese/gallant-galaxy-charm-cs5a'
+      path: '/sets/chinese/gallant-galaxy-charm-cs5a'
+      fullPath: '/sets/chinese/gallant-galaxy-charm-cs5a'
+      preLoaderRoute: typeof SetsChineseGallantGalaxyCharmCs5aRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/sets/chinese/gem-vol-1': {
@@ -4006,6 +4307,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SetsChineseGemVol7RouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/sets/chinese/marine-shadow-banish-cs6b': {
+      id: '/sets/chinese/marine-shadow-banish-cs6b'
+      path: '/sets/chinese/marine-shadow-banish-cs6b'
+      fullPath: '/sets/chinese/marine-shadow-banish-cs6b'
+      preLoaderRoute: typeof SetsChineseMarineShadowBanishCs6bRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sets/chinese/marine-shadow-roar-cs6a': {
+      id: '/sets/chinese/marine-shadow-roar-cs6a'
+      path: '/sets/chinese/marine-shadow-roar-cs6a'
+      fullPath: '/sets/chinese/marine-shadow-roar-cs6a'
+      preLoaderRoute: typeof SetsChineseMarineShadowRoarCs6aRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/sets/chinese/miracle-journey-csv2': {
       id: '/sets/chinese/miracle-journey-csv2'
       path: '/sets/chinese/miracle-journey-csv2'
@@ -4013,11 +4328,53 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SetsChineseMiracleJourneyCsv2RouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/sets/chinese/overshadowed-radiance-cs5-5': {
+      id: '/sets/chinese/overshadowed-radiance-cs5-5'
+      path: '/sets/chinese/overshadowed-radiance-cs5-5'
+      fullPath: '/sets/chinese/overshadowed-radiance-cs5-5'
+      preLoaderRoute: typeof SetsChineseOvershadowedRadianceCs55RouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sets/chinese/polychromatic-gathering-friends-cs4a': {
+      id: '/sets/chinese/polychromatic-gathering-friends-cs4a'
+      path: '/sets/chinese/polychromatic-gathering-friends-cs4a'
+      fullPath: '/sets/chinese/polychromatic-gathering-friends-cs4a'
+      preLoaderRoute: typeof SetsChinesePolychromaticGatheringFriendsCs4aRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sets/chinese/polychromatic-gathering-origin-cs4b': {
+      id: '/sets/chinese/polychromatic-gathering-origin-cs4b'
+      path: '/sets/chinese/polychromatic-gathering-origin-cs4b'
+      fullPath: '/sets/chinese/polychromatic-gathering-origin-cs4b'
+      preLoaderRoute: typeof SetsChinesePolychromaticGatheringOriginCs4bRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sets/chinese/primordial-arts-overgrow-cs3a': {
+      id: '/sets/chinese/primordial-arts-overgrow-cs3a'
+      path: '/sets/chinese/primordial-arts-overgrow-cs3a'
+      fullPath: '/sets/chinese/primordial-arts-overgrow-cs3a'
+      preLoaderRoute: typeof SetsChinesePrimordialArtsOvergrowCs3aRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sets/chinese/primordial-arts-torrent-cs3b': {
+      id: '/sets/chinese/primordial-arts-torrent-cs3b'
+      path: '/sets/chinese/primordial-arts-torrent-cs3b'
+      fullPath: '/sets/chinese/primordial-arts-torrent-cs3b'
+      preLoaderRoute: typeof SetsChinesePrimordialArtsTorrentCs3bRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/sets/chinese/reward-round-csv4': {
       id: '/sets/chinese/reward-round-csv4'
       path: '/sets/chinese/reward-round-csv4'
       fullPath: '/sets/chinese/reward-round-csv4'
       preLoaderRoute: typeof SetsChineseRewardRoundCsv4RouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sets/chinese/scorching-skies-cs3-5': {
+      id: '/sets/chinese/scorching-skies-cs3-5'
+      path: '/sets/chinese/scorching-skies-cs3-5'
+      fullPath: '/sets/chinese/scorching-skies-cs3-5'
+      preLoaderRoute: typeof SetsChineseScorchingSkiesCs35RouteImport
       parentRoute: typeof rootRouteImport
     }
     '/sets/chinese/stellar-crystal-csv9': {
@@ -4039,6 +4396,27 @@ declare module '@tanstack/react-router' {
       path: '/sets/chinese/true-mystery-csv6'
       fullPath: '/sets/chinese/true-mystery-csv6'
       preLoaderRoute: typeof SetsChineseTrueMysteryCsv6RouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sets/chinese/victory-lodestar-cs6-5': {
+      id: '/sets/chinese/victory-lodestar-cs6-5'
+      path: '/sets/chinese/victory-lodestar-cs6-5'
+      fullPath: '/sets/chinese/victory-lodestar-cs6-5'
+      preLoaderRoute: typeof SetsChineseVictoryLodestarCs65RouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sets/chinese/vivid-portrayals-indigo-cs2b': {
+      id: '/sets/chinese/vivid-portrayals-indigo-cs2b'
+      path: '/sets/chinese/vivid-portrayals-indigo-cs2b'
+      fullPath: '/sets/chinese/vivid-portrayals-indigo-cs2b'
+      preLoaderRoute: typeof SetsChineseVividPortrayalsIndigoCs2bRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sets/chinese/vivid-portrayals-obsidian-cs2a': {
+      id: '/sets/chinese/vivid-portrayals-obsidian-cs2a'
+      path: '/sets/chinese/vivid-portrayals-obsidian-cs2a'
+      fullPath: '/sets/chinese/vivid-portrayals-obsidian-cs2a'
+      preLoaderRoute: typeof SetsChineseVividPortrayalsObsidianCs2aRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/sets/chinese/white-flare-csv10-6': {
@@ -4283,14 +4661,26 @@ const rootRouteChildren: RootRouteChildren = {
   SetsChineseBlackBoltCsv105Route: SetsChineseBlackBoltCsv105Route,
   SetsChineseBlackCrystalBlazeCsv5Route: SetsChineseBlackCrystalBlazeCsv5Route,
   SetsChineseBladeAwakeningCsv7Route: SetsChineseBladeAwakeningCsv7Route,
+  SetsChineseBrilliantCounterattackCs25Route:
+    SetsChineseBrilliantCounterattackCs25Route,
   SetsChineseBrilliantFantasyCsv8Route: SetsChineseBrilliantFantasyCsv8Route,
   SetsChineseChasingGloryCsv10Route: SetsChineseChasingGloryCsv10Route,
   SetsChineseCollect151GatheringRoute: SetsChineseCollect151GatheringRoute,
   SetsChineseCollect151HopeRoute: SetsChineseCollect151HopeRoute,
   SetsChineseCollect151JourneyRoute: SetsChineseCollect151JourneyRoute,
   SetsChineseCollect151SurpriseRoute: SetsChineseCollect151SurpriseRoute,
+  SetsChineseDynamaxClashFlameCs1bRoute: SetsChineseDynamaxClashFlameCs1bRoute,
+  SetsChineseDynamaxClashThunderCs1aRoute:
+    SetsChineseDynamaxClashThunderCs1aRoute,
+  SetsChineseDynamaxTacticsCs15Route: SetsChineseDynamaxTacticsCs15Route,
   SetsChineseEternalBirthCsv1Route: SetsChineseEternalBirthCsv1Route,
   SetsChineseFearlessTerastalCsv3Route: SetsChineseFearlessTerastalCsv3Route,
+  SetsChineseFlameDanceOfTheEndCs45Route:
+    SetsChineseFlameDanceOfTheEndCs45Route,
+  SetsChineseGallantGalaxyBraveCs5bRoute:
+    SetsChineseGallantGalaxyBraveCs5bRoute,
+  SetsChineseGallantGalaxyCharmCs5aRoute:
+    SetsChineseGallantGalaxyCharmCs5aRoute,
   SetsChineseGemVol1Route: SetsChineseGemVol1Route,
   SetsChineseGemVol2Route: SetsChineseGemVol2Route,
   SetsChineseGemVol3Route: SetsChineseGemVol3Route,
@@ -4298,12 +4688,31 @@ const rootRouteChildren: RootRouteChildren = {
   SetsChineseGemVol5Route: SetsChineseGemVol5Route,
   SetsChineseGemVol6Route: SetsChineseGemVol6Route,
   SetsChineseGemVol7Route: SetsChineseGemVol7Route,
+  SetsChineseMarineShadowBanishCs6bRoute:
+    SetsChineseMarineShadowBanishCs6bRoute,
+  SetsChineseMarineShadowRoarCs6aRoute: SetsChineseMarineShadowRoarCs6aRoute,
   SetsChineseMiracleJourneyCsv2Route: SetsChineseMiracleJourneyCsv2Route,
+  SetsChineseOvershadowedRadianceCs55Route:
+    SetsChineseOvershadowedRadianceCs55Route,
+  SetsChinesePolychromaticGatheringFriendsCs4aRoute:
+    SetsChinesePolychromaticGatheringFriendsCs4aRoute,
+  SetsChinesePolychromaticGatheringOriginCs4bRoute:
+    SetsChinesePolychromaticGatheringOriginCs4bRoute,
+  SetsChinesePrimordialArtsOvergrowCs3aRoute:
+    SetsChinesePrimordialArtsOvergrowCs3aRoute,
+  SetsChinesePrimordialArtsTorrentCs3bRoute:
+    SetsChinesePrimordialArtsTorrentCs3bRoute,
   SetsChineseRewardRoundCsv4Route: SetsChineseRewardRoundCsv4Route,
+  SetsChineseScorchingSkiesCs35Route: SetsChineseScorchingSkiesCs35Route,
   SetsChineseStellarCrystalCsv9Route: SetsChineseStellarCrystalCsv9Route,
   SetsChineseTerastalGatheringCsv95Route:
     SetsChineseTerastalGatheringCsv95Route,
   SetsChineseTrueMysteryCsv6Route: SetsChineseTrueMysteryCsv6Route,
+  SetsChineseVictoryLodestarCs65Route: SetsChineseVictoryLodestarCs65Route,
+  SetsChineseVividPortrayalsIndigoCs2bRoute:
+    SetsChineseVividPortrayalsIndigoCs2bRoute,
+  SetsChineseVividPortrayalsObsidianCs2aRoute:
+    SetsChineseVividPortrayalsObsidianCs2aRoute,
   SetsChineseWhiteFlareCsv106Route: SetsChineseWhiteFlareCsv106Route,
   SetsJapanese30thCelebrationM6aRoute: SetsJapanese30thCelebrationM6aRoute,
   SetsJapaneseAuraSeekerM7Route: SetsJapaneseAuraSeekerM7Route,

@@ -1,0 +1,1171 @@
+{
+ "name": "Vivid Portrayals: Obsidian",
+ "slug": "cs2a",
+ "code": "CS2aC",
+ "series": "Chinese Sword & Shield",
+ "language": "Simplified Chinese",
+ "releaseDate": "2023-08-18",
+ "cardCount": 143,
+ "rarityOrder": [
+  "Common (C)",
+  "Uncommon (U)",
+  "Rare (R)",
+  "Double Rare (RR)",
+  "Triple Rare (RRR)",
+  "Amazing Rare (A)",
+  "Shiny (S)",
+  "Super Rare (SR)",
+  "Shiny Super Rare (SSR)",
+  "Hyper Rare (HR)",
+  "Ultra Rare (UR)"
+ ],
+ "exclusiveCardNumbers": [],
+ "source": "Official Pokemon China card database via duanxr/PTCG-CHS-Datasets (commit 76c1f52); English names from Bulbapedia",
+ "groupByName": true,
+ "cards": [
+  {
+   "number": "001/115",
+   "pokemonIndex": 1,
+   "version": 1,
+   "name": "Weedle",
+   "rarity": "Common (C)",
+   "image": null
+  },
+  {
+   "number": "002/115",
+   "pokemonIndex": 2,
+   "version": 1,
+   "name": "Kakuna",
+   "rarity": "Common (C)",
+   "image": null
+  },
+  {
+   "number": "003/115",
+   "pokemonIndex": 3,
+   "version": 1,
+   "name": "Beedrill",
+   "rarity": "Uncommon (U)",
+   "image": null
+  },
+  {
+   "number": "004/115",
+   "pokemonIndex": 4,
+   "version": 1,
+   "name": "Paras",
+   "rarity": "Common (C)",
+   "image": null
+  },
+  {
+   "number": "005/115",
+   "pokemonIndex": 5,
+   "version": 1,
+   "name": "Parasect",
+   "rarity": "Common (C)",
+   "image": null
+  },
+  {
+   "number": "006/115",
+   "pokemonIndex": 6,
+   "version": 1,
+   "name": "Exeggcute",
+   "rarity": "Common (C)",
+   "image": null
+  },
+  {
+   "number": "007/115",
+   "pokemonIndex": 7,
+   "version": 1,
+   "name": "Exeggutor",
+   "rarity": "Uncommon (U)",
+   "image": null
+  },
+  {
+   "number": "008/115",
+   "pokemonIndex": 8,
+   "version": 1,
+   "name": "Yanma",
+   "rarity": "Common (C)",
+   "image": null
+  },
+  {
+   "number": "009/115",
+   "pokemonIndex": 9,
+   "version": 1,
+   "name": "Yanmega",
+   "rarity": "Uncommon (U)",
+   "image": null
+  },
+  {
+   "number": "010/115",
+   "pokemonIndex": 10,
+   "version": 1,
+   "name": "Pineco",
+   "rarity": "Common (C)",
+   "image": null
+  },
+  {
+   "number": "011/115",
+   "pokemonIndex": 11,
+   "version": 1,
+   "name": "Nincada",
+   "rarity": "Common (C)",
+   "image": null
+  },
+  {
+   "number": "012/115",
+   "pokemonIndex": 12,
+   "version": 1,
+   "name": "Ninjask",
+   "rarity": "Uncommon (U)",
+   "image": null
+  },
+  {
+   "number": "013/115",
+   "pokemonIndex": 13,
+   "version": 1,
+   "name": "Carnivine",
+   "rarity": "Common (C)",
+   "image": null
+  },
+  {
+   "number": "014/115",
+   "pokemonIndex": 14,
+   "version": 1,
+   "name": "Shaymin",
+   "rarity": "Rare (R)",
+   "image": null
+  },
+  {
+   "number": "015/115",
+   "pokemonIndex": 15,
+   "version": 1,
+   "name": "Pansage",
+   "rarity": "Common (C)",
+   "image": null
+  },
+  {
+   "number": "016/115",
+   "pokemonIndex": 16,
+   "version": 1,
+   "name": "Simisage",
+   "rarity": "Uncommon (U)",
+   "image": null
+  },
+  {
+   "number": "017/115",
+   "pokemonIndex": 17,
+   "version": 1,
+   "name": "Genesect",
+   "rarity": "Rare (R)",
+   "image": null
+  },
+  {
+   "number": "018/115",
+   "pokemonIndex": 18,
+   "version": 1,
+   "name": "Skiddo",
+   "rarity": "Common (C)",
+   "image": null
+  },
+  {
+   "number": "019/115",
+   "pokemonIndex": 19,
+   "version": 1,
+   "name": "Gogoat",
+   "rarity": "Common (C)",
+   "image": null
+  },
+  {
+   "number": "020/115",
+   "pokemonIndex": 20,
+   "version": 1,
+   "name": "Rowlet",
+   "rarity": "Common (C)",
+   "image": null
+  },
+  {
+   "number": "021/115",
+   "pokemonIndex": 21,
+   "version": 1,
+   "name": "Dartrix",
+   "rarity": "Common (C)",
+   "image": null
+  },
+  {
+   "number": "022/115",
+   "pokemonIndex": 22,
+   "version": 1,
+   "name": "Decidueye",
+   "rarity": "Rare (R)",
+   "image": null
+  },
+  {
+   "number": "023/115",
+   "pokemonIndex": 23,
+   "version": 1,
+   "name": "Dhelmise",
+   "rarity": "Common (C)",
+   "image": null
+  },
+  {
+   "number": "024/115",
+   "pokemonIndex": 24,
+   "version": 1,
+   "name": "Orbeetle V",
+   "rarity": "Double Rare (RR)",
+   "image": null
+  },
+  {
+   "number": "025/115",
+   "pokemonIndex": 25,
+   "version": 1,
+   "name": "Orbeetle VMAX",
+   "rarity": "Triple Rare (RRR)",
+   "image": null
+  },
+  {
+   "number": "026/115",
+   "pokemonIndex": 26,
+   "version": 1,
+   "name": "Zarude V",
+   "rarity": "Double Rare (RR)",
+   "image": null
+  },
+  {
+   "number": "027/115",
+   "pokemonIndex": 27,
+   "version": 1,
+   "name": "Charmander",
+   "rarity": "Common (C)",
+   "image": null
+  },
+  {
+   "number": "028/115",
+   "pokemonIndex": 28,
+   "version": 1,
+   "name": "Charmeleon",
+   "rarity": "Uncommon (U)",
+   "image": null
+  },
+  {
+   "number": "029/115",
+   "pokemonIndex": 29,
+   "version": 1,
+   "name": "Charizard",
+   "rarity": "Rare (R)",
+   "image": null
+  },
+  {
+   "number": "030/115",
+   "pokemonIndex": 30,
+   "version": 1,
+   "name": "Charizard V",
+   "rarity": "Double Rare (RR)",
+   "image": null
+  },
+  {
+   "number": "031/115",
+   "pokemonIndex": 31,
+   "version": 1,
+   "name": "Charizard VMAX",
+   "rarity": "Triple Rare (RRR)",
+   "image": null
+  },
+  {
+   "number": "032/115",
+   "pokemonIndex": 32,
+   "version": 1,
+   "name": "Slugma",
+   "rarity": "Common (C)",
+   "image": null
+  },
+  {
+   "number": "033/115",
+   "pokemonIndex": 33,
+   "version": 1,
+   "name": "Magcargo",
+   "rarity": "Common (C)",
+   "image": null
+  },
+  {
+   "number": "034/115",
+   "pokemonIndex": 34,
+   "version": 1,
+   "name": "Houndoom V",
+   "rarity": "Double Rare (RR)",
+   "image": null
+  },
+  {
+   "number": "035/115",
+   "pokemonIndex": 35,
+   "version": 1,
+   "name": "Pansear",
+   "rarity": "Common (C)",
+   "image": null
+  },
+  {
+   "number": "036/115",
+   "pokemonIndex": 36,
+   "version": 1,
+   "name": "Simisear",
+   "rarity": "Uncommon (U)",
+   "image": null
+  },
+  {
+   "number": "037/115",
+   "pokemonIndex": 37,
+   "version": 1,
+   "name": "Reshiram",
+   "rarity": "Amazing Rare (A)",
+   "image": null
+  },
+  {
+   "number": "038/115",
+   "pokemonIndex": 38,
+   "version": 1,
+   "name": "Shedinja",
+   "rarity": "Uncommon (U)",
+   "image": null
+  },
+  {
+   "number": "039/115",
+   "pokemonIndex": 39,
+   "version": 1,
+   "name": "Wooper",
+   "rarity": "Common (C)",
+   "image": null
+  },
+  {
+   "number": "040/115",
+   "pokemonIndex": 40,
+   "version": 1,
+   "name": "Quagsire",
+   "rarity": "Uncommon (U)",
+   "image": null
+  },
+  {
+   "number": "041/115",
+   "pokemonIndex": 41,
+   "version": 1,
+   "name": "Shuckle",
+   "rarity": "Common (C)",
+   "image": null
+  },
+  {
+   "number": "042/115",
+   "pokemonIndex": 42,
+   "version": 1,
+   "name": "Phanpy",
+   "rarity": "Common (C)",
+   "image": null
+  },
+  {
+   "number": "043/115",
+   "pokemonIndex": 43,
+   "version": 1,
+   "name": "Donphan",
+   "rarity": "Uncommon (U)",
+   "image": null
+  },
+  {
+   "number": "044/115",
+   "pokemonIndex": 44,
+   "version": 1,
+   "name": "Hitmontop",
+   "rarity": "Common (C)",
+   "image": null
+  },
+  {
+   "number": "045/115",
+   "pokemonIndex": 45,
+   "version": 1,
+   "name": "Trapinch",
+   "rarity": "Common (C)",
+   "image": null
+  },
+  {
+   "number": "046/115",
+   "pokemonIndex": 46,
+   "version": 1,
+   "name": "Vibrava",
+   "rarity": "Common (C)",
+   "image": null
+  },
+  {
+   "number": "047/115",
+   "pokemonIndex": 47,
+   "version": 1,
+   "name": "Flygon",
+   "rarity": "Uncommon (U)",
+   "image": null
+  },
+  {
+   "number": "048/115",
+   "pokemonIndex": 48,
+   "version": 1,
+   "name": "Regirock",
+   "rarity": "Rare (R)",
+   "image": null
+  },
+  {
+   "number": "049/115",
+   "pokemonIndex": 49,
+   "version": 1,
+   "name": "Riolu",
+   "rarity": "Common (C)",
+   "image": null
+  },
+  {
+   "number": "050/115",
+   "pokemonIndex": 50,
+   "version": 1,
+   "name": "Hippopotas",
+   "rarity": "Common (C)",
+   "image": null
+  },
+  {
+   "number": "051/115",
+   "pokemonIndex": 51,
+   "version": 1,
+   "name": "Hippowdon",
+   "rarity": "Uncommon (U)",
+   "image": null
+  },
+  {
+   "number": "052/115",
+   "pokemonIndex": 52,
+   "version": 1,
+   "name": "Rhyperior V",
+   "rarity": "Double Rare (RR)",
+   "image": null
+  },
+  {
+   "number": "053/115",
+   "pokemonIndex": 53,
+   "version": 1,
+   "name": "Drilbur",
+   "rarity": "Common (C)",
+   "image": null
+  },
+  {
+   "number": "054/115",
+   "pokemonIndex": 54,
+   "version": 1,
+   "name": "Terrakion",
+   "rarity": "Rare (R)",
+   "image": null
+  },
+  {
+   "number": "055/115",
+   "pokemonIndex": 55,
+   "version": 1,
+   "name": "Zygarde",
+   "rarity": "Rare (R)",
+   "image": null
+  },
+  {
+   "number": "056/115",
+   "pokemonIndex": 56,
+   "version": 1,
+   "name": "Rockruff",
+   "rarity": "Common (C)",
+   "image": null
+  },
+  {
+   "number": "057/115",
+   "pokemonIndex": 57,
+   "version": 1,
+   "name": "Lycanroc",
+   "rarity": "Uncommon (U)",
+   "image": null
+  },
+  {
+   "number": "058/115",
+   "pokemonIndex": 58,
+   "version": 1,
+   "name": "Mudbray",
+   "rarity": "Common (C)",
+   "image": null
+  },
+  {
+   "number": "059/115",
+   "pokemonIndex": 59,
+   "version": 1,
+   "name": "Mudsdale",
+   "rarity": "Uncommon (U)",
+   "image": null
+  },
+  {
+   "number": "060/115",
+   "pokemonIndex": 60,
+   "version": 1,
+   "name": "Passimian",
+   "rarity": "Common (C)",
+   "image": null
+  },
+  {
+   "number": "061/115",
+   "pokemonIndex": 61,
+   "version": 1,
+   "name": "Coalossal V",
+   "rarity": "Double Rare (RR)",
+   "image": null
+  },
+  {
+   "number": "062/115",
+   "pokemonIndex": 62,
+   "version": 1,
+   "name": "Coalossal VMAX",
+   "rarity": "Triple Rare (RRR)",
+   "image": null
+  },
+  {
+   "number": "063/115",
+   "pokemonIndex": 63,
+   "version": 1,
+   "name": "Clobbopus",
+   "rarity": "Common (C)",
+   "image": null
+  },
+  {
+   "number": "064/115",
+   "pokemonIndex": 64,
+   "version": 1,
+   "name": "Grapploct",
+   "rarity": "Uncommon (U)",
+   "image": null
+  },
+  {
+   "number": "065/115",
+   "pokemonIndex": 65,
+   "version": 1,
+   "name": "Zamazenta",
+   "rarity": "Amazing Rare (A)",
+   "image": null
+  },
+  {
+   "number": "066/115",
+   "pokemonIndex": 66,
+   "version": 1,
+   "name": "Galarian Meowth",
+   "rarity": "Common (C)",
+   "image": null
+  },
+  {
+   "number": "067/115",
+   "pokemonIndex": 67,
+   "version": 1,
+   "name": "Galarian Perrserker",
+   "rarity": "Uncommon (U)",
+   "image": null
+  },
+  {
+   "number": "068/115",
+   "pokemonIndex": 68,
+   "version": 1,
+   "name": "Forretress",
+   "rarity": "Uncommon (U)",
+   "image": null
+  },
+  {
+   "number": "069/115",
+   "pokemonIndex": 69,
+   "version": 1,
+   "name": "Steelix V",
+   "rarity": "Double Rare (RR)",
+   "image": null
+  },
+  {
+   "number": "070/115",
+   "pokemonIndex": 70,
+   "version": 1,
+   "name": "Scizor V",
+   "rarity": "Double Rare (RR)",
+   "image": null
+  },
+  {
+   "number": "071/115",
+   "pokemonIndex": 71,
+   "version": 1,
+   "name": "Scizor VMAX",
+   "rarity": "Triple Rare (RRR)",
+   "image": null
+  },
+  {
+   "number": "072/115",
+   "pokemonIndex": 72,
+   "version": 1,
+   "name": "Skarmory",
+   "rarity": "Common (C)",
+   "image": null
+  },
+  {
+   "number": "073/115",
+   "pokemonIndex": 73,
+   "version": 1,
+   "name": "Beldum",
+   "rarity": "Common (C)",
+   "image": null
+  },
+  {
+   "number": "074/115",
+   "pokemonIndex": 74,
+   "version": 1,
+   "name": "Metang",
+   "rarity": "Common (C)",
+   "image": null
+  },
+  {
+   "number": "075/115",
+   "pokemonIndex": 75,
+   "version": 1,
+   "name": "Metagross",
+   "rarity": "Uncommon (U)",
+   "image": null
+  },
+  {
+   "number": "076/115",
+   "pokemonIndex": 76,
+   "version": 1,
+   "name": "Lucario",
+   "rarity": "Uncommon (U)",
+   "image": null
+  },
+  {
+   "number": "077/115",
+   "pokemonIndex": 77,
+   "version": 1,
+   "name": "Dialga",
+   "rarity": "Rare (R)",
+   "image": null
+  },
+  {
+   "number": "078/115",
+   "pokemonIndex": 78,
+   "version": 1,
+   "name": "Excadrill",
+   "rarity": "Common (C)",
+   "image": null
+  },
+  {
+   "number": "079/115",
+   "pokemonIndex": 79,
+   "version": 1,
+   "name": "Ferroseed",
+   "rarity": "Common (C)",
+   "image": null
+  },
+  {
+   "number": "080/115",
+   "pokemonIndex": 80,
+   "version": 1,
+   "name": "Ferrothorn",
+   "rarity": "Uncommon (U)",
+   "image": null
+  },
+  {
+   "number": "081/115",
+   "pokemonIndex": 81,
+   "version": 1,
+   "name": "Galarian Stunfisk",
+   "rarity": "Uncommon (U)",
+   "image": null
+  },
+  {
+   "number": "082/115",
+   "pokemonIndex": 82,
+   "version": 1,
+   "name": "Magearna",
+   "rarity": "Rare (R)",
+   "image": null
+  },
+  {
+   "number": "083/115",
+   "pokemonIndex": 83,
+   "version": 1,
+   "name": "Duraludon",
+   "rarity": "Rare (R)",
+   "image": null
+  },
+  {
+   "number": "084/115",
+   "pokemonIndex": 84,
+   "version": 1,
+   "name": "Zacian",
+   "rarity": "Rare (R)",
+   "image": null
+  },
+  {
+   "number": "085/115",
+   "pokemonIndex": 85,
+   "version": 1,
+   "name": "Zamazenta",
+   "rarity": "Rare (R)",
+   "image": null
+  },
+  {
+   "number": "086/115",
+   "pokemonIndex": 86,
+   "version": 1,
+   "name": "Snorlax",
+   "rarity": "Rare (R)",
+   "image": null
+  },
+  {
+   "number": "087/115",
+   "pokemonIndex": 87,
+   "version": 1,
+   "name": "Teddiursa",
+   "rarity": "Common (C)",
+   "image": null
+  },
+  {
+   "number": "088/115",
+   "pokemonIndex": 88,
+   "version": 1,
+   "name": "Ursaring",
+   "rarity": "Common (C)",
+   "image": null
+  },
+  {
+   "number": "089/115",
+   "pokemonIndex": 89,
+   "version": 1,
+   "name": "Skitty",
+   "rarity": "Common (C)",
+   "image": null
+  },
+  {
+   "number": "090/115",
+   "pokemonIndex": 90,
+   "version": 1,
+   "name": "Delcatty",
+   "rarity": "Uncommon (U)",
+   "image": null
+  },
+  {
+   "number": "091/115",
+   "pokemonIndex": 91,
+   "version": 1,
+   "name": "Salamence V",
+   "rarity": "Double Rare (RR)",
+   "image": null
+  },
+  {
+   "number": "092/115",
+   "pokemonIndex": 92,
+   "version": 1,
+   "name": "Salamence VMAX",
+   "rarity": "Triple Rare (RRR)",
+   "image": null
+  },
+  {
+   "number": "093/115",
+   "pokemonIndex": 93,
+   "version": 1,
+   "name": "Rayquaza",
+   "rarity": "Amazing Rare (A)",
+   "image": null
+  },
+  {
+   "number": "094/115",
+   "pokemonIndex": 94,
+   "version": 1,
+   "name": "Starly",
+   "rarity": "Common (C)",
+   "image": null
+  },
+  {
+   "number": "095/115",
+   "pokemonIndex": 95,
+   "version": 1,
+   "name": "Staravia",
+   "rarity": "Common (C)",
+   "image": null
+  },
+  {
+   "number": "096/115",
+   "pokemonIndex": 96,
+   "version": 1,
+   "name": "Staraptor",
+   "rarity": "Uncommon (U)",
+   "image": null
+  },
+  {
+   "number": "097/115",
+   "pokemonIndex": 97,
+   "version": 1,
+   "name": "Ducklett",
+   "rarity": "Common (C)",
+   "image": null
+  },
+  {
+   "number": "098/115",
+   "pokemonIndex": 98,
+   "version": 1,
+   "name": "Swanna",
+   "rarity": "Uncommon (U)",
+   "image": null
+  },
+  {
+   "number": "099/115",
+   "pokemonIndex": 99,
+   "version": 1,
+   "name": "Pikipek",
+   "rarity": "Common (C)",
+   "image": null
+  },
+  {
+   "number": "100/115",
+   "pokemonIndex": 100,
+   "version": 1,
+   "name": "Trumbeak",
+   "rarity": "Common (C)",
+   "image": null
+  },
+  {
+   "number": "101/115",
+   "pokemonIndex": 101,
+   "version": 1,
+   "name": "Toucannon",
+   "rarity": "Uncommon (U)",
+   "image": null
+  },
+  {
+   "number": "102/115",
+   "pokemonIndex": 102,
+   "version": 1,
+   "name": "Yell Horn",
+   "rarity": "Uncommon (U)",
+   "image": null
+  },
+  {
+   "number": "103/115",
+   "pokemonIndex": 103,
+   "version": 1,
+   "name": "Moomoo Cheese",
+   "rarity": "Uncommon (U)",
+   "image": null
+  },
+  {
+   "number": "104/115",
+   "pokemonIndex": 104,
+   "version": 1,
+   "name": "Struggle Gloves",
+   "rarity": "Uncommon (U)",
+   "image": null
+  },
+  {
+   "number": "105/115",
+   "pokemonIndex": 105,
+   "version": 1,
+   "name": "Cape of Toughness",
+   "rarity": "Uncommon (U)",
+   "image": null
+  },
+  {
+   "number": "106/115",
+   "pokemonIndex": 106,
+   "version": 1,
+   "name": "Billowing Smoke",
+   "rarity": "Uncommon (U)",
+   "image": null
+  },
+  {
+   "number": "107/115",
+   "pokemonIndex": 107,
+   "version": 1,
+   "name": "Allister",
+   "rarity": "Uncommon (U)",
+   "image": null
+  },
+  {
+   "number": "108/115",
+   "pokemonIndex": 108,
+   "version": 1,
+   "name": "Bea",
+   "rarity": "Uncommon (U)",
+   "image": null
+  },
+  {
+   "number": "109/115",
+   "pokemonIndex": 109,
+   "version": 1,
+   "name": "Leon",
+   "rarity": "Rare (R)",
+   "image": null
+  },
+  {
+   "number": "110/115",
+   "pokemonIndex": 110,
+   "version": 1,
+   "name": "Bird Keeper",
+   "rarity": "Uncommon (U)",
+   "image": null
+  },
+  {
+   "number": "111/115",
+   "pokemonIndex": 111,
+   "version": 1,
+   "name": "League Staff",
+   "rarity": "Uncommon (U)",
+   "image": null
+  },
+  {
+   "number": "112/115",
+   "pokemonIndex": 112,
+   "version": 1,
+   "name": "Circhester Bath",
+   "rarity": "Uncommon (U)",
+   "image": null
+  },
+  {
+   "number": "113/115",
+   "pokemonIndex": 113,
+   "version": 1,
+   "name": "Wyndon Stadium",
+   "rarity": "Uncommon (U)",
+   "image": null
+  },
+  {
+   "number": "114/115",
+   "pokemonIndex": 114,
+   "version": 1,
+   "name": "Stone",
+   "rarity": "Uncommon (U)",
+   "image": null
+  },
+  {
+   "number": "115/115",
+   "pokemonIndex": 115,
+   "version": 1,
+   "name": "Powerful",
+   "rarity": "Uncommon (U)",
+   "image": null
+  },
+  {
+   "number": "116/115",
+   "pokemonIndex": 116,
+   "version": 1,
+   "name": "Rowlet",
+   "rarity": "Shiny (S)",
+   "image": null
+  },
+  {
+   "number": "117/115",
+   "pokemonIndex": 117,
+   "version": 1,
+   "name": "Dartrix",
+   "rarity": "Shiny (S)",
+   "image": null
+  },
+  {
+   "number": "118/115",
+   "pokemonIndex": 118,
+   "version": 1,
+   "name": "Decidueye",
+   "rarity": "Shiny (S)",
+   "image": null
+  },
+  {
+   "number": "119/115",
+   "pokemonIndex": 119,
+   "version": 1,
+   "name": "Ducklett",
+   "rarity": "Shiny (S)",
+   "image": null
+  },
+  {
+   "number": "120/115",
+   "pokemonIndex": 120,
+   "version": 1,
+   "name": "Swanna",
+   "rarity": "Shiny (S)",
+   "image": null
+  },
+  {
+   "number": "121/115",
+   "pokemonIndex": 121,
+   "version": 1,
+   "name": "Orbeetle V",
+   "rarity": "Super Rare (SR)",
+   "image": null
+  },
+  {
+   "number": "122/115",
+   "pokemonIndex": 122,
+   "version": 1,
+   "name": "Zarude V",
+   "rarity": "Super Rare (SR)",
+   "image": null
+  },
+  {
+   "number": "123/115",
+   "pokemonIndex": 123,
+   "version": 1,
+   "name": "Houndoom V",
+   "rarity": "Super Rare (SR)",
+   "image": null
+  },
+  {
+   "number": "124/115",
+   "pokemonIndex": 124,
+   "version": 1,
+   "name": "Rhyperior V",
+   "rarity": "Super Rare (SR)",
+   "image": null
+  },
+  {
+   "number": "125/115",
+   "pokemonIndex": 125,
+   "version": 1,
+   "name": "Coalossal V",
+   "rarity": "Super Rare (SR)",
+   "image": null
+  },
+  {
+   "number": "126/115",
+   "pokemonIndex": 126,
+   "version": 1,
+   "name": "Steelix V",
+   "rarity": "Super Rare (SR)",
+   "image": null
+  },
+  {
+   "number": "127/115",
+   "pokemonIndex": 127,
+   "version": 1,
+   "name": "Scizor V",
+   "rarity": "Super Rare (SR)",
+   "image": null
+  },
+  {
+   "number": "128/115",
+   "pokemonIndex": 128,
+   "version": 1,
+   "name": "Salamence V",
+   "rarity": "Super Rare (SR)",
+   "image": null
+  },
+  {
+   "number": "129/115",
+   "pokemonIndex": 129,
+   "version": 1,
+   "name": "Allister",
+   "rarity": "Super Rare (SR)",
+   "image": null
+  },
+  {
+   "number": "130/115",
+   "pokemonIndex": 130,
+   "version": 1,
+   "name": "Bea",
+   "rarity": "Super Rare (SR)",
+   "image": null
+  },
+  {
+   "number": "131/115",
+   "pokemonIndex": 131,
+   "version": 1,
+   "name": "Leon",
+   "rarity": "Super Rare (SR)",
+   "image": null
+  },
+  {
+   "number": "132/115",
+   "pokemonIndex": 132,
+   "version": 1,
+   "name": "Bird Keeper",
+   "rarity": "Super Rare (SR)",
+   "image": null
+  },
+  {
+   "number": "133/115",
+   "pokemonIndex": 133,
+   "version": 1,
+   "name": "Charizard V",
+   "rarity": "Shiny Super Rare (SSR)",
+   "image": null
+  },
+  {
+   "number": "134/115",
+   "pokemonIndex": 134,
+   "version": 1,
+   "name": "Charizard VMAX",
+   "rarity": "Shiny Super Rare (SSR)",
+   "image": null
+  },
+  {
+   "number": "135/115",
+   "pokemonIndex": 135,
+   "version": 1,
+   "name": "Orbeetle VMAX",
+   "rarity": "Hyper Rare (HR)",
+   "image": null
+  },
+  {
+   "number": "136/115",
+   "pokemonIndex": 136,
+   "version": 1,
+   "name": "Coalossal VMAX",
+   "rarity": "Hyper Rare (HR)",
+   "image": null
+  },
+  {
+   "number": "137/115",
+   "pokemonIndex": 137,
+   "version": 1,
+   "name": "Scizor VMAX",
+   "rarity": "Hyper Rare (HR)",
+   "image": null
+  },
+  {
+   "number": "138/115",
+   "pokemonIndex": 138,
+   "version": 1,
+   "name": "Salamence VMAX",
+   "rarity": "Hyper Rare (HR)",
+   "image": null
+  },
+  {
+   "number": "139/115",
+   "pokemonIndex": 139,
+   "version": 1,
+   "name": "Allister",
+   "rarity": "Hyper Rare (HR)",
+   "image": null
+  },
+  {
+   "number": "140/115",
+   "pokemonIndex": 140,
+   "version": 1,
+   "name": "Bea",
+   "rarity": "Hyper Rare (HR)",
+   "image": null
+  },
+  {
+   "number": "141/115",
+   "pokemonIndex": 141,
+   "version": 1,
+   "name": "Leon",
+   "rarity": "Hyper Rare (HR)",
+   "image": null
+  },
+  {
+   "number": "142/115",
+   "pokemonIndex": 142,
+   "version": 1,
+   "name": "Snorlax",
+   "rarity": "Ultra Rare (UR)",
+   "image": null
+  },
+  {
+   "number": "143/115",
+   "pokemonIndex": 143,
+   "version": 1,
+   "name": "Cape of Toughness",
+   "rarity": "Ultra Rare (UR)",
+   "image": null
+  }
+ ]
+}

@@ -1,0 +1,794 @@
+{
+ "name": "Dynamax Tactics",
+ "slug": "cs15",
+ "code": "CS1.5C",
+ "series": "Chinese Sword & Shield",
+ "language": "Simplified Chinese",
+ "releaseDate": "2023-06-28",
+ "cardCount": 96,
+ "rarityOrder": [
+  "Common (C)",
+  "Uncommon (U)",
+  "Rare (R)",
+  "Double Rare (RR)",
+  "Triple Rare (RRR)",
+  "Shiny (S)",
+  "Super Rare (SR)",
+  "Shiny Super Rare (SSR)",
+  "Hyper Rare (HR)",
+  "Ultra Rare (UR)"
+ ],
+ "exclusiveCardNumbers": [],
+ "source": "Official Pokemon China card database via duanxr/PTCG-CHS-Datasets (commit 76c1f52); English names from Bulbapedia",
+ "groupByName": true,
+ "cards": [
+  {
+   "number": "001/055",
+   "pokemonIndex": 1,
+   "version": 1,
+   "name": "Dhelmise V",
+   "rarity": "Double Rare (RR)",
+   "image": null
+  },
+  {
+   "number": "002/055",
+   "pokemonIndex": 2,
+   "version": 1,
+   "name": "Dhelmise VMAX",
+   "rarity": "Triple Rare (RRR)",
+   "image": null
+  },
+  {
+   "number": "003/055",
+   "pokemonIndex": 3,
+   "version": 1,
+   "name": "Blipbug",
+   "rarity": "Common (C)",
+   "image": null
+  },
+  {
+   "number": "004/055",
+   "pokemonIndex": 4,
+   "version": 1,
+   "name": "Dottler",
+   "rarity": "Common (C)",
+   "image": null
+  },
+  {
+   "number": "005/055",
+   "pokemonIndex": 5,
+   "version": 1,
+   "name": "Orbeetle",
+   "rarity": "Uncommon (U)",
+   "image": null
+  },
+  {
+   "number": "006/055",
+   "pokemonIndex": 6,
+   "version": 1,
+   "name": "Eldegoss V",
+   "rarity": "Double Rare (RR)",
+   "image": null
+  },
+  {
+   "number": "007/055",
+   "pokemonIndex": 7,
+   "version": 1,
+   "name": "Applin",
+   "rarity": "Common (C)",
+   "image": null
+  },
+  {
+   "number": "008/055",
+   "pokemonIndex": 8,
+   "version": 1,
+   "name": "Flapple",
+   "rarity": "Rare (R)",
+   "image": null
+  },
+  {
+   "number": "009/055",
+   "pokemonIndex": 9,
+   "version": 1,
+   "name": "Appletun",
+   "rarity": "Rare (R)",
+   "image": null
+  },
+  {
+   "number": "010/055",
+   "pokemonIndex": 10,
+   "version": 1,
+   "name": "Galarian Mr. Mime",
+   "rarity": "Common (C)",
+   "image": null
+  },
+  {
+   "number": "011/055",
+   "pokemonIndex": 11,
+   "version": 1,
+   "name": "Galarian Mr. Rime",
+   "rarity": "Uncommon (U)",
+   "image": null
+  },
+  {
+   "number": "012/055",
+   "pokemonIndex": 12,
+   "version": 1,
+   "name": "Feebas",
+   "rarity": "Common (C)",
+   "image": null
+  },
+  {
+   "number": "013/055",
+   "pokemonIndex": 13,
+   "version": 1,
+   "name": "Milotic",
+   "rarity": "Rare (R)",
+   "image": null
+  },
+  {
+   "number": "014/055",
+   "pokemonIndex": 14,
+   "version": 1,
+   "name": "Milotic V",
+   "rarity": "Double Rare (RR)",
+   "image": null
+  },
+  {
+   "number": "015/055",
+   "pokemonIndex": 15,
+   "version": 1,
+   "name": "Chinchou",
+   "rarity": "Common (C)",
+   "image": null
+  },
+  {
+   "number": "016/055",
+   "pokemonIndex": 16,
+   "version": 1,
+   "name": "Lanturn",
+   "rarity": "Uncommon (U)",
+   "image": null
+  },
+  {
+   "number": "017/055",
+   "pokemonIndex": 17,
+   "version": 1,
+   "name": "Vikavolt V",
+   "rarity": "Double Rare (RR)",
+   "image": null
+  },
+  {
+   "number": "018/055",
+   "pokemonIndex": 18,
+   "version": 1,
+   "name": "Toxel",
+   "rarity": "Common (C)",
+   "image": null
+  },
+  {
+   "number": "019/055",
+   "pokemonIndex": 19,
+   "version": 1,
+   "name": "Toxtricity",
+   "rarity": "Uncommon (U)",
+   "image": null
+  },
+  {
+   "number": "020/055",
+   "pokemonIndex": 20,
+   "version": 1,
+   "name": "Clefairy",
+   "rarity": "Common (C)",
+   "image": null
+  },
+  {
+   "number": "021/055",
+   "pokemonIndex": 21,
+   "version": 1,
+   "name": "Clefable",
+   "rarity": "Rare (R)",
+   "image": null
+  },
+  {
+   "number": "022/055",
+   "pokemonIndex": 22,
+   "version": 1,
+   "name": "Dedenne",
+   "rarity": "Common (C)",
+   "image": null
+  },
+  {
+   "number": "023/055",
+   "pokemonIndex": 23,
+   "version": 1,
+   "name": "Sinistea",
+   "rarity": "Common (C)",
+   "image": null
+  },
+  {
+   "number": "024/055",
+   "pokemonIndex": 24,
+   "version": 1,
+   "name": "Polteageist",
+   "rarity": "Uncommon (U)",
+   "image": null
+  },
+  {
+   "number": "025/055",
+   "pokemonIndex": 25,
+   "version": 1,
+   "name": "Dragapult V",
+   "rarity": "Double Rare (RR)",
+   "image": null
+  },
+  {
+   "number": "026/055",
+   "pokemonIndex": 26,
+   "version": 1,
+   "name": "Dragapult VMAX",
+   "rarity": "Triple Rare (RRR)",
+   "image": null
+  },
+  {
+   "number": "027/055",
+   "pokemonIndex": 27,
+   "version": 1,
+   "name": "Koffing",
+   "rarity": "Common (C)",
+   "image": null
+  },
+  {
+   "number": "028/055",
+   "pokemonIndex": 28,
+   "version": 1,
+   "name": "Galarian Weezing",
+   "rarity": "Rare (R)",
+   "image": null
+  },
+  {
+   "number": "029/055",
+   "pokemonIndex": 29,
+   "version": 1,
+   "name": "Galarian Meowth",
+   "rarity": "Common (C)",
+   "image": null
+  },
+  {
+   "number": "030/055",
+   "pokemonIndex": 30,
+   "version": 1,
+   "name": "Galarian Perrserker",
+   "rarity": "Rare (R)",
+   "image": null
+  },
+  {
+   "number": "031/055",
+   "pokemonIndex": 31,
+   "version": 1,
+   "name": "Galarian Stunfisk V",
+   "rarity": "Double Rare (RR)",
+   "image": null
+  },
+  {
+   "number": "032/055",
+   "pokemonIndex": 32,
+   "version": 1,
+   "name": "Hoothoot",
+   "rarity": "Common (C)",
+   "image": null
+  },
+  {
+   "number": "033/055",
+   "pokemonIndex": 33,
+   "version": 1,
+   "name": "Noctowl",
+   "rarity": "Uncommon (U)",
+   "image": null
+  },
+  {
+   "number": "034/055",
+   "pokemonIndex": 34,
+   "version": 1,
+   "name": "Bunnelby",
+   "rarity": "Common (C)",
+   "image": null
+  },
+  {
+   "number": "035/055",
+   "pokemonIndex": 35,
+   "version": 1,
+   "name": "Diggersby",
+   "rarity": "Uncommon (U)",
+   "image": null
+  },
+  {
+   "number": "036/055",
+   "pokemonIndex": 36,
+   "version": 1,
+   "name": "Oranguru",
+   "rarity": "Rare (R)",
+   "image": null
+  },
+  {
+   "number": "037/055",
+   "pokemonIndex": 37,
+   "version": 1,
+   "name": "Rookidee",
+   "rarity": "Common (C)",
+   "image": null
+  },
+  {
+   "number": "038/055",
+   "pokemonIndex": 38,
+   "version": 1,
+   "name": "Corvisquire",
+   "rarity": "Common (C)",
+   "image": null
+  },
+  {
+   "number": "039/055",
+   "pokemonIndex": 39,
+   "version": 1,
+   "name": "Corviknight",
+   "rarity": "Rare (R)",
+   "image": null
+  },
+  {
+   "number": "040/055",
+   "pokemonIndex": 40,
+   "version": 1,
+   "name": "Cramorant V",
+   "rarity": "Double Rare (RR)",
+   "image": null
+  },
+  {
+   "number": "041/055",
+   "pokemonIndex": 41,
+   "version": 1,
+   "name": "Cramorant VMAX",
+   "rarity": "Triple Rare (RRR)",
+   "image": null
+  },
+  {
+   "number": "042/055",
+   "pokemonIndex": 42,
+   "version": 1,
+   "name": "Suspicious Food Tin",
+   "rarity": "Uncommon (U)",
+   "image": null
+  },
+  {
+   "number": "043/055",
+   "pokemonIndex": 43,
+   "version": 1,
+   "name": "Scoop Up Net",
+   "rarity": "Uncommon (U)",
+   "image": null
+  },
+  {
+   "number": "044/055",
+   "pokemonIndex": 44,
+   "version": 1,
+   "name": "Great Ball",
+   "rarity": "Uncommon (U)",
+   "image": null
+  },
+  {
+   "number": "045/055",
+   "pokemonIndex": 45,
+   "version": 1,
+   "name": "Familiar Bell",
+   "rarity": "Uncommon (U)",
+   "image": null
+  },
+  {
+   "number": "046/055",
+   "pokemonIndex": 46,
+   "version": 1,
+   "name": "Capacious Bucket",
+   "rarity": "Uncommon (U)",
+   "image": null
+  },
+  {
+   "number": "047/055",
+   "pokemonIndex": 47,
+   "version": 1,
+   "name": "Tool Scrapper",
+   "rarity": "Uncommon (U)",
+   "image": null
+  },
+  {
+   "number": "048/055",
+   "pokemonIndex": 48,
+   "version": 1,
+   "name": "Oleana",
+   "rarity": "Uncommon (U)",
+   "image": null
+  },
+  {
+   "number": "049/055",
+   "pokemonIndex": 49,
+   "version": 1,
+   "name": "Kabu",
+   "rarity": "Uncommon (U)",
+   "image": null
+  },
+  {
+   "number": "050/055",
+   "pokemonIndex": 50,
+   "version": 1,
+   "name": "Pokémon Breeder's Nurturing",
+   "rarity": "Uncommon (U)",
+   "image": null
+  },
+  {
+   "number": "051/055",
+   "pokemonIndex": 51,
+   "version": 1,
+   "name": "Galar Mine",
+   "rarity": "Uncommon (U)",
+   "image": null
+  },
+  {
+   "number": "052/055",
+   "pokemonIndex": 52,
+   "version": 1,
+   "name": "Heat",
+   "rarity": "Uncommon (U)",
+   "image": null
+  },
+  {
+   "number": "053/055",
+   "pokemonIndex": 53,
+   "version": 1,
+   "name": "Speed",
+   "rarity": "Uncommon (U)",
+   "image": null
+  },
+  {
+   "number": "054/055",
+   "pokemonIndex": 54,
+   "version": 1,
+   "name": "Horror",
+   "rarity": "Uncommon (U)",
+   "image": null
+  },
+  {
+   "number": "055/055",
+   "pokemonIndex": 55,
+   "version": 1,
+   "name": "Capture Energy",
+   "rarity": "Uncommon (U)",
+   "image": null
+  },
+  {
+   "number": "056/055",
+   "pokemonIndex": 56,
+   "version": 1,
+   "name": "Blipbug",
+   "rarity": "Shiny (S)",
+   "image": null
+  },
+  {
+   "number": "057/055",
+   "pokemonIndex": 57,
+   "version": 1,
+   "name": "Dottler",
+   "rarity": "Shiny (S)",
+   "image": null
+  },
+  {
+   "number": "058/055",
+   "pokemonIndex": 58,
+   "version": 1,
+   "name": "Orbeetle",
+   "rarity": "Shiny (S)",
+   "image": null
+  },
+  {
+   "number": "059/055",
+   "pokemonIndex": 59,
+   "version": 1,
+   "name": "Applin",
+   "rarity": "Shiny (S)",
+   "image": null
+  },
+  {
+   "number": "060/055",
+   "pokemonIndex": 60,
+   "version": 1,
+   "name": "Flapple",
+   "rarity": "Shiny (S)",
+   "image": null
+  },
+  {
+   "number": "061/055",
+   "pokemonIndex": 61,
+   "version": 1,
+   "name": "Appletun",
+   "rarity": "Shiny (S)",
+   "image": null
+  },
+  {
+   "number": "062/055",
+   "pokemonIndex": 62,
+   "version": 1,
+   "name": "Galarian Mr. Mime",
+   "rarity": "Shiny (S)",
+   "image": null
+  },
+  {
+   "number": "063/055",
+   "pokemonIndex": 63,
+   "version": 1,
+   "name": "Galarian Mr. Rime",
+   "rarity": "Shiny (S)",
+   "image": null
+  },
+  {
+   "number": "064/055",
+   "pokemonIndex": 64,
+   "version": 1,
+   "name": "Dedenne",
+   "rarity": "Shiny (S)",
+   "image": null
+  },
+  {
+   "number": "065/055",
+   "pokemonIndex": 65,
+   "version": 1,
+   "name": "Sinistea",
+   "rarity": "Shiny (S)",
+   "image": null
+  },
+  {
+   "number": "066/055",
+   "pokemonIndex": 66,
+   "version": 1,
+   "name": "Polteageist",
+   "rarity": "Shiny (S)",
+   "image": null
+  },
+  {
+   "number": "067/055",
+   "pokemonIndex": 67,
+   "version": 1,
+   "name": "Koffing",
+   "rarity": "Shiny (S)",
+   "image": null
+  },
+  {
+   "number": "068/055",
+   "pokemonIndex": 68,
+   "version": 1,
+   "name": "Galarian Weezing",
+   "rarity": "Shiny (S)",
+   "image": null
+  },
+  {
+   "number": "069/055",
+   "pokemonIndex": 69,
+   "version": 1,
+   "name": "Galarian Meowth",
+   "rarity": "Shiny (S)",
+   "image": null
+  },
+  {
+   "number": "070/055",
+   "pokemonIndex": 70,
+   "version": 1,
+   "name": "Galarian Perrserker",
+   "rarity": "Shiny (S)",
+   "image": null
+  },
+  {
+   "number": "071/055",
+   "pokemonIndex": 71,
+   "version": 1,
+   "name": "Bunnelby",
+   "rarity": "Shiny (S)",
+   "image": null
+  },
+  {
+   "number": "072/055",
+   "pokemonIndex": 72,
+   "version": 1,
+   "name": "Oranguru",
+   "rarity": "Shiny (S)",
+   "image": null
+  },
+  {
+   "number": "073/055",
+   "pokemonIndex": 73,
+   "version": 1,
+   "name": "Dhelmise V",
+   "rarity": "Super Rare (SR)",
+   "image": null
+  },
+  {
+   "number": "074/055",
+   "pokemonIndex": 74,
+   "version": 1,
+   "name": "Eldegoss V",
+   "rarity": "Super Rare (SR)",
+   "image": null
+  },
+  {
+   "number": "075/055",
+   "pokemonIndex": 75,
+   "version": 1,
+   "name": "Milotic V",
+   "rarity": "Super Rare (SR)",
+   "image": null
+  },
+  {
+   "number": "076/055",
+   "pokemonIndex": 76,
+   "version": 1,
+   "name": "Vikavolt V",
+   "rarity": "Super Rare (SR)",
+   "image": null
+  },
+  {
+   "number": "077/055",
+   "pokemonIndex": 77,
+   "version": 1,
+   "name": "Dragapult V",
+   "rarity": "Super Rare (SR)",
+   "image": null
+  },
+  {
+   "number": "078/055",
+   "pokemonIndex": 78,
+   "version": 1,
+   "name": "Galarian Stunfisk V",
+   "rarity": "Super Rare (SR)",
+   "image": null
+  },
+  {
+   "number": "079/055",
+   "pokemonIndex": 79,
+   "version": 1,
+   "name": "Cramorant V",
+   "rarity": "Super Rare (SR)",
+   "image": null
+  },
+  {
+   "number": "080/055",
+   "pokemonIndex": 80,
+   "version": 1,
+   "name": "Oleana",
+   "rarity": "Super Rare (SR)",
+   "image": null
+  },
+  {
+   "number": "081/055",
+   "pokemonIndex": 81,
+   "version": 1,
+   "name": "Kabu",
+   "rarity": "Super Rare (SR)",
+   "image": null
+  },
+  {
+   "number": "082/055",
+   "pokemonIndex": 82,
+   "version": 1,
+   "name": "Pokémon Breeder's Nurturing",
+   "rarity": "Super Rare (SR)",
+   "image": null
+  },
+  {
+   "number": "083/055",
+   "pokemonIndex": 83,
+   "version": 1,
+   "name": "Eldegoss V",
+   "rarity": "Shiny Super Rare (SSR)",
+   "image": null
+  },
+  {
+   "number": "084/055",
+   "pokemonIndex": 84,
+   "version": 1,
+   "name": "Dragapult V",
+   "rarity": "Shiny Super Rare (SSR)",
+   "image": null
+  },
+  {
+   "number": "085/055",
+   "pokemonIndex": 85,
+   "version": 1,
+   "name": "Dragapult VMAX",
+   "rarity": "Shiny Super Rare (SSR)",
+   "image": null
+  },
+  {
+   "number": "086/055",
+   "pokemonIndex": 86,
+   "version": 1,
+   "name": "Cramorant V",
+   "rarity": "Shiny Super Rare (SSR)",
+   "image": null
+  },
+  {
+   "number": "087/055",
+   "pokemonIndex": 87,
+   "version": 1,
+   "name": "Dragapult VMAX",
+   "rarity": "Hyper Rare (HR)",
+   "image": null
+  },
+  {
+   "number": "088/055",
+   "pokemonIndex": 88,
+   "version": 1,
+   "name": "Oleana",
+   "rarity": "Hyper Rare (HR)",
+   "image": null
+  },
+  {
+   "number": "089/055",
+   "pokemonIndex": 89,
+   "version": 1,
+   "name": "Kabu",
+   "rarity": "Hyper Rare (HR)",
+   "image": null
+  },
+  {
+   "number": "090/055",
+   "pokemonIndex": 90,
+   "version": 1,
+   "name": "Pokémon Breeder's Nurturing",
+   "rarity": "Hyper Rare (HR)",
+   "image": null
+  },
+  {
+   "number": "091/055",
+   "pokemonIndex": 91,
+   "version": 1,
+   "name": "Galarian Perrserker",
+   "rarity": "Ultra Rare (UR)",
+   "image": null
+  },
+  {
+   "number": "092/055",
+   "pokemonIndex": 92,
+   "version": 1,
+   "name": "Oranguru",
+   "rarity": "Ultra Rare (UR)",
+   "image": null
+  },
+  {
+   "number": "093/055",
+   "pokemonIndex": 93,
+   "version": 1,
+   "name": "Suspicious Food Tin",
+   "rarity": "Ultra Rare (UR)",
+   "image": null
+  },
+  {
+   "number": "094/055",
+   "pokemonIndex": 94,
+   "version": 1,
+   "name": "Scoop Up Net",
+   "rarity": "Ultra Rare (UR)",
+   "image": null
+  },
+  {
+   "number": "095/055",
+   "pokemonIndex": 95,
+   "version": 1,
+   "name": "Tool Scrapper",
+   "rarity": "Ultra Rare (UR)",
+   "image": null
+  },
+  {
+   "number": "096/055",
+   "pokemonIndex": 96,
+   "version": 1,
+   "name": "Capture Energy",
+   "rarity": "Ultra Rare (UR)",
+   "image": null
+  }
+ ]
+}

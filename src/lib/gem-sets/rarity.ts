@@ -54,6 +54,16 @@ export const RARITY_CODE: Record<string, string> = {
   // bucket on Common's color, not a real tier.
   'Mega Ultra Rare (MUR)': 'BWR',
   'No Rarity Mark': 'C',
+  // Simplified Chinese Sword & Shield tiers (hidden draft set lists).
+  // Reuse existing color hooks: VMAX/VSTAR as Triple Rare, Radiant with
+  // Shiny, Character Rares with Art Rare / Special Art Rare, Amazing with
+  // Super Rare and the rainbow Hyper Rare with Special Art Rare.
+  'Triple Rare (RRR)': 'RRR',
+  'Amazing Rare (A)': 'SR',
+  'Radiant Rare (K)': 'S',
+  'Character Rare (CHR)': 'AR',
+  'Character Super Rare (CSR)': 'SAR',
+  'Hyper Rare (HR)': 'SAR',
 }
 export const RARITY_SYMBOL: Record<string, string> = {
   Common: '●',
@@ -80,4 +90,10 @@ export const RARITY_SYMBOL: Record<string, string> = {
   'Shiny Super Rare (SSR)': '✶✶',
   'Mega Ultra Rare (MUR)': '✧',
   'No Rarity Mark': '○',
+  'Triple Rare (RRR)': '★★★',
+  'Amazing Rare (A)': '❂',
+  'Radiant Rare (K)': '✹',
+  'Character Rare (CHR)': '✦',
+  'Character Super Rare (CSR)': '✦✦✦',
+  'Hyper Rare (HR)': '✧✧',
 }
