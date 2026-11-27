@@ -30,7 +30,7 @@ export function AnnouncementBar() {
           </span>
           {/* A plain link (not the router's) so it always lands on the section,
               from any page and from the homepage itself. */}
-          <a href="/#promotion" style={{ color: '#ffd23f', textDecoration: 'underline', textUnderlineOffset: 3 }}>
+          <a href="/black-friday" style={{ color: '#ffd23f', textDecoration: 'underline', textUnderlineOffset: 3 }}>
             See prizes →
           </a>
         </>

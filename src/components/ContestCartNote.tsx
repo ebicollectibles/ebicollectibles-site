@@ -22,7 +22,7 @@ export function ContestCartNote() {
       </div>
       <div style={{ color: '#c9d1da' }}>
         Spend {formatMoney(toNextPack(subtotal))} more for another pack. The top 3 spenders win prizes.{' '}
-        <a href="/#promotion" style={{ color: '#ffd23f' }}>
+        <a href="/black-friday" style={{ color: '#ffd23f' }}>
           See prizes
         </a>
       </div>

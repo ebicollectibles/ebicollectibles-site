@@ -3,7 +3,7 @@ import { CONTEST_ENDS_LABEL, CONTEST_PRIZES, contestLive } from '~/lib/contest'
 
 // The Black Friday Promotion, in full, on the homepage (#promotion). The
 // announcement bar and the sale banner link here. Hidden once it ends.
-const PRIZE_IMAGES: Record<string, { src: string; alt: string }> = {
+export const PRIZE_IMAGES: Record<string, { src: string; alt: string }> = {
   '1st place': { src: '/assets/home/promo-prize-1st.webp', alt: 'Pokémon TCG 30th Celebration Pokémon Center Elite Trainer Box' },
   '2nd place': { src: '/assets/home/promo-prize-2nd.webp', alt: 'Pokémon TCG 30th Celebration Elite Trainer Box' },
   '3rd place': { src: '/assets/home/promo-prize-3rd.webp', alt: 'Pokémon TCG 30th Celebration Booster Bundle' },
@@ -20,6 +20,9 @@ export function HomeContest() {
           <p>
             <b>Every order gets a free Chinese pack</b>, and every $100 adds another. Keep going: the top 3 spenders by {CONTEST_ENDS_LABEL} win:
           </p>
+          <a href="/black-friday" className="hp2-contest-more">
+            See prizes and picks →
+          </a>
         </div>
         <ol className="hp2-contest-podium">
           {CONTEST_PRIZES.map((p) => {

@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as BestSellingRouteImport } from './routes/best-selling'
+import { Route as BlackFridayRouteImport } from './routes/black-friday'
 import { Route as CartRouteImport } from './routes/cart'
 import { Route as CheckoutRouteImport } from './routes/checkout'
 import { Route as CookiePolicyRouteImport } from './routes/cookie-policy'
@@ -214,6 +215,11 @@ const IndexRoute = IndexRouteImport.update({
 const BestSellingRoute = BestSellingRouteImport.update({
   id: '/best-selling',
   path: '/best-selling',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BlackFridayRoute = BlackFridayRouteImport.update({
+  id: '/black-friday',
+  path: '/black-friday',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CartRoute = CartRouteImport.update({
@@ -1301,6 +1307,7 @@ const AdminAffiliatesIdDashboardRoute =
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/best-selling': typeof BestSellingRoute
+  '/black-friday': typeof BlackFridayRoute
   '/cart': typeof CartRoute
   '/checkout': typeof CheckoutRoute
   '/cookie-policy': typeof CookiePolicyRoute
@@ -1499,6 +1506,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/best-selling': typeof BestSellingRoute
+  '/black-friday': typeof BlackFridayRoute
   '/cart': typeof CartRoute
   '/checkout': typeof CheckoutRoute
   '/cookie-policy': typeof CookiePolicyRoute
@@ -1698,6 +1706,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/best-selling': typeof BestSellingRoute
+  '/black-friday': typeof BlackFridayRoute
   '/cart': typeof CartRoute
   '/checkout': typeof CheckoutRoute
   '/cookie-policy': typeof CookiePolicyRoute
@@ -1898,6 +1907,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/best-selling'
+    | '/black-friday'
     | '/cart'
     | '/checkout'
     | '/cookie-policy'
@@ -2096,6 +2106,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/best-selling'
+    | '/black-friday'
     | '/cart'
     | '/checkout'
     | '/cookie-policy'
@@ -2294,6 +2305,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/best-selling'
+    | '/black-friday'
     | '/cart'
     | '/checkout'
     | '/cookie-policy'
@@ -2493,6 +2505,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   BestSellingRoute: typeof BestSellingRoute
+  BlackFridayRoute: typeof BlackFridayRoute
   CartRoute: typeof CartRoute
   CheckoutRoute: typeof CheckoutRoute
   CookiePolicyRoute: typeof CookiePolicyRoute
@@ -2703,6 +2716,13 @@ declare module '@tanstack/react-router' {
       path: '/best-selling'
       fullPath: '/best-selling'
       preLoaderRoute: typeof BestSellingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/black-friday': {
+      id: '/black-friday'
+      path: '/black-friday'
+      fullPath: '/black-friday'
+      preLoaderRoute: typeof BlackFridayRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/cart': {
@@ -4069,6 +4089,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   BestSellingRoute: BestSellingRoute,
+  BlackFridayRoute: BlackFridayRoute,
   CartRoute: CartRoute,
   CheckoutRoute: CheckoutRoute,
   CookiePolicyRoute: CookiePolicyRoute,

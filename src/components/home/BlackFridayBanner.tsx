@@ -152,7 +152,7 @@ export function BlackFridayBanner() {
               Shop the sale →
             </Link>
             {contestLive() && (
-              <a href="#promotion" className="bf-btn2">
+              <a href="/black-friday" className="bf-btn2">
                 See what you can win
               </a>
             )}
