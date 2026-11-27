@@ -345,7 +345,8 @@ function CampaignPanel({ status, onDone }: { status: Awaited<ReturnType<typeof a
   const [note, setNote] = React.useState<Record<string, string>>({})
   const [tested, setTested] = React.useState<Record<string, boolean>>({})
   const run = async (id: string, mode: 'test' | 'all') => {
-    if (mode === 'all' && !window.confirm(`Send this email to ${status.activeSubscribers} subscribers now? People who already got it are skipped.`)) return
+    const c = status.campaigns.find((x) => x.id === id)
+    if (mode === 'all' && !window.confirm(`Send this email to ${c?.audienceCount ?? status.activeSubscribers} subscribers (${c?.audienceLabel ?? 'everyone subscribed'}) now? People who already got it are skipped.`)) return
     setBusy(`${id}:${mode}`)
     try {
       const r = await adminSendCampaign({ data: { campaignId: id, mode } })
@@ -375,7 +376,7 @@ function CampaignPanel({ status, onDone }: { status: Awaited<ReturnType<typeof a
         <div key={c.id} style={{ borderTop: '1px solid #f0f2f4', paddingTop: 12, marginTop: 4 }}>
           <div style={{ fontSize: 13.5, fontWeight: 600 }}>{c.label}</div>
           <div style={{ fontSize: 12, color: '#5a6875', marginTop: 2 }}>
-            Subject: {c.subject} · Sent to {c.sent} · Unsubscribed from it: {c.unsubscribed}
+            Subject: {c.subject} · Goes to: {c.audienceLabel} ({c.audienceCount}) · Sent to {c.sent} · Unsubscribed from it: {c.unsubscribed}
           </div>
           <div style={{ display: 'flex', gap: 8, marginTop: 10, flexWrap: 'wrap' }}>
             <button type="button" disabled={!!busy} onClick={() => run(c.id, 'test')} style={{ ...btn, background: '#fff', border: '1px solid #131b28', color: '#131b28' }}>
@@ -388,7 +389,7 @@ function CampaignPanel({ status, onDone }: { status: Awaited<ReturnType<typeof a
               onClick={() => run(c.id, 'all')}
               style={{ ...btn, background: '#131b28', border: '1px solid #131b28', color: '#fff', opacity: tested[c.id] ? 1 : 0.4 }}
             >
-              {busy === `${c.id}:all` ? 'Sending…' : `Send to all ${status.activeSubscribers}`}
+              {busy === `${c.id}:all` ? 'Sending…' : `Send to all ${c.audienceCount}`}
             </button>
           </div>
           {note[c.id] && <p style={{ fontSize: 12.5, color: '#3f7a63', margin: '8px 0 0' }}>{note[c.id]}</p>}
