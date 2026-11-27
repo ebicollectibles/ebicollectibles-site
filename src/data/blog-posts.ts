@@ -490,7 +490,7 @@ export const BLOG_POSTS: BlogPostSummary[] = [
       'Japanese Aura Seeker (M7), released November 27, 2026: all 114 cards, the 36 secret rares and the gold Mega Ultra Rare Mega Lucario Z ex.',
     tag: 'New release',
     date: '2026-11-27',
-    heroImage: `${SITE_URL}/assets/blog/aura-seeker-release-hero-v3.webp`,
+    heroImage: `${SITE_URL}/assets/blog/aura-seeker-release-hero-v4.webp`,
     heroAlt: 'A Japanese Aura Seeker booster pack with Mega Lucario Z on the front, the Mega Lucario Z ex Special Art Rare 110/078 in front of it and the Crasher Wake\'s Fervor Special Art Rare behind',
     glow1: 'rgb(112 214 226 / .28)',
     glow2: 'rgb(236 72 130 / .22)',
