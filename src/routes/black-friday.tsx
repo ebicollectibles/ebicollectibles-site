@@ -33,6 +33,21 @@ export const Route = createFileRoute('/black-friday')({
   component: BlackFridayPage,
 })
 
+// The first picks, in the owner's order (Nov 2026): the two pre-orders, the
+// Gem Vol 7 binder deal, then the 30th Celebration box and Day & Night UPC,
+// then Black Bolt and White Flare. Anything not orderable is skipped.
+const LEAD_PICKS = [
+  'pokemon-chinese-radiant-crystal-pikachu-gift-box',
+  'pokemon-japanese-aura-seeker-m7-booster-box',
+  'pokemon-chinese-gem-volume-7-booster-box',
+  'pokemon-chinese-30th-celebration-booster-box',
+  'pokemon-chinese-day-night-ex-gift-box',
+  'pokemon-chinese-black-bolt-slim-booster-box',
+  'pokemon-chinese-white-flare-slim-booster-box',
+  'pokemon-chinese-black-bolt-jumbo-booster-box',
+  'pokemon-chinese-white-flare-jumbo-booster-box',
+]
+
 const pctOff = (p: Product) => (p.compareAtPrice && p.compareAtPrice > p.price && p.price > 0 ? Math.round((1 - p.price / p.compareAtPrice) * 100) : 0)
 
 function BlackFridayPage() {
@@ -47,8 +62,17 @@ function BlackFridayPage() {
         p.category !== 'Acrylic Cases' &&
         (p.notSellable ? !!getInStockVariant(p, products) : p.stock > 0 && p.price > 0),
     )
-    const onSale = inStock.filter((p) => isOnSale(p, products)).sort((a, b) => pctOff(b) - pctOff(a) || (a.bestSellingRank ?? 999) - (b.bestSellingRank ?? 999))
-    const rest = inStock.filter((p) => !onSale.includes(p)).sort((a, b) => (a.bestSellingRank ?? 999) - (b.bestSellingRank ?? 999))
+    const byId = new Map(products.map((p) => [p.id, p]))
+    const lead = LEAD_PICKS.map((id) => byId.get(id)).filter(
+      (p): p is Product => !!p && !p.hideFromShopGrid && !p.comingSoon && !p.notSellable && p.stock > 0 && p.price > 0,
+    )
+    const leadIds = new Set(lead.map((p) => p.id))
+    const onSale = [
+      ...lead,
+      ...inStock.filter((p) => !leadIds.has(p.id) && isOnSale(p, products)).sort((a, b) => pctOff(b) - pctOff(a) || (a.bestSellingRank ?? 999) - (b.bestSellingRank ?? 999)),
+    ]
+    const shown = new Set(onSale.map((p) => p.id))
+    const rest = inStock.filter((p) => !shown.has(p.id)).sort((a, b) => (a.bestSellingRank ?? 999) - (b.bestSellingRank ?? 999))
     return { onSale, rest }
   }, [products])
   const gem = FREE_GIFT_PROMOS.find((p) => p.id === 'gem7-psyduck-binder')!
@@ -116,9 +140,9 @@ function BlackFridayPage() {
         <section className="hp2-wrap" style={{ paddingTop: 36 }}>
           <div className="hp2-head">
             <div>
-              <div className="hp2-eyebrow">In stock · Ships now</div>
-              <h2>On sale for Black Friday</h2>
-              <p>Biggest markdowns first.</p>
+              <div className="hp2-eyebrow">Black Friday picks</div>
+              <h2>Shop the sale</h2>
+              <p>Pre-orders and our top picks first, then the biggest markdowns. Pre-orders count toward the promotion too.</p>
             </div>
           </div>
           <div className="ebi-shop-grid" style={{ background: '#e3e6ea', border: '1px solid #e3e6ea' }}>
