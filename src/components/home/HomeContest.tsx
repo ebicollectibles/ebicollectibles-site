@@ -31,10 +31,10 @@ export function HomeContest() {
           </li>
           <li>
             <span className="hp2-contest-k">Raffle</span>
-            <p className="hp2-contest-big">1 lucky buyer wins a bonus surprise gift</p>
+            <p className="hp2-contest-big">10 lucky buyers win a Pikachu Dream Painting figure blind box</p>
             <p>
-              Every buyer is entered. The winner gets a Pikachu 30th Celebration figure blind box, one of 12 figures, and it ships with their
-              order. It&rsquo;s a blind box, so it&rsquo;s a surprise.
+              Every buyer during the sale is entered. Each winner gets a Pikachu Dream Painting 30th Celebration figure blind box, one of 12
+              figures, and it ships with their order. It&rsquo;s a blind box, so it&rsquo;s a surprise.
             </p>
           </li>
         </ul>
