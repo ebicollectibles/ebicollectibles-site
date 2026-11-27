@@ -601,10 +601,21 @@ function ProductDetailPage() {
             const promo = promoForBuyProduct(product.id)
             const gift = promo && products.find((p) => p.id === promo.giftProductId)
             if (!promo || !gift || gift.stock <= 0 || soldOut || comingSoon) return null
+            // The gift's photo sits in the note so shoppers can see what they get.
             return (
-              <p style={{ fontSize: 13.5, fontWeight: 600, color: '#3f7a63', margin: '10px 0 0', lineHeight: 1.5, padding: '10px 12px', background: '#eef6f2', border: '1px solid #cfe5da', borderRadius: 4 }}>
-                Get a free {gift.name.replace(/^Pokemon\s+/, '').replace(/\s*\(Simplified Chinese\)/, '')} with every {promo.buyQty} boxes: {promo.buyQty} get 1, {promo.buyQty * 2} get 2, and so on. It&rsquo;s added to your cart automatically, while supplies last.
-              </p>
+              <div style={{ display: 'flex', gap: 12, alignItems: 'center', margin: '10px 0 0', padding: '10px 12px', background: '#eef6f2', border: '1px solid #cfe5da', borderRadius: 4 }}>
+                {gift.img && (
+                  <Link to="/products/$id" params={{ id: gift.id }} style={{ flex: '0 0 auto', display: 'block', background: '#fff', borderRadius: 4, padding: 4, lineHeight: 0 }} aria-label={`See the free ${gift.name}`}>
+                    <img src={gift.img} alt={gift.imgAlt || gift.name} width={84} height={84} loading="lazy" style={{ width: 84, height: 84, objectFit: 'contain', display: 'block' }} />
+                  </Link>
+                )}
+                <p style={{ fontSize: 13.5, fontWeight: 600, color: '#3f7a63', margin: 0, lineHeight: 1.5 }}>
+                  Get a free {gift.name.replace(/^Pokemon\s+/, '').replace(/\s*\(Simplified Chinese\)/, '')} with every {promo.buyQty} boxes: {promo.buyQty} get 1, {promo.buyQty * 2} get 2, and so on. It&rsquo;s added to your cart automatically, while supplies last.{' '}
+                  <Link to="/products/$id" params={{ id: gift.id }} style={{ color: 'inherit', whiteSpace: 'nowrap' }}>
+                    See the binder &rarr;
+                  </Link>
+                </p>
+              </div>
             )
           })()}
           {(() => {

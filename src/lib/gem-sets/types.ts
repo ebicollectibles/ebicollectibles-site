@@ -90,6 +90,10 @@ export interface GemSetConfig {
   metaDescription: string
   ogTitle: string
   ogDescription: string
+  // Share image file name in public/assets/share, when it differs from
+  // set-<slug>.jpg. Images there are cached immutable, so a redrawn image
+  // needs a new name.
+  shareImageFile?: string
   // Overrides for copy/data the normal auto-derivation can't state
   // accurately for a structurally irregular set (e.g. Gem Vol 3, whose
   // Pokémon aren't a uniform 28×7, and whose "ex" cards repeat a rarity

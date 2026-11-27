@@ -8,6 +8,7 @@ import { getMyStoreCredit } from '~/server/store-credit'
 import { hasMixedDelayedShipment, isHiOrAk } from '~/lib/order-math'
 import type { CombineCandidate } from '~/lib/use-combine-shipping'
 import { BLOCK_HI_AK_CHECKOUT } from '~/lib/feature-flags'
+import { reportHiAkBlocked } from '~/server/invoice-requests'
 
 // Lets someone pay straight from the cart page with Apple Pay, skipping the
 // regular checkout form entirely — Apple Pay collects the shipping/billing
@@ -66,6 +67,9 @@ export function ExpressApplePayButton({
   const cartHasPreorder = cart.lines.some((l) => l.product.preorder)
   const [available, setAvailable] = React.useState(false)
   const applePayRef = React.useRef<any>(null)
+  // Read inside the Apple Pay sheet's handlers, which outlive a render.
+  const cartLinesRef = React.useRef(cart.lines)
+  cartLinesRef.current = cart.lines
   const [busy, setBusy] = React.useState(false)
 
   // Store credit only exists for signed-in accounts (see
@@ -171,6 +175,16 @@ export function ExpressApplePayButton({
           // Pay hands one over, so the check has to live in this handler
           // instead of on the button itself.
           if (BLOCK_HI_AK_CHECKOUT && isHiOrAk(contact.state)) {
+            // Apple Pay shares no email at this point, only city/state/ZIP.
+            reportHiAkBlocked({
+              data: {
+                state: contact.state.trim().toUpperCase() as 'AK' | 'HI',
+                source: 'apple-pay',
+                city: contact.city || undefined,
+                zip: contact.postalCode || undefined,
+                lines: cartLinesRef.current.map((l) => ({ productId: l.product.id, qty: l.qty })),
+              },
+            }).catch(() => {})
             return {
               error: "We can't ship to Alaska or Hawaii through checkout yet. Send this cart as an invoice request below and we'll email you an invoice with shipping.",
             }
@@ -240,6 +254,17 @@ export function ExpressApplePayButton({
       // trust that a completed tokenize() necessarily went through that
       // path cleanly.
       if (BLOCK_HI_AK_CHECKOUT && isHiOrAk(shippingContact.state)) {
+        reportHiAkBlocked({
+          data: {
+            state: shippingContact.state.trim().toUpperCase() as 'AK' | 'HI',
+            source: 'apple-pay',
+            email: shippingContact.email || undefined,
+            name: [shippingContact.givenName, shippingContact.familyName].filter(Boolean).join(' ') || undefined,
+            city: shippingContact.city || undefined,
+            zip: shippingContact.postalCode || undefined,
+            lines: cartLinesRef.current.map((l) => ({ productId: l.product.id, qty: l.qty })),
+          },
+        }).catch(() => {})
         onError("We can't ship to Alaska or Hawaii through checkout yet. Send this cart as an invoice request below and we'll email you an invoice with shipping.")
         return
       }

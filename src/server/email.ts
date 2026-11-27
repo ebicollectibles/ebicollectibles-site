@@ -1451,6 +1451,60 @@ export interface InvoiceRequestEmailData {
 
 const OWNER_EMAIL = 'eastblueinternational@gmail.com'
 
+export interface HiAkBlockedAlertData {
+  state: string
+  source: string
+  email: string | null
+  name: string | null
+  place: string | null
+  items: Array<{ name: string; qty: number; unitPrice: number }>
+  subtotal: number
+}
+
+// To the owner when an Alaska or Hawaii shopper is stopped at checkout
+// (server/invoice-requests.ts reportHiAkBlocked), so a shopper who leaves
+// without sending the invoice request is never missed.
+export async function sendHiAkBlockedAlertEmail(data: HiAkBlockedAlertData): Promise<EmailSendResult> {
+  const apiKey = process.env.RESEND_API_KEY
+  const from = process.env.ORDER_FROM_EMAIL
+  if (!apiKey || !from) return { status: 'skipped' }
+  const stateName = data.state === 'AK' ? 'Alaska' : data.state === 'HI' ? 'Hawaii' : data.state
+  const text = [
+    `A shopper shipping to ${stateName} was stopped at checkout (${data.source}).`,
+    data.email
+      ? 'If they send an invoice request you will get that email too. If not, reply to this email to reach them.'
+      : 'They had not entered an email yet. If they send an invoice request you will get that email too.',
+    '',
+    `Email: ${data.email || '-'}`,
+    `Name: ${data.name || '-'}`,
+    `Ship to: ${data.place || stateName}`,
+    '',
+    'Cart:',
+    ...(data.items.length ? data.items.map((i) => `${i.qty}x ${i.name} - ${formatMoney(i.unitPrice * i.qty)}`) : ['-']),
+    '',
+    `Subtotal: ${formatMoney(data.subtotal)} (before shipping and tax)`,
+  ].join('\n')
+  const res = await fetch('https://api.resend.com/emails', {
+    method: 'POST',
+    headers: { Authorization: `Bearer ${apiKey}`, 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      from,
+      to: OWNER_EMAIL,
+      ...(data.email ? { reply_to: data.email } : {}),
+      subject: `${stateName} shopper stopped at checkout: ${data.email || 'no email yet'}, ${formatMoney(data.subtotal)}`,
+      text,
+    }),
+  })
+  if (!res.ok) {
+    const json = await res.json().catch(() => null)
+    const error = json?.message || `HTTP ${res.status}`
+    console.error('Failed to send AK/HI blocked alert:', error)
+    return { status: 'failed', error }
+  }
+  const sentJson = await res.json().catch(() => null)
+  return { status: 'sent', resendId: sentJson?.id }
+}
+
 // Alaska and Hawaii can't check out on the site (BLOCK_HI_AK_CHECKOUT), so
 // the cart can be sent as an invoice request instead (server/invoice-requests.ts).
 // Two emails: the full request to the owner, reply-to the customer, and a

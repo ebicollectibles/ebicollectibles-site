@@ -67,6 +67,7 @@ const config: GemSetConfig = {
   metaDescription:
     'All 114 cards in Aura Seeker (ハドウシーカー, Hadou Seeker, M7), with all 36 secret rares and Mega Lucario Z ex as a gold Mega Ultra Rare.',
   ogTitle: 'Pokémon Aura Seeker (M7) Japanese Card List: All 114 Cards',
+  shareImageFile: 'set-aura-seeker-m7-v2.jpg',
   ogDescription:
     'All 114 cards in Aura Seeker (ハドウシーカー, Hadou Seeker, M7), with all 36 secret rares. Browse by Pokémon and filter by rarity.',
 }

@@ -35,6 +35,7 @@ import { hasPendingOrderForEmail } from '~/server/customers'
 import { useCombineShippingChoice } from '~/lib/use-combine-shipping'
 import { ShipTogetherChoice } from '~/components/ShipTogetherChoice'
 import { InvoiceRequestForm } from '~/components/InvoiceRequestForm'
+import { reportHiAkBlocked } from '~/server/invoice-requests'
 import { HolidayShippingNote } from '~/components/HolidayShippingNote'
 
 export const Route = createFileRoute('/checkout')({
@@ -267,6 +268,32 @@ function CheckoutPage() {
   // rather than charge the flat mainland rate on a package that can genuinely
   // cost more, checkout is blocked outright for these two states for now.
   const hiAkBlocked = BLOCK_HI_AK_CHECKOUT && isHiOrAk(contact.state)
+  // Tell the owner about every Alaska/Hawaii shopper stopped here, so one
+  // who leaves without sending the invoice request isn't missed: once when
+  // the block shows, and again once their email is filled in. The server
+  // drops repeats.
+  const hiAkReported = React.useRef<Set<string>>(new Set())
+  const hiAkEmail = EMAIL_RE.test(contact.email.trim()) ? contact.email.trim() : ''
+  React.useEffect(() => {
+    if (!hiAkBlocked || cart.cartEmpty) return
+    const key = hiAkEmail ? `email:${hiAkEmail.toLowerCase()}` : 'no-email'
+    if (hiAkReported.current.has(key) || (!hiAkEmail && hiAkReported.current.size > 0)) return
+    const t = window.setTimeout(() => {
+      hiAkReported.current.add(key)
+      reportHiAkBlocked({
+        data: {
+          state: contact.state.trim().toUpperCase() as 'AK' | 'HI',
+          source: 'checkout',
+          email: hiAkEmail || undefined,
+          name: [contact.firstName, contact.lastName].map((x) => x.trim()).filter(Boolean).join(' ') || undefined,
+          city: contact.city.trim() || undefined,
+          zip: contact.zip.trim() || undefined,
+          lines: cart.lines.map((l) => ({ productId: l.product.id, qty: l.qty })),
+        },
+      }).catch(() => {})
+    }, hiAkEmail ? 1500 : 4000)
+    return () => window.clearTimeout(t)
+  }, [hiAkBlocked, hiAkEmail, contact.state, contact.firstName, contact.lastName, contact.city, contact.zip, cart.cartEmpty, cart.lines])
   const contactComplete =
     !hiAkBlocked &&
     EMAIL_RE.test(contact.email.trim()) &&

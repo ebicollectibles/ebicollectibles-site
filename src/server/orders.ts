@@ -31,6 +31,7 @@ import { AFFILIATE_REF_COOKIE } from '~/lib/affiliate-ref'
 import { TRAFFIC_SOURCE_COOKIE, decodeTrafficSource } from '~/lib/traffic-source'
 import { activeGiftProductIds, computeFreeGifts } from '~/lib/promotions'
 import { contestLive, freePacksFor } from '~/lib/contest'
+import { recordHiAkBlocked } from './invoice-requests'
 
 const placeOrderSchema = z.object({
   lines: z.array(z.object({ productId: z.string(), qty: z.number().int().positive() })).min(1),
@@ -178,6 +179,15 @@ export const placeOrder = createServerFn({ method: 'POST' })
     // API call, or a bypass like the Apple Pay quick-pay flow which collects
     // its own address, must never slip through).
     if (BLOCK_HI_AK_CHECKOUT && isHiOrAk(data.contact.state)) {
+      await recordHiAkBlocked({
+        state: data.contact.state.trim().toUpperCase() as 'AK' | 'HI',
+        source: 'place-order',
+        email: data.contact.email,
+        name: [data.contact.firstName, data.contact.lastName].filter(Boolean).join(' '),
+        city: data.contact.city,
+        zip: data.contact.zip,
+        lines: data.lines.map((l) => ({ productId: l.productId, qty: l.qty })),
+      }).catch((err) => console.error('Failed to report AK/HI blocked order:', err))
       throw new Error(
         "We can't ship to Alaska or Hawaii through checkout yet. Send your cart as an invoice request from the cart page and we'll email you an invoice with shipping.",
       )

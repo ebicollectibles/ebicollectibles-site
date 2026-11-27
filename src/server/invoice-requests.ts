@@ -2,11 +2,11 @@ import { createServerFn } from '@tanstack/react-start'
 import { z } from 'zod'
 import { and, eq, gt, inArray, sql } from 'drizzle-orm'
 import { getDb } from '~/lib/db/client'
-import { products as productsTable, emailEvents } from '~/lib/db/schema'
+import { products as productsTable, emailEvents, paymentAttempts } from '~/lib/db/schema'
 import { activeGiftProductIds, computeFreeGifts } from '~/lib/promotions'
 import { contestLive, freePacksFor } from '~/lib/contest'
 import { overlaySquareData } from './square'
-import { sendInvoiceRequestEmails } from './email'
+import { sendHiAkBlockedAlertEmail, sendInvoiceRequestEmails } from './email'
 
 // Alaska and Hawaii can't check out on the site yet (BLOCK_HI_AK_CHECKOUT).
 // Instead the shopper sends their cart as an invoice request: the owner gets
@@ -77,7 +77,87 @@ export const requestInvoice = createServerFn({ method: 'POST' })
       console.error('Failed to log invoice request:', err)
     }
     if (sent.owner.status !== 'sent') {
+      // Also on the admin orders page's failures list, so a request whose
+      // email to the owner failed still shows up somewhere.
+      try {
+        await db.insert(paymentAttempts).values({ email: data.email, amount: subtotal, errorMessage: `Invoice request (${data.state}) email to owner failed: ${'error' in sent.owner ? sent.owner.error ?? sent.owner.status : sent.owner.status}` })
+      } catch (err) {
+        console.error('Failed to record failed invoice request:', err)
+      }
       throw new Error("We couldn't send your request just now. Please email eastblueinternational@gmail.com and we'll sort it out.")
     }
     return { ok: true as const, subtotal, freePacks: freePacksFor(subtotal), promotionLive }
   })
+
+// An Alaska or Hawaii shopper stopped at checkout. Each one emails the owner
+// and lands on the admin orders page's "Recent payment failures" list, so a
+// shopper who leaves without sending the invoice request is never missed.
+// Called from the checkout page, the Apple Pay sheet and placeOrder itself.
+export interface HiAkBlockedReport {
+  state: 'AK' | 'HI'
+  source: 'checkout' | 'apple-pay' | 'place-order'
+  email?: string | null
+  name?: string | null
+  city?: string | null
+  zip?: string | null
+  lines: Array<{ productId: string; qty: number }>
+}
+
+const DEDUPE_MINUTES = 30
+const MAX_ALERTS_PER_HOUR = 30
+
+export async function recordHiAkBlocked(report: HiAkBlockedReport): Promise<'sent' | 'duplicate' | 'capped' | 'failed' | 'skipped'> {
+  const db = getDb()
+  const email = report.email && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(report.email.trim()) ? report.email.trim() : null
+  // Without an email the shopper is keyed on state and ZIP.
+  const key = email ? email.toLowerCase() : `no-email:${report.state}:${(report.zip || '').trim() || 'unknown'}`
+  const [recent] = await db
+    .select({
+      same: sql<number>`count(*) filter (where lower(${emailEvents.email}) = ${key} and ${emailEvents.createdAt} > ${new Date(Date.now() - DEDUPE_MINUTES * 60 * 1000)})::int`,
+      hour: sql<number>`count(*) filter (where ${emailEvents.createdAt} > ${new Date(Date.now() - 60 * 60 * 1000)})::int`,
+    })
+    .from(emailEvents)
+    .where(eq(emailEvents.type, 'hi_ak_blocked_alert'))
+  if ((recent?.same ?? 0) > 0) return 'duplicate'
+  if ((recent?.hour ?? 0) >= MAX_ALERTS_PER_HOUR) return 'capped'
+
+  const ids = [...new Set(report.lines.map((l) => l.productId))]
+  const rows = ids.length ? await db.select().from(productsTable).where(inArray(productsTable.id, ids)) : []
+  const live = await overlaySquareData(
+    rows.map((r) => ({ id: r.id, name: r.name, price: r.price, stock: r.stock, squareVariationId: r.squareVariationId, published: r.published, notSellable: r.notSellable, comingSoon: r.comingSoon })),
+  ).catch(() => rows.map((r) => ({ id: r.id, name: r.name, price: r.price })))
+  const byId = new Map(live.map((p) => [p.id, p]))
+  const items = report.lines
+    .map((l) => ({ l, p: byId.get(l.productId) }))
+    .filter((x) => x.p)
+    .map(({ l, p }) => ({ name: p!.name, qty: l.qty, unitPrice: Number(p!.price) || 0 }))
+  const subtotal = Math.round(items.reduce((t, i) => t + i.unitPrice * i.qty, 0) * 100) / 100
+  const place = [report.city?.trim(), [report.state, report.zip?.trim()].filter(Boolean).join(' ')].filter(Boolean).join(', ')
+
+  const sent = await sendHiAkBlockedAlertEmail({ state: report.state, source: report.source, email, name: report.name?.trim() || null, place, items, subtotal })
+  try {
+    await db.insert(emailEvents).values({ email: key, type: 'hi_ak_blocked_alert', status: sent.status, errorMessage: sent.error ?? null, resendId: sent.resendId ?? null })
+    await db.insert(paymentAttempts).values({
+      email,
+      amount: subtotal,
+      errorMessage: `Alaska/Hawaii checkout blocked (${report.state}, ${report.source})${email ? '' : `, no email yet${report.zip ? `, ZIP ${report.zip}` : ''}`}. Alert email: ${sent.status}`,
+    })
+  } catch (err) {
+    console.error('Failed to record AK/HI blocked checkout:', err)
+  }
+  return sent.status === 'sent' ? 'sent' : sent.status
+}
+
+const blockedSchema = z.object({
+  state: z.enum(['AK', 'HI']),
+  source: z.enum(['checkout', 'apple-pay']),
+  email: z.string().trim().max(200).optional(),
+  name: z.string().trim().max(120).optional(),
+  city: z.string().trim().max(100).optional(),
+  zip: z.string().trim().max(12).optional(),
+  lines: z.array(z.object({ productId: z.string().max(200), qty: z.number().int().positive().max(500) })).max(60),
+})
+
+export const reportHiAkBlocked = createServerFn({ method: 'POST' })
+  .validator(blockedSchema)
+  .handler(async ({ data }) => ({ result: await recordHiAkBlocked(data) }))

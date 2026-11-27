@@ -14,7 +14,7 @@ export function safeJsonLd(value: unknown): string {
 
 export function buildGemSetHead(data: BuiltGemSetData, config: GemSetConfig) {
   const heroImage = data.cardById.get(config.fanIds[Math.floor(config.fanIds.length / 2)])?.image
-  const shareImage = `${SITE_URL}/assets/share/set-${config.routePath.split('/').pop()}.jpg`
+  const shareImage = `${SITE_URL}/assets/share/${config.shareImageFile ?? `set-${config.routePath.split('/').pop()}.jpg`}`
   return {
     meta: [
       { title: config.metaTitle },
