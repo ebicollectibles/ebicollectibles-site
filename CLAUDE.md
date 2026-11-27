@@ -85,3 +85,11 @@ a big release if it is getting close.
   price is never used for Square-linked products, so price changes are made in
   Square only. The site's "compare at" (was) price is still set on the site,
   since Square has no equivalent; it drives the Sale badge.
+
+## DropNotify affiliate links
+
+- r/TheTrainersCollective, r/pokemondealsusa and r/PokemonDropNotify are all
+  owned by DropNotify. Every tracked link made for a post in any of them must
+  credit DropNotify: its short link destination ends in `?ref=dn` (or adds
+  `ref=dn` to an existing query string). Test the redirect before handing it
+  over, then take the test click back off the count.
