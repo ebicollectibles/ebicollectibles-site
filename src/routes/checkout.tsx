@@ -34,6 +34,7 @@ import { getMyStoreCredit } from '~/server/store-credit'
 import { hasPendingOrderForEmail } from '~/server/customers'
 import { useCombineShippingChoice } from '~/lib/use-combine-shipping'
 import { ShipTogetherChoice } from '~/components/ShipTogetherChoice'
+import { InvoiceRequestForm } from '~/components/InvoiceRequestForm'
 
 export const Route = createFileRoute('/checkout')({
   loader: () => getCurrentCustomer(),
@@ -895,11 +896,8 @@ function CheckoutPage() {
                     }}
                   >
                     <p style={{ fontSize: 13, lineHeight: 1.6, color: '#131b28', margin: 0 }}>
-                      We can't ship to Alaska or Hawaii through the site just yet. Email{' '}
-                      <a href="mailto:eastblueinternational@gmail.com" style={{ color: '#131b28', fontWeight: 600 }}>
-                        eastblueinternational@gmail.com
-                      </a>{' '}
-                      and we'll get your order sorted directly.
+                      We can't ship to Alaska or Hawaii through checkout just yet, but you can still order: send this cart as an
+                      invoice request (in the order summary) and we'll email you an invoice with shipping included.
                     </p>
                   </div>
                 )}
@@ -1117,6 +1115,23 @@ function CheckoutPage() {
         </div>
 
         <aside className="ebi-sticky-aside" style={{ border: '1px solid #e3e6ea', padding: 24 }}>
+          {hiAkBlocked && !cart.cartEmpty && (
+            <div style={{ marginBottom: 20 }}>
+              <InvoiceRequestForm
+                compact
+                prefill={{
+                  name: `${contact.firstName} ${contact.lastName}`.trim(),
+                  email: contact.email,
+                  phone: contact.phone,
+                  street: contact.street,
+                  apartment: contact.apartment,
+                  city: contact.city,
+                  state: contact.state,
+                  zip: contact.zip,
+                }}
+              />
+            </div>
+          )}
           <div style={monoLabel}>Order summary</div>
           <div style={{ marginTop: 18, display: 'flex', flexDirection: 'column', gap: 16 }}>
             {cart.lines.map((line) => (

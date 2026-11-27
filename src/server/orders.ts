@@ -178,7 +178,7 @@ export const placeOrder = createServerFn({ method: 'POST' })
     // its own address, must never slip through).
     if (BLOCK_HI_AK_CHECKOUT && isHiOrAk(data.contact.state)) {
       throw new Error(
-        "We can't ship to Alaska or Hawaii through the site yet — email eastblueinternational@gmail.com and we'll get your order sorted directly.",
+        "We can't ship to Alaska or Hawaii through checkout yet. Send your cart as an invoice request from the cart page and we'll email you an invoice with shipping.",
       )
     }
 

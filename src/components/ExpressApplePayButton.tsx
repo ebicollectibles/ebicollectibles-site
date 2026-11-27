@@ -172,7 +172,7 @@ export function ExpressApplePayButton({
           // instead of on the button itself.
           if (BLOCK_HI_AK_CHECKOUT && isHiOrAk(contact.state)) {
             return {
-              error: "We can't ship to Alaska or Hawaii through the site yet — email eastblueinternational@gmail.com and we'll get your order sorted directly.",
+              error: "We can't ship to Alaska or Hawaii through checkout yet. Send this cart as an invoice request below and we'll email you an invoice with shipping.",
             }
           }
           const { rate } = await getSalesTaxRate({
@@ -240,7 +240,7 @@ export function ExpressApplePayButton({
       // trust that a completed tokenize() necessarily went through that
       // path cleanly.
       if (BLOCK_HI_AK_CHECKOUT && isHiOrAk(shippingContact.state)) {
-        onError("We can't ship to Alaska or Hawaii through the site yet — email eastblueinternational@gmail.com and we'll get your order sorted directly.")
+        onError("We can't ship to Alaska or Hawaii through checkout yet. Send this cart as an invoice request below and we'll email you an invoice with shipping.")
         return
       }
 

@@ -1433,3 +1433,105 @@ export async function sendCampaignEmails(
   }
   return results
 }
+
+export interface InvoiceRequestEmailData {
+  name: string
+  email: string
+  phone: string | null
+  address: string
+  state: string
+  note: string | null
+  items: Array<{ name: string; qty: number; unitPrice: number; free?: boolean }>
+  subtotal: number
+  freePacks: number
+  promotionLive: boolean
+}
+
+const OWNER_EMAIL = 'eastblueinternational@gmail.com'
+
+// Alaska and Hawaii can't check out on the site (BLOCK_HI_AK_CHECKOUT), so
+// the cart can be sent as an invoice request instead (server/invoice-requests.ts).
+// Two emails: the full request to the owner, reply-to the customer, and a
+// confirmation to the customer with what they asked for.
+export async function sendInvoiceRequestEmails(data: InvoiceRequestEmailData): Promise<{ owner: EmailSendResult; customer: EmailSendResult }> {
+  const apiKey = process.env.RESEND_API_KEY
+  const from = process.env.ORDER_FROM_EMAIL
+  if (!apiKey || !from) return { owner: { status: 'skipped' }, customer: { status: 'skipped' } }
+  const stateName = data.state === 'AK' ? 'Alaska' : data.state === 'HI' ? 'Hawaii' : data.state
+  const line = (i: InvoiceRequestEmailData['items'][number]) => `${i.qty}x ${i.name} - ${i.free ? 'FREE' : formatMoney(i.unitPrice * i.qty)}`
+  const send = async (body: Record<string, unknown>): Promise<EmailSendResult> => {
+    const res = await fetch('https://api.resend.com/emails', {
+      method: 'POST',
+      headers: { Authorization: `Bearer ${apiKey}`, 'Content-Type': 'application/json' },
+      body: JSON.stringify({ from, ...body }),
+    })
+    if (!res.ok) {
+      const json = await res.json().catch(() => null)
+      const error = json?.message || `HTTP ${res.status}`
+      console.error('Failed to send invoice request email:', error)
+      return { status: 'failed', error }
+    }
+    const sentJson = await res.json().catch(() => null)
+    return { status: 'sent', resendId: sentJson?.id }
+  }
+
+  const ownerText = [
+    `Invoice request from ${stateName}`,
+    '',
+    `Name: ${data.name}`,
+    `Email: ${data.email}`,
+    `Phone: ${data.phone || '-'}`,
+    `Ship to: ${data.address}`,
+    '',
+    'Cart:',
+    ...data.items.map(line),
+    '',
+    `Subtotal: ${formatMoney(data.subtotal)} (before shipping and tax)`,
+    ...(data.promotionLive ? [`Black Friday Promotion: ${data.freePacks} free Chinese pack${data.freePacks === 1 ? '' : 's'}; counts toward top spender prizes`] : []),
+    '',
+    `Note: ${data.note || '-'}`,
+    '',
+    'Reply to this email to answer the customer.',
+  ].join('\n')
+  const owner = await send({
+    to: OWNER_EMAIL,
+    reply_to: data.email,
+    subject: `Invoice request (${stateName}): ${data.name}, ${formatMoney(data.subtotal)}`,
+    text: ownerText,
+  })
+
+  const itemsHtml = data.items
+    .map(
+      (i) =>
+        `<tr><td style="padding:8px 0;border-top:1px solid ${BORDER};${BODY_FONT}font-size:14px;color:${INK};">${i.qty}&times; ${escapeHtml(i.name)}</td><td align="right" style="padding:8px 0;border-top:1px solid ${BORDER};${BODY_FONT}font-size:14px;font-weight:700;color:${INK};white-space:nowrap;">${i.free ? 'FREE' : formatMoney(i.unitPrice * i.qty)}</td></tr>`,
+    )
+    .join('')
+  const promoLine = data.promotionLive
+    ? `This request counts fully toward the Black Friday Promotion: ${data.freePacks} free Chinese pack${data.freePacks === 1 ? '' : 's'} with this order, and your total counts toward the top spender prizes.`
+    : ''
+  const html = emailShell({
+    badgeLabel: 'Invoice request received',
+    badgeColor: GREEN,
+    heading: `Thanks${data.name ? `, ${escapeHtml(data.name.split(' ')[0])}` : ''}! We got your request`,
+    intro: `We'll get back to you by email with an invoice that includes shipping to ${stateName}. Nothing has been charged.`,
+    leadHtml:
+      section(`<table role="presentation" width="100%" cellpadding="0" cellspacing="0">${itemsHtml}<tr><td style="padding:10px 0;border-top:1px solid ${BORDER};${BODY_FONT}font-size:14px;color:${MUTED};">Subtotal, before shipping and tax</td><td align="right" style="padding:10px 0;border-top:1px solid ${BORDER};${BODY_FONT}font-size:14px;font-weight:700;color:${INK};">${formatMoney(data.subtotal)}</td></tr></table>`, 18) +
+      (promoLine ? section(paragraph(escapeHtml(promoLine), { size: 14, color: INK }), 14) : ''),
+    primaryButton: { label: 'Keep shopping', url: `${SITE_URL}/shop` },
+  })
+  const customer = await send({
+    to: data.email,
+    reply_to: OWNER_EMAIL,
+    subject: 'We got your invoice request',
+    html,
+    text: [
+      `Thanks! We got your request.`,
+      `We'll get back to you by email with an invoice that includes shipping to ${stateName}. Nothing has been charged.`,
+      '',
+      ...data.items.map(line),
+      `Subtotal, before shipping and tax: ${formatMoney(data.subtotal)}`,
+      ...(promoLine ? ['', promoLine] : []),
+    ].join('\n'),
+  })
+  return { owner, customer }
+}

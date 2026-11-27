@@ -17,6 +17,7 @@ import { formatMoney } from '~/lib/products'
 import { thumbSrcSet } from '~/components/ResponsiveImage'
 import { FreeGiftRows } from '~/components/FreeGiftRows'
 import { ContestCartNote } from '~/components/ContestCartNote'
+import { InvoiceRequestForm } from '~/components/InvoiceRequestForm'
 
 export const Route = createFileRoute('/cart')({
   // Utility page: its own title instead of inheriting the home page's, and
@@ -85,6 +86,7 @@ function CartPage() {
     giftNote?: string
   } | null>(null)
   const [expressError, setExpressError] = React.useState<string | null>(null)
+  const [showInvoice, setShowInvoice] = React.useState(false)
 
   if (confirmed) {
     return (
@@ -359,6 +361,20 @@ function CartPage() {
               </div>
               {expressError && (
                 <p style={{ fontSize: 12.5, color: '#a85b2c', marginTop: 10, lineHeight: 1.5 }}>{expressError}</p>
+              )}
+              {/* Alaska and Hawaii can't check out yet: send the cart as an
+                  invoice request instead. Opens by itself when Apple Pay
+                  turns down an AK/HI address. */}
+              {showInvoice || /Alaska or Hawaii/.test(expressError ?? '') ? (
+                <InvoiceRequestForm compact />
+              ) : (
+                <button
+                  type="button"
+                  onClick={() => setShowInvoice(true)}
+                  style={{ marginTop: 12, background: 'none', border: 0, padding: 0, fontSize: 12.5, fontWeight: 600, color: '#131b28', textDecoration: 'underline', cursor: 'pointer', textAlign: 'left' }}
+                >
+                  Shipping to Alaska or Hawaii? Request an invoice
+                </button>
               )}
             </div>
           </div>
