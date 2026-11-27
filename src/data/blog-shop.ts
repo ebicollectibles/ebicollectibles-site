@@ -42,6 +42,7 @@ const SET_PRODUCTS: Record<string, string[]> = {
     'pokemon-chinese-pikachu-30th-celebration-plush-keychain-18',
     'pokemon-chinese-pikachu-30th-celebration-plush-keychain-22',
   ],
+  'pikachu-gift-box': ['pokemon-chinese-radiant-crystal-pikachu-gift-box'],
   'day-night-gift-box': [
     'pokemon-chinese-day-night-ex-gift-box',
   ],
