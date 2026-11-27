@@ -35,7 +35,7 @@ export const Route = createFileRoute('/black-friday')({
 
 // The first picks, in the owner's order (Nov 2026): the two pre-orders, the
 // Gem Vol 7 binder deal, then the 30th Celebration box and Day & Night UPC,
-// then Black Bolt and White Flare. Anything not orderable is skipped.
+// then Black Bolt and White Flare, then the 30th binder. Anything not orderable is skipped.
 const LEAD_PICKS = [
   'pokemon-chinese-radiant-crystal-pikachu-gift-box',
   'pokemon-japanese-aura-seeker-m7-booster-box',
@@ -46,6 +46,7 @@ const LEAD_PICKS = [
   'pokemon-chinese-white-flare-slim-booster-box',
   'pokemon-chinese-black-bolt-jumbo-booster-box',
   'pokemon-chinese-white-flare-jumbo-booster-box',
+  'pokemon-chinese-30th-celebration-9-pocket-zip-binder',
 ]
 
 const pctOff = (p: Product) => (p.compareAtPrice && p.compareAtPrice > p.price && p.price > 0 ? Math.round((1 - p.price / p.compareAtPrice) * 100) : 0)
