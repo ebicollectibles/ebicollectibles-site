@@ -110,7 +110,7 @@ export async function recordHiAkBlocked(report: HiAkBlockedReport): Promise<'sen
   const db = getDb()
   const email = report.email && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(report.email.trim()) ? report.email.trim() : null
   // Without an email the shopper is keyed on state and ZIP.
-  const key = email ? email.toLowerCase() : `no-email:${report.state}:${(report.zip || '').trim() || 'unknown'}`
+  const key = (email ?? `no-email:${report.state}:${(report.zip || '').trim() || 'unknown'}`).toLowerCase()
   const [recent] = await db
     .select({
       same: sql<number>`count(*) filter (where lower(${emailEvents.email}) = ${key} and ${emailEvents.createdAt} > ${new Date(Date.now() - DEDUPE_MINUTES * 60 * 1000)})::int`,
