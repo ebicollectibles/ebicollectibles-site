@@ -30,11 +30,11 @@ export function HomeContest() {
             <p>Plus 1 more pack for every $100 you spend. A $250 order gets 3 packs.</p>
           </li>
           <li>
-            <span className="hp2-contest-k">Raffle</span>
-            <p className="hp2-contest-big">10 lucky buyers win a Pikachu Dream Painting figure blind box</p>
+            <span className="hp2-contest-k">First 10 orders</span>
+            <p className="hp2-contest-big">The first 10 orders get a Pikachu Dream Painting figure blind box</p>
             <p>
-              Every buyer during the sale is entered. Each winner gets a Pikachu Dream Painting 30th Celebration figure blind box, one of 12
-              figures, and it ships with their order. It&rsquo;s a blind box, so it&rsquo;s a surprise.
+              One Pikachu Dream Painting 30th Celebration figure blind box, one of 12 figures, ships with each of the first 10 orders. It&rsquo;s a
+              blind box, so it&rsquo;s a surprise.
             </p>
           </li>
         </ul>
