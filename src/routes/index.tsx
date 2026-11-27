@@ -30,11 +30,11 @@ export const Route = createFileRoute('/')({
             property: 'og:description',
             content: 'Sale prices on Simplified Chinese Pokémon, a free Chinese pack on every order, and prizes for the top 3 spenders. Ends Monday 11/30.',
           },
-          { property: 'og:image', content: 'https://ebicollectibles.com/assets/share/home-black-friday.jpg' },
+          { property: 'og:image', content: 'https://ebicollectibles.com/assets/share/home-black-friday-v2.jpg' },
           { property: 'og:image:width', content: '1200' },
           { property: 'og:image:height', content: '630' },
           { property: 'og:image:alt', content: 'Black Friday Week at EBI Collectibles, ends Monday 11/30: a free Chinese pack on every order and prizes for the top 3 spenders' },
-          { name: 'twitter:image', content: 'https://ebicollectibles.com/assets/share/home-black-friday.jpg' },
+          { name: 'twitter:image', content: 'https://ebicollectibles.com/assets/share/home-black-friday-v2.jpg' },
         ]
       : [],
     links: [

@@ -26,7 +26,7 @@ export function AnnouncementBar() {
         <>
           <span aria-hidden="true" style={{ width: 6, height: 6, borderRadius: '50%', background: '#ffd23f', display: 'inline-block', flexShrink: 0 }} />
           <span>
-            Black Friday Promotion · Top 3 spenders win prizes · Free Chinese pack on every order · Ends {CONTEST_ENDS_LABEL}
+            Black Friday Promotion · Every order gets a free Chinese pack · Top spenders win prizes · Ends {CONTEST_ENDS_LABEL}
           </span>
           {/* A plain link (not the router's) so it always lands on the section,
               from any page and from the homepage itself. */}

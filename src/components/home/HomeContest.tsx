@@ -16,9 +16,9 @@ export function HomeContest() {
       <div className="hp2-wrap hp2-contest-row">
         <div className="hp2-contest-head">
           <span className="hp2-contest-eyebrow">Black Friday Promotion · Ends {CONTEST_ENDS_LABEL}</span>
-          <h2 id="contest-h">Shop the sale, win prizes</h2>
+          <h2 id="contest-h">Spend more, get more, win big</h2>
           <p>
-            <b>1 free Chinese pack on every order</b>, plus 1 more for every $100. The top 3 spenders win:
+            <b>Every order gets a free Chinese pack</b>, and every $100 adds another. Keep going: the top 3 spenders by {CONTEST_ENDS_LABEL} win:
           </p>
         </div>
         <ol className="hp2-contest-podium">

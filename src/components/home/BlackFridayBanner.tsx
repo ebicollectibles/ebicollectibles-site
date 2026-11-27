@@ -117,8 +117,8 @@ export function BlackFridayBanner() {
           </h2>
           {contestLive() ? (
             <p>
-              Sale prices on booster boxes, gift boxes, figures and more, plus a spend-and-win promotion: top 3 spenders win prizes and every
-              order gets a free Chinese pack. Ends <b style={{ color: '#131b28' }}>{CONTEST_ENDS_LABEL}</b>.
+              Every order gets a free Chinese pack. Every $100 adds another. Spend the most and you take home a 30th Celebration Pokémon
+              Center Elite Trainer Box. Ends <b style={{ color: '#131b28' }}>{CONTEST_ENDS_LABEL}</b>.
             </p>
           ) : (
             <p>Booster boxes, gift boxes, figures, keychains and more, all marked down.</p>
@@ -153,7 +153,7 @@ export function BlackFridayBanner() {
             </Link>
             {contestLive() && (
               <a href="#promotion" className="bf-btn2">
-                See the prizes
+                See what you can win
               </a>
             )}
           </div>
