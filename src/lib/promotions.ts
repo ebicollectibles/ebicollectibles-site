@@ -28,6 +28,17 @@ export const FREE_GIFT_PROMOS: FreeGiftPromo[] = [
     label: 'One free with every 5 Gem Vol 7 booster boxes, while supplies last',
     active: true,
   },
+  // Temporary, for one real test order (owner's call, Nov 2026): the hidden
+  // 1-cent test item gives a second copy of itself free, so a cheap order
+  // runs the same free-gift code as the Gem Vol 7 binder. Remove after the test.
+  {
+    id: 'checkout-test',
+    buyProductId: 'ebi-checkout-test',
+    buyQty: 1,
+    giftProductId: 'ebi-checkout-test',
+    label: 'Test gift: one free with every test item',
+    active: true,
+  },
 ]
 
 export interface FreeGiftLine {
