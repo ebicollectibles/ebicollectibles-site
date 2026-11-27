@@ -23,6 +23,11 @@ describe('blog posts linked from set and product pages', () => {
     expect(blogSetKeyForSetPath('/sets/chinese/black-bolt-csv10-5')).toBe('black-bolt')
     expect(blogSetKeyForProduct('pokemon-chinese-white-flare-slim-booster-box')).toBe('white-flare')
   })
+  it('wires up Japanese set pages one by one, so a shared name never picks up the Chinese set', () => {
+    expect(blogSetKeyForSetPath('/sets/japanese/aura-seeker-m7')).toBe('aura-seeker')
+    expect(blogSetKeyForSetPath('/sets/japanese/30th-celebration-m6a')).toBeNull()
+    expect(blogSetKeyForProduct('pokemon-japanese-aura-seeker-m7-booster-box')).toBe('aura-seeker')
+  })
 })
 
 describe('companionProductIds', () => {

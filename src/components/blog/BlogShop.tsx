@@ -43,6 +43,7 @@ function kindLabel(p: BlogShopProduct): string | null {
 }
 
 function noteFor(p: BlogShopProduct): string | null {
+  if (p.preorder) return p.restockNote ? `Pre-order. ${p.restockNote}.` : 'Pre-order.'
   const { kind } = splitName(p)
   if (kind === 'Slim') return 'Smaller packs and a lower box price.'
   if (kind === 'Jumbo') return 'Bigger packs, with more cards and holos in each pack.'
@@ -60,7 +61,7 @@ function spokenName(p: BlogShopProduct): string {
 function ProductLinkButton({ p, className }: { p: BlogShopProduct; className: string }) {
   return (
     <Link to="/products/$id" params={{ id: p.id }} className={className}>
-      Shop now
+      {p.preorder ? 'Pre-order now' : 'Shop now'}
       <span className="sr-only">: {spokenName(p)}</span>
       <span aria-hidden="true">→</span>
     </Link>
@@ -91,7 +92,7 @@ export function ShopStrip({ products }: { products: BlogShopProduct[] }) {
         {p.img && <img src={p.img} srcSet={thumbSrcSet(p.img)} sizes="64px" alt={productAlt(p)} width={64} height={64} loading="lazy" />}
         <div className="shop-strip-text">
           <b>{splitName(p).title}</b>
-          {price && <span>{price}</span>}
+          {p.preorder ? <span>Pre-order{price ? ` · ${price}` : ''}{p.restockNote ? ` · ${p.restockNote}` : ''}</span> : price && <span>{price}</span>}
         </div>
         <ProductLinkButton p={p} className="btn btn-dark" />
       </div>

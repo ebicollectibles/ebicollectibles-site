@@ -41,6 +41,7 @@ export type BlogShopProduct = {
   img: string | null
   imgAlt: string | null
   variantLabel: string | null
+  restockNote: string | null
 }
 
 // Live price and stock for the products a post sells (see data/blog-shop.ts).
@@ -70,6 +71,7 @@ async function readShopProducts(slug: string): Promise<BlogShopProduct[]> {
           img: r.img,
           imgAlt: r.imgAlt,
           variantLabel: r.variantLabel,
+          restockNote: r.restockNote,
         })),
     )
     return ids

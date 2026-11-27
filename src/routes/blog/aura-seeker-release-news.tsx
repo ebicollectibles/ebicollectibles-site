@@ -3,6 +3,7 @@ import { createFileRoute, Link } from '@tanstack/react-router'
 import blogCssUrl from '~/styles/blog.css?url'
 import { BLOG_POSTS, BLOG_SITE_URL, blogSeoDescription, blogSeoTitle, blogShareImage } from '~/data/blog-posts'
 import { BlogPostLayout } from '~/components/blog/BlogPostLayout'
+import { BuyStrip } from '~/components/blog/BlogShop'
 import { getBlogPostStatus } from '~/server/blog-status'
 import { safeJsonLd } from '~/lib/gem-sets/head'
 import { SITE_URL } from '~/lib/gem-sets/constants'
@@ -201,11 +202,11 @@ function AuraSeekerPost() {
         post={post}
         lede="The Japanese Pokémon TCG set Aura Seeker (M7) releases on November 27, 2026. The full card list is out: 114 cards, with 36 secret rares and a gold Mega Ultra Rare Mega Lucario Z ex. Here are the pack and box, the chase cards and every secret rare."
         cta={{
-          heading: 'Aura Seeker card list',
-          body: 'Browse all 114 cards, filter by rarity and tap any card for a closer look.',
+          heading: 'Pre-order Aura Seeker',
+          body: 'The Japanese Aura Seeker booster box is on pre-order and ships the first week of December.',
           links: [
-            { to: '/sets/japanese/aura-seeker-m7', label: 'See the full card list' },
-            { to: '/new-and-upcoming', label: 'See new and upcoming releases', variant: 'ghost' },
+            { to: '/products/$id', params: { id: 'pokemon-japanese-aura-seeker-m7-booster-box' }, label: 'Pre-order Aura Seeker' },
+            { to: '/sets/japanese/aura-seeker-m7', label: 'See the full card list', variant: 'ghost' },
             { to: '/blog', label: 'Read more release news', variant: 'ghost' },
           ],
         }}
@@ -374,6 +375,7 @@ function AuraSeekerPost() {
             </figure>
           </li>
         </ul>
+        <BuyStrip />
         <h3>Crasher Wake's Fervor by Tetsuo Hara</h3>
         <p>
           Crasher Wake's Fervor 113/078 is a Special Art Rare (<Ja>マキシの熱血</Ja> in Japanese; the English card name is an

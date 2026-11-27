@@ -424,7 +424,7 @@ export function GemSetPage({
             <div className="hero-cta">
               {config.productId ? (
                 <Link className="btn btn-light" to="/products/$id" params={{ id: config.productId }}>
-                  Shop {raw.name} →
+                  {config.shopLabel ?? `Shop ${raw.name}`} →
                 </Link>
               ) : (
                 <Link className="btn btn-light" to="/shop">
@@ -882,7 +882,7 @@ export function GemSetPage({
               <div className="lb-actions">
                 {config.productId ? (
                   <Link className="btn btn-dark" to="/products/$id" params={{ id: config.productId }}>
-                    Shop {raw.name}
+                    {config.shopLabel ?? `Shop ${raw.name}`}
                   </Link>
                 ) : (
                   <Link className="btn btn-dark" to="/shop">

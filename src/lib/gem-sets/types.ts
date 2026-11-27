@@ -78,6 +78,8 @@ export interface FaqItem {
 export interface GemSetConfig {
   routePath: string // e.g. '/sets/chinese/gem-vol-7' — must match the file route exactly
   storageKey: string // localStorage key for "have" tracking, e.g. 'gem7-have'
+  /** Label for the Shop buttons when the set has a product listing, e.g. 'Pre-order Aura Seeker'. */
+  shopLabel?: string
   productId?: string // omit when the set has no dedicated product listing — Shop buttons link to /shop instead
   fanIds: string[] // 5 card ids shown in the hero fan
   glow1: string // hero radial-gradient color, e.g. 'rgb(138 61 120 / .30)'

@@ -28,6 +28,8 @@ const SET_PRODUCTS: Record<string, string[]> = {
     'pokemon-chinese-white-flare-slim-booster-box',
     'pokemon-chinese-white-flare-jumbo-booster-box',
   ],
+  // Japanese sets, keyed by the set name without its code.
+  'aura-seeker': ['pokemon-japanese-aura-seeker-m7-booster-box'],
   'team-rocket-briefcase': ['pokemon-chinese-glory-of-team-rocket-briefcase-set'],
   'funism-ditto-palm-size-wonders': [
     'pokemon-chinese-funism-ditto-palmsize-wonders-blind-box',
@@ -170,7 +172,16 @@ export function blogShopProductIds(slug: string): string[] {
 }
 
 /** The set key ('gem-vol-7', 'chasing-glory') for a set page path like /sets/chinese/chasing-glory-csv10. */
+// Japanese set pages whose posts and products are wired up, by page slug.
+// Listed one by one because a Japanese set can share its name (and so its
+// key) with a Chinese set, such as 30th Celebration.
+const JAPANESE_SET_KEYS: Record<string, string> = {
+  'aura-seeker-m7': 'aura-seeker',
+}
+
 export function blogSetKeyForSetPath(path: string): string | null {
+  const jp = path.match(/^\/sets\/japanese\/([^/?#]+)/)
+  if (jp) return JAPANESE_SET_KEYS[jp[1]] ?? null
   const m = path.match(/^\/sets\/chinese\/([^/?#]+)/)
   return m ? m[1].replace(/-csv[0-9-]+$/, '') : null
 }

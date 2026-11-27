@@ -25,6 +25,8 @@ const data = buildGemSetData(raw)
 const config: GemSetConfig = {
   routePath: '/sets/japanese/aura-seeker-m7',
   storageKey: 'jp-m7-have',
+  productId: 'pokemon-japanese-aura-seeker-m7-booster-box',
+  shopLabel: 'Pre-order Aura Seeker',
   // Mega Lucario Z ex, the Pokémon on the pack, leads: its Special Art Rare
   // in the center, its gold Mega Ultra Rare beside it, with the Mega Absol Z
   // ex, Mega Garchomp Z ex and Crasher Wake's Fervor Special Art Rares around them.
