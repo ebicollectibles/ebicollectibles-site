@@ -194,8 +194,8 @@ export function HomeV2({ products, live }: { products: Product[]; live: Record<s
     <div className="hp2">
       {/* Leads with the featured pre-orders and deal, then the sale (owner's call,
           Nov 2026: a calmer top that points people at what to buy). */}
-      <HomeFeatured products={products} />
       <HomeContest />
+      <HomeFeatured products={products} />
       <HomeRail
         id="sale"
         eyebrow="On sale now"
