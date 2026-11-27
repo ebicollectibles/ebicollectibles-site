@@ -108,8 +108,8 @@ function emailFooterHtml(listFooterHtml = ''): string {
   const dot = `<span style="color:#b6bec7;">&nbsp;&nbsp;&middot;&nbsp;&nbsp;</span>`
   return `
       <tr>
-        <td align="center" bgcolor="${SURFACE}" style="padding:30px 36px 30px;background:${SURFACE};text-align:center;">
-          <img src="${WIDE_LOGO_URL}" width="132" height="34" alt="EBI Collectibles" style="display:inline-block;width:132px;height:34px;border:0;">
+        <td align="center" bgcolor="#ffffff" style="padding:30px 36px 30px;background:#ffffff;border-top:1px solid ${BORDER};text-align:center;">
+          <img src="${WIDE_LOGO_URL}" width="171" height="44" alt="EBI Collectibles" style="display:inline-block;width:171px;height:44px;border:0;">
           <p style="${row}margin-top:14px;"><a href="${SITE_URL}/shop" style="${link}">Shop now &rarr;</a></p>
           <p style="${head}margin-top:22px;">Socials</p>
           <p style="${row}"><a href="https://www.instagram.com/ebicollectibles" style="${link}">Instagram</a>${dot}<a href="https://x.com/ebicollectibles" style="${link}">X</a></p>

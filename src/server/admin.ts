@@ -2480,7 +2480,7 @@ export const adminCampaignStatus = createServerFn({ method: 'GET' }).handler(asy
       .select({ n: sql<number>`count(*)::int` })
       .from(subscriberEvents)
       .where(and(eq(subscriberEvents.type, 'unsubscribed'), eq(subscriberEvents.utmCampaign, c.id)))
-    const audience = await campaignAudience(db, 'audienceSource' in c ? c.audienceSource : undefined)
+    const audience = await campaignAudience(db, c.audienceSource)
     out.push({
       id: c.id,
       label: c.label,
@@ -2488,7 +2488,7 @@ export const adminCampaignStatus = createServerFn({ method: 'GET' }).handler(asy
       sent: sent?.n ?? 0,
       unsubscribed: unsub?.n ?? 0,
       audienceCount: new Set(audience.map((e) => e.toLowerCase())).size,
-      audienceLabel: 'audienceLabel' in c ? c.audienceLabel : 'everyone subscribed',
+      audienceLabel: c.audienceLabel ?? 'everyone subscribed',
     })
   }
   return { activeSubscribers: active?.n ?? 0, testRecipient: CAMPAIGN_TEST_RECIPIENT, campaigns: out }
@@ -2513,7 +2513,7 @@ export const adminSendCampaign = createServerFn({ method: 'POST' })
       .from(emailEvents)
       .where(and(eq(emailEvents.type, type), eq(emailEvents.status, 'sent')))
     const done = new Set(already.map((r) => (r.email ?? '').toLowerCase()))
-    const list = await campaignAudience(db, 'audienceSource' in campaign ? campaign.audienceSource : undefined)
+    const list = await campaignAudience(db, campaign.audienceSource)
     const recipients = [...new Set(list.filter((e) => e && !done.has(e.toLowerCase())))]
     if (recipients.length === 0) return { mode: 'all' as const, sent: 0, failed: 0, skippedAlreadySent: done.size }
     const results = await sendCampaignEmails(campaign, recipients)
