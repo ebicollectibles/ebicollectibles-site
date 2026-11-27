@@ -8,7 +8,7 @@ import { ProductCard } from '~/components/ProductCard'
 import { ResponsiveImage, thumbSrcSet } from '~/components/ResponsiveImage'
 import { trackEvent } from '~/lib/analytics'
 import { useCart } from '~/lib/cart-context'
-import { promoForBuyProduct } from '~/lib/promotions'
+import { promoForBuyProduct, promoForGiftProduct } from '~/lib/promotions'
 import { FLAT_SHIPPING_RATE, formatMoney, getHubPriceRange, getHubSale, getHubVariants, type Product } from '~/lib/products'
 import { RETURN_POLICY_CATEGORY_URL, SHIPPING_HANDLING_MAX_DAYS, SHIPPING_HANDLING_MIN_DAYS, SHIPS_TO_COUNTRY } from '~/lib/policy'
 import { getProduct } from '~/server/products'
@@ -603,7 +603,28 @@ function ProductDetailPage() {
             if (!promo || !gift || gift.stock <= 0 || soldOut || comingSoon) return null
             return (
               <p style={{ fontSize: 13.5, fontWeight: 600, color: '#3f7a63', margin: '10px 0 0', lineHeight: 1.5, padding: '10px 12px', background: '#eef6f2', border: '1px solid #cfe5da', borderRadius: 4 }}>
-                Buy {promo.buyQty}, get a free {gift.name.replace(/^Pokemon\s+/, '').replace(/\s*\(Simplified Chinese\)/, '')}. It&rsquo;s added to your cart automatically, while supplies last.
+                Get a free {gift.name.replace(/^Pokemon\s+/, '').replace(/\s*\(Simplified Chinese\)/, '')} with every {promo.buyQty} boxes: {promo.buyQty} get 1, {promo.buyQty * 2} get 2, and so on. It&rsquo;s added to your cart automatically, while supplies last.
+              </p>
+            )
+          })()}
+          {(() => {
+            // A free-gift product can't be bought on its own; point to the deal.
+            const promo = promoForGiftProduct(product.id)
+            const buy = promo && products.find((p) => p.id === promo.buyProductId)
+            if (!promo || !buy) return null
+            return (
+              <p style={{ fontSize: 13.5, fontWeight: 600, color: '#3f7a63', margin: '10px 0 0', lineHeight: 1.5, padding: '10px 12px', background: '#eef6f2', border: '1px solid #cfe5da', borderRadius: 4 }}>
+                {product.stock > 0 ? (
+                  <>
+                    Only available free: one comes with every {promo.buyQty}{' '}
+                    <Link to="/products/$id" params={{ id: buy.id }} style={{ color: 'inherit' }}>
+                      {buy.name.replace(/^Pokemon (TCG: )?/, '').replace(/\s*\(Simplified Chinese\)/, '')}
+                    </Link>{' '}
+                    you buy, while supplies last.
+                  </>
+                ) : (
+                  <>All the free binders have been claimed. Thank you to everyone who grabbed one!</>
+                )}
               </p>
             )
           })()}

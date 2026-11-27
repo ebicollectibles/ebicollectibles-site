@@ -198,7 +198,9 @@ export function CartProvider({ children, products }: { children: React.ReactNode
     const lines: CartLine[] = Object.entries(state.cart)
       .map(([id, qty]) => {
         const product = productById.get(id)
-        if (!product) return null
+        // A product that can't be bought on its own (a hub, or a free-gift
+        // item like the Gem Vol 7 binder) drops out of an old cart.
+        if (!product || product.notSellable) return null
         return { id, product, qty, lineTotal: product.price * qty }
       })
       .filter((l): l is CartLine => l !== null)

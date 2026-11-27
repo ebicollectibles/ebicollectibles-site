@@ -197,7 +197,6 @@ export function blogSetKeyForProduct(productId: string): string | null {
 // as a set's booster box and its accessory. Each one leads the other's
 // "You may also like" row.
 const COMPANION_GROUPS: string[][] = [
-  ['pokemon-chinese-gem-volume-7-booster-box', 'pokemon-chinese-gem-volume-7-psyduck-collector-binder'],
 ]
 
 /** Ids of the products that go with this one, for the top of its "You may also like" row. */

@@ -25,7 +25,7 @@ export const FREE_GIFT_PROMOS: FreeGiftPromo[] = [
     buyProductId: 'pokemon-chinese-gem-volume-7-booster-box',
     buyQty: 5,
     giftProductId: 'pokemon-chinese-gem-volume-7-psyduck-collector-binder',
-    label: 'Free with every 5 Gem Vol 7 booster boxes, while supplies last',
+    label: 'One free with every 5 Gem Vol 7 booster boxes, while supplies last',
     active: true,
   },
 ]
@@ -64,6 +64,11 @@ export function computeFreeGifts(
 /** Product ids of every active gift, for fetching their rows and stock. */
 export function activeGiftProductIds(): string[] {
   return FREE_GIFT_PROMOS.filter((p) => p.active).map((p) => p.giftProductId)
+}
+
+/** The promo a product is the free gift of, if any (for a note on its page). */
+export function promoForGiftProduct(productId: string): FreeGiftPromo | undefined {
+  return FREE_GIFT_PROMOS.find((p) => p.active && p.giftProductId === productId)
 }
 
 /** The promo a product is the "buy" side of, if any (for a note on its page). */

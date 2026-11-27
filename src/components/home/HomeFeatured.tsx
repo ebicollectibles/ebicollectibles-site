@@ -65,8 +65,8 @@ export function HomeFeatured({ products }: { products: Product[] }) {
     cards.push({
       key: 'gem7',
       eyebrow: 'Deal · While supplies last',
-      title: `Buy ${GEM7_PROMO.buyQty} Gem Vol 7, get a Psyduck Mini Binder free`,
-      body: `Add ${GEM7_PROMO.buyQty} Gem Vol 7 booster boxes and the binder goes in your cart for free, one for every ${GEM7_PROMO.buyQty} boxes.`,
+      title: `A free Psyduck Mini Binder with every ${GEM7_PROMO.buyQty} Gem Vol 7`,
+      body: `Every ${GEM7_PROMO.buyQty} Gem Vol 7 booster boxes adds one binder to your cart for free: ${GEM7_PROMO.buyQty * 2} boxes get 2, ${GEM7_PROMO.buyQty * 3} get 3. Only available with Gem Vol 7.`,
       price: `${formatMoney(gem7.price)} a box`,
       cta: 'Shop Gem Vol 7',
       productId: gem7.id,
