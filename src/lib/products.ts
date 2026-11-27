@@ -121,6 +121,19 @@ export function isValidGtin13(value: string): boolean {
 // Product catalog now lives in Postgres (see src/lib/db/schema.ts and
 // scripts/seed.ts for the initial data) — fetched via src/server/products.ts.
 
+/**
+ * Whether a product belongs in a shop filter of these subcategories. A blind
+ * box of figures or plush also counts as Figure or Plush, so the "Figures &
+ * Plush" filter shows the figure and plush blind boxes too.
+ */
+export function inSubcategories(p: Pick<Product, 'subcategory' | 'name'>, subs: readonly string[]): boolean {
+  if (subs.includes(p.subcategory)) return true
+  if (p.subcategory !== 'Blind Box') return false
+  if (subs.includes('Figure') && /figure|palm-size/i.test(p.name)) return true
+  if (subs.includes('Plush') && /plush/i.test(p.name)) return true
+  return false
+}
+
 export const FLAT_SHIPPING_RATE = 10
 
 export function formatMoney(n: number): string {
