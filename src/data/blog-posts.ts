@@ -491,7 +491,7 @@ export const BLOG_POSTS: BlogPostSummary[] = [
     tag: 'New release',
     date: '2026-11-27',
     heroImage: `${SITE_URL}/assets/blog/aura-seeker-release-hero.webp`,
-    heroAlt: 'The Mega Lucario Z ex Special Art Rare 110/078 standing in front of a Japanese Aura Seeker booster pack, which shows Mega Lucario Z on the front',
+    heroAlt: 'A Japanese Aura Seeker booster pack with Mega Lucario Z on the front, the Mega Lucario Z ex Special Art Rare 110/078 in front of it and the Crasher Wake\'s Fervor Special Art Rare behind',
     glow1: 'rgb(112 214 226 / .28)',
     glow2: 'rgb(236 72 130 / .22)',
   },
