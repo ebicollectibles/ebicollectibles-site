@@ -92,7 +92,7 @@ const FAQ = [
     a: 'A Japanese Pokémon TCG expansion in the MEGA series, set code M7. Its Japanese name is 拡張パック「ハドウシーカー」. It has 114 cards, led by Mega Lucario Z ex.',
   },
   {
-    q: 'When does Aura Seeker release in Japan?',
+    q: 'When did Aura Seeker release in Japan?',
     a: 'Friday, November 27, 2026.',
   },
   {
@@ -200,7 +200,7 @@ function AuraSeekerPost() {
         updated={status.liveAt}
         wide
         post={post}
-        lede="The Japanese Pokémon TCG set Aura Seeker (M7) releases on November 27, 2026. The full card list is out: 114 cards, with 36 secret rares and a gold Mega Ultra Rare Mega Lucario Z ex. Here are the pack and box, the chase cards and every secret rare."
+        lede="The Japanese Pokémon TCG set Aura Seeker (M7) released in Japan on Friday, November 27, 2026. The full card list is out: 114 cards, with 36 secret rares and a gold Mega Ultra Rare Mega Lucario Z ex. Here are the pack and box, the chase cards and every secret rare."
         cta={{
           heading: 'Pre-order Aura Seeker',
           body: 'The Japanese Aura Seeker booster box is on pre-order and ships the first week of December.',
@@ -214,7 +214,7 @@ function AuraSeekerPost() {
         <h2 id="what-it-is">What is Aura Seeker?</h2>
         <p>
           Aura Seeker is a Japanese Pokémon TCG expansion in the MEGA series, with the set code M7. Its Japanese name is{' '}
-          <Ja>拡張パック「ハドウシーカー」</Ja>, and it releases in Japan on Friday, November 27, 2026.
+          <Ja>拡張パック「ハドウシーカー」</Ja>, and it released in Japan on Friday, November 27, 2026.
         </p>
         <p>
           The set is led by Mega Lucario Z ex, which is on the front of the booster pack and the box. Its Ability shares the set's
@@ -238,7 +238,7 @@ function AuraSeekerPost() {
               </dd>
               <dt>Set code</dt>
               <dd>M7</dd>
-              <dt>Releases</dt>
+              <dt>Released</dt>
               <dd>November 27, 2026 (Friday), in Japan</dd>
               <dt>Series</dt>
               <dd>Pokémon Card Game MEGA</dd>
