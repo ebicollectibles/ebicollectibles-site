@@ -35,6 +35,7 @@ import { hasPendingOrderForEmail } from '~/server/customers'
 import { useCombineShippingChoice } from '~/lib/use-combine-shipping'
 import { ShipTogetherChoice } from '~/components/ShipTogetherChoice'
 import { InvoiceRequestForm } from '~/components/InvoiceRequestForm'
+import { HolidayShippingNote } from '~/components/HolidayShippingNote'
 
 export const Route = createFileRoute('/checkout')({
   loader: () => getCurrentCustomer(),
@@ -1159,6 +1160,7 @@ function CheckoutPage() {
             <FreeGiftRows compact />
           </div>
           <ContestCartNote />
+          <HolidayShippingNote />
           {cart.cartEmpty && (
             <p style={{ fontSize: 13.5, color: '#131b28', margin: '4px 0 0' }}>Your cart is empty — add a box to check out.</p>
           )}

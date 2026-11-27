@@ -18,6 +18,7 @@ import { thumbSrcSet } from '~/components/ResponsiveImage'
 import { FreeGiftRows } from '~/components/FreeGiftRows'
 import { ContestCartNote } from '~/components/ContestCartNote'
 import { InvoiceRequestForm } from '~/components/InvoiceRequestForm'
+import { HolidayShippingNote } from '~/components/HolidayShippingNote'
 
 export const Route = createFileRoute('/cart')({
   // Utility page: its own title instead of inheriting the home page's, and
@@ -242,6 +243,7 @@ function CartPage() {
               </div>
               <div style={{ fontSize: 11.5, color: '#5a6875', marginTop: 8 }}>Shipping and tax are calculated at checkout.</div>
               <ContestCartNote />
+              <HolidayShippingNote />
               {!mixedPreorder && !cartHasPreorder && delayedShipment && (
                 <div style={{ fontSize: 12.5, color: '#a85b2c', marginTop: 12, lineHeight: 1.5 }}>
                   {mixedDelayedShipment ? DELAYED_SHIPMENT_WARNING : ALL_DELAYED_SHIPMENT_WARNING}

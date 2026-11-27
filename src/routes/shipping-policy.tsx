@@ -1,5 +1,5 @@
 import { createFileRoute } from '@tanstack/react-router'
-import { SHIPPING_HANDLING_MAX_DAYS, SHIPPING_HANDLING_MIN_DAYS } from '~/lib/policy'
+import { HOLIDAY_SHIPPING_NOTICE, HOLIDAY_SHIPPING_TEXT, SHIPPING_HANDLING_MAX_DAYS, SHIPPING_HANDLING_MIN_DAYS } from '~/lib/policy'
 
 const SITE_URL = 'https://ebicollectibles.com'
 
@@ -34,13 +34,20 @@ function ShippingPolicyPage() {
       <h1 style={{ fontSize: 38, letterSpacing: '-0.025em', fontWeight: 700, margin: '10px 0 0' }}>Shipping policy</h1>
 
       <div style={{ marginTop: 40, display: 'flex', flexDirection: 'column', gap: 32 }}>
+        {HOLIDAY_SHIPPING_NOTICE && (
+          <p style={{ fontSize: 14.5, lineHeight: 1.6, color: '#131b28', margin: 0, maxWidth: '65ch', padding: '12px 16px', background: '#fdf3ec', border: '1px solid #e6c4a8', borderRadius: 3 }}>
+            {HOLIDAY_SHIPPING_TEXT}
+          </p>
+        )}
         <div>
           <h2 style={{ fontSize: 18, fontWeight: 700, margin: '0 0 10px' }}>Shipping</h2>
           <p style={{ fontSize: 14.5, lineHeight: 1.65, color: '#131b28', margin: 0, maxWidth: '65ch' }}>
             We currently ship within the United States only. Alaska and Hawaii can't be checked out on the site
-            yet; email us and we'll sort out your order directly. All orders ship flat-rate ($10.00), and each
+            yet; send your cart as an invoice request from the cart or checkout and we'll email you an invoice with shipping. All orders ship flat-rate ($10.00), and each
             order is charged its own shipping, except as described for pre-orders below. In-stock orders
-            ship within {SHIPPING_HANDLING_MIN_DAYS}-{SHIPPING_HANDLING_MAX_DAYS} business days. Carrier is
+            {HOLIDAY_SHIPPING_NOTICE
+              ? `usually ship within ${SHIPPING_HANDLING_MIN_DAYS}-${SHIPPING_HANDLING_MAX_DAYS} business days; during the holidays it can take a few extra days.`
+              : `ship within ${SHIPPING_HANDLING_MIN_DAYS}-${SHIPPING_HANDLING_MAX_DAYS} business days.`} Carrier is
             selected by us for the safest, fastest route to your address, and we don't offer carrier choice at
             checkout. Every order ships with tracking, emailed the moment it goes out.
           </p>
