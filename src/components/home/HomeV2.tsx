@@ -6,14 +6,13 @@ import { SHOW_ACRYLICS } from '~/lib/feature-flags'
 import { SHIPPING_HANDLING_MAX_DAYS, SHIPPING_HANDLING_MIN_DAYS } from '~/lib/policy'
 import { FLAT_SHIPPING_RATE, formatMoney, isOnSale, rankProducts, type Product } from '~/lib/products'
 import { HomeRail, availability, percentOff, sortForRail } from './HomeRail'
-import { HomeSets } from './HomeSets'
 import { HomeGuides } from './HomeGuides'
 import { HomeFeatured } from './HomeFeatured'
 import { HomeContest } from './HomeContest'
 
 // Homepage body (routes/index.tsx). Order, top to bottom: sale banner (in
-// the route), the featured pre-orders and deal, the biggest markdowns, shop
-// by set, best sellers, the non-card categories, new & upcoming, pre-orders,
+// the route), the featured pre-orders and deal, the promotion, the biggest
+// markdowns, best sellers, the non-card categories, new & upcoming, pre-orders,
 // the trust strip, the blog, and the restock email band (in the route).
 // Everything product-related is worked out from the live catalog.
 
@@ -210,7 +209,6 @@ export function HomeV2({ products, live }: { products: Product[]; live: Record<s
         seeAll={{ label: `See all ${data.saleCount}`, to: '/shop', search: { sale: true } }}
         tone="cream"
       />
-      <HomeSets products={products} />
       <HomeRail
         id="best"
         eyebrow="What collectors buy"

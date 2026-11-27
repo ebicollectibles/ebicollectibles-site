@@ -286,7 +286,7 @@ a.hp2-trust-item:hover b { text-decoration: underline; }
 .hp2-contest-cap { padding: 14px 16px 16px; display: flex; flex-direction: column; gap: 4px; }
 .hp2-contest-cap b { font-family: 'IBM Plex Mono', monospace; font-size: 11.5px; letter-spacing: 0.1em; text-transform: uppercase; color: #a85b2c; }
 .hp2-contest-cap span { font-size: 15px; font-weight: 700; line-height: 1.3; }
-.hp2-contest-grid { list-style: none; margin: 16px 0 0; padding: 0; display: grid; grid-template-columns: 1fr 2fr; gap: 16px; }
+.hp2-contest-grid { list-style: none; margin: 16px 0 0; padding: 0; display: grid; grid-template-columns: 1fr; gap: 16px; }
 .hp2-contest-grid > li { border: 1px solid rgba(255, 255, 255, 0.16); border-radius: 8px; padding: 20px 22px; background: rgba(255, 255, 255, 0.04); }
 .hp2-contest-first { display: grid; grid-template-columns: 220px 1fr; gap: 20px; align-items: center; }
 .hp2-contest-big { margin: 10px 0 0; font-size: 19px; font-weight: 700; line-height: 1.25; }

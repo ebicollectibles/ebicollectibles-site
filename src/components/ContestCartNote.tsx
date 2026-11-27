@@ -18,11 +18,10 @@ export function ContestCartNote() {
         Black Friday Promotion · Ends {CONTEST_ENDS_LABEL}
       </div>
       <div style={{ marginTop: 4, fontWeight: 700, fontSize: 14 }}>
-        This order gets {packs} free pack{packs === 1 ? '' : 's'}
+        This order gets {packs} free Chinese pack{packs === 1 ? '' : 's'}
       </div>
       <div style={{ color: '#c9d1da' }}>
-        Spend {formatMoney(toNextPack(subtotal))} more for another pack. The first 10 orders also get a Pikachu figure blind box, and the top 3
-        spenders win prizes.{' '}
+        Spend {formatMoney(toNextPack(subtotal))} more for another pack. The top 3 spenders win prizes.{' '}
         <a href="/#promotion" style={{ color: '#ffd23f' }}>
           See prizes
         </a>

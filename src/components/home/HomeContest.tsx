@@ -37,19 +37,9 @@ export function HomeContest() {
 
         <ul className="hp2-contest-grid">
           <li className="hp2-contest-packs">
-            <span className="hp2-contest-k">Free packs</span>
-            <p className="hp2-contest-big">1 free pack on every order</p>
-            <p>Plus 1 more pack for every $100 you spend. A $250 order gets 3 packs.</p>
-          </li>
-          <li className="hp2-contest-first">
-            <div className="hp2-contest-photo is-wide">
-              <img src="/assets/home/contest-pikachu-boxes.webp" alt="Ten Pikachu Dream Painting 30th Celebration figure blind boxes stacked in two rows" loading="lazy" />
-            </div>
-            <div>
-              <span className="hp2-contest-k">First 10 orders</span>
-              <p className="hp2-contest-big">The first 10 orders get a Pikachu Dream Painting figure blind box</p>
-              <p>One of 12 figures, shipped with the order. It&rsquo;s a blind box, so it&rsquo;s a surprise.</p>
-            </div>
+            <span className="hp2-contest-k">Free Chinese packs</span>
+            <p className="hp2-contest-big">1 free Chinese pack on every order</p>
+            <p>Plus 1 more Chinese pack for every $100 you spend. A $250 order gets 3 packs.</p>
           </li>
         </ul>
       </div>
