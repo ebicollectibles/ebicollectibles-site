@@ -12,6 +12,7 @@ export function OrderConfirmation({
   hasDelayedShipment,
   mixedDelayedShipment,
   combineWithOrderNo,
+  giftNote,
 }: {
   orderNo: number
   paymentStatus: string
@@ -37,6 +38,8 @@ export function OrderConfirmation({
   // choice registered, rather than making the shopper wait for the
   // confirmation email to find out.
   combineWithOrderNo?: number
+  // Set when a free gift (lib/promotions.ts) ran out between the cart and the charge.
+  giftNote?: string
 }) {
   return (
     <section style={{ maxWidth: 640, margin: '0 auto', padding: '110px 28px 140px', textAlign: 'center' }}>
@@ -61,6 +64,7 @@ export function OrderConfirmation({
         Order <span style={{ fontFamily: "'IBM Plex Mono', monospace" }}>#EBI-{orderNo}</span> has been placed. You'll
         get a confirmation email shortly.
       </p>
+      {giftNote && <p style={{ fontSize: 13.5, lineHeight: 1.6, color: '#5a6875', margin: '12px 0 0' }}>{giftNote}</p>}
       {paymentStatus === 'test' && (
         <p style={{ fontSize: 12.5, color: '#a85b2c', margin: '10px 0 0' }}>
           (Test mode — no card was charged. Configure Square to accept real payments.)

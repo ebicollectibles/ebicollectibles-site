@@ -16,6 +16,7 @@ import {
 } from '~/lib/order-math'
 import { formatMoney } from '~/lib/products'
 import { thumbSrcSet } from '~/components/ResponsiveImage'
+import { FreeGiftRows } from '~/components/FreeGiftRows'
 
 export const Route = createFileRoute('/cart')({
   // Utility page: its own title instead of inheriting the home page's, and
@@ -76,6 +77,7 @@ function CartPage() {
     hasDelayedShipment: boolean
     mixedDelayedShipment: boolean
     combineWithOrderNo?: number
+    giftNote?: string
   } | null>(null)
   const [expressError, setExpressError] = React.useState<string | null>(null)
 
@@ -88,6 +90,7 @@ function CartPage() {
         hasDelayedShipment={confirmed.hasDelayedShipment}
         mixedDelayedShipment={confirmed.mixedDelayedShipment}
         combineWithOrderNo={confirmed.combineWithOrderNo}
+        giftNote={confirmed.giftNote}
       />
     )
   }
@@ -221,6 +224,7 @@ function CartPage() {
                 </div>
               </div>
             ))}
+            <FreeGiftRows />
           </div>
 
           <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: 28 }}>

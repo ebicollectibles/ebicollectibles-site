@@ -8,6 +8,7 @@ import { ProductCard } from '~/components/ProductCard'
 import { ResponsiveImage, thumbSrcSet } from '~/components/ResponsiveImage'
 import { trackEvent } from '~/lib/analytics'
 import { useCart } from '~/lib/cart-context'
+import { promoForBuyProduct } from '~/lib/promotions'
 import { FLAT_SHIPPING_RATE, formatMoney, getHubPriceRange, getHubSale, getHubVariants, type Product } from '~/lib/products'
 import { RETURN_POLICY_CATEGORY_URL, SHIPPING_HANDLING_MAX_DAYS, SHIPPING_HANDLING_MIN_DAYS, SHIPS_TO_COUNTRY } from '~/lib/policy'
 import { getProduct } from '~/server/products'
@@ -594,6 +595,18 @@ function ProductDetailPage() {
           {product.restockNote && (
             <p style={{ fontSize: 13.5, fontWeight: 600, color: '#a85b2c', margin: '8px 0 0', lineHeight: 1.5 }}>{product.restockNote}</p>
           )}
+          {(() => {
+            // Free-gift deal on this product (lib/promotions.ts), shown only
+            // while the gift is in stock.
+            const promo = promoForBuyProduct(product.id)
+            const gift = promo && products.find((p) => p.id === promo.giftProductId)
+            if (!promo || !gift || gift.stock <= 0 || soldOut || comingSoon) return null
+            return (
+              <p style={{ fontSize: 13.5, fontWeight: 600, color: '#3f7a63', margin: '10px 0 0', lineHeight: 1.5, padding: '10px 12px', background: '#eef6f2', border: '1px solid #cfe5da', borderRadius: 4 }}>
+                Buy {promo.buyQty}, get a free {gift.name.replace(/^Pokemon\s+/, '').replace(/\s*\(Simplified Chinese\)/, '')}. It&rsquo;s added to your cart automatically, while supplies last.
+              </p>
+            )
+          })()}
 
           {(notSellable ? variants.length >= 1 : variants.length > 1) && (
             <div style={{ marginTop: 22, maxWidth: 320 }}>

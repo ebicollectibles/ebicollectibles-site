@@ -256,7 +256,7 @@ function itemsTableHtml(items: OrderEmailItem[], opts: { showPrice?: boolean } =
             <div style="${BODY_FONT}font-size:14px;font-weight:600;color:${INK};line-height:1.35;">${escapeHtml(item.productName)}</div>
             <div style="${BODY_FONT}font-size:12.5px;color:${MUTED};padding-top:3px;">Qty ${item.qty}</div>
           </td>
-          ${showPrice ? `<td align="right" style="padding:12px 0;${cell}white-space:nowrap;text-align:right;"><div style="${BODY_FONT}font-size:14px;font-weight:700;color:${INK};">${formatMoney(item.unitPrice * item.qty)}</div></td>` : ''}
+          ${showPrice ? `<td align="right" style="padding:12px 0;${cell}white-space:nowrap;text-align:right;"><div style="${BODY_FONT}font-size:14px;font-weight:700;color:${INK};">${item.unitPrice === 0 ? 'FREE' : formatMoney(item.unitPrice * item.qty)}</div></td>` : ''}
         </tr>`
     })
     .join('')
@@ -414,7 +414,7 @@ export async function sendOrderConfirmationEmail(order: OrderEmailData): Promise
     `Thanks for your order${order.firstName ? `, ${order.firstName}` : ''}!`,
     `Order #EBI-${order.orderNo}`,
     '',
-    ...order.items.map((item) => `${item.qty}x ${item.productName} — ${formatMoney(item.unitPrice * item.qty)}`),
+    ...order.items.map((item) => `${item.qty}x ${item.productName} — ${item.unitPrice === 0 ? 'FREE' : formatMoney(item.unitPrice * item.qty)}`),
     '',
     `Subtotal: ${formatMoney(order.subtotal)}`,
     `Shipping: ${formatMoney(order.shippingCost)}`,
@@ -555,7 +555,7 @@ export async function sendOrderCancellationEmail(order: OrderCancellationEmailDa
   const text = [
     `Order #EBI-${order.orderNo} has been cancelled${order.firstName ? `, ${order.firstName}` : ''}.`,
     '',
-    ...order.items.map((item) => `${item.qty}x ${item.productName} — ${formatMoney(item.unitPrice * item.qty)}`),
+    ...order.items.map((item) => `${item.qty}x ${item.productName} — ${item.unitPrice === 0 ? 'FREE' : formatMoney(item.unitPrice * item.qty)}`),
     '',
     `Subtotal: ${formatMoney(order.subtotal)}`,
     `Shipping: ${formatMoney(order.shippingCost)}`,

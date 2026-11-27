@@ -2,6 +2,7 @@ import * as React from 'react'
 import { trackEvent } from './analytics'
 import { placeOrder as placeOrderFn } from '~/server/orders'
 import { FLAT_SHIPPING_RATE, formatMoney, type Product } from './products'
+import { computeFreeGifts, FREE_GIFT_PROMOS } from './promotions'
 
 export interface CartLine {
   id: string
@@ -36,9 +37,22 @@ interface CartState {
   cart: Record<string, number>
 }
 
+/** A free gift the cart has earned (lib/promotions.ts). Display only: the server decides. */
+export interface CartGift {
+  product: Product
+  qty: number
+  /** How many the cart earned before stock ran short. */
+  earned: number
+  label: string
+}
+
 interface CartContextValue {
   products: Product[]
   lines: CartLine[]
+  /** Free gifts this cart gets, capped by live stock. */
+  gifts: CartGift[]
+  /** Set when the cart earned more gifts than are left (or none are left). */
+  giftNotice: string | null
   cartCount: number
   cartEmpty: boolean
   subtotal: number
@@ -55,7 +69,7 @@ interface CartContextValue {
     creditApplied?: number
     preorderAcknowledged?: boolean
     combineWithOrderId?: string
-  }) => Promise<{ orderNo: number; total: number; creditApplied: number; amountDue: number; paymentStatus: string }>
+  }) => Promise<{ orderNo: number; total: number; creditApplied: number; amountDue: number; paymentStatus: string; giftNote?: string }>
 }
 
 const CartContext = React.createContext<CartContextValue | null>(null)
@@ -192,9 +206,35 @@ export function CartProvider({ children, products }: { children: React.ReactNode
     const subtotal = lines.reduce((t, l) => t + l.lineTotal, 0)
     const shippingCost = subtotal === 0 ? 0 : FLAT_SHIPPING_RATE
 
+    const plain = lines.map((l) => ({ productId: l.id, qty: l.qty }))
+    const giftStock: Record<string, number> = {}
+    for (const p of FREE_GIFT_PROMOS) {
+      const g = productById.get(p.giftProductId)
+      giftStock[p.giftProductId] = g ? Math.max(0, g.stock) : 0
+    }
+    const earnedGifts = computeFreeGifts(plain)
+    const givenGifts = computeFreeGifts(plain, giftStock)
+    const gifts: CartGift[] = earnedGifts.flatMap((e) => {
+      const product = productById.get(e.productId)
+      const qty = givenGifts.find((g) => g.productId === e.productId)?.qty ?? 0
+      return product && qty > 0 ? [{ product, qty, earned: e.qty, label: e.label }] : []
+    })
+    let giftNotice: string | null = null
+    const short = earnedGifts.find((e) => (givenGifts.find((g) => g.productId === e.productId)?.qty ?? 0) < e.qty)
+    if (short) {
+      const name = (productById.get(short.productId)?.name ?? 'free gift').replace(/^Pokemon\s+/, '').replace(/\s*\(Simplified Chinese\)/, '')
+      const left = givenGifts.find((g) => g.productId === short.productId)?.qty ?? 0
+      giftNotice =
+        left > 0
+          ? `Only ${left} free ${name}${left === 1 ? ' is' : 's are'} left, so your order gets ${left}. Thanks for shopping the deal!`
+          : `The free ${name}s have all been claimed. Thank you to everyone who grabbed one! Your boxes are still in your cart at the regular price.`
+    }
+
     return {
       products,
       lines,
+      gifts,
+      giftNotice,
       cartCount,
       cartEmpty: lines.length === 0,
       subtotal,

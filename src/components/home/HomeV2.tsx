@@ -8,11 +8,12 @@ import { FLAT_SHIPPING_RATE, formatMoney, isOnSale, rankProducts, type Product }
 import { HomeRail, availability, percentOff, sortForRail } from './HomeRail'
 import { HomeSets } from './HomeSets'
 import { HomeGuides } from './HomeGuides'
+import { HomeFeatured } from './HomeFeatured'
 
-// Homepage body (routes/index.tsx). Order, top to
-// bottom: sale banner (in the route), a sticky row of category chips, a
-// trust strip, shop by set, the biggest markdowns, best sellers, the
-// non-card categories, new & upcoming, pre-orders, the blog, and the restock email band (in the route).
+// Homepage body (routes/index.tsx). Order, top to bottom: sale banner (in
+// the route), the featured pre-orders and deal, the biggest markdowns, shop
+// by set, best sellers, the non-card categories, new & upcoming, pre-orders,
+// the trust strip, the blog, and the restock email band (in the route).
 // Everything product-related is worked out from the live catalog.
 
 type ShopSearch = Record<string, unknown>
@@ -37,46 +38,6 @@ const MORE_THAN_CARDS: Category[] = [
   { key: 'figure', title: 'Figures & Plush', blurb: 'Collector figures and plush', match: isFigure, search: { subcategories: ['Figure', 'Plush'] } },
   { key: 'binder', title: 'Binders', blurb: 'Pokémon China card binders', match: (p) => p.subcategory === 'Binder', search: { subcategory: 'Binder' } },
 ]
-
-function CategoryNav({ saleCount, preorderCount }: { saleCount: number; preorderCount: number }) {
-  const chips: { label: string; to: string; search?: ShopSearch; hot?: boolean }[] = [
-    ...(saleCount > 0 ? [{ label: `Sale · ${saleCount}`, to: '/shop', search: { sale: true }, hot: true }] : []),
-    { label: 'Booster Boxes', to: '/shop', search: { subcategory: 'Booster Box' } },
-    { label: 'Gem Packs', to: '/shop', search: { q: 'Gem Volume' } },
-    { label: '30th Celebration', to: '/shop', search: { q: '30th' } },
-    { label: 'Gift Boxes', to: '/shop', search: { subcategory: 'Special Products' } },
-    { label: 'Blind Boxes', to: '/shop', search: { subcategory: 'Blind Box' } },
-    { label: 'Figures & Plush', to: '/shop', search: { subcategories: ['Figure', 'Plush'] } },
-    { label: 'Binders', to: '/shop', search: { subcategory: 'Binder' } },
-    ...(preorderCount > 0 ? [{ label: 'Pre-orders', to: '/shop', search: { preorder: true } }] : []),
-    { label: 'Card Lists', to: '/sets/chinese' },
-    { label: 'Guides', to: '/blog' },
-  ]
-  // The site header is sticky too; park the chips right under it.
-  const navRef = React.useRef<HTMLElement>(null)
-  React.useEffect(() => {
-    const header = document.querySelector('header')
-    const nav = navRef.current
-    if (!header || !nav) return
-    const set = () => nav.style.setProperty('--hp2-top', `${header.getBoundingClientRect().height}px`)
-    set()
-    window.addEventListener('resize', set)
-    return () => window.removeEventListener('resize', set)
-  }, [])
-  return (
-    <nav ref={navRef} className="hp2-chips" aria-label="Shop categories">
-      <ul className="hp2-wrap">
-        {chips.map((c) => (
-          <li key={c.label}>
-            <Link to={c.to as never} search={c.search as never} className={`hp2-chip${c.hot ? ' hp2-chip--hot' : ''}`}>
-              {c.label}
-            </Link>
-          </li>
-        ))}
-      </ul>
-    </nav>
-  )
-}
 
 const TRUST_ICONS: Record<string, React.ReactNode> = {
   ship: (
@@ -231,9 +192,9 @@ export function HomeV2({ products, live }: { products: Product[]; live: Record<s
 
   return (
     <div className="hp2">
-      <CategoryNav saleCount={data.saleCount} preorderCount={data.preorders.length} />
-      <TrustStrip />
-      <HomeSets products={products} />
+      {/* Leads with the featured pre-orders and deal, then the sale (owner's call,
+          Nov 2026: a calmer top that points people at what to buy). */}
+      <HomeFeatured products={products} />
       <HomeRail
         id="sale"
         eyebrow="On sale now"
@@ -247,6 +208,7 @@ export function HomeV2({ products, live }: { products: Product[]; live: Record<s
         seeAll={{ label: `See all ${data.saleCount}`, to: '/shop', search: { sale: true } }}
         tone="cream"
       />
+      <HomeSets products={products} />
       <HomeRail
         id="best"
         eyebrow="What collectors buy"
@@ -264,6 +226,7 @@ export function HomeV2({ products, live }: { products: Product[]; live: Record<s
         seeAll={{ label: 'See all', to: '/new-and-upcoming' }}
       />
       <PreorderBand items={data.preorders} />
+      <TrustStrip />
       <HomeGuides live={live} />
     </div>
   )

@@ -4,6 +4,7 @@ import { SquareCardField, squareConfigured, type SquareCardFieldHandle } from '~
 import { ApplePayButton } from '~/components/ApplePayButton'
 import { CardBrandLogos } from '~/components/CardBrandLogos'
 import { OrderConfirmation } from '~/components/OrderConfirmation'
+import { FreeGiftRows } from '~/components/FreeGiftRows'
 import { PasswordInput } from '~/components/PasswordInput'
 import { DiscordIcon } from '~/components/DiscordIcon'
 import { GoogleIcon } from '~/components/GoogleIcon'
@@ -286,6 +287,7 @@ function CheckoutPage() {
     hasDelayedShipment: boolean
     mixedDelayedShipment: boolean
     combineWithOrderNo?: number
+    giftNote?: string
   } | null>(null)
   const [submitting, setSubmitting] = React.useState(false)
   const [error, setError] = React.useState<string | null>(null)
@@ -481,6 +483,7 @@ function CheckoutPage() {
         hasDelayedShipment={confirmed.hasDelayedShipment}
         mixedDelayedShipment={confirmed.mixedDelayedShipment}
         combineWithOrderNo={confirmed.combineWithOrderNo}
+        giftNote={confirmed.giftNote}
       />
     )
   }
@@ -576,6 +579,7 @@ function CheckoutPage() {
         hasDelayedShipment: cart.lines.some((l) => l.product.shipsWithDelay),
         mixedDelayedShipment,
         combineWithOrderNo: shipTogether ? combineCandidate?.orderNo : undefined,
+        giftNote: result.giftNote,
       })
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Something went wrong placing your order.')
@@ -1132,6 +1136,7 @@ function CheckoutPage() {
                 <div style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 13 }}>{formatMoney(line.lineTotal)}</div>
               </div>
             ))}
+            <FreeGiftRows compact />
           </div>
           {cart.cartEmpty && (
             <p style={{ fontSize: 13.5, color: '#131b28', margin: '4px 0 0' }}>Your cart is empty — add a box to check out.</p>

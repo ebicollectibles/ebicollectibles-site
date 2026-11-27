@@ -29,6 +29,7 @@ import { upsertSubscriber } from './subscribers'
 import { computeAffiliateCommission, computeAffiliateLineCommissions, resolveAffiliateAttribution } from './affiliates'
 import { AFFILIATE_REF_COOKIE } from '~/lib/affiliate-ref'
 import { TRAFFIC_SOURCE_COOKIE, decodeTrafficSource } from '~/lib/traffic-source'
+import { activeGiftProductIds, computeFreeGifts } from '~/lib/promotions'
 
 const placeOrderSchema = z.object({
   lines: z.array(z.object({ productId: z.string(), qty: z.number().int().positive() })).min(1),
@@ -288,6 +289,18 @@ export const placeOrder = createServerFn({ method: 'POST' })
 
     const squareLines = data.lines.filter((l) => productById.get(l.productId)?.squareVariationId)
 
+    // Free-gift promotions (lib/promotions.ts). Gift rows are read on their
+    // own, not into productRows, so they never count towards the
+    // pre-order or mixed-cart checks above. Only published, Square-linked
+    // gifts are given, so stock is real; the quantity is worked out from
+    // live stock inside the transaction below.
+    const giftIds = activeGiftProductIds()
+    const giftRows = giftIds.length
+      ? (await db.select().from(productsTable).where(inArray(productsTable.id, giftIds))).filter((g) => g.published && g.squareVariationId)
+      : []
+    const giftById = new Map(giftRows.map((g) => [g.id, g]))
+    let giftLines: Array<{ productId: string; qty: number; variationId: string }> = []
+
     const result = await withTransaction(async (tx) => {
       // Products linked to Square (squareVariationId set) are stock- and
       // price-tracked in Square, not locally — check both live there,
@@ -304,10 +317,21 @@ export const placeOrder = createServerFn({ method: 'POST' })
       // locally-stored price here would silently charge a different amount
       // than what the customer saw on the page.
       let squareLivePrices: Record<string, number> = {}
-      if (squareLines.length > 0) {
+      const earnable = computeFreeGifts(data.lines).filter((g) => giftById.has(g.productId))
+      if (squareLines.length > 0 || earnable.length > 0) {
         const variationIds = squareLines.map((l) => productById.get(l.productId)!.squareVariationId!)
-        const [counts, prices] = await Promise.all([getSquareInventoryCounts(variationIds), getSquareCatalogPrices(variationIds)])
+        const giftVariationIds = earnable.map((g) => giftById.get(g.productId)!.squareVariationId!)
+        const [counts, prices] = await Promise.all([
+          getSquareInventoryCounts([...new Set([...variationIds, ...giftVariationIds])]),
+          variationIds.length ? getSquareCatalogPrices(variationIds) : Promise.resolve({} as Record<string, number>),
+        ])
         squareLivePrices = prices
+        // A gift that has run out is simply left off (while supplies last),
+        // never an error that blocks the paid order.
+        const giftStock = Object.fromEntries(earnable.map((g) => [g.productId, counts[giftById.get(g.productId)!.squareVariationId!] ?? 0]))
+        giftLines = computeFreeGifts(data.lines, giftStock)
+          .filter((g) => giftById.has(g.productId))
+          .map((g) => ({ productId: g.productId, qty: g.qty, variationId: giftById.get(g.productId)!.squareVariationId! }))
         for (const line of squareLines) {
           const product = productById.get(line.productId)!
           const available = counts[product.squareVariationId!] ?? 0
@@ -359,6 +383,11 @@ export const placeOrder = createServerFn({ method: 'POST' })
           qty: line.qty,
           preorder: !!updated.preorder,
         })
+      }
+
+      for (const g of giftLines) {
+        const gift = giftById.get(g.productId)!
+        lineDetails.push({ productId: gift.id, name: `${gift.name} (free gift)`, img: gift.img, unitPrice: 0, qty: g.qty, preorder: false })
       }
 
       const { subtotal, shippingCost, tax, total } = computeOrderTotals(lineDetails, taxRate, effectiveShippingOverride)
@@ -642,6 +671,13 @@ export const placeOrder = createServerFn({ method: 'POST' })
         console.error(`Failed to record Square inventory sale for order ${result.orderNo}:`, err)
       }
     }
+    for (const g of giftLines) {
+      try {
+        await recordSquareInventorySale(g.variationId, g.qty, result.orderNo)
+      } catch (err) {
+        console.error(`Failed to record Square inventory for free gift on order ${result.orderNo}:`, err)
+      }
+    }
 
     // Looked up here (not just passed through) because the email needs the
     // anchor's human-facing order NUMBER, not the id resolved above —
@@ -693,11 +729,22 @@ export const placeOrder = createServerFn({ method: 'POST' })
       console.error(`Failed to send confirmation email for order ${result.orderNo}:`, err)
     }
 
+    // A gift earned but not given because it ran out between the cart and
+    // the charge: tell the shopper on the confirmation, kindly.
+    const earnedGifts = computeFreeGifts(data.lines).filter((g) => giftById.has(g.productId))
+    const shortGift = earnedGifts.find((g) => (giftLines.find((l) => l.productId === g.productId)?.qty ?? 0) < g.qty)
+    const giftNote = shortGift
+      ? (giftLines.find((l) => l.productId === shortGift.productId)?.qty ?? 0) > 0
+        ? `We had fewer free ${giftById.get(shortGift.productId)!.name.replace(/^Pokemon\s+/, '').replace(/\s*\(Simplified Chinese\)/, '')}s left than your order earned, so it includes the last ones we had. Everything else in your order is complete.`
+        : `The free ${giftById.get(shortGift.productId)!.name.replace(/^Pokemon\s+/, '').replace(/\s*\(Simplified Chinese\)/, '')} ran out just before your order went through, so it isn't included. Everything else in your order is complete and you weren't charged for it.`
+      : undefined
+
     return {
       orderNo: result.orderNo,
       total: result.total,
       creditApplied: result.creditApplied,
       amountDue: result.amountDue,
       paymentStatus: result.paymentStatus,
+      giftNote,
     }
   })

@@ -243,3 +243,31 @@ a.hp2-trust-item:hover b { text-decoration: underline; }
 
   .hp2-guide-rail { grid-auto-columns: 78%; }
 }
+
+/* Featured: the three cards under the sale banner (HomeFeatured.tsx) */
+.hp2-feat { padding: 28px 0 8px; }
+.hp2-feat-grid { list-style: none; display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+.hp2-feat-grid.n-2 { grid-template-columns: repeat(2, 1fr); }
+.hp2-feat-grid.n-1 { grid-template-columns: 1fr; }
+.hp2-feat-card { display: flex; flex-direction: column; border: 1px solid var(--hp2-line); border-radius: 8px; overflow: hidden; background: #fff; }
+.hp2-feat-img { display: flex; align-items: center; justify-content: center; gap: 4%; height: 240px; padding: 18px; }
+.hp2-feat-card.is-pink .hp2-feat-img { background: linear-gradient(160deg, #fde7f0, #f6f0ff); }
+.hp2-feat-card.is-teal .hp2-feat-img { background: linear-gradient(160deg, #e2f6f8, #eef1fb); }
+.hp2-feat-card.is-gold .hp2-feat-img { background: linear-gradient(160deg, #fff4cf, #fdf0e2); }
+.hp2-feat-img img { max-height: 100%; max-width: 100%; min-width: 0; object-fit: contain; flex: 0 1 auto; }
+.hp2-feat-img img + img { max-width: 44%; }
+.hp2-feat-body { display: flex; flex-direction: column; flex: 1; padding: 18px 20px 20px; }
+.hp2-feat-eyebrow { font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--hp2-rust); }
+.hp2-feat-card.is-teal .hp2-feat-eyebrow { color: #1f7f86; }
+.hp2-feat-card.is-gold .hp2-feat-eyebrow { color: #3f7a63; }
+.hp2-feat-title { margin-top: 6px; font-size: 20px; font-weight: 700; letter-spacing: -0.01em; line-height: 1.2; color: var(--hp2-ink); text-decoration: none; }
+.hp2-feat-title:hover { text-decoration: underline; }
+.hp2-feat-body p { margin: 8px 0 0; font-size: 13.5px; line-height: 1.5; color: #3d4756; }
+.hp2-feat-foot { margin-top: auto; padding-top: 16px; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.hp2-feat-price { font-family: 'IBM Plex Mono', monospace; font-size: 17px; font-weight: 600; }
+.hp2-feat-btn { display: inline-flex; align-items: center; gap: 6px; background: var(--hp2-ink); color: #fff; font-size: 14px; font-weight: 700; text-decoration: none; padding: 11px 16px; border-radius: 4px; white-space: nowrap; }
+.hp2-feat-btn:hover { background: #2a3546; }
+@media (max-width: 900px) {
+  .hp2-feat-grid, .hp2-feat-grid.n-2 { grid-template-columns: 1fr; }
+  .hp2-feat-img { height: 200px; }
+}
