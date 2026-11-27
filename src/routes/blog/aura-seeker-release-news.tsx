@@ -77,8 +77,9 @@ const DOUBLE_RARES = [
 const TOC = [
   { id: 'what-it-is', label: 'What is Aura Seeker?' },
   { id: 'contents', label: "What's in a pack and a box?" },
-  { id: 'mega-lucario', label: 'Mega Lucario Z ex' },
   { id: 'secret-rares', label: 'The 36 secret rares' },
+  { id: 'art-rares', label: 'The 12 Art Rares' },
+  { id: 'mega-lucario', label: 'Mega Lucario Z ex' },
   { id: 'more-cards', label: 'Other main set cards' },
   { id: 'card-list', label: 'Full card list by rarity' },
   { id: 'names', label: 'What is it called?' },
@@ -322,32 +323,6 @@ function AuraSeekerPost() {
           November 10 (Japan time), and the box is listed to ship from December 1 to December 18.
         </p>
 
-        <h2 id="mega-lucario">Mega Lucario Z ex</h2>
-        <p>
-          Mega Lucario Z ex is 057/078, a Double Rare illustrated by takuyoa. It shows Mega Lucario Z lunging forward with a fist out,
-          its long blue tassels swirling around it against pink and green streaks.
-        </p>
-        <p>
-          It is a Metal-type Stage 1 Pokémon that evolves from Riolu, with 330 HP. Its Ability, <Ja>ハドウシーカー</Ja> (the set's name),
-          works once during your turn while it is in the Active Spot: you search your deck for a Supporter card and put it into your
-          hand. Its attack does 120 damage, plus 120 more if your opponent's Active Pokémon is a Pokémon ex. As a Mega Evolution ex, it
-          gives up 3 Prize cards when it is Knocked Out.
-        </p>
-        <p>
-          It is printed four times in the set: the Double Rare 057/078, a Super Rare 096/078, a Special Art Rare 110/078 and the gold
-          Mega Ultra Rare 114/078.
-        </p>
-        <ul className="card-grid cols-1">
-          <li>
-            <figure>
-              <img src={img('mega-lucario-z-ex')} alt="Mega Lucario Z ex 057/078: Mega Lucario Z lunging forward with a fist out, blue tassels swirling, on a pink and green background" loading="lazy" width={788} height={1100} style={{ background: 'transparent', boxShadow: 'none' }} />
-              <figcaption>
-                <strong>Mega Lucario Z ex</strong>057/078 · Double Rare
-              </figcaption>
-            </figure>
-          </li>
-        </ul>
-
         <h2 id="secret-rares">The 36 secret rares</h2>
         <p>
           Aura Seeker has 36 secret rares, numbered 079/078 to 114/078: 12 Art Rares, 17 Super Rares, 6 Special Art Rares and one Mega
@@ -438,9 +413,137 @@ function AuraSeekerPost() {
         </ul>
         <p>
           The 17 Super Rares are full-art versions of all eight Double Rare ex, the six Trainer cards from the main set (Pokégear 3.0,
-          Bond Sash, Korrina's Earnestness, Crasher Wake's Fervor, Reporter and Fight Arena) and three Special Energy cards. The 12 Art
-          Rares are Pokémon from the main set, from Bellsprout to Regigigas, including Blastoise, Hatterene and Riolu.
+          Bond Sash, Korrina's Earnestness, Crasher Wake's Fervor, Reporter and Fight Arena) and three Special Energy cards.
         </p>
+
+        <h2 id="art-rares">The 12 Art Rares</h2>
+        <p>
+          The 12 Art Rares, 079/078 to 090/078, are full illustrations of Pokémon from the main set, from Bellsprout to Regigigas.
+        </p>
+        <ul className="card-grid cols-3">
+          <li>
+            <figure>
+              <img src={card('079')} alt="Bellsprout 079/078 Art Rare: Bellsprout among bright jungle leaves" loading="lazy" width={480} height={670} style={{ background: 'transparent', boxShadow: 'none' }} />
+              <figcaption>
+                <strong>Bellsprout</strong>079/078 · Art Rare
+              </figcaption>
+            </figure>
+          </li>
+          <li>
+            <figure>
+              <img src={card('080')} alt="Ninetales 080/078 Art Rare: Ninetales surrounded by swirling flames" loading="lazy" width={480} height={670} style={{ background: 'transparent', boxShadow: 'none' }} />
+              <figcaption>
+                <strong>Ninetales</strong>080/078 · Art Rare
+              </figcaption>
+            </figure>
+          </li>
+          <li>
+            <figure>
+              <img src={card('081')} alt="Blastoise 081/078 Art Rare: Blastoise standing in the sea under a bright sky" loading="lazy" width={480} height={670} style={{ background: 'transparent', boxShadow: 'none' }} />
+              <figcaption>
+                <strong>Blastoise</strong>081/078 · Art Rare
+              </figcaption>
+            </figure>
+          </li>
+          <li>
+            <figure>
+              <img src={card('082')} alt="Buizel 082/078 Art Rare: Buizel leaping through a waterfall" loading="lazy" width={480} height={670} style={{ background: 'transparent', boxShadow: 'none' }} />
+              <figcaption>
+                <strong>Buizel</strong>082/078 · Art Rare
+              </figcaption>
+            </figure>
+          </li>
+          <li>
+            <figure>
+              <img src={card('083')} alt="Oranguru 083/078 Art Rare: Oranguru sitting in a green forest" loading="lazy" width={480} height={670} style={{ background: 'transparent', boxShadow: 'none' }} />
+              <figcaption>
+                <strong>Oranguru</strong>083/078 · Art Rare
+              </figcaption>
+            </figure>
+          </li>
+          <li>
+            <figure>
+              <img src={card('084')} alt="Hatterene 084/078 Art Rare: Hatterene floating among colourful bubbles" loading="lazy" width={480} height={670} style={{ background: 'transparent', boxShadow: 'none' }} />
+              <figcaption>
+                <strong>Hatterene</strong>084/078 · Art Rare
+              </figcaption>
+            </figure>
+          </li>
+          <li>
+            <figure>
+              <img src={card('085')} alt="Riolu 085/078 Art Rare: Riolu standing on a snowy mountain" loading="lazy" width={480} height={670} style={{ background: 'transparent', boxShadow: 'none' }} />
+              <figcaption>
+                <strong>Riolu</strong>085/078 · Art Rare
+              </figcaption>
+            </figure>
+          </li>
+          <li>
+            <figure>
+              <img src={card('086')} alt="Hawlucha 086/078 Art Rare: Hawlucha flying over a stadium" loading="lazy" width={480} height={670} style={{ background: 'transparent', boxShadow: 'none' }} />
+              <figcaption>
+                <strong>Hawlucha</strong>086/078 · Art Rare
+              </figcaption>
+            </figure>
+          </li>
+          <li>
+            <figure>
+              <img src={card('087')} alt="Falinks 087/078 Art Rare: Falinks marching in a line across a pink field" loading="lazy" width={480} height={670} style={{ background: 'transparent', boxShadow: 'none' }} />
+              <figcaption>
+                <strong>Falinks</strong>087/078 · Art Rare
+              </figcaption>
+            </figure>
+          </li>
+          <li>
+            <figure>
+              <img src={card('088')} alt="Glimmet 088/078 Art Rare: Glimmet in a glittering crystal cave" loading="lazy" width={480} height={670} style={{ background: 'transparent', boxShadow: 'none' }} />
+              <figcaption>
+                <strong>Glimmet</strong>088/078 · Art Rare
+              </figcaption>
+            </figure>
+          </li>
+          <li>
+            <figure>
+              <img src={card('089')} alt="Persian 089/078 Art Rare: Persian lounging on a velvet sofa" loading="lazy" width={480} height={670} style={{ background: 'transparent', boxShadow: 'none' }} />
+              <figcaption>
+                <strong>Persian</strong>089/078 · Art Rare
+              </figcaption>
+            </figure>
+          </li>
+          <li>
+            <figure>
+              <img src={card('090')} alt="Regigigas 090/078 Art Rare: Regigigas, huge and white, against red and black stripes" loading="lazy" width={480} height={670} style={{ background: 'transparent', boxShadow: 'none' }} />
+              <figcaption>
+                <strong>Regigigas</strong>090/078 · Art Rare
+              </figcaption>
+            </figure>
+          </li>
+        </ul>
+
+        <h2 id="mega-lucario">Mega Lucario Z ex</h2>
+        <p>
+          Mega Lucario Z ex is 057/078, a Double Rare illustrated by takuyoa. It shows Mega Lucario Z lunging forward with a fist out,
+          its long blue tassels swirling around it against pink and green streaks.
+        </p>
+        <p>
+          It is a Metal-type Stage 1 Pokémon that evolves from Riolu, with 330 HP. Its Ability, <Ja>ハドウシーカー</Ja> (the set's name),
+          works once during your turn while it is in the Active Spot: you search your deck for a Supporter card and put it into your
+          hand. Its attack does 120 damage, plus 120 more if your opponent's Active Pokémon is a Pokémon ex. As a Mega Evolution ex, it
+          gives up 3 Prize cards when it is Knocked Out.
+        </p>
+        <p>
+          It is printed four times in the set: the Double Rare 057/078, a Super Rare 096/078, a Special Art Rare 110/078 and the gold
+          Mega Ultra Rare 114/078.
+        </p>
+        <ul className="card-grid cols-1">
+          <li>
+            <figure>
+              <img src={img('mega-lucario-z-ex')} alt="Mega Lucario Z ex 057/078: Mega Lucario Z lunging forward with a fist out, blue tassels swirling, on a pink and green background" loading="lazy" width={788} height={1100} style={{ background: 'transparent', boxShadow: 'none' }} />
+              <figcaption>
+                <strong>Mega Lucario Z ex</strong>057/078 · Double Rare
+              </figcaption>
+            </figure>
+          </li>
+        </ul>
 
         <h2 id="more-cards">Other main set cards</h2>
         <p>
