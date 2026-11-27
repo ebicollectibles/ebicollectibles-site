@@ -412,8 +412,9 @@ function AuraSeekerPost() {
           </li>
         </ul>
         <p>
-          The 17 Super Rares are full-art versions of all eight Double Rare ex, the six Trainer cards from the main set (Pokégear 3.0,
-          Bond Sash, Korrina's Earnestness, Crasher Wake's Fervor, Reporter and Fight Arena) and three Special Energy cards.
+          The 17 Super Rares are full-art versions of all eight Double Rare ex, six Trainer cards and three Special Energy cards.
+          Five of the Trainer cards are from the main set (Bond Sash, Korrina's Earnestness, Crasher Wake's Fervor, Reporter and Fight
+          Arena). Pokégear 3.0 and the three Energy cards are only in the secret rares.
         </p>
 
         <h2 id="art-rares">The 12 Art Rares</h2>
