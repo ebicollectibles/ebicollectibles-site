@@ -214,7 +214,6 @@ export function HomeV2({ products, live }: { products: Product[]; live: Record<s
         eyebrow="What collectors buy"
         title="Best sellers"
         products={data.best}
-        pill={(_, i) => (i < 10 ? { text: `#${i + 1}`, tone: 'rank' } : null)}
         seeAll={{ label: 'See all', to: '/best-selling' }}
       />
       <MoreThanCards eligible={data.eligible} />

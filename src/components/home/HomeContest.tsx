@@ -4,9 +4,9 @@ import { CONTEST_ENDS_LABEL, CONTEST_PRIZES, contestLive } from '~/lib/contest'
 // The Black Friday Promotion, in full, on the homepage (#promotion). The
 // announcement bar and the sale banner link here. Hidden once it ends.
 const PRIZE_IMAGES: Record<string, { src: string; alt: string }> = {
-  '1st place': { src: '/assets/home/contest-pc-etb.webp', alt: 'Pokémon TCG 30th Celebration Pokémon Center Elite Trainer Box in an acrylic case' },
-  '2nd place': { src: '/assets/home/contest-etb.webp', alt: 'Pokémon TCG 30th Celebration Elite Trainer Box in an acrylic case' },
-  '3rd place': { src: '/assets/home/contest-bundle.webp', alt: 'Pokémon TCG 30th Celebration Booster Bundle in an acrylic case' },
+  '1st place': { src: '/assets/home/promo-prize-1st.webp', alt: 'Pokémon TCG 30th Celebration Pokémon Center Elite Trainer Box' },
+  '2nd place': { src: '/assets/home/promo-prize-2nd.webp', alt: 'Pokémon TCG 30th Celebration Elite Trainer Box' },
+  '3rd place': { src: '/assets/home/promo-prize-3rd.webp', alt: 'Pokémon TCG 30th Celebration Booster Bundle' },
 }
 
 export function HomeContest() {

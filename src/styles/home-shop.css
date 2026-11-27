@@ -280,8 +280,8 @@ a.hp2-trust-item:hover b { text-decoration: underline; }
 .hp2-contest-sub { display: block; margin-top: 26px; }
 .hp2-contest-podium { list-style: none; margin: 12px 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
 .hp2-contest-podium li { border-radius: 8px; overflow: hidden; background: #fff; color: #131b28; display: flex; flex-direction: column; }
-.hp2-contest-photo { aspect-ratio: 1 / 1; background: #f4f1ea; overflow: hidden; }
-.hp2-contest-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.hp2-contest-photo { aspect-ratio: 1 / 1; background: #fff; overflow: hidden; }
+.hp2-contest-photo img { width: 100%; height: 100%; object-fit: contain; display: block; }
 .hp2-contest-photo.is-wide { aspect-ratio: 4 / 3; border-radius: 6px; }
 .hp2-contest-cap { padding: 14px 16px 16px; display: flex; flex-direction: column; gap: 4px; }
 .hp2-contest-cap b { font-family: 'IBM Plex Mono', monospace; font-size: 11.5px; letter-spacing: 0.1em; text-transform: uppercase; color: #a85b2c; }
