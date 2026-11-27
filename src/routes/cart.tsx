@@ -12,7 +12,6 @@ import {
   hasDelayedShipment,
   hasMixedDelayedShipment,
   hasMixedPreorderCart,
-  MIXED_PREORDER_INFO,
 } from '~/lib/order-math'
 import { formatMoney } from '~/lib/products'
 import { thumbSrcSet } from '~/components/ResponsiveImage'
@@ -241,9 +240,6 @@ function CartPage() {
               </div>
               <div style={{ fontSize: 11.5, color: '#5a6875', marginTop: 8 }}>Shipping and tax are calculated at checkout.</div>
               <ContestCartNote />
-              {mixedPreorder && (
-                <div style={{ fontSize: 12.5, color: '#a85b2c', marginTop: 12, lineHeight: 1.5 }}>{MIXED_PREORDER_INFO}</div>
-              )}
               {!mixedPreorder && !cartHasPreorder && delayedShipment && (
                 <div style={{ fontSize: 12.5, color: '#a85b2c', marginTop: 12, lineHeight: 1.5 }}>
                   {mixedDelayedShipment ? DELAYED_SHIPMENT_WARNING : ALL_DELAYED_SHIPMENT_WARNING}

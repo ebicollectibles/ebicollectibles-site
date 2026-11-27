@@ -19,7 +19,6 @@ import {
   hasMixedPreorderCart,
   isHiOrAk,
   MIXED_PREORDER_ERROR,
-  MIXED_PREORDER_INFO,
 } from '~/lib/order-math'
 import { BLOCK_HI_AK_CHECKOUT } from '~/lib/feature-flags'
 import { formatMoney } from '~/lib/products'
@@ -1147,9 +1146,6 @@ function CheckoutPage() {
           <ContestCartNote />
           {cart.cartEmpty && (
             <p style={{ fontSize: 13.5, color: '#131b28', margin: '4px 0 0' }}>Your cart is empty — add a box to check out.</p>
-          )}
-          {mixedPreorder && (
-            <p style={{ fontSize: 12.5, color: '#a85b2c', margin: '12px 0 0', lineHeight: 1.5 }}>{MIXED_PREORDER_INFO}</p>
           )}
           {!mixedPreorder && !cartHasPreorder && delayedShipment && (
             <p style={{ fontSize: 12.5, color: '#a85b2c', margin: '12px 0 0', lineHeight: 1.5 }}>
