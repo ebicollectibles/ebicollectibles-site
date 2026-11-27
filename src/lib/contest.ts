@@ -7,9 +7,9 @@ export const CONTEST_ENDS_AT = Date.parse('2026-12-01T08:00:00Z')
 export const CONTEST_ENDS_LABEL = 'Monday 11/30'
 
 export const CONTEST_PRIZES = [
-  { place: '1st place', prize: '30th Celebration Pokémon Center Elite Trainer Box' },
-  { place: '2nd place', prize: '30th Celebration Elite Trainer Box' },
-  { place: '3rd place', prize: '30th Celebration Booster Bundle' },
+  { place: '1st place', label: '#1 spender', prize: '30th Celebration Pokémon Center Elite Trainer Box' },
+  { place: '2nd place', label: '#2 spender', prize: '30th Celebration Elite Trainer Box' },
+  { place: '3rd place', label: '#3 spender', prize: '30th Celebration Booster Bundle' },
 ]
 
 /** One free pack on every order, plus one more for every $100 spent. */

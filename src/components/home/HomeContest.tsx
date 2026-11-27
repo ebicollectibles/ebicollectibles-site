@@ -16,9 +16,9 @@ export function HomeContest() {
       <div className="hp2-wrap hp2-contest-row">
         <div className="hp2-contest-head">
           <span className="hp2-contest-eyebrow">Black Friday Promotion · Ends {CONTEST_ENDS_LABEL}</span>
-          <h2 id="contest-h">Spend more, get more, win big</h2>
+          <h2 id="contest-h">Spend more, get more</h2>
           <p>
-            <b>Every order gets a free Chinese pack</b>, and every $100 adds another. Keep going: the top 3 spenders by {CONTEST_ENDS_LABEL} win:
+            <b>Every order gets a free Chinese pack</b>, and every $100 adds another. Keep going: the top 3 spenders by {CONTEST_ENDS_LABEL} get:
           </p>
           <a href="/black-friday" className="hp2-contest-more">
             See prizes and picks →
@@ -31,7 +31,7 @@ export function HomeContest() {
               <li key={p.place}>
                 <div className="hp2-contest-photo">{img && <img src={img.src} alt={img.alt} loading="eager" />}</div>
                 <div className="hp2-contest-cap">
-                  <b>{p.place}</b>
+                  <b>{p.label}</b>
                   <span>{p.prize}</span>
                 </div>
               </li>

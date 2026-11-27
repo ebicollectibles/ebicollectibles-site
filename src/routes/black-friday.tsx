@@ -17,10 +17,10 @@ export const Route = createFileRoute('/black-friday')({
   head: () => ({
     meta: [
       { title: 'Black Friday Promotion: Free Packs and Prizes | EBI Collectibles' },
-      { name: 'description', content: 'Every order gets a free Chinese pack, every $100 adds another, and the top 3 spenders win big prizes. Ends Monday 11/30.' },
+      { name: 'description', content: 'Every order gets a free Chinese pack, every $100 adds another, and the top spender gets a free 30th Celebration Pokémon Center ETB. Ends Monday 11/30.' },
       { property: 'og:title', content: 'Black Friday Promotion at EBI Collectibles' },
-      { property: 'og:description', content: 'Every order gets a free Chinese pack, every $100 adds another, and the top 3 spenders win big prizes. Ends Monday 11/30.' },
-      { property: 'og:image', content: `${SITE_URL}/assets/share/home-black-friday-v2.jpg` },
+      { property: 'og:description', content: 'Every order gets a free Chinese pack, every $100 adds another, and the top spender gets a free 30th Celebration Pokémon Center ETB. Ends Monday 11/30.' },
+      { property: 'og:image', content: `${SITE_URL}/assets/share/home-black-friday-v3.jpg` },
       { property: 'og:image:width', content: '1200' },
       { property: 'og:image:height', content: '630' },
       { property: 'og:url', content: `${SITE_URL}/black-friday` },
@@ -86,11 +86,11 @@ function BlackFridayPage() {
       <section className="hp2-contest" style={{ padding: '36px 0 40px' }}>
         <div className="hp2-wrap">
           <span className="hp2-contest-eyebrow">{live ? `Black Friday Promotion · Ends ${CONTEST_ENDS_LABEL}` : 'Black Friday Promotion · Ended'}</span>
-          <h1 style={{ margin: '8px 0 0', fontSize: 38, letterSpacing: '-0.025em', lineHeight: 1.08 }}>Spend more, get more, win big</h1>
+          <h1 style={{ margin: '8px 0 0', fontSize: 38, letterSpacing: '-0.025em', lineHeight: 1.08 }}>Spend more, get more</h1>
           {live ? (
             <p style={{ margin: '10px 0 0', fontSize: 15.5, lineHeight: 1.6, color: '#c9d1da', maxWidth: 720 }}>
               <b style={{ color: '#fff' }}>Every order gets a free Chinese pack.</b> Every $100 adds another, so a $250 order gets 3. Keep going: the top 3
-              spenders by {CONTEST_ENDS_LABEL} win big prizes.
+              spenders by {CONTEST_ENDS_LABEL} get 30th Celebration prizes.
             </p>
           ) : (
             <p style={{ margin: '10px 0 0', fontSize: 15.5, lineHeight: 1.6, color: '#c9d1da' }}>The promotion has ended. Thank you to everyone who shopped it!</p>
@@ -102,7 +102,7 @@ function BlackFridayPage() {
                 <li key={p.place}>
                   <div className="hp2-bf-prize-img">{img && <img src={img.src} alt={img.alt} />}</div>
                   <div className="hp2-bf-prize-cap">
-                    <b>{p.place}</b>
+                    <b>{p.label}</b>
                     <span>{p.prize}</span>
                   </div>
                 </li>
@@ -125,7 +125,7 @@ function BlackFridayPage() {
             </li>
             <li>
               <b>3</b>
-              <span>The top 3 spenders by {CONTEST_ENDS_LABEL} win the prizes above.</span>
+              <span>The top 3 spenders by {CONTEST_ENDS_LABEL} get the prizes above.</span>
             </li>
           </ol>
           {gemDeal && (

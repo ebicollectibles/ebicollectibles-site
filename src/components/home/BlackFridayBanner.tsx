@@ -153,7 +153,7 @@ export function BlackFridayBanner() {
             </Link>
             {contestLive() && (
               <a href="/black-friday" className="bf-btn2">
-                See what you can win
+                See the prizes
               </a>
             )}
           </div>

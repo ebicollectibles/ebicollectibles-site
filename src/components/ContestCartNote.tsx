@@ -21,7 +21,7 @@ export function ContestCartNote() {
         This order gets {packs} free Chinese pack{packs === 1 ? '' : 's'}
       </div>
       <div style={{ color: '#c9d1da' }}>
-        Spend {formatMoney(toNextPack(subtotal))} more for another pack. The top 3 spenders win prizes.{' '}
+        Spend {formatMoney(toNextPack(subtotal))} more for another pack. The top 3 spenders get prizes.{' '}
         <a href="/black-friday" style={{ color: '#ffd23f' }}>
           See prizes
         </a>
