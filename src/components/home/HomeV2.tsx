@@ -11,8 +11,8 @@ import { HomeFeatured } from './HomeFeatured'
 import { HomeContest } from './HomeContest'
 
 // Homepage body (routes/index.tsx). Order, top to bottom: sale banner (in
-// the route), the featured pre-orders and deal, the promotion, the biggest
-// markdowns, best sellers, the non-card categories, new & upcoming, pre-orders,
+// the route), the promotion, the featured pre-orders and deal, best sellers,
+// the non-card categories, the biggest markdowns, new & upcoming, pre-orders,
 // the trust strip, the blog, and the restock email band (in the route).
 // Everything product-related is worked out from the live catalog.
 
@@ -197,6 +197,14 @@ export function HomeV2({ products, live }: { products: Product[]; live: Record<s
       <HomeContest />
       <HomeFeatured products={products} />
       <HomeRail
+        id="best"
+        eyebrow="What collectors buy"
+        title="Best sellers"
+        products={data.best}
+        seeAll={{ label: 'See all', to: '/best-selling' }}
+      />
+      <MoreThanCards eligible={data.eligible} />
+      <HomeRail
         id="sale"
         eyebrow="On sale now"
         title="Biggest markdowns"
@@ -209,14 +217,6 @@ export function HomeV2({ products, live }: { products: Product[]; live: Record<s
         seeAll={{ label: `See all ${data.saleCount}`, to: '/shop', search: { sale: true } }}
         tone="cream"
       />
-      <HomeRail
-        id="best"
-        eyebrow="What collectors buy"
-        title="Best sellers"
-        products={data.best}
-        seeAll={{ label: 'See all', to: '/best-selling' }}
-      />
-      <MoreThanCards eligible={data.eligible} />
       <HomeRail
         id="new"
         eyebrow="Just landed"
