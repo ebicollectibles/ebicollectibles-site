@@ -30,6 +30,7 @@ import { computeAffiliateCommission, computeAffiliateLineCommissions, resolveAff
 import { AFFILIATE_REF_COOKIE } from '~/lib/affiliate-ref'
 import { TRAFFIC_SOURCE_COOKIE, decodeTrafficSource } from '~/lib/traffic-source'
 import { activeGiftProductIds, computeFreeGifts } from '~/lib/promotions'
+import { contestLive, freePacksFor } from '~/lib/contest'
 
 const placeOrderSchema = z.object({
   lines: z.array(z.object({ productId: z.string(), qty: z.number().int().positive() })).min(1),
@@ -387,6 +388,17 @@ export const placeOrder = createServerFn({ method: 'POST' })
       for (const g of giftLines) {
         const gift = giftById.get(g.productId)!
         lineDetails.push({ productId: gift.id, name: `${gift.name} (free gift)`, img: gift.img, unitPrice: 0, qty: g.qty, preorder: false })
+      }
+
+      // Black Friday Promotion (lib/contest.ts): the free Chinese packs this
+      // order earns go on it as a $0 line, so they show on the confirmation
+      // email, the admin order page and in Square, and get packed.
+      if (contestLive()) {
+        const paidSubtotal = lineDetails.reduce((t, l) => t + l.unitPrice * l.qty, 0)
+        const packs = freePacksFor(paidSubtotal)
+        if (packs > 0) {
+          lineDetails.push({ productId: 'promo-free-chinese-pack', name: 'Free Chinese pack (Black Friday Promotion)', img: null, unitPrice: 0, qty: packs, preorder: false })
+        }
       }
 
       const { subtotal, shippingCost, tax, total } = computeOrderTotals(lineDetails, taxRate, effectiveShippingOverride)

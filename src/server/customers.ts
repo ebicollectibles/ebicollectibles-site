@@ -88,7 +88,8 @@ export const getMyOrders = createServerFn({ method: 'GET' }).handler(async () =>
       // their item snapshots all default to isPreorder: false, so this
       // never fires for them and they just keep showing the plain
       // "Pre-order" tag they always have.
-      mixedPreorder: items.some((i) => i.isPreorder) && items.some((i) => !i.isPreorder),
+      // Free $0 lines (gifts, promotion packs) don't make an order mixed.
+      mixedPreorder: items.some((i) => i.isPreorder) && items.some((i) => !i.isPreorder && i.unitPrice > 0),
     }
   })
 })
