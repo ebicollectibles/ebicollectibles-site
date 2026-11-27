@@ -117,7 +117,7 @@ export function BlackFridayBanner() {
           </h2>
           {contestLive() ? (
             <p>
-              Sale prices on booster boxes, gift boxes, figures and more, plus a spend-and-win contest: top 3 spenders win prizes and every
+              Sale prices on booster boxes, gift boxes, figures and more, plus a spend-and-win promotion: top 3 spenders win prizes and every
               order gets a free pack. Ends <b style={{ color: '#131b28' }}>{CONTEST_ENDS_LABEL}</b>.
             </p>
           ) : (
@@ -152,7 +152,7 @@ export function BlackFridayBanner() {
               Shop the sale →
             </Link>
             {contestLive() && (
-              <a href="#contest" className="bf-btn2">
+              <a href="#promotion" className="bf-btn2">
                 See the prizes
               </a>
             )}
