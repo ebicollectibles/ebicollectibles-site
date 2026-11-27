@@ -17,7 +17,7 @@ import {
   storeCreditEvents,
   users,
 } from '~/lib/db/schema'
-import { MIXED_PREORDER_ERROR, computeOrderTotals, findUnorderableLine, hasMixedPreorderCart, isHiOrAk } from '~/lib/order-math'
+import { computeOrderTotals, findUnorderableLine, isHiOrAk } from '~/lib/order-math'
 import { US_STATE_CODES } from '~/lib/us-states'
 import { BLOCK_HI_AK_CHECKOUT } from '~/lib/feature-flags'
 import { chargeSquarePayment, createSquareOrder, getSquareCatalogPrices, getSquareInventoryCounts, recordSquareInventorySale } from './square'
@@ -280,12 +280,11 @@ export const placeOrder = createServerFn({ method: 'POST' })
     // order-math.ts for what they're actually agreeing to). Without that
     // consent, reject the mixed cart here too, beyond the client-side
     // guard, for the same stale-cart/direct-API-call reasons as above.
-    if (hasMixedPreorderCart(productRows.map((p) => ({ preorder: p.preorder }))) && !data.preorderAcknowledged) {
-      throw new Error(MIXED_PREORDER_ERROR)
-    }
-    if (hasPreorder && !data.preorderAcknowledged) {
-      throw new Error('Please check the box confirming you understand the pre-order terms before placing this order.')
-    }
+    // Owner's call (Nov 2026): no checkbox. Any cart, pre-order or mixed,
+    // can be placed; the cart and checkout say up front that everything
+    // ships together once the pre-order item arrives, and that placing the
+    // order agrees to the pre-order terms. preorderAcknowledgedAt below
+    // still records when that happened.
 
     const squareLines = data.lines.filter((l) => productById.get(l.productId)?.squareVariationId)
 

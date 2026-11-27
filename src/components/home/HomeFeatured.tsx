@@ -35,7 +35,7 @@ export function HomeFeatured({ products }: { products: Product[] }) {
       key: 'radiant',
       eyebrow: 'Pre-order now',
       title: 'Radiant Crystal Pikachu Gift Box',
-      body: 'Stellar Pikachu ex promo and 21 booster packs. Ships after the December 4 release.',
+      body: 'Stellar Pikachu ex promo and 21 booster packs. Ships the week after the December 4 release.',
       price: formatMoney(radiant.price),
       cta: 'Pre-order',
       productId: radiant.id,

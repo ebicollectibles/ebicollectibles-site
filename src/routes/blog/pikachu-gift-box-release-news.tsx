@@ -84,7 +84,7 @@ const FAQ = [
   },
   {
     q: 'Can I pre-order the Radiant Crystal Pikachu gift box?',
-    a: 'Yes. Pre-orders are open at EBI Collectibles. The box ships after the December 4 release.',
+    a: 'Yes. Pre-orders are open at EBI Collectibles. The box ships the week after the December 4 release.',
   },
   {
     q: 'How much is the Radiant Crystal Pikachu gift box?',
@@ -192,7 +192,7 @@ function PikachuGiftBoxPost() {
         lede="Pokémon China's Radiant Crystal Pikachu gift box releases on December 4, 2026. This post covers everything in it: the Stellar Tera Pikachu ex promo, the 21 booster packs from this year's seven sets, and the matching accessories."
         cta={{
           heading: 'Pre-order the Radiant Crystal Pikachu Gift Box',
-          body: 'On pre-order now. Ships after the December 4 release.',
+          body: 'On pre-order now. Ships the week after the December 4 release.',
           links: [
             { to: '/products/$id', params: { id: 'pokemon-chinese-radiant-crystal-pikachu-gift-box' }, label: 'Pre-order the gift box' },
             { to: '/sets/chinese', label: 'Browse the Chinese set lists', variant: 'ghost' },
@@ -425,7 +425,7 @@ function PikachuGiftBoxPost() {
 
         <h2 id="pre-orders">Pre-orders at EBI Collectibles</h2>
         <p>
-          The Radiant Crystal Pikachu gift box is on pre-order at EBI Collectibles. It ships after the December 4 release, from
+          The Radiant Crystal Pikachu gift box is on pre-order at EBI Collectibles. It ships the week after the December 4 release, from
           the US. Pre-orders are charged in full at checkout.
         </p>
         <BuyStrip />

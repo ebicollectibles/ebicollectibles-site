@@ -17,6 +17,7 @@ import {
 import { formatMoney } from '~/lib/products'
 import { thumbSrcSet } from '~/components/ResponsiveImage'
 import { FreeGiftRows } from '~/components/FreeGiftRows'
+import { ContestCartNote } from '~/components/ContestCartNote'
 
 export const Route = createFileRoute('/cart')({
   // Utility page: its own title instead of inheriting the home page's, and
@@ -51,7 +52,12 @@ function CartPage() {
   // Same explicit, timestamped consent as checkout.tsx's checkbox — Express
   // Apple Pay skips the full checkout form, so this is its own copy of the
   // same gate rather than relying on the one on that page.
-  const [preorderAgreed, setPreorderAgreed] = React.useState(false)
+  // No checkbox any more (owner's call, Nov 2026): a cart with a pre-order,
+  // mixed or not, checks out straight away. The notice above the button
+  // says up front that everything ships together once the pre-order item
+  // arrives, with the pre-order terms, and placing the order agrees to them
+  // (the order still records preorderAcknowledgedAt).
+  const preorderAgreed = true
   // Shared with checkout.tsx — see useCombineShippingChoice. No accountKey
   // here: unlike checkout.tsx, nothing on this page can sign someone in
   // mid-flow, so there's no login event that would need a re-check.
@@ -234,6 +240,7 @@ function CartPage() {
                 <span style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 20, fontWeight: 500 }}>{formatMoney(subtotal)}</span>
               </div>
               <div style={{ fontSize: 11.5, color: '#5a6875', marginTop: 8 }}>Shipping and tax are calculated at checkout.</div>
+              <ContestCartNote />
               {mixedPreorder && (
                 <div style={{ fontSize: 12.5, color: '#a85b2c', marginTop: 12, lineHeight: 1.5 }}>{MIXED_PREORDER_INFO}</div>
               )}
@@ -279,7 +286,7 @@ function CartPage() {
                 </button>
               </div>
               {cartHasPreorder && (
-                <label
+                <div
                   style={{
                     display: 'flex',
                     alignItems: 'flex-start',
@@ -292,17 +299,12 @@ function CartPage() {
                     fontSize: 12.5,
                     color: '#131b28',
                     lineHeight: 1.5,
-                    cursor: 'pointer',
                   }}
                 >
-                  <input
-                    type="checkbox"
-                    checked={preorderAgreed}
-                    onChange={(e) => setPreorderAgreed(e.target.checked)}
-                    style={{ marginTop: 2, flexShrink: 0 }}
-                  />
                   <span>
-                    By checking this box, I confirm I have read and agree to the{' '}
+                    <strong>{mixedPreorder ? 'Everything in this order ships together once the pre-order item arrives.' : 'This order includes a pre-order item.'}</strong>{' '}
+                    Pre-orders are charged in full today. Cancellations before shipment have a <strong>5% cancellation fee</strong>. By placing
+                    this order you agree to the{' '}
                     <Link to="/terms-of-service" style={{ color: '#131b28', fontWeight: 600 }}>
                       Terms of Service
                     </Link>
@@ -314,13 +316,9 @@ function CartPage() {
                     <Link to="/shipping-policy" style={{ color: '#131b28', fontWeight: 600 }}>
                       Shipping Policy
                     </Link>
-                    .{' '}
-                    {mixedPreorder
-                      ? "I understand this order includes a pre-order item, charged in full today, and that the in-stock item(s) will wait and ship together with it once the pre-order item arrives."
-                      : 'I understand this order includes a pre-order item, charged in full today.'}{' '}
-                    Cancellations before shipment are subject to a <strong>5% cancellation fee</strong>.
+                    .
                   </span>
-                </label>
+                </div>
               )}
               {!pendingOrderWaivesShipping && combineOfferable && combineCandidate && (
                 <div style={{ marginTop: 14 }}>

@@ -5,6 +5,7 @@ import { ApplePayButton } from '~/components/ApplePayButton'
 import { CardBrandLogos } from '~/components/CardBrandLogos'
 import { OrderConfirmation } from '~/components/OrderConfirmation'
 import { FreeGiftRows } from '~/components/FreeGiftRows'
+import { ContestCartNote } from '~/components/ContestCartNote'
 import { PasswordInput } from '~/components/PasswordInput'
 import { DiscordIcon } from '~/components/DiscordIcon'
 import { GoogleIcon } from '~/components/GoogleIcon'
@@ -210,7 +211,12 @@ function CheckoutPage() {
   // rather than relying on the passive "by placing this order you agree to
   // our policies" fine print below the button — that's weak evidence of
   // informed consent to an unusual restriction like "no refunds, ever."
-  const [preorderAgreed, setPreorderAgreed] = React.useState(false)
+  // No checkbox any more (owner's call, Nov 2026): a cart with a pre-order,
+  // mixed or not, checks out straight away. The notice above the button
+  // says up front that everything ships together once the pre-order item
+  // arrives, with the pre-order terms, and placing the order agrees to them
+  // (the order still records preorderAcknowledgedAt).
+  const preorderAgreed = true
   const initialAccount = Route.useLoaderData()
   const router = useRouter()
   const { signOut } = useAuth()
@@ -1138,6 +1144,7 @@ function CheckoutPage() {
             ))}
             <FreeGiftRows compact />
           </div>
+          <ContestCartNote />
           {cart.cartEmpty && (
             <p style={{ fontSize: 13.5, color: '#131b28', margin: '4px 0 0' }}>Your cart is empty — add a box to check out.</p>
           )}
@@ -1237,7 +1244,7 @@ function CheckoutPage() {
                 Email me about restocks and new drops
               </label>
               {cartHasPreorder && (
-                <label
+                <div
                   style={{
                     display: 'flex',
                     alignItems: 'flex-start',
@@ -1250,17 +1257,12 @@ function CheckoutPage() {
                     fontSize: 12.5,
                     color: '#131b28',
                     lineHeight: 1.5,
-                    cursor: 'pointer',
                   }}
                 >
-                  <input
-                    type="checkbox"
-                    checked={preorderAgreed}
-                    onChange={(e) => setPreorderAgreed(e.target.checked)}
-                    style={{ marginTop: 2, flexShrink: 0 }}
-                  />
                   <span>
-                    By checking this box, I confirm I have read and agree to the{' '}
+                    <strong>{mixedPreorder ? 'Everything in this order ships together once the pre-order item arrives.' : 'This order includes a pre-order item.'}</strong>{' '}
+                    Pre-orders are charged in full today. Cancellations before shipment have a <strong>5% cancellation fee</strong>. By placing
+                    this order you agree to the{' '}
                     <Link to="/terms-of-service" style={{ color: '#131b28', fontWeight: 600 }}>
                       Terms of Service
                     </Link>
@@ -1272,13 +1274,9 @@ function CheckoutPage() {
                     <Link to="/shipping-policy" style={{ color: '#131b28', fontWeight: 600 }}>
                       Shipping Policy
                     </Link>
-                    .{' '}
-                    {mixedPreorder
-                      ? "I understand this order includes a pre-order item, charged in full today, and that the in-stock item(s) will wait and ship together with it once the pre-order item arrives."
-                      : 'I understand this order includes a pre-order item, charged in full today.'}{' '}
-                    Cancellations before shipment are subject to a <strong>5% cancellation fee</strong>.
+                    .
                   </span>
-                </label>
+                </div>
               )}
               <button
                 type="submit"

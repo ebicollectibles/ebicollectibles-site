@@ -271,3 +271,20 @@ a.hp2-trust-item:hover b { text-decoration: underline; }
   .hp2-feat-grid, .hp2-feat-grid.n-2 { grid-template-columns: 1fr; }
   .hp2-feat-img { height: 200px; }
 }
+
+/* Black Friday contest (HomeContest.tsx) */
+.hp2-contest { background: #131b28; color: #fff; padding: 40px 0 44px; margin-top: 28px; }
+.hp2-contest-eyebrow { font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #ffd23f; }
+.hp2-contest-head h2 { margin: 8px 0 0; font-size: 30px; letter-spacing: -0.02em; line-height: 1.1; }
+.hp2-contest-grid { list-style: none; margin: 24px 0 0; padding: 0; display: grid; grid-template-columns: 1.15fr 1fr 1fr; gap: 16px; }
+.hp2-contest-grid > li { border: 1px solid rgba(255, 255, 255, 0.16); border-radius: 8px; padding: 20px 22px; background: rgba(255, 255, 255, 0.04); }
+.hp2-contest-k { font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; letter-spacing: 0.14em; text-transform: uppercase; color: #9aa6b4; }
+.hp2-contest-prizes { list-style: none; margin: 12px 0 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+.hp2-contest-prizes li { display: grid; grid-template-columns: 84px 1fr; gap: 10px; align-items: baseline; font-size: 14.5px; line-height: 1.4; }
+.hp2-contest-prizes b { color: #ffd23f; font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; }
+.hp2-contest-big { margin: 12px 0 0; font-size: 19px; font-weight: 700; line-height: 1.25; }
+.hp2-contest-grid p:not(.hp2-contest-big) { margin: 8px 0 0; font-size: 13.5px; line-height: 1.55; color: #c9d1da; }
+@media (max-width: 900px) {
+  .hp2-contest-grid { grid-template-columns: 1fr; }
+  .hp2-contest-head h2 { font-size: 25px; }
+}

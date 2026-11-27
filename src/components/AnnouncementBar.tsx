@@ -1,3 +1,6 @@
+import { Link } from '@tanstack/react-router'
+import { CONTEST_ENDS_LABEL, contestLive } from '~/lib/contest'
+
 export function AnnouncementBar() {
   return (
     <aside
@@ -18,8 +21,24 @@ export function AnnouncementBar() {
         textTransform: 'uppercase',
       }}
     >
-      <span aria-hidden="true" style={{ width: 6, height: 6, borderRadius: '50%', background: '#5fbf97', display: 'inline-block', flexShrink: 0 }} />
-      <span>Orders Ship From WA · Family Owned</span>
+      {contestLive() ? (
+        // Black Friday contest reminder on every page (lib/contest.ts); goes
+        // back to the usual notice by itself once the contest ends.
+        <>
+          <span aria-hidden="true" style={{ width: 6, height: 6, borderRadius: '50%', background: '#ffd23f', display: 'inline-block', flexShrink: 0 }} />
+          <span>
+            Black Friday contest · Top 3 spenders win prizes · Free pack on every order · Ends {CONTEST_ENDS_LABEL}
+          </span>
+          <Link to="/" hash="contest" style={{ color: '#ffd23f', textDecoration: 'underline', textUnderlineOffset: 3 }}>
+            See prizes →
+          </Link>
+        </>
+      ) : (
+        <>
+          <span aria-hidden="true" style={{ width: 6, height: 6, borderRadius: '50%', background: '#5fbf97', display: 'inline-block', flexShrink: 0 }} />
+          <span>Orders Ship From WA · Family Owned</span>
+        </>
+      )}
     </aside>
   )
 }

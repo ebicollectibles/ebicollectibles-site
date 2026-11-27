@@ -9,6 +9,7 @@ import { HomeRail, availability, percentOff, sortForRail } from './HomeRail'
 import { HomeSets } from './HomeSets'
 import { HomeGuides } from './HomeGuides'
 import { HomeFeatured } from './HomeFeatured'
+import { HomeContest } from './HomeContest'
 
 // Homepage body (routes/index.tsx). Order, top to bottom: sale banner (in
 // the route), the featured pre-orders and deal, the biggest markdowns, shop
@@ -195,6 +196,7 @@ export function HomeV2({ products, live }: { products: Product[]; live: Record<s
       {/* Leads with the featured pre-orders and deal, then the sale (owner's call,
           Nov 2026: a calmer top that points people at what to buy). */}
       <HomeFeatured products={products} />
+      <HomeContest />
       <HomeRail
         id="sale"
         eyebrow="On sale now"

@@ -2,6 +2,7 @@ import * as React from 'react'
 import { Link } from '@tanstack/react-router'
 import { useCart } from '~/lib/cart-context'
 import { isOnSale } from '~/lib/products'
+import { CONTEST_ENDS_LABEL, contestLive } from '~/lib/contest'
 
 // Homepage banner for Black Friday week, in place of the 30th Anniversary
 // strip (AnniversaryCountdown) while the sale runs. "Shop the sale" opens
@@ -114,7 +115,14 @@ export function BlackFridayBanner() {
           <h2>
             Black Friday <span>Week</span>
           </h2>
-          <p>Booster boxes, gift boxes, figures, keychains and more, all marked down.</p>
+          {contestLive() ? (
+            <p>
+              Sale prices on booster boxes, gift boxes, figures and more, plus a spend-and-win contest: top 3 spenders win prizes and every
+              order gets a free pack. Ends <b style={{ color: '#131b28' }}>{CONTEST_ENDS_LABEL}</b>.
+            </p>
+          ) : (
+            <p>Booster boxes, gift boxes, figures, keychains and more, all marked down.</p>
+          )}
           {stats.count > 0 && (
             <div className="bf-stat">
               {stats.max >= 5 && (
@@ -143,6 +151,11 @@ export function BlackFridayBanner() {
             <Link to="/shop" search={{ sale: true }} className="bf-btn">
               Shop the sale →
             </Link>
+            {contestLive() && (
+              <a href="#contest" className="bf-btn2">
+                See the prizes
+              </a>
+            )}
           </div>
         </div>
       </div>
