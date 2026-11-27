@@ -59,7 +59,7 @@ const TRUST_ICONS: Record<string, React.ReactNode> = {
 // Only facts the shop's own policy pages and header already state.
 function TrustStrip() {
   const items: { k: string; title: string; sub: string; to?: string; href?: string }[] = [
-    { k: 'ship', title: 'Ships from WA', sub: HOLIDAY_SHIPPING_NOTICE ? 'Holiday orders may take a few extra days' : `In-stock orders ship in ${SHIPPING_HANDLING_MIN_DAYS}–${SHIPPING_HANDLING_MAX_DAYS} business days`, to: '/shipping-policy' },
+    { k: 'ship', title: 'Ships from WA', sub: HOLIDAY_SHIPPING_NOTICE ? 'Holiday orders may take longer than usual' : `In-stock orders ship in ${SHIPPING_HANDLING_MIN_DAYS}–${SHIPPING_HANDLING_MAX_DAYS} business days`, to: '/shipping-policy' },
     { k: 'rate', title: `${formatMoney(FLAT_SHIPPING_RATE).replace('.00', '')} flat-rate US shipping`, sub: 'Tracking emailed on every order', to: '/shipping-policy' },
     { k: 'family', title: 'Family owned', sub: 'Sourced from China, checked before it ships' },
     { k: 'alerts', title: 'Restock alerts', sub: 'Email updates on restocks and new drops', href: '#restock-alerts' },

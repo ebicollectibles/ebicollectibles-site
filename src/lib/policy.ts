@@ -8,12 +8,11 @@ export const SHIPPING_HANDLING_MIN_DAYS = 1
 export const SHIPPING_HANDLING_MAX_DAYS = 2
 
 // Holiday season notice (owner's call, Nov 2026): shown in the cart, at
-// checkout and on the shipping policy, and it replaces the "ships in 1-2
-// business days" line on the homepage. Says only that orders can take a few
-// extra days; no ship date is promised. Set to false to turn it off.
+// checkout and on the shipping policy, and while it's on the site states no
+// handling time at all (owner's call: no day counts during the holidays). Set to false to turn it off.
 export const HOLIDAY_SHIPPING_NOTICE = true
 export const HOLIDAY_SHIPPING_TEXT =
-  "Holiday shipping: with the holiday rush, orders can take a few extra days to process and ship, and carriers are running slower than usual. Thanks for your patience!"
+  "Holiday shipping: with the holiday rush, processing and delivery can take longer than usual, and carriers are running slower. Thanks for your patience!"
 
 // We don't publish a return window because we don't have one — see
 // refund-policy.tsx: sealed products aren't returnable for change of mind,

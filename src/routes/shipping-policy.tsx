@@ -46,7 +46,7 @@ function ShippingPolicyPage() {
             yet; send your cart as an invoice request from the cart or checkout and we'll email you an invoice with shipping. All orders ship flat-rate ($10.00), and each
             order is charged its own shipping, except as described for pre-orders below. In-stock orders
             {HOLIDAY_SHIPPING_NOTICE
-              ? `usually ship within ${SHIPPING_HANDLING_MIN_DAYS}-${SHIPPING_HANDLING_MAX_DAYS} business days; during the holidays it can take a few extra days.`
+              ? 'ship once processed; during the holidays that can take longer than usual.'
               : `ship within ${SHIPPING_HANDLING_MIN_DAYS}-${SHIPPING_HANDLING_MAX_DAYS} business days.`} Carrier is
             selected by us for the safest, fastest route to your address, and we don't offer carrier choice at
             checkout. Every order ships with tracking, emailed the moment it goes out.
