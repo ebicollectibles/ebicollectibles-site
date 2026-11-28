@@ -82,9 +82,9 @@ export const BLOG_POSTS: BlogPostSummary[] = [
     title: 'What Is a Gem Pack? The All-Holo Chinese Pokémon Packs Explained',
     excerpt:
       'A Gem Pack is a Simplified Chinese Pokémon TCG pack of 4 holo cards, one of them always Rare or better. What is in a pack, how the sets are built and every volume so far.',
-    seoTitle: 'What Is a Pokémon Gem Pack? Chinese All-Holo Packs Explained',
+    seoTitle: 'What Is a Pokémon Gem Pack? Chinese All-Holo Packs, Vol. 1–7',
     seoDescription:
-      'A Pokémon Gem Pack has 4 cards, all holo, and one is always Rare or better. The rarity marks, how each set is built, and every volume with dates and set codes.',
+      'A Pokémon Gem Pack is a Simplified Chinese pack of 4 holo cards, one Rare or better. Box sizes, odds, chase cards and all 7 volumes, explained.',
     tag: 'Collecting guide',
     date: '2026-11-24',
     heroImage: `${SITE_URL}/assets/blog/what-is-a-gem-pack-hero.webp`,
