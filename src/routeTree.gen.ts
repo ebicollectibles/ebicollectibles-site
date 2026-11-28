@@ -165,6 +165,9 @@ import { Route as BlogPrimordialArtsTorrentSetGuideRouteImport } from './routes/
 import { Route as BlogRewardRoundCardOriginsRouteImport } from './routes/blog/reward-round-card-origins'
 import { Route as BlogRewardRoundReleaseNewsRouteImport } from './routes/blog/reward-round-release-news'
 import { Route as BlogRewardRoundSetGuideRouteImport } from './routes/blog/reward-round-set-guide'
+import { Route as BlogScorchingSkiesCardOriginsRouteImport } from './routes/blog/scorching-skies-card-origins'
+import { Route as BlogScorchingSkiesReleaseNewsRouteImport } from './routes/blog/scorching-skies-release-news'
+import { Route as BlogScorchingSkiesSetGuideRouteImport } from './routes/blog/scorching-skies-set-guide'
 import { Route as BlogSimplifiedVsTraditionalChinesePokemonCardsRouteImport } from './routes/blog/simplified-vs-traditional-chinese-pokemon-cards'
 import { Route as BlogStellarCrystalCardOriginsRouteImport } from './routes/blog/stellar-crystal-card-origins'
 import { Route as BlogStellarCrystalReleaseNewsRouteImport } from './routes/blog/stellar-crystal-release-news'
@@ -1129,6 +1132,24 @@ const BlogRewardRoundSetGuideRoute = BlogRewardRoundSetGuideRouteImport.update({
   path: '/blog/reward-round-set-guide',
   getParentRoute: () => rootRouteImport,
 } as any)
+const BlogScorchingSkiesCardOriginsRoute =
+  BlogScorchingSkiesCardOriginsRouteImport.update({
+    id: '/blog/scorching-skies-card-origins',
+    path: '/blog/scorching-skies-card-origins',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const BlogScorchingSkiesReleaseNewsRoute =
+  BlogScorchingSkiesReleaseNewsRouteImport.update({
+    id: '/blog/scorching-skies-release-news',
+    path: '/blog/scorching-skies-release-news',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const BlogScorchingSkiesSetGuideRoute =
+  BlogScorchingSkiesSetGuideRouteImport.update({
+    id: '/blog/scorching-skies-set-guide',
+    path: '/blog/scorching-skies-set-guide',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const BlogSimplifiedVsTraditionalChinesePokemonCardsRoute =
   BlogSimplifiedVsTraditionalChinesePokemonCardsRouteImport.update({
     id: '/blog/simplified-vs-traditional-chinese-pokemon-cards',
@@ -1773,6 +1794,9 @@ export interface FileRoutesByFullPath {
   '/blog/reward-round-card-origins': typeof BlogRewardRoundCardOriginsRoute
   '/blog/reward-round-release-news': typeof BlogRewardRoundReleaseNewsRoute
   '/blog/reward-round-set-guide': typeof BlogRewardRoundSetGuideRoute
+  '/blog/scorching-skies-card-origins': typeof BlogScorchingSkiesCardOriginsRoute
+  '/blog/scorching-skies-release-news': typeof BlogScorchingSkiesReleaseNewsRoute
+  '/blog/scorching-skies-set-guide': typeof BlogScorchingSkiesSetGuideRoute
   '/blog/simplified-vs-traditional-chinese-pokemon-cards': typeof BlogSimplifiedVsTraditionalChinesePokemonCardsRoute
   '/blog/stellar-crystal-card-origins': typeof BlogStellarCrystalCardOriginsRoute
   '/blog/stellar-crystal-release-news': typeof BlogStellarCrystalReleaseNewsRoute
@@ -2017,6 +2041,9 @@ export interface FileRoutesByTo {
   '/blog/reward-round-card-origins': typeof BlogRewardRoundCardOriginsRoute
   '/blog/reward-round-release-news': typeof BlogRewardRoundReleaseNewsRoute
   '/blog/reward-round-set-guide': typeof BlogRewardRoundSetGuideRoute
+  '/blog/scorching-skies-card-origins': typeof BlogScorchingSkiesCardOriginsRoute
+  '/blog/scorching-skies-release-news': typeof BlogScorchingSkiesReleaseNewsRoute
+  '/blog/scorching-skies-set-guide': typeof BlogScorchingSkiesSetGuideRoute
   '/blog/simplified-vs-traditional-chinese-pokemon-cards': typeof BlogSimplifiedVsTraditionalChinesePokemonCardsRoute
   '/blog/stellar-crystal-card-origins': typeof BlogStellarCrystalCardOriginsRoute
   '/blog/stellar-crystal-release-news': typeof BlogStellarCrystalReleaseNewsRoute
@@ -2262,6 +2289,9 @@ export interface FileRoutesById {
   '/blog/reward-round-card-origins': typeof BlogRewardRoundCardOriginsRoute
   '/blog/reward-round-release-news': typeof BlogRewardRoundReleaseNewsRoute
   '/blog/reward-round-set-guide': typeof BlogRewardRoundSetGuideRoute
+  '/blog/scorching-skies-card-origins': typeof BlogScorchingSkiesCardOriginsRoute
+  '/blog/scorching-skies-release-news': typeof BlogScorchingSkiesReleaseNewsRoute
+  '/blog/scorching-skies-set-guide': typeof BlogScorchingSkiesSetGuideRoute
   '/blog/simplified-vs-traditional-chinese-pokemon-cards': typeof BlogSimplifiedVsTraditionalChinesePokemonCardsRoute
   '/blog/stellar-crystal-card-origins': typeof BlogStellarCrystalCardOriginsRoute
   '/blog/stellar-crystal-release-news': typeof BlogStellarCrystalReleaseNewsRoute
@@ -2508,6 +2538,9 @@ export interface FileRouteTypes {
     | '/blog/reward-round-card-origins'
     | '/blog/reward-round-release-news'
     | '/blog/reward-round-set-guide'
+    | '/blog/scorching-skies-card-origins'
+    | '/blog/scorching-skies-release-news'
+    | '/blog/scorching-skies-set-guide'
     | '/blog/simplified-vs-traditional-chinese-pokemon-cards'
     | '/blog/stellar-crystal-card-origins'
     | '/blog/stellar-crystal-release-news'
@@ -2752,6 +2785,9 @@ export interface FileRouteTypes {
     | '/blog/reward-round-card-origins'
     | '/blog/reward-round-release-news'
     | '/blog/reward-round-set-guide'
+    | '/blog/scorching-skies-card-origins'
+    | '/blog/scorching-skies-release-news'
+    | '/blog/scorching-skies-set-guide'
     | '/blog/simplified-vs-traditional-chinese-pokemon-cards'
     | '/blog/stellar-crystal-card-origins'
     | '/blog/stellar-crystal-release-news'
@@ -2996,6 +3032,9 @@ export interface FileRouteTypes {
     | '/blog/reward-round-card-origins'
     | '/blog/reward-round-release-news'
     | '/blog/reward-round-set-guide'
+    | '/blog/scorching-skies-card-origins'
+    | '/blog/scorching-skies-release-news'
+    | '/blog/scorching-skies-set-guide'
     | '/blog/simplified-vs-traditional-chinese-pokemon-cards'
     | '/blog/stellar-crystal-card-origins'
     | '/blog/stellar-crystal-release-news'
@@ -3241,6 +3280,9 @@ export interface RootRouteChildren {
   BlogRewardRoundCardOriginsRoute: typeof BlogRewardRoundCardOriginsRoute
   BlogRewardRoundReleaseNewsRoute: typeof BlogRewardRoundReleaseNewsRoute
   BlogRewardRoundSetGuideRoute: typeof BlogRewardRoundSetGuideRoute
+  BlogScorchingSkiesCardOriginsRoute: typeof BlogScorchingSkiesCardOriginsRoute
+  BlogScorchingSkiesReleaseNewsRoute: typeof BlogScorchingSkiesReleaseNewsRoute
+  BlogScorchingSkiesSetGuideRoute: typeof BlogScorchingSkiesSetGuideRoute
   BlogSimplifiedVsTraditionalChinesePokemonCardsRoute: typeof BlogSimplifiedVsTraditionalChinesePokemonCardsRoute
   BlogStellarCrystalCardOriginsRoute: typeof BlogStellarCrystalCardOriginsRoute
   BlogStellarCrystalReleaseNewsRoute: typeof BlogStellarCrystalReleaseNewsRoute
@@ -4426,6 +4468,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BlogRewardRoundSetGuideRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/blog/scorching-skies-card-origins': {
+      id: '/blog/scorching-skies-card-origins'
+      path: '/blog/scorching-skies-card-origins'
+      fullPath: '/blog/scorching-skies-card-origins'
+      preLoaderRoute: typeof BlogScorchingSkiesCardOriginsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/scorching-skies-release-news': {
+      id: '/blog/scorching-skies-release-news'
+      path: '/blog/scorching-skies-release-news'
+      fullPath: '/blog/scorching-skies-release-news'
+      preLoaderRoute: typeof BlogScorchingSkiesReleaseNewsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/scorching-skies-set-guide': {
+      id: '/blog/scorching-skies-set-guide'
+      path: '/blog/scorching-skies-set-guide'
+      fullPath: '/blog/scorching-skies-set-guide'
+      preLoaderRoute: typeof BlogScorchingSkiesSetGuideRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/blog/simplified-vs-traditional-chinese-pokemon-cards': {
       id: '/blog/simplified-vs-traditional-chinese-pokemon-cards'
       path: '/blog/simplified-vs-traditional-chinese-pokemon-cards'
@@ -5224,6 +5287,9 @@ const rootRouteChildren: RootRouteChildren = {
   BlogRewardRoundCardOriginsRoute: BlogRewardRoundCardOriginsRoute,
   BlogRewardRoundReleaseNewsRoute: BlogRewardRoundReleaseNewsRoute,
   BlogRewardRoundSetGuideRoute: BlogRewardRoundSetGuideRoute,
+  BlogScorchingSkiesCardOriginsRoute: BlogScorchingSkiesCardOriginsRoute,
+  BlogScorchingSkiesReleaseNewsRoute: BlogScorchingSkiesReleaseNewsRoute,
+  BlogScorchingSkiesSetGuideRoute: BlogScorchingSkiesSetGuideRoute,
   BlogSimplifiedVsTraditionalChinesePokemonCardsRoute:
     BlogSimplifiedVsTraditionalChinesePokemonCardsRoute,
   BlogStellarCrystalCardOriginsRoute: BlogStellarCrystalCardOriginsRoute,
