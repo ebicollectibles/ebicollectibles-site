@@ -104,6 +104,8 @@ import { Route as BlogFirstPartner30thVol3ReleaseNewsRouteImport } from './route
 import { Route as BlogFunismDittoPalmSizeWondersReleaseNewsRouteImport } from './routes/blog/funism-ditto-palm-size-wonders-release-news'
 import { Route as BlogFunismFirstPartnerMiniFiguresReleaseNewsRouteImport } from './routes/blog/funism-first-partner-mini-figures-release-news'
 import { Route as BlogFuturisticPikachuBoxReleaseNewsRouteImport } from './routes/blog/futuristic-pikachu-box-release-news'
+import { Route as BlogGemBadgeSet1ReleaseNewsRouteImport } from './routes/blog/gem-badge-set-1-release-news'
+import { Route as BlogGemBadgeSet2ReleaseNewsRouteImport } from './routes/blog/gem-badge-set-2-release-news'
 import { Route as BlogGemVol1CardOriginsRouteImport } from './routes/blog/gem-vol-1-card-origins'
 import { Route as BlogGemVol1ReleaseNewsRouteImport } from './routes/blog/gem-vol-1-release-news'
 import { Route as BlogGemVol1SetGuideRouteImport } from './routes/blog/gem-vol-1-set-guide'
@@ -753,6 +755,18 @@ const BlogFuturisticPikachuBoxReleaseNewsRoute =
   BlogFuturisticPikachuBoxReleaseNewsRouteImport.update({
     id: '/blog/futuristic-pikachu-box-release-news',
     path: '/blog/futuristic-pikachu-box-release-news',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const BlogGemBadgeSet1ReleaseNewsRoute =
+  BlogGemBadgeSet1ReleaseNewsRouteImport.update({
+    id: '/blog/gem-badge-set-1-release-news',
+    path: '/blog/gem-badge-set-1-release-news',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const BlogGemBadgeSet2ReleaseNewsRoute =
+  BlogGemBadgeSet2ReleaseNewsRouteImport.update({
+    id: '/blog/gem-badge-set-2-release-news',
+    path: '/blog/gem-badge-set-2-release-news',
     getParentRoute: () => rootRouteImport,
   } as any)
 const BlogGemVol1CardOriginsRoute = BlogGemVol1CardOriginsRouteImport.update({
@@ -1530,6 +1544,8 @@ export interface FileRoutesByFullPath {
   '/blog/funism-ditto-palm-size-wonders-release-news': typeof BlogFunismDittoPalmSizeWondersReleaseNewsRoute
   '/blog/funism-first-partner-mini-figures-release-news': typeof BlogFunismFirstPartnerMiniFiguresReleaseNewsRoute
   '/blog/futuristic-pikachu-box-release-news': typeof BlogFuturisticPikachuBoxReleaseNewsRoute
+  '/blog/gem-badge-set-1-release-news': typeof BlogGemBadgeSet1ReleaseNewsRoute
+  '/blog/gem-badge-set-2-release-news': typeof BlogGemBadgeSet2ReleaseNewsRoute
   '/blog/gem-vol-1-card-origins': typeof BlogGemVol1CardOriginsRoute
   '/blog/gem-vol-1-release-news': typeof BlogGemVol1ReleaseNewsRoute
   '/blog/gem-vol-1-set-guide': typeof BlogGemVol1SetGuideRoute
@@ -1748,6 +1764,8 @@ export interface FileRoutesByTo {
   '/blog/funism-ditto-palm-size-wonders-release-news': typeof BlogFunismDittoPalmSizeWondersReleaseNewsRoute
   '/blog/funism-first-partner-mini-figures-release-news': typeof BlogFunismFirstPartnerMiniFiguresReleaseNewsRoute
   '/blog/futuristic-pikachu-box-release-news': typeof BlogFuturisticPikachuBoxReleaseNewsRoute
+  '/blog/gem-badge-set-1-release-news': typeof BlogGemBadgeSet1ReleaseNewsRoute
+  '/blog/gem-badge-set-2-release-news': typeof BlogGemBadgeSet2ReleaseNewsRoute
   '/blog/gem-vol-1-card-origins': typeof BlogGemVol1CardOriginsRoute
   '/blog/gem-vol-1-release-news': typeof BlogGemVol1ReleaseNewsRoute
   '/blog/gem-vol-1-set-guide': typeof BlogGemVol1SetGuideRoute
@@ -1967,6 +1985,8 @@ export interface FileRoutesById {
   '/blog/funism-ditto-palm-size-wonders-release-news': typeof BlogFunismDittoPalmSizeWondersReleaseNewsRoute
   '/blog/funism-first-partner-mini-figures-release-news': typeof BlogFunismFirstPartnerMiniFiguresReleaseNewsRoute
   '/blog/futuristic-pikachu-box-release-news': typeof BlogFuturisticPikachuBoxReleaseNewsRoute
+  '/blog/gem-badge-set-1-release-news': typeof BlogGemBadgeSet1ReleaseNewsRoute
+  '/blog/gem-badge-set-2-release-news': typeof BlogGemBadgeSet2ReleaseNewsRoute
   '/blog/gem-vol-1-card-origins': typeof BlogGemVol1CardOriginsRoute
   '/blog/gem-vol-1-release-news': typeof BlogGemVol1ReleaseNewsRoute
   '/blog/gem-vol-1-set-guide': typeof BlogGemVol1SetGuideRoute
@@ -2187,6 +2207,8 @@ export interface FileRouteTypes {
     | '/blog/funism-ditto-palm-size-wonders-release-news'
     | '/blog/funism-first-partner-mini-figures-release-news'
     | '/blog/futuristic-pikachu-box-release-news'
+    | '/blog/gem-badge-set-1-release-news'
+    | '/blog/gem-badge-set-2-release-news'
     | '/blog/gem-vol-1-card-origins'
     | '/blog/gem-vol-1-release-news'
     | '/blog/gem-vol-1-set-guide'
@@ -2405,6 +2427,8 @@ export interface FileRouteTypes {
     | '/blog/funism-ditto-palm-size-wonders-release-news'
     | '/blog/funism-first-partner-mini-figures-release-news'
     | '/blog/futuristic-pikachu-box-release-news'
+    | '/blog/gem-badge-set-1-release-news'
+    | '/blog/gem-badge-set-2-release-news'
     | '/blog/gem-vol-1-card-origins'
     | '/blog/gem-vol-1-release-news'
     | '/blog/gem-vol-1-set-guide'
@@ -2623,6 +2647,8 @@ export interface FileRouteTypes {
     | '/blog/funism-ditto-palm-size-wonders-release-news'
     | '/blog/funism-first-partner-mini-figures-release-news'
     | '/blog/futuristic-pikachu-box-release-news'
+    | '/blog/gem-badge-set-1-release-news'
+    | '/blog/gem-badge-set-2-release-news'
     | '/blog/gem-vol-1-card-origins'
     | '/blog/gem-vol-1-release-news'
     | '/blog/gem-vol-1-set-guide'
@@ -2842,6 +2868,8 @@ export interface RootRouteChildren {
   BlogFunismDittoPalmSizeWondersReleaseNewsRoute: typeof BlogFunismDittoPalmSizeWondersReleaseNewsRoute
   BlogFunismFirstPartnerMiniFiguresReleaseNewsRoute: typeof BlogFunismFirstPartnerMiniFiguresReleaseNewsRoute
   BlogFuturisticPikachuBoxReleaseNewsRoute: typeof BlogFuturisticPikachuBoxReleaseNewsRoute
+  BlogGemBadgeSet1ReleaseNewsRoute: typeof BlogGemBadgeSet1ReleaseNewsRoute
+  BlogGemBadgeSet2ReleaseNewsRoute: typeof BlogGemBadgeSet2ReleaseNewsRoute
   BlogGemVol1CardOriginsRoute: typeof BlogGemVol1CardOriginsRoute
   BlogGemVol1ReleaseNewsRoute: typeof BlogGemVol1ReleaseNewsRoute
   BlogGemVol1SetGuideRoute: typeof BlogGemVol1SetGuideRoute
@@ -3633,6 +3661,20 @@ declare module '@tanstack/react-router' {
       path: '/blog/futuristic-pikachu-box-release-news'
       fullPath: '/blog/futuristic-pikachu-box-release-news'
       preLoaderRoute: typeof BlogFuturisticPikachuBoxReleaseNewsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/gem-badge-set-1-release-news': {
+      id: '/blog/gem-badge-set-1-release-news'
+      path: '/blog/gem-badge-set-1-release-news'
+      fullPath: '/blog/gem-badge-set-1-release-news'
+      preLoaderRoute: typeof BlogGemBadgeSet1ReleaseNewsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/gem-badge-set-2-release-news': {
+      id: '/blog/gem-badge-set-2-release-news'
+      path: '/blog/gem-badge-set-2-release-news'
+      fullPath: '/blog/gem-badge-set-2-release-news'
+      preLoaderRoute: typeof BlogGemBadgeSet2ReleaseNewsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/blog/gem-vol-1-card-origins': {
@@ -4597,6 +4639,8 @@ const rootRouteChildren: RootRouteChildren = {
     BlogFunismFirstPartnerMiniFiguresReleaseNewsRoute,
   BlogFuturisticPikachuBoxReleaseNewsRoute:
     BlogFuturisticPikachuBoxReleaseNewsRoute,
+  BlogGemBadgeSet1ReleaseNewsRoute: BlogGemBadgeSet1ReleaseNewsRoute,
+  BlogGemBadgeSet2ReleaseNewsRoute: BlogGemBadgeSet2ReleaseNewsRoute,
   BlogGemVol1CardOriginsRoute: BlogGemVol1CardOriginsRoute,
   BlogGemVol1ReleaseNewsRoute: BlogGemVol1ReleaseNewsRoute,
   BlogGemVol1SetGuideRoute: BlogGemVol1SetGuideRoute,
