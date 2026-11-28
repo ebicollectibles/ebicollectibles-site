@@ -6,7 +6,7 @@
 // the post itself.
 import { SITE_URL, R2_IMAGE_HOST } from '~/lib/gem-sets/constants'
 
-export type BlogPostSlug = 'chinese-pokemon-sets-in-order' | 'how-to-read-chinese-pokemon-cards' | 'chinese-pokemon-card-rarities' | 'chinese-pokemon-slim-vs-jumbo' | 'are-chinese-pokemon-cards-real' | 'simplified-vs-traditional-chinese-pokemon-cards' | 'chinese-vs-english-pokemon-cards' | 'are-chinese-pokemon-cards-tournament-legal' | 'chinese-exclusive-pokemon-cards' | 'what-is-a-gem-pack' | 'chinese-pokemon-set-english-equivalents' | 'gem-vol-7-release-news' | 'gem-vol-7-set-guide' | 'gem-vol-7-card-origins' | 'gem-vol-6-release-news' | 'gem-vol-6-set-guide' | 'gem-vol-6-card-origins' | 'gem-vol-5-release-news' | 'gem-vol-5-set-guide' | 'gem-vol-5-card-origins' | 'gem-vol-4-release-news' | 'gem-vol-4-set-guide' | 'gem-vol-4-card-origins' | 'gem-vol-3-release-news' | 'gem-vol-3-set-guide' | 'gem-vol-3-card-origins' | 'gem-vol-2-release-news' | 'gem-vol-2-set-guide' | 'gem-vol-2-card-origins' | 'gem-vol-1-release-news' | 'gem-vol-1-set-guide' | 'gem-vol-1-card-origins' | '30th-celebration-release-news' | '30th-celebration-set-guide' | '30th-celebration-card-origins' | 'chasing-glory-release-news' | 'chasing-glory-set-guide' | 'chasing-glory-card-origins' | 'terastal-gathering-release-news' | 'terastal-gathering-set-guide' | 'terastal-gathering-card-origins' | 'reward-round-release-news' | 'reward-round-set-guide' | 'reward-round-card-origins' | 'fearless-terastal-release-news' | 'fearless-terastal-set-guide' | 'fearless-terastal-card-origins' | 'eternal-birth-release-news' | 'eternal-birth-set-guide' | 'eternal-birth-card-origins' | 'miracle-journey-release-news' | 'miracle-journey-set-guide' | 'miracle-journey-card-origins' | 'black-crystal-blaze-release-news' | 'black-crystal-blaze-set-guide' | 'black-crystal-blaze-card-origins' | 'black-bolt-white-flare-release-news' | 'black-bolt-set-guide' | 'black-bolt-card-origins' | 'white-flare-set-guide' | 'white-flare-card-origins' | 'true-mystery-release-news' | 'true-mystery-set-guide' | 'true-mystery-card-origins' | 'blade-awakening-release-news' | 'blade-awakening-set-guide' | 'blade-awakening-card-origins' | 'brilliant-fantasy-release-news' | 'brilliant-fantasy-set-guide' | 'brilliant-fantasy-card-origins' | 'stellar-crystal-release-news' | 'stellar-crystal-set-guide' | 'stellar-crystal-card-origins' | 'pikachu-dream-painting-figures-release-news' | 'funism-ditto-palm-size-wonders-release-news' | 'team-rocket-briefcase-release-news' | 'pikachu-gift-box-release-news' | 'day-night-gift-box-release-news' | 'greninja-sylveon-display-set-release-news' | 'charizard-figure-box-release-news' | 'nuzzle-cheeks-plush-card-display-release-news' | 'eevee-gift-box-release-news' | 'gem-badge-set-1-release-news' | 'gem-badge-set-2-release-news' | 'pikachu-30th-plush-keychain-release-news' | 'funism-first-partner-mini-figures-release-news' | 'first-partner-30th-vol-1-release-news' | 'first-partner-30th-vol-2-release-news' | 'first-partner-30th-vol-3-release-news' | 'aura-seeker-release-news' | 'pokemon-30th-shanghai-gold-pikachu-cards-news' | '30th-celebration-pikachu-cards-artists' | 'futuristic-pikachu-box-release-news' | 'lisia-gift-box-release-news' | 'ogerpon-mask-gift-box-release-news' | 'lillie-n-battle-box-release-news' | 'japanese-30th-celebration-release-news' | 'storm-emeralda-release-news' | 'master-strategy-deck-raging-bolt-dragapult-gholdengo-release-news' | 'master-strategy-deck-charizard-gardevoir-miraidon-release-news' | 'espeon-umbreon-deluxe-deck-release-news' | 'journey-gift-boxes-release-news' | 'collect-151-first-partner-display-sets-release-news' | 'eevee-dream-painting-figures-release-news' | 'dream-painting-151-vol-1-release-news' | 'dream-painting-water-vol-2-release-news' | 'chinese-gem-pack-hit-rates' | 'chinese-booster-box-guaranteed-hits' | 'collect-151-journey-release-news' | 'collect-151-hope-release-news' | 'collect-151-surprise-release-news' | 'collect-151-gathering-release-news' | 'collect-151-set-guide' | 'collect-151-card-origins' | 'dynamax-clash-thunder-release-news' | 'dynamax-clash-thunder-card-origins' | 'dynamax-clash-thunder-set-guide' | 'dynamax-clash-flame-release-news' | 'dynamax-clash-flame-card-origins' | 'dynamax-clash-flame-set-guide' | 'dynamax-tactics-release-news' | 'dynamax-tactics-card-origins' | 'dynamax-tactics-set-guide'
+export type BlogPostSlug = 'chinese-pokemon-sets-in-order' | 'how-to-read-chinese-pokemon-cards' | 'chinese-pokemon-card-rarities' | 'chinese-pokemon-slim-vs-jumbo' | 'are-chinese-pokemon-cards-real' | 'simplified-vs-traditional-chinese-pokemon-cards' | 'chinese-vs-english-pokemon-cards' | 'are-chinese-pokemon-cards-tournament-legal' | 'chinese-exclusive-pokemon-cards' | 'what-is-a-gem-pack' | 'chinese-pokemon-set-english-equivalents' | 'gem-vol-7-release-news' | 'gem-vol-7-set-guide' | 'gem-vol-7-card-origins' | 'gem-vol-6-release-news' | 'gem-vol-6-set-guide' | 'gem-vol-6-card-origins' | 'gem-vol-5-release-news' | 'gem-vol-5-set-guide' | 'gem-vol-5-card-origins' | 'gem-vol-4-release-news' | 'gem-vol-4-set-guide' | 'gem-vol-4-card-origins' | 'gem-vol-3-release-news' | 'gem-vol-3-set-guide' | 'gem-vol-3-card-origins' | 'gem-vol-2-release-news' | 'gem-vol-2-set-guide' | 'gem-vol-2-card-origins' | 'gem-vol-1-release-news' | 'gem-vol-1-set-guide' | 'gem-vol-1-card-origins' | '30th-celebration-release-news' | '30th-celebration-set-guide' | '30th-celebration-card-origins' | 'chasing-glory-release-news' | 'chasing-glory-set-guide' | 'chasing-glory-card-origins' | 'terastal-gathering-release-news' | 'terastal-gathering-set-guide' | 'terastal-gathering-card-origins' | 'reward-round-release-news' | 'reward-round-set-guide' | 'reward-round-card-origins' | 'fearless-terastal-release-news' | 'fearless-terastal-set-guide' | 'fearless-terastal-card-origins' | 'eternal-birth-release-news' | 'eternal-birth-set-guide' | 'eternal-birth-card-origins' | 'miracle-journey-release-news' | 'miracle-journey-set-guide' | 'miracle-journey-card-origins' | 'black-crystal-blaze-release-news' | 'black-crystal-blaze-set-guide' | 'black-crystal-blaze-card-origins' | 'black-bolt-white-flare-release-news' | 'black-bolt-set-guide' | 'black-bolt-card-origins' | 'white-flare-set-guide' | 'white-flare-card-origins' | 'true-mystery-release-news' | 'true-mystery-set-guide' | 'true-mystery-card-origins' | 'blade-awakening-release-news' | 'blade-awakening-set-guide' | 'blade-awakening-card-origins' | 'brilliant-fantasy-release-news' | 'brilliant-fantasy-set-guide' | 'brilliant-fantasy-card-origins' | 'stellar-crystal-release-news' | 'stellar-crystal-set-guide' | 'stellar-crystal-card-origins' | 'pikachu-dream-painting-figures-release-news' | 'funism-ditto-palm-size-wonders-release-news' | 'team-rocket-briefcase-release-news' | 'pikachu-gift-box-release-news' | 'day-night-gift-box-release-news' | 'greninja-sylveon-display-set-release-news' | 'charizard-figure-box-release-news' | 'nuzzle-cheeks-plush-card-display-release-news' | 'eevee-gift-box-release-news' | 'gem-badge-set-1-release-news' | 'gem-badge-set-2-release-news' | 'pikachu-30th-plush-keychain-release-news' | 'funism-first-partner-mini-figures-release-news' | 'first-partner-30th-vol-1-release-news' | 'first-partner-30th-vol-2-release-news' | 'first-partner-30th-vol-3-release-news' | 'aura-seeker-release-news' | 'pokemon-30th-shanghai-gold-pikachu-cards-news' | '30th-celebration-pikachu-cards-artists' | 'futuristic-pikachu-box-release-news' | 'lisia-gift-box-release-news' | 'ogerpon-mask-gift-box-release-news' | 'lillie-n-battle-box-release-news' | 'japanese-30th-celebration-release-news' | 'storm-emeralda-release-news' | 'master-strategy-deck-raging-bolt-dragapult-gholdengo-release-news' | 'master-strategy-deck-charizard-gardevoir-miraidon-release-news' | 'espeon-umbreon-deluxe-deck-release-news' | 'journey-gift-boxes-release-news' | 'collect-151-first-partner-display-sets-release-news' | 'eevee-dream-painting-figures-release-news' | 'dream-painting-151-vol-1-release-news' | 'dream-painting-water-vol-2-release-news' | 'chinese-gem-pack-hit-rates' | 'chinese-booster-box-guaranteed-hits' | 'collect-151-journey-release-news' | 'collect-151-hope-release-news' | 'collect-151-surprise-release-news' | 'collect-151-gathering-release-news' | 'collect-151-set-guide' | 'collect-151-card-origins' | 'dynamax-clash-thunder-release-news' | 'dynamax-clash-thunder-card-origins' | 'dynamax-clash-thunder-set-guide' | 'dynamax-clash-flame-release-news' | 'dynamax-clash-flame-card-origins' | 'dynamax-clash-flame-set-guide' | 'dynamax-tactics-release-news' | 'dynamax-tactics-card-origins' | 'dynamax-tactics-set-guide' | 'vivid-portrayals-obsidian-release-news' | 'vivid-portrayals-obsidian-card-origins' | 'vivid-portrayals-obsidian-set-guide' | 'vivid-portrayals-indigo-release-news' | 'vivid-portrayals-indigo-card-origins' | 'vivid-portrayals-indigo-set-guide'
 
 export interface BlogPostSummary {
   slug: BlogPostSlug
@@ -2026,6 +2026,102 @@ export const BLOG_POSTS: BlogPostSummary[] = [
     heroAlt: 'The Dynamax Tactics Dragapult VMAX Hyper Rare in front of the Oleana, Kabu and Pokémon Breeder\'s Nurturing Hyper Rares and the shiny Dragapult VMAX',
     glow1: 'rgb(90 170 120 / .26)',
     glow2: 'rgb(120 80 170 / .28)',
+  },
+  {
+    slug: 'vivid-portrayals-obsidian-release-news',
+    path: '/blog/vivid-portrayals-obsidian-release-news',
+    title: 'Vivid Portrayals: Obsidian (CS2a) Set Overview: Charizard VMAX, Packs and Every Rarity',
+    excerpt:
+      'Vivid Portrayals: Obsidian (CS2aC) is the Grass, Fire, Fighting and Metal half of Vivid Portrayals, released in mainland China on August 18, 2023. How it was sold, its 143 cards and every rarity.',
+    seoTitle: 'Pokémon Vivid Portrayals: Obsidian (CS2aC) Set Overview',
+    seoDescription:
+      'Simplified Chinese Vivid Portrayals: Obsidian (CS2aC), August 18, 2023: 5-card and 25-card packs, 143 cards, every rarity and the English sets its cards come from.',
+    tag: 'Set overview',
+    date: '2026-11-28',
+    heroImage: `${SITE_URL}/assets/blog/vivid-portrayals-obsidian-overview-hero.webp`,
+    heroAlt: 'The Vivid Portrayals: Obsidian shiny Charizard VMAX in front, with the shiny Charizard V and the Leon Hyper Rare behind it',
+    glow1: 'rgb(235 95 70 / .26)',
+    glow2: 'rgb(70 90 120 / .30)',
+  },
+  {
+    slug: 'vivid-portrayals-obsidian-card-origins',
+    path: '/blog/vivid-portrayals-obsidian-card-origins',
+    title: 'Where Every Vivid Portrayals: Obsidian Card Comes From',
+    excerpt:
+      'All 143 Vivid Portrayals: Obsidian (CS2aC) cards matched to their English versions: 85 from Vivid Voltage, 46 from Darkness Ablaze and 12 from five other sources.',
+    seoTitle: 'Vivid Portrayals: Obsidian (CS2aC) Card Origins: English Matches',
+    seoDescription:
+      'All 143 Pokémon TCG Vivid Portrayals: Obsidian (CS2aC) cards matched to English: 85 Vivid Voltage, 46 Darkness Ablaze, 12 from five other sources.',
+    tag: 'Collecting guide',
+    date: '2026-11-28',
+    heroImage: `${SITE_URL}/assets/blog/vivid-portrayals-obsidian-origins-hero.webp`,
+    heroAlt: 'The Vivid Portrayals: Obsidian shiny Charizard VMAX beside tiles for Vivid Voltage, Darkness Ablaze, the Shining Fates Shiny Vault and other sources',
+    glow1: 'rgb(235 95 70 / .26)',
+    glow2: 'rgb(70 90 120 / .30)',
+  },
+  {
+    slug: 'vivid-portrayals-obsidian-set-guide',
+    path: '/blog/vivid-portrayals-obsidian-set-guide',
+    title: 'Vivid Portrayals: Obsidian Set Guide: Every Secret Card and the Master Set',
+    excerpt:
+      'Every secret card in Vivid Portrayals: Obsidian (CS2aC), from the gold Ultra Rares and rainbow Hyper Rares down, plus how the numbers work and the 241-card master set.',
+    seoTitle: 'Vivid Portrayals: Obsidian (CS2aC) Set Guide: Secret Cards',
+    seoDescription:
+      'Pokémon TCG Vivid Portrayals: Obsidian (CS2aC) set guide: every Ultra Rare, Hyper Rare and Super Rare, the numbering and the 241-card master set.',
+    tag: 'Set guide',
+    date: '2026-11-28',
+    heroImage: `${SITE_URL}/assets/blog/vivid-portrayals-obsidian-guide-hero.webp`,
+    heroAlt: 'The Vivid Portrayals: Obsidian shiny Charizard VMAX in front of four Hyper Rares: Salamence VMAX, Leon, Allister and Bea',
+    glow1: 'rgb(235 95 70 / .26)',
+    glow2: 'rgb(70 90 120 / .30)',
+  },
+  {
+    slug: 'vivid-portrayals-indigo-release-news',
+    path: '/blog/vivid-portrayals-indigo-release-news',
+    title: 'Vivid Portrayals: Indigo (CS2b) Set Overview: Eternatus VMAX, Packs and Every Rarity',
+    excerpt:
+      'Vivid Portrayals: Indigo (CS2bC) is the Water, Lightning, Psychic and Darkness half of Vivid Portrayals, released in mainland China on August 18, 2023. How it was sold, its 143 cards and every rarity.',
+    seoTitle: 'Pokémon Vivid Portrayals: Indigo (CS2bC) Set Overview',
+    seoDescription:
+      'Simplified Chinese Vivid Portrayals: Indigo (CS2bC), August 18, 2023: 5-card and 25-card packs, 143 cards, every rarity and the English sets its cards come from.',
+    tag: 'Set overview',
+    date: '2026-11-28',
+    heroImage: `${SITE_URL}/assets/blog/vivid-portrayals-indigo-overview-hero.webp`,
+    heroAlt: 'The Vivid Portrayals: Indigo Eternatus VMAX Hyper Rare in front, with the shiny Crobat VMAX and the Eternatus V full art behind it',
+    glow1: 'rgb(150 110 230 / .28)',
+    glow2: 'rgb(60 90 150 / .30)',
+  },
+  {
+    slug: 'vivid-portrayals-indigo-card-origins',
+    path: '/blog/vivid-portrayals-indigo-card-origins',
+    title: 'Where Every Vivid Portrayals: Indigo Card Comes From',
+    excerpt:
+      'All 143 Vivid Portrayals: Indigo (CS2bC) cards matched to their English versions: 71 from Vivid Voltage, 44 from Darkness Ablaze, 11 from Champion\'s Path and 17 from four other sources.',
+    seoTitle: 'Vivid Portrayals: Indigo (CS2bC) Card Origins: English Matches',
+    seoDescription:
+      'All 143 Pokémon TCG Vivid Portrayals: Indigo (CS2bC) cards matched to English: 71 Vivid Voltage, 44 Darkness Ablaze, 11 Champion\'s Path.',
+    tag: 'Collecting guide',
+    date: '2026-11-28',
+    heroImage: `${SITE_URL}/assets/blog/vivid-portrayals-indigo-origins-hero.webp`,
+    heroAlt: 'The Vivid Portrayals: Indigo Eternatus VMAX Hyper Rare beside tiles for Vivid Voltage, Darkness Ablaze, Champion\'s Path and other sources',
+    glow1: 'rgb(150 110 230 / .28)',
+    glow2: 'rgb(60 90 150 / .30)',
+  },
+  {
+    slug: 'vivid-portrayals-indigo-set-guide',
+    path: '/blog/vivid-portrayals-indigo-set-guide',
+    title: 'Vivid Portrayals: Indigo Set Guide: Every Secret Card and the Master Set',
+    excerpt:
+      'Every secret card in Vivid Portrayals: Indigo (CS2bC), from the gold Ultra Rares and rainbow Hyper Rares down, plus how the numbers work and the 241-card master set.',
+    seoTitle: 'Vivid Portrayals: Indigo (CS2bC) Set Guide: Secret Cards',
+    seoDescription:
+      'Pokémon TCG Vivid Portrayals: Indigo (CS2bC) set guide: every Ultra Rare, Hyper Rare and Super Rare, the numbering and the 241-card master set.',
+    tag: 'Set guide',
+    date: '2026-11-28',
+    heroImage: `${SITE_URL}/assets/blog/vivid-portrayals-indigo-guide-hero.webp`,
+    heroAlt: 'The Vivid Portrayals: Indigo Eternatus VMAX Hyper Rare in front of four more Hyper Rares: Galarian Darmanitan VMAX, Drednaw VMAX, Alcremie VMAX and Nessa',
+    glow1: 'rgb(150 110 230 / .28)',
+    glow2: 'rgb(60 90 150 / .30)',
   },
 ]
 

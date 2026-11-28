@@ -1,5 +1,6 @@
 import data from '~/data/swsh-cs1b.json'
 import { ORIGINS } from './cs1b-origins'
+import { ONE_YEAR_BOX, PARTNERS_GATHERING_BOX } from './products'
 import type { SwshBlogSet, SwshSetData } from './types'
 
 // Dynamax Clash: Flame (CS1bC). Release date, prices and pack contents:
@@ -38,6 +39,8 @@ export const CS1B: SwshBlogSet = {
       released: 'June 28, 2023',
       contents: 'A Grookey, Scorbunny and Sobble display frame, one Flame 25-card pack and one Dynamax Tactics pack',
     },
+    ONE_YEAR_BOX('Dynamax Clash: Flame'),
+    PARTNERS_GATHERING_BOX('one Dynamax Clash: Flame 25-card pack'),
   ],
   headline: ['184', '165', '192', '193', '188', '183'],
   headlineNote:

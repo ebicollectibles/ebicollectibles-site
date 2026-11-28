@@ -15,4 +15,8 @@ export const RARITY_NAME: Record<string, string> = {
   SAR: 'Special Art Rare',
   UR: 'Ultra Rare',
   BWR: 'Black White Rare',
+  A: 'Amazing Rare',
+  K: 'Radiant Rare',
+  CHR: 'Character Rare',
+  CSR: 'Character Super Rare',
 }

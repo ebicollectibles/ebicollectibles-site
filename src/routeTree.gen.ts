@@ -168,6 +168,12 @@ import { Route as BlogTerastalGatheringSetGuideRouteImport } from './routes/blog
 import { Route as BlogTrueMysteryCardOriginsRouteImport } from './routes/blog/true-mystery-card-origins'
 import { Route as BlogTrueMysteryReleaseNewsRouteImport } from './routes/blog/true-mystery-release-news'
 import { Route as BlogTrueMysterySetGuideRouteImport } from './routes/blog/true-mystery-set-guide'
+import { Route as BlogVividPortrayalsIndigoCardOriginsRouteImport } from './routes/blog/vivid-portrayals-indigo-card-origins'
+import { Route as BlogVividPortrayalsIndigoReleaseNewsRouteImport } from './routes/blog/vivid-portrayals-indigo-release-news'
+import { Route as BlogVividPortrayalsIndigoSetGuideRouteImport } from './routes/blog/vivid-portrayals-indigo-set-guide'
+import { Route as BlogVividPortrayalsObsidianCardOriginsRouteImport } from './routes/blog/vivid-portrayals-obsidian-card-origins'
+import { Route as BlogVividPortrayalsObsidianReleaseNewsRouteImport } from './routes/blog/vivid-portrayals-obsidian-release-news'
+import { Route as BlogVividPortrayalsObsidianSetGuideRouteImport } from './routes/blog/vivid-portrayals-obsidian-set-guide'
 import { Route as BlogWhatIsAGemPackRouteImport } from './routes/blog/what-is-a-gem-pack'
 import { Route as BlogWhiteFlareCardOriginsRouteImport } from './routes/blog/white-flare-card-origins'
 import { Route as BlogWhiteFlareSetGuideRouteImport } from './routes/blog/white-flare-set-guide'
@@ -1131,6 +1137,42 @@ const BlogTrueMysterySetGuideRoute = BlogTrueMysterySetGuideRouteImport.update({
   path: '/blog/true-mystery-set-guide',
   getParentRoute: () => rootRouteImport,
 } as any)
+const BlogVividPortrayalsIndigoCardOriginsRoute =
+  BlogVividPortrayalsIndigoCardOriginsRouteImport.update({
+    id: '/blog/vivid-portrayals-indigo-card-origins',
+    path: '/blog/vivid-portrayals-indigo-card-origins',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const BlogVividPortrayalsIndigoReleaseNewsRoute =
+  BlogVividPortrayalsIndigoReleaseNewsRouteImport.update({
+    id: '/blog/vivid-portrayals-indigo-release-news',
+    path: '/blog/vivid-portrayals-indigo-release-news',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const BlogVividPortrayalsIndigoSetGuideRoute =
+  BlogVividPortrayalsIndigoSetGuideRouteImport.update({
+    id: '/blog/vivid-portrayals-indigo-set-guide',
+    path: '/blog/vivid-portrayals-indigo-set-guide',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const BlogVividPortrayalsObsidianCardOriginsRoute =
+  BlogVividPortrayalsObsidianCardOriginsRouteImport.update({
+    id: '/blog/vivid-portrayals-obsidian-card-origins',
+    path: '/blog/vivid-portrayals-obsidian-card-origins',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const BlogVividPortrayalsObsidianReleaseNewsRoute =
+  BlogVividPortrayalsObsidianReleaseNewsRouteImport.update({
+    id: '/blog/vivid-portrayals-obsidian-release-news',
+    path: '/blog/vivid-portrayals-obsidian-release-news',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const BlogVividPortrayalsObsidianSetGuideRoute =
+  BlogVividPortrayalsObsidianSetGuideRouteImport.update({
+    id: '/blog/vivid-portrayals-obsidian-set-guide',
+    path: '/blog/vivid-portrayals-obsidian-set-guide',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const BlogWhatIsAGemPackRoute = BlogWhatIsAGemPackRouteImport.update({
   id: '/blog/what-is-a-gem-pack',
   path: '/blog/what-is-a-gem-pack',
@@ -1671,6 +1713,12 @@ export interface FileRoutesByFullPath {
   '/blog/true-mystery-card-origins': typeof BlogTrueMysteryCardOriginsRoute
   '/blog/true-mystery-release-news': typeof BlogTrueMysteryReleaseNewsRoute
   '/blog/true-mystery-set-guide': typeof BlogTrueMysterySetGuideRoute
+  '/blog/vivid-portrayals-indigo-card-origins': typeof BlogVividPortrayalsIndigoCardOriginsRoute
+  '/blog/vivid-portrayals-indigo-release-news': typeof BlogVividPortrayalsIndigoReleaseNewsRoute
+  '/blog/vivid-portrayals-indigo-set-guide': typeof BlogVividPortrayalsIndigoSetGuideRoute
+  '/blog/vivid-portrayals-obsidian-card-origins': typeof BlogVividPortrayalsObsidianCardOriginsRoute
+  '/blog/vivid-portrayals-obsidian-release-news': typeof BlogVividPortrayalsObsidianReleaseNewsRoute
+  '/blog/vivid-portrayals-obsidian-set-guide': typeof BlogVividPortrayalsObsidianSetGuideRoute
   '/blog/what-is-a-gem-pack': typeof BlogWhatIsAGemPackRoute
   '/blog/white-flare-card-origins': typeof BlogWhiteFlareCardOriginsRoute
   '/blog/white-flare-set-guide': typeof BlogWhiteFlareSetGuideRoute
@@ -1900,6 +1948,12 @@ export interface FileRoutesByTo {
   '/blog/true-mystery-card-origins': typeof BlogTrueMysteryCardOriginsRoute
   '/blog/true-mystery-release-news': typeof BlogTrueMysteryReleaseNewsRoute
   '/blog/true-mystery-set-guide': typeof BlogTrueMysterySetGuideRoute
+  '/blog/vivid-portrayals-indigo-card-origins': typeof BlogVividPortrayalsIndigoCardOriginsRoute
+  '/blog/vivid-portrayals-indigo-release-news': typeof BlogVividPortrayalsIndigoReleaseNewsRoute
+  '/blog/vivid-portrayals-indigo-set-guide': typeof BlogVividPortrayalsIndigoSetGuideRoute
+  '/blog/vivid-portrayals-obsidian-card-origins': typeof BlogVividPortrayalsObsidianCardOriginsRoute
+  '/blog/vivid-portrayals-obsidian-release-news': typeof BlogVividPortrayalsObsidianReleaseNewsRoute
+  '/blog/vivid-portrayals-obsidian-set-guide': typeof BlogVividPortrayalsObsidianSetGuideRoute
   '/blog/what-is-a-gem-pack': typeof BlogWhatIsAGemPackRoute
   '/blog/white-flare-card-origins': typeof BlogWhiteFlareCardOriginsRoute
   '/blog/white-flare-set-guide': typeof BlogWhiteFlareSetGuideRoute
@@ -2130,6 +2184,12 @@ export interface FileRoutesById {
   '/blog/true-mystery-card-origins': typeof BlogTrueMysteryCardOriginsRoute
   '/blog/true-mystery-release-news': typeof BlogTrueMysteryReleaseNewsRoute
   '/blog/true-mystery-set-guide': typeof BlogTrueMysterySetGuideRoute
+  '/blog/vivid-portrayals-indigo-card-origins': typeof BlogVividPortrayalsIndigoCardOriginsRoute
+  '/blog/vivid-portrayals-indigo-release-news': typeof BlogVividPortrayalsIndigoReleaseNewsRoute
+  '/blog/vivid-portrayals-indigo-set-guide': typeof BlogVividPortrayalsIndigoSetGuideRoute
+  '/blog/vivid-portrayals-obsidian-card-origins': typeof BlogVividPortrayalsObsidianCardOriginsRoute
+  '/blog/vivid-portrayals-obsidian-release-news': typeof BlogVividPortrayalsObsidianReleaseNewsRoute
+  '/blog/vivid-portrayals-obsidian-set-guide': typeof BlogVividPortrayalsObsidianSetGuideRoute
   '/blog/what-is-a-gem-pack': typeof BlogWhatIsAGemPackRoute
   '/blog/white-flare-card-origins': typeof BlogWhiteFlareCardOriginsRoute
   '/blog/white-flare-set-guide': typeof BlogWhiteFlareSetGuideRoute
@@ -2361,6 +2421,12 @@ export interface FileRouteTypes {
     | '/blog/true-mystery-card-origins'
     | '/blog/true-mystery-release-news'
     | '/blog/true-mystery-set-guide'
+    | '/blog/vivid-portrayals-indigo-card-origins'
+    | '/blog/vivid-portrayals-indigo-release-news'
+    | '/blog/vivid-portrayals-indigo-set-guide'
+    | '/blog/vivid-portrayals-obsidian-card-origins'
+    | '/blog/vivid-portrayals-obsidian-release-news'
+    | '/blog/vivid-portrayals-obsidian-set-guide'
     | '/blog/what-is-a-gem-pack'
     | '/blog/white-flare-card-origins'
     | '/blog/white-flare-set-guide'
@@ -2590,6 +2656,12 @@ export interface FileRouteTypes {
     | '/blog/true-mystery-card-origins'
     | '/blog/true-mystery-release-news'
     | '/blog/true-mystery-set-guide'
+    | '/blog/vivid-portrayals-indigo-card-origins'
+    | '/blog/vivid-portrayals-indigo-release-news'
+    | '/blog/vivid-portrayals-indigo-set-guide'
+    | '/blog/vivid-portrayals-obsidian-card-origins'
+    | '/blog/vivid-portrayals-obsidian-release-news'
+    | '/blog/vivid-portrayals-obsidian-set-guide'
     | '/blog/what-is-a-gem-pack'
     | '/blog/white-flare-card-origins'
     | '/blog/white-flare-set-guide'
@@ -2819,6 +2891,12 @@ export interface FileRouteTypes {
     | '/blog/true-mystery-card-origins'
     | '/blog/true-mystery-release-news'
     | '/blog/true-mystery-set-guide'
+    | '/blog/vivid-portrayals-indigo-card-origins'
+    | '/blog/vivid-portrayals-indigo-release-news'
+    | '/blog/vivid-portrayals-indigo-set-guide'
+    | '/blog/vivid-portrayals-obsidian-card-origins'
+    | '/blog/vivid-portrayals-obsidian-release-news'
+    | '/blog/vivid-portrayals-obsidian-set-guide'
     | '/blog/what-is-a-gem-pack'
     | '/blog/white-flare-card-origins'
     | '/blog/white-flare-set-guide'
@@ -3049,6 +3127,12 @@ export interface RootRouteChildren {
   BlogTrueMysteryCardOriginsRoute: typeof BlogTrueMysteryCardOriginsRoute
   BlogTrueMysteryReleaseNewsRoute: typeof BlogTrueMysteryReleaseNewsRoute
   BlogTrueMysterySetGuideRoute: typeof BlogTrueMysterySetGuideRoute
+  BlogVividPortrayalsIndigoCardOriginsRoute: typeof BlogVividPortrayalsIndigoCardOriginsRoute
+  BlogVividPortrayalsIndigoReleaseNewsRoute: typeof BlogVividPortrayalsIndigoReleaseNewsRoute
+  BlogVividPortrayalsIndigoSetGuideRoute: typeof BlogVividPortrayalsIndigoSetGuideRoute
+  BlogVividPortrayalsObsidianCardOriginsRoute: typeof BlogVividPortrayalsObsidianCardOriginsRoute
+  BlogVividPortrayalsObsidianReleaseNewsRoute: typeof BlogVividPortrayalsObsidianReleaseNewsRoute
+  BlogVividPortrayalsObsidianSetGuideRoute: typeof BlogVividPortrayalsObsidianSetGuideRoute
   BlogWhatIsAGemPackRoute: typeof BlogWhatIsAGemPackRoute
   BlogWhiteFlareCardOriginsRoute: typeof BlogWhiteFlareCardOriginsRoute
   BlogWhiteFlareSetGuideRoute: typeof BlogWhiteFlareSetGuideRoute
@@ -4237,6 +4321,48 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BlogTrueMysterySetGuideRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/blog/vivid-portrayals-indigo-card-origins': {
+      id: '/blog/vivid-portrayals-indigo-card-origins'
+      path: '/blog/vivid-portrayals-indigo-card-origins'
+      fullPath: '/blog/vivid-portrayals-indigo-card-origins'
+      preLoaderRoute: typeof BlogVividPortrayalsIndigoCardOriginsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/vivid-portrayals-indigo-release-news': {
+      id: '/blog/vivid-portrayals-indigo-release-news'
+      path: '/blog/vivid-portrayals-indigo-release-news'
+      fullPath: '/blog/vivid-portrayals-indigo-release-news'
+      preLoaderRoute: typeof BlogVividPortrayalsIndigoReleaseNewsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/vivid-portrayals-indigo-set-guide': {
+      id: '/blog/vivid-portrayals-indigo-set-guide'
+      path: '/blog/vivid-portrayals-indigo-set-guide'
+      fullPath: '/blog/vivid-portrayals-indigo-set-guide'
+      preLoaderRoute: typeof BlogVividPortrayalsIndigoSetGuideRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/vivid-portrayals-obsidian-card-origins': {
+      id: '/blog/vivid-portrayals-obsidian-card-origins'
+      path: '/blog/vivid-portrayals-obsidian-card-origins'
+      fullPath: '/blog/vivid-portrayals-obsidian-card-origins'
+      preLoaderRoute: typeof BlogVividPortrayalsObsidianCardOriginsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/vivid-portrayals-obsidian-release-news': {
+      id: '/blog/vivid-portrayals-obsidian-release-news'
+      path: '/blog/vivid-portrayals-obsidian-release-news'
+      fullPath: '/blog/vivid-portrayals-obsidian-release-news'
+      preLoaderRoute: typeof BlogVividPortrayalsObsidianReleaseNewsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/vivid-portrayals-obsidian-set-guide': {
+      id: '/blog/vivid-portrayals-obsidian-set-guide'
+      path: '/blog/vivid-portrayals-obsidian-set-guide'
+      fullPath: '/blog/vivid-portrayals-obsidian-set-guide'
+      preLoaderRoute: typeof BlogVividPortrayalsObsidianSetGuideRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/blog/what-is-a-gem-pack': {
       id: '/blog/what-is-a-gem-pack'
       path: '/blog/what-is-a-gem-pack'
@@ -4905,6 +5031,18 @@ const rootRouteChildren: RootRouteChildren = {
   BlogTrueMysteryCardOriginsRoute: BlogTrueMysteryCardOriginsRoute,
   BlogTrueMysteryReleaseNewsRoute: BlogTrueMysteryReleaseNewsRoute,
   BlogTrueMysterySetGuideRoute: BlogTrueMysterySetGuideRoute,
+  BlogVividPortrayalsIndigoCardOriginsRoute:
+    BlogVividPortrayalsIndigoCardOriginsRoute,
+  BlogVividPortrayalsIndigoReleaseNewsRoute:
+    BlogVividPortrayalsIndigoReleaseNewsRoute,
+  BlogVividPortrayalsIndigoSetGuideRoute:
+    BlogVividPortrayalsIndigoSetGuideRoute,
+  BlogVividPortrayalsObsidianCardOriginsRoute:
+    BlogVividPortrayalsObsidianCardOriginsRoute,
+  BlogVividPortrayalsObsidianReleaseNewsRoute:
+    BlogVividPortrayalsObsidianReleaseNewsRoute,
+  BlogVividPortrayalsObsidianSetGuideRoute:
+    BlogVividPortrayalsObsidianSetGuideRoute,
   BlogWhatIsAGemPackRoute: BlogWhatIsAGemPackRoute,
   BlogWhiteFlareCardOriginsRoute: BlogWhiteFlareCardOriginsRoute,
   BlogWhiteFlareSetGuideRoute: BlogWhiteFlareSetGuideRoute,

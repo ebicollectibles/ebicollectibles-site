@@ -931,7 +931,7 @@
    "number": "114/115",
    "pokemonIndex": 114,
    "version": 1,
-   "name": "Wash",
+   "name": "Wash Water Energy",
    "rarity": "Uncommon (U)",
    "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs2b/Cards/0114.webp"
   },
@@ -939,7 +939,7 @@
    "number": "115/115",
    "pokemonIndex": 115,
    "version": 1,
-   "name": "Hiding",
+   "name": "Hiding Darkness Energy",
    "rarity": "Uncommon (U)",
    "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs2b/Cards/0115.webp"
   },
@@ -1155,7 +1155,7 @@
    "number": "142/115",
    "pokemonIndex": 142,
    "version": 1,
-   "name": "Hero's Metal",
+   "name": "Hero's Medal",
    "rarity": "Ultra Rare (UR)",
    "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs2b/Cards/0142.webp"
   },

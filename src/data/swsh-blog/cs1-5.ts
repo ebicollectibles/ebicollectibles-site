@@ -1,5 +1,6 @@
 import data from '~/data/swsh-cs1-5.json'
 import { ORIGINS } from './cs1-5-origins'
+import { PARTNERS_GATHERING_BOX } from './products'
 import type { SwshBlogSet, SwshSetData } from './types'
 
 // Dynamax Tactics (CS1.5C). Release date, prices and pack contents:
@@ -36,12 +37,7 @@ export const CS1_5: SwshBlogSet = {
       released: 'June 28, 2023',
       contents: 'A Grookey, Scorbunny and Sobble display frame, one Dynamax Clash: Flame 25-card pack and one Dynamax Tactics pack',
     },
-    {
-      name: "Partners' Gathering Gift Box",
-      zh: '伙伴们的欢聚 专属礼盒',
-      released: 'November 15, 2024',
-      contents: 'Promo cards and accessories, with two Dynamax Tactics packs among packs from many Sword & Shield sets',
-    },
+    PARTNERS_GATHERING_BOX('two Dynamax Tactics packs'),
   ],
   headline: ['087', '085', '077', '088', '091', '096'],
   headlineNote:

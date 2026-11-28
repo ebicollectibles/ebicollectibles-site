@@ -1,5 +1,6 @@
 import data from '~/data/swsh-cs1a.json'
 import { ORIGINS } from './cs1a-origins'
+import { ONE_YEAR_BOX, PARTNERS_GATHERING_BOX } from './products'
 import type { SwshBlogSet, SwshSetData } from './types'
 
 // Dynamax Clash: Thunder (CS1aC). Release date, prices and pack contents:
@@ -33,6 +34,8 @@ export const CS1A: SwshBlogSet = {
     { name: 'Dynamax Clash Deck Building Gift Box', zh: '极巨争锋 卡组构筑礼盒', released: 'May 19, 2023', contents: 'One random Pokémon V holo, Trainers, Energy and one random Dynamax Clash 25-card pack' },
     { name: "Marnie's Resolve Gift Box", zh: '【玛俐的决心】专属礼盒', released: 'June 18, 2023', contents: 'Marnie promo cards and accessories, plus one Thunder and one Flame 25-card pack' },
     { name: 'Pokémon Card Display Set: Pikachu', zh: '宝可梦卡牌展示组合 皮卡丘', released: 'June 28, 2023', contents: 'A Pikachu display frame, one Thunder 25-card pack and one Dynamax Tactics pack' },
+    ONE_YEAR_BOX('Dynamax Clash: Thunder'),
+    PARTNERS_GATHERING_BOX('one Dynamax Clash: Thunder 25-card pack'),
   ],
   headline: ['202', '177', '029', '211', '192', '191'],
   headlineNote: 'Pikachu prints at four rarities, from Pikachu V up to the rainbow Pikachu VMAX, and Marnie and Boss’s Orders are the Supporter secret cards most collectors chase.',

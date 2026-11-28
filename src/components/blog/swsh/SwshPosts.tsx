@@ -22,7 +22,7 @@ type Status = { live: boolean; liveAt: string | null }
 const code = (r: string) => r.match(/\(([^)]+)\)/)?.[1] ?? r
 
 /** The order the set lists its rarities, lowest first. */
-const TIER_ORDER = ['C', 'U', 'R', 'RR', 'RRR', 'S', 'SR', 'SSR', 'HR', 'UR']
+const TIER_ORDER = ['C', 'U', 'R', 'RR', 'RRR', 'A', 'K', 'S', 'CHR', 'AR', 'SR', 'SSR', 'CSR', 'SAR', 'HR', 'UR']
 
 /** What each Simplified Chinese Sword & Shield rarity is, in English-collector terms. */
 const TIER_MEANING: Record<string, string> = {
@@ -31,6 +31,8 @@ const TIER_MEANING: Record<string, string> = {
   R: 'Rare, including holo Rares',
   RR: 'Pokémon V',
   RRR: 'Pokémon VMAX',
+  A: 'Amazing Rare Pokémon, with a rainbow holo splash',
+  K: 'Radiant Pokémon',
   S: 'Shiny Pokémon (the Shiny Vault cards in English)',
   SR: 'Full art Pokémon V and full art Supporters',
   SSR: 'Shiny Pokémon V and VMAX',
@@ -214,6 +216,9 @@ function originStats(set: SwshBlogSet) {
   return { f, rows, counts, top }
 }
 
+/** How a main-set rarity reads in a list: "mixes Commons, Uncommons, Rares, Pokémon V, ..." */
+const MAIN_LABEL: Record<string, string> = { C: 'Commons', U: 'Uncommons', R: 'Rares', A: 'Amazing Rares', K: 'Radiant Pokémon' }
+const andList = (xs: string[]) => (xs.length < 2 ? xs.join('') : `${xs.slice(0, -1).join(', ')} and ${xs[xs.length - 1]}`)
 const p3 = (n: number) => String(n).padStart(3, '0')
 const nf = (n: number) => n.toLocaleString('en-US')
 /** "Hyper Rare" -> "Hyper Rares", "Shiny" -> "Shiny cards". */
@@ -227,8 +232,9 @@ export function SwshOverviewPost({ set, post, status }: { set: SwshBlogSet; post
   const headline = set.headline.map((n) => f.byNo.get(n)!).filter(Boolean)
   const lead = headline[0]
   const topSecret = f.tiers.filter((t) => t.inSecret)
-  const enList = counts.slice(0, 4).map((c) => `${EN_SET_NAME[c.s]} (${c.n})`)
-  const others = counts.length - 4
+  // The biggest English sources: the top two, plus up to two more with at least five cards.
+  const enList = counts.filter((c, i) => i < 2 || (i < 4 && c.n >= 5)).map((c) => `${EN_SET_NAME[c.s]} (${c.n})`)
+  const others = counts.length - enList.length
   const faq: Faq[] = [
     { q: `When was ${set.name} released?`, a: `${set.releasedText}, in mainland China. It is a Simplified Chinese set from the Sword & Shield series.` },
     {
@@ -357,8 +363,7 @@ export function SwshOverviewPost({ set, post, status }: { set: SwshBlogSet; post
         <h2 id="origins">Where the cards come from</h2>
         <p>
           Every card in {set.name} has an English print with the same art, spread across several Sword & Shield sets. By card count the biggest sources
-          are {enList.join(', ')}
-          {others > 0 ? `, with ${others} other English sets and promos supplying the rest` : ''}. The{' '}
+          are {others > 0 ? `${enList.join(', ')}, with ${others} other English ${others === 1 ? 'source' : 'sources'} supplying the rest` : andList(enList)}. The{' '}
           <Link to={`/blog/${set.key}-card-origins` as never}>card origins guide</Link> lists every card's English twin.
         </p>
 
@@ -478,10 +483,10 @@ export function SwshOriginsPost({ set, post, status }: { set: SwshBlogSet; post:
             <strong>{shinyAll === shiny ? 'The shiny cards are the Shiny Vault.' : 'Most shiny cards are the Shiny Vault.'}</strong> {shiny} cards
             match the Shining Fates Shiny Vault, the English home of the Japanese Shiny Star V cards.
             {shinyAll > shiny &&
-              ` The other ${shinyAll - shiny}, ${rows
+              ` The other ${shinyAll - shiny === 1 ? 'one' : shinyAll - shiny}, ${rows
                 .filter((r) => (r.rarity === 'S' || r.rarity === 'SSR') && r.src !== 'swsh45sv')
                 .map((r) => `${r.name} ${r.cn} (${EN_SET_NAME[r.src]} ${r.en})`)
-                .join(', ')}, match other English prints.`}
+                .join(', ')}, ${shinyAll - shiny === 1 ? 'matches another English print' : 'match other English prints'}.`}
           </p>
         )}
         {later.length > 0 && (
@@ -630,8 +635,9 @@ export function SwshGuidePost({ set, post, status }: { set: SwshBlogSet; post: B
 
         <h2 id="numbering">How the numbers work</h2>
         <p>
-          Every card has one number out of {set.mainCount}. The main set runs 001 to {p3(set.mainCount)} and mixes Commons, Uncommons, Rares,
-          Pokémon V and VMAX by type. Everything above {set.mainCount} is a secret card, grouped by rarity:
+          Every card has one number out of {set.mainCount}. The main set runs 001 to {p3(set.mainCount)} and mixes{' '}
+          {andList(f.tiers.filter((t) => !t.inSecret).map((t) => MAIN_LABEL[t.tier] ?? meaning(set, t.tier)))} by type. Everything above{' '}
+          {set.mainCount} is a secret card, grouped by rarity:
         </p>
         <DataTable caption="How the numbers work" head={['Numbers', 'Rarity', 'Cards', 'What it is']} rows={f.tiers.map((t) => [t.range, `${t.name} (${t.tier})`, t.count, meaning(set, t.tier)])} />
         <p className="table-note">Pokémon China did not publish an odds chart for this set, so this guide gives card counts, not pull rates.</p>
