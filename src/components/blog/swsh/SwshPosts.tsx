@@ -490,8 +490,9 @@ export function SwshOriginsPost({ set, post, status }: { set: SwshBlogSet; post:
         <h2 id="at-a-glance">At a glance</h2>
         <DataTable caption="Cards by rarity and English source" head={['Rarity', ...top.map((s) => EN_SET_NAME[s]), 'Other', 'Total']} rows={tierRows} />
         <p className="table-note">
-          Rarity is the Chinese rarity. Super Rare matches the English full art Ultra Rare, Hyper Rare matches the rainbow Secret Rare, and
-          Ultra Rare matches the gold Secret Rare.
+          Rarity is the Chinese rarity. Super Rare matches the English full art Ultra Rare, Hyper Rare matches the{' '}
+          {set.tierMeaning?.HR?.includes('alternate') ? 'rainbow and alternate art Secret Rares' : 'rainbow Secret Rare'}, and Ultra Rare matches the gold
+          Secret Rare.
         </p>
 
         <h2 id="patterns">Patterns worth knowing</h2>

@@ -113,6 +113,9 @@ import { Route as BlogFearlessTerastalSetGuideRouteImport } from './routes/blog/
 import { Route as BlogFirstPartner30thVol1ReleaseNewsRouteImport } from './routes/blog/first-partner-30th-vol-1-release-news'
 import { Route as BlogFirstPartner30thVol2ReleaseNewsRouteImport } from './routes/blog/first-partner-30th-vol-2-release-news'
 import { Route as BlogFirstPartner30thVol3ReleaseNewsRouteImport } from './routes/blog/first-partner-30th-vol-3-release-news'
+import { Route as BlogFlameDanceOfTheEndCardOriginsRouteImport } from './routes/blog/flame-dance-of-the-end-card-origins'
+import { Route as BlogFlameDanceOfTheEndReleaseNewsRouteImport } from './routes/blog/flame-dance-of-the-end-release-news'
+import { Route as BlogFlameDanceOfTheEndSetGuideRouteImport } from './routes/blog/flame-dance-of-the-end-set-guide'
 import { Route as BlogFunismDittoPalmSizeWondersReleaseNewsRouteImport } from './routes/blog/funism-ditto-palm-size-wonders-release-news'
 import { Route as BlogFunismFirstPartnerMiniFiguresReleaseNewsRouteImport } from './routes/blog/funism-first-partner-mini-figures-release-news'
 import { Route as BlogFuturisticPikachuBoxReleaseNewsRouteImport } from './routes/blog/futuristic-pikachu-box-release-news'
@@ -842,6 +845,24 @@ const BlogFirstPartner30thVol3ReleaseNewsRoute =
   BlogFirstPartner30thVol3ReleaseNewsRouteImport.update({
     id: '/blog/first-partner-30th-vol-3-release-news',
     path: '/blog/first-partner-30th-vol-3-release-news',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const BlogFlameDanceOfTheEndCardOriginsRoute =
+  BlogFlameDanceOfTheEndCardOriginsRouteImport.update({
+    id: '/blog/flame-dance-of-the-end-card-origins',
+    path: '/blog/flame-dance-of-the-end-card-origins',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const BlogFlameDanceOfTheEndReleaseNewsRoute =
+  BlogFlameDanceOfTheEndReleaseNewsRouteImport.update({
+    id: '/blog/flame-dance-of-the-end-release-news',
+    path: '/blog/flame-dance-of-the-end-release-news',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const BlogFlameDanceOfTheEndSetGuideRoute =
+  BlogFlameDanceOfTheEndSetGuideRouteImport.update({
+    id: '/blog/flame-dance-of-the-end-set-guide',
+    path: '/blog/flame-dance-of-the-end-set-guide',
     getParentRoute: () => rootRouteImport,
   } as any)
 const BlogFunismDittoPalmSizeWondersReleaseNewsRoute =
@@ -1784,6 +1805,9 @@ export interface FileRoutesByFullPath {
   '/blog/first-partner-30th-vol-1-release-news': typeof BlogFirstPartner30thVol1ReleaseNewsRoute
   '/blog/first-partner-30th-vol-2-release-news': typeof BlogFirstPartner30thVol2ReleaseNewsRoute
   '/blog/first-partner-30th-vol-3-release-news': typeof BlogFirstPartner30thVol3ReleaseNewsRoute
+  '/blog/flame-dance-of-the-end-card-origins': typeof BlogFlameDanceOfTheEndCardOriginsRoute
+  '/blog/flame-dance-of-the-end-release-news': typeof BlogFlameDanceOfTheEndReleaseNewsRoute
+  '/blog/flame-dance-of-the-end-set-guide': typeof BlogFlameDanceOfTheEndSetGuideRoute
   '/blog/funism-ditto-palm-size-wonders-release-news': typeof BlogFunismDittoPalmSizeWondersReleaseNewsRoute
   '/blog/funism-first-partner-mini-figures-release-news': typeof BlogFunismFirstPartnerMiniFiguresReleaseNewsRoute
   '/blog/futuristic-pikachu-box-release-news': typeof BlogFuturisticPikachuBoxReleaseNewsRoute
@@ -2037,6 +2061,9 @@ export interface FileRoutesByTo {
   '/blog/first-partner-30th-vol-1-release-news': typeof BlogFirstPartner30thVol1ReleaseNewsRoute
   '/blog/first-partner-30th-vol-2-release-news': typeof BlogFirstPartner30thVol2ReleaseNewsRoute
   '/blog/first-partner-30th-vol-3-release-news': typeof BlogFirstPartner30thVol3ReleaseNewsRoute
+  '/blog/flame-dance-of-the-end-card-origins': typeof BlogFlameDanceOfTheEndCardOriginsRoute
+  '/blog/flame-dance-of-the-end-release-news': typeof BlogFlameDanceOfTheEndReleaseNewsRoute
+  '/blog/flame-dance-of-the-end-set-guide': typeof BlogFlameDanceOfTheEndSetGuideRoute
   '/blog/funism-ditto-palm-size-wonders-release-news': typeof BlogFunismDittoPalmSizeWondersReleaseNewsRoute
   '/blog/funism-first-partner-mini-figures-release-news': typeof BlogFunismFirstPartnerMiniFiguresReleaseNewsRoute
   '/blog/futuristic-pikachu-box-release-news': typeof BlogFuturisticPikachuBoxReleaseNewsRoute
@@ -2291,6 +2318,9 @@ export interface FileRoutesById {
   '/blog/first-partner-30th-vol-1-release-news': typeof BlogFirstPartner30thVol1ReleaseNewsRoute
   '/blog/first-partner-30th-vol-2-release-news': typeof BlogFirstPartner30thVol2ReleaseNewsRoute
   '/blog/first-partner-30th-vol-3-release-news': typeof BlogFirstPartner30thVol3ReleaseNewsRoute
+  '/blog/flame-dance-of-the-end-card-origins': typeof BlogFlameDanceOfTheEndCardOriginsRoute
+  '/blog/flame-dance-of-the-end-release-news': typeof BlogFlameDanceOfTheEndReleaseNewsRoute
+  '/blog/flame-dance-of-the-end-set-guide': typeof BlogFlameDanceOfTheEndSetGuideRoute
   '/blog/funism-ditto-palm-size-wonders-release-news': typeof BlogFunismDittoPalmSizeWondersReleaseNewsRoute
   '/blog/funism-first-partner-mini-figures-release-news': typeof BlogFunismFirstPartnerMiniFiguresReleaseNewsRoute
   '/blog/futuristic-pikachu-box-release-news': typeof BlogFuturisticPikachuBoxReleaseNewsRoute
@@ -2546,6 +2576,9 @@ export interface FileRouteTypes {
     | '/blog/first-partner-30th-vol-1-release-news'
     | '/blog/first-partner-30th-vol-2-release-news'
     | '/blog/first-partner-30th-vol-3-release-news'
+    | '/blog/flame-dance-of-the-end-card-origins'
+    | '/blog/flame-dance-of-the-end-release-news'
+    | '/blog/flame-dance-of-the-end-set-guide'
     | '/blog/funism-ditto-palm-size-wonders-release-news'
     | '/blog/funism-first-partner-mini-figures-release-news'
     | '/blog/futuristic-pikachu-box-release-news'
@@ -2799,6 +2832,9 @@ export interface FileRouteTypes {
     | '/blog/first-partner-30th-vol-1-release-news'
     | '/blog/first-partner-30th-vol-2-release-news'
     | '/blog/first-partner-30th-vol-3-release-news'
+    | '/blog/flame-dance-of-the-end-card-origins'
+    | '/blog/flame-dance-of-the-end-release-news'
+    | '/blog/flame-dance-of-the-end-set-guide'
     | '/blog/funism-ditto-palm-size-wonders-release-news'
     | '/blog/funism-first-partner-mini-figures-release-news'
     | '/blog/futuristic-pikachu-box-release-news'
@@ -3052,6 +3088,9 @@ export interface FileRouteTypes {
     | '/blog/first-partner-30th-vol-1-release-news'
     | '/blog/first-partner-30th-vol-2-release-news'
     | '/blog/first-partner-30th-vol-3-release-news'
+    | '/blog/flame-dance-of-the-end-card-origins'
+    | '/blog/flame-dance-of-the-end-release-news'
+    | '/blog/flame-dance-of-the-end-set-guide'
     | '/blog/funism-ditto-palm-size-wonders-release-news'
     | '/blog/funism-first-partner-mini-figures-release-news'
     | '/blog/futuristic-pikachu-box-release-news'
@@ -3306,6 +3345,9 @@ export interface RootRouteChildren {
   BlogFirstPartner30thVol1ReleaseNewsRoute: typeof BlogFirstPartner30thVol1ReleaseNewsRoute
   BlogFirstPartner30thVol2ReleaseNewsRoute: typeof BlogFirstPartner30thVol2ReleaseNewsRoute
   BlogFirstPartner30thVol3ReleaseNewsRoute: typeof BlogFirstPartner30thVol3ReleaseNewsRoute
+  BlogFlameDanceOfTheEndCardOriginsRoute: typeof BlogFlameDanceOfTheEndCardOriginsRoute
+  BlogFlameDanceOfTheEndReleaseNewsRoute: typeof BlogFlameDanceOfTheEndReleaseNewsRoute
+  BlogFlameDanceOfTheEndSetGuideRoute: typeof BlogFlameDanceOfTheEndSetGuideRoute
   BlogFunismDittoPalmSizeWondersReleaseNewsRoute: typeof BlogFunismDittoPalmSizeWondersReleaseNewsRoute
   BlogFunismFirstPartnerMiniFiguresReleaseNewsRoute: typeof BlogFunismFirstPartnerMiniFiguresReleaseNewsRoute
   BlogFuturisticPikachuBoxReleaseNewsRoute: typeof BlogFuturisticPikachuBoxReleaseNewsRoute
@@ -4186,6 +4228,27 @@ declare module '@tanstack/react-router' {
       path: '/blog/first-partner-30th-vol-3-release-news'
       fullPath: '/blog/first-partner-30th-vol-3-release-news'
       preLoaderRoute: typeof BlogFirstPartner30thVol3ReleaseNewsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/flame-dance-of-the-end-card-origins': {
+      id: '/blog/flame-dance-of-the-end-card-origins'
+      path: '/blog/flame-dance-of-the-end-card-origins'
+      fullPath: '/blog/flame-dance-of-the-end-card-origins'
+      preLoaderRoute: typeof BlogFlameDanceOfTheEndCardOriginsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/flame-dance-of-the-end-release-news': {
+      id: '/blog/flame-dance-of-the-end-release-news'
+      path: '/blog/flame-dance-of-the-end-release-news'
+      fullPath: '/blog/flame-dance-of-the-end-release-news'
+      preLoaderRoute: typeof BlogFlameDanceOfTheEndReleaseNewsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/flame-dance-of-the-end-set-guide': {
+      id: '/blog/flame-dance-of-the-end-set-guide'
+      path: '/blog/flame-dance-of-the-end-set-guide'
+      fullPath: '/blog/flame-dance-of-the-end-set-guide'
+      preLoaderRoute: typeof BlogFlameDanceOfTheEndSetGuideRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/blog/funism-ditto-palm-size-wonders-release-news': {
@@ -5343,6 +5406,11 @@ const rootRouteChildren: RootRouteChildren = {
     BlogFirstPartner30thVol2ReleaseNewsRoute,
   BlogFirstPartner30thVol3ReleaseNewsRoute:
     BlogFirstPartner30thVol3ReleaseNewsRoute,
+  BlogFlameDanceOfTheEndCardOriginsRoute:
+    BlogFlameDanceOfTheEndCardOriginsRoute,
+  BlogFlameDanceOfTheEndReleaseNewsRoute:
+    BlogFlameDanceOfTheEndReleaseNewsRoute,
+  BlogFlameDanceOfTheEndSetGuideRoute: BlogFlameDanceOfTheEndSetGuideRoute,
   BlogFunismDittoPalmSizeWondersReleaseNewsRoute:
     BlogFunismDittoPalmSizeWondersReleaseNewsRoute,
   BlogFunismFirstPartnerMiniFiguresReleaseNewsRoute:

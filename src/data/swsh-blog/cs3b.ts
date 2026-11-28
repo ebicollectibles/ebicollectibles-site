@@ -60,7 +60,7 @@ export const CS3B: SwshBlogSet = {
   ],
   headline: ['160', '129', '164', '161', '151', '174'],
   headlineNote:
-    'Blastoise, the Pokémon on the pack, prints at four rarities, and its Super Rare and Hyper Rare use art that English printed only as regular promos or not at all. Rapid Strike Urshifu and Ice Rider Calyrex each have Character Super Rares and two rainbow Hyper Rares.',
+    'Blastoise, the Pokémon on the pack, prints at four rarities, and its Super Rare and Hyper Rare use art that English printed only as regular promos or not at all. Rapid Strike Urshifu and Ice Rider Calyrex each have Character Super Rares and two Hyper Rares, a rainbow and an alternate art.',
   ladderNames: [
     'Blastoise V',
     'Blastoise VMAX',
@@ -90,6 +90,7 @@ export const CS3B: SwshBlogSet = {
   ],
   laterThan: 'swsh8',
   tierMeaning: {
+    HR: 'Rainbow and alternate art Pokémon VMAX, and rainbow Supporters',
     CHR: 'Pokémon shown with a Trainer (Trainer Gallery in English)',
     CSR: 'Pokémon V and VMAX shown with a Trainer (Trainer Gallery in English)',
     UR: 'Gold Pokémon, Items, Tools and Energy',
