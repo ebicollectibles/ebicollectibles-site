@@ -6,7 +6,7 @@
 // the post itself.
 import { SITE_URL, R2_IMAGE_HOST } from '~/lib/gem-sets/constants'
 
-export type BlogPostSlug = 'chinese-pokemon-sets-in-order' | 'how-to-read-chinese-pokemon-cards' | 'chinese-pokemon-card-rarities' | 'chinese-pokemon-slim-vs-jumbo' | 'are-chinese-pokemon-cards-real' | 'simplified-vs-traditional-chinese-pokemon-cards' | 'chinese-vs-english-pokemon-cards' | 'are-chinese-pokemon-cards-tournament-legal' | 'chinese-exclusive-pokemon-cards' | 'what-is-a-gem-pack' | 'chinese-pokemon-set-english-equivalents' | 'gem-vol-7-release-news' | 'gem-vol-7-set-guide' | 'gem-vol-7-card-origins' | 'gem-vol-6-release-news' | 'gem-vol-6-set-guide' | 'gem-vol-6-card-origins' | 'gem-vol-5-release-news' | 'gem-vol-5-set-guide' | 'gem-vol-5-card-origins' | 'gem-vol-4-release-news' | 'gem-vol-4-set-guide' | 'gem-vol-4-card-origins' | 'gem-vol-3-release-news' | 'gem-vol-3-set-guide' | 'gem-vol-3-card-origins' | 'gem-vol-2-release-news' | 'gem-vol-2-set-guide' | 'gem-vol-2-card-origins' | 'gem-vol-1-release-news' | 'gem-vol-1-set-guide' | 'gem-vol-1-card-origins' | '30th-celebration-release-news' | '30th-celebration-set-guide' | '30th-celebration-card-origins' | 'chasing-glory-release-news' | 'chasing-glory-set-guide' | 'chasing-glory-card-origins' | 'terastal-gathering-release-news' | 'terastal-gathering-set-guide' | 'terastal-gathering-card-origins' | 'reward-round-release-news' | 'reward-round-set-guide' | 'reward-round-card-origins' | 'fearless-terastal-release-news' | 'fearless-terastal-set-guide' | 'fearless-terastal-card-origins' | 'eternal-birth-release-news' | 'eternal-birth-set-guide' | 'eternal-birth-card-origins' | 'miracle-journey-release-news' | 'miracle-journey-set-guide' | 'miracle-journey-card-origins' | 'black-crystal-blaze-release-news' | 'black-crystal-blaze-set-guide' | 'black-crystal-blaze-card-origins' | 'black-bolt-white-flare-release-news' | 'black-bolt-set-guide' | 'black-bolt-card-origins' | 'white-flare-set-guide' | 'white-flare-card-origins' | 'true-mystery-release-news' | 'true-mystery-set-guide' | 'true-mystery-card-origins' | 'blade-awakening-release-news' | 'blade-awakening-set-guide' | 'blade-awakening-card-origins' | 'brilliant-fantasy-release-news' | 'brilliant-fantasy-set-guide' | 'brilliant-fantasy-card-origins' | 'stellar-crystal-release-news' | 'stellar-crystal-set-guide' | 'stellar-crystal-card-origins' | 'pikachu-dream-painting-figures-release-news' | 'funism-ditto-palm-size-wonders-release-news' | 'team-rocket-briefcase-release-news' | 'pikachu-gift-box-release-news' | 'day-night-gift-box-release-news' | 'greninja-sylveon-display-set-release-news' | 'charizard-figure-box-release-news' | 'nuzzle-cheeks-plush-card-display-release-news' | 'eevee-gift-box-release-news' | 'gem-badge-set-1-release-news' | 'gem-badge-set-2-release-news' | 'pikachu-30th-plush-keychain-release-news' | 'funism-first-partner-mini-figures-release-news' | 'first-partner-30th-vol-1-release-news' | 'first-partner-30th-vol-2-release-news' | 'first-partner-30th-vol-3-release-news' | 'aura-seeker-release-news' | 'pokemon-30th-shanghai-gold-pikachu-cards-news' | '30th-celebration-pikachu-cards-artists' | 'futuristic-pikachu-box-release-news' | 'lisia-gift-box-release-news' | 'ogerpon-mask-gift-box-release-news' | 'lillie-n-battle-box-release-news' | 'japanese-30th-celebration-release-news' | 'storm-emeralda-release-news' | 'master-strategy-deck-raging-bolt-dragapult-gholdengo-release-news' | 'master-strategy-deck-charizard-gardevoir-miraidon-release-news' | 'espeon-umbreon-deluxe-deck-release-news' | 'journey-gift-boxes-release-news' | 'collect-151-first-partner-display-sets-release-news' | 'eevee-dream-painting-figures-release-news' | 'dream-painting-151-vol-1-release-news' | 'dream-painting-water-vol-2-release-news' | 'chinese-gem-pack-hit-rates' | 'chinese-booster-box-guaranteed-hits' | 'collect-151-journey-release-news' | 'collect-151-hope-release-news' | 'collect-151-surprise-release-news' | 'collect-151-gathering-release-news' | 'collect-151-set-guide' | 'collect-151-card-origins'
+export type BlogPostSlug = 'chinese-pokemon-sets-in-order' | 'how-to-read-chinese-pokemon-cards' | 'chinese-pokemon-card-rarities' | 'chinese-pokemon-slim-vs-jumbo' | 'are-chinese-pokemon-cards-real' | 'simplified-vs-traditional-chinese-pokemon-cards' | 'chinese-vs-english-pokemon-cards' | 'are-chinese-pokemon-cards-tournament-legal' | 'chinese-exclusive-pokemon-cards' | 'what-is-a-gem-pack' | 'chinese-pokemon-set-english-equivalents' | 'gem-vol-7-release-news' | 'gem-vol-7-set-guide' | 'gem-vol-7-card-origins' | 'gem-vol-6-release-news' | 'gem-vol-6-set-guide' | 'gem-vol-6-card-origins' | 'gem-vol-5-release-news' | 'gem-vol-5-set-guide' | 'gem-vol-5-card-origins' | 'gem-vol-4-release-news' | 'gem-vol-4-set-guide' | 'gem-vol-4-card-origins' | 'gem-vol-3-release-news' | 'gem-vol-3-set-guide' | 'gem-vol-3-card-origins' | 'gem-vol-2-release-news' | 'gem-vol-2-set-guide' | 'gem-vol-2-card-origins' | 'gem-vol-1-release-news' | 'gem-vol-1-set-guide' | 'gem-vol-1-card-origins' | '30th-celebration-release-news' | '30th-celebration-set-guide' | '30th-celebration-card-origins' | 'chasing-glory-release-news' | 'chasing-glory-set-guide' | 'chasing-glory-card-origins' | 'terastal-gathering-release-news' | 'terastal-gathering-set-guide' | 'terastal-gathering-card-origins' | 'reward-round-release-news' | 'reward-round-set-guide' | 'reward-round-card-origins' | 'fearless-terastal-release-news' | 'fearless-terastal-set-guide' | 'fearless-terastal-card-origins' | 'eternal-birth-release-news' | 'eternal-birth-set-guide' | 'eternal-birth-card-origins' | 'miracle-journey-release-news' | 'miracle-journey-set-guide' | 'miracle-journey-card-origins' | 'black-crystal-blaze-release-news' | 'black-crystal-blaze-set-guide' | 'black-crystal-blaze-card-origins' | 'black-bolt-white-flare-release-news' | 'black-bolt-set-guide' | 'black-bolt-card-origins' | 'white-flare-set-guide' | 'white-flare-card-origins' | 'true-mystery-release-news' | 'true-mystery-set-guide' | 'true-mystery-card-origins' | 'blade-awakening-release-news' | 'blade-awakening-set-guide' | 'blade-awakening-card-origins' | 'brilliant-fantasy-release-news' | 'brilliant-fantasy-set-guide' | 'brilliant-fantasy-card-origins' | 'stellar-crystal-release-news' | 'stellar-crystal-set-guide' | 'stellar-crystal-card-origins' | 'pikachu-dream-painting-figures-release-news' | 'funism-ditto-palm-size-wonders-release-news' | 'team-rocket-briefcase-release-news' | 'pikachu-gift-box-release-news' | 'day-night-gift-box-release-news' | 'greninja-sylveon-display-set-release-news' | 'charizard-figure-box-release-news' | 'nuzzle-cheeks-plush-card-display-release-news' | 'eevee-gift-box-release-news' | 'gem-badge-set-1-release-news' | 'gem-badge-set-2-release-news' | 'pikachu-30th-plush-keychain-release-news' | 'funism-first-partner-mini-figures-release-news' | 'first-partner-30th-vol-1-release-news' | 'first-partner-30th-vol-2-release-news' | 'first-partner-30th-vol-3-release-news' | 'aura-seeker-release-news' | 'pokemon-30th-shanghai-gold-pikachu-cards-news' | '30th-celebration-pikachu-cards-artists' | 'futuristic-pikachu-box-release-news' | 'lisia-gift-box-release-news' | 'ogerpon-mask-gift-box-release-news' | 'lillie-n-battle-box-release-news' | 'japanese-30th-celebration-release-news' | 'storm-emeralda-release-news' | 'master-strategy-deck-raging-bolt-dragapult-gholdengo-release-news' | 'master-strategy-deck-charizard-gardevoir-miraidon-release-news' | 'espeon-umbreon-deluxe-deck-release-news' | 'journey-gift-boxes-release-news' | 'collect-151-first-partner-display-sets-release-news' | 'eevee-dream-painting-figures-release-news' | 'dream-painting-151-vol-1-release-news' | 'dream-painting-water-vol-2-release-news' | 'chinese-gem-pack-hit-rates' | 'chinese-booster-box-guaranteed-hits' | 'collect-151-journey-release-news' | 'collect-151-hope-release-news' | 'collect-151-surprise-release-news' | 'collect-151-gathering-release-news' | 'collect-151-set-guide' | 'collect-151-card-origins' | 'dynamax-clash-thunder-release-news' | 'dynamax-clash-thunder-card-origins' | 'dynamax-clash-thunder-set-guide'
 
 export interface BlogPostSummary {
   slug: BlogPostSlug
@@ -1882,6 +1882,54 @@ export const BLOG_POSTS: BlogPostSummary[] = [
     heroAlt: "Gem Vol. 7 Card Origins banner: the Psyduck booster pack linked to tiles showing where its 56 illustrations came from, led by Destined Rivals",
     glow1: 'rgb(58 110 165 / .28)',
     glow2: 'rgb(138 61 120 / .22)',
+  },
+  {
+    slug: 'dynamax-clash-thunder-release-news',
+    path: '/blog/dynamax-clash-thunder-release-news',
+    title: 'Dynamax Clash: Thunder (CS1a) Set Overview: Pikachu VMAX, Packs and Every Rarity',
+    excerpt:
+      'Dynamax Clash: Thunder (CS1aC) is the Water, Lightning, Psychic and Fighting half of Dynamax Clash, which started the Simplified Chinese Sword & Shield series on May 19, 2023. How it was sold, its 217 cards and every rarity.',
+    seoTitle: 'Pokémon Dynamax Clash: Thunder (CS1aC) Set Overview',
+    seoDescription:
+      'Simplified Chinese Dynamax Clash: Thunder (CS1aC), May 19, 2023: 5-card and 25-card packs, 217 cards, every rarity and the English sets its cards come from.',
+    tag: 'Set overview',
+    date: '2026-11-28',
+    heroImage: `${SITE_URL}/assets/blog/dynamax-clash-thunder-overview-hero.webp`,
+    heroAlt: 'The Dynamax Clash: Thunder Pikachu VMAX Hyper Rare in front, with the Pikachu V full art and the Marnie Hyper Rare behind it',
+    glow1: 'rgb(250 205 60 / .26)',
+    glow2: 'rgb(70 100 170 / .30)',
+  },
+  {
+    slug: 'dynamax-clash-thunder-card-origins',
+    path: '/blog/dynamax-clash-thunder-card-origins',
+    title: 'Where Every Dynamax Clash: Thunder Card Comes From',
+    excerpt:
+      'All 217 Dynamax Clash: Thunder (CS1aC) cards matched to their English versions: 69 from Rebel Clash, 68 from Sword & Shield, 45 from the Shining Fates Shiny Vault and 35 from seven other sources.',
+    seoTitle: 'Dynamax Clash: Thunder (CS1aC) Card Origins: English Matches',
+    seoDescription:
+      'All 217 Pokémon TCG Dynamax Clash: Thunder (CS1aC) cards matched to English: 69 Rebel Clash, 68 Sword & Shield, 45 Shining Fates Shiny Vault.',
+    tag: 'Collecting guide',
+    date: '2026-11-28',
+    heroImage: `${SITE_URL}/assets/blog/dynamax-clash-thunder-origins-hero.webp`,
+    heroAlt: 'The Dynamax Clash: Thunder Pikachu VMAX Hyper Rare beside tiles for Rebel Clash, Sword & Shield, the Shining Fates Shiny Vault and other sources',
+    glow1: 'rgb(250 205 60 / .26)',
+    glow2: 'rgb(70 100 170 / .30)',
+  },
+  {
+    slug: 'dynamax-clash-thunder-set-guide',
+    path: '/blog/dynamax-clash-thunder-set-guide',
+    title: 'Dynamax Clash: Thunder Set Guide: Every Secret Card and the Master Set',
+    excerpt:
+      'Every secret card in Dynamax Clash: Thunder (CS1aC), from the gold Ultra Rares and rainbow Hyper Rares to the Shiny cards, plus how the numbers work and the 329-card master set.',
+    seoTitle: 'Dynamax Clash: Thunder (CS1aC) Set Guide: Secret Cards',
+    seoDescription:
+      'Pokémon TCG Dynamax Clash: Thunder (CS1aC) set guide: every Ultra Rare, Hyper Rare, Super Rare and Shiny card, the numbering and the 329-card master set.',
+    tag: 'Set guide',
+    date: '2026-11-28',
+    heroImage: `${SITE_URL}/assets/blog/dynamax-clash-thunder-guide-hero.webp`,
+    heroAlt: 'The Dynamax Clash: Thunder Pikachu VMAX Hyper Rare in front of four more Hyper Rares: Marnie, Gardevoir VMAX, Snorlax VMAX and Boss\'s Orders',
+    glow1: 'rgb(250 205 60 / .26)',
+    glow2: 'rgb(70 100 170 / .30)',
   },
 ]
 

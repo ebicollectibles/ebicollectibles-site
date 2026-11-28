@@ -89,6 +89,9 @@ import { Route as BlogCollect151SurpriseReleaseNewsRouteImport } from './routes/
 import { Route as BlogDayNightGiftBoxReleaseNewsRouteImport } from './routes/blog/day-night-gift-box-release-news'
 import { Route as BlogDreamPainting151Vol1ReleaseNewsRouteImport } from './routes/blog/dream-painting-151-vol-1-release-news'
 import { Route as BlogDreamPaintingWaterVol2ReleaseNewsRouteImport } from './routes/blog/dream-painting-water-vol-2-release-news'
+import { Route as BlogDynamaxClashThunderCardOriginsRouteImport } from './routes/blog/dynamax-clash-thunder-card-origins'
+import { Route as BlogDynamaxClashThunderReleaseNewsRouteImport } from './routes/blog/dynamax-clash-thunder-release-news'
+import { Route as BlogDynamaxClashThunderSetGuideRouteImport } from './routes/blog/dynamax-clash-thunder-set-guide'
 import { Route as BlogEeveeDreamPaintingFiguresReleaseNewsRouteImport } from './routes/blog/eevee-dream-painting-figures-release-news'
 import { Route as BlogEeveeGiftBoxReleaseNewsRouteImport } from './routes/blog/eevee-gift-box-release-news'
 import { Route as BlogEspeonUmbreonDeluxeDeckReleaseNewsRouteImport } from './routes/blog/espeon-umbreon-deluxe-deck-release-news'
@@ -665,6 +668,24 @@ const BlogDreamPaintingWaterVol2ReleaseNewsRoute =
   BlogDreamPaintingWaterVol2ReleaseNewsRouteImport.update({
     id: '/blog/dream-painting-water-vol-2-release-news',
     path: '/blog/dream-painting-water-vol-2-release-news',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const BlogDynamaxClashThunderCardOriginsRoute =
+  BlogDynamaxClashThunderCardOriginsRouteImport.update({
+    id: '/blog/dynamax-clash-thunder-card-origins',
+    path: '/blog/dynamax-clash-thunder-card-origins',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const BlogDynamaxClashThunderReleaseNewsRoute =
+  BlogDynamaxClashThunderReleaseNewsRouteImport.update({
+    id: '/blog/dynamax-clash-thunder-release-news',
+    path: '/blog/dynamax-clash-thunder-release-news',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const BlogDynamaxClashThunderSetGuideRoute =
+  BlogDynamaxClashThunderSetGuideRouteImport.update({
+    id: '/blog/dynamax-clash-thunder-set-guide',
+    path: '/blog/dynamax-clash-thunder-set-guide',
     getParentRoute: () => rootRouteImport,
   } as any)
 const BlogEeveeDreamPaintingFiguresReleaseNewsRoute =
@@ -1529,6 +1550,9 @@ export interface FileRoutesByFullPath {
   '/blog/day-night-gift-box-release-news': typeof BlogDayNightGiftBoxReleaseNewsRoute
   '/blog/dream-painting-151-vol-1-release-news': typeof BlogDreamPainting151Vol1ReleaseNewsRoute
   '/blog/dream-painting-water-vol-2-release-news': typeof BlogDreamPaintingWaterVol2ReleaseNewsRoute
+  '/blog/dynamax-clash-thunder-card-origins': typeof BlogDynamaxClashThunderCardOriginsRoute
+  '/blog/dynamax-clash-thunder-release-news': typeof BlogDynamaxClashThunderReleaseNewsRoute
+  '/blog/dynamax-clash-thunder-set-guide': typeof BlogDynamaxClashThunderSetGuideRoute
   '/blog/eevee-dream-painting-figures-release-news': typeof BlogEeveeDreamPaintingFiguresReleaseNewsRoute
   '/blog/eevee-gift-box-release-news': typeof BlogEeveeGiftBoxReleaseNewsRoute
   '/blog/espeon-umbreon-deluxe-deck-release-news': typeof BlogEspeonUmbreonDeluxeDeckReleaseNewsRoute
@@ -1749,6 +1773,9 @@ export interface FileRoutesByTo {
   '/blog/day-night-gift-box-release-news': typeof BlogDayNightGiftBoxReleaseNewsRoute
   '/blog/dream-painting-151-vol-1-release-news': typeof BlogDreamPainting151Vol1ReleaseNewsRoute
   '/blog/dream-painting-water-vol-2-release-news': typeof BlogDreamPaintingWaterVol2ReleaseNewsRoute
+  '/blog/dynamax-clash-thunder-card-origins': typeof BlogDynamaxClashThunderCardOriginsRoute
+  '/blog/dynamax-clash-thunder-release-news': typeof BlogDynamaxClashThunderReleaseNewsRoute
+  '/blog/dynamax-clash-thunder-set-guide': typeof BlogDynamaxClashThunderSetGuideRoute
   '/blog/eevee-dream-painting-figures-release-news': typeof BlogEeveeDreamPaintingFiguresReleaseNewsRoute
   '/blog/eevee-gift-box-release-news': typeof BlogEeveeGiftBoxReleaseNewsRoute
   '/blog/espeon-umbreon-deluxe-deck-release-news': typeof BlogEspeonUmbreonDeluxeDeckReleaseNewsRoute
@@ -1970,6 +1997,9 @@ export interface FileRoutesById {
   '/blog/day-night-gift-box-release-news': typeof BlogDayNightGiftBoxReleaseNewsRoute
   '/blog/dream-painting-151-vol-1-release-news': typeof BlogDreamPainting151Vol1ReleaseNewsRoute
   '/blog/dream-painting-water-vol-2-release-news': typeof BlogDreamPaintingWaterVol2ReleaseNewsRoute
+  '/blog/dynamax-clash-thunder-card-origins': typeof BlogDynamaxClashThunderCardOriginsRoute
+  '/blog/dynamax-clash-thunder-release-news': typeof BlogDynamaxClashThunderReleaseNewsRoute
+  '/blog/dynamax-clash-thunder-set-guide': typeof BlogDynamaxClashThunderSetGuideRoute
   '/blog/eevee-dream-painting-figures-release-news': typeof BlogEeveeDreamPaintingFiguresReleaseNewsRoute
   '/blog/eevee-gift-box-release-news': typeof BlogEeveeGiftBoxReleaseNewsRoute
   '/blog/espeon-umbreon-deluxe-deck-release-news': typeof BlogEspeonUmbreonDeluxeDeckReleaseNewsRoute
@@ -2192,6 +2222,9 @@ export interface FileRouteTypes {
     | '/blog/day-night-gift-box-release-news'
     | '/blog/dream-painting-151-vol-1-release-news'
     | '/blog/dream-painting-water-vol-2-release-news'
+    | '/blog/dynamax-clash-thunder-card-origins'
+    | '/blog/dynamax-clash-thunder-release-news'
+    | '/blog/dynamax-clash-thunder-set-guide'
     | '/blog/eevee-dream-painting-figures-release-news'
     | '/blog/eevee-gift-box-release-news'
     | '/blog/espeon-umbreon-deluxe-deck-release-news'
@@ -2412,6 +2445,9 @@ export interface FileRouteTypes {
     | '/blog/day-night-gift-box-release-news'
     | '/blog/dream-painting-151-vol-1-release-news'
     | '/blog/dream-painting-water-vol-2-release-news'
+    | '/blog/dynamax-clash-thunder-card-origins'
+    | '/blog/dynamax-clash-thunder-release-news'
+    | '/blog/dynamax-clash-thunder-set-guide'
     | '/blog/eevee-dream-painting-figures-release-news'
     | '/blog/eevee-gift-box-release-news'
     | '/blog/espeon-umbreon-deluxe-deck-release-news'
@@ -2632,6 +2668,9 @@ export interface FileRouteTypes {
     | '/blog/day-night-gift-box-release-news'
     | '/blog/dream-painting-151-vol-1-release-news'
     | '/blog/dream-painting-water-vol-2-release-news'
+    | '/blog/dynamax-clash-thunder-card-origins'
+    | '/blog/dynamax-clash-thunder-release-news'
+    | '/blog/dynamax-clash-thunder-set-guide'
     | '/blog/eevee-dream-painting-figures-release-news'
     | '/blog/eevee-gift-box-release-news'
     | '/blog/espeon-umbreon-deluxe-deck-release-news'
@@ -2853,6 +2892,9 @@ export interface RootRouteChildren {
   BlogDayNightGiftBoxReleaseNewsRoute: typeof BlogDayNightGiftBoxReleaseNewsRoute
   BlogDreamPainting151Vol1ReleaseNewsRoute: typeof BlogDreamPainting151Vol1ReleaseNewsRoute
   BlogDreamPaintingWaterVol2ReleaseNewsRoute: typeof BlogDreamPaintingWaterVol2ReleaseNewsRoute
+  BlogDynamaxClashThunderCardOriginsRoute: typeof BlogDynamaxClashThunderCardOriginsRoute
+  BlogDynamaxClashThunderReleaseNewsRoute: typeof BlogDynamaxClashThunderReleaseNewsRoute
+  BlogDynamaxClashThunderSetGuideRoute: typeof BlogDynamaxClashThunderSetGuideRoute
   BlogEeveeDreamPaintingFiguresReleaseNewsRoute: typeof BlogEeveeDreamPaintingFiguresReleaseNewsRoute
   BlogEeveeGiftBoxReleaseNewsRoute: typeof BlogEeveeGiftBoxReleaseNewsRoute
   BlogEspeonUmbreonDeluxeDeckReleaseNewsRoute: typeof BlogEspeonUmbreonDeluxeDeckReleaseNewsRoute
@@ -3556,6 +3598,27 @@ declare module '@tanstack/react-router' {
       path: '/blog/dream-painting-water-vol-2-release-news'
       fullPath: '/blog/dream-painting-water-vol-2-release-news'
       preLoaderRoute: typeof BlogDreamPaintingWaterVol2ReleaseNewsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/dynamax-clash-thunder-card-origins': {
+      id: '/blog/dynamax-clash-thunder-card-origins'
+      path: '/blog/dynamax-clash-thunder-card-origins'
+      fullPath: '/blog/dynamax-clash-thunder-card-origins'
+      preLoaderRoute: typeof BlogDynamaxClashThunderCardOriginsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/dynamax-clash-thunder-release-news': {
+      id: '/blog/dynamax-clash-thunder-release-news'
+      path: '/blog/dynamax-clash-thunder-release-news'
+      fullPath: '/blog/dynamax-clash-thunder-release-news'
+      preLoaderRoute: typeof BlogDynamaxClashThunderReleaseNewsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/dynamax-clash-thunder-set-guide': {
+      id: '/blog/dynamax-clash-thunder-set-guide'
+      path: '/blog/dynamax-clash-thunder-set-guide'
+      fullPath: '/blog/dynamax-clash-thunder-set-guide'
+      preLoaderRoute: typeof BlogDynamaxClashThunderSetGuideRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/blog/eevee-dream-painting-figures-release-news': {
@@ -4616,6 +4679,11 @@ const rootRouteChildren: RootRouteChildren = {
     BlogDreamPainting151Vol1ReleaseNewsRoute,
   BlogDreamPaintingWaterVol2ReleaseNewsRoute:
     BlogDreamPaintingWaterVol2ReleaseNewsRoute,
+  BlogDynamaxClashThunderCardOriginsRoute:
+    BlogDynamaxClashThunderCardOriginsRoute,
+  BlogDynamaxClashThunderReleaseNewsRoute:
+    BlogDynamaxClashThunderReleaseNewsRoute,
+  BlogDynamaxClashThunderSetGuideRoute: BlogDynamaxClashThunderSetGuideRoute,
   BlogEeveeDreamPaintingFiguresReleaseNewsRoute:
     BlogEeveeDreamPaintingFiguresReleaseNewsRoute,
   BlogEeveeGiftBoxReleaseNewsRoute: BlogEeveeGiftBoxReleaseNewsRoute,
