@@ -144,6 +144,19 @@ const SET_PRODUCTS: Record<string, string[]> = {
     'pokemon-chinese-black-crystal-blaze-booster-box',
     'pokemon-chinese-black-crystal-blaze-jumbo-booster-box',
   ],
+  // The booster box guarantee guide sells the same slim and jumbo boxes.
+  'chinese-booster-box-guaranteed-hits': [
+    'pokemon-chinese-white-flare-jumbo-booster-box',
+    'pokemon-chinese-white-flare-slim-booster-box',
+    'pokemon-chinese-black-bolt-jumbo-booster-box',
+    'pokemon-chinese-black-bolt-slim-booster-box',
+    'pokemon-chinese-chasing-glory-jumbo-booster-box',
+    'pokemon-chinese-chasing-glory-slim-booster-box',
+    'pokemon-chinese-brilliant-fantasy-jumbo-booster-box',
+    'pokemon-chinese-blade-awakening-jumbo-booster-box',
+    'pokemon-chinese-true-mystery-jumbo-booster-box',
+    'pokemon-chinese-black-crystal-blaze-jumbo-booster-box',
+  ],
 }
 
 // A release post that covers more than one set. Each set's own page and

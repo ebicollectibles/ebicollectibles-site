@@ -624,7 +624,9 @@ function ChineseGemPackHitRatesPost() {
         <p>
           The main Simplified Chinese expansions come in two pack sizes: a 5-card slim pack with one holo and a 20-card jumbo pack with
           six or seven holos, each with its own odds chart. Our{' '}
-          <Link to="/blog/blade-awakening-set-guide">Blade Awakening set guide</Link> compares the two side by side.
+          <Link to="/blog/blade-awakening-set-guide">Blade Awakening set guide</Link> compares the two side by side, and our guide to{' '}
+          <Link to="/blog/chinese-booster-box-guaranteed-hits">whether Chinese booster boxes have guaranteed hits</Link> covers what
+          slim and jumbo boxes hold.
         </p>
         <ul>
           <li>

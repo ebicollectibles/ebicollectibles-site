@@ -71,6 +71,7 @@ import { Route as BlogCharizardFigureBoxReleaseNewsRouteImport } from './routes/
 import { Route as BlogChasingGloryCardOriginsRouteImport } from './routes/blog/chasing-glory-card-origins'
 import { Route as BlogChasingGloryReleaseNewsRouteImport } from './routes/blog/chasing-glory-release-news'
 import { Route as BlogChasingGlorySetGuideRouteImport } from './routes/blog/chasing-glory-set-guide'
+import { Route as BlogChineseBoosterBoxGuaranteedHitsRouteImport } from './routes/blog/chinese-booster-box-guaranteed-hits'
 import { Route as BlogChineseExclusivePokemonCardsRouteImport } from './routes/blog/chinese-exclusive-pokemon-cards'
 import { Route as BlogChineseGemPackHitRatesRouteImport } from './routes/blog/chinese-gem-pack-hit-rates'
 import { Route as BlogChinesePokemonCardRaritiesRouteImport } from './routes/blog/chinese-pokemon-card-rarities'
@@ -555,6 +556,12 @@ const BlogChasingGlorySetGuideRoute =
   BlogChasingGlorySetGuideRouteImport.update({
     id: '/blog/chasing-glory-set-guide',
     path: '/blog/chasing-glory-set-guide',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const BlogChineseBoosterBoxGuaranteedHitsRoute =
+  BlogChineseBoosterBoxGuaranteedHitsRouteImport.update({
+    id: '/blog/chinese-booster-box-guaranteed-hits',
+    path: '/blog/chinese-booster-box-guaranteed-hits',
     getParentRoute: () => rootRouteImport,
   } as any)
 const BlogChineseExclusivePokemonCardsRoute =
@@ -1490,6 +1497,7 @@ export interface FileRoutesByFullPath {
   '/blog/chasing-glory-card-origins': typeof BlogChasingGloryCardOriginsRoute
   '/blog/chasing-glory-release-news': typeof BlogChasingGloryReleaseNewsRoute
   '/blog/chasing-glory-set-guide': typeof BlogChasingGlorySetGuideRoute
+  '/blog/chinese-booster-box-guaranteed-hits': typeof BlogChineseBoosterBoxGuaranteedHitsRoute
   '/blog/chinese-exclusive-pokemon-cards': typeof BlogChineseExclusivePokemonCardsRoute
   '/blog/chinese-gem-pack-hit-rates': typeof BlogChineseGemPackHitRatesRoute
   '/blog/chinese-pokemon-card-rarities': typeof BlogChinesePokemonCardRaritiesRoute
@@ -1707,6 +1715,7 @@ export interface FileRoutesByTo {
   '/blog/chasing-glory-card-origins': typeof BlogChasingGloryCardOriginsRoute
   '/blog/chasing-glory-release-news': typeof BlogChasingGloryReleaseNewsRoute
   '/blog/chasing-glory-set-guide': typeof BlogChasingGlorySetGuideRoute
+  '/blog/chinese-booster-box-guaranteed-hits': typeof BlogChineseBoosterBoxGuaranteedHitsRoute
   '/blog/chinese-exclusive-pokemon-cards': typeof BlogChineseExclusivePokemonCardsRoute
   '/blog/chinese-gem-pack-hit-rates': typeof BlogChineseGemPackHitRatesRoute
   '/blog/chinese-pokemon-card-rarities': typeof BlogChinesePokemonCardRaritiesRoute
@@ -1925,6 +1934,7 @@ export interface FileRoutesById {
   '/blog/chasing-glory-card-origins': typeof BlogChasingGloryCardOriginsRoute
   '/blog/chasing-glory-release-news': typeof BlogChasingGloryReleaseNewsRoute
   '/blog/chasing-glory-set-guide': typeof BlogChasingGlorySetGuideRoute
+  '/blog/chinese-booster-box-guaranteed-hits': typeof BlogChineseBoosterBoxGuaranteedHitsRoute
   '/blog/chinese-exclusive-pokemon-cards': typeof BlogChineseExclusivePokemonCardsRoute
   '/blog/chinese-gem-pack-hit-rates': typeof BlogChineseGemPackHitRatesRoute
   '/blog/chinese-pokemon-card-rarities': typeof BlogChinesePokemonCardRaritiesRoute
@@ -2144,6 +2154,7 @@ export interface FileRouteTypes {
     | '/blog/chasing-glory-card-origins'
     | '/blog/chasing-glory-release-news'
     | '/blog/chasing-glory-set-guide'
+    | '/blog/chinese-booster-box-guaranteed-hits'
     | '/blog/chinese-exclusive-pokemon-cards'
     | '/blog/chinese-gem-pack-hit-rates'
     | '/blog/chinese-pokemon-card-rarities'
@@ -2361,6 +2372,7 @@ export interface FileRouteTypes {
     | '/blog/chasing-glory-card-origins'
     | '/blog/chasing-glory-release-news'
     | '/blog/chasing-glory-set-guide'
+    | '/blog/chinese-booster-box-guaranteed-hits'
     | '/blog/chinese-exclusive-pokemon-cards'
     | '/blog/chinese-gem-pack-hit-rates'
     | '/blog/chinese-pokemon-card-rarities'
@@ -2578,6 +2590,7 @@ export interface FileRouteTypes {
     | '/blog/chasing-glory-card-origins'
     | '/blog/chasing-glory-release-news'
     | '/blog/chasing-glory-set-guide'
+    | '/blog/chinese-booster-box-guaranteed-hits'
     | '/blog/chinese-exclusive-pokemon-cards'
     | '/blog/chinese-gem-pack-hit-rates'
     | '/blog/chinese-pokemon-card-rarities'
@@ -2796,6 +2809,7 @@ export interface RootRouteChildren {
   BlogChasingGloryCardOriginsRoute: typeof BlogChasingGloryCardOriginsRoute
   BlogChasingGloryReleaseNewsRoute: typeof BlogChasingGloryReleaseNewsRoute
   BlogChasingGlorySetGuideRoute: typeof BlogChasingGlorySetGuideRoute
+  BlogChineseBoosterBoxGuaranteedHitsRoute: typeof BlogChineseBoosterBoxGuaranteedHitsRoute
   BlogChineseExclusivePokemonCardsRoute: typeof BlogChineseExclusivePokemonCardsRoute
   BlogChineseGemPackHitRatesRoute: typeof BlogChineseGemPackHitRatesRoute
   BlogChinesePokemonCardRaritiesRoute: typeof BlogChinesePokemonCardRaritiesRoute
@@ -3388,6 +3402,13 @@ declare module '@tanstack/react-router' {
       path: '/blog/chasing-glory-set-guide'
       fullPath: '/blog/chasing-glory-set-guide'
       preLoaderRoute: typeof BlogChasingGlorySetGuideRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/chinese-booster-box-guaranteed-hits': {
+      id: '/blog/chinese-booster-box-guaranteed-hits'
+      path: '/blog/chinese-booster-box-guaranteed-hits'
+      fullPath: '/blog/chinese-booster-box-guaranteed-hits'
+      preLoaderRoute: typeof BlogChineseBoosterBoxGuaranteedHitsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/blog/chinese-exclusive-pokemon-cards': {
@@ -4528,6 +4549,8 @@ const rootRouteChildren: RootRouteChildren = {
   BlogChasingGloryCardOriginsRoute: BlogChasingGloryCardOriginsRoute,
   BlogChasingGloryReleaseNewsRoute: BlogChasingGloryReleaseNewsRoute,
   BlogChasingGlorySetGuideRoute: BlogChasingGlorySetGuideRoute,
+  BlogChineseBoosterBoxGuaranteedHitsRoute:
+    BlogChineseBoosterBoxGuaranteedHitsRoute,
   BlogChineseExclusivePokemonCardsRoute: BlogChineseExclusivePokemonCardsRoute,
   BlogChineseGemPackHitRatesRoute: BlogChineseGemPackHitRatesRoute,
   BlogChinesePokemonCardRaritiesRoute: BlogChinesePokemonCardRaritiesRoute,

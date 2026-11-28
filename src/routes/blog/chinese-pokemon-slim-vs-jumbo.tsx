@@ -458,7 +458,9 @@ function SlimVsJumboPost() {
         </ul>
         <p>
           The charts give one share for the whole top group, so they do not say how often a Special Art Rare turns up on its own. Each
-          set guide shows that set&rsquo;s chase cards. For what each rarity means, see{' '}
+          set guide shows that set&rsquo;s chase cards, and our guide to{' '}
+          <Link to="/blog/chinese-booster-box-guaranteed-hits">whether Chinese booster boxes have guaranteed hits</Link> works out the
+          odds of one named card. For what each rarity means, see{' '}
           <Link to="/blog/chinese-pokemon-card-rarities">Chinese Pokémon card rarities explained</Link>.
         </p>
 
