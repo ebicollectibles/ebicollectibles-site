@@ -1,6 +1,5 @@
 import { createFileRoute, Link } from '@tanstack/react-router'
 import { Zh, zh } from '~/components/blog/Zh'
-import { BuyStrip } from '~/components/blog/BlogShop'
 import blogCssUrl from '~/styles/blog.css?url'
 import { BLOG_POSTS, BLOG_SITE_URL, blogSeoDescription, blogSeoTitle, blogShareImage } from '~/data/blog-posts'
 import { GEM_SETS } from '~/data/gem-sets-index'
@@ -312,8 +311,6 @@ function ChineseBoosterBoxGuaranteedHitsPost() {
           not a promise.
         </p>
 
-        <BuyStrip />
-
         <h2 id="per-box">Hits per box, with the maths</h2>
         <p>
           Each odds chart splits the cards into four groups and gives each group&rsquo;s share of all cards printed for that pack size.
@@ -333,29 +330,28 @@ function ChineseBoosterBoxGuaranteedHitsPost() {
         <div className="table-scroll" role="group" aria-labelledby="tbl-perbox" tabIndex={0}>
           <table className="data-table">
             <caption id="tbl-perbox" className="sr-only">
-              Average holos, Double Rare and Art Rare group cards, and top cards per slim and jumbo box, by odds chart
+              Average holos and Double Rare group cards per slim and jumbo box, by odds chart
             </caption>
             <thead>
               <tr>
                 <th scope="col">Sets</th>
-                <th scope="col">Holos per box (slim / jumbo)</th>
-                <th scope="col">Double Rare, Art Rare group per box</th>
-                <th scope="col">Top cards per box</th>
+                <th scope="col">Holos, slim box</th>
+                <th scope="col">Holos, jumbo box</th>
+                <th scope="col">Double Rare group, slim box</th>
+                <th scope="col">Double Rare group, jumbo box</th>
               </tr>
             </thead>
             <tbody>
               {CHARTS.map((c) => (
                 <tr key={c.key}>
                   <th scope="row">{names(c.codes)}</th>
+                  <td>15</td>
+                  <td>{JUMBO.perBox * c.jumboHolos}</td>
                   <td>
-                    15 / {JUMBO.perBox * c.jumboHolos}
+                    about {fmt((slimBoxCards * c.slim2) / 100)} ({pct(c.slim2)})
                   </td>
                   <td>
-                    about {fmt((slimBoxCards * c.slim2) / 100)} slim ({pct(c.slim2)}), about {fmt((jumboBoxCards * c.jumbo2) / 100)}{' '}
-                    jumbo ({pct(c.jumbo2)})
-                  </td>
-                  <td>
-                    about {fmt(topPerSlimBox, 2)} slim, about {fmt(topPerJumboBox)} jumbo
+                    about {fmt((jumboBoxCards * c.jumbo2) / 100)} ({pct(c.jumbo2)})
                   </td>
                 </tr>
               ))}
@@ -363,7 +359,7 @@ function ChineseBoosterBoxGuaranteedHitsPost() {
           </table>
         </div>
         <p className="table-note">
-          Averages from Pok&eacute;mon China&rsquo;s odds charts, not guarantees. {setBy('CSV6C').name} uses the same top group shares;
+          Averages from Pok&eacute;mon China&rsquo;s odds charts, not guarantees. The top group is the same in every chart: about {fmt(topPerSlimBox, 2)} per slim box and about {fmt(topPerJumboBox)} per jumbo box. {setBy('CSV6C').name} uses the same top group shares;
           its full chart is in its <Link to="/blog/true-mystery-set-guide">set guide</Link>. The Double Rare group also holds Art Rares,
           Master Ball pattern holos and, in {names(['CSV7C', 'CSV8C', 'CSV9C'])}, ACE SPEC Rares. The top group is Super Rare, Special
           Art Rare and Ultra Rare, or Black White Rare in Black Bolt and White Flare.
