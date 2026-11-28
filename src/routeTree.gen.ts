@@ -156,6 +156,12 @@ import { Route as BlogPikachu30thPlushKeychainReleaseNewsRouteImport } from './r
 import { Route as BlogPikachuDreamPaintingFiguresReleaseNewsRouteImport } from './routes/blog/pikachu-dream-painting-figures-release-news'
 import { Route as BlogPikachuGiftBoxReleaseNewsRouteImport } from './routes/blog/pikachu-gift-box-release-news'
 import { Route as BlogPokemon30thShanghaiGoldPikachuCardsNewsRouteImport } from './routes/blog/pokemon-30th-shanghai-gold-pikachu-cards-news'
+import { Route as BlogPolychromaticGatheringFriendsCardOriginsRouteImport } from './routes/blog/polychromatic-gathering-friends-card-origins'
+import { Route as BlogPolychromaticGatheringFriendsReleaseNewsRouteImport } from './routes/blog/polychromatic-gathering-friends-release-news'
+import { Route as BlogPolychromaticGatheringFriendsSetGuideRouteImport } from './routes/blog/polychromatic-gathering-friends-set-guide'
+import { Route as BlogPolychromaticGatheringOriginCardOriginsRouteImport } from './routes/blog/polychromatic-gathering-origin-card-origins'
+import { Route as BlogPolychromaticGatheringOriginReleaseNewsRouteImport } from './routes/blog/polychromatic-gathering-origin-release-news'
+import { Route as BlogPolychromaticGatheringOriginSetGuideRouteImport } from './routes/blog/polychromatic-gathering-origin-set-guide'
 import { Route as BlogPrimordialArtsOvergrowCardOriginsRouteImport } from './routes/blog/primordial-arts-overgrow-card-origins'
 import { Route as BlogPrimordialArtsOvergrowReleaseNewsRouteImport } from './routes/blog/primordial-arts-overgrow-release-news'
 import { Route as BlogPrimordialArtsOvergrowSetGuideRouteImport } from './routes/blog/primordial-arts-overgrow-set-guide'
@@ -1079,6 +1085,42 @@ const BlogPokemon30thShanghaiGoldPikachuCardsNewsRoute =
     path: '/blog/pokemon-30th-shanghai-gold-pikachu-cards-news',
     getParentRoute: () => rootRouteImport,
   } as any)
+const BlogPolychromaticGatheringFriendsCardOriginsRoute =
+  BlogPolychromaticGatheringFriendsCardOriginsRouteImport.update({
+    id: '/blog/polychromatic-gathering-friends-card-origins',
+    path: '/blog/polychromatic-gathering-friends-card-origins',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const BlogPolychromaticGatheringFriendsReleaseNewsRoute =
+  BlogPolychromaticGatheringFriendsReleaseNewsRouteImport.update({
+    id: '/blog/polychromatic-gathering-friends-release-news',
+    path: '/blog/polychromatic-gathering-friends-release-news',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const BlogPolychromaticGatheringFriendsSetGuideRoute =
+  BlogPolychromaticGatheringFriendsSetGuideRouteImport.update({
+    id: '/blog/polychromatic-gathering-friends-set-guide',
+    path: '/blog/polychromatic-gathering-friends-set-guide',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const BlogPolychromaticGatheringOriginCardOriginsRoute =
+  BlogPolychromaticGatheringOriginCardOriginsRouteImport.update({
+    id: '/blog/polychromatic-gathering-origin-card-origins',
+    path: '/blog/polychromatic-gathering-origin-card-origins',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const BlogPolychromaticGatheringOriginReleaseNewsRoute =
+  BlogPolychromaticGatheringOriginReleaseNewsRouteImport.update({
+    id: '/blog/polychromatic-gathering-origin-release-news',
+    path: '/blog/polychromatic-gathering-origin-release-news',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const BlogPolychromaticGatheringOriginSetGuideRoute =
+  BlogPolychromaticGatheringOriginSetGuideRouteImport.update({
+    id: '/blog/polychromatic-gathering-origin-set-guide',
+    path: '/blog/polychromatic-gathering-origin-set-guide',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const BlogPrimordialArtsOvergrowCardOriginsRoute =
   BlogPrimordialArtsOvergrowCardOriginsRouteImport.update({
     id: '/blog/primordial-arts-overgrow-card-origins',
@@ -1785,6 +1827,12 @@ export interface FileRoutesByFullPath {
   '/blog/pikachu-dream-painting-figures-release-news': typeof BlogPikachuDreamPaintingFiguresReleaseNewsRoute
   '/blog/pikachu-gift-box-release-news': typeof BlogPikachuGiftBoxReleaseNewsRoute
   '/blog/pokemon-30th-shanghai-gold-pikachu-cards-news': typeof BlogPokemon30thShanghaiGoldPikachuCardsNewsRoute
+  '/blog/polychromatic-gathering-friends-card-origins': typeof BlogPolychromaticGatheringFriendsCardOriginsRoute
+  '/blog/polychromatic-gathering-friends-release-news': typeof BlogPolychromaticGatheringFriendsReleaseNewsRoute
+  '/blog/polychromatic-gathering-friends-set-guide': typeof BlogPolychromaticGatheringFriendsSetGuideRoute
+  '/blog/polychromatic-gathering-origin-card-origins': typeof BlogPolychromaticGatheringOriginCardOriginsRoute
+  '/blog/polychromatic-gathering-origin-release-news': typeof BlogPolychromaticGatheringOriginReleaseNewsRoute
+  '/blog/polychromatic-gathering-origin-set-guide': typeof BlogPolychromaticGatheringOriginSetGuideRoute
   '/blog/primordial-arts-overgrow-card-origins': typeof BlogPrimordialArtsOvergrowCardOriginsRoute
   '/blog/primordial-arts-overgrow-release-news': typeof BlogPrimordialArtsOvergrowReleaseNewsRoute
   '/blog/primordial-arts-overgrow-set-guide': typeof BlogPrimordialArtsOvergrowSetGuideRoute
@@ -2032,6 +2080,12 @@ export interface FileRoutesByTo {
   '/blog/pikachu-dream-painting-figures-release-news': typeof BlogPikachuDreamPaintingFiguresReleaseNewsRoute
   '/blog/pikachu-gift-box-release-news': typeof BlogPikachuGiftBoxReleaseNewsRoute
   '/blog/pokemon-30th-shanghai-gold-pikachu-cards-news': typeof BlogPokemon30thShanghaiGoldPikachuCardsNewsRoute
+  '/blog/polychromatic-gathering-friends-card-origins': typeof BlogPolychromaticGatheringFriendsCardOriginsRoute
+  '/blog/polychromatic-gathering-friends-release-news': typeof BlogPolychromaticGatheringFriendsReleaseNewsRoute
+  '/blog/polychromatic-gathering-friends-set-guide': typeof BlogPolychromaticGatheringFriendsSetGuideRoute
+  '/blog/polychromatic-gathering-origin-card-origins': typeof BlogPolychromaticGatheringOriginCardOriginsRoute
+  '/blog/polychromatic-gathering-origin-release-news': typeof BlogPolychromaticGatheringOriginReleaseNewsRoute
+  '/blog/polychromatic-gathering-origin-set-guide': typeof BlogPolychromaticGatheringOriginSetGuideRoute
   '/blog/primordial-arts-overgrow-card-origins': typeof BlogPrimordialArtsOvergrowCardOriginsRoute
   '/blog/primordial-arts-overgrow-release-news': typeof BlogPrimordialArtsOvergrowReleaseNewsRoute
   '/blog/primordial-arts-overgrow-set-guide': typeof BlogPrimordialArtsOvergrowSetGuideRoute
@@ -2280,6 +2334,12 @@ export interface FileRoutesById {
   '/blog/pikachu-dream-painting-figures-release-news': typeof BlogPikachuDreamPaintingFiguresReleaseNewsRoute
   '/blog/pikachu-gift-box-release-news': typeof BlogPikachuGiftBoxReleaseNewsRoute
   '/blog/pokemon-30th-shanghai-gold-pikachu-cards-news': typeof BlogPokemon30thShanghaiGoldPikachuCardsNewsRoute
+  '/blog/polychromatic-gathering-friends-card-origins': typeof BlogPolychromaticGatheringFriendsCardOriginsRoute
+  '/blog/polychromatic-gathering-friends-release-news': typeof BlogPolychromaticGatheringFriendsReleaseNewsRoute
+  '/blog/polychromatic-gathering-friends-set-guide': typeof BlogPolychromaticGatheringFriendsSetGuideRoute
+  '/blog/polychromatic-gathering-origin-card-origins': typeof BlogPolychromaticGatheringOriginCardOriginsRoute
+  '/blog/polychromatic-gathering-origin-release-news': typeof BlogPolychromaticGatheringOriginReleaseNewsRoute
+  '/blog/polychromatic-gathering-origin-set-guide': typeof BlogPolychromaticGatheringOriginSetGuideRoute
   '/blog/primordial-arts-overgrow-card-origins': typeof BlogPrimordialArtsOvergrowCardOriginsRoute
   '/blog/primordial-arts-overgrow-release-news': typeof BlogPrimordialArtsOvergrowReleaseNewsRoute
   '/blog/primordial-arts-overgrow-set-guide': typeof BlogPrimordialArtsOvergrowSetGuideRoute
@@ -2529,6 +2589,12 @@ export interface FileRouteTypes {
     | '/blog/pikachu-dream-painting-figures-release-news'
     | '/blog/pikachu-gift-box-release-news'
     | '/blog/pokemon-30th-shanghai-gold-pikachu-cards-news'
+    | '/blog/polychromatic-gathering-friends-card-origins'
+    | '/blog/polychromatic-gathering-friends-release-news'
+    | '/blog/polychromatic-gathering-friends-set-guide'
+    | '/blog/polychromatic-gathering-origin-card-origins'
+    | '/blog/polychromatic-gathering-origin-release-news'
+    | '/blog/polychromatic-gathering-origin-set-guide'
     | '/blog/primordial-arts-overgrow-card-origins'
     | '/blog/primordial-arts-overgrow-release-news'
     | '/blog/primordial-arts-overgrow-set-guide'
@@ -2776,6 +2842,12 @@ export interface FileRouteTypes {
     | '/blog/pikachu-dream-painting-figures-release-news'
     | '/blog/pikachu-gift-box-release-news'
     | '/blog/pokemon-30th-shanghai-gold-pikachu-cards-news'
+    | '/blog/polychromatic-gathering-friends-card-origins'
+    | '/blog/polychromatic-gathering-friends-release-news'
+    | '/blog/polychromatic-gathering-friends-set-guide'
+    | '/blog/polychromatic-gathering-origin-card-origins'
+    | '/blog/polychromatic-gathering-origin-release-news'
+    | '/blog/polychromatic-gathering-origin-set-guide'
     | '/blog/primordial-arts-overgrow-card-origins'
     | '/blog/primordial-arts-overgrow-release-news'
     | '/blog/primordial-arts-overgrow-set-guide'
@@ -3023,6 +3095,12 @@ export interface FileRouteTypes {
     | '/blog/pikachu-dream-painting-figures-release-news'
     | '/blog/pikachu-gift-box-release-news'
     | '/blog/pokemon-30th-shanghai-gold-pikachu-cards-news'
+    | '/blog/polychromatic-gathering-friends-card-origins'
+    | '/blog/polychromatic-gathering-friends-release-news'
+    | '/blog/polychromatic-gathering-friends-set-guide'
+    | '/blog/polychromatic-gathering-origin-card-origins'
+    | '/blog/polychromatic-gathering-origin-release-news'
+    | '/blog/polychromatic-gathering-origin-set-guide'
     | '/blog/primordial-arts-overgrow-card-origins'
     | '/blog/primordial-arts-overgrow-release-news'
     | '/blog/primordial-arts-overgrow-set-guide'
@@ -3271,6 +3349,12 @@ export interface RootRouteChildren {
   BlogPikachuDreamPaintingFiguresReleaseNewsRoute: typeof BlogPikachuDreamPaintingFiguresReleaseNewsRoute
   BlogPikachuGiftBoxReleaseNewsRoute: typeof BlogPikachuGiftBoxReleaseNewsRoute
   BlogPokemon30thShanghaiGoldPikachuCardsNewsRoute: typeof BlogPokemon30thShanghaiGoldPikachuCardsNewsRoute
+  BlogPolychromaticGatheringFriendsCardOriginsRoute: typeof BlogPolychromaticGatheringFriendsCardOriginsRoute
+  BlogPolychromaticGatheringFriendsReleaseNewsRoute: typeof BlogPolychromaticGatheringFriendsReleaseNewsRoute
+  BlogPolychromaticGatheringFriendsSetGuideRoute: typeof BlogPolychromaticGatheringFriendsSetGuideRoute
+  BlogPolychromaticGatheringOriginCardOriginsRoute: typeof BlogPolychromaticGatheringOriginCardOriginsRoute
+  BlogPolychromaticGatheringOriginReleaseNewsRoute: typeof BlogPolychromaticGatheringOriginReleaseNewsRoute
+  BlogPolychromaticGatheringOriginSetGuideRoute: typeof BlogPolychromaticGatheringOriginSetGuideRoute
   BlogPrimordialArtsOvergrowCardOriginsRoute: typeof BlogPrimordialArtsOvergrowCardOriginsRoute
   BlogPrimordialArtsOvergrowReleaseNewsRoute: typeof BlogPrimordialArtsOvergrowReleaseNewsRoute
   BlogPrimordialArtsOvergrowSetGuideRoute: typeof BlogPrimordialArtsOvergrowSetGuideRoute
@@ -4405,6 +4489,48 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BlogPokemon30thShanghaiGoldPikachuCardsNewsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/blog/polychromatic-gathering-friends-card-origins': {
+      id: '/blog/polychromatic-gathering-friends-card-origins'
+      path: '/blog/polychromatic-gathering-friends-card-origins'
+      fullPath: '/blog/polychromatic-gathering-friends-card-origins'
+      preLoaderRoute: typeof BlogPolychromaticGatheringFriendsCardOriginsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/polychromatic-gathering-friends-release-news': {
+      id: '/blog/polychromatic-gathering-friends-release-news'
+      path: '/blog/polychromatic-gathering-friends-release-news'
+      fullPath: '/blog/polychromatic-gathering-friends-release-news'
+      preLoaderRoute: typeof BlogPolychromaticGatheringFriendsReleaseNewsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/polychromatic-gathering-friends-set-guide': {
+      id: '/blog/polychromatic-gathering-friends-set-guide'
+      path: '/blog/polychromatic-gathering-friends-set-guide'
+      fullPath: '/blog/polychromatic-gathering-friends-set-guide'
+      preLoaderRoute: typeof BlogPolychromaticGatheringFriendsSetGuideRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/polychromatic-gathering-origin-card-origins': {
+      id: '/blog/polychromatic-gathering-origin-card-origins'
+      path: '/blog/polychromatic-gathering-origin-card-origins'
+      fullPath: '/blog/polychromatic-gathering-origin-card-origins'
+      preLoaderRoute: typeof BlogPolychromaticGatheringOriginCardOriginsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/polychromatic-gathering-origin-release-news': {
+      id: '/blog/polychromatic-gathering-origin-release-news'
+      path: '/blog/polychromatic-gathering-origin-release-news'
+      fullPath: '/blog/polychromatic-gathering-origin-release-news'
+      preLoaderRoute: typeof BlogPolychromaticGatheringOriginReleaseNewsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/polychromatic-gathering-origin-set-guide': {
+      id: '/blog/polychromatic-gathering-origin-set-guide'
+      path: '/blog/polychromatic-gathering-origin-set-guide'
+      fullPath: '/blog/polychromatic-gathering-origin-set-guide'
+      preLoaderRoute: typeof BlogPolychromaticGatheringOriginSetGuideRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/blog/primordial-arts-overgrow-card-origins': {
       id: '/blog/primordial-arts-overgrow-card-origins'
       path: '/blog/primordial-arts-overgrow-card-origins'
@@ -5272,6 +5398,18 @@ const rootRouteChildren: RootRouteChildren = {
   BlogPikachuGiftBoxReleaseNewsRoute: BlogPikachuGiftBoxReleaseNewsRoute,
   BlogPokemon30thShanghaiGoldPikachuCardsNewsRoute:
     BlogPokemon30thShanghaiGoldPikachuCardsNewsRoute,
+  BlogPolychromaticGatheringFriendsCardOriginsRoute:
+    BlogPolychromaticGatheringFriendsCardOriginsRoute,
+  BlogPolychromaticGatheringFriendsReleaseNewsRoute:
+    BlogPolychromaticGatheringFriendsReleaseNewsRoute,
+  BlogPolychromaticGatheringFriendsSetGuideRoute:
+    BlogPolychromaticGatheringFriendsSetGuideRoute,
+  BlogPolychromaticGatheringOriginCardOriginsRoute:
+    BlogPolychromaticGatheringOriginCardOriginsRoute,
+  BlogPolychromaticGatheringOriginReleaseNewsRoute:
+    BlogPolychromaticGatheringOriginReleaseNewsRoute,
+  BlogPolychromaticGatheringOriginSetGuideRoute:
+    BlogPolychromaticGatheringOriginSetGuideRoute,
   BlogPrimordialArtsOvergrowCardOriginsRoute:
     BlogPrimordialArtsOvergrowCardOriginsRoute,
   BlogPrimordialArtsOvergrowReleaseNewsRoute:

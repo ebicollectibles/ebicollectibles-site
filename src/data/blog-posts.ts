@@ -6,7 +6,7 @@
 // the post itself.
 import { SITE_URL, R2_IMAGE_HOST } from '~/lib/gem-sets/constants'
 
-export type BlogPostSlug = 'chinese-pokemon-sets-in-order' | 'how-to-read-chinese-pokemon-cards' | 'chinese-pokemon-card-rarities' | 'chinese-pokemon-slim-vs-jumbo' | 'are-chinese-pokemon-cards-real' | 'simplified-vs-traditional-chinese-pokemon-cards' | 'chinese-vs-english-pokemon-cards' | 'are-chinese-pokemon-cards-tournament-legal' | 'chinese-exclusive-pokemon-cards' | 'what-is-a-gem-pack' | 'chinese-pokemon-set-english-equivalents' | 'gem-vol-7-release-news' | 'gem-vol-7-set-guide' | 'gem-vol-7-card-origins' | 'gem-vol-6-release-news' | 'gem-vol-6-set-guide' | 'gem-vol-6-card-origins' | 'gem-vol-5-release-news' | 'gem-vol-5-set-guide' | 'gem-vol-5-card-origins' | 'gem-vol-4-release-news' | 'gem-vol-4-set-guide' | 'gem-vol-4-card-origins' | 'gem-vol-3-release-news' | 'gem-vol-3-set-guide' | 'gem-vol-3-card-origins' | 'gem-vol-2-release-news' | 'gem-vol-2-set-guide' | 'gem-vol-2-card-origins' | 'gem-vol-1-release-news' | 'gem-vol-1-set-guide' | 'gem-vol-1-card-origins' | '30th-celebration-release-news' | '30th-celebration-set-guide' | '30th-celebration-card-origins' | 'chasing-glory-release-news' | 'chasing-glory-set-guide' | 'chasing-glory-card-origins' | 'terastal-gathering-release-news' | 'terastal-gathering-set-guide' | 'terastal-gathering-card-origins' | 'reward-round-release-news' | 'reward-round-set-guide' | 'reward-round-card-origins' | 'fearless-terastal-release-news' | 'fearless-terastal-set-guide' | 'fearless-terastal-card-origins' | 'eternal-birth-release-news' | 'eternal-birth-set-guide' | 'eternal-birth-card-origins' | 'miracle-journey-release-news' | 'miracle-journey-set-guide' | 'miracle-journey-card-origins' | 'black-crystal-blaze-release-news' | 'black-crystal-blaze-set-guide' | 'black-crystal-blaze-card-origins' | 'black-bolt-white-flare-release-news' | 'black-bolt-set-guide' | 'black-bolt-card-origins' | 'white-flare-set-guide' | 'white-flare-card-origins' | 'true-mystery-release-news' | 'true-mystery-set-guide' | 'true-mystery-card-origins' | 'blade-awakening-release-news' | 'blade-awakening-set-guide' | 'blade-awakening-card-origins' | 'brilliant-fantasy-release-news' | 'brilliant-fantasy-set-guide' | 'brilliant-fantasy-card-origins' | 'stellar-crystal-release-news' | 'stellar-crystal-set-guide' | 'stellar-crystal-card-origins' | 'pikachu-dream-painting-figures-release-news' | 'funism-ditto-palm-size-wonders-release-news' | 'team-rocket-briefcase-release-news' | 'pikachu-gift-box-release-news' | 'day-night-gift-box-release-news' | 'greninja-sylveon-display-set-release-news' | 'charizard-figure-box-release-news' | 'nuzzle-cheeks-plush-card-display-release-news' | 'eevee-gift-box-release-news' | 'gem-badge-set-1-release-news' | 'gem-badge-set-2-release-news' | 'pikachu-30th-plush-keychain-release-news' | 'funism-first-partner-mini-figures-release-news' | 'first-partner-30th-vol-1-release-news' | 'first-partner-30th-vol-2-release-news' | 'first-partner-30th-vol-3-release-news' | 'aura-seeker-release-news' | 'pokemon-30th-shanghai-gold-pikachu-cards-news' | '30th-celebration-pikachu-cards-artists' | 'futuristic-pikachu-box-release-news' | 'lisia-gift-box-release-news' | 'ogerpon-mask-gift-box-release-news' | 'lillie-n-battle-box-release-news' | 'japanese-30th-celebration-release-news' | 'storm-emeralda-release-news' | 'master-strategy-deck-raging-bolt-dragapult-gholdengo-release-news' | 'master-strategy-deck-charizard-gardevoir-miraidon-release-news' | 'espeon-umbreon-deluxe-deck-release-news' | 'journey-gift-boxes-release-news' | 'collect-151-first-partner-display-sets-release-news' | 'eevee-dream-painting-figures-release-news' | 'dream-painting-151-vol-1-release-news' | 'dream-painting-water-vol-2-release-news' | 'chinese-gem-pack-hit-rates' | 'chinese-booster-box-guaranteed-hits' | 'collect-151-journey-release-news' | 'collect-151-hope-release-news' | 'collect-151-surprise-release-news' | 'collect-151-gathering-release-news' | 'collect-151-set-guide' | 'collect-151-card-origins' | 'dynamax-clash-thunder-release-news' | 'dynamax-clash-thunder-card-origins' | 'dynamax-clash-thunder-set-guide' | 'dynamax-clash-flame-release-news' | 'dynamax-clash-flame-card-origins' | 'dynamax-clash-flame-set-guide' | 'dynamax-tactics-release-news' | 'dynamax-tactics-card-origins' | 'dynamax-tactics-set-guide' | 'vivid-portrayals-obsidian-release-news' | 'vivid-portrayals-obsidian-card-origins' | 'vivid-portrayals-obsidian-set-guide' | 'vivid-portrayals-indigo-release-news' | 'vivid-portrayals-indigo-card-origins' | 'vivid-portrayals-indigo-set-guide' | 'brilliant-counterattack-release-news' | 'brilliant-counterattack-card-origins' | 'brilliant-counterattack-set-guide' | 'primordial-arts-overgrow-release-news' | 'primordial-arts-overgrow-card-origins' | 'primordial-arts-overgrow-set-guide' | 'primordial-arts-torrent-release-news' | 'primordial-arts-torrent-card-origins' | 'primordial-arts-torrent-set-guide' | 'scorching-skies-release-news' | 'scorching-skies-card-origins' | 'scorching-skies-set-guide'
+export type BlogPostSlug = 'chinese-pokemon-sets-in-order' | 'how-to-read-chinese-pokemon-cards' | 'chinese-pokemon-card-rarities' | 'chinese-pokemon-slim-vs-jumbo' | 'are-chinese-pokemon-cards-real' | 'simplified-vs-traditional-chinese-pokemon-cards' | 'chinese-vs-english-pokemon-cards' | 'are-chinese-pokemon-cards-tournament-legal' | 'chinese-exclusive-pokemon-cards' | 'what-is-a-gem-pack' | 'chinese-pokemon-set-english-equivalents' | 'gem-vol-7-release-news' | 'gem-vol-7-set-guide' | 'gem-vol-7-card-origins' | 'gem-vol-6-release-news' | 'gem-vol-6-set-guide' | 'gem-vol-6-card-origins' | 'gem-vol-5-release-news' | 'gem-vol-5-set-guide' | 'gem-vol-5-card-origins' | 'gem-vol-4-release-news' | 'gem-vol-4-set-guide' | 'gem-vol-4-card-origins' | 'gem-vol-3-release-news' | 'gem-vol-3-set-guide' | 'gem-vol-3-card-origins' | 'gem-vol-2-release-news' | 'gem-vol-2-set-guide' | 'gem-vol-2-card-origins' | 'gem-vol-1-release-news' | 'gem-vol-1-set-guide' | 'gem-vol-1-card-origins' | '30th-celebration-release-news' | '30th-celebration-set-guide' | '30th-celebration-card-origins' | 'chasing-glory-release-news' | 'chasing-glory-set-guide' | 'chasing-glory-card-origins' | 'terastal-gathering-release-news' | 'terastal-gathering-set-guide' | 'terastal-gathering-card-origins' | 'reward-round-release-news' | 'reward-round-set-guide' | 'reward-round-card-origins' | 'fearless-terastal-release-news' | 'fearless-terastal-set-guide' | 'fearless-terastal-card-origins' | 'eternal-birth-release-news' | 'eternal-birth-set-guide' | 'eternal-birth-card-origins' | 'miracle-journey-release-news' | 'miracle-journey-set-guide' | 'miracle-journey-card-origins' | 'black-crystal-blaze-release-news' | 'black-crystal-blaze-set-guide' | 'black-crystal-blaze-card-origins' | 'black-bolt-white-flare-release-news' | 'black-bolt-set-guide' | 'black-bolt-card-origins' | 'white-flare-set-guide' | 'white-flare-card-origins' | 'true-mystery-release-news' | 'true-mystery-set-guide' | 'true-mystery-card-origins' | 'blade-awakening-release-news' | 'blade-awakening-set-guide' | 'blade-awakening-card-origins' | 'brilliant-fantasy-release-news' | 'brilliant-fantasy-set-guide' | 'brilliant-fantasy-card-origins' | 'stellar-crystal-release-news' | 'stellar-crystal-set-guide' | 'stellar-crystal-card-origins' | 'pikachu-dream-painting-figures-release-news' | 'funism-ditto-palm-size-wonders-release-news' | 'team-rocket-briefcase-release-news' | 'pikachu-gift-box-release-news' | 'day-night-gift-box-release-news' | 'greninja-sylveon-display-set-release-news' | 'charizard-figure-box-release-news' | 'nuzzle-cheeks-plush-card-display-release-news' | 'eevee-gift-box-release-news' | 'gem-badge-set-1-release-news' | 'gem-badge-set-2-release-news' | 'pikachu-30th-plush-keychain-release-news' | 'funism-first-partner-mini-figures-release-news' | 'first-partner-30th-vol-1-release-news' | 'first-partner-30th-vol-2-release-news' | 'first-partner-30th-vol-3-release-news' | 'aura-seeker-release-news' | 'pokemon-30th-shanghai-gold-pikachu-cards-news' | '30th-celebration-pikachu-cards-artists' | 'futuristic-pikachu-box-release-news' | 'lisia-gift-box-release-news' | 'ogerpon-mask-gift-box-release-news' | 'lillie-n-battle-box-release-news' | 'japanese-30th-celebration-release-news' | 'storm-emeralda-release-news' | 'master-strategy-deck-raging-bolt-dragapult-gholdengo-release-news' | 'master-strategy-deck-charizard-gardevoir-miraidon-release-news' | 'espeon-umbreon-deluxe-deck-release-news' | 'journey-gift-boxes-release-news' | 'collect-151-first-partner-display-sets-release-news' | 'eevee-dream-painting-figures-release-news' | 'dream-painting-151-vol-1-release-news' | 'dream-painting-water-vol-2-release-news' | 'chinese-gem-pack-hit-rates' | 'chinese-booster-box-guaranteed-hits' | 'collect-151-journey-release-news' | 'collect-151-hope-release-news' | 'collect-151-surprise-release-news' | 'collect-151-gathering-release-news' | 'collect-151-set-guide' | 'collect-151-card-origins' | 'dynamax-clash-thunder-release-news' | 'dynamax-clash-thunder-card-origins' | 'dynamax-clash-thunder-set-guide' | 'dynamax-clash-flame-release-news' | 'dynamax-clash-flame-card-origins' | 'dynamax-clash-flame-set-guide' | 'dynamax-tactics-release-news' | 'dynamax-tactics-card-origins' | 'dynamax-tactics-set-guide' | 'vivid-portrayals-obsidian-release-news' | 'vivid-portrayals-obsidian-card-origins' | 'vivid-portrayals-obsidian-set-guide' | 'vivid-portrayals-indigo-release-news' | 'vivid-portrayals-indigo-card-origins' | 'vivid-portrayals-indigo-set-guide' | 'brilliant-counterattack-release-news' | 'brilliant-counterattack-card-origins' | 'brilliant-counterattack-set-guide' | 'primordial-arts-overgrow-release-news' | 'primordial-arts-overgrow-card-origins' | 'primordial-arts-overgrow-set-guide' | 'primordial-arts-torrent-release-news' | 'primordial-arts-torrent-card-origins' | 'primordial-arts-torrent-set-guide' | 'scorching-skies-release-news' | 'scorching-skies-card-origins' | 'scorching-skies-set-guide' | 'polychromatic-gathering-friends-release-news' | 'polychromatic-gathering-friends-card-origins' | 'polychromatic-gathering-friends-set-guide' | 'polychromatic-gathering-origin-release-news' | 'polychromatic-gathering-origin-card-origins' | 'polychromatic-gathering-origin-set-guide'
 
 export interface BlogPostSummary {
   slug: BlogPostSlug
@@ -2314,6 +2314,102 @@ export const BLOG_POSTS: BlogPostSummary[] = [
     heroAlt: 'The Scorching Skies Victini VMAX Hyper Rare in front of the Dracozolt VMAX, Klara, Avery and Peony Hyper Rares',
     glow1: 'rgb(240 120 60 / .26)',
     glow2: 'rgb(60 120 150 / .30)',
+  },
+  {
+    slug: 'polychromatic-gathering-friends-release-news',
+    path: '/blog/polychromatic-gathering-friends-release-news',
+    title: 'Polychromatic Gathering: Friends (CS4a) Set Overview: Umbreon VMAX, Packs and Every Rarity',
+    excerpt:
+      'Polychromatic Gathering: Friends (CS4aC) is the Eevee half of Polychromatic Gathering, released in mainland China on March 1, 2024. How it was sold, its 184 cards and every rarity.',
+    seoTitle: 'Pokémon Polychromatic Gathering: Friends (CS4aC) Set Overview',
+    seoDescription:
+      'Simplified Chinese Polychromatic Gathering: Friends (CS4aC), March 1, 2024: 5-card and 25-card packs, 184 cards, every rarity and the English sets its cards come from.',
+    tag: 'Set overview',
+    date: '2026-11-28',
+    heroImage: `${SITE_URL}/assets/blog/polychromatic-gathering-friends-overview-hero.webp`,
+    heroAlt: 'The Polychromatic Gathering: Friends alternate art Umbreon VMAX in front, with the alternate art Sylveon VMAX and Leafeon VMAX behind it',
+    glow1: 'rgb(120 100 200 / .26)',
+    glow2: 'rgb(230 160 80 / .24)',
+  },
+  {
+    slug: 'polychromatic-gathering-friends-card-origins',
+    path: '/blog/polychromatic-gathering-friends-card-origins',
+    title: 'Where Every Polychromatic Gathering: Friends Card Comes From',
+    excerpt:
+      'All 184 Polychromatic Gathering: Friends (CS4aC) cards matched to their English versions: 94 from Evolving Skies, 78 from Fusion Strike and 12 from four other sources.',
+    seoTitle: 'Polychromatic Gathering: Friends (CS4aC) Card Origins: English Matches',
+    seoDescription:
+      'All 184 Pokémon TCG Polychromatic Gathering: Friends (CS4aC) cards matched to English: 94 Evolving Skies, 78 Fusion Strike, 12 from four other sources.',
+    tag: 'Collecting guide',
+    date: '2026-11-28',
+    heroImage: `${SITE_URL}/assets/blog/polychromatic-gathering-friends-origins-hero.webp`,
+    heroAlt: 'The Polychromatic Gathering: Friends alternate art Umbreon VMAX beside tiles for Evolving Skies, Fusion Strike, the promos, the Trainer Galleries and Brilliant Stars',
+    glow1: 'rgb(120 100 200 / .26)',
+    glow2: 'rgb(230 160 80 / .24)',
+  },
+  {
+    slug: 'polychromatic-gathering-friends-set-guide',
+    path: '/blog/polychromatic-gathering-friends-set-guide',
+    title: 'Polychromatic Gathering: Friends Set Guide: Every Secret Card and the Master Set',
+    excerpt:
+      'Every secret card in Polychromatic Gathering: Friends (CS4aC), from the gold Ultra Rares and rainbow Hyper Rares down, plus how the numbers work and the 295-card master set.',
+    seoTitle: 'Polychromatic Gathering: Friends (CS4aC) Set Guide: Secret Cards',
+    seoDescription:
+      'Pokémon TCG Polychromatic Gathering: Friends (CS4aC) set guide: every Ultra Rare, Hyper Rare and Super Rare, the numbering and the 295-card master set.',
+    tag: 'Set guide',
+    date: '2026-11-28',
+    heroImage: `${SITE_URL}/assets/blog/polychromatic-gathering-friends-guide-hero.webp`,
+    heroAlt: 'The Polychromatic Gathering: Friends alternate art Umbreon VMAX in front of four more Hyper Rares: Leafeon VMAX, Glaceon VMAX, Espeon VMAX and Sylveon VMAX',
+    glow1: 'rgb(120 100 200 / .26)',
+    glow2: 'rgb(230 160 80 / .24)',
+  },
+  {
+    slug: 'polychromatic-gathering-origin-release-news',
+    path: '/blog/polychromatic-gathering-origin-release-news',
+    title: 'Polychromatic Gathering: Origin (CS4b) Set Overview: Mew VMAX, Packs and Every Rarity',
+    excerpt:
+      'Polychromatic Gathering: Origin (CS4bC) is the Fusion Strike half of Polychromatic Gathering, released in mainland China on March 1, 2024. How it was sold, its 177 cards and every rarity.',
+    seoTitle: 'Pokémon Polychromatic Gathering: Origin (CS4bC) Set Overview',
+    seoDescription:
+      'Simplified Chinese Polychromatic Gathering: Origin (CS4bC), March 1, 2024: 5-card and 25-card packs, 177 cards, every rarity and the English sets its cards come from.',
+    tag: 'Set overview',
+    date: '2026-11-28',
+    heroImage: `${SITE_URL}/assets/blog/polychromatic-gathering-origin-overview-hero.webp`,
+    heroAlt: 'The Polychromatic Gathering: Origin alternate art Mew VMAX in front, with the alternate art Rayquaza VMAX and a Genesect V Super Rare behind it',
+    glow1: 'rgb(230 120 190 / .26)',
+    glow2: 'rgb(60 110 160 / .30)',
+  },
+  {
+    slug: 'polychromatic-gathering-origin-card-origins',
+    path: '/blog/polychromatic-gathering-origin-card-origins',
+    title: 'Where Every Polychromatic Gathering: Origin Card Comes From',
+    excerpt:
+      'All 177 Polychromatic Gathering: Origin (CS4bC) cards matched to their English versions: 121 from Fusion Strike, 47 from Evolving Skies and 9 from four other sources.',
+    seoTitle: 'Polychromatic Gathering: Origin (CS4bC) Card Origins: English Matches',
+    seoDescription:
+      'All 177 Pokémon TCG Polychromatic Gathering: Origin (CS4bC) cards matched to English: 121 Fusion Strike, 47 Evolving Skies, 9 from four other sources.',
+    tag: 'Collecting guide',
+    date: '2026-11-28',
+    heroImage: `${SITE_URL}/assets/blog/polychromatic-gathering-origin-origins-hero.webp`,
+    heroAlt: 'The Polychromatic Gathering: Origin alternate art Mew VMAX beside tiles for Fusion Strike, Evolving Skies, Brilliant Stars and other sources',
+    glow1: 'rgb(230 120 190 / .26)',
+    glow2: 'rgb(60 110 160 / .30)',
+  },
+  {
+    slug: 'polychromatic-gathering-origin-set-guide',
+    path: '/blog/polychromatic-gathering-origin-set-guide',
+    title: 'Polychromatic Gathering: Origin Set Guide: Every Secret Card and the Master Set',
+    excerpt:
+      'Every secret card in Polychromatic Gathering: Origin (CS4bC), from the gold Ultra Rares and rainbow Hyper Rares down, plus how the numbers work and the 288-card master set.',
+    seoTitle: 'Polychromatic Gathering: Origin (CS4bC) Set Guide: Secret Cards',
+    seoDescription:
+      'Pokémon TCG Polychromatic Gathering: Origin (CS4bC) set guide: every Ultra Rare, Hyper Rare and Super Rare, the numbering and the 288-card master set.',
+    tag: 'Set guide',
+    date: '2026-11-28',
+    heroImage: `${SITE_URL}/assets/blog/polychromatic-gathering-origin-guide-hero.webp`,
+    heroAlt: 'The Polychromatic Gathering: Origin alternate art Mew VMAX in front of four more Hyper Rares: Mew VMAX, Rayquaza VMAX, Trevenant VMAX and Chandelure VMAX',
+    glow1: 'rgb(230 120 190 / .26)',
+    glow2: 'rgb(60 110 160 / .30)',
   },
 ]
 

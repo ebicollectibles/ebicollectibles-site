@@ -421,6 +421,7 @@ export function SwshOriginsPost({ set, post, status }: { set: SwshBlogSet; post:
   // Character Rares and Character Super Rares: Trainer Gallery cards in English.
   const chr = rows.filter((r) => r.rarity === 'CHR' || r.rarity === 'CSR')
   const chrTg = chr.filter((r) => r.src !== 'jp' && isTg(r.src))
+  const chrKinds = andList(['CHR', 'CSR'].filter((t) => chr.some((r) => r.rarity === t)).map((t) => RARITY_NAME[t]))
   const chrBySet = ORDER.map((s) => ({ s, n: chrTg.filter((r) => r.src === s).length })).filter((x) => x.n > 0)
   const faq: Faq[] = [
     {
@@ -518,14 +519,15 @@ export function SwshOriginsPost({ set, post, status }: { set: SwshBlogSet; post:
         {chr.length > 0 && (
           <p>
             <strong>{chrTg.length === chr.length ? 'The Character cards are Trainer Gallery cards.' : 'Most Character cards are Trainer Gallery cards.'}</strong>{' '}
-            {chrTg.length === chr.length ? `All ${chr.length}` : `${chrTg.length} of the ${chr.length}`} Character Rare and Character Super Rare cards match
-            English Trainer Gallery cards: {andList(chrBySet.map((c) => `${c.n} from ${EN_SET_NAME[c.s]}`))}.
+            {chr.length === 1
+              ? `The one ${chrKinds} matches an English Trainer Gallery card from ${EN_SET_NAME[chrBySet[0].s]}.`
+              : `${chrTg.length === chr.length ? `All ${chr.length}` : `${chrTg.length} of the ${chr.length}`} ${chrKinds} cards match English Trainer Gallery cards: ${andList(chrBySet.map((c) => `${c.n} from ${EN_SET_NAME[c.s]}`))}.`}
           </p>
         )}
         {later.length > 0 && (
           <p>
-            <strong>{later.length === 1 ? 'One card comes' : 'Some cards come'} from later English sets.</strong>{' '}
-            {later.map((r) => `${r.name} ${r.cn} matches ${srcName(r.src)} ${r.en}`).join(', and ')}.
+            <strong>{later.length === 1 ? 'One card comes from a later English set.' : 'Some cards come from later English sets.'}</strong>{' '}
+            {andList(later.map((r) => `${r.name} ${r.cn} matches ${srcName(r.src)} ${r.en}`))}.
           </p>
         )}
         {set.creditNotes && set.creditNotes.length > 0 && (
