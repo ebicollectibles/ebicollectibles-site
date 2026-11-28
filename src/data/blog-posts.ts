@@ -6,7 +6,7 @@
 // the post itself.
 import { SITE_URL, R2_IMAGE_HOST } from '~/lib/gem-sets/constants'
 
-export type BlogPostSlug = 'chinese-pokemon-sets-in-order' | 'how-to-read-chinese-pokemon-cards' | 'chinese-pokemon-card-rarities' | 'chinese-pokemon-slim-vs-jumbo' | 'are-chinese-pokemon-cards-real' | 'simplified-vs-traditional-chinese-pokemon-cards' | 'chinese-vs-english-pokemon-cards' | 'are-chinese-pokemon-cards-tournament-legal' | 'chinese-exclusive-pokemon-cards' | 'what-is-a-gem-pack' | 'chinese-pokemon-set-english-equivalents' | 'gem-vol-7-release-news' | 'gem-vol-7-set-guide' | 'gem-vol-7-card-origins' | 'gem-vol-6-release-news' | 'gem-vol-6-set-guide' | 'gem-vol-6-card-origins' | 'gem-vol-5-release-news' | 'gem-vol-5-set-guide' | 'gem-vol-5-card-origins' | 'gem-vol-4-release-news' | 'gem-vol-4-set-guide' | 'gem-vol-4-card-origins' | 'gem-vol-3-release-news' | 'gem-vol-3-set-guide' | 'gem-vol-3-card-origins' | 'gem-vol-2-release-news' | 'gem-vol-2-set-guide' | 'gem-vol-2-card-origins' | 'gem-vol-1-release-news' | 'gem-vol-1-set-guide' | 'gem-vol-1-card-origins' | '30th-celebration-release-news' | '30th-celebration-set-guide' | '30th-celebration-card-origins' | 'chasing-glory-release-news' | 'chasing-glory-set-guide' | 'chasing-glory-card-origins' | 'terastal-gathering-release-news' | 'terastal-gathering-set-guide' | 'terastal-gathering-card-origins' | 'reward-round-release-news' | 'reward-round-set-guide' | 'reward-round-card-origins' | 'fearless-terastal-release-news' | 'fearless-terastal-set-guide' | 'fearless-terastal-card-origins' | 'eternal-birth-release-news' | 'eternal-birth-set-guide' | 'eternal-birth-card-origins' | 'miracle-journey-release-news' | 'miracle-journey-set-guide' | 'miracle-journey-card-origins' | 'black-crystal-blaze-release-news' | 'black-crystal-blaze-set-guide' | 'black-crystal-blaze-card-origins' | 'black-bolt-white-flare-release-news' | 'black-bolt-set-guide' | 'black-bolt-card-origins' | 'white-flare-set-guide' | 'white-flare-card-origins' | 'true-mystery-release-news' | 'true-mystery-set-guide' | 'true-mystery-card-origins' | 'blade-awakening-release-news' | 'blade-awakening-set-guide' | 'blade-awakening-card-origins' | 'brilliant-fantasy-release-news' | 'brilliant-fantasy-set-guide' | 'brilliant-fantasy-card-origins' | 'stellar-crystal-release-news' | 'stellar-crystal-set-guide' | 'stellar-crystal-card-origins' | 'pikachu-dream-painting-figures-release-news' | 'funism-ditto-palm-size-wonders-release-news' | 'team-rocket-briefcase-release-news' | 'pikachu-gift-box-release-news' | 'day-night-gift-box-release-news' | 'greninja-sylveon-display-set-release-news' | 'charizard-figure-box-release-news' | 'nuzzle-cheeks-plush-card-display-release-news' | 'eevee-gift-box-release-news' | 'gem-badge-set-1-release-news' | 'gem-badge-set-2-release-news' | 'pikachu-30th-plush-keychain-release-news' | 'funism-first-partner-mini-figures-release-news' | 'first-partner-30th-vol-1-release-news' | 'first-partner-30th-vol-2-release-news' | 'first-partner-30th-vol-3-release-news' | 'aura-seeker-release-news' | 'pokemon-30th-shanghai-gold-pikachu-cards-news' | '30th-celebration-pikachu-cards-artists' | 'futuristic-pikachu-box-release-news' | 'lisia-gift-box-release-news' | 'ogerpon-mask-gift-box-release-news' | 'lillie-n-battle-box-release-news' | 'japanese-30th-celebration-release-news' | 'storm-emeralda-release-news' | 'master-strategy-deck-raging-bolt-dragapult-gholdengo-release-news' | 'master-strategy-deck-charizard-gardevoir-miraidon-release-news' | 'espeon-umbreon-deluxe-deck-release-news' | 'journey-gift-boxes-release-news' | 'collect-151-first-partner-display-sets-release-news' | 'eevee-dream-painting-figures-release-news' | 'dream-painting-151-vol-1-release-news' | 'dream-painting-water-vol-2-release-news' | 'chinese-gem-pack-hit-rates' | 'chinese-booster-box-guaranteed-hits' | 'collect-151-journey-release-news' | 'collect-151-hope-release-news' | 'collect-151-surprise-release-news' | 'collect-151-gathering-release-news' | 'collect-151-set-guide' | 'collect-151-card-origins' | 'dynamax-clash-thunder-release-news' | 'dynamax-clash-thunder-card-origins' | 'dynamax-clash-thunder-set-guide' | 'dynamax-clash-flame-release-news' | 'dynamax-clash-flame-card-origins' | 'dynamax-clash-flame-set-guide' | 'dynamax-tactics-release-news' | 'dynamax-tactics-card-origins' | 'dynamax-tactics-set-guide' | 'vivid-portrayals-obsidian-release-news' | 'vivid-portrayals-obsidian-card-origins' | 'vivid-portrayals-obsidian-set-guide' | 'vivid-portrayals-indigo-release-news' | 'vivid-portrayals-indigo-card-origins' | 'vivid-portrayals-indigo-set-guide' | 'brilliant-counterattack-release-news' | 'brilliant-counterattack-card-origins' | 'brilliant-counterattack-set-guide'
+export type BlogPostSlug = 'chinese-pokemon-sets-in-order' | 'how-to-read-chinese-pokemon-cards' | 'chinese-pokemon-card-rarities' | 'chinese-pokemon-slim-vs-jumbo' | 'are-chinese-pokemon-cards-real' | 'simplified-vs-traditional-chinese-pokemon-cards' | 'chinese-vs-english-pokemon-cards' | 'are-chinese-pokemon-cards-tournament-legal' | 'chinese-exclusive-pokemon-cards' | 'what-is-a-gem-pack' | 'chinese-pokemon-set-english-equivalents' | 'gem-vol-7-release-news' | 'gem-vol-7-set-guide' | 'gem-vol-7-card-origins' | 'gem-vol-6-release-news' | 'gem-vol-6-set-guide' | 'gem-vol-6-card-origins' | 'gem-vol-5-release-news' | 'gem-vol-5-set-guide' | 'gem-vol-5-card-origins' | 'gem-vol-4-release-news' | 'gem-vol-4-set-guide' | 'gem-vol-4-card-origins' | 'gem-vol-3-release-news' | 'gem-vol-3-set-guide' | 'gem-vol-3-card-origins' | 'gem-vol-2-release-news' | 'gem-vol-2-set-guide' | 'gem-vol-2-card-origins' | 'gem-vol-1-release-news' | 'gem-vol-1-set-guide' | 'gem-vol-1-card-origins' | '30th-celebration-release-news' | '30th-celebration-set-guide' | '30th-celebration-card-origins' | 'chasing-glory-release-news' | 'chasing-glory-set-guide' | 'chasing-glory-card-origins' | 'terastal-gathering-release-news' | 'terastal-gathering-set-guide' | 'terastal-gathering-card-origins' | 'reward-round-release-news' | 'reward-round-set-guide' | 'reward-round-card-origins' | 'fearless-terastal-release-news' | 'fearless-terastal-set-guide' | 'fearless-terastal-card-origins' | 'eternal-birth-release-news' | 'eternal-birth-set-guide' | 'eternal-birth-card-origins' | 'miracle-journey-release-news' | 'miracle-journey-set-guide' | 'miracle-journey-card-origins' | 'black-crystal-blaze-release-news' | 'black-crystal-blaze-set-guide' | 'black-crystal-blaze-card-origins' | 'black-bolt-white-flare-release-news' | 'black-bolt-set-guide' | 'black-bolt-card-origins' | 'white-flare-set-guide' | 'white-flare-card-origins' | 'true-mystery-release-news' | 'true-mystery-set-guide' | 'true-mystery-card-origins' | 'blade-awakening-release-news' | 'blade-awakening-set-guide' | 'blade-awakening-card-origins' | 'brilliant-fantasy-release-news' | 'brilliant-fantasy-set-guide' | 'brilliant-fantasy-card-origins' | 'stellar-crystal-release-news' | 'stellar-crystal-set-guide' | 'stellar-crystal-card-origins' | 'pikachu-dream-painting-figures-release-news' | 'funism-ditto-palm-size-wonders-release-news' | 'team-rocket-briefcase-release-news' | 'pikachu-gift-box-release-news' | 'day-night-gift-box-release-news' | 'greninja-sylveon-display-set-release-news' | 'charizard-figure-box-release-news' | 'nuzzle-cheeks-plush-card-display-release-news' | 'eevee-gift-box-release-news' | 'gem-badge-set-1-release-news' | 'gem-badge-set-2-release-news' | 'pikachu-30th-plush-keychain-release-news' | 'funism-first-partner-mini-figures-release-news' | 'first-partner-30th-vol-1-release-news' | 'first-partner-30th-vol-2-release-news' | 'first-partner-30th-vol-3-release-news' | 'aura-seeker-release-news' | 'pokemon-30th-shanghai-gold-pikachu-cards-news' | '30th-celebration-pikachu-cards-artists' | 'futuristic-pikachu-box-release-news' | 'lisia-gift-box-release-news' | 'ogerpon-mask-gift-box-release-news' | 'lillie-n-battle-box-release-news' | 'japanese-30th-celebration-release-news' | 'storm-emeralda-release-news' | 'master-strategy-deck-raging-bolt-dragapult-gholdengo-release-news' | 'master-strategy-deck-charizard-gardevoir-miraidon-release-news' | 'espeon-umbreon-deluxe-deck-release-news' | 'journey-gift-boxes-release-news' | 'collect-151-first-partner-display-sets-release-news' | 'eevee-dream-painting-figures-release-news' | 'dream-painting-151-vol-1-release-news' | 'dream-painting-water-vol-2-release-news' | 'chinese-gem-pack-hit-rates' | 'chinese-booster-box-guaranteed-hits' | 'collect-151-journey-release-news' | 'collect-151-hope-release-news' | 'collect-151-surprise-release-news' | 'collect-151-gathering-release-news' | 'collect-151-set-guide' | 'collect-151-card-origins' | 'dynamax-clash-thunder-release-news' | 'dynamax-clash-thunder-card-origins' | 'dynamax-clash-thunder-set-guide' | 'dynamax-clash-flame-release-news' | 'dynamax-clash-flame-card-origins' | 'dynamax-clash-flame-set-guide' | 'dynamax-tactics-release-news' | 'dynamax-tactics-card-origins' | 'dynamax-tactics-set-guide' | 'vivid-portrayals-obsidian-release-news' | 'vivid-portrayals-obsidian-card-origins' | 'vivid-portrayals-obsidian-set-guide' | 'vivid-portrayals-indigo-release-news' | 'vivid-portrayals-indigo-card-origins' | 'vivid-portrayals-indigo-set-guide' | 'brilliant-counterattack-release-news' | 'brilliant-counterattack-card-origins' | 'brilliant-counterattack-set-guide' | 'primordial-arts-overgrow-release-news' | 'primordial-arts-overgrow-card-origins' | 'primordial-arts-overgrow-set-guide' | 'primordial-arts-torrent-release-news' | 'primordial-arts-torrent-card-origins' | 'primordial-arts-torrent-set-guide'
 
 export interface BlogPostSummary {
   slug: BlogPostSlug
@@ -2170,6 +2170,102 @@ export const BLOG_POSTS: BlogPostSummary[] = [
     heroAlt: 'The Brilliant Counterattack Togekiss VMAX Hyper Rare in front of the Beauty, Rose and Aegislash VMAX Hyper Rares and the shiny Ditto VMAX',
     glow1: 'rgb(240 130 170 / .26)',
     glow2: 'rgb(90 80 160 / .30)',
+  },
+  {
+    slug: 'primordial-arts-overgrow-release-news',
+    path: '/blog/primordial-arts-overgrow-release-news',
+    title: 'Primordial Arts: Overgrow (CS3a) Set Overview: Venusaur VMAX, Packs and Every Rarity',
+    excerpt:
+      'Primordial Arts: Overgrow (CS3aC) is the Single Strike half of Primordial Arts, released in mainland China on November 17, 2023. How it was sold, its 184 cards and every rarity.',
+    seoTitle: 'Pokémon Primordial Arts: Overgrow (CS3aC) Set Overview',
+    seoDescription:
+      'Simplified Chinese Primordial Arts: Overgrow (CS3aC), November 17, 2023: 5-card and 25-card packs, 184 cards, every rarity and the English sets its cards come from.',
+    tag: 'Set overview',
+    date: '2026-11-28',
+    heroImage: `${SITE_URL}/assets/blog/primordial-arts-overgrow-overview-hero.webp`,
+    heroAlt: 'The Primordial Arts: Overgrow Venusaur VMAX Hyper Rare in front, with the Single Strike Urshifu VMAX and Shadow Rider Calyrex VMAX Hyper Rares behind it',
+    glow1: 'rgb(80 190 110 / .26)',
+    glow2: 'rgb(150 60 70 / .28)',
+  },
+  {
+    slug: 'primordial-arts-overgrow-card-origins',
+    path: '/blog/primordial-arts-overgrow-card-origins',
+    title: 'Where Every Primordial Arts: Overgrow Card Comes From',
+    excerpt:
+      'All 184 Primordial Arts: Overgrow (CS3aC) cards matched to their English versions: 80 from Chilling Reign, 69 from Battle Styles, 19 from Evolving Skies, 10 from the Trainer Galleries and 5 promos and others, with one card that English never printed.',
+    seoTitle: 'Primordial Arts: Overgrow (CS3aC) Card Origins: English Matches',
+    seoDescription:
+      'All 184 Pokémon TCG Primordial Arts: Overgrow (CS3aC) cards matched to English: 80 Chilling Reign, 69 Battle Styles, 19 Evolving Skies, 10 Trainer Gallery.',
+    tag: 'Collecting guide',
+    date: '2026-11-28',
+    heroImage: `${SITE_URL}/assets/blog/primordial-arts-overgrow-origins-hero.webp`,
+    heroAlt: 'The Primordial Arts: Overgrow Venusaur VMAX Hyper Rare beside tiles for Chilling Reign, Battle Styles, Evolving Skies, the Trainer Galleries and other sources',
+    glow1: 'rgb(80 190 110 / .26)',
+    glow2: 'rgb(150 60 70 / .28)',
+  },
+  {
+    slug: 'primordial-arts-overgrow-set-guide',
+    path: '/blog/primordial-arts-overgrow-set-guide',
+    title: 'Primordial Arts: Overgrow Set Guide: Every Secret Card and the Master Set',
+    excerpt:
+      'Every secret card in Primordial Arts: Overgrow (CS3aC), from the gold Ultra Rares and rainbow Hyper Rares down, plus how the numbers work and the 290-card master set.',
+    seoTitle: 'Primordial Arts: Overgrow (CS3aC) Set Guide: Secret Cards',
+    seoDescription:
+      'Pokémon TCG Primordial Arts: Overgrow (CS3aC) set guide: every Ultra Rare, Hyper Rare and Super Rare, the numbering and the 290-card master set.',
+    tag: 'Set guide',
+    date: '2026-11-28',
+    heroImage: `${SITE_URL}/assets/blog/primordial-arts-overgrow-guide-hero.webp`,
+    heroAlt: 'The Primordial Arts: Overgrow Venusaur VMAX Hyper Rare in front of four more Hyper Rares: Single Strike Urshifu VMAX, Shadow Rider Calyrex VMAX, Tornadus VMAX and Single Strike Style Mustard',
+    glow1: 'rgb(80 190 110 / .26)',
+    glow2: 'rgb(150 60 70 / .28)',
+  },
+  {
+    slug: 'primordial-arts-torrent-release-news',
+    path: '/blog/primordial-arts-torrent-release-news',
+    title: 'Primordial Arts: Torrent (CS3b) Set Overview: Blastoise VMAX, Packs and Every Rarity',
+    excerpt:
+      'Primordial Arts: Torrent (CS3bC) is the Rapid Strike half of Primordial Arts, released in mainland China on November 17, 2023. How it was sold, its 179 cards and every rarity.',
+    seoTitle: 'Pokémon Primordial Arts: Torrent (CS3bC) Set Overview',
+    seoDescription:
+      'Simplified Chinese Primordial Arts: Torrent (CS3bC), November 17, 2023: 5-card and 25-card packs, 179 cards, every rarity and the English sets its cards come from.',
+    tag: 'Set overview',
+    date: '2026-11-28',
+    heroImage: `${SITE_URL}/assets/blog/primordial-arts-torrent-overview-hero.webp`,
+    heroAlt: 'The Primordial Arts: Torrent Blastoise VMAX Hyper Rare in front, with the Rapid Strike Urshifu VMAX and Ice Rider Calyrex VMAX Hyper Rares behind it',
+    glow1: 'rgb(70 150 230 / .28)',
+    glow2: 'rgb(60 90 130 / .30)',
+  },
+  {
+    slug: 'primordial-arts-torrent-card-origins',
+    path: '/blog/primordial-arts-torrent-card-origins',
+    title: 'Where Every Primordial Arts: Torrent Card Comes From',
+    excerpt:
+      'All 179 Primordial Arts: Torrent (CS3bC) cards matched to their English versions: 79 from Chilling Reign, 63 from Battle Styles, 21 from Evolving Skies, 11 from the Trainer Galleries and 4 promos and others, with one card that English never printed.',
+    seoTitle: 'Primordial Arts: Torrent (CS3bC) Card Origins: English Matches',
+    seoDescription:
+      'All 179 Pokémon TCG Primordial Arts: Torrent (CS3bC) cards matched to English: 79 Chilling Reign, 63 Battle Styles, 21 Evolving Skies, 11 Trainer Gallery.',
+    tag: 'Collecting guide',
+    date: '2026-11-28',
+    heroImage: `${SITE_URL}/assets/blog/primordial-arts-torrent-origins-hero.webp`,
+    heroAlt: 'The Primordial Arts: Torrent Blastoise VMAX Hyper Rare beside tiles for Chilling Reign, Battle Styles, Evolving Skies, the Trainer Galleries and other sources',
+    glow1: 'rgb(70 150 230 / .28)',
+    glow2: 'rgb(60 90 130 / .30)',
+  },
+  {
+    slug: 'primordial-arts-torrent-set-guide',
+    path: '/blog/primordial-arts-torrent-set-guide',
+    title: 'Primordial Arts: Torrent Set Guide: Every Secret Card and the Master Set',
+    excerpt:
+      'Every secret card in Primordial Arts: Torrent (CS3bC), from the gold Ultra Rares and rainbow Hyper Rares down, plus how the numbers work and the 283-card master set.',
+    seoTitle: 'Primordial Arts: Torrent (CS3bC) Set Guide: Secret Cards',
+    seoDescription:
+      'Pokémon TCG Primordial Arts: Torrent (CS3bC) set guide: every Ultra Rare, Hyper Rare and Super Rare, the numbering and the 283-card master set.',
+    tag: 'Set guide',
+    date: '2026-11-28',
+    heroImage: `${SITE_URL}/assets/blog/primordial-arts-torrent-guide-hero.webp`,
+    heroAlt: 'The Primordial Arts: Torrent Blastoise VMAX Hyper Rare in front of four more Hyper Rares: Rapid Strike Urshifu VMAX, Ice Rider Calyrex VMAX, Blaziken VMAX and Rapid Strike Style Mustard',
+    glow1: 'rgb(70 150 230 / .28)',
+    glow2: 'rgb(60 90 130 / .30)',
   },
 ]
 

@@ -34,3 +34,11 @@ export const ONE_YEAR_BINDER_AND_SLEEVES: SwshProduct[] = [
     contents: 'A random Zacian V, Zamazenta V, Eternatus V or Eternatus VMAX holo and 64 sleeves, with one Obsidian and one Indigo 5-card pack and one Brilliant Counterattack pack',
   },
 ]
+
+/** 收藏周边礼盒 百变宝盒: one random 25-card pack (Primordial Arts, Polychromatic Gathering, Gallant Galaxy or Marine Shadow) and one random enhanced pack (Scorching Skies, Flame Dance of the End, Overshadowed Radiance or Victory Lodestar). */
+export const VARIETY_TREASURE_BOX = (which: string): SwshProduct => ({
+  name: 'Variety Treasure Box',
+  zh: '收藏周边礼盒 百变宝盒',
+  released: 'November 15, 2024',
+  contents: `A random holo, a damage counter box and a random Energy or Trainer holo, with one random 25-card pack and one random enhanced pack; ${which} is one of the possible packs`,
+})

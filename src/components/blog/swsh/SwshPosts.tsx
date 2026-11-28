@@ -213,7 +213,9 @@ function originStats(set: SwshBlogSet) {
     .filter((x) => x.n > 0)
     .sort((a, b) => b.n - a.n)
   const top = counts.slice(0, 3).map((c) => c.s)
-  return { f, rows, counts, top }
+  /** Cards whose art has no English print. */
+  const noEn = rows.filter((r) => r.src === 'jp')
+  return { f, rows, counts, top, noEn }
 }
 
 /** How a main-set rarity reads in a list: "mixes Commons, Uncommons, Rares, Pokémon V, ..." */
@@ -230,7 +232,7 @@ const plural = (name: string) => (name === 'Shiny' ? 'Shiny cards' : `${name}s`)
 
 export function SwshOverviewPost({ set, post, status }: { set: SwshBlogSet; post: BlogPostSummary; status: Status }) {
   const f = facts(set)
-  const { counts } = originStats(set)
+  const { counts, noEn } = originStats(set)
   const headline = set.headline.map((n) => f.byNo.get(n)!).filter(Boolean)
   const lead = headline[0]
   const topSecret = f.tiers.filter((t) => t.inSecret)
@@ -249,7 +251,7 @@ export function SwshOverviewPost({ set, post, status }: { set: SwshBlogSet; post
     },
     {
       q: `Is ${set.name} the same as an English set?`,
-      a: `No. Its cards match several English Sword & Shield sets, mostly ${enList.join(', ')}${others > 0 ? `, plus ${others} more` : ''}. Our card origins guide lists the English twin of every card.`,
+      a: `No. Its cards match several English Sword & Shield sets, mostly ${enList.join(', ')}${others > 0 ? `, plus ${others} more` : ''}. Our card origins guide lists the English twin of every card${noEn.length ? ' that has one' : ''}.`,
     },
     ...(set.partner
       ? [{ q: `What is the difference between ${set.name} and ${set.partner.name}?`, a: `They are the two halves of one release, out on the same day with separate card lists and their own packs. ${set.theme}` }]
@@ -364,7 +366,10 @@ export function SwshOverviewPost({ set, post, status }: { set: SwshBlogSet; post
 
         <h2 id="origins">Where the cards come from</h2>
         <p>
-          Every card in {set.name} has an English print with the same art, spread across several Sword & Shield sets. By card count the biggest sources
+          {noEn.length
+            ? noEn.length === 1 ? `All but one card in ${set.name} has an English print with the same art` : `All but ${noEn.length} of the cards in ${set.name} have an English print with the same art`
+            : `Every card in ${set.name} has an English print with the same art`}
+          , spread across several Sword & Shield sets. By card count the biggest sources
           are {others > 0 ? `${enList.join(', ')}, with ${others} other English ${others === 1 ? 'source' : 'sources'} supplying the rest` : andList(enList)}. The{' '}
           <Link to={`/blog/${set.key}-card-origins` as never}>card origins guide</Link> lists every card's English twin.
         </p>
@@ -392,7 +397,7 @@ export function SwshOverviewPost({ set, post, status }: { set: SwshBlogSet; post
 // ---------- card origins ----------
 
 export function SwshOriginsPost({ set, post, status }: { set: SwshBlogSet; post: BlogPostSummary; status: Status }) {
-  const { f, rows, counts, top } = originStats(set)
+  const { f, rows, counts, top, noEn } = originStats(set)
   const main = rows.filter((r) => +r.cn <= set.mainCount)
   const secret = rows.filter((r) => +r.cn > set.mainCount)
   const mainTop = (Object.keys(EN_SET_NAME) as EnSet[])
@@ -404,12 +409,19 @@ export function SwshOriginsPost({ set, post, status }: { set: SwshBlogSet; post:
   const tierRows = f.tiers.map((t) => {
     const list = rows.filter((r) => r.rarity === t.tier)
     const n = (s: EnSet) => list.filter((r) => r.src === s).length
-    return [`${t.name} (${t.tier})`, ...top.map((s) => n(s) || '–'), list.filter((r) => !top.includes(r.src)).length || '–', list.length]
+    return [`${t.name} (${t.tier})`, ...top.map((s) => n(s) || '–'), list.filter((r) => !(top as string[]).includes(r.src)).length || '–', list.length]
   })
   const promo = rows.filter((r) => r.src === 'swshp')
   const shiny = rows.filter((r) => r.src === 'swsh45sv').length
   const shinyAll = rows.filter((r) => r.rarity === 'S' || r.rarity === 'SSR').length
-  const later = rows.filter((r) => !['swsh1', 'swsh2', 'swsh3', 'swsh35', 'swsh4', 'swsh45', 'swsh45sv', 'swshp'].includes(r.src))
+  const ORDER = Object.keys(EN_SET_NAME) as EnSet[]
+  const cutoff = ORDER.indexOf(set.laterThan ?? 'swsh45sv')
+  const isTg = (src: EnSet | 'jp') => src.endsWith('tg') || src.endsWith('gg')
+  const later = rows.filter((r) => r.src !== 'jp' && r.src !== 'swshp' && !isTg(r.src) && ORDER.indexOf(r.src) > cutoff)
+  // Character Rares and Character Super Rares: Trainer Gallery cards in English.
+  const chr = rows.filter((r) => r.rarity === 'CHR' || r.rarity === 'CSR')
+  const chrTg = chr.filter((r) => r.src !== 'jp' && isTg(r.src))
+  const chrBySet = ORDER.map((s) => ({ s, n: chrTg.filter((r) => r.src === s).length })).filter((x) => x.n > 0)
   const faq: Faq[] = [
     {
       q: `Which English set is ${set.name}?`,
@@ -418,7 +430,12 @@ export function SwshOriginsPost({ set, post, status }: { set: SwshBlogSet; post:
         .map((c) => `${EN_SET_NAME[c.s]} (${c.n})`)
         .join(', ')}.`,
     },
-    { q: `Are there any Chinese Exclusives in ${set.name}?`, a: `No. Every card in ${set.name} matches an English card with the same illustration.` },
+    {
+      q: `Are there any Chinese Exclusives in ${set.name}?`,
+      a: noEn.length
+        ? `No. Every card's art was printed outside China too. ${noEnText(noEn)}`
+        : `No. Every card in ${set.name} matches an English card with the same illustration.`,
+    },
     ...(shiny
       ? [
           {
@@ -449,7 +466,7 @@ export function SwshOriginsPost({ set, post, status }: { set: SwshBlogSet; post:
         updated={status.liveAt}
         wide
         post={post}
-        lede={`${set.name} collects cards from several English Sword & Shield sets. We matched all ${rows.length} cards to the English card with the same illustration.`}
+        lede={`${set.name} collects cards from several English Sword & Shield sets. We matched ${noEn.length ? `every card that has one` : `all ${rows.length} cards`} to the English card with the same illustration.`}
         cta={{
           heading: `See every ${set.name} card`,
           body: `The full card list shows all ${rows.length} cards with their numbers and rarities.`,
@@ -458,8 +475,9 @@ export function SwshOriginsPost({ set, post, status }: { set: SwshBlogSet; post:
       >
         <p>
           {set.name} (set code {set.code}) released on {set.releasedText}. It does not follow one English set: its {rows.length} cards match{' '}
-          {counts.length} English sets and promos, and every card has an English twin with the same illustration. This guide maps every
-          card.
+          {counts.length} English sets and promos
+          {noEn.length ? `, and all but ${noEn.length === 1 ? 'one' : noEn.length} have an English twin with the same illustration` : ', and every card has an English twin with the same illustration'}. This
+          guide maps every card.
         </p>
         <p>
           Our <Link to={`/blog/${set.key}-release-news` as never}>set overview</Link> covers how the set was sold, and our{' '}
@@ -477,9 +495,15 @@ export function SwshOriginsPost({ set, post, status }: { set: SwshBlogSet; post:
 
         <h2 id="patterns">Patterns worth knowing</h2>
         <p>
-          <strong>No Chinese Exclusives.</strong> Every card matches an English card with the same art. Unlike the newer Scarlet & Violet
-          sets, {set.name} has no cards drawn for China.
+          <strong>No Chinese Exclusives.</strong>{' '}
+          {noEn.length ? "Every card's art was printed outside China too." : 'Every card matches an English card with the same art.'} Unlike the newer
+          Scarlet & Violet sets, {set.name} has no cards drawn for China.
         </p>
+        {noEn.length > 0 && (
+          <p>
+            <strong>{noEn.length === 1 ? 'One card has' : `${noEn.length} cards have`} no English print.</strong> {noEnText(noEn)}
+          </p>
+        )}
         {shiny > 0 && (
           <p>
             <strong>{shinyAll === shiny ? 'The shiny cards are the Shiny Vault.' : 'Most shiny cards are the Shiny Vault.'}</strong> {shiny} cards
@@ -487,14 +511,21 @@ export function SwshOriginsPost({ set, post, status }: { set: SwshBlogSet; post:
             {shinyAll > shiny &&
               ` The other ${shinyAll - shiny === 1 ? 'one' : shinyAll - shiny}, ${rows
                 .filter((r) => (r.rarity === 'S' || r.rarity === 'SSR') && r.src !== 'swsh45sv')
-                .map((r) => `${r.name} ${r.cn} (${EN_SET_NAME[r.src]} ${r.en})`)
+                .map((r) => `${r.name} ${r.cn} (${srcName(r.src)} ${r.en})`)
                 .join(', ')}, ${shinyAll - shiny === 1 ? 'matches another English print' : 'match other English prints'}.`}
+          </p>
+        )}
+        {chr.length > 0 && (
+          <p>
+            <strong>{chrTg.length === chr.length ? 'The Character cards are Trainer Gallery cards.' : 'Most Character cards are Trainer Gallery cards.'}</strong>{' '}
+            {chrTg.length === chr.length ? `All ${chr.length}` : `${chrTg.length} of the ${chr.length}`} Character Rare and Character Super Rare cards match
+            English Trainer Gallery cards: {andList(chrBySet.map((c) => `${c.n} from ${EN_SET_NAME[c.s]}`))}.
           </p>
         )}
         {later.length > 0 && (
           <p>
             <strong>{later.length === 1 ? 'One card comes' : 'Some cards come'} from later English sets.</strong>{' '}
-            {later.map((r) => `${r.name} ${r.cn} matches ${EN_SET_NAME[r.src]} ${r.en}`).join(', and ')}.
+            {later.map((r) => `${r.name} ${r.cn} matches ${srcName(r.src)} ${r.en}`).join(', and ')}.
           </p>
         )}
         {set.creditNotes && set.creditNotes.length > 0 && (
@@ -510,7 +541,7 @@ export function SwshOriginsPost({ set, post, status }: { set: SwshBlogSet; post:
         <DataTable caption="English sources and card counts" head={['English source', 'Cards']} rows={counts.map((c) => [EN_SET_NAME[c.s], c.n])} />
 
         <h2 id="secret">All {secret.length} secret cards</h2>
-        <p>Every card above {set.mainCount}, with its English twin.</p>
+        <p>Every card above {set.mainCount}, with its English twin{noEn.length ? ' where there is one' : ''}.</p>
         <OriginsTable list={secret} caption="Secret cards and the English card each one matches" />
 
         <h2 id="main-set">The {main.length}-card main set</h2>
@@ -527,7 +558,13 @@ export function SwshOriginsPost({ set, post, status }: { set: SwshBlogSet; post:
   )
 }
 
-function OriginsTable({ list, caption }: { list: { cn: string; src: EnSet; en: string; illus: string; name: string; rarity: string }[]; caption: string }) {
+const srcName = (src: EnSet | 'jp') => (src === 'jp' ? 'Japanese' : EN_SET_NAME[src])
+
+function noEnText(noEn: { cn: string; en: string; name: string; rarity: string }[]) {
+  return `${noEn.map((r) => `${r.name} ${r.cn} (${rarityFullName(r.rarity)})`).join(' and ')} ${noEn.length === 1 ? 'uses' : 'use'} art from ${[...new Set(noEn.map((r) => r.en))].join(' and ')}, which English never printed.`
+}
+
+function OriginsTable({ list, caption }: { list: { cn: string; src: EnSet | 'jp'; en: string; illus: string; name: string; rarity: string }[]; caption: string }) {
   const captionId = useId()
   return (
     <div className="table-scroll table-tall" role="group" aria-labelledby={captionId} tabIndex={0}>
@@ -554,7 +591,8 @@ function OriginsTable({ list, caption }: { list: { cn: string; src: EnSet; en: s
                   </span>
                 </td>
                 <td>
-                  {EN_SET_NAME[r.src]} {r.en}
+                  {r.src === 'jp' ? 'No English print' : `${EN_SET_NAME[r.src]} ${r.en}`}
+                  {r.src === 'jp' ? <span className="cell-sub">Source: {r.en}</span> : null}
                   {r.illus ? <span className="cell-sub">Illus. {r.illus}</span> : null}
                 </td>
               </tr>

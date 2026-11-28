@@ -156,6 +156,12 @@ import { Route as BlogPikachu30thPlushKeychainReleaseNewsRouteImport } from './r
 import { Route as BlogPikachuDreamPaintingFiguresReleaseNewsRouteImport } from './routes/blog/pikachu-dream-painting-figures-release-news'
 import { Route as BlogPikachuGiftBoxReleaseNewsRouteImport } from './routes/blog/pikachu-gift-box-release-news'
 import { Route as BlogPokemon30thShanghaiGoldPikachuCardsNewsRouteImport } from './routes/blog/pokemon-30th-shanghai-gold-pikachu-cards-news'
+import { Route as BlogPrimordialArtsOvergrowCardOriginsRouteImport } from './routes/blog/primordial-arts-overgrow-card-origins'
+import { Route as BlogPrimordialArtsOvergrowReleaseNewsRouteImport } from './routes/blog/primordial-arts-overgrow-release-news'
+import { Route as BlogPrimordialArtsOvergrowSetGuideRouteImport } from './routes/blog/primordial-arts-overgrow-set-guide'
+import { Route as BlogPrimordialArtsTorrentCardOriginsRouteImport } from './routes/blog/primordial-arts-torrent-card-origins'
+import { Route as BlogPrimordialArtsTorrentReleaseNewsRouteImport } from './routes/blog/primordial-arts-torrent-release-news'
+import { Route as BlogPrimordialArtsTorrentSetGuideRouteImport } from './routes/blog/primordial-arts-torrent-set-guide'
 import { Route as BlogRewardRoundCardOriginsRouteImport } from './routes/blog/reward-round-card-origins'
 import { Route as BlogRewardRoundReleaseNewsRouteImport } from './routes/blog/reward-round-release-news'
 import { Route as BlogRewardRoundSetGuideRouteImport } from './routes/blog/reward-round-set-guide'
@@ -1070,6 +1076,42 @@ const BlogPokemon30thShanghaiGoldPikachuCardsNewsRoute =
     path: '/blog/pokemon-30th-shanghai-gold-pikachu-cards-news',
     getParentRoute: () => rootRouteImport,
   } as any)
+const BlogPrimordialArtsOvergrowCardOriginsRoute =
+  BlogPrimordialArtsOvergrowCardOriginsRouteImport.update({
+    id: '/blog/primordial-arts-overgrow-card-origins',
+    path: '/blog/primordial-arts-overgrow-card-origins',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const BlogPrimordialArtsOvergrowReleaseNewsRoute =
+  BlogPrimordialArtsOvergrowReleaseNewsRouteImport.update({
+    id: '/blog/primordial-arts-overgrow-release-news',
+    path: '/blog/primordial-arts-overgrow-release-news',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const BlogPrimordialArtsOvergrowSetGuideRoute =
+  BlogPrimordialArtsOvergrowSetGuideRouteImport.update({
+    id: '/blog/primordial-arts-overgrow-set-guide',
+    path: '/blog/primordial-arts-overgrow-set-guide',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const BlogPrimordialArtsTorrentCardOriginsRoute =
+  BlogPrimordialArtsTorrentCardOriginsRouteImport.update({
+    id: '/blog/primordial-arts-torrent-card-origins',
+    path: '/blog/primordial-arts-torrent-card-origins',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const BlogPrimordialArtsTorrentReleaseNewsRoute =
+  BlogPrimordialArtsTorrentReleaseNewsRouteImport.update({
+    id: '/blog/primordial-arts-torrent-release-news',
+    path: '/blog/primordial-arts-torrent-release-news',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const BlogPrimordialArtsTorrentSetGuideRoute =
+  BlogPrimordialArtsTorrentSetGuideRouteImport.update({
+    id: '/blog/primordial-arts-torrent-set-guide',
+    path: '/blog/primordial-arts-torrent-set-guide',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const BlogRewardRoundCardOriginsRoute =
   BlogRewardRoundCardOriginsRouteImport.update({
     id: '/blog/reward-round-card-origins',
@@ -1722,6 +1764,12 @@ export interface FileRoutesByFullPath {
   '/blog/pikachu-dream-painting-figures-release-news': typeof BlogPikachuDreamPaintingFiguresReleaseNewsRoute
   '/blog/pikachu-gift-box-release-news': typeof BlogPikachuGiftBoxReleaseNewsRoute
   '/blog/pokemon-30th-shanghai-gold-pikachu-cards-news': typeof BlogPokemon30thShanghaiGoldPikachuCardsNewsRoute
+  '/blog/primordial-arts-overgrow-card-origins': typeof BlogPrimordialArtsOvergrowCardOriginsRoute
+  '/blog/primordial-arts-overgrow-release-news': typeof BlogPrimordialArtsOvergrowReleaseNewsRoute
+  '/blog/primordial-arts-overgrow-set-guide': typeof BlogPrimordialArtsOvergrowSetGuideRoute
+  '/blog/primordial-arts-torrent-card-origins': typeof BlogPrimordialArtsTorrentCardOriginsRoute
+  '/blog/primordial-arts-torrent-release-news': typeof BlogPrimordialArtsTorrentReleaseNewsRoute
+  '/blog/primordial-arts-torrent-set-guide': typeof BlogPrimordialArtsTorrentSetGuideRoute
   '/blog/reward-round-card-origins': typeof BlogRewardRoundCardOriginsRoute
   '/blog/reward-round-release-news': typeof BlogRewardRoundReleaseNewsRoute
   '/blog/reward-round-set-guide': typeof BlogRewardRoundSetGuideRoute
@@ -1960,6 +2008,12 @@ export interface FileRoutesByTo {
   '/blog/pikachu-dream-painting-figures-release-news': typeof BlogPikachuDreamPaintingFiguresReleaseNewsRoute
   '/blog/pikachu-gift-box-release-news': typeof BlogPikachuGiftBoxReleaseNewsRoute
   '/blog/pokemon-30th-shanghai-gold-pikachu-cards-news': typeof BlogPokemon30thShanghaiGoldPikachuCardsNewsRoute
+  '/blog/primordial-arts-overgrow-card-origins': typeof BlogPrimordialArtsOvergrowCardOriginsRoute
+  '/blog/primordial-arts-overgrow-release-news': typeof BlogPrimordialArtsOvergrowReleaseNewsRoute
+  '/blog/primordial-arts-overgrow-set-guide': typeof BlogPrimordialArtsOvergrowSetGuideRoute
+  '/blog/primordial-arts-torrent-card-origins': typeof BlogPrimordialArtsTorrentCardOriginsRoute
+  '/blog/primordial-arts-torrent-release-news': typeof BlogPrimordialArtsTorrentReleaseNewsRoute
+  '/blog/primordial-arts-torrent-set-guide': typeof BlogPrimordialArtsTorrentSetGuideRoute
   '/blog/reward-round-card-origins': typeof BlogRewardRoundCardOriginsRoute
   '/blog/reward-round-release-news': typeof BlogRewardRoundReleaseNewsRoute
   '/blog/reward-round-set-guide': typeof BlogRewardRoundSetGuideRoute
@@ -2199,6 +2253,12 @@ export interface FileRoutesById {
   '/blog/pikachu-dream-painting-figures-release-news': typeof BlogPikachuDreamPaintingFiguresReleaseNewsRoute
   '/blog/pikachu-gift-box-release-news': typeof BlogPikachuGiftBoxReleaseNewsRoute
   '/blog/pokemon-30th-shanghai-gold-pikachu-cards-news': typeof BlogPokemon30thShanghaiGoldPikachuCardsNewsRoute
+  '/blog/primordial-arts-overgrow-card-origins': typeof BlogPrimordialArtsOvergrowCardOriginsRoute
+  '/blog/primordial-arts-overgrow-release-news': typeof BlogPrimordialArtsOvergrowReleaseNewsRoute
+  '/blog/primordial-arts-overgrow-set-guide': typeof BlogPrimordialArtsOvergrowSetGuideRoute
+  '/blog/primordial-arts-torrent-card-origins': typeof BlogPrimordialArtsTorrentCardOriginsRoute
+  '/blog/primordial-arts-torrent-release-news': typeof BlogPrimordialArtsTorrentReleaseNewsRoute
+  '/blog/primordial-arts-torrent-set-guide': typeof BlogPrimordialArtsTorrentSetGuideRoute
   '/blog/reward-round-card-origins': typeof BlogRewardRoundCardOriginsRoute
   '/blog/reward-round-release-news': typeof BlogRewardRoundReleaseNewsRoute
   '/blog/reward-round-set-guide': typeof BlogRewardRoundSetGuideRoute
@@ -2439,6 +2499,12 @@ export interface FileRouteTypes {
     | '/blog/pikachu-dream-painting-figures-release-news'
     | '/blog/pikachu-gift-box-release-news'
     | '/blog/pokemon-30th-shanghai-gold-pikachu-cards-news'
+    | '/blog/primordial-arts-overgrow-card-origins'
+    | '/blog/primordial-arts-overgrow-release-news'
+    | '/blog/primordial-arts-overgrow-set-guide'
+    | '/blog/primordial-arts-torrent-card-origins'
+    | '/blog/primordial-arts-torrent-release-news'
+    | '/blog/primordial-arts-torrent-set-guide'
     | '/blog/reward-round-card-origins'
     | '/blog/reward-round-release-news'
     | '/blog/reward-round-set-guide'
@@ -2677,6 +2743,12 @@ export interface FileRouteTypes {
     | '/blog/pikachu-dream-painting-figures-release-news'
     | '/blog/pikachu-gift-box-release-news'
     | '/blog/pokemon-30th-shanghai-gold-pikachu-cards-news'
+    | '/blog/primordial-arts-overgrow-card-origins'
+    | '/blog/primordial-arts-overgrow-release-news'
+    | '/blog/primordial-arts-overgrow-set-guide'
+    | '/blog/primordial-arts-torrent-card-origins'
+    | '/blog/primordial-arts-torrent-release-news'
+    | '/blog/primordial-arts-torrent-set-guide'
     | '/blog/reward-round-card-origins'
     | '/blog/reward-round-release-news'
     | '/blog/reward-round-set-guide'
@@ -2915,6 +2987,12 @@ export interface FileRouteTypes {
     | '/blog/pikachu-dream-painting-figures-release-news'
     | '/blog/pikachu-gift-box-release-news'
     | '/blog/pokemon-30th-shanghai-gold-pikachu-cards-news'
+    | '/blog/primordial-arts-overgrow-card-origins'
+    | '/blog/primordial-arts-overgrow-release-news'
+    | '/blog/primordial-arts-overgrow-set-guide'
+    | '/blog/primordial-arts-torrent-card-origins'
+    | '/blog/primordial-arts-torrent-release-news'
+    | '/blog/primordial-arts-torrent-set-guide'
     | '/blog/reward-round-card-origins'
     | '/blog/reward-round-release-news'
     | '/blog/reward-round-set-guide'
@@ -3154,6 +3232,12 @@ export interface RootRouteChildren {
   BlogPikachuDreamPaintingFiguresReleaseNewsRoute: typeof BlogPikachuDreamPaintingFiguresReleaseNewsRoute
   BlogPikachuGiftBoxReleaseNewsRoute: typeof BlogPikachuGiftBoxReleaseNewsRoute
   BlogPokemon30thShanghaiGoldPikachuCardsNewsRoute: typeof BlogPokemon30thShanghaiGoldPikachuCardsNewsRoute
+  BlogPrimordialArtsOvergrowCardOriginsRoute: typeof BlogPrimordialArtsOvergrowCardOriginsRoute
+  BlogPrimordialArtsOvergrowReleaseNewsRoute: typeof BlogPrimordialArtsOvergrowReleaseNewsRoute
+  BlogPrimordialArtsOvergrowSetGuideRoute: typeof BlogPrimordialArtsOvergrowSetGuideRoute
+  BlogPrimordialArtsTorrentCardOriginsRoute: typeof BlogPrimordialArtsTorrentCardOriginsRoute
+  BlogPrimordialArtsTorrentReleaseNewsRoute: typeof BlogPrimordialArtsTorrentReleaseNewsRoute
+  BlogPrimordialArtsTorrentSetGuideRoute: typeof BlogPrimordialArtsTorrentSetGuideRoute
   BlogRewardRoundCardOriginsRoute: typeof BlogRewardRoundCardOriginsRoute
   BlogRewardRoundReleaseNewsRoute: typeof BlogRewardRoundReleaseNewsRoute
   BlogRewardRoundSetGuideRoute: typeof BlogRewardRoundSetGuideRoute
@@ -4279,6 +4363,48 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BlogPokemon30thShanghaiGoldPikachuCardsNewsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/blog/primordial-arts-overgrow-card-origins': {
+      id: '/blog/primordial-arts-overgrow-card-origins'
+      path: '/blog/primordial-arts-overgrow-card-origins'
+      fullPath: '/blog/primordial-arts-overgrow-card-origins'
+      preLoaderRoute: typeof BlogPrimordialArtsOvergrowCardOriginsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/primordial-arts-overgrow-release-news': {
+      id: '/blog/primordial-arts-overgrow-release-news'
+      path: '/blog/primordial-arts-overgrow-release-news'
+      fullPath: '/blog/primordial-arts-overgrow-release-news'
+      preLoaderRoute: typeof BlogPrimordialArtsOvergrowReleaseNewsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/primordial-arts-overgrow-set-guide': {
+      id: '/blog/primordial-arts-overgrow-set-guide'
+      path: '/blog/primordial-arts-overgrow-set-guide'
+      fullPath: '/blog/primordial-arts-overgrow-set-guide'
+      preLoaderRoute: typeof BlogPrimordialArtsOvergrowSetGuideRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/primordial-arts-torrent-card-origins': {
+      id: '/blog/primordial-arts-torrent-card-origins'
+      path: '/blog/primordial-arts-torrent-card-origins'
+      fullPath: '/blog/primordial-arts-torrent-card-origins'
+      preLoaderRoute: typeof BlogPrimordialArtsTorrentCardOriginsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/primordial-arts-torrent-release-news': {
+      id: '/blog/primordial-arts-torrent-release-news'
+      path: '/blog/primordial-arts-torrent-release-news'
+      fullPath: '/blog/primordial-arts-torrent-release-news'
+      preLoaderRoute: typeof BlogPrimordialArtsTorrentReleaseNewsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/primordial-arts-torrent-set-guide': {
+      id: '/blog/primordial-arts-torrent-set-guide'
+      path: '/blog/primordial-arts-torrent-set-guide'
+      fullPath: '/blog/primordial-arts-torrent-set-guide'
+      preLoaderRoute: typeof BlogPrimordialArtsTorrentSetGuideRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/blog/reward-round-card-origins': {
       id: '/blog/reward-round-card-origins'
       path: '/blog/reward-round-card-origins'
@@ -5083,6 +5209,18 @@ const rootRouteChildren: RootRouteChildren = {
   BlogPikachuGiftBoxReleaseNewsRoute: BlogPikachuGiftBoxReleaseNewsRoute,
   BlogPokemon30thShanghaiGoldPikachuCardsNewsRoute:
     BlogPokemon30thShanghaiGoldPikachuCardsNewsRoute,
+  BlogPrimordialArtsOvergrowCardOriginsRoute:
+    BlogPrimordialArtsOvergrowCardOriginsRoute,
+  BlogPrimordialArtsOvergrowReleaseNewsRoute:
+    BlogPrimordialArtsOvergrowReleaseNewsRoute,
+  BlogPrimordialArtsOvergrowSetGuideRoute:
+    BlogPrimordialArtsOvergrowSetGuideRoute,
+  BlogPrimordialArtsTorrentCardOriginsRoute:
+    BlogPrimordialArtsTorrentCardOriginsRoute,
+  BlogPrimordialArtsTorrentReleaseNewsRoute:
+    BlogPrimordialArtsTorrentReleaseNewsRoute,
+  BlogPrimordialArtsTorrentSetGuideRoute:
+    BlogPrimordialArtsTorrentSetGuideRoute,
   BlogRewardRoundCardOriginsRoute: BlogRewardRoundCardOriginsRoute,
   BlogRewardRoundReleaseNewsRoute: BlogRewardRoundReleaseNewsRoute,
   BlogRewardRoundSetGuideRoute: BlogRewardRoundSetGuideRoute,

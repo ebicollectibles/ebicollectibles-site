@@ -57,8 +57,9 @@ export const EN_SET_NAME: Record<EnSet, string> = {
   swsh12pt5gg: 'Crown Zenith Galarian Gallery',
 }
 
-/** [Chinese number, English set, English number, illustrator]. */
-export type SwshOrigin = [string, EnSet, string, string]
+/** [Chinese number, English set, English number, illustrator]. For a card whose art has no English print,
+ * the set is 'jp' and the third field names the Japanese product it comes from. */
+export type SwshOrigin = [string, EnSet | 'jp', string, string]
 
 export type SwshCard = { number: string; pokemonIndex: number; name: string; rarity: string; image: string }
 
@@ -108,6 +109,8 @@ export type SwshBlogSet = {
   headlineNote: string
   /** Shown beside each Pokémon in the "several rarities" table. */
   ladderNames: string[]
+  /** Cards matching English sets released after this one are called out as "from later English sets". Default swsh45sv. */
+  laterThan?: EnSet
   /** Per-set wording for the "What it is" column, where the default does not fit. */
   tierMeaning?: Partial<Record<string, string>>
   /** Cards whose printed Chinese illustrator credit differs from the English print of the same art. */
