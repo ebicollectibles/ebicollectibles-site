@@ -897,9 +897,9 @@ export const BLOG_POSTS: BlogPostSummary[] = [
     title: 'Chinese Gem Pack Hit Rates: What Every Pack and Box Guarantees (Vol. 1 to 7)',
     excerpt:
       "Every Gem Pack has 4 holo cards and one Rare or better, but Pokémon China promises no full art per box. The official odds for all seven volumes, the holo Energy question and the full arts to expect per box, with the maths.",
-    seoTitle: 'Chinese Gem Pack Hit Rates & Odds: Box Guarantee, Full Arts, Vol. 1–7',
+    seoTitle: 'Do Chinese Gem Packs Have Guaranteed Hits? Hit Rates Vol. 1–7',
     seoDescription:
-      'Pokémon Gem Pack hit rates from the official odds charts: what each pack guarantees, whether a box guarantees a full art, holo Energy pulls and full arts per box for Vol. 1 to 7.',
+      'Every Chinese Gem Pack has one guaranteed Rare or better. A box averages about one full art, but none is guaranteed. Official hit rates for Vol. 1 to 7.',
     tag: 'Collecting guide',
     date: '2026-11-21',
     heroImage: `${SITE_URL}/assets/blog/gem-pack-hit-rates-guide-hero.webp`,
