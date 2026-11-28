@@ -522,7 +522,7 @@ export function SwshOriginsPost({ set, post, status }: { set: SwshBlogSet; post:
             <strong>{chrTg.length === chr.length ? 'The Character cards are Trainer Gallery cards.' : 'Most Character cards are Trainer Gallery cards.'}</strong>{' '}
             {chr.length === 1
               ? `The one ${chrKinds} matches an English Trainer Gallery card from ${EN_SET_NAME[chrBySet[0].s]}.`
-              : `${chrTg.length === chr.length ? `All ${chr.length}` : `${chrTg.length} of the ${chr.length}`} ${chrKinds} cards match English Trainer Gallery cards: ${andList(chrBySet.map((c) => `${c.n} from ${EN_SET_NAME[c.s]}`))}.`}
+              : `${chrTg.length === chr.length ? (chr.length === 2 ? 'Both' : `All ${chr.length}`) : `${chrTg.length} of the ${chr.length}`} ${chrKinds} cards match English Trainer Gallery cards: ${andList(chrBySet.map((c) => `${c.n} from ${EN_SET_NAME[c.s]}`))}.`}
           </p>
         )}
         {later.length > 0 && (
