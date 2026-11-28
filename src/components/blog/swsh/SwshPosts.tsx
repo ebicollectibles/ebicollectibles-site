@@ -351,7 +351,7 @@ export function SwshOverviewPost({ set, post, status }: { set: SwshBlogSet; post
 
         <h2 id="origins">Where the cards come from</h2>
         <p>
-          Every card in {set.name} was printed in English first, across several Sword & Shield sets. By card count the biggest sources
+          Every card in {set.name} has an English print with the same art, spread across several Sword & Shield sets. By card count the biggest sources
           are {enList.join(', ')}
           {others > 0 ? `, with ${others} other English sets and promos supplying the rest` : ''}. The{' '}
           <Link to={`/blog/${set.key}-card-origins` as never}>card origins guide</Link> lists every card's English twin.
@@ -463,6 +463,13 @@ export function SwshOriginsPost({ set, post, status }: { set: SwshBlogSet; post:
           <p>
             <strong>{later.length === 1 ? 'One card comes' : 'Some cards come'} from later English sets.</strong>{' '}
             {later.map((r) => `${r.name} ${r.cn} matches ${EN_SET_NAME[r.src]} ${r.en}`).join(', and ')}.
+          </p>
+        )}
+        {set.creditNotes && set.creditNotes.length > 0 && (
+          <p>
+            <strong>{set.creditNotes.length === 1 ? 'One card credits' : 'Some cards credit'} a different illustrator.</strong>{' '}
+            {set.creditNotes.map((c) => `${c.name} ${c.cn} credits ${c.zhCredit}, while the English print of the same art credits ${c.enCredit}`).join('. ')}.
+            The tables below show the credit printed on the Chinese card.
           </p>
         )}
         <p>

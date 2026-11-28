@@ -108,4 +108,6 @@ export type SwshBlogSet = {
   headlineNote: string
   /** Shown beside each Pokémon in the "several rarities" table. */
   ladderNames: string[]
+  /** Cards whose printed Chinese illustrator credit differs from the English print of the same art. */
+  creditNotes?: { cn: string; name: string; zhCredit: string; enCredit: string }[]
 }

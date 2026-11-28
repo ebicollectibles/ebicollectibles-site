@@ -89,6 +89,9 @@ import { Route as BlogCollect151SurpriseReleaseNewsRouteImport } from './routes/
 import { Route as BlogDayNightGiftBoxReleaseNewsRouteImport } from './routes/blog/day-night-gift-box-release-news'
 import { Route as BlogDreamPainting151Vol1ReleaseNewsRouteImport } from './routes/blog/dream-painting-151-vol-1-release-news'
 import { Route as BlogDreamPaintingWaterVol2ReleaseNewsRouteImport } from './routes/blog/dream-painting-water-vol-2-release-news'
+import { Route as BlogDynamaxClashFlameCardOriginsRouteImport } from './routes/blog/dynamax-clash-flame-card-origins'
+import { Route as BlogDynamaxClashFlameReleaseNewsRouteImport } from './routes/blog/dynamax-clash-flame-release-news'
+import { Route as BlogDynamaxClashFlameSetGuideRouteImport } from './routes/blog/dynamax-clash-flame-set-guide'
 import { Route as BlogDynamaxClashThunderCardOriginsRouteImport } from './routes/blog/dynamax-clash-thunder-card-origins'
 import { Route as BlogDynamaxClashThunderReleaseNewsRouteImport } from './routes/blog/dynamax-clash-thunder-release-news'
 import { Route as BlogDynamaxClashThunderSetGuideRouteImport } from './routes/blog/dynamax-clash-thunder-set-guide'
@@ -668,6 +671,24 @@ const BlogDreamPaintingWaterVol2ReleaseNewsRoute =
   BlogDreamPaintingWaterVol2ReleaseNewsRouteImport.update({
     id: '/blog/dream-painting-water-vol-2-release-news',
     path: '/blog/dream-painting-water-vol-2-release-news',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const BlogDynamaxClashFlameCardOriginsRoute =
+  BlogDynamaxClashFlameCardOriginsRouteImport.update({
+    id: '/blog/dynamax-clash-flame-card-origins',
+    path: '/blog/dynamax-clash-flame-card-origins',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const BlogDynamaxClashFlameReleaseNewsRoute =
+  BlogDynamaxClashFlameReleaseNewsRouteImport.update({
+    id: '/blog/dynamax-clash-flame-release-news',
+    path: '/blog/dynamax-clash-flame-release-news',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const BlogDynamaxClashFlameSetGuideRoute =
+  BlogDynamaxClashFlameSetGuideRouteImport.update({
+    id: '/blog/dynamax-clash-flame-set-guide',
+    path: '/blog/dynamax-clash-flame-set-guide',
     getParentRoute: () => rootRouteImport,
   } as any)
 const BlogDynamaxClashThunderCardOriginsRoute =
@@ -1550,6 +1571,9 @@ export interface FileRoutesByFullPath {
   '/blog/day-night-gift-box-release-news': typeof BlogDayNightGiftBoxReleaseNewsRoute
   '/blog/dream-painting-151-vol-1-release-news': typeof BlogDreamPainting151Vol1ReleaseNewsRoute
   '/blog/dream-painting-water-vol-2-release-news': typeof BlogDreamPaintingWaterVol2ReleaseNewsRoute
+  '/blog/dynamax-clash-flame-card-origins': typeof BlogDynamaxClashFlameCardOriginsRoute
+  '/blog/dynamax-clash-flame-release-news': typeof BlogDynamaxClashFlameReleaseNewsRoute
+  '/blog/dynamax-clash-flame-set-guide': typeof BlogDynamaxClashFlameSetGuideRoute
   '/blog/dynamax-clash-thunder-card-origins': typeof BlogDynamaxClashThunderCardOriginsRoute
   '/blog/dynamax-clash-thunder-release-news': typeof BlogDynamaxClashThunderReleaseNewsRoute
   '/blog/dynamax-clash-thunder-set-guide': typeof BlogDynamaxClashThunderSetGuideRoute
@@ -1773,6 +1797,9 @@ export interface FileRoutesByTo {
   '/blog/day-night-gift-box-release-news': typeof BlogDayNightGiftBoxReleaseNewsRoute
   '/blog/dream-painting-151-vol-1-release-news': typeof BlogDreamPainting151Vol1ReleaseNewsRoute
   '/blog/dream-painting-water-vol-2-release-news': typeof BlogDreamPaintingWaterVol2ReleaseNewsRoute
+  '/blog/dynamax-clash-flame-card-origins': typeof BlogDynamaxClashFlameCardOriginsRoute
+  '/blog/dynamax-clash-flame-release-news': typeof BlogDynamaxClashFlameReleaseNewsRoute
+  '/blog/dynamax-clash-flame-set-guide': typeof BlogDynamaxClashFlameSetGuideRoute
   '/blog/dynamax-clash-thunder-card-origins': typeof BlogDynamaxClashThunderCardOriginsRoute
   '/blog/dynamax-clash-thunder-release-news': typeof BlogDynamaxClashThunderReleaseNewsRoute
   '/blog/dynamax-clash-thunder-set-guide': typeof BlogDynamaxClashThunderSetGuideRoute
@@ -1997,6 +2024,9 @@ export interface FileRoutesById {
   '/blog/day-night-gift-box-release-news': typeof BlogDayNightGiftBoxReleaseNewsRoute
   '/blog/dream-painting-151-vol-1-release-news': typeof BlogDreamPainting151Vol1ReleaseNewsRoute
   '/blog/dream-painting-water-vol-2-release-news': typeof BlogDreamPaintingWaterVol2ReleaseNewsRoute
+  '/blog/dynamax-clash-flame-card-origins': typeof BlogDynamaxClashFlameCardOriginsRoute
+  '/blog/dynamax-clash-flame-release-news': typeof BlogDynamaxClashFlameReleaseNewsRoute
+  '/blog/dynamax-clash-flame-set-guide': typeof BlogDynamaxClashFlameSetGuideRoute
   '/blog/dynamax-clash-thunder-card-origins': typeof BlogDynamaxClashThunderCardOriginsRoute
   '/blog/dynamax-clash-thunder-release-news': typeof BlogDynamaxClashThunderReleaseNewsRoute
   '/blog/dynamax-clash-thunder-set-guide': typeof BlogDynamaxClashThunderSetGuideRoute
@@ -2222,6 +2252,9 @@ export interface FileRouteTypes {
     | '/blog/day-night-gift-box-release-news'
     | '/blog/dream-painting-151-vol-1-release-news'
     | '/blog/dream-painting-water-vol-2-release-news'
+    | '/blog/dynamax-clash-flame-card-origins'
+    | '/blog/dynamax-clash-flame-release-news'
+    | '/blog/dynamax-clash-flame-set-guide'
     | '/blog/dynamax-clash-thunder-card-origins'
     | '/blog/dynamax-clash-thunder-release-news'
     | '/blog/dynamax-clash-thunder-set-guide'
@@ -2445,6 +2478,9 @@ export interface FileRouteTypes {
     | '/blog/day-night-gift-box-release-news'
     | '/blog/dream-painting-151-vol-1-release-news'
     | '/blog/dream-painting-water-vol-2-release-news'
+    | '/blog/dynamax-clash-flame-card-origins'
+    | '/blog/dynamax-clash-flame-release-news'
+    | '/blog/dynamax-clash-flame-set-guide'
     | '/blog/dynamax-clash-thunder-card-origins'
     | '/blog/dynamax-clash-thunder-release-news'
     | '/blog/dynamax-clash-thunder-set-guide'
@@ -2668,6 +2704,9 @@ export interface FileRouteTypes {
     | '/blog/day-night-gift-box-release-news'
     | '/blog/dream-painting-151-vol-1-release-news'
     | '/blog/dream-painting-water-vol-2-release-news'
+    | '/blog/dynamax-clash-flame-card-origins'
+    | '/blog/dynamax-clash-flame-release-news'
+    | '/blog/dynamax-clash-flame-set-guide'
     | '/blog/dynamax-clash-thunder-card-origins'
     | '/blog/dynamax-clash-thunder-release-news'
     | '/blog/dynamax-clash-thunder-set-guide'
@@ -2892,6 +2931,9 @@ export interface RootRouteChildren {
   BlogDayNightGiftBoxReleaseNewsRoute: typeof BlogDayNightGiftBoxReleaseNewsRoute
   BlogDreamPainting151Vol1ReleaseNewsRoute: typeof BlogDreamPainting151Vol1ReleaseNewsRoute
   BlogDreamPaintingWaterVol2ReleaseNewsRoute: typeof BlogDreamPaintingWaterVol2ReleaseNewsRoute
+  BlogDynamaxClashFlameCardOriginsRoute: typeof BlogDynamaxClashFlameCardOriginsRoute
+  BlogDynamaxClashFlameReleaseNewsRoute: typeof BlogDynamaxClashFlameReleaseNewsRoute
+  BlogDynamaxClashFlameSetGuideRoute: typeof BlogDynamaxClashFlameSetGuideRoute
   BlogDynamaxClashThunderCardOriginsRoute: typeof BlogDynamaxClashThunderCardOriginsRoute
   BlogDynamaxClashThunderReleaseNewsRoute: typeof BlogDynamaxClashThunderReleaseNewsRoute
   BlogDynamaxClashThunderSetGuideRoute: typeof BlogDynamaxClashThunderSetGuideRoute
@@ -3598,6 +3640,27 @@ declare module '@tanstack/react-router' {
       path: '/blog/dream-painting-water-vol-2-release-news'
       fullPath: '/blog/dream-painting-water-vol-2-release-news'
       preLoaderRoute: typeof BlogDreamPaintingWaterVol2ReleaseNewsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/dynamax-clash-flame-card-origins': {
+      id: '/blog/dynamax-clash-flame-card-origins'
+      path: '/blog/dynamax-clash-flame-card-origins'
+      fullPath: '/blog/dynamax-clash-flame-card-origins'
+      preLoaderRoute: typeof BlogDynamaxClashFlameCardOriginsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/dynamax-clash-flame-release-news': {
+      id: '/blog/dynamax-clash-flame-release-news'
+      path: '/blog/dynamax-clash-flame-release-news'
+      fullPath: '/blog/dynamax-clash-flame-release-news'
+      preLoaderRoute: typeof BlogDynamaxClashFlameReleaseNewsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/dynamax-clash-flame-set-guide': {
+      id: '/blog/dynamax-clash-flame-set-guide'
+      path: '/blog/dynamax-clash-flame-set-guide'
+      fullPath: '/blog/dynamax-clash-flame-set-guide'
+      preLoaderRoute: typeof BlogDynamaxClashFlameSetGuideRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/blog/dynamax-clash-thunder-card-origins': {
@@ -4679,6 +4742,9 @@ const rootRouteChildren: RootRouteChildren = {
     BlogDreamPainting151Vol1ReleaseNewsRoute,
   BlogDreamPaintingWaterVol2ReleaseNewsRoute:
     BlogDreamPaintingWaterVol2ReleaseNewsRoute,
+  BlogDynamaxClashFlameCardOriginsRoute: BlogDynamaxClashFlameCardOriginsRoute,
+  BlogDynamaxClashFlameReleaseNewsRoute: BlogDynamaxClashFlameReleaseNewsRoute,
+  BlogDynamaxClashFlameSetGuideRoute: BlogDynamaxClashFlameSetGuideRoute,
   BlogDynamaxClashThunderCardOriginsRoute:
     BlogDynamaxClashThunderCardOriginsRoute,
   BlogDynamaxClashThunderReleaseNewsRoute:
