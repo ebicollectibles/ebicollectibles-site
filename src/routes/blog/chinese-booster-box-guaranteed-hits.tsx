@@ -344,7 +344,9 @@ function ChineseBoosterBoxGuaranteedHitsPost() {
             <tbody>
               {CHARTS.map((c) => (
                 <tr key={c.key}>
-                  <th scope="row">{names(c.codes)}</th>
+                  <th scope="row" style={{ whiteSpace: 'normal', minWidth: 180 }}>
+                    {names(c.codes)}
+                  </th>
                   <td>15</td>
                   <td>{JUMBO.perBox * c.jumboHolos}</td>
                   <td>
