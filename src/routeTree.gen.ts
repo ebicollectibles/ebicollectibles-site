@@ -95,6 +95,9 @@ import { Route as BlogDynamaxClashFlameSetGuideRouteImport } from './routes/blog
 import { Route as BlogDynamaxClashThunderCardOriginsRouteImport } from './routes/blog/dynamax-clash-thunder-card-origins'
 import { Route as BlogDynamaxClashThunderReleaseNewsRouteImport } from './routes/blog/dynamax-clash-thunder-release-news'
 import { Route as BlogDynamaxClashThunderSetGuideRouteImport } from './routes/blog/dynamax-clash-thunder-set-guide'
+import { Route as BlogDynamaxTacticsCardOriginsRouteImport } from './routes/blog/dynamax-tactics-card-origins'
+import { Route as BlogDynamaxTacticsReleaseNewsRouteImport } from './routes/blog/dynamax-tactics-release-news'
+import { Route as BlogDynamaxTacticsSetGuideRouteImport } from './routes/blog/dynamax-tactics-set-guide'
 import { Route as BlogEeveeDreamPaintingFiguresReleaseNewsRouteImport } from './routes/blog/eevee-dream-painting-figures-release-news'
 import { Route as BlogEeveeGiftBoxReleaseNewsRouteImport } from './routes/blog/eevee-gift-box-release-news'
 import { Route as BlogEspeonUmbreonDeluxeDeckReleaseNewsRouteImport } from './routes/blog/espeon-umbreon-deluxe-deck-release-news'
@@ -707,6 +710,24 @@ const BlogDynamaxClashThunderSetGuideRoute =
   BlogDynamaxClashThunderSetGuideRouteImport.update({
     id: '/blog/dynamax-clash-thunder-set-guide',
     path: '/blog/dynamax-clash-thunder-set-guide',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const BlogDynamaxTacticsCardOriginsRoute =
+  BlogDynamaxTacticsCardOriginsRouteImport.update({
+    id: '/blog/dynamax-tactics-card-origins',
+    path: '/blog/dynamax-tactics-card-origins',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const BlogDynamaxTacticsReleaseNewsRoute =
+  BlogDynamaxTacticsReleaseNewsRouteImport.update({
+    id: '/blog/dynamax-tactics-release-news',
+    path: '/blog/dynamax-tactics-release-news',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const BlogDynamaxTacticsSetGuideRoute =
+  BlogDynamaxTacticsSetGuideRouteImport.update({
+    id: '/blog/dynamax-tactics-set-guide',
+    path: '/blog/dynamax-tactics-set-guide',
     getParentRoute: () => rootRouteImport,
   } as any)
 const BlogEeveeDreamPaintingFiguresReleaseNewsRoute =
@@ -1577,6 +1598,9 @@ export interface FileRoutesByFullPath {
   '/blog/dynamax-clash-thunder-card-origins': typeof BlogDynamaxClashThunderCardOriginsRoute
   '/blog/dynamax-clash-thunder-release-news': typeof BlogDynamaxClashThunderReleaseNewsRoute
   '/blog/dynamax-clash-thunder-set-guide': typeof BlogDynamaxClashThunderSetGuideRoute
+  '/blog/dynamax-tactics-card-origins': typeof BlogDynamaxTacticsCardOriginsRoute
+  '/blog/dynamax-tactics-release-news': typeof BlogDynamaxTacticsReleaseNewsRoute
+  '/blog/dynamax-tactics-set-guide': typeof BlogDynamaxTacticsSetGuideRoute
   '/blog/eevee-dream-painting-figures-release-news': typeof BlogEeveeDreamPaintingFiguresReleaseNewsRoute
   '/blog/eevee-gift-box-release-news': typeof BlogEeveeGiftBoxReleaseNewsRoute
   '/blog/espeon-umbreon-deluxe-deck-release-news': typeof BlogEspeonUmbreonDeluxeDeckReleaseNewsRoute
@@ -1803,6 +1827,9 @@ export interface FileRoutesByTo {
   '/blog/dynamax-clash-thunder-card-origins': typeof BlogDynamaxClashThunderCardOriginsRoute
   '/blog/dynamax-clash-thunder-release-news': typeof BlogDynamaxClashThunderReleaseNewsRoute
   '/blog/dynamax-clash-thunder-set-guide': typeof BlogDynamaxClashThunderSetGuideRoute
+  '/blog/dynamax-tactics-card-origins': typeof BlogDynamaxTacticsCardOriginsRoute
+  '/blog/dynamax-tactics-release-news': typeof BlogDynamaxTacticsReleaseNewsRoute
+  '/blog/dynamax-tactics-set-guide': typeof BlogDynamaxTacticsSetGuideRoute
   '/blog/eevee-dream-painting-figures-release-news': typeof BlogEeveeDreamPaintingFiguresReleaseNewsRoute
   '/blog/eevee-gift-box-release-news': typeof BlogEeveeGiftBoxReleaseNewsRoute
   '/blog/espeon-umbreon-deluxe-deck-release-news': typeof BlogEspeonUmbreonDeluxeDeckReleaseNewsRoute
@@ -2030,6 +2057,9 @@ export interface FileRoutesById {
   '/blog/dynamax-clash-thunder-card-origins': typeof BlogDynamaxClashThunderCardOriginsRoute
   '/blog/dynamax-clash-thunder-release-news': typeof BlogDynamaxClashThunderReleaseNewsRoute
   '/blog/dynamax-clash-thunder-set-guide': typeof BlogDynamaxClashThunderSetGuideRoute
+  '/blog/dynamax-tactics-card-origins': typeof BlogDynamaxTacticsCardOriginsRoute
+  '/blog/dynamax-tactics-release-news': typeof BlogDynamaxTacticsReleaseNewsRoute
+  '/blog/dynamax-tactics-set-guide': typeof BlogDynamaxTacticsSetGuideRoute
   '/blog/eevee-dream-painting-figures-release-news': typeof BlogEeveeDreamPaintingFiguresReleaseNewsRoute
   '/blog/eevee-gift-box-release-news': typeof BlogEeveeGiftBoxReleaseNewsRoute
   '/blog/espeon-umbreon-deluxe-deck-release-news': typeof BlogEspeonUmbreonDeluxeDeckReleaseNewsRoute
@@ -2258,6 +2288,9 @@ export interface FileRouteTypes {
     | '/blog/dynamax-clash-thunder-card-origins'
     | '/blog/dynamax-clash-thunder-release-news'
     | '/blog/dynamax-clash-thunder-set-guide'
+    | '/blog/dynamax-tactics-card-origins'
+    | '/blog/dynamax-tactics-release-news'
+    | '/blog/dynamax-tactics-set-guide'
     | '/blog/eevee-dream-painting-figures-release-news'
     | '/blog/eevee-gift-box-release-news'
     | '/blog/espeon-umbreon-deluxe-deck-release-news'
@@ -2484,6 +2517,9 @@ export interface FileRouteTypes {
     | '/blog/dynamax-clash-thunder-card-origins'
     | '/blog/dynamax-clash-thunder-release-news'
     | '/blog/dynamax-clash-thunder-set-guide'
+    | '/blog/dynamax-tactics-card-origins'
+    | '/blog/dynamax-tactics-release-news'
+    | '/blog/dynamax-tactics-set-guide'
     | '/blog/eevee-dream-painting-figures-release-news'
     | '/blog/eevee-gift-box-release-news'
     | '/blog/espeon-umbreon-deluxe-deck-release-news'
@@ -2710,6 +2746,9 @@ export interface FileRouteTypes {
     | '/blog/dynamax-clash-thunder-card-origins'
     | '/blog/dynamax-clash-thunder-release-news'
     | '/blog/dynamax-clash-thunder-set-guide'
+    | '/blog/dynamax-tactics-card-origins'
+    | '/blog/dynamax-tactics-release-news'
+    | '/blog/dynamax-tactics-set-guide'
     | '/blog/eevee-dream-painting-figures-release-news'
     | '/blog/eevee-gift-box-release-news'
     | '/blog/espeon-umbreon-deluxe-deck-release-news'
@@ -2937,6 +2976,9 @@ export interface RootRouteChildren {
   BlogDynamaxClashThunderCardOriginsRoute: typeof BlogDynamaxClashThunderCardOriginsRoute
   BlogDynamaxClashThunderReleaseNewsRoute: typeof BlogDynamaxClashThunderReleaseNewsRoute
   BlogDynamaxClashThunderSetGuideRoute: typeof BlogDynamaxClashThunderSetGuideRoute
+  BlogDynamaxTacticsCardOriginsRoute: typeof BlogDynamaxTacticsCardOriginsRoute
+  BlogDynamaxTacticsReleaseNewsRoute: typeof BlogDynamaxTacticsReleaseNewsRoute
+  BlogDynamaxTacticsSetGuideRoute: typeof BlogDynamaxTacticsSetGuideRoute
   BlogEeveeDreamPaintingFiguresReleaseNewsRoute: typeof BlogEeveeDreamPaintingFiguresReleaseNewsRoute
   BlogEeveeGiftBoxReleaseNewsRoute: typeof BlogEeveeGiftBoxReleaseNewsRoute
   BlogEspeonUmbreonDeluxeDeckReleaseNewsRoute: typeof BlogEspeonUmbreonDeluxeDeckReleaseNewsRoute
@@ -3682,6 +3724,27 @@ declare module '@tanstack/react-router' {
       path: '/blog/dynamax-clash-thunder-set-guide'
       fullPath: '/blog/dynamax-clash-thunder-set-guide'
       preLoaderRoute: typeof BlogDynamaxClashThunderSetGuideRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/dynamax-tactics-card-origins': {
+      id: '/blog/dynamax-tactics-card-origins'
+      path: '/blog/dynamax-tactics-card-origins'
+      fullPath: '/blog/dynamax-tactics-card-origins'
+      preLoaderRoute: typeof BlogDynamaxTacticsCardOriginsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/dynamax-tactics-release-news': {
+      id: '/blog/dynamax-tactics-release-news'
+      path: '/blog/dynamax-tactics-release-news'
+      fullPath: '/blog/dynamax-tactics-release-news'
+      preLoaderRoute: typeof BlogDynamaxTacticsReleaseNewsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/dynamax-tactics-set-guide': {
+      id: '/blog/dynamax-tactics-set-guide'
+      path: '/blog/dynamax-tactics-set-guide'
+      fullPath: '/blog/dynamax-tactics-set-guide'
+      preLoaderRoute: typeof BlogDynamaxTacticsSetGuideRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/blog/eevee-dream-painting-figures-release-news': {
@@ -4750,6 +4813,9 @@ const rootRouteChildren: RootRouteChildren = {
   BlogDynamaxClashThunderReleaseNewsRoute:
     BlogDynamaxClashThunderReleaseNewsRoute,
   BlogDynamaxClashThunderSetGuideRoute: BlogDynamaxClashThunderSetGuideRoute,
+  BlogDynamaxTacticsCardOriginsRoute: BlogDynamaxTacticsCardOriginsRoute,
+  BlogDynamaxTacticsReleaseNewsRoute: BlogDynamaxTacticsReleaseNewsRoute,
+  BlogDynamaxTacticsSetGuideRoute: BlogDynamaxTacticsSetGuideRoute,
   BlogEeveeDreamPaintingFiguresReleaseNewsRoute:
     BlogEeveeDreamPaintingFiguresReleaseNewsRoute,
   BlogEeveeGiftBoxReleaseNewsRoute: BlogEeveeGiftBoxReleaseNewsRoute,

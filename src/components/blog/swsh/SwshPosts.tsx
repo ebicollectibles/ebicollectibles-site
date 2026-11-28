@@ -38,6 +38,8 @@ const TIER_MEANING: Record<string, string> = {
   UR: 'Gold Items, Tools, Stadiums and Pokémon',
 }
 
+const meaning = (set: SwshBlogSet, tier: string) => set.tierMeaning?.[tier] ?? TIER_MEANING[tier] ?? ''
+
 export function swshHead(post: BlogPostSummary, loaderData: Status | undefined) {
   return {
     meta: [
@@ -212,6 +214,7 @@ function originStats(set: SwshBlogSet) {
   return { f, rows, counts, top }
 }
 
+const p3 = (n: number) => String(n).padStart(3, '0')
 const nf = (n: number) => n.toLocaleString('en-US')
 /** "Hyper Rare" -> "Hyper Rares", "Shiny" -> "Shiny cards". */
 const plural = (name: string) => (name === 'Shiny' ? 'Shiny cards' : `${name}s`)
@@ -322,20 +325,22 @@ export function SwshOverviewPost({ set, post, status }: { set: SwshBlogSet; post
 
         <h2 id="packs">How it was sold</h2>
         <p>
-          Pokémon China sold {set.name} in {set.packs.length === 1 ? 'one pack size' : `${set.packs.length} pack sizes`} with the same card list:
+          {set.packs.length === 1
+            ? `Pokémon China sold ${set.name} in one pack size:`
+            : `Pokémon China sold ${set.name} in ${set.packs.length} pack sizes with the same card list:`}
         </p>
         <DataTable caption={`${set.name} pack sizes`} head={['Pack', 'Contents']} rows={set.packs.map((p) => [p.label, p.detail])} />
         <p className="table-note">Prices and holos per pack from Pokémon China's product page. Pokémon China did not publish an odds chart for this set.</p>
 
         <h2 id="rarities">Set size and rarities</h2>
         <p>
-          The main set runs 001 to {set.mainCount}, with {f.pokemon} Pokémon and the rest Trainers and Energy. Everything numbered above{' '}
+          The main set runs 001 to {p3(set.mainCount)}, with {f.pokemon} Pokémon and the rest Trainers and Energy. Everything numbered above{' '}
           {set.mainCount} is a secret card.
         </p>
         <DataTable
           caption={`${set.name} rarities`}
           head={['Rarity', 'Cards', 'Numbers', 'What it is']}
-          rows={f.tiers.map((t) => [`${t.name} (${t.tier})`, t.count, t.range, TIER_MEANING[t.tier] ?? ''])}
+          rows={f.tiers.map((t) => [`${t.name} (${t.tier})`, t.count, t.range, meaning(set, t.tier)])}
         />
 
         <h2 id="headline">The cards to know</h2>
@@ -383,6 +388,12 @@ export function SwshOriginsPost({ set, post, status }: { set: SwshBlogSet; post:
   const { f, rows, counts, top } = originStats(set)
   const main = rows.filter((r) => +r.cn <= set.mainCount)
   const secret = rows.filter((r) => +r.cn > set.mainCount)
+  const mainTop = (Object.keys(EN_SET_NAME) as EnSet[])
+    .map((s) => ({ s, n: main.filter((r) => r.src === s).length }))
+    .filter((x) => x.n > 0)
+    .sort((a, b) => b.n - a.n)
+    .slice(0, 3)
+  const mainOther = main.length - mainTop.reduce((a, c) => a + c.n, 0)
   const tierRows = f.tiers.map((t) => {
     const list = rows.filter((r) => r.rarity === t.tier)
     const n = (s: EnSet) => list.filter((r) => r.src === s).length
@@ -390,6 +401,7 @@ export function SwshOriginsPost({ set, post, status }: { set: SwshBlogSet; post:
   })
   const promo = rows.filter((r) => r.src === 'swshp')
   const shiny = rows.filter((r) => r.src === 'swsh45sv').length
+  const shinyAll = rows.filter((r) => r.rarity === 'S' || r.rarity === 'SSR').length
   const later = rows.filter((r) => !['swsh1', 'swsh2', 'swsh3', 'swsh35', 'swsh4', 'swsh45', 'swsh45sv', 'swshp'].includes(r.src))
   const faq: Faq[] = [
     {
@@ -401,7 +413,15 @@ export function SwshOriginsPost({ set, post, status }: { set: SwshBlogSet; post:
     },
     { q: `Are there any Chinese Exclusives in ${set.name}?`, a: `No. Every card in ${set.name} matches an English card with the same illustration.` },
     ...(shiny
-      ? [{ q: `Where do the shiny cards come from?`, a: `${shiny} cards, the Shiny and Shiny Super Rare cards, match the Shiny Vault of Shining Fates, the English set that collected the Japanese Shiny Star V cards.` }]
+      ? [
+          {
+            q: `Where do the shiny cards come from?`,
+            a:
+              shinyAll === shiny
+                ? `${shiny} cards, the Shiny and Shiny Super Rare cards, match the Shiny Vault of Shining Fates, the English set that collected the Japanese Shiny Star V cards.`
+                : `${shiny} of the ${shinyAll} shiny cards match the Shiny Vault of Shining Fates, the English set that collected the Japanese Shiny Star V cards. The other ${shinyAll - shiny} match other English prints, listed in the secret card table.`,
+          },
+        ]
       : []),
     ...(promo.length
       ? [{ q: `Are any ${set.name} cards English promos?`, a: `${promo.length === 1 ? 'One' : promo.length}: ${promo.map((p) => `${p.name} ${p.cn} matches ${p.en}`).join(', ')} in the SWSH Black Star Promos.` }]
@@ -455,8 +475,13 @@ export function SwshOriginsPost({ set, post, status }: { set: SwshBlogSet; post:
         </p>
         {shiny > 0 && (
           <p>
-            <strong>The shiny cards are the Shiny Vault.</strong> {shiny} cards match the Shining Fates Shiny Vault, the English home of the
-            Japanese Shiny Star V cards.
+            <strong>{shinyAll === shiny ? 'The shiny cards are the Shiny Vault.' : 'Most shiny cards are the Shiny Vault.'}</strong> {shiny} cards
+            match the Shining Fates Shiny Vault, the English home of the Japanese Shiny Star V cards.
+            {shinyAll > shiny &&
+              ` The other ${shinyAll - shiny}, ${rows
+                .filter((r) => (r.rarity === 'S' || r.rarity === 'SSR') && r.src !== 'swsh45sv')
+                .map((r) => `${r.name} ${r.cn} (${EN_SET_NAME[r.src]} ${r.en})`)
+                .join(', ')}, match other English prints.`}
           </p>
         )}
         {later.length > 0 && (
@@ -483,8 +508,8 @@ export function SwshOriginsPost({ set, post, status }: { set: SwshBlogSet; post:
 
         <h2 id="main-set">The {main.length}-card main set</h2>
         <p>
-          {top.map((s, i) => `${main.filter((r) => r.src === s).length} main-set cards match ${EN_SET_NAME[s]}${i < top.length - 1 ? ', ' : ''}`)}
-          {main.filter((r) => !top.includes(r.src)).length ? `, and ${main.filter((r) => !top.includes(r.src)).length} match other English sources.` : '.'}
+          {mainTop.map((c, i) => `${c.n} main-set cards match ${EN_SET_NAME[c.s]}${i < mainTop.length - 1 ? ', ' : ''}`)}
+          {mainOther ? `, and ${mainOther} match other English sources.` : '.'}
         </p>
         <OriginsTable list={main} caption="Main set cards and the English card each one matches" />
 
@@ -568,7 +593,7 @@ export function SwshGuidePost({ set, post, status }: { set: SwshBlogSet; post: B
       q: `How many cards are in a ${set.name} master set?`,
       a: `${f.prints}: the ${f.cards.length} numbered cards plus a reverse type holo of each of the ${f.reverse} Commons, Uncommons and Rares.`,
     },
-    { q: `How many secret cards are there?`, a: `${f.secret.length}, numbered ${set.mainCount + 1} to ${f.cards.length}: ${secretTiers.slice().reverse().map((t) => `${t.count} ${t.name}`).join(', ')}.` },
+    { q: `How many secret cards are there?`, a: `${f.secret.length}, numbered ${p3(set.mainCount + 1)} to ${p3(f.cards.length)}: ${secretTiers.slice().reverse().map((t) => `${t.count} ${t.name}`).join(', ')}.` },
     { q: 'What are the odds of pulling a Hyper Rare or Ultra Rare?', a: 'Pokémon China did not publish an odds chart for this set, so we do not estimate one. Its product pages give only the cards and holos in each pack.' },
   ]
   const toc = [
@@ -605,10 +630,10 @@ export function SwshGuidePost({ set, post, status }: { set: SwshBlogSet; post: B
 
         <h2 id="numbering">How the numbers work</h2>
         <p>
-          Every card has one number out of {set.mainCount}. The main set runs 001 to {set.mainCount} and mixes Commons, Uncommons, Rares,
+          Every card has one number out of {set.mainCount}. The main set runs 001 to {p3(set.mainCount)} and mixes Commons, Uncommons, Rares,
           Pokémon V and VMAX by type. Everything above {set.mainCount} is a secret card, grouped by rarity:
         </p>
-        <DataTable caption="How the numbers work" head={['Numbers', 'Rarity', 'Cards', 'What it is']} rows={f.tiers.map((t) => [t.range, `${t.name} (${t.tier})`, t.count, TIER_MEANING[t.tier] ?? ''])} />
+        <DataTable caption="How the numbers work" head={['Numbers', 'Rarity', 'Cards', 'What it is']} rows={f.tiers.map((t) => [t.range, `${t.name} (${t.tier})`, t.count, meaning(set, t.tier)])} />
         <p className="table-note">Pokémon China did not publish an odds chart for this set, so this guide gives card counts, not pull rates.</p>
 
         {secretTiers.map((t) => (
@@ -617,7 +642,7 @@ export function SwshGuidePost({ set, post, status }: { set: SwshBlogSet; post: B
               All {t.count} {plural(t.name)}
             </h2>
             <p>
-              Numbered {t.range}. {TIER_MEANING[t.tier]}.
+              Numbered {t.range}. {meaning(set, t.tier)}.
             </p>
             <Gallery set={set} cards={t.cards} cols={t.cards.length > 8 ? 4 : t.cards.length >= 4 ? 4 : 3} />
           </React.Fragment>

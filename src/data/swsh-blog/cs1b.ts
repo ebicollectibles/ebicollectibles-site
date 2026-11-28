@@ -61,6 +61,7 @@ export const CS1B: SwshBlogSet = {
     "Professor's Research",
     'Milo',
   ],
+  tierMeaning: { UR: 'Gold Pokémon, Items, Tools, Stadiums and Energy' },
   creditNotes: [
     { cn: '045', name: 'Fletchinder', zhCredit: 'Mitsuhiro Arita', enCredit: 'Mina Nakai' },
     { cn: '188', name: "Professor's Research", zhCredit: 'kirisAki', enCredit: 'Yusuke Ohmura' },
