@@ -1,6 +1,6 @@
 import data from '~/data/swsh-cs2b.json'
 import { ORIGINS } from './cs2b-origins'
-import { ONE_YEAR_BOX, PARTNERS_GATHERING_BOX } from './products'
+import { ONE_YEAR_BINDER_AND_SLEEVES, ONE_YEAR_BOX, PARTNERS_GATHERING_BOX } from './products'
 import type { SwshBlogSet, SwshSetData } from './types'
 
 // Vivid Portrayals: Indigo (CS2bC). Release date, prices, pack contents and
@@ -29,7 +29,11 @@ export const CS2B: SwshBlogSet = {
   partner: { name: 'Vivid Portrayals: Obsidian', key: 'vivid-portrayals-obsidian', cardListPath: '/sets/chinese/vivid-portrayals-obsidian-cs2a' },
   japaneseSources:
     'Most of its cards were first printed in the Japanese Sword & Shield sets Infinity Zone (S3), Amazing Volt Tackle (S4) and Legendary Heartbeat (S3a), and its shiny cards in Shiny Star V (S4a).',
-  products: [ONE_YEAR_BOX('Vivid Portrayals: Indigo'), PARTNERS_GATHERING_BOX('one Vivid Portrayals: Indigo 25-card pack')],
+  products: [
+    ONE_YEAR_BOX('Vivid Portrayals: Indigo'),
+    ...ONE_YEAR_BINDER_AND_SLEEVES,
+    PARTNERS_GATHERING_BOX('one Vivid Portrayals: Indigo 25-card pack'),
+  ],
   headline: ['138', '129', '134', '141', '071', '006'],
   headlineNote:
     'Eternatus, the Pokémon on the pack, prints at four rarities, up to the rainbow Eternatus VMAX. Crobat V and VMAX are the shiny Shiny Super Rares, and Piers, Opal and Nessa have rainbow Hyper Rares.',

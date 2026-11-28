@@ -18,3 +18,19 @@ export const PARTNERS_GATHERING_BOX = (packs: string): SwshProduct => ({
   released: 'November 15, 2024',
   contents: `Sinnoh and Hisui partner promo cards and accessories, with ${packs} among packs from every Sword & Shield set`,
 })
+
+/** 一周年纪念 宝可梦收藏卡册礼盒 and 宝可梦艺术卡套礼盒: one Obsidian and one Indigo 5-card pack and one Brilliant Counterattack pack each. */
+export const ONE_YEAR_BINDER_AND_SLEEVES: SwshProduct[] = [
+  {
+    name: 'One Year Anniversary Collection Binder Gift Box',
+    zh: '一周年纪念 宝可梦收藏卡册礼盒',
+    released: 'October 28, 2023',
+    contents: 'A random Zacian V, Zamazenta V, Eternatus V or Eternatus VMAX holo and a binder, with one Obsidian and one Indigo 5-card pack and one Brilliant Counterattack pack',
+  },
+  {
+    name: 'One Year Anniversary Art Sleeves Gift Box',
+    zh: '一周年纪念 宝可梦艺术卡套礼盒',
+    released: 'October 28, 2023',
+    contents: 'A random Zacian V, Zamazenta V, Eternatus V or Eternatus VMAX holo and 64 sleeves, with one Obsidian and one Indigo 5-card pack and one Brilliant Counterattack pack',
+  },
+]

@@ -1,6 +1,6 @@
 import data from '~/data/swsh-cs2a.json'
 import { ORIGINS } from './cs2a-origins'
-import { ONE_YEAR_BOX, PARTNERS_GATHERING_BOX } from './products'
+import { ONE_YEAR_BINDER_AND_SLEEVES, ONE_YEAR_BOX, PARTNERS_GATHERING_BOX } from './products'
 import type { SwshBlogSet, SwshSetData } from './types'
 
 // Vivid Portrayals: Obsidian (CS2aC). Release date, prices, pack contents and
@@ -43,6 +43,7 @@ export const CS2A: SwshBlogSet = {
       contents: 'A special illustration Charizard VMAX holo, Charizard binder and display frame, and three Obsidian 25-card packs',
     },
     ONE_YEAR_BOX('Vivid Portrayals: Obsidian'),
+    ...ONE_YEAR_BINDER_AND_SLEEVES,
     PARTNERS_GATHERING_BOX('one Vivid Portrayals: Obsidian 25-card pack'),
   ],
   headline: ['134', '133', '141', '142', '093', '138'],

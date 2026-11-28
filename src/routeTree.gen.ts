@@ -64,6 +64,9 @@ import { Route as BlogBlackCrystalBlazeSetGuideRouteImport } from './routes/blog
 import { Route as BlogBladeAwakeningCardOriginsRouteImport } from './routes/blog/blade-awakening-card-origins'
 import { Route as BlogBladeAwakeningReleaseNewsRouteImport } from './routes/blog/blade-awakening-release-news'
 import { Route as BlogBladeAwakeningSetGuideRouteImport } from './routes/blog/blade-awakening-set-guide'
+import { Route as BlogBrilliantCounterattackCardOriginsRouteImport } from './routes/blog/brilliant-counterattack-card-origins'
+import { Route as BlogBrilliantCounterattackReleaseNewsRouteImport } from './routes/blog/brilliant-counterattack-release-news'
+import { Route as BlogBrilliantCounterattackSetGuideRouteImport } from './routes/blog/brilliant-counterattack-set-guide'
 import { Route as BlogBrilliantFantasyCardOriginsRouteImport } from './routes/blog/brilliant-fantasy-card-origins'
 import { Route as BlogBrilliantFantasyReleaseNewsRouteImport } from './routes/blog/brilliant-fantasy-release-news'
 import { Route as BlogBrilliantFantasySetGuideRouteImport } from './routes/blog/brilliant-fantasy-set-guide'
@@ -531,6 +534,24 @@ const BlogBladeAwakeningSetGuideRoute =
   BlogBladeAwakeningSetGuideRouteImport.update({
     id: '/blog/blade-awakening-set-guide',
     path: '/blog/blade-awakening-set-guide',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const BlogBrilliantCounterattackCardOriginsRoute =
+  BlogBrilliantCounterattackCardOriginsRouteImport.update({
+    id: '/blog/brilliant-counterattack-card-origins',
+    path: '/blog/brilliant-counterattack-card-origins',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const BlogBrilliantCounterattackReleaseNewsRoute =
+  BlogBrilliantCounterattackReleaseNewsRouteImport.update({
+    id: '/blog/brilliant-counterattack-release-news',
+    path: '/blog/brilliant-counterattack-release-news',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const BlogBrilliantCounterattackSetGuideRoute =
+  BlogBrilliantCounterattackSetGuideRouteImport.update({
+    id: '/blog/brilliant-counterattack-set-guide',
+    path: '/blog/brilliant-counterattack-set-guide',
     getParentRoute: () => rootRouteImport,
   } as any)
 const BlogBrilliantFantasyCardOriginsRoute =
@@ -1609,6 +1630,9 @@ export interface FileRoutesByFullPath {
   '/blog/blade-awakening-card-origins': typeof BlogBladeAwakeningCardOriginsRoute
   '/blog/blade-awakening-release-news': typeof BlogBladeAwakeningReleaseNewsRoute
   '/blog/blade-awakening-set-guide': typeof BlogBladeAwakeningSetGuideRoute
+  '/blog/brilliant-counterattack-card-origins': typeof BlogBrilliantCounterattackCardOriginsRoute
+  '/blog/brilliant-counterattack-release-news': typeof BlogBrilliantCounterattackReleaseNewsRoute
+  '/blog/brilliant-counterattack-set-guide': typeof BlogBrilliantCounterattackSetGuideRoute
   '/blog/brilliant-fantasy-card-origins': typeof BlogBrilliantFantasyCardOriginsRoute
   '/blog/brilliant-fantasy-release-news': typeof BlogBrilliantFantasyReleaseNewsRoute
   '/blog/brilliant-fantasy-set-guide': typeof BlogBrilliantFantasySetGuideRoute
@@ -1844,6 +1868,9 @@ export interface FileRoutesByTo {
   '/blog/blade-awakening-card-origins': typeof BlogBladeAwakeningCardOriginsRoute
   '/blog/blade-awakening-release-news': typeof BlogBladeAwakeningReleaseNewsRoute
   '/blog/blade-awakening-set-guide': typeof BlogBladeAwakeningSetGuideRoute
+  '/blog/brilliant-counterattack-card-origins': typeof BlogBrilliantCounterattackCardOriginsRoute
+  '/blog/brilliant-counterattack-release-news': typeof BlogBrilliantCounterattackReleaseNewsRoute
+  '/blog/brilliant-counterattack-set-guide': typeof BlogBrilliantCounterattackSetGuideRoute
   '/blog/brilliant-fantasy-card-origins': typeof BlogBrilliantFantasyCardOriginsRoute
   '/blog/brilliant-fantasy-release-news': typeof BlogBrilliantFantasyReleaseNewsRoute
   '/blog/brilliant-fantasy-set-guide': typeof BlogBrilliantFantasySetGuideRoute
@@ -2080,6 +2107,9 @@ export interface FileRoutesById {
   '/blog/blade-awakening-card-origins': typeof BlogBladeAwakeningCardOriginsRoute
   '/blog/blade-awakening-release-news': typeof BlogBladeAwakeningReleaseNewsRoute
   '/blog/blade-awakening-set-guide': typeof BlogBladeAwakeningSetGuideRoute
+  '/blog/brilliant-counterattack-card-origins': typeof BlogBrilliantCounterattackCardOriginsRoute
+  '/blog/brilliant-counterattack-release-news': typeof BlogBrilliantCounterattackReleaseNewsRoute
+  '/blog/brilliant-counterattack-set-guide': typeof BlogBrilliantCounterattackSetGuideRoute
   '/blog/brilliant-fantasy-card-origins': typeof BlogBrilliantFantasyCardOriginsRoute
   '/blog/brilliant-fantasy-release-news': typeof BlogBrilliantFantasyReleaseNewsRoute
   '/blog/brilliant-fantasy-set-guide': typeof BlogBrilliantFantasySetGuideRoute
@@ -2317,6 +2347,9 @@ export interface FileRouteTypes {
     | '/blog/blade-awakening-card-origins'
     | '/blog/blade-awakening-release-news'
     | '/blog/blade-awakening-set-guide'
+    | '/blog/brilliant-counterattack-card-origins'
+    | '/blog/brilliant-counterattack-release-news'
+    | '/blog/brilliant-counterattack-set-guide'
     | '/blog/brilliant-fantasy-card-origins'
     | '/blog/brilliant-fantasy-release-news'
     | '/blog/brilliant-fantasy-set-guide'
@@ -2552,6 +2585,9 @@ export interface FileRouteTypes {
     | '/blog/blade-awakening-card-origins'
     | '/blog/blade-awakening-release-news'
     | '/blog/blade-awakening-set-guide'
+    | '/blog/brilliant-counterattack-card-origins'
+    | '/blog/brilliant-counterattack-release-news'
+    | '/blog/brilliant-counterattack-set-guide'
     | '/blog/brilliant-fantasy-card-origins'
     | '/blog/brilliant-fantasy-release-news'
     | '/blog/brilliant-fantasy-set-guide'
@@ -2787,6 +2823,9 @@ export interface FileRouteTypes {
     | '/blog/blade-awakening-card-origins'
     | '/blog/blade-awakening-release-news'
     | '/blog/blade-awakening-set-guide'
+    | '/blog/brilliant-counterattack-card-origins'
+    | '/blog/brilliant-counterattack-release-news'
+    | '/blog/brilliant-counterattack-set-guide'
     | '/blog/brilliant-fantasy-card-origins'
     | '/blog/brilliant-fantasy-release-news'
     | '/blog/brilliant-fantasy-set-guide'
@@ -3023,6 +3062,9 @@ export interface RootRouteChildren {
   BlogBladeAwakeningCardOriginsRoute: typeof BlogBladeAwakeningCardOriginsRoute
   BlogBladeAwakeningReleaseNewsRoute: typeof BlogBladeAwakeningReleaseNewsRoute
   BlogBladeAwakeningSetGuideRoute: typeof BlogBladeAwakeningSetGuideRoute
+  BlogBrilliantCounterattackCardOriginsRoute: typeof BlogBrilliantCounterattackCardOriginsRoute
+  BlogBrilliantCounterattackReleaseNewsRoute: typeof BlogBrilliantCounterattackReleaseNewsRoute
+  BlogBrilliantCounterattackSetGuideRoute: typeof BlogBrilliantCounterattackSetGuideRoute
   BlogBrilliantFantasyCardOriginsRoute: typeof BlogBrilliantFantasyCardOriginsRoute
   BlogBrilliantFantasyReleaseNewsRoute: typeof BlogBrilliantFantasyReleaseNewsRoute
   BlogBrilliantFantasySetGuideRoute: typeof BlogBrilliantFantasySetGuideRoute
@@ -3591,6 +3633,27 @@ declare module '@tanstack/react-router' {
       path: '/blog/blade-awakening-set-guide'
       fullPath: '/blog/blade-awakening-set-guide'
       preLoaderRoute: typeof BlogBladeAwakeningSetGuideRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/brilliant-counterattack-card-origins': {
+      id: '/blog/brilliant-counterattack-card-origins'
+      path: '/blog/brilliant-counterattack-card-origins'
+      fullPath: '/blog/brilliant-counterattack-card-origins'
+      preLoaderRoute: typeof BlogBrilliantCounterattackCardOriginsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/brilliant-counterattack-release-news': {
+      id: '/blog/brilliant-counterattack-release-news'
+      path: '/blog/brilliant-counterattack-release-news'
+      fullPath: '/blog/brilliant-counterattack-release-news'
+      preLoaderRoute: typeof BlogBrilliantCounterattackReleaseNewsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/brilliant-counterattack-set-guide': {
+      id: '/blog/brilliant-counterattack-set-guide'
+      path: '/blog/brilliant-counterattack-set-guide'
+      fullPath: '/blog/brilliant-counterattack-set-guide'
+      preLoaderRoute: typeof BlogBrilliantCounterattackSetGuideRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/blog/brilliant-fantasy-card-origins': {
@@ -4898,6 +4961,12 @@ const rootRouteChildren: RootRouteChildren = {
   BlogBladeAwakeningCardOriginsRoute: BlogBladeAwakeningCardOriginsRoute,
   BlogBladeAwakeningReleaseNewsRoute: BlogBladeAwakeningReleaseNewsRoute,
   BlogBladeAwakeningSetGuideRoute: BlogBladeAwakeningSetGuideRoute,
+  BlogBrilliantCounterattackCardOriginsRoute:
+    BlogBrilliantCounterattackCardOriginsRoute,
+  BlogBrilliantCounterattackReleaseNewsRoute:
+    BlogBrilliantCounterattackReleaseNewsRoute,
+  BlogBrilliantCounterattackSetGuideRoute:
+    BlogBrilliantCounterattackSetGuideRoute,
   BlogBrilliantFantasyCardOriginsRoute: BlogBrilliantFantasyCardOriginsRoute,
   BlogBrilliantFantasyReleaseNewsRoute: BlogBrilliantFantasyReleaseNewsRoute,
   BlogBrilliantFantasySetGuideRoute: BlogBrilliantFantasySetGuideRoute,

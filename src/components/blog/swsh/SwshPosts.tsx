@@ -219,6 +219,8 @@ function originStats(set: SwshBlogSet) {
 /** How a main-set rarity reads in a list: "mixes Commons, Uncommons, Rares, Pokémon V, ..." */
 const MAIN_LABEL: Record<string, string> = { C: 'Commons', U: 'Uncommons', R: 'Rares', A: 'Amazing Rares', K: 'Radiant Pokémon' }
 const andList = (xs: string[]) => (xs.length < 2 ? xs.join('') : `${xs.slice(0, -1).join(', ')} and ${xs[xs.length - 1]}`)
+/** "All 6 Ultra Rares", "Both Ultra Rares", "The one Character Super Rare". */
+const allOf = (n: number, name: string) => (n === 1 ? `The one ${name === 'Shiny' ? 'Shiny card' : name}` : n === 2 ? `Both ${plural(name)}` : `All ${n} ${plural(name)}`)
 const p3 = (n: number) => String(n).padStart(3, '0')
 const nf = (n: number) => n.toLocaleString('en-US')
 /** "Hyper Rare" -> "Hyper Rares", "Shiny" -> "Shiny cards". */
@@ -603,7 +605,7 @@ export function SwshGuidePost({ set, post, status }: { set: SwshBlogSet; post: B
   ]
   const toc = [
     { id: 'numbering', label: 'How the numbers work' },
-    ...secretTiers.map((t) => ({ id: `tier-${t.tier.toLowerCase()}`, label: `All ${t.count} ${plural(t.name)}` })),
+    ...secretTiers.map((t) => ({ id: `tier-${t.tier.toLowerCase()}`, label: allOf(t.count, t.name) })),
     ...(ladder.length ? [{ id: 'ladders', label: 'One card, several rarities' }] : []),
     { id: 'master-set', label: 'Chasing a master set' },
     { id: 'faq', label: 'FAQ' },
@@ -645,7 +647,7 @@ export function SwshGuidePost({ set, post, status }: { set: SwshBlogSet; post: B
         {secretTiers.map((t) => (
           <React.Fragment key={t.tier}>
             <h2 id={`tier-${t.tier.toLowerCase()}`}>
-              All {t.count} {plural(t.name)}
+              {allOf(t.count, t.name)}
             </h2>
             <p>
               Numbered {t.range}. {meaning(set, t.tier)}.
