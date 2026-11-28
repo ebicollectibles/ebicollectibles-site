@@ -13,8 +13,9 @@ import { GemSetPage } from '~/components/gem-set/GemSetPage'
 // database (mirrored by duanxr/PTCG-CHS-Datasets), checked card by card
 // against Bulbapedia; the rarity disagreements were settled by the rarity
 // mark printed on the card. English names: Bulbapedia, with Pokémon
-// names cross-checked against PokeAPI. No card images yet: the only
-// source's licence is non-commercial, so images wait on the owner.
+// names cross-checked against PokeAPI. Card images: the official 300x419
+// scans from that mirror, hosted on R2, for development review only (the
+// mirror's licence is non-commercial; settle images before going public).
 
 const raw: GemSetData = { ...(rawData as GemSetData) }
 const data = buildGemSetData(raw)

@@ -28,7 +28,7 @@
    "version": 1,
    "name": "Caterpie",
    "rarity": "Common (C)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0001.webp"
   },
   {
    "number": "002/136",
@@ -36,7 +36,7 @@
    "version": 1,
    "name": "Metapod",
    "rarity": "Common (C)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0002.webp"
   },
   {
    "number": "003/136",
@@ -44,7 +44,7 @@
    "version": 1,
    "name": "Butterfree",
    "rarity": "Uncommon (U)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0003.webp"
   },
   {
    "number": "004/136",
@@ -52,7 +52,7 @@
    "version": 1,
    "name": "Butterfree V",
    "rarity": "Double Rare (RR)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0004.webp"
   },
   {
    "number": "005/136",
@@ -60,7 +60,7 @@
    "version": 1,
    "name": "Butterfree VMAX",
    "rarity": "Triple Rare (RRR)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0005.webp"
   },
   {
    "number": "006/136",
@@ -68,7 +68,7 @@
    "version": 1,
    "name": "Scyther",
    "rarity": "Common (C)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0006.webp"
   },
   {
    "number": "007/136",
@@ -76,7 +76,7 @@
    "version": 1,
    "name": "Shuckle",
    "rarity": "Uncommon (U)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0007.webp"
   },
   {
    "number": "008/136",
@@ -84,7 +84,7 @@
    "version": 1,
    "name": "Heracross",
    "rarity": "Common (C)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0008.webp"
   },
   {
    "number": "009/136",
@@ -92,7 +92,7 @@
    "version": 1,
    "name": "Lotad",
    "rarity": "Common (C)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0009.webp"
   },
   {
    "number": "010/136",
@@ -100,7 +100,7 @@
    "version": 1,
    "name": "Lombre",
    "rarity": "Common (C)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0010.webp"
   },
   {
    "number": "011/136",
@@ -108,7 +108,7 @@
    "version": 1,
    "name": "Ludicolo",
    "rarity": "Uncommon (U)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0011.webp"
   },
   {
    "number": "012/136",
@@ -116,7 +116,7 @@
    "version": 1,
    "name": "Surskit",
    "rarity": "Common (C)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0012.webp"
   },
   {
    "number": "013/136",
@@ -124,7 +124,7 @@
    "version": 1,
    "name": "Masquerain",
    "rarity": "Common (C)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0013.webp"
   },
   {
    "number": "014/136",
@@ -132,7 +132,7 @@
    "version": 1,
    "name": "Roselia",
    "rarity": "Common (C)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0014.webp"
   },
   {
    "number": "015/136",
@@ -140,7 +140,7 @@
    "version": 1,
    "name": "Roserade",
    "rarity": "Uncommon (U)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0015.webp"
   },
   {
    "number": "016/136",
@@ -148,7 +148,7 @@
    "version": 1,
    "name": "Maractus",
    "rarity": "Common (C)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0016.webp"
   },
   {
    "number": "017/136",
@@ -156,7 +156,7 @@
    "version": 1,
    "name": "Karrablast",
    "rarity": "Common (C)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0017.webp"
   },
   {
    "number": "018/136",
@@ -164,7 +164,7 @@
    "version": 1,
    "name": "Shelmet",
    "rarity": "Common (C)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0018.webp"
   },
   {
    "number": "019/136",
@@ -172,7 +172,7 @@
    "version": 1,
    "name": "Accelgor",
    "rarity": "Uncommon (U)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0019.webp"
   },
   {
    "number": "020/136",
@@ -180,7 +180,7 @@
    "version": 1,
    "name": "Phantump",
    "rarity": "Common (C)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0020.webp"
   },
   {
    "number": "021/136",
@@ -188,7 +188,7 @@
    "version": 1,
    "name": "Trevenant",
    "rarity": "Uncommon (U)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0021.webp"
   },
   {
    "number": "022/136",
@@ -196,7 +196,7 @@
    "version": 1,
    "name": "Bounsweet",
    "rarity": "Common (C)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0022.webp"
   },
   {
    "number": "023/136",
@@ -204,7 +204,7 @@
    "version": 1,
    "name": "Steenee",
    "rarity": "Common (C)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0023.webp"
   },
   {
    "number": "024/136",
@@ -212,7 +212,7 @@
    "version": 1,
    "name": "Tsareena",
    "rarity": "Uncommon (U)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0024.webp"
   },
   {
    "number": "025/136",
@@ -220,7 +220,7 @@
    "version": 1,
    "name": "Wimpod",
    "rarity": "Common (C)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0025.webp"
   },
   {
    "number": "026/136",
@@ -228,7 +228,7 @@
    "version": 1,
    "name": "Golisopod",
    "rarity": "Rare (R)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0026.webp"
   },
   {
    "number": "027/136",
@@ -236,7 +236,7 @@
    "version": 1,
    "name": "Grookey",
    "rarity": "Common (C)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0027.webp"
   },
   {
    "number": "028/136",
@@ -244,7 +244,7 @@
    "version": 1,
    "name": "Thwackey",
    "rarity": "Uncommon (U)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0028.webp"
   },
   {
    "number": "029/136",
@@ -252,7 +252,7 @@
    "version": 1,
    "name": "Rillaboom",
    "rarity": "Rare (R)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0029.webp"
   },
   {
    "number": "030/136",
@@ -260,7 +260,7 @@
    "version": 1,
    "name": "Rillaboom V",
    "rarity": "Double Rare (RR)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0030.webp"
   },
   {
    "number": "031/136",
@@ -268,7 +268,7 @@
    "version": 1,
    "name": "Rillaboom VMAX",
    "rarity": "Triple Rare (RRR)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0031.webp"
   },
   {
    "number": "032/136",
@@ -276,7 +276,7 @@
    "version": 1,
    "name": "Vulpix",
    "rarity": "Common (C)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0032.webp"
   },
   {
    "number": "033/136",
@@ -284,7 +284,7 @@
    "version": 1,
    "name": "Ninetales",
    "rarity": "Uncommon (U)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0033.webp"
   },
   {
    "number": "034/136",
@@ -292,7 +292,7 @@
    "version": 1,
    "name": "Ninetales V",
    "rarity": "Double Rare (RR)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0034.webp"
   },
   {
    "number": "035/136",
@@ -300,7 +300,7 @@
    "version": 1,
    "name": "Growlithe",
    "rarity": "Common (C)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0035.webp"
   },
   {
    "number": "036/136",
@@ -308,7 +308,7 @@
    "version": 1,
    "name": "Arcanine",
    "rarity": "Uncommon (U)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0036.webp"
   },
   {
    "number": "037/136",
@@ -316,7 +316,7 @@
    "version": 1,
    "name": "Magmar",
    "rarity": "Common (C)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0037.webp"
   },
   {
    "number": "038/136",
@@ -324,7 +324,7 @@
    "version": 1,
    "name": "Magmortar",
    "rarity": "Uncommon (U)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0038.webp"
   },
   {
    "number": "039/136",
@@ -332,7 +332,7 @@
    "version": 1,
    "name": "Torkoal V",
    "rarity": "Double Rare (RR)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0039.webp"
   },
   {
    "number": "040/136",
@@ -340,7 +340,7 @@
    "version": 1,
    "name": "Heatran",
    "rarity": "Rare (R)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0040.webp"
   },
   {
    "number": "041/136",
@@ -348,7 +348,7 @@
    "version": 1,
    "name": "Litwick",
    "rarity": "Common (C)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0041.webp"
   },
   {
    "number": "042/136",
@@ -356,7 +356,7 @@
    "version": 1,
    "name": "Lampent",
    "rarity": "Common (C)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0042.webp"
   },
   {
    "number": "043/136",
@@ -364,7 +364,7 @@
    "version": 1,
    "name": "Chandelure",
    "rarity": "Rare (R)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0043.webp"
   },
   {
    "number": "044/136",
@@ -372,7 +372,7 @@
    "version": 1,
    "name": "Heatmor",
    "rarity": "Common (C)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0044.webp"
   },
   {
    "number": "045/136",
@@ -380,7 +380,7 @@
    "version": 1,
    "name": "Fletchinder",
    "rarity": "Common (C)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0045.webp"
   },
   {
    "number": "046/136",
@@ -388,7 +388,7 @@
    "version": 1,
    "name": "Talonflame",
    "rarity": "Uncommon (U)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0046.webp"
   },
   {
    "number": "047/136",
@@ -396,7 +396,7 @@
    "version": 1,
    "name": "Scorbunny",
    "rarity": "Common (C)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0047.webp"
   },
   {
    "number": "048/136",
@@ -404,7 +404,7 @@
    "version": 1,
    "name": "Raboot",
    "rarity": "Uncommon (U)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0048.webp"
   },
   {
    "number": "049/136",
@@ -412,7 +412,7 @@
    "version": 1,
    "name": "Cinderace",
    "rarity": "Rare (R)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0049.webp"
   },
   {
    "number": "050/136",
@@ -420,7 +420,7 @@
    "version": 1,
    "name": "Cinderace V",
    "rarity": "Double Rare (RR)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0050.webp"
   },
   {
    "number": "051/136",
@@ -428,7 +428,7 @@
    "version": 1,
    "name": "Cinderace VMAX",
    "rarity": "Triple Rare (RRR)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0051.webp"
   },
   {
    "number": "052/136",
@@ -436,7 +436,7 @@
    "version": 1,
    "name": "Sizzlipede",
    "rarity": "Common (C)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0052.webp"
   },
   {
    "number": "053/136",
@@ -444,7 +444,7 @@
    "version": 1,
    "name": "Centiskorch",
    "rarity": "Uncommon (U)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0053.webp"
   },
   {
    "number": "054/136",
@@ -452,7 +452,7 @@
    "version": 1,
    "name": "Centiskorch V",
    "rarity": "Double Rare (RR)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0054.webp"
   },
   {
    "number": "055/136",
@@ -460,7 +460,7 @@
    "version": 1,
    "name": "Centiskorch VMAX",
    "rarity": "Triple Rare (RRR)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0055.webp"
   },
   {
    "number": "056/136",
@@ -468,7 +468,7 @@
    "version": 1,
    "name": "Nosepass",
    "rarity": "Common (C)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0056.webp"
   },
   {
    "number": "057/136",
@@ -476,7 +476,7 @@
    "version": 1,
    "name": "Grimer",
    "rarity": "Common (C)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0057.webp"
   },
   {
    "number": "058/136",
@@ -484,7 +484,7 @@
    "version": 1,
    "name": "Muk",
    "rarity": "Uncommon (U)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0058.webp"
   },
   {
    "number": "059/136",
@@ -492,7 +492,7 @@
    "version": 1,
    "name": "Galarian Zigzagoon",
    "rarity": "Common (C)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0059.webp"
   },
   {
    "number": "060/136",
@@ -500,7 +500,7 @@
    "version": 1,
    "name": "Galarian Linoone",
    "rarity": "Uncommon (U)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0060.webp"
   },
   {
    "number": "061/136",
@@ -508,7 +508,7 @@
    "version": 1,
    "name": "Galarian Obstagoon",
    "rarity": "Rare (R)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0061.webp"
   },
   {
    "number": "062/136",
@@ -516,7 +516,7 @@
    "version": 1,
    "name": "Sableye V",
    "rarity": "Double Rare (RR)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0062.webp"
   },
   {
    "number": "063/136",
@@ -524,7 +524,7 @@
    "version": 1,
    "name": "Spiritomb",
    "rarity": "Uncommon (U)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0063.webp"
   },
   {
    "number": "064/136",
@@ -532,7 +532,7 @@
    "version": 1,
    "name": "Skorupi",
    "rarity": "Common (C)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0064.webp"
   },
   {
    "number": "065/136",
@@ -540,7 +540,7 @@
    "version": 1,
    "name": "Drapion",
    "rarity": "Uncommon (U)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0065.webp"
   },
   {
    "number": "066/136",
@@ -548,7 +548,7 @@
    "version": 1,
    "name": "Croagunk",
    "rarity": "Common (C)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0066.webp"
   },
   {
    "number": "067/136",
@@ -556,7 +556,7 @@
    "version": 1,
    "name": "Toxicroak",
    "rarity": "Rare (R)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0067.webp"
   },
   {
    "number": "068/136",
@@ -564,7 +564,7 @@
    "version": 1,
    "name": "Darkrai",
    "rarity": "Rare (R)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0068.webp"
   },
   {
    "number": "069/136",
@@ -572,7 +572,7 @@
    "version": 1,
    "name": "Trubbish",
    "rarity": "Common (C)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0069.webp"
   },
   {
    "number": "070/136",
@@ -580,7 +580,7 @@
    "version": 1,
    "name": "Garbodor",
    "rarity": "Uncommon (U)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0070.webp"
   },
   {
    "number": "071/136",
@@ -588,7 +588,7 @@
    "version": 1,
    "name": "Vullaby",
    "rarity": "Common (C)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0071.webp"
   },
   {
    "number": "072/136",
@@ -596,7 +596,7 @@
    "version": 1,
    "name": "Mandibuzz",
    "rarity": "Uncommon (U)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0072.webp"
   },
   {
    "number": "073/136",
@@ -604,7 +604,7 @@
    "version": 1,
    "name": "Deino",
    "rarity": "Common (C)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0073.webp"
   },
   {
    "number": "074/136",
@@ -612,7 +612,7 @@
    "version": 1,
    "name": "Zweilous",
    "rarity": "Common (C)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0074.webp"
   },
   {
    "number": "075/136",
@@ -620,7 +620,7 @@
    "version": 1,
    "name": "Hydreigon",
    "rarity": "Uncommon (U)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0075.webp"
   },
   {
    "number": "076/136",
@@ -628,7 +628,7 @@
    "version": 1,
    "name": "Malamar V",
    "rarity": "Double Rare (RR)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0076.webp"
   },
   {
    "number": "077/136",
@@ -636,7 +636,7 @@
    "version": 1,
    "name": "Malamar VMAX",
    "rarity": "Triple Rare (RRR)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0077.webp"
   },
   {
    "number": "078/136",
@@ -644,7 +644,7 @@
    "version": 1,
    "name": "Impidimp",
    "rarity": "Common (C)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0078.webp"
   },
   {
    "number": "079/136",
@@ -652,7 +652,7 @@
    "version": 1,
    "name": "Morgrem",
    "rarity": "Common (C)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0079.webp"
   },
   {
    "number": "080/136",
@@ -660,7 +660,7 @@
    "version": 1,
    "name": "Grimmsnarl",
    "rarity": "Rare (R)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0080.webp"
   },
   {
    "number": "081/136",
@@ -668,7 +668,7 @@
    "version": 1,
    "name": "Grimmsnarl V",
    "rarity": "Double Rare (RR)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0081.webp"
   },
   {
    "number": "082/136",
@@ -676,7 +676,7 @@
    "version": 1,
    "name": "Grimmsnarl VMAX",
    "rarity": "Triple Rare (RRR)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0082.webp"
   },
   {
    "number": "083/136",
@@ -684,7 +684,7 @@
    "version": 1,
    "name": "Scizor",
    "rarity": "Uncommon (U)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0083.webp"
   },
   {
    "number": "084/136",
@@ -692,7 +692,7 @@
    "version": 1,
    "name": "Mawile",
    "rarity": "Common (C)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0084.webp"
   },
   {
    "number": "085/136",
@@ -700,7 +700,7 @@
    "version": 1,
    "name": "Aron",
    "rarity": "Common (C)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0085.webp"
   },
   {
    "number": "086/136",
@@ -708,7 +708,7 @@
    "version": 1,
    "name": "Lairon",
    "rarity": "Common (C)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0086.webp"
   },
   {
    "number": "087/136",
@@ -716,7 +716,7 @@
    "version": 1,
    "name": "Aggron",
    "rarity": "Rare (R)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0087.webp"
   },
   {
    "number": "088/136",
@@ -724,7 +724,7 @@
    "version": 1,
    "name": "Probopass",
    "rarity": "Uncommon (U)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0088.webp"
   },
   {
    "number": "089/136",
@@ -732,7 +732,7 @@
    "version": 1,
    "name": "Escavalier",
    "rarity": "Uncommon (U)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0089.webp"
   },
   {
    "number": "090/136",
@@ -740,7 +740,7 @@
    "version": 1,
    "name": "Galarian Stunfisk",
    "rarity": "Common (C)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0090.webp"
   },
   {
    "number": "091/136",
@@ -748,7 +748,7 @@
    "version": 1,
    "name": "Pawniard",
    "rarity": "Common (C)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0091.webp"
   },
   {
    "number": "092/136",
@@ -756,7 +756,7 @@
    "version": 1,
    "name": "Bisharp",
    "rarity": "Common (C)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0092.webp"
   },
   {
    "number": "093/136",
@@ -764,7 +764,7 @@
    "version": 1,
    "name": "Honedge",
    "rarity": "Common (C)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0093.webp"
   },
   {
    "number": "094/136",
@@ -772,7 +772,7 @@
    "version": 1,
    "name": "Doublade",
    "rarity": "Common (C)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0094.webp"
   },
   {
    "number": "095/136",
@@ -780,7 +780,7 @@
    "version": 1,
    "name": "Aegislash",
    "rarity": "Uncommon (U)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0095.webp"
   },
   {
    "number": "096/136",
@@ -788,7 +788,7 @@
    "version": 1,
    "name": "Corviknight",
    "rarity": "Uncommon (U)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0096.webp"
   },
   {
    "number": "097/136",
@@ -796,7 +796,7 @@
    "version": 1,
    "name": "Cufant",
    "rarity": "Common (C)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0097.webp"
   },
   {
    "number": "098/136",
@@ -804,7 +804,7 @@
    "version": 1,
    "name": "Copperajah",
    "rarity": "Rare (R)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0098.webp"
   },
   {
    "number": "099/136",
@@ -812,7 +812,7 @@
    "version": 1,
    "name": "Copperajah V",
    "rarity": "Double Rare (RR)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0099.webp"
   },
   {
    "number": "100/136",
@@ -820,7 +820,7 @@
    "version": 1,
    "name": "Copperajah VMAX",
    "rarity": "Triple Rare (RRR)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0100.webp"
   },
   {
    "number": "101/136",
@@ -828,7 +828,7 @@
    "version": 1,
    "name": "Duraludon",
    "rarity": "Rare (R)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0101.webp"
   },
   {
    "number": "102/136",
@@ -836,7 +836,7 @@
    "version": 1,
    "name": "Zacian",
    "rarity": "Rare (R)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0102.webp"
   },
   {
    "number": "103/136",
@@ -844,7 +844,7 @@
    "version": 1,
    "name": "Zacian V",
    "rarity": "Double Rare (RR)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0103.webp"
   },
   {
    "number": "104/136",
@@ -852,7 +852,7 @@
    "version": 1,
    "name": "Zamazenta",
    "rarity": "Rare (R)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0104.webp"
   },
   {
    "number": "105/136",
@@ -860,7 +860,7 @@
    "version": 1,
    "name": "Zamazenta V",
    "rarity": "Double Rare (RR)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0105.webp"
   },
   {
    "number": "106/136",
@@ -868,7 +868,7 @@
    "version": 1,
    "name": "Swablu",
    "rarity": "Common (C)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0106.webp"
   },
   {
    "number": "107/136",
@@ -876,7 +876,7 @@
    "version": 1,
    "name": "Altaria",
    "rarity": "Uncommon (U)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0107.webp"
   },
   {
    "number": "108/136",
@@ -884,7 +884,7 @@
    "version": 1,
    "name": "Pidove",
    "rarity": "Common (C)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0108.webp"
   },
   {
    "number": "109/136",
@@ -892,7 +892,7 @@
    "version": 1,
    "name": "Tranquill",
    "rarity": "Common (C)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0109.webp"
   },
   {
    "number": "110/136",
@@ -900,7 +900,7 @@
    "version": 1,
    "name": "Unfezant",
    "rarity": "Uncommon (U)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0110.webp"
   },
   {
    "number": "111/136",
@@ -908,7 +908,7 @@
    "version": 1,
    "name": "Minccino",
    "rarity": "Common (C)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0111.webp"
   },
   {
    "number": "112/136",
@@ -916,7 +916,7 @@
    "version": 1,
    "name": "Cinccino",
    "rarity": "Uncommon (U)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0112.webp"
   },
   {
    "number": "113/136",
@@ -924,7 +924,7 @@
    "version": 1,
    "name": "Fletchling",
    "rarity": "Common (C)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0113.webp"
   },
   {
    "number": "114/136",
@@ -932,7 +932,7 @@
    "version": 1,
    "name": "Skwovet",
    "rarity": "Common (C)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0114.webp"
   },
   {
    "number": "115/136",
@@ -940,7 +940,7 @@
    "version": 1,
    "name": "Greedent",
    "rarity": "Uncommon (U)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0115.webp"
   },
   {
    "number": "116/136",
@@ -948,7 +948,7 @@
    "version": 1,
    "name": "Rookidee",
    "rarity": "Common (C)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0116.webp"
   },
   {
    "number": "117/136",
@@ -956,7 +956,7 @@
    "version": 1,
    "name": "Corvisquire",
    "rarity": "Common (C)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0117.webp"
   },
   {
    "number": "118/136",
@@ -964,7 +964,7 @@
    "version": 1,
    "name": "Wooloo",
    "rarity": "Common (C)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0118.webp"
   },
   {
    "number": "119/136",
@@ -972,7 +972,7 @@
    "version": 1,
    "name": "Dubwool",
    "rarity": "Common (C)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0119.webp"
   },
   {
    "number": "120/136",
@@ -980,7 +980,7 @@
    "version": 1,
    "name": "Dubwool V",
    "rarity": "Double Rare (RR)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0120.webp"
   },
   {
    "number": "121/136",
@@ -988,7 +988,7 @@
    "version": 1,
    "name": "Nugget",
    "rarity": "Uncommon (U)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0121.webp"
   },
   {
    "number": "122/136",
@@ -996,7 +996,7 @@
    "version": 1,
    "name": "Quick ball",
    "rarity": "Uncommon (U)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0122.webp"
   },
   {
    "number": "123/136",
@@ -1004,7 +1004,7 @@
    "version": 1,
    "name": "Rotom Phone",
    "rarity": "Common (C)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0123.webp"
   },
   {
    "number": "124/136",
@@ -1012,7 +1012,7 @@
    "version": 1,
    "name": "Rare Candy",
    "rarity": "Uncommon (U)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0124.webp"
   },
   {
    "number": "125/136",
@@ -1020,7 +1020,7 @@
    "version": 1,
    "name": "Metal Saucer",
    "rarity": "Uncommon (U)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0125.webp"
   },
   {
    "number": "126/136",
@@ -1028,7 +1028,7 @@
    "version": 1,
    "name": "Vitality Band",
    "rarity": "Uncommon (U)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0126.webp"
   },
   {
    "number": "127/136",
@@ -1036,7 +1036,7 @@
    "version": 1,
    "name": "Big Parasol",
    "rarity": "Uncommon (U)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0127.webp"
   },
   {
    "number": "128/136",
@@ -1044,7 +1044,7 @@
    "version": 1,
    "name": "Air Balloon",
    "rarity": "Uncommon (U)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0128.webp"
   },
   {
    "number": "129/136",
@@ -1052,7 +1052,7 @@
    "version": 1,
    "name": "Burning Scarf",
    "rarity": "Uncommon (U)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0129.webp"
   },
   {
    "number": "130/136",
@@ -1060,7 +1060,7 @@
    "version": 1,
    "name": "Lum Berry",
    "rarity": "Uncommon (U)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0130.webp"
   },
   {
    "number": "131/136",
@@ -1068,7 +1068,7 @@
    "version": 1,
    "name": "Sonia",
    "rarity": "Uncommon (U)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0131.webp"
   },
   {
    "number": "132/136",
@@ -1076,7 +1076,7 @@
    "version": 1,
    "name": "Professor's Research",
    "rarity": "Rare (R)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0132.webp"
   },
   {
    "number": "133/136",
@@ -1084,7 +1084,7 @@
    "version": 1,
    "name": "Skyla",
    "rarity": "Uncommon (U)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0133.webp"
   },
   {
    "number": "134/136",
@@ -1092,7 +1092,7 @@
    "version": 1,
    "name": "Milo",
    "rarity": "Uncommon (U)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0134.webp"
   },
   {
    "number": "135/136",
@@ -1100,7 +1100,7 @@
    "version": 1,
    "name": "Turffield Stadium",
    "rarity": "Uncommon (U)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0135.webp"
   },
   {
    "number": "136/136",
@@ -1108,7 +1108,7 @@
    "version": 1,
    "name": "Twin Energy",
    "rarity": "Uncommon (U)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0136.webp"
   },
   {
    "number": "137/136",
@@ -1116,7 +1116,7 @@
    "version": 1,
    "name": "Grookey",
    "rarity": "Shiny (S)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0137.webp"
   },
   {
    "number": "138/136",
@@ -1124,7 +1124,7 @@
    "version": 1,
    "name": "Thwackey",
    "rarity": "Shiny (S)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0138.webp"
   },
   {
    "number": "139/136",
@@ -1132,7 +1132,7 @@
    "version": 1,
    "name": "Rillaboom",
    "rarity": "Shiny (S)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0139.webp"
   },
   {
    "number": "140/136",
@@ -1140,7 +1140,7 @@
    "version": 1,
    "name": "Scorbunny",
    "rarity": "Shiny (S)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0140.webp"
   },
   {
    "number": "141/136",
@@ -1148,7 +1148,7 @@
    "version": 1,
    "name": "Raboot",
    "rarity": "Shiny (S)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0141.webp"
   },
   {
    "number": "142/136",
@@ -1156,7 +1156,7 @@
    "version": 1,
    "name": "Cinderace",
    "rarity": "Shiny (S)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0142.webp"
   },
   {
    "number": "143/136",
@@ -1164,7 +1164,7 @@
    "version": 1,
    "name": "Sizzlipede",
    "rarity": "Shiny (S)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0143.webp"
   },
   {
    "number": "144/136",
@@ -1172,7 +1172,7 @@
    "version": 1,
    "name": "Centiskorch",
    "rarity": "Shiny (S)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0144.webp"
   },
   {
    "number": "145/136",
@@ -1180,7 +1180,7 @@
    "version": 1,
    "name": "Galarian Zigzagoon",
    "rarity": "Shiny (S)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0145.webp"
   },
   {
    "number": "146/136",
@@ -1188,7 +1188,7 @@
    "version": 1,
    "name": "Galarian Linoone",
    "rarity": "Shiny (S)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0146.webp"
   },
   {
    "number": "147/136",
@@ -1196,7 +1196,7 @@
    "version": 1,
    "name": "Galarian Obstagoon",
    "rarity": "Shiny (S)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0147.webp"
   },
   {
    "number": "148/136",
@@ -1204,7 +1204,7 @@
    "version": 1,
    "name": "Impidimp",
    "rarity": "Shiny (S)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0148.webp"
   },
   {
    "number": "149/136",
@@ -1212,7 +1212,7 @@
    "version": 1,
    "name": "Morgrem",
    "rarity": "Shiny (S)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0149.webp"
   },
   {
    "number": "150/136",
@@ -1220,7 +1220,7 @@
    "version": 1,
    "name": "Grimmsnarl",
    "rarity": "Shiny (S)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0150.webp"
   },
   {
    "number": "151/136",
@@ -1228,7 +1228,7 @@
    "version": 1,
    "name": "Galarian Stunfisk",
    "rarity": "Shiny (S)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0151.webp"
   },
   {
    "number": "152/136",
@@ -1236,7 +1236,7 @@
    "version": 1,
    "name": "Corviknight",
    "rarity": "Shiny (S)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0152.webp"
   },
   {
    "number": "153/136",
@@ -1244,7 +1244,7 @@
    "version": 1,
    "name": "Duraludon",
    "rarity": "Shiny (S)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0153.webp"
   },
   {
    "number": "154/136",
@@ -1252,7 +1252,7 @@
    "version": 1,
    "name": "Minccino",
    "rarity": "Shiny (S)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0154.webp"
   },
   {
    "number": "155/136",
@@ -1260,7 +1260,7 @@
    "version": 1,
    "name": "Cinccino",
    "rarity": "Shiny (S)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0155.webp"
   },
   {
    "number": "156/136",
@@ -1268,7 +1268,7 @@
    "version": 1,
    "name": "Skwovet",
    "rarity": "Shiny (S)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0156.webp"
   },
   {
    "number": "157/136",
@@ -1276,7 +1276,7 @@
    "version": 1,
    "name": "Greedent",
    "rarity": "Shiny (S)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0157.webp"
   },
   {
    "number": "158/136",
@@ -1284,7 +1284,7 @@
    "version": 1,
    "name": "Rookidee",
    "rarity": "Shiny (S)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0158.webp"
   },
   {
    "number": "159/136",
@@ -1292,7 +1292,7 @@
    "version": 1,
    "name": "Corvisquire",
    "rarity": "Shiny (S)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0159.webp"
   },
   {
    "number": "160/136",
@@ -1300,7 +1300,7 @@
    "version": 1,
    "name": "Wooloo",
    "rarity": "Shiny (S)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0160.webp"
   },
   {
    "number": "161/136",
@@ -1308,7 +1308,7 @@
    "version": 1,
    "name": "Dubwool",
    "rarity": "Shiny (S)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0161.webp"
   },
   {
    "number": "162/136",
@@ -1316,7 +1316,7 @@
    "version": 1,
    "name": "Rillaboom V",
    "rarity": "Super Rare (SR)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0162.webp"
   },
   {
    "number": "163/136",
@@ -1324,7 +1324,7 @@
    "version": 1,
    "name": "Ninetales V",
    "rarity": "Super Rare (SR)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0163.webp"
   },
   {
    "number": "164/136",
@@ -1332,7 +1332,7 @@
    "version": 1,
    "name": "Torkoal V",
    "rarity": "Super Rare (SR)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0164.webp"
   },
   {
    "number": "165/136",
@@ -1340,7 +1340,7 @@
    "version": 1,
    "name": "Cinderace V",
    "rarity": "Super Rare (SR)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0165.webp"
   },
   {
    "number": "166/136",
@@ -1348,7 +1348,7 @@
    "version": 1,
    "name": "Centiskorch V",
    "rarity": "Super Rare (SR)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0166.webp"
   },
   {
    "number": "167/136",
@@ -1356,7 +1356,7 @@
    "version": 1,
    "name": "Sableye V",
    "rarity": "Super Rare (SR)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0167.webp"
   },
   {
    "number": "168/136",
@@ -1364,7 +1364,7 @@
    "version": 1,
    "name": "Malamar V",
    "rarity": "Super Rare (SR)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0168.webp"
   },
   {
    "number": "169/136",
@@ -1372,7 +1372,7 @@
    "version": 1,
    "name": "Copperajah V",
    "rarity": "Super Rare (SR)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0169.webp"
   },
   {
    "number": "170/136",
@@ -1380,7 +1380,7 @@
    "version": 1,
    "name": "Zacian V",
    "rarity": "Super Rare (SR)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0170.webp"
   },
   {
    "number": "171/136",
@@ -1388,7 +1388,7 @@
    "version": 1,
    "name": "Zamazenta V",
    "rarity": "Super Rare (SR)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0171.webp"
   },
   {
    "number": "172/136",
@@ -1396,7 +1396,7 @@
    "version": 1,
    "name": "Dubwool V",
    "rarity": "Super Rare (SR)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0172.webp"
   },
   {
    "number": "173/136",
@@ -1404,7 +1404,7 @@
    "version": 1,
    "name": "Professor's Research",
    "rarity": "Super Rare (SR)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0173.webp"
   },
   {
    "number": "174/136",
@@ -1412,7 +1412,7 @@
    "version": 1,
    "name": "Skyla",
    "rarity": "Super Rare (SR)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0174.webp"
   },
   {
    "number": "175/136",
@@ -1420,7 +1420,7 @@
    "version": 1,
    "name": "Milo",
    "rarity": "Super Rare (SR)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0175.webp"
   },
   {
    "number": "176/136",
@@ -1428,7 +1428,7 @@
    "version": 1,
    "name": "Rillaboom V",
    "rarity": "Shiny Super Rare (SSR)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0176.webp"
   },
   {
    "number": "177/136",
@@ -1436,7 +1436,7 @@
    "version": 1,
    "name": "Rillaboom VMAX",
    "rarity": "Shiny Super Rare (SSR)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0177.webp"
   },
   {
    "number": "178/136",
@@ -1444,7 +1444,7 @@
    "version": 1,
    "name": "Centiskorch V",
    "rarity": "Shiny Super Rare (SSR)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0178.webp"
   },
   {
    "number": "179/136",
@@ -1452,7 +1452,7 @@
    "version": 1,
    "name": "Centiskorch VMAX",
    "rarity": "Shiny Super Rare (SSR)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0179.webp"
   },
   {
    "number": "180/136",
@@ -1460,7 +1460,7 @@
    "version": 1,
    "name": "Grimmsnarl V",
    "rarity": "Shiny Super Rare (SSR)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0180.webp"
   },
   {
    "number": "181/136",
@@ -1468,7 +1468,7 @@
    "version": 1,
    "name": "Grimmsnarl VMAX",
    "rarity": "Shiny Super Rare (SSR)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0181.webp"
   },
   {
    "number": "182/136",
@@ -1476,7 +1476,7 @@
    "version": 1,
    "name": "Dubwool V",
    "rarity": "Shiny Super Rare (SSR)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0182.webp"
   },
   {
    "number": "183/136",
@@ -1484,7 +1484,7 @@
    "version": 1,
    "name": "Rillaboom VMAX",
    "rarity": "Hyper Rare (HR)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0183.webp"
   },
   {
    "number": "184/136",
@@ -1492,7 +1492,7 @@
    "version": 1,
    "name": "Cinderace VMAX",
    "rarity": "Hyper Rare (HR)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0184.webp"
   },
   {
    "number": "185/136",
@@ -1500,7 +1500,7 @@
    "version": 1,
    "name": "Centiskorch VMAX",
    "rarity": "Hyper Rare (HR)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0185.webp"
   },
   {
    "number": "186/136",
@@ -1508,7 +1508,7 @@
    "version": 1,
    "name": "Malamar VMAX",
    "rarity": "Hyper Rare (HR)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0186.webp"
   },
   {
    "number": "187/136",
@@ -1516,7 +1516,7 @@
    "version": 1,
    "name": "Copperajah VMAX",
    "rarity": "Hyper Rare (HR)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0187.webp"
   },
   {
    "number": "188/136",
@@ -1524,7 +1524,7 @@
    "version": 1,
    "name": "Professor's Research",
    "rarity": "Hyper Rare (HR)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0188.webp"
   },
   {
    "number": "189/136",
@@ -1532,7 +1532,7 @@
    "version": 1,
    "name": "Milo",
    "rarity": "Hyper Rare (HR)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0189.webp"
   },
   {
    "number": "190/136",
@@ -1540,7 +1540,7 @@
    "version": 1,
    "name": "Rillaboom",
    "rarity": "Ultra Rare (UR)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0190.webp"
   },
   {
    "number": "191/136",
@@ -1548,7 +1548,7 @@
    "version": 1,
    "name": "Galarian Obstagoon",
    "rarity": "Ultra Rare (UR)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0191.webp"
   },
   {
    "number": "192/136",
@@ -1556,7 +1556,7 @@
    "version": 1,
    "name": "Zacian V",
    "rarity": "Ultra Rare (UR)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0192.webp"
   },
   {
    "number": "193/136",
@@ -1564,7 +1564,7 @@
    "version": 1,
    "name": "Zamazenta V",
    "rarity": "Ultra Rare (UR)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0193.webp"
   },
   {
    "number": "194/136",
@@ -1572,7 +1572,7 @@
    "version": 1,
    "name": "Quick Ball",
    "rarity": "Ultra Rare (UR)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0194.webp"
   },
   {
    "number": "195/136",
@@ -1580,7 +1580,7 @@
    "version": 1,
    "name": "Metal Saucer",
    "rarity": "Ultra Rare (UR)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0195.webp"
   },
   {
    "number": "196/136",
@@ -1588,7 +1588,7 @@
    "version": 1,
    "name": "Big Parasol",
    "rarity": "Ultra Rare (UR)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0196.webp"
   },
   {
    "number": "197/136",
@@ -1596,7 +1596,7 @@
    "version": 1,
    "name": "Air Balloon",
    "rarity": "Ultra Rare (UR)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0197.webp"
   },
   {
    "number": "198/136",
@@ -1604,7 +1604,7 @@
    "version": 1,
    "name": "Turffield Stadium",
    "rarity": "Ultra Rare (UR)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0198.webp"
   },
   {
    "number": "199/136",
@@ -1612,7 +1612,7 @@
    "version": 1,
    "name": "Twin Energy",
    "rarity": "Ultra Rare (UR)",
-   "image": null
+   "image": "https://pub-3542440da5494e0aab4dd505a4e0a36a.r2.dev/Chinese/Sword%20and%20Shield/cs1b/Cards/0199.webp"
   }
  ]
 }
