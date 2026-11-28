@@ -93,8 +93,8 @@ const FAQ = [
     a: 'A Japanese Pokémon TCG expansion in the MEGA series, set code M7. Its Japanese name is 拡張パック「ハドウシーカー」. It has 114 cards, led by Mega Lucario Z ex.',
   },
   {
-    q: 'When did Aura Seeker release in Japan?',
-    a: 'Friday, November 27, 2026, Japan time. Japan is ahead of the US, so it is out there first.',
+    q: 'When did Aura Seeker launch in Japan?',
+    a: 'It launched in Japan on Friday, November 27, 2026.',
   },
   {
     q: 'How many cards are in an Aura Seeker pack?',
@@ -201,7 +201,7 @@ function AuraSeekerPost() {
         updated={status.liveAt}
         wide
         post={post}
-        lede="The Japanese Pokémon TCG set Aura Seeker (M7) is out in Japan. It released there on Friday, November 27, 2026, Japan time, and Japan is ahead of the US, so it is out there first. The full card list is out: 114 cards, with 36 secret rares and a gold Mega Ultra Rare Mega Lucario Z ex. Here are the pack and box, the chase cards and every secret rare."
+        lede="The Japanese Pokémon TCG set Aura Seeker (M7) launched in Japan on Friday, November 27, 2026. The full card list is out: 114 cards, with 36 secret rares and a gold Mega Ultra Rare Mega Lucario Z ex. Here are the pack and box, the chase cards and every secret rare."
         cta={{
           heading: 'Pre-order Aura Seeker',
           body: 'The Japanese Aura Seeker booster box is on pre-order and ships the first week of December.',
@@ -215,7 +215,7 @@ function AuraSeekerPost() {
         <h2 id="what-it-is">What is Aura Seeker?</h2>
         <p>
           Aura Seeker is a Japanese Pokémon TCG expansion in the MEGA series, with the set code M7. Its Japanese name is{' '}
-          <Ja>拡張パック「ハドウシーカー」</Ja>, and it released in Japan on Friday, November 27, 2026. Japan is ahead of the US, so the set is out there first.
+          <Ja>拡張パック「ハドウシーカー」</Ja>, and it launched in Japan on Friday, November 27, 2026.
         </p>
         <p>
           The set is led by Mega Lucario Z ex, which is on the front of the booster pack and the box. Its Ability shares the set's
@@ -239,8 +239,8 @@ function AuraSeekerPost() {
               </dd>
               <dt>Set code</dt>
               <dd>M7</dd>
-              <dt>Released</dt>
-              <dd>November 27, 2026 (Friday), Japan time</dd>
+              <dt>Launched in Japan</dt>
+              <dd>November 27, 2026 (Friday)</dd>
               <dt>Series</dt>
               <dd>Pokémon Card Game MEGA</dd>
               <dt>Pack</dt>
