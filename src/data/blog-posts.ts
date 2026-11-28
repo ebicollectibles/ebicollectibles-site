@@ -945,9 +945,9 @@ export const BLOG_POSTS: BlogPostSummary[] = [
     title: 'Chinese Pokémon Card Rarities Explained: C, U, R, RR, AR, SR, SAR, UR and More',
     excerpt:
       'Every rarity in the Simplified Chinese Pokémon TCG sets, from Common to Ultra Rare, plus ACE SPEC, Black White Rare, Shiny, Pikachu Rare, Futuristic Rare and the Gem Pack star marks, with example cards and counts for every set.',
-    seoTitle: 'Chinese Pokémon Card Rarity Symbols Explained: C to SAR and UR',
+    seoTitle: 'Chinese Pokémon Card Rarities: SR, SAR, UR, RR Chart and Odds',
     seoDescription:
-      'What the rarity symbols on Simplified Chinese Pokémon cards mean: C, U, R, RR, AR, SR, SAR, UR, ACE, BWR, Shiny, Gem Pack stars, with example cards and set counts.',
+      'Every rarity code on Simplified Chinese Pokémon cards, C to SAR and UR, with English names, official odds, Gem Pack stars and example cards.',
     tag: 'Collecting guide',
     date: '2026-11-24',
     heroImage: `${SITE_URL}/assets/blog/chinese-pokemon-card-rarities-hero-v2.webp`,

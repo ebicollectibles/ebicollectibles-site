@@ -101,10 +101,40 @@ function Examples({ group, cols = 3 }: { group: string; cols?: number }) {
   )
 }
 
+// The same rarity under its English and Japanese names. Simplified Chinese cards
+// print the Japanese letter codes; English cards spell the rarity out instead.
+const NAMES = [
+  { code: 'C', cn: 'Common', en: 'Common', jp: 'C' },
+  { code: 'U', cn: 'Uncommon', en: 'Uncommon', jp: 'U' },
+  { code: 'R', cn: 'Rare', en: 'Rare', jp: 'R' },
+  { code: 'RR', cn: 'Double Rare', en: 'Double Rare', jp: 'RR' },
+  { code: 'AR', cn: 'Art Rare', en: 'Illustration Rare', jp: 'AR' },
+  { code: 'SR', cn: 'Super Rare', en: 'Ultra Rare', jp: 'SR' },
+  { code: 'SAR', cn: 'Special Art Rare', en: 'Special Illustration Rare', jp: 'SAR' },
+  { code: 'UR', cn: 'Ultra Rare', en: 'Hyper Rare', jp: 'UR' },
+  { code: 'ACE', cn: 'ACE SPEC Rare', en: 'ACE SPEC Rare', jp: 'ACE' },
+  { code: 'BWR', cn: 'Black White Rare', en: 'Black White Rare', jp: 'BWR' },
+  { code: 'S', cn: 'Shiny', en: 'Shiny Rare', jp: 'S' },
+  { code: 'SSR', cn: 'Shiny Super Rare', en: 'Shiny Ultra Rare', jp: 'SSR' },
+]
+
+// Pokémon China's odds charts group the rarities into four print shares, one
+// chart per pack size. Most Scarlet & Violet expansions print the first set of
+// figures; Black Bolt and White Flare print the second. Per box: slim 15 x 5 =
+// 75 cards, jumbo 6 x 20 = 120 cards.
+const ODDS = [
+  { group: 'Common and Uncommon', slim: '80.00%', jumbo: '70.00%', bw: '80.00% / 65.00%' },
+  { group: 'Rare and Poké Ball pattern holos', slim: '14.53%', jumbo: '22.99%', bw: '13.23% / 26.45%' },
+  { group: 'Double Rare, Art Rare and Master Ball pattern holos', slim: '4.74%', jumbo: '6.01%', bw: '6.04% / 7.55%' },
+  { group: 'Super Rare, Special Art Rare and Ultra Rare (or Black White Rare)', slim: '0.73%', jumbo: '1.00%', bw: '0.73% / 1.00%' },
+]
+
 const TOC = [
   { id: 'short-answer', label: 'The short answer' },
   { id: 'marks', label: 'What the rarity marks look like' },
+  { id: 'names', label: 'Chinese, English and Japanese rarity names' },
   { id: 'core', label: 'The eight core rarities, C to UR' },
+  { id: 'odds', label: 'How rare each rarity is: the official odds' },
   { id: 'ace', label: 'ACE SPEC Rare (ACE)' },
   { id: 'bwr', label: 'Black White Rare (BWR)' },
   { id: 'shiny', label: 'Shiny (S) and Shiny Super Rare (SSR)' },
@@ -123,6 +153,26 @@ const FAQ = [
   {
     q: 'What do the letters after the number on a Chinese Pokémon card mean?',
     a: 'They are the rarity mark. C is Common, U Uncommon, R Rare, RR Double Rare, AR Art Rare, SR Super Rare, SAR Special Art Rare and UR Ultra Rare. Some sets add ACE, BWR, S, SSR or FUR.',
+  },
+  {
+    q: 'What does RR mean on a Chinese Pokémon card?',
+    a: 'RR is Double Rare. In the Simplified Chinese Scarlet & Violet sets every Double Rare is a Pokémon ex numbered inside the main set. It is not a secret rare: those start at AR.',
+  },
+  {
+    q: 'Are Chinese Pokémon rarities the same as Japanese?',
+    a: 'Simplified Chinese cards print the same letter codes as Japanese cards: C, U, R, RR, AR, SR, SAR, UR, plus ACE, BWR, S and SSR where a set has them. English cards use different names for the same tiers, such as Illustration Rare for AR and Hyper Rare for UR.',
+  },
+  {
+    q: 'What is AR, SR, SAR and UR in English?',
+    a: 'AR (Art Rare) is Illustration Rare in English, SR (Super Rare) is Ultra Rare, SAR (Special Art Rare) is Special Illustration Rare and UR (Ultra Rare) is Hyper Rare. Note that the Chinese and Japanese UR is the gold tier, while the English Ultra Rare is the SR tier.',
+  },
+  {
+    q: 'Is SAR rarer than UR on Chinese cards?',
+    a: "Pokémon China's odds charts do not say. They put Super Rares, Special Art Rares and Ultra Rares in one group, 0.73% of slim-pack cards and 1.00% of jumbo-pack cards, and give no separate share for each.",
+  },
+  {
+    q: 'How often do you pull a Super Rare or better from a Chinese booster box?',
+    a: 'About 0.55 per slim box (75 cards × 0.73%) and about 1.2 per jumbo box (120 cards × 1.00%), going by the odds charts. That is about one in every 27 slim packs or one in every 5 jumbo packs. These are averages, not a guarantee.',
   },
   {
     q: 'What is the rarest card rarity in Chinese Pokémon sets?',
@@ -207,7 +257,7 @@ function ChineseCardRaritiesPost() {
         updated={status.liveAt}
         wide
         post={post}
-        lede="Simplified Chinese Pokémon cards print their rarity as letters after the card number: C, U, R, RR, AR, SR, SAR and UR. A few sets add their own, such as ACE, BWR or Shiny, and Gem Packs use symbols: ●, ◆ and one to three stars."
+        lede="Simplified Chinese Pokémon cards print their rarity as a letter code after the card number, the same codes Japanese cards use: C, U, R and RR in the main set, then AR, SR, SAR and UR as secret rares, from most common to rarest. A few sets add ACE, BWR or Shiny, and Gem Packs use symbols: ●, ◆ and one to three stars."
         cta={{
           heading: 'Explore the Chinese sets',
           body: 'Every card list shows each card with its number and rarity.',
@@ -308,6 +358,41 @@ function ChineseCardRaritiesPost() {
           releases share one card list and count once.
         </p>
 
+        <h2 id="names">Chinese, English and Japanese rarity names</h2>
+        <p>
+          Simplified Chinese cards print the same letter codes as Japanese cards. English cards print the rarity as a symbol and use
+          different names for several tiers, so the same card can be an SR in Chinese and an Ultra Rare in English.
+        </p>
+        <div className="table-scroll" role="group" aria-labelledby="tbl-names" tabIndex={0}>
+          <table className="data-table">
+            <caption id="tbl-names" className="sr-only">
+              Each rarity code on Simplified Chinese cards with its Chinese set name, English name and Japanese code
+            </caption>
+            <thead>
+              <tr>
+                <th scope="col">Code on the card</th>
+                <th scope="col">Name in Chinese sets</th>
+                <th scope="col">English name</th>
+                <th scope="col">Japanese code</th>
+              </tr>
+            </thead>
+            <tbody>
+              {NAMES.map((n) => (
+                <tr key={n.code}>
+                  <th scope="row">{n.code}</th>
+                  <td>{n.cn}</td>
+                  <td>{n.en}</td>
+                  <td>{n.jp}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <p className="table-note">
+          Watch the two Ultra Rares: on Chinese and Japanese cards UR is the gold tier at the end of the set, while English
+          &ldquo;Ultra Rare&rdquo; is the SR tier. Gem Packs use their own star marks, covered below.
+        </p>
+
         <h2 id="core">The eight core rarities, C to UR</h2>
         <p>
           Every main expansion is built the same way. The main set holds the Commons, Uncommons, Rares and Double Rares, plus any ACE
@@ -330,6 +415,58 @@ function ChineseCardRaritiesPost() {
             secret rares run from Super Rare to Ultra Rare.
           </p>
         )}
+
+        <h2 id="odds">How rare each rarity is: the official odds</h2>
+        <p>
+          Pokémon China publishes an odds chart for each main expansion: one for the 5-card slim pack
+          and one for the 20-card jumbo pack. The charts group the rarities into four bands, each a share of all cards printed for
+          that pack size.
+        </p>
+        <div className="table-scroll" role="group" aria-labelledby="tbl-odds" tabIndex={0}>
+          <table className="data-table">
+            <caption id="tbl-odds" className="sr-only">
+              Official print shares for each rarity band in slim and jumbo packs of the Simplified Chinese main expansions
+            </caption>
+            <thead>
+              <tr>
+                <th scope="col">Rarity band</th>
+                <th scope="col">Slim pack (5 cards)</th>
+                <th scope="col">Jumbo pack (20 cards)</th>
+                <th scope="col">Black Bolt and White Flare (slim / jumbo)</th>
+              </tr>
+            </thead>
+            <tbody>
+              {ODDS.map((o) => (
+                <tr key={o.group}>
+                  <th scope="row">{o.group}</th>
+                  <td>{o.slim}</td>
+                  <td>{o.jumbo}</td>
+                  <td>{o.bw}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <p className="table-note">
+          The first two columns are the charts for most Scarlet &amp; Violet expansions, such as Miracle Journey. Each set guide has
+          its own set&rsquo;s chart.
+        </p>
+        <ul>
+          <li>
+            <strong>The top band is the same everywhere.</strong> Super Rares, Special Art Rares and Ultra Rares together are 0.73% of
+            slim-pack cards and 1.00% of jumbo-pack cards. The charts do not split the band, so they do not say whether a SAR is rarer
+            than a UR.
+          </li>
+          <li>
+            <strong>Per box.</strong> A slim box of 15 packs holds 75 cards, so it averages about 0.55 cards from the top band. A jumbo
+            box of 6 packs holds 120 cards and averages about 1.2. Our{' '}
+            <Link to="/blog/chinese-booster-box-guaranteed-hits">booster box guarantees guide</Link> works this out set by set.
+          </li>
+          <li>
+            <strong>Gem Packs are separate.</strong> Their Triple Rare band is 2.17% in Vols. 1 and 2 and 1.81% in Vols. 3 to 7. See
+            the <Link to="/blog/chinese-gem-pack-hit-rates">Gem Pack hit rates guide</Link>.
+          </li>
+        </ul>
 
         <h2 id="ace">ACE SPEC Rare (ACE)</h2>
         <p>
