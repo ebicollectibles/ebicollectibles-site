@@ -77,6 +77,17 @@ const PER_BOX = [
   { vol: '4 to 7', maths: '18 packs × 4 cards × 1.81% = 1.30', fullArts: 'about 1.30 (all 28 cards)', energy: 'none (no Energy cards)' },
 ]
 
+// Odds of one named three-star card, e.g. one Chinese Exclusive full art.
+// Per pack = 4 cards x the three-star share / the number of three-star cards.
+// Chance in 10 boxes = 1 - (1 - per pack) ^ (packs in 10 boxes). Assumes every
+// three-star card is printed in equal numbers, which the charts do not say.
+const ONE_CARD = [
+  { vol: '1', example: 'Sprigatito 0109/09', tier: '18', pack: '1 in 207', box: '1 in 13.8', ten: '52%' },
+  { vol: '2', example: 'Eevee 0115/15', tier: '20', pack: '1 in 230', box: '1 in 15.4', ten: '48%' },
+  { vol: '3', example: 'Gengar 0307/07', tier: '16', pack: '1 in 221', box: '1 in 12.3', ten: '56%' },
+  { vol: '4 to 7', example: "Misty's Psyduck 0307/07 (Vol. 7), Applin 1907/07 (Vol. 6)", tier: '28', pack: '1 in 387', box: '1 in 21.5', ten: '37%' },
+]
+
 const ENERGY = [
   { vol: 1, id: '1801', name: 'Basic Grass Energy', no: '1801/06', alt: 'Basic Grass Energy 1801/06, a Triple Rare holo Energy card from Gem Vol 1, with the green leaf Energy symbol' },
   { vol: 2, id: '1105', name: 'Basic Psychic Energy', no: '1105/06', alt: 'Basic Psychic Energy 1105/06, a Triple Rare holo Energy card from Gem Vol 2, with the pink Gem Pack logo stamp' },
@@ -119,6 +130,7 @@ const TOC = [
   { id: 'energy', label: 'The holo Energy question' },
   { id: 'vs-main-sets', label: 'How Gem Packs differ from slim and jumbo packs' },
   { id: 'chase', label: 'Each volume’s chase full arts' },
+  { id: 'one-card', label: 'Odds of pulling one specific full art' },
   { id: 'faq', label: 'FAQ' },
 ]
 
@@ -142,6 +154,14 @@ const FAQ = [
   {
     q: 'What are the odds of pulling a full art from a Gem Pack?',
     a: 'About 7.2% per pack in Vols. 3 to 7 (4 cards × 1.81%) and about 8.7% per pack in Vols. 1 and 2 (4 cards × 2.17%), counting every three-star card. In Vols. 1 to 3 some of that three-star tier is Energy and Trainer cards.',
+  },
+  {
+    q: "What are the odds of pulling Misty's Psyduck from Gem Pack Vol. 7?",
+    a: "Misty's Psyduck 0307/07 is one of 28 three-star cards in Vol. 7. If each is printed in equal numbers, which Pokémon China does not say, that is about 1 in 387 packs or 1 in 21.5 boxes, and about a 37% chance across 10 boxes. The same odds apply to Applin 1907/07 in Vol. 6 and to any one full art in Vols. 4 to 7.",
+  },
+  {
+    q: 'How many Gem Pack boxes does it take to pull a specific full art?',
+    a: 'On average about 21.5 boxes for one named full art in Vols. 4 to 7, about 12 to 15 boxes in Vols. 1 to 3, where the three-star tier has fewer cards. These are averages: cards are packed at random, so it can take many more boxes or far fewer.',
   },
   {
     q: 'Can the three-star card in a Gem Pack be an Energy?',
@@ -672,6 +692,46 @@ function ChineseGemPackHitRatesPost() {
             <ChaseCard key={`${c.vol}-${c.id}`} c={c} />
           ))}
         </ul>
+
+        <h2 id="one-card">Odds of pulling one specific full art</h2>
+        <p>
+          The 1.3 three-star cards per box are shared across every card in the tier. Your odds of one named card, such as a volume's
+          Chinese Exclusive full art, are that share divided by the number of three-star cards in the set.
+        </p>
+        <div className="table-scroll" role="group" aria-labelledby="tbl-onecard" tabIndex={0}>
+          <table className="data-table">
+            <caption id="tbl-onecard" className="sr-only">
+              Odds of pulling one specific three-star card per pack, per box and across 10 boxes for each Gem Pack volume
+            </caption>
+            <thead>
+              <tr>
+                <th scope="col">Vol.</th>
+                <th scope="col">Example card</th>
+                <th scope="col">Three-star cards</th>
+                <th scope="col">Per pack</th>
+                <th scope="col">Per box</th>
+                <th scope="col">Chance in 10 boxes</th>
+              </tr>
+            </thead>
+            <tbody>
+              {ONE_CARD.map((o) => (
+                <tr key={o.vol}>
+                  <th scope="row">{o.vol}</th>
+                  <td>{o.example}</td>
+                  <td>{o.tier}</td>
+                  <td>{o.pack}</td>
+                  <td>{o.box}</td>
+                  <td>{o.ten}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <p className="table-note">
+          Per pack is 4 cards × the three-star share ÷ the number of three-star cards. The chance in 10 boxes is 1 − (1 − per pack)
+          to the power of the packs in 10 boxes (150 for Vols. 1 and 2, 180 for Vols. 3 to 7). Both assume every three-star card is
+          printed in equal numbers, which Pokémon China does not say.
+        </p>
 
         <h2 id="faq">FAQ</h2>
         <div className="faq">
