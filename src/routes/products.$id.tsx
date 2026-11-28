@@ -93,7 +93,10 @@ export const Route = createFileRoute('/products/$id')({
           : image
             ? [{ property: 'og:image', content: image }]
             : []),
-        {
+        // Product rich results need an offer, so a listing with no visible
+        // price (not sellable, hidden price or $0) gets no Product markup at
+        // all. Google flags Product markup without offers as an invalid item.
+        ...(hasVisiblePrice ? [{
           'script:ld+json': {
             '@context': 'https://schema.org',
             '@type': 'Product',
@@ -153,7 +156,7 @@ export const Route = createFileRoute('/products/$id')({
               },
             } } : {}),
           },
-        },
+        }] : []),
       ],
       links: [{ rel: 'canonical', href: url }],
     }
