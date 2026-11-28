@@ -14,6 +14,7 @@ import {
 import { formatMoney } from '~/lib/products'
 
 const ORDERS_PER_PAGE = 20
+const LIST_STATE_KEY = 'admin-orders-list-state'
 
 export const Route = createFileRoute('/admin/orders/')({
   beforeLoad: () => requireAdmin(),
@@ -195,6 +196,33 @@ function AdminOrdersPage() {
   const [testEmail, setTestEmail] = React.useState('eastblueinternational@gmail.com')
   const [testSending, setTestSending] = React.useState(false)
   const [testResult, setTestResult] = React.useState<string | null>(null)
+
+  // Remember the page and filters for this browser tab, so opening an order
+  // and coming back lands on the same page instead of page 1.
+  const restoredRef = React.useRef(false)
+  React.useEffect(() => {
+    try {
+      const raw = sessionStorage.getItem(LIST_STATE_KEY)
+      if (raw) {
+        const saved = JSON.parse(raw) as Partial<{ page: number; itemFilter: string; statusFilter: typeof statusFilter; orderTypeFilter: typeof orderTypeFilter }>
+        if (typeof saved.itemFilter === 'string') setItemFilter(saved.itemFilter)
+        if (saved.statusFilter && ['not_shipped', 'pending', 'partially_shipped', 'all'].includes(saved.statusFilter)) setStatusFilter(saved.statusFilter)
+        if (saved.orderTypeFilter && ['all', 'normal', 'preorder'].includes(saved.orderTypeFilter)) setOrderTypeFilter(saved.orderTypeFilter)
+        if (typeof saved.page === 'number' && saved.page >= 1) setPage(saved.page)
+      }
+    } catch {
+      // Storage blocked or bad data: start from the defaults.
+    }
+    restoredRef.current = true
+  }, [])
+  React.useEffect(() => {
+    if (!restoredRef.current) return
+    try {
+      sessionStorage.setItem(LIST_STATE_KEY, JSON.stringify({ page, itemFilter, statusFilter, orderTypeFilter }))
+    } catch {
+      // Ignore: remembering the page is only a convenience.
+    }
+  }, [page, itemFilter, statusFilter, orderTypeFilter])
 
   const filteredOrders = React.useMemo(() => {
     const query = itemFilter.trim().toLowerCase()
